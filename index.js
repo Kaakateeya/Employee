@@ -14,7 +14,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
 
 
     var states = [
-        { name: 'testing', url: '/', templateUrl: 'testing.html' },
+        { name: 'testing', url: '/home', templateUrl: 'testing.html' },
 
     ];
 

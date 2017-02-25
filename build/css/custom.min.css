@@ -193,7 +193,8 @@ a:hover {
     width: 70px;
     padding: 0;
     z-index: 9999;
-    position: absolute
+    position: fixed;
+    margin-top: 58px;
 }
 
 .nav-sm .container.body .col-md-3.left_col.menu_fixed {
@@ -221,7 +222,7 @@ table.tile_info td p {
 }
 
 .nav-sm .container.body .right_col {
-    padding: 10px 20px;
+    padding: 74px 20px;
     margin-left: 70px;
     z-index: 2
 }
@@ -247,7 +248,7 @@ table.tile_info td p {
 
 .nav-sm .main_container .top_nav {
     display: block;
-    margin-left: 70px;
+    margin-left: 0px;
     z-index: 2
 }
 
@@ -280,7 +281,12 @@ table.tile_info td p {
 
 .nav-sm .menu_section h3,
 .nav-sm .profile,
-.nav-sm span.fa {
+.nav-sm span.fa,
+.nav-sm .kaakateeyalogo {
+    display: none
+}
+
+.nav-md .smalllogo {
     display: none
 }
 
@@ -412,12 +418,13 @@ table.tile_info td p {
     border-bottom: 1px solid #A00201;
     margin-bottom: 10px;
     width: 100%;
-    position: relative
+    position: fixed;
+    z-index: 9999;
 }
 
 @media (min-width:480px) {
     .nav_menu {
-        position: static
+        position: fixed
     }
 }
 
@@ -425,10 +432,11 @@ table.tile_info td p {
     min-height: 100%;
     width: 230px;
     padding: 0;
-    position: absolute;
+    position: fixed;
     display: -ms-flexbox;
     display: flex;
-    z-index: 1
+    z-index: 9999;
+    margin-top: 58px;
 }
 
 .nav-md .container.body .col-md-3.left_col.menu_fixed {
@@ -441,8 +449,8 @@ body .container.body .right_col {
 }
 
 .nav-md .container.body .right_col {
-    padding: 10px 20px 0;
-    margin-left: 230px
+    padding: 74px 20px 0;
+    margin-left: 70px;
 }
 
 .nav_title {
@@ -611,7 +619,7 @@ body {
 
 .main_container .top_nav {
     display: block;
-    margin-left: 230px
+    margin-left: 0px
 }
 
 .no-padding {
