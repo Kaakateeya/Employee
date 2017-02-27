@@ -23,23 +23,28 @@
 <body class="nav-sm" ng-app="Kaakateeya" ui-router-styles>
     <div class="container body">
         <div class="main_container">
-            <div ui-view="topbar"></div>
-            <div ui-view="content">
+            <div ui-view="topbar">
             </div>
-            <div ui-view="bottompanel"></div>
+            <div ui-view="lazyLoadView">
+            </div>
+            <div ui-view="bottompanel">
+            </div>
         </div>
-    </div>
-    <!-- jQuery -->
+        <!-- jQuery -->
 
-    <script src="node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
-    <script src="node_modules/angular/angular.min.js" type="text/javascript"></script>
-    <script src="node_modules\bootstrap\dist\js\bootstrap.min.js" type="text/javascript"></script>
-    <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript"></script>
-    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js" type="text/javascript"></script>
-    <script src="node_modules/angular-module-sanitize/angular-sanitize.js" type="text/javascript"></script>
-    <script src="node_modules/underscore/underscore-min.js" type="text/javascript"></script>
-    <script src="index.js" type="text/javascript"></script>
-    <script src="build/js/custom.js" type="text/javascript"></script>
+        <script src="node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+        <script src="node_modules/angular/angular.min.js" type="text/javascript"></script>
+        <script src="node_modules\bootstrap\dist\js\bootstrap.min.js" type="text/javascript"></script>
+        <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript"></script>
+        <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js" type="text/javascript"></script>
+        <script src="node_modules/angular-module-sanitize/angular-sanitize.js" type="text/javascript"></script>
+        <script src="node_modules/underscore/underscore-min.js" type="text/javascript"></script>
+        <script src="index.js" type="text/javascript"></script>
+        <script src="build/js/custom.js" type="text/javascript"></script>
+        <script src="dashboard/model/dashboardMdl.js" type="text/javascript"></script>
+        <script type="text/javascript" src="node_modules/oclazyload/dist/ocLazyLoad.min.js"></script>
+
+
 </body>
 
 </html>

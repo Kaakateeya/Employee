@@ -8,48 +8,53 @@
  */
 
 
-var app = angular.module('Kaakateeya', ['ngSanitize', 'ui.bootstrap', 'ui.router']);
+var app = angular.module('Kaakateeya', ['ngSanitize', 'ui.bootstrap', 'ui.router', 'oc.lazyLoad']);
 app.apiroot = 'http://183.82.0.58:8025/Api/';
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
 
 
     var states = [
-        { name: 'testing', url: '/home', templateUrl: 'testing.html' },
+
+
+        { name: 'dashboard', url: '/' },
+        { name: 'login', url: '/mg' },
+
 
     ];
-
-    $urlRouterProvider.otherwise('/');
+    $ocLazyLoadProvider.config({
+        debug: true
+    });
+    $urlRouterProvider.otherwise('/mg');
 
     _.each(states, function(item) {
 
         var innerView = {};
-        if (item.name === "login" || item.name === "dashboard4") {
-            innerView = {
-                "content@": {
-                    templateUrl: item.templateUrl,
-                    controller: item.controller
-                }
-            };
-        } else {
-            innerView = {
 
-                "topbar@": {
-                    templateUrl: "templates/topheader.html"
-                },
-                "content@": {
-                    templateUrl: item.templateUrl,
-                    controller: item.controller
-                },
-                "bottompanel@": {
-                    templateUrl: "templates/footer.html"
-                }
+        innerView = {
 
-            };
-        }
+            "topbar@": {
+                templateUrl: "templates/topheader.html"
+            },
+            "lazyLoadView@": {
+                templateUrl: item.name + '/index.html',
+                controller: item.name + 'Ctrl as page'
+            },
+            "bottompanel@": {
+                templateUrl: "templates/footer.html"
+            }
+
+        };
+
 
         $stateProvider.state(item.name, {
             url: item.url,
-            views: (innerView)
+            views: innerView,
+            resolve: { // Any property in resolve should return a promise and is executed before the view is loaded
+                loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    // you can lazy load files for an existing module
+                    return $ocLazyLoad.load(['' + item.name + '/controller/' + item.name + 'ctrl.js']);
+                }]
+            }
 
         });
         $locationProvider.html5Mode(true);
