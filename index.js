@@ -8,7 +8,7 @@
  */
 
 
-var app = angular.module('Kaakateeya', ['ngSanitize', 'ui.bootstrap', 'ui.router', 'oc.lazyLoad']);
+var app = angular.module('Kaakateeya', ['ngSanitize', 'ui.bootstrap', 'ngAnimate', 'ngMaterial', 'ngMessages', 'ui.router', 'oc.lazyLoad']);
 app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
 

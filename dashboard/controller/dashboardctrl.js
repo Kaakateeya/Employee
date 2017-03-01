@@ -4,11 +4,13 @@
 
 
      function controller(model, scope) {
+         debugger;
          /* jshint validthis:true */
          var vm = this;
 
 
          vm.init = function() {
+
              vm.model = model;
              // scope.$destroy=
          };

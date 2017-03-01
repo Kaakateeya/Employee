@@ -1,19 +1,24 @@
 (function() {
     'use strict';
 
-    angular
-        .module('module')
-        .factory('dashboardModel', factory)
-
-    factory.$inject = ['$http'];
-
-    function factory($http) {
-        var service = {
-            getData: getData
+    function factory(http) {
+        debugger;
+        return {
+            getlandingdata: function() {
+                return http.get(app.apiroot + 'CustomerPersonalUpdate/getEmplanding_counts_Admin', {
+                    params: {
+                        OwnerName: "2",
+                        Branchname: "319",
+                        StartIndex: 1,
+                        EndIndex: 5,
+                        strTableType: ''
+                    }
+                });
+            }
         };
-
-        return service;
-
-        function getData() {}
     }
+    angular
+        .module('Kaakateeya')
+        .factory('dashboardServices', factory);
+    factory.$inject = ['$http'];
 })();

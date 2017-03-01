@@ -1,11 +1,14 @@
 <div class="right_col" role="main">
     <div class="">
         <div class="row">
+
             <div class="col-md-4" ng-repeat="array in page.model.array">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2 style="font-size: 12px;color:maroon;font-weight:600">{{array.Table}}</h2>
-                        <ul class="nav navbar-right panel_toolbox">
+                        <h2 style="font-size: 12px;color:maroon;font-weight:600">{{array.TableName}}</h2>
+                        <a class="close-link pull-right" title="Close"><i class="fa fa-close"></i></a>
+                        <br>
+                        <ul class="nav pull-left panel_toolbox">
                             <li>
                                 <a class="title" title="Excel" style="color:black" href="javascript:void(0)"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>
                                 </a>
@@ -13,60 +16,21 @@
                             <li>
                                 <a class="title" title="Slideshow" ng-click="slideshowfunction()" href="javascript:void(0)" style="color:black">Slideshow</a>
                             </li>
-
-
-                            <li><a class="close-link" title="Close"><i class="fa fa-close"></i></a>
-                            </li>
-
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <img ng-src="{{array.imgurl}}"></img>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">{{array.headertext}}</a>
-                                <p>{{array.text}}</p>
-                            </div>
-                        </article>
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <img ng-src="{{array.imgurl}}"></img>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">{{array.headertext}}</a>
-                                <p>{{array.text}}</p>
-                            </div>
-                        </article>
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <img ng-src="{{array.imgurl}}"></img>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">{{array.headertext}}</a>
-                                <p>{{array.text}}</p>
-                            </div>
-                        </article>
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <img ng-src="{{array.imgurl}}"></img>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">{{array.headertext}}</a>
-                                <p>{{array.text}}</p>
-                            </div>
-                        </article>
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <img ng-src="{{array.imgurl}}"></img>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">{{array.headertext}}</a>
-                                <p>{{array.text}}</p>
-                            </div>
-                        </article>
+                    <div style="height:356px; overflow-y: scroll;min-height:350px;">
+                        <div class="x_content">
+                            <article class="media event" ng-repeat="itm in array.value">
+                                <a class="pull-left date">
+                                    <img ng-src="{{itm.Photo}}" style="width:54px;height:48px;"></img>
+                                </a>
+                                <div class="media-body">
+                                    <p class="title">{{itm.Name}} ({{itm.Profileid}})</p>
+                                    <p>{{itm.Date}}</p>
+                                </div>
+                            </article>
+                        </div>
                     </div>
                     <article class="media event">
                         <div class="pull-right">

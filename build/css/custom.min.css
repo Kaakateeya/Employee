@@ -1301,7 +1301,7 @@ table.tile_info {
 }
 
 .x_title h2 {
-    margin: 5px 0 6px;
+    margin: 0px 0 6px;
     float: left;
     display: block
 }
@@ -2126,8 +2126,8 @@ ul.top_profiles li:nth-child(odd) {
 }
 
 .media .date {
-    background: #ccc;
-    width: 52px;
+    /*background: #ccc;*/
+    width: 53px;
     margin-right: 10px;
     border-radius: 10px;
     padding: 5px
