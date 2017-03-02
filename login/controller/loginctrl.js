@@ -1,19 +1,22 @@
- (function() {
+ (function(angular) {
      'use strict';
 
-
-
-     function controller($location) {
+     function controller(loginModel, scope) {
          /* jshint validthis:true */
          var vm = this;
 
-         activate();
+         vm.activate = function() {
 
-         function activate() {}
+             loginModel.showpopup('loginContent.html', scope);
+         }
+         vm.activate();
+
+         scope.closepopup = function() {
+             loginModel.closepopup();
+         }
+
      }
-     angular
-         .module('Kaakateeya')
-         .controller('loginCtrl', controller)
 
-     controller.$inject = ['$location'];
- })();
+     angular.module('Kaakateeya').controller('loginCtrl', ['loginModel', '$scope', controller]);
+
+ })(angular);

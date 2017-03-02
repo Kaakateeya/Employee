@@ -2,18 +2,32 @@
     'use strict';
 
     angular
-        .module('module')
-        .factory('loginModel', factory)
+        .module('Kaakateeya')
+        .factory('loginservice', factory)
 
-    factory.$inject = ['$http'];
+    factory.$inject = ['$http', '$uibModal'];
 
-    function factory($http) {
+    function factory($http, uibModal) {
+        var modalpopupopen;
+
         var service = {
-            getData: getData
+            showpopup: showpopup
         };
 
         return service;
 
-        function getData() {}
+        function showpopup() {
+            alert(111);
+            //url, scope, size
+            // modalpopupopen = uibModal.open({
+            //     ariaLabelledBy: 'modal-title',
+            //     ariaDescribedBy: 'modal-body',
+            //     templateUrl: url,
+            //     scope: scope,
+            //     size: size,
+            //     backdrop: 'static',
+            //     keyboard: false
+            // });
+        }
     }
 })();

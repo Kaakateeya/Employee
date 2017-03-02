@@ -4,14 +4,14 @@
     function factory(http) {
         debugger;
         return {
-            getlandingdata: function() {
+            getlandingdata: function(empid, branchcode, frompage, topage, tablename) {
                 return http.get(app.apiroot + 'CustomerPersonalUpdate/getEmplanding_counts_Admin', {
                     params: {
-                        OwnerName: "2",
-                        Branchname: "319",
-                        StartIndex: 1,
-                        EndIndex: 5,
-                        strTableType: ''
+                        OwnerName: empid,
+                        Branchname: branchcode,
+                        StartIndex: frompage,
+                        EndIndex: topage,
+                        strTableType: tablename
                     }
                 });
             }

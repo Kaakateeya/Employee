@@ -39,7 +39,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             },
             "lazyLoadView@": {
                 templateUrl: item.name + '/index.html',
-                controller: item.name + 'Ctrl as page'
+                controller: item.name + 'Ctrl'
             },
             "bottompanel@": {
                 templateUrl: "templates/footer.html"

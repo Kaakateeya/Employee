@@ -1,8 +1,7 @@
-<div class="right_col" role="main">
+<div class="right_col" role="main" ng-init='init()'>
     <div class="">
         <div class="row">
-
-            <div class="col-md-4" ng-repeat="array in page.model.array">
+            <div class="col-md-4" ng-repeat="array in arrays">
                 <div class="x_panel">
                     <div class="x_title">
                         <h2 style="font-size: 12px;color:maroon;font-weight:600">{{array.TableName}}</h2>
@@ -10,7 +9,7 @@
                         <br>
                         <ul class="nav pull-left panel_toolbox">
                             <li>
-                                <a class="title" title="Excel" style="color:black" href="javascript:void(0)"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                                <a class="title" title="Excel" ng-click="loadmore('2','319',1,10,array.TableName,'export')" style="color:black" href="javascript:void(0)"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>
                                 </a>
                             </li>
                             <li>
@@ -34,9 +33,29 @@
                     </div>
                     <article class="media event">
                         <div class="pull-right">
-                            <a class="title" ng-click="loadmore('2','319',5,10,array.TableName)" href="javascript:void(0)">LoadMore</a>
+                            <a class="title" ng-click="loadmore('2','319',5,10,array.TableName,'load')" href="javascript:void(0)">LoadMore</a>
                         </div>
                     </article>
+                </div>
+
+
+                <div id="exportable">
+                    <table width="100%">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>DoB</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items">
+                                <td>{{item.name}}</td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.dob | date:'MM/dd/yy'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
