@@ -64,9 +64,8 @@
 
 
         model.init = function() {
-            debugger;
             model.array = [];
-            dashboardServices.getlandingdata().then(function(response) {
+            dashboardServices.getlandingdata("2", "319", 1, 5, '').then(function(response) {
                 console.log(response.data);
                 _.each(response.data, function(item) {
                     var testArr = JSON.parse(item);
@@ -80,6 +79,21 @@
             return model;
         };
         return model.init();
+        // model.loadmore = function(empid, branchcode, frompage, topage, tablename) {
+        //     dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename).then(function(response) {
+        //         debugger;
+        //         console.log(response.data);
+        //         _.each(response.data, function(item) {
+        //             var testArr = JSON.parse(item);
+        //             if (testArr.length > 0 && testArr[0].TableName !== undefined) {
+        //                 model.array.push({ TableName: testArr[0].TableName, value: testArr });
+        //                 console.log(model.array);
+        //             }
+        //         });
+
+        //     });
+        //     return model;
+        // };
     }
     angular
         .module('Kaakateeya')

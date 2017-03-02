@@ -8,7 +8,9 @@
  */
 
 
-var app = angular.module('Kaakateeya', ['ngSanitize', 'ui.bootstrap', 'ngAnimate', 'ngMaterial', 'ngMessages', 'ui.router', 'oc.lazyLoad']);
+var app = angular.module('Kaakateeya', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angular-loading-bar', 'ngAnimate', 'ngIdle', 'ngMaterial',
+    'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate', 'angularPromiseButtons', 'oc.lazyLoad'
+]);
 app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
 
@@ -52,7 +54,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             resolve: { // Any property in resolve should return a promise and is executed before the view is loaded
                 loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                     // you can lazy load files for an existing module
-                    return $ocLazyLoad.load(['' + item.name + '/controller/' + item.name + 'ctrl.js']);
+                    return $ocLazyLoad.load(['' + item.name + '/controller/' + item.name + 'ctrl.js', '' + item.name + '/model/' + item.name + 'Mdl.js', '' + item.name + '/service/' + item.name + 'service.js']);
                 }]
             }
 
