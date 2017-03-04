@@ -13,11 +13,7 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngAnimate', 'ngSanitize', 
 ]);
 app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
-    debugger;
-
     var states = [
-
-
         { name: 'dashboard', url: '/' },
         { name: 'login', url: '/mg' },
 
@@ -39,7 +35,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             },
             "lazyLoadView@": {
                 templateUrl: item.name + '/index.html',
-                controller: item.name + 'Ctrl'
+                controller: item.name + 'Ctrl as page'
             },
             "bottompanel@": {
                 templateUrl: "templates/footer.html"

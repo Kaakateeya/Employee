@@ -39,7 +39,6 @@ app.factory('commonpage', ['$uibModal', 'photoalubum', function(uibModal, photoa
 
         },
         checkitem: function(carouselID) {
-            debugger;
             var $this;
             $this = $("#" + carouselID);
             if ($("#" + carouselID + " .carousel-inner .item:first").hasClass("active")) {

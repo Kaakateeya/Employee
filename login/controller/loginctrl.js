@@ -8,8 +8,8 @@
          vm.activate = function() {
 
              loginModel.showpopup('loginContent.html', scope);
-         }
-         vm.activate();
+         };
+         //  vm.activate();
 
          scope.closepopup = function() {
              loginModel.closepopup();

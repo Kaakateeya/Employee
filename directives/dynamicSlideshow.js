@@ -25,7 +25,6 @@ app.directive("slideShow", ['$uibModal', 'commonpage',
                 return attrs.slidetype === "'page'" ? 'templates/dynamicSlideshow.html' : '';
             },
             link: function(scope, element, attrs) {
-                debugger;
                 var currentIndex = 1;
                 var currentslide = 1;
                 var dataarrr = scope.slidearray;
@@ -90,7 +89,6 @@ app.directive("slideShow", ['$uibModal', 'commonpage',
                         scope.slidNumfiled = currentIndex1;
 
                         // scope.$watch(scope.slidNum, function(newvalue, oldvalue) {
-                        //     debugger;
                         //     scope.slidNum = currentIndex1;
                         // });
                         if (currentslide < currentIndex1) {
@@ -144,7 +142,6 @@ app.directive("slideShow", ['$uibModal', 'commonpage',
                 // });
 
                 scope.$on("slideshowdynamic", function(event) {
-                    debugger;
                     scope.dynamicslideshow = true;
                     commonpage.showPopup('templates/dynamicSlideshow.html', scope, 'lg');
                 });

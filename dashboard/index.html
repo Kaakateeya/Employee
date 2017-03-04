@@ -1,481 +1,40 @@
-<div class="right_col" role="main" ng-init='init()'>
+<div id="dashBoardPage" class="right_col" role="main">
+
     <div class="">
         <div class="row">
-
-            <div class="col-md-4" ng-hide="arrayshide">
+            <div class="col-md-4" ng-repeat="item in page.model.landingItems">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2 style="font-size: 12px;color:maroon;font-weight:600">{{arrays[0].TableName}}</h2>
+                        <h2>{{item[0].TableName}} {{item.length}}</h2>
                         <a class="close-link pull-right" title="Close"><i class="fa fa-close"></i></a>
                         <br>
                         <ul class="nav pull-left panel_toolbox">
                             <li>
-                                <a class="title" title="Excel" ng-click="loadmore('2','319',1,10,arrays[0].TableName,'export')" style="color:black" href="javascript:void(0)"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                                <a class="title" title="Excel" ng-click="page.loadmore('2','319',1,10,item[0].TableName,'export',item)" style="color:black" href="javascript:void(0)"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>
                                 </a>
                             </li>
                             <li>
-                                <a class="title" title="Slideshow" ng-click="slideshowfunction()" href="javascript:void(0)" style="color:black">Slideshow</a>
+                                <a class="title" title="Slideshow" ng-click="page.model.slideshowfunction()" href="javascript:void(0)" style="color:black">Slideshow</a>
                             </li>
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-                    <div style="height:356px; overflow-y: scroll;min-height:350px;">
+                    <div class="scrolldashboard">
                         <div class="x_content">
-                            <article class="media event" ng-repeat="itm in arrays">
+                            <article class="media event" ng-repeat="inneritem in item">
                                 <a class="pull-left date">
-                                    <img ng-src="{{itm.Photo}}" style="width:54px;height:48px;"></img>
+                                    <img ng-src="{{inneritem.Photo}}"></img>
                                 </a>
                                 <div class="media-body">
-                                    <p class="title">{{itm.Name}} ({{itm.Profileid}})</p>
-                                    <p>{{itm.Date}}</p>
+                                    <p class="title">{{inneritem.Name}} ({{inneritem.Profileid}})</p>
+                                    <p>{{inneritem.Date}}</p>
                                 </div>
                             </article>
                         </div>
                     </div>
                     <article class="media event">
                         <div class="pull-right">
-                            <a class="title" ng-click="loadmore('2','319',5,10,arrays[0].TableName,'load')" href="javascript:void(0)">LoadMore</a>
-                        </div>
-                    </article>
-                </div>
-                <div id="exportablenoservice" ng-hide="true">
-                    <table width="100%">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Profileid</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="itm in arrays">
-                                <td>{{itm.Name}}</td>
-                                <td>{{itm.Profileid}}</td>
-                                <td>{{itm.Date | date:'MM/dd/yy'}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="col-md-4" ng-hide="arrayofflinehide">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2 style="font-size: 12px;color:maroon;font-weight:600">{{arrayoffline[0].TableName}}</h2>
-                        <a class="close-link pull-right" title="Close"><i class="fa fa-close"></i></a>
-                        <br>
-                        <ul class="nav pull-left panel_toolbox">
-                            <li>
-                                <a class="title" title="Excel" ng-click="loadmore('2','319',1,10,arrayoffline[0].TableName,'export')" style="color:black" href="javascript:void(0)"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="title" title="Slideshow" ng-click="slideshowfunction()" href="javascript:void(0)" style="color:black">Slideshow</a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div style="height:356px; overflow-y: scroll;min-height:350px;">
-                        <div class="x_content">
-                            <article class="media event" ng-repeat="itm in arrayoffline">
-                                <a class="pull-left date">
-                                    <img ng-src="{{itm.Photo}}" style="width:54px;height:48px;"></img>
-                                </a>
-                                <div class="media-body">
-                                    <p class="title">{{itm.Name}} ({{itm.Profileid}})</p>
-                                    <p>{{itm.Date}}</p>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                    <article class="media event">
-                        <div class="pull-right">
-                            <a class="title" ng-click="loadmore('2','319',5,10,arrayoffline[0].TableName,'load')" href="javascript:void(0)">LoadMore</a>
-                        </div>
-                    </article>
-                </div>
-                <div id="exportableoffline" ng-hide="true">
-                    <table width="100%">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Profileid</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="itm in arrayoffline">
-                                <td>{{itm.Name}}</td>
-                                <td>{{itm.Profileid}}</td>
-                                <td>{{itm.Date | date:'MM/dd/yy'}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-4" ng-hide="arrayofflineexpiredhide">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2 style="font-size: 12px;color:maroon;font-weight:600">{{arrayofflineexpired[0].TableName}}</h2>
-                        <a class="close-link pull-right" title="Close"><i class="fa fa-close"></i></a>
-                        <br>
-                        <ul class="nav pull-left panel_toolbox">
-                            <li>
-                                <a class="title" title="Excel" ng-click="loadmore('2','319',1,10,arrayofflineexpired[0].TableName,'export')" style="color:black" href="javascript:void(0)"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="title" title="Slideshow" ng-click="slideshowfunction()" href="javascript:void(0)" style="color:black">Slideshow</a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div style="height:356px; overflow-y: scroll;min-height:350px;">
-                        <div class="x_content">
-                            <article class="media event" ng-repeat="itm in arrayofflineexpired">
-                                <a class="pull-left date">
-                                    <img ng-src="{{itm.Photo}}" style="width:54px;height:48px;"></img>
-                                </a>
-                                <div class="media-body">
-                                    <p class="title">{{itm.Name}} ({{itm.Profileid}})</p>
-                                    <p>{{itm.Date}}</p>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                    <article class="media event">
-                        <div class="pull-right">
-                            <a class="title" ng-click="loadmore('2','319',5,10,arrayofflineexpired[0].TableName,'load')" href="javascript:void(0)">LoadMore</a>
-                        </div>
-                    </article>
-                </div>
-                <div id="exportableofflineexpired" ng-hide="true">
-                    <table width="100%">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Profileid</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="itm in arrayofflineexpired">
-                                <td>{{itm.Name}}</td>
-                                <td>{{itm.Profileid}}</td>
-                                <td>{{itm.Date | date:'MM/dd/yy'}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-4" ng-hide="arrayunpaidhide">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2 style="font-size: 12px;color:maroon;font-weight:600">{{arrayunpaid[0].TableName}}</h2>
-                        <a class="close-link pull-right" title="Close"><i class="fa fa-close"></i></a>
-                        <br>
-                        <ul class="nav pull-left panel_toolbox">
-                            <li>
-                                <a class="title" title="Excel" ng-click="loadmore('2','319',1,10,arrayunpaid[0].TableName,'export')" style="color:black" href="javascript:void(0)"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="title" title="Slideshow" ng-click="slideshowfunction()" href="javascript:void(0)" style="color:black">Slideshow</a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div style="height:356px; overflow-y: scroll;min-height:350px;">
-                        <div class="x_content">
-                            <article class="media event" ng-repeat="itm in arrayunpaid">
-                                <a class="pull-left date">
-                                    <img ng-src="{{itm.Photo}}" style="width:54px;height:48px;"></img>
-                                </a>
-                                <div class="media-body">
-                                    <p class="title">{{itm.Name}} ({{itm.Profileid}})</p>
-                                    <p>{{itm.Date}}</p>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                    <article class="media event">
-                        <div class="pull-right">
-                            <a class="title" ng-click="loadmore('2','319',5,10,arrayunpaid[0].TableName,'load')" href="javascript:void(0)">LoadMore</a>
-                        </div>
-                    </article>
-                </div>
-                <div id="exportableunpaid" ng-hide="true">
-                    <table width="100%">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Profileid</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="itm in arrayunpaid">
-                                <td>{{itm.Name}}</td>
-                                <td>{{itm.Profileid}}</td>
-                                <td>{{itm.Date | date:'MM/dd/yy'}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-4" ng-hide="arrayinactivecustomershide">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2 style="font-size: 12px;color:maroon;font-weight:600">{{arrayinactivecustomers[0].TableName}}</h2>
-                        <a class="close-link pull-right" title="Close"><i class="fa fa-close"></i></a>
-                        <br>
-                        <ul class="nav pull-left panel_toolbox">
-                            <li>
-                                <a class="title" title="Excel" ng-click="loadmore('2','319',1,10,arrayinactivecustomers[0].TableName,'export')" style="color:black" href="javascript:void(0)"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="title" title="Slideshow" ng-click="slideshowfunction()" href="javascript:void(0)" style="color:black">Slideshow</a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div style="height:356px; overflow-y: scroll;min-height:350px;">
-                        <div class="x_content">
-                            <article class="media event" ng-repeat="itm in arrayinactivecustomers">
-                                <a class="pull-left date">
-                                    <img ng-src="{{itm.Photo}}" style="width:54px;height:48px;"></img>
-                                </a>
-                                <div class="media-body">
-                                    <p class="title">{{itm.Name}} ({{itm.Profileid}})</p>
-                                    <p>{{itm.Date}}</p>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                    <article class="media event">
-                        <div class="pull-right">
-                            <a class="title" ng-click="loadmore('2','319',5,10,arrayinactivecustomers[0].TableName,'load')" href="javascript:void(0)">LoadMore</a>
-                        </div>
-                    </article>
-                </div>
-                <div id="exportableinactive" ng-hide="true">
-                    <table width="100%">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Profileid</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="itm in arrayinactivecustomers">
-                                <td>{{itm.Name}}</td>
-                                <td>{{itm.Profileid}}</td>
-                                <td>{{itm.Date | date:'MM/dd/yy'}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-4" ng-hide="arraytodayremainderhide">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2 style="font-size: 12px;color:maroon;font-weight:600">{{arraytodayremainder[0].TableName}}</h2>
-                        <a class="close-link pull-right" title="Close"><i class="fa fa-close"></i></a>
-                        <br>
-                        <ul class="nav pull-left panel_toolbox">
-                            <li>
-                                <a class="title" title="Excel" ng-click="loadmore('2','319',1,10,arraytodayremainder[0].TableName,'export')" style="color:black" href="javascript:void(0)"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="title" title="Slideshow" ng-click="slideshowfunction()" href="javascript:void(0)" style="color:black">Slideshow</a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div style="height:356px; overflow-y: scroll;min-height:350px;">
-                        <div class="x_content">
-                            <article class="media event" ng-repeat="itm in arraytodayremainder">
-                                <a class="pull-left date">
-                                    <img ng-src="{{itm.Photo}}" style="width:54px;height:48px;"></img>
-                                </a>
-                                <div class="media-body">
-                                    <p class="title">{{itm.Name}} ({{itm.Profileid}})</p>
-                                    <p>{{itm.Date}}</p>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                    <article class="media event">
-                        <div class="pull-right">
-                            <a class="title" ng-click="loadmore('2','319',5,10,arraytodayremainder[0].TableName,'load')" href="javascript:void(0)">LoadMore</a>
-                        </div>
-                    </article>
-                </div>
-                <div id="exportableremainder" ng-hide="true">
-                    <table width="100%">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Profileid</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="itm in arraytodayremainder">
-                                <td>{{itm.Name}}</td>
-                                <td>{{itm.Profileid}}</td>
-                                <td>{{itm.Date | date:'MM/dd/yy'}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-4" ng-hide="arraynotviewedhide">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2 style="font-size: 12px;color:maroon;font-weight:600">{{arraynotviewed[0].TableName}}</h2>
-                        <a class="close-link pull-right" title="Close"><i class="fa fa-close"></i></a>
-                        <br>
-                        <ul class="nav pull-left panel_toolbox">
-                            <li>
-                                <a class="title" title="Excel" ng-click="loadmore('2','319',1,10,arraynotviewed[0].TableName,'export')" style="color:black" href="javascript:void(0)"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="title" title="Slideshow" ng-click="slideshowfunction()" href="javascript:void(0)" style="color:black">Slideshow</a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div style="height:356px; overflow-y: scroll;min-height:350px;">
-                        <div class="x_content">
-                            <article class="media event" ng-repeat="itm in arraynotviewed">
-                                <a class="pull-left date">
-                                    <img ng-src="{{itm.Photo}}" style="width:54px;height:48px;"></img>
-                                </a>
-                                <div class="media-body">
-                                    <p class="title">{{itm.Name}} ({{itm.Profileid}})</p>
-                                    <p>{{itm.Date}}</p>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                    <article class="media event">
-                        <div class="pull-right">
-                            <a class="title" ng-click="loadmore('2','319',5,10,arraynotviewed[0].TableName,'load')" href="javascript:void(0)">LoadMore</a>
-                        </div>
-                    </article>
-                </div>
-                <div id="exportablenotview" ng-hide="true">
-                    <table width="100%">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Profileid</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="itm in arraynotviewed">
-                                <td>{{itm.Name}}</td>
-                                <td>{{itm.Profileid}}</td>
-                                <td>{{itm.Date | date:'MM/dd/yy'}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-4" ng-hide="arrayupdateshide">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2 style="font-size: 12px;color:maroon;font-weight:600">{{arrayupdates[0].TableName}}</h2>
-                        <a class="close-link pull-right" title="Close"><i class="fa fa-close"></i></a>
-                        <br>
-                        <ul class="nav pull-left panel_toolbox">
-                            <li>
-                                <a class="title" title="Excel" ng-click="loadmore('2','319',1,10,arrayupdates[0].TableName,'export')" style="color:black" href="javascript:void(0)"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="title" title="Slideshow" ng-click="slideshowfunction()" href="javascript:void(0)" style="color:black">Slideshow</a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div style="height:356px; overflow-y: scroll;min-height:350px;">
-                        <div class="x_content">
-                            <article class="media event" ng-repeat="itm in arrayupdates">
-                                <a class="pull-left date">
-                                    <img ng-src="{{itm.Photo}}" style="width:54px;height:48px;"></img>
-                                </a>
-                                <div class="media-body">
-                                    <p class="title">{{itm.Name}} ({{itm.Profileid}})</p>
-                                    <p>{{itm.Date}}</p>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                    <article class="media event">
-                        <div class="pull-right">
-                            <a class="title" ng-click="loadmore('2','319',5,10,arrayupdates[0].TableName,'load')" href="javascript:void(0)">LoadMore</a>
-                        </div>
-                    </article>
-                </div>
-                <div id="exportableupdatehide" ng-hide="true">
-                    <table width="100%">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Profileid</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="itm in arrayupdates">
-                                <td>{{itm.Name}}</td>
-                                <td>{{itm.Profileid}}</td>
-                                <td>{{itm.Date | date:'MM/dd/yy'}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-4" ng-hide="arrayProceedinghide">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2 style="font-size: 12px;color:maroon;font-weight:600">{{arrayProceeding[0].TableName}}</h2>
-                        <a class="close-link pull-right" title="Close"><i class="fa fa-close"></i></a>
-                        <br>
-                        <ul class="nav pull-left panel_toolbox">
-                            <li>
-                                <a class="title" title="Excel" ng-click="loadmore('2','319',1,10,arrayProceeding[0].TableName,'export')" style="color:black" href="javascript:void(0)"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="title" title="Slideshow" ng-click="slideshowfunction()" href="javascript:void(0)" style="color:black">Slideshow</a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div style="height:356px; overflow-y: scroll;min-height:350px;">
-                        <div class="x_content">
-                            <article class="media event" ng-repeat="itm in arrayProceeding">
-                                <a class="pull-left date">
-                                    <img ng-src="{{itm.Photo}}" style="width:54px;height:48px;"></img>
-                                </a>
-                                <div class="media-body">
-                                    <p class="title">{{itm.Name}} ({{itm.Profileid}})</p>
-                                    <p>{{itm.Date}}</p>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                    <article class="media event">
-                        <div class="pull-right">
-                            <a class="title" ng-click="loadmore('2','319',5,10,arrayProceeding[0].TableName,'load')" href="javascript:void(0)">LoadMore</a>
+                            <a class="title" ng-click="page.model.loadmore('2','319',1,10,item[0].TableName,'load',item)" href="javascript:void(0)">LoadMore</a>
                         </div>
                     </article>
                 </div>
@@ -489,7 +48,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="itm in arrayProceeding">
+                            <tr ng-repeat="itm in item">
                                 <td>{{itm.Name}}</td>
                                 <td>{{itm.Profileid}}</td>
                                 <td>{{itm.Date | date:'MM/dd/yy'}}</td>
@@ -501,7 +60,7 @@
         </div>
     </div>
 
-    <slide-show nghide="slideshowtrue" slidearray="slideshowArray" dynamicheader="'false'" slidetype="'popup'" headertemplate="'templates/SlideHeader.html'" bodytemplate="'templates/slideDesign.html'"></slide-show>
+
 
 </div>
 
