@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
     'use strict';
 
     function factory(http) {
@@ -21,4 +21,4 @@
         .module('Kaakateeya')
         .factory('dashboardServices', factory);
     factory.$inject = ['$http'];
-})();
+})(angular);

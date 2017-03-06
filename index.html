@@ -31,7 +31,7 @@
         <div class="main_container">
             <div ui-view="topbar">
             </div>
-            <div ng-include="'templates/loader.html'"></div>
+            <!-- <div ng-include="'templates/loader.html'"></div>-->
             <div ui-view="lazyLoadView">
             </div>
             <div ui-view="bottompanel">
@@ -74,7 +74,8 @@
 
     <script src="common/controllers/LoaderCtrl.js" type="text/javascript"></script>
     <script src="common/services/errorInterceptor.js" type="text/javascript"></script>
-
+    <script src="common\services\route.js" type="text/javascript"></script>
+    <script src="directives\testingslide.js" type="text/javascript"></script>
 </body>
 
 </html>

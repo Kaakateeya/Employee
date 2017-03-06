@@ -3,17 +3,14 @@
 
      function controller(loginModel, scope) {
          /* jshint validthis:true */
-         var vm = this;
+         var vm = this,
+             model;
 
          vm.activate = function() {
-
-             loginModel.showpopup('loginContent.html', scope);
+             vm.model = model = loginModel;
+             model.showpopup('loginContent.html', scope);
          };
-         //  vm.activate();
-
-         scope.closepopup = function() {
-             loginModel.closepopup();
-         }
+         vm.activate();
 
      }
 

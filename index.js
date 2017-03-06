@@ -15,14 +15,14 @@ app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
     var states = [
         { name: 'dashboard', url: '/' },
-        { name: 'login', url: '/mg' },
+        { name: 'login', url: '/loginpage' },
 
 
     ];
     $ocLazyLoadProvider.config({
         debug: true
     });
-    //$urlRouterProvider.otherwise('/mg');
+    $urlRouterProvider.otherwise('/loginpage');
 
     _.each(states, function(item) {
 

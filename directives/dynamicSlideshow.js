@@ -81,7 +81,9 @@ app.directive("slideShow", ['$uibModal', 'commonpage',
                     return arraydata;
                 };
                 scope.bindfunction = function() {
+
                     $('#' + scope.carousalID).bind('slide.bs.carousel', function() {
+
                         var totalItems1 = $('#' + scope.carousalID).find('.item').length;
                         var currentIndex1 = $('#' + scope.carousalID).find('div.active').index() + 1;
                         scope.slidNum = currentIndex1;
@@ -141,7 +143,8 @@ app.directive("slideShow", ['$uibModal', 'commonpage',
                 //     scope.displayArr = scope.displayArray(array);
                 // });
 
-                scope.$on("slideshowdynamic", function(event) {
+                scope.$on("slideshowdynamic", function(event, array) {
+                    scope.slidearray = array;
                     scope.dynamicslideshow = true;
                     commonpage.showPopup('templates/dynamicSlideshow.html', scope, 'lg');
                 });

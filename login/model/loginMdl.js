@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function factory($http, uibModal) {
+    function factory($http, uibModal, loginservice, route) {
         var loginmodel = {},
             modalpopupopen;
         loginmodel.showpopup = function(url, scope, size) {
@@ -10,7 +10,6 @@
                 ariaDescribedBy: 'modal-body',
                 templateUrl: url,
                 scope: scope,
-                // size: size,
                 backdrop: 'static',
                 keyboard: false,
                 windowClass: 'zindex'
@@ -21,12 +20,21 @@
             modalpopupopen.close();
             return loginmodel;
         };
+        loginmodel.loginsubmit = function(form) {
+            debugger;
+            // loginservice.getloginpage(form).then(function(response) {
+            //     console.log(response);
+            // });
+            route.go("dashboard", {});
+            return loginmodel;
+
+        };
         return loginmodel;
     }
     angular
         .module('Kaakateeya')
-        .factory('loginModel', factory)
+        .factory('loginModel', factory);
 
-    factory.$inject = ['$http', '$uibModal'];
+    factory.$inject = ['$http', '$uibModal', 'loginservice', 'route'];
 
 })();
