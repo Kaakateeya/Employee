@@ -10,7 +10,6 @@ app.directive("slideShowss", ['$uibModal', 'commonpage',
             },
             templateUrl: "templates/testingslidedesign.html",
             link: function(scope, element, attrs) {
-                debugger;
                 scope.displayArr = scope.array;
                 //Bootstrap Carousal
                 scope.checkitemnew = function(carouselID) {
@@ -41,9 +40,9 @@ app.directive("slideShowss", ['$uibModal', 'commonpage',
                 }
 
                 function slidBind(carouselID, curProfileID, totalrecordsID, lnkLastSlide, playButtonID, pauseButtonID) {
-                    debugger;
+
                     $('#' + carouselID).bind('slide.bs.carousel', function(e) {
-                        debugger;
+
                         $('.list-inline li a').removeClass('selected');
                         $('[id=carousel-selector-' + $('#' + carouselID).find('div.active').index() + ']').addClass('selected');
                         var totalItems1 = $('#' + carouselID).find('.item').length;

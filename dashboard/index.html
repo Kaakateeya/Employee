@@ -62,17 +62,81 @@
         </div>
     </div>
 
-    <div>
 
-        <slide-show nghide="page.model.slideshowtrue" slidearray="page.testarray" dynamicheader="'false'" slidetype="'popup'" headertemplate="'templates/SlideHeader.html'" bodytemplate="'templates/slideDesign.html'"></slide-show>
-    </div>
 </div>
-<style>
+
+
+<div>
+
+    <slide-show nghide="page.model.slideshowtrue" dynamicheader="'false'" slidetype="'popup'" headertemplate="'templates/SlideHeader.html'" bodytemplate="'templates/slideDesign.html'"></slide-show>
+</div>
+<style type="text/css">
     .modal {
         z-index: 99999 !important;
     }
+    
+    .paidCls {
+        color: Green;
+        text-decoration: underline;
+        margin-left: -16px;
+        padding-left: 10px;
+    }
+    
+    .unpaidCls {
+        color: red;
+        text-decoration: underline;
+        margin-left: -16px;
+        padding-left: 10px;
+    }
+    
+    .modal-lg {
+        width: 90% !important;
+    }
+    
+    .pauseBtns {
+        width: 33px;
+        height: 33px;
+        font-size: 16px;
+    }
 </style>
-<!--<script type="text/ng-template" id="myModalContent.html">
-    <slide-showss nghide="page.model.slideshowtrue" array="page.testarray"></slide-showss>
+<script type="text/ng-template" id="loginContent.html">
+    <form name="loginForm" novalidate role="form" style='z-index: 99999'>
+        <div class="modal-body clearfix pop_content_my" id="modal-body">
+            <div class='row'>
+                <h3 class='text-center'>Employee login</h3>
+                <div class='col-lg-4'>
+                    <br>
+                    <img src="src\images\logo3.png" alt="">
+                </div>
+                <div class='col-lg-7'>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label for="username" lass='col-lg-4'>User name </label>
+                        <input type="text" class="usernameemployee" ng-model="form.usernameemployee" name="usernameemployee" required md-no-asterisk>
+                        <div ng-messages="loginForm.usernameemployee.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label for="username" class='col-lg-4'>Password 	</label>
+                        <input type="Password" class="usernameemployee" ng-model="form.passwordemployee" name="passwordemployee" required md-no-asterisk>
+                        <div ng-messages="loginForm.passwordemployee.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message="pattern">username is invalid</div>
+                        </div>
+                    </md-input-container>
+                    <div class="clearfix">
+                    </div>
+                    <div class='col-lg-offset-3'>
+                        <md-button class="md-raised md-warn md-hue-2" ng-disabled="loginForm.$invalid" ng-click="page.model.loginsubmit(form,page.model)">Login
+                        </md-button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
 </script>
-<script src="build/js/custom.js" type="text/javascript"></script>-->
+
+
+<script src="build/js/custom.js" type="text/javascript"></script>

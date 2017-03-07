@@ -4,7 +4,6 @@
     function factory(http) {
         return {
             getloginpage: function(form) {
-                debugger;
 
             }
         };

@@ -4,7 +4,6 @@ app.directive("slideShow", ['$uibModal', 'commonpage',
         return {
             restrict: "E",
             scope: {
-                slidearray: '=',
                 slidetype: '=',
                 showshortlist: '=',
                 fromcustid: '=',
@@ -22,12 +21,11 @@ app.directive("slideShow", ['$uibModal', 'commonpage',
                 nghide: '='
             },
             templateUrl: function(element, attrs, scope) {
-                return attrs.slidetype === "'page'" ? 'templates/dynamicSlideshow.html' : '';
+                return attrs.slidetype === "'page'" ? 'templates/dynamicSlideshow.html' : 'templates/dynamicSlideshow.html';
             },
             link: function(scope, element, attrs) {
                 var currentIndex = 1;
                 var currentslide = 1;
-                var dataarrr = scope.slidearray;
                 scope.displayArr = [];
                 scope.ShowPause = true;
                 scope.carousalID = 'myCarousel';
@@ -68,62 +66,49 @@ app.directive("slideShow", ['$uibModal', 'commonpage',
                         data.push({ label: 'Father Native', value: item.FFNative });
                         data.push({ label: 'Mother Native', value: item.MFNative });
                         data.push({ label: 'Property(Lakhs)', value: item.Property });
-                        data.push({ label: 'backendFields', Custid: item.Cust_ID, ProfileID: item.ProfileID, PhotoCount: item.PhotoCount, Age: item.Age, HeightInCentimeters: item.HeightInCentimeters, MaritalStatusID: item.MaritalStatusID, CasteID: item.CasteID, serviceDate: item.serviceDate, CustPhoto: item.imageurl, totalrecords: item.TotalRowsKeyword });
+                        data.push({ label: 'backendFields', Custid: item.Cust_ID, ProfileID: item.ProfileID, PhotoCount: item.PhotoCount, Age: item.Age, HeightInCentimeters: item.HeightInCentimeters, MaritalStatusID: item.MaritalStatusID, CasteID: item.CasteID, serviceDate: item.serviceDate, CustPhoto: item.FullPath, totalrecords: item.TotalRowsKeyword });
                         if (item.serviceDate != "--" && item.serviceDate !== "" && item.serviceDate !== null)
                             data.push({ label: 'ServiceDate', value: item.serviceDate, style: 'style= color:red;' });
                         if (item.Intercaste == "True")
                             data.push({ label: 'Intercaste', value: (item.fathercaste + "/" + item.mothercaste) });
                         if (item.ProfileGrade !== 0)
                             data.push({ label: 'ProfileGrade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
-
-                        arraydata.push({ itmArr: data, custPhoto: item.imageurl, Custid: item.Cust_ID });
+                        arraydata.push({ itmArr: data, custPhoto: item.FullPath, Custid: item.Cust_ID });
                     });
                     return arraydata;
                 };
                 scope.bindfunction = function() {
-
                     $('#' + scope.carousalID).bind('slide.bs.carousel', function() {
-
                         var totalItems1 = $('#' + scope.carousalID).find('.item').length;
                         var currentIndex1 = $('#' + scope.carousalID).find('div.active').index() + 1;
                         scope.slidNum = currentIndex1;
-                        scope.$apply();
                         scope.slidNumfiled = currentIndex1;
-
-                        // scope.$watch(scope.slidNum, function(newvalue, oldvalue) {
-                        //     scope.slidNum = currentIndex1;
-                        // });
                         if (currentslide < currentIndex1) {
                             if (parseInt(totalItems1) - parseInt(currentIndex1) === 4) {
                                 scope.$emit('slideshowsubmit', totalItems1 + 1, totalItems1 + 10);
                             }
-
                         }
                     });
                     commonpage.checkitem(scope.carousalID);
                 };
                 scope.pageload = function() {
                     scope.displayArr = scope.displayArray(scope.slidearray);
-
                     commonpage.ArrowMoveSlide(scope.carousalID);
                     commonpage.moveonenter();
                     var totalItems1 = $('#' + scope.carousalID).find('.item').length;
                     var currentIndex1 = $('#' + scope.carousalID).find('div.active').index() + 1;
-
                     scope.slidNum = currentIndex1 + 1;
                     scope.slidNumfiled = currentIndex1 + 1;
                     if (totalItems1 === 0) {
                         commonpage.checkitem(scope.carousalID);
                     }
-
                     scope.bindfunction();
                 };
-                scope.pageload();
-                if (scope.slidetype === 'popup') {
-                    if (scope.dynamicslideshow === true) {
-                        commonpage.showPopup('templates/dynamicSlideshow.html', scope, 'lg');
-                    }
-                }
+                // if (scope.slidetype === 'popup') {
+                //     if (scope.dynamicslideshow === true) {
+                //         commonpage.showPopup('templates/dynamicSlideshow.html', scope, 'lg');
+                //     }
+                // }
                 scope.pauseResume = function(type) {
                     if (type === 'play') {
                         scope.ShowPause = false;
@@ -132,24 +117,20 @@ app.directive("slideShow", ['$uibModal', 'commonpage',
                     }
                     commonpage.pausePalyslide(type, scope.carousalID);
                 };
-
                 scope.slidepopup = function(custid) {
                     commonpage.ShowPhotoPopup(custid, scope);
                 };
                 scope.close = function() {
                     commonpage.closepopup();
                 };
-                // scope.$on("arrayupdate", function(event, array) {
-                //     scope.displayArr = scope.displayArray(array);
-                // });
-
-                scope.$on("slideshowdynamic", function(event, array) {
+                scope.$on("slideshowdynamic", function(event, array, totalrows) {
                     scope.slidearray = array;
                     scope.dynamicslideshow = true;
-                    commonpage.showPopup('templates/dynamicSlideshow.html', scope, 'lg');
+                    scope.lbltotalrecordsslide = totalrows;
+                    commonpage.showPopup('dynamicSlideshow.html', scope, 'lg');
+                    scope.pageload();
                 });
             }
-
         };
     }
 ]);

@@ -1,15 +1,22 @@
-(function() {
+(function(angular) {
     'use strict';
 
 
     /** @ngInject */
-    function ControllerCtrl(scope, rootScope) {
+    function ControllerCtrl(scope, rootScope, uibModal) {
         var vm = this;
-
-
+        var modalpopupopenload;
         rootScope.$on('request-start', function(item) {
             //show loading symbol
             scope.isLoader = true;
+            // modalpopupopenload = uibModal.open({
+            //     ariaLabelledBy: 'modal-title',
+            //     ariaDescribedBy: 'modal-body',
+            //     templateUrl: "loadersymbol.html",
+            //     scope: scope,
+            //     backdrop: 'static',
+            //     keyboard: false
+            // });
             console.log('Request Started');
         });
         rootScope.$on('request-fail', function(item) {
@@ -25,6 +32,6 @@
     }
     angular
         .module('Kaakateeya')
-        .controller('loaderCtrl', ['$scope', '$rootScope', ControllerCtrl]);
+        .controller('loaderCtrl', ['$scope', '$rootScope', '$uibModal', ControllerCtrl]);
 
-}());
+}(angular));

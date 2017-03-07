@@ -1,12 +1,9 @@
 (function(angular) {
     'use strict';
 
-    function factory($http, dashboardServices, route) {
-        var model = {};
-        model.init = function() {
-            model.tabledata(2, 319, 1, 10, '', 'pageload', undefined, 0);
-            return model;
-        };
+    function factory($http, dashboardServices, uibModal) {
+        var model = {},
+            modalpopupopen;
         model.tabledata = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
             dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                 if (type === "export") {
@@ -19,18 +16,14 @@
                     });
                 } else {
                     if (frompage === 1) {
-                        debugger;
                         model.slidearray = response.data[0];
-
                     } else {
                         _.each(response.data, function(inneritem) {
                             model.slidearray.push(inneritem);
                         });
                     }
                 }
-
             });
-
         };
         model.loadmore = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
             switch (type) {
@@ -48,19 +41,60 @@
             saveAs(blob, "Report.xls");
         };
         model.slideshowfunction = function(flag, empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
-            debugger;
             model.slideshowtrue = flag;
             if (flag === true) {
-                if (frompage === 1) {
-                    array = [];
-                }
                 model.tabledata(empid, branchcode, frompage, topage, tablename, type, array, slideflag);
             }
         };
-        return model.init();
+        model.showpopup = function(url, scope, size) {
+            modalpopupopen = uibModal.open({
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: url,
+                scope: scope,
+                backdrop: 'static',
+                size: size
+                    // keyboard: false
+                    // windowClass: 'zindex'
+
+            });
+            return model;
+        };
+        model.closepopup = function() {
+            modalpopupopen.close();
+            return model;
+        };
+        model.loginsubmit = function(form) {
+            dashboardServices.getloginpage(form).then(function(response) {
+                console.log(response);
+                if (response.data !== undefined && response.data !== "" && response.data !== null) {
+                    model.loginarray = response.data;
+                    sessionStorage.removeItem("LoginEmpid");
+                    sessionStorage.removeItem("LoginEmpName");
+                    sessionStorage.removeItem("empBranchID");
+                    sessionStorage.removeItem("isAdmin");
+                    sessionStorage.removeItem("isManagement");
+                    sessionStorage.removeItem("empRegionID");
+                    model.tabledata(response.data.m_Item1.EmpID, response.data.m_Item1.BranchID, 1, 10, '', 'pageload', undefined, 0);
+                    sessionStorage.setItem("LoginEmpid", response.data.m_Item1.EmpID);
+                    sessionStorage.setItem("LoginEmpName", response.data.m_Item1.FirstName + " " + response.data.m_Item1.LastName);
+                    sessionStorage.setItem("empBranchID", response.data.m_Item1.BranchID);
+                    sessionStorage.setItem("isAdmin", response.data.m_Item1.isAdmin);
+                    sessionStorage.setItem("isManagement", response.data.m_Item1.isManagement);
+                    sessionStorage.setItem("empRegionID", response.data.m_Item1.RegionID);
+                    model.testtt = 'ram';
+                }
+                modalpopupopen.close();
+            });
+            return model;
+
+        };
+
+        // return model.init();
+        return model;
     }
     angular
         .module('Kaakateeya')
         .factory('dashboardModel', factory);
-    factory.$inject = ['$http', 'dashboardServices', 'route'];
+    factory.$inject = ['$http', 'dashboardServices', '$uibModal'];
 })(angular);

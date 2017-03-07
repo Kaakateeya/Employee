@@ -14,6 +14,15 @@
                         intLoadStatus: intLoadStatus
                     }
                 });
+            },
+            getloginpage: function(form) {
+                return http.get(app.apiroot + 'DB/getValidateLoginNew', {
+                    params: {
+                        LoginName: form.usernameemployee,
+                        Password: form.passwordemployee,
+                        sMAC: "183.82.98.109"
+                    }
+                });
             }
         };
     }

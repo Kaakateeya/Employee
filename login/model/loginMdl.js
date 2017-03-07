@@ -21,7 +21,6 @@
             return loginmodel;
         };
         loginmodel.loginsubmit = function(form) {
-            debugger;
             // loginservice.getloginpage(form).then(function(response) {
             //     console.log(response);
             // });

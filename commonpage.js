@@ -84,9 +84,9 @@ app.factory('commonpage', ['$uibModal', 'photoalubum', function(uibModal, photoa
         },
         ShowPhotoPopup: function(custid, scope) {
             photoalubum.getphotoslideimages(custid).then(function(response) {
-                scope.slides = [];
+                slides = [];
                 _.each(response.data, function(item) {
-                    scope.slides.push(item);
+                    slides.push(item);
                 });
             });
             modalpopupopen = uibModal.open({
@@ -113,7 +113,23 @@ app.factory('commonpage', ['$uibModal', 'photoalubum', function(uibModal, photoa
                     arrayyy.push(obj);
                 }
             });
+
             return arrayyy;
+        },
+        bindfunction: function(carousalID) {
+
+            $('#' + carousalID).bind('slide.bs.carousel', function() {
+                var currentslide = 1;
+                var totalItems1 = $('#' + carousalID).find('.item').length;
+                var currentIndex1 = $('#' + carousalID).find('div.active').index() + 1;
+                if (currentslide < currentIndex1) {
+                    if (parseInt(totalItems1) - parseInt(currentIndex1) === 4) {
+                        scope.$emit('slideshowsubmit', totalItems1 + 1, totalItems1 + 10);
+                    }
+
+                }
+            });
+
         }
 
     };
