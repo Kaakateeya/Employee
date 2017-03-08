@@ -19,7 +19,13 @@
 
 app.factory('authSvc', ['$injector', 'Idle', '$http', function($injector, Idle, $http) {
     function setUser(value) {
-        setSession('cust.id', value.CustID);
+        debugger;
+        setSession("LoginEmpid", value.EmpID);
+        setSession("LoginEmpName", value.FirstName + " " + value.LastName);
+        setSession("empBranchID", value.BranchID);
+        setSession("isAdmin", value.isAdmin);
+        setSession("isManagement", value.isManagement);
+        setSession("empRegionID", value.RegionID);
     }
 
     function getSession(key) {
@@ -39,13 +45,22 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', function($injector, Idle, 
     }
 
     function clearUserSession() {
-        clearSession('cust.id');
-        sessionStorage.removeItem("loggedAscustomerPage");
+        clearSession('LoginEmpid');
+        clearSession('LoginEmpName');
+        clearSession('empBranchID');
+        clearSession('isAdmin');
+        clearSession('isManagement');
+        clearSession('empRegionID');
     }
 
     function getUser() {
         return {
-            custid: getSession('cust.id'),
+            LoginEmpid: getSession('LoginEmpid'),
+            LoginEmpName: getSession('LoginEmpName'),
+            empBranchID: getSession('empBranchID'),
+            isAdmin: getSession('isAdmin'),
+            isManagement: getSession('isManagement'),
+            empRegionID: getSession('empRegionID')
 
         };
     }
@@ -59,16 +74,30 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', function($injector, Idle, 
         isAuthenticated: function() {
             return !!getSession('cust.id');
         },
-        getCustId: function() {
-            return getSession('cust.id');
-        },
         clearUserSessionDetails: function() {
             return clearUserSession();
         },
         logout: function() {
             clearUserSession();
-            route.go('home', {});
+            //route.go('home', {});
+        },
+        LoginEmpid: function() {
+            return getSession('LoginEmpid');
+        },
+        LoginEmpName: function() {
+            return getSession('LoginEmpName');
+        },
+        empBranchID: function() {
+            return getSession('empBranchID');
+        },
+        isAdmin: function() {
+            return getSession('isAdmin');
+        },
+        isManagement: function() {
+            return getSession('isManagement');
+        },
+        empRegionID: function() {
+            return getSession('empRegionID');
         }
-
     };
 }]);

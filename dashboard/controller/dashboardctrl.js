@@ -14,7 +14,10 @@
          vm.init = function() {
              vm.model = model = dashboardModel;
              model.slideshowfunction(false);
-             model.showpopup('loginContent.html', scope);
+
+             if (model.empid !== "") {
+                 model.tabledata(model.empid, model.empBranchID, 1, 5, '', 'pageload', undefined, 0);
+             }
          };
 
          vm.init();

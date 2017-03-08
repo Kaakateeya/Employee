@@ -16,7 +16,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
     var states = [
         { name: 'dashboard', url: '/' },
         //{ name: 'login', url: '/loginpage' },
-
+        { name: 'searchpage', url: '/search' },
 
     ];
     $ocLazyLoadProvider.config({
