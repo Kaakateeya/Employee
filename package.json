@@ -25,6 +25,7 @@
     "multi-select": "*",
     "ng-numbers-only": "latest",
     "registration": "git+https://github.com/Kaakateeya/Registration.git#EmployeeRegistration",
+    "request-ip": "^2.0.1",
     "underscore": "latest"
   },
   "devDependencies": {
