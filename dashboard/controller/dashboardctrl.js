@@ -14,10 +14,8 @@
          vm.init = function() {
              vm.model = model = dashboardModel;
              model.slideshowfunction(false);
+             model.init();
 
-             if (model.empid !== "") {
-                 model.tabledata(model.empid, model.empBranchID, 1, 5, '', 'pageload', undefined, 0);
-             }
          };
 
          vm.init();
@@ -35,9 +33,15 @@
                      });
                  }
                  console.log(model.slidearray);
-                 scope.$broadcast("slideshowdynamic", model.slidearray, model.slidearray[0].TotalRows);
+                 scope.$broadcast("slideshowdynamic", model.slidearray, model.slidearray[0].TotalRows, tablename, frompage);
              });
          };
+
+
+         scope.$on("slideshowsubmit", function(event, frompage, topage, tablename) {
+             vm.slideshowfunction(true, model.empid, model.empBranchID, frompage, topage, tablename, 'slideshow', model.slidearray, 1);
+
+         });
 
      }
      angular.module('Kaakateeya').controller('dashboardCtrl', ['dashboardModel', '$scope', 'dashboardServices', 'commonpage', Controller]);

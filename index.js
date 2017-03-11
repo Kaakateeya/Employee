@@ -50,7 +50,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             resolve: { // Any property in resolve should return a promise and is executed before the view is loaded
                 loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                     // you can lazy load files for an existing module
-                    return $ocLazyLoad.load(['' + item.name + '/controller/' + item.name + 'ctrl.js', '' + item.name + '/model/' + item.name + 'Mdl.js', '' + item.name + '/service/' + item.name + 'service.js']);
+                    return $ocLazyLoad.load(['' + item.name + '/css/style.css', '' + item.name + '/controller/' + item.name + 'ctrl.js', '' + item.name + '/model/' + item.name + 'Mdl.js', '' + item.name + '/service/' + item.name + 'service.js']);
                 }]
             }
 

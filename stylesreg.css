@@ -13,7 +13,8 @@
 }
 
 
-/*.pics_upload .btn-file						{ background:url(../images/drag_icon.png) no-repeat center center; width:42px; height:42px; display:inline-block; border:0 none !important; box-shadow:none !important; padding:0 !important; margin:0 0 0 -46px; }*/
+/*.pics_upload .btn-file					
+	{ background:url(../images/drag_icon.png) no-repeat center center; width:42px; height:42px; display:inline-block; border:0 none !important; box-shadow:none !important; padding:0 !important; margin:0 0 0 -46px; }*/
 
 .pics_upload .fileupload .uneditable-input {
     padding: 0 !important;

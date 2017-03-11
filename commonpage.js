@@ -39,6 +39,7 @@ app.factory('commonpage', ['$uibModal', 'photoalubum', function(uibModal, photoa
 
         },
         checkitem: function(carouselID) {
+            debugger;
             var $this;
             $this = $("#" + carouselID);
             if ($("#" + carouselID + " .carousel-inner .item:first").hasClass("active")) {
@@ -51,6 +52,7 @@ app.factory('commonpage', ['$uibModal', 'photoalubum', function(uibModal, photoa
                 $("#" + carouselID).find('.left').show();
                 $("#" + carouselID).find('.right').show();
             }
+            return false;
         },
         ArrowMoveSlide: function(carouselID) {
             $(document).bind('keyup', function(e) {
@@ -64,6 +66,7 @@ app.factory('commonpage', ['$uibModal', 'photoalubum', function(uibModal, photoa
                         $('#' + carouselID).carousel('prev');
                 }
             });
+            return false;
         },
 
         moveonenter: function() {

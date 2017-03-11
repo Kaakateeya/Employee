@@ -19,7 +19,7 @@
 
 app.factory('authSvc', ['$injector', 'Idle', '$http', function($injector, Idle, $http) {
     function setUser(value) {
-        debugger;
+
         setSession("LoginEmpid", value.EmpID);
         setSession("LoginEmpName", value.FirstName + " " + value.LastName);
         setSession("empBranchID", value.BranchID);
@@ -51,6 +51,8 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', function($injector, Idle, 
         clearSession('isAdmin');
         clearSession('isManagement');
         clearSession('empRegionID');
+        clearSession('macAddress');
+
     }
 
     function getUser() {
@@ -98,6 +100,36 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', function($injector, Idle, 
         },
         empRegionID: function() {
             return getSession('empRegionID');
+        },
+        macAddress: function() {
+            return getSession('macAddress');
+        },
+        clientIp: function() {
+            return getSession('getClientIp');
+        },
+        getmacaddress: function() {
+            return $http.get('/getmac').then(function(res) {
+                console.log(res);
+                setSession("macAddress", res.data);
+                return res.data;
+            });
+        },
+        getClientIp: function() {
+            return $http.get('/getClientIp').then(function(res) {
+                console.log(res);
+                console.log(((res.data).indexOf("::1") !== -1));
+                console.log(((res.data).indexOf("127.0.0.1") !== -1));
+                var response;
+                if ((res.data).indexOf("::1") !== -1 || (res.data).indexOf("127.0.0.1") !== -1) {
+                    response = "183.82.98.109";
+                    setSession("getClientIp", response);
+                } else {
+                    response = res.data;
+                    setSession("getClientIp", response);
+                }
+                return response;
+                //(((res.data).indexOf("::1") !== -1) ? "183.82.98.109" : res.data);
+            });
         }
     };
 }]);

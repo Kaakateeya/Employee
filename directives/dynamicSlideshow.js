@@ -1,6 +1,6 @@
-app.directive("slideShow", ['$uibModal', 'commonpage',
+app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
 
-    function(uibModal, commonpage) {
+    function(uibModal, commonpage, timeout) {
         return {
             restrict: "E",
             scope: {
@@ -32,6 +32,7 @@ app.directive("slideShow", ['$uibModal', 'commonpage',
                 scope.slidNum = 1;
                 scope.slidNumfiled = 1;
                 scope.prevhide = false;
+                scope.tablename = null;
                 scope.dynamicslideshow = scope.nghide !== undefined && scope.nghide !== "" ? scope.nghide : true;
                 scope.displayArray = function(arr) {
                     var arraydata = [];
@@ -84,25 +85,22 @@ app.directive("slideShow", ['$uibModal', 'commonpage',
                         scope.slidNum = currentIndex1;
                         scope.slidNumfiled = currentIndex1;
                         if (currentslide < currentIndex1) {
-                            if (parseInt(totalItems1) - parseInt(currentIndex1) === 4) {
-                                scope.$emit('slideshowsubmit', totalItems1 + 1, totalItems1 + 10);
+                            if (parseInt(totalItems1) - parseInt(currentIndex1) === 2) {
+                                scope.$emit('slideshowsubmit', totalItems1 + 1, totalItems1 + 10, scope.tablename);
                             }
                         }
+                        // commonpage.checkitem(scope.carousalID);
                     });
-                    commonpage.checkitem(scope.carousalID);
+
                 };
+
                 scope.pageload = function() {
                     scope.displayArr = scope.displayArray(scope.slidearray);
-                    commonpage.ArrowMoveSlide(scope.carousalID);
-                    commonpage.moveonenter();
                     var totalItems1 = $('#' + scope.carousalID).find('.item').length;
                     var currentIndex1 = $('#' + scope.carousalID).find('div.active').index() + 1;
                     scope.slidNum = currentIndex1 + 1;
                     scope.slidNumfiled = currentIndex1 + 1;
-                    if (totalItems1 === 0) {
-                        commonpage.checkitem(scope.carousalID);
-                    }
-                    scope.bindfunction();
+
                 };
                 // if (scope.slidetype === 'popup') {
                 //     if (scope.dynamicslideshow === true) {
@@ -123,11 +121,25 @@ app.directive("slideShow", ['$uibModal', 'commonpage',
                 scope.close = function() {
                     commonpage.closepopup();
                 };
-                scope.$on("slideshowdynamic", function(event, array, totalrows) {
+                scope.$on("slideshowdynamic", function(event, array, totalrows, tablename, frompage) {
                     scope.slidearray = array;
                     scope.dynamicslideshow = true;
                     scope.lbltotalrecordsslide = totalrows;
-                    commonpage.showPopup('dynamicSlideshow.html', scope, 'lg');
+                    scope.tablename = tablename;
+                    if (frompage === 1) {
+                        commonpage.showPopup('dynamicSlideshow.html', scope, 'lg');
+                    }
+                    timeout(function() {
+                        commonpage.ArrowMoveSlide(scope.carousalID);
+                        commonpage.moveonenter();
+                        // var totalItems1 = $('#' + scope.carousalID).find('.item').length;
+                        // if (totalItems1 === 0) {
+                        //     commonpage.checkitem(scope.carousalID);
+                        // }
+
+                        //commonpage.checkitem(scope.carousalID);
+                        scope.bindfunction();
+                    }, 500);
                     scope.pageload();
                 });
             }

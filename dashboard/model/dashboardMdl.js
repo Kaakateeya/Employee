@@ -4,11 +4,10 @@
     function factory($http, dashboardServices, uibModal, authSvc) {
         var model = {};
         var flag = 0;
-        model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-        model.empBranchID = authSvc.empBranchID() !== undefined && authSvc.empBranchID() !== null && authSvc.empBranchID() !== "" ? authSvc.empBranchID() : "";
         model.tabledata = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
             dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                 if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
+                    console.log(response);
                     if (type === "export") {
                         model.exportData('exportableproceeding');
                     } else if (type === 'pageload') {
@@ -53,7 +52,11 @@
             }
         };
         model.init = function() {
-            model.tabledata(model.empid, model.empBranchID, 1, 5, '', 'pageload', undefined, 0);
+            model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+            model.empBranchID = authSvc.empBranchID() !== undefined && authSvc.empBranchID() !== null && authSvc.empBranchID() !== "" ? authSvc.empBranchID() : "";
+            if (model.empid !== null && model.empid !== "" && model.empBranchID !== null && model.empBranchID !== "") {
+                model.tabledata(model.empid, model.empBranchID, 1, 5, '', 'pageload', undefined, 0);
+            }
         };
         return model;
     }
