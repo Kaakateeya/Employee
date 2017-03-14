@@ -37,7 +37,7 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                 scope.dynamicslideshow = scope.nghide !== undefined && scope.nghide !== "" ? scope.nghide : true;
                 scope.displayArray = function(arr) {
                     var arraydata = [];
-                    $.each(arr, function(index, item) {
+                    _.each(arr, function(index, item) {
                         var data = [];
                         data.push({
                             label: 'ProfileID',
@@ -77,6 +77,38 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                     });
                     return arraydata;
                 };
+
+                scope.displayArraydashboard = function(arr) {
+                    var arraydata = [];
+                    _.each(arr, function(index, item) {
+                        var data = [];
+                        data.push({
+                            label: 'ProfileID',
+                            value: '',
+                            ProfileID: item.ProfileID,
+                            KMPLID: item.KMPLID,
+                            paid: item.paid,
+                            IsConfidential: item.IsConfidential,
+                            SuperConfidentila: item.SuperConfidentila,
+                            HoroscopeStatus: item.HoroscopeStatus
+                        });
+                        data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
+                        data.push({ label: 'Caste', value: item.Caste });
+                        data.push({ label: 'Dor', value: item.Dor });
+                        data.push({ label: 'Mother Native', value: item.MFNative });
+                        data.push({ label: 'Property(Lakhs)', value: item.Property });
+                        data.push({ label: 'backendFields', Custid: item.Cust_ID, ProfileID: item.ProfileID, PhotoCount: item.PhotoCount, Age: item.Age, HeightInCentimeters: item.HeightInCentimeters, MaritalStatusID: item.MaritalStatusID, CasteID: item.CasteID, serviceDate: item.serviceDate, CustPhoto: item.FullPath, totalrecords: item.TotalRowsKeyword });
+                        if (item.serviceDate != "--" && item.serviceDate !== "" && item.serviceDate !== null)
+                            data.push({ label: 'ServiceDate', value: item.serviceDate, style: 'style= color:red;' });
+                        if (item.Intercaste == "True")
+                            data.push({ label: 'Intercaste', value: (item.fathercaste + "/" + item.mothercaste) });
+                        if (item.ProfileGrade !== 0)
+                            data.push({ label: 'ProfileGrade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
+                        arraydata.push({ itmArr: data, custPhoto: item.FullPath, Custid: item.Cust_ID });
+                    });
+                    return arraydata;
+                };
+
                 scope.checkitemnew = function(carouselID) {
                     var $this;
                     $this = $("#" + carouselID);
@@ -129,7 +161,7 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                 };
 
                 scope.pageload = function() {
-                    scope.displayArr = scope.displayArray(scope.slidearray);
+                    scope.displayArr = scope.displayArraydashboard(scope.slidearray);
                     var totalItems1 = $('#' + scope.carousalID).find('.item').length;
                     var currentIndex1 = $('#' + scope.carousalID).find('div.active').index() + 1;
                     scope.slidNum = currentIndex1 + 1;

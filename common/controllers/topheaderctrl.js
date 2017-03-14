@@ -22,10 +22,11 @@
             var empname = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             authSvc.getmacaddress();
             authSvc.getClientIp();
-            if (empname === "") {
-                vm.showpopup('loginContent.html', scope);
+            if (empname === "" || empname === undefined || empname === null) {
+                vm.showpopup('loginContent.html', scope, 'md');
             } else {
                 vm.name = authSvc.LoginEmpName();
+                vm.empphoto = authSvc.empphoto();
             }
         };
         vm.initheader();
@@ -38,8 +39,11 @@
                 if (response.data !== undefined && response.data !== "" && response.data !== null) {
                     switch (response.data.m_Item5) {
                         case 1:
+                            debugger;
                             modalpopupopen.close();
-                            vm.loginarray = response.data;
+                            console.log(response.data);
+                            vm.loginarray = response.data.m_Item1;
+                            vm.empphoto = response.data.m_Item1.EmpPhotoPath;
                             authSvc.user(response.data.m_Item1);
                             vm.name = response.data.m_Item1.FirstName + " " + response.data.m_Item1.LastName;
                             dashboardModel.init();
@@ -76,14 +80,14 @@
             });
         };
         vm.logout = function() {
-            vm.showpopup('loginContent.html', scope);
+            vm.showpopup('loginContent.html', scope, 'md');
             vm.name = "";
             authSvc.logout();
         };
         vm.lockscreen = function() {
             vm.lock = true;
             vm.passwordemployee = "";
-            vm.showpopup('loginContent.html', scope);
+            vm.showpopup('loginContent.html', scope, 'md');
         };
     }
     angular

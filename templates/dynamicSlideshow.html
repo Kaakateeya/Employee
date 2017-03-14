@@ -137,16 +137,11 @@
 
         <div class="modal-body">
             <div id="sildeViewDiv" style="display:block;">
-
                 <div class="bs-example">
                     <div id="myCarousel" class="carousel slide" data-interval="false" data-ride="carousel">
-
-
                         <div class="carousel-inner">
                             <div ng-class="($index+1)==1?'item active':'item'" ng-repeat="itemval in displayArr">
-
                                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-
                                     <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix" ng-repeat="slidedata in itemval.itmArr" ng-if="slidedata.label!=='backendFields'">
                                         <h6> <span style="font-weight: bold;">{{slidedata.label}}</span></h6>
                                         <h5>
@@ -156,7 +151,7 @@
                                                 <input ng-show="slidedata.HoroscopeStatus==='1'" src='../../Images/ico_horoscope.jpg' style='height:20px;width:25px;' type='image'>
                                               </span>
                                             <div class="clearfix">
-                                            </div>
+                                            </div>  
                                         </h5>
                                     </div>
                                 </div>

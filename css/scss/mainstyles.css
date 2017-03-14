@@ -1,5 +1,5 @@
 .edit_page_details_item_desc {
-  padding: 3px 0;
+  padding: 1px 0;
   background-size: 522px auto;
   background-position: -29% center;
   position: relative; }
@@ -195,7 +195,8 @@ select:focus:invalid:focus {
 
 .allignmiddle {
   top: 20%;
-  left: 10%; }
+  left: 10%;
+  z-index: 99999999 !important; }
 
 .currendate {
   color: #377937; }
@@ -208,5 +209,13 @@ select:focus:invalid:focus {
 
 .colorunpaid {
   color: red; }
+
+.inputcontainer {
+  margin: 0px 0 !important; }
+
+@media (min-width: 768px) {
+  .allignmiddle .modal-dialog {
+    width: 513px;
+    margin: 30px auto; } }
 
 /*# sourceMappingURL=mainstyles.css.map */

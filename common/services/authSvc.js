@@ -26,6 +26,7 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', function($injector, Idle, 
         setSession("isAdmin", value.isAdmin);
         setSession("isManagement", value.isManagement);
         setSession("empRegionID", value.RegionID);
+        setSession("empphoto", value.EmpPhotoPath);
     }
 
     function getSession(key) {
@@ -52,7 +53,7 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', function($injector, Idle, 
         clearSession('isManagement');
         clearSession('empRegionID');
         clearSession('macAddress');
-
+        clearSession('empphoto');
     }
 
     function getUser() {
@@ -100,6 +101,9 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', function($injector, Idle, 
         },
         empRegionID: function() {
             return getSession('empRegionID');
+        },
+        empphoto: function() {
+            return getSession('empphoto');
         },
         macAddress: function() {
             return getSession('macAddress');
