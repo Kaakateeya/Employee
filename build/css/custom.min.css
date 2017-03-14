@@ -1,13 +1,13 @@
 .x_title h2,
 table.tile_info td p {
-    white-space: nowrap;
-    text-overflow: ellipsis
+    /*white-space: nowrap;
+    text-overflow: ellipsis*/
 }
 
 .site_title,
 .x_title h2,
 table.tile_info td p {
-    text-overflow: ellipsis
+    /*text-overflow: ellipsis*/
 }
 
 .detail a,

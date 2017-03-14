@@ -87,6 +87,17 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
         },
         Diet: function() {
             return http.get(app.apiroot + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Diet', dependencyValue: '', dependencyflagID: '' } });
+        },
+        getrelationships: function(flag, profileid, about) {
+            return http.get(app.apiroot + 'CustomerPersonal/getCustomerPersonaloffice_purpose', {
+                params: {
+                    flag: flag,
+                    ID: profileid,
+                    AboutProfile: about,
+                    IsConfidential: "",
+                    HighConfendential: ""
+                }
+            });
         }
     };
 }]);

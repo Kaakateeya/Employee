@@ -13,14 +13,15 @@ app.factory('commonpage', ['$uibModal', 'photoalubum', function(uibModal, photoa
         }
     };
     return {
-        showPopup: function(url, scope, size) {
+        showPopup: function(url, scope, size, classp) {
             modalpopupopen = uibModal.open({
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
                 templateUrl: url,
                 scope: scope,
                 size: size,
-                backdrop: 'static'
+                backdrop: 'static',
+                windowClass: classp
                     // keyboard: false
             });
         },
@@ -54,6 +55,7 @@ app.factory('commonpage', ['$uibModal', 'photoalubum', function(uibModal, photoa
             }
             return false;
         },
+
         ArrowMoveSlide: function(carouselID) {
             $(document).bind('keyup', function(e) {
                 var totalItems = $('#' + carouselID).find('.item').length;

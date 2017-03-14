@@ -1,7 +1,8 @@
 #dashBoardPage h2 {
-  font-size: 12px;
+  font-size: 16px;
   color: maroon;
-  font-weight: 600; }
+  font-weight: 600;
+  width: 90%; }
 
 #dashBoardPage .scrolldashboard {
   height: 356px;
@@ -11,5 +12,28 @@
 #dashBoardPage .date img {
   width: 54px;
   height: 48px; }
+
+#dashBoardPage .counts {
+  color: green; }
+
+#dashBoardPage .title {
+  color: black;
+  margin: 0 0 4px; }
+
+#dashBoardPage .titleservice {
+  color: black; }
+
+#dashBoardPage .excelshow {
+  color: #3030d8;
+  margin-left: 10px; }
+
+#dashBoardPage .x_panel {
+  height: 476px; }
+
+#dashBoardPage .loadmoredashboard {
+  color: #3030d8; }
+
+.modalclass {
+  z-index: 99999 !important; }
 
 /*# sourceMappingURL=style.css.map */

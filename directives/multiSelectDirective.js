@@ -105,6 +105,9 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                     case 'recomendedtofriends':
                         scope.databind(cons.recomendedtofriends);
                         break;
+                    case 'getrelationships':
+                        scope.databind(scope.parentVal);
+                        break;
                     case 'Country':
                         service.countrySelect().then(function(response) {
                             var option = [];
@@ -252,9 +255,18 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                             });
                             scope.databind(option);
                         });
-
-
                         break;
+                        // case 'getrelationships':
+                        //     service.getrelationships(4, scope.parentVal, "").then(function(response) {
+                        //         var option = [];
+                        //         option.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                        //         _.each(response.data, function(item) {
+                        //             option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                        //         });
+                        //         scope.databind(option);
+                        //     });
+                        //     break;
+
 
                 }
             }, 1000);

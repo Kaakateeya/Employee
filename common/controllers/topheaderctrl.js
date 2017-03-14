@@ -5,6 +5,7 @@
         var vm = this;
         var modalpopupopen;
         vm.lock = false;
+        vm.CurrentDate = new Date();
         vm.showpopup = function(url, scope, size) {
             modalpopupopen = uibModal.open({
                 ariaLabelledBy: 'modal-title',
@@ -12,9 +13,9 @@
                 templateUrl: url,
                 scope: scope,
                 backdrop: 'static',
-                size: size
-                    // keyboard: false
-                    // windowClass: 'zindex'
+                size: size,
+                keyboard: false,
+                windowClass: 'allignmiddle'
             });
         };
         vm.initheader = function() {
