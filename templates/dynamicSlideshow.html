@@ -20,18 +20,18 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <label id="lbltotalrecords">Total Records :</label>
-                                        <label id="lblcurSlide">2</label>
-                                        <label id="lblnoofrecords"> of 910</label>
+                                        <label id="lblcurSlide"> {{currentslide}}</label>
+                                        <label id="lblnoofrecords"> of {{lbltotalrecordsslide}}</label>
                                         <input type="hidden" id="hdnTotalPages">
                                     </div>
 
                                     <div class="col-lg-4" id="divviewedprofiles" style="display:block;">
                                         <div class="row">
                                             <div class="col-lg-10">
-                                                <label>Viewed</label>&nbsp;<label id="lnkLastSlide" style="color: blue;">2</label>&nbsp;<label>Profiles</label>
+                                                <label>Viewed</label>&nbsp;<label id="lnkLastSlide" style="color: blue;">{{viewedcount}}</label>&nbsp;<label>Profiles</label>
                                             </div>
                                             <div class="col-lg-1">
-                                                <input type="text" id="txtGotoVal" class="form-control" style="width: 60px; height: 30px; margin-left: -58px; margin-top: -8px;" onchange="gotoSlide(this);">
+                                                <input type="text" id="txtGotoVal" class="form-control" style="width: 60px; height: 30px; margin-left: -58px; margin-top: -8px;" onchange="gotoSlide('#txtGotoVal','lnkLastSlide')">
                                             </div>
                                         </div>
                                     </div>
@@ -100,17 +100,17 @@
                 <div class="col-lg-6 col-md-6 col-xs-8 col-sm-8">
 
                     <label id="lbltotalrecords">Total Records :</label>
-                    <label id="lblcurrentprofile">1</label> &nbsp;of&nbsp;
+                    <label id="lblcurrentprofile">{{currentslide}}</label> &nbsp;of&nbsp;
                     <label id="lblcurSlide">{{lbltotalrecordsslide}}</label>
 
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
 
                     <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                        <label>Viewed</label>&nbsp;<label id="lnkLastSlide" data-ng-bind="slidNum" style="color: blue;">1</label>&nbsp;<label>Profiles</label>
+                        <label>Viewed</label>&nbsp;<label id="lnkLastSlidepopup" data-ng-bind="slidNum" style="color: blue;">{{viewedcount}}</label>&nbsp;<label>Profiles</label>
                     </div>
                     <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
-                        <input type="text" id="txtGotoVal" class="form-control" style="width: 50px; height: 24px; margin-left: -20px;" onchange="gotoSlide(this);" />
+                        <input type="text" id="txtGotoValpopu" class="form-control" style="width: 50px; height: 24px; margin-left: -20px;" onchange="gotoSlide('#txtGotoValpopu','lnkLastSlidepopup')" />
                     </div>
 
                 </div>
@@ -151,13 +151,13 @@
                                                 <input ng-show="slidedata.HoroscopeStatus==='1'" src='../../Images/ico_horoscope.jpg' style='height:20px;width:25px;' type='image'>
                                               </span>
                                             <div class="clearfix">
-                                            </div>  
+                                            </div>
                                         </h5>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="margin-top: -4px;">
                                     <div class="row">
-                                        <img ng-click="slidepopup(itemval.Custid)" ng-src="{{itemval.custPhoto}}" class="image" style="cursor: pointer;" />
+                                        <img ng-src="{{itemval.custPhoto}}" class="image" />
                                         <br>
                                         <div class="col-lg-8 col-lg-offset-5"><a href="javascript:void(0)"><span style="color:Black;font-size:9pt;">No of Photos   2</span></a></div>
                                     </div>
@@ -215,3 +215,16 @@
         font-size: 16px;
     }
 </style>
+<script type="text/javascript">
+    function gotoSlide(e, id) {
+        debugger;
+        var lastslide = parseInt($("#" + id).text());
+        if (parseInt($(e).val()) <= lastslide) {
+            $('#myCarousel').carousel(parseInt($(e).val()) - 1);
+            $(e).val('');
+            return false;
+        } else {
+            alert('you can go till ' + lastslide + ' slide only');
+        }
+    }
+</script>

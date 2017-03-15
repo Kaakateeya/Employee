@@ -31,7 +31,7 @@
                 <div class="menu_section">
                     <h3>General</h3>
                     <ul class="nav side-menu">
-                        <li><a><i class="fa fa-file-text" aria-hidden="true"></i> Registration <span class="fa fa-chevron-down"></span></a>
+                        <li><a href="registration"><i class="fa fa-file-text"></i> Registration <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="registration">Customer New Registration</a></li>
                                 <li><a href="bootstrapslide">Edit/View Profile</a></li>
@@ -44,36 +44,36 @@
                             <ul class="nav child_menu">
                                 <li><a href="search">General Search</a></li>
                                 <li><a href="search">Advanced search</a></li>
-                                <li><a href="search">Keyword Search</a></li>
-                                <li><a href="search">Keyword Search_Kmpl</a></li>
+                                <li><a href="searchdd">Keyword Search</a></li>
+                                <li><a href="searchdd">Keyword Search_Kmpl</a></li>
                             </ul>
                         </li>
-                        <li><a href="search"><i class="fa fa-user-circle-o" aria-hidden="true"></i> My Account <span class="fa fa-chevron-down"></span></a>
+                        <li><a href="searchss"><i class="fa fa-user-circle-o"></i> My Account <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="search">My Profiles</a></li>
-                                <li><a href="search">Marketing Tickets</a></li>
-                                <li><a href="search">Match Followup Tickets</a></li>
-                                <li><a href="search">My Assigned Photos</a></li>
+                                <li><a href="searchdd">My Profiles</a></li>
+                                <li><a href="searchss">Marketing Tickets</a></li>
+                                <li><a href="searchsss">Match Followup Tickets</a></li>
+                                <li><a href="searchss">My Assigned Photos</a></li>
                             </ul>
                         </li>
-                        <li><a href="search"><i class="fa fa-folder" aria-hidden="true"></i>Maintance Work <span class="fa fa-chevron-down"></span></a>
+                        <li><a href="searchss"><i class="fa fa-folder"></i>Maintance Work <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="search">Unassigned Profiles</a></li>
-                                <li><a href="search">Unassigned Photos</a></li>
-                                <li><a href="search">Match Meeting Report</a></li>
-                                <li><a href="search">Upload Success Stories</a></li>
-                                <li><a href="search">View Success Stories</a></li>
-                                <li><a href="search">Customer Message Verification</a></li>
-                                <li><a href="search">Re Assign Employee</a></li>
-                                <li><a href="search">Book Marks</a></li>
-                                <li><a href="search">Customer/Employee Config</a></li>
+                                <li><a href="searchss">Unassigned Profiles</a></li>
+                                <li><a href="searchss">Unassigned Photos</a></li>
+                                <li><a href="searchss">Match Meeting Report</a></li>
+                                <li><a href="searchss">Upload Success Stories</a></li>
+                                <li><a href="searchss">View Success Stories</a></li>
+                                <li><a href="searchss">Customer Message Verification</a></li>
+                                <li><a href="searchss">Re Assign Employee</a></li>
+                                <li><a href="searchss">Book Marks</a></li>
+                                <li><a href="searchss">Customer/Employee Config</a></li>
                             </ul>
                         </li>
-                        <li><a href="search"><i class="fa fa-clone"></i>Admin Forms <span class="fa fa-chevron-down"></span></a>
+                        <li><a href="searchss"><i class="fa fa-clone"></i>Admin Forms <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="search">Branch Creation</a></li>
-                                <li><a href="search">List Branches</a></li>
-                                <li><a href="search">Add/Edit Faqs</a></li>
+                                <li><a href="searchss">Branch Creation</a></li>
+                                <li><a href="searchss">List Branches</a></li>
+                                <li><a href="searchss">Add/Edit Faqs</a></li>
                             </ul>
                         </li>
                         <li><a><i class="fa fa-table"></i> Reports <span class="fa fa-chevron-down"></span></a>
@@ -206,7 +206,8 @@
 
                 <div class="row">
                     <div class='col-lg-4'>
-                        <p class="currendate row"> {{head.CurrentDate | date:'dd MMMM yyyy'}},{{head.CurrentDate |date:'EEEE'}}</p>
+                        <p class="currendate row"> {{head.CurrentDate | date:'dd MMMM yyyy'}},</p>
+                        <p class="currendate">{{head.CurrentDate |date:'EEEE'}}</p>
 
                     </div>
                     <div class='col-lg-5'>

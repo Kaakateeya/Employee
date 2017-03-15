@@ -6,7 +6,7 @@ var fs = require('fs');
 var packageJson = JSON.parse(fs.readFileSync('./package.json'));
 var plugins = packageJson.buildSettings.plugins;
 var css = packageJson.buildSettings.css;
-var folders={'PageCode/src/scripts.js':'PageCode/**/*.js','searchpage/src/scripts.js':'searchpage/**/*.js'};
+var folders = { 'app/dashboard/src/scripts.min.js': 'app/dashboard/**/*.js', 'app/searchpage/src/scripts.min.js': 'app/searchpage/**/*.js' };
 module.exports = function(grunt) {
     console.log(plugins);
     // ===========================================================================

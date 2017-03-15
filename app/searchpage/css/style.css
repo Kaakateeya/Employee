@@ -67,7 +67,7 @@
 .modalclass {
   z-index: 99999 !important;
   top: 5%;
-  /*left: 10%;*/ }
+  left: 10%; }
 
 .popupheaderclass {
   text-align: center;

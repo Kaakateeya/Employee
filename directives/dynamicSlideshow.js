@@ -25,19 +25,20 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
             },
             link: function(scope, element, attrs) {
                 var currentIndex = 1;
-                var currentslide = 1;
+                scope.currentslide = 1;
                 scope.displayArr = [];
                 scope.ShowPause = true;
                 scope.carousalID = 'myCarousel';
                 scope.slidNum = 1;
                 scope.slidNumfiled = 1;
+                scope.viewedcount = 1;
                 scope.prevhide = false;
                 scope.tablename = null;
                 scope.dynamicslideshow = false;
                 scope.dynamicslideshow = scope.nghide !== undefined && scope.nghide !== "" ? scope.nghide : true;
                 scope.displayArray = function(arr) {
                     var arraydata = [];
-                    _.each(arr, function(index, item) {
+                    $.each(arr, function(index, item) {
                         var data = [];
                         data.push({
                             label: 'ProfileID',
@@ -77,10 +78,10 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                     });
                     return arraydata;
                 };
-
                 scope.displayArraydashboard = function(arr) {
+                    console.log(arr);
                     var arraydata = [];
-                    _.each(arr, function(index, item) {
+                    $.each(arr, function(index, item) {
                         var data = [];
                         data.push({
                             label: 'ProfileID',
@@ -95,16 +96,15 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                         data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
                         data.push({ label: 'Caste', value: item.Caste });
                         data.push({ label: 'Dor', value: item.Dor });
-                        data.push({ label: 'Mother Native', value: item.MFNative });
-                        data.push({ label: 'Property(Lakhs)', value: item.Property });
-                        data.push({ label: 'backendFields', Custid: item.Cust_ID, ProfileID: item.ProfileID, PhotoCount: item.PhotoCount, Age: item.Age, HeightInCentimeters: item.HeightInCentimeters, MaritalStatusID: item.MaritalStatusID, CasteID: item.CasteID, serviceDate: item.serviceDate, CustPhoto: item.FullPath, totalrecords: item.TotalRowsKeyword });
-                        if (item.serviceDate != "--" && item.serviceDate !== "" && item.serviceDate !== null)
-                            data.push({ label: 'ServiceDate', value: item.serviceDate, style: 'style= color:red;' });
-                        if (item.Intercaste == "True")
-                            data.push({ label: 'Intercaste', value: (item.fathercaste + "/" + item.mothercaste) });
-                        if (item.ProfileGrade !== 0)
-                            data.push({ label: 'ProfileGrade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
-                        arraydata.push({ itmArr: data, custPhoto: item.FullPath, Custid: item.Cust_ID });
+                        data.push({ label: 'ProfileGrade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
+                        data.push({ label: 'Last Login', value: "--" });
+                        data.push({ label: 'No Of Logins', value: "--" });
+                        data.push({ label: 'Send/Recv', value: "--" });
+                        data.push({ label: 'payment', value: "--" });
+                        data.push({ label: 'Expiry Date', value: "--" });
+                        data.push({ label: 'Points', value: "--" });
+                        data.push({ label: 'backendFields', Custid: item.Cust_ID, ProfileID: item.ProfileID, PhotoCount: item.PhotoCount, Age: item.Age, HeightInCentimeters: item.HeightInCentimeters, MaritalStatusID: item.MaritalStatusID, CasteID: item.CasteID, serviceDate: item.serviceDate, CustPhoto: item.ApplicationPhotoPath, totalrecords: item.TotalRowsKeyword });
+                        arraydata.push({ itmArr: data, custPhoto: item.ApplicationPhotoPath, Custid: item.Cust_ID });
                     });
                     return arraydata;
                 };
@@ -130,14 +130,19 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                         var totalItems1 = $('#' + carouselID).find('.item').length;
                         var currentIndex1 = $('#' + carouselID).find('div.active').index() + 1;
                         $('#' + carouselID).find('div.active').index();
-                        if (currentslide < currentIndex1) {
-                            debugger;
+                        scope.viewedcount = currentIndex1;
+                        if (scope.currentslide < currentIndex1) {
                             if (parseInt(totalItems1) - parseInt(currentIndex1) === 4) {
                                 scope.$emit('slideshowsubmit', totalItems1 + 1, totalItems1 + 10, scope.tablename);
                             }
                         }
-                        currentslide = currentIndex1;
+                        scope.$watch("scope.currentslide", function() {
+                            scope.currentslide = scope.currentslide;
+                        });
+                        scope.$apply();
+                        scope.currentslide = currentIndex1;
                     });
+                    scope.currentslide = currentIndex1;
                 };
 
                 function checkitemGlobal(carouselID) {
@@ -173,6 +178,17 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                 //         commonpage.showPopup('templates/dynamicSlideshow.html', scope, 'lg');
                 //     }
                 // }
+                scope.gotoSlide = function(e) {
+                    debugger;
+                    var lastslide = parseInt($("#lnkLastSlide").text());
+                    if (parseInt($(e).val()) <= lastslide) {
+                        $('#myCarousel').carousel(parseInt($(e).val()) - 1);
+                        $(e).val('');
+                        return false;
+                    } else {
+                        alert('you can go till ' + lastslide + ' slide only');
+                    }
+                };
                 scope.pauseResume = function(type) {
                     if (type === 'play') {
                         scope.ShowPause = false;
@@ -203,13 +219,13 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                         //     commonpage.checkitem(scope.carousalID);
                         // }
                         //commonpage.checkitem(scope.carousalID);
-                        scope.bindfunction();
+                        scope.bindfunction(scope.carousalID);
                     }, 500);
                     scope.pageload();
                 });
                 ////////
                 scope.pageloadnew = function(carouselID) {
-                    currentslide = 1;
+                    scope.currentslide = 1;
                     var totalItems1 = $('#' + scope.carousalID).find('.item').length;
                     var currentIndex1 = $('#' + scope.carousalID).find('div.active').index() + 1;
                     scope.checkitemnew(carouselID);
@@ -218,6 +234,8 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                     checkitemGlobal(carouselID);
                 };
                 scope.$on("generalsearchslide", function(event, array, tablename) {
+                    console.log(array);
+                    scope.lbltotalrecordsslide = array[0].TotalRows;
                     scope.tablename = tablename;
                     scope.slidearray = array;
                     scope.dynamicslideshow = true;
