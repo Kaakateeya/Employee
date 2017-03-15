@@ -40,11 +40,11 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                 scope.data = [];
                 scope.dynamicslideshow = scope.nghide !== undefined && scope.nghide !== "" ? scope.nghide : true;
                 scope.displayArray = function(arr, frompage) {
+                    if (frompage === 1) {
+                        scope.arraydata = [];
+                    }
                     $.each(arr, function(index, item) {
                         scope.data = [];
-                        if (frompage === 1) {
-                            scope.arraydata = [];
-                        }
                         scope.data.push({
                             label: 'ProfileID',
                             value: '',
