@@ -15,9 +15,9 @@ app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.env = "dev";
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
     var states = [
-        { name: 'dashboard', url: '/' },
+        { name: 'dashboard', url: '/', isloginrequired: false },
         //{ name: 'login', url: '/loginpage' },
-        { name: 'searchpage', url: '/search' },
+        { name: 'searchpage', url: '/search', isloginrequired: true }
 
     ];
     $ocLazyLoadProvider.config({
@@ -59,9 +59,25 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
 
                     }
                 }]
+            },
+            data: {
+                requiresLogin: item.isloginrequired,
             }
 
         });
         $locationProvider.html5Mode(true);
     });
 }]);
+app.run(function($rootScope, $state, $stateParams) {
+    $rootScope.$on('$stateChangeStart', function(e, to) {
+        if (to.data && to.data.requiresLogin) {
+            if (sessionStorage.getItem('LoginEmpid') === null || sessionStorage.getItem('LoginEmpid') === undefined || sessionStorage.getItem('LoginEmpid') === "") {
+                e.preventDefault();
+                console.log('success');
+                $state.go('dashboard');
+            } else {
+                if (sessionStorage.getItem('LoginEmpid') !== null && sessionStorage.getItem('LoginEmpid') !== undefined && sessionStorage.getItem('LoginEmpid') !== "") {}
+            }
+        }
+    });
+});

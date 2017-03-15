@@ -6,15 +6,15 @@
                     <div class="col-lg-8">
                         <div class="row">
                             <div id="divimgfrompic" class="col-lg-1">
-                                <img id="imgfrompic" style="display:block;height: 54px; width: 60px;" src="http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_91022_Images/Img2_Images/310910220_ApplicationPhoto.jpg">
+                                <img id="imgfrompic" style="display:block;height: 54px; width: 60px;" ng-src="{{personalobj.ApplicationProfilePic}}">
                             </div>
                             <div class="col-lg-11">
                                 <label id="lblsearchprofileid" style="color: black;"></label>
-                                <label id="lblNamefrom" style="color: black">Lakshmi  A</label>
-                                <a id="lnkprofileidfrom" onclick="return ViewProfileWithID('lblhiddenprofileid');" href="javascript:void(0)">(310910220)</a>
+                                <label id="lblNamefrom" style="color: black">{{personalobj.SelfName}}</label>
+                                <a id="lnkprofileidfrom" onclick="return ViewProfileWithID('lblhiddenprofileid');" href="javascript:void(0)">({{personalobj.ProfileID}})</a>
                                 <a id="lnkmorepopup" style="width: 20px; margin-right: 13px;" data-toggle="modal" href="#divlookingmore">More</a>
                                 <a id="lnkPatnerprefercencedata" onclick="return redirectpartner()" href="javascript:void(0)">Edit Partpreference</a>
-                                <label id="lblhiddenprofileid" style="display: none;">310910220</label>
+
                                 <br>
                                 <br>
                                 <div class="row">

@@ -52,7 +52,7 @@
     
     #dashBoardPage {
         .x_panel {
-            height: 476px;
+            height: 500px;
         }
     }
     
@@ -62,6 +62,8 @@
         }
     }
     
-    .modalclass {
+    .modalclassdashboard {
         z-index: 99999 !important;
+        top: 0%;
+        left: 0%;
     }

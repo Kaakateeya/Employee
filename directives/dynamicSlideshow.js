@@ -35,12 +35,17 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                 scope.prevhide = false;
                 scope.tablename = null;
                 scope.dynamicslideshow = false;
+                scope.personalobj = {};
+                scope.arraydata = [];
+                scope.data = [];
                 scope.dynamicslideshow = scope.nghide !== undefined && scope.nghide !== "" ? scope.nghide : true;
-                scope.displayArray = function(arr) {
-                    var arraydata = [];
+                scope.displayArray = function(arr, frompage) {
                     $.each(arr, function(index, item) {
-                        var data = [];
-                        data.push({
+                        scope.data = [];
+                        if (frompage === 1) {
+                            scope.arraydata = [];
+                        }
+                        scope.data.push({
                             label: 'ProfileID',
                             value: '',
                             ProfileID: item.ProfileID,
@@ -50,37 +55,39 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                             SuperConfidentila: item.SuperConfidentila,
                             HoroscopeStatus: item.HoroscopeStatus
                         });
-                        data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
-                        data.push({ label: 'DOB(age)', value: item.DOB + '(' + item.Age + ')' });
-                        data.push({ label: 'Time of Birth', value: item.TOB });
-                        data.push({ label: 'Place of Birth', value: item.PlaceOfBirth });
-                        data.push({ label: 'Gothram', value: item.Gothram });
-                        data.push({ label: 'Caste', value: item.Caste });
-                        data.push({ label: 'Marital Status', value: item.maritalstatus || item.MaritalStatusID });
-                        data.push({ label: 'Star', value: item.Star });
-                        data.push({ label: 'Color', value: item.Color });
-                        data.push({ label: 'Height', value: item.Height });
-                        data.push({ label: 'Qualification', value: item.EducationGroup + "," + item.EduGroupnamenew });
-                        data.push({ label: 'Profession', value: item.Profession });
-                        data.push({ label: 'Job Location', value: item.JobLocation });
-                        data.push({ label: 'Income(P.M)', value: item.Income });
-                        data.push({ label: 'Father Native', value: item.FFNative });
-                        data.push({ label: 'Mother Native', value: item.MFNative });
-                        data.push({ label: 'Property(Lakhs)', value: item.Property });
-                        data.push({ label: 'backendFields', Custid: item.Cust_ID, ProfileID: item.ProfileID, PhotoCount: item.PhotoCount, Age: item.Age, HeightInCentimeters: item.HeightInCentimeters, MaritalStatusID: item.MaritalStatusID, CasteID: item.CasteID, serviceDate: item.serviceDate, CustPhoto: item.FullPath, totalrecords: item.TotalRowsKeyword });
+                        scope.data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
+                        scope.data.push({ label: 'DOB(age)', value: item.DOB + '(' + item.Age + ')' });
+                        scope.data.push({ label: 'Time of Birth', value: item.TOB });
+                        scope.data.push({ label: 'Place of Birth', value: item.PlaceOfBirth });
+                        scope.data.push({ label: 'Gothram', value: item.Gothram });
+                        scope.data.push({ label: 'Caste', value: item.Caste });
+                        scope.data.push({ label: 'Marital Status', value: item.maritalstatus || item.MaritalStatusID });
+                        scope.data.push({ label: 'Star', value: item.Star });
+                        scope.data.push({ label: 'Color', value: item.Color });
+                        scope.data.push({ label: 'Height', value: item.Height });
+                        scope.data.push({ label: 'Qualification', value: item.EducationGroup + "," + item.EduGroupnamenew });
+                        scope.data.push({ label: 'Profession', value: item.Profession });
+                        scope.data.push({ label: 'Job Location', value: item.JobLocation });
+                        scope.data.push({ label: 'Income(P.M)', value: item.Income });
+                        scope.data.push({ label: 'Father Native', value: item.FFNative });
+                        scope.data.push({ label: 'Mother Native', value: item.MFNative });
+                        scope.data.push({ label: 'Property(Lakhs)', value: item.Property });
+                        scope.data.push({ label: 'backendFields', Custid: item.Cust_ID, ProfileID: item.ProfileID, PhotoCount: item.PhotoCount, Age: item.Age, HeightInCentimeters: item.HeightInCentimeters, MaritalStatusID: item.MaritalStatusID, CasteID: item.CasteID, serviceDate: item.serviceDate, CustPhoto: item.FullPath, totalrecords: item.TotalRowsKeyword });
                         if (item.serviceDate != "--" && item.serviceDate !== "" && item.serviceDate !== null)
-                            data.push({ label: 'ServiceDate', value: item.serviceDate, style: 'style= color:red;' });
+                            scope.data.push({ label: 'ServiceDate', value: item.serviceDate, style: 'style= color:red;' });
                         if (item.Intercaste == "True")
-                            data.push({ label: 'Intercaste', value: (item.fathercaste + "/" + item.mothercaste) });
+                            scope.data.push({ label: 'Intercaste', value: (item.fathercaste + "/" + item.mothercaste) });
                         if (item.ProfileGrade !== 0)
-                            data.push({ label: 'ProfileGrade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
-                        arraydata.push({ itmArr: data, custPhoto: item.FullPath, Custid: item.Cust_ID });
+                            scope.data.push({ label: 'ProfileGrade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
+                        scope.arraydata.push({ itmArr: scope.data, custPhoto: item.FullPath, Custid: item.Cust_ID });
                     });
-                    return arraydata;
+                    return scope.arraydata;
                 };
-                scope.displayArraydashboard = function(arr) {
+                scope.displayArraydashboard = function(arr, frompage) {
                     console.log(arr);
-                    var arraydata = [];
+                    if (frompage === 1) {
+                        scope.arraydata = [];
+                    }
                     $.each(arr, function(index, item) {
                         var data = [];
                         data.push({
@@ -95,18 +102,18 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                         });
                         data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
                         data.push({ label: 'Caste', value: item.Caste });
-                        data.push({ label: 'Dor', value: item.Dor });
+                        data.push({ label: 'Dor', value: item.DOR });
                         data.push({ label: 'ProfileGrade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
-                        data.push({ label: 'Last Login', value: "--" });
-                        data.push({ label: 'No Of Logins', value: "--" });
-                        data.push({ label: 'Send/Recv', value: "--" });
-                        data.push({ label: 'payment', value: "--" });
-                        data.push({ label: 'Expiry Date', value: "--" });
-                        data.push({ label: 'Points', value: "--" });
-                        data.push({ label: 'backendFields', Custid: item.Cust_ID, ProfileID: item.ProfileID, PhotoCount: item.PhotoCount, Age: item.Age, HeightInCentimeters: item.HeightInCentimeters, MaritalStatusID: item.MaritalStatusID, CasteID: item.CasteID, serviceDate: item.serviceDate, CustPhoto: item.ApplicationPhotoPath, totalrecords: item.TotalRowsKeyword });
-                        arraydata.push({ itmArr: data, custPhoto: item.ApplicationPhotoPath, Custid: item.Cust_ID });
+                        data.push({ label: 'Last Login', value: item.LastLoginDate });
+                        data.push({ label: 'No Of Logins', value: item.LoginCount });
+                        data.push({ label: 'Send/Recv', value: item.SRCount });
+                        data.push({ label: 'payment', value: item.PaidAmount });
+                        data.push({ label: 'Expiry Date', value: item.ExpiryDate });
+                        data.push({ label: 'Points', value: item.Points });
+                        data.push({ label: 'backendFields', Custid: item.Cust_ID, ProfileID: item.ProfileID, PhotoCount: item.PhotoCount, Age: item.Age, HeightInCentimeters: item.HeightInCentimeters, MaritalStatusID: item.MaritalStatusID, CasteID: item.CasteID, serviceDate: item.serviceDate, CustPhoto: item.ApplicationPhotoPath, totalrecords: item.TotalRows });
+                        scope.arraydata.push({ itmArr: data, custPhoto: item.ApplicationPhotoPath, Custid: item.Cust_ID });
                     });
-                    return arraydata;
+                    return scope.arraydata;
                 };
 
                 scope.checkitemnew = function(carouselID) {
@@ -142,7 +149,7 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                         scope.$apply();
                         scope.currentslide = currentIndex1;
                     });
-                    scope.currentslide = currentIndex1;
+                    // scope.currentslide = currentIndex1;
                 };
 
                 function checkitemGlobal(carouselID) {
@@ -165,8 +172,8 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                     $('#' + scope.carousalID).carousel('pause');
                 };
 
-                scope.pageload = function() {
-                    scope.displayArr = scope.displayArraydashboard(scope.slidearray);
+                scope.pageload = function(frompage) {
+                    scope.displayArr = scope.displayArraydashboard(scope.slidearray, frompage);
                     var totalItems1 = $('#' + scope.carousalID).find('.item').length;
                     var currentIndex1 = $('#' + scope.carousalID).find('div.active').index() + 1;
                     scope.slidNum = currentIndex1 + 1;
@@ -209,7 +216,7 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                     scope.lbltotalrecordsslide = totalrows;
                     scope.tablename = tablename;
                     if (frompage === 1) {
-                        commonpage.showPopup('dynamicSlideshow.html', scope, 'lg', "modalclass");
+                        commonpage.showPopup('dynamicSlideshow.html', scope, 'lg', "modalclassdashboard");
                     }
                     timeout(function() {
                         commonpage.ArrowMoveSlide(scope.carousalID);
@@ -221,7 +228,7 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                         //commonpage.checkitem(scope.carousalID);
                         scope.bindfunction(scope.carousalID);
                     }, 500);
-                    scope.pageload();
+                    scope.pageload(frompage);
                 });
                 ////////
                 scope.pageloadnew = function(carouselID) {
@@ -233,13 +240,15 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                     commonpage.ArrowMoveSlide(scope.carousalID);
                     checkitemGlobal(carouselID);
                 };
-                scope.$on("generalsearchslide", function(event, array, tablename) {
+                scope.$on("generalsearchslide", function(event, array, tablename, personalobj, frompage) {
+                    console.log(personalobj);
+                    scope.personalobj = personalobj;
                     console.log(array);
                     scope.lbltotalrecordsslide = array[0].TotalRows;
                     scope.tablename = tablename;
                     scope.slidearray = array;
                     scope.dynamicslideshow = true;
-                    scope.displayArr = scope.displayArray(scope.slidearray);
+                    scope.displayArr = scope.displayArray(scope.slidearray, frompage);
                     scope.pageloadnew(scope.carousalID);
                 });
             }

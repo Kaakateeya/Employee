@@ -23,9 +23,6 @@
                 </div>
             </div>
             <!-- /menu profile quick info -->
-
-            <br />
-
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                 <div class="menu_section">
@@ -203,58 +200,59 @@
     <script type="text/ng-template" id="loginContent.html">
         <form name="loginForm" novalidate role="form" style='z-index: 99999'>
             <div class="modal-body clearfix pop_content_my" id="modal-body">
-
+                <p class="currendate row" style="margin: 0 0 0px;"> {{head.CurrentDate | date:'dd MMMM yyyy hh.mm.ss'}},{{head.CurrentDate |date:'EEEE'}}</p>
                 <div class="row">
-                    <div class='col-lg-4'>
-                        <p class="currendate row"> {{head.CurrentDate | date:'dd MMMM yyyy'}},</p>
-                        <p class="currendate">{{head.CurrentDate |date:'EEEE'}}</p>
-
-                    </div>
-                    <div class='col-lg-5'>
-                        <h3 class='colorlogin row'>Employee Login</h3>
-
-                    </div>
-                    <div class='col-lg-1'>
-                        <img src="src/images/kaakateeyalogo_001.jpg" style="width:50px;height:50px;"></img>
+                    <div class='col-lg-6 col-lg-offset-3'>
+                        <h3 class='colorlogin row' style="margin-top: 0px;">Employee Login <img src="src/images/kaakateeyalogo_001.jpg" style="width:50px;height:50px;"></img>
+                        </h3>
                     </div>
 
                 </div>
-                <br>
                 <div class='row'>
-                    <div class="col-lg-offset-3">
-                        <div layout-gt-sm="row" class="center-block">
-                            <md-input-container class="inputcontainer" flex-gt-sm="60" ng-show="!head.lock">
-                                <label for="username" class='col-lg-4 textallign'>User name </label>
-                                <input type="text" class="usernameemployee" ng-model="head.usernameemployee" name="usernameemployee" required md-no-asterisk>
+                    <div class="col-lg-offset-2">
+                        <div class="row">
+                            <label for="username" style="color:black;" class='col-lg-3'>User Name</label>
+                            <md-input-container class="inputcontainer col-lg-6" ng-show="!head.lock">
+                                <input ng-keyup="loginForm.$valid && $event.keyCode == 13 && head.loginsubmit(head)" type="text" class="usernameemployee" ng-model="head.usernameemployee" name="usernameemployee" required md-no-asterisk>
                                 <div ng-messages="loginForm.usernameemployee.$error">
                                     <div ng-message="required">This is required.</div>
                                 </div>
                             </md-input-container>
                             <label ng-show="head.lock" class="form-label">{{head.usernameemployee}}</label>
                         </div>
-                    </div>
-                    <div class="col-lg-offset-3">
-                        <div layout-gt-sm="row" class="center-block">
-                            <md-input-container class="inputcontainer" flex-gt-sm="60">
-                                <label for="Password" class='col-lg-4 textallign'>Password 	</label>
-                                <input type="Password" class="usernameemployee" ng-model="head.passwordemployee" name="passwordemployee" required md-no-asterisk>
+                        <div class="row">
+                            <label for="Password" style="color:black;" class='col-lg-3'>Pass Word</label>
+                            <md-input-container class="inputcontainer col-lg-6">
+                                <input ng-keyup="loginForm.$valid && $event.keyCode == 13 && head.loginsubmit(head)" type="Password" class="usernameemployee" ng-model="head.passwordemployee" name="passwordemployee" required md-no-asterisk>
                                 <div ng-messages="loginForm.passwordemployee.$error">
                                     <div ng-message="required">This is required.</div>
                                     <div ng-message="pattern">username is invalid</div>
                                 </div>
                             </md-input-container>
+                            <label class="labelred">{{head.errormessage}}</label>
                         </div>
-                        <label class="labelred">{{head.errormessage}}</label>
+                        <div class='col-lg-offset-4'>
+                            <md-button class="md-raised md-warn md-hue-2" ng-disabled="loginForm.$invalid" ng-click="head.loginsubmit(head)">Login
+                            </md-button>
+                        </div>
                     </div>
-
-                    <div class='col-lg-offset-5'>
-                        <md-button class="md-raised md-warn md-hue-2" ng-disabled="loginForm.$invalid" ng-click="head.loginsubmit(head)">Login
-                        </md-button>
+                    <div class="row">
+                        <br>
+                        <div class="col-lg-3  col-lg-offset-1">
+                            <label style="color:black;">AP:</label>
+                            <label style="color:maroon;">{{head.logincounts[0].LoggedCount!==undefind?head.logincounts[0].LoggedCount:0}}/{{head.logincounts[0].EmpCount!==undefined?head.logincounts[0].EmpCount:0}}</label>
+                        </div>
+                        <div class="col-lg-3">
+                            <label style="color:black;">TN:</label>
+                            <label style="color:maroon;">{{head.logincounts[1].LoggedCount!==undefined?head.logincounts[1].LoggedCount:0}}/{{head.logincounts[1].EmpCount!==undefined?head.logincounts[1].EmpCount:0}}</label>
+                        </div>
+                        <div class="col-lg-3">
+                            <label style="color:black;">KA:</label>
+                            <label style="color:maroon;">{{head.logincounts[2].LoggedCount!==undefined?head.logincounts[2].LoggedCount:0}}/{{head.logincounts[2].EmpCount!==undefined?head.logincounts[2].EmpCount:0}}</label>
+                        </div>
                     </div>
                 </div>
             </div>
         </form>
     </script>
-
-
 </div>

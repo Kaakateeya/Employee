@@ -6,6 +6,7 @@
         var modalpopupopen;
         vm.lock = false;
         vm.CurrentDate = new Date();
+        vm.logincounts = [];
         vm.showpopup = function(url, scope, size) {
             modalpopupopen = uibModal.open({
                 ariaLabelledBy: 'modal-title',
@@ -22,12 +23,18 @@
             var empname = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             authSvc.getmacaddress();
             authSvc.getClientIp();
+            debugger;
             if (empname === "" || empname === undefined || empname === null) {
                 vm.showpopup('loginContent.html', scope, 'md');
             } else {
                 vm.name = authSvc.LoginEmpName();
                 vm.empphoto = authSvc.empphoto();
             }
+            loginservice.getEmployeeLoginCoutDetails().then(function(response) {
+                console.log(response.data);
+                var login = JSON.parse(response.data);
+                vm.logincounts = login;
+            });
         };
         vm.initheader();
         vm.closepopup = function() {
@@ -80,6 +87,8 @@
             });
         };
         vm.logout = function() {
+            debugger;
+            //modalpopupopen.close();
             vm.showpopup('loginContent.html', scope, 'md');
             vm.name = "";
             authSvc.logout();

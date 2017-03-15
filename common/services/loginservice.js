@@ -11,6 +11,11 @@
                         sMAC: authSvc.clientIp()
                     }
                 });
+            },
+            getEmployeeLoginCoutDetails: function() {
+                return http.get(app.apiroot + 'StaticPages/getEmployeeLoginCoutDetails', {
+                    params: {}
+                });
             }
         };
     }

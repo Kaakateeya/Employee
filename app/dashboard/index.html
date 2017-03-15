@@ -32,18 +32,18 @@
                                 <div class="media-body">
                                     <p class="title">{{inneritem.Name}}
                                         <span ng-class="inneritem.PaidStatus===1?'colorpaid':'colorunpaid'"> ({{inneritem.Profileid}})</span></p>
-                                    <p class="titleservice ">{{inneritem.Date}}</p>
+                                    <p class="titleservice">{{inneritem.Date}}</p>
                                 </div>
                             </article>
                         </div>
                     </div>
-                    <article class="media event ">
-                        <div class="pull-right ">
-                            <a class="loadmoredashboard " ng-click="page.model.loadmore(page.model.empid, page.model.empBranchID,1,10,item[0].TableName, 'load',item,0) " href="javascript:void(0) ">Load More</a>
+                    <article class="media event">
+                        <div class="pull-right">
+                            <a class="loadmoredashboard" ng-click="page.model.loadmore(page.model.empid, page.model.empBranchID,page.model.frompage,page.model.topage,item[0].TableName, 'load',item,0)" href="javascript:void(0)">Load More</a>
                         </div>
                     </article>
                 </div>
-                <div id="exportableproceeding " ng-hide="true ">
+                <div id="exportableproceeding" ng-hide="true">
                     <table width="100% ">
                         <thead>
                             <tr>
@@ -53,7 +53,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="itm in item ">
+                            <tr ng-repeat="itm in item">
                                 <td>{{itm.Name}}</td>
                                 <td>{{itm.Profileid}}</td>
                                 <td>{{itm.Date | date:'MM/dd/yy'}}</td>
@@ -61,18 +61,11 @@
                         </tbody>
                     </table>
                 </div>
-
-
             </div>
         </div>
     </div>
-
-
 </div>
-
-
 <div>
-
     <slide-show nghide="page.model.slideshowtrue " dynamicheader=" 'false' " slidetype=" 'popup' " headertemplate=" 'templates/SlideHeader.html' " bodytemplate=" 'templates/slideDesign.html' "></slide-show>
 </div>
 <style type="text/css ">

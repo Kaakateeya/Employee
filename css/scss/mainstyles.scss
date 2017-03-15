@@ -235,7 +235,7 @@
     
     .allignmiddle {
         top: 20%;
-        left: 10%;
+        left: 0%;
         z-index: 99999999 !important;
     }
     
@@ -265,5 +265,11 @@
                 width: 513px;
                 margin: 30px auto;
             }
+        }
+    }
+    
+    #logindivheader {
+        .md-input-focused {
+            font-size: 14px;
         }
     }

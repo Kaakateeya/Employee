@@ -4,15 +4,17 @@
     function factory($http, dashboardServices, uibModal, authSvc) {
         var model = {};
         var flag = 0;
+        model.frompage = 6;
+        model.topage = 10;
+        model.tablenameflag = "";
         model.tabledata = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
             dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                 if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
                     console.log(response);
-                    if (type === "export") {
-                        model.exportData('exportableproceeding');
-                    } else if (type === 'pageload') {
+                    if (type === 'pageload') {
                         model.landingItems = response.data;
                     } else if (type === 'load') {
+                        debugger;
                         _.each(response.data[0], function(inneritem) {
                             array.push(inneritem);
                         });
@@ -31,11 +33,19 @@
         model.loadmore = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
             switch (type) {
                 case "export":
+                    model.exportData('exportableproceeding');
+                    break;
                 case "load":
-                    flag += 10;
-                    frompage = flag - 9;
-                    topage = flag;
-                    model.tabledata(empid, branchcode, frompage, topage, tablename, type, array, slideflag);
+
+                    if (model.tablenameflag !== tablename) {
+                        model.tablenameflag = tablename;
+                        model.frompage = 6;
+                        model.topage = 10;
+                    } else {
+                        model.frompage = topage + 1;
+                        model.topage = topage + 5;
+                    }
+                    model.tabledata(empid, branchcode, model.frompage, model.topage, tablename, type, array, slideflag);
                     break;
             }
         };

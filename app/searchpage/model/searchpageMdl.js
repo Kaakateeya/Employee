@@ -17,6 +17,7 @@
         model.slideshowarray = [];
         model.slideshowtrue = false;
         model.divcontrolls = true;
+        model.Cust_ID = null;
         model.returnnullvalue = function(value) {
             var obj = helpService.checkstringvalue(value) && (value.toString()) !== "0" && (value.toString()) !== 0 ? (value.toString()) : null;
             return obj;
@@ -30,6 +31,7 @@
                 console.log(response);
                 if (response !== null && response.data !== undefined && response.data !== null && response.data !== "") {
                     var data = model.getpageloadobject = response.data;
+                    model.Cust_ID = data.Cust_ID;
                     model.generalsearch.gender = data.GenderID;
                     model.generalsearch.generalAgefrom = data.AgeMin;
                     model.generalsearch.generalAgeto = data.AgeMax;
@@ -121,7 +123,7 @@
             console.log(object);
             if (parseInt(frompage) === 1) {
                 model.CgetDetails.GetDetails = {
-                    CustID: 91022,
+                    CustID: model.Cust_ID,
                     GenderID: helpService.checkstringvalue(object.gender) ? object.gender : null,
                     GenderText: null,
                     AgeFromID: helpService.checkstringvalue(object.generalAgefrom) ? object.generalAgefrom : null,
@@ -193,7 +195,7 @@
                         model.slideshowarray.push(item);
                     });
                 }
-                model.scope.$broadcast("generalsearchslide", model.slideshowarray, "general");
+                model.scope.$broadcast("generalsearchslide", model.slideshowarray, "general", model.getpageloadobject, frompage);
                 model.divcontrolls = false;
                 model.slideshowtrue = true;
             });
@@ -205,7 +207,7 @@
             console.log(object);
             if (parseInt(frompage) === 1) {
                 model.CgetDetails.GetDetails = {
-                    CustID: 91022,
+                    CustID: model.Cust_ID,
                     GenderID: helpService.checkstringvalue(object.gender) ? object.gender : null,
                     GenderText: null,
                     AgeFromID: helpService.checkstringvalue(object.advancedage) ? object.advancedage : null,
@@ -340,7 +342,7 @@
                         model.slideshowarray.push(item);
                     });
                 }
-                model.scope.$broadcast("generalsearchslide", model.slideshowarray, "advanced");
+                model.scope.$broadcast("generalsearchslide", model.slideshowarray, "advanced", model.getpageloadobject, frompage);
                 model.divcontrolls = false;
                 model.slideshowtrue = true;
             });
