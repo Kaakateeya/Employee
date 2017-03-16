@@ -2,16 +2,16 @@
 
     <div class="">
         <div class="row">
-            <div class="col-md-4" ng-repeat="item in page.model.landingItems" ng-show="item.length>0">
+            <div ng-id="dash_{{$index}}" class="col-md-4" ng-repeat="item in page.model.landingItems" ng-show="item.length>0">
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>{{item[0].TableName}} ({{item[0].ServiceCount}})
                         </h2>
-                        <a class="close-link pull-right" title="Close"><i class="fa fa-close"></i></a>
+                        <a href="javascript:void(0)" class="close-link pull-right" title="Close" ng-click="page.arrayslice($index)"><i class="fa fa-close"></i></a>
                         <br>
                         <div class="clearfix">
                         </div>
-                        <ul class="nav pull-left panel_toolbox">
+                        <ul class="nav pull-right panel_toolbox">
                             <li>
                                 <a title="Excel" ng-click="page.model.loadmore(page.model.empid, page.model.empBranchID,1,10,item[0].TableName,'export',item,0)" href="javascript:void(0)">
                                     <img src="src/images/EXCEL.jpg"></img>

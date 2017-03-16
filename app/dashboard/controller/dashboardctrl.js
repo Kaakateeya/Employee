@@ -44,6 +44,11 @@
              vm.slideshowfunction(true, model.empid, model.empBranchID, frompage, topage, tablename, 'slideshow', model.slidearray, 1);
 
          });
+         vm.arrayslice = function(index) {
+             model.landingItems.splice(index, 1);
+             return false;
+             // ifindex = false;
+         };
 
      }
      angular.module('Kaakateeya').controller('dashboardCtrl', ['dashboardModel', '$scope', 'dashboardServices', 'commonpage', Controller]);

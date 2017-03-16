@@ -251,6 +251,9 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                     scope.displayArr = scope.displayArray(scope.slidearray, frompage);
                     scope.pageloadnew(scope.carousalID);
                 });
+                scope.slidepopup = function(custid) {
+                    commonpage.ShowPhotoPopup(custid, scope);
+                };
             }
         };
     }

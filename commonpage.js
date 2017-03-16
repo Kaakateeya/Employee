@@ -1,5 +1,5 @@
 app.factory('commonpage', ['$uibModal', 'photoalubum', function(uibModal, photoalubum) {
-    var modalinstance;
+    var modalinstance, modalpopupopen;
     var obj = {};
     var $table = $('#GridTable');
     obj.gotoSlide = function(e) {
