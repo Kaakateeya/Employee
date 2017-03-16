@@ -1,5 +1,5 @@
 app.factory('commonpage', ['$uibModal', 'photoalubum', function(uibModal, photoalubum) {
-    var modalinstance, modalpopupopen;
+    var modalinstance, modalpopupopen, modalpopupopenphoto;
     var obj = {};
     var $table = $('#GridTable');
     obj.gotoSlide = function(e) {
@@ -25,8 +25,23 @@ app.factory('commonpage', ['$uibModal', 'photoalubum', function(uibModal, photoa
                     // keyboard: false
             });
         },
+        showPopupphotopoup: function(url, scope, size, classp) {
+            modalpopupopenphoto = uibModal.open({
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: url,
+                scope: scope,
+                size: size,
+                backdrop: 'static',
+                windowClass: classp
+                    // keyboard: false
+            });
+        },
         closepopup: function() {
             modalpopupopen.close();
+        },
+        closepopuppoptopopup: function() {
+            modalpopupopenphoto.close();
         },
         pausePalyslide: function(type, id) {
             if (type === 'play') {

@@ -137,7 +137,7 @@
                                             <div style="color:Black;"> <span>{{slidedata.value}}</span> </div>
                                             <span ng-if="slidedata.label=='ProfileID'">&nbsp;<a href="javascript:void(0);" ng-class="slidedata.paid==='1'?'paidCls':'unpaidCls'" >{{slidedata.ProfileID}}</a> {{slidedata.KMPLID}} {{(slidedata.IsConfidential===1) ||(slidedata.IsConfidential==='1')?'C':''}}  
                                                 {{(slidedata.SuperConfidentila==='1') ||(slidedata.SuperConfidentila===1)?'SC':''}}  
-                                                <input ng-show="slidedata.HoroscopeStatus===1" src='src/images/ico_horoscope.jpg' style='height:20px;width:25px;' type='image'>
+                                                <input ng-click="horoscopeimage(slidedata.HoroscopeImage)" ng-show="slidedata.HoroscopeStatus===1" src='src/images/ico_horoscope.jpg' style='height:20px;width:25px;' type='image'>
                                               </span>
                                             <div class="clearfix">
                                             </div>
@@ -182,6 +182,38 @@
         </div>
     </div>
 
+    </div>
+</script>
+<script type="text/ng-template" id="dynamicphotopopup.html">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="closepopuppoptopopup()">×</button>
+            <h4 class="modal-title">Photo Album</h4>
+        </div>
+        <div class="modal-body">
+            <div class="bs-example">
+                <div id="slideshow" class="carousel slide" data-interval="3000" data-ride="carousel" ng-hide="popupmodalbody">
+                    <ol class="carousel-indicators">
+                        <li ng-repeat="slide in slides" data-target="#slideshow" ng-class="$index+1==1?'active':''" data-slide-to="$index+1-1"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div ng-class="($index+1)==1?'item active':'item'" ng-repeat="slide in slides">
+                            <img id="imh" ng-src="{{slide.FullPhotoPath}}" style="margin-left: auto;
+                      margin-right: auto;"></img>
+                        </div>
+                    </div>
+                    <a data-target="#slideshow" id="a1" class="carousel-control left" href="javascript:void(0)" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a data-target="#slideshow" id="a2" class="carousel-control right" href="javascript:void(0)" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+                <div ng-hide="!popupmodalbody">
+                    <img ng-src="{{HoroscopeImage}}" style="height: 500px; width: 500px;">
+                </div>
+            </div>
+        </div>
     </div>
 </script>
 <style>

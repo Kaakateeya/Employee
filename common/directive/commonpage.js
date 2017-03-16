@@ -14,7 +14,7 @@ app.factory('commonpage', ['$uibModal', function(uibModal) {
     };
     operateFormatter = function(value, row, index) {
         debugger;
-        var paid = "<a  href='/Education/" + row.CustID + "'>" + row.ProfileID + "</a>";
+        var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "'>" + row.ProfileID + "</a>";
         return paid;
     };
 

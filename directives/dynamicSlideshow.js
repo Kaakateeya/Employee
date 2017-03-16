@@ -1,6 +1,6 @@
-app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
+app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout', 'photoalubum',
 
-    function(uibModal, commonpage, timeout) {
+    function(uibModal, commonpage, timeout, photoalubum) {
         return {
             restrict: "E",
             scope: {
@@ -38,6 +38,8 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                 scope.personalobj = {};
                 scope.arraydata = [];
                 scope.data = [];
+                scope.popupmodalbody = false;
+                scope.HoroscopeImage = "";
                 scope.dynamicslideshow = scope.nghide !== undefined && scope.nghide !== "" ? scope.nghide : true;
                 scope.displayArray = function(arr, frompage) {
                     if (frompage === 1) {
@@ -204,11 +206,26 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                     }
                     commonpage.pausePalyslide(type, scope.carousalID);
                 };
+                scope.horoscopeimage = function(image) {
+                    scope.HoroscopeImage = image;
+                    scope.popupmodalbody = true;
+                    commonpage.showPopupphotopoup('dynamicphotopopup.html', scope, '', "modalclassdashboardphotopopup");
+                };
                 scope.slidepopup = function(custid) {
-                    commonpage.ShowPhotoPopup(custid, scope);
+                    photoalubum.getphotoslideimages(custid).then(function(response) {
+                        scope.slides = [];
+                        _.each(response.data, function(item) {
+                            scope.slides.push(item);
+                        });
+                        commonpage.showPopupphotopoup('dynamicphotopopup.html', scope, '', "modalclassdashboardphotopopup");
+                    });
+
                 };
                 scope.close = function() {
                     commonpage.closepopup();
+                };
+                scope.closepopuppoptopopup = function() {
+                    commonpage.closepopuppoptopopup();
                 };
                 scope.$on("slideshowdynamic", function(event, array, totalrows, tablename, frompage) {
                     scope.slidearray = array;
@@ -251,9 +268,7 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout',
                     scope.displayArr = scope.displayArray(scope.slidearray, frompage);
                     scope.pageloadnew(scope.carousalID);
                 });
-                scope.slidepopup = function(custid) {
-                    commonpage.ShowPhotoPopup(custid, scope);
-                };
+
             }
         };
     }
