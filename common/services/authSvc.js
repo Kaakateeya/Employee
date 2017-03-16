@@ -134,6 +134,9 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', function($injector, Idle, 
                 return response;
                 //(((res.data).indexOf("::1") !== -1) ? "183.82.98.109" : res.data);
             });
+        },
+        getpaidstatus: function() {
+            return getSession('cust.paidstatus');
         }
     };
 }]);

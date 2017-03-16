@@ -1,0 +1,75 @@
+<div id="loginnewid">
+    <div class="login">
+        <div class="login-box">
+            <div class="login-border">
+                <div class="login-style">
+                    <div class="login-header">
+                        <div class="logo clear">
+
+                            <img src="src/images/12345.png" style="width: 67px;height: 60px;" alt="" class="picture" />
+                            <span class="textlogo"><span class="title">Kaakateeya Marraiages</span> </span>
+                        </div>
+                    </div>
+                    <form name="loginForm" novalidate>
+                        <div class="login-inside">
+                            <div class="login-data">
+                                <div class="row clear">
+                                    <label for="user">
+                                Username:</label>
+
+                                    <input ng-keyup="loginForm.$valid && $event.keyCode == 13 && page.model.loginsubmit(page.model.loginsubmit)" type="text" size="25" class="text" ng-model="page.model.loginsubmit.usernameemployee" name="usernameemployee" required>
+                                    <div ng-show="page.model.usernameemployee" ng-messages="loginForm.usernameemployee.$error" style="color: red;">
+                                        <div ng-message="required">This is required.</div>
+                                    </div>
+
+                                </div>
+                                <div class="row clear">
+                                    <label for="password">
+                                Password:</label>
+
+                                    <input ng-keyup="loginForm.$valid && $event.keyCode == 13 && page.model.loginsubmit(page.model.loginsubmit)" type="Password" class="text" ng-model="page.model.loginsubmit.passwordemployee" name="passwordemployee" required>
+                                    <div style="color: red;" ng-show="page.model.usernameemployee" ng-messages="loginForm.passwordemployee.$error">
+                                        <div ng-message="required">This is required.</div>
+
+                                    </div>
+
+                                </div>
+                                <button ng-click="page.model.loginsubmit(page.model.loginsubmit)" class="button">Login</button>
+                            </div>
+                            <div id="divError" style="text-align:center;color: red;">
+                                {{page.model.errormessage}}</div>
+
+
+                            <div>
+                                <div class="pull-right"> {{page.model.CurrentDate | date:'dd MMMM yyyy hh.mm.ss'}},{{page.model.CurrentDate |date:'EEEE'}}</div>
+                            </div>
+
+                        </div>
+                        <div class="login-footer">
+                            <div class="row">
+                                <div class="col-lg-3  col-lg-offset-1">
+                                    <label style="color:#ffffff;font-size: 14px;">AP:</label>
+                                    <label style="color:#ffffff;font-size: 14px;">{{page.model.logincounts[0].LoggedCount!==undefind?page.model.logincounts[0].LoggedCount:0}}/{{page.model.logincounts[0].EmpCount!==undefined?page.model.logincounts[0].EmpCount:0}}</label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label style="color:#ffffff;font-size: 14px;">TN:</label>
+                                    <label style="color:#ffffff;font-size: 14px;">{{page.model.logincounts[1].LoggedCount!==undefined?page.model.logincounts[1].LoggedCount:0}}/{{page.model.logincounts[1].EmpCount!==undefined?page.model.logincounts[1].EmpCount:0}}</label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label style="color:#ffffff;font-size: 14px;">KA:</label>
+                                    <label style="color:#ffffff;font-size: 14px;">{{page.model.logincounts[2].LoggedCount!==undefined?page.model.logincounts[2].LoggedCount:0}}/{{page.model.logincounts[2].EmpCount!==undefined?page.model.logincounts[2].EmpCount:0}}</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="login-links">
+            <p>
+                <strong> © 2004-2013 Www.Kaakateeya.Com Matrimony - Online Marriage Site. </strong> All rights reserved.</p>
+        </div>
+    </div>
+</div>

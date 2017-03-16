@@ -5,12 +5,11 @@
          /* jshint validthis:true */
          var vm = this,
              model;
-
-         vm.activate = function() {
+         vm.init = function() {
              vm.model = model = loginModel;
-             model.showpopup('loginContent.html', scope);
+             model.init();
          };
-         vm.activate();
+         vm.init();
 
      }
 

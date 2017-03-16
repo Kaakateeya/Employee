@@ -15,12 +15,9 @@
              vm.model = model = dashboardModel;
              model.slideshowfunction(false);
              model.init();
-
          };
-
          vm.init();
 
-         ///////////
          vm.slideshowfunction = function(flag, empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
              //model.slideshowfunction(flag, empid, branchcode, frompage, topage, tablename, type, array, slideflag);
              //call http method here after then function call the broadcast method
@@ -47,7 +44,6 @@
          vm.arrayslice = function(index) {
              model.landingItems.splice(index, 1);
              return false;
-             // ifindex = false;
          };
 
      }
