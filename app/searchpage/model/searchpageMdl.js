@@ -6,7 +6,6 @@
         var model = {};
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
         model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
-
         model.generalsearch = {};
         model.advancedsearch = {};
         model.advancedsearch.typeofsearch = 2;
@@ -18,6 +17,10 @@
         model.slideshowtrue = false;
         model.divcontrolls = true;
         model.Cust_ID = null;
+        model.selectedIndex = 0;
+        model.activatedmobile = true;
+        model.searchpopuptext = "General Search";
+        model.divcontrollsbind = 0;
         model.returnnullvalue = function(value) {
             var obj = helpService.checkstringvalue(value) && (value.toString()) !== "0" && (value.toString()) !== 0 ? (value.toString()) : null;
             return obj;
@@ -27,6 +30,10 @@
         };
 
         model.profileidupdate = function(obj) {
+            debugger;
+            if (model.divcontrollsbind === 0) {
+                model.init();
+            }
             searchpageServices.getPrimaryCustomerDataResponse(obj.ProfileIDpopup, model.empid).then(function(response) {
                 console.log(response);
                 if (response !== null && response.data !== undefined && response.data !== null && response.data !== "") {
@@ -83,6 +90,7 @@
             });
         };
         model.init = function() {
+            model.divcontrollsbind = 1;
             model.maritalstatus = arrayConstants.MaritalStatus;
             model.Religion = arrayConstants.Religion;
             model.Mothertongue = arrayConstants.Mothertongue;
@@ -105,9 +113,7 @@
             model.Applicationstatus = getArray.GArray("Applicationstatus");
             model.Smoke = getArray.GArray("Smoke");
             model.Diet = getArray.GArray("Diet");
-            model.selectedIndex = 0;
-            model.activatedmobile = false;
-            return model;
+
         };
         model.GetPhotoandHoroscopevalues = function(strType, str) {
             if (str !== null && str !== undefined && str !== "") {
@@ -201,6 +207,10 @@
             });
         };
         model.closepopup = function() {
+            debugger;
+            if (model.divcontrollsbind === 0) {
+                model.init();
+            }
             alerts.dynamicpopupclose();
         };
         model.submitadvancedsearch = function(object, frompage, topage) {
@@ -356,8 +366,10 @@
                     console.log(model.Relationships);
                 });
             });
+
         };
-        return model.init();
+
+        return model;
     }
     angular
         .module('Kaakateeya')

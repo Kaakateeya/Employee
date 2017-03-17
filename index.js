@@ -17,7 +17,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
     var states = [
         { name: 'dashboard', url: '/dashboardpage', isloginrequired: true },
         { name: 'login', url: '/', isloginrequired: false },
-        { name: 'searchpage', url: '/search', isloginrequired: true },
+        { name: 'searchpage', url: '/search/:id', isloginrequired: true },
         { name: 'ViewAllCustomers', url: '/ViewAllCustomersurl' }
     ];
     $ocLazyLoadProvider.config({

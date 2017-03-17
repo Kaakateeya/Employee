@@ -40,6 +40,7 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout', 'photoalubum'
                 scope.data = [];
                 scope.popupmodalbody = false;
                 scope.HoroscopeImage = "";
+                scope.typeofslidedate = "";
                 scope.dynamicslideshow = scope.nghide !== undefined && scope.nghide !== "" ? scope.nghide : true;
                 scope.displayArray = function(arr, frompage) {
                     if (frompage === 1) {
@@ -105,15 +106,34 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout', 'photoalubum'
                         data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
                         data.push({ label: 'Caste', value: item.Caste });
                         data.push({ label: 'Dor', value: item.DOR });
-                        data.push({ label: 'ProfileGrade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
-                        data.push({ label: 'Last Login', value: item.LastLoginDate });
-                        data.push({ label: 'No Of Logins', value: item.LoginCount });
-                        data.push({ label: 'Send/Recv', value: item.SRCount });
-                        data.push({ label: 'payment', value: item.PaidAmount });
-                        data.push({ label: 'Expiry Date', value: item.ExpiryDate });
-                        data.push({ label: 'Points', value: item.Points });
+                        data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
+                        data.push({ label: 'Web Logins', value: item.LoginCount });
+                        // data.push({ label: 'Send/Recv', value: item.SRCount });
+                        // data.push({ label: 'payment', value: item.PaidAmount });
+                        // data.push({ label: 'Expiry Date', value: item.ExpiryDate });
+                        // data.push({ label: 'Points', value: item.Points });
                         data.push({ label: 'backendFields', Custid: item.Cust_ID, ProfileID: item.ProfileID, PhotoCount: item.PhotoCount, Age: item.Age, HeightInCentimeters: item.HeightInCentimeters, MaritalStatusID: item.MaritalStatusID, CasteID: item.CasteID, serviceDate: item.serviceDate, CustPhoto: item.ApplicationPhotoPath, totalrecords: item.TotalRows });
-                        scope.arraydata.push({ itmArr: data, custPhoto: item.ApplicationPhotoPath, Custid: item.Cust_ID });
+                        scope.arraydata.push({
+                            itmArr: data,
+                            custPhoto: item.ApplicationPhotoPath,
+                            Custid: item.Cust_ID,
+                            lastlogin: item.LastLoginDate,
+                            matkteingticket: item.TicketID,
+                            matchmarktingcount: item.MatchMeetingCount,
+                            ownername: item.EmpName,
+                            branch: item.KMPLID,
+                            reg: item.DOR,
+                            SAForm: item.SAForm,
+                            primarynumber: item.ContactNumber,
+                            primaryemail: item.Email,
+                            CreatedDate: item.CreatedDate,
+                            SRCount: item.SRCount,
+                            PaidAmount: item.PaidAmount,
+                            ExpiryDate: item.ExpiryDate,
+                            Points: item.Points,
+                            mobilestatus: item.CNumberVerStatus,
+                            emailstatus: item.CEmailVerStatus
+                        });
                     });
                     return scope.arraydata;
                 };
@@ -228,6 +248,29 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout', 'photoalubum'
                     commonpage.closepopuppoptopopup();
                 };
                 scope.$on("slideshowdynamic", function(event, array, totalrows, tablename, frompage) {
+                    switch (tablename) {
+                        case "No-Service From Last 1 Month":
+                            scope.typeofslidedate = "Service Date";
+                            break;
+                        case "Near by offline Expiry":
+                        case "Offline Expired Customers":
+                        case "Un-Paid Customers":
+                            scope.typeofslidedate = "Expired Date";
+                            break;
+                        case "Inactive Customers":
+                            scope.typeofslidedate = "Inactive Date";
+                            break;
+                        case "Today Remainders":
+                            scope.typeofslidedate = "Reminder Date";
+                            break;
+                        case "Yesterday Proceeding Profiles":
+                            scope.typeofslidedate = "proceeding Date";
+                            break;
+                        case "Tickets Assigned from Last 10 Days":
+                        case 'Assigned Profiles from Last 10 Days':
+                            scope.typeofslidedate = "Assigned Date";
+                            break;
+                    }
                     scope.slidearray = array;
                     // scope.dynamicslideshow = true;
                     scope.lbltotalrecordsslide = totalrows;

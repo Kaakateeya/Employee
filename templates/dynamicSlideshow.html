@@ -93,7 +93,7 @@
 </div>
 <script type="text/ng-template" id="dynamicSlideshow.html">
     <div class="modal-body">
-        <div class="modal-header" style="border-bottom: 1px solid #ffffff;">
+        <div class="modal-header modalheader" style="border-bottom: 1px solid #ffffff;">
             <div class="row" ng-if="dynamicheader==='false'">
                 <div class="col-lg-6 col-md-6 col-xs-8 col-sm-8">
                     <label id="lbltotalrecords">Total Records :</label>
@@ -119,9 +119,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row" ng-if="dynamicheader==='true'">
-                <div ng-include="headertemplate"></div>
-            </div>
+
         </div>
         <div class="modal-body">
             <div id="sildeViewDiv" style="display:block;">
@@ -129,6 +127,14 @@
                     <div id="myCarousel" class="carousel slide" data-interval="false" data-ride="carousel">
                         <div class="carousel-inner">
                             <div ng-class="($index+1)==1?'item active':'item'" ng-repeat="itemval in displayArr">
+                                <md-divider></md-divider>
+                                <div class="row">
+                                    <a href='javascript:void(0);' class='col-lg-4' style='font-size: 14px;'>Edit Partnerpreference</a>
+                                    <a href='javascript:void(0);' class='col-lg-3' style='font-size: 14px;'>General search</a>
+                                    <a href='javascript:void(0);' class='col-lg-3' style='font-size: 14px;'>View Contacts</a>
+                                </div>
+                                <md-divider></md-divider>
+                                <br>
                                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                                     <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix" ng-repeat="slidedata in itemval.itmArr" ng-if="slidedata.label!=='backendFields'">
                                         <h6> <span style="font-weight: bold;">{{slidedata.label}}</span></h6>
@@ -143,43 +149,181 @@
                                             </div>
                                         </h5>
                                     </div>
+                                    <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix">
+                                        <h6> <span style="font-weight: bold;">Last Login</span></h6>
+                                        <h5>
+                                            <div style="color:Black;">
+                                                <span ng-if='(itemval.lastlogin !== null) && (itemval.lastlogin !== "") && (itemval.lastlogin !== undefined)'>{{itemval.lastlogin}}</span>
+                                                <a class="alllinkscolor" ng-if='(itemval.lastlogin === null)|| (itemval.lastlogin === "") || (itemval.lastlogin === undefined)' href='javascript:void(0)' ng-click='forgetpassword()'>forgot password</a>
+                                            </div>
+                                            <div class="clearfix">
+                                            </div>
+                                        </h5>
+                                    </div>
+
+                                    <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix">
+                                        <h6> <span style="font-weight: bold;">Send/Recv</span></h6>
+                                        <h5>
+                                            <div style="color:Black;">
+
+                                                <a class="alllinkscolor" href='javascript:void(0)' ng-click='forgetpassword()'>{{itemval.SRCount}}</a>
+                                            </div>
+                                            <div class="clearfix">
+                                            </div>
+                                        </h5>
+                                    </div>
+
+
+                                    <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix">
+                                        <h6> <span style="font-weight: bold;">Payment</span></h6>
+                                        <h5>
+                                            <div style="color:Black;">
+                                                <a class="alllinkscolor" href='javascript:void(0)' ng-click='forgetpassword()'>{{itemval.PaidAmount}}</a>
+                                            </div>
+                                            <div class="clearfix">
+                                            </div>
+                                        </h5>
+                                    </div>
+                                    <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix">
+                                        <h6> <span style="font-weight: bold;">Expiry Date</span></h6>
+                                        <h5>
+                                            <div style="color:Black;">
+
+                                                <a class="alllinkscolor" href='javascript:void(0)' ng-click='forgetpassword()'>{{itemval.ExpiryDate}}({{itemval.Points}})</a>
+                                            </div>
+                                            <div class="clearfix">
+                                            </div>
+                                        </h5>
+                                    </div>
+
+                                    <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix">
+                                        <h6> <span style="font-weight: bold;">Marketing Tkt id</span></h6>
+                                        <h5>
+                                            <div style="color:Black;">
+                                                <a class="alllinkscolor" href='javascript:void(0)' ng-click='forgetpassword()'>{{itemval.matkteingticket}}({{itemval.ownername}})</a>
+                                            </div>
+                                            <div class="clearfix">
+                                            </div>
+                                        </h5>
+                                    </div>
+
+
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="margin-top: -4px;">
                                     <div class="row">
                                         <img ng-click="slidepopup(itemval.Custid)" ng-src="{{itemval.custPhoto}}" class="image" style="cursor: pointer;" />
                                         <br>
-                                        <div class="col-lg-8 col-lg-offset-5"><a href="javascript:void(0)"><span style="color:Black;font-size:9pt;">No of Photos   2</span></a></div>
+                                        <div class="col-lg-8 col-lg-offset-3"><a href="javascript:void(0)"><span style="color:Black;font-size:9pt;">No of Photos   2</span></a></div>
                                     </div>
                                 </div>
 
-                                <br>
                                 <div class="clearfix">
                                 </div>
                                 <div class="row">
-                                    <h5>
-                                        fjdsssssssssssssssssh
-                                    </h5>
+                                    <div class="col-lg-7 col-md-7 col-xs-7 col-sm-7">
+                                        <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix">
+                                            <h6> <span style="font-weight: bold;">Match MeetingCount
+                                           </span></h6>
+                                            <h5>
+                                                <div style="color:Black;">
+                                                    <a class="alllinkscolor" href="javascript:void(0)" ng-click="horoscopeimage(itemval.SAForm)"> {{itemval.matchmarktingcount}}</a>
+                                                </div>
+                                                <div class="clearfix">
+                                                </div>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5">
+                                        <div style="" class="edit_page_details_item_desc clearfix">
+                                            <h6> <span style="font-weight: bold;">Primary Email 
+                                           </span></h6>
+                                            <h5>
+                                                <div style="color:Black;">
+                                                    <span>{{itemval.primaryemail}}
+                                                    <i ng-class="itemval.emailstatus===true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></i>
+                                                      
+                                                    </span>
+
+                                                </div>
+                                                <div class="clearfix">
+                                                </div>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-7 col-md-7 col-xs-7 col-sm-7">
+                                        <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix">
+                                            <h6> <span style="font-weight: bold;">Sa Form
+                                           </span></h6>
+                                            <h5>
+                                                <div style="color:Black;">
+                                                    <a class="alllinkscolor" ng-if="itemval.SAForm!==null" href="javascript:void(0)" ng-click="horoscopeimage(itemval.SAForm)"> </a>
+                                                </div>
+                                                <div class="clearfix">
+                                                </div>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5">
+                                        <div style="" class="edit_page_details_item_desc clearfix">
+                                            <h6> <span style="font-weight: bold;"> Primary Mobile
+                                           </span></h6>
+                                            <h5>
+                                                <div style="color:Black;">
+                                                    <span>{{itemval.primarynumber}}
+                                                       <i ng-class="itemval.mobilestatus===true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></i>
+                                                    </span>
+
+                                                </div>
+                                                <div class="clearfix">
+                                                </div>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-7 col-md-7 col-xs-7 col-sm-7">
+                                        <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix">
+                                            <h6> <span style="font-weight: bold;">{{typeofslidedate}}
+                                           </span></h6>
+                                            <h5>
+                                                <div style="color:Black;">
+                                                    <span>{{itemval.CreatedDate}}</span>
+                                                </div>
+                                                <div class="clearfix">
+                                                </div>
+                                            </h5>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
-                        <a data-target="#myCarousel" class="carousel-control left" href="javascript:void(0)" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a data-target="#myCarousel" class="carousel-control right" href="javascript:void(0)" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
                     </div>
-                    <div id="carouselButtons" class="col-lg-offset-5" style="margin-top: -10px;">
-                        <button id="playButton" type="button" ng-show="ShowPause" ng-click="pauseResume('play');" class="btn btn-default btn-xs pauseBtns" title="Play">
+                    <br>
+                    <a data-target="#myCarousel" class="carousel-control left" href="javascript:void(0)" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a data-target="#myCarousel" class="carousel-control right" href="javascript:void(0)" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                    <br>
+
+                </div>
+                <div id="carouselButtons" class="col-lg-offset-5" style="margin-top: -10px;">
+                    <button id="playButton" type="button" ng-show="ShowPause" ng-click="pauseResume('play');" class="btn btn-default btn-xs pauseBtns" title="Play">
                                     <i class="fa fa-play"></i>
                                 </button>
-                        <button id="pauseButton" type="button" ng-show="!ShowPause" ng-click="pauseResume('pause');" class="btn btn-default btn-xs pauseBtns" title="Pause">
+                    <button id="pauseButton" type="button" ng-show="!ShowPause" ng-click="pauseResume('pause');" class="btn btn-default btn-xs pauseBtns" title="Pause">
                                     <i class="fa fa-pause"></i>
                                 </button>
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     </div>

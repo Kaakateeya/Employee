@@ -16,7 +16,7 @@
             template: '<p class="input-group">' +
                 '<input type="text" class="form-control" style="width:69%;" uib-datepicker-popup="MM/dd/yyyy"  ng-model="strdate" is-open="showdate"  show-button-bar="false" close-text="Close" />' +
                 '<span class="input-group-btn">' +
-                '<button type="button" class="btn btn-default" style="position: relative;height: 5%;height: 33px;display:block;" ng-click="open2()"><ng-md-icon icon="perm_contact_calendar" style="fill:#665454" size="20"></ng-md-icon></button>' +
+                '<button type="button" class="btn btn-default" style="position: relative;height: 5%;height: 34px;display:block;" ng-click="open2()"><ng-md-icon icon="perm_contact_calendar" style="fill:#665454" size="20"></ng-md-icon></button>' +
                 '</span></p>'
         };
         return directive;

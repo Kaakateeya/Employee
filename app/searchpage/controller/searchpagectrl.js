@@ -1,14 +1,16 @@
  (function(angular) {
      'use strict';
 
-     function controller(scope, searchpageModel, Commondependency, alerts) {
+     function controller(scope, searchpageModel, Commondependency, alerts, $stateParams) {
          /* jshint validthis:true */
          var vm = this,
              model;
          vm.init = function() {
              vm.model = model = searchpageModel;
              model.scope = scope;
-             alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md');
+             model.selectedIndex = $stateParams.id;
+             model.searchpopuptext = model.selectedIndex === "0" ? "General Search" : "Advance Search";
+             alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
 
          };
          scope.$on('directivechangeevent', function(event, modal, type) {
@@ -64,7 +66,6 @@
              model.submitadvancedsearch(object, 1, 10);
          };
          scope.$on('slideshowsubmit', function(event, frompage, topage, tablename) {
-             debugger;
              switch (tablename) {
                  case "general":
                      model.submitgeneral(model.CgetDetails, frompage, topage);
@@ -75,10 +76,19 @@
              }
 
          });
+         vm.onTabSelected = function(value) {
+             if (value === 1) {
+                 model.searchpopuptext = "Advanced Search";
+                 alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
+             } else {
+                 model.searchpopuptext = "General Search";
+                 alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
+             }
+         };
          vm.init();
      }
 
      angular
          .module('Kaakateeya')
-         .controller('searchpageCtrl', ['$scope', 'searchpageModel', 'Commondependency', 'alert', controller]);
+         .controller('searchpageCtrl', ['$scope', 'searchpageModel', 'Commondependency', 'alert', '$stateParams', controller]);
  })(angular);

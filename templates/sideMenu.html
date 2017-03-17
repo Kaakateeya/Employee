@@ -1,16 +1,18 @@
 <div class="">
     <div class="edit_pages_sidebar clearfix" ng-controller="baseCtrl">
         <div class="edit_page_profile_pic">
-            <img id="imgphoto" ng-src="{{model.PersonalObj.ProfilePic}}">
+            <img style="cursor:pointer;" ng-src="{{model.PersonalObj.ProfilePic}}" ng-click="model.photorequestAndshow();">
             <a href="javascript:void(0);" style="font-weight: bold;" ng-click="model.photorequestAndshow();"> {{model.PersonalObj.ProfilePic.indexOf('Fnoimage.jpg')!==-1 || model.PersonalObj.ProfilePic.indexOf('Mnoimage.jpg')!==-1?'Photo Request':'View Photo' }}         </a>
         </div>
 
         <div class="edit_pages_sidebar_profile_details">
             <h6>
                 <span>{{model.PersonalObj.Name+" ("+model.PersonalObj.ProfileID+")"}}</span></h6>
-            <div class="edit_pages_sidebar_profile_details_in">
 
-                <p>
+
+            <div class="edit_pages_sidebar_profile_details_in">
+                <h6> <span>{{model.registrationdate+','+model.branchdata.BranchCode}}</span><span style="color: maroon; font-size:16px;">{{model.strCon}}</span></h6>
+                <!--<p>
                     <span>{{model.PersonalObj.MartialStatus+" ,"+model.PersonalObj.DateofBirth+((model.PersonalObj.Age!="" && model.PersonalObj.Age!=null)?" ("+model.PersonalObj.Age+")":model.PersonalObj.Age)+((model.PersonalObj.Height!="" && model.PersonalObj.Height!=null)?" ,"+model.PersonalObj.Height:model.PersonalObj.Height)+((model.PersonalObj.Complexion!="")?" ,"+model.PersonalObj.Complexion:model.PersonalObj.Complexion)}}</span>
                 </p>
                 <p>
@@ -20,7 +22,7 @@
                     <span>
                 <span  style="font-weight:bold;"> {{(model.PersonalObj.Borncountry!=null && model.PersonalObj.Borncountry!="")?" Born Citizen:"+model.PersonalObj.Borncountry:Borncountry}}</span>
                     </span>
-                </p>
+                </p>-->
             </div>
         </div>
 
@@ -32,10 +34,11 @@
                     <a id="lnkeducationandprof" href="javascript:void(0);" ng-click="redirect('editEducation');" ng-style="{color:model.lnkeducationandprofReview==true?'Red':''}">Education & Profession
                                 <span class="pull-right nodatacls"> {{model.rev.iCustomerPersonalDetails===0?'NoData':''}}</span>
                             </a>
+
                 </li>
                 <li>
                     <a href="javascript:void(0);" ng-click="redirect('editManagePhoto');">Manage Photo
-                                <span class="pull-right nodatacls"> {{model.rev.iManagePhoto===0?'NoPhoto':''}}</span></a></a>
+                                <span class="pull-right nodatacls"> {{model.rev.iManagePhoto===0?'NoPhoto':''}}</span></a>
                 </li>
                 <li>
                     <a href="javascript:void(0);" ng-click="redirect('editParent');" ng-style="{color:model.lnkparentsReview==true?'Red':''}">Parent Details
@@ -74,20 +77,21 @@
                 </li>
 
                 <li>
-                    <a href="javascript:void(0);" ng-click="redirect('editSpouse');" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">Spouse Details
+                    <a href="javascript:void(0);" ng-hide="model.PersonalObj.MaritalStatusID===43 || model.PersonalObj.MaritalStatusID==='43'" ng-click="redirect('editSpouse');">Spouse Details
                             </a>
                 </li>
 
                 <li>
-                    <a href="javascript:void(0);" ng-click="redirect('editContact');" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">Contact Details
+                    <a href="javascript:void(0);" ng-click="redirect('editContact');">Contact Details
                             </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);" ng-click="redirect('editOfcePurpose');" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">Office Purpose
+                    <a href="javascript:void(0);" ng-click="redirect('editOfcePurpose');">Office Purpose
                             </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);" ng-click="redirect('editProfileSetting');" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">Profile Settings
+                    <a href="javascript:void(0);" ng-click="redirect('editProfileSetting');">Profile Settings
+                        <span class="pull-right nodatacls"> {{model.rev.LoginStatusID}}</span>
                             </a>
                 </li>
             </ul>

@@ -1,7 +1,7 @@
 app.factory('alert', ['$uibModal', '$timeout', function(uibModal, timeout) {
     var modalinstance;
     return {
-        dynamicpopup: function(url, scope, size) {
+        dynamicpopup: function(url, scope, size, classs) {
             modalinstance = uibModal.open({
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
@@ -10,7 +10,8 @@ app.factory('alert', ['$uibModal', '$timeout', function(uibModal, timeout) {
                 size: size || 'lg',
                 backdrop: 'static',
                 // keyboard: false,
-                windowClass: "modalclass"
+                windowClass: classs
+
             });
         },
         dynamicpopupclose: function() {

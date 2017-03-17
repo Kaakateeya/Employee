@@ -3,18 +3,19 @@
         <div class="sample" layout="column" ng-cloak ng-show="page.model.divcontrolls">
             <md-content class="md-padding">
                 <md-tabs md-selected="page.model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
-                    <md-tab label="General Search">
+                    <md-tab label="General Search" ng-click="page.onTabSelected(page.model.selectedIndex)">
                         <div class="tab">
                             <form name="generalsearch" role="form">
                                 <div class="profile_search_main profile_settings_main clearfix">
                                     <div class="row">
-                                        <div layout-gt-sm="row">
-                                            <md-radio-group layout="row" ng-model="page.model.generalsearch.gender" class="md-block" flex-gt-sm>
+                                        <div class="col-lg-5">
+                                            <md-radio-group layout="row" ng-model="page.model.generalsearch.gender">
                                                 <md-radio-button value="2" class="md-primary"> Bride</md-radio-button>
                                                 <md-radio-button value="1"> Groom </md-radio-button>
                                             </md-radio-group>
                                         </div>
                                     </div>
+                                    <div class="clearfix"></div>
                                     <br>
                                     <div class="row">
                                         <div class="col-lg-3">
@@ -161,8 +162,10 @@
                                         <div class="col-lg-3">
                                             <label class="control-label">Property In Lakhs</label>
                                             <div class="controls clearfix row">
-                                                <input onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.generalsearch.propertyfrom" style="height: 30px;width:100px !important;" placeholder="From" type="text">
-                                                <input onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" placeholder="To" ng-model="page.model.generalsearch.propertyto" type="text" style="height: 30px;width: 100px !important;">
+                                                <div layout-gt-sm="row" class="generalane">
+                                                    <input class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.generalsearch.propertyfrom" style="width:100px !important;margin-right:10px;" placeholder="From" type="text">
+                                                    <input class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" placeholder="To" ng-model="page.model.generalsearch.propertyto" type="text" style="width: 100px !important;">
+                                                </div>
                                             </div>
                                         </div>
 
@@ -172,8 +175,8 @@
                                                 <div layout-gt-sm="row" class="generalane">
                                                     <select id="currencygeneral" class="smalldropdown" ng-model="page.model.generalsearch.generalcurrency" multiselectdropdown typeofdata="'currency'">   
                                                      </select>
-                                                    <input onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.generalsearch.fromsalary" style="width: 65px !important;margin-right:10px;" placeholder="From" type="text">
-                                                    <input onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" name="postalCode" placeholder="To" ng-model="page.model.generalsearch.tosalary" type="text" style="width: 65px !important;">
+                                                    <input class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.generalsearch.fromsalary" style="width: 65px !important;margin-left: -20px;margin-right:10px;" placeholder="From" type="text">
+                                                    <input class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" name="postalCode" placeholder="To" ng-model="page.model.generalsearch.tosalary" type="text" style="width: 65px !important;">
                                                 </div>
                                             </div>
                                         </div>
@@ -182,7 +185,7 @@
                                             <div class="controls clearfix">
                                                 <div layout-gt-sm="row" class="generalane">
 
-                                                    <input style="height: 33px;width: 220px !important;" type="text" ng-model="page.model.generalsearch.profileidgenearl"></input>
+                                                    <input class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.generalsearch.profileidgenearl"></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -201,8 +204,8 @@
                                         <br>
                                         <div layout-gt-sm="row">
                                             <md-radio-group layout="" ng-model="page.model.generalsearch.typrofsearch" class="md-block col-lg-offset-5" flex-gt-sm>
-                                                <md-radio-button value="2" class="md-primary"> Gridview </md-radio-button>
-                                                <md-radio-button value="1"> Slide show </md-radio-button>
+                                                <md-radio-button value="1" class="md-primary"> Gridview </md-radio-button>
+                                                <md-radio-button value="2"> Slide show </md-radio-button>
                                             </md-radio-group>
                                         </div>
                                         <div class="clearfix"></div>
@@ -221,7 +224,7 @@
                             </form>
                         </div>
                     </md-tab>
-                    <md-tab label="Advanced Search">
+                    <md-tab label="Advanced Search" ng-click="page.onTabSelected(page.model.selectedIndex)">
                         <div class="tab">
                             <form name="advancedsearch" role="form">
                                 <div class="profile_search_main profile_settings_main clearfix">
@@ -245,7 +248,7 @@
                                             <div class="controls clearfix">
                                                 <div layout-gt-sm="row" class="generalane">
 
-                                                    <input style="height: 33px;width: 220px !important;" type="text" ng-model="page.model.advancedsearch.firstname"></input>
+                                                    <input class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.firstname"></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -254,7 +257,7 @@
                                             <div class="controls clearfix">
                                                 <div layout-gt-sm="row" class="generalane">
 
-                                                    <input style="height: 33px;width: 220px !important;" type="text" ng-model="page.model.advancedsearch.lastname"></input>
+                                                    <input class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.lastname"></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -347,9 +350,8 @@
                                             <label class="control-label">Property In Lakhs</label>
                                             <div class="controls clearfix">
                                                 <div layout-gt-sm="row" class="generalane">
-
-                                                    <input onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" style="height: 33px;width: 100px !important;" type="text" ng-model="page.model.advancedsearch.propertyfrom"></input>
-                                                    <input onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" style="height: 33px;width: 100px !important;" type="text" ng-model="page.model.advancedsearch.propertyto"></input>
+                                                    <input class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" style="width: 100px !important;margin-right:10px;" type="text" ng-model="page.model.advancedsearch.propertyfrom"></input>
+                                                    <input class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" style="width: 100px !important;" type="text" ng-model="page.model.advancedsearch.propertyto"></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -388,7 +390,7 @@
                                             <div class="controls clearfix">
                                                 <div layout-gt-sm="row" class="generalane">
 
-                                                    <input style="height: 33px;width: 220px !important;" type="text" ng-model="page.model.advancedsearch.University"></input>
+                                                    <input class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.University"></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -406,7 +408,7 @@
                                             <div class="controls clearfix">
                                                 <div layout-gt-sm="row" class="generalane">
 
-                                                    <input style="height: 33px;width: 220px !important;" type="text" ng-model="page.model.advancedsearch.companyname"></input>
+                                                    <input class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.companyname"></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -432,8 +434,9 @@
                                                 <div layout-gt-sm="row" class="generalane">
                                                     <select id="advancedcurrencygeneral" class="smalldropdown" ng-model="page.model.advancedsearch.advancedcurrency" multiselectdropdown typeofdata="'currency'">   
                                                      </select>
-                                                    <input onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-change="salarycurrencyalert(1)" ng-model="page.model.advancedsearch.fromcurrency" style="height: 33px;width: 100px !important;" placeholder="From" type="text">
-                                                    <input onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-change="salarycurrencyalert(2)" name="postalCode" placeholder="To" ng-model="page.model.advancedsearch.tocurrency" type="text" style="height: 33px;width: 100px !important;">
+                                                    <input class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-change="salarycurrencyalert(1)" ng-model="page.model.advancedsearch.fromcurrency" style="width: 100px !important;margin-left: -10px;margin-right: 10px;" placeholder="From"
+                                                        type="text">
+                                                    <input class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-change="salarycurrencyalert(2)" name="postalCode" placeholder="To" ng-model="page.model.advancedsearch.tocurrency" type="text" style="width: 100px !important;">
                                                 </div>
                                             </div>
                                         </div>
@@ -646,7 +649,7 @@
                                         <div class="col-lg-3">
                                             <label class="control-label">Preferred City (Nearest)</label>
                                             <div class="controls clearfix">
-                                                <input style="height: 33px;width: 220px !important;" type="text" ng-model="page.model.advancedsearch.Preferredcity"></input>
+                                                <input class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.Preferredcity"></input>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
@@ -703,7 +706,7 @@
                                             <div class="controls clearfix">
                                                 <div layout-gt-sm="row" class="generalane">
 
-                                                    <input style="height: 33px;width: 220px !important;" type="text" ng-model="page.model.advancedsearch.profileid"></input>
+                                                    <input class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.profileid"></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -821,8 +824,8 @@
                                         <br>
                                         <div layout-gt-sm="row">
                                             <md-radio-group layout="" ng-model="page.model.advancedsearch.typeofsearch" class="md-block col-lg-offset-5" flex-gt-sm>
-                                                <md-radio-button value="2" class="md-primary"> Gridview </md-radio-button>
-                                                <md-radio-button value="1"> Slide show </md-radio-button>
+                                                <md-radio-button value="1" class="md-primary"> Gridview </md-radio-button>
+                                                <md-radio-button value="2"> Slide show </md-radio-button>
                                             </md-radio-group>
                                         </div>
                                         <div class="clearfix"></div>
@@ -850,32 +853,31 @@
 
     <script type="text/ng-template" id="profileidpopupsubmit.html">
         <div class="modal-header">
-            <h4 class="modal-title popupheaderclass" id="headername">General Search</h4>
+            <h4 class="modal-title popupheaderclass" id="headername">{{page.model.searchpopuptext}}</h4>
         </div>
         <div class="modal-body" id="totalBody">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="col-lg-3">
-                        <label>ProfileID<label>
+                        <label class="generalpopuplabel">ProfileID<label>
                 </div>
                 <div class="col-lg-5">
-                <input ng-model="page.model.ProfileIDpopup" ng-blur="page.model.getrelationshipstypes(4,page.model.ProfileIDpopup,null)" type="text" class="form-control"></input>
+                <input ng-model="page.model.ProfileIDpopup" ng-blur="page.model.getrelationshipstypes(4,page.model.ProfileIDpopup,null)" type="text"  style="width: 220px !important;" class="form-control"></input>
                 </div>
                <div class="col-lg-3">
-               <md-switch  class="md-secondary col-lg-5"  ng-model="page.model.activatedmobile"></md-switch>  
-                <span class="col-lg-7">Issuggestable</span>
+                 <md-switch  class="md-secondary col-lg-5" style="margin-top:-1px;"  ng-model="page.model.activatedmobile">  </md-switch>  
+                            <span class="col-lg-7" style="color:rgba(35, 30, 30, 0.83);margin-top: 4px;">Issuggestable</span>
                </div>
               </div>
-                 <div class="clearfix"></div>
-             <div ng-hide="!page.model.activatedmobile">               
+           <div class="clearfix"></div>
+             <div ng-hide="page.model.activatedmobile">               
               <div class="col-lg-12">
                  <div class="col-lg-3">
-                    <label>Relationship<label>
+                    <label class="generalpopuplabel">Relationship<label>
                 </div>
                 <div class="col-lg-8">
                  <select  class="col-lg-12" multiselectdropdown  ng-model="page.model.relationshippopup">   
                      <option ng-if="page.model.ProfileIDpopup!==''?true:false" ng-repeat="rel in page.model.Relationships" value="rel.ID">{{rel.NAME}}<option>
-                         
                 </select>
                 </div>
              </div>
@@ -883,10 +885,10 @@
                 <br>
              <div class="col-lg-12">
                     <div class="col-lg-3">
-                        <label>First Name<label>
+                        <label class="generalpopuplabel">First Name<label>
                 </div>
                 <div class="col-lg-8">
-                <input ng-model="page.model.FirstName" type="text" class="form-control"></input>
+                <input style="width: 220px !important;" ng-model="page.model.FirstName" type="text" class="form-control"></input>
                 </div>
              
               </div>
@@ -894,25 +896,22 @@
                                         <br>
              <div class="col-lg-12">
                     <div class="col-lg-3">
-                        <label>Last  Name<label>
+                        <label class="generalpopuplabel">Last  Name<label>
                 </div>
                 <div class="col-lg-8">
-                <input ng-model="page.model.LastName" type="text" class="form-control"></input>
+                <input style="width: 220px !important;" ng-model="page.model.LastName" type="text" class="form-control"></input>
                 </div>
-             
               </div>
                  <div class="clearfix"></div>
-                                        <br>
+                  <br>
               <div class="col-lg-12">
                     <div class="col-lg-3">
-                        <label>Remarks<label>
+                        <label class="generalpopuplabel">Remarks<label>
                 </div>
                 <div class="col-lg-8">
-                <textarea ng-model="page.model.Remarks" type="text" class="form-control"></textarea>
+                <textarea style="width: 220px !important;" ng-model="page.model.Remarks" type="text" class="form-control"></textarea>
                 </div>
-             
-              </div>
-
+                  </div>
             </div>
             </div>
         </div>
