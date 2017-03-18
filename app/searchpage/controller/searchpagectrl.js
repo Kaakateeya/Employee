@@ -5,6 +5,11 @@
          /* jshint validthis:true */
          var vm = this,
              model;
+         vm.photogradearray = [{ value: 216, name: 'A' },
+             { value: 217, name: 'B' },
+             { value: 218, name: 'C' },
+             { value: 219, name: 'D' }
+         ];
          vm.init = function() {
              vm.model = model = searchpageModel;
              model.scope = scope;

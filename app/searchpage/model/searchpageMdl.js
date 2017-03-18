@@ -323,11 +323,11 @@
                     preferedDistrictID: model.returnnullvalue(object.districtadvancepref),
                     preferedDistrictText: null,
                     HoroScopeStatus: model.GetPhotoandHoroscopevalues("horo", object.Showprofileadvanced),
-                    Status_Photo: helpService.checkstringvalue(object.photograde) ? object.photograde : null,
-                    Status_Education: helpService.checkstringvalue(object.Educationgrade) ? object.Educationgrade : null,
-                    Status_Property: helpService.checkstringvalue(object.Propertygrade) ? object.Propertygrade : null,
-                    Status_Family: helpService.checkstringvalue(object.Familygrade) ? object.Familygrade : null,
-                    Status_Profession: helpService.checkstringvalue(object.Professiongrade) ? object.Professiongrade : null
+                    Status_Photo: model.returnnullvalue(object.photograde),
+                    Status_Education: model.returnnullvalue(object.Educationgrade),
+                    Status_Property: model.returnnullvalue(object.Propertygrade),
+                    Status_Family: model.returnnullvalue(object.Familygrade),
+                    Status_Profession: model.returnnullvalue(object.Professiongrade)
                 };
             }
             model.CgetDetails = {

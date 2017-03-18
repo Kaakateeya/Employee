@@ -719,7 +719,6 @@
                                         </div>
                                         <div class="clearfix"></div>
                                         <br>
-
                                         <md-toolbar>
                                             <div class="md-toolbar-tools">
                                                 <h4 class="md-flex"> Grade Selections</h4>
@@ -730,91 +729,48 @@
                                         <div class="col-lg-3  clearfix">
                                             <label class="control-label">Photo</label>
                                             <div class="controls clearfix">
-                                                {{page.model.advancedsearch.photograde}}
-                                                <md-checkbox value="216" name="photo" ng-model="page.model.advancedsearch.photograde">
-                                                    A
+
+                                                <label ng-repeat="role in page.photogradearray">
+                                                <md-checkbox  data-checklist-model="page.model.advancedsearch.photograde" data-checklist-value="role.value"> {{role.name}}
                                                 </md-checkbox>
-                                                <md-checkbox value="217" name="photo" ng-model="page.model.advancedsearch.photograde">
-                                                    B
-                                                </md-checkbox>
-                                                <md-checkbox value="218" name="photo" ng-model="page.model.advancedsearch.photograde">
-                                                    C
-                                                </md-checkbox>
-                                                <md-checkbox value="219" name="photo" ng-model="page.model.advancedsearch.photograde">
-                                                    D
-                                                </md-checkbox>
+                                                </label>
                                             </div>
                                         </div>
-
                                         <div class="col-lg-3 clearfix">
                                             <label class="control-label">Education</label>
                                             <div class="controls clearfix">
-                                                <md-checkbox value="216" name="photo" ng-model="page.model.advancedsearch.Educationgrade">
-                                                    A
+                                                <label ng-repeat="role in page.photogradearray">
+                                                <md-checkbox name="Education"  data-checklist-model="page.model.advancedsearch.Educationgrade" data-checklist-value="role.value"> {{role.name}}
                                                 </md-checkbox>
-                                                <md-checkbox value="217" name="photo" ng-model="page.model.advancedsearch.Educationgrade">
-                                                    B
-                                                </md-checkbox>
-                                                <md-checkbox value="218" name="photo" ng-model="page.model.advancedsearch.Educationgrade">
-                                                    C
-                                                </md-checkbox>
-                                                <md-checkbox value="219" name="photo" ng-model="page.model.advancedsearch.Educationgrade">
-                                                    D
-                                                </md-checkbox>
+                                                  </label>
                                             </div>
                                         </div>
-
-
                                         <div class="col-lg-3 clearfix">
                                             <label class="control-label">Property</label>
                                             <div class="controls clearfix">
-                                                <md-checkbox value="216" name="photo" ng-model="page.model.advancedsearch.Propertygrade">
-                                                    A
+                                                <label ng-repeat="role in page.photogradearray">
+                                                <md-checkbox name="Property" data-checklist-model="page.model.advancedsearch.Propertygrade" data-checklist-value="role.value"> {{role.name}}
                                                 </md-checkbox>
-                                                <md-checkbox value="217" name="photo" ng-model="page.model.advancedsearch.Propertygrade">
-                                                    B
-                                                </md-checkbox>
-                                                <md-checkbox value="218" name="photo" ng-model="page.model.advancedsearch.Propertygrade">
-                                                    C
-                                                </md-checkbox>
-                                                <md-checkbox value="219" name="photo" ng-model="page.model.advancedsearch.Propertygrade">
-                                                    D
-                                                </md-checkbox>
+                                                  </label>
                                             </div>
                                         </div>
                                         <div class="col-lg-3 clearfix">
                                             <label class="control-label">Family</label>
                                             <div class="controls clearfix">
-                                                <md-checkbox value="216" name="photo" ng-model="page.model.advancedsearch.Familygrade">
-                                                    A
+                                                <label ng-repeat="role in page.photogradearray">
+                                                <md-checkbox name="Family" data-checklist-model="page.model.advancedsearch.Familygrade" data-checklist-value="role.value"> {{role.name}}
                                                 </md-checkbox>
-                                                <md-checkbox value="217" name="photo" ng-model="page.model.advancedsearch.Familygrade">
-                                                    B
-                                                </md-checkbox>
-                                                <md-checkbox value="218" name="photo" ng-model="page.model.advancedsearch.Familygrade">
-                                                    C
-                                                </md-checkbox>
-                                                <md-checkbox value="219" name="photo" ng-model="page.model.advancedsearch.Familygrade">
-                                                    D
-                                                </md-checkbox>
+                                                 </label>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-3 clearfix">
                                             <label class="control-label">Profession</label>
                                             <div class="controls clearfix">
-                                                <md-checkbox value="216" name="photo" ng-model="page.model.advancedsearch.Professiongrade">
-                                                    A
+                                                <label ng-repeat="role in page.photogradearray">
+                                                <md-checkbox name="Profession" data-checklist-model="page.model.advancedsearch.Professiongrade" data-checklist-value="role.value"> {{role.name}}
                                                 </md-checkbox>
-                                                <md-checkbox value="217" name="photo" ng-model="page.model.advancedsearch.Professiongrade">
-                                                    B
-                                                </md-checkbox>
-                                                <md-checkbox value="218" name="photo" ng-model="page.model.advancedsearch.Professiongrade">
-                                                    C
-                                                </md-checkbox>
-                                                <md-checkbox value="219" name="photo" ng-model="page.model.advancedsearch.Professiongrade">
-                                                    D
-                                                </md-checkbox>
+                                                 </label>
                                             </div>
                                         </div>
 
