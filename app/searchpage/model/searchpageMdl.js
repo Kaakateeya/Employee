@@ -18,7 +18,7 @@
         model.divcontrolls = true;
         model.Cust_ID = null;
         model.selectedIndex = 0;
-        //model.activatedmobile = true;
+        model.activatedmobile = true;
         model.searchpopuptext = "General Search";
         model.divcontrollsbind = 0;
         model.returnnullvalue = function(value) {

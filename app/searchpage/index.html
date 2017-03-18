@@ -821,12 +821,12 @@
                 <input ng-model="page.model.ProfileIDpopup" ng-blur="page.model.getrelationshipstypes(4,page.model.ProfileIDpopup,null)" type="text"  style="width: 220px !important;" class="form-control"></input>
                 </div>
                <div class="col-lg-3">
-                 <md-switch  class="md-secondary col-lg-5" style="margin-top:-1px;"  >  </md-switch>  
+                 <md-switch  class="md-secondary col-lg-5" style="margin-top:-1px;"  ng-model="page.model.activatedmobile">  </md-switch>  
                             <span class="col-lg-7" style="color:rgba(35, 30, 30, 0.83);margin-top: 4px;">Issuggestable</span>
                </div>
               </div>
            <div class="clearfix"></div>
-             <div >               
+             <div ng-show="!page.model.activatedmobile">               
               <div class="col-lg-12">
                  <div class="col-lg-3">
                     <label class="generalpopuplabel">Relationship<label>
