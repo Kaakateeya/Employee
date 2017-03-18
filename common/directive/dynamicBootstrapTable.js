@@ -14,11 +14,11 @@ app.directive("bootstrapTable", ['commonpage', '$timeout',
             templateUrl: "templates/dynamicBootstrapTable.html",
             link: function(scope, element, attrs) {
                 var rem = scope.removeobjs;
-                //scope.Datatableshow = true;
+                scope.Datatableshow = true;
                 var table = '';
-
+                debugger;
                 // attrs.id = scope.IDs;
-                scope.ID = attrs.id;
+                scope.ID = "ID"; //attrs.id;
 
                 scope.appendID = '';
                 table = $('#' + scope.ID + ' .Datatable');
@@ -78,18 +78,22 @@ app.directive("bootstrapTable", ['commonpage', '$timeout',
                     if (scope.removeobjs !== null && scope.removeobjs !== undefined)
                         var filteredColumns = _.difference(_.keys(tableArray[0]), scope.removeobjs);
                     datatbaleoptions.columns = commonpage.setColumns(filteredColumns || _.keys(tableArray[0]));
-                    table.bootstrapTable(datatbaleoptions);
-
-                    table.bootstrapTable('load', tableArray);
+                    $table = $('#ID');
+                    $table.bootstrapTable(datatbaleoptions);
+                    $table.bootstrapTable('load', tableArray);
                     return false;
                 };
 
                 scope.BootstrapTableAppend = function(darray) {
-
                     if (darray.length > 0) {
-                        table = $('#ftable .Datatable');
-                        scope.Datatableshow = true;
-                        table.bootstrapTable('prepend', darray);
+                        datatbaleoptions.height = scope.height || 650;
+                        datatbaleoptions.pageSize = scope.pagesize || 10;
+                        if (scope.removeobjs !== null && scope.removeobjs !== undefined)
+                            var filteredColumns = _.difference(_.keys(tableArray[0]), scope.removeobjs);
+                        datatbaleoptions.columns = commonpage.setColumns(filteredColumns || _.keys(tableArray[0]));
+                        $table = $('#ID');
+                        $table.bootstrapTable(datatbaleoptions);
+                        $table.bootstrapTable('prepend', darray);
                         return false;
                     }
                     return false;
@@ -104,19 +108,9 @@ app.directive("bootstrapTable", ['commonpage', '$timeout',
                     scope.BootstrapTableAppend(array);
                 });
 
-                if (scope.btnclicktruefalse === true) {
-                    scope.BootstrapTableLoad();
-                }
                 scope.$on('submittable', function(event, array, frompage) {
-
-                    // scope.Datatableshow = false;
-                    scope.ID = attrs.id;
-                    // scope.ID = "ftable";
-                    table = $('#' + scope.ID + ' .Datatable');
                     tableArray = array;
-                    scope.BootstrapTableLoad();
-
-                    //scope.flag = 1;
+                    scope.BootstrapTableLoad(array);
                 });
             }
 
