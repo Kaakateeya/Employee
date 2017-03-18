@@ -3,7 +3,7 @@
 
     angular
         .module('Kaakateeya')
-        .directive('datePicker', directive);
+        .directive('datePickersearch', directive);
 
     function directive() {
 

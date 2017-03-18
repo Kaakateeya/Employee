@@ -1,4 +1,4 @@
-app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout', 'photoalubum',
+app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubum',
 
     function(uibModal, commonpage, timeout, photoalubum) {
         return {
@@ -208,7 +208,7 @@ app.directive("slideShow", ['$uibModal', 'commonpage', '$timeout', 'photoalubum'
                 //     }
                 // }
                 scope.gotoSlide = function(e) {
-                    debugger;
+
                     var lastslide = parseInt($("#lnkLastSlide").text());
                     if (parseInt($(e).val()) <= lastslide) {
                         $('#myCarousel').carousel(parseInt($(e).val()) - 1);

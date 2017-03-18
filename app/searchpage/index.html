@@ -139,10 +139,10 @@
                                             <label class="control-label">Date Of Reg</label>
                                             <div class="controls clearfix row">
                                                 <div class="col-lg-6 datepicker">
-                                                    <date-picker strdate="page.model.generalsearch.dorfromreg"></date-picker>
+                                                    <date-pickersearch strdate="page.model.generalsearch.dorfromreg"></date-pickersearch>
                                                 </div>
                                                 <div class="col-lg-6 datepicker">
-                                                    <date-picker strdate="page.model.generalsearch.dortoreg"></date-picker>
+                                                    <date-pickersearch strdate="page.model.generalsearch.dortoreg"></date-pickersearch>
                                                 </div>
                                             </div>
                                         </div>
@@ -150,10 +150,10 @@
                                             <label class="control-label">Lastest Logins</label>
                                             <div class="controls clearfix row">
                                                 <div class="col-lg-6 datepicker">
-                                                    <date-picker strdate="page.model.generalsearch.lastloginfrom"></date-picker>
+                                                    <date-pickersearch strdate="page.model.generalsearch.lastloginfrom"></date-pickersearch>
                                                 </div>
                                                 <div class="col-lg-6 datepicker">
-                                                    <date-picker strdate="page.model.generalsearch.lastloginto"></date-picker>
+                                                    <date-pickersearch strdate="page.model.generalsearch.lastloginto"></date-pickersearch>
                                                 </div>
                                             </div>
                                         </div>
@@ -494,10 +494,10 @@
                                             <label class="control-label">Residing Since</label>
                                             <div class="controls clearfix row">
                                                 <div class="col-lg-6 datepicker">
-                                                    <date-picker strdate="page.model.generalsearch.residingsincefrom"></date-picker>
+                                                    <date-pickersearch strdate="page.model.generalsearch.residingsincefrom"></date-pickersearch>
                                                 </div>
                                                 <div class="col-lg-6 datepicker">
-                                                    <date-picker strdate="page.model.generalsearch.residingto"></date-picker>
+                                                    <date-pickersearch strdate="page.model.generalsearch.residingto"></date-pickersearch>
                                                 </div>
                                             </div>
                                         </div>
@@ -505,10 +505,10 @@
                                             <label class="control-label">Arriving Date</label>
                                             <div class="controls clearfix row">
                                                 <div class="col-lg-6 datepicker">
-                                                    <date-picker strdate="page.model.generalsearch.arrivingdatefrom"></date-picker>
+                                                    <date-pickersearch strdate="page.model.generalsearch.arrivingdatefrom"></date-pickersearch>
                                                 </div>
                                                 <div class="col-lg-6 datepicker">
-                                                    <date-picker strdate="page.model.generalsearch.arrvingdateto"></date-picker>
+                                                    <date-pickersearch strdate="page.model.generalsearch.arrvingdateto"></date-pickersearch>
                                                 </div>
                                             </div>
                                         </div>
@@ -518,10 +518,10 @@
                                             <label class="control-label">Departure Date</label>
                                             <div class="controls clearfix row">
                                                 <div class="col-lg-6 datepicker">
-                                                    <date-picker strdate="page.model.generalsearch.departuredatefrom"></date-picker>
+                                                    <date-pickersearch strdate="page.model.generalsearch.departuredatefrom"></date-pickersearch>
                                                 </div>
                                                 <div class="col-lg-6 datepicker">
-                                                    <date-picker strdate="page.model.generalsearch.departuredateto"></date-picker>
+                                                    <date-pickersearch strdate="page.model.generalsearch.departuredateto"></date-pickersearch>
                                                 </div>
                                             </div>
                                         </div>
@@ -680,10 +680,10 @@
                                             <label class="control-label">Date Of Reg</label>
                                             <div class="controls clearfix row">
                                                 <div class="col-lg-6 datepicker">
-                                                    <date-picker strdate="page.model.generalsearch.dateofregfrom"></date-picker>
+                                                    <date-pickersearch strdate="page.model.generalsearch.dateofregfrom"></date-pickersearch>
                                                 </div>
                                                 <div class="col-lg-6 datepicker">
-                                                    <date-picker strdate="page.model.generalsearch.dateofregto"></date-picker>
+                                                    <date-pickersearch strdate="page.model.generalsearch.dateofregto"></date-pickersearch>
                                                 </div>
                                             </div>
                                         </div>
@@ -693,10 +693,10 @@
                                             <label class="control-label">Lastest Logins</label>
                                             <div class="controls clearfix row">
                                                 <div class="col-lg-6 datepicker">
-                                                    <date-picker strdate="page.model.generalsearch.latestloginfrom"></date-picker>
+                                                    <date-pickersearch strdate="page.model.generalsearch.latestloginfrom"></date-pickersearch>
                                                 </div>
                                                 <div class="col-lg-6 datepicker">
-                                                    <date-picker strdate="page.model.generalsearch.latestloginto"></date-picker>
+                                                    <date-pickersearch strdate="page.model.generalsearch.latestloginto"></date-pickersearch>
                                                 </div>
                                             </div>
                                         </div>
@@ -731,7 +731,7 @@
                                             <div class="controls clearfix">
 
                                                 <label ng-repeat="role in page.photogradearray">
-                                                <md-checkbox  data-checklist-model="page.model.advancedsearch.photograde" data-checklist-value="role.value"> {{role.name}}
+                                                <md-checkbox  data-checklist-model="page.model.advancedsearch.photograde" data-checklist-value="role.value"> {{role.name}}&nbsp;
                                                 </md-checkbox>
                                                 </label>
                                             </div>
@@ -740,7 +740,7 @@
                                             <label class="control-label">Education</label>
                                             <div class="controls clearfix">
                                                 <label ng-repeat="role in page.photogradearray">
-                                                <md-checkbox name="Education"  data-checklist-model="page.model.advancedsearch.Educationgrade" data-checklist-value="role.value"> {{role.name}}
+                                                <md-checkbox name="Education"  data-checklist-model="page.model.advancedsearch.Educationgrade" data-checklist-value="role.value"> {{role.name}}&nbsp;
                                                 </md-checkbox>
                                                   </label>
                                             </div>
@@ -749,7 +749,7 @@
                                             <label class="control-label">Property</label>
                                             <div class="controls clearfix">
                                                 <label ng-repeat="role in page.photogradearray">
-                                                <md-checkbox name="Property" data-checklist-model="page.model.advancedsearch.Propertygrade" data-checklist-value="role.value"> {{role.name}}
+                                                <md-checkbox name="Property" data-checklist-model="page.model.advancedsearch.Propertygrade" data-checklist-value="role.value"> {{role.name}}&nbsp;
                                                 </md-checkbox>
                                                   </label>
                                             </div>
@@ -758,7 +758,7 @@
                                             <label class="control-label">Family</label>
                                             <div class="controls clearfix">
                                                 <label ng-repeat="role in page.photogradearray">
-                                                <md-checkbox name="Family" data-checklist-model="page.model.advancedsearch.Familygrade" data-checklist-value="role.value"> {{role.name}}
+                                                <md-checkbox name="Family" data-checklist-model="page.model.advancedsearch.Familygrade" data-checklist-value="role.value"> {{role.name}}&nbsp;
                                                 </md-checkbox>
                                                  </label>
                                             </div>
@@ -768,7 +768,7 @@
                                             <label class="control-label">Profession</label>
                                             <div class="controls clearfix">
                                                 <label ng-repeat="role in page.photogradearray">
-                                                <md-checkbox name="Profession" data-checklist-model="page.model.advancedsearch.Professiongrade" data-checklist-value="role.value"> {{role.name}}
+                                                <md-checkbox name="Profession" data-checklist-model="page.model.advancedsearch.Professiongrade" data-checklist-value="role.value"> {{role.name}}&nbsp;
                                                 </md-checkbox>
                                                  </label>
                                             </div>
@@ -821,12 +821,12 @@
                 <input ng-model="page.model.ProfileIDpopup" ng-blur="page.model.getrelationshipstypes(4,page.model.ProfileIDpopup,null)" type="text"  style="width: 220px !important;" class="form-control"></input>
                 </div>
                <div class="col-lg-3">
-                 <md-switch  class="md-secondary col-lg-5" style="margin-top:-1px;"  ng-model="page.model.activatedmobile">  </md-switch>  
+                 <md-switch  class="md-secondary col-lg-5" style="margin-top:-1px;"  >  </md-switch>  
                             <span class="col-lg-7" style="color:rgba(35, 30, 30, 0.83);margin-top: 4px;">Issuggestable</span>
                </div>
               </div>
            <div class="clearfix"></div>
-             <div ng-hide="page.model.activatedmobile">               
+             <div >               
               <div class="col-lg-12">
                  <div class="col-lg-3">
                     <label class="generalpopuplabel">Relationship<label>

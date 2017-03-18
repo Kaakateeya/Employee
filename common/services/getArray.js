@@ -1,4 +1,4 @@
-app.factory('getArray', ['arrayConstants', 'SelectBindServiceApp', function(cons, service) {
+app.factory('getArraysearch', ['arrayConstants', 'SelectBindServiceApp', function(cons, service) {
     return {
         GArray: function(type) {
             var option = [];

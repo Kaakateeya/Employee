@@ -1,4 +1,4 @@
-app.factory('commonpage', ['$uibModal', 'photoalubum', function(uibModal, photoalubum) {
+app.factory('commonpagecc', ['$uibModal', 'photoalubum', function(uibModal, photoalubum) {
     var modalinstance, modalpopupopen, modalpopupopenphoto;
     var obj = {};
     var $table = $('#GridTable');
@@ -55,7 +55,7 @@ app.factory('commonpage', ['$uibModal', 'photoalubum', function(uibModal, photoa
 
         },
         checkitem: function(carouselID) {
-            debugger;
+
             var $this;
             $this = $("#" + carouselID);
             if ($("#" + carouselID + " .carousel-inner .item:first").hasClass("active")) {

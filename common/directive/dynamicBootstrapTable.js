@@ -1,4 +1,4 @@
-app.directive("bootstrapTable", ['commonpagecc', '$timeout',
+app.directive("bootstrapTable", ['commonpage', '$timeout',
     function(commonpage, timeout) {
         return {
             restrict: "E",
@@ -8,13 +8,18 @@ app.directive("bootstrapTable", ['commonpagecc', '$timeout',
                 height: '=',
                 pagesize: '=',
                 loadtype: '=',
-                btnclick: '='
+                btnclick: '=',
+                IDs: '='
             },
             templateUrl: "templates/dynamicBootstrapTable.html",
             link: function(scope, element, attrs) {
                 var rem = scope.removeobjs;
+                //scope.Datatableshow = true;
                 var table = '';
+
+                // attrs.id = scope.IDs;
                 scope.ID = attrs.id;
+
                 scope.appendID = '';
                 table = $('#' + scope.ID + ' .Datatable');
                 scope.btnclicktruefalse = scope.btnclick === 'true' ? true : false;
@@ -80,7 +85,7 @@ app.directive("bootstrapTable", ['commonpagecc', '$timeout',
                 };
 
                 scope.BootstrapTableAppend = function(darray) {
-                    debugger;
+
                     if (darray.length > 0) {
                         table = $('#ftable .Datatable');
                         scope.Datatableshow = true;
@@ -102,12 +107,16 @@ app.directive("bootstrapTable", ['commonpagecc', '$timeout',
                 if (scope.btnclicktruefalse === true) {
                     scope.BootstrapTableLoad();
                 }
-                scope.$on('submittable', function(event, array) {
-                    debugger;
+                scope.$on('submittable', function(event, array, frompage) {
+
+                    // scope.Datatableshow = false;
                     scope.ID = attrs.id;
+                    // scope.ID = "ftable";
                     table = $('#' + scope.ID + ' .Datatable');
                     tableArray = array;
                     scope.BootstrapTableLoad();
+
+                    //scope.flag = 1;
                 });
             }
 

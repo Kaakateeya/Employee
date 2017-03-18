@@ -7,87 +7,87 @@
  * Main App Creation
  */
 
-
 var app = angular.module('Kaakateeya', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angular-loading-bar', 'ngAnimate', 'ngIdle', 'ngMaterial',
-    'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate', 'angularPromiseButtons', 'oc.lazyLoad', 'KaakateeyaEmpReg', 'ngMdIcons'
+    'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate', 'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons', 'KaakateeyaEmpReg'
 ]);
 app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.env = "dev";
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
-    var states = [
-        { name: 'dashboard', url: '/dashboardpage', isloginrequired: true },
-        { name: 'login', url: '/', isloginrequired: false },
-        { name: 'searchpage', url: '/search/:id', isloginrequired: true },
-        { name: 'ViewAllCustomers', url: '/ViewAllCustomersurl', isloginrequired: false },
-        { name: 'editViewprofile', url: '/editViewprofileurl', isloginrequired: false }
-    ];
-    $ocLazyLoadProvider.config({
-        debug: true
-    });
-
-    $ocLazyLoadProvider.config({
-        modules: [{
-            name: 'bootstarapTable',
-            files: ['css/bootstrap-table/bootstrap-table.css',
-                'css/bootstrap-table/bootstrap-table-fixed-columns.css',
-                'css/bootstrap-table/dragtable.css', 'common/directive/dynamicBootstrapTable.js',
-                'common/directive/commonpage.js', 'node_modules/bootstrap/dist/css/bootstrap.min.css',
-                'node_modules/font-awesome/css/font-awesome.min.css'
-            ]
-        }]
-    });
-
-    $urlRouterProvider.otherwise('/');
-    _.each(states, function(item) {
-        var innerView = {};
-        if (item.name === "login") {
-            innerView = {
-                "lazyLoadView@": {
-                    templateUrl: "app/" + item.name + '/index.html',
-                    controller: item.name + 'Ctrl as page'
-                }
-            };
-        } else {
-            innerView = {
-                "topbar@": {
-                    templateUrl: "templates/topheader.html"
-                },
-                "lazyLoadView@": {
-                    templateUrl: "app/" + item.name + '/index.html',
-                    controller: item.name + 'Ctrl as page'
-                },
-                "bottompanel@": {
-                    templateUrl: "templates/footer.html"
-                }
-
-            };
-        }
-
-        $stateProvider.state(item.name, {
-            url: item.url,
-            views: innerView,
-            resolve: { // Any property in resolve should return a promise and is executed before the view is loaded
-                loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    // you can lazy load files for an existing module
-                    if (item.name === 'ViewAllCustomers') {
-                        debugger;
-                        $ocLazyLoad.load('bootstarapTable');
-                        return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
-                    } else if (app.env === "dev") {
-                        return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
-                    } else {
-                        return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/src/scripts.min.js']);
-
-                    }
-                }]
-            },
-            data: {
-                requiresLogin: item.isloginrequired,
-            }
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider',
+    function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
+        var states = [
+            { name: 'dashboard', url: '/dashboardpage', isloginrequired: true },
+            { name: 'login', url: '/', isloginrequired: false },
+            { name: 'searchpage', url: '/search/:id', isloginrequired: true },
+            { name: 'ViewAllCustomers', url: '/ViewAllCustomersurl', isloginrequired: false },
+            { name: 'editViewprofile', url: '/editViewprofileurl', isloginrequired: false }
+        ];
+        $ocLazyLoadProvider.config({
+            debug: true
         });
-        $locationProvider.html5Mode(true);
-    });
-}]);
+
+        $ocLazyLoadProvider.config({
+            modules: [{
+                name: 'bootstarapTable',
+                files: ['css/bootstrap-table/bootstrap-table.css',
+                    'css/bootstrap-table/bootstrap-table-fixed-columns.css',
+                    'css/bootstrap-table/dragtable.css', 'common/directive/dynamicBootstrapTable.js',
+                    'common/directive/commonpage.js'
+                ]
+            }]
+        });
+
+        $urlRouterProvider.otherwise('/');
+        _.each(states, function(item) {
+            var innerView = {};
+            if (item.name === "login") {
+                innerView = {
+                    "lazyLoadView@": {
+                        templateUrl: "app/" + item.name + '/index.html',
+                        controller: item.name + 'Ctrl as page'
+                    }
+                };
+            } else {
+                innerView = {
+                    "topbar@": {
+                        templateUrl: "templates/topheader.html"
+                    },
+                    "lazyLoadView@": {
+                        templateUrl: "app/" + item.name + '/index.html',
+                        controller: item.name + 'Ctrl as page'
+                    },
+                    "bottompanel@": {
+                        templateUrl: "templates/footer.html"
+                    }
+
+                };
+            }
+
+            $stateProvider.state(item.name, {
+                url: item.url,
+                views: innerView,
+                resolve: { // Any property in resolve should return a promise and is executed before the view is loaded
+                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        if (item.name === 'ViewAllCustomers') {
+
+                            $ocLazyLoad.load('bootstarapTable');
+                            return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
+                        } else if (app.env === "dev") {
+                            return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
+                        } else {
+                            return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/src/scripts.min.js']);
+
+                        }
+                    }]
+                },
+                data: {
+                    requiresLogin: item.isloginrequired,
+                }
+            });
+            $locationProvider.html5Mode(true);
+        });
+    }
+]);
 app.run(function($rootScope, $state, $stateParams) {
     $rootScope.$on('$stateChangeStart', function(e, to) {
         if (to.data && to.data.requiresLogin) {

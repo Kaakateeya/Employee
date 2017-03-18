@@ -1409,7 +1409,7 @@
     };
 
     BootstrapTable.prototype.onPageListChange = function(event) {
-        debugger;
+        
         var $this = $(event.currentTarget);
 
         $this.parent().addClass('active').siblings().removeClass('active');
@@ -1421,13 +1421,13 @@
     };
 
     BootstrapTable.prototype.onPageFirst = function(event) {
-        debugger;
+        
         this.options.pageNumber = 1;
         this.updatePagination(event);
     };
 
     BootstrapTable.prototype.onPagePre = function(event) {
-        debugger;
+        
         if ((this.options.pageNumber - 1) == 0) {
             this.options.pageNumber = this.options.totalPages;
         } else {
@@ -1437,7 +1437,7 @@
     };
 
     BootstrapTable.prototype.onPageNext = function(event) {
-        debugger;
+        
         if ((this.options.pageNumber + 1) > this.options.totalPages) {
             this.options.pageNumber = 1;
         } else {
@@ -1447,14 +1447,14 @@
     };
 
     BootstrapTable.prototype.onPageLast = function(event) {
-        debugger;
+        
 
         this.options.pageNumber = this.totalPages;
         this.updatePagination(event);
     };
 
     BootstrapTable.prototype.onPageNumber = function(event) {
-        debugger;
+        
         if (this.options.pageNumber === +$(event.currentTarget).text()) {
             return;
         }

@@ -1,4 +1,4 @@
-app.factory('commonpagecc', ['$uibModal', function(uibModal) {
+app.factory('commonpage', ['$uibModal', function(uibModal) {
     var modalinstance;
     var obj = {};
     var $table = $('#GridTable');
@@ -13,7 +13,7 @@ app.factory('commonpagecc', ['$uibModal', function(uibModal) {
         }
     };
     operateFormatter = function(value, row, index) {
-        debugger;
+
         var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "'>" + row.ProfileID + "</a>";
         return paid;
     };
@@ -45,7 +45,7 @@ app.factory('commonpagecc', ['$uibModal', function(uibModal) {
 
         },
         checkitem: function(carouselID) {
-            debugger;
+
             var $this;
             $this = $("#" + carouselID);
             if ($("#" + carouselID + " .carousel-inner .item:first").hasClass("active")) {

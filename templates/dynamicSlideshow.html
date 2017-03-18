@@ -390,7 +390,7 @@
 </style>
 <script type="text/javascript">
     function gotoSlide(e, id) {
-        debugger;
+        
         var lastslide = parseInt($("#" + id).text());
         if (parseInt($(e).val()) <= lastslide) {
             $('#myCarousel').carousel(parseInt($(e).val()) - 1);

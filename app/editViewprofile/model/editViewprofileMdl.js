@@ -14,13 +14,9 @@
                 console.log(JSON.parse(response.data[0]));
 
                 if (response.data !== undefined && response.data !== "" && response.data !== null) {
-                    debugger;
-                    // _.each(response.data[0], function(item) {
-                    //     var testArr = JSON.parse(item);
-                    //     model.tablearray.push(testArr);
-                    // });
-                    // model.tablearray.push(JSON.parse(response.data[0]));
-                    model.scope.$broadcast('submittable', JSON.parse(response.data[0]));
+
+
+                    model.scope.$broadcast('submittable', JSON.parse(response.data[0]), 1);
 
                 }
             });

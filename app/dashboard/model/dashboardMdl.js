@@ -14,7 +14,7 @@
                     if (type === 'pageload') {
                         model.landingItems = response.data;
                     } else if (type === 'load') {
-                        debugger;
+
                         _.each(response.data[0], function(inneritem) {
                             array.push(inneritem);
                         });
