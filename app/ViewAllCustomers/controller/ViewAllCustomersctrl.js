@@ -17,16 +17,6 @@
         };
         vm.test = [];
 
-        // scope.testtable = function() {
-        //     alert(111);
-        //     scope.$broadcast('submittable', arr, 'ftable');
-        // };
-
-
-
-
-
-
         vm.init();
     }
 

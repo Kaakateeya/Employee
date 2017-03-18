@@ -1,4 +1,4 @@
-app.factory('commonpage', ['$uibModal', function(uibModal) {
+app.factory('commonpagecc', ['$uibModal', function(uibModal) {
     var modalinstance;
     var obj = {};
     var $table = $('#GridTable');

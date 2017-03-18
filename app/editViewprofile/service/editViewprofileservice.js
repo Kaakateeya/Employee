@@ -1,5 +1,7 @@
-(function(angular) {
+(function() {
     'use strict';
+
+
 
     function factory(http) {
         var ProfileID = null;
@@ -27,7 +29,7 @@
     }
     angular
         .module('Kaakateeya')
-        .factory('ViewAllCustomerService', factory);
+        .factory('editViewprofileservice', factory);
     factory.$inject = ['$http'];
 
-})(angular);
+})();

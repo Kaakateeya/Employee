@@ -9,7 +9,7 @@
 
 
 var app = angular.module('Kaakateeya', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angular-loading-bar', 'ngAnimate', 'ngIdle', 'ngMaterial',
-    'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate', 'angularPromiseButtons', 'KaakateeyaRegistration', 'oc.lazyLoad', 'KaakateeyaEmpEdit'
+    'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate', 'angularPromiseButtons', 'oc.lazyLoad', 'KaakateeyaEmpReg', 'ngMdIcons'
 ]);
 app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.env = "dev";
@@ -18,7 +18,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
         { name: 'dashboard', url: '/dashboardpage', isloginrequired: true },
         { name: 'login', url: '/', isloginrequired: false },
         { name: 'searchpage', url: '/search/:id', isloginrequired: true },
-        { name: 'ViewAllCustomers', url: '/ViewAllCustomersurl' }
+        { name: 'ViewAllCustomers', url: '/ViewAllCustomersurl', isloginrequired: false },
+        { name: 'editViewprofile', url: '/editViewprofileurl', isloginrequired: false }
     ];
     $ocLazyLoadProvider.config({
         debug: true
@@ -30,7 +31,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             files: ['css/bootstrap-table/bootstrap-table.css',
                 'css/bootstrap-table/bootstrap-table-fixed-columns.css',
                 'css/bootstrap-table/dragtable.css', 'common/directive/dynamicBootstrapTable.js',
-                'common/directive/commonpage.js'
+                'common/directive/commonpage.js', 'node_modules/bootstrap/dist/css/bootstrap.min.css',
+                'node_modules/font-awesome/css/font-awesome.min.css'
             ]
         }]
     });
