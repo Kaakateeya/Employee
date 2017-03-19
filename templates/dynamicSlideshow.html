@@ -2,7 +2,7 @@
     <div class="">
         <div class="modal-header" style="border-bottom: 1px solid #ffffff;">
             <div class="row">
-                <div class="col-lg-12" style="height: 30px; margin-top: 8px;">
+                <div class="col-lg-12" style="height: 30px;">
                     <div class="col-lg-8">
                         <div class="row">
                             <div id="divimgfrompic" class="col-lg-1">
@@ -14,7 +14,6 @@
                                 <a id="lnkprofileidfrom" onclick="return ViewProfileWithID('lblhiddenprofileid');" href="javascript:void(0)">({{personalobj.ProfileID}})</a>
                                 <a id="lnkmorepopup" style="width: 20px; margin-right: 13px;" data-toggle="modal" href="#divlookingmore">More</a>
                                 <a id="lnkPatnerprefercencedata" onclick="return redirectpartner()" href="javascript:void(0)">Edit Partpreference</a>
-
                                 <br>
                                 <br>
                                 <div class="row">
@@ -24,7 +23,6 @@
                                         <label id="lblnoofrecords"> of {{lbltotalrecordsslide}}</label>
                                         <input type="hidden" id="hdnTotalPages">
                                     </div>
-
                                     <div class="col-lg-4" id="divviewedprofiles" style="display:block;">
                                         <div class="row">
                                             <div class="col-lg-10">
@@ -39,23 +37,19 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-lg-2" id="gotoSlideDiv" style="display:block;">
-
                         <a id="lnkshortlistpopup" style="font-size: 18px;" href="javascript:void(0);" onclick="return mainShortListProfiles();"><span class="glyphicon glyphicon-star">ShowShortList</span></a>
-
-
                     </div>
-                    <!--<div class="col-lg-2">
-                        <button id="lnkbacktoSearch" class="btn btn-info" onclick="return backtosearch();">Back to Search Page</button>
-                    </div>-->
+                    <div class="col-lg-2">
+                        <button class="btn btn-info" ng-click="backtosearchpage()">Back to Search Page</button>
+                    </div>
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="row" style="margin-top: 25px; margin-left: 2px;">
-            </div>
         </div>
-        <div class="progress" id="progessDiv" style="display:block;">
+        <div class="row" style="margin-top: 20px; margin-left: 2px;">
+            <div class="progress" id="progessDiv" style="display:block;">
+            </div>
         </div>
         <div class="modal-body">
             <div id="sildeViewDiv" style="display:block;">
@@ -197,10 +191,11 @@
                                     </div>
 
                                     <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix">
-                                        <h6> <span style="font-weight: bold;">Marketing Tkt id</span></h6>
+                                        <h6> <span style="font-weight: bold;">Marketing Ticket</span></h6>
                                         <h5>
                                             <div style="color:Black;">
-                                                <a class="alllinkscolor" href='javascript:void(0)' ng-click='forgetpassword()'>{{itemval.matkteingticket}}({{itemval.ownername}})</a>
+                                                <a class="alllinkscolor" href='javascript:void(0)' ng-click='forgetpassword()'>{{itemval.matkteingticket}}</a>
+                                                <span>({{itemval.ownername}}-{{itemval.Empbranchcode}})</span>
                                             </div>
                                             <div class="clearfix">
                                             </div>
@@ -220,9 +215,9 @@
                                 <div class="clearfix">
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-7 col-md-7 col-xs-7 col-sm-7">
-                                        <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix">
-                                            <h6> <span style="font-weight: bold;">Match MeetingCount
+                                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                        <div style="margin-left:69px;" class="edit_page_details_item_desc clearfix">
+                                            <h6> <span style="font-weight: bold;">MMS Count
                                            </span></h6>
                                             <h5>
                                                 <div style="color:Black;">
@@ -233,14 +228,14 @@
                                             </h5>
                                         </div>
                                     </div>
-                                    <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5">
+                                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                                         <div style="" class="edit_page_details_item_desc clearfix">
                                             <h6> <span style="font-weight: bold;">Primary Email 
                                            </span></h6>
                                             <h5>
                                                 <div style="color:Black;">
                                                     <span>{{itemval.primaryemail}}
-                                                    <i ng-class="itemval.emailstatus===true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></i>
+                                                    <i style="line-height:0;" ng-class="itemval.emailstatus===true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></i>
                                                       
                                                     </span>
 
@@ -253,8 +248,8 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-7 col-md-7 col-xs-7 col-sm-7">
-                                        <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix">
+                                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                        <div style="margin-left:69px;" class="edit_page_details_item_desc clearfix">
                                             <h6> <span style="font-weight: bold;">Sa Form
                                            </span></h6>
                                             <h5>
@@ -266,14 +261,14 @@
                                             </h5>
                                         </div>
                                     </div>
-                                    <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5">
+                                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                                         <div style="" class="edit_page_details_item_desc clearfix">
                                             <h6> <span style="font-weight: bold;"> Primary Mobile
                                            </span></h6>
                                             <h5>
                                                 <div style="color:Black;">
                                                     <span>{{itemval.primarynumber}}
-                                                       <i ng-class="itemval.mobilestatus===true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></i>
+                                                       <i style="line-height:0;" ng-class="itemval.mobilestatus===true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></i>
                                                     </span>
 
                                                 </div>
@@ -285,8 +280,8 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-7 col-md-7 col-xs-7 col-sm-7">
-                                        <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix">
+                                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                        <div style="margin-left:69px;" class="edit_page_details_item_desc clearfix">
                                             <h6> <span style="font-weight: bold;">{{typeofslidedate}}
                                            </span></h6>
                                             <h5>
@@ -390,7 +385,7 @@
 </style>
 <script type="text/javascript">
     function gotoSlide(e, id) {
-        
+
         var lastslide = parseInt($("#" + id).text());
         if (parseInt($(e).val()) <= lastslide) {
             $('#myCarousel').carousel(parseInt($(e).val()) - 1);

@@ -1,6 +1,6 @@
 <div class="right_col" role="main" id="generalsearchdiv">
-    <div class="search_page_main">
-        <div class="sample" layout="column" ng-cloak ng-show="page.model.divcontrolls">
+    <div class="search_page_main" ng-show="page.model.divcontrolls">
+        <div class="sample" layout="column" ng-cloak>
             <md-content class="md-padding">
                 <md-tabs md-selected="page.model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
                     <md-tab label="General Search" ng-click="page.onTabSelected(page.model.selectedIndex)">
@@ -801,12 +801,12 @@
                 </md-tabs>
             </md-content>
         </div>
-        <div>
 
-            <slide-show nghide="page.model.slideshowtrue" dynamicheader="'false'" slidetype="'page'" headertemplate="'templates/SlideHeader.html'" bodytemplate="'templates/slideDesign.html'"></slide-show>
-        </div>
     </div>
+    <div>
 
+        <slide-show nghide="page.model.slideshowtrue" dynamicheader="'false'" slidetype="'page'" headertemplate="'templates/SlideHeader.html'" bodytemplate="'templates/slideDesign.html'"></slide-show>
+    </div>
     <script type="text/ng-template" id="profileidpopupsubmit.html">
         <div class="modal-header">
             <h4 class="modal-title popupheaderclass" id="headername">{{page.model.searchpopuptext}}</h4>

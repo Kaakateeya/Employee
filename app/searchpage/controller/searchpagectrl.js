@@ -90,7 +90,13 @@
                  alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
              }
          };
+
+
          vm.init();
+         scope.$on("backsearchshowcontrols", function(event) {
+             model.divcontrolls = true;
+             model.slideshowtrue = false;
+         });
      }
 
      angular

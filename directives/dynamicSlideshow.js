@@ -311,6 +311,12 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                     scope.displayArr = scope.displayArray(scope.slidearray, frompage);
                     scope.pageloadnew(scope.carousalID);
                 });
+                scope.backtosearchpage = function() {
+                    scope.dynamicslideshow = false;
+                    scope.$emit("backsearchshowcontrols");
+
+                };
+
 
             }
         };
