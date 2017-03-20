@@ -313,7 +313,7 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                     console.log(personalobj);
                     scope.personalobj = personalobj;
                     console.log(array);
-                    scope.lbltotalrecordsslide = array[0].TotalRows;
+                    scope.lbltotalrecordsslide = array.length > 0 ? array[0].TotalRows : "";
                     scope.tablename = tablename;
                     scope.slidearray = array;
                     scope.dynamicslideshow = true;
