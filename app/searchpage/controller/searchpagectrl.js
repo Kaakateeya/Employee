@@ -91,7 +91,6 @@
              }
          };
 
-
          vm.init();
          scope.$on("backsearchshowcontrols", function(event) {
              model.divcontrolls = true;

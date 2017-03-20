@@ -123,7 +123,7 @@
             model.advancedsearch.Showprofileadvanced = model.arrayToString("1");
             model.advancedsearch.advancedmothertongue = model.arrayToString("1");
             model.advancedsearch.advancedReligion = model.arrayToString("1");
-
+            model.Caste = Commondependency.casteDepedency(model.generalsearch.Religion, model.generalsearch.mothertongue);
         };
         model.GetPhotoandHoroscopevalues = function(strType, str) {
             if (str !== null && str !== undefined && str !== "") {

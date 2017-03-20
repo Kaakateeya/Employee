@@ -249,6 +249,7 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                     commonpage.closepopuppoptopopup();
                 };
                 scope.$on("slideshowdynamic", function(event, array, totalrows, tablename, frompage) {
+                    console.log(tablename);
                     switch (tablename) {
                         case "No-Service From Last 1 Month":
                             scope.typeofslidedate = "Service Date";
@@ -271,12 +272,19 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                         case 'Assigned Profiles from Last 10 Days':
                             scope.typeofslidedate = "Assigned Date";
                             break;
+
+                        case "Email Bounce Info":
+                            scope.typeofslidedate = "Bounced On";
+                            break;
                     }
                     scope.slidearray = array;
                     // scope.dynamicslideshow = true;
-                    scope.lbltotalrecordsslide = totalrows;
-                    scope.tablename = tablename;
+
                     if (frompage === 1) {
+                        scope.currentslide = 1;
+                        scope.lbltotalrecordsslide = totalrows;
+                        scope.tablename = tablename;
+                        scope.viewedcount = 1;
                         commonpage.showPopup('dynamicSlideshow.html', scope, 'lg', "modalclassdashboard");
                     }
                     timeout(function() {
