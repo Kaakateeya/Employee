@@ -53,23 +53,15 @@
         </div>
         <div class="modal-body">
             <div id="sildeViewDiv" style="display:block;">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <div class="num">Profile 1</div>
-                    </div>
-                </div>
                 <div class="bs-example">
                     <div id="myCarousel" class="carousel slide" data-interval="false" data-ride="carousel">
-
                         <div ng-include="bodytemplate"></div>
-
                         <a data-target="#myCarousel" class="carousel-control left" href="javascript:void(0)" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left"></span>
                         </a>
                         <a data-target="#myCarousel" class="carousel-control right" href="javascript:void(0)" data-slide="next">
                             <span class="glyphicon glyphicon-chevron-right"></span>
                         </a>
-
                     </div>
                     <div id="carouselButtons" class="col-lg-offset-5" style="margin-top: -10px;">
                         <button id="playButton" type="button" ng-show="ShowPause" ng-click="pauseResume('play');" class="btn btn-default btn-xs pauseBtns" title="Play">
@@ -82,7 +74,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 <script type="text/ng-template" id="dynamicSlideshow.html">
@@ -195,7 +186,7 @@
                                         <h5>
                                             <div style="color:Black;">
                                                 <a class="alllinkscolor" href='javascript:void(0)' ng-click='forgetpassword()'>{{itemval.matkteingticket}}</a>
-                                                <span>({{itemval.ownername}}-{{itemval.Empbranchcode}})</span>
+                                                <span>({{itemval.ownername}}-{{itemval.UserName}})</span>
                                             </div>
                                             <div class="clearfix">
                                             </div>

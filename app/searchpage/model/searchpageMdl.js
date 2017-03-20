@@ -33,6 +33,7 @@
 
             if (model.divcontrollsbind === 0) {
                 model.init();
+
             }
             searchpageServices.getPrimaryCustomerDataResponse(obj.ProfileIDpopup, model.empid).then(function(response) {
                 console.log(response);
@@ -113,6 +114,15 @@
             model.Applicationstatus = getArray.GArray("Applicationstatus");
             model.Smoke = getArray.GArray("Smoke");
             model.Diet = getArray.GArray("Diet");
+
+            model.generalsearch.Applicationstatus = model.arrayToString("54");
+            model.generalsearch.Showprofile = model.arrayToString("1");
+            model.generalsearch.mothertongue = model.arrayToString("1");
+            model.generalsearch.Religion = model.arrayToString("1");
+            model.advancedsearch.Applicationstatus = model.arrayToString("54");
+            model.advancedsearch.Showprofileadvanced = model.arrayToString("1");
+            model.advancedsearch.advancedmothertongue = model.arrayToString("1");
+            model.advancedsearch.advancedReligion = model.arrayToString("1");
 
         };
         model.GetPhotoandHoroscopevalues = function(strType, str) {

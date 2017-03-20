@@ -75,14 +75,14 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                         scope.data.push({ label: 'Father Native', value: item.FFNative });
                         scope.data.push({ label: 'Mother Native', value: item.MFNative });
                         scope.data.push({ label: 'Property(Lakhs)', value: item.Property });
-                        scope.data.push({ label: 'backendFields', Custid: item.Cust_ID, ProfileID: item.ProfileID, PhotoCount: item.PhotoCount, Age: item.Age, HeightInCentimeters: item.HeightInCentimeters, MaritalStatusID: item.MaritalStatusID, CasteID: item.CasteID, serviceDate: item.serviceDate, CustPhoto: item.FullPath, totalrecords: item.TotalRowsKeyword });
+                        scope.data.push({ label: 'backendFields', Custid: item.Cust_ID, ProfileID: item.ProfileID, PhotoCount: item.PhotoCount, Age: item.Age, HeightInCentimeters: item.HeightInCentimeters, MaritalStatusID: item.MaritalStatusID, CasteID: item.CasteID, serviceDate: item.serviceDate, CustPhoto: item.CustomerFullPhoto, totalrecords: item.TotalRowsKeyword });
                         if (item.serviceDate != "--" && item.serviceDate !== "" && item.serviceDate !== null)
                             scope.data.push({ label: 'ServiceDate', value: item.serviceDate, style: 'style= color:red;' });
                         if (item.Intercaste == "True")
                             scope.data.push({ label: 'Intercaste', value: (item.fathercaste + "/" + item.mothercaste) });
                         if (item.ProfileGrade !== 0)
                             scope.data.push({ label: 'ProfileGrade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
-                        scope.arraydata.push({ itmArr: scope.data, custPhoto: item.FullPath, Custid: item.Cust_ID });
+                        scope.arraydata.push({ itmArr: scope.data, custPhoto: item.CustomerFullPhoto, Custid: item.Cust_ID });
                     });
                     return scope.arraydata;
                 };
@@ -132,7 +132,8 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                             ExpiryDate: item.ExpiryDate,
                             Points: item.Points,
                             mobilestatus: item.CNumberVerStatus,
-                            emailstatus: item.CEmailVerStatus
+                            emailstatus: item.CEmailVerStatus,
+                            UserName: item.UserName
                         });
                     });
                     return scope.arraydata;

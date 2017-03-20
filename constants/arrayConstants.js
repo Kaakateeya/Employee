@@ -415,9 +415,9 @@ app.constant('arrayConstants', {
     ],
     'Showprofile': [
 
-        { "label": "With Photo", "title": "With Photo", "value": 1 },
-        { "label": "Without Photo", "title": "Without Photo", "value": 0 },
-        { "label": "With Horoscope", "title": "With Horoscope", "value": 2 },
-        { "label": "Without Horoscope", "title": "Without Horoscope", "value": 3 }
+        { label: "With Photo", title: "With Photo", value: 1 },
+        { label: "Without Photo", title: "Without Photo", value: 0 },
+        { label: "With Horoscope", title: "With Horoscope", value: 2 },
+        { label: "Without Horoscope", title: "Without Horoscope", value: 3 }
     ]
 });

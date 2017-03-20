@@ -1,6 +1,6 @@
-// AngularJS: 1.3.15
-// bootstrap-multiselect: 0.9.6
-//var statticdata=require('./staticArrayBindings.json');
+//AngularJS: 1.3 .15
+//bootstrap - multiselect: 0.9 .6
+//var statticdata = require('./staticArrayBindings.json');
 // app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', '$timeout', function(cons, service, timeout) {
 //     return {
 //         require: 'ng-model',
