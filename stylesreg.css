@@ -707,3 +707,9 @@ md-input-container label:not(.md-no-float):not(.md-container-ignore),
 md-input-container .md-placeholder {
     padding-left: 18px;
 }
+
+.regmain {
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    padding: 7px;
+}

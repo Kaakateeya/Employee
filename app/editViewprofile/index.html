@@ -1,6 +1,8 @@
 <div class="right_col" role="main">
     <div class="search_page_main">
-        <h4>Search Kaakateeya Customers</h4>
+        <h4 style="font-size: 18px;
+    color: #b10c0c;">Search Kaakateeya Customers</h4>
+        <br>
         <div class="regmain">
             <div class="row">
                 <div class="col-lg-7">
@@ -10,7 +12,7 @@
                             <input type="text" ng-model="page.model.obj.KmlProfileID" class="form-control">
                         </div>
                         <div class="col-lg-3">
-                            <button class="btn btn-warning" ng-click="page.model.kmplSubmit(page.model.obj)">Go</button>
+                            <md-button class="md-raised md-warn md-hue-2" ng-click="page.model.kmplSubmit(page.model.obj)">Go</md-button>
                         </div>
                     </div>
                     <br/>
@@ -20,7 +22,7 @@
                             <input type="text" ng-model="page.model.obj.ProfileIDsearch" class="form-control">
                         </div>
                         <div class="col-lg-3">
-                            <button class="btn btn-warning" ng-click="page.model.ViewAllsubmit(page.model.obj)">Submit</button>
+                            <md-button class="md-raised md-warn md-hue-2" ng-click="page.model.ViewAllsubmit(page.model.obj)">Submit</md-button>
                         </div>
                     </div>
                 </div>
@@ -33,14 +35,12 @@
                         </md-radio-group>
                     </div> <br/>
                     <div class="clearfix">
-                        <md-checkbox ng-model="page.model.obj.chkProfileIDsts" value="54" style="padding: 9px 13px 0px 0px;" name="chkboxedu" aria-label="Checkbox 1"><span style="color: black;">Active</span>
-                        </md-checkbox>
-                        <md-checkbox ng-model="page.model.obj.chkProfileIDsts" value="57" style="padding: 9px 13px 0px 0px;" name="chkboxedu" aria-label="Checkbox 1"><span style="color: black;">Settled</span>
-                        </md-checkbox>
-                        <md-checkbox ng-model="page.model.obj.chkProfileIDsts" value="56" style="padding: 9px 13px 0px 0px;" name="chkboxedu" aria-label="Checkbox 1"><span style="color: black;">Deleted</span>
-                        </md-checkbox>
-                        <md-checkbox ng-model="page.model.obj.chkProfileIDsts" value="55" style="padding: 9px 13px 0px 0px;" name="chkboxedu" aria-label="Checkbox 1"><span style="color: black;">Inactive</span>
-                        </md-checkbox>
+
+                        <label ng-repeat="role in page.model.profileidstatus">
+                        <md-checkbox  data-checklist-model="page.model.obj.chkProfileIDsts" data-checklist-value="role.value"> {{role.name}}&nbsp;
+                          </md-checkbox>
+                       </label>
+
                     </div>
                 </div>
             </div>

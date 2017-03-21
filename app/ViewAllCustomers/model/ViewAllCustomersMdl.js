@@ -38,7 +38,7 @@
         model.redirectEdit = function(Custid) {
             alert(11111);
             $state.go("editview.editEducation", { CustID: Custid });
-            //  window.location = "/" + type + "/" + stateParams.CustID;
+            //window.location = "/" + type + "/" + stateParams.CustID;
         };
 
         return model;
