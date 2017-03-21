@@ -201,16 +201,10 @@
             };
             searchpageServices.generalsearchsubmit(model.CgetDetails).then(function(response) {
                 console.log(response);
-                if (parseInt(frompage) === 1) {
-                    model.slideshowarray = [];
-                    _.each(response.data, function(item) {
-                        model.slideshowarray.push(item);
-                    });
-                } else {
-                    _.each(model.data, function(item) {
-                        model.slideshowarray.push(item);
-                    });
-                }
+                model.slideshowarray = [];
+                _.each(response.data, function(item) {
+                    model.slideshowarray.push(item);
+                });
                 model.scope.$broadcast("generalsearchslide", model.slideshowarray, "general", model.getpageloadobject, frompage);
                 model.divcontrolls = false;
                 model.slideshowtrue = true;
@@ -352,16 +346,10 @@
             };
             searchpageServices.advancedsearchsubmit(model.CgetDetails).then(function(response) {
                 console.log(response);
-                if (parseInt(frompage) === 1) {
-                    model.slideshowarray = [];
-                    _.each(response.data, function(item) {
-                        model.slideshowarray.push(item);
-                    });
-                } else {
-                    _.each(model.data, function(item) {
-                        model.slideshowarray.push(item);
-                    });
-                }
+                model.slideshowarray = [];
+                _.each(response.data, function(item) {
+                    model.slideshowarray.push(item);
+                });
                 model.scope.$broadcast("generalsearchslide", model.slideshowarray, "advanced", model.getpageloadobject, frompage);
                 model.divcontrolls = false;
                 model.slideshowtrue = true;

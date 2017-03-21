@@ -9,7 +9,8 @@
 
 var app = angular.module('Kaakateeya', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angular-loading-bar', 'ngAnimate', 'ngIdle', 'ngMaterial',
     'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate', 'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons',
-    'KaakateeyaEmpReg', 'KaakateeyaEmpEdit'
+    'KaakateeyaEmpReg'
+    // 'KaakateeyaEmpEdit'
 ]);
 app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.env = "dev";
@@ -19,7 +20,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { name: 'dashboard', url: '/dashboardpage', isloginrequired: true },
             { name: 'login', url: '/', isloginrequired: false },
             { name: 'searchpage', url: '/search/:id', isloginrequired: true },
-            { name: 'ViewAllCustomers', url: '/ViewAllCustomersurl', isloginrequired: false },
             { name: 'editViewprofile', url: '/editViewprofileurl', isloginrequired: false }
         ];
         $ocLazyLoadProvider.config({

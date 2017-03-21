@@ -661,3 +661,49 @@
     visibility: visible;
     opacity: 1;
 }
+
+md-input-container label:not(.md-container-ignore) {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: auto;
+    color: black;
+    font-weight: normal;
+    font-size: 13px;
+}
+
+.md-placeholder {
+    color: black;
+    font-weight: normal;
+}
+
+.wellOverride {
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    color: #b10c0c;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+md-input-container.md-input-focused label:not(.md-no-float) {
+    font-size: 18px;
+}
+
+md-input-container label:not(.md-container-ignore) {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: auto;
+    color: black;
+    font-weight: normal;
+    font-size: 13px;
+    padding-left: 18px;
+}
+
+md-input-container label:not(.md-no-float):not(.md-container-ignore),
+md-input-container .md-placeholder {
+    padding-left: 18px;
+}
