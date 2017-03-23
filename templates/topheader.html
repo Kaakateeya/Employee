@@ -1,108 +1,113 @@
 <div ng-controller="headerctrl as head" id="logindivheader">
     <div class="col-md-3 left_col">
-        <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-                <a href="/" class="site_title smalllogo"><img src="src/images/kaakateeya logo yello_001.jpg" style="width:50px;height:50px;"></img>
-                </a>
+        <!-- /menu profile quick info -->
+        <!-- sidebar menu -->
 
-                <a href="/" class="site_title kaakateeyalogo"><img src="src/images/logo3.png" style="width: 158px;
-                      height: 61px;"></img>
-                </a>
-            </div>
+        <div class="navbar navbar-inverse navbar-fixed-left">
 
-            <div class="clearfix"></div>
-
-            <!-- menu profile quick info -->
-            <div class="profile clearfix">
-                <div class="profile_pic">
-                    <img ng-src="{{head.empphoto}}" alt="..." class="img-circle profile_img">
-                </div>
-                <div class="profile_info">
-                    <span>Welcome,</span>
-                    <h2 style="color:#0d1aca;">{{head.name}}</h2>
-                </div>
-            </div>
-            <!-- /menu profile quick info -->
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                <div class="menu_section">
-                    <h3>General</h3>
-                    <ul class="nav side-menu">
-
-                        <li><a><i class="fa fa-file-text"></i> Registration <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-                                <li><a href="Registration">Customer New Registration</a></li>
-                                <li><a href="editViewprofileurl">Edit/View Profile</a></li>
-                                <li><a href="bootstrapTable">Registration Validation</a></li>
-                                <li><a href="bootstrapTable">Payment Details</a></li>
-                                <li><a href="bootstrapTable">Customer New Admin Profile</a></li>
+            <ul class="nav navbar-nav">
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file-text"></i>Registration</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="Registration">Customer New Registration</a></li>
+                        <li><a href="editViewprofileurl">Edit/View Profile</a></li>
+                        <li><a href="bootstrapTable">Registration Validation</a></li>
+                        <li><a href="bootstrapTable">Payment Details</a></li>
+                        <li><a href="bootstrapTable">Customer New Admin Profile</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle">Messages
+                                     <b class="caret"></b></a>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="#">Inbox</a></li>
+                                <li><a href="#">Drafts</a></li>
+                                <li class="dropdown dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown">Dropdown Link 4</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a>Dropdown Submenu Link 4.1</a></li>
+                                        <li><a>Dropdown Submenu Link 4.2</a></li>
+                                        <li><a>Dropdown Submenu Link 4.3</a></li>
+                                        <li><a>Dropdown Submenu Link 4.4</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
-                        <li><a><i class="fa fa-search"></i> Search <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-                                <li><a href="search/0">General Search</a></li>
-                                <li><a href="search/1">Advanced search</a></li>
-                                <li><a href="searchdd">Keyword Search</a></li>
-                                <li><a href="searchdd">Keyword Search_Kmpl</a></li>
-                            </ul>
-                        </li>
-                        <li><a><i class="fa fa-user-circle-o"></i> My Account <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-                                <li><a href="searchdd">My Profiles</a></li>
-                                <li><a href="searchss">Marketing Tickets</a></li>
-                                <li><a href="searchsss">Match Followup Tickets</a></li>
-                                <li><a href="searchss">My Assigned Photos</a></li>
-                            </ul>
-                        </li>
-                        <li><a><i class="fa fa-folder"></i>Maintance Work <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-                                <li><a href="searchss">Unassigned Profiles</a></li>
-                                <li><a href="searchss">Unassigned Photos</a></li>
-                                <li><a href="searchss">Match Meeting Report</a></li>
-                                <li><a href="searchss">Upload Success Stories</a></li>
-                                <li><a href="searchss">View Success Stories</a></li>
-                                <li><a href="searchss">Customer Message Verification</a></li>
-                                <li><a href="searchss">Re Assign Employee</a></li>
-                                <li><a href="searchss">Book Marks</a></li>
-                                <li><a href="searchss">Customer/Employee Config</a></li>
-                            </ul>
-                        </li>
-                        <li><a><i class="fa fa-clone"></i>Admin Forms <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-                                <li><a href="searchss">Branch Creation</a></li>
-                                <li><a href="searchss">List Branches</a></li>
-                                <li><a href="searchss">Add/Edit Faqs</a></li>
-                            </ul>
-                        </li>
-                        <li><a><i class="fa fa-table"></i> Reports <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-                                <li><a href="javascript:void(0)">Payment Report</a></li>
-                                <li><a href="javascript:void(0)">Summary Profile Report</a></li>
-                                <li><a href="javascript:void(0)">Profile Modification </a></li>
-                            </ul>
-                        </li>
+                        <li><a href="#">Sub Menu5</a></li>
                     </ul>
-                </div>
-            </div>
-            <!-- /sidebar menu -->
+                </li>
 
-            <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
 
-                <a data-toggle="tooltip" data-placement="top" title="Lock" href="javascript:void(0)" ng-click="head.lockscreen()">
-                    <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                </a>
-                <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:void(0)" ng-click="head.logout()">
-                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                </a>
-            </div>
-            <!-- /menu footer buttons -->
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i> Search <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="search/0">General Search</a></li>
+                        <li><a href="search/1">Advanced search</a></li>
+                        <li><a href="searchdd">Keyword Search</a></li>
+                        <li><a href="searchdd">Keyword Search_Kmpl</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle">Messages
+                                     <b class="caret"></b></a>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="#">Inbox</a></li>
+                                <li><a href="#">Drafts</a></li>
+
+                            </ul>
+                        </li>
+                        <li><a href="#">Sub Menu5</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> My Account <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="searchdd">My Profiles</a></li>
+                        <li><a href="searchss">Marketing Tickets</a></li>
+                        <li><a href="searchsss">Match Followup Tickets</a></li>
+                        <li><a href="searchss">My Assigned Photos</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle">Messages
+                                     <b class="caret"></b></a>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="#">Inbox</a></li>
+                                <li><a href="#">Drafts</a></li>
+
+                            </ul>
+                        </li>
+                        <li><a href="#">Sub Menu5</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-folder"></i>Maintance Work  <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="searchss">Unassigned Profiles</a></li>
+                        <li><a href="searchss">Unassigned Photos</a></li>
+                        <li><a href="searchss">Match Meeting Report</a></li>
+                        <li><a href="searchss">Upload Success Stories</a></li>
+                        <li><a href="searchss">View Success Stories</a></li>
+                        <li><a href="searchss">Customer Message Verification</a></li>
+                        <li><a href="searchss">Re Assign Employee</a></li>
+                        <li><a href="searchss">Book Marks</a></li>
+                        <li><a href="searchss">Customer/Employee Config</a></li>
+                    </ul>
+                </li>
+
+
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-clone"></i>Admin Forms   <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="searchss">Branch Creation</a></li>
+                        <li><a href="searchss">List Branches</a></li>
+                        <li><a href="searchss">Add/Edit Faqs</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-table"></i> Reports <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="javascript:void(0)">Payment Report</a></li>
+                        <li><a href="javascript:void(0)">Summary Profile Report</a></li>
+                        <li><a href="javascript:void(0)">Profile Modification </a></li>
+                    </ul>
+                </li>
+
+            </ul>
         </div>
-        <div class="row" ng-show="isLoader">
-            <md-progress-circular class="md-accent md-hue-1 col-lg-offset-5" md-diameter="60"></md-progress-circular>
-        </div>
+
+        <!-- /sidebar menu -->
     </div>
-
     <!-- top navigation -->
     <div class="top_nav" id="top_navdiv">
         <div class="nav_menu">
@@ -190,40 +195,34 @@
                                     </a>
                                 </div>
                             </li>
+
+
                         </ul>
                     </li>
 
-                    <!-- <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#">Profile</a></li>
-                            <li class="dropdown">
-                                <a data-toggle="dropdown" class="dropdown-toggle">Messages
+
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle">Messages
                                      <b class="caret"></b></a>
-                                <ul role="menu" class="dropdown-menu">
-                                    <li><a href="#">Inbox</a></li>
-                                    <li><a href="#">Drafts</a></li>
-                                    <li class="dropdown dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown">Dropdown Link 4</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a>Dropdown Submenu Link 4.1</a></li>
-                                            <li><a>Dropdown Submenu Link 4.2</a></li>
-                                            <li><a>Dropdown Submenu Link 4.3</a></li>
-                                            <li><a>Dropdown Submenu Link 4.4</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Trash</a></li>
+                        <ul role="menu" class="dropdown-menu">
+                            <li><a href="#">Inbox</a></li>
+                            <li><a href="#">Drafts</a></li>
+                            <li class="dropdown dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown">Dropdown Link 4</a>
+                                <ul class="dropdown-menu">
+                                    <li><a>Dropdown Submenu Link 4.1</a></li>
+                                    <li><a>Dropdown Submenu Link 4.2</a></li>
+                                    <li><a>Dropdown Submenu Link 4.3</a></li>
+                                    <li><a>Dropdown Submenu Link 4.4</a></li>
                                 </ul>
                             </li>
                         </ul>
-
-                    </div>-->
+                    </li>
                 </ul>
             </nav>
         </div>
     </div>
-
-
     <!--  <script type="text/ng-template" id="loginContent.html">
         <form name="loginForm" novalidate role="form" style='z-index: 99999'>
             <div class="modal-body clearfix pop_content_my" id="modal-body">
@@ -283,3 +282,55 @@
         </form>
     </script>-->
 </div>
+<style>
+    .navbar-fixed-left {
+        width: 80px;
+        position: fixed;
+        border-radius: 0;
+        height: 100%;
+    }
+    
+    .navbar-fixed-left .navbar-nav>li {
+        float: left;
+        width: 78px;
+        padding-bottom: 17px;
+    }
+    
+    .navbar-fixed-left>.navbar-nav .open .dropdown-menu {
+        position: absolute;
+        background: rgba(243, 243, 243, 0.98);
+        margin-top: 0px !important;
+        border: 1px solid #D9DEE4;
+        left: 100%;
+        right: 0;
+        width: 220px;
+    }
+    
+    .navbar-right .open .dropdown-menu {
+        position: absolute;
+        background: #b3b2b2;
+        border: 1px solid #D9DEE4;
+    }
+    
+    .navbar-fixed-left .navbar-nav>li>a.dropdown-toggle {
+        width: 80px;
+        padding: 3px;
+    }
+    
+    .navbar-inverse {
+        background-color: #7b7a7a;
+        border-color: #7b7a7a;
+    }
+    
+    .navbar-inverse .navbar-nav>.open>a,
+    .navbar-inverse .navbar-nav>.open>a:focus,
+    .navbar-inverse .navbar-nav>.open>a:hover {
+        color: #fff;
+        background-color: #b3b2b2;
+    }
+    
+    .dropdown .caret {
+        margin-top: 0px;
+        margin-left: 2px;
+    }
+</style>

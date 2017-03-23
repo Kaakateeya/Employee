@@ -108,6 +108,19 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                     case 'getrelationships':
                         scope.databind(scope.parentVal);
                         break;
+
+                    case 'getrelationshipsbasedcustid':
+                        service.getrelationships(4, scope.parentVal, "").then(function(response) {
+                            debugger;
+                            var option = [];
+                            option.push({ "label": "--select--", "title": "--select--", "value": "" });
+                            _.each(response.data, function(item) {
+                                var Relationships = JSON.parse(item);
+                                option.push({ "label": Relationships.Name, "title": Relationships.Name, "value": Relationships.ID });
+                            });
+                            scope.databind(option);
+                        });
+                        break;
                     case 'Country':
                         service.countrySelect().then(function(response) {
                             var option = [];

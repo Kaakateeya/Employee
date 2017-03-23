@@ -60,14 +60,14 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                         });
                         scope.data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
                         scope.data.push({ label: 'DOB(age)', value: item.DOB + '(' + item.Age + ')' });
+                        scope.data.push({ label: 'Height', value: item.Height });
                         scope.data.push({ label: 'Time of Birth', value: item.TOB });
                         scope.data.push({ label: 'Place of Birth', value: item.PlaceOfBirth });
                         scope.data.push({ label: 'Gothram', value: item.Gothram });
                         scope.data.push({ label: 'Caste', value: item.Caste });
                         scope.data.push({ label: 'Marital Status', value: item.maritalstatus || item.MaritalStatusID });
                         scope.data.push({ label: 'Star', value: item.Star });
-                        scope.data.push({ label: 'Color', value: item.Color });
-                        scope.data.push({ label: 'Height', value: item.Height });
+                        // scope.data.push({ label: 'Color', value: item.Color });
                         scope.data.push({ label: 'Qualification', value: item.EducationGroup + "," + item.EduGroupnamenew });
                         scope.data.push({ label: 'Profession', value: item.Profession });
                         scope.data.push({ label: 'Job Location', value: item.JobLocation });

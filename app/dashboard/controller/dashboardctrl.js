@@ -16,7 +16,6 @@
              model.slideshowfunction(false);
              model.init();
              $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
-                 debugger;
                  event.preventDefault();
                  event.stopPropagation();
                  $(this).parent().siblings().removeClass('open');

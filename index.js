@@ -9,7 +9,8 @@
 
 var app = angular.module('Kaakateeya', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angular-loading-bar', 'ngAnimate', 'ngIdle', 'ngMaterial',
     'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate', 'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons',
-    'KaakateeyaEmpReg', 'KaakateeyaEmpEdit'
+    'KaakateeyaEmpReg'
+    //'KaakateeyaEmpEdit'
 ]);
 app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.env = "dev";

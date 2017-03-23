@@ -1,7 +1,7 @@
 <div class="carousel-inner">
     <div ng-class="($index+1)==1?'item active':'item'" ng-repeat="itemval in displayArr">
 
-        <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
 
             <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix" ng-repeat="slidedata in itemval.itmArr" ng-if="slidedata.label!=='backendFields'">
                 <h6> <span style="font-weight: bold;">{{slidedata.label}}</span></h6>
@@ -16,7 +16,7 @@
                 </h5>
             </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="margin-top: -4px;">
+        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12" style="margin-top: -4px;">
             <div class="row">
                 <a class="Heart center-block" href="javascript:void(0);">
                     <div class="col-lg-2"><img src="src/images/two.png" style="margin-top:-4px;" width="40" height="38"></div>

@@ -21,6 +21,8 @@
         model.activatedmobile = true;
         model.searchpopuptext = "General Search";
         model.divcontrollsbind = 0;
+        model.Relationshipname = "";
+        model.relationshippopup = null;
         model.returnnullvalue = function(value) {
             var obj = helpService.checkstringvalue(value) && (value.toString()) !== "0" && (value.toString()) !== 0 ? (value.toString()) : null;
             return obj;
@@ -209,6 +211,7 @@
                 model.divcontrolls = false;
                 model.slideshowtrue = true;
             });
+
         };
         model.closepopup = function() {
 
@@ -366,7 +369,19 @@
             });
 
         };
-
+        model.relationshipbind = function(flag, profileid, about) {
+            debugger;
+            searchpageServices.getrelationships(flag, profileid, about).then(function(response) {
+                console.log(response);
+                model.popupFirstName = "";
+                model.popupLastName = "";
+                if (response !== null && response.data !== undefined && response.data !== null && response.data !== "") {
+                    var Relationships = JSON.parse(response.data);
+                    model.popupFirstName = Relationships[0].FirstName;
+                    model.popupLastName = Relationships[0].LastName;
+                }
+            });
+        };
         return model;
     }
     angular

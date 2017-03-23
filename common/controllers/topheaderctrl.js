@@ -13,7 +13,6 @@
             // authSvc.getClientIp();
             vm.name = authSvc.LoginEmpName();
             vm.empphoto = authSvc.empphoto();
-
         };
         vm.initheader();
 
