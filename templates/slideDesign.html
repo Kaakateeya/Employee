@@ -1,8 +1,6 @@
 <div class="carousel-inner">
     <div ng-class="($index+1)==1?'item active':'item'" ng-repeat="itemval in displayArr">
-
         <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
-
             <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix" ng-repeat="slidedata in itemval.itmArr" ng-if="slidedata.label!=='backendFields'">
                 <h6> <span style="font-weight: bold;">{{slidedata.label}}</span></h6>
                 <h5>
@@ -15,19 +13,53 @@
                     </div>
                 </h5>
             </div>
+            <div class="clearfix"></div>
+            <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix">
+                <div class="row">
+
+                    <label style="color:maroon">From Status :</label>
+                    <label style="color:#000">{{itemval.proceedstatusfrom}}<span>
+                        <img style="height: 29px;" src="src\images\heartgrren.gif"><img></span></label>
+                    <!--<md-button class="md-raised md-warn md-hue-2 md-button md-ink-ripple">{{itemval.proceedstatusfrom}}</md-button>
+                    <md-button class="md-raised md-warn md-hue-2 md-button md-ink-ripple">{{itemval.proceedstatusto}}</md-button>-->
+                    <md-button class="md-raised md-warn md-hue-2 md-button md-ink-ripple">{{itemval.Tickid}}</md-button>
+
+
+                </div>
+                <br>
+            </div>
+            <div class="clearfix"></div>
         </div>
         <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12" style="margin-top: -4px;">
             <div class="row">
-                <a class="Heart center-block" href="javascript:void(0);">
+                <a class="Heart center-block" href="javascript:void(0);" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">
                     <div class="col-lg-2"><img src="src/images/two.png" style="margin-top:-4px;" width="40" height="38"></div>
                     <div class="col-lg-1">
-                        <lable style="font-size: 13pt;">shortlist</lable>
+                        <lable style="font-size: 13pt;color:#337ab7">Shortlist</lable>
                     </div>
                 </a>
                 <br>
                 <img ng-click="slidepopup(itemval.Custid)" ng-src="{{itemval.custPhoto}}" class="image" style="cursor: pointer;" />
                 <br>
-                <div class="col-lg-8 col-lg-offset-5"><a href="javascript:void(0)"><span style="color:Black;font-size:9pt;">No of Photos   2</span></a></div>
+                <div class="col-lg-8 col-lg-offset-5"><a href="javascript:void(0)"><span style="color:Black;font-size:9pt;">No of Photos {{itemval.PhotoCount}}</span></a></div>
+            </div>
+            <div class="edit_page_details_item_desc clearfix">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <label style="color:maroon">To Status:</label>
+                            <label style="color:#000">{{itemval.proceedstatusfrom}}
+                            <img style="height: 29px;" src="src\images\heartgrren.gif"><img></label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <label style="color:maroon">Ticket ID:</label>
+                            <label style="color:#000">{{itemval.Tickid}}</label>
+                        </div>
+                    </div>
+                </div>
+                <br>
             </div>
         </div>
     </div>

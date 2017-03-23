@@ -8,13 +8,12 @@
     color: #bd1515;
     font-size: 20px;
     margin-left: 11px;
-    padding-top: 3px;cursor:pointer;" aria-hidden="true" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"></i>
-                    <label id="lbltotalrecords">Total Records :</label>
-                    <label id="lblcurSlide"> {{currentslide}}</label>
-                    <label id="lblnoofrecords"> of {{lbltotalrecordsslide}}</label>
-                    <input type="hidden" id="hdnTotalPages">
+    padding-top: 3px;cursor:pointer;" aria-hidden="true" data-toggle="collapse" href="#collapseOne"></i>
+                    <label style="color:#585050">Total Records :</label>
+                    <label style="color:blue"> {{currentslide}}</label>
+                    <label style="color:#585050"> of {{lbltotalrecordsslide}}</label>
                 </div>
-                <div class="col-lg-4" id="divviewedprofiles" style="display:block;">
+                <div class="col-lg-4" id="divviewedprofiles">
                     <div class="row" style="padding-top: 5px;">
                         <div class="col-lg-5">
                             Viewed &nbsp;&nbsp;<label id="lnkLastSlide" style="color: blue;">{{viewedcount}}&nbsp;&nbsp;</label><label>Profiles</label>
@@ -24,8 +23,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2" id="gotoSlideDiv" style="display:block;">
-                    <a id="lnkshortlistpopup" style="font-size: 18px;" href="javascript:void(0);" onclick="return mainShortListProfiles();"><span class="glyphicon glyphicon-star">ShowShortList</span></a>
+                <div class="col-lg-2" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">
+                    <a style="font-size: 18px;color:#337ab7" href="javascript:void(0);" onclick="return mainShortListProfiles();"><span class="glyphicon glyphicon-star">ShowShortList</span></a>
                 </div>
                 <div class="pull-right">
                     <md-button class="md-raised md-warn md-hue-2" ng-click="backtosearchpage()">Back to Search Page</md-button>
@@ -35,18 +34,18 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="row">
-                            <div id="divimgfrompic" class="col-lg-1" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">
-                                <img id="imgfrompic" style="display:block;height: 54px; width: 60px;" ng-src="{{personalobj.ApplicationProfilePic}}">
+                            <div class="col-lg-1" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">
+                                <img style="display:block;height: 54px; width: 60px;" ng-src="{{personalobj.ApplicationProfilePic}}">
                             </div>
 
                             <div class="col-lg-10">
                                 <label style="width: 150px;font-size: 13px;color: #000" ng-show="personalobj.Cust_ID==='' || personalobj.Cust_ID===null || personalobj.Cust_ID===undefined">
                                     Without Profile ID
                                 </label>
-                                <label id="lblNamefrom" style="color: black" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">{{personalobj.SelfName}}</label>
-                                <a id="lnkprofileidfrom" onclick="return ViewProfileWithID('lblhiddenprofileid');" href="javascript:void(0)" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">({{personalobj.ProfileID}})</a>
-                                <a id="lnkmorepopup" style="width: 20px; margin-right: 13px;" data-toggle="modal" href="#divlookingmore">More</a>
-                                <a id="lnkPatnerprefercencedata" onclick="return redirectpartner()" href="javascript:void(0)" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">Edit Partpreference</a>
+                                <label style="color: black" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">{{personalobj.SelfName}}</label>
+                                <a onclick="return ViewProfileWithID('lblhiddenprofileid');" href="javascript:void(0)" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">({{personalobj.ProfileID}})</a>
+                                <a style="width: 20px; margin-right: 13px;" data-toggle="modal" href="#divlookingmore">More</a>
+                                <a onclick="return redirectpartner()" href="javascript:void(0)" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">Edit Partpreference</a>
                             </div>
                         </div>
                     </div>

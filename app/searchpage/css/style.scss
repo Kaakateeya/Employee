@@ -1,3 +1,8 @@
+body {
+    background: #fff;
+    font-family: arial;
+}
+
 #generalsearchdiv {
     .search_page_main {
         max-width: 1160px;
@@ -132,5 +137,11 @@
     .modal-header {
         padding-top: 0px;
         padding-bottom: 10px;
+    }
+}
+
+#generalsearchdiv {
+    .pauseBtns {
+        text-align: center;
     }
 }

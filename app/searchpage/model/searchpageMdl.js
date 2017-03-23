@@ -23,22 +23,20 @@
         model.divcontrollsbind = 0;
         model.Relationshipname = "";
         model.relationshippopup = null;
+        model.typrofsearch = "1";
         model.returnnullvalue = function(value) {
             var obj = helpService.checkstringvalue(value) && (value.toString()) !== "0" && (value.toString()) !== 0 ? (value.toString()) : null;
             return obj;
         };
         model.arrayToString = function(string) {
-            return string !== null ? (string.split(',')).map(Number) : null;
+            return string !== null && string !== "" ? (string.split(',')).map(Number) : null;
         };
 
         model.profileidupdate = function(obj) {
-
             if (model.divcontrollsbind === 0) {
                 model.init();
-
             }
             searchpageServices.getPrimaryCustomerDataResponse(obj.ProfileIDpopup, model.empid).then(function(response) {
-                console.log(response);
                 if (response !== null && response.data !== undefined && response.data !== null && response.data !== "") {
                     var data = model.getpageloadobject = response.data;
                     model.Cust_ID = data.Cust_ID;
@@ -50,8 +48,8 @@
                     model.generalsearch.maritalstatus = model.arrayToString(data.maritalstatusid);
                     model.generalsearch.Religion = model.arrayToString(data.religionid);
                     model.generalsearch.mothertongue = model.arrayToString(data.MotherTongueID);
+                    model.Caste = [];
                     model.Caste = Commondependency.casteDepedency(model.generalsearch.Religion, model.generalsearch.mothertongue);
-                    model.generalsearch.caste = model.arrayToString(data.casteid);
                     model.generalsearch.country = model.arrayToString(data.CountryID);
                     model.generalsearch.educationcategory = model.arrayToString(data.EducationCategoryID);
                     model.generalsearch.Regionofbranches = model.arrayToString(data.Regions);
@@ -64,8 +62,6 @@
                     model.advancedsearch.advancedmaritalstatus = model.arrayToString(data.maritalstatusid);
                     model.advancedsearch.advancedReligion = model.arrayToString(data.religionid);
                     model.advancedsearch.advancedmothertongue = model.arrayToString(data.MotherTongueID);
-                    model.Caste = Commondependency.casteDepedency(model.advancedsearch.advancedReligion, model.advancedsearch.advancedmothertongue);
-                    model.advancedsearch.advancedcaste = model.arrayToString(data.casteid);
                     model.advancedsearch.Complexion = model.arrayToString(data.complexionid);
                     model.advancedsearch.advanededucationcategory = model.arrayToString(data.EducationCategoryID);
                     model.Educationgroup = Commondependency.educationGroupBind((model.advancedsearch.advanededucationcategory !== undefined && model.advancedsearch.advanededucationcategory !== null && model.advancedsearch.advanededucationcategory !== "") ? (model.advancedsearch.advanededucationcategory).toString() : "");
@@ -87,6 +83,10 @@
                     model.advancedsearch.Drink = model.arrayToString(data.Drink);
                     model.advancedsearch.advancedbodyType = model.arrayToString(data.BodyTypeID);
                     model.advancedsearch.advancedPhysicalStatus = model.arrayToString(data.physicalstatusid);
+                    timeout(function() {
+                        model.generalsearch.caste = model.arrayToString(data.casteid);
+                        model.advancedsearch.advancedcaste = model.arrayToString(data.casteid);
+                    }, 100);
 
                 }
                 alerts.dynamicpopupclose();
@@ -116,7 +116,6 @@
             model.Applicationstatus = getArray.GArray("Applicationstatus");
             model.Smoke = getArray.GArray("Smoke");
             model.Diet = getArray.GArray("Diet");
-
             model.generalsearch.Applicationstatus = model.arrayToString("54");
             model.generalsearch.Showprofile = model.arrayToString("1");
             model.generalsearch.mothertongue = model.arrayToString("1");
@@ -207,7 +206,11 @@
                 _.each(response.data, function(item) {
                     model.slideshowarray.push(item);
                 });
-                model.scope.$broadcast("generalsearchslide", model.slideshowarray, "general", model.getpageloadobject, frompage);
+                if (model.typrofsearch === "2") {
+                    model.scope.$broadcast("generalsearchslide", model.slideshowarray, "general", model.getpageloadobject, frompage);
+                } else {
+                    model.scope.$broadcast('submittablesearch', model.slideshowarray, frompage);
+                }
                 model.divcontrolls = false;
                 model.slideshowtrue = true;
             });
@@ -353,7 +356,12 @@
                 _.each(response.data, function(item) {
                     model.slideshowarray.push(item);
                 });
-                model.scope.$broadcast("generalsearchslide", model.slideshowarray, "advanced", model.getpageloadobject, frompage);
+
+                if (model.typrofsearch === "2") {
+                    model.scope.$broadcast("generalsearchslide", model.slideshowarray, "advanced", model.getpageloadobject, frompage);
+                } else {
+                    model.scope.$broadcast('submittablesearch', model.slideshowarray, frompage);
+                }
                 model.divcontrolls = false;
                 model.slideshowtrue = true;
             });

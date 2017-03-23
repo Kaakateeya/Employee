@@ -44,6 +44,7 @@ app.factory('commonpagecc', ['$uibModal', 'photoalubum', function(uibModal, phot
             modalpopupopenphoto.close();
         },
         pausePalyslide: function(type, id) {
+            debugger;
             if (type === 'play') {
                 $('#' + id).carousel({
                     interval: 2000,

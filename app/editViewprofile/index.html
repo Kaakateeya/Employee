@@ -1,58 +1,97 @@
 <div class="right_col" role="main">
-    <div class="search_page_main">
-        <h4 style="font-size: 18px;
+    <div class="">
+        <!--
+ <h4 style="font-size: 18px;
     color: #b10c0c;">Search Kaakateeya Customers</h4>
-        <br>
-        <div class="regmain">
-            <div class="row">
-                <div class="col-lg-7">
-                    <div class="clearfix">
-                        <label for="kmplProfileID" class="col-lg-4">KMPL ProfileID</label>
-                        <div class="col-lg-5">
-                            <input type="text" ng-model="page.model.obj.KmlProfileID" class="form-control">
-                        </div>
-                        <div class="col-lg-3">
-                            <md-button class="md-raised md-warn md-hue-2" ng-click="page.model.kmplSubmit(page.model.obj)">Go</md-button>
-                        </div>
-                    </div>
-                    <br/>
-                    <div class="clearfix">
-                        <label for="kmplProfileID" class="col-lg-4">Search By ProfileID / Name</label>
-                        <div class="col-lg-5">
-                            <input type="text" ng-model="page.model.obj.ProfileIDsearch" class="form-control">
-                        </div>
-                        <div class="col-lg-3">
-                            <md-button class="md-raised md-warn md-hue-2" ng-click="page.model.ViewAllsubmit(page.model.obj)">Submit</md-button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <div class="clearfix">
-                        <md-radio-group name="IsHighestDegree" layout="row" ng-model="page.model.obj.myVar" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                            <md-radio-button value="3" class="md-primary">Both</md-radio-button>
-                            <md-radio-button value="1"> Male </md-radio-button>
-                            <md-radio-button value="2"> Female </md-radio-button>
-                        </md-radio-group>
-                    </div> <br/>
-                    <div class="clearfix">
+    -->
 
-                        <label ng-repeat="role in page.model.profileidstatus">
+        <script type="text/ng-template" id="group-template.html">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
+                        <span uib-accordion-header>
+                        Search Kaakateeya Customers
+                      
+                        </span>
+                    </a>
+                </h4>
+            </div>
+            <div class="panel-collapse collapse" uib-collapse="!isOpen">
+                <div class="panel-body" style="text-align: right" ng-transclude></div>
+            </div>
+        </script>
+
+
+        <uib-accordion close-others="oneAtATime">
+            <div uib-accordion-group class="panel-default" template-url="group-template.html" is-open="page.model.opendiv">
+
+
+                <!--<ng-md-icon icon="keyboard_arrow_down" style="fill:#337ab7" size="20"></ng-md-icon>-->
+                <div class="row maindiv">
+                    <div class="col-lg-7">
+                        <div class="clearfix">
+                            <label for="kmplProfileID" class="col-lg-4">KMPL ProfileID</label>
+                            <div class="col-lg-5">
+                                <input type="text" ng-model="page.model.obj.KmlProfileID" class="form-control">
+                            </div>
+                            <div class="col-lg-3">
+                                <button class="btn btn-warning pull-left" ng-click="page.model.kmplSubmit(page.model.obj)">Go</button>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <label for="kmplProfileID" class="col-lg-4">Search By ProfileID / Name</label>
+                            <div class="col-lg-5">
+                                <input type="text" ng-model="page.model.obj.ProfileIDsearch" class="form-control">
+                            </div>
+                            <div class="col-lg-3">
+                                <button class="btn btn-warning pull-left" ng-click="page.model.ViewAllsubmit(page.model.obj)">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="clearfix">
+                            <md-radio-group name="IsHighestDegree" layout="row" ng-model="page.model.obj.myVar" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                <md-radio-button value="3" class="md-primary">Both</md-radio-button>
+                                <md-radio-button value="1"> Male </md-radio-button>
+                                <md-radio-button value="2"> Female </md-radio-button>
+                            </md-radio-group>
+                        </div>
+                        <div class="clearfix" style="text-align: left;">
+                            <label ng-repeat="role in page.model.profileidstatus">
                         <md-checkbox  data-checklist-model="page.model.obj.chkProfileIDsts" data-checklist-value="role.value"> {{role.name}}&nbsp;
                           </md-checkbox>
                        </label>
 
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <bootstrap-table btnclick="'true'" array="[]" id="ftable" removeobjs="['CustID','ReligionName','CasteID','MotherTongueName','GenderID','Email','MotherTongueID','ReligionID','ProfileEmpStatus','VerificationCode','FamilyID','ProfileStatusID','Age','Confidential']"
-                height="'400'" pagesize="'40'">
-            </bootstrap-table>
-
-        </div>
+        </uib-accordion>
+        <bootstrap-table expand="true" array="[]" id="ftable" removeobjs="['CustID','ReligionName','CasteID','MotherTongueName','GenderID','Email','MotherTongueID','ReligionID','ProfileEmpStatus','VerificationCode','FamilyID','ProfileStatusID','Age','Confidential']"
+            height="'600'" pagesize="'40'">
+        </bootstrap-table>
     </div>
 
 </div>
+
+
+
+<div class="container">
+    <h1>Sub Table</h1>
+    <p>Use <code>onExpandRow</code> event to handle your detail view.</p>
+    <table id="table" data-detail-view="true">
+        <thead>
+            <tr>
+                <th data-field="id">ID</th>
+                <th data-field="name">Item Name</th>
+                <th data-field="price">Item Price</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<script>
+</script>
 <style type="text/css">
     .paidCls {
         color: Green;
@@ -82,6 +121,62 @@
         border: solid 1px #ccc;
         border-radius: 5px;
         padding: 7px;
+    }
+    
+    .fixed-table-toolbar {
+        display: none;
+    }
+    
+    .maindiv {
+        line-height: 37px;
+    }
+    
+    input[type="text"],
+    textarea {
+        color: #000 !important;
+        border: 1px solid #ADA2A2 !important;
+    }
+    
+    .table>tbody>tr>td {
+        font-weight: normal;
+        font-family: 'Open Sans', sans-serif !important;
+        color: #000 !important;
+        font-size: 14px;
+    }
+    
+    .fixed-table-container {
+        border: 1px solid maroon;
+    }
+    
+    .panel-title {
+        color: #b10c0c;
+    }
+    
+    .panel-group {
+        margin-bottom: 0px;
+    }
+    
+    .btn-warning {
+        background-color: #E68A00;
+    }
+    
+    .fixed-table-container thead th .sortable,
+    .detail {
+        cursor: pointer;
+        background-position: right;
+        background-repeat: no-repeat;
+        padding-right: 30px;
+        background-color: rgba(183, 74, 12, 0.66);
+        color: #fffffF;
+    }
+    
+    .detail-view .fixed-table-container thead th .sortable {
+        background-color: rgba(99, 56, 31, 0.46);
+        color: #fff;
+    }
+    
+    .body {
+        color: #000;
     }
 </style>
 <script src="build/js/custom.js" type="text/javascript"></script>

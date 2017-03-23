@@ -24,7 +24,17 @@
                         SearchData: ProfileIDName
                     }
                 });
+            },
+
+            playbtnProfileData: function(profileid) {
+                return http.get(app.apiroot + 'CustomerPersonal/getProfileIDPlaybutton', {
+                    params: {
+                        ProfileID: profileid
+                    }
+                });
             }
+
+
         };
     }
     angular

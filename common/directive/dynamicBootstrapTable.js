@@ -8,13 +8,15 @@ app.directive("bootstrapTable", ['commonpage', '$timeout',
                 height: '=',
                 pagesize: '=',
                 loadtype: '=',
-                btnclick: '=',
-                IDs: '='
+                IDs: '=',
+                expand: '='
             },
             templateUrl: "templates/dynamicBootstrapTable.html",
             link: function(scope, element, attrs) {
                 var rem = scope.removeobjs;
                 scope.Datatableshow = true;
+                scope.dynamictableshow = false;
+                scope.tablebtnshow = false;
                 var table = '';
                 debugger;
                 // attrs.id = scope.IDs;
@@ -22,7 +24,6 @@ app.directive("bootstrapTable", ['commonpage', '$timeout',
 
                 scope.appendID = '';
                 table = $('#' + scope.ID + ' .Datatable');
-                scope.btnclicktruefalse = scope.btnclick === 'true' ? true : false;
                 var tableArray = scope.array;
                 scope.Datatableshow = true;
                 var datatbaleoptions = {
@@ -37,7 +38,6 @@ app.directive("bootstrapTable", ['commonpage', '$timeout',
                     showHeader: true,
                     showPaginationSwitch: true,
                     showToggle: true,
-                    detailView: false,
                     onlyInfoPagination: false,
                     striped: false,
                     showColumns: true,
@@ -56,8 +56,11 @@ app.directive("bootstrapTable", ['commonpage', '$timeout',
                     fixedColumns: true,
                     fixedNumber: 1,
                     showMultiSort: true,
-                    pageSize: "10"
+                    pageSize: "10",
+                    detailView: scope.expand === true ? true : false,
+                    onExpandRow: playbuttonexpand
                 };
+                var cells = 8;
 
                 function rowStyle() {
                     return false;
@@ -72,6 +75,9 @@ app.directive("bootstrapTable", ['commonpage', '$timeout',
                     return html.join('');
                 }
 
+                function playbuttonexpand(index, row, $detail) {
+                    commonpage.buildTable($detail.html('<table></table>').find('table'), row.ProfileID);
+                }
                 scope.BootstrapTableLoad = function() {
                     datatbaleoptions.height = scope.height || 650;
                     datatbaleoptions.pageSize = scope.pagesize || 10;
@@ -81,6 +87,7 @@ app.directive("bootstrapTable", ['commonpage', '$timeout',
                     $table = $('#ID');
                     $table.bootstrapTable(datatbaleoptions);
                     $table.bootstrapTable('load', tableArray);
+
                     return false;
                 };
 
@@ -109,9 +116,22 @@ app.directive("bootstrapTable", ['commonpage', '$timeout',
                 });
 
                 scope.$on('submittable', function(event, array, frompage) {
+                    scope.tablebtnshow = false;
+                    scope.dynamictableshow = true;
                     tableArray = array;
                     scope.BootstrapTableLoad(array);
                 });
+                scope.$on('submittablesearch', function(event, array, frompage) {
+                    scope.tablebtnshow = true;
+                    scope.dynamictableshow = true;
+                    tableArray = array;
+                    scope.BootstrapTableLoad(array);
+                });
+
+                scope.backtosearchpage = function() {
+                    scope.dynamictableshow = false;
+                    scope.$emit("backsearchshowcontrols");
+                };
             }
 
         };

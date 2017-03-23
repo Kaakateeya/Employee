@@ -43,6 +43,7 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                 scope.typeofslidedate = "";
                 scope.dynamicslideshow = scope.nghide !== undefined && scope.nghide !== "" ? scope.nghide : true;
                 scope.displayArray = function(arr, frompage) {
+                    console.log(arr);
                     if (frompage === 1) {
                         scope.arraydata = [];
                     }
@@ -75,14 +76,40 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                         scope.data.push({ label: 'Father Native', value: item.FFNative });
                         scope.data.push({ label: 'Mother Native', value: item.MFNative });
                         scope.data.push({ label: 'Property(Lakhs)', value: item.Property });
-                        scope.data.push({ label: 'backendFields', Custid: item.Cust_ID, ProfileID: item.ProfileID, PhotoCount: item.PhotoCount, Age: item.Age, HeightInCentimeters: item.HeightInCentimeters, MaritalStatusID: item.MaritalStatusID, CasteID: item.CasteID, serviceDate: item.serviceDate, CustPhoto: item.CustomerFullPhoto, totalrecords: item.TotalRowsKeyword });
+                        scope.data.push({
+                            label: 'backendFields',
+                            Custid: item.Cust_ID,
+                            ProfileID: item.ProfileID,
+                            PhotoCount: item.PhotoCount,
+                            Age: item.Age,
+                            HeightInCentimeters: item.HeightInCentimeters,
+                            MaritalStatusID: item.MaritalStatusID,
+                            CasteID: item.CasteID,
+                            serviceDate: item.serviceDate,
+                            CustPhoto: item.CustomerFullPhoto,
+                            totalrecords: item.TotalRowsKeyword
+                        });
                         if (item.serviceDate != "--" && item.serviceDate !== "" && item.serviceDate !== null)
                             scope.data.push({ label: 'ServiceDate', value: item.serviceDate, style: 'style= color:red;' });
                         if (item.Intercaste == "True")
                             scope.data.push({ label: 'Intercaste', value: (item.fathercaste + "/" + item.mothercaste) });
                         if (item.ProfileGrade !== 0)
                             scope.data.push({ label: 'ProfileGrade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
-                        scope.arraydata.push({ itmArr: scope.data, custPhoto: item.CustomerFullPhoto, Custid: item.Cust_ID });
+                        //  if (item.Fromstatus != "--" && item.Fromstatus !== "" && item.Fromstatus !== null)
+                        // scope.data.push({ label: 'From status', value: "proceed", style: 'style= color:red;' });
+                        //  if (item.Tostatus != "--" && item.Tostatus !== "" && item.Tostatus !== null)
+                        // scope.data.push({ label: 'To status', value: "Dont proceed", style: 'style= color:red;' });
+                        // if (item.TicketID != "--" && item.TicketID !== "" && item.TicketID !== null)
+                        //  scope.data.push({ label: 'TicketID', value: "KAK76768877867", style: 'style= color:red;' });
+                        scope.arraydata.push({
+                            itmArr: scope.data,
+                            custPhoto: item.CustomerFullPhoto,
+                            Custid: item.Cust_ID,
+                            proceedstatusfrom: "proceed",
+                            proceedstatusto: "Dont proceed",
+                            Tickid: "KAK7676887",
+                            PhotoCount: item.PhotoCount
+                        });
                     });
                     return scope.arraydata;
                 };
