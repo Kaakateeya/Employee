@@ -101,4 +101,16 @@ body {
 #generalsearchdiv .pauseBtns {
   text-align: center; }
 
+.sidenav1 {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: maroon;
+  width: 130px; }
+
+#mystylename {
+  position: fixed;
+  bottom: 0;
+  right: 0; }
+
 /*# sourceMappingURL=style.css.map */

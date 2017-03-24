@@ -31,7 +31,7 @@
                 var gridArray = [];
                 if (response.data !== undefined && response.data !== "" && response.data !== null && response.data.length > 0) {
                     model.opendiv = false;
-                    debugger;
+
                     _.map(JSON.parse(response.data[0]), function(item) {
                         gridArray.push({
                             'ProfileID': item.ProfileID,

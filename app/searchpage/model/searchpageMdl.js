@@ -24,6 +24,9 @@
         model.Relationshipname = "";
         model.relationshippopup = null;
         model.typrofsearch = "1";
+        model.sidebarnavshow = true;
+        model.mySidenavdiv = false;
+        model.mystylenamediv = true;
         model.returnnullvalue = function(value) {
             var obj = helpService.checkstringvalue(value) && (value.toString()) !== "0" && (value.toString()) !== 0 ? (value.toString()) : null;
             return obj;
@@ -36,9 +39,11 @@
             if (model.divcontrollsbind === 0) {
                 model.init();
             }
+            model.sidebarnavshow = false;
             searchpageServices.getPrimaryCustomerDataResponse(obj.ProfileIDpopup, model.empid).then(function(response) {
                 if (response !== null && response.data !== undefined && response.data !== null && response.data !== "") {
                     var data = model.getpageloadobject = response.data;
+                    console.log(model.getpageloadobject);
                     model.Cust_ID = data.Cust_ID;
                     model.generalsearch.gender = data.GenderID;
                     model.generalsearch.generalAgefrom = data.AgeMin;
@@ -221,6 +226,7 @@
             if (model.divcontrollsbind === 0) {
                 model.init();
             }
+            model.sidebarnavshow = true;
             alerts.dynamicpopupclose();
         };
         model.submitadvancedsearch = function(object, frompage, topage) {
@@ -389,6 +395,18 @@
                     model.popupLastName = Relationships[0].LastName;
                 }
             });
+        };
+        model.showdivsidenav = function(flag) {
+            switch (flag) {
+                case "mySidenav":
+                    model.mySidenavdiv = true;
+                    model.mystylenamediv = false;
+                    break;
+                case "mystylename":
+                    model.mySidenavdiv = false;
+                    model.mystylenamediv = true;
+                    break;
+            }
         };
         return model;
     }

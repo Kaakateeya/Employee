@@ -860,6 +860,49 @@
            ]" height="'400'" pagesize="'40'">
         </bootstrap-table>
     </div>
+    <div ng-hide="page.model.sidebarnavshow">
+        <div id="mySidenav" class="sidenav1 col-lg-1" ng-hide="page.model.mySidenavdiv" style="z-index: 9999;">
+            <div class="clearfix"></div>
+            <br>
+            <div class="row">
+                <div class="col-lg-8"><a href="javascript:void(0);" id="lnkprofileId2" style="color: white;">{{page.model.getpageloadobject.ProfileID}}</a></div>
+
+                <div class="pull-right">
+
+                    <a href="javascript:void(0)" ng-click="page.model.showdivsidenav('mySidenav')" style="color: white;font-size: 20px;"> <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <br>
+        </div>
+        <div id="mystylename" ng-hide="page.model.mystylenamediv" style="background-color: maroon; z-index: 9999;" class="col-lg-2">
+            <div class="clearfix"></div>
+            <br>
+            <div class="row col-lg-offset-1">
+                <div class="col-lg-8"><a href="javascript:void(0);" onclick="return viewfullprofile();" id="lnkprofileId" style="color: white;">{{page.model.getpageloadobject.ProfileID}}</a></div>
+                <div class="pull-right">
+                    <a href="javascript:void(0)" ng-click="page.model.showdivsidenav('mystylename')" style="color: white;font-size: 20px;"> <i class="fa fa-minus-circle" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <br>
+            <div class="row  col-lg-offset-1" id="selfimage"><img id="IMasterpic" ng-src="{{page.model.getpageloadobject.ThumbNailProfilePic}}"></div>
+            <div class="row  col-lg-offset-1">
+                <label class="" style="color: white;" id="selfName">{{page.model.getpageloadobject.SelfName}}</label>
+            </div>
+            <div class="row  col-lg-offset-1">
+                <label class="" style="color: white;" id="selfAge">{{page.model.getpageloadobject.SelfAge}}</label>
+            </div>
+
+            <div class="row  col-lg-offset-1">
+                <label class="" style="color: white;" id="SelfHeight">{{page.model.getpageloadobject.Selfheight}}</label>
+            </div>
+
+            <div class="row  col-lg-offset-1">
+                <label class="" style="color: white;" id="selfeducation"></label>
+            </div>
+        </div>
+    </div>
     <script type="text/ng-template" id="profileidpopupsubmit.html">
         <div class="modal-header">
             <h4 class="modal-title popupheaderclass" id="headername">{{page.model.searchpopuptext}}</h4>
