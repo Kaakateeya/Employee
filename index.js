@@ -19,7 +19,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { name: 'dashboard', url: '/dashboardpage', isloginrequired: true },
             { name: 'login', url: '/', isloginrequired: false },
             { name: 'searchpage', url: '/search/:id', isloginrequired: true },
-            { name: 'editViewprofile', url: '/editViewprofileurl', isloginrequired: false }
+            { name: 'editViewprofile', url: '/editViewprofileurl', isloginrequired: false },
+            { name: 'EmployeePayment', url: '/EmployeePayments', isloginrequired: false },
+            { name: 'EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID', isloginrequired: false }
         ];
         $ocLazyLoadProvider.config({
             debug: true

@@ -19,10 +19,10 @@ app.factory('commonpage', ['$uibModal', 'editViewprofileservice',
             return paid;
         };
 
-        // operateFormatter = function(value, row, index) {
-        //     var paid = "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.ProfileID + "'>" + row.ProfileID + "</a>";
-        //     return paid;
-        // };
+        paymentProfileID = function(value, row, index) {
+            var paid = "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.paymentProfileID + "'>" + row.paymentProfileID + "</a>";
+            return paid;
+        };
         ViewContact = function(value, row, index) {
             var paid = "<a style='cursor:pointer;'  href='/Contact/" + row.CustID + "'>View Conatact</a>";
             return paid;
@@ -67,6 +67,10 @@ app.factory('commonpage', ['$uibModal', 'editViewprofileservice',
                         obj.formatter = ViewTicket;
                     } else if (item == 'viewprofileProfileid') {
                         obj.formatter = ViewProfile;
+                        obj.field = "ProfileID";
+                        obj.title = "ProfileID";
+                    } else if (item == 'paymentProfileID') {
+                        obj.formatter = paymentProfileID;
                         obj.field = "ProfileID";
                         obj.title = "ProfileID";
                     }

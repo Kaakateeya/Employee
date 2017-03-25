@@ -2,6 +2,8 @@
 // bootstrap - multiselect: 0.9 .6
 //var statticdata = require('./staticArrayBindings.json');
 app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', '$timeout', function(cons, service, timeout) {
+
+
     return {
         require: 'ng-model',
         scope: {
@@ -13,8 +15,10 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
             scope.options = [];
 
             scope.databind = function(data) {
+
                 timeout(function() {
                     scope.status = 'multiple' in attrs;
+
                     if (scope.status === true && data[0] !== undefined && angular.lowercase(data[0].title) === '--select--') {
                         data.splice(0, 1);
                     }

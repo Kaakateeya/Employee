@@ -97,26 +97,35 @@
                 alerts.dynamicpopupclose();
             });
         };
+
+
+        model.removeSelect = function(Arr) {
+            if (Arr.length > 0 && angular.lowercase(Arr[0].title) === '--select--') {
+                Arr.splice(0, 1);
+            }
+            return Arr;
+        };
+
         model.init = function() {
             model.divcontrollsbind = 1;
-            model.maritalstatus = arrayConstants.MaritalStatus;
-            model.Religion = arrayConstants.Religion;
-            model.Mothertongue = arrayConstants.Mothertongue;
-            model.visastatus = arrayConstants.visastatus;
-            model.stars = arrayConstants.stars;
+            model.maritalstatus = model.removeSelect(arrayConstants.MaritalStatus);
+            model.Religion = model.removeSelect(arrayConstants.Religion);
+            model.Mothertongue = model.removeSelect(arrayConstants.Mothertongue);
+            model.visastatus = model.removeSelect(arrayConstants.visastatus);
+            model.stars = model.removeSelect(arrayConstants.stars);
             model.Country = getArray.GArray('Country');
             model.Professiongroup = getArray.GArray('ProfGroup');
-            model.educationcategory = arrayConstants.educationcategorywithoutselect;
+            model.educationcategory = model.removeSelect(arrayConstants.educationcategorywithoutselect);
             model.currency = getArray.GArray('currency');
-            model.Complexion = arrayConstants.Complexion;
-            model.Professionsearch = arrayConstants.Professionsearch;
-            model.Regionofbranches = arrayConstants.Regionofbranches;
-            model.starLanguage = arrayConstants.starLanguage;
-            model.bodyType = arrayConstants.bodyType;
-            model.PhysicalStatus = arrayConstants.PhysicalStatus;
-            model.Membershiptype = arrayConstants.Membershiptype;
+            model.Complexion = model.removeSelect(arrayConstants.Complexion);
+            model.Professionsearch = model.removeSelect(arrayConstants.Professionsearch);
+            model.Regionofbranches = model.removeSelect(arrayConstants.Regionofbranches);
+            model.starLanguage = model.removeSelect(arrayConstants.starLanguage);
+            model.bodyType = model.removeSelect(arrayConstants.bodyType);
+            model.PhysicalStatus = model.removeSelect(arrayConstants.PhysicalStatus);
+            model.Membershiptype = model.removeSelect(arrayConstants.Membershiptype);
             model.ProfessionCategory = getArray.GArray('ProfCatgory');
-            model.Showprofile = arrayConstants.Showprofile;
+            model.Showprofile = model.removeSelect(arrayConstants.Showprofile);
             model.BranchName = getArray.GArray('BranchName');
             model.Applicationstatus = getArray.GArray("Applicationstatus");
             model.Smoke = getArray.GArray("Smoke");

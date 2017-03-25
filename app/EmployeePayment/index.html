@@ -1,0 +1,29 @@
+<div class="right_col" role="main">
+
+    <div class="search_page_main">
+        <h4 style="font-size: 18px;
+    color: #b10c0c;">Search Membership Package</h4>
+        <br>
+        <div class="regmain">
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="profileid" class="control-label pull-right">ProfileID</label>
+                </div>
+                <div class="col-lg-3">
+                    <input type="text" ng-model="page.model.txtProfileID" class="form-control">
+                </div>
+                <div class="col-lg-4">
+                    <button class="btn btn-danger" ng-click="page.model.EmployeePayment(page.model.txtProfileID)">Go</button>
+                </div>
+            </div>
+            <div>
+                <bootstrap-table btnclick="'true'" array="[]" id="ftable" height="'400'" pagesize="'40'">
+                </bootstrap-table>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

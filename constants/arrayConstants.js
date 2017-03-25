@@ -1,5 +1,6 @@
 app.constant('arrayConstants', {
     'MaritalStatus': [
+        { "label": "--select--", "title": "--select--", "value": "" },
         { "label": "Unmarried", "title": "Unmarried", "value": 43 },
         { "label": "Divorce", "title": "Divorce", "value": 44 },
         { "label": "Widow/Widower", "title": "Widow/Widower", "value": 45 },
@@ -48,6 +49,7 @@ app.constant('arrayConstants', {
         { "label": "7'2 in - 218 cms", "title": "7'2 in - 218 cms", "value": 39 }
     ],
     "Religion": [
+        { "label": "--select--", "title": "--select--", "value": "" },
         { "label": "Hindu", "title": "Hindu", "value": 1 },
         { "label": "Christian", "title": "Christian", "value": 2 },
         { "label": "Muslim", "title": "Muslim", "value": 3 },
@@ -57,6 +59,7 @@ app.constant('arrayConstants', {
         { "label": "ROMAN CATHOLIC", "title": "ROMAN CATHOLIC", "value": 16 }
     ],
     "Mothertongue": [
+        { "label": "--select--", "title": "--select--", "value": "" },
         { "label": "Telugu", "title": "Telugu", "value": 1 },
         { "label": "Tamil", "title": "Tamil", "value": 2 },
         { "label": "Kannada", "title": "Kannada", "value": 3 },
@@ -106,6 +109,7 @@ app.constant('arrayConstants', {
         { "label": "Other", "title": "Other", "value": 22 }
     ],
     "educationcategorywithoutselect": [
+        { "label": "--select--", "title": "--select--", "value": "" },
         { "label": "Bachelors in Engineering", "title": "Bachelors in Engineering", "value": 1 },
         { "label": "Bachelors in Degree", "title": "Bachelors in Degree", "value": 2 },
         { "label": "Diploma", "title": "Diploma", "value": 3 },
@@ -121,6 +125,7 @@ app.constant('arrayConstants', {
         { "label": "Other", "title": "Other", "value": 22 }
     ],
     "visastatus": [
+        { "label": "--select--", "title": "--select--", "value": "" },
         { "label": "Student Visa", "title": "Student Visa", "value": 284 },
         { "label": "Work Permit", "title": "Work Permit", "value": 285 },
         { "label": "Temporary Visa", "title": "Temporary Visa", "value": 286 },
@@ -129,6 +134,7 @@ app.constant('arrayConstants', {
         { "label": "Green Card", "title": "Green Card", "value": 553 }
     ],
     "stars": [
+        { "label": "--select--", "title": "--select--", "value": "" },
         { "label": "Bharani", "title": "Bharani", "value": 2 },
         { "label": "Krithika", "title": "Krithika", "value": 3 },
         { "label": "Rohini", "title": "Rohini", "value": 4 },
@@ -218,6 +224,7 @@ app.constant('arrayConstants', {
 
     ],
     'bodyType': [
+        { "label": "--select--", "title": "--select--", "value": "" },
         { "label": "Athletic", "title": "Athletic", "value": 21 },
         { "label": "Average", "title": "Average", "value": 22 },
         { "label": "Slim", "title": "Slim", "value": 23 },
@@ -299,6 +306,7 @@ app.constant('arrayConstants', {
 
     ],
     'starLanguage': [
+        { "label": "--select--", "title": "--select--", "value": "" },
         { "label": "Telugu", "title": "Telugu", "value": 1 },
         { "label": "Tamil", "title": "Tamil", "value": 2 },
         { "label": "Kannada", "title": "Kannada", "value": 3 },
@@ -385,6 +393,7 @@ app.constant('arrayConstants', {
     ],
     'Upgrade': "Upgrade online Membership",
     'Complexion': [
+        { "label": "--select--", "title": "--select--", "value": "" },
         { "label": "Very Fair", "title": "Very Fair", "value": 17 },
         { "label": "Fair", "title": "Fair", "value": 18 },
         { "label": "Medium", "title": "Medium", "value": 19 },
@@ -393,23 +402,25 @@ app.constant('arrayConstants', {
     ],
 
     'Professionsearch': [
+        { "label": "--select--", "title": "--select--", "value": "" },
         { "label": "Employed", "title": "Employed", "value": 1 },
         { "label": "Business", "title": "Business", "value": 2 },
         { "label": "UnEmployed", "title": "UnEmployed", "value": 3 }
 
     ],
     'Regionofbranches': [
+        { "label": "--select--", "title": "--select--", "value": "" },
         { "label": "AP", "title": "AP", "value": 408 },
         { "label": "TN", "title": "TN", "value": 409 },
         { "label": "KT", "title": "KT", "value": 410 }
     ],
     'PhysicalStatus': [
-
+        { "label": "--select--", "title": "--select--", "value": "" },
         { "label": "Normal", "title": "Normal", "value": 25 },
         { "label": "Physically Challenged", "title": "Physically Challenged", "value": 26 }
     ],
     'Membershiptype': [
-
+        { "label": "--select--", "title": "--select--", "value": "" },
         { "label": "Paid Member", "title": "Paid Member", "value": 1 },
         { "label": "Free Member", "title": "Free Member", "value": 0 }
     ],
