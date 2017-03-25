@@ -98,6 +98,9 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
                     HighConfendential: ""
                 }
             });
+        },
+        forgotpasswordemail: function(emailorprofileid) {
+            return http.get(app.apiroot + 'StaticPages/getForgotPassword', { params: { Username: emailorprofileid } });
         }
     };
 }]);

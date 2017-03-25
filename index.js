@@ -21,7 +21,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { name: 'searchpage', url: '/search/:id', isloginrequired: true },
             { name: 'editViewprofile', url: '/editViewprofileurl', isloginrequired: false },
             { name: 'EmployeePayment', url: '/EmployeePayments', isloginrequired: false },
-            { name: 'EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID', isloginrequired: false }
+            { name: 'EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID', isloginrequired: false },
+            { name: 'bootstrapTable', url: '/bootstrapTables', isloginrequired: false }
         ];
         $ocLazyLoadProvider.config({
             debug: true

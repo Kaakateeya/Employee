@@ -1,0 +1,186 @@
+<div class="right_col">
+    <!--<div class="bootstrap-table">
+        <div class="fixed-table-toolbar">
+            <div id="bootstraptableshowoptions" class="columns columns-right btn-group pull-right bootstro"><button class="btn btn-default" type="button" name="paginationSwitch" title="Hide/Show pagination"><i class="glyphicon glyphicon-collapse-down icon-chevron-down"></i></button><button class="btn btn-default" type="button" name="toggle" title="Toggle"><i class="glyphicon glyphicon-list-alt icon-list-alt"></i></button>
+                <div class="keep-open btn-group" title="Columns"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-th icon-th"></i> <span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><label><input type="checkbox" data-field="ProfileID" value="0" checked="checked"> ProfileID</label></li>
+                        <li><label><input type="checkbox" data-field="Last Name" value="1" checked="checked"> Last Name</label></li>
+                        <li><label><input type="checkbox" data-field="First Name" value="2" checked="checked"> First Name</label></li>
+                        <li><label><input type="checkbox" data-field="Caste" value="3" checked="checked"> Caste</label></li>
+                        <li><label><input type="checkbox" data-field="ProfileOwner" value="4" checked="checked"> ProfileOwner</label></li>
+                        <li><label><input type="checkbox" data-field="Height" value="5" checked="checked"> Height</label></li>
+                        <li><label><input type="checkbox" data-field="Login" value="6" checked="checked"> Login</label></li>
+                        <li><label><input type="checkbox" data-field="Education" value="7" checked="checked"> Education</label></li>
+                        <li><label><input type="checkbox" data-field="Profession" value="8" checked="checked"> Profession</label></li>
+                        <li><label><input type="checkbox" data-field="DOB" value="9" checked="checked"> DOB</label></li>
+                    </ul>
+                </div>
+                <div class="export btn-group"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button" style="height: 34px;"><img src="src/images/EXCEL.jpg"> <span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li data-type="excel"><a href="javascript:void(0)">MS-Excel</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="Bootstraptablesearch" class="pull-right search bootstro"><input class="form-control" type="text" placeholder="Search"></div>
+        </div>
+        <div class="fixed-table-container" style="height: 473px; padding-bottom: 40px;">
+            <div class="fixed-table-header" style="margin-right: 0px;">
+                <table class="Datatable table table-hover" style="width: 1126px;">
+                    <thead>
+                        <tr>
+                            <th class="detail" rowspan="1">
+                                <div class="fht-cell" style="width: 30px;"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="ProfileID" tabindex="0">
+                                <div class="th-inner sortable both">ProfileID</div>
+                                <div class="fht-cell" style="width: 90px;"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="Last Name" tabindex="0">
+                                <div class="th-inner sortable both">Last Name</div>
+                                <div class="fht-cell" style="width: 102px;"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="First Name" tabindex="0">
+                                <div class="th-inner sortable both">First Name</div>
+                                <div class="fht-cell" style="width: 103px;"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="Caste" tabindex="0">
+                                <div class="th-inner sortable both">Caste</div>
+                                <div class="fht-cell" style="width: 102px;"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="ProfileOwner" tabindex="0">
+                                <div class="th-inner sortable both">ProfileOwner</div>
+                                <div class="fht-cell" style="width: 114px;"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="Height" tabindex="0">
+                                <div class="th-inner sortable both">Height</div>
+                                <div class="fht-cell" style="width: 119px;"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="Login" tabindex="0">
+                                <div class="th-inner sortable both">Login</div>
+                                <div class="fht-cell" style="width: 70px;"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="Education" tabindex="0">
+                                <div class="th-inner sortable both">Education</div>
+                                <div class="fht-cell" style="width: 102px;"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="Profession" tabindex="0">
+                                <div class="th-inner sortable both">Profession</div>
+                                <div class="fht-cell" style="width: 152px;"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="DOB" tabindex="0">
+                                <div class="th-inner sortable both">DOB</div>
+                                <div class="fht-cell" style="width: 132px;"></div>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="fixed-table-body">
+                <div class="fixed-table-loading" style="top: 41px;">Loading, please wait...</div>
+                <table class="Datatable table table-hover" id="ID" style="margin-top: -40px;">
+                    <thead>
+                        <tr>
+                            <th class="detail" rowspan="1">
+                                <div class="fht-cell"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="ProfileID" tabindex="0">
+                                <div class="th-inner sortable both">ProfileID</div>
+                                <div class="fht-cell"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="Last Name" tabindex="0">
+                                <div class="th-inner sortable both">Last Name</div>
+                                <div class="fht-cell"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="First Name" tabindex="0">
+                                <div class="th-inner sortable both">First Name</div>
+                                <div class="fht-cell"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="Caste" tabindex="0">
+                                <div class="th-inner sortable both">Caste</div>
+                                <div class="fht-cell"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="ProfileOwner" tabindex="0">
+                                <div class="th-inner sortable both">ProfileOwner</div>
+                                <div class="fht-cell"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="Height" tabindex="0">
+                                <div class="th-inner sortable both">Height</div>
+                                <div class="fht-cell"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="Login" tabindex="0">
+                                <div class="th-inner sortable both">Login</div>
+                                <div class="fht-cell"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="Education" tabindex="0">
+                                <div class="th-inner sortable both">Education</div>
+                                <div class="fht-cell"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="Profession" tabindex="0">
+                                <div class="th-inner sortable both">Profession</div>
+                                <div class="fht-cell"></div>
+                            </th>
+                            <th style="width: 102px;" data-field="DOB" tabindex="0">
+                                <div class="th-inner sortable both">DOB</div>
+                                <div class="fht-cell"></div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-index="0">
+                            <td><a class="detail-icon" href="javascript:"><i class="glyphicon glyphicon-plus icon-plus"></i></a></td>
+                            <td style="width: 91px;"><a style="cursor:pointer;" href="/Education/111169">011111692- </a></td>
+                            <td style="width:103px">sasss</td>
+                            <td style="width: 103px;">sasass</td>
+                            <td style="width: 102px;">Muslim</td>
+                            <td style="width: 114px;"><span style="color:red;">-------</span><img style="cursor:pointer;" src=""></td>
+                            <td style="width: 119px;">Not Specified</td>
+                            <td style="width: 70px;">Allow</td>
+                            <td style="width: 102px;">Not Specified</td>
+                            <td style="width: 152px;">Not Specified</td>
+                            <td style="width: 132px;">02-Mar-1997( 20)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="fixed-table-footer" style="display: none;">
+                <table>
+                    <tbody>
+                        <tr></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="fixed-table-pagination" style="width: 102px;">
+                <div class="pull-left pagination-detail"><span class="pagination-info">Showing 1 to 10 of 10 rows</span><span class="page-list" style="display: none;"><span class="btn-group dropup"><button type="button" class="btn btn-default  dropdown-toggle" data-toggle="dropdown"><span class="page-size">40</span>                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu" style="height:100px;">
+                        <li><a href="javascript:void(0)" class="Droppage">10</a></li>
+                        <li><a href="javascript:void(0)" class="Droppage">50</a></li>
+                    </ul>
+                    </span> records per page</span>
+                </div>
+                <div class="pull-right pagination" style="display: none;">
+                    <ul class="pagination">
+                        <li class="page-pre"><a href="javascript:void(0)">Previous</a></li>
+                        <li class="page-number active"><a href="javascript:void(0)">1</a></li>
+                        <li class="page-next"><a href="javascript:void(0)">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <table class="Datatable table table-hover table-bordered table-responsive" style="min-width: 750px;">
+        <thead>
+            <tr>
+                <th ng-repeat="item in page.model.columns">{{item.key}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="inneritem in page.model.data">
+                <td ng-repeat="colitem in page.model.columns">
+                    <span ng-if="colitem.type==='label'"> {{inneritem[colitem.key]}}</span>
+                    <a href="#" ng-if="colitem.type ==='link'" ng-click="page.model[colitem.method]">{{inneritem[colitem.key]}}</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

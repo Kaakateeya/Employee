@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function factory($http, dashboardServices, uibModal, authSvc) {
+    function factory($http, dashboardServices, uibModal, authSvc, helperservice) {
         var model = {};
         var flag = 0;
         model.frompage = 6;
@@ -68,10 +68,17 @@
                 model.tabledata(model.empid, model.empBranchID, 1, 5, '', 'pageload', undefined, 0);
             }
         };
+
+        model.forgetpassword = function(usernamepassword) {
+            helperservice.forgotpassword(usernamepassword).then(function(response) {
+                console.log(response.data);
+
+            });
+        };
         return model;
     }
     angular
         .module('Kaakateeya')
         .factory('dashboardModel', factory);
-    factory.$inject = ['$http', 'dashboardServices', '$uibModal', 'authSvc'];
+    factory.$inject = ['$http', 'dashboardServices', '$uibModal', 'authSvc', 'helperservice'];
 })(angular);

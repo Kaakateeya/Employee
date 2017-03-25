@@ -1,6 +1,6 @@
-app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubum',
+app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubum', 'SelectBindServiceApp',
 
-    function(uibModal, commonpage, timeout, photoalubum) {
+    function(uibModal, commonpage, timeout, photoalubum, SelectBindServiceApp) {
         return {
             restrict: "E",
             scope: {
@@ -109,6 +109,7 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                             proceedstatusto: item.OppStatus,
                             Tickid: item.TicketID,
                             PhotoCount: item.PhotoCount
+
                         });
                     });
                     return scope.arraydata;
@@ -160,7 +161,8 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                             mobilestatus: item.CNumberVerStatus,
                             emailstatus: item.CEmailVerStatus,
                             UserName: item.UserName,
-                            Reason4InActive: item.Reason4InActive
+                            Reason4InActive: item.Reason4InActive,
+                            ProfileID: item.ProfileID
                         });
                     });
                     return scope.arraydata;
@@ -352,8 +354,14 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                     scope.$emit("backsearchshowcontrols");
 
                 };
-
-
+                scope.forgetpassword = function(usernamepassword) {
+                    SelectBindServiceApp.forgotpasswordemail(usernamepassword).then(function(response) {
+                        console.log(response.data);
+                        if (response.data === 1) {
+                            alert('Mail sent to your email, To reset your password check your mail');
+                        }
+                    });
+                };
             }
         };
     }

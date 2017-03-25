@@ -147,7 +147,7 @@
                                         <h5>
                                             <div style="color:Black;">
                                                 <span ng-if='(itemval.lastlogin !== null) && (itemval.lastlogin !== "") && (itemval.lastlogin !== undefined)'>{{itemval.lastlogin}}</span>
-                                                <a class="alllinkscolor" ng-if='(itemval.lastlogin === null)|| (itemval.lastlogin === "") || (itemval.lastlogin === undefined)' href='javascript:void(0)' ng-click='forgetpassword()'>forgot password</a>
+                                                <a class="alllinkscolor" ng-if='(itemval.lastlogin === null)|| (itemval.lastlogin === "") || (itemval.lastlogin === undefined)' href='javascript:void(0)' ng-click='forgetpassword(itemval.ProfileID)'>forgot password</a>
                                             </div>
                                             <div class="clearfix">
                                             </div>
