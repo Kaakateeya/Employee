@@ -23,16 +23,17 @@ app.factory('commonpage', ['$uibModal', 'editViewprofileservice',
             var paid = "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.paymentProfileID + "'>" + row.paymentProfileID + "</a>";
             return paid;
         };
+
         ViewContact = function(value, row, index) {
             var paid = "<a style='cursor:pointer;'  href='/Contact/" + row.CustID + "'>View Conatact</a>";
             return paid;
         };
         viewSa = function(value, row, index) {
-            var paid = "<a style='cursor:pointer;'  href='javascript:void(0);' onclick='showAndBindPopup();'>View</a>";
+            var paid = "<a style='cursor:pointer;'  href='javascript:void(0);' onclick='showAndBindPopup('" + row.Settle + "');'>View</a>";
             return paid;
         };
         ViewHoro = function(value, row, index) {
-            var paid = "<a style='cursor:pointer;'  href='javascript:void(0);'>View</a>";
+            var paid = row.HoroPhotoName.indexOf('Horo_no.jpg') !== -1 ? "View" : "<a style='cursor:pointer;'  href='javascript:void(0);' onclick='showAndBindPopup(" + JSON.stringify(row.HoroPhotoName) + ");'>View</a>";
             return paid;
         };
         ViewTicket = function(value, row, index) {
@@ -43,6 +44,12 @@ app.factory('commonpage', ['$uibModal', 'editViewprofileservice',
             var paid = "<a style='cursor:pointer;'  href='javascript:void(0);'>" + row.viewprofileProfileid + "</a>";
             return paid;
         };
+        ProfileOwnerImg = function(value, row, index) {
+            var img = row.ProfileStatusID === 57 || row.ProfileStatusID === 393 ? 'src/images/settleimage_new.png' : (row.ProfileStatusID === 56 || row.ProfileStatusID === 394 ? 'src/images/deleteimage.png' : (row.ProfileStatusID === 55 ? 'src/images/imgInActive.png' : ''));
+            var paid = "<span style='color:red;'>" + row.ProfileOwner + "</span><img style='cursor:pointer;' src=" + img + "></img>";
+            return paid;
+        };
+
         setcolumnsCommon = function(test) {
             var arrayyy = [];
             _.each(test, function(item, index) {
@@ -69,10 +76,8 @@ app.factory('commonpage', ['$uibModal', 'editViewprofileservice',
                         obj.formatter = ViewProfile;
                         obj.field = "ProfileID";
                         obj.title = "ProfileID";
-                    } else if (item == 'paymentProfileID') {
-                        obj.formatter = paymentProfileID;
-                        obj.field = "ProfileID";
-                        obj.title = "ProfileID";
+                    } else if (item == 'ProfileOwner') {
+                        obj.formatter = ProfileOwnerImg;
                     }
                     obj.sortable = true;
                     obj.searchable = true;
@@ -83,21 +88,23 @@ app.factory('commonpage', ['$uibModal', 'editViewprofileservice',
             });
             return arrayyy;
         };
-        showAndBindPopup = function() {
-            alert(1111111);
-            // _.each(model.FPobj, function(item) {
-            //     debugger;
-            //     // model.SlideArr.push({ FullPhotoPath: editviewapp.GlobalImgPath + "Images/ProfilePics/KMPL_" + CustID + "_Images/" + (item.PhotoName.slice(0, 4)).replace("i", "I") + "_Images/" + model.PersonalObj.ProfileID + "_FullPhoto.jpg" });
-            // });
-            // modalpopupopen = uibModal.open({
-            //     ariaLabelledBy: 'modal-title',
-            //     ariaDescribedBy: 'modal-body',
-            //     templateUrl: 'templates/normalPopup.html',
-            //     scope: scope,
-            //     size: size,
-            //     backdrop: 'static'
-            //         // keyboard: false
-            // });
+        showAndBindPopup = function(val) {
+            $('#imgsrc').attr('src', val);
+            modalpopupopen = uibModal.open({
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                template: "<div class='modal-header'>" +
+                    "        <h3 class='modal-title text-center'>Horoscope image                                               " +
+                    "            <a href='javascript:void(0);' onclick='modalpopupopen.close()'>                                       " +
+                    "                <ng-md-icon icon='close' style='fill:#c73e5f' class='pull-right' size='25'>Delete</ng-md-icon>   " +
+                    "            </a>                                                                                                 " +
+                    "        </h3>                                                                                                    " +
+                    "    </div>                                                                                                       " +
+                    "    <div class='modal-body clearfix' id='modal-body'>                                                            " +
+                    "        <img src='" + val + "'  Style='height: 500px; width: 500px;'>                                                                                        " +
+                    "    </div>                                                                                                       "
+            });
+
         };
         return {
             showPopup: function(url, scope, size) {
@@ -196,6 +203,7 @@ app.factory('commonpage', ['$uibModal', 'editViewprofileservice',
                 editViewprofileservice.playbtnProfileData(profileid).then(function(response) {
                     if (response.data !== undefined && response.data !== "" && response.data !== null && response.data.length > 0) {
                         subtableArray = JSON.parse(response.data[0]);
+
                         var subArr = [];
                         _.map(JSON.parse(response.data[0]), function(item) {
                             subArr.push({
@@ -216,16 +224,17 @@ app.factory('commonpage', ['$uibModal', 'editViewprofileservice',
                                 'Horo': '',
                                 'Tickets': '',
                                 'CustID': item.custid,
-                                'Profile Owner': item.OWNER
+                                'Profile Owner': item.OWNER,
+                                'HoroPhotoName': item.HoroPhotoName
                             });
                         });
-                        var filteredColumns = _.difference(_.keys(subArr[0]), ['CustID']);
+                        var filteredColumns = _.difference(_.keys(subArr[0]), ['CustID', 'HoroPhotoName']);
                         columns = setcolumnsCommon(filteredColumns || _.keys(subArr[0]));
                         $el.bootstrapTable({
                             columns: columns,
+                            scrollX: true,
                             data: subArr
                         });
-                        $el.append('<tr class="child"><td colspan="17" style="text-align:center;background: #7da1a1;color:#fff !important;">PD-->Proceed,    DPD--->dont Proceed,    BI--->Both side interest,    OppI-->opposite interest,    PC-->Photo Count,    SA-->Settle   </td></tr>');
                     }
                 });
             }

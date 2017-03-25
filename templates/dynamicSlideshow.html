@@ -122,9 +122,9 @@
                             <div ng-class="($index+1)==1?'item active':'item'" ng-repeat="itemval in displayArr">
                                 <md-divider></md-divider>
                                 <div class="row">
-                                    <a href='javascript:void(0);' class='col-lg-4' style='font-size: 14px;'>Edit Partnerpreference</a>
-                                    <a href='javascript:void(0);' class='col-lg-3' style='font-size: 14px;'>General search</a>
-                                    <a href='javascript:void(0);' class='col-lg-3' style='font-size: 14px;'>View Contacts</a>
+                                    <a href='Partnerpreference/{{itemval.Custid}}' class='col-lg-4' style='font-size: 14px;'>Edit Partnerpreference</a>
+                                    <a href='search/0' class='col-lg-3' style='font-size: 14px;'>General search</a>
+                                    <a href='Contact/{{itemval.Custid}}' class='col-lg-3' style='font-size: 14px;'>View Contacts</a>
                                 </div>
                                 <md-divider></md-divider>
                                 <br>
@@ -249,12 +249,12 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                                         <div style="margin-left:69px;" class="edit_page_details_item_desc clearfix">
-                                            <h6> <span style="font-weight: bold;">Sa Form
+                                            <h6> <span style="font-weight: bold;">View Sa Form
                                            </span></h6>
                                             <h5>
                                                 <div style="color:Black;">
                                                     <a class="alllinkscolor" ng-show="itemval.SAForm!==null" href="javascript:void(0)" ng-click="horoscopeimage(itemval.SAForm)">SA Form </a>
-                                                    <span ng-show="itemval.SAForm===null">--</span>
+                                                    <a href="javascript:void(0)" class="alllinkscolor" ng-show="itemval.SAForm===null">Upload SA Form</a>
                                                 </div>
                                                 <div class="clearfix">
                                                 </div>
@@ -293,7 +293,21 @@
                                             </h5>
                                         </div>
                                     </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" ng-show="typeofslidedate ==='Inactive Date'">
+                                        <div style="" class="edit_page_details_item_desc clearfix">
+                                            <h6> <span style="font-weight: bold;"> Inactive Reason 
+                                           </span></h6>
+                                            <h5>
+                                                <div style="color:Black;">
+                                                    <span>{{itemval.Reason4InActive}}
+                                                      </span>
 
+                                                </div>
+                                                <div class="clearfix">
+                                                </div>
+                                            </h5>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

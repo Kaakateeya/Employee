@@ -1,32 +1,11 @@
 <div class="right_col" role="main">
     <div class="">
-        <!--
- <h4 style="font-size: 18px;
-    color: #b10c0c;">Search Kaakateeya Customers</h4>
-    -->
-
-        <script type="text/ng-template" id="group-template.html">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
-                        <span uib-accordion-header>
-                        Search Kaakateeya Customers
-                      
-                        </span>
-                    </a>
-                </h4>
-            </div>
-            <div class="panel-collapse collapse" uib-collapse="!isOpen">
-                <div class="panel-body" style="text-align: right" ng-transclude></div>
-            </div>
-        </script>
-
-
         <uib-accordion close-others="oneAtATime">
-            <div uib-accordion-group class="panel-default" template-url="group-template.html" is-open="page.model.opendiv">
 
-
-                <!--<ng-md-icon icon="keyboard_arrow_down" style="fill:#337ab7" size="20"></ng-md-icon>-->
+            <div uib-accordion-group style="margin-top: -12px;" class="panel-default" is-open="page.model.opendiv">
+                <uib-accordion-heading>
+                    Search Kaakateeya Customers <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+                </uib-accordion-heading>
                 <div class="row maindiv">
                     <div class="col-lg-7">
                         <div class="clearfix">
@@ -51,7 +30,7 @@
                     </div>
                     <div class="col-lg-5">
                         <div class="clearfix">
-                            <md-radio-group name="IsHighestDegree" layout="row" ng-model="page.model.obj.myVar" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                            <md-radio-group name="IsHighestDegree" ng-change="page.model.genderChange(page.model.obj.rdnGender);" layout="row" ng-model="page.model.obj.rdnGender" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                 <md-radio-button value="3" class="md-primary">Both</md-radio-button>
                                 <md-radio-button value="1"> Male </md-radio-button>
                                 <md-radio-button value="2"> Female </md-radio-button>
@@ -59,7 +38,7 @@
                         </div>
                         <div class="clearfix" style="text-align: left;">
                             <label ng-repeat="role in page.model.profileidstatus">
-                        <md-checkbox  data-checklist-model="page.model.obj.chkProfileIDsts" data-checklist-value="role.value"> {{role.name}}&nbsp;
+                        <md-checkbox data-checklist-change="page.model.chkChange();"  data-checklist-model="page.model.obj.chkProfileIDsts" data-checklist-value="role.value"> {{role.name}}&nbsp;
                           </md-checkbox>
                        </label>
 
@@ -67,9 +46,10 @@
                     </div>
                 </div>
             </div>
+
         </uib-accordion>
         <bootstrap-table expand="true" array="[]" id="ftable" removeobjs="['CustID','ReligionName','CasteID','MotherTongueName','GenderID','Email','MotherTongueID','ReligionID','ProfileEmpStatus','VerificationCode','FamilyID','ProfileStatusID','Age','Confidential']"
-            height="'600'" pagesize="'40'">
+            height="'550'" pagesize="'40'">
         </bootstrap-table>
     </div>
 
@@ -160,14 +140,25 @@
         background-color: #E68A00;
     }
     
+    .detail-view {
+        width: 79% !important;
+    }
+    
+    .detail-view .bootstrap-table {
+        overflow-x: auto;
+        overflow-y: auto;
+        width: 79% !important;
+        table-layout: fixed;
+    }
+    
     .fixed-table-container thead th .sortable,
     .detail {
         cursor: pointer;
         background-position: right;
         background-repeat: no-repeat;
         padding-right: 30px;
-        background-color: rgba(183, 74, 12, 0.66);
-        color: #fffffF;
+        background-color: #fdca52;
+        color: black;
     }
     
     .detail-view .fixed-table-container thead th .sortable {
@@ -175,8 +166,20 @@
         color: #fff;
     }
     
-    .body {
-        color: #000;
+    .settled {
+        background-color: #17F067;
+    }
+    
+    .Deleted {
+        background-color: #BCC3BE;
+    }
+    
+    .inactive {
+        background-color: #185615;
+    }
+    
+    body {
+        color: black;
     }
 </style>
 <script src="build/js/custom.js" type="text/javascript"></script>

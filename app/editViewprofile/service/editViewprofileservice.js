@@ -8,7 +8,7 @@
         return {
 
             getViewCustomerData: function(EmpID, ProfileIDName, ProfileIDStatus) {
-
+                debugger;
                 return http.get(app.apiroot + 'CustomerPersonal/getViewAllCustomersSearch', {
                     params: {
                         EmpID: EmpID,

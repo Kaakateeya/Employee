@@ -62,8 +62,19 @@ app.directive("bootstrapTable", ['commonpage', '$timeout',
                 };
                 var cells = 8;
 
-                function rowStyle() {
-                    return false;
+                function rowStyle(row, index) {
+                    var classes = ['settled', 'Deleted', 'inactive'];
+                    var test = [
+                        { StatusID: 57, classes: 'settled' },
+                        { StatusID: 393, classes: 'settled' },
+                        { StatusID: 56, classes: 'Deleted' },
+                        { StatusID: 394, classes: 'Deleted' },
+                        { StatusID: 55, classes: 'inactive' }
+                    ];
+
+                    return {
+                        classes: _.where(test, { StatusID: row.ProfileStatusID }).length > 0 ? _.where(test, { StatusID: row.ProfileStatusID })[0].classes : ''
+                    };
                 }
 
                 function detailFormatter(index, row) {

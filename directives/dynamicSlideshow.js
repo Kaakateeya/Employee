@@ -135,10 +135,9 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                         data.push({ label: 'Dor', value: item.DOR });
                         data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
                         data.push({ label: 'Web Logins', value: item.LoginCount });
-                        // data.push({ label: 'Send/Recv', value: item.SRCount });
-                        // data.push({ label: 'payment', value: item.PaidAmount });
-                        // data.push({ label: 'Expiry Date', value: item.ExpiryDate });
-                        // data.push({ label: 'Points', value: item.Points });
+                        // if (scope.typeofslidedate === "Inactive Date") {
+                        //     data.push({ label: 'Reason', value: item.Reason4InActive });
+                        // }
                         data.push({ label: 'backendFields', Custid: item.Cust_ID, ProfileID: item.ProfileID, PhotoCount: item.PhotoCount, Age: item.Age, HeightInCentimeters: item.HeightInCentimeters, MaritalStatusID: item.MaritalStatusID, CasteID: item.CasteID, serviceDate: item.serviceDate, CustPhoto: item.ApplicationPhotoPath, totalrecords: item.TotalRows });
                         scope.arraydata.push({
                             itmArr: data,
@@ -160,7 +159,8 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                             Points: item.Points,
                             mobilestatus: item.CNumberVerStatus,
                             emailstatus: item.CEmailVerStatus,
-                            UserName: item.UserName
+                            UserName: item.UserName,
+                            Reason4InActive: item.Reason4InActive
                         });
                     });
                     return scope.arraydata;

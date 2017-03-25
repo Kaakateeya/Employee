@@ -7,7 +7,7 @@
         var model = {};
         model.tablearray = [];
         model.obj = {};
-        model.obj.myVar = '3';
+        model.obj.rdnGender = '3';
         model.opendiv = true;
 
         model.profileidstatus = [
@@ -26,29 +26,35 @@
             return obj;
         };
         model.ViewAllsubmit = function(inpuobj) {
+            debugger;
             ViewAllCustomerService.getViewCustomerData(2, (inpuobj !== undefined && inpuobj.ProfileIDsearch !== undefined ? inpuobj.ProfileIDsearch : ''), (inpuobj !== undefined && inpuobj.chkProfileIDsts !== undefined ? model.returnnullvalue(inpuobj.chkProfileIDsts) : "")).then(function(response) {
-                console.log(response);
-                var gridArray = [];
+
+                model.gridArray = [];
                 if (response.data !== undefined && response.data !== "" && response.data !== null && response.data.length > 0) {
                     model.opendiv = false;
 
+                    console.log(JSON.parse(response.data[0]));
                     _.map(JSON.parse(response.data[0]), function(item) {
-                        gridArray.push({
+
+                        model.gridArray.push({
                             'ProfileID': item.ProfileID,
                             'Last Name': item.FirstName,
                             'First Name': item.LastName,
                             'Caste': item.CasteName,
-                            'Profile Owner': item.ProfileOwner,
+                            'ProfileOwner': item.ProfileOwner,
                             'Height': item.Height,
                             'Login': item.LoginStatus,
                             'Education': item.educationgroup,
                             'Profession': item.Profession,
                             'DOB': item.Age,
-                            'CustID': item.CustID
+                            'CustID': item.CustID,
+                            'GenderID': item.GenderID,
+                            'ProfileStatusID': item.ProfileStatusID,
+                            'Confidential': item.Confidential
                         });
                     });
 
-                    model.scope.$broadcast('submittable', gridArray, 1);
+                    model.scope.$broadcast('submittable', model.gridArray, 1);
                 }
             });
             return model;
@@ -67,17 +73,28 @@
             state.go("/", {});
         };
         model.redirectEdit = function(Custid) {
-            alert(11111);
+
             $state.go("editview.editEducation", { CustID: Custid });
         };
 
-        model.testvalll = function() {
-            alert(11111);
+
+        // model.subtabledata = function() {
+        //     editViewprofileservice.playbtnProfileData().then(function(response) {
+        //         console.log(response);
+        //     });
+
+        // };
+
+        model.chkChange = function() {
+            model.ViewAllsubmit(model.obj);
         };
-        model.subtabledata = function() {
-            editViewprofileservice.playbtnProfileData().then(function(response) {
-                console.log(response);
-            });
+
+        model.genderChange = function(val) {
+
+            if (model.gridArray.length > 0 && val !== undefined && val !== '' && val !== null) {
+                var arr = val === 3 || val === '3' ? model.gridArray : _.where(model.gridArray, { GenderID: parseInt(val) });
+                model.scope.$broadcast('submittable', arr, 1);
+            }
 
         };
         return model;
