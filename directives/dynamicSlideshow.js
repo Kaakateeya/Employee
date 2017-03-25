@@ -105,9 +105,9 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                             itmArr: scope.data,
                             custPhoto: item.CustomerFullPhoto,
                             Custid: item.Cust_ID,
-                            proceedstatusfrom: "proceed",
-                            proceedstatusto: "Dont proceed",
-                            Tickid: "KAK7676887",
+                            proceedstatusfrom: item.Mystatus,
+                            proceedstatusto: item.OppStatus,
+                            Tickid: item.TicketID,
                             PhotoCount: item.PhotoCount
                         });
                     });

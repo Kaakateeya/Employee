@@ -11,7 +11,9 @@ app.factory('getArraysearch', ['arrayConstants', 'SelectBindServiceApp', functio
                 case 'height':
                     option = cons.height;
                     break;
-
+                case 'heightregistration':
+                    option = cons.heightregistration;
+                    break;
                 case 'Religion':
                     option = cons.Religion;
                     break;

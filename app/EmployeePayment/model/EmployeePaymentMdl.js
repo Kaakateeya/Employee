@@ -18,16 +18,17 @@
                         _.map(gridArray, function(item) {
                             model.paymentArr.push({
                                 'paymentProfileID': item.ProfileID,
-                                'tableName': item.tableName,
-                                'AgreedAmount': item.AgreedAmount,
-                                'PaidAmount': item.PaidAmount,
-                                'Type': item.Type,
-                                'membershiptype': item.membershiptype,
-                                'Payment_ID': item.Payment_ID,
-                                'PaymentDate': item.PaymentDate,
-                                'ExpiryDate': item.ExpiryDate,
-                                'CreatedByEmpID': item.CreatedByEmpID,
-                                'Applicationname': item.Applicationname
+                                'Pay Mode': item.Type,
+                                'Membership': item.membershiptype,
+                                'Agreed': item.AgreedAmount,
+                                'Paid': item.PaidAmount,
+                                'Date': item.PaymentDate,
+                                'Expires': item.ExpiryDate,
+                                'Allowed': item.Allowed,
+                                'Used': item.Used,
+                                'Entered': item.CreatedByEmpID,
+                                'Description': item.Description,
+                                'Status': item.Status
                             });
                         });
                         model.scope.$broadcast('submittable', model.paymentArr);
