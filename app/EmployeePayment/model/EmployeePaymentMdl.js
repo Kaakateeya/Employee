@@ -28,7 +28,8 @@
                                 'Used': item.Used,
                                 'Entered': item.CreatedByEmpID,
                                 'Description': item.Description,
-                                'Status': item.Status
+                                'Status': item.Status,
+                                'Authorized by': item.StatusBy
                             });
                         });
                         model.scope.$broadcast('submittable', model.paymentArr);
