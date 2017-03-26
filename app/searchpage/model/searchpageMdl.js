@@ -23,7 +23,7 @@
         model.divcontrollsbind = 0;
         model.Relationshipname = "";
         model.relationshippopup = null;
-        model.typrofsearch = "1";
+        model.typrofsearch = "2";
         model.sidebarnavshow = true;
         model.mySidenavdiv = false;
         model.mystylenamediv = true;

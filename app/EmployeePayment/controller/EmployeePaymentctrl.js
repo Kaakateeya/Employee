@@ -9,6 +9,7 @@
          vm.init = function() {
              vm.model = model = EmployeePaymentmodel;
              model.scope = scope;
+             model.txtProfileID = "";
          };
 
          vm.init();

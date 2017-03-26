@@ -68,13 +68,6 @@
                 model.tabledata(model.empid, model.empBranchID, 1, 5, '', 'pageload', undefined, 0);
             }
         };
-
-        model.forgetpassword = function(usernamepassword) {
-            helperservice.forgotpassword(usernamepassword).then(function(response) {
-                console.log(response.data);
-
-            });
-        };
         return model;
     }
     angular

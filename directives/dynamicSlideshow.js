@@ -1,6 +1,6 @@
-app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubum', 'SelectBindServiceApp',
+app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubum', 'SelectBindServiceApp', 'alert',
 
-    function(uibModal, commonpage, timeout, photoalubum, SelectBindServiceApp) {
+    function(uibModal, commonpage, timeout, photoalubum, SelectBindServiceApp, alerts) {
         return {
             restrict: "E",
             scope: {
@@ -41,6 +41,8 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                 scope.popupmodalbody = false;
                 scope.HoroscopeImage = "";
                 scope.typeofslidedate = "";
+                scope.mobileVerificationCode = null;
+                scope.custfamilyID = null;
                 scope.dynamicslideshow = scope.nghide !== undefined && scope.nghide !== "" ? scope.nghide : true;
                 scope.displayArray = function(arr, frompage) {
                     console.log(arr);
@@ -162,7 +164,10 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                             emailstatus: item.CEmailVerStatus,
                             UserName: item.UserName,
                             Reason4InActive: item.Reason4InActive,
-                            ProfileID: item.ProfileID
+                            ProfileID: item.ProfileID,
+                            CountryCodeID: item.CountryCodeID,
+                            Cust_Family_ID: item.Cust_Family_ID
+
                         });
                     });
                     return scope.arraydata;
@@ -362,6 +367,55 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                         }
                     });
                 };
+
+                scope.sendMobileCode = function(iCountryID, iCCode, MobileNumber, CustFamilyID) {
+
+                    var obj = {
+                        iCountryID: iCountryID,
+                        iCCode: iCCode,
+                        MobileNumber: MobileNumber,
+                        CustFamilyID: CustFamilyID
+                    };
+                    scope.custfamilyID = CustFamilyID;
+                    scope.popupMobilenumber = MobileNumber;
+                    SelectBindServiceApp.sendMobileCode(obj).then(function(response) {
+                        console.log(response.data);
+                        scope.mobileVerificationCode = response.data;
+                        commonpage.showPopupphotopoup('verifyMobileContent.html', scope, '', "modalclassdashboardphotopopup");
+                    });
+                };
+
+
+                scope.verifymail = function(custID) {
+                    debugger;
+                    SelectBindServiceApp.verifyEmail(custID).then(function(response) {
+                        console.log(response);
+                        if (response.data !== undefined) {
+                            if (response.data === 1) {
+                                alert('Email verify mail send Successfully');
+                            }
+                        }
+                    });
+                };
+
+                scope.verifyMobCode = function(val) {
+                    debugger;
+                    if (val === "") {
+                        alerts.timeoutoldalerts(scope, 'alert-danger', 'Please enter Mobile verify Code', 4500);
+                    } else if (scope.mobileVerificationCode === val) {
+                        debugger;
+                        SelectBindServiceApp.verifyMobile(scope.mobileVerificationCode, scope.custfamilyID).then(function(response) {
+                            console.log(response);
+                            commonpage.closepopuppoptopopup();
+                        });
+                    } else {
+                        alert('Please Enter Valid Verification code');
+                    }
+
+                };
+
+
+
             }
         };
     }

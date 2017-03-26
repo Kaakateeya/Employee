@@ -62,6 +62,12 @@ app.directive("bootstrapTable", ['commonpage', '$timeout',
                 };
                 var cells = 8;
 
+                scope.backtosearchpage = function() {
+                    scope.dynamictableshow = false;
+                    scope.$emit("backsearchshowcontrols");
+                };
+                scope.backtosearchpage();
+
                 function rowStyle(row, index) {
                     var classes = ['settled', 'Deleted', 'inactive'];
                     var test = [
@@ -139,10 +145,7 @@ app.directive("bootstrapTable", ['commonpage', '$timeout',
                     scope.BootstrapTableLoad(array);
                 });
 
-                scope.backtosearchpage = function() {
-                    scope.dynamictableshow = false;
-                    scope.$emit("backsearchshowcontrols");
-                };
+
             }
 
         };

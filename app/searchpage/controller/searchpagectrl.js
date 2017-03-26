@@ -11,8 +11,13 @@
              { value: 219, name: 'D' }
          ];
          vm.init = function() {
+             model = {};
              vm.model = model = searchpageModel;
              model.scope = scope;
+             model.ProfileIDpopup = "";
+             model.generalsearch = {};
+             model.advancedsearch = {};
+             model.sidebarnavshow = true;
              model.selectedIndex = $stateParams.id;
              model.searchpopuptext = model.selectedIndex === "0" ? "General Search" : "Advance Search";
              alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
