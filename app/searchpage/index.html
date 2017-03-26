@@ -14,7 +14,7 @@
                                 <div class="profile_search_main profile_settings_main clearfix">
                                     <div class="row">
                                         <div class="col-lg-5">
-                                            <md-radio-group layout="row" ng-model="page.model.generalsearch.gender">
+                                            <md-radio-group name="gendergen" rfocus="gendergen" layout="row" ng-model="page.model.generalsearch.gender">
                                                 <md-radio-button value="2" class="md-primary"> Bride</md-radio-button>
                                                 <md-radio-button value="1"> Groom </md-radio-button>
                                             </md-radio-group>
@@ -259,7 +259,7 @@
                                             <div class="controls clearfix">
                                                 <div layout-gt-sm="row" class="generalane">
 
-                                                    <input class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.firstname"></input>
+                                                    <input name="advname" focusd class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.firstname"></input>
                                                 </div>
                                             </div>
                                         </div>

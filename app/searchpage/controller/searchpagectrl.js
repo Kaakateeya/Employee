@@ -21,6 +21,7 @@
              model.selectedIndex = $stateParams.id;
              model.searchpopuptext = model.selectedIndex === "0" ? "General Search" : "Advance Search";
              alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
+             scope.$broadcast('inputFocus', 'advname');
              $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
                  event.preventDefault();
                  event.stopPropagation();

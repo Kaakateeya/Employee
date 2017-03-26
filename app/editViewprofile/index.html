@@ -21,7 +21,7 @@
                         <div class="clearfix">
                             <label for="kmplProfileID" class="col-lg-4">Search By ProfileID / Name</label>
                             <div class="col-lg-5">
-                                <input type="text" ng-model="page.model.obj.ProfileIDsearch" class="form-control">
+                                <input ng-focus="true" autofocus type="text" ng-model="page.model.obj.ProfileIDsearch" class="form-control">
                             </div>
                             <div class="col-lg-3">
                                 <button class="btn btn-warning pull-left" ng-click="page.model.ViewAllsubmit(page.model.obj)">Submit</button>

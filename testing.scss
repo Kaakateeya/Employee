@@ -1,0 +1,12 @@
+@mixin marginbottom($value) {
+    .m-b-#{$value} {
+        margin-bottom: $value+"px";
+    }
+}
+
+// @function m-b-($value) {
+//     @return margin-bottom=$value+"px";
+// }
+@include marginbottom(2);
+@include marginbottom(2);
+@include marginbottom(2);
