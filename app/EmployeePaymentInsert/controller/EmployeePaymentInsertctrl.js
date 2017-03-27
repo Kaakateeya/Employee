@@ -6,6 +6,7 @@
          var vm = this,
              model;
          vm.init = function() {
+
              vm.model = model = EmployeePaymentInsertModel;
              vm.model.getpaymentProfile(stateParams.ProfileID);
          };

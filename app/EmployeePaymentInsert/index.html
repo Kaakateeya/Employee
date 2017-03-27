@@ -5,7 +5,7 @@
     color: #b10c0c;">Pament details</h4>
         <br>
         <div class="regmain register_page_main">
-            <form name="paymentForm" novalidate role="form" ng-submit="page.model.EmployeePaymentInsert(page.model.PiObj);">
+            <form name="paymentForm" novalidate role="form" ng-submit="paymentForm.$valid && page.model.EmployeePaymentInsert(page.model.PiObj);">
                 <div class="lblclass">
                     <div class="row">
                         <div class="form-group col-lg-6">
@@ -19,10 +19,10 @@
                         </div>
                         <div class="form-group col-lg-6">
                             <div class="col-lg-4">
-                                <label for="" class="control-label pull-right">Branch</label>
+                                <label for="" class="control-label pull-right">Gender</label>
                             </div>
                             <div class="col-lg-6">
-                                <label for="" class="control-label ">{{page.model.custobj.Branch}}</label>
+                                <label for="" class="control-label ">{{page.model.custobj.Gender}}</label>
                             </div>
                         </div>
                     </div>
@@ -33,27 +33,10 @@
                                 <label for="" class="control-label pull-right">Name</label>
                             </div>
                             <div class="col-lg-6">
-                                <label for="" class="control-label ">{{page.model.custobj.FirstName}}</label>
+                                <label for="" class="control-label ">{{page.model.custobj.FirstName+' '+page.model.custobj.LastName}}</label>
                             </div>
                         </div>
-                        <div class="form-group col-lg-6">
-                            <div class="col-lg-4">
-                                <label for="" class="control-label pull-right">Surname</label>
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="" class="control-label ">{{page.model.custobj.LastName}}</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-lg-6">
-                            <div class="col-lg-4">
-                                <label for="" class="control-label pull-right">Gender</label>
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="" class="control-label ">{{page.model.custobj.Gender}}</label>
-                            </div>
-                        </div>
+
                         <div class="form-group col-lg-6">
                             <div class="col-lg-4">
                                 <label for="" class="control-label pull-right">Caste</label>
@@ -63,6 +46,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="txtclass">
 
@@ -72,7 +56,8 @@
                                 <label for="" class="control-label pull-right">Agreed amount</label>
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" ng-model="page.model.PiObj.txtAgreedAmt" class="form-control" required>
+                                <input type="text" ng-focus="true" autofocus onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
+                                    ng-model="page.model.PiObj.txtAgreedAmt" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group col-lg-6">
@@ -80,70 +65,93 @@
                                 <label for="" class="control-label pull-right"> ServiceTax </label>
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" ng-model="page.model.PiObj.txtServicetax" class="form-control" required>
+                                <md-radio-group ng-required="true" name="rdnServicetax" layout="row" ng-model="page.model.PiObj.rdnServicetax" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                    <md-radio-button value="0"> No</md-radio-button>
+                                </md-radio-group>
+                                <div ng-if="paymentForm.rdnServicetax.$invalid && (paymentForm.$submitted)" style="color: #a94442;">This field is required.</div>
                             </div>
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <div class="col-lg-4">
+                                <label for="" class="control-label pull-right">Amount paid </label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));" ng-model="page.model.PiObj.txtAmountPaid"
+                                    class="form-control" ng-change="page.model.PaidAmtChange(page.model.PiObj.txtAmountPaid);" required>
+                            </div>
+                            <div class="col-lg-2">
+                                <label for="" class="control-label" ng-model="page.model.PiObj.lblServiceTaxAmt">+{{page.model.PiObj.rdnServicetax=='1'?((page.model.PiObj.txtAmountPaid*page.model.ServiceTaxPercent)|number:2):0}}(Tax)</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <div class="col-lg-4">
+                                <label for="" class="control-label pull-right">Settlement amount </label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));" ng-model="page.model.PiObj.txtSettlementAmount"
+                                    class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="form-group col-lg-6">
                             <div class="col-lg-4">
                                 <label for="" class="control-label pull-right">No of points</label>
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" ng-model="page.model.PiObj.txtNoofpoints" class="form-control" required>
+                                <label for="lblNoofpoints" ng-model="page.model.PiObj.lblNoofpoints" class="control-label ">{{(page.model.PiObj.txtAmountPaid/page.model.paymentpoints)|number:0}}</label>
                             </div>
                         </div>
                         <div class="form-group col-lg-6">
                             <div class="col-lg-4">
-                                <label for="" class="control-label pull-right"> Balance amount : </label>
+                                <label for="" class="control-label pull-right">Date duration  </label>
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" ng-model="page.model.PiObj.txtBalancepoints" class="form-control" required>
+                                <label for="" class="control-label" ng-model="page.model.PiObj.lblExpiryDate">{{page.model.ExpiryDate}}</label>
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
-                        <div class="form-group col-lg-6">
-                            <div class="col-lg-4">
-                                <label for="" class="control-label pull-right">Amount paid :</label>
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" ng-model="page.model.obj.txtAmountPaid" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <div class="col-lg-4">
-                                <label for="" class="control-label pull-right">Settlement amount </label>
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" ng-model="page.model.obj.array.txtSettlementAmount" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-lg-6">
+                        <!--<div class="form-group col-lg-6">
                             <div class="col-lg-4">
                                 <label for="" class="control-label pull-right">Service Tax Amount </label>
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" ng-model="page.model.PiObj.txtServiceTaxAmt" class="form-control" required>
+                                <input type="text" ng-model="page.model.PiObj.txtServiceTaxAmt" ng-value="(page.model.PiObj.txtAmountPaid*page.model.ServiceTaxPercent)|number:2" class="form-control" required>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group col-lg-6">
                             <div class="col-lg-4">
-                                <label for="" class="control-label pull-right">Date duration : </label>
+                                <label for="" class="control-label pull-right"> Balance amount </label>
                             </div>
                             <div class="col-lg-6">
-                                <label for="" class="control-label ">{{page.model.custobj.Duration}}</label>
+                                <label ng-model="page.model.PiObj.txtBalancepoints" class="control-label ">{{page.model.PiObj.txtAgreedAmt-page.model.PiObj.txtAmountPaid}}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <div class="col-lg-4">
+                                <label for="" class="control-label pull-right">Send sms\email</label>
+                            </div>
+                            <div class="col-lg-8">
+
+                                <md-radio-group ng-required="true" name="rbtnmail" layout="row" ng-model="page.model.PiObj.rbtnmail" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                    <md-radio-button value="0"> No</md-radio-button>
+                                </md-radio-group>
+
+                                <div ng-if="paymentForm.rbtnmail.$invalid && (paymentForm.$submitted)" style="color: #a94442;">This field is required.</div>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="form-group  col-lg-7">
+                        <div class="form-group  col-lg-8">
                             <div class="col-lg-3">
                                 <label for="" class="control-label pull-right">Pay mode </label>
                             </div>
@@ -157,22 +165,7 @@
                                 <div ng-if="paymentForm.rbtnPaymode.$invalid && (paymentForm.$submitted)" style="color: #a94442;">This field is required.</div>
                             </div>
                         </div>
-                        <div class="form-group col-lg-5">
-                            <div class="col-lg-4">
-                                <label for="" class="control-label pull-right">Send sms\email</label>
-                            </div>
-                            <div class="col-lg-8">
 
-                                <md-radio-group ng-required="true" name="rbtnmail" layout="row" ng-model="page.model.PiObj.rbtnmail" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
-                                    <md-radio-button value="0"> No</md-radio-button>
-                                </md-radio-group>
-
-                                <div ng-if="paymentForm.rbtnmail.$invalid && (paymentForm.$submitted)" style="color: #a94442;">This field is required.</div>
-
-
-                            </div>
-                        </div>
                     </div>
 
                     <div class="row">
@@ -231,8 +224,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div class="row">
                         <div class="form-group">
                             <div class="col-lg-2">
@@ -302,3 +293,4 @@
         margin-bottom: 0px;
     }
 </style>
+<script src="build/js/custom.js" type="text/javascript"></script>

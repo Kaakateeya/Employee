@@ -12,7 +12,11 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngAnimate', 'ngSanitize', 
     'KaakateeyaEmpReg', 'KaakateeyaEmpEdit'
 ]);
 app.apiroot = 'http://183.82.0.58:8025/Api/';
+app.apirootold = 'http://183.82.0.58:8010/Api/';
 app.env = "dev";
+app.paymentPoints = 10;
+app.ServiceTaxPercent = 14 / 100;
+
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider',
     function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
         var states = [

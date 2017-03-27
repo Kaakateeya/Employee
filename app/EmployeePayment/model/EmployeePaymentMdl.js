@@ -13,7 +13,9 @@
                     function(response) {
 
                         var gridArray = JSON.parse(response.data);
+                        console.log(gridArray);
                         // model.scope.$broadcast('submittable', gridArray);
+
                         model.paymentArr = [];
                         _.map(gridArray, function(item) {
                             model.paymentArr.push({
@@ -33,6 +35,7 @@
                             });
                         });
                         model.scope.$broadcast('submittable', model.paymentArr);
+
                     }
                 );
             } else {

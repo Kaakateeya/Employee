@@ -7,7 +7,7 @@
         return {
             getEmployeePayment: function(ProfileID) {
                 debugger;
-                return http.get('http://183.82.0.58:8010/Api/' + 'Payment/getProfilePaymentDetailsGridview', {
+                return http.get(app.apiroot + 'Payment/getProfilePaymentDetailsGridview', {
                     params: {
                         intProfileID: ProfileID
                     }

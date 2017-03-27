@@ -15,7 +15,7 @@ app.factory('commonpage', ['$uibModal', 'editViewprofileservice',
             }
         };
         operateFormatter = function(value, row, index) {
-            var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "'>" + row.ProfileID + "</a>";
+            var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "'>" + row.ProfileID + row.Confidential + "</a>";
             return paid;
         };
 
