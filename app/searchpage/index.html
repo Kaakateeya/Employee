@@ -14,7 +14,7 @@
                                 <div class="profile_search_main profile_settings_main clearfix">
                                     <div class="row">
                                         <div class="col-lg-5">
-                                            <md-radio-group name="gendergen" rfocus="gendergen" layout="row" ng-model="page.model.generalsearch.gender">
+                                            <md-radio-group name="gendergen" layout="row" ng-model="page.model.generalsearch.gender">
                                                 <md-radio-button value="2" class="md-primary"> Bride</md-radio-button>
                                                 <md-radio-button value="1"> Groom </md-radio-button>
                                             </md-radio-group>
@@ -27,11 +27,11 @@
                                             <label class="control-label">Age</label>
                                             <div class="controls clearfix row">
                                                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6  generalane">
-                                                    <select id="generalage" ng-model="page.model.generalsearch.generalAgefrom" multiselectdropdown typeofdata="'Ageselect'" class="smalldropdown">   
+                                                    <select id="generalage" ng-class="page.model.applycolors(page.model.generalsearch.generalAgefrom,'generalage')" ng-model="page.model.generalsearch.generalAgefrom" multiselectdropdown typeofdata="'Ageselect'" class="smalldropdown">   
                                                      </select>
                                                 </div>
                                                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6  generalane" style="margin-left: -20px;">
-                                                    <select id="generalageto" class="smalldropdown" ng-model="page.model.generalsearch.generalAgeto" multiselectdropdown typeofdata="'Ageselect'">   
+                                                    <select ng-class="page.model.applycolors(page.model.generalsearch.generalAgeto,'generalageto')" id="generalageto" class="smalldropdown" ng-model="page.model.generalsearch.generalAgeto" multiselectdropdown typeofdata="'Ageselect'">   
                                                      </select>
                                                 </div>
                                             </div>
@@ -40,11 +40,11 @@
                                             <label class="control-label">Height</label>
                                             <div class="controls clearfix row">
                                                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 generalane">
-                                                    <select id="generalheightfrom" ng-model="page.model.generalsearch.generalheightfrom" multiselectdropdown typeofdata="'height'" class="smalldropdown">
+                                                    <select ng-class="page.model.applycolors(page.model.generalsearch.generalheightfrom,'generalheightfrom')" id="generalheightfrom" ng-model="page.model.generalsearch.generalheightfrom" multiselectdropdown typeofdata="'height'" class="smalldropdown">
                                                      </select>
                                                 </div>
                                                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 generalane" style="margin-left: -20px;">
-                                                    <select id="generalheightto" multiselectdropdown ng-model="page.model.generalsearch.generalheightto" typeofdata="'height'" class="smalldropdown">
+                                                    <select ng-class="page.model.applycolors(page.model.generalsearch.generalheightto,'generalheightto')" id="generalheightto" multiselectdropdown ng-model="page.model.generalsearch.generalheightto" typeofdata="'height'" class="smalldropdown">
                                                  </select>
                                                 </div>
                                             </div>
@@ -148,10 +148,10 @@
                                                 <label class="control-label">Date Of Reg</label>
                                                 <div class="controls clearfix row">
                                                     <div class="col-lg-6 datepicker">
-                                                        <date-pickersearch strdate="page.model.generalsearch.dorfromreg"></date-pickersearch>
+                                                        <date-pickersearch id="dordatepicker" strdate="page.model.generalsearch.dorfromreg" ng-class="page.model.applycolorsfortextboxesdate(page.model.generalsearch.dorfromreg,'dordatepicker')"></date-pickersearch>
                                                     </div>
                                                     <div class="col-lg-6 datepicker">
-                                                        <date-pickersearch strdate="page.model.generalsearch.dortoreg"></date-pickersearch>
+                                                        <date-pickersearch id="dordatepickerto" ng-class="page.model.applycolorsfortextboxesdate(page.model.generalsearch.dortoreg,'dordatepickerto')" strdate="page.model.generalsearch.dortoreg"></date-pickersearch>
                                                     </div>
                                                 </div>
                                             </div>
@@ -159,10 +159,10 @@
                                                 <label class="control-label">Lastest Logins</label>
                                                 <div class="controls clearfix row">
                                                     <div class="col-lg-6 datepicker">
-                                                        <date-pickersearch strdate="page.model.generalsearch.lastloginfrom"></date-pickersearch>
+                                                        <date-pickersearch id="latestloginsfrom" ng-class="page.model.applycolorsfortextboxesdate(page.model.generalsearch.lastloginfrom,'latestloginsfrom')" strdate="page.model.generalsearch.lastloginfrom"></date-pickersearch>
                                                     </div>
                                                     <div class="col-lg-6 datepicker">
-                                                        <date-pickersearch strdate="page.model.generalsearch.lastloginto"></date-pickersearch>
+                                                        <date-pickersearch id="latestloginsto" ng-class="page.model.applycolorsfortextboxesdate(page.model.generalsearch.lastloginto,'latestloginsto')" strdate="page.model.generalsearch.lastloginto"></date-pickersearch>
                                                     </div>
                                                 </div>
                                             </div>
@@ -172,8 +172,10 @@
                                                 <label class="control-label">Property In Lakhs</label>
                                                 <div class="controls clearfix">
                                                     <div layout-gt-sm="row" class="generalane">
-                                                        <input class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.generalsearch.propertyfrom" style="width:100px !important;margin-right:10px;" placeholder="From" type="text">
-                                                        <input class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" placeholder="To" ng-model="page.model.generalsearch.propertyto" type="text" style="width: 100px !important;">
+                                                        <input id="propertyfrom" ng-class="page.model.applycolorsfortextboxes(page.model.generalsearch.propertyfrom,'propertyfrom')" class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.generalsearch.propertyfrom"
+                                                            style="width:100px !important;margin-right:10px;" placeholder="From" type="text">
+                                                        <input id="propertyto" ng-class="page.model.applycolorsfortextboxes(page.model.generalsearch.propertyto,'propertyto')" class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" placeholder="To" ng-model="page.model.generalsearch.propertyto"
+                                                            type="text" style="width: 100px !important;">
                                                     </div>
                                                 </div>
                                             </div>
@@ -182,9 +184,10 @@
                                                 <label class="control-label">Monthly  income</label>
                                                 <div class="controls clearfix">
                                                     <div layout-gt-sm="row" class="generalane">
-                                                        <select id="currencygeneral" class="smalldropdown" ng-model="page.model.generalsearch.generalcurrency" multiselectdropdown typeofdata="'currency'">   
+                                                        <select ng-class="page.model.applycolors(page.model.generalsearch.generalcurrency,'currencygeneral')" id="currencygeneral" class="smalldropdown" ng-model="page.model.generalsearch.generalcurrency" multiselectdropdown typeofdata="'currency'">   
                                                      </select>
-                                                        <input class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.generalsearch.fromsalary" style="width: 65px !important;margin-left: -20px;margin-right:10px;" placeholder="From" type="text">
+                                                        <input id="fromsalaryid" ng-class="page.model.applycolorsfortextboxes(page.model.generalsearch.fromsalary,'fromsalaryid')" class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.generalsearch.fromsalary" style="width: 65px !important;margin-left: -20px;margin-right:10px;"
+                                                            placeholder="From" type="text">
                                                         <input class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" name="postalCode" placeholder="To" ng-model="page.model.generalsearch.tosalary" type="text" style="width: 65px !important;">
                                                     </div>
                                                 </div>
@@ -194,7 +197,7 @@
                                                 <div class="controls clearfix">
                                                     <div layout-gt-sm="row" class="generalane">
 
-                                                        <input class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.generalsearch.profileidgenearl"></input>
+                                                        <input ng-class="page.model.applycolorsfortextboxes(page.model.generalsearch.profileidgenearl,'profileidgenearl')" id="profileidgenearl" class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.generalsearch.profileidgenearl"></input>
                                                     </div>
                                                 </div>
                                             </div>
@@ -259,7 +262,7 @@
                                             <div class="controls clearfix">
                                                 <div layout-gt-sm="row" class="generalane">
 
-                                                    <input name="advname" focusd class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.firstname"></input>
+                                                    <input ng-class="page.model.applycolorsfortextboxes(page.model.advancedsearch.firstname,'firstnameadvanced')" id="firstnameadvanced" ng-focuss="true" class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.firstname"></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -267,7 +270,7 @@
                                             <label class="control-label">Last Name</label>
                                             <div class="controls clearfix">
                                                 <div layout-gt-sm="row" class="generalane">
-                                                    <input class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.lastname"></input>
+                                                    <input ng-class="page.model.applycolorsfortextboxes(page.model.advancedsearch.lastname,'lastnameadvanced')" id="lastnameadvanced" class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.lastname"></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -275,11 +278,11 @@
                                             <label class="control-label">Age</label>
                                             <div class="controls clearfix row">
                                                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6  generalane">
-                                                    <select id="advancedage" ng-model="page.model.advancedsearch.advancedage" multiselectdropdown typeofdata="'Ageselect'" class="smalldropdown">   
+                                                    <select ng-class="page.model.applycolors(page.model.advancedsearch.advancedage,'advancedage')" id="advancedage" ng-model="page.model.advancedsearch.advancedage" multiselectdropdown typeofdata="'Ageselect'" class="smalldropdown">   
                                                      </select>
                                                 </div>
                                                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6  generalane" style="margin-left: -20px;">
-                                                    <select id="advancedageto" class="smalldropdown" ng-model="page.model.advancedsearch.advancedageto" multiselectdropdown typeofdata="'Ageselect'">   
+                                                    <select ng-class="page.model.applycolors(page.model.advancedsearch.advancedageto,'advancedageto')" id="advancedageto" class="smalldropdown" ng-model="page.model.advancedsearch.advancedageto" multiselectdropdown typeofdata="'Ageselect'">   
                                                      </select>
                                                 </div>
                                             </div>
@@ -288,11 +291,11 @@
                                             <label class="control-label">Height</label>
                                             <div class="controls clearfix row">
                                                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 generalane">
-                                                    <select id="advancedheightfrom" ng-model="page.model.advancedsearch.advancedheightfrom" multiselectdropdown typeofdata="'height'" class="smalldropdown">
+                                                    <select ng-class="page.model.applycolors(page.model.advancedsearch.advancedheightfrom,'advancedheightfrom')" id="advancedheightfrom" ng-model="page.model.advancedsearch.advancedheightfrom" multiselectdropdown typeofdata="'height'" class="smalldropdown">
                                                      </select>
                                                 </div>
                                                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 generalane" style="margin-left: -20px;">
-                                                    <select id="advancedheightto" multiselectdropdown ng-model="page.model.advancedsearch.advancedheightto" typeofdata="'height'" class="smalldropdown">
+                                                    <select ng-class="page.model.applycolors(page.model.advancedsearch.advancedheightto,'advancedheightto')" id="advancedheightto" multiselectdropdown ng-model="page.model.advancedsearch.advancedheightto" typeofdata="'height'" class="smalldropdown">
                                                  </select>
                                                 </div>
                                             </div>
@@ -360,8 +363,10 @@
                                             <label class="control-label">Property In Lakhs</label>
                                             <div class="controls clearfix">
                                                 <div layout-gt-sm="row" class="generalane">
-                                                    <input class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" style="width: 100px !important;margin-right:10px;" type="text" ng-model="page.model.advancedsearch.propertyfrom"></input>
-                                                    <input class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" style="width: 100px !important;" type="text" ng-model="page.model.advancedsearch.propertyto"></input>
+                                                    <input ng-class="page.model.applycolorsfortextboxes(page.model.advancedsearch.propertyfrom,'Propertyfromadvanced')" id="Propertyfromadvanced" class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" style="width: 100px !important;margin-right:10px;"
+                                                        type="text" ng-model="page.model.advancedsearch.propertyfrom"></input>
+                                                    <input ng-class="page.model.applycolorsfortextboxes(page.model.advancedsearch.propertyto,'Propertytoadvanced')" id="Propertytoadvanced" class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" style="width: 100px !important;" type="text"
+                                                        ng-model="page.model.advancedsearch.propertyto"></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -405,7 +410,7 @@
                                                 <div class="controls clearfix">
                                                     <div layout-gt-sm="row" class="generalane">
 
-                                                        <input class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.University"></input>
+                                                        <input ng-class="page.model.applycolorsfortextboxes(page.model.advancedsearch.University,'Universityadvanced')" id="Universityadvanced" class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.University"></input>
                                                     </div>
                                                 </div>
                                             </div>
@@ -423,7 +428,7 @@
                                                 <div class="controls clearfix">
                                                     <div layout-gt-sm="row" class="generalane">
 
-                                                        <input class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.companyname"></input>
+                                                        <input id="companynameadvanced" ng-class="page.model.applycolorsfortextboxes(page.model.advancedsearch.companyname,'companynameadvanced')" class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.companyname"></input>
                                                     </div>
                                                 </div>
                                             </div>
@@ -448,11 +453,12 @@
                                                 <label class="control-label">Monthly  income</label>
                                                 <div class="controls clearfix">
                                                     <div layout-gt-sm="row" class="generalane">
-                                                        <select id="advancedcurrencygeneral" class="smalldropdown" ng-model="page.model.advancedsearch.advancedcurrency" multiselectdropdown typeofdata="'currency'">   
+                                                        <select ng-class="page.model.applycolors(page.model.advancedsearch.advancedcurrency,'advancedcurrencygeneral')" id="advancedcurrencygeneral" class="smalldropdown" ng-model="page.model.advancedsearch.advancedcurrency" multiselectdropdown typeofdata="'currency'">   
                                                      </select>
-                                                        <input class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-change="salarycurrencyalert(1)" ng-model="page.model.advancedsearch.fromcurrency" style="width: 100px !important;margin-left: -10px;margin-right: 10px;" placeholder="From"
-                                                            type="text">
-                                                        <input class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-change="salarycurrencyalert(2)" name="postalCode" placeholder="To" ng-model="page.model.advancedsearch.tocurrency" type="text" style="width: 100px !important;">
+                                                        <input class="form-control" id="fromcurrencyadvanced" ng-class="page.model.applycolorsfortextboxes(page.model.advancedsearch.fromcurrency,'fromcurrencyadvanced')" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-change="salarycurrencyalert(1)"
+                                                            ng-model="page.model.advancedsearch.fromcurrency" style="width: 100px !important;margin-left: -10px;margin-right: 10px;" placeholder="From" type="text">
+                                                        <input id="tocurrencyadvanced" ng-class="page.model.applycolorsfortextboxes(page.model.advancedsearch.tocurrency,'tocurrencyadvanced')" class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-change="salarycurrencyalert(2)" name="postalCode"
+                                                            placeholder="To" ng-model="page.model.advancedsearch.tocurrency" type="text" style="width: 100px !important;">
                                                     </div>
                                                 </div>
                                             </div>
@@ -576,17 +582,15 @@
                                                     </angular-multiselect>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-4">
                                                 <label class="control-label">Manglik/Kuja Dosham</label>
                                                 <div class="controls clearfix">
-
                                                     <md-radio-group layout="row" class="md-block" flex-gt-sm ng-model="page.model.advancedsearch.kujadosam">
                                                         <md-radio-button value="0" class="md-primary"> Yes</md-radio-button>
                                                         <md-radio-button value="1"> No </md-radio-button>
                                                         <md-radio-button value="2"> Doesn't Matter
                                                         </md-radio-button>
                                                     </md-radio-group>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -628,7 +632,7 @@
                                             <div class="col-lg-3">
                                                 <label class="control-label">Preferred City (Nearest)</label>
                                                 <div class="controls clearfix">
-                                                    <input class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.Preferredcity"></input>
+                                                    <input id="Preferredcityid" ng-class="page.model.applycolorsfortextboxes(page.model.advancedsearch.Preferredcity,'Preferredcityid')" class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.advancedsearch.Preferredcity"></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -972,3 +976,19 @@
         </div>
     </script>
     </div>
+    <style type="text/css">
+      .selectborderclass {
+        border: 1px solid #b1a8a8;
+        border-radius: 3px;
+        padding-left: 4px;
+    }
+     .selectborderclasscolor {
+        border: 1px solid #b1a8a8;
+        border-radius: 3px;
+        padding-left: 4px;
+        background: #f0f0cc !important;
+    }
+     .bacg {
+        background-color: #f0f0cc !important;
+    }
+ </style>

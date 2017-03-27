@@ -107,11 +107,14 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                             itmArr: scope.data,
                             custPhoto: item.CustomerFullPhoto,
                             Custid: item.Cust_ID,
-                            proceedstatusfrom: item.Mystatus,
-                            proceedstatusto: item.OppStatus,
                             Tickid: item.TicketID,
-                            PhotoCount: item.PhotoCount
-
+                            PhotoCount: item.PhotoCount,
+                            Mystatus: item.Mystatus,
+                            OppStatus: item.OppStatus,
+                            FromTicketIdSuf: item.FromTicketIdSuf,
+                            ToTicketIDSuf: item.ToTicketIDSuf,
+                            FromTicketID: item.FromTicketID,
+                            ToTicketID: item.ToTicketID
                         });
                     });
                     return scope.arraydata;

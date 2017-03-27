@@ -9,16 +9,21 @@
 //         },
 //     }
 // });
-app.directive('focusd', function($timeout) {
+app.directive('ngFocuss', function($timeout) {
     return {
-        require: 'ngModel',
-        restrict: 'A',
-        link: function(scope, elem, attrs, ctrl) {
-            scope.$on('inputFocus', function(e, name) {
-                if (attrs.name === name) {
-                    elem.focus();
+        link: function(scope, element, attrs) {
+            scope.$watch(attrs.ngFocus, function(val) {
+                if (angular.isDefined(val) && val) {
+                    $timeout(function() { element[0].focus(); });
+                }
+            }, true);
+
+            element.bind('blur', function() {
+                if (angular.isDefined(attrs.ngFocusLost)) {
+                    scope.$apply(attrs.ngFocusLost);
+
                 }
             });
         }
-    }
+    };
 });

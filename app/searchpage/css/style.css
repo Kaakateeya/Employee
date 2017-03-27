@@ -113,4 +113,9 @@ body {
   bottom: 0;
   right: 0; }
 
+span.multiselect-selected-text {
+  text-overflow: ellipsis;
+  display: block;
+  overflow: hidden; }
+
 /*# sourceMappingURL=style.css.map */
