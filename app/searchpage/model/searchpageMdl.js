@@ -443,7 +443,6 @@
         };
 
         model.applycolorsfortextboxesdate = function(value, id) {
-            debugger;
             var colors = "textboxremvecolor";
             if (value !== "" && value !== undefined && value !== null) {
                 colors = "bacg";

@@ -17,7 +17,7 @@
 //     };
 //   }]);
 
-app.factory('authSvc', ['$injector', 'Idle', '$http', function($injector, Idle, $http) {
+app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function($injector, Idle, $http, helperservice) {
     function setUser(value) {
 
         setSession("LoginEmpid", value.EmpID);
@@ -118,20 +118,34 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', function($injector, Idle, 
                 return res.data;
             });
         },
+        // getClientIp: function() {
+        //     return $http.get('/getClientIp').then(function(res) {
+        //         console.log(res);
+        //         console.log(((res.data).indexOf("::1") !== -1));
+        //         console.log(((res.data).indexOf("127.0.0.1") !== -1));
+        //         var response;
+        //         if ((res.data).indexOf("::1") !== -1 || (res.data).indexOf("127.0.0.1") !== -1) {
+        //             response = "183.82.98.109";
+        //             setSession("getClientIp", response);
+        //         } else {
+        //             response = res.data;
+        //             setSession("getClientIp", response);
+        //         }
+        //         return response;
+        //     });
+        // },
         getClientIp: function() {
-            return $http.get('/getClientIp').then(function(res) {
-                console.log(res);
-                console.log(((res.data).indexOf("::1") !== -1));
-                console.log(((res.data).indexOf("127.0.0.1") !== -1));
-                var response;
-                if ((res.data).indexOf("::1") !== -1 || (res.data).indexOf("127.0.0.1") !== -1) {
-                    response = "183.82.98.109";
-                    setSession("getClientIp", response);
+            helperservice.getipAddressReturn().then(function(response) {
+                console.log(response);
+                var responsedata;
+                if ((response.data).indexOf("::1") !== -1 || (response.data).indexOf("127.0.0.1") !== -1) {
+                    responsedata = "183.82.98.109";
+                    setSession("getClientIp", responsedata);
                 } else {
-                    response = res.data;
-                    setSession("getClientIp", response);
+                    responsedata = response.data;
+                    setSession("getClientIp", responsedata);
                 }
-                return response;
+                return responsedata;
             });
         },
         getpaidstatus: function() {

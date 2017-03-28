@@ -1,6 +1,6 @@
-app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubum', 'SelectBindServiceApp', 'alert', 'helperservice',
+app.directive("landingslideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubum', 'SelectBindServiceApp', 'alert',
 
-    function(uibModal, commonpage, timeout, photoalubum, SelectBindServiceApp, alerts, helperservice) {
+    function(uibModal, commonpage, timeout, photoalubum, SelectBindServiceApp, alerts) {
         return {
             restrict: "E",
             scope: {
@@ -21,7 +21,7 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                 nghide: '='
             },
             templateUrl: function(element, attrs, scope) {
-                return attrs.slidetype === "'page'" ? 'templates/dynamicSlideshow.html' : 'templates/dynamicSlideshow.html';
+                return attrs.slidetype === "'page'" ? 'templates/landingSlide.html' : 'templates/landingSlide.html';
             },
             link: function(scope, element, attrs) {
                 var currentIndex = 1;
@@ -43,7 +43,6 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                 scope.typeofslidedate = "";
                 scope.mobileVerificationCode = null;
                 scope.custfamilyID = null;
-                scope.modalbodyID1 = "";
                 scope.dynamicslideshow = scope.nghide !== undefined && scope.nghide !== "" ? scope.nghide : true;
                 scope.displayArray = function(arr, frompage) {
                     console.log(arr);
@@ -419,62 +418,6 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                 };
 
 
-                scope.proceedanddontproceed = function(typeofbtn) {
-
-                    switch (typeofbtn) {
-                        case "btnProceed":
-                            var MobjViewprofile = {
-                                ExpressInrestID: scope.hdnexpressinterstfiled,
-                                CustID: scope.fromcustid,
-                                FromCustID: scope.fromcustid,
-                                ToCustID: scope.tocustid,
-                                AcceptStatus: 1,
-                                MatchFollwupStatus: 1
-                            };
-                            helperservice.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
-                                alerts.dynamicpopup("TabClosePopup.html", scope, uibModal);
-                                switch (response.data) {
-                                    case 1:
-                                        scope.modalbodyID1 = "To Move the Match for MatchFollowup";
-                                        break;
-                                    case 2:
-                                    case 3:
-                                        scope.modalbodyID1 = "You need to Upgrade online membership";
-                                        break;
-                                    default:
-                                        scope.modalbodyID1 = "Updation failed please contact admin";
-                                        break;
-                                }
-                            });
-                            break;
-                        case "btnDontProceed":
-                            var MobjViewprofiledont = {
-                                ExpressInrestID: scope.hdnexpressinterstfiled,
-                                CustID: scope.fromcustid,
-                                FromCustID: scope.fromcustid,
-                                ToCustID: scope.tocustid,
-                                AcceptStatus: 2,
-                                MatchFollwupStatus: 2
-                            };
-                            helperservice.UpdateExpressIntrestViewfullprofile(MobjViewprofiledont).then(function(response) {
-                                alerts.dynamicpopup("TabClosePopup.html", scope, uibModal);
-                                switch (response.data) {
-                                    case 1:
-                                        scope.modalbodyID1 = "Oops go through your search";
-                                        break;
-                                    case 2:
-                                    case 3:
-                                        scope.modalbodyID1 = "You need to Upgrade online membership";
-                                        break;
-                                    default:
-                                        scope.modalbodyID1 = "Updation failed please contact admin";
-                                        break;
-                                }
-                            });
-                            break;
-                    }
-
-                };
 
             }
         };

@@ -1,13 +1,19 @@
 (function() {
     'use strict';
 
-    function factory($http, uibModal, loginservice, route, authSvc, $state) {
+    function factory($http, uibModal, loginservice, route, authSvc, $state, helperservice) {
         var model = {},
             modalpopupopen;
         model.loginsubmit = {};
         model.CurrentDate = new Date();
         model.usernameemployee = false;
         model.usernameemployeepassword = false;
+
+        // model.getip = function() {
+        //     helperservice.getipAddressReturn().then(function(response) {
+        //         console.log(response);
+        //     });
+        // };
         model.init = function() {
             authSvc.getmacaddress();
             authSvc.getClientIp();
@@ -35,9 +41,9 @@
                                 model.loginarray = response.data.m_Item1;
                                 model.empphoto = response.data.m_Item1.EmpPhotoPath;
                                 authSvc.user(response.data.m_Item1);
+                                $state.go("dashboard", {});
                                 model.loginsubmit.usernameemployee = "";
                                 model.loginsubmit.passwordemployee = "";
-                                $state.go("dashboard", {});
                                 break;
                             case 0:
                                 model.errormessage = "Invalid login credentials";
@@ -88,6 +94,6 @@
         .module('Kaakateeya')
         .factory('loginModel', factory);
 
-    factory.$inject = ['$http', '$uibModal', 'loginservice', 'route', 'authSvc', '$state'];
+    factory.$inject = ['$http', '$uibModal', 'loginservice', 'route', 'authSvc', '$state', 'helperservice'];
 
 })();

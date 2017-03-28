@@ -1,89 +1,3 @@
-<div id="PhotoPopupSlde" ng-show="dynamicslideshow">
-    <div class="">
-
-        <div class="panel panel-default">
-            <div class="row">
-                <div class="col-lg-4">
-                    <i class="fa fa-chevron-down" style="width: 39px;
-    color: #bd1515;
-    font-size: 20px;
-    margin-left: 11px;
-    padding-top: 3px;cursor:pointer;" aria-hidden="true" data-toggle="collapse" href="#collapseOne"></i>
-                    <label style="color:#585050">Total Records :</label>
-                    <label style="color:blue"> {{currentslide}}</label>
-                    <label style="color:#585050"> of {{lbltotalrecordsslide}}</label>
-                </div>
-                <div class="col-lg-4" id="divviewedprofiles">
-                    <div class="row" style="padding-top: 5px;">
-                        <div class="col-lg-5">
-                            Viewed &nbsp;&nbsp;<label id="lnkLastSlide" style="color: blue;">{{viewedcount}}&nbsp;&nbsp;</label><label>Profiles</label>
-                        </div>
-                        <div class="col-lg-1">
-                            <input type="text" id="txtGotoVal" class="form-control" style="width: 60px; height: 30px;" onchange="gotoSlide('#txtGotoVal','lnkLastSlide')">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">
-                    <a style="font-size: 18px;color:#337ab7" href="javascript:void(0);" onclick="return mainShortListProfiles();"><span class="glyphicon glyphicon-star">ShowShortList</span></a>
-                </div>
-                <div class="pull-right">
-                    <md-button class="md-raised md-warn md-hue-2" ng-click="backtosearchpage()">Back to Search Page</md-button>
-                </div>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <div class="col-lg-1" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">
-                                <img style="display:block;height: 54px; width: 60px;" ng-src="{{personalobj.ApplicationProfilePic}}">
-                            </div>
-
-                            <div class="col-lg-10">
-                                <label style="width: 150px;font-size: 13px;color: #000" ng-show="personalobj.Cust_ID==='' || personalobj.Cust_ID===null || personalobj.Cust_ID===undefined">
-                                    Without Profile ID
-                                </label>
-                                <label style="color: black" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">{{personalobj.SelfName}}</label>
-                                <a onclick="return ViewProfileWithID('lblhiddenprofileid');" href="javascript:void(0)" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">({{personalobj.ProfileID}})</a>
-                                <a style="width: 20px; margin-right: 13px;" data-toggle="modal" href="#divlookingmore">More</a>
-                                <a onclick="return redirectpartner()" href="javascript:void(0)" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">Edit Partpreference</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <br>
-            </div>
-        </div>
-
-        <div class="row" style="margin-left: 12px;">
-            <div class="progress" id="progessDiv" style="display:block;">
-            </div>
-        </div>
-        <div class="modal-body">
-            <div id="sildeViewDiv" style="display:block;">
-                <div class="bs-example">
-                    <div id="myCarousel" class="carousel slide" data-interval="false" data-ride="carousel">
-                        <div ng-include="bodytemplate"></div>
-                        <a data-target="#myCarousel" class="carousel-control left" href="javascript:void(0)" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a data-target="#myCarousel" class="carousel-control right" href="javascript:void(0)" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
-                    </div>
-                    <div id="carouselButtons" class="col-lg-offset-5" style="margin-top: -10px;">
-                        <button id="playButton" type="button" ng-show="ShowPause" ng-click="pauseResume('play');" class="btn btn-default btn-xs pauseBtns" title="Play">
-                                    <i class="fa fa-play"></i>
-                                </button>
-                        <button id="pauseButton" type="button" ng-show="!ShowPause" ng-click="pauseResume('pause');" class="btn btn-default btn-xs pauseBtns" title="Pause">
-                                    <i class="fa fa-pause"></i>
-                                </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <script type="text/ng-template" id="dynamicSlideshow.html">
     <div class="modal-body">
         <div class="modal-header modalheader" style="border-bottom: 1px solid #ffffff;">
@@ -418,19 +332,7 @@
         </div>
     </form>
 </script>
-<script type="text/ng-template" id="TabClosePopup.html">
-    <div class="modal-message modal-danger">
-        <div class="modal-header" id="divhead1">
-            <i class="glyphicon glyphicon-fire"></i>
-        </div>
-        <div class="modal-body">
-            {{modalbodyID1}}
-        </div>
-        <div class="modal-footer">
-            <button id="btnclose" class="btn btn-default" ng-click="modalpopupclose1()">Close</button>
-        </div>
-    </div>
-</script>
+
 <style>
     .paidCls {
         color: Green;

@@ -10,6 +10,7 @@
              vm.model = model = EmployeePaymentmodel;
              model.scope = scope;
              model.txtProfileID = "";
+             model.freshLink = false;
          };
 
          vm.init();

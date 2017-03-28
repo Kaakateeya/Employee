@@ -21,7 +21,7 @@
                         <div class="clearfix">
                             <label for="kmplProfileID" class="col-lg-4">Search By ProfileID / Name</label>
                             <div class="col-lg-5">
-                                <input ng-focus="true" autofocus type="text" ng-model="page.model.obj.ProfileIDsearch" class="form-control">
+                                <input ng-focus="true" autofocus type="text" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj);" ng-model="page.model.obj.ProfileIDsearch" class="form-control">
                             </div>
                             <div class="col-lg-3">
                                 <button class="btn btn-warning pull-left" ng-click="page.model.ViewAllsubmit(page.model.obj)">Submit</button>
@@ -57,19 +57,7 @@
 
 
 
-<div class="container">
-    <h1>Sub Table</h1>
-    <p>Use <code>onExpandRow</code> event to handle your detail view.</p>
-    <table id="table" data-detail-view="true">
-        <thead>
-            <tr>
-                <th data-field="id">ID</th>
-                <th data-field="name">Item Name</th>
-                <th data-field="price">Item Price</th>
-            </tr>
-        </thead>
-    </table>
-</div>
+
 <script>
 </script>
 <style type="text/css">

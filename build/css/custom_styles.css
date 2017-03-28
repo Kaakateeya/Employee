@@ -394,7 +394,8 @@ acronym {
   padding: 7px 2%;
   box-shadow: none;
   border: solid 1px #ADA2A2 !important;
-  border-radius: 5px !important; }
+  border-radius: 5px !important;
+  float: left; }
 
 .pop_content_my ul li .pop_controls_right .chzn-container-single + input[type=text] {
   display: block;
@@ -406,7 +407,8 @@ acronym {
 
 .pop_content_my ul .select-box-my-double input {
   width: 48% !important;
-  float: left; }
+  float: left;
+  margin: 1% 0% 1% 0% !important; }
 
 .pop_content_my ul .select-box-my .chzn-container {
   width: 100% !important; }
@@ -905,8 +907,8 @@ acronym {
 
 .pics_selected_list_item img {
   display: block;
-  width: 100% !important;
-  height: 220px !important; }
+  height: 220px !important;
+  width: 268px; }
 
 .pics_selected_list_main_lt label {
   color: #000 !important;
@@ -1284,7 +1286,7 @@ label {
 
 .select-box-my-trible input[type="text"] {
   width: 32% !important;
-  margin: 0 0 0 1% !important;
+  margin: 2% 0% 0% 2% !important;
   display: inline-block; }
 
 .pop_content_my ul .select-box-my-double .btn-group {
@@ -1344,5 +1346,8 @@ label {
 
 .modal {
   z-index: 99068 !important; }
+
+button.multiselect.dropdown-toggle.btn.ng-pristine.ng-untouched.ng-valid.ng-isolate-scope {
+  width: 100%; }
 
 /*# sourceMappingURL=custom_styles.css.map */

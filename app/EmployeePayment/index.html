@@ -5,18 +5,20 @@
     color: #b10c0c;">Search Membership Package</h4>
         <br>
         <div class="regmain">
-
             <div class="row">
                 <div class="col-lg-4">
                     <label for="profileid" class="control-label pull-right">ProfileID</label>
                 </div>
                 <div class="col-lg-3">
-                    <input ng-focus="true" autofocus type="text" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
-                        ng-model="page.model.txtProfileID" class="form-control">
+                    <input ng-focus="true" autofocus type="text" maxlength="9" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.txtProfileID" class="form-control" ng-keyup="$event.keyCode == 13 && page.model.EmployeePayment(page.model.txtProfileID)">
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-1">
                     <button class="btn btn-danger" ng-click="page.model.EmployeePayment(page.model.txtProfileID)">Go</button>
                 </div>
+                <div class="col-lg-2">
+                    <md-button class="md-primary" ng-show="page.model.freshLink" href="javascript:void(0);" ng-click="page.model.paymentInsertLink(page.model.txtProfileID);">Fresh Payment</md-button>
+                </div>
+
             </div>
             <div>
                 <bootstrap-table btnclick="'true'" array="[]" id="ftable" height="'400'" pagesize="'40'">
