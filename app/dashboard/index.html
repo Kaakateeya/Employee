@@ -1,0 +1,103 @@
+<div id="dashBoardPage" class="right_col" role="main">
+
+    <div class="">
+        <div class="row">
+            <div ng-id="dash_{{$index}}" class="col-md-4" ng-repeat="item in page.model.landingItems" ng-show="item.length>0">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>{{item[0].TableName}} ({{item[0].ServiceCount}})
+                        </h2>
+                        <a href="javascript:void(0)" class="close-link pull-right" title="Close" ng-click="page.arrayslice($index)"><i class="fa fa-close"></i></a>
+                        <br>
+                        <div class="clearfix">
+                        </div>
+                        <ul class="nav pull-right panel_toolbox">
+                            <li>
+                                <a title="Excel" ng-click="page.model.loadmore(page.model.empid, page.model.empBranchID,1,10,item[0].TableName,'export',item,0)" href="javascript:void(0)">
+                                    <img src="src/images/EXCEL.jpg"></img>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="excelshow" title="Slideshow" ng-click="page.slideshowfunction(true,page.model.empid, page.model.empBranchID,1,10,item[0].TableName,'slideshow',item,1)" href="javascript:void(0)">Slide Show</a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="scrolldashboard">
+                        <div class="x_content">
+                            <article class="media event" ng-repeat="inneritem in item">
+                                <a class="pull-left date">
+                                    <img ng-src="{{inneritem.Photo}}"></img>
+                                </a>
+                                <div class="media-body">
+                                    <p class="title">{{inneritem.Name}}
+                                        <span ng-class="inneritem.PaidStatus===1?'colorpaid':'colorunpaid'"> ({{inneritem.Profileid}})</span></p>
+                                    <p class="titleservice">{{inneritem.Date}}</p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <article class="media event">
+                        <div class="pull-right">
+                            <a class="loadmoredashboard" ng-click="page.model.loadmore(page.model.empid, page.model.empBranchID,page.model.frompage,page.model.topage,item[0].TableName, 'load',item,0)" href="javascript:void(0)">Load More</a>
+                        </div>
+                    </article>
+                </div>
+                <div id="exportableproceeding" ng-hide="true">
+                    <table width="100% ">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Profileid</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="itm in item">
+                                <td>{{itm.Name}}</td>
+                                <td>{{itm.Profileid}}</td>
+                                <td>{{itm.Date | date:'MM/dd/yy'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <slide-show nghide="page.model.slideshowtrue" dynamicheader="'false'" slidetype="'popup'" headertemplate="'templates/SlideHeader.html'" bodytemplate="'templates/slideDesign.html'"></slide-show>
+</div>
+<style type="text/css ">
+    .modal {
+        z-index: 99999 !important;
+    }
+    
+    .paidCls {
+        color: Green;
+        text-decoration: underline;
+        margin-left: -16px;
+        padding-left: 10px;
+    }
+    
+    .unpaidCls {
+        color: red;
+        text-decoration: underline;
+        margin-left: -16px;
+        padding-left: 10px;
+    }
+    
+    .modal-lg {
+        width: 90% !important;
+    }
+    
+    .pauseBtns {
+        width: 33px;
+        height: 33px;
+        font-size: 16px;
+    }
+</style>
+
+
+
+<script src="build/js/custom.js " type="text/javascript "></script>

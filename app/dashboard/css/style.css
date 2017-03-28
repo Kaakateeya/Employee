@@ -1,0 +1,52 @@
+#dashBoardPage h2 {
+  font-size: 16px;
+  color: maroon;
+  font-weight: 600;
+  width: 90%; }
+
+#dashBoardPage .scrolldashboard {
+  height: 356px;
+  overflow-y: scroll;
+  min-height: 350px; }
+
+#dashBoardPage .date img {
+  width: 54px;
+  height: 48px; }
+
+#dashBoardPage .counts {
+  color: green; }
+
+#dashBoardPage .title {
+  color: black;
+  margin: 0 0 4px; }
+
+#dashBoardPage .titleservice {
+  color: black; }
+
+#dashBoardPage .excelshow {
+  color: #3030d8;
+  margin-left: 10px; }
+
+#dashBoardPage .x_panel {
+  height: 500px; }
+
+#dashBoardPage .loadmoredashboard {
+  color: #3030d8; }
+
+.modalclassdashboard {
+  z-index: 99999 !important;
+  top: 0%;
+  left: 0%; }
+
+.modalclassdashboardphotopopup {
+  z-index: 9999999 !important;
+  top: 0%;
+  left: 0%; }
+
+.modalheader {
+  padding: 0px !important; }
+
+.fa-check-circle {
+  color: green; }
+
+/*# sourceMappingURL=style.css.map */

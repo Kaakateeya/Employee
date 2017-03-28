@@ -1,0 +1,203 @@
+
+.GITheWall ul {
+  list-style: none;
+  padding:0;
+  margin: 0 auto;
+  text-align: left;
+  width: 100%;
+}
+.GITheWall ul li {
+  display: inline-block;
+  vertical-align: top;
+  width:23%;
+}
+.GITheWall ul li.GI_TW_Selected_Row {
+  -webkit-transition: margin-bottom 0.3s ease-in;
+  -moz-transition: margin-bottom 0.3s ease-in;
+  -o-transition: margin-bottom 0.3s ease-in;
+  transition: margin-bottom 0.3s ease-in;
+}
+
+.GI_TW_expander {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-top:0px;
+  height:auto !important;
+  overflow: hidden;
+  -webkit-transition: height 0.3s ease-in;
+  -moz-transition: height 0.3s ease-in;
+  -o-transition: height 0.3s ease-in;
+  transition: height 0.3s ease-in;
+ 
+}
+.GI_TW_expander.animating {
+  overflow: hidden !important;
+}
+.GI_TW_expander.opened {
+  overflow: visible;
+}
+.GI_TW_expander .GI_TW_pointer {
+  position: absolute;
+  margin-left: -20px;
+  margin-top: -20px;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid #fc4d00;
+  -webkit-transition: left 0.3s ease-in;
+  -moz-transition: left 0.3s ease-in;
+  -o-transition: left 0.3s ease-in;
+  transition: left 0.3s ease-in;
+}
+.GI_TW_expander .GI_TW_expander-inner {
+  width:auto;
+  margin: 0 auto;
+  overflow: hidden;
+
+}
+.GI_TW_expander .GI_TW_expander-inner .GI_TW_fullimg {
+  position: relative;
+  width: 100%;
+  margin:0px 0 0;
+  text-align: center;
+  overflow: hidden;
+  display:table;
+  padding:40px 0;
+}
+.GI_TW_expander .GI_TW_expander-inner .GI_TW_fullimg img {
+  position: relative;
+  display:table-cell;
+  vertical-align:middle;
+  margin:0 auto;
+  
+}
+.GI_TW_expander .GI_TW_Controls {
+  z-index: 1;
+}
+.GI_TW_expander .GI_TW_close {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top:0px;
+  right: 50px;
+  cursor: pointer;
+  background:url(../images/icon_close.gif) no-repeat center center;
+}
+.GI_TW_expander .GI_TW_arrow {
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+  width:20px;
+  height:20px;
+}
+.GI_TW_expander .GI_TW_arrow.GI_TW_hidden {
+  display: none;
+}
+.GI_TW_expander .GI_TW_arrow.GI_TW_next {
+  right:60px;
+  background:url(../images/slide_arrow_next.png) no-repeat center center;
+}
+.GI_TW_expander .GI_TW_arrow.GI_TW_prev {
+  left:60px;
+  background:url(../images/slide_arrow_prev.png) no-repeat center center;
+}
+.GI_TW_expander .GI_TW_loading {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ddd;
+  box-shadow: 0 0 1px #cccccc, 15px 30px 1px #cccccc, -15px 30px 1px #cccccc;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0;
+  -webkit-animation: loader 0.5s infinite ease-in-out both;
+  -moz-animation: loader 0.5s infinite ease-in-out both;
+  -ms-animation: loader 0.5s infinite ease-in-out both;
+  -o-animation: loader 0.5s infinite ease-in-out both;
+  animation: loader 0.5s infinite ease-in-out both;
+}
+
+@-moz-keyframes loader {
+  0% {
+    background: #ddd;
+  }
+
+  33% {
+    background: #ccc;
+    box-shadow: 0 0 1px #cccccc, 15px 30px 1px #cccccc, -15px 30px 1px #dddddd;
+  }
+
+  66% {
+    background: #ccc;
+    box-shadow: 0 0 1px #cccccc, 15px 30px 1px #dddddd, -15px 30px 1px #cccccc;
+  }
+}
+
+@-webkit-keyframes loader {
+  0% {
+    background: #ddd;
+  }
+
+  33% {
+    background: #ccc;
+    box-shadow: 0 0 1px #cccccc, 15px 30px 1px #cccccc, -15px 30px 1px #dddddd;
+  }
+
+  66% {
+    background: #ccc;
+    box-shadow: 0 0 1px #cccccc, 15px 30px 1px #dddddd, -15px 30px 1px #cccccc;
+  }
+}
+
+@-o-keyframes loader {
+  0% {
+    background: #ddd;
+  }
+
+  33% {
+    background: #ccc;
+    box-shadow: 0 0 1px #cccccc, 15px 30px 1px #cccccc, -15px 30px 1px #dddddd;
+  }
+
+  66% {
+    background: #ccc;
+    box-shadow: 0 0 1px #cccccc, 15px 30px 1px #dddddd, -15px 30px 1px #cccccc;
+  }
+}
+
+@-ms-keyframes loader {
+  0% {
+    background: #ddd;
+  }
+
+  33% {
+    background: #ccc;
+    box-shadow: 0 0 1px #cccccc, 15px 30px 1px #cccccc, -15px 30px 1px #dddddd;
+  }
+
+  66% {
+    background: #ccc;
+    box-shadow: 0 0 1px #cccccc, 15px 30px 1px #dddddd, -15px 30px 1px #cccccc;
+  }
+}
+
+@keyframes loader {
+  0% {
+    background: #ddd;
+  }
+
+  33% {
+    background: #ccc;
+    box-shadow: 0 0 1px #cccccc, 15px 30px 1px #cccccc, -15px 30px 1px #dddddd;
+  }
+
+  66% {
+    background: #ccc;
+    box-shadow: 0 0 1px #cccccc, 15px 30px 1px #dddddd, -15px 30px 1px #cccccc;
+  }
+}

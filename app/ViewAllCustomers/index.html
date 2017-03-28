@@ -1,0 +1,94 @@
+<div class="right_col" role="main">
+
+    <div>
+        <h4>Search Kaakateeya Customers</h4>
+        <div>
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="clearfix">
+                        <label for="kmplProfileID" class="col-lg-4">KMPL ProfileID</label>
+                        <div class="col-lg-5">
+                            <input type="text" ng-model="page.model.obj.KmlProfileID" class="form-control">
+                        </div>
+                        <div class="col-lg-3">
+                            <button class="btn btn-warning" ng-click="page.model.kmplSubmit(page.model.obj)">Go</button>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="clearfix">
+                        <label for="kmplProfileID" class="col-lg-4">Search By ProfileID / Name</label>
+                        <div class="col-lg-5">
+                            <input type="text" ng-model="page.model.obj.ProfileIDsearch" class="form-control">
+                        </div>
+                        <div class="col-lg-3">
+                            <button class="btn btn-warning" ng-click="page.model.ViewAllsubmit(page.model.obj)">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="clearfix">
+                        <md-radio-group name="IsHighestDegree" layout="row" ng-model="page.model.obj.myVar" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                            <md-radio-button value="3" class="md-primary">Both</md-radio-button>
+                            <md-radio-button value="1"> Male </md-radio-button>
+                            <md-radio-button value="2"> Female </md-radio-button>
+                        </md-radio-group>
+                    </div> <br/>
+                    <div class="clearfix">
+                        <md-checkbox ng-model="page.model.obj.chkProfileIDsts" value="54" style="padding: 9px 13px 0px 0px;" name="chkboxedu" aria-label="Checkbox 1"><span style="color: black;">Active</span>
+                        </md-checkbox>
+                        <md-checkbox ng-model="page.model.obj.chkProfileIDsts" value="57" style="padding: 9px 13px 0px 0px;" name="chkboxedu" aria-label="Checkbox 1"><span style="color: black;">Settled</span>
+                        </md-checkbox>
+                        <md-checkbox ng-model="page.model.obj.chkProfileIDsts" value="56" style="padding: 9px 13px 0px 0px;" name="chkboxedu" aria-label="Checkbox 1"><span style="color: black;">Deleted</span>
+                        </md-checkbox>
+                        <md-checkbox ng-model="page.model.obj.chkProfileIDsts" value="55" style="padding: 9px 13px 0px 0px;" name="chkboxedu" aria-label="Checkbox 1"><span style="color: black;">Inactive</span>
+                        </md-checkbox>
+                    </div>
+                </div>
+            </div>
+
+            <bootstrap-table btnclick="'true'" array="[]" id="ftable" removeobjs="['CustID','ReligionName','CasteID','MotherTongueName','GenderID','Email','MotherTongueID','ReligionID','ProfileEmpStatus','VerificationCode','FamilyID','ProfileStatusID','Age','Confidential']"
+                height="'400'" pagesize="'40'">
+            </bootstrap-table>
+
+        </div>
+    </div>
+
+</div>
+
+
+<style type="text/css">
+    .modal {
+        z-index: 99999 !important;
+    }
+    
+    .paidCls {
+        color: Green;
+        text-decoration: underline;
+        margin-left: -16px;
+        padding-left: 10px;
+    }
+    
+    .unpaidCls {
+        color: red;
+        text-decoration: underline;
+        margin-left: -16px;
+        padding-left: 10px;
+    }
+    
+    .modal-lg {
+        width: 90% !important;
+    }
+    
+    .pauseBtns {
+        width: 330px;
+        height: 33px;
+        font-size: 16px;
+    }
+    
+    .regmain {
+        border: solid 1px #ccc;
+        border-radius: 5px;
+        padding: 7px;
+    }
+</style>
+<script src="build/js/custom.js" type="text/javascript"></script>

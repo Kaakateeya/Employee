@@ -1,0 +1,19 @@
+<form class="EditViewClass" name="deletetForm" novalidate role="form" ng-submit="page.model.deleteEduSubmit();">
+    <div class="modal-header">
+        <h3 class="modal-title text-center" id="modal-title">Alert
+            <a href="javascript:void(0);" ng-click="page.model.cancel();">
+                <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="25">Delete</ng-md-icon>
+            </a>
+        </h3>
+    </div>
+    <div class="modal-body clearfix" id="modal-body">
+        <!--<asp:Image ID="imghorobigimage" runat="server" Style="height: 500px; width: 500px;" />-->
+        <img id="imgsrc">
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Delete</button>
+        <button type="button" class="btn btn-danger" ng-click="page.model.cancel();">Cancel</button>
+    </div>
+
+</form>

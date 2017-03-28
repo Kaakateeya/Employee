@@ -1,0 +1,44 @@
+<div class="right_col" role="main">
+
+    <div class="search_page_main">
+        <h4 style="font-size: 18px;
+    color: #b10c0c;">Search Membership Package</h4>
+        <br>
+        <div class="regmain">
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="profileid" class="control-label pull-right">ProfileID</label>
+                </div>
+                <div class="col-lg-3">
+                    <input ng-focus="true" autofocus type="text" maxlength="9" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.txtProfileID" class="form-control" ng-keyup="$event.keyCode == 13 && page.model.EmployeePayment(page.model.txtProfileID)">
+                </div>
+                <div class="col-lg-1">
+                    <button class="btn btn-danger" ng-click="page.model.EmployeePayment(page.model.txtProfileID)">Go</button>
+                </div>
+                <div class="col-lg-2">
+                    <!--<a href="javascript:void(0);" class="">Fresh Payment</a>-->
+                    <md-button class="md-primary" ng-show="page.model.freshLink" href="javascript:void(0);" ng-click="page.model.paymentInsertLink(page.model.txtProfileID);">Fresh Payment</md-button>
+                </div>
+
+            </div>
+            <div>
+                <bootstrap-table btnclick="'true'" array="[]" id="ftable" height="'400'" pagesize="'40'">
+                </bootstrap-table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .fixed-table-container thead th .sortable,
+    .detail {
+        cursor: pointer;
+        background-position: right;
+        background-repeat: no-repeat;
+        padding-right: 30px;
+        background-color: #fdca52;
+        color: black;
+    }
+</style>
+<script src="build/js/custom.js" type="text/javascript"></script>

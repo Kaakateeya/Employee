@@ -6,6 +6,7 @@ var fs = require('fs');
 var packageJson = JSON.parse(fs.readFileSync('./package.json'));
 var plugins = packageJson.buildSettings.plugins;
 var css = packageJson.buildSettings.css;
+var folders = { 'app/dashboard/src/scripts.min.js': 'app/dashboard/**/*.js', 'app/searchpage/src/scripts.min.js': 'app/searchpage/**/*.js' };
 module.exports = function(grunt) {
     console.log(plugins);
     // ===========================================================================
@@ -33,10 +34,7 @@ module.exports = function(grunt) {
                 mangle: false
             },
             build: {
-                files: {
-
-                    'dist/js/main.min.js': ['dist/src/main.js']
-                }
+                files: folders
             }
         },
         cssmin: {

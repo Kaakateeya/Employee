@@ -1,0 +1,262 @@
+
+        .logo_inner_new {
+           
+            background: url('../images/vinod.png') no-repeat -448px -180px !important;
+            width: 162px;
+            height: 75px;
+        }
+        
+        .live_chat_footer_new {
+            margin: 0 0 0 30%;
+            background: url('../images/vinod.png') no-repeat -318px -183px !important;
+            display: block;
+            width: 90px;
+            height: 90px;
+        }
+        
+        .mobileicon {
+            background: url('../images/vinod.png') no-repeat -620px -291px !important;
+            display: block !important;
+            width: 34px !important;
+            height: 34px !important;
+        }
+   
+  
+        .Linkdisabled {
+            pointer-events: none;
+            cursor: default;
+        }
+        
+        #wimgprofile {
+            display: block;
+            width: 116px !important;
+            height: 116px !important;
+            border-radius: 100%;
+            border: solid 4px #d1d1d1;
+        }
+        
+        #imgprofile {
+            display: block;
+            width: 116px !important;
+            height: 116px !important;
+            border-radius: 100%;
+            border: solid 4px #d1d1d1;
+        }
+        
+        .search_result_items_main {
+            width: 100%;
+            color: #000;
+            margin: 0 auto !important;
+        }
+        
+        .cssMaskdiv {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+        
+        .cssMaskdiv:after {
+            background: rgba(0, 0, 0, 0.9) none repeat scroll 0 0;
+            color: #ffffff;
+            content: "To View other Photos";
+            display: block;
+            font-size: 14px;
+            /* height: 100%; */
+            left: 0;
+            padding: 50% 0;
+            position: absolute;
+            text-align: center;
+            top: 0;
+            width: 100%;
+        }
+        
+        .cssMaskdiv:before {
+            color: #ffffff;
+            content: "Upload your Photo";
+            display: block;
+            font-size: 14px;
+            /* height: 100%; */
+            left: 0;
+            padding: 60% 0;
+            position: absolute;
+            text-align: center;
+            top: 0;
+            width: 100%;
+            z-index: 999999999;
+        }
+        
+        .cssMaskdivprotected {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+        
+        .cssMaskdivprotected:after {
+            background: rgba(0, 0, 0, 0.9) none repeat scroll 0 0;
+            color: #ffffff;
+            content: "Password Protected";
+            display: block;
+            font-size: 14px;
+            /* height: 100%; */
+            left: 0;
+            padding: 50% 0;
+            position: absolute;
+            text-align: center;
+            top: 0;
+            width: 100%;
+        }
+        
+        .cssMaskdivprotected:before {
+            color: #ffffff;
+            content: "";
+            display: block;
+            font-size: 14px;
+            /* height: 100%; */
+            left: 0;
+            padding: 60% 0;
+            position: absolute;
+            text-align: center;
+            top: 0;
+            width: 100%;
+            z-index: 999999999;
+        }
+        
+        .cssMaskdivrev {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+        
+        .cssMaskdivrev:after {
+            background: rgba(0, 0, 0, 0.9) none repeat scroll 0 0;
+            color: #ffffff;
+            content: "Once your photos approved";
+            display: block;
+            font-size: 14px;
+            /* height: 100%; */
+            left: 0;
+            padding: 50% 0;
+            position: absolute;
+            text-align: center;
+            top: 0;
+            width: 100%;
+        }
+        
+        .cssMaskdivrev:before {
+            color: #ffffff;
+            content: "you can view others photos";
+            display: block;
+            font-size: 14px;
+            /* height: 100%; */
+            left: 0;
+            padding: 60% 0;
+            position: absolute;
+            text-align: center;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+        }
+        
+        .cssbtn {
+            display: none;
+        }
+        
+        .cssdiv {
+            position: relative;
+        }
+        
+        .cssdiv:after {
+            display: block;
+            content: 'Only for login members';
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            line-height: 20px;
+            width: 100%;
+            padding: 60% 0;
+            left: 0;
+            top: 0;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        
+        .cssMaskupload {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+        
+        .cssMaskupload:after {
+            background: rgba(0, 0, 0, 0.9) none repeat scroll 0 0;
+            color: #ffffff;
+            content: "Upload  Photo";
+            display: block;
+            font-size: 14px;
+            /* height: 100%; */
+            left: 0;
+            padding: 50% 0;
+            position: absolute;
+            text-align: center;
+            top: 0;
+            width: 100%;
+        }
+        
+        .divCSSclass {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+        
+        .divCSSclass:after {
+            background: rgba(0, 0, 0, 0.9) none repeat scroll 0 0;
+            color: #ffffff;
+            content: "Your Photo Under Review";
+            display: block;
+            font-size: 14px;
+            /* height: 100%; */
+            left: 0;
+            line-height: 20px;
+            padding: 40% 0;
+            position: absolute;
+            text-align: center;
+            top: 0;
+            width: 100%;
+        }
+        
+        .bs-callout-info {
+            border-left-color: #fedc01 !important;
+        }
+        
+        .bs-callout {
+            /*//padding: 20px;*/
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #cebebe;
+            border-left-width: 5px;
+            border-radius: 3px;
+        }
+        
+        .popover-content .row:nth-of-type(even) {
+            background: #e0e0e0;
+        }
+        
+        .popover-title {
+            text-align: center;
+        }
+        
+        .popover {
+            max-width: 100%;
+        }
+        
+        .viewedee {
+            height: 100px;
+            width: 350px;
+        }
+        
+        .TicketHistry {
+            height: 200px;
+            overflow-y: scroll;
+            width: 400px;
+            color: #ab1818;
+        }
+    
