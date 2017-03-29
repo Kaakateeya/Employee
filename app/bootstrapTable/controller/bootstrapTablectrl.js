@@ -17,7 +17,7 @@
          };
          timeout(function() {
              vm.mg();
-         }, 2000)
+         }, 100)
          vm.mg = function() {;
              model.data = [
                  { 'ProfileID': 1, 'LastName': 'kusumuru', 'FirstName': 'Uma', 'Caste': 21071668, 'ProfileOwner': 21071668, 'Height': 21071668, 'Login': 21071668, 'Education': 21071668, 'Profession': 21071668, 'DOB': 21071668, 'ProfileID': 21071668 },

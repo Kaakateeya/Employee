@@ -1,4 +1,4 @@
-app.directive("bootstrapTablenew", ['commonpage', '$timeout',
+app.directive("bootstrapTable", ['commonpage', '$timeout',
     function(commonpage, timeout) {
         return {
             restrict: "E",
@@ -9,6 +9,7 @@ app.directive("bootstrapTablenew", ['commonpage', '$timeout',
             link: function(scope, element, attrs) {
                 scope.init = function() {
                     scope.model.data = [];
+                    scope.pagen=1;
                     scope.model.exportColumns = {};
                     _.each(scope.model.columns, function(item) {
                         if (item.text !== '')
@@ -21,6 +22,9 @@ app.directive("bootstrapTablenew", ['commonpage', '$timeout',
                 });
                 scope.plus = function(data) {
                     alert(JSON.stringify(data));
+                };
+                scope.pagechange=function(mg){
+                    alert(mg);
                 };
                 scope.init();
             }

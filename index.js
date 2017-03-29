@@ -39,7 +39,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                 files: ['css/bootstrap-table/bootstrap-table.css',
                     'css/bootstrap-table/bootstrap-table-fixed-columns.css',
                     'css/bootstrap-table/dragtable.css', 'common/directive/dynamicBootstrapTable.js',
-                    'common/directive/commonpage.js',
+          //          'common/directive/commonpage.js',
                     'bower_components/json-export-excel/dest/json-export-excel.min.js'
                 ]
             }]

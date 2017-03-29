@@ -1,4 +1,4 @@
-app.directive("bootstrapTable", ['commonpage', '$timeout',
+app.directive("bootstrapTableold", ['commonpage', '$timeout',
     function(commonpage, timeout) {
         return {
             restrict: "E",
