@@ -112,6 +112,9 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
         },
         verifyMobile: function(VCode, CustFamilyid) {
             return http.get(app.apiroot + 'StaticPages/getCustomerEmilVerificationCodeUpdate', { params: { VerificationCode: VCode, CustFamilyID: CustFamilyid } });
+        },
+        getphotoslideimages: function(custid) {
+            return http.get(app.apiroot + 'StaticPages/GetPhotoSlideImages', { params: { CustID: custid } });
         }
 
     };

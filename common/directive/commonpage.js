@@ -1,6 +1,6 @@
-app.factory('commonpage', ['$uibModal', 'editViewprofileservice',
+app.factory('commonpage', ['$uibModal', 'editViewprofileservice', 'SelectBindServiceApp',
 
-    function(uibModal, editViewprofileservice) {
+    function(uibModal, editViewprofileservice, SelectBindServiceApp) {
         var modalinstance;
         var obj = {};
         var $table = $('#GridTable');
@@ -41,7 +41,7 @@ app.factory('commonpage', ['$uibModal', 'editViewprofileservice',
             return paid;
         };
         ViewProfile = function(value, row, index) {
-            var paid = "<a style='cursor:pointer;'  href='javascript:void(0);'>" + row.viewprofileProfileid + "</a>";
+            var paid = "<a style='cursor:pointer;'   href='/Viewfullprofile/" + row.viewprofileProfileid + "'>" + row.viewprofileProfileid + "</a>";
             return paid;
         };
         ProfileOwnerImg = function(value, row, index) {
@@ -177,17 +177,17 @@ app.factory('commonpage', ['$uibModal', 'editViewprofileservice',
                 //     });
                 // });
             },
-            ShowPhotoPopup: function(custid, scope) {
-                // photoalubum.getphotoslideimages(custid).then(function(response) {
-                //     scope.slides = [];
-                //     _.each(response.data, function(item) {
-                //         scope.slides.push(item);
-                //     });
-                // });
+            ShowPhotoPopup: function(url, custid, scope) {
+                SelectBindServiceApp.getphotoslideimages(custid).then(function(response) {
+                    scope.slides = [];
+                    _.each(response.data, function(item) {
+                        scope.slides.push(item);
+                    });
+                });
                 modalpopupopen = uibModal.open({
                     ariaLabelledBy: 'modal-title',
                     ariaDescribedBy: 'modal-body',
-                    templateUrl: 'templates/dynamicPhotoPopup.html',
+                    templateUrl: url,
                     scope: scope,
                     backdrop: 'static',
                     keyboard: false
