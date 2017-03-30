@@ -27,7 +27,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { name: 'EmployeePayment', url: '/EmployeePayments', isloginrequired: false },
             { name: 'EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID', isloginrequired: false },
             { name: 'bootstrapTable', url: '/bootstrapTables', isloginrequired: false },
-            { name: 'employeeViewfullprofile', url: '/Viewfullprofile/:ProfileID', isloginrequired: false }
+            { name: 'employeeViewfullprofile', url: '/Viewfullprofile/:ProfileID', isloginrequired: false },
+            { name: 'expressInterest', url: '/expressInterestpage', isloginrequired: false }
+
         ];
         $ocLazyLoadProvider.config({
             debug: true
