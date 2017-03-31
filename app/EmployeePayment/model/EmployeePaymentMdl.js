@@ -18,10 +18,11 @@
 
 
                         if (gridArray.length > 0) {
-                            model.freshLink = false;
+                            model.freshLink = true;
                             _.map(gridArray, function(item) {
                                 model.paymentArr.push({
                                     'paymentProfileID': item.ProfileID,
+                                    'paymentid': item.Payment_ID,
                                     'Pay Mode': item.Type,
                                     'Membership': item.membershiptype,
                                     'Agreed': item.AgreedAmount,
@@ -38,19 +39,19 @@
                             });
                             model.scope.$broadcast('submittable', model.paymentArr);
                         } else {
-                            model.freshLink = true;
+                            state.go('EmployeePaymentInsert', { ProfileID: txtval, status: 0, paymentID: 0 });
                         }
                     }
                 );
             } else {
                 alert('please enter profileid');
-
             }
         };
-        model.paymentInsertLink = function(id) {
 
-            state.go('EmployeePaymentInsert', { ProfileID: id });
+        model.paymentInsertLink = function(id) {
+            state.go('EmployeePaymentInsert', { ProfileID: id, status: 1, paymentID: 0 });
         };
+
         return model;
     }
 

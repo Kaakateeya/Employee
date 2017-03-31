@@ -1,0 +1,222 @@
+<div class="right_col" role="main">
+    <div class="">
+        <uib-accordion close-others="oneAtATime">
+
+            <div uib-accordion-group style="margin-top: -12px;box-shadow: 2px 2px 6px #ccc;" class="panel-default" is-open="true">
+                <uib-accordion-heading>
+                    My Profiles <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+
+                    <span style="color:black;font-size: 13px;" class="pull-right">
+                         <span><img src="src/images/ico_horoscope.jpg" alt=""></span>--Horo &nbsp;
+                    <span class="red">OU</span>--Online-Unpaid &nbsp;
+                    <span class="red">KU</span>--Kmpl-Unpaid &nbsp; <span class="green">OP</span>--Online-Paid &nbsp; <span class="green">KP</span>--Kmpl-Paid &nbsp; <span class="green">OR</span>--Online-Renew &nbsp; <span class="green">KR</span>-- Kmpl-Renew
+                    </span>
+                </uib-accordion-heading>
+                <div class="row">
+                    <div class="col-lg-6 subColumnClass">
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Gender</label>
+                            <div class="col-lg-7">
+                                <md-radio-group ng-required="true" name="rdnServicetax" layout="row" ng-model="page.model.PiObj.rdnServicetax" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="1" class="md-primary">Both</md-radio-button>
+                                    <md-radio-button value="0"> Male</md-radio-button>
+                                    <md-radio-button value="0"> Female</md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Profile ID</label>
+                            <div class="col-lg-7">
+                                <input type="text" class="form-control" placeholder="Profile ID">
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Application Status</label>
+                            <div class="col-lg-7">
+                                <select id="generalageto" class="smalldropdown" ng-model="page.model.generalsearch.generalAgeto" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                            </div>
+                        </div>
+
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Branch</label>
+                            <div class="col-lg-7">
+                                <select id="generalageto" class="smalldropdown" ng-model="page.model.generalsearch.generalAgeto" multiselectdropdown typeofdata="'Branch'">   
+                                                     </select>
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Profile Owner</label>
+                            <div class="col-lg-7">
+                                <select id="generalageto" class="smalldropdown" ng-model="page.model.generalsearch.generalAgeto" multiselectdropdown typeofdata="'Ageselect'">
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Date OF Reg.From</label>
+                            <div class="col-lg-7">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Assigned From Date</label>
+                            <div class="col-lg-7">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Firstname</label>
+                            <div class="col-lg-7">
+                                <input type="text" class="form-control" placeholder="Firstname">
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Father Name</label>
+                            <div class="col-lg-7">
+                                <input type="text" class="form-control" placeholder="Father Name">
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Website Login</label>
+                            <div class="col-lg-7">
+                                <md-radio-group ng-required="true" name="rdnServicetax" layout="row" ng-model="page.model.PiObj.rdnServicetax" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="1" class="md-primary">Both</md-radio-button>
+                                    <md-radio-button value="0"> Yes</md-radio-button>
+                                    <md-radio-button value="0"> No</md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Previous Owner</label>
+                            <div class="col-lg-7">
+                                <select id="generalageto" class="smalldropdown" ng-model="page.model.generalsearch.generalAgeto" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 subColumnClass">
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Type of profile</label>
+                            <div class="col-lg-7">
+                                <md-radio-group ng-required="true" name="rdnServicetax" layout="row" ng-model="page.model.PiObj.rdnServicetax" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="1" class="md-primary">Both</md-radio-button>
+                                    <md-radio-button value="0"> Paid</md-radio-button>
+                                    <md-radio-button value="0"> Unpaid</md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">KMPLID</label>
+                            <div class="col-lg-7">
+                                <input type="text" class="form-control" placeholder="KMPLID">
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Caste</label>
+                            <div class="col-lg-7">
+                                <select id="generalageto" class="smalldropdown" ng-model="page.model.generalsearch.generalAgeto" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Marketing Owner</label>
+                            <div class="col-lg-7">
+                                <select id="generalageto" class="smalldropdown" ng-model="page.model.generalsearch.generalAgeto" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Having Profiles</label>
+                            <div class="col-lg-7">
+                                <select id="generalageto" class="smalldropdown" ng-model="page.model.generalsearch.generalAgeto" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Date OF Reg.To</label>
+                            <div class="col-lg-7">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Assigned To Date</label>
+                            <div class="col-lg-7">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">SurName</label>
+                            <div class="col-lg-7">
+                                <input type="text" class="form-control" placeholder="SurName">
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Mother Name</label>
+                            <div class="col-lg-7">
+                                <input type="text" class="form-control" placeholder="Mother Name">
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+
+                            <md-checkbox>Renewal
+                            </md-checkbox>
+                            <md-checkbox>Kmplexpiry
+                            </md-checkbox>
+                            <md-checkbox>IsConfidential
+                            </md-checkbox>
+                            <md-checkbox>Is HighConfidential
+                            </md-checkbox>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Verified contacts</label>
+                            <div class="col-lg-7">
+                                <md-radio-group ng-required="true" name="rdnServicetax" layout="row" ng-model="page.model.PiObj.rdnServicetax" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="1" class="md-primary">Both</md-radio-button>
+                                    <md-radio-button value="0"> Yes</md-radio-button>
+                                    <md-radio-button value="0"> No</md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Website Blocked</label>
+                            <div class="col-lg-7">
+                                <md-radio-group ng-required="true" name="rdnServicetax" layout="row" ng-model="page.model.PiObj.rdnServicetax" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="1" class="md-primary">Both</md-radio-button>
+                                    <md-radio-button value="0"> Yes</md-radio-button>
+                                    <md-radio-button value="0"> No</md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group text-center" style="border-top: 1px solid #ddd;padding-top: 1%;">
+                    <button class="button_custom" style="display:initial;" type="submit">Submit</button>
+                    <button style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset">Reset</button>
+                </div>
+            </div>
+
+        </uib-accordion>
+        <!--<bootstrap-table expand="true" array="[]" id="ftable" removeobjs="['CustID','ReligionName','CasteID','MotherTongueName','GenderID','Email','MotherTongueID','ReligionID','ProfileEmpStatus','VerificationCode','FamilyID','ProfileStatusID','Age','Confidential']"
+            height="'550'" pagesize="'40'">
+        </bootstrap-table>-->
+    </div>
+
+</div>
+<style>
+    .panel-title {
+        color: #b10c0c;
+    }
+    
+    .subColumnClass {
+        line-height: 43px;
+    }
+    
+    .red {
+        color: red;
+    }
+    
+    .green {
+        color: #16713d;
+    }
+</style>

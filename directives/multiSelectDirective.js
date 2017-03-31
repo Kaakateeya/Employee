@@ -1,7 +1,7 @@
 // AngularJS: 1.3 .15
 // bootstrap - multiselect: 0.9 .6
 //var statticdata = require('./staticArrayBindings.json');
-app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', '$timeout', function(cons, service, timeout) {
+app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', '$timeout', 'getArraysearch', function(cons, service, timeout, getArraysearch) {
 
 
     return {
@@ -273,18 +273,12 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                             scope.databind(option);
                         });
                         break;
-                        // case 'getrelationships':
-                        //     service.getrelationships(4, scope.parentVal, "").then(function(response) {
-                        //         var option = [];
-                        //         option.push({ "label": "--select--", "title": "--select--", "value": 0 });
-                        //         _.each(response.data, function(item) {
-                        //             option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                        //         });
-                        //         scope.databind(option);
-                        //     });
-                        //     break;
-
-
+                    case 'Branch':
+                        var option = [];
+                        option = getArraysearch.GArray('BranchName');
+                        option.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                        scope.databind(option);
+                        break;
                 }
             }, 1000);
             element.multiselect({

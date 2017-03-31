@@ -10,10 +10,11 @@
              vm.model = model = EmployeePaymentInsertModel;
              vm.model.getpaymentProfile(stateParams.ProfileID);
          };
+         vm.Number = Number;
          vm.init();
      }
      angular
          .module('Kaakateeya')
-         .controller('EmployeePaymentInsertCtrl', Controller)
+         .controller('EmployeePaymentInsertCtrl', Controller);
      Controller.$inject = ['EmployeePaymentInsertModel', '$stateParams'];
  })(angular);

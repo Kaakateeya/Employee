@@ -144,32 +144,38 @@ module.exports = function(grunt) {
         mkdir: {
             all: {
                 options: {
-                    create: [grunt.option('option-path')]
+                    create: ['app/' + grunt.option('option-path')]
                 },
             },
         },
         "file-creator": {
             "option": {
                 files: [{
-                        file: ((grunt.option('option-path') + '/controller/') + (grunt.option('option-path') + "ctrl.js")),
+                        file: ('app/' + (grunt.option('option-path') + '/controller/') + (grunt.option('option-path') + "ctrl.js")),
                         method: function(fs, fd, done) {
                             done();
                         }
                     },
                     {
-                        file: ((grunt.option('option-path') + '/model/') + (grunt.option('option-path') + "Mdl.js")),
+                        file: ('app/' + (grunt.option('option-path') + '/model/') + (grunt.option('option-path') + "Mdl.js")),
                         method: function(fs, fd, done) {
                             done();
                         }
                     },
                     {
-                        file: ((grunt.option('option-path') + '/service/') + (grunt.option('option-path') + "service.js")),
+                        file: ('app/' + (grunt.option('option-path') + '/service/') + (grunt.option('option-path') + "service.js")),
                         method: function(fs, fd, done) {
                             done();
                         }
                     },
                     {
-                        file: ((grunt.option('option-path') + '/') + ("index.html")),
+                        file: ('app/' + (grunt.option('option-path') + '/css/') + (grunt.option('option-path') + "style.css")),
+                        method: function(fs, fd, done) {
+                            done();
+                        }
+                    },
+                    {
+                        file: ('app/' + (grunt.option('option-path') + '/') + ("index.html")),
                         method: function(fs, fd, done) {
                             done();
                         }
@@ -188,19 +194,19 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                         src: './PageCode/ctrlFormat.js',
-                        dest: ((grunt.option('option-path') + '/controller/') + (grunt.option('option-path') + "ctrl.js"))
+                        dest: ('app/' + (grunt.option('option-path') + '/controller/') + (grunt.option('option-path') + "ctrl.js"))
                     },
                     {
                         src: './PageCode/mdlFormat.js',
-                        dest: ((grunt.option('option-path') + '/model/') + (grunt.option('option-path') + "Mdl.js"))
+                        dest: ('app/' + (grunt.option('option-path') + '/model/') + (grunt.option('option-path') + "Mdl.js"))
                     },
                     {
                         src: './PageCode/serviceFormat.js',
-                        dest: ((grunt.option('option-path') + '/service/') + (grunt.option('option-path') + "service.js")),
+                        dest: ('app/' + (grunt.option('option-path') + '/service/') + (grunt.option('option-path') + "service.js")),
                     },
                     {
                         src: './PageCode/viewFormat.html',
-                        dest: ((grunt.option('option-path') + '/') + ("index.html"))
+                        dest: ('app/' + (grunt.option('option-path') + '/') + ("index.html"))
                     }
                 ],
                 options: {

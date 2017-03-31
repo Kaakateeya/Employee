@@ -16,12 +16,11 @@
                     <button class="btn btn-danger" ng-click="page.model.EmployeePayment(page.model.txtProfileID)">Go</button>
                 </div>
                 <div class="col-lg-2">
-                    <md-button class="md-primary" ng-show="page.model.freshLink" href="javascript:void(0);" ng-click="page.model.paymentInsertLink(page.model.txtProfileID);">Fresh Payment</md-button>
+                    <md-button class="md-primary" ng-show="page.model.freshLink" href="javascript:void(0);" ng-click="page.model.paymentInsertLink(page.model.txtProfileID);">Fresh Payment/Renewal</md-button>
                 </div>
-
             </div>
             <div>
-                <bootstrap-table btnclick="'true'" array="[]" id="ftable" height="'400'" pagesize="'40'">
+                <bootstrap-table btnclick="'true'" array="[]" removeobjs="['paymentid']" id="ftable" height="'400'" pagesize="'40'">
                 </bootstrap-table>
             </div>
         </div>

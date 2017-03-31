@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function factory(EmployeePaymentInsertservice, stateParams, filter) {
+    function factory(EmployeePaymentInsertservice, stateParams, filter, authSvc) {
         debugger;
         var model = {};
         model.obj = {};
@@ -11,7 +11,7 @@
         model.PiObj = {};
         model.paymentpoints = app.paymentPoints;
         model.ExpiryDate = '';
-
+        model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
         model.ServiceTaxPercent = app.ServiceTaxPercent;
 
         model.EmployeePaymentInsert = function(inobj, type) {
@@ -22,23 +22,21 @@
                 dateformatt = DateArr[0] + '/' + ((_.indexOf(monthArr, DateArr[1])) + 1) + '/' + DateArr[2];
             }
 
+            debugger;
             var obj = {
                 ProfileID: model.custobj.ProfileID,
                 Cust_id: model.custobj.Cust_ID,
-                Payment_Id: model.custobj.Payment_ID,
-                Renual_Type: 0,
-                //model.custobj.MemberShipTypeID,
-                NoofPoints: parseInt(inobj.txtAmountPaid / model.paymentpoints),
+                Payment_Id: stateParams.paymentID === '0' || stateParams.paymentID === 0 ? '' : stateParams.paymentID,
+                Renual_Type: stateParams.status,
+                NoofPoints: parseInt(inobj.txtAmountPaid * model.paymentpoints),
                 AgreedAmount: inobj.txtAgreedAmt,
                 SettlementAmount: inobj.txtSettlementAmount,
-                DateDuration: parseInt((inobj.txtAmountPaid / 100) * 30),
+                DateDuration: model.ExpiryDate,
                 ServiceTax: inobj.rdnServicetax,
                 ServiceTaxAmt: inobj.rdnServicetax === '1' ? parseInt(inobj.txtAmountPaid * model.ServiceTaxPercent) : 0,
                 AmountPaid: inobj.txtAmountPaid,
                 StartDate: dateformatt !== '' && dateformatt !== null ? filter('date')(dateformatt, 'MM/dd/yyyy') : null,
-                //model.custobj.StartDate,
                 EndDate: model.custobj.EndDate !== '' && model.custobj.EndDate !== null ? filter('date')(model.custobj.EndDate, 'MM/dd/yyyy') : null,
-                // model.custobj.EndDate,
                 ReceiptNumber: inobj.txtbillno,
                 TransactionID: inobj.txttransactionid,
                 ChequeNoOrDDNo: inobj.txtcheckno,
@@ -47,19 +45,27 @@
                 Place: inobj.txtplace,
                 Paydescription: inobj.txtpayDescription,
                 ModeOfPayment: inobj.rbtnPaymode,
-                EmpID: 2,
+                EmpID: model.empid,
                 AccessFeatureID: 0,
                 PaysmsID: inobj.rbtnmail
             };
             console.log(JSON.stringify(obj));
+            model.PiObj = {};
             EmployeePaymentInsertservice.paymentInsert(obj).then(function(response) {
                 console.log(response);
-                if (response.data === 1 || response.data === '1') {
-                    alert('submited successfully');
-                    model.PiObj = {};
-                } else {
-                    alert('submission failed');
-                }
+                alert('submited successfully');
+                model.PiObj.txtAgreedAmt = '';
+                model.PiObj = {};
+                this.model.PiObj.$setPristine();
+                this.model.PiObj.$setUntouched();
+                this.model.PiObj.$setinValidity();
+
+                // if (response.data === 1 || response.data === '1') {
+                //     alert('submited successfully');
+                //     model.PiObj = {};
+                // } else {
+                //     alert('submission failed');
+                // }
             });
 
         };
@@ -76,15 +82,31 @@
             });
         };
 
-        model.PaidAmtChange = function(val) {
-            var num = val / 100;
-            model.ExpiryDate = moment().add(parseInt(num), 'M').format('DD-MM-YYYY');
+        model.PaidAmtChange = function(val, agreeAmt) {;
+            debugger;
+            if (agreeAmt === '' || agreeAmt === undefined) {
+                model.PiObj.txtAmountPaid = '';
+                alert('Please enter  Agreed amount');
+            }
+            if (parseInt(val) > parseInt(agreeAmt)) {
+                model.PiObj.txtAmountPaid = '';
+                alert('Please enter paid amount less than Agreed amount');
+            } else {
+                var num = val * app.PaymentDays;
+                //val / 100;
+                model.ExpiryDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
+
+            }
 
         };
+
+
+
+
         return model;
     }
     angular
         .module('Kaakateeya')
         .factory('EmployeePaymentInsertModel', factory)
-    factory.$inject = ['EmployeePaymentinsertservice', '$stateParams', '$filter'];
+    factory.$inject = ['EmployeePaymentinsertservice', '$stateParams', '$filter', 'authSvc'];
 })(angular);

@@ -14,7 +14,11 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngAnimate', 'ngSanitize', 
 app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.apirootold = 'http://183.82.0.58:8010/Api/';
 app.env = "dev";
-app.paymentPoints = 10;
+app.payfixedAmt = 100;
+app.paypoints = 10;
+app.payDays = 30;
+app.PaymentDays = parseInt(app.payDays) / parseInt(app.payfixedAmt);
+app.paymentPoints = parseInt(app.paypoints) / parseInt(app.payfixedAmt);
 app.ServiceTaxPercent = 14 / 100;
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider',
@@ -25,11 +29,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { name: 'searchpage', url: '/search/:id', isloginrequired: true },
             { name: 'editViewprofile', url: '/editViewprofileurl', isloginrequired: false },
             { name: 'EmployeePayment', url: '/EmployeePayments', isloginrequired: false },
-            { name: 'EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID', isloginrequired: false },
+            { name: 'EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID/:status/:paymentID', isloginrequired: false },
             { name: 'bootstrapTable', url: '/bootstrapTables', isloginrequired: false },
             { name: 'employeeViewfullprofile', url: '/Viewfullprofile/:ProfileID', isloginrequired: false },
-            { name: 'expressInterest', url: '/expressInterestpage', isloginrequired: false }
-
+            { name: 'expressInterest', url: '/expressInterestpage', isloginrequired: false },
+            { name: 'myProfile', url: '/myProfilepage', isloginrequired: false }
         ];
         $ocLazyLoadProvider.config({
             debug: true
