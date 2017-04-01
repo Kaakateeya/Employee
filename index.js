@@ -35,11 +35,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
 
         $ocLazyLoadProvider.config({
             modules: [{
-                name: 'bootstarapTable',
-                files: ['css/bootstrap-table/bootstrap-table.css',
-                    'css/bootstrap-table/bootstrap-table-fixed-columns.css',
-                    'css/bootstrap-table/dragtable.css', 'common/directive/dynamicBootstrapTable.js',
-          //          'common/directive/commonpage.js',
+                name: 'complex-grid',
+                files: [
+                    'directives/complex-grid/directive.js',
+                    'directives/complex-grid/model/config.js',
+                    'directives/complex-grid/svc.js',
                     'bower_components/json-export-excel/dest/json-export-excel.min.js'
                 ]
             }]
@@ -77,8 +77,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                 resolve: { // Any property in resolve should return a promise and is executed before the view is loaded
                     loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                         // you can lazy load files for an existing module
-                        if (item.name === 'ViewAllCustomers' || item.name === 'bootstrapTable') {
-                            $ocLazyLoad.load('bootstarapTable');
+                        if (item.name === 'editViewprofile' || item.name === 'bootstrapTable') {
+                            $ocLazyLoad.load('complex-grid');
                             return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                         } else if (app.env === "dev") {
                             return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);

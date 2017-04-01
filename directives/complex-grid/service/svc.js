@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('module')
-        .factory('dashboardModel', factory)
+        .module('Kaakateeya')
+        .factory('bootstrapTableSVC', factory)
 
     factory.$inject = ['$http'];
 

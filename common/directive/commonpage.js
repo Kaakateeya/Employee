@@ -217,7 +217,7 @@ app.factory('commonpage', ['$uibModal', 'editViewprofileservice', 'loginservice'
                         _.map(JSON.parse(response.data[0]), function(item) {
                             subArr.push({
                                 'viewprofileProfileid': item.Profileid,
-                                ' Branch-Dor': item.RegistrationDate,
+                                'Branch-Dor': item.RegistrationDate,
                                 'OP/KP': item.paidamount,
                                 'OPD/KPD': item.paiddate,
                                 'S/R Count': item.sentreceivecount,
