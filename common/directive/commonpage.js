@@ -20,7 +20,6 @@ app.factory('commonpage', ['$uibModal', 'editViewprofileservice', 'SelectBindSer
         };
 
         paymentProfileID = function(value, row, index) {
-            alert(row.Membership);
             var status = row.Membership === 'Registration' ? 0 : 1;
             var paid = "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.paymentProfileID + "/" + status + "/" + row.paymentid + "'>" + row.paymentProfileID + "</a>";
             return paid;

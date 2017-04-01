@@ -1,0 +1,82 @@
+<uib-accordion close-others="oneAtATime">
+
+    <div uib-accordion-group style="margin-top: -12px;" class="panel-default" is-open="true">
+        <uib-accordion-heading>
+            Search Tickets<i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+        </uib-accordion-heading>
+        <div class="row">
+            <div class="col-lg-1 form-group">
+                <label for="Region" class="control-label">Region</label>
+                <div>
+                    <select id="generalageto" class="smalldropdown" ng-model="page.model.generalsearch.generalAgeto" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                </div>
+            </div>
+            <div class="col-lg-3 form-group">
+                <label for="Region" class="control-label">Branch</label>
+                <div>
+                    <select id="generalageto" class="smalldropdown" ng-model="page.model.generalsearch.generalAgeto" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                </div>
+            </div>
+            <div class="col-lg-3 form-group">
+                <label for="Region" class="control-label">EmpName</label>
+                <div class="">
+                    <select id="generalageto" class="smalldropdown" ng-model="page.model.generalsearch.generalAgeto" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                </div>
+            </div>
+            <div class="col-lg-2 form-group">
+                <label for="Region" class="control-label">FromProceed</label>
+                <div>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="col-lg-3 form-group">
+                <label for="Region" class="control-label">ToProceed</label>
+                <div>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-4">
+                        <input type="submit" class="btn btn-danger" value="Submit">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</uib-accordion>
+<div class="row">
+    <div class="col-lg-2">
+        Total 1 of <span>6</span>
+    </div>
+    <div class="col-lg-7">
+        <button class="btn btn-default">Bothside Intrst</button>&nbsp;
+        <button class="btn btn-default">Oneside Intrst</button>&nbsp;
+        <button class="btn btn-default">Close Tckt</button>&nbsp;
+        <button class="btn btn-default">Not Vwd</button>&nbsp;
+        <button class="btn btn-default">All</button>&nbsp;
+        <button class="btn btn-default">Waiting For Reply</button>
+    </div>
+    <div class="col-lg-3">
+        <div class="col-lg-8">
+            <label>Viewed</label>&nbsp;<label id="lnkLastSlidepopup" data-ng-bind="slidNum" style="color: blue;">{{viewedcount}}</label>&nbsp;<label>Profiles</label>
+        </div>
+        <div class="col-lg-4">
+            <input type="text" id="txtGotoValpopu" class="form-control" style="width: 66px; height: 24px; margin-left: -20px;" onchange="gotoSlide('#txtGotoValpopu','lnkLastSlidepopup')" />
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<style>
+    .panel-title {
+        color: #b10c0c;
+    }
+</style>

@@ -18,10 +18,11 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                 dynamicheader: '=',
                 bodytemplate: '=',
                 headertemplate: '=',
-                nghide: '='
+                nghide: '=',
+                pagename: '='
             },
             templateUrl: function(element, attrs, scope) {
-                return attrs.slidetype === "'page'" ? 'templates/dynamicSlideshow.html' : 'templates/dynamicSlideshow.html';
+                return (attrs.slidetype === "'page'" ? 'templates/dynamicSlideshow.html' : 'templates/dynamicSlideshow.html');
             },
             link: function(scope, element, attrs) {
                 var currentIndex = 1;
@@ -46,6 +47,13 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                 scope.modalbodyID1 = "";
                 scope.dynamicslideshow = scope.nghide !== undefined && scope.nghide !== "" ? scope.nghide : true;
                 scope.displayArray = function(arr, frompage) {
+                    scope.headervisileble = true;
+                    if (scope.pagename === 'matchfollowup') {
+                        scope.headervisileble = false;
+                    }
+
+
+
                     console.log(arr);
                     if (frompage === 1) {
                         scope.arraydata = [];
