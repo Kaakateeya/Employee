@@ -43,9 +43,19 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
 
         $ocLazyLoadProvider.config({
             modules: [{
-                name: 'dashboard',
-                files: ['common/services/fileSaver.js']
-            }]
+                    name: 'dashboard',
+                    files: ['common/services/fileSaver.js']
+                },
+                {
+                    name: 'complex-grid',
+                    files: [
+                        'directives/complex-grid/directive.js',
+                        'directives/complex-grid/model/config.js',
+                        'directives/complex-grid/svc.js',
+                        'bower_components/json-export-excel/dest/json-export-excel.min.js'
+                    ]
+                }
+            ]
         });
 
         $urlRouterProvider.otherwise('/');
@@ -83,6 +93,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         if (app.env === "dev") {
                             if (item.name === 'dashboard') {
                                 $ocLazyLoad.load('dashboard');
+                                return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
+                            } else if (item.name === 'editViewprofile' || item.name === 'EmployeePayment') {
+
+                                $ocLazyLoad.load('complex-grid');
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             } else {
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);

@@ -13,7 +13,9 @@
                     params: {
                         EmpID: EmpID,
                         SearchData: ProfileIDName,
-                        ProfileIDStatus: ProfileIDStatus
+                        ProfileIDStatus: ProfileIDStatus,
+                        StartIndex: 1,
+                        EndIndex: 10
                     }
                 });
             },

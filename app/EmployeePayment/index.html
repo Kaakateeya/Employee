@@ -20,8 +20,7 @@
                 </div>
             </div>
             <div>
-                <bootstrap-table btnclick="'true'" array="[]" removeobjs="['paymentid']" id="ftable" height="'400'" pagesize="'40'">
-                </bootstrap-table>
+                <complex-grid ng-if="page.model.columns" model="page.model"></complex-grid>
             </div>
         </div>
     </div>

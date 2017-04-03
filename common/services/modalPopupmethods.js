@@ -12,37 +12,21 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', functi
             alert('you can go till ' + lastslide + ' slide only');
         }
     };
-    operateFormatter = function(value, row, index) {
-        var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "'>" + row.ProfileID + row.Confidential + "</a>";
-        return paid;
-    };
+    // operateFormatter = function(value, row, index) {
+    //     var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "'>" + row.ProfileID + row.Confidential + "</a>";
+    //     return paid;
+    // };
 
-    paymentProfileID = function(value, row, index) {
-        var status = row.Membership === 'Registration' ? 0 : 1;
-        var paid = "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.paymentProfileID + "/" + status + "/" + row.paymentid + "'>" + row.paymentProfileID + "</a>";
-        return paid;
-    };
+    // paymentProfileID = function(value, row, index) {
+    //     var status = row.Membership === 'Registration' ? 0 : 1;
+    //     var paid = "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.paymentProfileID + "/" + status + "/" + row.paymentid + "'>" + row.paymentProfileID + "</a>";
+    //     return paid;
+    // };
 
-    ViewContact = function(value, row, index) {
-        var paid = "<a style='cursor:pointer;'  href='/Contact/" + row.CustID + "'>View Conatact</a>";
-        return paid;
-    };
-    viewSa = function(value, row, index) {
-        var paid = "<a style='cursor:pointer;'  href='javascript:void(0);' onclick='showAndBindPopup('" + row.Settle + "');'>View</a>";
-        return paid;
-    };
-    ViewHoro = function(value, row, index) {
-        var paid = row.HoroPhotoName.indexOf('Horo_no.jpg') !== -1 ? "View" : "<a style='cursor:pointer;'  href='javascript:void(0);' onclick='showAndBindPopup(" + JSON.stringify(row.HoroPhotoName) + ");'>View</a>";
-        return paid;
-    };
-    ViewTicket = function(value, row, index) {
-        var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "'>View</a>";
-        return paid;
-    };
-    ViewProfile = function(value, row, index) {
-        var paid = "<a style='cursor:pointer;'   href='/Viewfullprofile/" + row.viewprofileProfileid + "'>" + row.viewprofileProfileid + "</a>";
-        return paid;
-    };
+    // ViewProfile = function(value, row, index) {
+    //     var paid = "<a style='cursor:pointer;'   href='/Viewfullprofile/" + row.viewprofileProfileid + "'>" + row.viewprofileProfileid + "</a>";
+    //     return paid;
+    // };
     ProfileOwnerImg = function(value, row, index) {
         var img = row.ProfileStatusID === 57 || row.ProfileStatusID === 393 ? 'src/images/settleimage_new.png' : (row.ProfileStatusID === 56 || row.ProfileStatusID === 394 ? 'src/images/deleteimage.png' : (row.ProfileStatusID === 55 ? 'src/images/imgInActive.png' : ''));
         var paid = "<span style='color:red;'>" + row.ProfileOwner + "</span><img style='cursor:pointer;' src=" + img + "></img>";
