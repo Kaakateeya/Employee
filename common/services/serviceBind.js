@@ -115,6 +115,13 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
         },
         getphotoslideimages: function(custid) {
             return http.get(app.apiroot + 'StaticPages/GetPhotoSlideImages', { params: { CustID: custid } });
+        },
+        playbtnProfileData: function(profileid) {
+            return http.get(app.apiroot + 'CustomerPersonal/getProfileIDPlaybutton', {
+                params: {
+                    ProfileID: profileid
+                }
+            });
         }
 
     };

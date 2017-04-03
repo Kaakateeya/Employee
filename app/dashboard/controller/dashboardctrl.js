@@ -51,6 +51,6 @@
              return false;
          };
      }
-     angular.module('Kaakateeya').controller('dashboardCtrl', ['dashboardModel', '$scope', 'dashboardServices', 'commonpagecc', Controller]);
+     angular.module('Kaakateeya').controller('dashboardCtrl', ['dashboardModel', '$scope', 'dashboardServices', 'modelpopupopenmethod', Controller]);
 
  })(angular);

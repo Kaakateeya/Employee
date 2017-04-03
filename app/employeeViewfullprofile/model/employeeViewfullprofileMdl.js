@@ -52,6 +52,6 @@
     angular
         .module('Kaakateeya')
         .factory('employeeViewfullprofileModel', factory);
-    factory.$inject = ['employeeViewfullprofileservice', 'commonpage', '$stateParams'];
+    factory.$inject = ['employeeViewfullprofileservice', 'modelpopupopenmethod', '$stateParams'];
 
 })(angular);

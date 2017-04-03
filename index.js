@@ -43,12 +43,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
 
         $ocLazyLoadProvider.config({
             modules: [{
-                name: 'bootstarapTable',
-                files: ['css/bootstrap-table/bootstrap-table.css',
-                    'css/bootstrap-table/bootstrap-table-fixed-columns.css',
-                    'css/bootstrap-table/dragtable.css', 'common/directive/dynamicBootstrapTable.js',
-                    'common/directive/commonpage.js'
-                ]
+                name: 'dashboard',
+                files: ['common/services/fileSaver.js']
             }]
         });
 
@@ -84,15 +80,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                 resolve: { // Any property in resolve should return a promise and is executed before the view is loaded
                     loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                         // you can lazy load files for an existing module
-                        if (item.name === 'ViewAllCustomers') {
-
-                            $ocLazyLoad.load('bootstarapTable');
-                            return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
-                        } else if (app.env === "dev") {
-                            return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
+                        if (app.env === "dev") {
+                            if (item.name === 'dashboard') {
+                                $ocLazyLoad.load('dashboard');
+                                return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
+                            } else {
+                                return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
+                            }
                         } else {
                             return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/src/scripts.min.js']);
-
                         }
                     }]
                 },

@@ -1,6 +1,6 @@
-app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubum', 'SelectBindServiceApp', 'alert', 'helperservice',
+app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'SelectBindServiceApp', 'alert', 'helperservice',
 
-    function(uibModal, commonpage, timeout, photoalubum, SelectBindServiceApp, alerts, helperservice) {
+    function(uibModal, commonpage, timeout, SelectBindServiceApp, alerts, helperservice) {
         return {
             restrict: "E",
             scope: {
@@ -279,7 +279,7 @@ app.directive("slideShow", ['$uibModal', 'commonpagecc', '$timeout', 'photoalubu
                     commonpage.showPopupphotopoup('dynamicphotopopup.html', scope, '', "modalclassdashboardphotopopup");
                 };
                 scope.slidepopup = function(custid) {
-                    photoalubum.getphotoslideimages(custid).then(function(response) {
+                    SelectBindServiceApp.getphotoslideimages(custid).then(function(response) {
                         scope.slides = [];
                         _.each(response.data, function(item) {
                             scope.slides.push(item);
