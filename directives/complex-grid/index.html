@@ -14,7 +14,7 @@
         <table class="Datatable table table-fixed table-hover table-bordered" style="min-width: 750px;">
             <thead>
                 <tr>
-                    <th></th>
+                    <th ng-if="!inneritem.isDetail && showplus===true" style="width: auto;background-color: #fdca52;"></th>
                     <th ng-click="sort(item.key)" class={{item.key}} style="width: auto;background-color: #fdca52;" ng-repeat="item in model.columns">{{item.text}}
                         <span class="glyphicon sort-icon" ng-show="sortKey==item.key" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                     </th>

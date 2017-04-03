@@ -57,6 +57,7 @@
                         console.log(response.data);
 
                         if (_.isArray(response.data)) {
+                            model.freshLink = true;
                             model.opendiv = false;
                             model.setData(response.data);
                         } else {

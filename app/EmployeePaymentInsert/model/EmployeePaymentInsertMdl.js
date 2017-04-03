@@ -16,7 +16,7 @@
 
         model.EmployeePaymentInsert = function(inobj, type) {
             var monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                DateArr, dateformatt = null;
+                DateArr, dateformatt = '';
             if (model.custobj.StartDate !== null && model.custobj.StartDate !== '') {
                 DateArr = model.custobj.StartDate.split('-');
                 dateformatt = DateArr[0] + '/' + ((_.indexOf(monthArr, DateArr[1])) + 1) + '/' + DateArr[2];
@@ -35,8 +35,10 @@
                 ServiceTax: inobj.rdnServicetax,
                 ServiceTaxAmt: inobj.rdnServicetax === '1' ? parseInt(inobj.txtAmountPaid * model.ServiceTaxPercent) : 0,
                 AmountPaid: inobj.txtAmountPaid,
-                StartDate: dateformatt !== '' && dateformatt !== null ? filter('date')(dateformatt, 'MM/dd/yyyy') : null,
-                EndDate: model.custobj.EndDate !== '' && model.custobj.EndDate !== null ? filter('date')(model.custobj.EndDate, 'MM/dd/yyyy') : null,
+                StartDate: dateformatt,
+                //  dateformatt !== '' && dateformatt !== null ? filter('date')(dateformatt, 'MM/dd/yyyy') : null,
+                EndDate: model.custobj.EndDate,
+                //  model.custobj.EndDate !== '' && model.custobj.EndDate !== null ? filter('date')(model.custobj.EndDate, 'MM/dd/yyyy') : null,
                 ReceiptNumber: inobj.txtbillno,
                 TransactionID: inobj.txttransactionid,
                 ChequeNoOrDDNo: inobj.txtcheckno,
