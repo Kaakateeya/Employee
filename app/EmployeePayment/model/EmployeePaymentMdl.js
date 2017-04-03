@@ -8,7 +8,7 @@
         model.obj = {};
         model.paymentProfileID = function(row) {
             var status = row.membershiptype === 'Registration' ? 0 : 1;
-            var paid = "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.ProfileID + "/" + status + "/" + row.Payment_ID + "'>" + row.ProfileID + "</a>";
+            var paid = "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.ProfileID + "/" + status + "/" + row.PaymentID + "'>" + row.ProfileID + "</a>";
             return paid;
         };
         model.EmployeePayment = function(txtval) {
