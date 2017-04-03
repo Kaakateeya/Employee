@@ -54,7 +54,7 @@
                     function(response) {
                         // var gridArray = JSON.parse(response.data);
                         console.log(response.data);
-                        if (_.isArray(response.data)) {
+                        if (_.isArray(response.data) && response.data.length > 0) {
                             model.freshLink = true;
                             model.opendiv = false;
                             model.setData(response.data);
