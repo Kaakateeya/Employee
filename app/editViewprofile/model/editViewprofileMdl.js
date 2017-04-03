@@ -2,8 +2,8 @@
     'use strict';
 
 
-    function factory($http, ViewAllCustomerService, state, helpService, config) {
 
+    function factory($http, ViewAllCustomerService, state, helpService, config, alerts) {
         var model = {};
         model = config;
         model.tablearray = [];
@@ -68,7 +68,7 @@
         };
         model.ProfileOwnerImg = function(row) {
             var img = row.ProfileStatusID === 57 || row.ProfileStatusID === 393 ? 'src/images/settleimage_new.png' : (row.ProfileStatusID === 56 || row.ProfileStatusID === 394 ? 'src/images/deleteimage.png' : (row.ProfileStatusID === 55 ? 'src/images/imgInActive.png' : ''));
-            var paid = "<span style='color:red;'>" + row.ProfileOwner + "</span><img style='cursor:pointer;' src=" + img + "></img>";
+            var paid = "<span class='red'>" + row.ProfileOwner + "</span><img style='cursor:pointer;' src=" + img + "></img>";
             return paid;
         };
 
@@ -124,13 +124,17 @@
 
 
         model.kmplSubmit = function(inpuobj) {
-            ViewAllCustomerService.kmplprofileIDData(2, (inpuobj !== undefined && inpuobj.KmlProfileID !== undefined ? inpuobj.KmlProfileID : '')).then(function(response) {
-
-                if (response.data !== undefined && response.data !== "" && response.data !== null && response.data.length > 0) {
-                    model.opendiv = false;
-                    model.scope.$broadcast('submittable', JSON.parse(response.data[0]));
-                }
-            });
+            if (inpuobj === undefined || inpuobj === "" || inpuobj === null || inpuobj.KmlProfileID === undefined || inpuobj.KmlProfileID === null || inpuobj.KmlProfileID === "") {
+                debugger;
+                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please Enter Profileid', 4500);
+            } else {
+                ViewAllCustomerService.kmplprofileIDData(2, (inpuobj !== undefined && inpuobj.KmlProfileID !== undefined ? inpuobj.KmlProfileID : '')).then(function(response) {
+                    if (response.data !== undefined && response.data !== "" && response.data !== null && response.data.length > 0) {
+                        model.opendiv = false;
+                        model.scope.$broadcast('submittable', JSON.parse(response.data[0]));
+                    }
+                });
+            }
             return model;
         };
         model.editLink = function(custid) {
@@ -158,5 +162,5 @@
     angular
         .module('Kaakateeya')
         .factory('editViewprofileModel', factory);
-    factory.$inject = ['$http', 'editViewprofileservice', '$state', 'helperservice', 'complex-grid-config'];
+    factory.$inject = ['$http', 'editViewprofileservice', '$state', 'helperservice', 'complex-grid-config', 'alert'];
 })(angular);

@@ -52,10 +52,8 @@
 
                 EmployeePaymentservice.getEmployeePayment(txtval).then(
                     function(response) {
-
                         // var gridArray = JSON.parse(response.data);
                         console.log(response.data);
-
                         if (_.isArray(response.data)) {
                             model.freshLink = true;
                             model.opendiv = false;

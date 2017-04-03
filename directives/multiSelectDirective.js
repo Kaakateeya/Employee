@@ -37,6 +37,9 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                     case 'height':
                         scope.databind(cons.height);
                         break;
+                    case 'heightregistration':
+                        scope.databind(cons.heightregistration);
+                        break;
                     case 'Religion':
                         scope.databind(cons.Religion);
                         break;

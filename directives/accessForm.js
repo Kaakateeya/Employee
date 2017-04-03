@@ -1,4 +1,4 @@
- app.directive('accessibleForm', function() {
+ app.directive('accessibleFormreg', function() {
      return {
          restrict: 'A',
          link: function(scope, elem) {

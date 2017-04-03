@@ -11,7 +11,7 @@
                         <div class="clearfix">
                             <label for="kmplProfileID" class="col-lg-4">KMPL ProfileID</label>
                             <div class="col-lg-5">
-                                <input type="text" ng-model="page.model.obj.KmlProfileID" class="form-control">
+                                <input type="text" ng-keyup="$event.keyCode == 13 && page.model.kmplSubmit(page.model.obj);" ng-model="page.model.obj.KmlProfileID" class="form-control">
                             </div>
                             <div class="col-lg-3">
                                 <button class="btn btn-warning pull-left" ng-click="page.model.kmplSubmit(page.model.obj)">Go</button>
