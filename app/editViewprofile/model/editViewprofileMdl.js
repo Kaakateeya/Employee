@@ -72,7 +72,7 @@
             return paid;
         };
 
-        function rowStyle(row, index) {
+        model.rowStyle = function(row) {
             debugger;
             var classes = ['settled', 'Deleted', 'inactive'];
             // alert(row.ProfileStatusID);
@@ -84,9 +84,8 @@
                 { StatusID: 55, classes: 'inactive' }
             ];
 
-            return {
-                classes: _.where(test, { StatusID: row.ProfileStatusID }).length > 0 ? _.where(test, { StatusID: row.ProfileStatusID })[0].classes : ''
-            };
+            return _.where(test, { StatusID: row.ProfileStatusID }).length > 0 ? _.where(test, { StatusID: row.ProfileStatusID })[0].classes : ''
+
         }
 
         model.ViewAllsubmit = function(inpuobj) {
@@ -101,9 +100,7 @@
                 { text: 'Education', key: 'educationgroup', type: 'label' },
                 { text: 'Profession', key: 'Profession', type: 'label' },
                 { text: 'DOB', key: 'Age', type: 'label', width: '150px' },
-                { text: 'CustID', key: 'CustID', type: 'label' },
                 { text: 'GenderID', key: 'GenderID', type: 'label' },
-                { text: 'ProfileStatusID', key: 'ProfileStatusID', type: 'label' },
                 { text: 'Confidential', key: 'Confidential', type: 'label' }
             ];
 
@@ -111,6 +108,11 @@
                 console.log(response.data);
                 debugger;
                 if (_.isArray(response.data)) {
+
+                    _.map(response.data, function(item) {
+                        item.rowtype = model.rowStyle(item);
+                    });
+
                     model.opendiv = false;
                     model.setData(response.data);
                 }

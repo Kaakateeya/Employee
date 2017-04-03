@@ -33,31 +33,46 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     return paid;
                 };
 
-                scope.ViewContact = function(value, row, index) {
-                    var paid = "<a style='cursor:pointer;'  href='/Contact/" + row.CustID + "'>View Conatact</a>";
+                scope.ViewContact = function(row) {
+                    var paid = "<a style='cursor:pointer;'  href='/Contact/" + row.custid + "'>View Conatact</a>";
                     return paid;
                 };
-                scope.viewSa = function(value, row, index) {
+                scope.viewSa = function(row) {
                     var paid = "<a style='cursor:pointer;'  href='javascript:void(0);' onclick='showAndBindPopup('" + row.Settle + "');'>View</a>";
                     return paid;
                 };
-                scope.ViewHoro = function(value, row, index) {
+                scope.ViewHoro = function(row) {
                     var paid = row.HoroPhotoName.indexOf('Horo_no.jpg') !== -1 ? "View" : "<a style='cursor:pointer;'  href='javascript:void(0);' onclick='showAndBindPopup(" + JSON.stringify(row.HoroPhotoName) + ");'>View</a>";
                     return paid;
                 };
-                scope.ViewTicket = function(value, row, index) {
-                    var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "'>View</a>";
+                scope.ViewTicket = function(row) {
+                    var paid = "<a style='cursor:pointer;'  href='/Education/" + row.custid + "'>View</a>";
                     return paid;
                 };
+                showAndBindPopup = function(val) {
+                    $('#imgsrc').attr('src', val);
+                    modalpopupopen = uibModal.open({
+                        ariaLabelledBy: 'modal-title',
+                        ariaDescribedBy: 'modal-body',
+                        template: "<div class='modal-header'>" +
+                            "        <h3 class='modal-title text-center'>Horoscope image                                               " +
+                            "            <a href='javascript:void(0);' onclick='modalpopupopen.close()'>                                       " +
+                            "                <ng-md-icon icon='close' style='fill:#c73e5f' class='pull-right' size='25'>Delete</ng-md-icon>   " +
+                            "            </a>                                                                                                 " +
+                            "        </h3>                                                                                                    " +
+                            "    </div>                                                                                                       " +
+                            "    <div class='modal-body clearfix' id='modal-body'>                                                            " +
+                            "        <img src='" + val + "'  Style='height: 500px; width: 500px;'>                                                                                        " +
+                            "    </div>                                                                                                       "
+                    });
 
-
-
+                };
                 scope.plus = function(data) {
                     data.isDetail = true;
                     data.detailcolumns = [
                         { text: 'ProfileID', key: 'Profileid', type: 'custom', templateUrl: scope.ViewProfile },
                         { text: 'Branch-Dor', key: 'RegistrationDate', type: 'label' },
-                        { text: 'OP/KP', key: 'paidamount', type: 'label' },
+                        { text: 'Payment', key: 'paidamount', type: 'label' },
                         { text: 'OPD/KPD', key: 'paiddate', type: 'label' },
                         { text: 'S/R Count', key: 'sentreceivecount', type: 'label' },
                         { text: 'PC', key: 'photocount', type: 'label' },
@@ -67,15 +82,15 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                         { text: 'NView', key: 'notview', type: 'label', width: '150px' },
                         { text: 'BI', key: 'bothinterst', type: 'label' },
                         { text: 'OppI', key: 'OppI', type: 'label' },
-                        { text: 'View Contact', key: '', type: 'link', method: scope.viewLinks },
-                        { text: 'SA', key: '', type: 'link', method: scope.viewLinks },
-                        { text: 'Horo', key: '', type: 'link', method: scope.viewLinks },
-                        { text: 'Tickets', key: '', type: 'link', method: scope.viewLinks },
+                        { text: 'View Contact', key: '', type: 'custom', templateUrl: scope.ViewContact },
+                        { text: 'SA', key: '', type: 'custom', templateUrl: scope.viewSa },
+                        { text: 'Horo', key: '', type: 'custom', templateUrl: scope.ViewHoro },
+                        { text: 'Tickets', key: '', type: 'custom', templateUrl: scope.ViewTicket },
                         { text: 'Profile Owner', key: 'OWNER', type: 'label' },
                     ]
 
                     SelectBindServiceApp.playbtnProfileData(data.ProfileID).then(function(response) {
-                        data.detaildata = JSON.parse(response.data[0]);
+                        data.detaildata = response.data;
                     });
                 };
                 scope.minus = function(data) {

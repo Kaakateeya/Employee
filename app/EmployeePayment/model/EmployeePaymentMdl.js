@@ -53,13 +53,12 @@
                 EmployeePaymentservice.getEmployeePayment(txtval).then(
                     function(response) {
 
-                        var gridArray = JSON.parse(response.data);
-                        console.log(gridArray);
-                        // model.scope.$broadcast('submittable', gridArray);
+                        // var gridArray = JSON.parse(response.data);
+                        console.log(response.data);
 
-                        if (_.isArray(gridArray)) {
+                        if (_.isArray(response.data)) {
                             model.opendiv = false;
-                            model.setData(gridArray);
+                            model.setData(response.data);
                         } else {
                             state.go('EmployeePaymentInsert', { ProfileID: txtval, status: 0, paymentID: 0 });
                         }
