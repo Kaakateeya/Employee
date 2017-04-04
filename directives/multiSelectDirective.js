@@ -61,6 +61,9 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                     case 'region':
                         scope.databind(cons.region);
                         break;
+                    case 'Regionofbranches':
+                        scope.databind(cons.Regionofbranches);
+                        break;
                     case 'bodyType':
                         scope.databind(cons.bodyType);
                         break;
@@ -211,7 +214,9 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                     case 'catgory':
                         scope.databind(cons.catgory);
                         break;
-
+                    case 'Expirydays':
+                        scope.databind(cons.Expirydays);
+                        break;
                     case 'Priority':
                         scope.databind(cons.Priority);
                         break;

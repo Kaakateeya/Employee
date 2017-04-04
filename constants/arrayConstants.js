@@ -448,5 +448,15 @@ app.constant('arrayConstants', {
         { label: "Without Photo", title: "Without Photo", value: 0 },
         { label: "With Horoscope", title: "With Horoscope", value: 2 },
         { label: "Without Horoscope", title: "Without Horoscope", value: 3 }
+    ],
+    'Expirydays': [
+        { label: "days", title: "days", value: "" },
+        { label: "8 days", title: "8 days", value: 8 },
+        { label: "9 days", title: "9 days", value: 9 },
+        { label: "10 days", title: "10 days", value: 10 },
+        { label: "20 days", title: "20 days", value: 20 },
+        { label: "30 days", title: "30 days", value: 30 },
+        { label: "40 days", title: "40 days", value: 40 },
+        { label: "50 days", title: "50 days", value: 50 }
     ]
 });

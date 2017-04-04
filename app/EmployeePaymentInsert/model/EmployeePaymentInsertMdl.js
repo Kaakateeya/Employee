@@ -54,22 +54,18 @@
             console.log(JSON.stringify(obj));
             model.PiObj = {};
             debugger;
-            //   EmployeePaymentInsertservice.paymentInsert(obj).then(function(response) {
-            //console.log(response);
-            alert('submited successfully');
-            model.PiObj.txtAgreedAmt = '';
-
-            this.paymentForm.$setPristine();
-            this.paymentForm.$setUntouched();
-            this.paymentForm.$setinValidity();
-
-            // if (response.data === 1 || response.data === '1') {
-            //     alert('submited successfully');
-            //     model.PiObj = {};
-            // } else {
-            //     alert('submission failed');
-            // }
-            // });
+            EmployeePaymentInsertservice.paymentInsert(obj).then(function(response) {
+                // console.log(response);
+                alert('submited successfully');
+                model.scope.paymentForm.$setPristine();
+                model.scope.paymentForm.$setUntouched();
+                // if (response.data === 1 || response.data === '1') {
+                //     alert('submited successfully');
+                //     model.PiObj = {};
+                // } else {
+                //     alert('submission failed');
+                // }
+            });
 
         };
 

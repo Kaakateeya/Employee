@@ -1,5 +1,4 @@
 <div class="right_col" role="main">
-
     <div class="search_page_main">
         <h4 style="font-size: 18px;
     color: #b10c0c;">Pament details</h4>
@@ -9,7 +8,6 @@
                 <div class="lblclass">
                     <div class="row">
                         <div class="form-group col-lg-6">
-
                             <div class="col-lg-4">
                                 <label for="" class="control-label pull-right">Profile ID</label>
                             </div>
@@ -28,7 +26,6 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-lg-6">
-
                             <div class="col-lg-4">
                                 <label for="" class="control-label pull-right">Name</label>
                             </div>
@@ -36,7 +33,6 @@
                                 <label for="" class="control-label ">{{page.model.custobj.FirstName+' '+page.model.custobj.LastName}}</label>
                             </div>
                         </div>
-
                         <div class="form-group col-lg-6">
                             <div class="col-lg-4">
                                 <label for="" class="control-label pull-right">Caste</label>
@@ -46,10 +42,8 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="txtclass">
-
                     <div class="row">
                         <div class="form-group col-lg-6">
                             <div class="col-lg-4">
@@ -73,7 +67,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="form-group col-lg-6">
                             <div class="col-lg-4">
@@ -90,7 +83,6 @@
                                 <label for="" class="control-label">={{(page.Number(page.model.PiObj.txtAmountPaid)+page.Number(page.model.PiObj.rdnServicetax=='1'?((page.model.PiObj.txtAmountPaid*page.model.ServiceTaxPercent)):0))|number}}</label>
                             </div>
                         </div>
-
                         <div class="form-group col-lg-6">
                             <div class="col-lg-4">
                                 <label for="" class="control-label pull-right">Settlement amount </label>
@@ -136,7 +128,6 @@
                                 <label ng-model="page.model.PiObj.txtBalancepoints" class="control-label ">{{page.model.PiObj.txtAgreedAmt-page.model.PiObj.txtAmountPaid}}</label>
                             </div>
                         </div>
-
                         <div class="form-group col-lg-6">
                             <div class="col-lg-4">
                                 <label for="" class="control-label pull-right">Send sms\email</label>
@@ -152,7 +143,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="form-group  col-lg-8">
                             <div class="col-lg-3">
@@ -168,9 +158,7 @@
                                 <div ng-if="paymentForm.rbtnPaymode.$invalid && (paymentForm.$submitted)" style="color: #a94442;">This field is required.</div>
                             </div>
                         </div>
-
                     </div>
-
                     <div class="row">
                         <div class="form-group col-lg-6" ng-if="page.model.PiObj.rbtnPaymode!=='' &&  page.model.PiObj.rbtnPaymode!==undefined && page.model.PiObj.rbtnPaymode!==null">
                             <div class="col-lg-4">
@@ -189,7 +177,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row" ng-if="page.model.PiObj.rbtnPaymode==='347'">
                         <div class="form-group col-lg-6">
                             <div class="col-lg-4">
@@ -208,7 +195,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row" ng-if="page.model.PiObj.rbtnPaymode==='347'">
                         <div class="form-group col-lg-6">
                             <div class="col-lg-4">
@@ -236,17 +222,14 @@
                                 <textarea ng-model="page.model.PiObj.txtpayDescription" class="form-control"></textarea>
                             </div>
                         </div>
-
                     </div>
                     <br>
                     <div class="row">
                         <div class="form-group col-lg-11 col-lg-offset-2">
                             <md-button class="md-raised md-warn md-hue-2" type="submit">Submit</md-button>
-                            <md-button class="md-raised md-hue-1">Reset</md-button>
+                            <md-button class="md-raised md-hue-1" type="reset">Reset</md-button>
                         </div>
-
                     </div>
-
                 </div>
             </form>
         </div>

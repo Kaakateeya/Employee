@@ -1,0 +1,17 @@
+span.multiselect-selected-text {
+  text-overflow: ellipsis;
+  display: block;
+  overflow: hidden; }
+
+.checkbox input[type=checkbox] {
+  position: relative; }
+
+#matchfollowupdiv .pauseBtns {
+  text-align: center; }
+
+#matchfollowupdiv div#myCarousel.carousel.slide {
+  color: gray; }
+#matchfollowupdiv .maroon {
+  color: maroon; }
+
+/*# sourceMappingURL=style.css.map */
