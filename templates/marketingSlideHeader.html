@@ -1,0 +1,112 @@
+<uib-accordion close-others="oneAtATime">
+
+    <div uib-accordion-group style="margin-top: -12px;" class="panel-default" is-open="true">
+        <uib-accordion-heading>
+            Search Tickets<i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+        </uib-accordion-heading>
+
+        <div class="row">
+            <div class="clearfix">
+                <div class="col-lg-2">
+                    <input type="text" class="form-control" placeholder="Search Ticket">
+                </div>
+                <div class="col-lg-2">
+                    <input type="text" class="form-control" placeholder="Search Email">
+                </div>
+
+                <div class="col-lg-2">
+                    <input type="text" class="form-control" placeholder="Search Phono No">
+                </div>
+                <div class="col-lg-2">
+                    <input type="text" class="form-control" placeholder="Search Profile ID">
+                </div>
+                <div class="col-lg-2">
+                    <input type="text" class="form-control" placeholder="From Reminder date">
+                </div>
+                <div class="col-lg-2">
+                    <input type="text" class="form-control" placeholder="To Reminder date">
+                </div>
+
+            </div>
+            </br>
+            <div class="clearfix" style="font-weight: normal;">
+                <div class="col-lg-1 form-group">
+                    <label for="Region" class="control-label">Region</label>
+                    <div>
+                        <select id="generalageto" class="smalldropdown" ng-model="page.model.generalsearch.generalAgeto" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                    </div>
+                </div>
+                <div class="col-lg-2 form-group">
+                    <label for="Region" class="control-label">Branch</label>
+                    <div>
+                        <select id="generalageto" class="smalldropdown" ng-model="page.model.generalsearch.generalAgeto" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                    </div>
+                </div>
+                <div class="col-lg-2 form-group">
+                    <label for="Region" class="control-label">EmpName</label>
+                    <div class="">
+                        <select id="generalageto" style="margin: 0px;" class="smalldropdown" ng-model="page.model.generalsearch.generalAgeto" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                    </div>
+                </div>
+                <div class="col-lg-2 form-group">
+                    <label for="Region" class="control-label">From Ticket Created</label>
+                    <div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-2 form-group">
+                    <label for="Region" class="control-label">To Ticket Created</label>
+                    <div class="">
+                        <input type="text" class="form-control">
+
+                    </div>
+                </div>
+                <div class="col-lg-3 form-group">
+                    <label for="Region" class="control-label">Expiry In</label>
+                    <div>
+                        <div class="col-lg-8">
+                            <select id="generalageto" class="smalldropdown" ng-model="page.model.generalsearch.generalAgeto" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                        </div>
+                        <div class="col-lg-4">
+                            <input type="submit" class="btn btn-danger" value="Submit">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</uib-accordion>
+<div class="row">
+    <div class="col-lg-2">
+        Total 1 of <span>6</span>
+    </div>
+    <div class="col-lg-10">
+        <button class="btn btn-default">UnPaid Tkts</button>&nbsp;
+        <button class="btn btn-default">Reminder Tkts</button>&nbsp;
+        <button class="btn btn-default">Set/Del Siblings</button>&nbsp;
+        <button class="btn btn-default">Guest Tkts</button>&nbsp;
+        <button class="btn btn-default">Online Exprd</button>&nbsp;
+        <button class="btn btn-default">Offline Exprd</button>&nbsp;
+        <button class="btn btn-default">NotInPay</button>
+    </div>
+
+</div>
+<div class="row pull-right" style="margin-top: 1%;">
+
+    <div class="col-lg-8">
+        <label>Viewed</label>&nbsp;<label id="lnkLastSlidepopup" data-ng-bind="slidNum" style="color: blue;">{{viewedcount}}</label>&nbsp;<label>Profiles</label>
+    </div>
+    <div class="col-lg-4">
+        <input type="text" id="txtGotoValpopu" class="form-control" style="width: 66px; height: 24px; margin-left: -20px;" onchange="gotoSlide('#txtGotoValpopu','lnkLastSlidepopup')" />
+    </div>
+</div>
+
+<style>
+
+</style>

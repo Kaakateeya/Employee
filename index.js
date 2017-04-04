@@ -35,7 +35,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { name: 'employeeViewfullprofile', url: '/Viewfullprofile/:ProfileID', isloginrequired: false },
             { name: 'expressInterest', url: '/expressInterestpage', isloginrequired: false },
             { name: 'myProfile', url: '/myProfilepage', isloginrequired: false },
-            { name: 'matchFollowup', url: '/matchFollowuppage', isloginrequired: false }
+            { name: 'matchFollowup', url: '/matchFollowuppage', isloginrequired: false },
+            { name: 'marketing', url: '/marketingpage', isloginrequired: false }
 
         ];
         $ocLazyLoadProvider.config({
