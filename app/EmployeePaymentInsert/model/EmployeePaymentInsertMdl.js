@@ -37,7 +37,7 @@
                 AmountPaid: inobj.txtAmountPaid,
                 StartDate: dateformatt,
                 //  dateformatt !== '' && dateformatt !== null ? filter('date')(dateformatt, 'MM/dd/yyyy') : null,
-                EndDate: model.custobj.EndDate,
+                EndDate: moment(model.custobj.EndDate).format('DD/MM/YYYY'),
                 //  model.custobj.EndDate !== '' && model.custobj.EndDate !== null ? filter('date')(model.custobj.EndDate, 'MM/dd/yyyy') : null,
                 ReceiptNumber: inobj.txtbillno,
                 TransactionID: inobj.txttransactionid,
@@ -53,6 +53,7 @@
             };
             console.log(JSON.stringify(obj));
             model.PiObj = {};
+            debugger;
             EmployeePaymentInsertservice.paymentInsert(obj).then(function(response) {
                 console.log(response);
                 alert('submited successfully');
@@ -79,6 +80,8 @@
                 console.log(response);
                 if (response.data[0] !== undefined && response.data[0].length > 0 && JSON.parse(response.data[0]).length > 0) {
                     model.custobj = JSON.parse(response.data[0])[0];
+
+
                 }
                 console.log(model.custobj);
             });

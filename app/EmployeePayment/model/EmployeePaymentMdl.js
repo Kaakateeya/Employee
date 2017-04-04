@@ -8,7 +8,7 @@
         model.obj = {};
         model.paymentProfileID = function(row) {
             var status = row.membershiptype === 'Registration' ? 0 : 1;
-            var paid = "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.ProfileID + "/" + status + "/" + row.Payment_ID + "'>" + row.ProfileID + "</a>";
+            var paid = "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.ProfileID + "/" + status + "/" + row.PaymentID + "'>" + row.ProfileID + "</a>";
             return paid;
         };
         model.EmployeePayment = function(txtval) {
@@ -54,7 +54,7 @@
                     function(response) {
                         // var gridArray = JSON.parse(response.data);
                         console.log(response.data);
-                        if (_.isArray(response.data)) {
+                        if (_.isArray(response.data) && response.data.length > 0) {
                             model.freshLink = true;
                             model.opendiv = false;
                             model.setData(response.data);
