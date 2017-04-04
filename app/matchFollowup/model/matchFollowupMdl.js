@@ -1,19 +1,19 @@
-(function() {
+(function(angular) {
     'use strict';
 
+    function factory($http, getArray, timeout, matchFollowupServices) {
+        var model = {};
+        model.BranchName = [];
+        model.init = function() {
+            debugger;
+            model.BranchName = getArray.GArray('BranchName');
+        };
+        return model;
+
+    }
     angular
         .module('Kaakateeya')
-        .factory('matchFollowupModel', factory)
+        .factory('matchFollowupModel', factory);
+    factory.$inject = ['$http', 'getArraysearch', '$timeout', 'matchFollowupServices'];
 
-    factory.$inject = ['$http'];
-
-    function factory($http) {
-        var model = {};
-        model.test = function() {
-
-            alert(1111);
-        };
-
-        return model;
-    }
-})();
+})(angular);

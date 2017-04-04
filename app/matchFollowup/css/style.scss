@@ -1,0 +1,53 @@
+.btn-success-outline {
+    color: rgb(35, 82, 124);
+    background-color: transparent;
+    background-image: none;
+    border-color: rgb(35, 82, 124);
+}
+
+.Action .jumbotron {
+    margin-bottom: 0px;
+}
+
+.Action {
+    width: 75% !important;
+    left: 14%;
+}
+
+.Action .pop_label_left {
+    width: 24%;
+    /*padding-top: 1%;*/
+}
+
+.Action .multiselect,
+.Action input[type=text],
+.Action textarea {
+    width: 84% !important;
+    color: #000 !important;
+    /*border: 1px solid #ADA2A2 !important;*/
+}
+
+span.multiselect-selected-text {
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+}
+
+.checkbox input[type=checkbox] {
+    position: relative;
+}
+
+#matchfollowupdiv {
+    .pauseBtns {
+        text-align: center;
+    }
+}
+
+#matchfollowupdiv {
+    div#myCarousel.carousel.slide {
+        color: gray;
+    }
+    .maroon {
+        color: maroon;
+    }
+}

@@ -26,3 +26,26 @@
      color: #000 !important;
      /*border: 1px solid #ADA2A2 !important;*/
  }
+ 
+ span.multiselect-selected-text {
+     text-overflow: ellipsis;
+     display: block;
+     overflow: hidden;
+ }
+ 
+ .checkbox input[type=checkbox] {
+     position: relative;
+ }
+ 
+ #matchfollowupdiv .pauseBtns {
+     text-align: center;
+ }
+ 
+ #matchfollowupdiv div#myCarousel.carousel.slide {
+     color: gray;
+ }
+ 
+ #matchfollowupdiv .maroon {
+     color: maroon;
+ }
+ /*# sourceMappingURL=style.css.map */

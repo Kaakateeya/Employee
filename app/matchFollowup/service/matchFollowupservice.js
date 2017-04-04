@@ -1,19 +1,16 @@
 (function() {
     'use strict';
 
+    function factory(http) {
+        return {
+            generalsearchsubmit: function(obj) {
+                return http.post(app.apiroot + 'CustomerSearch/ShowDataForEmployeeGeneral', obj);
+            }
+        };
+    }
     angular
         .module('Kaakateeya')
-        .factory('matchFollowupModel', factory)
+        .factory('matchFollowupServices', factory);
 
     factory.$inject = ['$http'];
-
-    function factory($http) {
-        var service = {
-            getData: getData
-        };
-
-        return service;
-
-        function getData() {}
-    }
 })();

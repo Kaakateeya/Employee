@@ -1,6 +1,7 @@
-app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'SelectBindServiceApp', 'alert', 'helperservice', '$sce',
+app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'SelectBindServiceApp',
+    'alert', 'helperservice', 'getArraysearch',
 
-    function(uibModal, commonpage, timeout, SelectBindServiceApp, alerts, helperservice, $sce) {
+    function(uibModal, commonpage, timeout, SelectBindServiceApp, alerts, helperservice, getArray) {
         return {
             restrict: "E",
             scope: {
@@ -45,6 +46,8 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                 scope.mobileVerificationCode = null;
                 scope.custfamilyID = null;
                 scope.modalbodyID1 = "";
+                scope.BranchName = [];
+                scope.BranchName = getArray.GArray('BranchName');
                 scope.dynamicslideshow = scope.nghide !== undefined && scope.nghide !== "" ? scope.nghide : true;
                 scope.displayArray = function(arr, frompage) {
                     scope.headervisileble = true;

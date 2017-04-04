@@ -1,13 +1,14 @@
  (function() {
      'use strict';
 
-     function Controller(EmployeePaymentInsertModel, stateParams) {
+     function Controller(EmployeePaymentInsertModel, stateParams, scope) {
          debugger;
          var vm = this,
              model;
          vm.init = function() {
 
              vm.model = model = EmployeePaymentInsertModel;
+             model.scope = scope;
              vm.model.getpaymentProfile(stateParams.ProfileID);
          };
          vm.Number = Number;
@@ -16,5 +17,5 @@
      angular
          .module('Kaakateeya')
          .controller('EmployeePaymentInsertCtrl', Controller);
-     Controller.$inject = ['EmployeePaymentInsertModel', '$stateParams'];
+     Controller.$inject = ['EmployeePaymentInsertModel', '$stateParams', '$scope'];
  })(angular);
