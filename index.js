@@ -57,6 +57,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/complex-grid/svc.js',
                         'bower_components/json-export-excel/dest/json-export-excel.min.js',
                         'directives/complex-grid/css/style.css'
+
                     ]
                 },
                 {
