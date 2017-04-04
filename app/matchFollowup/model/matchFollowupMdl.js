@@ -8,12 +8,12 @@
     factory.$inject = ['$http'];
 
     function factory($http) {
-        var service = {
-            getData: getData
+        var model = {};
+        model.test = function() {
+
+            alert(1111);
         };
 
-        return service;
-
-        function getData() {}
+        return model;
     }
 })();

@@ -1,6 +1,6 @@
-app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'SelectBindServiceApp', 'alert', 'helperservice',
+app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'SelectBindServiceApp', 'alert', 'helperservice', '$sce',
 
-    function(uibModal, commonpage, timeout, SelectBindServiceApp, alerts, helperservice) {
+    function(uibModal, commonpage, timeout, SelectBindServiceApp, alerts, helperservice, $sce) {
         return {
             restrict: "E",
             scope: {
@@ -482,6 +482,16 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             break;
                     }
 
+                };
+
+                scope.dynamicPopover = {
+                    content: 'Hello, World!',
+                    templateUrl: 'myPopoverTemplate.html',
+                    title: 'Ticket History'
+                };
+
+                scope.openTicketPopup = function() {
+                    commonpage.showPopup('Actions.html', scope, 'lg', "Action");
                 };
 
             }

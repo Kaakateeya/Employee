@@ -5,14 +5,17 @@
          .module('Kaakateeya')
          .controller('matchFollowupCtrl', controller)
 
-     controller.$inject = ['$location'];
+     controller.$inject = ['matchFollowupModel'];
 
-     function controller($location) {
+     function controller(matchFollowupModel) {
          /* jshint validthis:true */
          var vm = this;
 
-         activate();
+         vm.init = function() {
+             vm.model = matchFollowupModel;
+         };
 
-         function activate() {}
+
+         vm.init();
      }
  })();

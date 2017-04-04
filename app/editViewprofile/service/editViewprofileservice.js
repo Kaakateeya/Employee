@@ -7,15 +7,15 @@
         var ProfileID = null;
         return {
 
-            getViewCustomerData: function(EmpID, ProfileIDName, ProfileIDStatus) {
+            getViewCustomerData: function(EmpID, ProfileIDName, ProfileIDStatus, from, to) {
                 debugger;
                 return http.get(app.apiroot + 'CustomerPersonal/getViewAllCustomersSearch', {
                     params: {
                         EmpID: EmpID,
                         SearchData: ProfileIDName,
                         ProfileIDStatus: ProfileIDStatus,
-                        StartIndex: 1,
-                        EndIndex: 10
+                        StartIndex: from,
+                        EndIndex: to
                     }
                 });
             },
@@ -35,8 +35,6 @@
                     }
                 });
             }
-
-
         };
     }
     angular

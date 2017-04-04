@@ -24,7 +24,7 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="col-lg-8 col-lg-offset-1">
-                                <div style="padding-bottom: 5px;"> <br><a href="javascript:void(0);" onclick="return serviceCountProfiles(91022);"> Proceed Other Profiles</a> </div> <input id="fromcustimgBothsideCarousel1" onclick="return getimgPath(91022,&quot;310910220&quot;,1)" src="http://d16o2fcjgzj2wp.cloudfront.net/Images/customernoimages/Fnoimage_Rev.png"
+                                <div style="padding-bottom: 5px;"> <br><a href="javascript:void(0);" onclick="return serviceCountProfiles(91022);"> Proceed Other Profiles</a> </div> <input type="image" ng-click="slidepopup('91022');" src="http://d16o2fcjgzj2wp.cloudfront.net/Images/customernoimages/Fnoimage_Rev.png"
                                     class="img-thumbnail" style="border: 1px solid gray;" type="image">
                                 <div class="text-center"> <br>
                                     <div class="row">
@@ -54,16 +54,16 @@
                             <div id="UpdatedivfrommyCarousel1"></div>
                         </div>
                     </div><br>
-                    <div class="text-center"><button type="button" id="lnkAddactionmyCarousel1" onclick="ticketidaction(1054519,&quot;Updatedivfrom&quot;,&quot;myCarousel1&quot;,&quot;310910220&quot;,&quot;8142984592&quot;);" class="btn btn-success-outline">KAKHD1054519</button>
-                        <button type="button" style="" data-toggle="popover" data-placement="top" onclick="return TicketHistry(1054519,&quot;popover&quot;);" class="btn btn-success-outline col-lg-offset-2" data-original-title="" title="">Ticket history</button>
+                    <div class="text-center"><button type="button" id="lnkAddactionmyCarousel1" ng-click="openTicketPopup();" class="btn btn-success-outline">KAKHD1054519</button>
+                        <button type="button" uib-popover-template="dynamicPopover.templateUrl" popover-title="{{dynamicPopover.title}}" class="btn btn-success-outline col-lg-offset-2">Ticket history</button>
                     </div>
                 </div>
                 <div class="col-lg-6" style="border-radius: 20px; border-left: 1px solid maroon;">
                     <div>
                         <div class="row">
                             <div class="col-lg-8 col-lg-push-1">
-                                <div class="text-center" style="padding-bottom: 5px;"> <br><br> </div> <input id="tocustimg" onclick="return getimgPath(16948,&quot;110169486&quot;,2)" src="http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_16948_Images/Img2_Images/110169486_ApplicationPhoto.jpg"
-                                    alt="" class="center-block img-thumbnail" style="border: 1px solid gray;" type="image">
+                                <div class="text-center" style="padding-bottom: 5px;"> <br><br> </div> <input type="image" ng-click="slidepopup('91022');" src="http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_16948_Images/Img2_Images/110169486_ApplicationPhoto.jpg" alt="" class="center-block img-thumbnail"
+                                    style="border: 1px solid gray;" type="image">
                                 <div class="text-center"> <br>
                                     <div class="row">
                                         <div class="col-lg-10"><b>SURESH KUMAR  AKANA (<b><a href="javascript:void(0)" id="lnkProfileID" onclick="ViewProfilewithvalue(&quot;110169486&quot;);">110169486</a> - HD)</b></b>
@@ -121,11 +121,350 @@
     </div>
 
 </div>
+
+<script type="text/ng-template" id="myPopoverTemplate.html">
+    <div class="row">
+        <div class="col-lg-12 text-center" style="font-weight:bold;">
+            <c class="maroon">MatchFollowup Replied on 25 Mar 2017 21:47:37</c>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-lg-5" style="color:maroon;"><label>Employee Name</label></div>
+        <div class="col-lg-7"><label><div>Customer</div></label></div>
+        <div class="clearfix"></div>
+        <div class="col-lg-12"><label style="color:maroon;">Comments</label>
+            <div><label>Proceed This Profile</label></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="Actions.html">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" style="margin-top: -13px;">&times;</button>
+
+        <h4 class="modal-title text-center" style="margin-top: -13px; color: maroon; display: none;">TICKET INFORMATION</h4>
+    </div>
+    <div class="modal-body">
+        <div class="jumbotron text-center" style="background-color: rgb(254, 220, 1); color: white; padding-top: 2px; padding-bottom: 4px;">
+            <div class="row">
+                <div class="col-lg-2">
+                    <b style="color: maroon; font-size: 17px;">TicketID:</b>
+                    <br />
+                    <label id="lblmrktTicketID" style="color: rgb(0, 0, 0);"></label>
+                    <label id="lblmrktticket" style="display: none;"></label>
+                    <label id="lblemail" style="display: none;"></label>
+                    <label id="lblnumber" style="display: none;"></label>
+                </div>
+                <div class="col-lg-1">
+                    <b style="color: maroon; font-size: 17px;">Status</b>
+                    <br />
+                    <label id="lblmrktStatus" style="color: rgb(0, 0, 0);"></label>
+
+                </div>
+                <div class="col-lg-3">
+                    <b style="color: maroon; font-size: 17px;">Opened on</b>
+                    <br />
+                    <label id="lblmrktOpened" style="color: rgb(0, 0, 0);"></label>
+
+                </div>
+
+                <div class="col-lg-2">
+                    <b style="color: maroon; font-size: 17px;">Assigned to</b>
+                    <br />
+                    <label id="lblmrktAssigned" style="color: rgb(0, 0, 0);"></label>
+                    <label id="Label1" style="display: none;"></label>
+                    <label id="lblUpdatediv" style="display: none;"></label>
+                </div>
+                <div class="col-lg-2">
+                    <b style="color: maroon; font-size: 17px;">No of days</b>
+                    <br />
+                    <label id="lblNoofdays" style="color: rgb(0, 0, 0);"></label>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <div id="accordion">
+
+
+            <uib-tabset active="active">
+                <uib-tab index="0" heading="Incoming Call" style="padding-left:16%;">
+                    <div>
+                        <br>
+                        <ul>
+                            <li class="clearfix">
+                                <label class="pop_label_left">Call received from </label>
+                                <div class="pop_controls_right">
+
+
+                                    <select style="width: 70px;" class="smalldropdown" ng-model="ddlmrktreceivedfrom" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <label class="pop_label_left">Relation name  </label>
+                                <div class="pop_controls_right">
+                                    <input id="txtmrktRelationname" type="text" class="form-control required"></input>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <label class="pop_label_left">Call result </label>
+                                <div class="pop_controls_right">
+                                    <!--<select id="" class="chosen required" style="width: 481px;">
+                                                    <option value="0">-- Select --</option>
+                                                    <option value="417" selected="selected">Successfull</option>
+                                                    <option value="418">UnSuccessfull</option>
+                                                </select>-->
+
+                                    <select style="width: 70px;" class="smalldropdown" ng-model="ddlmrktCallresult" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                                </div>
+                            </li>
+
+                            <li class="clearfix">
+                                <label class="pop_label_left">Call telephone number </label>
+                                <div class="pop_controls_right">
+                                    <input type="text" id="txtmrktCalltelephonenumber" class="form-control" maxlength="12" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
+                                    />
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <label class="pop_label_left">Reply Type </label>
+                                <div class="pop_controls_right select-box-my">
+
+                                    <select style="width: 70px;" class="smalldropdown" ng-model="ddlmrktReplyType" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <label class="pop_label_left">Call discussion </label>
+                                <div class="pop_controls_right">
+                                    <textarea type="text" id="txtmrktCalldiscussionin" class="form-control"></textarea>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <label class="pop_label_left Notrequired">Display to customer </label>
+                                <div class="pop_controls_right pop_radios_list">
+                                    <!--<label class="radio">
+                                                    <input type="radio" name="displaycustomermrkt" value="1">&nbsp;&nbsp;Yes&nbsp;&nbsp;&nbsp;&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label class="radio">
+                                                        <input type="radio" name="displaycustomermrkt" checked value="0">&nbsp;&nbsp;No</label>-->
+                                    <md-radio-group ng-required="true" name="rbtnPaymode" layout="row" ng-model="page.model.PiObj.rbtnPaymode" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                        <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                        <md-radio-button value="2"> No</md-radio-button>
+                                    </md-radio-group>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <br />
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <button type="button" value="Submit" id="btnmrktsubmitIncoming" class="button_custom pull-right" onclick="return submitInCalls(this);">Incoming Call</button>
+                            </div>
+                            <div class="col-lg-6">
+                                <button type="button" id="btnIncomeAssignme" class="button_custom" onclick="return submitInCalls(this);" style="display: none; float: left; margin-right: 20px;">Incomg Call & Assign me</button>
+                                <button type="button" class="button_custom button_custom_reset" onclick='modalpopupopen.close()'>Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </uib-tab>
+                <uib-tab index="1" heading="Outgoing Call">
+                    <div>
+                        <br>
+                        <ul>
+
+                            <li class="clearfix">
+                                <label class="pop_label_left">Call received by </label>
+                                <div class="pop_controls_right select-box-my">
+
+                                    <select style="width: 70px;" class="smalldropdown" ng-model="ddlmrktreceivedby" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <label class="pop_label_left">Relation name  </label>
+                                <div class="pop_controls_right">
+                                    <input id="txtmrktRelationnameout" type="text" class="form-control" />
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <label class="pop_label_left">Call result </label>
+                                <div class="pop_controls_right">
+                                    <!--<select id="" class="chosen" style="width: 481px;">
+                                                    <option value="0">-- Select --</option>
+                                                    <option value="417" selected="selected">Successfull</option>
+                                                    <option value="418">UnSuccessfull</option>
+                                                </select>-->
+
+
+
+                                    <select style="width: 70px;" class="smalldropdown" ng-model="ddlmrktcallresultout" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                                </div>
+                            </li>
+
+                            <li class="clearfix">
+                                <label class="pop_label_left">Call telephone number </label>
+                                <div class="pop_controls_right">
+                                    <input id="txtmrktCalltelephonenumberout" type="text" class="form-control" maxlength="12" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
+                                    />
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <label class="pop_label_left">Reply Type </label>
+                                <div class="pop_controls_right select-box-my">
+
+
+                                    <select style="width: 70px;" class="smalldropdown" ng-model="ddlmrktreplytypeout" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <label class="pop_label_left">Call discussion </label>
+                                <div class="pop_controls_right">
+                                    <textarea id="txtmrktCalldiscussionout" type="text" class="form-control"></textarea>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <label class="pop_label_left Notrequired">Display to customer </label>
+                                <div class="pop_controls_right pop_radios_list">
+                                    <!--<label class="radio">
+                                                    <input name="displaycustomeroutmrkt" value="1" type="radio">&nbsp;&nbsp;Yes&nbsp;&nbsp;&nbsp;&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label class="radio">
+                                                        <input name="displaycustomeroutmrkt" value="0" checked type="radio">&nbsp;&nbsp;No</label>-->
+                                    <md-radio-group ng-required="true" name="rbtnPaymode" layout="row" ng-model="page.model.PiObj.rbtnPaymode" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                        <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                        <md-radio-button value="2"> No</md-radio-button>
+                                    </md-radio-group>
+                                </div>
+                            </li>
+                        </ul>
+                        <br />
+
+
+
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <button type="button" value="Submit" id="btnmrktoutgng" class="button_custom pull-right" onclick="return submitOutCalls(this);">Outgoing Call</button>
+                            </div>
+                            <div class="col-lg-6">
+                                <button type="button" id="btnOutgngAssignme" value="Submit" class="button_custom" onclick="return submitOutCalls(this);" style="display: none; float: left; margin-right: 20px;">Outgoing Call & Assign me</button>
+                                <button type="button" class="button_custom button_custom_reset" data-dismiss="modal" onclick='modalpopupopen.close()'>Close</button>&nbsp;
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </uib-tab>
+                <uib-tab index="2" heading="Internal Memo">
+
+                    <div>
+                        <br>
+                        <ul>
+                            <li class="clearfix">
+                                <label class="pop_label_left">Assign/Re-assign </label>
+                                <div class="pop_controls_right select-box-my">
+                                    <!--<select id="ddlmrktempmemo" class="EmpnameswithNoCondition">
+                                                </select>-->
+                                    <select style="width: 70px;" class="smalldropdown" ng-model="ddlmrktcallresultout" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                                </div>
+                            </li>
+
+                            <li class="clearfix">
+                                <label class="pop_label_left">Reply Type  </label>
+                                <div class="pop_controls_right select-box-my">
+                                    <!--<select id="ddlmrktreplytypememo" class="BothsideEmail" onchange="return bindCalldiscussion('txtmrktmemocalldiscussion','ddlmrktreplytypememo');">
+                                                </select>-->
+                                    <select style="width: 70px;" class="smalldropdown" ng-model="ddlmrktcallresultout" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <label class="pop_label_left">Enter memo  </label>
+                                <div class="pop_controls_right">
+                                    <textarea id="txtmrktmemocalldiscussion" type="text" class="form-control"></textarea>
+                                </div>
+                            </li>
+                        </ul>
+                        <br />
+
+
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <button type="button" value="Submit" class="button_custom pull-right" onclick="return submitMemo(this);">Internal Memo</button>
+                            </div>
+                            <div class="col-lg-6">
+                                <button type="button" id="btnIMAssignme" value="Submit" class="button_custom" onclick="return submitMemo(this);" style="display: none; float: left; margin-right: 20px;">Internal Memo & Assign me</button>
+
+                                <button type="button" class="button_custom button_custom_reset" data-dismiss="modal">Close</button>&nbsp;
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </uib-tab>
+                <uib-tab index="3" heading="Close Ticket">
+
+                    <div>
+                        <br>
+                        <ul>
+                            <li class="clearfix">
+                                <label class="pop_label_left">Reply Type </label>
+                                <div class="pop_controls_right select-box-my">
+                                    <!--<select id="ddlmrktreplytypeCloseticket" class="BothsideEmail" onchange="return bindCalldiscussion('txtmrktclosecalldiscusn','ddlmrktreplytypeCloseticket');">
+                                                </select>-->
+                                    <select style="width: 70px;" class="smalldropdown" ng-model="ddlmrktcallresultout" multiselectdropdown typeofdata="'Ageselect'">   
+                                                     </select>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <label class="pop_label_left">Reason for close </label>
+                                <div class="pop_controls_right">
+                                    <textarea type="text" id="txtmrktclosecalldiscusn" class="form-control"></textarea>
+                                </div>
+                            </li>
+
+                        </ul>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-offset-6 col-lg-3">
+                                <button type="button" value="Submit" class="button_custom pull-right" onclick="return submitCloseTicket();">Close Ticket</button>
+                            </div>
+                            <div class="col-lg-2">
+                                <button type="button" class="button_custom button_custom_reset pull-right" data-dismiss="modal">Cancel</button>&nbsp;
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </uib-tab>
+
+            </uib-tabset>
+
+
+        </div>
+    </div>
+
+
+</script>
 <style>
-    .btn-success-outline {
-        color: rgb(35, 82, 124);
-        background-color: transparent;
-        background-image: none;
-        border-color: rgb(35, 82, 124);
-    }
+
+</style>
+
+
+<style>
+
 </style>

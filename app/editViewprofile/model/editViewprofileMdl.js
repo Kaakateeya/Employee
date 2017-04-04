@@ -88,7 +88,8 @@
 
         }
 
-        model.ViewAllsubmit = function(inpuobj) {
+        model.ViewAllsubmit = function(inpuobj, from, to) {
+
             model.columns = [
                 { text: 'ProfileID', key: 'ProfileID', type: 'custom', templateUrl: model.ProfileIdTemplateDUrl, rowtype: "success" },
                 { text: 'Last Name', key: 'LastName', type: 'label' },
@@ -104,11 +105,11 @@
                 { text: 'Confidential', key: 'Confidential', type: 'label' }
             ];
 
-            ViewAllCustomerService.getViewCustomerData(2, (inpuobj !== undefined && inpuobj.ProfileIDsearch !== undefined ? inpuobj.ProfileIDsearch : ''), (inpuobj !== undefined && inpuobj.chkProfileIDsts !== undefined ? model.returnnullvalue(inpuobj.chkProfileIDsts) : "")).then(function(response) {
+            ViewAllCustomerService.getViewCustomerData(2, (inpuobj !== undefined && inpuobj.ProfileIDsearch !== undefined ? inpuobj.ProfileIDsearch : ''), (inpuobj !== undefined && inpuobj.chkProfileIDsts !== undefined ? model.returnnullvalue(inpuobj.chkProfileIDsts) : ""), from, to).then(function(response) {
                 console.log(response.data);
                 debugger;
-                if (_.isArray(response.data)) {
-
+                if (_.isArray(response.data) && response.data.length > 0) {
+                    model.TotalRows = response.data[0].TotalRows;
                     _.map(response.data, function(item) {
                         item.rowtype = model.rowStyle(item);
                     });
@@ -146,7 +147,7 @@
         };
 
         model.chkChange = function() {
-            model.ViewAllsubmit(model.obj);
+            model.ViewAllsubmit(model.obj, 1, 10);
         };
 
         model.genderChange = function(val) {
@@ -157,6 +158,13 @@
             }
 
         };
+
+        model.pagechange = function(val) {
+            alert(val);
+            var to = val * 10;
+            var from = val === 1 ? 1 : to - 9;
+            model.ViewAllsubmit(model.obj, from, to);
+        }
         return model;
     }
     angular
