@@ -9,6 +9,7 @@
 
              vm.model = model = EmployeePaymentInsertModel;
              model.scope = scope;
+
              vm.model.getpaymentProfile(stateParams.ProfileID);
          };
          vm.Number = Number;

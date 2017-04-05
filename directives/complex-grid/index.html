@@ -2,7 +2,10 @@
 
 
     <div class="row">
-        <div style="margin-bottom:11px;" class="col-md-3 m-b-2 pull-right">
+        <div class="col-md-3 totalrecordCls" ng-hide="hidesearch">
+            <label for="noofRecords" class="control-label">Total Records : {{model.TotalRows}}</label>
+        </div>
+        <div class="col-md-3 m-b-2 pull-right mainDiv" ng-hide="hidesearch">
             <input class="form-control" type="text" ng-model="searchKeyword" placeholder="Search">
         </div>
         <dv class="pull-right">
@@ -11,11 +14,11 @@
     </div>
     <div class="clearfix"></div>
     <div class="row table-responsive">
-        <table class="Datatable table table-fixed table-hover table-bordered" style="min-width: 750px;">
+        <table class="Datatable table table-fixed table-hover table-bordered mainTableCls">
             <thead>
                 <tr>
-                    <th ng-if="!inneritem.isDetail && showplus===true" style="width: auto;background-color: #fdca52;"></th>
-                    <th ng-click="sort(item.key)" class={{item.key}} style="width: auto;background-color: #fdca52;" ng-repeat="item in model.columns">{{item.text}}
+                    <th ng-if="!inneritem.isDetail && showplus===true" class="headerStyles"></th>
+                    <th ng-click="sort(item.key)" class="{{item.key}} headerStyles" ng-repeat="item in model.columns">{{item.text}}
                         <span class="glyphicon sort-icon" ng-show="sortKey==item.key" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                     </th>
                 </tr>
@@ -34,7 +37,7 @@
                         <a class="detail-icon " ng-click="minus(inneritem) " href="javascript: "><i class="glyphicon glyphicon-minus icon-minus "></i></a>
                     </td>
                     <td colspan="24 " ng-if="inneritem.isDetail">
-                        <table class="Datatable table table-hover table-bordered subtable" style="width: 1100px;max-width: 1100px;">
+                        <table class="Datatable table table-hover table-bordered subtable SubTableCls">
                             <thead>
                                 <tr>
                                     <th class={{detailitem.key}} style="min-width: 80px;background-color: rgba(99, 56, 31, 0.46);" ng-repeat="detailitem in inneritem.detailcolumns ">{{detailitem.text}}</th>
@@ -62,7 +65,7 @@
             </tbody>
         </table>
     </div>
-    <ul uib-pagination total-items="model.TotalRows" ng-model="pagen" ng-change="model.pagechange(pagen)" max-size="5" class="pull-right pagination-md" boundary-link-numbers="true" rotate="false"></ul>
+    <ul uib-pagination total-items="model.TotalRows" ng-hide="hidepaging" ng-model="pagen" ng-change="model.pagechange(pagen)" max-size="5" class="pull-right pagination-md" boundary-link-numbers="true" rotate="false"></ul>
 </div>
 <style>
     /*.table-fixed thead {
@@ -92,5 +95,36 @@
     .subtable {
         display: block;
         overflow-x: auto;
+    }
+    
+    .mainDiv {
+        margin-bottom: 11px;
+    }
+    
+    .headerStyles {
+        width: auto;
+        background-color: #fdca52;
+    }
+    
+    .mainTableCls {
+        min-width: 750px;
+    }
+    
+    .SubTableCls {
+        width: 1100px;
+        max-width: 1100px;
+    }
+    
+    .SubTableheaderCls {
+        min-width: 80px;
+        background-color: rgba(99, 56, 31, 0.46);
+    }
+    
+    .totalrecordCls {
+        margin-top: 12px;
+    }
+    
+    .RegistrationDate {
+        min-width: 197px !important;
     }
 </style>

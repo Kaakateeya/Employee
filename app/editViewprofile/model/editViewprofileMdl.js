@@ -27,7 +27,7 @@
             return obj;
         };
         // model.ViewAllsubmit = function(inpuobj) {
-        //     debugger;
+        //     
         //     ViewAllCustomerService.getViewCustomerData(2, (inpuobj !== undefined && inpuobj.ProfileIDsearch !== undefined ? inpuobj.ProfileIDsearch : ''), (inpuobj !== undefined && inpuobj.chkProfileIDsts !== undefined ? model.returnnullvalue(inpuobj.chkProfileIDsts) : "")).then(function(response) {
 
         //         model.gridArray = [];
@@ -66,14 +66,17 @@
             var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "'>" + row.ProfileID + row.Confidential + "</a>";
             return paid;
         };
+
         model.ProfileOwnerImg = function(row) {
+            debugger;
             var img = row.ProfileStatusID === 57 || row.ProfileStatusID === 393 ? 'src/images/settleimage_new.png' : (row.ProfileStatusID === 56 || row.ProfileStatusID === 394 ? 'src/images/deleteimage.png' : (row.ProfileStatusID === 55 ? 'src/images/imgInActive.png' : ''));
-            var paid = "<span class='red'>" + row.ProfileOwner + "</span><img style='cursor:pointer;' src=" + img + "></img>";
+            var dd = img !== '' ? img : '';
+            var paid = "<span class='red'>" + row.ProfileOwner + "</span> " + (img !== "" ? "<img style='cursor:pointer;' src=" + img + "></img>" : '');
             return paid;
         };
 
         model.rowStyle = function(row) {
-            debugger;
+
             var classes = ['settled', 'Deleted', 'inactive'];
             // alert(row.ProfileStatusID);
             var test = [
@@ -87,27 +90,31 @@
             return _.where(test, { StatusID: row.ProfileStatusID }).length > 0 ? _.where(test, { StatusID: row.ProfileStatusID })[0].classes : ''
 
         }
+        model.GenderStr = function(row) {
+
+            return row.GenderID === 1 ? 'Male' : 'Female';
+        };
 
         model.ViewAllsubmit = function(inpuobj, from, to) {
 
             model.columns = [
-                { text: 'ProfileID', key: 'ProfileID', type: 'custom', templateUrl: model.ProfileIdTemplateDUrl, rowtype: "success" },
-                { text: 'Last Name', key: 'LastName', type: 'label' },
-                { text: 'First Name', key: 'FirstName', type: 'label' },
+                { text: 'Profile ID', key: 'ProfileID', type: 'custom', templateUrl: model.ProfileIdTemplateDUrl, rowtype: "success" },
+                { text: 'SurName', key: 'LastName', type: 'label' },
+                { text: 'Name', key: 'FirstName', type: 'label' },
                 { text: 'Caste', key: 'CasteName', type: 'label' },
-                { text: 'ProfileOwner', key: 'ProfileOwner', type: 'custom', templateUrl: model.ProfileOwnerImg },
+                { text: 'Profile Owner', key: 'ProfileOwner', type: 'custom', templateUrl: model.ProfileOwnerImg },
                 { text: 'Height', key: 'Height', type: 'label' },
                 { text: 'Login', key: 'LoginStatus', type: 'label' },
                 { text: 'Education', key: 'educationgroup', type: 'label' },
                 { text: 'Profession', key: 'Profession', type: 'label' },
-                { text: 'DOB', key: 'Age', type: 'label', width: '150px' },
-                { text: 'GenderID', key: 'GenderID', type: 'label' },
-                { text: 'Confidential', key: 'Confidential', type: 'label' }
+                { text: 'Dob', key: 'Age', type: 'label', width: '150px' },
+                { text: 'Gender', key: 'GenderID', type: 'custom', templateUrl: model.GenderStr },
+                // { text: 'Confidential', key: 'Confidential', type: 'label' }
             ];
 
             ViewAllCustomerService.getViewCustomerData(2, (inpuobj !== undefined && inpuobj.ProfileIDsearch !== undefined ? inpuobj.ProfileIDsearch : ''), (inpuobj !== undefined && inpuobj.chkProfileIDsts !== undefined ? model.returnnullvalue(inpuobj.chkProfileIDsts) : ""), from, to).then(function(response) {
                 console.log(response.data);
-                debugger;
+
                 if (_.isArray(response.data) && response.data.length > 0) {
                     model.TotalRows = response.data[0].TotalRows;
                     _.map(response.data, function(item) {
@@ -126,7 +133,7 @@
 
         model.kmplSubmit = function(inpuobj) {
             if (inpuobj === undefined || inpuobj === "" || inpuobj === null || inpuobj.KmlProfileID === undefined || inpuobj.KmlProfileID === null || inpuobj.KmlProfileID === "") {
-                debugger;
+
                 alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please Enter Profileid', 4500);
             } else {
                 ViewAllCustomerService.kmplprofileIDData(2, (inpuobj !== undefined && inpuobj.KmlProfileID !== undefined ? inpuobj.KmlProfileID : '')).then(function(response) {
@@ -160,7 +167,6 @@
         };
 
         model.pagechange = function(val) {
-            alert(val);
             var to = val * 10;
             var from = val === 1 ? 1 : to - 9;
             model.ViewAllsubmit(model.obj, from, to);

@@ -11,6 +11,9 @@
              model.scope = scope;
              model.txtProfileID = "";
              model.freshLink = false;
+             model.CustName = '';
+             model.ProfileOwner = '';
+             model.ProfileID = '';
          };
 
          vm.init();

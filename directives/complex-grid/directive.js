@@ -4,7 +4,9 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
             restrict: "E",
             scope: {
                 model: '=',
-                showplus: '='
+                showplus: '=',
+                hidesearch: '=',
+                hidepaging: '='
             },
             templateUrl: "directives/complex-grid/index.html",
             link: function(scope, element, attrs) {
@@ -34,7 +36,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 };
 
                 scope.ViewContact = function(row) {
-                    var paid = "<a style='cursor:pointer;'  href='/Contact/" + row.custid + "'>View Conatact</a>";
+                    var paid = "<a style='cursor:pointer;'  href='/Contact/" + row.custid + "'>View</a>";
                     return paid;
                 };
                 scope.viewSa = function(row) {
@@ -70,11 +72,11 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 scope.plus = function(data) {
                     data.isDetail = true;
                     data.detailcolumns = [
-                        { text: 'ProfileID', key: 'Profileid', type: 'custom', templateUrl: scope.ViewProfile },
+                        { text: 'Profile Id', key: 'Profileid', type: 'custom', templateUrl: scope.ViewProfile },
                         { text: 'Branch-Dor', key: 'RegistrationDate', type: 'label' },
-                        { text: 'Payment', key: 'paidamount', type: 'label' },
-                        { text: 'OPD/KPD', key: 'paiddate', type: 'label' },
-                        { text: 'S/R Count', key: 'sentreceivecount', type: 'label' },
+                        { text: 'Paid', key: 'paidamount', type: 'label' },
+                        { text: 'Paid Date', key: 'paiddate', type: 'label' },
+                        { text: 'S/R', key: 'sentreceivecount', type: 'label' },
                         { text: 'PC', key: 'photocount', type: 'label' },
                         { text: 'PD', key: 'PD', type: 'label' },
                         { text: 'DPD', key: 'DPD', type: 'label' },
@@ -82,11 +84,11 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                         { text: 'NView', key: 'notview', type: 'label', width: '150px' },
                         { text: 'BI', key: 'bothinterst', type: 'label' },
                         { text: 'OppI', key: 'OppI', type: 'label' },
-                        { text: 'View Contact', key: '', type: 'custom', templateUrl: scope.ViewContact },
-                        { text: 'SA', key: '', type: 'custom', templateUrl: scope.viewSa },
+                        { text: 'Contact', key: '', type: 'custom', templateUrl: scope.ViewContact },
+                        { text: 'Sa', key: '', type: 'custom', templateUrl: scope.viewSa },
                         { text: 'Horo', key: '', type: 'custom', templateUrl: scope.ViewHoro },
                         { text: 'Tickets', key: '', type: 'custom', templateUrl: scope.ViewTicket },
-                        { text: 'Profile Owner', key: 'OWNER', type: 'label' },
+                        { text: 'Owner', key: 'OWNER', type: 'label' },
                     ]
 
                     SelectBindServiceApp.playbtnProfileData(data.ProfileID).then(function(response) {

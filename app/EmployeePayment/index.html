@@ -9,18 +9,22 @@
                 <div class="col-lg-4">
                     <label for="profileid" class="control-label pull-right">ProfileID</label>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     <input ng-focus="true" autofocus type="text" maxlength="9" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.txtProfileID" class="form-control" ng-keyup="$event.keyCode == 13 && page.model.EmployeePayment(page.model.txtProfileID)">
                 </div>
                 <div class="col-lg-1">
                     <button class="btn btn-danger" ng-click="page.model.EmployeePayment(page.model.txtProfileID)">Go</button>
                 </div>
                 <div class="col-lg-2">
-                    <md-button class="md-primary" ng-show="page.model.freshLink" href="javascript:void(0);" ng-click="page.model.paymentInsertLink(page.model.txtProfileID);">Fresh Payment/Renewal</md-button>
+
+                    <md-button class="md-primary" ng-click="page.model.viewProfileRedirect();" ng-if="page.model.CustName!==''"> {{page.model.CustName}} ({{page.model.ProfileOwner}})</md-button>
                 </div>
             </div>
             <div>
-                <complex-grid ng-if="page.model.columns" model="page.model"></complex-grid>
+                <md-button class="md-primary pull-right" ng-show="page.model.freshLink" href="javascript:void(0);" ng-click="page.model.paymentInsertLink(page.model.txtProfileID);">Fresh Payment/Renewal</md-button>
+            </div>
+            <div>
+                <complex-grid ng-if="page.model.columns" model="page.model" hidesearch="true" hidepaging="true"></complex-grid>
             </div>
         </div>
     </div>
