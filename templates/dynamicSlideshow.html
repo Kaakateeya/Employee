@@ -122,9 +122,9 @@
                             <div ng-class="($index+1)==1?'item active':'item'" ng-repeat="itemval in displayArr">
                                 <md-divider></md-divider>
                                 <div class="row">
-                                    <a href='Partnerpreference/{{itemval.Custid}}' class='col-lg-4' style='font-size: 14px;'>Edit Partnerpreference</a>
-                                    <a href='search/0' class='col-lg-3' style='font-size: 14px;'>General search</a>
-                                    <a href='Contact/{{itemval.Custid}}' class='col-lg-3' style='font-size: 14px;'>View Contacts</a>
+                                    <a href='javascript:void(0);' ng-click="pagesredirect('Partner',itemval.Custid)" class='col-lg-4' style='font-size: 14px;'>Edit Partnerpreference</a>
+                                    <a href='javascript:void(0);' ng-click="pagesredirect('general',0)" class='col-lg-3' style='font-size: 14px;'>General search</a>
+                                    <a href='javascript:void(0);' ng-click="pagesredirect('contacts',itemval.Custid)" class='col-lg-3' style='font-size: 14px;'>View Contacts</a>
                                 </div>
                                 <md-divider></md-divider>
                                 <br>
@@ -134,7 +134,7 @@
                                         <h5>
 
                                             <div style="color:Black;"> <span>{{slidedata.value}}</span> </div>
-                                            <span ng-if="slidedata.label=='ProfileID'">&nbsp;<a href="javascript:void(0);" ng-class="slidedata.paid==='1'?'paidCls':'unpaidCls'" >{{slidedata.ProfileID}}</a> {{slidedata.KMPLID}} {{(slidedata.IsConfidential===1) ||(slidedata.IsConfidential==='1')?'C':''}}  
+                                            <span ng-if="slidedata.label=='ProfileID'">&nbsp;<a ng-click="viewfullprofile(slidedata.ProfileID)" href="javascript:void(0);" ng-class="slidedata.paid==='1'?'paidCls':'unpaidCls'" >{{slidedata.ProfileID}}</a> {{slidedata.KMPLID}} {{(slidedata.IsConfidential===1) ||(slidedata.IsConfidential==='1')?'C':''}}  
                                                 {{(slidedata.SuperConfidentila==='1') ||(slidedata.SuperConfidentila===1)?'SC':''}}  
                                                 <input ng-click="horoscopeimage(slidedata.HoroscopeImage)" ng-show="slidedata.HoroscopeStatus===1" src='src/images/ico_horoscope.jpg' style='height:20px;width:25px;' type='image'>
                                               </span>
@@ -146,7 +146,7 @@
                                         <h6> <span style="font-weight: bold;">Last Login</span></h6>
                                         <h5>
                                             <div style="color:Black;">
-                                                <span ng-if='(itemval.lastlogin !== null) && (itemval.lastlogin !== "") && (itemval.lastlogin !== undefined)'>{{itemval.lastlogin}}</span>
+                                                <span ng-if='(itemval.lastlogin !== null) && (itemval.lastlogin !== "") && (itemval.lastlogin !== undefined)'>{{itemval.lastlogin}}<span ng-if="itemval.logincount!==null">({{itemval.logincount}})</span></span>
                                                 <a class="alllinkscolor" ng-if='(itemval.lastlogin === null)|| (itemval.lastlogin === "") || (itemval.lastlogin === undefined)' href='javascript:void(0)' ng-click='forgetpassword(itemval.ProfileID)'>forgot password</a>
                                             </div>
                                             <div class="clearfix">
@@ -159,7 +159,7 @@
                                         <h5>
                                             <div style="color:Black;">
 
-                                                <a class="alllinkscolor" href='javascript:void(0)' ng-click='forgetpassword()'>{{itemval.SRCount}}</a>
+                                                <a class="alllinkscolor" href='javascript:void(0)'>{{itemval.SRCount}}</a>
                                             </div>
                                             <div class="clearfix">
                                             </div>
@@ -171,7 +171,7 @@
                                         <h6> <span style="font-weight: bold;">Payment</span></h6>
                                         <h5>
                                             <div style="color:Black;">
-                                                <a class="alllinkscolor" href='javascript:void(0)' ng-click='forgetpassword()'>{{itemval.PaidAmount}}</a>
+                                                <a class="alllinkscolor" href='javascript:void(0)' ng-click='paymentpage()'>{{itemval.PaidAmount}}</a>
                                             </div>
                                             <div class="clearfix">
                                             </div>
@@ -182,7 +182,7 @@
                                         <h5>
                                             <div style="color:Black;">
 
-                                                <a class="alllinkscolor" href='javascript:void(0)' ng-click='forgetpassword()'>{{itemval.ExpiryDate}}({{itemval.Points}})</a>
+                                                <a class="alllinkscolor" href='javascript:void(0)' ng-click='paymentpage()'>{{itemval.ExpiryDate}}({{itemval.Points}})</a>
                                             </div>
                                             <div class="clearfix">
                                             </div>
@@ -193,7 +193,7 @@
                                         <h6> <span style="font-weight: bold;">Marketing Ticket</span></h6>
                                         <h5>
                                             <div style="color:Black;">
-                                                <a class="alllinkscolor" href='javascript:void(0)' ng-click='forgetpassword()'>{{itemval.matkteingticket}}</a>
+                                                <a class="alllinkscolor" href='javascript:void(0)'>{{itemval.matkteingticket}}</a>
                                                 <span>({{itemval.ownername}}-{{itemval.UserName}})</span>
                                             </div>
                                             <div class="clearfix">
@@ -207,7 +207,7 @@
                                     <div class="row">
                                         <img ng-click="slidepopup(itemval.Custid)" ng-src="{{itemval.custPhoto}}" class="image" style="cursor: pointer;" />
                                         <br>
-                                        <div class="col-lg-8 col-lg-offset-3"><a href="javascript:void(0)"><span style="color:Black;font-size:9pt;">No of Photos   2</span></a></div>
+                                        <div class="col-lg-8 col-lg-offset-3"><a href="javascript:void(0)"><span style="color:Black;font-size:9pt;">No of Photos {{itemval.PhotoCount}}</span></a></div>
                                     </div>
                                 </div>
 
@@ -235,7 +235,7 @@
                                                 <div style="color:Black;">
                                                     <span>{{itemval.primaryemail}}
                                                     <i style="line-height:0;" ng-class="itemval.emailstatus===true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></i>
-                                                      <a href="javascript:void(0)" ng-click="verifymail(itemval.Custid)">Verify mail</a>
+                                                      <a href="javascript:void(0)" ng-hide="itemval.emailstatus===true" ng-click="verifymail(itemval.Custid)">Verify mail</a>
                                                     </span>
 
                                                 </div>
@@ -249,12 +249,12 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                                         <div style="margin-left:69px;" class="edit_page_details_item_desc clearfix">
-                                            <h6> <span style="font-weight: bold;">View Sa Form
+                                            <h6> <span style="font-weight: bold;">{{itemval.SAForm!==null ? "View SA Form":"SA Form"}}
                                            </span></h6>
                                             <h5>
                                                 <div style="color:Black;">
-                                                    <a class="alllinkscolor" ng-show="itemval.SAForm!==null" href="javascript:void(0)" ng-click="horoscopeimage(itemval.SAForm)">SA Form </a>
-                                                    <a href="javascript:void(0)" class="alllinkscolor" ng-show="itemval.SAForm===null">Upload SA Form</a>
+                                                    <a class="alllinkscolor" ng-show="itemval.SAForm!==null" href="javascript:void(0)" ng-click="horoscopeimage(itemval.SAForm)">View SA Form </a>
+                                                    <a href="javascript:void(0)" ng-click="saformupload(slidedata.ProfileID)" class="alllinkscolor" ng-show="itemval.SAForm===null">Upload SA Form</a>
                                                 </div>
                                                 <div class="clearfix">
                                                 </div>
@@ -269,7 +269,7 @@
                                                 <div style="color:Black;">
                                                     <span>{{itemval.primarynumber}}
                                                        <i style="line-height:0;" ng-class="itemval.mobilestatus===true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></i>
-                                                    <a href="javascript:void(0)" ng-click="sendMobileCode(itemval.CountryCodeID,itemval.CountryCodeID,itemval.primarynumber,itemval.Cust_Family_ID)">Verify mobile</a>
+                                                    <a href="javascript:void(0)" ng-hide="itemval.mobilestatus===true" ng-click="sendMobileCode(itemval.CountryCodeID,itemval.CountryCodeID,itemval.primarynumber,itemval.Cust_Family_ID)">Verify mobile</a>
                                                     </span>
 
                                                 </div>
@@ -431,6 +431,7 @@
         </div>
     </div>
 </script>
+
 <style>
     .paidCls {
         color: Green;
