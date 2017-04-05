@@ -5,7 +5,7 @@
                 <h6> <span style="font-weight: bold;">{{slidedata.label}}</span></h6>
                 <h5>
                     <div style="color:Black;"> <span>{{slidedata.value}}</span> </div>
-                    <span ng-if="slidedata.label=='ProfileID'">&nbsp;<a href="javascript:void(0);" ng-class="slidedata.paid==='1'?'paidCls':'unpaidCls'" >{{slidedata.ProfileID}}</a> {{slidedata.KMPLID}} {{(slidedata.IsConfidential===true) ||(slidedata.IsConfidential==='True')?'C':''}}  
+                    <span ng-if="slidedata.label=='ProfileID'">&nbsp;<a href="javascript:void(0);" ng-click="viewfullprofile(slidedata.ProfileID)" ng-class="slidedata.paid==='1'?'paidCls':'unpaidCls'" >{{slidedata.ProfileID}}</a> {{slidedata.KMPLID}} {{(slidedata.IsConfidential===true) ||(slidedata.IsConfidential==='True')?'C':''}}  
                                                 {{(slidedata.SuperConfidentila==="1") ||(slidedata.SuperConfidentila===1)?'SC':''}}  
                                                 <input ng-show="slidedata.HoroscopeStatus==='1'" src='../../Images/ico_horoscope.jpg' style='height:20px;width:25px;' type='image'>
                                               </span>
@@ -17,11 +17,12 @@
             <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix">
                 <div class="row">
                     <label style="color:maroon">From Status :</label>
-                    <label style="color:#000">{{itemval.Mystatus}}<span>
-                        <img style="height: 29px;" src="src\images\heartgrren.gif"><img></span></label>
-                    <md-button class="md-raised md-warn md-hue-2 md-button md-ink-ripple">Proceed</md-button>
-                    <md-button class="md-raised md-warn md-hue-2 md-button md-ink-ripple">Dont Proceed</md-button>
-                    <md-button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-show="itemval.Mystatus!=='Proceed' && itemval.Mystatus==='Dont Proceed'">{{itemval.FromTicketIdSuf}}</md-button>
+                    <label style="color:#000"><span ng-bind-html="statusbind(itemval.Mystatus.trim())"></span><span>
+                        <img style="height: 29px;" ng-if="itemval.Mystatus.trim()==='I'"  ng-show="itemval.Mystatus.trim()==='I'" src="src/images/heartgrren.gif"><img>
+                         <img style="height: 29px;"  ng-if="itemval.Mystatus.trim()==='NI'" ng-show="itemval.Mystatus.trim()==='NI'" ng-src="src/images/brkhrtgreen.gif"><img></span></label>
+                    <md-button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-click="proceedanddontproceed('btnProceed',personalobj.Cust_ID,itemval.Custid,itemval.Cust_ProfileInterestsLog_ID)" ng-if="itemval.Mystatus.trim()!=='I' && itemval.Mystatus.trim()!=='NI' && itemval.Mystatus.trim()!=='--'">Proceed</md-button>
+                    <md-button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-click="proceedanddontproceed('btnDontProceed',personalobj.Cust_ID,itemval.Custid,itemval.Cust_ProfileInterestsLog_ID)" ng-if="itemval.Mystatus.trim()!=='I' && itemval.Mystatus.trim()!=='NI' && itemval.Mystatus.trim()!=='--'">Dont Proceed</md-button>
+                    <md-button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-if="itemval.Mystatus.trim()==='I' || itemval.Mystatus.trim()==='NI'" ng-show="itemval.FromTicketIdSuf.trim()!=='--'">{{itemval.FromTicketIdSuf}}</md-button>
                 </div>
                 <br>
             </div>
@@ -45,12 +46,13 @@
                     <div class="col-lg-6">
                         <div class="row">
                             <label style="color:maroon">To Status:</label>
-                            <label style="color:#000">{{itemval.OppStatus}}
-                            <img  style="height: 29px;" src="src\images\heartgrren.gif"><img></label>
+                            <label style="color:#000"><span ng-bind-html="statusbind(itemval.OppStatus.trim())"></span>
+                            <img  style="height: 29px;" ng-if="itemval.OppStatus.trim()==='I'" ng-show="itemval.OppStatus.trim()==='I'" src="src/images/heartgrren.gif"><img>
+                            <img style="height: 29px;" ng-if="itemval.OppStatus.trim()==='NI'" ng-show="itemval.OppStatus.trim()==='NI'" src="src/images/brkhrtgreen.gif"><img></label>
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="row" ng-show="itemval.OppStatus!=='Proceed' && itemval.OppStatus==='Dont Proceed'">
+                        <div class="row">
                             <label style="color:maroon">Ticket ID:</label>
                             <label style="color:#000">{{itemval.ToTicketIDSuf}}</label>
                         </div>

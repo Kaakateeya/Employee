@@ -1,7 +1,7 @@
 app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'SelectBindServiceApp',
-    'alert', 'helperservice', 'getArraysearch',
+    'alert', 'helperservice', 'getArraysearch', '$window',
 
-    function(uibModal, commonpage, timeout, SelectBindServiceApp, alerts, helperservice, getArray) {
+    function(uibModal, commonpage, timeout, SelectBindServiceApp, alerts, helperservice, getArray, window) {
         return {
             restrict: "E",
             scope: {
@@ -54,9 +54,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     if (scope.pagename === 'matchfollowup') {
                         scope.headervisileble = false;
                     }
-
-
-
+                    console.log("searchh");
                     console.log(arr);
                     if (frompage === 1) {
                         scope.arraydata = [];
@@ -121,12 +119,13 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             Custid: item.Cust_ID,
                             Tickid: item.TicketID,
                             PhotoCount: item.PhotoCount,
-                            Mystatus: "Proceed",
-                            OppStatus: "Dont Proceed",
+                            Mystatus: item.Mystatus,
+                            OppStatus: item.OppStatus,
                             FromTicketIdSuf: item.FromTicketIdSuf,
-                            ToTicketIDSuf: "KAK7676887",
+                            ToTicketIDSuf: item.ToTicketIDSuf,
                             FromTicketID: item.FromTicketID,
-                            ToTicketID: item.ToTicketID
+                            ToTicketID: item.ToTicketID,
+                            Cust_ProfileInterestsLog_ID: item.Cust_ProfileInterestsLog_ID
                         });
                     });
                     return scope.arraydata;
@@ -146,22 +145,37 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             paid: item.paid,
                             IsConfidential: item.IsConfidential,
                             SuperConfidentila: item.SuperConfidentila,
-                            HoroscopeStatus: item.HoroscopeStatus
+                            HoroscopeStatus: item.HoroscopeStatus,
+                            HoroscopeImage: item.HoroscopeImage
                         });
                         data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
-                        data.push({ label: 'Caste', value: item.Caste });
+                        data.push({ label: 'Caste', value: item.Caste + "-" + item.MotherTongue });
                         data.push({ label: 'Dor', value: item.DOR });
                         data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
                         data.push({ label: 'Web Logins', value: item.LoginCount });
                         // if (scope.typeofslidedate === "Inactive Date") {
                         //     data.push({ label: 'Reason', value: item.Reason4InActive });
                         // }
-                        data.push({ label: 'backendFields', Custid: item.Cust_ID, ProfileID: item.ProfileID, PhotoCount: item.PhotoCount, Age: item.Age, HeightInCentimeters: item.HeightInCentimeters, MaritalStatusID: item.MaritalStatusID, CasteID: item.CasteID, serviceDate: item.serviceDate, CustPhoto: item.ApplicationPhotoPath, totalrecords: item.TotalRows });
+                        data.push({
+                            label: 'backendFields',
+                            Custid: item.Cust_ID,
+                            ProfileID: item.ProfileID,
+                            PhotoCount: item.PhotoCount,
+                            Age: item.Age,
+                            HeightInCentimeters: item.HeightInCentimeters,
+                            MaritalStatusID: item.MaritalStatusID,
+                            CasteID: item.CasteID,
+                            serviceDate: item.serviceDate,
+                            CustPhoto: item.ApplicationPhotoPath,
+                            totalrecords: item.TotalRows
+
+                        });
                         scope.arraydata.push({
                             itmArr: data,
                             custPhoto: item.ApplicationPhotoPath,
                             Custid: item.Cust_ID,
                             lastlogin: item.LastLoginDate,
+                            logincount: item.LoginCount,
                             matkteingticket: item.TicketID,
                             matchmarktingcount: item.MatchMeetingCount,
                             ownername: item.EmpName,
@@ -181,7 +195,8 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             Reason4InActive: item.Reason4InActive,
                             ProfileID: item.ProfileID,
                             CountryCodeID: item.CountryCodeID,
-                            Cust_Family_ID: item.Cust_Family_ID
+                            Cust_Family_ID: item.Cust_Family_ID,
+                            PhotoCount: item.PhotoCount
 
                         });
                     });
@@ -277,6 +292,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     commonpage.pausePalyslide(type, scope.carousalID);
                 };
                 scope.horoscopeimage = function(image) {
+                    debugger;
                     scope.HoroscopeImage = image;
                     scope.popupmodalbody = true;
                     commonpage.showPopupphotopoup('dynamicphotopopup.html', scope, '', "modalclassdashboardphotopopup");
@@ -382,7 +398,10 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                         }
                     });
                 };
+                scope.saformupload = function(profileid) {
+                    scope.$emit('saformuploadsubmit', profileid);
 
+                };
                 scope.sendMobileCode = function(iCountryID, iCCode, MobileNumber, CustFamilyID) {
 
                     var obj = {
@@ -429,16 +448,50 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
 
                 };
 
+                scope.viewfullprofile = function(profileid) {
+                    debugger;
+                    window.open("Viewfullprofile/" + profileid, "_blank");
+                };
+                scope.paymentpage = function() {
+                    window.open("EmployeePayments", "_blank");
+                };
 
-                scope.proceedanddontproceed = function(typeofbtn) {
+                scope.pagesredirect = function(type, custid) {
+                    switch (type) {
+                        case "Partner":
+                            window.open("Partnerpreference/" + custid, "_blank");
+                            break;
+                        case "general":
+                            window.open("search/" + custid, "_blank");
+                            break;
+                        case "contacts":
+                            window.open("Contact/" + custid, "_blank");
+                            break;
+                    }
 
+                };
+                scope.statusbind = function(status) {
+                    if (status === "I") {
+                        status = "Proceed";
+                    } else if (status === "NI") {
+                        status = "Dont Proceed";
+                    } else if (status === "NV") {
+                        status = "Not Viewed";
+                    } else if (status === "V") {
+                        status = "Viewed";
+                    } else {
+                        status = "--";
+                    }
+                    return status;
+                };
+                scope.proceedanddontproceed = function(typeofbtn, fromcustid, tocustid, logid) {
                     switch (typeofbtn) {
                         case "btnProceed":
                             var MobjViewprofile = {
-                                ExpressInrestID: scope.hdnexpressinterstfiled,
-                                CustID: scope.fromcustid,
-                                FromCustID: scope.fromcustid,
-                                ToCustID: scope.tocustid,
+                                ExpressInrestID: logid,
+                                CustID: fromcustid,
+                                FromCustID: fromcustid,
+                                ToCustID: tocustid,
                                 AcceptStatus: 1,
                                 MatchFollwupStatus: 1
                             };
@@ -460,10 +513,10 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             break;
                         case "btnDontProceed":
                             var MobjViewprofiledont = {
-                                ExpressInrestID: scope.hdnexpressinterstfiled,
-                                CustID: scope.fromcustid,
-                                FromCustID: scope.fromcustid,
-                                ToCustID: scope.tocustid,
+                                ExpressInrestID: logid,
+                                CustID: fromcustid,
+                                FromCustID: fromcustid,
+                                ToCustID: tocustid,
                                 AcceptStatus: 2,
                                 MatchFollwupStatus: 2
                             };

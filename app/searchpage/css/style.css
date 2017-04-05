@@ -118,4 +118,10 @@ span.multiselect-selected-text {
   display: block;
   overflow: hidden; }
 
+button.multiselect.dropdown-toggle.btn.col-lg-12.ng-pristine.ng-untouched.ng-valid.ng-isolate-scope {
+  width: 65%; }
+
+button.multiselect.dropdown-toggle.btn.ng-pristine.ng-untouched.ng-valid.ng-isolate-scope {
+  width: 90%; }
+
 /*# sourceMappingURL=style.css.map */

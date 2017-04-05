@@ -1,15 +1,18 @@
  (function() {
      'use strict';
 
-     function controller($location) {
+     function controller(bootstrapSlideModel, scope) {
          /* jshint validthis:true */
-         var vm = this;
-
-         function activate() {}
-         activate();
+         var vm = this,
+             model;
+         vm.init = function() {
+             vm.model = model = bootstrapSlideModel;
+             model.scope = scope;
+         };
+         vm.init();
      }
      angular
          .module('Kaakateeya')
          .controller('bootstrapSlideCtrl', controller);
-     controller.$inject = ['$location'];
+     controller.$inject = ['bootstrapSlideModel', '$scope'];
  })();

@@ -9,7 +9,7 @@
     }
     angular
         .module('Kaakateeya')
-        .factory('bootstrapSlideModel', factory);
+        .factory('bootstrapSlideSVC', factory);
     factory.$inject = ['$http'];
 
 })();

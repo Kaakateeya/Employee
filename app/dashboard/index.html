@@ -31,7 +31,7 @@
                                 </a>
                                 <div class="media-body">
                                     <p class="title">{{inneritem.Name}}
-                                        <span ng-class="inneritem.PaidStatus===1?'colorpaid':'colorunpaid'"> ({{inneritem.Profileid}})</span></p>
+                                        <a href="javascript:void(0)" ng-click="page.model.viewfullprofile(inneritem.Profileid)" ng-class="inneritem.PaidStatus===1?'colorpaid':'colorunpaid'"> ({{inneritem.Profileid}})</a></p>
                                     <p class="titleservice">{{inneritem.Date}}</p>
                                 </div>
                             </article>
@@ -43,7 +43,7 @@
                         </div>
                     </article>
                 </div>
-                <div id="exportableproceeding" ng-hide="true">
+                <div id="exportableproceeding_{{item[0].TableName}}" ng-hide="true">
                     <table width="100% ">
                         <thead>
                             <tr>
@@ -65,6 +65,24 @@
         </div>
     </div>
 </div>
+<script type="text/ng-template" id="uploadsaform.html">
+    <form name="uploadForm" novalidate role="form" ng-submit="page.model.upload(page.model.uploadf);">
+        <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-title">Upload Photo </h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <ul id="ulprofession">
+                <input type="file" file-model="page.model.uploadf.myFile" />
+            </ul>
+        </div>
+
+        <div class="modal-footer">
+            <input value="Upload" class="btn btn-success" type="submit">
+            <input value="Cancel" class="btn btn-danger" ng-click="page.model.closeupload();" type="button">
+        </div>
+
+    </form>
+</script>
 <div>
     <slide-show nghide="page.model.slideshowtrue" dynamicheader="'false'" slidetype="'popup'" headertemplate="'templates/SlideHeader.html'" bodytemplate="'templates/slideDesign.html'"></slide-show>
 </div>

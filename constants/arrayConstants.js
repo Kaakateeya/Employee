@@ -7,6 +7,7 @@ app.constant('arrayConstants', {
         { "label": "Separated", "title": "Separated", "value": 46 }
     ],
     "heightregistration": [
+        { "label": "--select--", "title": "--select--", "value": "" },
         { "label": "4'8 in - 142 cms", "title": "4'8 in - 142 cms", "value": 9 },
         { "label": "4'9 in - 144 cms", "title": "4'9 in - 144 cms", "value": 10 }, { "label": "4'10 in - 147 cms", "title": "4'10 in - 147 cms", "value": 11 },
         { "label": "4'11 in - 150 cms", "title": "4'11 in - 150 cms", "value": 12 }, { "label": "5'0 in - 152 cms", "title": "5'0 in - 152 cms", "value": 13 },

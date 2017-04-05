@@ -39,7 +39,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { name: 'myProfile', url: '/myProfilepage', isloginrequired: false },
             { name: 'matchFollowup', url: '/matchFollowuppage', isloginrequired: false },
             { name: 'marketing', url: '/marketingpage', isloginrequired: false },
-            { name: 'bootstrapSlide', url: '/bootstrapSlideshow', isloginrequired: false }
+            { name: 'bootstrapSlide', url: '/bootstrapSlideshow', isloginrequired: false, module: 'complex-slide' }
         ];
         $ocLazyLoadProvider.config({
             debug: true
@@ -58,6 +58,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/complex-grid/svc.js',
                         'bower_components/json-export-excel/dest/json-export-excel.min.js',
                         'directives/complex-grid/css/style.css'
+
+                    ]
+                },
+                {
+                    name: 'complex-slide',
+                    files: [
+                        'directives/complex-slide/directive.js',
+                        'directives/complex-slide/model/config.js',
+                        'directives/complex-slide/css/style.css'
 
                     ]
                 },
@@ -135,7 +144,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                         // you can lazy load files for an existing module
                         if (app.env === "dev") {
-                            if (item.name === 'login') {
+                            if (item.module !== undefined) {
+                                $ocLazyLoad.load(item.module);
+                            }
+                            if (item.name === 'login' || item.name === "employeeViewfullprofile" || item.name === "EmployeePayment") {
                                 $ocLazyLoad.load('commonjs');
                                 $ocLazyLoad.load('directives');
                                 $ocLazyLoad.load('constants');

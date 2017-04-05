@@ -13,6 +13,8 @@
          vm.prevhide = false;
          vm.init = function() {
              vm.model = model = dashboardModel;
+             model.scope = scope;
+             model.proceedprofileid = null;
              model.slideshowfunction(false);
              model.init();
              $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
@@ -50,6 +52,10 @@
              model.landingItems.splice(index, 1);
              return false;
          };
+         scope.$on("saformuploadsubmit", function(event, profileid) {
+             model.proceedprofileid = profileid;
+             commonpage.showPopupphotopoup('uploadsaform.html', model.scope, 'sm', "modalclassdashboardphotopopup");
+         });
      }
      angular.module('Kaakateeya').controller('dashboardCtrl', ['dashboardModel', '$scope', 'dashboardServices', 'modelpopupopenmethod', Controller]);
 

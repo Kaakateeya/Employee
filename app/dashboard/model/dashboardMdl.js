@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function factory($http, dashboardServices, uibModal, authSvc, helperservice) {
+    function factory($http, dashboardServices, uibModal, authSvc, helperservice, window, commonpage) {
         var model = {};
         var flag = 0;
         model.frompage = 6;
@@ -33,7 +33,7 @@
         model.loadmore = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
             switch (type) {
                 case "export":
-                    model.exportData('exportableproceeding');
+                    model.exportData('exportableproceeding_' + tablename);
                     break;
                 case "load":
 
@@ -68,10 +68,36 @@
                 model.tabledata(model.empid, model.empBranchID, 1, 5, '', 'pageload', undefined, 0);
             }
         };
+
+        model.viewfullprofile = function(profileid) {
+            debugger;
+            window.open("Viewfullprofile/" + profileid, "_blank");
+        };
+
+        model.closeupload = function() {
+            commonpage.closepopuppoptopopup();
+        };
+
+        model.upload = function(obj) {
+            var object = {
+                CreatedByEmpID: model.empid,
+                CreatedDate: new Date(),
+                ModifiedByEmpID: model.empid,
+                ModifiedEmpDate: new Date(),
+                SettlementAgreedAmount: 0,
+                Notes: "",
+                isActive: 0,
+                Settlementfrompath: obj.path,
+                isassigned: null,
+                ReferenceID: 0,
+                Profileidnew: model.proceedprofileid
+            };
+        };
+
         return model;
     }
     angular
         .module('Kaakateeya')
         .factory('dashboardModel', factory);
-    factory.$inject = ['$http', 'dashboardServices', '$uibModal', 'authSvc', 'helperservice'];
+    factory.$inject = ['$http', 'dashboardServices', '$uibModal', 'authSvc', 'helperservice', '$window', 'modelpopupopenmethod'];
 })(angular);
