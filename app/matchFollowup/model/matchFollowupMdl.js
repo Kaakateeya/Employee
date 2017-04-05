@@ -17,5 +17,3 @@
     factory.$inject = ['$http', 'getArraysearch', '$timeout', 'matchFollowupServices'];
 
 })(angular);
-
-//BranchName

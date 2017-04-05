@@ -540,6 +540,16 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
 
                 };
 
+                scope.dynamicPopover = {
+                    content: 'Hello, World!',
+                    templateUrl: 'myPopoverTemplate.html',
+                    title: 'Ticket History'
+                };
+
+                scope.openTicketPopup = function() {
+                    commonpage.showPopup('Actions.html', scope, 'lg', "Action");
+                };
+
             }
         };
     }

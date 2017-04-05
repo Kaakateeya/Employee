@@ -6,7 +6,7 @@
             <input class="form-control" type="text" ng-model="searchKeyword" placeholder="Search">
         </div>
         <dv class="pull-right">
-            <button ng-json-export-excel data="model.data" report-fields="model.exportColumns" filename=" 'export-excel' " separator="," class="css-class"><i class="fa fa-file-excel-o fa-6" aria-hidden="true"></i></button>
+            <button ng-json-export-excel data="model.data" report-fields="{id: 'ID Heder', name: 'Name Header', price: 'Price Head'}" filename="'export-excel'" separator="," class="css-class"><i class="fa fa-file-excel-o fa-6" aria-hidden="true"></i></button>
         </dv>
     </div>
     <div class="clearfix"></div>
@@ -62,7 +62,7 @@
             </tbody>
         </table>
     </div>
-    <ul uib-pagination total-items="1" ng-model="pagen" ng-change="model.pagechange(pagen)" max-size="5" class="pull-right pagination-md" boundary-link-numbers="true" rotate="false"></ul>
+    <ul uib-pagination total-items="model.TotalRows" ng-model="pagen" ng-change="model.pagechange(pagen)" max-size="5" class="pull-right pagination-md" boundary-link-numbers="true" rotate="false"></ul>
 </div>
 <style>
     /*.table-fixed thead {

@@ -20,7 +20,6 @@
              }
          });
          vm.init();
-
      }
      angular
          .module('Kaakateeya')
