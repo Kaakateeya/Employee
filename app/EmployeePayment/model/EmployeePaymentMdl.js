@@ -41,7 +41,6 @@
                         // var gridArray = JSON.parse(response.data);
                         console.log(response.data);
                         if (_.isArray(response.data) && response.data.length > 0) {
-                            debugger;
                             model.CustName = (response.data)[0].CustName;
                             model.ProfileOwner = (response.data)[0].ProfileOwner;
                             model.freshLink = true;

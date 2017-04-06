@@ -2,8 +2,6 @@
 // bootstrap - multiselect: 0.9 .6
 //var statticdata = require('./staticArrayBindings.json');
 app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', '$timeout', 'getArraysearch', function(cons, service, timeout, getArraysearch) {
-
-
     return {
         require: 'ng-model',
         scope: {
@@ -13,12 +11,9 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
         },
         link: function(scope, element, attrs) {
             scope.options = [];
-
             scope.databind = function(data) {
-
                 timeout(function() {
                     scope.status = 'multiple' in attrs;
-
                     if (scope.status === true && data[0] !== undefined && angular.lowercase(data[0].title) === '--select--') {
                         data.splice(0, 1);
                     }
@@ -27,7 +22,6 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
             };
             timeout(function() {
                 element.multiselect('select', scope.ngModel);
-
             }, 500);
             timeout(function() {
                 switch (scope.typeofdata) {
@@ -121,7 +115,6 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
 
                     case 'getrelationshipsbasedcustid':
                         service.getrelationships(4, scope.parentVal, "").then(function(response) {
-                            debugger;
                             var option = [];
                             option.push({ "label": "--select--", "title": "--select--", "value": "" });
                             _.each(response.data, function(item) {

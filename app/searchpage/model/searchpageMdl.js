@@ -393,7 +393,6 @@
 
         };
         model.relationshipbind = function(flag, profileid, about) {
-            debugger;
             searchpageServices.getrelationships(flag, profileid, about).then(function(response) {
                 console.log(response);
                 model.popupFirstName = "";

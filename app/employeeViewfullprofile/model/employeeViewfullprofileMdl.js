@@ -8,13 +8,8 @@
         model.aboutmyself = {};
         model.personalinfo = {};
         model.custid = 0;
-
-
         model.EmpViewfullProfile = function() {
-            debugger;
-
             employeeViewfullprofileservice.getEmpViewfullProfile(stateParams.ProfileID, '1').then(function(response) {
-
                 if (response.data !== undefined && response.data !== "" && response.data !== null) {
                     _.each(response.data, function(item) {
                         var testArr = JSON.parse(item);

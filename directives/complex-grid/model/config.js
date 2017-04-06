@@ -17,7 +17,7 @@
     }
     angular
         .module('Kaakateeya')
-        .factory('complex-grid-config', factory)
+        .factory('complex-grid-config', factory);
 
     factory.$inject = ['$http'];
 })();

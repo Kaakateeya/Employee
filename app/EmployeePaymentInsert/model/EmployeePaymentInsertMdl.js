@@ -2,7 +2,6 @@
     'use strict';
 
     function factory(EmployeePaymentInsertservice, stateParams, filter, authSvc, alertss) {
-        debugger;
         var model = {};
         model.obj = {};
         model.array = [];
@@ -54,7 +53,6 @@
             };
 
             model.PiObj = {};
-            debugger;
             EmployeePaymentInsertservice.paymentInsert(obj).then(function(response) {
 
                 alert('Payment Entered Successfully');
@@ -75,9 +73,7 @@
             model.PiObj.rdnServicetax = '1';
             EmployeePaymentInsertservice.getEmployeePaymentdata(profileID).then(function(response) {
                 if (response.data[0] !== undefined && response.data[0].length > 0 && JSON.parse(response.data[0]).length > 0) {
-
                     var arraymodify = [];
-                    debugger;
                     arraymodify = _.where(JSON.parse(response.data[0]), { Payment_ID: parseInt(stateParams.paymentID === '0' || stateParams.paymentID === 0 ? '' : stateParams.paymentID) });
                     if (arraymodify.length === 0) {
                         model.custobj = JSON.parse(response.data[0])[0];
@@ -85,7 +81,7 @@
                         model.custobj = arraymodify[0];
                         model.showOfferDetails(model.custobj.Price, 'pageload');
                         model.PiObj.txtAgreedAmt = model.custobj.AgreedAmount;
-                        model.PiObj.txtAmountPaid = model.custobj.Price
+                        model.PiObj.txtAmountPaid = model.custobj.Price;
                     }
                     console.log(model.custobj);
                 }
@@ -94,7 +90,6 @@
         };
 
         model.PaidAmtChange = function(paidAmt, agreeAmt) {;
-            debugger;
             if (agreeAmt === '' || agreeAmt === undefined) {
                 model.PiObj.txtAmountPaid = '';
                 alert('Please enter  Agreed amount');
@@ -103,7 +98,6 @@
                 model.PiObj.txtAmountPaid = '';
                 alert('Please enter paid amount less than Agreed amount');
             } else {
-                debugger;
                 if (parseInt(paidAmt) !== agreeAmt) {
                     model.showOfferDetails(paidAmt);
                 }

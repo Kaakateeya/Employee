@@ -5,11 +5,9 @@
         var model = {};
         model.BranchName = [];
         model.init = function() {
-            debugger;
             model.BranchName = getArray.GArray('BranchName');
         };
         return model;
-
     }
     angular
         .module('Kaakateeya')

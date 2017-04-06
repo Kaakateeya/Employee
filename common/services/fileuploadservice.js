@@ -3,7 +3,6 @@
 
     function service($http) {
         this.uploadFileToUrl = function(file, uploadUrl, keyname) {
-            debugger;
             var fd = new FormData();
             fd.append('file', file);
             fd.append('keyname', keyname);

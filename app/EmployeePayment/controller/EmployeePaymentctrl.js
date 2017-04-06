@@ -15,7 +15,6 @@
              model.searchObjectquery = $location.search();
              var meKey = Object.getOwnPropertyNames(model.searchObjectquery)[0];
              model.txtProfileID = model.searchObjectquery[meKey];
-             debugger;
              if (model.txtProfileID !== "" && model.txtProfileID !== null && model.txtProfileID !== undefined && model.txtProfileID !== "undefined") {
                  model.EmployeePayment(model.txtProfileID);
              }

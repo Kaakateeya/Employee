@@ -68,7 +68,6 @@
         };
 
         model.ProfileOwnerImg = function(row) {
-            debugger;
             var img = row.ProfileStatusID === 57 || row.ProfileStatusID === 393 ? 'src/images/settleimage_new.png' : (row.ProfileStatusID === 56 || row.ProfileStatusID === 394 ? 'src/images/deleteimage.png' : (row.ProfileStatusID === 55 ? 'src/images/imgInActive.png' : ''));
             var dd = img !== '' ? img : '';
             var paid = "<span class='red'>" + row.ProfileOwner + "</span> " + (img !== "" ? "<img style='cursor:pointer;' src=" + img + "></img>" : '');

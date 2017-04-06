@@ -17,7 +17,6 @@ app.service('helperservice', ['$http', function(http) {
         return http.post(app.apiroot + 'StaticPages/UpdateExpressIntrestViewfullprofile', obj);
     };
     this.getipAddressReturn = function() {
-        debugger;
         return http.get(app.apiroot + 'StaticPages/getipAddressReturn', { params: {} });
     };
 }]);
