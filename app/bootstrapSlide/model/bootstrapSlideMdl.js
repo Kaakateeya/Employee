@@ -2,8 +2,9 @@
     'use strict';
 
     function factory($http, config) {
-        var model = config;
-        model.arrayslide = [{
+        var model = {};
+        model = config;
+        var arrayslide = [{
             ProfileID: "310910220",
             Name: "ram kumar",
             Gender: "Male",
@@ -54,8 +55,7 @@
             custPhoto: "http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_100329_Images/Img1_Images/011003298_FullPhoto.jpg",
 
         }];
-        debugger;
-        model.setSlides(model.arrayslide);
+        model.setSlides(arrayslide);
         return model;
     }
     angular

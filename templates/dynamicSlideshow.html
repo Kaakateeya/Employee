@@ -120,14 +120,7 @@
                     <div id="myCarousel" class="carousel slide" data-interval="false" data-ride="carousel">
                         <div class="carousel-inner">
                             <div ng-class="($index+1)==1?'item active':'item'" ng-repeat="itemval in displayArr">
-                                <md-divider></md-divider>
-                                <div class="row">
-                                    <a href='javascript:void(0);' ng-click="pagesredirect('Partner',itemval.Custid)" class='col-lg-4' style='font-size: 14px;'>Edit Partnerpreference</a>
-                                    <a href='javascript:void(0);' ng-click="pagesredirect('general',0)" class='col-lg-3' style='font-size: 14px;'>General search</a>
-                                    <a href='javascript:void(0);' ng-click="pagesredirect('contacts',itemval.Custid)" class='col-lg-3' style='font-size: 14px;'>View Contacts</a>
-                                </div>
-                                <md-divider></md-divider>
-                                <br>
+
                                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                                     <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix" ng-repeat="slidedata in itemval.itmArr" ng-if="slidedata.label!=='backendFields'">
                                         <h6> <span style="font-weight: bold;">{{slidedata.label}}</span></h6>
@@ -171,7 +164,7 @@
                                         <h6> <span style="font-weight: bold;">Payment</span></h6>
                                         <h5>
                                             <div style="color:Black;">
-                                                <a class="alllinkscolor" href='javascript:void(0)' ng-click='paymentpage()'>{{itemval.PaidAmount}}</a>
+                                                <a class="alllinkscolor" href='javascript:void(0)' ng-click='paymentpage(itemval.ProfileID)'>{{itemval.PaidAmount}}</a>
                                             </div>
                                             <div class="clearfix">
                                             </div>
@@ -182,7 +175,7 @@
                                         <h5>
                                             <div style="color:Black;">
 
-                                                <a class="alllinkscolor" href='javascript:void(0)' ng-click='paymentpage()'>{{itemval.ExpiryDate}}({{itemval.Points}})</a>
+                                                <a class="alllinkscolor" href='javascript:void(0)' ng-click='paymentpage(itemval.ProfileID)'>{{itemval.ExpiryDate}}({{itemval.Points}})</a>
                                             </div>
                                             <div class="clearfix">
                                             </div>
@@ -254,7 +247,7 @@
                                             <h5>
                                                 <div style="color:Black;">
                                                     <a class="alllinkscolor" ng-show="itemval.SAForm!==null" href="javascript:void(0)" ng-click="horoscopeimage(itemval.SAForm)">View SA Form </a>
-                                                    <a href="javascript:void(0)" ng-click="saformupload(slidedata.ProfileID)" class="alllinkscolor" ng-show="itemval.SAForm===null">Upload SA Form</a>
+                                                    <a href="javascript:void(0)" ng-click="saformupload(itemval.ProfileID)" class="alllinkscolor" ng-show="itemval.SAForm===null">Upload SA Form</a>
                                                 </div>
                                                 <div class="clearfix">
                                                 </div>
@@ -309,6 +302,15 @@
                                             </h5>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <md-divider></md-divider>
+                                    <a href='javascript:void(0);' ng-click="pagesredirect('Partner',itemval.Custid)" style='font-size: 14px;margin-left:15px;'>Edit Partnerpreference</a>
+                                    <span>|</span>
+                                    <a href='javascript:void(0);' ng-click="pagesredirect('general',0)" style='font-size: 14px;'>General search</a>
+                                    <span>|</span>
+                                    <a href='javascript:void(0);' ng-click="pagesredirect('contacts',itemval.Custid)" style='font-size: 14px;'>View Contacts</a>
+                                    <md-divider></md-divider>
                                 </div>
                             </div>
                         </div>

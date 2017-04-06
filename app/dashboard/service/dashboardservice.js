@@ -23,6 +23,9 @@
                         sMAC: "183.82.98.109"
                     }
                 });
+            },
+            uploadsettlementform: function(obj) {
+                return http.post(app.apiroot + 'CustomerPersonalUpdate/UploadsettlementForm', obj);
             }
         };
     }

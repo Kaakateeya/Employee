@@ -24,6 +24,17 @@ app.paymentPoints = parseInt(app.paypoints) / parseInt(app.payfixedAmt);
 app.ServiceTaxPercent = 14 / 100;
 
 
+app.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
+//regapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
+app.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/angularkaknew/';
+app.prefixPath = 'Images/SettlementImages/';
+app.S3PhotoPath = '';
+app.Mnoimage = app.GlobalImgPath + "Images/customernoimages/Mnoimage.jpg";
+app.Fnoimage = app.GlobalImgPath + "Images/customernoimages/Fnoimage.jpg";
+app.accesspathdots = app.GlobalImgPathforimage + app.prefixPath;
+app.BucketName = 'angularkaknew';
+
+
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider',
     function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
         var states = [
@@ -48,7 +59,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
         $ocLazyLoadProvider.config({
             modules: [{
                     name: 'dashboard',
-                    files: ['common/services/fileSaver.js']
+                    files: ['common/services/fileSaver.js',
+                        'src/js/alasql.js',
+                        'src/js/xlsx.js',
+                        'common/services/fileuploadservice.js'
+                    ]
                 },
                 {
                     name: 'complex-grid',
@@ -160,6 +175,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                             } else if (item.name === 'editViewprofile' || item.name === 'EmployeePayment') {
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             } else {
+                                // $ocLazyLoad.load('commonjs');
+                                // $ocLazyLoad.load('directives');
+                                // $ocLazyLoad.load('constants');
+                                // $ocLazyLoad.load('modules');
+                                // $ocLazyLoad.load('complex-grid');
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             }
                         } else {

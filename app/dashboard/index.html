@@ -13,7 +13,7 @@
                         </div>
                         <ul class="nav pull-right panel_toolbox">
                             <li>
-                                <a title="Excel" ng-click="page.model.loadmore(page.model.empid, page.model.empBranchID,1,10,item[0].TableName,'export',item,0)" href="javascript:void(0)">
+                                <a title="Excel" ng-click="page.model.loadmore(page.model.empid, page.model.empBranchID,1,item[0].ServiceCount,item[0].TableName,'export',item,0)" href="javascript:void(0)">
                                     <img src="src/images/EXCEL.jpg"></img>
                                 </a>
                             </li>
@@ -42,24 +42,6 @@
                             <a class="loadmoredashboard" ng-click="page.model.loadmore(page.model.empid, page.model.empBranchID,page.model.frompage,page.model.topage,item[0].TableName, 'load',item,0)" href="javascript:void(0)">Load More</a>
                         </div>
                     </article>
-                </div>
-                <div id="exportableproceeding_{{item[0].TableName}}" ng-hide="true">
-                    <table width="100% ">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Profileid</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="itm in item">
-                                <td>{{itm.Name}}</td>
-                                <td>{{itm.Profileid}}</td>
-                                <td>{{itm.Date | date:'MM/dd/yy'}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
