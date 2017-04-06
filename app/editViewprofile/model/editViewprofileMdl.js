@@ -3,14 +3,19 @@
 
 
 
-    function factory($http, ViewAllCustomerService, state, helpService, config, alerts) {
+    function factory($http, ViewAllCustomerService, state, helpService, config, alerts, modelpopupopenmethod) {
         var model = {};
+        model.modelinactive = {};
+
         model = config;
         model.tablearray = [];
         model.obj = {};
         model.obj.rdnGender = '3';
         model.opendiv = true;
-
+        model.init = function() {
+            model.modelinactive = {};
+            return model;
+        };
         model.profileidstatus = [
             { value: 54, name: 'Active' },
             { value: 57, name: 'Settled' },
@@ -26,41 +31,6 @@
             var obj = helpService.checkstringvalue(value) && (value.toString()) !== "0" && (value.toString()) !== 0 ? (value.toString()) : null;
             return obj;
         };
-        // model.ViewAllsubmit = function(inpuobj) {
-        //     
-        //     ViewAllCustomerService.getViewCustomerData(2, (inpuobj !== undefined && inpuobj.ProfileIDsearch !== undefined ? inpuobj.ProfileIDsearch : ''), (inpuobj !== undefined && inpuobj.chkProfileIDsts !== undefined ? model.returnnullvalue(inpuobj.chkProfileIDsts) : "")).then(function(response) {
-
-        //         model.gridArray = [];
-        //         if (response.data !== undefined && response.data !== "" && response.data !== null && response.data.length > 0) {
-        //             model.opendiv = false;
-
-        //             console.log(JSON.parse(response.data[0]));
-        //             _.map(JSON.parse(response.data[0]), function(item) {
-
-        //                 model.gridArray.push({
-        //                     'ProfileID': item.ProfileID,
-        //                     'Last Name': item.FirstName,
-        //                     'First Name': item.LastName,
-        //                     'Caste': item.CasteName,
-        //                     'ProfileOwner': item.ProfileOwner,
-        //                     'Height': item.Height,
-        //                     'Login': item.LoginStatus,
-        //                     'Education': item.educationgroup,
-        //                     'Profession': item.Profession,
-        //                     'DOB': item.Age,
-        //                     'CustID': item.CustID,
-        //                     'GenderID': item.GenderID,
-        //                     'ProfileStatusID': item.ProfileStatusID,
-        //                     'Confidential': item.Confidential
-        //                 });
-        //             });
-
-        //             model.scope.$broadcast('submittable', model.gridArray, 1);
-        //         }
-        //     });
-        //     return model;
-        // };
-
 
         model.ProfileIdTemplateDUrl = function(row) {
             var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "'>" + row.ProfileID + row.Confidential + "</a>";
@@ -68,13 +38,35 @@
         };
 
         model.ProfileOwnerImg = function(row) {
-            debugger;
+
             var img = row.ProfileStatusID === 57 || row.ProfileStatusID === 393 ? 'src/images/settleimage_new.png' : (row.ProfileStatusID === 56 || row.ProfileStatusID === 394 ? 'src/images/deleteimage.png' : (row.ProfileStatusID === 55 ? 'src/images/imgInActive.png' : ''));
             var dd = img !== '' ? img : '';
-            var paid = "<span class='red'>" + row.ProfileOwner + "</span> " + (img !== "" ? "<img style='cursor:pointer;' src=" + img + "></img>" : '');
+            var paid = "<span class='red'>" + row.ProfileOwner + "</span> " + (img !== "" ? "<img class='profileImage'  src=" + img + "></img>" : '');
             return paid;
         };
 
+        model.profileownerMethod = function(row) {
+            var type = row.ProfileStatusID === 57 || row.ProfileStatusID === 393 ? 'S' : (row.ProfileStatusID === 56 || row.ProfileStatusID === 394 ? 'D' : (row.ProfileStatusID === 55 ? 'I' : ''));
+            ViewAllCustomerService.SettleDeleteInactive(row.CustID, type).then(function(response) {
+                model.settleArr = JSON.parse(response.data[0])[0];
+                console.log(response);
+                console.log(model.settleArr);
+                model.typeOfProfile = type;
+                // model.columns = [
+                //     { text: 'InactivateFromdate', key: 'InactivateFromdate', type: 'label' },
+                //     { text: 'inactivetodate', key: 'inactivetodate', type: 'label' },
+                //     { text: 'Reason', key: 'Reason4InActive', type: 'label' },
+                //     { text: 'inactivaterequestby', key: 'inactivaterequestby', type: 'label' },
+                //     { text: 'inactivate by Emp', key: 'ProfileOwnerEmpName', type: 'label' },
+                // ];
+                // model.setData(response.data);
+            });
+
+            modelpopupopenmethod.showPopup('settlePopup.html', model.scope, 'lg', 'SettleDelete');
+        };
+        model.closepopup = function() {
+            modelpopupopenmethod.closepopup();
+        };
         model.rowStyle = function(row) {
 
             var classes = ['settled', 'Deleted', 'inactive'];
@@ -86,12 +78,9 @@
                 { StatusID: 394, classes: 'Deleted' },
                 { StatusID: 55, classes: 'inactive' }
             ];
-
             return _.where(test, { StatusID: row.ProfileStatusID }).length > 0 ? _.where(test, { StatusID: row.ProfileStatusID })[0].classes : ''
-
         }
         model.GenderStr = function(row) {
-
             return row.GenderID === 1 ? 'Male' : 'Female';
         };
 
@@ -102,7 +91,7 @@
                 { text: 'SurName', key: 'LastName', type: 'label' },
                 { text: 'Name', key: 'FirstName', type: 'label' },
                 { text: 'Caste', key: 'CasteName', type: 'label' },
-                { text: 'Profile Owner', key: 'ProfileOwner', type: 'custom', templateUrl: model.ProfileOwnerImg },
+                { text: 'Profile Owner', key: 'ProfileOwner', type: 'customlink', templateUrl: model.ProfileOwnerImg, method: model.profileownerMethod },
                 { text: 'Height', key: 'Height', type: 'label' },
                 { text: 'Login', key: 'LoginStatus', type: 'label' },
                 { text: 'Education', key: 'educationgroup', type: 'label' },
@@ -128,8 +117,6 @@
 
             return model;
         };
-
-
 
         model.kmplSubmit = function(inpuobj) {
             if (inpuobj === undefined || inpuobj === "" || inpuobj === null || inpuobj.KmlProfileID === undefined || inpuobj.KmlProfileID === null || inpuobj.KmlProfileID === "") {
@@ -158,7 +145,6 @@
         };
 
         model.genderChange = function(val) {
-
             if (model.gridArray.length > 0 && val !== undefined && val !== '' && val !== null) {
                 var arr = val === 3 || val === '3' ? model.gridArray : _.where(model.gridArray, { GenderID: parseInt(val) });
                 model.scope.$broadcast('submittable', arr, 1);
@@ -171,10 +157,10 @@
             var from = val === 1 ? 1 : to - 9;
             model.ViewAllsubmit(model.obj, from, to);
         }
-        return model;
+        return model.init();
     }
     angular
         .module('Kaakateeya')
         .factory('editViewprofileModel', factory);
-    factory.$inject = ['$http', 'editViewprofileservice', '$state', 'helperservice', 'complex-grid-config', 'alert'];
+    factory.$inject = ['$http', 'editViewprofileservice', '$state', 'helperservice', 'complex-grid-config', 'alert', 'modelpopupopenmethod'];
 })(angular);

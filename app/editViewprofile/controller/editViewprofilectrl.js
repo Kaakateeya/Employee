@@ -11,6 +11,8 @@
 
         vm.init = function() {
             vm.model = model = editViewprofileModel;
+
+            debugger;
             vm.model.scope = scope;
             vm.model.opendiv = true;
             vm.model.obj.ProfileIDsearch = "";
