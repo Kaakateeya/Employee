@@ -174,26 +174,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                                 $ocLazyLoad.load('dashboard');
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             } else if (item.name === 'editViewprofile' || item.name === 'EmployeePayment') {
-                                $ocLazyLoad.load('commonjs');
-                                $ocLazyLoad.load('directives');
-                                $ocLazyLoad.load('constants');
-                                $ocLazyLoad.load('modules');
-                                $ocLazyLoad.load('complex-grid');
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             } else {
-                                // $ocLazyLoad.load('commonjs');
-                                // $ocLazyLoad.load('directives');
-                                // $ocLazyLoad.load('constants');
-                                // $ocLazyLoad.load('modules');
-                                // $ocLazyLoad.load('complex-grid');
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             }
                         } else {
-                            $ocLazyLoad.load('commonjs');
-                            $ocLazyLoad.load('directives');
-                            $ocLazyLoad.load('constants');
-                            $ocLazyLoad.load('modules');
-                            $ocLazyLoad.load('complex-grid');
+
                             return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/src/scripts.min.js']);
                         }
                     }]
