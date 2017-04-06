@@ -152,7 +152,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                         data.push({ label: 'Caste', value: item.Caste + "-" + item.MotherTongue });
                         data.push({ label: 'Dor', value: item.DOR });
                         data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
-                        data.push({ label: 'Web Logins', value: item.LoginCount });
+                        //  data.push({ label: 'Web Logins', value: item.LoginCount });
                         // if (scope.typeofslidedate === "Inactive Date") {
                         //     data.push({ label: 'Reason', value: item.Reason4InActive });
                         // }
@@ -421,7 +421,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
 
 
                 scope.verifymail = function(custID) {
-                    debugger;
                     SelectBindServiceApp.verifyEmail(custID).then(function(response) {
                         console.log(response);
                         if (response.data !== undefined) {
@@ -433,11 +432,11 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                 };
 
                 scope.verifyMobCode = function(val) {
-                    debugger;
+
                     if (val === "") {
                         alerts.timeoutoldalerts(scope, 'alert-danger', 'Please enter Mobile verify Code', 4500);
                     } else if (scope.mobileVerificationCode === val) {
-                        debugger;
+
                         SelectBindServiceApp.verifyMobile(scope.mobileVerificationCode, scope.custfamilyID).then(function(response) {
                             console.log(response);
                             commonpage.closepopuppoptopopup();
@@ -449,11 +448,10 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                 };
 
                 scope.viewfullprofile = function(profileid) {
-                    debugger;
                     window.open("Viewfullprofile/" + profileid, "_blank");
                 };
-                scope.paymentpage = function() {
-                    window.open("EmployeePayments", "_blank");
+                scope.paymentpage = function(profileid) {
+                    window.open("EmployeePayments" + "?idsss=" + profileid, "_blank");
                 };
 
                 scope.pagesredirect = function(type, custid) {

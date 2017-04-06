@@ -17,6 +17,8 @@
              model.ProfileIDpopup = "";
              model.generalsearch = {};
              model.advancedsearch = {};
+             model.divcontrolls = true;
+             model.slideshowtrue = false;
              model.sidebarnavshow = true;
              model.selectedIndex = $stateParams.id;
              model.searchpopuptext = model.selectedIndex === "0" ? "General Search" : "Advance Search";

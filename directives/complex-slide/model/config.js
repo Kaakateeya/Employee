@@ -5,12 +5,11 @@
         var model = {};
         model.init = function() {
             model.setSlides = function(data) {
-                debugger;
                 model.slides = data;
             };
-            // model.addSlides = function(data) {
-            //     $.merge(model.slides, data);
-            // };
+            model.addSlides = function(data) {
+                $.merge(model.slides, data);
+            };
 
             return model;
         };

@@ -9,13 +9,16 @@
         model.CustName = '';
         model.ProfileOwner = '';
         model.ProfileID = '';
+
+
+
         model.paymentProfileID = function(row) {
             var status = row.membershiptype === 'Registration' ? 0 : 1;
             var paid = "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.ProfileID + "/" + status + "/" + row.PaymentID + "'>Edit</a>";
             return paid;
         };
         model.EmployeePayment = function(txtval) {
-            if (txtval !== undefined && txtval !== '' && txtval !== null) {
+            if (txtval !== undefined && txtval !== '' && txtval !== null && txtval !== "undefined") {
                 model.paymentArr = [];
                 model.columns = [
                     { text: '', key: 'ProfileID', type: 'custom', templateUrl: model.paymentProfileID },
@@ -69,6 +72,6 @@
 
     angular
         .module('Kaakateeya')
-        .factory('EmployeePaymentmodel', factory)
+        .factory('EmployeePaymentmodel', factory);
     factory.$inject = ['$http', 'EmployeePaymentservice', '$state', 'complex-grid-config'];
 })(angular);

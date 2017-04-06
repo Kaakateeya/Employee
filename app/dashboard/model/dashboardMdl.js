@@ -1,12 +1,40 @@
 (function(angular) {
     'use strict';
 
-    function factory($http, dashboardServices, uibModal, authSvc, helperservice, window, commonpage) {
+    function factory($http, dashboardServices, uibModal, authSvc, helperservice, window, commonpage, $filter, fileUpload) {
         var model = {};
         var flag = 0;
         model.frompage = 6;
         model.topage = 10;
         model.tablenameflag = "";
+        model.proceedprofileid = "";
+        model.exportData = function(id) {
+            // var blob = new Blob([document.getElementById(id).innerHTML], {
+            //     type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+            // });
+            // saveAs(blob, "Report.xls");
+            //Profileid,Name,Date From
+            var options = {
+                headers: true,
+                columns: [{
+                        columnid: 'Sno',
+                        title: 'Sno'
+                    }, {
+                        columnid: 'Profileid',
+                        title: 'Profileid'
+                    }, {
+                        columnid: 'Name',
+                        title: 'Name'
+                    },
+                    {
+                        columnid: 'Date',
+                        title: 'Date'
+                    }
+                ]
+            };
+            alasql('SELECT Sno,Profileid,Name,Date INTO  XLSX("john.xlsx",?) FROM ?', [options, model.exportDataarray]);
+            // alasql('SELECT * INTO  XLSX("john.xlsx",{headers:true}) FROM ?', [model.exportDataarray]);
+        };
         model.tabledata = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
             dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                 if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
@@ -14,10 +42,13 @@
                     if (type === 'pageload') {
                         model.landingItems = response.data;
                     } else if (type === 'load') {
-
                         _.each(response.data[0], function(inneritem) {
                             array.push(inneritem);
                         });
+                    } else if (type === 'export') {
+                        model.exportDataarray = [];
+                        model.exportDataarray = response.data[0];
+                        model.exportData('exportableproceeding');
                     } else {
                         if (frompage === 1) {
                             model.slidearray = response.data[0];
@@ -33,10 +64,9 @@
         model.loadmore = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
             switch (type) {
                 case "export":
-                    model.exportData('exportableproceeding_' + tablename);
+                    model.tabledata(empid, branchcode, frompage, topage, tablename, type, array, slideflag);
                     break;
                 case "load":
-
                     if (model.tablenameflag !== tablename) {
                         model.tablenameflag = tablename;
                         model.frompage = 6;
@@ -49,12 +79,7 @@
                     break;
             }
         };
-        model.exportData = function(id) {
-            var blob = new Blob([document.getElementById(id).innerHTML], {
-                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
-            });
-            saveAs(blob, "Report.xls");
-        };
+
         model.slideshowfunction = function(flag, empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
             model.slideshowtrue = flag;
             if (flag === true) {
@@ -79,25 +104,54 @@
         };
 
         model.upload = function(obj) {
-            var object = {
-                CreatedByEmpID: model.empid,
-                CreatedDate: new Date(),
-                ModifiedByEmpID: model.empid,
-                ModifiedEmpDate: new Date(),
-                SettlementAgreedAmount: 0,
-                Notes: "",
-                isActive: 0,
-                Settlementfrompath: obj.path,
-                isassigned: null,
-                ReferenceID: 0,
-                Profileidnew: model.proceedprofileid
-            };
-        };
+            //obj.myFile.name
 
+            var extension = (obj.myFile.name !== '' && obj.myFile.name !== undefined && obj.myFile.name !== null) ? (obj.myFile.name.split('.'))[1] : null;
+            extension = angular.lowercase(extension);
+            var gifFormat = "gif,jpeg,jpg";
+            if (typeof(obj.myFile.name) != "undefined") {
+                var size = obj.myFile.size;
+                if (extension !== null && gifFormat.indexOf(angular.lowercase(extension)) === -1) {
+                    alert('Your uploaded image contains an unapproved file formats.');
+                } else if (size > 4194304) {
+                    alert('Sorry,Upload Photo Size Must Be Less than 4 mb');
+                } else {
+                    debugger;
+                    console.log(obj.myFile);
+                    var keyname = app.prefixPath + model.proceedprofileid + '_settlementImages' + '/' + model.proceedprofileid + '_settlementImages.' + extension;
+                    fileUpload.uploadFileToUrl(obj.myFile, '/settlementformupload', keyname).then(function(res) {
+                        console.log(res.status);
+                        if (res.status == 200) {
+                            model.closeupload();
+                            var today = $filter('date')(new Date(), 'dd/MM/yyyy hh:mm:ss a');
+                            var object = {
+                                CreatedByEmpID: model.empid,
+                                CreatedDate: today,
+                                ModifiedByEmpID: model.empid,
+                                ModifiedEmpDate: today,
+                                SettlementAgreedAmount: 0,
+                                Notes: "",
+                                isActive: 0,
+                                Settlementfrompath: '~/Images/SettlementImages/' + model.proceedprofileid + '_settlementImages/' + model.proceedprofileid + '_settlementImages.' + extension,
+                                isassigned: 0,
+                                ReferenceID: 0,
+                                Profileidnew: model.proceedprofileid
+                            };
+                            dashboardServices.uploadsettlementform(object).then(function(response) {
+                                console.log(response);
+
+                            });
+                        }
+                    });
+                }
+            } else {
+                alert("This browser does not support HTML5.");
+            }
+        };
         return model;
     }
     angular
         .module('Kaakateeya')
         .factory('dashboardModel', factory);
-    factory.$inject = ['$http', 'dashboardServices', '$uibModal', 'authSvc', 'helperservice', '$window', 'modelpopupopenmethod'];
+    factory.$inject = ['$http', 'dashboardServices', '$uibModal', 'authSvc', 'helperservice', '$window', 'modelpopupopenmethod', '$filter', 'fileUpload'];
 })(angular);

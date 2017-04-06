@@ -1,20 +1,6 @@
 <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+    <div uib-slide ng-repeat="slide in model.slides" index="$index">
 
-    <div uib-slide ng-repeat="slide in slides" index="$index">
-        <!--<img ng-src="{{slide.image}}" style="margin:auto;">
-        <div class="carousel-caption">
-            <h4>Slide {{slide.id}}</h4>
-            <p>{{slide.text}}</p>
-            <div>{{slides.name}}</div>
-            <div>{{slides.age}}</div>
-            <div>{{slides.DOB}}</div>
-            <div>{{slides.height}}</div>
-        </div>-->
-
-        <!-- step 1: two ng include's one is for right side data binding,one is for showing image step 2: inject config in the model step 3: use setData method to bind data to slideshow-->
-
-        <!--
-        <div ng-include="templates/angularSlide.html"></div>-->
         <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
             <div style="margin-left:60px;">
                 <h6> <span style="font-weight: bold;">ProfileID</span></h6>
@@ -41,6 +27,5 @@
             </div>
 
         </div>
-
     </div>
 </div>

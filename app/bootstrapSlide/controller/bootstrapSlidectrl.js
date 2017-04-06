@@ -7,7 +7,6 @@
              model;
          vm.init = function() {
              vm.model = model = bootstrapSlideModel;
-             model.scope = scope;
          };
          vm.init();
      }
