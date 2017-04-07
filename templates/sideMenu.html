@@ -8,8 +8,6 @@
         <div class="edit_pages_sidebar_profile_details">
             <h6>
                 <span>{{model.PersonalObj.Name+" ("+model.PersonalObj.ProfileID+")"}}</span></h6>
-
-
             <div class="edit_pages_sidebar_profile_details_in">
                 <h6> <span>{{model.registrationdate+','+model.branchdata.BranchCode}}</span><span style="color: maroon; font-size:16px;">{{model.strCon}}</span></h6>
                 <!--<p>
@@ -25,20 +23,17 @@
                 </p>-->
             </div>
         </div>
-
         <div class="clear"></div>
-
         <div class="edit_pages_sidebar_menu clearfix">
             <ul>
                 <li>
                     <a id="lnkeducationandprof" href="javascript:void(0);" ng-click="redirect('editEducation');" ng-style="{color:model.lnkeducationandprofReview}">Education & Profession
-                                <span class="pull-right nodatacls"> {{model.rev.iCustomerPersonalDetails===0?'NoData':''}}</span>
-                            </a>
-
+                 <span class="pull-right nodatacls"> {{model.rev.iCustomerPersonalDetails===0?'NoData':''}}</span>
+                  </a>
                 </li>
                 <li>
                     <a href="javascript:void(0);" ng-click="redirect('editManagePhoto');">Manage Photo
-                                <span class="pull-right nodatacls"> {{model.rev.iManagePhoto===0?'NoPhoto':''}}</span></a>
+                   <span class="pull-right nodatacls"> {{model.rev.iManagePhoto===0?'NoPhoto':''}}</span></a>
                 </li>
                 <li>
                     <a href="javascript:void(0);" ng-click="redirect('editParent');" ng-style="{color:model.lnkparentsReview}">Parent Details

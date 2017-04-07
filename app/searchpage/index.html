@@ -976,6 +976,30 @@
         </div>
     </script>
    
+
+<script type="text/ng-template" id="shortlistpopup.html">
+         
+            <div class="modal-header alert alert-warning">
+                <h2>Shortlist Conflict</h2>
+            </div>
+            <input type="hidden" ng-model="page.model.shortlistprofileids" />
+            <div class="modal-body">
+                <div id="Alerts">
+                    <div ng-bind-html="page.model.divmismatchData"></div>
+                    <br>
+                    <span style="color: black; font-size: larger;">Do You want To continue?</span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-footer">
+             
+                <div>
+                       <md-button  class='md-raised md-warn md-hue-2' >Shortlist</md-button>
+                       <md-button class="md-raised md-hue-1">Cancel</md-button>
+                </div>
+                
+    </div>
+</script>
     </div>
     <style type="text/css">
       .selectborderclass {
