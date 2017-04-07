@@ -71,24 +71,7 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', functi
         });
         return arrayyy;
     };
-    showAndBindPopup = function(val) {
-        $('#imgsrc').attr('src', val);
-        modalpopupopen = uibModal.open({
-            ariaLabelledBy: 'modal-title',
-            ariaDescribedBy: 'modal-body',
-            template: "<div class='modal-header'>" +
-                "        <h3 class='modal-title text-center'>Horoscope image                                               " +
-                "            <a href='javascript:void(0);' onclick='modalpopupopen.close()'>                                       " +
-                "                <ng-md-icon icon='close' style='fill:#c73e5f' class='pull-right' size='25'>Delete</ng-md-icon>   " +
-                "            </a>                                                                                                 " +
-                "        </h3>                                                                                                    " +
-                "    </div>                                                                                                       " +
-                "    <div class='modal-body clearfix' id='modal-body'>                                                            " +
-                "        <img src='" + val + "'  Style='height: 500px; width: 500px;'>                                                                                        " +
-                "    </div>                                                                                                       "
-        });
 
-    };
     return {
         showPopup: function(url, scope, size, classp) {
             modalpopupopen = uibModal.open({
@@ -254,6 +237,23 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', functi
                     });
                 }
             });
+        },
+        showAndBindPopup: function(val) {
+            modalpopupopen = uibModal.open({
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                template: "<div class='modal-header'>" +
+                    "        <h3 class='modal-title text-center'>Horoscope image                                               " +
+                    "            <a href='javascript:void(0);' onclick='modalpopupopen.close()'>                                       " +
+                    "                <ng-md-icon icon='close' style='fill:#c73e5f' class='pull-right' size='25'>Delete</ng-md-icon>   " +
+                    "            </a>                                                                                                 " +
+                    "        </h3>                                                                                                    " +
+                    "    </div>                                                                                                       " +
+                    "    <div class='modal-body clearfix' id='modal-body'>                                                            " +
+                    "        <img src='" + val + "'  Style='height: 500px; width: 500px;'>                                                                                        " +
+                    "    </div>                                                                                                       "
+            });
+
         }
     };
 }]);

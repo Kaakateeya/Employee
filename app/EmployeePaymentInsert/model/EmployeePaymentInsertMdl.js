@@ -114,9 +114,10 @@
                 model.strAmt = Amt;
                 model.strDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
                 model.strPoints = parseInt(Amt * model.paymentpoints);
-                var infm = 'Agreed Amount : ' + Amt + '\n     No of Points : ' + model.strPoints + '\n Expiry Date : ' + model.strDate;
+                var infm = 'Agreed Amount : ' + Amt + '    \n     No of Points : ' + model.strPoints + '    \n Expiry Date : ' + model.strDate;
                 if (type === undefined) {
                     alert(infm);
+                    // alertss.timeoutoldalerts(model.scope, 'alert-success', infm, 9500);
                 }
                 //alertss.timeoutoldalerts(model.scope, 'alert-success', infm, 9500);
             }
