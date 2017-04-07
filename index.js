@@ -71,7 +71,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/complex-grid/directive.js',
                         'directives/complex-grid/model/config.js',
                         'directives/complex-grid/svc.js',
-                        'bower_components/json-export-excel/dest/json-export-excel.min.js',
+                        // 'bower_components/json-export-excel/dest/json-export-excel.min.js',
+                        'src/js/alasql.js',
+                        'src/js/xlsx.js',
                         'directives/complex-grid/css/style.css'
 
                     ]
@@ -174,8 +176,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                                 $ocLazyLoad.load('dashboard');
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             } else if (item.name === 'editViewprofile' || item.name === 'EmployeePayment') {
+
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             } else {
+                                // $ocLazyLoad.load('commonjs');
+                                // $ocLazyLoad.load('directives');
+                                // $ocLazyLoad.load('constants');
+                                // $ocLazyLoad.load('modules');
+                                // $ocLazyLoad.load('complex-grid');
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             }
                         } else {

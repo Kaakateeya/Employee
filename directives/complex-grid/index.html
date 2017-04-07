@@ -9,7 +9,10 @@
             <input class="form-control" type="text" ng-model="searchKeyword" placeholder="Search">
         </div>
         <dv class="pull-right">
-            <button ng-json-export-excel data="model.data" report-fields="{id: 'ID Heder', name: 'Name Header', price: 'Price Head'}" filename="'export-excel'" separator="," class="css-class"><i class="fa fa-file-excel-o fa-6" aria-hidden="true"></i></button>
+            <!--<button ng-json-export-excel data="model.data" report-fields="{id: 'ID Heder', name: 'Name Header', price: 'Price Head'}" filename="'export-excel'" separator="," class="css-class"><i class="fa fa-file-excel-o fa-6" aria-hidden="true"></i></button>-->
+
+
+            <button ng-click="exportexcel(model.data, model.columns)" class="css-class"><i class="fa fa-file-excel-o fa-6" aria-hidden="true"></i></button>
         </dv>
     </div>
     <div class="clearfix"></div>

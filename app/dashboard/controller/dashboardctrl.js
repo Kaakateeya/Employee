@@ -38,6 +38,7 @@
                              model.slidearray.push(inneritem);
                          });
                      }
+
                      scope.$broadcast("slideshowdynamic", model.slidearray, model.slidearray[0].TotalRows, tablename, frompage);
                  }
                  console.log(model.slidearray);

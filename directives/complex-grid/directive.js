@@ -80,8 +80,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                         { text: 'Horo', key: '', type: 'custom', templateUrl: scope.ViewHoro },
                         { text: 'Tickets', key: '', type: 'custom', templateUrl: scope.ViewTicket },
                         { text: 'Owner', key: 'OWNER', type: 'label' },
-                    ]
-
+                    ];
                     SelectBindServiceApp.playbtnProfileData(data.ProfileID).then(function(response) {
                         data.detaildata = response.data;
                         console.log(data.detaildata);
@@ -94,8 +93,32 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 scope.sort = function(keyname) {
                     scope.sortKey = keyname; //set the sortKey to the param passed
                     scope.reverse = !scope.reverse; //if true make it false and vice versa
-                }
+                };
+                scope.exportexcel = function(array, columns) {
+                    debugger;
+                    var cloumsarr = [];
+                    var selectarray = [];
 
+                    _.each(columns, function(item) {
+                        debugger;
+                        //  _.filter(item, [item.key !== undefined && item.key !== ""], function(inneritem) {
+                        cloumsarr.push({ columnid: item.key, title: item.text });
+                        // });
+                    });
+                    var options = {
+                        headers: true,
+                        columns: cloumsarr
+                    };
+                    // _.each(cloumsarr, function(item) {
+                    //  _.filter(item, [item.key !== undefined && item.key !== ""], function(inneritem) {
+                    // selectarray.push(item.columnid);
+                    // });
+                    // });
+                    // console.log(_.map(cloumsarr, 'columnid').join(','));
+                    var join = _.map(cloumsarr, 'columnid').join(',');
+                    // var joinstring = joinstring !== null && joinstring !== "" ? (joinstring.split(',')).map(Number) : null;
+                    alasql('SELECT ProfileID,FirstName,Height,educationgroup,Age,Profession INTO  XLSX("john.xlsx",?) FROM ?', [options, array]);
+                };
 
                 scope.init();
             }

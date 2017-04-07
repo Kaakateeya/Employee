@@ -313,6 +313,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     commonpage.closepopuppoptopopup();
                 };
                 scope.$on("slideshowdynamic", function(event, array, totalrows, tablename, frompage) {
+                    debugger;
                     console.log(tablename);
                     switch (tablename) {
                         case "No-Service From Last 1 Month":
