@@ -1,7 +1,8 @@
 (function() {
     'use strict';
 
-    function factory(EmployeePaymentInsertservice, stateParams, filter, authSvc, alertss) {
+    function factory(EmployeePaymentInsertservice, stateParams, filter, authSvc, modelpopupopenmethod) {
+
         var model = {};
         model.obj = {};
         model.array = [];
@@ -116,18 +117,21 @@
                 model.strPoints = parseInt(Amt * model.paymentpoints);
                 var infm = 'Agreed Amount : ' + Amt + '    \n     No of Points : ' + model.strPoints + '    \n Expiry Date : ' + model.strDate;
                 if (type === undefined) {
-                    alert(infm);
+                    // alert(infm);
                     // alertss.timeoutoldalerts(model.scope, 'alert-success', infm, 9500);
+                    modelpopupopenmethod.showPopup('alert.html', model.scope, 'sm', '');
+
                 }
-                //alertss.timeoutoldalerts(model.scope, 'alert-success', infm, 9500);
             }
 
         };
-
+        model.closepopup = function() {
+            modelpopupopenmethod.closepopup();
+        };
         return model;
     }
     angular
         .module('Kaakateeya')
         .factory('EmployeePaymentInsertModel', factory)
-    factory.$inject = ['EmployeePaymentinsertservice', '$stateParams', '$filter', 'authSvc', 'alert'];
+    factory.$inject = ['EmployeePaymentinsertservice', '$stateParams', '$filter', 'authSvc', 'modelpopupopenmethod'];
 })(angular);

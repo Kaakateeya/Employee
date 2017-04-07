@@ -5,7 +5,7 @@
 
     function factory($http, ViewAllCustomerService, state, helpService, config, alerts, modelpopupopenmethod) {
         var model = {};
-        model.modelinactive = {};
+        var modelinactive = {};
 
         model = config;
         model.tablearray = [];
@@ -13,7 +13,7 @@
         model.obj.rdnGender = '3';
         model.opendiv = true;
         model.init = function() {
-            model.modelinactive = {};
+            modelinactive = {};
             return model;
         };
         model.profileidstatus = [
@@ -51,14 +51,14 @@
                 console.log(response);
                 console.log(model.settleArr);
                 model.typeOfProfile = type;
-                // model.columns = [
-                //     { text: 'InactivateFromdate', key: 'InactivateFromdate', type: 'label' },
-                //     { text: 'inactivetodate', key: 'inactivetodate', type: 'label' },
-                //     { text: 'Reason', key: 'Reason4InActive', type: 'label' },
-                //     { text: 'inactivaterequestby', key: 'inactivaterequestby', type: 'label' },
-                //     { text: 'inactivate by Emp', key: 'ProfileOwnerEmpName', type: 'label' },
-                // ];
-                // model.setData(response.data);
+                modelinactive.columns = [
+                    { text: 'InactivateFromdate', key: 'InactivateFromdate', type: 'label' },
+                    { text: 'inactivetodate', key: 'inactivetodate', type: 'label' },
+                    { text: 'Reason', key: 'Reason4InActive', type: 'label' },
+                    { text: 'inactivaterequestby', key: 'inactivaterequestby', type: 'label' },
+                    { text: 'inactivate by Emp', key: 'ProfileOwnerEmpName', type: 'label' },
+                ];
+                model.setData(response.data);
             });
 
             modelpopupopenmethod.showPopup('settlePopup.html', model.scope, 'lg', 'SettleDelete');
