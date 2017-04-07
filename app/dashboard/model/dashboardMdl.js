@@ -95,7 +95,6 @@
         };
 
         model.viewfullprofile = function(profileid) {
-            debugger;
             window.open("Viewfullprofile/" + profileid, "_blank");
         };
 
@@ -116,7 +115,6 @@
                 } else if (size > 4194304) {
                     alert('Sorry,Upload Photo Size Must Be Less than 4 mb');
                 } else {
-                    debugger;
                     console.log(obj.myFile);
                     var keyname = app.prefixPath + model.proceedprofileid + '_settlementImages' + '/' + model.proceedprofileid + '_settlementImages.' + extension;
                     fileUpload.uploadFileToUrl(obj.myFile, '/settlementformupload', keyname).then(function(res) {

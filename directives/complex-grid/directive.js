@@ -19,7 +19,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                         if (item.text !== '')
                             scope.model.exportColumns[item.key] = item.text;
                     });
-                    scope.detailView = false
+                    scope.detailView = false;
                 };
                 scope.$watch(scope.model, function() {
                     scope.init();

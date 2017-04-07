@@ -3,7 +3,7 @@
 
     angular
         .module('Kaakateeya')
-        .factory('bootstrapTableSVC', factory)
+        .factory('bootstrapTableSVC', factory);
 
     factory.$inject = ['$http'];
 

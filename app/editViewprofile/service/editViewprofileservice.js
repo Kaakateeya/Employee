@@ -1,14 +1,10 @@
 (function() {
     'use strict';
 
-
-
     function factory(http) {
         var ProfileID = null;
         return {
-
             getViewCustomerData: function(EmpID, ProfileIDName, ProfileIDStatus, from, to) {
-                debugger;
                 return http.get(app.apiroot + 'CustomerPersonal/getViewAllCustomersSearch', {
                     params: {
                         EmpID: EmpID,

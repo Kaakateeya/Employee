@@ -18,10 +18,8 @@ app.directive("bootstrapTable", ['commonpage', '$timeout',
                 scope.dynamictableshow = false;
                 scope.tablebtnshow = false;
                 var table = '';
-                debugger;
                 // attrs.id = scope.IDs;
                 scope.ID = "ID"; //attrs.id;
-
                 scope.appendID = '';
                 table = $('#' + scope.ID + ' .Datatable');
                 var tableArray = scope.array;

@@ -2,14 +2,11 @@
      'use strict';
 
      function Controller(EmployeePaymentInsertModel, stateParams, scope) {
-         debugger;
          var vm = this,
              model;
          vm.init = function() {
-
              vm.model = model = EmployeePaymentInsertModel;
              model.scope = scope;
-
              vm.model.getpaymentProfile(stateParams.ProfileID);
          };
          vm.Number = Number;

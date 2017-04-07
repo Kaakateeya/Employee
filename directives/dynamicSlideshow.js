@@ -292,7 +292,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     commonpage.pausePalyslide(type, scope.carousalID);
                 };
                 scope.horoscopeimage = function(image) {
-                    debugger;
                     scope.HoroscopeImage = image;
                     scope.popupmodalbody = true;
                     commonpage.showPopupphotopoup('dynamicphotopopup.html', scope, '', "modalclassdashboardphotopopup");

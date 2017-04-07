@@ -2,11 +2,8 @@
     'use strict';
 
     function factory(http) {
-        debugger;
-
         return {
             getEmployeePaymentdata: function(ProfileID) {
-                debugger;
                 return http.get(app.apiroot + 'Payment/getProfilePaymentDetails_NewDesigns', {
                     params: { intProfileID: ProfileID }
                 });
