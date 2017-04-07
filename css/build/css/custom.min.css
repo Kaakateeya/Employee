@@ -289,7 +289,7 @@ table.tile_info td p {
 }
 
 body .container.body .right_col {
-    background: #F7F7F7
+    /*background: #F7F7F7*/
 }
 
 .nav-md .container.body .right_col {
@@ -370,7 +370,7 @@ body .container.body .right_col {
 
 body {
     color: #73879C;
-    background: #fff;
+    /*background: none;*/
     font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
     line-height: 1.471
 }
@@ -1259,4 +1259,229 @@ ul.top_profiles li:nth-child(odd) {
     border-radius: 5px;
     background: #FFF;
     transition: all .3s ease-in-out
+}
+
+.menu_lists {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    line-height: 1;
+    width: 80px !important;
+}
+
+.menu_lists ul,
+.menu_lists ul li,
+.menu_lists ul ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu_lists ul {
+    position: relative;
+    z-index: 500;
+    float: left;
+}
+
+.menu_lists ul li {
+    float: left;
+    min-height: 0.05em;
+    line-height: 1em;
+    vertical-align: middle;
+    position: relative;
+}
+
+.menu_lists ul li.hover,
+.menu_lists ul li:hover {
+    position: relative;
+    z-index: 510;
+    cursor: default;
+}
+
+.menu_lists ul ul {
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    z-index: 520;
+    width: 100%;
+}
+
+.menu_lists ul ul li {
+    float: none;
+}
+
+.menu_lists ul ul ul {
+    top: 0;
+    right: 0;
+}
+
+.menu_lists ul li:hover>ul {
+    visibility: visible;
+}
+
+.menu_lists ul ul {
+    top: 0;
+    left: 99%;
+}
+
+.menu_lists ul li {
+    float: none;
+}
+
+.menu_lists ul ul {
+    margin-top: 0.05em;
+}
+
+.menu_lists {
+    width: 13em;
+    background: #333333;
+    font-family: 'roboto', Tahoma, Arial, sans-serif;
+    zoom: 1;
+}
+
+.menu_lists:before {
+    content: '';
+    display: block;
+}
+
+.menu_lists:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.menu_lists a {
+    display: block;
+    padding: 1em 1.3em;
+    /*//  padding: 1em 1.9em 1.9em 0.9em;*/
+    color: #ffffff;
+    text-decoration: none;
+    /*text-transform: uppercase;*/
+}
+
+.menu_lists>ul {
+    width: 13em;
+    width: 80px;
+}
+
+.menu_lists ul ul {
+    width: 13em;
+}
+
+.menu_lists>ul>li>a {
+    border-right: 0.3em solid #34A65F;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.menu_lists>ul>li>a:hover {
+    color: #ffffff;
+}
+
+.menu_lists>ul>li a:hover,
+.menu_lists>ul>li:hover a {
+    background: #34A65F;
+}
+
+.menu_lists li {
+    position: relative;
+}
+
+.menu_lists ul li.has-sub>a:after {
+    content: '»';
+    position: absolute;
+    right: 1em;
+}
+
+.menu_lists ul ul li.first {
+    -webkit-border-radius: 0 3px 0 0;
+    -moz-border-radius: 0 3px 0 0;
+    border-radius: 0 3px 0 0;
+}
+
+.menu_lists ul ul li.last {
+    -webkit-border-radius: 0 0 3px 0;
+    -moz-border-radius: 0 0 3px 0;
+    border-radius: 0 0 3px 0;
+    border-bottom: 0;
+}
+
+.menu_lists ul ul {
+    -webkit-border-radius: 0 3px 3px 0;
+    -moz-border-radius: 0 3px 3px 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.menu_lists ul ul {
+    border: 1px solid #34A65F;
+}
+
+.menu_lists ul ul a {
+    color: #ffffff;
+}
+
+.menu_lists ul ul a:hover {
+    color: #ffffff;
+}
+
+.menu_lists ul ul li {
+    border-bottom: 1px solid #0F8A5F;
+}
+
+.menu_lists ul ul li:hover>a {
+    background: #4eb1ff;
+    color: #ffffff;
+}
+
+.menu_lists.align-right>ul>li>a {
+    border-left: 0.3em solid #34A65F;
+    border-right: none;
+}
+
+.menu_lists.align-right {
+    float: right;
+}
+
+.menu_lists.align-right li {
+    text-align: right;
+}
+
+.menu_lists.align-right ul li.has-sub>a:before {
+    content: '+';
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    margin-top: -6px;
+}
+
+.menu_lists.align-right ul li.has-sub>a:after {
+    content: none;
+}
+
+.menu_lists.align-right ul ul {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    z-index: 598;
+    width: 100%;
+}
+
+.menu_lists.align-right ul ul li.first {
+    -webkit-border-radius: 3px 0 0 0;
+    -moz-border-radius: 3px 0 0 0;
+    border-radius: 3px 0 0 0;
+}
+
+.menu_lists.align-right ul ul li.last {
+    -webkit-border-radius: 0 0 0 3px;
+    -moz-border-radius: 0 0 0 3px;
+    border-radius: 0 0 0 3px;
+}
+
+.menu_lists.align-right ul ul {
+    -webkit-border-radius: 3px 0 0 3px;
+    -moz-border-radius: 3px 0 0 3px;
+    border-radius: 3px 0 0 3px;
 }
