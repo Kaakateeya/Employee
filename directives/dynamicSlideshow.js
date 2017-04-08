@@ -107,12 +107,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             scope.data.push({ label: 'Intercaste', value: (item.fathercaste + "/" + item.mothercaste) });
                         if (item.ProfileGrade !== 0)
                             scope.data.push({ label: 'ProfileGrade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
-                        //  if (item.Fromstatus != "--" && item.Fromstatus !== "" && item.Fromstatus !== null)
-                        // scope.data.push({ label: 'From status', value: "proceed", style: 'style= color:red;' });
-                        //  if (item.Tostatus != "--" && item.Tostatus !== "" && item.Tostatus !== null)
-                        // scope.data.push({ label: 'To status', value: "Dont proceed", style: 'style= color:red;' });
-                        // if (item.TicketID != "--" && item.TicketID !== "" && item.TicketID !== null)
-                        //  scope.data.push({ label: 'TicketID', value: "KAK76768877867", style: 'style= color:red;' });
                         scope.arraydata.push({
                             itmArr: scope.data,
                             custPhoto: item.CustomerFullPhoto,
@@ -125,7 +119,13 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             ToTicketIDSuf: item.ToTicketIDSuf,
                             FromTicketID: item.FromTicketID,
                             ToTicketID: item.ToTicketID,
-                            Cust_ProfileInterestsLog_ID: item.Cust_ProfileInterestsLog_ID
+                            Cust_ProfileInterestsLog_ID: item.Cust_ProfileInterestsLog_ID,
+                            Age: item.Age,
+                            HeightInCentimeters: item.HeightInCentimeters,
+                            MaritalStatusID: item.MaritalStatusID,
+                            CasteID: item.CasteID,
+                            serviceDate: item.serviceDate,
+                            ProfileID: item.ProfileID
                         });
                     });
                     return scope.arraydata;
@@ -196,7 +196,12 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             ProfileID: item.ProfileID,
                             CountryCodeID: item.CountryCodeID,
                             Cust_Family_ID: item.Cust_Family_ID,
-                            PhotoCount: item.PhotoCount
+                            PhotoCount: item.PhotoCount,
+                            Age: item.Age,
+                            HeightInCentimeters: item.HeightInCentimeters,
+                            MaritalStatusID: item.MaritalStatusID,
+                            CasteID: item.CasteID,
+                            serviceDate: item.serviceDate
 
                         });
                     });
@@ -313,6 +318,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     commonpage.closepopuppoptopopup();
                 };
                 scope.$on("slideshowdynamic", function(event, array, totalrows, tablename, frompage) {
+                    debugger;
                     console.log(tablename);
                     switch (tablename) {
                         case "No-Service From Last 1 Month":
@@ -546,7 +552,10 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                 scope.openTicketPopup = function() {
                     commonpage.showPopup('Actions.html', scope, 'lg', "Action");
                 };
-
+                scope.shortlistprofiles = function(custids, profileID, age, height, maritalstatus, caste, Servicedate) {
+                    debugger;
+                    scope.$emit("shortlistprofileids", custids, profileID, age, height, maritalstatus, caste, Servicedate, scope.personalobj);
+                };
             }
         };
     }

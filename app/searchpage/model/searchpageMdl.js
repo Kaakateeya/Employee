@@ -2,7 +2,7 @@
     'use strict';
 
     function factory($http, searchpageServices, arrayConstants, SelectBindServiceApp, getArray, timeout,
-        helpService, authSvc, alerts, Commondependency, filter) {
+        helpService, authSvc, alerts, Commondependency, filter, modelpopupopenmethod) {
         var model = {};
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
         model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
@@ -27,6 +27,7 @@
         model.sidebarnavshow = true;
         model.mySidenavdiv = false;
         model.mystylenamediv = true;
+        model.shortlistprofileids = [];
         model.returnnullvalue = function(value) {
             var obj = helpService.checkstringvalue(value) && (value.toString()) !== "0" && (value.toString()) !== 0 ? (value.toString()) : null;
             return obj;
@@ -452,12 +453,37 @@
             }
             return colors;
         };
+
+
+
+        model.checkServicetoShortlist = function(custids, profileID, age, height, maritalstatus, caste, Servicedate, personalobj) {
+            var StValall = model.shortlistprofileids;
+            var profileIDlocal = JSON.stringify(profileID);
+            if (StValall.indexOf(custids) != -1) {
+                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'This profile already shortlisted', 2000);
+            } else {
+                if (Servicedate === '') {
+                    model.divmismatchData = '';
+                    model.divfooter = '';
+                    model.divmismatchData = "<a id=lnkmismatchProfileid href=javascript:void(0) onclick=ViewProfilewithvalue(" + profileIDlocal + ");>" + profileID + "</a>" + "<f style='color:black;'> Already service done with this profileid On </f>" + "<f style='color:Red;font-weight:bold;font-size:14px;'>" + Servicedate + "</f>" + "</br>" + "";
+                    ///   model.divfooter = "<input type='button'  onclick='return mismatchProfileCheck(" + custids + "," + profileID + "," + age + "," + height + "," + maritalstatus + "," + caste + ")'>Shortlist</input>";
+
+                    model.divfooter = "<md-button  class='md-raised md-warn md-hue-2' >Shortlist</md-button><md-button class='md-raised md-hue-1'>Cancel</md-button>";
+                    modelpopupopenmethod.showPopupphotopoup('shortlistpopup.html', model.scope, '', "modalclassdashboardphotopopup");
+
+                } else {
+                    //model.mismatchProfileCheck(custids, profileID, age, height, maritalstatus, caste);
+
+                }
+            }
+        };
+
         return model;
     }
     angular
         .module('Kaakateeya')
         .factory('searchpageModel', factory);
     factory.$inject = ['$http', 'searchpageServices', 'arrayConstants', 'SelectBindServiceApp',
-        'getArraysearch', '$timeout', 'helperservice', 'authSvc', 'alert', 'Commondependency', '$filter'
+        'getArraysearch', '$timeout', 'helperservice', 'authSvc', 'alert', 'Commondependency', '$filter', 'modelpopupopenmethod'
     ];
 })(angular);

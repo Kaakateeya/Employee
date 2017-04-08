@@ -1,5 +1,5 @@
 body {
-  background: #fff;
+  background: none;
   font-family: arial; }
 
 #generalsearchdiv .search_page_main {
@@ -123,5 +123,13 @@ button.multiselect.dropdown-toggle.btn.col-lg-12.ng-pristine.ng-untouched.ng-val
 
 button.multiselect.dropdown-toggle.btn.ng-pristine.ng-untouched.ng-valid.ng-isolate-scope {
   width: 90%; }
+
+.searchpageheader {
+  width: 39px;
+  color: #bd1515;
+  font-size: 20px;
+  margin-left: 11px;
+  padding-top: 3px;
+  cursor: pointer; }
 
 /*# sourceMappingURL=style.css.map */

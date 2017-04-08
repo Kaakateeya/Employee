@@ -30,7 +30,7 @@
         </div>
         <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12" style="margin-top: -4px;">
             <div class="row">
-                <a class="Heart center-block" href="javascript:void(0);" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">
+                <a ng-click="shortlistprofiles(itemval.Custid,itemval.ProfileID,itemval.Age,itemval.HeightInCentimeters,itemval.MaritalStatusID,itemval.CasteID,itemval.serviceDate)" class="Heart center-block" href="javascript:void(0);" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">
                     <div class="col-lg-2"><img src="src/images/two.png" style="margin-top:-4px;" width="40" height="38"></div>
                     <div class="col-lg-1">
                         <lable style="font-size: 13pt;color:#337ab7">Shortlist</lable>

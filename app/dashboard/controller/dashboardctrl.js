@@ -17,12 +17,6 @@
              model.proceedprofileid = null;
              model.slideshowfunction(false);
              model.init();
-             $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
-                 event.preventDefault();
-                 event.stopPropagation();
-                 $(this).parent().siblings().removeClass('open');
-                 $(this).parent().toggleClass('open');
-             });
          };
          vm.init();
 
@@ -38,6 +32,7 @@
                              model.slidearray.push(inneritem);
                          });
                      }
+
                      scope.$broadcast("slideshowdynamic", model.slidearray, model.slidearray[0].TotalRows, tablename, frompage);
                  }
                  console.log(model.slidearray);

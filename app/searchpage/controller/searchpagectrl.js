@@ -23,12 +23,6 @@
              model.selectedIndex = $stateParams.id;
              model.searchpopuptext = model.selectedIndex === "0" ? "General Search" : "Advance Search";
              alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
-             $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
-                 event.preventDefault();
-                 event.stopPropagation();
-                 $(this).parent().siblings().removeClass('open');
-                 $(this).parent().toggleClass('open');
-             });
          };
          scope.$on('directivechangeevent', function(event, modal, type) {
              switch (type) {
@@ -107,6 +101,11 @@
          scope.$on("backsearchshowcontrols", function(event) {
              model.divcontrolls = true;
              model.slideshowtrue = false;
+         });
+
+
+         scope.$on("shortlistprofileids", function(event, custids, profileID, age, height, maritalstatus, caste, Servicedate, personalobj) {
+             model.checkServicetoShortlist(custids, profileID, age, height, maritalstatus, caste, Servicedate, personalobj);
          });
      }
 
