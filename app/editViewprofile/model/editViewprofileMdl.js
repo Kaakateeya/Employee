@@ -51,14 +51,14 @@
                 console.log(response);
                 console.log(model.settleArr);
                 model.typeOfProfile = type;
-                modelinactive.columns = [
-                    { text: 'InactivateFromdate', key: 'InactivateFromdate', type: 'label' },
-                    { text: 'inactivetodate', key: 'inactivetodate', type: 'label' },
-                    { text: 'Reason', key: 'Reason4InActive', type: 'label' },
-                    { text: 'inactivaterequestby', key: 'inactivaterequestby', type: 'label' },
-                    { text: 'inactivate by Emp', key: 'ProfileOwnerEmpName', type: 'label' },
-                ];
-                model.setData(response.data);
+                // modelinactive.columns = [
+                //     { text: 'InactivateFromdate', key: 'InactivateFromdate', type: 'label' },
+                //     { text: 'inactivetodate', key: 'inactivetodate', type: 'label' },
+                //     { text: 'Reason', key: 'Reason4InActive', type: 'label' },
+                //     { text: 'inactivaterequestby', key: 'inactivaterequestby', type: 'label' },
+                //     { text: 'inactivate by Emp', key: 'ProfileOwnerEmpName', type: 'label' },
+                // ];
+                // model.setData(response.data);
             });
 
             modelpopupopenmethod.showPopup('settlePopup.html', model.scope, 'lg', 'SettleDelete');
