@@ -2,8 +2,9 @@
     'use strict';
 
     function factory($http, searchpageServices, arrayConstants, SelectBindServiceApp, getArray, timeout,
-        helpService, authSvc, alerts, Commondependency, filter, modelpopupopenmethod) {
+        helpService, authSvc, alerts, Commondependency, filter, modelpopupopenmethod, config, $sce) {
         var model = {};
+        model = config;
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
         model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
         model.generalsearch = {};
@@ -27,7 +28,167 @@
         model.sidebarnavshow = true;
         model.mySidenavdiv = false;
         model.mystylenamediv = true;
-        model.shortlistprofileids = [];
+        var count = 0;
+        model.hdnCustIdsForAlert = "";
+        model.hdnshortlistProfile = "";
+        model.hdnCurrentSlideVal = "";
+        model.arrayslide = [{
+            Age: 27,
+            AgeMax: null,
+            Agemax: null,
+            Agemin: null,
+            // ApplicationPhotoPath: "~\Images\ProfilePics\KMPL_47098_Images\img2_Images\210470984_FullPhoto.jpg,~\Images\ProfilePics\KMPL_47098_Images\img3_Images\210470984_FullPhoto.jpg,~\Images\ProfilePics\KMPL_47098_Images\img1_Images\210470984_FullPhoto.jpg",
+            Caste: "Telugu-Balija",
+            CasteID: 403,
+            Color: "Fair",
+            Cust_ID: "47098",
+            Cust_ProfileInterestsLog_ID: null,
+            CustomerApplicationPhoto: null,
+            CustomerFullPhoto: "http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_47098_Images/Img2_Images/210470984_FullPhoto.jpg",
+            DOB: "24-May-1989",
+            EduGroupnamenew: "--",
+            Education: null,
+            EducationGroup: "BE",
+            Employeedin: null,
+            FFNative: "Dindigul",
+            FirstName: "R",
+            FromTicketID: null,
+            FromTicketIdSuf: "--",
+            Gender: "Male",
+            GenderID: null,
+            Gothram: "THILAGA",
+            Height: "5'8 in - 172 cms",
+            HeightInCentimeters: 21,
+            Heightmax: null,
+            Heightmin: null,
+            HoroscopePath: "--",
+            HoroscopeStatus: 0,
+            Income: "40000",
+            Intercaste: false,
+            IsConfidential: false,
+            JobLocation: "Trichy",
+            KMPLID: "TYBAM2314",
+            LastName: "BAGESH PRABHU",
+            MFNative: "Madurai",
+            MaritalStatusID: 43,
+            MaxHeight: null,
+            MinHeight: null,
+            Mystatus: "--",
+            Name: null,
+            NoOfBrothers: 1,
+            NoOfSisters: 0,
+            OppStatus: "--",
+            Ownerflag: false,
+            // Photo: "~\Images\ProfilePics\KMPL_47098_Images\img2_Images\210470984_FullPhoto.jpg",
+            PhotoCount: 3,
+            PhotoNames: "img2.jpg,img3.jpg,img1.jpg",
+            PlaceOfBirth: "Madurai",
+            Profession: "Admin Professional",
+            ProfileID: "121333",
+            ProfileStatusID: null,
+            Property: "2500",
+            RegistrationDate: null,
+            Star: "Poorvashada",
+            SubCaste: null,
+            SuperConfidentila: 0,
+            SurName: null,
+            TOB: "20:30:00",
+            ToTicketID: null,
+            ToTicketIDSuf: "--",
+            TotalRows: 498,
+            TotalRowsKeyword: null,
+            Totalpages: null,
+            companyname: null,
+            countrylivingin: "India",
+            currency: "Rs",
+            educationspecialisation: null,
+            email: "rkkalp1960@gmail.com",
+            fathercaste: "--",
+            imageurl: null,
+            maritalstatus: "Unmarried",
+            mothercaste: "--",
+            mothertongue: null,
+            paid: 1,
+            serviceDate: ""
+        }, {
+            Age: 27,
+            AgeMax: null,
+            Agemax: null,
+            Agemin: null,
+            //ApplicationPhotoPath: "~\Images\ProfilePics\KMPL_47098_Images\img2_Images\210470984_FullPhoto.jpg,~\Images\ProfilePics\KMPL_47098_Images\img3_Images\210470984_FullPhoto.jpg,~\Images\ProfilePics\KMPL_47098_Images\img1_Images\210470984_FullPhoto.jpg",
+            Caste: "Telugu-Balija",
+            CasteID: 403,
+            Color: "Fair",
+            Cust_ID: "47098",
+            Cust_ProfileInterestsLog_ID: null,
+            CustomerApplicationPhoto: null,
+            CustomerFullPhoto: "http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_47098_Images/Img2_Images/210470984_FullPhoto.jpg",
+            DOB: "24-May-1989",
+            EduGroupnamenew: "--",
+            Education: null,
+            EducationGroup: "BE",
+            Employeedin: null,
+            FFNative: "Dindigul",
+            FirstName: "R",
+            FromTicketID: null,
+            FromTicketIdSuf: "--",
+            Gender: "Male",
+            GenderID: null,
+            Gothram: "THILAGA",
+            Height: "5'8 in - 172 cms",
+            HeightInCentimeters: 21,
+            Heightmax: null,
+            Heightmin: null,
+            HoroscopePath: "--",
+            HoroscopeStatus: 0,
+            Income: "40000",
+            Intercaste: false,
+            IsConfidential: false,
+            JobLocation: "Trichy",
+            KMPLID: "TYBAM2314",
+            LastName: "BAGESH PRABHU",
+            MFNative: "Madurai",
+            MaritalStatusID: 43,
+            MaxHeight: null,
+            MinHeight: null,
+            Mystatus: "--",
+            Name: null,
+            NoOfBrothers: 1,
+            NoOfSisters: 0,
+            OppStatus: "--",
+            Ownerflag: false,
+            //  Photo: "~\Images\ProfilePics\KMPL_47098_Images\img2_Images\210470984_FullPhoto.jpg",
+            PhotoCount: 3,
+            PhotoNames: "img2.jpg,img3.jpg,img1.jpg",
+            PlaceOfBirth: "Madurai",
+            Profession: "Admin Professional",
+            ProfileID: "210470984",
+            ProfileStatusID: null,
+            Property: "2500",
+            RegistrationDate: null,
+            Star: "Poorvashada",
+            SubCaste: null,
+            SuperConfidentila: 0,
+            SurName: null,
+            TOB: "20:30:00",
+            ToTicketID: null,
+            ToTicketIDSuf: "--",
+            TotalRows: 498,
+            TotalRowsKeyword: null,
+            Totalpages: null,
+            companyname: null,
+            countrylivingin: "India",
+            currency: "Rs",
+            educationspecialisation: null,
+            email: "rkkalp1960@gmail.com",
+            fathercaste: "--",
+            imageurl: null,
+            maritalstatus: "Unmarried",
+            mothercaste: "--",
+            mothertongue: null,
+            paid: 1,
+            serviceDate: ""
+        }];
         model.returnnullvalue = function(value) {
             var obj = helpService.checkstringvalue(value) && (value.toString()) !== "0" && (value.toString()) !== 0 ? (value.toString()) : null;
             return obj;
@@ -454,36 +615,159 @@
             return colors;
         };
 
+        model.getClickedCustID = function(custids) {
+            debugger;
+            //  modelpopupopenmethod.closepopuppoptopopup();
+            var StVal = model.hdnshortlistProfile;
+            var mismath;
+            if (StVal === '') {
+                StVal = custids;
+                mismath = [custids];
+            } else {
+                StVal += "," + custids;
+                mismath = StVal.split(",");
+            }
+            alerts.timeoutoldalerts(model.scope, 'profile has been shortlisted successfully', 'This profile already shortlisted', 2000);
+            model.hdnshortlistProfile = StVal;
+            model.hdnCustIdsForAlert = StVal;
 
+            var shortlisttxt = "  Shortlisted";
+            if (mismath.length <= 10) {
+                count++;
+                $("#progessDiv").html("<div class='progress-bar progress-bar-striped progress-bar-danger active' style='width: " + mismath.length + "%'><span >" + mismath.length + shortlisttxt + " </span></div>");
+            } else if (mismath.length > 10 && mismath.length <= 30) {
+                count = mismath.length == 11 ? 1 : (count + 1);
+                $("#progessDiv").html("<div class='progress-bar progress-bar-striped progress-bar-danger' style='width:10%;'><span></span></div>");
+                $("#progessDiv").append("<div class='progress-bar progress-bar-striped progress-bar-warning active' style='width: " + count + "%'><span >" + mismath.length + shortlisttxt + " </span></div>");
+            } else if (mismath.length > 30 && mismath.length <= 50) {
+                count = mismath.length == 31 ? 1 : (count + 1);
+                $("#progessDiv").html("<div class='progress-bar progress-bar-striped progress-bar-danger' style='width:10%;'><span></span></div><div class='progress-bar progress-bar-striped progress-bar-warning' style='width:20%;'><span></span></div>");
+                $("#progessDiv").append("<div class='progress-bar progress-bar-striped progress-bar-info active' style='width: " + count + "%'><span >" + mismath.length + shortlisttxt + " </span></div>");
+            } else {
+                count = mismath.length == 51 ? 1 : (count + 1);
+                $("#progessDiv").html("<div class='progress-bar progress-bar-striped progress-bar-danger' style='width:10%;'><span></span></div><div class='progress-bar progress-bar-striped progress-bar-warning' style='width:20%;'><span></span></div><div class='progress-bar progress-bar-striped progress-bar-info' style='width: 20%'><span > </span></div>");
+                $("#progessDiv").append("<div class='progress-bar progress-bar-striped progress-bar-success active' style='width: " + count + "%'><span >" + mismath.length + shortlisttxt + " </span></div>");
+            }
+            return false;
+        };
 
-        model.checkServicetoShortlist = function(custids, profileID, age, height, maritalstatus, caste, Servicedate, personalobj) {
-            var StValall = model.shortlistprofileids;
-            var profileIDlocal = JSON.stringify(profileID);
+        model.mismatchProfileCheck = function(custids, profileID, age, height, maritalstatus, caste, personalobj) {
+
+            debugger;
+            // modelpopupopenmethod.closepopuppoptopopup();
+            var StVal = model.hdnshortlistProfile;
+            var StValall = model.hdnCustIdsForAlert;
             if (StValall.indexOf(custids) != -1) {
                 alerts.timeoutoldalerts(model.scope, 'alert-danger', 'This profile already shortlisted', 2000);
             } else {
-                if (Servicedate === '') {
+                var strmismatch = '';
+                if (parseInt(age) < parseInt(personalobj.AgeMin) && parseInt(age) > parseInt(personalobj.AgeMax)) {
+                    strmismatch = "  Age not Matched to this profileid" + ",";
+                }
+                if (parseInt(height) < parseInt(personalobj.MinHeight) && parseInt(height) > parseInt(personalobj.MaxHeight)) {
+                    strmismatch += "  Height not Matched to this profileid" + ",";
+                }
+                if (parseInt(maritalstatus) != parseInt(personalobj.maritalstatusid)) {
+                    strmismatch += "  MaritalStatus not Matched to this profileid" + ",";
+                }
+                if (parseInt(caste) != parseInt(personalobj.casteid)) {
+                    strmismatch += "  Caste not Matched to this profileid";
+                }
+
+                if (strmismatch !== '') {
+                    var mismath = strmismatch.split(",");
                     model.divmismatchData = '';
                     model.divfooter = '';
-                    model.divmismatchData = "<a id=lnkmismatchProfileid href=javascript:void(0) onclick=ViewProfilewithvalue(" + profileIDlocal + ");>" + profileID + "</a>" + "<f style='color:black;'> Already service done with this profileid On </f>" + "<f style='color:Red;font-weight:bold;font-size:14px;'>" + Servicedate + "</f>" + "</br>" + "";
-                    ///   model.divfooter = "<input type='button'  onclick='return mismatchProfileCheck(" + custids + "," + profileID + "," + age + "," + height + "," + maritalstatus + "," + caste + ")'>Shortlist</input>";
-
-                    model.divfooter = "<md-button  class='md-raised md-warn md-hue-2' >Shortlist</md-button><md-button class='md-raised md-hue-1'>Cancel</md-button>";
+                    var profileIDlocal = JSON.stringify(profileID);
+                    var mismatch = [];
+                    for (var i = 0; i < mismath.length; i++) {
+                        mismatch.push($sce.trustAsHtml("<a href=javascript:void(0) onclick=ViewProfilewithvalue(" + profileIDlocal + ");>" + profileID + "</a>" + "<f style='color:black;'> Already service done with this profileid On </f>" + "<f style='color:Red;font-weight:bold;font-size:14px;'>" + mismath[i] + "</f>" + "</br>" + ""));
+                    }
+                    model.divmismatchData = $sce.trustAsHtml(mismatch.toString());
+                    model.divfooter = $sce.trustAsHtml("<button  class='md-raised md-warn md-hue-2' ng-click='page.model.getClickedCustID(" + custids + ")' >Shortlist</button>" +
+                        "<button  class='md-raised md-hue-1' ng-click='page.model.close()'>Cancel</button>");
                     modelpopupopenmethod.showPopupphotopoup('shortlistpopup.html', model.scope, '', "modalclassdashboardphotopopup");
-
                 } else {
-                    //model.mismatchProfileCheck(custids, profileID, age, height, maritalstatus, caste);
-
+                    model.getClickedCustID(custids);
                 }
             }
         };
 
+        model.checkServicetoShortlist = function(custids, profileID, age, height, maritalstatus, caste, Servicedate, personalobj) {
+            var StValall = model.hdnCustIdsForAlert;
+            var profileIDlocal = JSON.stringify(profileID);
+            if (StValall.indexOf(custids) != -1) {
+                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'This profile already shortlisted', 2000);
+            } else {
+                if (Servicedate !== '') {
+                    model.divmismatchData = '';
+                    model.divfooter = '';
+                    model.divmismatchData = $sce.trustAsHtml("<a id=lnkmismatchProfileid href=javascript:void(0) onclick=ViewProfilewithvalue(" + profileIDlocal + ");>" + profileID + "</a>" + "<f style='color:black;'> Already service done with this profileid On </f>" + "<f style='color:Red;font-weight:bold;font-size:14px;'>" + Servicedate + "</f>" + "</br>" + "");
+                    model.divfooter = $sce.trustAsHtml("<button  class='md-raised md-warn md-hue-2'  ng-click='page.model.mismatchProfileCheck(" + custids + "," + profileID + "," + age + "," + height + "," + maritalstatus + "," + caste + "," + personalobj + ")' >Shortlist</button>" +
+                        "<button   class='md-raised md-hue-1' ng-click='page.model.close()'>Cancel</button>");
+                    modelpopupopenmethod.showPopupphotopoup('shortlistpopup.html', model.scope, '', "modalclassdashboardphotopopup");
+                } else {
+                    model.mismatchProfileCheck(custids, profileID, age, height, maritalstatus, caste, personalobj);
+
+                }
+            }
+        };
+        model.close = function() {
+            modelpopupopenmethod.closepopuppoptopopup();
+        };
+
+        model.shortListPopup = function() {
+            var StValall = model.hdnshortlistProfile;
+            if (StValall !== '') {
+                modelpopupopenmethod.showPopupphotopoup('mainShortListProfiles.html', model.scope, 'lg', "modalclassdashboardphotopopup");
+                model.setSlides(model.arrayslide);
+            } else {
+                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please shortlist any Profile', 2000);
+            }
+        };
+        model.mainShortListProfile = function() {
+            debugger;
+            var hdnshortlistProfile = model.hdnshortlistProfile;
+            if (hdnshortlistProfile !== "" && hdnshortlistProfile !== undefined) {
+                var hdnCurrentSlideVal = model.hdnCurrentSlideVal;
+                if (hdnshortlistProfile !== "" || hdnCurrentSlideVal !== "") {
+                    var CustIDsCount = (hdnshortlistProfile !== "" ? hdnshortlistProfile : "0").split(',');
+                    if (hdnshortlistProfile !== "" && hdnCurrentSlideVal === "") {
+                        hdnshortlistProfile = (hdnCurrentSlideVal);
+                    } else if (hdnshortlistProfile !== "" && hdnCurrentSlideVal !== "") {
+                        if (hdnshortlistProfile.indexOf(hdnCurrentSlideVal) != -1) {} else {
+                            hdnshortlistProfile += "," + hdnCurrentSlideVal;
+                            model.hdnshortlistProfile = (hdnshortlistProfile);
+                        }
+                    }
+                    model.shortListPopup();
+                }
+            } else {
+                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please ShortList Profiles', 2000);
+
+            }
+        };
+
+        model.InnerShortList = function(custID) {
+            debugger;
+            var InnerShortList = model.hdnCurrentSlideVal;
+            if (InnerShortList.indexOf(custID) != -1) {
+                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'You have already Shortlisted this Profile ID', 4000);
+            } else {
+                InnerShortList = InnerShortList === '' ? custID : (InnerShortList + "," + custID);
+                model.hdnCurrentSlideVal = InnerShortList;
+                model.hdnshortlistProfile = InnerShortList;
+                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'profile has been shortlisted successfully', 4000);
+            }
+
+        };
         return model;
     }
     angular
         .module('Kaakateeya')
         .factory('searchpageModel', factory);
     factory.$inject = ['$http', 'searchpageServices', 'arrayConstants', 'SelectBindServiceApp',
-        'getArraysearch', '$timeout', 'helperservice', 'authSvc', 'alert', 'Commondependency', '$filter', 'modelpopupopenmethod'
+        'getArraysearch', '$timeout', 'helperservice',
+        'authSvc', 'alert', 'Commondependency', '$filter', 'modelpopupopenmethod', 'complex-slide-config', '$sce'
     ];
 })(angular);

@@ -8,62 +8,30 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout',
             templateUrl: "directives/complex-slide/index.html",
             link: function($scope, element, attrs) {
                 $scope.myInterval = 5000;
-                $scope.noWrapSlides = false;
+                $scope.noWrapSlides = true;
                 $scope.active = 0;
-                // var slides = scope.slides = [];
-                // slides = scope.slides = scope.model.slides;
-                // var slides = $scope.slides = [];
-
+                $scope.templateUrl = "templates/angularSlide.html";
+                $scope.Viwedslide = 1;
                 var currIndex = 0;
 
-                // $scope.addSlide = function() {
-                //     var newWidth = 600 + slides.length + 1;
-                //     slides.push({
-                //         image: '//unsplash.it/' + newWidth + '/300',
-                //         text: ['Nice image', 'Awesome photograph', 'That is so cool', 'I love that'][slides.length % 4],
-                //         id: currIndex++
-                //     });
-                // };
+                $scope.pauseResume = function(action) {
+                    if (action === 'play') {
+                        $scope.myInterval = 5000;
+                    } else {
+                        $scope.myInterval = 0;
+                    }
+                };
+                $scope.gotoSlide = function(slideIndex) {
+                    $scope.active = parseInt(slideIndex) - 1;
+                };
+                $scope.next = function(nextSlide, direction, nextIndex) {
+                    console.log(11111);
+                };
 
-                // $scope.randomize = function() {
-                //     var indexes = generateIndexesArray();
-                //     assignNewIndexesToSlides(indexes);
-                // };
-
-                // for (var i = 0; i < 4; i++) {
-                //     $scope.addSlide();
-                // }
-
-                // Randomize logic below
-
-                // function assignNewIndexesToSlides(indexes) {
-                //     for (var i = 0, l = slides.length; i < l; i++) {
-                //         slides[i].id = indexes.pop();
-                //     }
-                // }
-
-                // function generateIndexesArray() {
-                //     var indexes = [];
-                //     for (var i = 0; i < currIndex; ++i) {
-                //         indexes[i] = i;
-                //     }
-                //     return shuffle(indexes);
-                // }
-
-                // function shuffle(array) {
-                //     var tmp, current, top = array.length;
-
-                //     if (top) {
-                //         while (--top) {
-                //             current = Math.floor(Math.random() * (top + 1));
-                //             tmp = array[current];
-                //             array[current] = array[top];
-                //             array[top] = tmp;
-                //         }
-                //     }
-
-                //     return array;
-                // }
+                $scope.$watch('active', function(news, old) {
+                    $scope.Viwedslide = news;
+                    $scope.model.slide(old, news);
+                });
             }
         };
     }

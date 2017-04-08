@@ -56,7 +56,7 @@
             PhotoNames: "img2.jpg,img3.jpg,img1.jpg",
             PlaceOfBirth: "Madurai",
             Profession: "Admin Professional",
-            ProfileID: "210470984",
+            ProfileID: "121333",
             ProfileStatusID: null,
             Property: "2500",
             RegistrationDate: null,
@@ -161,7 +161,16 @@
             paid: 1,
             serviceDate: ""
         }];
+        model.totalRecords = arrayslide[0].TotalRows;
         model.setSlides(arrayslide);
+        model.slide = function(old, news) {
+            console.log(news);
+            if (news === 1) {
+                arrayslide[0].ProfileID = Math.random();
+                arrayslide[1].ProfileID = Math.random();
+                model.addSlides(arrayslide);
+            }
+        };
         return model;
     }
     angular

@@ -50,7 +50,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { name: 'myProfile', url: '/myProfilepage', isloginrequired: false },
             { name: 'matchFollowup', url: '/matchFollowuppage', isloginrequired: false },
             { name: 'marketing', url: '/marketingpage', isloginrequired: false },
-            { name: 'bootstrapSlide', url: '/bootstrapSlideshow', isloginrequired: false, module: 'complex-slide' }
+            { name: 'bootstrapSlide', url: '/bootstrapSlideshow', isloginrequired: false, module: 'complex-slide' },
+            { name: 'bootstrapPopup', url: '/bootstrapPopups', isloginrequired: false, module: 'complex-popup' }
         ];
         $ocLazyLoadProvider.config({
             debug: true
@@ -84,6 +85,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/complex-slide/directive.js',
                         'directives/complex-slide/model/config.js',
                         'directives/complex-slide/css/style.css'
+
+                    ]
+                },
+                {
+                    name: 'complex-popup',
+                    files: [
+                        'directives/complex-popup/directive.js',
+                        'directives/complex-popup/model/config.js',
+                        'directives/complex-popup/css/style.css'
 
                     ]
                 },
@@ -171,6 +181,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                                 $ocLazyLoad.load('constants');
                                 $ocLazyLoad.load('modules');
                                 $ocLazyLoad.load('complex-grid');
+                                $ocLazyLoad.load('complex-slide');
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             } else if (item.name === 'dashboard') {
                                 $ocLazyLoad.load('dashboard');
@@ -184,6 +195,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                                 // $ocLazyLoad.load('constants');
                                 // $ocLazyLoad.load('modules');
                                 // $ocLazyLoad.load('complex-grid');
+                                // $ocLazyLoad.load('complex-slide');
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             }
                         } else {
