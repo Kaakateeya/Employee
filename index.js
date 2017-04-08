@@ -28,12 +28,11 @@ app.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
 //regapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
 app.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/angularkaknew/';
 app.prefixPath = 'Images/SettlementImages/';
-app.S3PhotoPath = '';
+app.S3PhotoPath = app.GlobalImgPath + 'Images/ProfilePics/';
 app.Mnoimage = app.GlobalImgPath + "Images/customernoimages/Mnoimage.jpg";
 app.Fnoimage = app.GlobalImgPath + "Images/customernoimages/Fnoimage.jpg";
 app.accesspathdots = app.GlobalImgPathforimage + app.prefixPath;
 app.BucketName = 'angularkaknew';
-
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider',
     function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
@@ -199,7 +198,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             }
                         } else {
-
                             return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/src/scripts.min.js']);
                         }
                     }]
@@ -212,7 +210,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
         });
     }
 ]);
+
 app.run(function($rootScope, $state, $stateParams) {
+
     $rootScope.$on('$stateChangeStart', function(e, to) {
         if (to.data && to.data.requiresLogin) {
             if (sessionStorage.getItem('LoginEmpid') === null || sessionStorage.getItem('LoginEmpid') === undefined || sessionStorage.getItem('LoginEmpid') === "") {

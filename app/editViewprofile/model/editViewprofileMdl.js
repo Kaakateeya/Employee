@@ -47,18 +47,19 @@
         model.profileownerMethod = function(row) {
             var type = row.ProfileStatusID === 57 || row.ProfileStatusID === 393 ? 'S' : (row.ProfileStatusID === 56 || row.ProfileStatusID === 394 ? 'D' : (row.ProfileStatusID === 55 ? 'I' : ''));
             ViewAllCustomerService.SettleDeleteInactive(row.CustID, type).then(function(response) {
+                debugger;
                 model.settleArr = JSON.parse(response.data[0])[0];
                 console.log(response);
                 console.log(model.settleArr);
                 model.typeOfProfile = type;
-                modelinactive.columns = [
-                    { text: 'InactivateFromdate', key: 'InactivateFromdate', type: 'label' },
-                    { text: 'inactivetodate', key: 'inactivetodate', type: 'label' },
-                    { text: 'Reason', key: 'Reason4InActive', type: 'label' },
-                    { text: 'inactivaterequestby', key: 'inactivaterequestby', type: 'label' },
-                    { text: 'inactivate by Emp', key: 'ProfileOwnerEmpName', type: 'label' },
-                ];
-                model.setData(response.data);
+                // modelinactive.columns = [
+                //     { text: 'InactivateFromdate', key: 'InactivateFromdate', type: 'label' },
+                //     { text: 'inactivetodate', key: 'inactivetodate', type: 'label' },
+                //     { text: 'Reason', key: 'Reason4InActive', type: 'label' },
+                //     { text: 'inactivaterequestby', key: 'inactivaterequestby', type: 'label' },
+                //     { text: 'inactivate by Emp', key: 'ProfileOwnerEmpName', type: 'label' },
+                // ];
+                // model.setData(response.data);
             });
 
             modelpopupopenmethod.showPopup('settlePopup.html', model.scope, 'lg', 'SettleDelete');

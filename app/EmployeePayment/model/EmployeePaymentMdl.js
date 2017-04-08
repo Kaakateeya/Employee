@@ -64,7 +64,7 @@
         };
 
         model.viewProfileRedirect = function() {
-            state.go('employeeViewfullprofile', { ProfileID: model.ProfileID });
+            window.open('/Viewfullprofile/' + model.ProfileID, '_blank');
         };
         return model;
     }

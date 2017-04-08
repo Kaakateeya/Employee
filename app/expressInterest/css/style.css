@@ -1,0 +1,48 @@
+ .control-label {
+     cursor: default;
+     font-weight: 400;
+     font-size: 15px;
+     display: block;
+     color: rgb(0, 0, 0);
+     font-family: "Open Sans ", sans-serif !important;
+ }
+ 
+ .maroon {
+     color: maroon;
+ }
+ 
+ .maindivCls {
+     line-height: 44px;
+     font-weight: 700;
+ }
+ 
+ .ExpressintrstCls input[type="text "],
+ .ExpressintrstCls textarea,
+ select {
+     color: #000 !important;
+     border: 1px solid #ADA2A2 !important;
+     width: 111%;
+ }
+ 
+ .multiselect {
+     width: 111% !important;
+     border: 1px solid #ADA2A2 !important;
+ }
+ 
+ .form-horizontal .control-label {
+     padding-top: 7px;
+     margin-bottom: 0px;
+     text-align: right;
+ }
+ 
+ .requiredStar::after {
+     content: " * ";
+     float: right;
+     color: red;
+     font-size: 22px !important;
+     padding-left: 6px;
+ }
+ 
+ .ExpressintrstCls>.form-control {
+     width: 111% !important;
+ }

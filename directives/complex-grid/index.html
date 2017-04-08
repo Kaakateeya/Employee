@@ -1,19 +1,19 @@
 <div ng-if="model.data.length!==0">
-
-
     <div class="row">
+
         <div class="col-md-3 totalrecordCls" ng-hide="hidesearch">
             <label for="noofRecords" class="control-label">Total Records : {{model.TotalRows}}</label>
         </div>
-        <div class="col-md-3 m-b-2 pull-right mainDiv" ng-hide="hidesearch">
+        <div ng-class="hidesearch===true?'col-md-10 pull-left':'col-md-1 totalrecordCls'">
+            <button ng-click="exportexcel(model.data, model.columns)" class="css-class"><i class="fa fa-file-excel-o fa-6" aria-hidden="true"></i></button>
+        </div>
+        <div class="col-md-3 m-b-2 mainDiv totalrecordCls" ng-hide="hidesearch">
             <input class="form-control" type="text" ng-model="searchKeyword" placeholder="Search">
         </div>
-        <dv class="pull-right">
-            <!--<button ng-json-export-excel data="model.data" report-fields="{id: 'ID Heder', name: 'Name Header', price: 'Price Head'}" filename="'export-excel'" separator="," class="css-class"><i class="fa fa-file-excel-o fa-6" aria-hidden="true"></i></button>-->
+        <div class="col-md-5">
+            <ul uib-pagination total-items="model.TotalRows" ng-hide="hidepaging" ng-model="pagen" ng-change="model.pagechange(pagen)" max-size="5" class="pagination-md" boundary-link-numbers="true" rotate="false"></ul>
+        </div>
 
-
-            <button ng-click="exportexcel(model.data, model.columns)" class="css-class"><i class="fa fa-file-excel-o fa-6" aria-hidden="true"></i></button>
-        </dv>
     </div>
     <div class="clearfix"></div>
     <div class="row table-responsive">
@@ -130,7 +130,7 @@
     }
     
     .totalrecordCls {
-        margin-top: 12px;
+        margin-top: 19px;
     }
     
     .RegistrationDate {
