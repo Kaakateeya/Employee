@@ -47,6 +47,7 @@
         model.profileownerMethod = function(row) {
             var type = row.ProfileStatusID === 57 || row.ProfileStatusID === 393 ? 'S' : (row.ProfileStatusID === 56 || row.ProfileStatusID === 394 ? 'D' : (row.ProfileStatusID === 55 ? 'I' : ''));
             ViewAllCustomerService.SettleDeleteInactive(row.CustID, type).then(function(response) {
+                debugger;
                 model.settleArr = JSON.parse(response.data[0])[0];
                 console.log(response);
                 console.log(model.settleArr);
