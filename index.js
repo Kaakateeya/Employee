@@ -178,11 +178,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
 
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             } else {
-                                // $ocLazyLoad.load('commonjs');
-                                // $ocLazyLoad.load('directives');
-                                // $ocLazyLoad.load('constants');
-                                // $ocLazyLoad.load('modules');
-                                // $ocLazyLoad.load('complex-grid');
+                                $ocLazyLoad.load('commonjs');
+                                $ocLazyLoad.load('directives');
+                                $ocLazyLoad.load('constants');
+                                $ocLazyLoad.load('modules');
+                                $ocLazyLoad.load('complex-grid');
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             }
                         } else {
