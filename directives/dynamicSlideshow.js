@@ -556,6 +556,9 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     debugger;
                     scope.$emit("shortlistprofileids", custids, profileID, age, height, maritalstatus, caste, Servicedate, scope.personalobj);
                 };
+                scope.mainShortListProfiles = function() {
+                    scope.$emit("mainShortListProfile");
+                };
             }
         };
     }

@@ -6,21 +6,18 @@
         model.arraydata = [];
         model.init = function() {
             model.setSlides = function(data) {
+                model.slides = [];
                 model.slides = data;
                 model.slides = model.displayArray(model.slides, 1);
             };
             model.addSlides = function(data) {
+                data = model.displayArray(data, 10);
                 $.merge(model.slides, data);
             };
             model.displayArray = function(arr, frompage) {
                 model.headervisileble = true;
                 if (model.pagename === 'matchfollowup') {
                     model.headervisileble = false;
-                }
-                console.log("searchh");
-                console.log(arr);
-                if (frompage === 1) {
-                    model.arraydata = [];
                 }
                 $.each(arr, function(index, item) {
                     model.data = [];

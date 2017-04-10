@@ -95,29 +95,18 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     scope.reverse = !scope.reverse; //if true make it false and vice versa
                 };
                 scope.exportexcel = function(array, columns) {
-                    debugger;
                     var cloumsarr = [];
                     var selectarray = [];
-
-                    _.each(columns, function(item) {
-                        debugger;
-                        //  _.filter(item, [item.key !== undefined && item.key !== ""], function(inneritem) {
-                        cloumsarr.push({ columnid: item.key, title: item.text });
-                        // });
+                    _.each(_.filter(columns, function(item) { return item.key !== "" && item.key !== undefined; }), function(inneritem) {
+                        cloumsarr.push({ columnid: inneritem.key, title: inneritem.text });
                     });
                     var options = {
                         headers: true,
                         columns: cloumsarr
                     };
-                    // _.each(cloumsarr, function(item) {
-                    //  _.filter(item, [item.key !== undefined && item.key !== ""], function(inneritem) {
-                    // selectarray.push(item.columnid);
-                    // });
-                    // });
-                    // console.log(_.map(cloumsarr, 'columnid').join(','));
                     var join = _.map(cloumsarr, 'columnid').join(',');
-                    // var joinstring = joinstring !== null && joinstring !== "" ? (joinstring.split(',')).map(Number) : null;
-                    alasql('SELECT ProfileID,FirstName,Height,educationgroup,Age,Profession INTO  XLSX("john.xlsx",?) FROM ?', [options, array]);
+                    var select = 'SELECT ' + join + ' INTO  XLSX("john.xlsx",?) FROM ?';
+                    alasql(select, [options, array]);
                 };
 
                 scope.init();

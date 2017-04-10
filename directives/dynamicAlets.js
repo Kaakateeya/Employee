@@ -10,7 +10,7 @@ app.factory('alert', ['$uibModal', '$timeout', function(uibModal, timeout) {
                 size: size || 'lg',
                 backdrop: 'static',
                 // keyboard: false,
-                windowClass: classs
+                windowClass: classs,
 
             });
         },
@@ -36,6 +36,19 @@ app.factory('alert', ['$uibModal', '$timeout', function(uibModal, timeout) {
             scope.close = function() {
                 modalinstance.close();
             };
+        },
+        dynamicpopupopenwithtemp: function(url, scope, size, classs) {
+            modalinstance = uibModal.open({
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                template: '<div>sssssjiuuuuuu</div>',
+                scope: scope,
+                size: size || 'lg',
+                backdrop: 'static',
+                // keyboard: false,
+                windowClass: classs,
+
+            });
         },
         applycolors: function(value, id) {
             var colors = "selectborderclass";

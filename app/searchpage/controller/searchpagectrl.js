@@ -1,7 +1,7 @@
  (function(angular) {
      'use strict';
 
-     function controller(scope, searchpageModel, Commondependency, alerts, $stateParams) {
+     function controller(scope, searchpageModel, Commondependency, alerts, $stateParams, modelpopupopenmethod) {
          /* jshint validthis:true */
          var vm = this,
              model;
@@ -22,7 +22,19 @@
              model.sidebarnavshow = true;
              model.selectedIndex = $stateParams.id;
              model.searchpopuptext = model.selectedIndex === "0" ? "General Search" : "Advance Search";
-             alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
+             alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass", 'searchpageCtrl');
+             vm.dynamicFunction = 'shortlist';
+         };
+         vm.local = function() {
+             alert('Got Me');
+         };
+         vm.shortlist = function() {
+             alert('ShortList');
+             vm.dynamicFunction = 'Express';
+         };
+         vm.Express = function() {
+             alert('Express');
+
          };
          scope.$on('directivechangeevent', function(event, modal, type) {
              switch (type) {
@@ -107,9 +119,14 @@
          scope.$on("shortlistprofileids", function(event, custids, profileID, age, height, maritalstatus, caste, Servicedate, personalobj) {
              model.checkServicetoShortlist(custids, profileID, age, height, maritalstatus, caste, Servicedate, personalobj);
          });
+
+         scope.$on("mainShortListProfile", function(event) {
+             model.mainShortListProfile();
+         });
+
      }
 
      angular
          .module('Kaakateeya')
-         .controller('searchpageCtrl', ['$scope', 'searchpageModel', 'Commondependency', 'alert', '$stateParams', controller]);
+         .controller('searchpageCtrl', ['$scope', 'searchpageModel', 'Commondependency', 'alert', '$stateParams', 'modelpopupopenmethod', controller]);
  })(angular);
