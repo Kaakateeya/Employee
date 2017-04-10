@@ -11,87 +11,94 @@
 
         model.FromProfileID = function(ID) {
 
-            expressInterestService.getEIprofileID(6, ID, '').then(function(response) {
+            if (ID !== '' && ID !== null && ID !== undefined) {
+                expressInterestService.getEIprofileID(6, ID, '').then(function(response) {
 
-                var immmm = model.getImages(ID);
-                timeout(function() {
-                    var daattt = model.strimages
-                }, 1000);
-
-
-                if (response.data.length > 0) {
-                    if (response.data[0].length > 0) {
-                        model.ProfileStatusID = response.data[0][0].ProfileStatusID;
-                    }
-
-                    if (_.isArray(response.data[1]) && response.data[1].length > 0) {
-
-                        model.FromAgeMax = response.data[1][0].AgeMax;
-                        model.FromAgeMin = response.data[1][0].AgeMin;
-                        model.FromMaxHeight = response.data[1][0].MaxHeight;
-                        model.FromMinHeight = response.data[1][0].MinHeight;
-                        model.Frommaritalstatusid = response.data[1][0].maritalstatusid;
-                        model.FromGenderID = response.data[1][0].GenderID;
-                        model.Fromcasteid = response.data[1][0].casteid;
-                    }
-                }
-
-                if (model.ProfileStatusID == 54) {
-
-                    expressInterestService.getEIprofileID(1, ID, '').then(function(response) {
-
-                        model.relationarray = [];
-                        model.Modeservicearray = [];
-                        model.Emailsarray = [];
-                        model.SelectProfilelst = [];
-                        model.showHide = 1;
-                        if (response.data.length > 0) {
-
-                            if (response.data[0].length > 0) {
-                                model.relationarray.push({ "label": "--Select--", "title": "--Select--", "value": 0 });
-                                _.each(response.data[0], function(item) {
-                                    model.relationarray.push({ "label": item.NAME, "title": item.NAME, "value": item.ID });
-                                });
-                                model.exiObj.Relationship = 0;
-                            }
-                            if (response.data.length > 1) {
-                                model.NAME = response.data[1][0].NAME;
-                                model.Max_Offline_Allowed = response.data[1][0].Max_Offline_Allowed;
-                                model.OfflineMembershipExpiryDate = response.data[1][0].OfflineMembershipExpiryDate;
-                                model.Offline_Used_Count = response.data[1][0].Offline_Used_Count;
-                            }
-
-                            if (response.data.length > 2) {
-                                model.Modeservicearray.push({ "label": "--Select--", "title": "--Select--", "value": 0 });
-                                _.each(response.data[2], function(item) {
-                                    model.Modeservicearray.push({ "label": item.NAME, "title": item.NAME, "value": item.ID });
-                                });
-                                model.exiObj.ModeofService = 0;
-                            }
-
-                            if (response.data.length > 3) {
-                                model.Emailsarray = response.data[3];
-                            }
-
+                    if (response.data.length > 0) {
+                        if (response.data[0].length > 0) {
+                            model.ProfileStatusID = response.data[0][0].ProfileStatusID;
                         }
 
-                    });
-                } else {
+                        if (_.isArray(response.data[1]) && response.data[1].length > 0) {
+                            model.FromAgeMax = response.data[1][0].AgeMax;
+                            model.FromAgeMin = response.data[1][0].AgeMin;
+                            model.FromMaxHeight = response.data[1][0].MaxHeight;
+                            model.FromMinHeight = response.data[1][0].MinHeight;
+                            model.Frommaritalstatusid = response.data[1][0].maritalstatusid;
+                            model.FromGenderID = response.data[1][0].GenderID;
+                            model.Fromcasteid = response.data[1][0].casteid;
+                        }
+                    }
 
-                    model.OfflineMembershipExpiryDate = '';
-                    model.NAME = '';
-                    model.Max_Offline_Allowed = '';
-                    model.Offline_Used_Count = '';
-                    model.exiObj.Relationship = 0;
-                    model.exiObj.ModeofService = 0;
-                    model.exiObj.txtRelationName = '';
-                    model.Emailsarray = null;
-                    model.SelectProfilelst = null;
-                    model.showHide = 0;
-                    model.exiObj.txtFromprofileID = '';
-                    alert("ProfileId not Valid");
-                }
-            });
+                    if (model.ProfileStatusID == 54) {
+
+                        expressInterestService.getEIprofileID(1, ID, '').then(function(response) {
+
+                            model.relationarray = [];
+                            model.Modeservicearray = [];
+                            model.Emailsarray = [];
+                            model.SelectProfilelst = [];
+                            model.showHide = 1;
+                            if (response.data.length > 0) {
+
+                                if (response.data[0].length > 0) {
+                                    model.relationarray.push({ "label": "--Select--", "title": "--Select--", "value": 0 });
+                                    _.each(response.data[0], function(item) {
+                                        model.relationarray.push({ "label": item.NAME, "title": item.NAME, "value": item.ID });
+                                    });
+                                    model.exiObj.Relationship = 0;
+                                }
+                                if (response.data.length > 1) {
+                                    model.NAME = response.data[1][0].NAME;
+                                    model.Max_Offline_Allowed = response.data[1][0].Max_Offline_Allowed;
+                                    model.OfflineMembershipExpiryDate = response.data[1][0].OfflineMembershipExpiryDate;
+                                    model.Offline_Used_Count = response.data[1][0].Offline_Used_Count;
+                                }
+
+                                if (response.data.length > 2) {
+                                    model.Modeservicearray.push({ "label": "--Select--", "title": "--Select--", "value": '' });
+                                    _.each(response.data[2], function(item) {
+                                        model.Modeservicearray.push({ "label": item.NAME, "title": item.NAME, "value": item.ID });
+                                    });
+                                    model.exiObj.ModeofService = '';
+                                }
+
+                                if (response.data.length > 3) {
+                                    model.Emailsarray = response.data[3];
+                                    console.log(model.Emailsarray);
+                                    model.emailselectedArr = [];
+                                    if (model.Emailsarray.length > 0) {
+                                        _.each(model.Emailsarray, function(item) {
+                                            model.emailselectedArr.push(item.Email);
+                                        });
+                                        model.exiObj.chkmails = model.emailselectedArr;
+                                    }
+                                }
+
+
+                            }
+
+                        });
+                    } else {
+
+                        model.OfflineMembershipExpiryDate = '';
+                        model.NAME = '';
+                        model.Max_Offline_Allowed = '';
+                        model.Offline_Used_Count = '';
+                        model.exiObj.Relationship = 0;
+                        model.exiObj.ModeofService = '';
+                        model.exiObj.txtRelationName = '';
+                        model.Emailsarray = null;
+                        model.SelectProfilelst = null;
+                        model.showHide = 0;
+                        model.exiObj.txtFromprofileID = '';
+                        alert("ProfileId not Valid");
+                    }
+                });
+
+            }
+
+
         };
         model.RelationshipChange = function(ID, RelationshipID) {
             expressInterestService.getEIprofileID(3, ID, RelationshipID).then(function(response) {
@@ -99,71 +106,73 @@
             });
         };
         model.ToprofileIDChange = function(ID) {
-            var chkProfileID = _.where(model.SelectProfilelst, { label: model.exiObj.txtToprofileID });
 
-            if (chkProfileID.length > 0) {
-                model.exiObj.txtToprofileID = '';
-                alert('ProfileID has been already added to the list');
-            } else {
-                if (model.exiObj.txtToprofileID.length != 0) {
-                    if (model.exiObj.txtFromprofileID != null && model.exiObj.txtFromprofileID.length != 0) {
-                        model.mismatch = [];
-                        expressInterestService.getEIprofileID(6, ID, '').then(function(response) {
-                            if (_.isArray(response.data) && response.data.length > 0) {
-                                if (_.isArray(response.data[0]) && response.data[0].length > 0) {
-                                    model.ToProfileStatusID = response.data[0][0].ProfileStatusID;
-                                }
-                                if (_.isArray(response.data[1]) && response.data[1].length > 0) {
-                                    model.ToAgeMax = response.data[1][0].AgeMax;
-                                    model.ToAgeMin = response.data[1][0].AgeMin;
-                                    model.ToMaxHeight = response.data[1][0].MaxHeight;
-                                    model.ToMinHeight = response.data[1][0].MinHeight;
-                                    model.Tomaritalstatusid = response.data[1][0].maritalstatusid;
-                                    model.ToGenderID = response.data[1][0].GenderID;
-                                    model.Tocasteid = response.data[1][0].casteid;
-
-
-                                    if ((model.FromAgeMax) < (model.FromAgeMin) && model.ToAgeMax > (model.ToAgeMin)) {
-
-                                        model.mismatch.push(" Age not Matched to this profileid");
+            if (ID !== '' && ID !== null && ID !== undefined) {
+                var chkProfileID = _.where(model.SelectProfilelst, { label: model.exiObj.txtToprofileID });
+                if (chkProfileID.length > 0) {
+                    model.exiObj.txtToprofileID = '';
+                    alert('ProfileID has been already added to the list');
+                } else {
+                    if (ID != 0) {
+                        if (model.exiObj.txtFromprofileID != null && model.exiObj.txtFromprofileID.length != 0) {
+                            model.mismatch = [];
+                            expressInterestService.getEIprofileID(6, ID, '').then(function(response) {
+                                if (_.isArray(response.data) && response.data.length > 0) {
+                                    if (_.isArray(response.data[0]) && response.data[0].length > 0) {
+                                        model.ToProfileStatusID = response.data[0][0].ProfileStatusID;
                                     }
-                                    if (model.ToMinHeight < (model.FromMinHeight) && model.ToMaxHeight > (model.FromMaxHeight)) {
+                                    if (_.isArray(response.data[1]) && response.data[1].length > 0) {
+                                        model.ToAgeMax = response.data[1][0].AgeMax;
+                                        model.ToAgeMin = response.data[1][0].AgeMin;
+                                        model.ToMaxHeight = response.data[1][0].MaxHeight;
+                                        model.ToMinHeight = response.data[1][0].MinHeight;
+                                        model.Tomaritalstatusid = response.data[1][0].maritalstatusid;
+                                        model.ToGenderID = response.data[1][0].GenderID;
+                                        model.Tocasteid = response.data[1][0].casteid;
+                                        if ((model.FromAgeMax) < (model.FromAgeMin) && model.ToAgeMax > (model.ToAgeMin)) {
 
-                                        model.mismatch.push("  Height not Matched to this profileid");
-                                    }
-                                    if (model.Tomaritalstatusid != model.Frommaritalstatusid) {
+                                            model.mismatch.push(" Age not Matched to this profileid");
+                                        }
+                                        if (model.ToMinHeight < (model.FromMinHeight) && model.ToMaxHeight > (model.FromMaxHeight)) {
 
-                                        model.mismatch.push("  MaritalStatus not Matched to this profileid");
-                                    }
-                                    if (model.ToGenderID == model.FromGenderID) {
+                                            model.mismatch.push("  Height not Matched to this profileid");
+                                        }
+                                        if (model.Tomaritalstatusid != model.Frommaritalstatusid) {
 
-                                        model.mismatch.push(" Gender not Matched to this profileid");
-                                    }
-                                    if (model.Tocasteid != model.Fromcasteid) {
-                                        model.mismatch.push("  Caste not Matched to this profileid");
+                                            model.mismatch.push("  MaritalStatus not Matched to this profileid");
+                                        }
+                                        if (model.ToGenderID == model.FromGenderID) {
+
+                                            model.mismatch.push(" Gender not Matched to this profileid");
+                                        }
+                                        if (model.Tocasteid != model.Fromcasteid) {
+                                            model.mismatch.push("  Caste not Matched to this profileid");
+                                        }
                                     }
 
-                                }
-                                if (model.ToProfileStatusID == 54) {
-                                    if (model.mismatch.length > 0) {
-                                        modelpopupopenmethod.showPopup('Conflict.html', model.scope, 'md', '');
+                                    if (model.ToProfileStatusID == 54) {
+                                        if (model.mismatch.length > 0) {
+                                            modelpopupopenmethod.showPopup('Conflict.html', model.scope, 'md', '');
+                                        } else {
+                                            model.pushToProfileIDs();
+                                        }
+
                                     } else {
-                                        model.pushToProfileIDs();
-                                    }
-                                } else {
-                                    model.exiObj.txtToprofileID = '';
-                                    alert("ProfileId not Valid");
-                                }
-                            }
-                        });
+                                        model.exiObj.txtToprofileID = '';
+                                        alert("ProfileId not Valid");
 
-                    } else {
-                        model.exiObj.txtToprofileID = '';
-                        alert("Please Enter The FromProfileID");
+                                        console.log('repeadted alerts');
+                                    }
+                                }
+                            });
+
+                        } else {
+                            model.exiObj.txtToprofileID = '';
+                            alert("Please Enter The FromProfileID");
+                        }
                     }
                 }
             }
-
         };
 
         model.closepopup = function() {
@@ -184,6 +193,7 @@
         };
 
         model.Submit = function(obj) {
+
             var ExpressArray = [];
             var strMails = '';
             if (_.isArray(model.Emailsarray) && model.Emailsarray.length > 0) {
@@ -221,6 +231,7 @@
                 ExpressArray.push(inputObj);
             });
 
+
             // expressInterestService.submitExpressintrst(ExpressArray).then(function(response) {
             //     console.log(response);
             // });
@@ -242,8 +253,6 @@
                 }
             });
         };
-
-
         model.bindImages = function(val) {
 
             model.displayToimages = [];
@@ -253,12 +262,32 @@
                 var imgs = strimgArr[0].split(',');
                 _.each(imgs, function(item) {
                     var imgwithnoJpg = (item.split('.'))[0];
-                    model.displayToimages.push(app.S3PhotoPath + "KMPL_91035_Images/" + (imgwithnoJpg.replace("i", "I")) + "_Images/" + profileid + "_FullPhoto.jpg");
+                    model.displayToimages.push({ src: app.S3PhotoPath + "KMPL_91035_Images/" + (imgwithnoJpg.replace("i", "I")) + "_Images/" + profileid + "_FullPhoto.jpg", name: imgwithnoJpg.replace("i", "I"), boolval: true, profileID: profileid });
                 });
             }
             modelpopupopenmethod.showPopup('TophotosPoup.html', model.scope, 'lg', '');
         };
+        model.testchk = function(val) {
+            alert(val);
+        };
 
+        model.applyImages = function() {
+            model.selectedimages = [];
+            var seletedimages = _.where(model.displayToimages, { boolval: true });
+            _.each(seletedimages, function(item) {
+                model.selectedimages.push(item.name);
+            });
+            model.selectedimages = model.selectedimages.join(',');
+            if (seletedimages.length > 0) {
+                model.selectedimages = model.selectedimages + ';' + seletedimages[0].profileID;
+                _.map(model.SelectProfilelst, function(item) {
+                    if (item.label === seletedimages[0].profileID) {
+                        item.value = model.selectedimages;
+                    }
+                });
+            }
+            modelpopupopenmethod.closepopup();
+        };
         return model;
     }
     angular
