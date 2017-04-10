@@ -68,7 +68,7 @@
                                 });
                                 model.exiObj.ModeofService = 0;
                             }
-                            debugger;
+
                             if (response.data.length > 3) {
                                 model.Emailsarray = response.data[3];
                             }
@@ -142,7 +142,7 @@
                                     if (model.Tocasteid != model.Fromcasteid) {
                                         model.mismatch.push("  Caste not Matched to this profileid");
                                     }
-                                    debugger;
+
                                 }
                                 if (model.ToProfileStatusID == 54) {
                                     if (model.mismatch.length > 0) {
@@ -172,7 +172,7 @@
         };
 
         model.pushToProfileIDs = function(type) {
-            debugger;
+
             if (type === 'conflict')
                 modelpopupopenmethod.closepopup();
             model.getImages(model.exiObj.txtToprofileID);
@@ -220,14 +220,14 @@
                 };
                 ExpressArray.push(inputObj);
             });
-            debugger;
+
             // expressInterestService.submitExpressintrst(ExpressArray).then(function(response) {
             //     console.log(response);
             // });
         };
 
         model.getImages = function(profileid) {
-            debugger;
+
             var imgArr = [];
             var strimgs = '';
             model.strimages = '';
@@ -245,7 +245,7 @@
 
 
         model.bindImages = function(val) {
-            debugger;
+
             model.displayToimages = [];
             if (val !== '') {
                 var strimgArr = val[0].split(';');

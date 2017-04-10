@@ -318,7 +318,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     commonpage.closepopuppoptopopup();
                 };
                 scope.$on("slideshowdynamic", function(event, array, totalrows, tablename, frompage) {
-                    debugger;
                     console.log(tablename);
                     switch (tablename) {
                         case "No-Service From Last 1 Month":
@@ -553,7 +552,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     commonpage.showPopup('Actions.html', scope, 'lg', "Action");
                 };
                 scope.shortlistprofiles = function(custids, profileID, age, height, maritalstatus, caste, Servicedate) {
-                    debugger;
                     scope.$emit("shortlistprofileids", custids, profileID, age, height, maritalstatus, caste, Servicedate, scope.personalobj);
                 };
                 scope.mainShortListProfiles = function() {

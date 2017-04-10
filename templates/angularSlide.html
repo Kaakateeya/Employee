@@ -1,5 +1,5 @@
 <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
-    <div style="margin-left:60px;" class="edit_page_details_item_desc clearfix" ng-repeat="slidedata in slide.itmArr" ng-if="slidedata.label!=='backendFields'">
+    <div style="margin-left:60px;" class="edit_page_details_item_descsearch clearfix" ng-repeat="slidedata in slide.itmArr" ng-if="slidedata.label!=='backendFields'">
         <h6> <span style="font-weight: bold;">{{slidedata.label}}</span></h6>
         <h5>
             <div style="color:Black;"> <span>{{slidedata.value}}</span> </div>
@@ -12,10 +12,30 @@
         </h5>
     </div>
     <div class="clearfix"></div>
+    <div style="margin-left:60px;" class="edit_page_details_item_descsearch clearfix">
+        <div class="row">
+            <label style="color:maroon">From Status :</label>
+            <label style="color:#000"><span ng-bind-html="model.statusbind(slide.Mystatus.trim())"></span><span>
+                        <img style="height: 29px;" ng-if="slide.Mystatus.trim()==='I'"  ng-show="slide.Mystatus.trim()==='I'" src="src/images/heartgrren.gif"><img>
+                         <img style="height: 29px;"  ng-if="slide.Mystatus.trim()==='NI'" ng-show="slide.Mystatus.trim()==='NI'" ng-src="src/images/brkhrtgreen.gif"><img></span></label>
+            <md-button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-click="model.proceedanddontproceed('btnProceed',personalobj.Cust_ID,slide.Custid,slide.Cust_ProfileInterestsLog_ID)" ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI' && slide.Mystatus.trim()!=='--'">Proceed</md-button>
+            <md-button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-click="model.proceedanddontproceed('btnDontProceed',personalobj.Cust_ID,slide.Custid,slide.Cust_ProfileInterestsLog_ID)" ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI' && slide.Mystatus.trim()!=='--'">Dont Proceed</md-button>
+            <md-button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-if="slide.Mystatus.trim()==='I' || slide.Mystatus.trim()==='NI'" ng-show="slide.FromTicketIdSuf.trim()!=='--'">{{slide.FromTicketIdSuf}}</md-button>
+        </div>
+        <br>
+    </div>
+    <div class="clearfix"></div>
 </div>
 <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12" style="margin-top: -4px;">
     <div class="row">
-        <a ng-click="model.InnerShortList(slide.Custid)" class="Heart center-block" href="javascript:void(0);" ng-show="model.getpageloadobject.Cust_ID!=='' && model.getpageloadobject.Cust_ID!==null && model.getpageloadobject.Cust_ID!==undefined">
+        <a ng-hide="innerslideshort" ng-click="model.InnerShortList(slide.Custid)" class="Heart center-block" href="javascript:void(0);" ng-show="model.getpageloadobject.Cust_ID!=='' && model.getpageloadobject.Cust_ID!==null && model.getpageloadobject.Cust_ID!==undefined">
+            <div class="col-lg-2"><img src="src/images/two.png" style="margin-top:-4px;" width="40" height="38"></div>
+            <div class="col-lg-1">
+                <lable style="font-size: 13pt;color:#337ab7">Shortlist</lable>
+            </div>
+        </a>
+        <a ng-hide="mainshortlist" ng-click="model.checkServicetoShortlist(slide.Custid,slide.ProfileID,slide.Age,slide.HeightInCentimeters,slide.MaritalStatusID,slide.CasteID,slide.serviceDate,model.getpageloadobject)" class="Heart center-block" href="javascript:void(0);"
+            ng-show="model.getpageloadobject.Cust_ID!=='' && model.getpageloadobject.Cust_ID!==null && model.getpageloadobject.Cust_ID!==undefined">
             <div class="col-lg-2"><img src="src/images/two.png" style="margin-top:-4px;" width="40" height="38"></div>
             <div class="col-lg-1">
                 <lable style="font-size: 13pt;color:#337ab7">Shortlist</lable>
@@ -26,5 +46,23 @@
         <br>
         <div class="col-lg-8 col-lg-offset-5"><a href="javascript:void(0)"><span style="color:Black;font-size:9pt;">No of Photos {{slide.PhotoCount}}</span></a></div>
     </div>
-
+    <div class="edit_page_details_item_descsearch clearfix">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="row">
+                    <label style="color:maroon">To Status:</label>
+                    <label style="color:#000"><span ng-bind-html="statusbind(slide.OppStatus.trim())"></span>
+                            <img  style="height: 29px;" ng-if="slide.OppStatus.trim()==='I'" ng-show="slide.OppStatus.trim()==='I'" src="src/images/heartgrren.gif"><img>
+                            <img style="height: 29px;" ng-if="slide.OppStatus.trim()==='NI'" ng-show="slide.OppStatus.trim()==='NI'" src="src/images/brkhrtgreen.gif"><img></label>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row">
+                    <label style="color:maroon">Ticket ID:</label>
+                    <label style="color:#000">{{slide.ToTicketIDSuf}}</label>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
 </div>

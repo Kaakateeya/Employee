@@ -5,19 +5,32 @@
         var model = {};
         model.arraydata = [];
         model.init = function() {
-            model.setSlides = function(data) {
+            model.setSlides = function(data, topage) {
                 model.slides = [];
                 model.slides = data;
-                model.slides = model.displayArray(model.slides, 1);
+                model.slides = model.displayArray(model.slides, topage);
             };
-            model.addSlides = function(data) {
-                data = model.displayArray(data, 10);
-                $.merge(model.slides, data);
+            model.addSlides = function(data, arrayslide) {
+                data = model.displayArray(data, 11);
+                $.merge(arrayslide, data);
             };
-            model.displayArray = function(arr, frompage) {
+
+            model.innersetSlides = function(data) {
+                model.slideshowpopup = [];
+                model.slideshowpopup = data;
+                model.slideshowpopup = model.displayArray(model.slideshowpopup, 1);
+            };
+            model.backtosearchpage = function() {
+                model.divcontrolls = true;
+                model.headervisileble = false;
+            };
+            model.displayArray = function(arr, topage) {
                 model.headervisileble = true;
                 if (model.pagename === 'matchfollowup') {
                     model.headervisileble = false;
+                }
+                if (topage === 10) {
+                    model.arraydata = [];
                 }
                 $.each(arr, function(index, item) {
                     model.data = [];
@@ -78,7 +91,13 @@
                         ToTicketIDSuf: item.ToTicketIDSuf,
                         FromTicketID: item.FromTicketID,
                         ToTicketID: item.ToTicketID,
-                        Cust_ProfileInterestsLog_ID: item.Cust_ProfileInterestsLog_ID
+                        Cust_ProfileInterestsLog_ID: item.Cust_ProfileInterestsLog_ID,
+                        Age: item.Age,
+                        HeightInCentimeters: item.HeightInCentimeters,
+                        MaritalStatusID: item.MaritalStatusID,
+                        CasteID: item.CasteID,
+                        serviceDate: item.serviceDate,
+                        ProfileID: item.ProfileID
                     });
                 });
                 return model.arraydata;

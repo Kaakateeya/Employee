@@ -1,3 +1,11 @@
+<!--
+<script type="text/ng-template" id="mainShortListProfiles.html">
+               <div class="modal-body">
+                <complex-slide model="page.model" slides="page.model.arrayslide" innerslide="1"></complex-slide>
+                <div class="clearfix"></div>
+            </div>
+    </div>
+</script>-->
 <div class="right_col" role="main" id="generalsearchdiv">
     <div class="search_page_main" ng-show="page.model.divcontrolls">
         <div class="sample" layout="column" ng-cloak>
@@ -848,9 +856,8 @@
 
     </div>
     <div>
-
-        <slide-show nghide="page.model.slideshowtrue" dynamicheader="'false'" slidetype="'page'" headertemplate="'templates/SlideHeader.html'" bodytemplate="'templates/slideDesign.html'"></slide-show>
-
+        <!--<slide-show nghide="page.model.slideshowtrue" dynamicheader="'false'" slidetype="'page'" headertemplate="'templates/SlideHeader.html'" bodytemplate="'templates/slideDesign.html'"></slide-show>-->
+        <complex-slide model="page.model" slides="page.model.slides" innerslide="0"></complex-slide>
         <bootstrap-table btnclick="'true'" array="[]" id="ftable" removeobjs="['Cust_ID','paid','Name','SurName','Education','EduGroupnamenew','Income','Property','companyname',
         'TotalRowsKeyword',
             'CustomerFullPhoto','CustomerApplicationPhoto','RegistrationDate','Ownerflag',
@@ -988,7 +995,7 @@
             <div class="modal-footer">
            <div id="divfooter">               
              
-             <button  class='md-raised md-warn md-hue-2' ng-click="page[page.dynamicFunction]()">Shortlist</button>
+             <button  class='md-raised md-warn md-hue-2' ng-click="page.model[page.model.dynamicFunction]()">Shortlist</button>
              <button  class='md-raised md-hue-1' ng-click='page.model.close()'>Cancel</button>
           </div>
       
@@ -997,15 +1004,19 @@
 
 
 
-
-<script type="text/ng-template" id="mainShortListProfiles.html">
-               <div class="modal-body">
-                <complex-slide model="page.model"></complex-slide>
-                <div class="clearfix"></div>
-            </div>
+  <script type="text/ng-template" id="TabClosePopup.html">
+    <div class="modal-message modal-danger">
+        <div class="modal-header" id="divhead1">
+            <i class="glyphicon glyphicon-fire"></i>
+        </div>
+        <div class="modal-body">
+            {{page.model.modalbodyID1}}
+        </div>
+        <div class="modal-footer">
+            <button id="btnclose" class="btn btn-default" ng-click="modalpopupclose1()">Close</button>
+        </div>
     </div>
 </script>
-  
     </div>
     
     <style type="text/css">
