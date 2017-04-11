@@ -3,16 +3,16 @@
         <div class="col-lg-3">
             <i class="fa fa-chevron-down searchpageheader" aria-hidden="true" data-toggle="collapse" href="#collapseOne"></i>
             <label style="color:#585050">Total Records :</label>
-            <label style="color:blue"> {{activeslide}}</label>
+            <label style="color:blue"> {{(activeslide)+1}}</label>
             <label style="color:#585050"> of {{model.totalRecords}}</label>
         </div>
         <div class="col-lg-5" id="divviewedprofiles">
             <div class="row" style="padding-top: 5px;">
                 <div class="col-lg-5">
-                    Viewed &nbsp;&nbsp;<label id="lnkLastSlide" style="color: blue;">{{Viwedslide}}&nbsp;&nbsp;</label><label>Profiles</label>
+                    Viewed &nbsp;&nbsp;<label id="lnkLastSlide" style="color: blue;">{{(Viwedslide)+1}}&nbsp;&nbsp;</label><label>Profiles</label>
                 </div>
                 <div class="col-lg-1">
-                    <input type="text" id="txtGotoVal" class="form-control" style="width: 60px; height: 30px;" ng-blur="gotoSlide(txtGotoVal)">
+                    <input type="text" id="txtGotoVal" ng-model="txtGotoVal" class="form-control" style="width: 60px; height: 30px;" ng-blur="gotoSlide(txtGotoVal)">
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                                     Without Profile ID
                                 </label>
                         <label style="color: black" ng-show="model.getpageloadobject.Cust_ID!=='' && model.getpageloadobject.Cust_ID!==null && model.getpageloadobject.Cust_ID!==undefined">{{model.getpageloadobject.SelfName}}</label>
-                        <a ng-click="viewfullprofile(model.getpageloadobject.ProfileID);" href="javascript:void(0)" ng-show="model.getpageloadobject.Cust_ID!=='' && model.getpageloadobject.Cust_ID!==null && model.getpageloadobject.Cust_ID!==undefined">({{model.getpageloadobject.ProfileID}})</a>
+                        <a ng-click="model.viewfullprofile(model.getpageloadobject.ProfileID);" href="javascript:void(0)" ng-show="model.getpageloadobject.Cust_ID!=='' && model.getpageloadobject.Cust_ID!==null && model.getpageloadobject.Cust_ID!==undefined">({{model.getpageloadobject.ProfileID}})</a>
                         <a style="width: 20px; margin-right: 13px;" data-toggle="modal" href="#divlookingmore">More</a>
                         <a ng-click="pagesredirect('Partner',model.getpageloadobject.Cust_ID)" href="javascript:void(0)" ng-show="model.getpageloadobject.Cust_ID!=='' && model.getpageloadobject.Cust_ID!==null && model.getpageloadobject.Cust_ID!==undefined">Edit Partpreference</a>
                     </div>

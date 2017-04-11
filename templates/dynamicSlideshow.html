@@ -125,7 +125,7 @@
                                             <div style="color:Black;"> <span>{{slidedata.value}}</span> </div>
                                             <span ng-if="slidedata.label=='ProfileID'">&nbsp;<a ng-click="viewfullprofile(slidedata.ProfileID)" href="javascript:void(0);" ng-class="slidedata.paid==='1'?'paidCls':'unpaidCls'" >{{slidedata.ProfileID}}</a> {{slidedata.KMPLID}} {{(slidedata.IsConfidential===1) ||(slidedata.IsConfidential==='1')?'C':''}}  
                                                 {{(slidedata.SuperConfidentila==='1') ||(slidedata.SuperConfidentila===1)?'SC':''}}  
-                                                <input ng-click="horoscopeimage(slidedata.HoroscopeImage)" ng-show="slidedata.HoroscopeStatus===1" src='src/images/ico_horoscope.jpg' style='height:20px;width:25px;' type='image'>
+                                                <input ng-click="horoscopeimage(slidedata.HoroscopeImage,'horo')" ng-show="slidedata.HoroscopeStatus===1" src='src/images/ico_horoscope.jpg' style='height:20px;width:25px;' type='image'>
                                               </span>
                                             <div class="clearfix">
                                             </div>
@@ -205,11 +205,11 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                                         <div style="margin-left:69px;" class="edit_page_details_item_desc clearfix">
-                                            <h6> <span style="font-weight: bold;">MMS Count
+                                            <h6> <span style="font-weight: bold;">Match Meetings
                                            </span></h6>
                                             <h5>
                                                 <div style="color:Black;">
-                                                    <a class="alllinkscolor" href="javascript:void(0)" ng-click="horoscopeimage(itemval.SAForm)"> {{itemval.matchmarktingcount}}</a>
+                                                    <a class="alllinkscolor" href="javascript:void(0)" ng-click="horoscopeimage(itemval.SAForm,'SA')"> {{itemval.matchmarktingcount}}</a>
                                                 </div>
                                                 <div class="clearfix">
                                                 </div>
@@ -242,7 +242,7 @@
                                            </span></h6>
                                             <h5>
                                                 <div style="color:Black;">
-                                                    <a class="alllinkscolor" ng-show="itemval.SAForm!==null" href="javascript:void(0)" ng-click="horoscopeimage(itemval.SAForm)">View SA Form </a>
+                                                    <a class="alllinkscolor" ng-show="itemval.SAForm!==null" href="javascript:void(0)" ng-click="horoscopeimage(itemval.SAForm,'SA')">View SA Form </a>
                                                     <a href="javascript:void(0)" ng-click="saformupload(itemval.ProfileID)" class="alllinkscolor" ng-show="itemval.SAForm===null">Upload SA Form</a>
                                                 </div>
                                                 <div class="clearfix">
@@ -340,7 +340,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" ng-click="closepopuppoptopopup()">×</button>
-            <h4 class="modal-title">Photo Album</h4>
+            <h4 class="modal-title">{{dynamicphotopopupheader}}</h4>
         </div>
         <div class="modal-body">
             <div class="bs-example">

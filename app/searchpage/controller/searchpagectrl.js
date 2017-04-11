@@ -18,6 +18,7 @@
              model.generalsearch = {};
              model.advancedsearch = {};
              model.divcontrolls = true;
+             model.headervisileble = false;
              model.slideshowtrue = false;
              model.sidebarnavshow = true;
              model.selectedIndex = $stateParams.id;

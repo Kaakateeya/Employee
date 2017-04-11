@@ -14,8 +14,8 @@
                             <div class="login-data">
                                 <div class="row clear">
                                     <label for="user">
-                                Username:</label>
-                                    <input ng-keyup="loginForm.$valid && $event.keyCode == 13 && page.model.loginsubmit(page.model.loginsubmit,loginForm.usernameemployee.$error,loginForm.passwordemployee.$error,loginForm.$valid)" type="text" size="25" class="text" ng-model="page.model.loginsubmit.usernameemployee"
+                                               User Name:</label>
+                                    <input focus-me="true" ng-keyup="loginForm.$valid && $event.keyCode == 13 && page.model.loginsubmit(page.model.loginsubmit,loginForm.usernameemployee.$error,loginForm.passwordemployee.$error,loginForm.$valid)" type="text" class="text" ng-model="page.model.loginsubmit.usernameemployee"
                                         name="usernameemployee" required>
                                     <div ng-show="page.model.usernameemployee" ng-messages="loginForm.usernameemployee.$error" style="color: red;">
                                         <div ng-message="required">This is required.</div>
@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="row clear">
                                     <label for="password">
-                                Password:</label>
+                                           Password:</label>
 
                                     <input ng-keyup="loginForm.$valid && $event.keyCode == 13 && page.model.loginsubmit(page.model.loginsubmit,loginForm.usernameemployee.$error,loginForm.passwordemployee.$error,loginForm.$valid)" type="Password" class="text" ng-model="page.model.loginsubmit.passwordemployee"
                                         name="passwordemployee" required>

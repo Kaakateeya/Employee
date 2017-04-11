@@ -1,3 +1,4 @@
+<!--<button  class='md-raised md-warn md-hue-2' ng-click="page.model[page.model.dynamicFunction]()">Shortlist</button>-->
 <!--
 <script type="text/ng-template" id="mainShortListProfiles.html">
                <div class="modal-body">
@@ -985,15 +986,15 @@
             </div>
             <input type="hidden" ng-model="page.model.shortlistprofileids" />
             <div class="modal-body">
-                <div id="Alerts">
-                    <div id="divmismatchData" ng-bind-html="page.model.divmismatchData"></div>
-                    <br>
+                <div>                 
+                   <div ng-repeat="divmismatchData in  page.model.divmismatchData"> <a  href="javascript:void(0)" onclick="">{{divmismatchData.profileID }}</a><f style='color:black;'> Already service done with this profileid On </f><f style='color:Red;font-weight:bold;font-size:14px;'> {{divmismatchData.mismath}}</f> </br>
+                   </div> <br>
                     <span style="color: black; font-size: larger;">Do You want To continue?</span>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <div class="modal-footer">
-           <div id="divfooter">               
+           <div>               
              
              <button  class='md-raised md-warn md-hue-2' ng-click="page.model[page.model.dynamicFunction]()">Shortlist</button>
              <button  class='md-raised md-hue-1' ng-click='page.model.close()'>Cancel</button>

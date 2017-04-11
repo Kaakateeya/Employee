@@ -1,3 +1,4 @@
+<!--<!#--{{slideshowpopup.length}}-->
 <div ng-show="model.headervisileble">
     <div ng-include="headettemp">
     </div>
@@ -6,35 +7,58 @@
             <div ng-include="templateUrl"> </div>
         </div>
     </div>
-
     <div id="carouselButtons" class="col-lg-offset-5" style="margin-top: -10px;">
-        <button id="playButton" type="button" ng-click="pauseResume('play',myInterval);" class="btn btn-default btn-xs pauseBtns" title="Play">
+        <button ng-hide="playbutton" ng-click="pauseResume('play',myInterval,playbutton);" class="btn btn-default btn-xs pauseBtns" title="Play">
        <i class="fa fa-play"></i>
    </button>
-        <button id="pauseButton" type="button" ng-click="pauseResume('pause',myInterval);" class="btn btn-default btn-xs pauseBtns" title="Pause">
+        <button ng-hide="!playbutton" ng-click="pauseResume('pause',myInterval,playbutton);" class="btn btn-default btn-xs pauseBtns" title="Pause">
    <i class="fa fa-pause"></i>
       </button>
     </div>
 </div>
-
-
-
-
 <script type="text/ng-template" id="mainShortListProfiles.html">
-    <button type="button" class="close pull-right" ng-click="model.close('inner')">×</button>
+    <button class="pull-right" ng-click="model.close('inner')">×</button>
+    <div class="row">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-4" style="margin-top: 12px;">
+                    <label id="tocustid" class="control-label span2">
+                                    FromProfileID :
+                                </label>
+                    <label id="lblprofileidto" class="control-label">310910220</label>
+                </div>
+                <div class="col-lg-2" style="margin-top: 12px;">
+                    <a id="lnksendservices" data-toggle="tooltip" href="javascript:void(0);" ng-click="model.sendtoServices();" data-original-title="Send to Services" style="Font-Size: 18px;">
+                        <span class="fa fa-reply">Send to Service</span>
+                    </a>
+                </div>
+                <div class="col-lg-2" style="margin-top: 12px;">
+                    <a id="lnkNestedshortlist" data-toggle="tooltip" href="javascript:void(0);" ng-click="model.shortListPopup()" data-original-title="Shortlist" style="Font-Size: 18px;">
+                        <span class="glyphicon glyphicon-star">ShowShortList</span> </a>
+                </div>
+                <div class="col-lg-2" style="margin-top: 12px;">
+                    <a id="lnkbookmark" data-toggle="tooltip" href="javascript:void(0);" data-original-title="BookMark" style="Font-Size: 18px;" ng-click="model.bookmark();">
+                        <span class="fa fa-bookmark">BookMark All</span> </a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div>
-        {{model.slideshowpopup.length}}
         <div uib-carousel active="model.inneractive" interval="myIntervalinner" no-wrap="noWrapSlides" carousel-controls>
-            <div uib-slide ng-repeat="slide in model.slideshowpopup track by $index" index="$index">
+            <div uib-slide ng-repeat="slide in slideshowpopup track by $index" index="$index">
                 <div ng-include="templateUrl"> </div>
             </div>
         </div>
 
         <div class="col-lg-offset-5" style="margin-top: -10px;">
-            <button type="button" ng-click="pauseResume('play',myIntervalinner);" class="btn btn-default btn-xs pauseBtns" title="Play">
+            <button ng-click="pauseResume('play',myIntervalinner);" class="btn btn-default btn-xs pauseBtns" title="Play">
        <i class="fa fa-play"></i>
    </button>
-            <button type="button" ng-click="pauseResume('pause',myIntervalinner);" class="btn btn-default btn-xs pauseBtns" title="Pause">
+            <button ng-click="pauseResume('pause',myIntervalinner);" class="btn btn-default btn-xs pauseBtns" title="Pause">
    <i class="fa fa-pause"></i>
       </button>
         </div>
@@ -44,7 +68,7 @@
 <script type="text/ng-template" id="dynamicphotopopup.html">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" ng-click="model.close()">×</button>
+            <button class="close" ng-click="model.close()">×</button>
             <h4 class="modal-title">Photo Album</h4>
         </div>
         <div class="modal-body">
@@ -91,9 +115,6 @@
     .modal-lg {
         width: 90% !important;
     }
-    /* .modal {
-        z-index: 99999 !important;
-    }*/
     
     .pauseBtns {
         width: 33px;
@@ -103,5 +124,12 @@
     
     .panel {
         margin-bottom: 0px !important;
+    }
+    
+    .nav-sm .menu_section h3,
+    .nav-sm .profile,
+    .nav-sm span.fa,
+    .nav-sm .kaakateeyalogo {
+        display: block;
     }
 </style>

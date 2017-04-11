@@ -10,15 +10,17 @@
                 model.slides = data;
                 model.slides = model.displayArray(model.slides, topage);
             };
-            model.addSlides = function(data, arrayslide) {
+            model.addSlides = function(data, arrayslide, topage) {
                 data = model.displayArray(data, 11);
-                $.merge(arrayslide, data);
+                ///  $.merge(arrayslide, data);
+                model.slides.push(data);
+                //$.merge(model.slides, data);
             };
 
             model.innersetSlides = function(data) {
-                model.slideshowpopup = [];
-                model.slideshowpopup = data;
-                model.slideshowpopup = model.displayArray(model.slideshowpopup, 1);
+                model.arrayslide = [];
+                model.arrayslide = data;
+                model.arrayslide = model.displayArray(model.arrayslide, 10);
             };
             model.backtosearchpage = function() {
                 model.divcontrolls = true;
