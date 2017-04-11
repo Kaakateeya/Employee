@@ -386,7 +386,6 @@
             };
             searchpageServices.generalsearchsubmit(model.CgetDetails).then(function(response) {
                 console.log(response);
-                model.slideshowarray = [];
                 _.each(response.data, function(item) {
                     model.slideshowarray.push(item);
                 });
@@ -394,9 +393,10 @@
                     model.headervisileble = true;
                     model.tablename = "general";
                     //  model.scope.$broadcast("generalsearchslide", model.slideshowarray, "general", model.getpageloadobject, frompage);
-                    model.totalRecords = model.slideshowarray[0].TotalRows;
+
                     if (parseInt(frompage) === 1) {
                         model.setSlides(model.slideshowarray, parseInt(topage));
+                        model.totalRecords = parseInt(frompage) === 1 && response !== undefined && response !== "" && response !== null && response.data !== undefined ? model.slideshowarray[0].TotalRows : 0;
                     } else {
                         model.addSlides(model.slideshowarray, model.slides, parseInt(topage));
                     }
@@ -548,15 +548,15 @@
             };
             searchpageServices.advancedsearchsubmit(model.CgetDetails).then(function(response) {
                 console.log(response);
-                model.slideshowarray = [];
+
                 _.each(response.data, function(item) {
                     model.slideshowarray.push(item);
                 });
 
                 if (model.typrofsearch === "2") {
                     model.tablename = "advanced";
-                    model.totalRecords = model.slideshowarray[0].TotalRows;
                     if (parseInt(frompage) === 1) {
+                        model.totalRecords = parseInt(frompage) === 1 && response !== undefined && response !== "" && response !== null && response.data !== undefined ? model.slideshowarray[0].TotalRows : 0;
                         model.setSlides(model.slideshowarray, parseInt(topage));
                     } else {
                         model.addSlides(model.slideshowarray, model.slides, parseInt(topage));
@@ -918,11 +918,22 @@
         };
         model.bookmark = function() {
             var strToCustIDs = model.hdnshortlistProfile;
-            if (response.data === 1) {
-                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Bookmarked SuccessFully', 2000);
-            } else {
-                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Bookmark failed', 2000);
-            }
+            var obj = {
+                FromCustID: model.getpageloadobject.Cust_ID,
+                ToCustID: strToCustIDs,
+                BookmaredFlag: 1,
+                StrTocustIDs: strToCustIDs
+            };
+            searchpageServices.insertbookmark(obj).then(function(response) {
+                console.log(response);
+                if (response.data === 1) {
+                    alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Bookmarked SuccessFully', 2000);
+                } else {
+                    alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Bookmark failed', 2000);
+                }
+            });
+
+
         };
         model.viewfullprofile = function(profileid) {
             window.open("Viewfullprofile/" + profileid, "_blank");

@@ -34,6 +34,9 @@
                         CustID: custids
                     }
                 });
+            },
+            insertbookmark: function(Mobj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/SaveViewedBookmark_Customer', Mobj);
             }
 
         };

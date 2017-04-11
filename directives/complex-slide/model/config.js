@@ -76,7 +76,7 @@
                         totalrecords: item.TotalRowsKeyword
                     });
                     if (item.serviceDate != "--" && item.serviceDate !== "" && item.serviceDate !== null)
-                        model.data.push({ label: 'ServiceDate', value: item.serviceDate, style: 'style= color:red;' });
+                        model.data.push({ label: 'ServiceDate', value: item.serviceDate, style: 'color:red;' });
                     if (item.Intercaste == "True")
                         model.data.push({ label: 'Intercaste', value: (item.fathercaste + "/" + item.mothercaste) });
                     if (item.ProfileGrade !== 0)

@@ -26,6 +26,11 @@
             },
             uploadsettlementform: function(obj) {
                 return http.post(app.apiroot + 'CustomerPersonalUpdate/UploadsettlementForm', obj);
+            },
+            PhotoRequest: function(ProfileID, empid) {
+                return http.get(app.apiroot + 'CustomerPersonal/getCustomerphotoRequestDisplay', {
+                    params: { profileid: ProfileID, EMPID: empid, ticketIDs: '' }
+                });
             }
         };
     }

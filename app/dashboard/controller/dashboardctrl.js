@@ -1,7 +1,7 @@
  (function(angular) {
      'use strict';
 
-     function Controller(dashboardModel, scope, dashboardServices, commonpage) {
+     function Controller(dashboardModel, scope, dashboardServices, commonpage, alerts) {
          var vm = this,
              model;
          var currentIndex = 1;
@@ -56,7 +56,20 @@
              debugger;
              commonpage.showPopupphotopoup('uploadsaform.html', model.scope, 'sm', "modalclassdashboardphotopopup");
          };
+
+         scope.$on("photorequest", function(event, profileid) {
+             dashboardServices.PhotoRequest(profileid, model.empid).then(function(response) {
+                 console.log(response);
+                 if (response !== undefined && response !== null && response !== "" && response.data !== undefined) {
+                     if (response.data === 1) {
+                         alerts.timeoutoldalerts(model.scope, 'alert-success', 'PhotoRequest send successfully', 7000);
+                     } else {
+                         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'PhotoRequest send Failed', 7000);
+                     }
+                 }
+             });
+         });
      }
-     angular.module('Kaakateeya').controller('dashboardCtrl', ['dashboardModel', '$scope', 'dashboardServices', 'modelpopupopenmethod', Controller]);
+     angular.module('Kaakateeya').controller('dashboardCtrl', ['dashboardModel', '$scope', 'dashboardServices', 'modelpopupopenmethod', 'alert', Controller]);
 
  })(angular);

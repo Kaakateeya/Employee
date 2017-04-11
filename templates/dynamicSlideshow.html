@@ -81,6 +81,18 @@
     </div>
 </div>
 <script type="text/ng-template" id="dynamicSlideshow.html">
+    <br>
+    <div class="row">
+        <h4 class="col-lg-offset-3 col-lg-7" style="color:maroon;font-size: 16px;">{{headerhtml}}</h4>
+        <div class="col-lg-2" ng-if="slidetype==='popup'">
+            <a href="javascript:void(0);" class="">
+                <a href="javascript:void(0);" ng-click="close()" style="fill:#c73e5f;font-size: 13pt;width:30px;margin-left: 85px;" size="25">close</a>
+            </a>
+            <a href="javascript:void(0);" ng-click="close()" class="pull-right">
+                <i class="fa fa-times" aria-hidden="true" style="fill:#c73e5f;font-size: 13pt;"></i>
+            </a>
+        </div>
+    </div>
     <div class="modal-body">
         <div class="modal-header modalheader" style="border-bottom: 1px solid #ffffff;">
             <div class="row" ng-if="dynamicheader==='false'">
@@ -97,16 +109,7 @@
                         <input type="text" id="txtGotoValpopu" class="form-control" style="width: 50px; height: 24px; margin-left: -20px;" onchange="gotoSlide('#txtGotoValpopu','lnkLastSlidepopup')" />
                     </div>
                 </div>
-                <div class="col-lg-2" ng-if="slidetype==='popup'">
-                    <div>
-                        <a href="javascript:void(0);" class="col-lg-offset-6">
-                            <a href="javascript:void(0);" ng-click="close()" style="fill:#c73e5f;font-size: 13pt;width:30px;" size="25">close</a>
-                        </a>
-                        <a href="javascript:void(0);" ng-click="close()" class="pull-right">
-                            <i class="fa fa-times" aria-hidden="true" style="fill:#c73e5f;font-size: 13pt;"></i>
-                        </a>
-                    </div>
-                </div>
+
             </div>
 
         </div>
@@ -196,7 +199,8 @@
                                     <div class="row">
                                         <img ng-click="slidepopup(itemval.Custid)" ng-src="{{itemval.custPhoto}}" class="image" style="cursor: pointer;" />
                                         <br>
-                                        <div class="col-lg-8 col-lg-offset-3"><a href="javascript:void(0)"><span style="color:Black;font-size:9pt;">No of Photos {{itemval.PhotoCount}}</span></a></div>
+                                        <div ng-if="itemval.PhotoCount!==0" class="col-lg-8 col-lg-offset-3"><a href="javascript:void(0)"><span style="color:Black;font-size:9pt;">No of Photos {{itemval.PhotoCount}}</span></a></div>
+                                        <div ng-if="itemval.PhotoCount===0" class="col-lg-8 col-lg-offset-3"><a href="javascript:void(0)" ng-click="photorequest(itemval.ProfileID)"><span style="color:#3030d8;font-size:10pt;">Photo Request</span></a></div>
                                     </div>
                                 </div>
 
@@ -332,9 +336,7 @@
             </div>
         </div>
     </div>
-    </div>
 
-    </div>
 </script>
 <script type="text/ng-template" id="dynamicphotopopup.html">
     <div class="modal-content">
