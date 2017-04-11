@@ -94,10 +94,7 @@
                         alert("ProfileId not Valid");
                     }
                 });
-
             }
-
-
         };
         model.RelationshipChange = function(ID, RelationshipID) {
             expressInterestService.getEIprofileID(3, ID, RelationshipID).then(function(response) {
@@ -191,46 +188,46 @@
 
         model.Submit = function(obj) {
             alert('submiteed');
-            // var ExpressArray = [];
-            // var strMails = '';
-            // if (_.isArray(model.Emailsarray) && model.Emailsarray.length > 0) {
-            //     _.each(model.Emailsarray, function(item) {
-            //         strMails += strMails === '' ? item.Email : ';' + item.Email;
-            //     });
-            // }
-            // _.each(model.SelectProfilelst, function(item) {
-            //     var inputObj = {
-            //         customerpersonaldetails: {
-            //             FromProfileID: obj.txtFromprofileID,
-            //             ToProfileID: item.label,
-            //             EmpID: model.empid,
-            //             ModeofService: obj.ModeofService,
-            //             RelationShipID: obj.Relationship,
-            //             Name: obj.txtRelationName,
-            //             TypeOfService: obj.rbtnTypeofService,
-            //             ProfileType: obj.rbtnBasic,
-            //             NotesofCustomer: obj.txtNotecustomer,
-            //             Sendsms: obj.rbtnSendSms,
-            //             IsRvrSend: obj.chkrvrsend === true ? 1 : 0,
-            //             SelectedImages: item.value,
-            //             Acceptlink: '',
-            //             Rejectlink: '',
-            //             EmailAddress: obj.chkmails,
-            //             RVRAcceptlink: '',
-            //             RVRRejectlink: ''
-            //         },
-            //         GetDetails: {
-            //             FromCustID: '',
-            //             EmpID: model.empid,
-            //             emailaddress: strMails
-            //         }
-            //     };
-            //     ExpressArray.push(inputObj);
-            // });
-
-            // expressInterestService.submitExpressintrst(ExpressArray).then(function(response) {
-            //     console.log(response);
-            // });
+            var ExpressArray = [];
+            var strMails = '';
+            if (_.isArray(model.Emailsarray) && model.Emailsarray.length > 0) {
+                _.each(model.Emailsarray, function(item) {
+                    strMails += strMails === '' ? item.Email : ';' + item.Email;
+                });
+            }
+            _.each(model.SelectProfilelst, function(item) {
+                var inputObj = {
+                    customerpersonaldetails: {
+                        FromCustID: '',
+                        EmpID: model.empid,
+                        emailaddress: strMails
+                    },
+                    GetDetails: {
+                        FromProfileID: obj.txtFromprofileID,
+                        ToProfileID: item.label,
+                        EmpID: model.empid,
+                        ModeofService: obj.ModeofService,
+                        RelationShipID: obj.Relationship,
+                        Name: obj.txtRelationName,
+                        TypeOfService: obj.rbtnTypeofService,
+                        ProfileType: obj.rbtnBasic,
+                        NotesofCustomer: obj.txtNotecustomer,
+                        Sendsms: obj.rbtnSendSms,
+                        IsRvrSend: obj.chkrvrsend === true ? 1 : 0,
+                        SelectedImages: item.value,
+                        Acceptlink: '',
+                        Rejectlink: '',
+                        EmailAddress: obj.chkmails,
+                        RVRAcceptlink: '',
+                        RVRRejectlink: ''
+                    }
+                };
+                ExpressArray.push(inputObj);
+            });
+            console.log(JSON.stringify(ExpressArray));
+            expressInterestService.submitExpressintrst(ExpressArray).then(function(response) {
+                console.log(response);
+            });
         };
 
         model.getImages = function(profileid) {

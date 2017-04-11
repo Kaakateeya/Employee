@@ -60,6 +60,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     commonpage.showAndBindPopup(row.Settle);
                 };
 
+
                 scope.plus = function(data) {
                     data.isDetail = true;
                     data.detailcolumns = [

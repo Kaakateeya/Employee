@@ -163,20 +163,22 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', functi
             // });
         },
         ShowPhotoPopup: function(custid, scope) {
+            debugger;
             SelectBindServiceApp.getphotoslideimages(custid).then(function(response) {
                 slides = [];
                 _.each(response.data, function(item) {
                     slides.push(item);
                 });
+                modalpopupopen = uibModal.open({
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: 'templates/dynamicPhotoPopup.html',
+                    scope: scope,
+                    backdrop: 'static',
+                    keyboard: false
+                });
             });
-            modalpopupopen = uibModal.open({
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: 'templates/dynamicPhotoPopup.html',
-                scope: scope,
-                backdrop: 'static',
-                keyboard: false
-            });
+
         },
         setColumns: function(test) {
             return arrayyy = setcolumnsCommon(test);
@@ -196,48 +198,7 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', functi
             });
 
         },
-        buildTable: function($el, profileid) {
-            var columns = [],
-                subtableArray = [];
 
-            editViewprofileservice.playbtnProfileData(profileid).then(function(response) {
-                if (response.data !== undefined && response.data !== "" && response.data !== null && response.data.length > 0) {
-                    subtableArray = JSON.parse(response.data[0]);
-
-                    var subArr = [];
-                    _.map(JSON.parse(response.data[0]), function(item) {
-                        subArr.push({
-                            'viewprofileProfileid': item.Profileid,
-                            ' Branch-Dor': item.RegistrationDate,
-                            'OP/KP': item.paidamount,
-                            'OPD/KPD': item.paiddate,
-                            'S/R Count': item.sentreceivecount,
-                            'PC': item.photocount,
-                            'PD': item.PD,
-                            'DPD': item.DPD,
-                            'View': item.lnkView,
-                            'NView': item.notview,
-                            'BI': item.bothinterst,
-                            'OppI': item.OppI,
-                            'View Contact': '',
-                            'SA': '',
-                            'Horo': '',
-                            'Tickets': '',
-                            'CustID': item.custid,
-                            'Profile Owner': item.OWNER,
-                            'HoroPhotoName': item.HoroPhotoName
-                        });
-                    });
-                    var filteredColumns = _.difference(_.keys(subArr[0]), ['CustID', 'HoroPhotoName']);
-                    columns = setcolumnsCommon(filteredColumns || _.keys(subArr[0]));
-                    $el.bootstrapTable({
-                        columns: columns,
-                        scrollX: true,
-                        data: subArr
-                    });
-                }
-            });
-        },
         showAndBindPopup: function(val) {
             modalpopupopen = uibModal.open({
                 ariaLabelledBy: 'modal-title',
