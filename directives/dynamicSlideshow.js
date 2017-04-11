@@ -27,6 +27,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
             },
             link: function(scope, element, attrs) {
                 var currentIndex = 1;
+                scope.dynamicphotopopupheader = "Photo Album";
                 scope.currentslide = 1;
                 scope.displayArr = [];
                 scope.ShowPause = true;
@@ -149,7 +150,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             HoroscopeImage: item.HoroscopeImage
                         });
                         data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
-                        data.push({ label: 'Caste', value: item.Caste + "-" + item.MotherTongue });
+                        data.push({ label: 'Caste', value: item.MotherTongue + "-" + item.Caste });
                         data.push({ label: 'Dor', value: item.DOR });
                         data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
                         //  data.push({ label: 'Web Logins', value: item.LoginCount });
@@ -296,12 +297,20 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     }
                     commonpage.pausePalyslide(type, scope.carousalID);
                 };
-                scope.horoscopeimage = function(image) {
+                scope.horoscopeimage = function(image, type) {
                     scope.HoroscopeImage = image;
                     scope.popupmodalbody = true;
+                    if (type === "SA") {
+                        scope.dynamicphotopopupheader = "SA FORM";
+                    } else {
+                        scope.dynamicphotopopupheader = "Horoscope Image";
+                    }
                     commonpage.showPopupphotopoup('dynamicphotopopup.html', scope, '', "modalclassdashboardphotopopup");
                 };
                 scope.slidepopup = function(custid) {
+                    scope.dynamicphotopopupheader = "Photo Album";
+                    scope.slides = [];
+                    scope.popupmodalbody = false;
                     SelectBindServiceApp.getphotoslideimages(custid).then(function(response) {
                         scope.slides = [];
                         _.each(response.data, function(item) {
@@ -318,7 +327,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     commonpage.closepopuppoptopopup();
                 };
                 scope.$on("slideshowdynamic", function(event, array, totalrows, tablename, frompage) {
-                    debugger;
                     console.log(tablename);
                     switch (tablename) {
                         case "No-Service From Last 1 Month":
@@ -345,6 +353,9 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
 
                         case "Email Bounce Info":
                             scope.typeofslidedate = "Bounced On";
+                            break;
+                        case "SA Form status for Paid Users":
+                            scope.typeofslidedate = "Upload Date";
                             break;
                     }
                     scope.slidearray = array;
@@ -553,7 +564,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     commonpage.showPopup('Actions.html', scope, 'lg', "Action");
                 };
                 scope.shortlistprofiles = function(custids, profileID, age, height, maritalstatus, caste, Servicedate) {
-                    debugger;
                     scope.$emit("shortlistprofileids", custids, profileID, age, height, maritalstatus, caste, Servicedate, scope.personalobj);
                 };
                 scope.mainShortListProfiles = function() {

@@ -75,6 +75,7 @@
                                     }
                                 }
 
+
                             }
 
                         });
@@ -145,12 +146,14 @@
                                             model.mismatch.push("  Caste not Matched to this profileid");
                                         }
                                     }
+
                                     if (model.ToProfileStatusID == 54) {
                                         if (model.mismatch.length > 0) {
                                             modelpopupopenmethod.showPopup('Conflict.html', model.scope, 'md', '');
                                         } else {
                                             model.pushToProfileIDs();
                                         }
+
                                     } else {
                                         model.exiObj.txtToprofileID = '';
                                         alert("ProfileId not Valid");
@@ -187,7 +190,7 @@
         };
 
         model.Submit = function(obj) {
-            alert('submiteed');
+
             var ExpressArray = [];
             var strMails = '';
             if (_.isArray(model.Emailsarray) && model.Emailsarray.length > 0) {
@@ -197,11 +200,6 @@
             }
             _.each(model.SelectProfilelst, function(item) {
                 var inputObj = {
-                    customerpersonaldetails: {
-                        FromCustID: '',
-                        EmpID: model.empid,
-                        emailaddress: strMails
-                    },
                     GetDetails: {
                         FromProfileID: obj.txtFromprofileID,
                         ToProfileID: item.label,
@@ -220,6 +218,11 @@
                         EmailAddress: obj.chkmails,
                         RVRAcceptlink: '',
                         RVRRejectlink: ''
+                    },
+                    customerpersonaldetails: {
+                        FromCustID: '',
+                        EmpID: model.empid,
+                        emailaddress: strMails
                     }
                 };
                 ExpressArray.push(inputObj);
@@ -228,6 +231,7 @@
             expressInterestService.submitExpressintrst(ExpressArray).then(function(response) {
                 console.log(response);
             });
+
         };
 
         model.getImages = function(profileid) {

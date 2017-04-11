@@ -1,5 +1,5 @@
 app.factory('alert', ['$uibModal', '$timeout', function(uibModal, timeout) {
-    var modalinstance;
+    var modalinstance, modalinstancealerts;
     return {
         dynamicpopup: function(url, scope, size, classs) {
             modalinstance = uibModal.open({
@@ -20,21 +20,21 @@ app.factory('alert', ['$uibModal', '$timeout', function(uibModal, timeout) {
         timeoutoldalerts: function(scope, cls, msg, time) {
             scope.typecls = cls;
             scope.msgs = msg === "upgrade" ? "<label style='color:maroon;'>Please Click Here To</label><a href='/UpgradeMembership'>" + "  " + arrayConstants.Upgrade + "</a>" : "<label>" + msg + "</label>";
-            modalinstance = uibModal.open({
+            modalinstancealerts = uibModal.open({
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
-                template: '<div class="{{typecls}}"><div class="modal-header"><a href="javascript:void(0);" ng-click="close();"><ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20"></ng-md-icon></a><h4 class="modal-title"><center>Alert</center></h4></div></div><div class="modal-body" id="modalbodyID"><p ng-bind-html="msgs"></p></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="close();">Close</button></div>',
+                template: '<div class="{{typecls}}"><div class="modal-header"><a href="javascript:void(0);" ng-click="closealerts();"><ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20"></ng-md-icon></a><h4 class="modal-title"><center>Alert</center></h4></div></div><div class="modal-body" id="modalbodyID"><p ng-bind-html="msgs"></p></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="close();">Close</button></div>',
                 scope: scope
             });
             if (msg === "upgrade") {
 
             } else {
                 timeout(function() {
-                    modalinstance.close();
+                    modalinstancealerts.close();
                 }, time || 4500);
             }
-            scope.close = function() {
-                modalinstance.close();
+            scope.closealerts = function() {
+                modalinstancealerts.close();
             };
         },
         dynamicpopupopenwithtemp: function(url, scope, size, classs) {

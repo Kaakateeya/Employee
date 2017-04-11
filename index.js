@@ -195,6 +195,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                                 // $ocLazyLoad.load('modules');
                                 // $ocLazyLoad.load('complex-grid');
                                 // $ocLazyLoad.load('complex-slide');
+
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             }
                         } else {

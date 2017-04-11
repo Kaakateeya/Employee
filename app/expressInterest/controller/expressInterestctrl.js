@@ -2,8 +2,6 @@
      'use strict';
 
      function controller(expressInterestModel, scope, $rootScope) {
-         debugger;
-
          var vm = this;
 
          vm.init = function() {

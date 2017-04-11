@@ -51,6 +51,11 @@
              model.proceedprofileid = profileid;
              commonpage.showPopupphotopoup('uploadsaform.html', model.scope, 'sm', "modalclassdashboardphotopopup");
          });
+         vm.uploadsaformtable = function(profileid) {
+             model.proceedprofileid = profileid;
+             debugger;
+             commonpage.showPopupphotopoup('uploadsaform.html', model.scope, 'sm', "modalclassdashboardphotopopup");
+         };
      }
      angular.module('Kaakateeya').controller('dashboardCtrl', ['dashboardModel', '$scope', 'dashboardServices', 'modelpopupopenmethod', Controller]);
 

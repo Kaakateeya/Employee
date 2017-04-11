@@ -9,11 +9,6 @@
         model.tablenameflag = "";
         model.proceedprofileid = "";
         model.exportData = function(id) {
-            // var blob = new Blob([document.getElementById(id).innerHTML], {
-            //     type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
-            // });
-            // saveAs(blob, "Report.xls");
-            //Profileid,Name,Date From
             var options = {
                 headers: true,
                 columns: [{
@@ -104,7 +99,6 @@
 
         model.upload = function(obj) {
             //obj.myFile.name
-
             var extension = (obj.myFile.name !== '' && obj.myFile.name !== undefined && obj.myFile.name !== null) ? (obj.myFile.name.split('.'))[1] : null;
             extension = angular.lowercase(extension);
             var gifFormat = "gif,jpeg,jpg";

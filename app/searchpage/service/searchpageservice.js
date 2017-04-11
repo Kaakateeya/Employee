@@ -27,6 +27,13 @@
                         HighConfendential: ""
                     }
                 });
+            },
+            getshortlistprofiles: function(custids) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getMarketingSldeshowshortlistprofiles', {
+                    params: {
+                        CustID: custids
+                    }
+                });
             }
 
         };

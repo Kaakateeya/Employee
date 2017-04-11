@@ -1,53 +1,53 @@
 <div class="panel panel-default">
     <div class="row">
-        <div class="col-lg-4">
-            <i class="fa fa-chevron-down" style="width: 39px;
-    color: #bd1515;
-    font-size: 20px;
-    margin-left: 11px;
-    padding-top: 3px;cursor:pointer;" aria-hidden="true" data-toggle="collapse" href="#collapseOne"></i>
+        <div class="col-lg-3">
+            <i class="fa fa-chevron-down searchpageheader" aria-hidden="true" data-toggle="collapse" href="#collapseOne"></i>
             <label style="color:#585050">Total Records :</label>
-            <label style="color:blue"> {{currentslide}}</label>
-            <label style="color:#585050"> of {{lbltotalrecordsslide}}</label>
+            <label style="color:blue"> {{(activeslide)+1}}</label>
+            <label style="color:#585050"> of {{model.totalRecords}}</label>
         </div>
-        <div class="col-lg-4" id="divviewedprofiles">
+        <div class="col-lg-5" id="divviewedprofiles">
             <div class="row" style="padding-top: 5px;">
                 <div class="col-lg-5">
-                    Viewed &nbsp;&nbsp;<label id="lnkLastSlide" style="color: blue;">{{viewedcount}}&nbsp;&nbsp;</label><label>Profiles</label>
+                    Viewed &nbsp;&nbsp;<label id="lnkLastSlide" style="color: blue;">{{(Viwedslide)+1}}&nbsp;&nbsp;</label><label>Profiles</label>
                 </div>
                 <div class="col-lg-1">
-                    <input type="text" id="txtGotoVal" class="form-control" style="width: 60px; height: 30px;" onchange="gotoSlide('#txtGotoVal','lnkLastSlide')">
+                    <input type="text" id="txtGotoVal" ng-model="txtGotoVal" class="form-control" style="width: 60px; height: 30px;" ng-blur="gotoSlide(txtGotoVal)">
                 </div>
             </div>
         </div>
-        <div class="col-lg-2" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">
-            <a style="font-size: 18px;color:#337ab7" href="javascript:void(0);" onclick="return mainShortListProfiles();"><span class="glyphicon glyphicon-star">ShowShortList</span></a>
+        <div class="col-lg-2" ng-show="model.getpageloadobject.Cust_ID!=='' && model.getpageloadobject.Cust_ID!==null && model.getpageloadobject.Cust_ID!==undefined">
+            <a style="font-size: 18px;color:#337ab7" href="javascript:void(0);" ng-click="model.mainShortListProfile()"><span class="glyphicon glyphicon-star">ShowShortList</span></a>
         </div>
         <div class="pull-right">
-            <md-button class="md-raised md-warn md-hue-2" ng-click="backtosearchpage()">Back to Search Page</md-button>
+            <md-button class="md-raised md-warn md-hue-2" ng-click="model.backtosearchpage()">Back to Search Page</md-button>
         </div>
     </div>
     <div id="collapseOne" class="panel-collapse collapse">
         <div class="row">
             <div class="col-lg-12">
                 <div class="row">
-                    <div class="col-lg-1" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">
-                        <img style="display:block;height: 54px; width: 60px;" ng-src="{{personalobj.ApplicationProfilePic}}">
+                    <div class="col-lg-1" ng-show="model.getpageloadobject.Cust_ID!=='' && model.getpageloadobject.Cust_ID!==null && model.getpageloadobject.Cust_ID!==undefined">
+                        <img style="display:block;height: 54px; width: 60px;" ng-src="{{model.getpageloadobject.ApplicationProfilePic}}">
                     </div>
 
                     <div class="col-lg-10">
-                        <label style="width: 150px;font-size: 13px;color: #000" ng-show="personalobj.Cust_ID==='' || personalobj.Cust_ID===null || personalobj.Cust_ID===undefined">
+                        <label style="width: 150px;font-size: 13px;color: #000" ng-show="model.getpageloadobject.Cust_ID==='' || model.getpageloadobject.Cust_ID===null || model.getpageloadobject.Cust_ID===undefined">
                                     Without Profile ID
                                 </label>
-                        <label style="color: black" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">{{personalobj.SelfName}}</label>
-                        <a onclick="return ViewProfileWithID('lblhiddenprofileid');" href="javascript:void(0)" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">({{personalobj.ProfileID}})</a>
+                        <label style="color: black" ng-show="model.getpageloadobject.Cust_ID!=='' && model.getpageloadobject.Cust_ID!==null && model.getpageloadobject.Cust_ID!==undefined">{{model.getpageloadobject.SelfName}}</label>
+                        <a ng-click="model.viewfullprofile(model.getpageloadobject.ProfileID);" href="javascript:void(0)" ng-show="model.getpageloadobject.Cust_ID!=='' && model.getpageloadobject.Cust_ID!==null && model.getpageloadobject.Cust_ID!==undefined">({{model.getpageloadobject.ProfileID}})</a>
                         <a style="width: 20px; margin-right: 13px;" data-toggle="modal" href="#divlookingmore">More</a>
-                        <a onclick="return redirectpartner()" href="javascript:void(0)" ng-show="personalobj.Cust_ID!=='' && personalobj.Cust_ID!==null && personalobj.Cust_ID!==undefined">Edit Partpreference</a>
+                        <a ng-click="pagesredirect('Partner',model.getpageloadobject.Cust_ID)" href="javascript:void(0)" ng-show="model.getpageloadobject.Cust_ID!=='' && model.getpageloadobject.Cust_ID!==null && model.getpageloadobject.Cust_ID!==undefined">Edit Partpreference</a>
                     </div>
                 </div>
             </div>
 
         </div>
         <br>
+    </div>
+</div>
+<div class="row" style="margin-left: 12px;">
+    <div class="progress" id="progessDiv" style="display:block;">
     </div>
 </div>

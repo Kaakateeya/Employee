@@ -1,3 +1,12 @@
+<!--<button  class='md-raised md-warn md-hue-2' ng-click="page.model[page.model.dynamicFunction]()">Shortlist</button>-->
+<!--
+<script type="text/ng-template" id="mainShortListProfiles.html">
+               <div class="modal-body">
+                <complex-slide model="page.model" slides="page.model.arrayslide" innerslide="1"></complex-slide>
+                <div class="clearfix"></div>
+            </div>
+    </div>
+</script>-->
 <div class="right_col" role="main" id="generalsearchdiv">
     <div class="search_page_main" ng-show="page.model.divcontrolls">
         <div class="sample" layout="column" ng-cloak>
@@ -848,9 +857,8 @@
 
     </div>
     <div>
-
-        <slide-show nghide="page.model.slideshowtrue" dynamicheader="'false'" slidetype="'page'" headertemplate="'templates/SlideHeader.html'" bodytemplate="'templates/slideDesign.html'"></slide-show>
-
+        <!--<slide-show nghide="page.model.slideshowtrue" dynamicheader="'false'" slidetype="'page'" headertemplate="'templates/SlideHeader.html'" bodytemplate="'templates/slideDesign.html'"></slide-show>-->
+        <complex-slide model="page.model" slides="page.model.slides" innerslide="0"></complex-slide>
         <bootstrap-table btnclick="'true'" array="[]" id="ftable" removeobjs="['Cust_ID','paid','Name','SurName','Education','EduGroupnamenew','Income','Property','companyname',
         'TotalRowsKeyword',
             'CustomerFullPhoto','CustomerApplicationPhoto','RegistrationDate','Ownerflag',
@@ -978,17 +986,17 @@
             </div>
             <input type="hidden" ng-model="page.model.shortlistprofileids" />
             <div class="modal-body">
-                <div id="Alerts">
-                    <div id="divmismatchData" ng-bind-html="page.model.divmismatchData"></div>
-                    <br>
+                <div>                 
+                   <div ng-repeat="divmismatchData in  page.model.divmismatchData"> <a  href="javascript:void(0)" onclick="">{{divmismatchData.profileID }}</a><f style='color:black;'> Already service done with this profileid On </f><f style='color:Red;font-weight:bold;font-size:14px;'> {{divmismatchData.mismath}}</f> </br>
+                   </div> <br>
                     <span style="color: black; font-size: larger;">Do You want To continue?</span>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <div class="modal-footer">
-           <div id="divfooter">               
+           <div>               
              
-             <button  class='md-raised md-warn md-hue-2' ng-click="page[page.dynamicFunction]()">Shortlist</button>
+             <button  class='md-raised md-warn md-hue-2' ng-click="page.model[page.model.dynamicFunction]()">Shortlist</button>
              <button  class='md-raised md-hue-1' ng-click='page.model.close()'>Cancel</button>
           </div>
       
@@ -997,15 +1005,19 @@
 
 
 
-
-<script type="text/ng-template" id="mainShortListProfiles.html">
-               <div class="modal-body">
-                <complex-slide model="page.model"></complex-slide>
-                <div class="clearfix"></div>
-            </div>
+  <script type="text/ng-template" id="TabClosePopup.html">
+    <div class="modal-message modal-danger">
+        <div class="modal-header" id="divhead1">
+            <i class="glyphicon glyphicon-fire"></i>
+        </div>
+        <div class="modal-body">
+            {{page.model.modalbodyID1}}
+        </div>
+        <div class="modal-footer">
+            <button id="btnclose" class="btn btn-default" ng-click="modalpopupclose1()">Close</button>
+        </div>
     </div>
 </script>
-  
     </div>
     
     <style type="text/css">

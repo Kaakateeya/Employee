@@ -18,24 +18,15 @@
              model.generalsearch = {};
              model.advancedsearch = {};
              model.divcontrolls = true;
+             model.headervisileble = false;
              model.slideshowtrue = false;
              model.sidebarnavshow = true;
              model.selectedIndex = $stateParams.id;
              model.searchpopuptext = model.selectedIndex === "0" ? "General Search" : "Advance Search";
              alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass", 'searchpageCtrl');
-             vm.dynamicFunction = 'shortlist';
-         };
-         vm.local = function() {
-             alert('Got Me');
-         };
-         vm.shortlist = function() {
-             alert('ShortList');
-             vm.dynamicFunction = 'Express';
-         };
-         vm.Express = function() {
-             alert('Express');
 
          };
+
          scope.$on('directivechangeevent', function(event, modal, type) {
              switch (type) {
                  case 'Country':
@@ -123,6 +114,7 @@
          scope.$on("mainShortListProfile", function(event) {
              model.mainShortListProfile();
          });
+
 
      }
 

@@ -44,7 +44,6 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     return paid;
                 };
                 scope.ViewHoro = function(row) {
-                    debugger;
                     var paid = (row.HoroPhotoName).includes('Horo_no.jpg') !== -1 ? "View" : "<a style='cursor:pointer;'  href='javascript:void(0);' >View</a>";
                     return paid;
                 };
