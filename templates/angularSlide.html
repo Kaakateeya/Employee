@@ -51,7 +51,7 @@
             <div class="col-lg-6">
                 <div class="row">
                     <label style="color:maroon">To Status:</label>
-                    <label style="color:#000"><span ng-bind-html="statusbind(slide.OppStatus.trim())"></span>
+                    <label style="color:#000"><span ng-bind-html="model.statusbind(slide.OppStatus.trim())"></span>
                             <img  style="height: 29px;" ng-if="slide.OppStatus.trim()==='I'" ng-show="slide.OppStatus.trim()==='I'" src="src/images/heartgrren.gif"><img>
                             <img style="height: 29px;" ng-if="slide.OppStatus.trim()==='NI'" ng-show="slide.OppStatus.trim()==='NI'" src="src/images/brkhrtgreen.gif"><img></label>
                 </div>
