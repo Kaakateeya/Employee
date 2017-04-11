@@ -39,6 +39,8 @@
                         <a href="#" ng-if="colitem.type==='link' " ng-click="colitem.method(inneritem) ">{{inneritem[colitem.key]}}</a>
                         <span ng-if="colitem.type==='custom'" ng-bind-html="colitem.templateUrl(inneritem) "></span>
                         <span ng-if="colitem.type==='customlink'" ng-bind-html="colitem.templateUrl(inneritem)" ng-click="colitem.method(inneritem) "></span>
+                        <span ng-if="colitem.type==='morelinks'" compile="colitem.templateUrl(inneritem)"></span>
+
                     </td>
                 </tr>
                 <tr ng-repeat-end="">

@@ -1,0 +1,72 @@
+.panel-title {
+    color: #b10c0c;
+}
+
+.subColumnClass {
+    line-height: 43px;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: #16713d;
+}
+
+.checkbox input[type=checkbox] {
+    position: relative;
+}
+
+.multiselect-selected-text {
+    overflow: hidden;
+    display: block;
+}
+
+input[type="text"],
+textarea {
+    color: #000 !important;
+    border: 1px solid #ADA2A2 !important;
+}
+
+.multiselect {
+    border: 1px solid #ADA2A2 !important;
+}
+
+
+/*.LastName {
+    width: 100px;
+}*/
+
+.oukuCls {
+    font-weight: 700;
+}
+
+.fontweight {
+    font-weight: 700;
+}
+
+.horoImgcls {
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+}
+
+a {
+    cursor: pointer;
+}
+
+.Linkdisabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+.light {
+    color: red;
+    font-weight: 700;
+}
+
+.Dark {
+    color: #16713d;
+    font-size: 15px;
+}

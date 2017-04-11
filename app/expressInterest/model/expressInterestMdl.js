@@ -95,10 +95,7 @@
                         alert("ProfileId not Valid");
                     }
                 });
-
             }
-
-
         };
         model.RelationshipChange = function(ID, RelationshipID) {
             expressInterestService.getEIprofileID(3, ID, RelationshipID).then(function(response) {
@@ -218,7 +215,7 @@
                         SelectedImages: item.value,
                         Acceptlink: '',
                         Rejectlink: '',
-                        EmailAddress: strMails,
+                        EmailAddress: obj.chkmails,
                         RVRAcceptlink: '',
                         RVRRejectlink: ''
                     },
@@ -230,11 +227,11 @@
                 };
                 ExpressArray.push(inputObj);
             });
+            console.log(JSON.stringify(ExpressArray));
+            expressInterestService.submitExpressintrst(ExpressArray).then(function(response) {
+                console.log(response);
+            });
 
-
-            // expressInterestService.submitExpressintrst(ExpressArray).then(function(response) {
-            //     console.log(response);
-            // });
         };
 
         model.getImages = function(profileid) {
