@@ -12,7 +12,8 @@
              vm.model.exiObj.rbtnBasic = 358;
              vm.model.exiObj.rbtnTypeofService = 366;
              vm.model.disableinput = false;
-
+             vm.model.SelectProfilelst = [];
+             vm.model.exiObj.txtFromprofileID = '';
          };
          vm.init();
      }
