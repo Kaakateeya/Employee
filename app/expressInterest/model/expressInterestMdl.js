@@ -8,7 +8,7 @@
         model.strimages = '';
         model.exiObj = {};
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-
+        model.fromcustid = '';
         model.FromProfileID = function(ID) {
 
             if (ID !== '' && ID !== null && ID !== undefined) {
@@ -20,6 +20,9 @@
                         }
 
                         if (_.isArray(response.data[1]) && response.data[1].length > 0) {
+
+                            console.log(response.data[1]);
+                            model.fromcustid = response.data[1][0].Cust_ID;
                             model.FromAgeMax = response.data[1][0].AgeMax;
                             model.FromAgeMin = response.data[1][0].AgeMin;
                             model.FromMaxHeight = response.data[1][0].MaxHeight;
@@ -65,7 +68,7 @@
 
                                 if (response.data.length > 3) {
                                     model.Emailsarray = response.data[3];
-                                    console.log(model.Emailsarray);
+
                                     model.emailselectedArr = [];
                                     if (model.Emailsarray.length > 0) {
                                         _.each(model.Emailsarray, function(item) {
@@ -91,7 +94,7 @@
                         model.Emailsarray = null;
                         model.SelectProfilelst = null;
                         model.showHide = 0;
-                        model.exiObj.txtFromprofileID = '';
+                        // model.exiObj.txtFromprofileID = '';
                         alert("ProfileId not Valid");
                     }
                 });
@@ -149,16 +152,26 @@
 
                                     if (model.ToProfileStatusID == 54) {
                                         if (model.mismatch.length > 0) {
-                                            modelpopupopenmethod.showPopup('Conflict.html', model.scope, 'md', '');
+                                            modelpopupopenmethod.showPopup('Conflict.html', model.scope, 'md', 'mismatch');
+                                            console.log('event....');
                                         } else {
                                             model.pushToProfileIDs();
                                         }
 
-                                    } else {
-                                        model.exiObj.txtToprofileID = '';
-                                        alert("ProfileId not Valid");
+                                    } else if ((ProfileStatusID == 57) || (ProfileStatusID == 393)) {
 
-                                        console.log('repeadted alerts');
+                                        alert("Settled or WaitingforSettled Authorization Profile");
+                                        model.exiObj.txtToprofileID = '';
+                                        return false;
+                                    } else if ((ProfileStatusID == 56) || (ProfileStatusID == 394)) {
+
+                                        alert("Deleted or WaitingforDeltd authorization Profile");
+                                        model.exiObj.txtToprofileID = '';
+                                        return false;
+                                    } else {
+                                        alert('Not Active Profile');
+                                        model.exiObj.txtToprofileID = '';
+                                        return false;
                                     }
                                 }
                             });
@@ -186,49 +199,54 @@
                 model.SelectProfilelst.push({ "label": model.exiObj.txtToprofileID, "title": model.exiObj.txtToprofileID, "value": model.strimages });
                 model.exiObj.txtToprofileID = '';
             }, 500);
-
         };
 
         model.Submit = function(obj) {
 
             var ExpressArray = [];
+            var inputObj = {};
             var strMails = '';
             if (_.isArray(model.Emailsarray) && model.Emailsarray.length > 0) {
                 _.each(model.Emailsarray, function(item) {
                     strMails += strMails === '' ? item.Email : ';' + item.Email;
                 });
             }
+            var fromobj = {
+                FromCustID: model.fromcustid,
+                EmpID: model.empid,
+                emailaddress: _.isArray(obj.chkmails) ? (obj.chkmails).join(',') : ''
+            };
             _.each(model.SelectProfilelst, function(item) {
-                var inputObj = {
-                    GetDetails: {
-                        FromProfileID: obj.txtFromprofileID,
-                        ToProfileID: item.label,
-                        EmpID: model.empid,
-                        ModeofService: obj.ModeofService,
-                        RelationShipID: obj.Relationship,
-                        Name: obj.txtRelationName,
-                        TypeOfService: obj.rbtnTypeofService,
-                        ProfileType: obj.rbtnBasic,
-                        NotesofCustomer: obj.txtNotecustomer,
-                        Sendsms: obj.rbtnSendSms,
-                        IsRvrSend: obj.chkrvrsend === true ? 1 : 0,
-                        SelectedImages: item.value,
-                        Acceptlink: '',
-                        Rejectlink: '',
-                        EmailAddress: obj.chkmails,
-                        RVRAcceptlink: '',
-                        RVRRejectlink: ''
-                    },
-                    customerpersonaldetails: {
-                        FromCustID: '',
-                        EmpID: model.empid,
-                        emailaddress: strMails
-                    }
+
+                var toobj = {
+                    FromProfileID: obj.txtFromprofileID,
+                    ToProfileID: item.label,
+                    EmpID: model.empid,
+                    ModeofService: obj.ModeofService,
+                    RelationShipID: obj.Relationship,
+                    Name: obj.txtRelationName,
+                    TypeOfService: obj.rbtnTypeofService,
+                    ProfileType: obj.rbtnBasic,
+                    NotesofCustomer: obj.txtNotecustomer,
+                    Sendsms: obj.rbtnSendSms,
+                    IsRvrSend: obj.chkrvrsend === true ? 1 : 0,
+                    SelectedImages: item.value,
+                    Acceptlink: '',
+                    Rejectlink: '',
+                    EmailAddress: _.isArray(obj.chkmails) ? (obj.chkmails).join(',') : '',
+                    RVRAcceptlink: '',
+                    RVRRejectlink: ''
                 };
-                ExpressArray.push(inputObj);
+                ExpressArray.push(toobj);
             });
-            console.log(JSON.stringify(ExpressArray));
-            expressInterestService.submitExpressintrst(ExpressArray).then(function(response) {
+
+            inputObj = {
+                customerpersonaldetails: fromobj,
+                GetDetails: ExpressArray
+            };
+
+            console.log(JSON.stringify(inputObj));
+            expressInterestService.submitExpressintrst(inputObj).then(function(response) {
                 console.log(response);
             });
 
@@ -240,7 +258,7 @@
             var strimgs = '';
             model.strimages = '';
             expressInterestService.getEIprofileID(4, profileid, '').then(function(response) {
-                console.log(response.data);
+
                 if (_.isArray(response.data) && response.data.length > 0 && response.data[0].length > 0) {
                     imgArr = response.data[0];
                     _.each(imgArr, function(item) {
@@ -264,9 +282,7 @@
             }
             modelpopupopenmethod.showPopup('TophotosPoup.html', model.scope, 'lg', '');
         };
-        model.testchk = function(val) {
-            alert(val);
-        };
+
 
         model.applyImages = function() {
             model.selectedimages = [];
@@ -285,6 +301,13 @@
             }
             modelpopupopenmethod.closepopup();
         };
+
+        model.close = function() {
+            modelpopupopenmethod.closepopuppoptopopup();
+        };
+
+
+
         return model;
     }
     angular

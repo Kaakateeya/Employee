@@ -8,6 +8,11 @@
              vm.model = expressInterestModel;
              vm.model.scope = scope;
              vm.model.exiObj = {};
+             vm.model.exiObj.rbtnSendSms = 1;
+             vm.model.exiObj.rbtnBasic = 358;
+             vm.model.exiObj.rbtnTypeofService = 366;
+             vm.model.disableinput = false;
+
          };
          vm.init();
      }
