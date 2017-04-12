@@ -1,6 +1,7 @@
-<div class="right_col" role="main" class="ExpressintrstCls">
+<div class="right_col" role="main" class="ExpressintrstCls" ng-controller="expressInterestCtrl as page">
     <div class="search_page_main">
-        <h4 style="font-size: 18px;   color: #b10c0c;">Express Interest</h4>
+        <h4 style="font-size: 18px;color: #b10c0c;">Express Interest <a ng-if="page.model.disableinput" href="javascript:void(0);" ng-click="page.model.close();" class="pull-right" style="padding:1%;">X</a></h4>
+
         <br />
         <div class="regmain register_page_main">
             <form name="ExpressintrstForm" novalidate role="form" ng-submit="ExpressintrstForm.$valid && page.model.Submit(page.model.exiObj);">
@@ -41,7 +42,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" ng-if="page.model.exiObj.ModeofService!==353">
                             <div class="form-group col-lg-6">
                                 <div class="col-lg-4">
                                     <label for="" class="control-label pull-right requiredStar">Relationship</label>
@@ -69,8 +70,8 @@
                                 <label for="" class="control-label pull-right requiredStar">From profile ID</label>
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" name="txtFromprofileID" style="width:111%;" focus-me="true" ng-model="page.model.exiObj.txtFromprofileID" class="form-control" ng-keyup="$event.keyCode===13 && page.model.FromProfileID(page.model.exiObj.txtFromprofileID);" ng-blur="page.model.FromProfileID(page.model.exiObj.txtFromprofileID);"
-                                    required/>
+                                <input type="text" name="txtFromprofileID" ng-disabled="page.model.disableinput" style="width:111%;" focus-me="true" ng-model="page.model.exiObj.txtFromprofileID" class="form-control" ng-keyup="$event.keyCode===13 && page.model.FromProfileID(page.model.exiObj.txtFromprofileID);"
+                                    ng-blur="page.model.FromProfileID(page.model.exiObj.txtFromprofileID);" required/>
                             </div>
                         </div>
                     </div>
@@ -80,7 +81,7 @@
                                 <label for="" class="control-label pull-right requiredStar">To profile ID</label>
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" style="width:111%;" ng-model="page.model.exiObj.txtToprofileID" class="form-control" ng-keyup="$event.keyCode===13 && page.model.ToprofileIDChange(page.model.exiObj.txtToprofileID);" ng-blur="page.model.ToprofileIDChange(page.model.exiObj.txtToprofileID);">
+                                <input type="text" style="width:111%;" ng-model="page.model.exiObj.txtToprofileID" class="form-control" ng-blur="page.model.ToprofileIDChange(page.model.exiObj.txtToprofileID);">
                             </div>
                         </div>
                     </div>
@@ -120,9 +121,9 @@
                             </div>
                             <div class="col-lg-6">
                                 <md-radio-group ng-required="true" name="rbtnPaymode" layout="row" ng-model="page.model.exiObj.rbtnTypeofService" class="md-block" flex-gt-sm ng-disabled="manageakerts" required>
-                                    <md-radio-button value="1" class="md-primary">Email</md-radio-button>
-                                    <md-radio-button value="2"> Print</md-radio-button>
-                                    <md-radio-button value="3"> Both </md-radio-button>
+                                    <md-radio-button value="366" class="md-primary">Email</md-radio-button>
+                                    <md-radio-button value="367"> Print</md-radio-button>
+                                    <md-radio-button value="368"> Both </md-radio-button>
                                 </md-radio-group>
                                 <div class="reuiredcls" ng-if="ExpressintrstForm.rbtnPaymode.$invalid && ExpressintrstForm.$submitted">
                                     This field is required
@@ -131,8 +132,8 @@
                         </div>
                         <div class="form-group col-lg-6">
                             <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.exiObj.rbtnBasic" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                <md-radio-button value="1" class="md-primary">Basic Profile</md-radio-button>
-                                <md-radio-button value="2"> Full Profile</md-radio-button>
+                                <md-radio-button value="358" class="md-primary">Basic Profile</md-radio-button>
+                                <md-radio-button value="359"> Full Profile</md-radio-button>
                             </md-radio-group>
                         </div>
                     </div>
@@ -153,13 +154,12 @@
                             </div>
                             <div class="col-lg-6">
                                 <md-radio-group ng-required="true" name="rbtnSendSms" layout="row" ng-model="page.model.exiObj.rbtnSendSms" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
-                                    <md-radio-button value="2"> No</md-radio-button>
+                                    <md-radio-button value="1" class="md-primary" checked>Yes</md-radio-button>
+                                    <md-radio-button value="0"> No</md-radio-button>
                                 </md-radio-group>
                             </div>
                         </div>
                         <div class="form-group col-lg-6">
-
                             <div class="col-lg-4">
                                 <md-checkbox ng-checked="true" ng-model="page.model.exiObj.chkrvrsend">RVR send</md-checkbox>
                             </div>
@@ -168,7 +168,7 @@
                     <div class="row">
                         <div class="form-group text-center">
                             <button class="button_custom" style="display:initial;" type="submit">Sent to Service</button>
-                            <button style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset">Reset</button>
+                            <button type="reset" style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset">Reset</button>
                         </div>
                     </div>
                 </div>
@@ -183,7 +183,7 @@
     <div class="modal-body" style="line-height:20px;">
         <div class="text-center">
             <div ng-repeat="item in page.model.mismatch">
-                <a href="javescript:void(0);">"{{page.model.exiObj.txtToprofileID}}"</a> <span>{{page.model.mismatch[0]}}</span>
+                <a href="javescript:void(0);">"{{page.model.exiObj.txtToprofileID}}"</a> <span>{{item}}</span>
                 <br/>
             </div>
             <br>

@@ -39,9 +39,11 @@
         };
 
         model.showPhotoPopup = function() {
-            commonpage.ShowPhotoPopup('templates/dynamicPhotoPopup.html', model.custid, model.scope);
+            commonpage.ShowPhotoPopup(model.custid, model.scope);
         };
-
+        model.close = function() {
+            commonpage.closepopup();
+        };
         return model;
     }
     angular
