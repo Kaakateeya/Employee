@@ -28,6 +28,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
             link: function(scope, element, attrs) {
                 var currentIndex = 1;
                 scope.dynamicphotopopupheader = "Photo Album";
+                scope.headerhtml = "";
                 scope.currentslide = 1;
                 scope.displayArr = [];
                 scope.ShowPause = true;
@@ -103,7 +104,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             totalrecords: item.TotalRowsKeyword
                         });
                         if (item.serviceDate != "--" && item.serviceDate !== "" && item.serviceDate !== null)
-                            scope.data.push({ label: 'ServiceDate', value: item.serviceDate, style: 'style= color:red;' });
+                            scope.data.push({ label: 'ServiceDate', value: item.serviceDate, style: 'color:red;' });
                         if (item.Intercaste == "True")
                             scope.data.push({ label: 'Intercaste', value: (item.fathercaste + "/" + item.mothercaste) });
                         if (item.ProfileGrade !== 0)
@@ -328,6 +329,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                 };
                 scope.$on("slideshowdynamic", function(event, array, totalrows, tablename, frompage) {
                     console.log(tablename);
+                    scope.headerhtml = tablename;
                     switch (tablename) {
                         case "No-Service From Last 1 Month":
                             scope.typeofslidedate = "Service Date";
@@ -568,6 +570,11 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                 };
                 scope.mainShortListProfiles = function() {
                     scope.$emit("mainShortListProfile");
+                };
+
+
+                scope.photorequest = function(profileid) {
+                    scope.$emit("photorequest", profileid);
                 };
             }
         };
