@@ -144,12 +144,12 @@
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 4500);
                 }
             });
-        }
+        };
         model.pagechange = function(val) {
             var to = val * 10;
             var from = val === 1 ? 1 : to - 9;
             model.MyprofileResult(model.mpObj, from, to);
-        }
+        };
         model.close = function() {
             modelpopupopenmethod.closepopup();
         };

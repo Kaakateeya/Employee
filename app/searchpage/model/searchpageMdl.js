@@ -469,6 +469,20 @@
                 model.close();
             }
             slide.isShortlisted = true;
+            model.progressbar = [];
+            model.progressbar = _.where(model.slides, { isShortlisted: true });
+            if (model.progressbar.length <= 10) {
+                model.progressbarhtml = $sce.trustAsHtml("<div class='progress-bar progress-bar-striped progress-bar-danger active' style='width: " + model.progressbar.length + "%'><span >" + model.progressbar.length + ' Shortlisted' + "</span></div>");
+            } else if (model.progressbar.length > 10 && model.progressbar.length <= 30) {
+                count = model.progressbar.length == 11 ? 1 : (count + 1);
+                model.progressbarhtml = $sce.trustAsHtml("<div class='progress-bar progress-bar-striped progress-bar-warning active' style='width: " + model.progressbar.length + "%'><span >" + model.progressbar.length + ' Shortlisted' + " </span></div>");
+            } else if (model.progressbar.length > 30 && model.progressbar.length <= 50) {
+                count = model.progressbar.length == 31 ? 1 : (count + 1);
+                model.progressbarhtml = $sce.trustAsHtml("<div class='progress-bar progress-bar-striped progress-bar-info active' style='width: " + model.progressbar.length + "%'><span >" + model.progressbar.length + ' Shortlisted' + " </span></div>");
+            } else {
+                count = model.progressbar.length == 51 ? 1 : (count + 1);
+                model.progressbarhtml = $sce.trustAsHtml("<div class='progress-bar progress-bar-striped progress-bar-success active' style='width: " + model.progressbar.length + "%'><span >" + model.progressbar.length + ' Shortlisted' + " </span></div>");
+            }
             alerts.timeoutoldalerts(model.scope, 'alert-success', 'profile has been shortlisted successfully', 2000);
         };
 
@@ -479,6 +493,7 @@
             if (slide.isShortlisted) {
                 alerts.timeoutoldalerts(model.scope, 'alert-danger', 'This profile already shortlisted', 2000);
             } else {
+                model.divmismatchData = [];
                 var strmismatch = '';
                 if (parseInt(slide.Age) < parseInt(model.getpageloadobject.AgeMin) && parseInt(slide.Age) > parseInt(model.getpageloadobject.AgeMax)) {
                     strmismatch = "  Age not Matched to this profileid" + ",";
