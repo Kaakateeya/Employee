@@ -29,6 +29,10 @@ textarea {
     border: 1px solid #ADA2A2 !important;
 }
 
+.myprofile .multiselect {
+    width: 100% !important;
+}
+
 .multiselect {
     border: 1px solid #ADA2A2 !important;
 }
