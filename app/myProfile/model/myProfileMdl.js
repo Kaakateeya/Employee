@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function factory(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss, SelectBindServiceApp, uibModal) {
+    function factory(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss, SelectBindServiceApp, uibModal, timeout) {
         var model = {};
         model = config;
         model.mpObj = {};
@@ -57,22 +57,7 @@
         };
 
         model.showphoto = function(custid) {
-            // alert(custid);
-            // modelpopupopenmethod.ShowPhotoPopup(custid, model.scope);
-            // SelectBindServiceApp.getphotoslideimages(custid).then(function(response) {
-            //     model.scope.slides = [];
-            //     _.each(response.data, function(item) {
-            //         model.scope.slides.push(item);
-            //     });
-            //     var modalpopupopen = uibModal.open({
-            //         ariaLabelledBy: 'modal-title',
-            //         ariaDescribedBy: 'modal-body',
-            //         templateUrl: 'templates/dynamicPhotoPopup.html',
-            //         scope: scope,
-            //         backdrop: 'static',
-            //         keyboard: false
-            //     });
-            // });
+            modelpopupopenmethod.ShowPhotoPopup(custid, model.scope);
         };
 
         model.RedirectPayment = function(profileid) {
@@ -173,5 +158,5 @@
     angular
         .module('Kaakateeya')
         .factory('myProfileModel', factory)
-    factory.$inject = ['$http', 'myProfileservice', 'authSvc', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'SelectBindServiceApp', '$uibModal'];
+    factory.$inject = ['$http', 'myProfileservice', 'authSvc', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'SelectBindServiceApp', '$uibModal', '$timeout'];
 })(angular);
