@@ -2,7 +2,8 @@
     'use strict';
 
     function factory($http, searchpageServices, arrayConstants, SelectBindServiceApp, getArray, timeout,
-        helpService, authSvc, alerts, Commondependency, filter, modelpopupopenmethod, config, $sce) {
+        helpService, authSvc, alerts, Commondependency, filter, modelpopupopenmethod, config, $sce,
+        expressInterestModel) {
         var model = {};
         model = config;
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
@@ -38,163 +39,8 @@
         model.active = 0;
         model.divmismatchData = [];
         model.templateUrl = "templates/angularSlide.html";
-        // model.arrayslidess = [{
-        //     Age: 27,
-        //     AgeMax: null,
-        //     Agemax: null,
-        //     Agemin: null,
-        //     // ApplicationPhotoPath: "~\Images\ProfilePics\KMPL_47098_Images\img2_Images\210470984_FullPhoto.jpg,~\Images\ProfilePics\KMPL_47098_Images\img3_Images\210470984_FullPhoto.jpg,~\Images\ProfilePics\KMPL_47098_Images\img1_Images\210470984_FullPhoto.jpg",
-        //     Caste: "Telugu-Balija",
-        //     CasteID: 403,
-        //     Color: "Fair",
-        //     Cust_ID: "47098",
-        //     Cust_ProfileInterestsLog_ID: null,
-        //     CustomerApplicationPhoto: null,
-        //     CustomerFullPhoto: "http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_47098_Images/Img2_Images/210470984_FullPhoto.jpg",
-        //     DOB: "24-May-1989",
-        //     EduGroupnamenew: "--",
-        //     Education: null,
-        //     EducationGroup: "BE",
-        //     Employeedin: null,
-        //     FFNative: "Dindigul",
-        //     FirstName: "R",
-        //     FromTicketID: null,
-        //     FromTicketIdSuf: "--",
-        //     Gender: "Male",
-        //     GenderID: null,
-        //     Gothram: "THILAGA",
-        //     Height: "5'8 in - 172 cms",
-        //     HeightInCentimeters: 21,
-        //     Heightmax: null,
-        //     Heightmin: null,
-        //     HoroscopePath: "--",
-        //     HoroscopeStatus: 0,
-        //     Income: "40000",
-        //     Intercaste: false,
-        //     IsConfidential: false,
-        //     JobLocation: "Trichy",
-        //     KMPLID: "TYBAM2314",
-        //     LastName: "BAGESH PRABHU",
-        //     MFNative: "Madurai",
-        //     MaritalStatusID: 43,
-        //     MaxHeight: null,
-        //     MinHeight: null,
-        //     Mystatus: "--",
-        //     Name: null,
-        //     NoOfBrothers: 1,
-        //     NoOfSisters: 0,
-        //     OppStatus: "--",
-        //     Ownerflag: false,
-        //     // Photo: "~\Images\ProfilePics\KMPL_47098_Images\img2_Images\210470984_FullPhoto.jpg",
-        //     PhotoCount: 3,
-        //     PhotoNames: "img2.jpg,img3.jpg,img1.jpg",
-        //     PlaceOfBirth: "Madurai",
-        //     Profession: "Admin Professional",
-        //     ProfileID: "121333",
-        //     ProfileStatusID: null,
-        //     Property: "2500",
-        //     RegistrationDate: null,
-        //     Star: "Poorvashada",
-        //     SubCaste: null,
-        //     SuperConfidentila: 0,
-        //     SurName: null,
-        //     TOB: "20:30:00",
-        //     ToTicketID: null,
-        //     ToTicketIDSuf: "--",
-        //     TotalRows: 498,
-        //     TotalRowsKeyword: null,
-        //     Totalpages: null,
-        //     companyname: null,
-        //     countrylivingin: "India",
-        //     currency: "Rs",
-        //     educationspecialisation: null,
-        //     email: "rkkalp1960@gmail.com",
-        //     fathercaste: "--",
-        //     imageurl: null,
-        //     maritalstatus: "Unmarried",
-        //     mothercaste: "--",
-        //     mothertongue: null,
-        //     paid: 1,
-        //     serviceDate: ""
-        // }, {
-        //     Age: 27,
-        //     AgeMax: null,
-        //     Agemax: null,
-        //     Agemin: null,
-        //     //ApplicationPhotoPath: "~\Images\ProfilePics\KMPL_47098_Images\img2_Images\210470984_FullPhoto.jpg,~\Images\ProfilePics\KMPL_47098_Images\img3_Images\210470984_FullPhoto.jpg,~\Images\ProfilePics\KMPL_47098_Images\img1_Images\210470984_FullPhoto.jpg",
-        //     Caste: "Telugu-Balija",
-        //     CasteID: 403,
-        //     Color: "Fair",
-        //     Cust_ID: "47098",
-        //     Cust_ProfileInterestsLog_ID: null,
-        //     CustomerApplicationPhoto: null,
-        //     CustomerFullPhoto: "http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_47098_Images/Img2_Images/210470984_FullPhoto.jpg",
-        //     DOB: "24-May-1989",
-        //     EduGroupnamenew: "--",
-        //     Education: null,
-        //     EducationGroup: "BE",
-        //     Employeedin: null,
-        //     FFNative: "Dindigul",
-        //     FirstName: "R",
-        //     FromTicketID: null,
-        //     FromTicketIdSuf: "--",
-        //     Gender: "Male",
-        //     GenderID: null,
-        //     Gothram: "THILAGA",
-        //     Height: "5'8 in - 172 cms",
-        //     HeightInCentimeters: 21,
-        //     Heightmax: null,
-        //     Heightmin: null,
-        //     HoroscopePath: "--",
-        //     HoroscopeStatus: 0,
-        //     Income: "40000",
-        //     Intercaste: false,
-        //     IsConfidential: false,
-        //     JobLocation: "Trichy",
-        //     KMPLID: "TYBAM2314",
-        //     LastName: "BAGESH PRABHU",
-        //     MFNative: "Madurai",
-        //     MaritalStatusID: 43,
-        //     MaxHeight: null,
-        //     MinHeight: null,
-        //     Mystatus: "--",
-        //     Name: null,
-        //     NoOfBrothers: 1,
-        //     NoOfSisters: 0,
-        //     OppStatus: "--",
-        //     Ownerflag: false,
-        //     //  Photo: "~\Images\ProfilePics\KMPL_47098_Images\img2_Images\210470984_FullPhoto.jpg",
-        //     PhotoCount: 3,
-        //     PhotoNames: "img2.jpg,img3.jpg,img1.jpg",
-        //     PlaceOfBirth: "Madurai",
-        //     Profession: "Admin Professional",
-        //     ProfileID: "210470984",
-        //     ProfileStatusID: null,
-        //     Property: "2500",
-        //     RegistrationDate: null,
-        //     Star: "Poorvashada",
-        //     SubCaste: null,
-        //     SuperConfidentila: 0,
-        //     SurName: null,
-        //     TOB: "20:30:00",
-        //     ToTicketID: null,
-        //     ToTicketIDSuf: "--",
-        //     TotalRows: 498,
-        //     TotalRowsKeyword: null,
-        //     Totalpages: null,
-        //     companyname: null,
-        //     countrylivingin: "India",
-        //     currency: "Rs",
-        //     educationspecialisation: null,
-        //     email: "rkkalp1960@gmail.com",
-        //     fathercaste: "--",
-        //     imageurl: null,
-        //     maritalstatus: "Unmarried",
-        //     mothercaste: "--",
-        //     mothertongue: null,
-        //     paid: 1,
-        //     serviceDate: ""
-        // }];
+        model.headettemp = "templates/angularHeader.html";
+        model.shortlistmodel = {};
         model.returnnullvalue = function(value) {
             var obj = helpService.checkstringvalue(value) && (value.toString()) !== "0" && (value.toString()) !== 0 ? (value.toString()) : null;
             return obj;
@@ -386,21 +232,20 @@
             };
             searchpageServices.generalsearchsubmit(model.CgetDetails).then(function(response) {
                 console.log(response);
+                model.slideshowarray = [];
                 _.each(response.data, function(item) {
                     model.slideshowarray.push(item);
                 });
                 if (model.typrofsearch === "2") {
                     model.headervisileble = true;
                     model.tablename = "general";
-                    //  model.scope.$broadcast("generalsearchslide", model.slideshowarray, "general", model.getpageloadobject, frompage);
-
                     if (parseInt(frompage) === 1) {
                         model.setSlides(model.slideshowarray, parseInt(topage));
                         model.totalRecords = parseInt(frompage) === 1 && response !== undefined && response !== "" && response !== null && response.data !== undefined ? model.slideshowarray[0].TotalRows : 0;
                     } else {
                         model.addSlides(model.slideshowarray, model.slides, parseInt(topage));
                     }
-                    //  model.scope.$broadcast("slidebind", model.slides);
+
                 } else {
                     model.scope.$broadcast('submittablesearch', model.slideshowarray, frompage);
                 }
@@ -548,7 +393,7 @@
             };
             searchpageServices.advancedsearchsubmit(model.CgetDetails).then(function(response) {
                 console.log(response);
-
+                model.slideshowarray = [];
                 _.each(response.data, function(item) {
                     model.slideshowarray.push(item);
                 });
@@ -561,8 +406,6 @@
                     } else {
                         model.addSlides(model.slideshowarray, model.slides, parseInt(topage));
                     }
-                    // model.scope.$broadcast("generalsearchslide", model.slideshowarray, "advanced", model.getpageloadobject, frompage);
-                    //  model.scope.$broadcast("slidebind", model.slides);
                 } else {
                     model.scope.$broadcast('submittablesearch', model.slideshowarray, frompage);
                 }
@@ -607,206 +450,95 @@
         };
 
         model.applycolors = function(value, id) {
-            var colors = "selectborderclass";
-            if (value !== 0 && value !== "0" && value !== "" && value !== undefined && value !== null) {
-                colors = "selectborderclasscolor";
-                $('#' + id).next().find('button').addClass("bacg");
-            } else {
-                colors = "selectborderclass";
-                $('#' + id).next().find('button').removeClass("bacg");
-            }
-            return colors;
+            alerts.applycolors(value, id);
         };
 
         model.applycolorsfortextboxes = function(value, id) {
-            var colors = "textboxremvecolor";
-            if (value !== "" && value !== undefined && value !== null) {
-                colors = "bacg";
-                $('#' + id).addClass("bacg");
-            } else {
-                colors = "textboxremvecolor";
-                $('#' + id).removeClass("bacg");
-            }
-            return colors;
+            alerts.applycolorsfortextboxes(value, id);
         };
 
         model.applycolorsfortextboxesdate = function(value, id) {
-            var colors = "textboxremvecolor";
-            if (value !== "" && value !== undefined && value !== null) {
-                colors = "bacg";
-                $('#' + id).next().find('input').addClass("bacg");
-            } else {
-                colors = "textboxremvecolor";
-                $('#' + id).next().find('input').removeClass("bacg");
-            }
-            return colors;
+            alerts.applycolorsfortextboxesdate(value, id);
         };
         model.close = function(type) {
-            if (type === "inner") {
-                model.innerslideshort = false;
-                model.mainshortlist = true;
-                modelpopupopenmethod.closepopuppoptopopup();
-            } else {
-                modelpopupopenmethod.closepopuppoptopopup();
-            }
+            modelpopupopenmethod.closepopuppoptopopup();
         };
 
-        model.getClickedCustID = function() {
-            debugger;
+        model.getClickedCustID = function(slide) {
             if (model.dynamicFunction === "getClickedCustID" || model.dynamicFunction === "mismatchProfileCheck") {
                 model.close();
             }
-
-            var objdynamic = model.dynamicobj;
-            var StVal = model.hdnshortlistProfile;
-            var mismath;
-            if (StVal === '') {
-                StVal = objdynamic.custids;
-                mismath = [objdynamic.custids];
-            } else {
-                StVal += "," + objdynamic.custids;
-                mismath = StVal.split(",");
-            }
+            slide.isShortlisted = true;
             alerts.timeoutoldalerts(model.scope, 'alert-success', 'profile has been shortlisted successfully', 2000);
-            model.hdnshortlistProfile = StVal;
-            model.hdnCustIdsForAlert = StVal;
-
-            var shortlisttxt = "  Shortlisted";
-            if (mismath.length <= 10) {
-                count++;
-                $("#progessDiv").html("<div class='progress-bar progress-bar-striped progress-bar-danger active' style='width: " + mismath.length + "%'><span >" + mismath.length + shortlisttxt + " </span></div>");
-            } else if (mismath.length > 10 && mismath.length <= 30) {
-                count = mismath.length == 11 ? 1 : (count + 1);
-                $("#progessDiv").html("<div class='progress-bar progress-bar-striped progress-bar-danger' style='width:10%;'><span></span></div>");
-                $("#progessDiv").append("<div class='progress-bar progress-bar-striped progress-bar-warning active' style='width: " + count + "%'><span >" + mismath.length + shortlisttxt + " </span></div>");
-            } else if (mismath.length > 30 && mismath.length <= 50) {
-                count = mismath.length == 31 ? 1 : (count + 1);
-                $("#progessDiv").html("<div class='progress-bar progress-bar-striped progress-bar-danger' style='width:10%;'><span></span></div><div class='progress-bar progress-bar-striped progress-bar-warning' style='width:20%;'><span></span></div>");
-                $("#progessDiv").append("<div class='progress-bar progress-bar-striped progress-bar-info active' style='width: " + count + "%'><span >" + mismath.length + shortlisttxt + " </span></div>");
-            } else {
-                count = mismath.length == 51 ? 1 : (count + 1);
-                $("#progessDiv").html("<div class='progress-bar progress-bar-striped progress-bar-danger' style='width:10%;'><span></span></div><div class='progress-bar progress-bar-striped progress-bar-warning' style='width:20%;'><span></span></div><div class='progress-bar progress-bar-striped progress-bar-info' style='width: 20%'><span > </span></div>");
-                $("#progessDiv").append("<div class='progress-bar progress-bar-striped progress-bar-success active' style='width: " + count + "%'><span >" + mismath.length + shortlisttxt + " </span></div>");
-            }
-            return false;
         };
 
-        // model.mismatchProfileCheck = function(custids, profileID, age, height, maritalstatus, caste, personalobj) {
-        model.mismatchProfileCheck = function() {
+        model.mismatchProfileCheck = function(slide) {
             if (model.dynamicFunction === "getClickedCustID" || model.dynamicFunction === "mismatchProfileCheck") {
                 model.close();
             }
-            var objdynamic = model.dynamicobj;
-            var StVal = model.hdnshortlistProfile;
-            var StValall = model.hdnCustIdsForAlert;
-            if (StValall.indexOf(objdynamic.custids) != -1) {
+            if (slide.isShortlisted) {
                 alerts.timeoutoldalerts(model.scope, 'alert-danger', 'This profile already shortlisted', 2000);
             } else {
                 var strmismatch = '';
-                if (parseInt(objdynamic.age) < parseInt(objdynamic.personalobj.AgeMin) && parseInt(objdynamic.age) > parseInt(objdynamic.personalobj.AgeMax)) {
+                if (parseInt(slide.Age) < parseInt(model.getpageloadobject.AgeMin) && parseInt(slide.Age) > parseInt(model.getpageloadobject.AgeMax)) {
                     strmismatch = "  Age not Matched to this profileid" + ",";
+                    model.divmismatchData.push({ profileIDlocal: slide.ProfileID, mismath: strmismatch });
                 }
-                if (parseInt(objdynamic.height) < parseInt(objdynamic.personalobj.MinHeight) && parseInt(objdynamic.height) > parseInt(objdynamic.personalobj.MaxHeight)) {
+                if (parseInt(slide.HeightInCentimeters) < parseInt(model.getpageloadobject.MinHeight) && parseInt(slide.HeightInCentimeters) > parseInt(model.getpageloadobject.MaxHeight)) {
                     strmismatch += "  Height not Matched to this profileid" + ",";
+                    model.divmismatchData.push({ profileIDlocal: slide.ProfileID, mismath: strmismatch });
                 }
-                if (parseInt(objdynamic.maritalstatus) != parseInt(objdynamic.personalobj.maritalstatusid)) {
+                if (parseInt(slide.MaritalStatusID) != parseInt(model.getpageloadobject.maritalstatusid)) {
                     strmismatch += "  MaritalStatus not Matched to this profileid" + ",";
+                    model.divmismatchData.push({ profileIDlocal: slide.ProfileID, mismath: strmismatch });
                 }
-                if (parseInt(objdynamic.caste) != parseInt(objdynamic.personalobj.casteid)) {
+                if (parseInt(slide.CasteID) != parseInt(model.getpageloadobject.casteid)) {
                     strmismatch += "  Caste not Matched to this profileid";
+                    model.divmismatchData.push({ profileIDlocal: slide.ProfileID, mismath: strmismatch });
                 }
-
-                if (strmismatch !== '') {
-                    var mismath = strmismatch.split(",");
-                    model.divmismatchData = [];
-                    model.divfooter = '';
-                    var profileIDlocal = JSON.stringify(objdynamic.profileID);
-                    for (var i = 0; i < mismath.length; i++) {
-                        model.divmismatchData.push({ profileIDlocal: profileIDlocal, mismath: mismath[i] });
-                    }
+                if (model.divmismatchData.length > 0) {
                     model.dynamicFunction = "getClickedCustID";
+                    model.dynamicParams = slide;
                     modelpopupopenmethod.showPopupphotopoup('shortlistpopup.html', model.scope, '', "modalclassdashboardphotopopup");
                 } else {
-                    model.getClickedCustID();
+                    model.getClickedCustID(slide);
                 }
             }
         };
 
-        model.checkServicetoShortlist = function(custids, profileID, age, height, maritalstatus, caste, Servicedate, personalobj) {
-            var StValall = model.hdnCustIdsForAlert;
-            var profileIDlocal = JSON.stringify(profileID);
-            model.dynamicobj = {
-                custids: custids,
-                profileID: profileID,
-                age: age,
-                height: height,
-                maritalstatus: maritalstatus,
-                caste: caste,
-                personalobj: personalobj
-            };
-            if (StValall.indexOf(custids) != -1) {
+        model.checkServicetoShortlist = function(slide) {
+            model.slide = slide;
+            if (slide.isShortlisted) {
                 alerts.timeoutoldalerts(model.scope, 'alert-danger', 'This profile already shortlisted', 2000);
             } else {
-                if (Servicedate !== '') {
+                if (slide.serviceDate !== '') {
                     model.divmismatchData = [];
-                    model.divfooter = '';
-                    model.divmismatchData.push({ profileIDlocal: profileIDlocal, mismath: Servicedate });
+                    model.divmismatchData.push({ profileIDlocal: JSON.stringify(slide.ProfileID), mismath: slide.serviceDate });
                     model.dynamicFunction = "mismatchProfileCheck";
+                    model.dynamicParams = slide;
                     modelpopupopenmethod.showPopupphotopoup('shortlistpopup.html', model.scope, '', "modalclassdashboardphotopopup");
                 } else {
-                    model.mismatchProfileCheck();
+                    model.mismatchProfileCheck(slide);
 
                 }
             }
         };
 
-        model.shortListPopup = function() {
-            var StValall = model.hdnshortlistProfile;
-            if (StValall !== '') {
-                searchpageServices.getshortlistprofiles(StValall).then(function(response) {
-                    console.log(response.data);
-                    model.arrayslide = response.data;
-                    model.innersetSlides(model.arrayslide);
-                    model.scope.$broadcast("slidebindinner", model.arrayslide);
-                });
-
-                //modelpopupopenmethod.showPopupphotopoup('mainShortListProfiles.html', model.scope, 'lg', "modalclassdashboardphotopopup");
-            } else {
-                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please shortlist any Profile', 2000);
-            }
-        };
         model.mainShortListProfile = function() {
-            debugger;
-            var hdnshortlistProfile = model.hdnshortlistProfile;
-            if (hdnshortlistProfile !== "" && hdnshortlistProfile !== undefined) {
-                var hdnCurrentSlideVal = model.hdnCurrentSlideVal;
-                if (hdnshortlistProfile !== "" || hdnCurrentSlideVal !== "") {
-                    var CustIDsCount = (hdnshortlistProfile !== "" ? hdnshortlistProfile : "0").split(',');
-                    if (hdnshortlistProfile !== "" && hdnCurrentSlideVal === "") {
-                        hdnshortlistProfile = (hdnCurrentSlideVal);
-                    } else if (hdnshortlistProfile !== "" && hdnCurrentSlideVal !== "") {
-                        if (hdnshortlistProfile.indexOf(hdnCurrentSlideVal) != -1) {} else {
-                            hdnshortlistProfile += "," + hdnCurrentSlideVal;
-                            model.hdnshortlistProfile = (hdnshortlistProfile);
-                        }
-                    }
-                    model.shortListPopup();
-                }
-            } else {
-                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please ShortList Profiles', 2000);
+            model.shortlistmodel.headettemp = "templates/SearchpopupHeader.html";
+            model.shortlistmodel.slides = _.where(model.slides, { isShortlisted: true });
+            modelpopupopenmethod.showPopupphotopoup('mainShortListProfiles.html', model.scope, 'lg', "modalclassdashboardphotopopupinner");
 
-            }
         };
-
-        model.InnerShortList = function(custID) {
-            debugger;
-            var InnerShortList = model.hdnCurrentSlideVal;
-            if (InnerShortList.indexOf(custID) != -1) {
+        model.shortListPopup = function() {
+            model.shortlistmodel.slides = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true });
+        };
+        model.shortlistmodel.checkServicetoShortlist = function(slide) {
+            model.slide = slide;
+            if (slide.isshortlistaedgain) {
                 alerts.timeoutoldalerts(model.scope, 'alert-danger', 'You have already Shortlisted this Profile ID', 4000);
             } else {
-                InnerShortList = InnerShortList === '' ? custID : (InnerShortList + "," + custID);
-                model.hdnCurrentSlideVal = InnerShortList;
-                model.hdnshortlistProfile = InnerShortList;
+                slide.isshortlistaedgain = true;
                 alerts.timeoutoldalerts(model.scope, 'alert-success', 'profile has been shortlisted successfully', 4000);
             }
 
@@ -897,25 +629,36 @@
         };
 
         model.sendtoServices = function() {
-            var varcustIDs = model.hdnshortlistProfile;
-            var object = {
-                custIDs: varcustIDs
+            var cloumsarr = [];
+            _.each(model.shortlistmodel.slides, function(item) {
+                cloumsarr.push(item.Custid);
+            });
+            var custids = cloumsarr.length > 0 ? (cloumsarr).toString() : null;
+            searchpageServices.getprofileidcustdetails(cloumsarr).then(function(response) {
+                console.log(response);
+                model.FromProfileId = model.getpageloadobject.ProfileID;
+                model.Toprofileids = [];
+                _.each(response.data, function(item) {
+                    model.Toprofileids.push(item.ProfileID);
+                });
+                expressInterestModel.FromProfileID(model.FromProfileId);
+                timeout(function() {
+                    expressInterestModel.exiObj.txtFromprofileID = model.FromProfileId;
+                    expressInterestModel.disableinput = true;
+                }, 500);
+                _.each(model.Toprofileids, function(item) {
+                    expressInterestModel.getImages(item);
+                    timeout(function() {
+                        expressInterestModel.SelectProfilelst.push({ "label": item, "title": item, "value": expressInterestModel.strimages });
+                    }, 500);
 
-            };
-            // var data = CallApi("EmployeeGeneralSearchLatest.aspx/bindProfileIDs", object);
+                });
+                modelpopupopenmethod.showPopupphotopoup('app/expressInterest/index.html', model.scope, 'lg', "")
+            });
 
-            // if (data.d.length > 0) {
-            //     $.each(data.d, function(key, value) {
-
-            //         $('#lstselectedprofiles').append(" <option value=" + value.Id + ">" + value.value + "</option>");
-
-            //     });
-
-            // }
-            model.close('inner');
-            // modalpopupshowhide("divEmployeeExpressInterestNew", "show");
 
         };
+
         model.bookmark = function() {
             var strToCustIDs = model.hdnshortlistProfile;
             var obj = {
@@ -946,6 +689,7 @@
         .factory('searchpageModel', factory);
     factory.$inject = ['$http', 'searchpageServices', 'arrayConstants', 'SelectBindServiceApp',
         'getArraysearch', '$timeout', 'helperservice',
-        'authSvc', 'alert', 'Commondependency', '$filter', 'modelpopupopenmethod', 'complex-slide-config', '$sce'
+        'authSvc', 'alert', 'Commondependency', '$filter', 'modelpopupopenmethod', 'complex-slide-config', '$sce',
+        'expressInterestModel'
     ];
 })(angular);

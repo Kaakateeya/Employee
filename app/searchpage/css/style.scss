@@ -220,3 +220,42 @@ button.multiselect.dropdown-toggle.btn.ng-pristine.ng-untouched.ng-valid.ng-isol
     font-weight: 400;
     line-height: 20px;
 }
+
+.modalclassdashboardphotopopup {
+    z-index: 9999999999 !important;
+    top: 0%;
+    left: 0%;
+}
+
+.modalclassdashboardphotopopupinner {
+    z-index: 9999999 !important;
+    top: 0%;
+    left: 0%;
+}
+
+.selectborderclass {
+    border: 1px solid #b1a8a8;
+    border-radius: 3px;
+    padding-left: 4px;
+}
+
+.selectborderclasscolor {
+    border: 1px solid #b1a8a8;
+    border-radius: 3px;
+    padding-left: 4px;
+    background: #f0f0cc !important;
+}
+
+.bacg {
+    background-color: #f0f0cc !important;
+}
+
+.textboxremvecolor {}
+
+.blackcolor {
+    color: black;
+}
+
+.redcolor {
+    color: red;
+}

@@ -37,6 +37,13 @@
             },
             insertbookmark: function(Mobj) {
                 return http.post(app.apiroot + 'EmployeeReportPage/SaveViewedBookmark_Customer', Mobj);
+            },
+            getprofileidcustdetails: function(custids) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getSendServiceProfileIDs', {
+                    params: {
+                        ProfileIDs: custids
+                    }
+                });
             }
 
         };

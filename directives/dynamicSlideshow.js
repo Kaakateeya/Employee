@@ -359,10 +359,18 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                         case "SA Form status for Paid Users":
                             scope.typeofslidedate = "Upload Date";
                             break;
+                        case "Present In India":
+                            scope.typeofslidedate = "ArrivalDate at";
+                            break;
+                        case "Marketing Ticket Expiry With in Two days":
+                            scope.typeofslidedate = "Ticket Exipry Date";
+                            break;
+                        case "Customer Notification Status":
+                            scope.typeofslidedate = "Action Date";
+                            break;
+
                     }
                     scope.slidearray = array;
-                    // scope.dynamicslideshow = true;
-
                     if (frompage === 1) {
                         scope.currentslide = 1;
                         scope.lbltotalrecordsslide = totalrows;

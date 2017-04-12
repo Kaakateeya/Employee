@@ -1,12 +1,5 @@
 <!--<button  class='md-raised md-warn md-hue-2' ng-click="page.model[page.model.dynamicFunction]()">Shortlist</button>-->
-<!--
-<script type="text/ng-template" id="mainShortListProfiles.html">
-               <div class="modal-body">
-                <complex-slide model="page.model" slides="page.model.arrayslide" innerslide="1"></complex-slide>
-                <div class="clearfix"></div>
-            </div>
-    </div>
-</script>-->
+
 <div class="right_col" role="main" id="generalsearchdiv">
     <div class="search_page_main" ng-show="page.model.divcontrolls">
         <div class="sample" layout="column" ng-cloak>
@@ -857,8 +850,7 @@
 
     </div>
     <div>
-        <!--<slide-show nghide="page.model.slideshowtrue" dynamicheader="'false'" slidetype="'page'" headertemplate="'templates/SlideHeader.html'" bodytemplate="'templates/slideDesign.html'"></slide-show>-->
-        <complex-slide model="page.model" slides="page.model.slides" innerslide="0"></complex-slide>
+        <complex-slide model="page.model" config="page.model"></complex-slide>
         <bootstrap-table btnclick="'true'" array="[]" id="ftable" removeobjs="['Cust_ID','paid','Name','SurName','Education','EduGroupnamenew','Income','Property','companyname',
         'TotalRowsKeyword',
             'CustomerFullPhoto','CustomerApplicationPhoto','RegistrationDate','Ownerflag',
@@ -996,7 +988,7 @@
             <div class="modal-footer">
            <div>               
              
-             <button  class='md-raised md-warn md-hue-2' ng-click="page.model[page.model.dynamicFunction]()">Shortlist</button>
+             <button  class='md-raised md-warn md-hue-2' ng-click="page.model[page.model.dynamicFunction](page.model.dynamicParams)">Shortlist</button>
              <button  class='md-raised md-hue-1' ng-click='page.model.close()'>Cancel</button>
           </div>
       
@@ -1018,29 +1010,14 @@
         </div>
     </div>
 </script>
-    </div>
-    
-    <style type="text/css">
-      .selectborderclass {
-        border: 1px solid #b1a8a8;
-        border-radius: 3px;
-        padding-left: 4px;
-    }
-     .selectborderclasscolor {
-        border: 1px solid #b1a8a8;
-        border-radius: 3px;
-        padding-left: 4px;
-        background: #f0f0cc !important;
-    }
-     .bacg {
-        background-color: #f0f0cc !important;
-    }
-      .textboxremvecolor {}
 
-      .blackcolor{
-          color:black;
-      }
-      .redcolor{
-          color: red;
-      }
- </style>
+
+
+<script type="text/ng-template" id="mainShortListProfiles.html">
+               <div class="modal-body">
+                <complex-slide config="page.model" model="page.model.shortlistmodel"  ></complex-slide>
+                <div class="clearfix"></div>
+            </div>
+    </div>
+</script>
+    </div>
