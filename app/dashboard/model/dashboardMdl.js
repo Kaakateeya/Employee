@@ -140,6 +140,14 @@
                 alert("This browser does not support HTML5.");
             }
         };
+
+        model.notificationread = function(notificationid) {
+
+
+
+        };
+
+
         return model;
     }
     angular
