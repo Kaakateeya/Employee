@@ -1,13 +1,21 @@
 (function() {
     'use strict';
 
-    function factory(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss, SelectBindServiceApp, uibModal, timeout) {
+    function factory(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss, SelectBindServiceApp, uibModal, timeout, configslide) {
         var model = {};
-        model = config;
+
+        // model = config;
+        // model = model.push({ 'configslide': configslide });
+        // model['configslide'] = configslide;
+
+        model = angular.merge(model, config, configslide);
+
         model.mpObj = {};
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
         model.opendiv = true;
         model.scope = {};
+        model.templateUrl = "templates/angularSlide.html";
+        model.headettemp = "templates/angularHeader.html";
         model.MyProfilePageLoad = function() {
 
             myProfileservice.getMyprofilebind(1, 2, '').then(function(response) {
@@ -80,7 +88,7 @@
             modelpopupopenmethod.showPopup('templates/bindImagePopup.html', model.scope, '', "");
         };
 
-        model.MyprofileResult = function(obj, from, to) {
+        model.MyprofileResult = function(obj, from, to, type) {
             var inputobj = {
                 Empid: model.empid,
                 Kmpl: obj.txtKMPLID,
@@ -137,14 +145,24 @@
             myProfileservice.getMyprofileSlide(inputobj).then(function(response) {
                 console.log(response);
                 if (_.isArray(response.data) && response.data.length > 0) {
-                    model.opendiv = false;
-                    model.TotalRows = response.data[0].TotalRows;
-                    model.setData(response.data);
+
+                    if (type === 'grid') {
+                        model.opendiv = false;
+                        model.TotalRows = response.data[0].TotalRows;
+                        model.setData(response.data);
+                    } else {
+                        model.setSlides(response.data, 10);
+                        modelpopupopenmethod.showPopupphotopoup('myprofileSlide.html', model.scope, 'lg', "");
+                    }
                 } else {
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 4500);
                 }
             });
         }
+        model.slidebind = function(old, news, array) {
+
+
+        };
         model.pagechange = function(val) {
             var to = val * 10;
             var from = val === 1 ? 1 : to - 9;
@@ -153,10 +171,11 @@
         model.close = function() {
             modelpopupopenmethod.closepopup();
         };
+
         return model;
     }
     angular
         .module('Kaakateeya')
         .factory('myProfileModel', factory)
-    factory.$inject = ['$http', 'myProfileservice', 'authSvc', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'SelectBindServiceApp', '$uibModal', '$timeout'];
+    factory.$inject = ['$http', 'myProfileservice', 'authSvc', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'SelectBindServiceApp', '$uibModal', '$timeout', 'complex-slide-config'];
 })(angular);

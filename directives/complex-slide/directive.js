@@ -35,7 +35,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         $scope.Viwedslide = news;
                         $scope.config.slidebind(old, news, $scope.model.slides);
                     }
-
                 });
                 $scope.slidepopup = function(custid) {
                     SelectBindServiceApp.getphotoslideimages(custid).then(function(response) {
