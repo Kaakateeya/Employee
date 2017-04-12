@@ -140,11 +140,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     name: 'Expressintrst',
                     files: [
                         'app/expressInterest/controller/expressInterestctrl.js',
-                        'app/expressInterest/css/style.css',
+
+                        // 'app/expressInterest/css/style.css',
+
                         'app/expressInterest/model/expressInterestMdl.js',
                         'app/expressInterest/service/expressInterestservice.js'
                     ]
                 }
+
             ]
         });
 
@@ -199,13 +202,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                             } else if (item.name === 'editViewprofile' || item.name === 'EmployeePayment') {
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             } else {
-                                $ocLazyLoad.load('commonjs');
-                                $ocLazyLoad.load('directives');
-                                $ocLazyLoad.load('constants');
-                                $ocLazyLoad.load('modules');
-                                $ocLazyLoad.load('complex-grid');
-                                $ocLazyLoad.load('complex-slide');
-                                $ocLazyLoad.load('Expressintrst');
+
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             }
                         } else {

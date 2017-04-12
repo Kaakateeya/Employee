@@ -11,16 +11,8 @@
                 model.slides = model.displayArray(model.slides, topage);
             };
             model.addSlides = function(data, arrayslide, topage) {
-                data = model.displayArray(data, 11);
-                ///  $.merge(arrayslide, data);
-                model.slides.push(data);
+                model.displayArray(data, 11);
                 //$.merge(model.slides, data);
-            };
-
-            model.innersetSlides = function(data) {
-                model.arrayslide = [];
-                model.arrayslide = data;
-                model.arrayslide = model.displayArray(model.arrayslide, 10);
             };
             model.backtosearchpage = function() {
                 model.divcontrolls = true;
@@ -28,12 +20,10 @@
             };
             model.displayArray = function(arr, topage) {
                 model.headervisileble = true;
-                if (model.pagename === 'matchfollowup') {
-                    model.headervisileble = false;
+                if (topage === parseInt(10)) {
+                    model.slides = [];
                 }
-                if (topage === 10) {
-                    model.arraydata = [];
-                }
+                console.log(arr);
                 $.each(arr, function(index, item) {
                     model.data = [];
                     model.data.push({
@@ -62,26 +52,13 @@
                     model.data.push({ label: 'Father Native', value: item.FFNative });
                     model.data.push({ label: 'Mother Native', value: item.MFNative });
                     model.data.push({ label: 'Property(Lakhs)', value: item.Property });
-                    model.data.push({
-                        label: 'backendFields',
-                        Custid: item.Cust_ID,
-                        ProfileID: item.ProfileID,
-                        PhotoCount: item.PhotoCount,
-                        Age: item.Age,
-                        HeightInCentimeters: item.HeightInCentimeters,
-                        MaritalStatusID: item.MaritalStatusID,
-                        CasteID: item.CasteID,
-                        serviceDate: item.serviceDate,
-                        CustPhoto: item.CustomerFullPhoto,
-                        totalrecords: item.TotalRowsKeyword
-                    });
                     if (item.serviceDate != "--" && item.serviceDate !== "" && item.serviceDate !== null)
                         model.data.push({ label: 'ServiceDate', value: item.serviceDate, style: 'color:red;' });
                     if (item.Intercaste == "True")
                         model.data.push({ label: 'Intercaste', value: (item.fathercaste + "/" + item.mothercaste) });
                     if (item.ProfileGrade !== 0)
                         model.data.push({ label: 'ProfileGrade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
-                    model.arraydata.push({
+                    model.slides.push({
                         itmArr: model.data,
                         custPhoto: item.CustomerFullPhoto,
                         Custid: item.Cust_ID,
@@ -99,10 +76,12 @@
                         MaritalStatusID: item.MaritalStatusID,
                         CasteID: item.CasteID,
                         serviceDate: item.serviceDate,
-                        ProfileID: item.ProfileID
+                        ProfileID: item.ProfileID,
+                        HoroscopePath: item.HoroscopePath
                     });
                 });
-                return model.arraydata;
+                debugger;
+                return model.slides;
             };
             return model;
         };
