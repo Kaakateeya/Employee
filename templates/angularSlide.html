@@ -18,8 +18,8 @@
             <label style="color:#000"><span ng-bind-html="config.statusbind(slide.Mystatus.trim())"></span><span>
                         <img style="height: 29px;" ng-if="slide.Mystatus.trim()==='I'"  ng-show="slide.Mystatus.trim()==='I'" src="src/images/heartgrren.gif"><img>
                          <img style="height: 29px;"  ng-if="slide.Mystatus.trim()==='NI'" ng-show="slide.Mystatus.trim()==='NI'" ng-src="src/images/brkhrtgreen.gif"><img></span></label>
-            <md-button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-click="config.proceedanddontproceed('btnProceed',personalobj.Cust_ID,slide.Custid,slide.Cust_ProfileInterestsLog_ID)" ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI' && slide.Mystatus.trim()!=='--'">Proceed</md-button>
-            <md-button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-click="config.proceedanddontproceed('btnDontProceed',personalobj.Cust_ID,slide.Custid,slide.Cust_ProfileInterestsLog_ID)" ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI' && slide.Mystatus.trim()!=='--'">Dont Proceed</md-button>
+            <md-button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-click="config.proceedanddontproceed('btnProceed',personalobj.Cust_ID,slide.Custid,slide.Cust_ProfileInterestsLog_ID,1,1)" ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI' && slide.Mystatus.trim()!=='--'">Proceed</md-button>
+            <md-button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-click="config.proceedanddontproceed('btnDontProceed',personalobj.Cust_ID,slide.Custid,slide.Cust_ProfileInterestsLog_ID,2,2)" ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI' && slide.Mystatus.trim()!=='--'">Dont Proceed</md-button>
             <md-button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-if="slide.Mystatus.trim()==='I' || slide.Mystatus.trim()==='NI'" ng-show="slide.FromTicketIdSuf.trim()!=='--'">{{slide.FromTicketIdSuf}}</md-button>
         </div>
         <br>

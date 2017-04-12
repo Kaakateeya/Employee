@@ -572,17 +572,17 @@
             return status;
         };
 
-        model.proceedanddontproceed = function(typeofbtn, fromcustid, tocustid, logid) {
+        model.proceedanddontproceed = function(typeofbtn, fromcustid, tocustid, logid, AcceptStatus, MatchFollwupStatus) {
+            var MobjViewprofile = {
+                ExpressInrestID: logid,
+                CustID: fromcustid,
+                FromCustID: fromcustid,
+                ToCustID: tocustid,
+                AcceptStatus: AcceptStatus,
+                MatchFollwupStatus: MatchFollwupStatus
+            };
             switch (typeofbtn) {
                 case "btnProceed":
-                    var MobjViewprofile = {
-                        ExpressInrestID: logid,
-                        CustID: fromcustid,
-                        FromCustID: fromcustid,
-                        ToCustID: tocustid,
-                        AcceptStatus: 1,
-                        MatchFollwupStatus: 1
-                    };
                     helperservice.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
                         alerts.dynamicpopup("TabClosePopup.html", model.scope, uibModal);
                         switch (response.data) {
@@ -600,15 +600,7 @@
                     });
                     break;
                 case "btnDontProceed":
-                    var MobjViewprofiledont = {
-                        ExpressInrestID: logid,
-                        CustID: fromcustid,
-                        FromCustID: fromcustid,
-                        ToCustID: tocustid,
-                        AcceptStatus: 2,
-                        MatchFollwupStatus: 2
-                    };
-                    helperservice.UpdateExpressIntrestViewfullprofile(MobjViewprofiledont).then(function(response) {
+                    helperservice.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
                         alerts.dynamicpopup("TabClosePopup.html", model.scope, uibModal);
                         switch (response.data) {
                             case 1:
@@ -629,15 +621,17 @@
         };
 
         model.sendtoServices = function() {
-            var cloumsarr = [];
+            model.close();
+            model.cloumsarr = [];
             _.each(model.shortlistmodel.slides, function(item) {
-                cloumsarr.push(item.Custid);
+                model.cloumsarr.push(item.Custid);
             });
-            var custids = cloumsarr.length > 0 ? (cloumsarr).toString() : null;
-            searchpageServices.getprofileidcustdetails(cloumsarr).then(function(response) {
+            var custids = model.cloumsarr.length > 0 ? (model.cloumsarr).toString() : null;
+            searchpageServices.getprofileidcustdetails(custids).then(function(response) {
                 console.log(response);
                 model.FromProfileId = model.getpageloadobject.ProfileID;
                 model.Toprofileids = [];
+                debugger;
                 _.each(response.data, function(item) {
                     model.Toprofileids.push(item.ProfileID);
                 });
@@ -655,8 +649,6 @@
                 });
                 modelpopupopenmethod.showPopupphotopoup('app/expressInterest/index.html', model.scope, 'lg', "")
             });
-
-
         };
 
         model.bookmark = function() {
