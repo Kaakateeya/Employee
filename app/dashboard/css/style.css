@@ -53,4 +53,30 @@ body {
 .fa-check-circle {
   color: green; }
 
+span.fa.fa-angle-down {
+  display: none; }
+
+.modal {
+  z-index: 99999 !important; }
+
+.paidCls {
+  color: Green;
+  text-decoration: underline;
+  margin-left: -16px;
+  padding-left: 10px; }
+
+.unpaidCls {
+  color: red;
+  text-decoration: underline;
+  margin-left: -16px;
+  padding-left: 10px; }
+
+.modal-lg {
+  width: 90% !important; }
+
+.pauseBtns {
+  width: 33px;
+  height: 33px;
+  font-size: 16px; }
+
 /*# sourceMappingURL=style.css.map */
