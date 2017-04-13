@@ -30,13 +30,9 @@
         model.mySidenavdiv = false;
         model.mystylenamediv = true;
         var count = 0;
-        model.hdnCustIdsForAlert = "";
-        model.hdnshortlistProfile = "";
-        model.hdnCurrentSlideVal = "";
         model.headervisileble = false;
         model.dynamicFunction = '';
         model.slidephotos = [];
-        model.active = 0;
         model.divmismatchData = [];
         model.templateUrl = "templates/angularSlide.html";
         model.headettemp = "templates/angularHeader.html";
@@ -111,15 +107,12 @@
                 alerts.dynamicpopupclose();
             });
         };
-
-
         model.removeSelect = function(Arr) {
             if (Arr.length > 0 && angular.lowercase(Arr[0].title) === '--select--') {
                 Arr.splice(0, 1);
             }
             return Arr;
         };
-
         model.init = function() {
             model.divcontrollsbind = 1;
             model.maritalstatus = model.removeSelect(arrayConstants.MaritalStatus);
@@ -646,7 +639,6 @@
                 console.log(response);
                 model.FromProfileId = model.getpageloadobject.ProfileID;
                 model.Toprofileids = [];
-                debugger;
                 _.each(response.data, function(item) {
                     model.Toprofileids.push(item.ProfileID);
                 });
@@ -662,7 +654,7 @@
                     }, 500);
 
                 });
-                modelpopupopenmethod.showPopupphotopoup('app/expressInterest/index.html', model.scope, 'lg', "")
+                modelpopupopenmethod.showPopupphotopoup('app/expressInterest/index.html', model.scope, 'lg', "");
             });
         };
 

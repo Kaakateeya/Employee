@@ -141,13 +141,20 @@
             }
         };
 
-        model.notificationread = function(notificationid) {
+        model.notificationread = function(notificationid, index, parentid, custid, CategoryID) {
+            var obj = {
+                EmpID: model.empid,
+                idisplay: 2,
+                NotificationID: notificationid,
+                CategoryID: CategoryID,
+                CustID: custid
+            };
+            dashboardServices.readNotifications(obj).then(function(response) {
+                console.log(response);
+            });
 
-
-
+            // model.landingItems.splice(model.landingItems.indexOf(notificationid), 1);
         };
-
-
         return model;
     }
     angular
