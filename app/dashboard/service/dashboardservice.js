@@ -31,6 +31,9 @@
                 return http.get(app.apiroot + 'CustomerPersonal/getCustomerphotoRequestDisplay', {
                     params: { profileid: ProfileID, EMPID: empid, ticketIDs: '' }
                 });
+            },
+            readNotifications: function(obj) {
+                return http.get(app.apiroot + 'StaticPages/getCust_NotificationDetails_Employee', { params: { EmpID: obj.EmpID, idisplay: obj.idisplay, NotificationID: obj.NotificationID, CategoryID: obj.CategoryID, CustID: obj.CustID } });
             }
         };
     }

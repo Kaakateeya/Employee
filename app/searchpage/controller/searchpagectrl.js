@@ -105,17 +105,6 @@
              model.divcontrolls = true;
              model.slideshowtrue = false;
          });
-
-
-         scope.$on("shortlistprofileids", function(event, custids, profileID, age, height, maritalstatus, caste, Servicedate, personalobj) {
-             model.checkServicetoShortlist(custids, profileID, age, height, maritalstatus, caste, Servicedate, personalobj);
-         });
-
-         scope.$on("mainShortListProfile", function(event) {
-             model.mainShortListProfile();
-         });
-
-
      }
 
      angular

@@ -405,7 +405,7 @@ h3 {
 }
 
 a {
-    color: #5A738E
+    color: #337ab7
 }
 
 .btn.active.focus,
@@ -1484,4 +1484,8 @@ ul.top_profiles li:nth-child(odd) {
     -webkit-border-radius: 3px 0 0 3px;
     -moz-border-radius: 3px 0 0 3px;
     border-radius: 3px 0 0 3px;
+}
+
+#spandownheader {
+    display: none;
 }

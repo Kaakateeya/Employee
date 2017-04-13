@@ -1,7 +1,7 @@
 app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'SelectBindServiceApp',
-    'alert', 'helperservice', 'getArraysearch', '$window',
+    'alert', 'getArraysearch', '$window',
 
-    function(uibModal, commonpage, timeout, SelectBindServiceApp, alerts, helperservice, getArray, window) {
+    function(uibModal, commonpage, timeout, SelectBindServiceApp, alerts, getArray, window) {
         return {
             restrict: "E",
             scope: {
@@ -51,87 +51,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                 scope.BranchName = [];
                 scope.BranchName = getArray.GArray('BranchName');
                 scope.dynamicslideshow = scope.nghide !== undefined && scope.nghide !== "" ? scope.nghide : true;
-                scope.displayArray = function(arr, frompage) {
-                    scope.headervisileble = true;
-                    if (scope.pagename === 'matchfollowup') {
-                        scope.headervisileble = false;
-                    }
-                    console.log("searchh");
-                    console.log(arr);
-                    if (frompage === 1) {
-                        scope.arraydata = [];
-                    }
-                    $.each(arr, function(index, item) {
-                        scope.data = [];
-                        scope.data.push({
-                            label: 'ProfileID',
-                            value: '',
-                            ProfileID: item.ProfileID,
-                            KMPLID: item.KMPLID,
-                            paid: item.paid,
-                            IsConfidential: item.IsConfidential,
-                            SuperConfidentila: item.SuperConfidentila,
-                            HoroscopeStatus: item.HoroscopeStatus
-                        });
-                        scope.data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
-                        scope.data.push({ label: 'DOB(age)', value: item.DOB + '(' + item.Age + ')' });
-                        scope.data.push({ label: 'Height', value: item.Height });
-                        scope.data.push({ label: 'Time of Birth', value: item.TOB });
-                        scope.data.push({ label: 'Place of Birth', value: item.PlaceOfBirth });
-                        scope.data.push({ label: 'Gothram', value: item.Gothram });
-                        scope.data.push({ label: 'Caste', value: item.Caste });
-                        scope.data.push({ label: 'Marital Status', value: item.maritalstatus || item.MaritalStatusID });
-                        scope.data.push({ label: 'Star', value: item.Star });
-                        // scope.data.push({ label: 'Color', value: item.Color });
-                        scope.data.push({ label: 'Qualification', value: item.EducationGroup + "," + item.EduGroupnamenew });
-                        scope.data.push({ label: 'Profession', value: item.Profession });
-                        scope.data.push({ label: 'Job Location', value: item.JobLocation });
-                        scope.data.push({ label: 'Income(P.M)', value: item.Income });
-                        scope.data.push({ label: 'Father Native', value: item.FFNative });
-                        scope.data.push({ label: 'Mother Native', value: item.MFNative });
-                        scope.data.push({ label: 'Property(Lakhs)', value: item.Property });
-                        scope.data.push({
-                            label: 'backendFields',
-                            Custid: item.Cust_ID,
-                            ProfileID: item.ProfileID,
-                            PhotoCount: item.PhotoCount,
-                            Age: item.Age,
-                            HeightInCentimeters: item.HeightInCentimeters,
-                            MaritalStatusID: item.MaritalStatusID,
-                            CasteID: item.CasteID,
-                            serviceDate: item.serviceDate,
-                            CustPhoto: item.CustomerFullPhoto,
-                            totalrecords: item.TotalRowsKeyword
-                        });
-                        if (item.serviceDate != "--" && item.serviceDate !== "" && item.serviceDate !== null)
-                            scope.data.push({ label: 'ServiceDate', value: item.serviceDate, style: 'color:red;' });
-                        if (item.Intercaste == "True")
-                            scope.data.push({ label: 'Intercaste', value: (item.fathercaste + "/" + item.mothercaste) });
-                        if (item.ProfileGrade !== 0)
-                            scope.data.push({ label: 'ProfileGrade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
-                        scope.arraydata.push({
-                            itmArr: scope.data,
-                            custPhoto: item.CustomerFullPhoto,
-                            Custid: item.Cust_ID,
-                            Tickid: item.TicketID,
-                            PhotoCount: item.PhotoCount,
-                            Mystatus: item.Mystatus,
-                            OppStatus: item.OppStatus,
-                            FromTicketIdSuf: item.FromTicketIdSuf,
-                            ToTicketIDSuf: item.ToTicketIDSuf,
-                            FromTicketID: item.FromTicketID,
-                            ToTicketID: item.ToTicketID,
-                            Cust_ProfileInterestsLog_ID: item.Cust_ProfileInterestsLog_ID,
-                            Age: item.Age,
-                            HeightInCentimeters: item.HeightInCentimeters,
-                            MaritalStatusID: item.MaritalStatusID,
-                            CasteID: item.CasteID,
-                            serviceDate: item.serviceDate,
-                            ProfileID: item.ProfileID
-                        });
-                    });
-                    return scope.arraydata;
-                };
                 scope.displayArraydashboard = function(arr, frompage) {
                     console.log(arr);
                     if (frompage === 1) {
@@ -154,10 +73,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                         data.push({ label: 'Caste', value: item.MotherTongue + "-" + item.Caste });
                         data.push({ label: 'Dor', value: item.DOR });
                         data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
-                        //  data.push({ label: 'Web Logins', value: item.LoginCount });
-                        // if (scope.typeofslidedate === "Inactive Date") {
-                        //     data.push({ label: 'Reason', value: item.Reason4InActive });
-                        // }
                         data.push({
                             label: 'backendFields',
                             Custid: item.Cust_ID,
@@ -170,7 +85,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             serviceDate: item.serviceDate,
                             CustPhoto: item.ApplicationPhotoPath,
                             totalrecords: item.TotalRows
-
                         });
                         scope.arraydata.push({
                             itmArr: data,
@@ -203,13 +117,13 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             HeightInCentimeters: item.HeightInCentimeters,
                             MaritalStatusID: item.MaritalStatusID,
                             CasteID: item.CasteID,
-                            serviceDate: item.serviceDate
-
+                            serviceDate: item.serviceDate,
+                            bouncedEmailID: item.EmailID,
+                            bouncedemailentryid: item.Cust_EmailBounceEntryId
                         });
                     });
                     return scope.arraydata;
                 };
-
                 scope.checkitemnew = function(carouselID) {
                     var $this;
                     $this = $("#" + carouselID);
@@ -274,13 +188,8 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     scope.slidNumfiled = currentIndex1 + 1;
 
                 };
-                // if (scope.slidetype === 'popup') {
-                //     if (scope.dynamicslideshow === true) {
-                //         commonpage.showPopup('templates/dynamicSlideshow.html', scope, 'lg');
-                //     }
-                // }
-                scope.gotoSlide = function(e) {
 
+                scope.gotoSlide = function(e) {
                     var lastslide = parseInt($("#lnkLastSlide").text());
                     if (parseInt($(e).val()) <= lastslide) {
                         $('#myCarousel').carousel(parseInt($(e).val()) - 1);
@@ -400,22 +309,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     commonpage.ArrowMoveSlide(scope.carousalID);
                     checkitemGlobal(carouselID);
                 };
-                scope.$on("generalsearchslide", function(event, array, tablename, personalobj, frompage) {
-                    console.log(personalobj);
-                    scope.personalobj = personalobj;
-                    console.log(array);
-                    scope.lbltotalrecordsslide = array.length > 0 ? array[0].TotalRows : "";
-                    scope.tablename = tablename;
-                    scope.slidearray = array;
-                    scope.dynamicslideshow = true;
-                    scope.displayArr = scope.displayArray(scope.slidearray, frompage);
-                    scope.pageloadnew(scope.carousalID);
-                });
-                scope.backtosearchpage = function() {
-                    scope.dynamicslideshow = false;
-                    scope.$emit("backsearchshowcontrols");
-
-                };
                 scope.forgetpassword = function(usernamepassword) {
                     SelectBindServiceApp.forgotpasswordemail(usernamepassword).then(function(response) {
                         console.log(response.data);
@@ -429,7 +322,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
 
                 };
                 scope.sendMobileCode = function(iCountryID, iCCode, MobileNumber, CustFamilyID) {
-
                     var obj = {
                         iCountryID: iCountryID,
                         iCCode: iCCode,
@@ -444,8 +336,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                         commonpage.showPopupphotopoup('verifyMobileContent.html', scope, '', "modalclassdashboardphotopopup");
                     });
                 };
-
-
                 scope.verifymail = function(custID) {
                     SelectBindServiceApp.verifyEmail(custID).then(function(response) {
                         console.log(response);
@@ -456,9 +346,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                         }
                     });
                 };
-
                 scope.verifyMobCode = function(val) {
-
                     if (val === "") {
                         alerts.timeoutoldalerts(scope, 'alert-danger', 'Please enter Mobile verify Code', 4500);
                     } else if (scope.mobileVerificationCode === val) {
@@ -470,7 +358,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     } else {
                         alert('Please Enter Valid Verification code');
                     }
-
                 };
 
                 scope.viewfullprofile = function(profileid) {
@@ -494,76 +381,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     }
 
                 };
-                scope.statusbind = function(status) {
-                    if (status === "I") {
-                        status = "Proceed";
-                    } else if (status === "NI") {
-                        status = "Dont Proceed";
-                    } else if (status === "NV") {
-                        status = "Not Viewed";
-                    } else if (status === "V") {
-                        status = "Viewed";
-                    } else {
-                        status = "--";
-                    }
-                    return status;
-                };
-                scope.proceedanddontproceed = function(typeofbtn, fromcustid, tocustid, logid) {
-                    switch (typeofbtn) {
-                        case "btnProceed":
-                            var MobjViewprofile = {
-                                ExpressInrestID: logid,
-                                CustID: fromcustid,
-                                FromCustID: fromcustid,
-                                ToCustID: tocustid,
-                                AcceptStatus: 1,
-                                MatchFollwupStatus: 1
-                            };
-                            helperservice.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
-                                alerts.dynamicpopup("TabClosePopup.html", scope, uibModal);
-                                switch (response.data) {
-                                    case 1:
-                                        scope.modalbodyID1 = "To Move the Match for MatchFollowup";
-                                        break;
-                                    case 2:
-                                    case 3:
-                                        scope.modalbodyID1 = "You need to Upgrade online membership";
-                                        break;
-                                    default:
-                                        scope.modalbodyID1 = "Updation failed please contact admin";
-                                        break;
-                                }
-                            });
-                            break;
-                        case "btnDontProceed":
-                            var MobjViewprofiledont = {
-                                ExpressInrestID: logid,
-                                CustID: fromcustid,
-                                FromCustID: fromcustid,
-                                ToCustID: tocustid,
-                                AcceptStatus: 2,
-                                MatchFollwupStatus: 2
-                            };
-                            helperservice.UpdateExpressIntrestViewfullprofile(MobjViewprofiledont).then(function(response) {
-                                alerts.dynamicpopup("TabClosePopup.html", scope, uibModal);
-                                switch (response.data) {
-                                    case 1:
-                                        scope.modalbodyID1 = "Oops go through your search";
-                                        break;
-                                    case 2:
-                                    case 3:
-                                        scope.modalbodyID1 = "You need to Upgrade online membership";
-                                        break;
-                                    default:
-                                        scope.modalbodyID1 = "Updation failed please contact admin";
-                                        break;
-                                }
-                            });
-                            break;
-                    }
-
-                };
-
                 scope.dynamicPopover = {
                     content: 'Hello, World!',
                     templateUrl: 'myPopoverTemplate.html',
@@ -573,16 +390,13 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                 scope.openTicketPopup = function() {
                     commonpage.showPopup('Actions.html', scope, 'lg', "Action");
                 };
-                scope.shortlistprofiles = function(custids, profileID, age, height, maritalstatus, caste, Servicedate) {
-                    scope.$emit("shortlistprofileids", custids, profileID, age, height, maritalstatus, caste, Servicedate, scope.personalobj);
-                };
-                scope.mainShortListProfiles = function() {
-                    scope.$emit("mainShortListProfile");
-                };
-
 
                 scope.photorequest = function(profileid) {
                     scope.$emit("photorequest", profileid);
+                };
+
+                scope.updatebouncedemail = function(entryid, email) {
+
                 };
             }
         };
