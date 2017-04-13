@@ -395,8 +395,8 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     scope.$emit("photorequest", profileid);
                 };
 
-                scope.updatebouncedemail = function(entryid, email) {
-
+                scope.updatebouncedemail = function(entryid, email, Custid) {
+                    scope.$emit("updatebouncedemailmethod", entryid, email, Custid);
                 };
             }
         };

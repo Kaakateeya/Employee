@@ -152,8 +152,19 @@
             dashboardServices.readNotifications(obj).then(function(response) {
                 console.log(response);
             });
+            ((model.landingItems)[parentid]).splice(index, 1);
+        };
 
-            // model.landingItems.splice(model.landingItems.indexOf(notificationid), 1);
+        model.bouncedemail = function(obj) {
+            var object = {
+                CustID: model.Custidbounce,
+                EmailBounceEntryId: model.entryid,
+                BounceMailid: obj.newemail
+            };
+            dashboardServices.getUpdateEmailBounce(object).then(function(response) {
+                console.log("email");
+                console.log(response);
+            });
         };
         return model;
     }

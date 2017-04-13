@@ -2,16 +2,14 @@
     <div class="col-lg-6">
         <div class="row" ng-if="slide.serviceDate!=='--' && slide.serviceDate!=='' && slide.serviceDate!== null">
             <div class="row">
-                <div class="col-lg-6">
-                    <label style="color:maroon">From Status :</label>
-                    <label style="color:#000"><span ng-bind-html="config.statusbind(slide.Mystatus.trim())"></span><span>
+                <div class="col-lg-12">
+                    <label style="color:maroon">Status/Ticket :</label>
+                    <label style="color:#000"><span  ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI'" ng-bind-html="config.statusbind(slide.Mystatus.trim())"></span><span>
                         <img style="height: 29px;" ng-if="slide.Mystatus.trim()==='I'"  ng-show="slide.Mystatus.trim()==='I'" src="src/images/heartgrren.gif"><img>
                          <img style="height: 29px;"  ng-if="slide.Mystatus.trim()==='NI'" ng-show="slide.Mystatus.trim()==='NI'" ng-src="src/images/brkhrtgreen.gif"><img></span></label>
-                </div>
-                <div class="col-lg-6">
+                    <a href="javascript:void(0)" ng-if="slide.Mystatus.trim()==='I' || slide.Mystatus.trim()==='NI' || slide.Mystatus.trim()==='V'" ng-show="slide.FromTicketIdSuf.trim()!=='--'">{{slide.FromTicketIdSuf}}</a>
                     <a href="javascript:void(0)" ng-click="config.proceedanddontproceed('btnProceed',personalobj.Cust_ID,slide.Custid,slide.Cust_ProfileInterestsLog_ID,1,1)" ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI' && slide.Mystatus.trim()!=='--'">Proceed</a>
                     <a href="javascript:void(0)" ng-click="config.proceedanddontproceed('btnDontProceed',personalobj.Cust_ID,slide.Custid,slide.Cust_ProfileInterestsLog_ID,2,2)" ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI' && slide.Mystatus.trim()!=='--'">Dont Proceed</a>
-                    <a href="javascript:void(0)" ng-if="slide.Mystatus.trim()==='I' || slide.Mystatus.trim()==='NI'" ng-show="slide.FromTicketIdSuf.trim()!=='--'"><label style="color:maroon">Ticket ID:</label>{{slide.FromTicketIdSuf}}</a>
                 </div>
             </div>
         </div>
@@ -25,20 +23,16 @@
             </a>
             <div class="col-lg-8" ng-if="slide.serviceDate!=='--' && slide.serviceDate!=='' && slide.serviceDate!== null">
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="row">
-                            <label style="color:maroon">To Status:</label>
-                            <label style="color:#000"><span ng-bind-html="config.statusbind(slide.OppStatus.trim())"></span>
-                            <img  style="height: 29px;" ng-if="slide.OppStatus.trim()==='I'" ng-show="slide.OppStatus.trim()==='I'" src="src/images/heartgrren.gif"><img>
-                            <img style="height: 29px;" ng-if="slide.OppStatus.trim()==='NI'" ng-show="slide.OppStatus.trim()==='NI'" src="src/images/brkhrtgreen.gif"><img></label>
-                        </div>
+
+                    <div class="row">
+                        <label style="color:maroon"> Status/Ticket :</label>
+                        <label style="color:#000"><span ng-bind-html="config.statusbind(slide.OppStatus.trim())"></span>
+                           <span style="color:#000" ng-show="slide.ToTicketIDSuf.trim()!=='--'">{{slide.ToTicketIDSuf}}</span>
+                        <img style="height: 29px;" ng-if="slide.OppStatus.trim()==='I'" ng-show="slide.OppStatus.trim()==='I'" src="src/images/heartgrren.gif"><img>
+                        <img style="height: 29px;" ng-if="slide.OppStatus.trim()==='NI'" ng-show="slide.OppStatus.trim()==='NI'" src="src/images/brkhrtgreen.gif"><img></label>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="row">
-                            <label style="color:maroon">Ticket ID:</label>
-                            <label style="color:#000">{{slide.ToTicketIDSuf}}</label>
-                        </div>
-                    </div>
+
+
                 </div>
             </div>
         </div>

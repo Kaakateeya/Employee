@@ -56,9 +56,6 @@ body {
 span.fa.fa-angle-down {
   display: none; }
 
-.modal {
-  z-index: 99999 !important; }
-
 .paidCls {
   color: Green;
   text-decoration: underline;
