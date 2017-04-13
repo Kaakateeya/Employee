@@ -60,7 +60,7 @@
                         model.data.push({ label: 'ProfileGrade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
                     model.slides.push({
                         itmArr: model.data,
-                        custPhoto: item.CustomerFullPhoto,
+                        custPhoto: item.CustomerFullPhoto || item.Photo,
                         Custid: item.Cust_ID,
                         Tickid: item.TicketID,
                         PhotoCount: item.PhotoCount,

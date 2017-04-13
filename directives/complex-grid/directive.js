@@ -4,9 +4,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
             restrict: "E",
             scope: {
                 model: '=',
-                showplus: '=',
-                hidesearch: '=',
-                hidepaging: '='
+                config: '='
             },
             templateUrl: "directives/complex-grid/index.html",
             link: function(scope, element, attrs) {

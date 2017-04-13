@@ -4,7 +4,9 @@
     function factory($http) {
         var model = {};
         model.init = function() {
-
+            model.showplus = false;
+            model.showsearch = true;
+            model.showpaging = true;
             model.setData = function(data) {
                 model.data = data;
             };

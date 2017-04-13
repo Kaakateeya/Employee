@@ -9,6 +9,7 @@
         model.exiObj = {};
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
         model.fromcustid = '';
+        model.SelectProfilelst = [];
         model.FromProfileID = function(ID) {
 
             if (ID !== '' && ID !== null && ID !== undefined) {
@@ -40,7 +41,7 @@
                             model.relationarray = [];
                             model.Modeservicearray = [];
                             model.Emailsarray = [];
-                            model.SelectProfilelst = [];
+                            // model.SelectProfilelst = [];
                             model.showHide = 1;
                             if (response.data.length > 0) {
 
@@ -92,7 +93,7 @@
                         model.exiObj.ModeofService = '';
                         model.exiObj.txtRelationName = '';
                         model.Emailsarray = null;
-                        model.SelectProfilelst = null;
+                        // model.SelectProfilelst = null;
                         model.showHide = 0;
                         // model.exiObj.txtFromprofileID = '';
                         alert("ProfileId not Valid");
