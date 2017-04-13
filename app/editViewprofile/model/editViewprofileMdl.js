@@ -8,6 +8,7 @@
         var modelinactive = {};
 
         model = config;
+        model.showplus = true;
         model.tablearray = [];
         model.obj = {};
         model.obj.rdnGender = '3';
@@ -101,6 +102,7 @@
                 // { text: 'Confidential', key: 'Confidential', type: 'label' }
             ];
 
+
             ViewAllCustomerService.getViewCustomerData(2, (inpuobj !== undefined && inpuobj.ProfileIDsearch !== undefined ? inpuobj.ProfileIDsearch : ''), (inpuobj !== undefined && inpuobj.chkProfileIDsts !== undefined ? model.returnnullvalue(inpuobj.chkProfileIDsts) : ""), from, to).then(function(response) {
                 console.log(response.data);
 
@@ -112,6 +114,8 @@
 
                     model.opendiv = false;
                     model.setData(response.data);
+
+
                 }
             });
 

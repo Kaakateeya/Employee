@@ -1,13 +1,19 @@
 (function() {
     'use strict';
 
-    function factory(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss, SelectBindServiceApp, uibModal, timeout) {
+    function factory(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss, SelectBindServiceApp, uibModal, timeout, configslide) {
         var model = {};
-        model = config;
+
+        model.grid = config;
+        model.slide = configslide;
+        // model = angular.merge(model, config, configslide);
+
         model.mpObj = {};
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
         model.opendiv = true;
         model.scope = {};
+        model.slide.templateUrl = "templates/myprofileSlide.html";
+        model.slide.headettemp = "myprofileheader.html";
         model.MyProfilePageLoad = function() {
 
             myProfileservice.getMyprofilebind(1, 2, '').then(function(response) {
@@ -74,13 +80,16 @@
         model.ViewProfile = function(row) {
             window.open('/Viewfullprofile/' + row.ProfileID, '_blank');
         };
-
+        model.slide.viewfullprofile = function(ProfileID) {
+            window.open('/Viewfullprofile/' + ProfileID, '_blank');
+        };
         model.horoscopeimage = function(row) {
             model.image = row.HoroScopeImage;
             modelpopupopenmethod.showPopup('templates/bindImagePopup.html', model.scope, '', "");
         };
 
-        model.MyprofileResult = function(obj, from, to) {
+        model.MyprofileResult = function(obj, from, to, type) {
+            model.topage = to;
             var inputobj = {
                 Empid: model.empid,
                 Kmpl: obj.txtKMPLID,
@@ -124,7 +133,7 @@
                 pagefrom: from,
                 pageto: to
             };
-            model.columns = [
+            model.grid.columns = [
                 { text: '', key: '', type: 'customlink', templateUrl: model.horoTemplate, method: model.horoscopeimage },
                 { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
                 { text: 'Gender', key: 'GenderID', type: 'label' },
@@ -137,15 +146,31 @@
             myProfileservice.getMyprofileSlide(inputobj).then(function(response) {
                 console.log(response);
                 if (_.isArray(response.data) && response.data.length > 0) {
-                    model.opendiv = false;
-                    model.TotalRows = response.data[0].TotalRows;
-                    model.setData(response.data);
+
+                    if (type === 'grid') {
+                        model.opendiv = false;
+                        model.grid.TotalRows = response.data[0].TotalRows;
+                        model.grid.setData(response.data);
+                    } else {
+
+                        model.slide.totalRecords = response.data[0].TotalRows;
+
+                        if (parseInt(from) === 1) {
+                            model.slide.setSlides(response.data, 10);
+                            modelpopupopenmethod.showPopupphotopoup('myprofileSlide.html', model.scope, 'lg', "");
+                        } else {
+                            model.slide.addSlides(response.data, model.slides, parseInt(to));
+                        }
+                    }
                 } else {
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 4500);
                 }
             });
-        };
-        model.pagechange = function(val) {
+
+        }
+
+        model.slide.pagechange = function(val) {
+            alert(1111);
             var to = val * 10;
             var from = val === 1 ? 1 : to - 9;
             model.MyprofileResult(model.mpObj, from, to);
@@ -153,10 +178,30 @@
         model.close = function() {
             modelpopupopenmethod.closepopup();
         };
+
+        model.slide.slidebind = function(old, news, array) {
+            if (parseInt(model.topage) - parseInt(news) === 4) {
+                model.MyprofileResult(model.mpObj, (model.topage) + 1, (model.topage) + 10);
+            }
+        };
+        model.slide.close = function() {
+            modelpopupopenmethod.closepopuppoptopopup();
+        };
+
+        // slide events
+
+        model.slide.redirectEdit = function(custid, type) {
+            window.open('/' + type + '/' + custid, '_blank');
+        };
+
+
+
+
         return model;
     }
     angular
         .module('Kaakateeya')
         .factory('myProfileModel', factory)
-    factory.$inject = ['$http', 'myProfileservice', 'authSvc', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'SelectBindServiceApp', '$uibModal', '$timeout'];
+    factory.$inject = ['$http', 'myProfileservice', 'authSvc', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'SelectBindServiceApp', '$uibModal', '$timeout', 'complex-slide-config'];
+
 })(angular);

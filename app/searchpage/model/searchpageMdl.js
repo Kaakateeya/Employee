@@ -631,6 +631,7 @@
         model.sendtoServices = function() {
             model.close();
             model.cloumsarr = [];
+            model.Toprofileids = [];
             _.each(model.shortlistmodel.slides, function(item) {
                 model.cloumsarr.push(item.Custid);
             });
@@ -638,8 +639,9 @@
             searchpageServices.getprofileidcustdetails(custids).then(function(response) {
                 console.log(response);
                 model.FromProfileId = model.getpageloadobject.ProfileID;
-                model.Toprofileids = [];
+
                 _.each(response.data, function(item) {
+                    debugger;
                     model.Toprofileids.push(item.ProfileID);
                 });
                 expressInterestModel.FromProfileID(model.FromProfileId);

@@ -1,17 +1,17 @@
 <div ng-if="model.data.length!==0">
     <div class="row">
 
-        <div class="col-md-3 totalrecordCls" ng-hide="hidesearch">
+        <div class="col-md-3 totalrecordCls" ng-if="config.showsearch">
             <label for="noofRecords" class="control-label">Total Records : {{model.TotalRows}}</label>
         </div>
-        <div ng-class="hidesearch===true?'col-md-10 pull-left':'col-md-1 totalrecordCls'">
+        <div ng-class="config.showsearch?'col-md-1 totalrecordCls':'col-md-10 pull-left'">
             <button ng-click="exportexcel(model.data, model.columns)" class="css-class"><i class="fa fa-file-excel-o fa-6" aria-hidden="true"></i></button>
         </div>
-        <div class="col-md-3 m-b-2 mainDiv totalrecordCls" ng-hide="hidesearch">
+        <div class="col-md-3 m-b-2 mainDiv totalrecordCls" ng-if="config.showsearch">
             <input class="form-control" type="text" ng-model="searchKeyword" placeholder="Search">
         </div>
-        <div class="col-md-5">
-            <ul uib-pagination total-items="model.TotalRows" ng-hide="hidepaging" ng-model="pagen" ng-change="model.pagechange(pagen)" max-size="5" class="pagination-md" boundary-link-numbers="true" rotate="false"></ul>
+        <div class="col-md-5" ng-if="config.showpaging">
+            <ul uib-pagination total-items="model.TotalRows" ng-model="pagen" ng-change="config.pagechange(pagen)" max-size="5" class="pagination-md" boundary-link-numbers="true" rotate="false"></ul>
         </div>
 
     </div>
@@ -20,7 +20,7 @@
         <table class="Datatable table table-fixed table-hover table-bordered mainTableCls">
             <thead>
                 <tr>
-                    <th ng-if="!inneritem.isDetail && showplus===true" class="headerStyles"></th>
+                    <th ng-if="!inneritem.isDetail && config.showplus" class="headerStyles"></th>
                     <th ng-click="sort(item.key)" class="{{item.key}} headerStyles" ng-repeat="item in model.columns">{{item.text}}
                         <span class="glyphicon sort-icon" ng-show="sortKey==item.key" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                     </th>
@@ -28,7 +28,7 @@
             </thead>
             <tbody>
                 <tr ng-class="inneritem.rowtype" ng-repeat-start="inneritem in model.data |orderBy:sortKey:reverse|filter: searchKeyword |startFrom:currentPage*pageSize | limitTo:pageSize">
-                    <td ng-if="!inneritem.isDetail && showplus===true">
+                    <td ng-if="!inneritem.isDetail && config.showplus">
                         <a class="detail-icon " ng-click="plus(inneritem)" href="javascript: "><i class="glyphicon glyphicon-plus icon-plus "></i></a>
                     </td>
                     <td ng-if="inneritem.isDetail">
@@ -76,7 +76,9 @@
             </tbody>
         </table>
     </div>
-    <ul uib-pagination total-items="model.TotalRows" ng-hide="hidepaging" ng-model="pagen" ng-change="model.pagechange(pagen)" max-size="5" class="pull-right pagination-md" boundary-link-numbers="true" rotate="false"></ul>
+    <div ng-if="config.showpaging">
+        <ul uib-pagination total-items="model.TotalRows" ng-model="pagen" ng-change="config.pagechange(pagen)" max-size="5" class="pull-right pagination-md" boundary-link-numbers="true" rotate="false"></ul>
+    </div>
 </div>
 <style>
     /*.table-fixed thead {
