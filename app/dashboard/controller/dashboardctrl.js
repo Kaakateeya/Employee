@@ -15,6 +15,10 @@
              vm.model = model = dashboardModel;
              model.scope = scope;
              model.proceedprofileid = null;
+             model.entryid = null;
+             model.emailbounce = null;
+             model.uploadfromsubmit = false;
+             model.Custidbounce = null;
              model.slideshowfunction(false);
              model.init();
          };
@@ -49,11 +53,19 @@
          };
          scope.$on("saformuploadsubmit", function(event, profileid) {
              model.proceedprofileid = profileid;
+             model.uploadfromsubmit = false;
              commonpage.showPopupphotopoup('uploadsaform.html', model.scope, 'sm', "modalclassdashboardphotopopup");
          });
+         scope.$on("updatebouncedemailmethod", function(event, entryid, emailbounce, Custid) {
+             model.entryid = entryid;
+             model.emailbounce = emailbounce;
+             model.Custidbounce = Custid;
+             model.uploadfromsubmit = true;
+             commonpage.showPopupphotopoup('uploadsaform.html', model.scope, 'sm', "modalclassdashboardphotopopup");
+         });
+
          vm.uploadsaformtable = function(profileid) {
              model.proceedprofileid = profileid;
-             debugger;
              commonpage.showPopupphotopoup('uploadsaform.html', model.scope, 'sm', "modalclassdashboardphotopopup");
          };
 
@@ -62,9 +74,9 @@
                  console.log(response);
                  if (response !== undefined && response !== null && response !== "" && response.data !== undefined) {
                      if (response.data === 1) {
-                         alerts.timeoutoldalerts(model.scope, 'alert-success', 'PhotoRequest send successfully', 7000);
+                         alerts.timeoutoldalerts(model.scope, 'alert-success', 'PhotoRequest send successfully', 4000);
                      } else {
-                         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'PhotoRequest send Failed', 7000);
+                         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'PhotoRequest send Failed', 4000);
                      }
                  }
              });

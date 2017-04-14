@@ -1,14 +1,15 @@
 <script type="text/ng-template" id="dynamicSlideshow.html">
-    <br>
-    <div class="row">
-        <h4 class="col-lg-offset-3 col-lg-7" style="color:maroon;font-size: 16px;">{{headerhtml}}</h4>
-        <div class="col-lg-2" ng-if="slidetype==='popup'">
-            <a href="javascript:void(0);" class="">
-                <a href="javascript:void(0);" ng-click="close()" style="fill:#c73e5f;font-size: 13pt;width:30px;margin-left: 85px;" size="25">close</a>
-            </a>
-            <a href="javascript:void(0);" ng-click="close()" class="pull-right">
-                <i class="fa fa-times" aria-hidden="true" style="fill:#c73e5f;font-size: 13pt;"></i>
-            </a>
+    <div class="row" style="margin-left: 10px;margin-right: 10px;background-color: #f1f1e4;padding: 4px;margin-top: 10px;">
+        <div class="col-lg-12">
+            <h4 class="col-lg-10" style="color:maroon;font-size: 16px;">{{headerhtml}}</h4>
+            <div class="col-lg-2" ng-if="slidetype==='popup'">
+                <a href="javascript:void(0);" class="">
+                    <a href="javascript:void(0);" ng-click="closesashboard()" style="fill:#c73e5f;font-size: 13pt;width:30px;margin-left: 85px;" size="25">close</a>
+                </a>
+                <a href="javascript:void(0);" ng-click="closesashboard()" class="pull-right">
+                    <i class="fa fa-times" aria-hidden="true" style="fill:#c73e5f;font-size: 13pt;"></i>
+                </a>
+            </div>
         </div>
     </div>
     <div class="modal-body">
@@ -228,7 +229,7 @@
                                             <h5>
                                                 <div style="color:Black;">
                                                     <span>{{itemval.bouncedEmailID}}
-                                                          <a href="javascript:void(0)" ng-click="updatebouncedemail(itemval.bouncedemailentryid,itemval.bouncedEmailID)">Update Email</a>
+                                                          <a href="javascript:void(0)" ng-click="updatebouncedemail(itemval.bouncedemailentryid,itemval.bouncedEmailID,itemval.Custid)">Update Email</a>
                                                       </span>
 
                                                 </div>

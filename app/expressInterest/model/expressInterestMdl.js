@@ -15,15 +15,12 @@
         model.Max_Offline_Allowed = '';
         model.Offline_Used_Count = '';
         model.FromProfileID = function(ID) {
-
             if (ID !== '' && ID !== null && ID !== undefined) {
                 expressInterestService.getEIprofileID(6, ID, '').then(function(response) {
-
                     if (response.data.length > 0) {
                         if (response.data[0].length > 0) {
                             model.ProfileStatusID = response.data[0][0].ProfileStatusID;
                         }
-
                         if (_.isArray(response.data[1]) && response.data[1].length > 0) {
 
 
@@ -37,11 +34,8 @@
                             model.Fromcasteid = response.data[1][0].casteid;
                         }
                     }
-
                     if (model.ProfileStatusID == 54) {
-
                         expressInterestService.getEIprofileID(1, ID, '').then(function(response) {
-
                             model.relationarray = [];
                             model.Modeservicearray = [];
                             model.Emailsarray = [];
@@ -296,12 +290,10 @@
 
 
         model.getImages = function(profileid) {
-
             var imgArr = [];
             var strimgs = '';
             model.strimages = '';
             expressInterestService.getEIprofileID(4, profileid, '').then(function(response) {
-
                 if (_.isArray(response.data) && response.data.length > 0 && response.data[0].length > 0) {
                     imgArr = response.data[0];
                     _.each(imgArr, function(item) {
@@ -312,7 +304,6 @@
             });
         };
         model.bindImages = function(val) {
-
             model.displayToimages = [];
             if (val !== '') {
                 var strimgArr = val[0].split(';');
@@ -329,10 +320,8 @@
                     }
                 });
             }
-            modelpopupopenmethod.showPopup('TophotosPoup.html', model.scope, 'lg', '');
+            modelpopupopenmethod.showPopup('TophotosPoup.html', model.scope, 'lg', 'modalclassdashboardphotopopup');
         };
-
-
         model.applyImages = function() {
             model.selectedimages = [];
             var seletedimages = _.where(model.displayToimages, { boolval: true });
@@ -354,9 +343,6 @@
         model.close = function() {
             modelpopupopenmethod.closepopuppoptopopup();
         };
-
-
-
         return model;
     }
     angular

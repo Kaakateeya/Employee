@@ -56,9 +56,6 @@ body {
 span.fa.fa-angle-down {
   display: none; }
 
-.modal {
-  z-index: 99999 !important; }
-
 .paidCls {
   color: Green;
   text-decoration: underline;
@@ -81,5 +78,27 @@ span.fa.fa-angle-down {
 
 .panel {
   margin-bottom: 0px !important; }
+
+.colormarron {
+  color: maroon; }
+
+.color_black {
+  color: #000; }
+
+.imgheight {
+  height: 29px; }
+
+.Photoscount {
+  color: Black;
+  font-size: 9pt; }
+
+.shortlistclass {
+  font-size: 13pt;
+  color: #337ab7; }
+
+.twopng {
+  margin-top: -4px;
+  width: 40px;
+  height: 38px; }
 
 /*# sourceMappingURL=style.css.map */

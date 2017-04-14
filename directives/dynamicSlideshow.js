@@ -230,7 +230,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     });
 
                 };
-                scope.close = function() {
+                scope.closesashboard = function() {
                     commonpage.closepopup();
                 };
                 scope.closepopuppoptopopup = function() {
@@ -289,7 +289,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     }
                     timeout(function() {
                         commonpage.ArrowMoveSlide(scope.carousalID);
-                        commonpage.moveonenter();
+                        // commonpage.moveonenter();
                         // var totalItems1 = $('#' + scope.carousalID).find('.item').length;
                         // if (totalItems1 === 0) {
                         //     commonpage.checkitem(scope.carousalID);
@@ -395,8 +395,8 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     scope.$emit("photorequest", profileid);
                 };
 
-                scope.updatebouncedemail = function(entryid, email) {
-
+                scope.updatebouncedemail = function(entryid, email, Custid) {
+                    scope.$emit("updatebouncedemailmethod", entryid, email, Custid);
                 };
             }
         };

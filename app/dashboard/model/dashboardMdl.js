@@ -1,7 +1,8 @@
 (function(angular) {
     'use strict';
 
-    function factory($http, dashboardServices, uibModal, authSvc, helperservice, window, commonpage, $filter, fileUpload) {
+    function factory($http, dashboardServices, uibModal, authSvc, helperservice, window,
+        commonpage, $filter, fileUpload, alerts) {
         var model = {};
         var flag = 0;
         model.frompage = 6;
@@ -98,7 +99,6 @@
         };
 
         model.upload = function(obj) {
-            //obj.myFile.name
             var extension = (obj.myFile.name !== '' && obj.myFile.name !== undefined && obj.myFile.name !== null) ? (obj.myFile.name.split('.'))[1] : null;
             extension = angular.lowercase(extension);
             var gifFormat = "gif,jpeg,jpg";
@@ -115,7 +115,7 @@
                         console.log(res.status);
                         if (res.status == 200) {
                             model.closeupload();
-                            var today = $filter('date')(new Date(), 'dd/MM/yyyy hh:mm:ss a');
+                            var today = $filter('date')(new Date(), 'MM/dd/yyyy hh:mm:ss a');
                             var object = {
                                 CreatedByEmpID: model.empid,
                                 CreatedDate: today,
@@ -131,7 +131,11 @@
                             };
                             dashboardServices.uploadsettlementform(object).then(function(response) {
                                 console.log(response);
-
+                                if (response !== undefined && response.data === 1) {
+                                    alerts.timeoutoldalerts(model.scope, 'alert-success', 'SA Form Uploaded successfully', 2000);
+                                } else {
+                                    alerts.timeoutoldalerts(model.scope, 'alert-danger', 'SA Form Uploaded Failed', 2000);
+                                }
                             });
                         }
                     });
@@ -140,7 +144,6 @@
                 alert("This browser does not support HTML5.");
             }
         };
-
         model.notificationread = function(notificationid, index, parentid, custid, CategoryID) {
             var obj = {
                 EmpID: model.empid,
@@ -152,13 +155,27 @@
             dashboardServices.readNotifications(obj).then(function(response) {
                 console.log(response);
             });
+            ((model.landingItems)[parentid]).splice(index, 1);
+        };
 
-            // model.landingItems.splice(model.landingItems.indexOf(notificationid), 1);
+        model.bouncedemail = function(obj) {
+            var object = {
+                CustID: model.Custidbounce,
+                EmailBounceEntryId: model.entryid,
+                BounceMailid: obj.newemail
+            };
+            dashboardServices.getUpdateEmailBounce(object).then(function(response) {
+                if (response !== undefined && response.data === 1) {
+                    alerts.timeoutoldalerts(model.scope, 'alert-success', 'Email Updated successfully', 2000);
+                } else {
+                    alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Email Updated Failed', 2000);
+                }
+            });
         };
         return model;
     }
     angular
         .module('Kaakateeya')
         .factory('dashboardModel', factory);
-    factory.$inject = ['$http', 'dashboardServices', '$uibModal', 'authSvc', 'helperservice', '$window', 'modelpopupopenmethod', '$filter', 'fileUpload'];
+    factory.$inject = ['$http', 'dashboardServices', '$uibModal', 'authSvc', 'helperservice', '$window', 'modelpopupopenmethod', '$filter', 'fileUpload', 'alert'];
 })(angular);
