@@ -2,13 +2,13 @@
 
     <div uib-accordion-group style="margin-top: -12px;" class="panel-default" is-open="true">
         <uib-accordion-heading>
-            Search Tickets<i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+            Search Tickets<i class="glyphicon" ng-class="{'glyphicon-chevron-down': model.opendiv, 'glyphicon-chevron-right': !model.opendiv}"></i>
         </uib-accordion-heading>
         <div class="row">
             <div class="col-lg-1 form-group">
                 <label for="Region" class="control-label">Region</label>
                 <div>
-                    <select id="Regionofbranches" class="smalldropdown" ng-model="page.model.matchfollowup.regions" multiselectdropdown typeofdata="'Regionofbranches'">                                        
+                    <select class="smalldropdown" ng-change="model.regionChange(model.lstregions);" ng-model="model.lstregions" multiselectdropdown typeofdata="'Regionofbranches'">                                        
              </select>
 
                 </div>
@@ -16,7 +16,7 @@
             <div class="col-lg-3 form-group">
                 <label for="Region" class="control-label">Branch</label>
                 <div>
-                    <angular-multiselect id="'Branchid'" class="general" array="BranchName" model="page.model.matchfollowup.Branchs">
+                    <angular-multiselect id="'Branchid'" class="general" array="model.BranchName" model="model.lstBranchs">
                     </angular-multiselect>
 
                 </div>
@@ -24,27 +24,27 @@
             <div class="col-lg-3 form-group">
                 <label for="Region" class="control-label">EmpName</label>
                 <div class="">
-                    <angular-multiselect id="'Branchid'" class="general" array="BranchName" model="page.model.matchfollowup.Branchs">
+                    <angular-multiselect id="'Branchid'" class="general" array="model.EmpNamesArr" model="model.lstEmpnames">
                     </angular-multiselect>
                 </div>
             </div>
             <div class="col-lg-2 form-group">
                 <label for="Region" class="control-label">FromProceed</label>
                 <div>
-                    <date-pickersearch id="FromProceed" strdate="page.model.matchfollowup.FromProceed"></date-pickersearch>
+                    <date-pickersearch id="FromProceed" strdate="model.txtFromProceedDate"></date-pickersearch>
                 </div>
             </div>
             <div class="col-lg-2 form-group">
                 <label for="Region" class="control-label">ToProceed</label>
                 <div>
-                    <date-pickersearch id="ToProceed" strdate="page.model.matchfollowup.ToProceed"></date-pickersearch>
+                    <date-pickersearch id="ToProceed" strdate="model.txtToProceedDate"></date-pickersearch>
                 </div>
             </div>
             <div class="col-lg-1 form-group">
                 <label for="Region" class="control-label" ng-hide="true"></label>
                 <br>
                 <div>
-                    <input type="submit" class="btn btn-danger" value="Submit">
+                    <input type="submit" class="btn btn-danger" value="Submit" ng-click="model.matchFollowupSelect(0);">
                 </div>
             </div>
         </div>

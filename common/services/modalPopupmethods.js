@@ -191,7 +191,7 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                     ariaDescribedBy: 'modal-body',
                     template: "<div class='modal-header'>" +
                         "        <h3 class='modal-title text-center'>Horoscope image                                               " +
-                        "            <a href='javascript:void(0);' onclick='modalpopupopen.close()'>                                       " +
+                        "            <a href='javascript:void(0);' compile ng-click='close()'>                                       " +
                         "                <ng-md-icon icon='close' style='fill:#c73e5f' class='pull-right' size='25'>Delete</ng-md-icon>   " +
                         "            </a>                                                                                                 " +
                         "        </h3>                                                                                                    " +

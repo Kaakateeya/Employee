@@ -15,6 +15,13 @@
             },
             submitExpressintrst: function(ExpArrInput) {
                 return http.post(app.apiroot + 'ExpressInterest/ExpressInterest', ExpArrInput);
+            },
+            getprofileidcustdetails: function(custids) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getSendServiceProfileIDs', {
+                    params: {
+                        ProfileIDs: custids
+                    }
+                });
             }
         };
     }

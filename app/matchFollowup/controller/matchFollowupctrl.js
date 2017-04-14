@@ -11,14 +11,7 @@
              model.scope = scope;
              model.init();
          };
-         scope.$on('directivechangeevent', function(event, modal, type) {
-             switch (type) {
-                 case 'BranchName':
-                     model.BranchName = [];
-                     model.BranchName = Commondependency.BranchNamebind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
-                     break;
-             }
-         });
+
          vm.init();
      }
      angular

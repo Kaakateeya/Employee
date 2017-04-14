@@ -19,6 +19,8 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     });
                     scope.detailView = false;
                 };
+                scope.page = {};
+                scope.page.model = {};
                 scope.$watch(scope.model, function() {
                     scope.init();
                 });
@@ -38,26 +40,33 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     window.open('/Contact/' + row.custid, '_blank');
                 };
                 scope.viewSa = function(row) {
-                    var paid = "<a style='cursor:pointer;'  href='javascript:void(0);'>View</a>";
+                    var paid = row.Settle === null ? "view" : "<a style='cursor:pointer;' ng-click='showSAmethod(" + JSON.stringify(row.Settle) + ");' href='javascript:void(0);'>View</a>";
                     return paid;
                 };
                 scope.ViewHoro = function(row) {
-                    var paid = (row.HoroPhotoName).includes('Horo_no.jpg') !== -1 ? "View" : "<a style='cursor:pointer;'  href='javascript:void(0);' >View</a>";
+                    debugger;
+                    var paid = (row.HoroPhotoName).indexOf('Horo_no') !== -1 ? "View" : "<a  href='javascript:void(0);' ng-click='showHoromethod(" + JSON.stringify(row.HoroPhotoName) + ");'>View</a>";
                     return paid;
                 };
                 scope.ViewTicket = function(row) {
                     var paid = "<a style='cursor:pointer;'  href='/Education/" + row.custid + "'>View</a>";
                     return paid;
                 };
-                scope.showHoromethod = function(row) {
-                    commonpage.showAndBindPopup(row.HoroPhotoName);
+                scope.showHoromethod = function(HoroPhotoName) {
+                    // commonpage.showPopup(row.HoroPhotoName);
+                    scope.page.model.image = HoroPhotoName;
+                    commonpage.showPopup('templates/bindImagePopup.html', scope, 'md', '');
                 };
 
-                scope.showSAmethod = function(row) {
-                    commonpage.showAndBindPopup(row.Settle);
+                scope.showSAmethod = function(Settle) {
+                    // commonpage.showAndBindPopup(Settle);
+                    scope.page.model.image = Settle;
+                    commonpage.showPopup('templates/bindImagePopup.html', scope, 'md', '');
                 };
 
-
+                scope.page.model.close = function(row) {
+                    commonpage.closepopup();
+                };
                 scope.plus = function(data) {
                     data.isDetail = true;
                     data.detailcolumns = [
@@ -74,8 +83,8 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                         { text: 'BI', key: 'bothinterst', type: 'label' },
                         { text: 'OppI', key: 'OppI', type: 'label' },
                         { text: 'Contact', key: '', type: 'link', method: scope.ViewContact },
-                        { text: 'Sa', key: '', type: 'customlink', templateUrl: scope.viewSa, method: scope.showSAmethod },
-                        { text: 'Horo', key: '', type: 'custom', templateUrl: scope.ViewHoro },
+                        { text: 'Sa', key: '', type: 'morelinks', templateUrl: scope.viewSa },
+                        { text: 'Horo', key: '', type: 'morelinks', templateUrl: scope.ViewHoro },
                         { text: 'Tickets', key: '', type: 'custom', templateUrl: scope.ViewTicket },
                         { text: 'Owner', key: 'OWNER', type: 'label' },
                     ];
@@ -86,7 +95,6 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 };
                 scope.minus = function(data) {
                     data.isDetail = false;
-
                 }
                 scope.sort = function(keyname) {
                     scope.sortKey = keyname; //set the sortKey to the param passed
