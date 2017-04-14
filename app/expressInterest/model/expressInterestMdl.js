@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function factory(http, expressInterestService, modelpopupopenmethod, authSvc, timeout) {
+    function factory(http, expressInterestService, modelpopupopenmethod, authSvc, timeout, alertss) {
 
         var model = {};
         model.scope = {};
@@ -10,6 +10,10 @@
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
         model.fromcustid = '';
         model.SelectProfilelst = [];
+        model.NAME = '';
+        model.OfflineMembershipExpiryDate = '';
+        model.Max_Offline_Allowed = '';
+        model.Offline_Used_Count = '';
         model.FromProfileID = function(ID) {
 
             if (ID !== '' && ID !== null && ID !== undefined) {
@@ -22,7 +26,7 @@
 
                         if (_.isArray(response.data[1]) && response.data[1].length > 0) {
 
-                            console.log(response.data[1]);
+
                             model.fromcustid = response.data[1][0].Cust_ID;
                             model.FromAgeMax = response.data[1][0].AgeMax;
                             model.FromAgeMin = response.data[1][0].AgeMin;
@@ -52,14 +56,14 @@
                                     });
                                     model.exiObj.Relationship = 0;
                                 }
-                                if (response.data.length > 1) {
+                                if (_.isArray(response.data) && response.data[1].length > 0) {
                                     model.NAME = response.data[1][0].NAME;
                                     model.Max_Offline_Allowed = response.data[1][0].Max_Offline_Allowed;
                                     model.OfflineMembershipExpiryDate = response.data[1][0].OfflineMembershipExpiryDate;
                                     model.Offline_Used_Count = response.data[1][0].Offline_Used_Count;
                                 }
 
-                                if (response.data.length > 2) {
+                                if (_.isArray(response.data) && response.data.length > 2) {
                                     model.Modeservicearray.push({ "label": "--Select--", "title": "--Select--", "value": '' });
                                     _.each(response.data[2], function(item) {
                                         model.Modeservicearray.push({ "label": item.NAME, "title": item.NAME, "value": item.ID });
@@ -67,7 +71,7 @@
                                     model.exiObj.ModeofService = '';
                                 }
 
-                                if (response.data.length > 3) {
+                                if (_.isArray(response.data) && response.data.length > 3) {
                                     model.Emailsarray = response.data[3];
 
                                     model.emailselectedArr = [];
@@ -95,8 +99,9 @@
                         model.Emailsarray = null;
                         // model.SelectProfilelst = null;
                         model.showHide = 0;
-                        // model.exiObj.txtFromprofileID = '';
-                        alert("ProfileId not Valid");
+                        model.exiObj.txtFromprofileID = '';
+                        // alert("ProfileId not Valid");
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'ProfileId not Valid', 9500);
                     }
                 });
             }
@@ -112,17 +117,20 @@
                 var chkProfileID = _.where(model.SelectProfilelst, { label: model.exiObj.txtToprofileID });
                 if (chkProfileID.length > 0) {
                     model.exiObj.txtToprofileID = '';
-                    alert('ProfileID has been already added to the list');
+                    // alert('ProfileID has been already added to the list');
+                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'ProfileID has been already added to the list', 9500);
                 } else {
                     if (ID != 0) {
                         if (model.exiObj.txtFromprofileID != null && model.exiObj.txtFromprofileID.length != 0) {
                             model.mismatch = [];
                             expressInterestService.getEIprofileID(6, ID, '').then(function(response) {
                                 if (_.isArray(response.data) && response.data.length > 0) {
+
                                     if (_.isArray(response.data[0]) && response.data[0].length > 0) {
                                         model.ToProfileStatusID = response.data[0][0].ProfileStatusID;
                                     }
                                     if (_.isArray(response.data[1]) && response.data[1].length > 0) {
+                                        model.toCustID = response.data[1][0].Cust_ID;
                                         model.ToAgeMax = response.data[1][0].AgeMax;
                                         model.ToAgeMin = response.data[1][0].AgeMin;
                                         model.ToMaxHeight = response.data[1][0].MaxHeight;
@@ -151,26 +159,29 @@
                                         }
                                     }
 
-                                    if (model.ToProfileStatusID == 54) {
+                                    if (model.ToProfileStatusID === 54) {
                                         if (model.mismatch.length > 0) {
                                             modelpopupopenmethod.showPopup('Conflict.html', model.scope, 'md', 'mismatch');
-                                            console.log('event....');
+
                                         } else {
                                             model.pushToProfileIDs();
                                         }
 
-                                    } else if ((ProfileStatusID == 57) || (ProfileStatusID == 393)) {
+                                    } else if ((model.ToProfileStatusID === 57) || (model.ToProfileStatusID === 393)) {
 
-                                        alert("Settled or WaitingforSettled Authorization Profile");
+                                        // alert("Settled or WaitingforSettled Authorization Profile");
+                                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Settled or WaitingforSettled Authorization Profile', 9500);
                                         model.exiObj.txtToprofileID = '';
                                         return false;
-                                    } else if ((ProfileStatusID == 56) || (ProfileStatusID == 394)) {
+                                    } else if ((model.ToProfileStatusID === 56) || (model.ToProfileStatusID === 394)) {
 
-                                        alert("Deleted or WaitingforDeltd authorization Profile");
+                                        // alert("Deleted or WaitingforDeltd authorization Profile");
+                                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Deleted or WaitingforDeltd authorization Profile', 9500);
                                         model.exiObj.txtToprofileID = '';
                                         return false;
                                     } else {
-                                        alert('Not Active Profile');
+                                        // alert('Not Active Profile');
+                                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Not Active Profile', 9500);
                                         model.exiObj.txtToprofileID = '';
                                         return false;
                                     }
@@ -179,7 +190,8 @@
 
                         } else {
                             model.exiObj.txtToprofileID = '';
-                            alert("Please Enter The FromProfileID");
+                            // alert("Please Enter The FromProfileID");
+                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please Enter The FromProfileID', 9500);
                         }
                     }
                 }
@@ -197,7 +209,7 @@
                 modelpopupopenmethod.closepopup();
             model.getImages(model.exiObj.txtToprofileID);
             timeout(function() {
-                model.SelectProfilelst.push({ "label": model.exiObj.txtToprofileID, "title": model.exiObj.txtToprofileID, "value": model.strimages });
+                model.SelectProfilelst.push({ "label": model.exiObj.txtToprofileID, "title": model.exiObj.txtToprofileID, "value": model.strimages, custid: model.toCustID });
                 model.exiObj.txtToprofileID = '';
             }, 500);
         };
@@ -246,12 +258,42 @@
                 GetDetails: ExpressArray
             };
 
-            console.log(JSON.stringify(inputObj));
             expressInterestService.submitExpressintrst(inputObj).then(function(response) {
                 console.log(response);
+                var status = 0;
+                if (_.isArray(response.data.m_Item1))
+                    status = response.data.m_Item1[0].Status;
+                if (parseInt(status) === 1) {
+                    model.clearform();
+                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Expressinterest done successfully', 9500);
+                } else {
+                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Expressinterest failed', 9500);
+                }
             });
 
         };
+
+        model.clearform = function() {
+            model.exiObj = {};
+            model.Emailsarray = [];
+            model.SelectProfilelst = [];
+            model.scope.ExpressintrstForm.$setPristine();
+            model.scope.ExpressintrstForm.$setUntouched();
+            model.exiObj.rbtnSendSms = 1;
+            model.exiObj.rbtnBasic = 358;
+            model.exiObj.rbtnTypeofService = 366;
+            model.disableinput = false;
+            model.SelectProfilelst = [];
+            model.exiObj.txtFromprofileID = '';
+            model.exiObj.chkrvrsend = true;
+            model.showHide = 0;
+            model.NAME = '';
+            model.OfflineMembershipExpiryDate = '';
+            model.Max_Offline_Allowed = '';
+            model.Offline_Used_Count = '';
+        };
+
+
 
         model.getImages = function(profileid) {
 
@@ -276,9 +318,15 @@
                 var strimgArr = val[0].split(';');
                 var profileid = strimgArr[1];
                 var imgs = strimgArr[0].split(',');
-                _.each(imgs, function(item) {
-                    var imgwithnoJpg = (item.split('.'))[0];
-                    model.displayToimages.push({ src: app.S3PhotoPath + "KMPL_91035_Images/" + (imgwithnoJpg.replace("i", "I")) + "_Images/" + profileid + "_FullPhoto.jpg", name: imgwithnoJpg.replace("i", "I"), boolval: true, profileID: profileid });
+
+                expressInterestService.getprofileidcustdetails(profileid).then(function(response) {
+                    console.log(response);
+                    if (_.isArray(response.data)) {
+                        _.each(imgs, function(item) {
+                            var imgwithnoJpg = (item.split('.'))[0];
+                            model.displayToimages.push({ src: app.S3PhotoPath + "KMPL_" + response.data[0].CustID + "_Images/" + (imgwithnoJpg.replace("i", "I")) + "_Images/" + profileid + "_FullPhoto.jpg", name: imgwithnoJpg.replace("i", "I"), boolval: true, profileID: profileid });
+                        });
+                    }
                 });
             }
             modelpopupopenmethod.showPopup('TophotosPoup.html', model.scope, 'lg', '');
@@ -314,5 +362,5 @@
     angular
         .module('Kaakateeya')
         .factory('expressInterestModel', factory)
-    factory.$inject = ['$http', 'expressInterestService', 'modelpopupopenmethod', 'authSvc', '$timeout'];
+    factory.$inject = ['$http', 'expressInterestService', 'modelpopupopenmethod', 'authSvc', '$timeout', 'alert'];
 })(angular);

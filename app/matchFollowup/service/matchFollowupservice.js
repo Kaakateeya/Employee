@@ -3,8 +3,23 @@
 
     function factory(http) {
         return {
-            generalsearchsubmit: function(obj) {
-                return http.post(app.apiroot + 'CustomerSearch/ShowDataForEmployeeGeneral', obj);
+            getMyprofilebind: function(flag, ID) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getMyProfileBindings', {
+                    params: {
+                        flag: flag,
+                        ID: ID,
+                    }
+                });
+            },
+            matchFollowupSelect: function(obj) {
+                console.log(JSON.stringify({
+                    Mobj: obj
+                }));
+                return http.get(app.apiroot + 'EmployeeReportPage/getMatchfollowupSlideShowResult', {
+                    params: {
+                        Mobj: obj
+                    }
+                });
             }
         };
     }

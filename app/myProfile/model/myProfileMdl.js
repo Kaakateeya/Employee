@@ -6,7 +6,6 @@
 
         model.grid = config;
         model.slide = configslide;
-        // model = angular.merge(model, config, configslide);
 
         model.mpObj = {};
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
@@ -17,7 +16,6 @@
         model.MyProfilePageLoad = function() {
 
             myProfileservice.getMyprofilebind(1, 2, '').then(function(response) {
-
                 model.mpObj.ddlProfileOwner = model.empid;
                 model.applicationStatusarray = [];
                 model.Castearray = [];
@@ -66,9 +64,10 @@
             modelpopupopenmethod.ShowPhotoPopup(custid, model.scope);
         };
 
-        model.RedirectPayment = function(profileid) {
+        model.grid.RedirectPayment = function(profileid) {
             window.open("EmployeePayments" + "?profileid=" + profileid, "_blank");
         };
+
         model.horoTemplate = function(row) {
             var paid = row.HoroscopeStatus === 1 ? "<img  src='src/images/ico_horoscope.jpg' class='horoImgcls' >" : "";
             return paid;
@@ -85,7 +84,10 @@
         };
         model.horoscopeimage = function(row) {
             model.image = row.HoroScopeImage;
-            modelpopupopenmethod.showPopup('templates/bindImagePopup.html', model.scope, '', "");
+            if ((row.HoroScopeImage).indexOf('.html') === -1)
+                modelpopupopenmethod.showPopup('templates/bindImagePopup.html', model.scope, '', "");
+            else
+                window.open(row.HoroScopeImage, '_blank');
         };
 
         model.MyprofileResult = function(obj, from, to, type) {
@@ -154,7 +156,6 @@
                     } else {
 
                         model.slide.totalRecords = response.data[0].TotalRows;
-
                         if (parseInt(from) === 1) {
                             model.slide.setSlides(response.data, 10);
                             modelpopupopenmethod.showPopupphotopoup('myprofileSlide.html', model.scope, 'lg', "");
@@ -169,11 +170,10 @@
 
         }
 
-        model.slide.pagechange = function(val) {
-            alert(1111);
+        model.grid.pagechange = function(val) {
             var to = val * 10;
             var from = val === 1 ? 1 : to - 9;
-            model.MyprofileResult(model.mpObj, from, to);
+            model.MyprofileResult(model.mpObj, from, to, 'grid');
         };
         model.close = function() {
             modelpopupopenmethod.closepopup();
@@ -193,9 +193,6 @@
         model.slide.redirectEdit = function(custid, type) {
             window.open('/' + type + '/' + custid, '_blank');
         };
-
-
-
 
         return model;
     }

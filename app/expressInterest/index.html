@@ -161,14 +161,14 @@
                         </div>
                         <div class="form-group col-lg-6">
                             <div class="col-lg-4">
-                                <md-checkbox ng-checked="true" ng-model="page.model.exiObj.chkrvrsend">RVR send</md-checkbox>
+                                <md-checkbox ng-model="page.model.exiObj.chkrvrsend">RVR send</md-checkbox>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group text-center">
                             <button class="button_custom" style="display:initial;" type="submit">Sent to Service</button>
-                            <button type="reset" style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset">Reset</button>
+                            <button type="reset" ng-click="page.model.clearform();" style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset">Reset</button>
                         </div>
                     </div>
                 </div>

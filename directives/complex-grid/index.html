@@ -56,10 +56,10 @@
                                 <tr ng-repeat="detailinneritem in inneritem.detaildata ">
                                     <td ng-repeat="detailcolitem in inneritem.detailcolumns ">
                                         <span ng-if="detailcolitem.type==='label' "> {{detailinneritem[detailcolitem.key]}}</span>
-                                        <a href="# " ng-if="detailcolitem.type==='link' " ng-click="detailcolitem.method(detailinneritem) ">{{ detailcolitem.key!==''?detailinneritem[detailcolitem.key]:'View'}}</a>
+                                        <a href="#" ng-if="detailcolitem.type==='link' " ng-click="detailcolitem.method(detailinneritem) ">{{ detailcolitem.key!==''?detailinneritem[detailcolitem.key]:'View'}}</a>
                                         <span ng-if="detailcolitem.type==='custom' " ng-bind-html="detailcolitem.templateUrl(detailinneritem) "></span>
                                         <span ng-if="detailcolitem.type==='customlink'" ng-bind-html="detailcolitem.templateUrl(inneritem)" ng-click="detailcolitem.method(inneritem) "></span>
-
+                                        <span ng-if="detailcolitem.type==='morelinks'" compile="detailcolitem.templateUrl(detailinneritem)"></span>
                                     </td>
                                 </tr>
                             </tbody>
