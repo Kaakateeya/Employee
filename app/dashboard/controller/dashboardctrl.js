@@ -81,6 +81,10 @@
                  }
              });
          });
+
+         scope.$on("notificationread", function(event, Cust_NotificationID, index, parentindex, Custid, CategoryID) {
+             model.notificationread(Cust_NotificationID, index, parentindex, Custid, CategoryID);
+         });
      }
      angular.module('Kaakateeya').controller('dashboardCtrl', ['dashboardModel', '$scope', 'dashboardServices', 'modelpopupopenmethod', 'alert', Controller]);
 

@@ -154,8 +154,13 @@
             };
             dashboardServices.readNotifications(obj).then(function(response) {
                 console.log(response);
+                if (response.data !== undefined) {
+                    alerts.timeoutoldalerts(model.scope, 'alert-success', 'Notification Readed successfully', 2000);
+                } else {
+                    alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Notification Read Failed', 2000);
+                }
             });
-            ((model.landingItems)[parentid]).splice(index, 1);
+            // ((model.landingItems)[parentid]).splice(index, 1);
         };
 
         model.bouncedemail = function(obj) {

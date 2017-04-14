@@ -34,7 +34,7 @@
                                         <a href="javascript:void(0)" ng-click="page.model.viewfullprofile(inneritem.Profileid)" ng-class="inneritem.PaidStatus===1?'colorpaid':'colorunpaid'"> ({{inneritem.Profileid}})</a></p>
                                     <p class="titleservice"><span ng-if="inneritem.Date!=='Upload SA Form'"> {{inneritem.Date}}</span>
                                         <span ng-if="inneritem.Date==='Upload SA Form'">&nbsp;&nbsp;<a href="javascript:void(0)" ng-click="page.uploadsaformtable(inneritem.Profileid)" class="alllinkscolor" >Click Here To Upload SA Form</a></span>
-                                        <span ng-if="inneritem.TableName==='Customer Notification Status'"><a href="javascript:void(0)" ng-click="page.model.notificationread(inneritem.NotificationID,$parent.$index,$parent.$parent.$index,inneritem.cust_id,inneritem.CategoryID)" class="alllinkscolor" >Read</a></span>
+                                        <!--<span ng-if="inneritem.TableName==='Customer Notification Status'"><a href="javascript:void(0)" ng-click="page.model.notificationread(inneritem.NotificationID,$parent.$index,$parent.$parent.$index,inneritem.cust_id,inneritem.CategoryID)" class="alllinkscolor" >Read</a></span>-->
                                     </p>
                                 </div>
 

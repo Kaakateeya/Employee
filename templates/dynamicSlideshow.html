@@ -238,7 +238,22 @@
                                             </h5>
                                         </div>
                                     </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" ng-show="typeofslidedate ==='Action Date'">
+                                        <div style="" class="edit_page_details_item_desc clearfix">
+                                            <h6> <span style="font-weight: bold;">Notification
+                                           </span></h6>
+                                            <h5>
+                                                <div style="color:Black;">
+                                                    <span>{{itemval.ActionType}}
+                                                          <a href="javascript:void(0)" ng-click="notificationread(itemval.Cust_NotificationID,$parent.$index,$parent.$parent.$index,itemval.Custid,itemval.CategoryID)">Read</a>
+                                                      </span>
 
+                                                </div>
+                                                <div class="clearfix">
+                                                </div>
+                                            </h5>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row" style="margin-left: 21px;
     margin-right: 26px;

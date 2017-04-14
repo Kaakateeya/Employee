@@ -258,10 +258,13 @@
                 if (_.isArray(response.data.m_Item1))
                     status = response.data.m_Item1[0].Status;
                 if (parseInt(status) === 1) {
+                    if (model.disableinput === true) {
+                        model.close();
+                    }
                     model.clearform();
-                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Expressinterest done successfully', 9500);
+                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Expressinterest done successfully', 2000);
                 } else {
-                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Expressinterest failed', 9500);
+                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Expressinterest failed', 2000);
                 }
             });
 

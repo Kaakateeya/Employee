@@ -119,7 +119,11 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             CasteID: item.CasteID,
                             serviceDate: item.serviceDate,
                             bouncedEmailID: item.EmailID,
-                            bouncedemailentryid: item.Cust_EmailBounceEntryId
+                            bouncedemailentryid: item.Cust_EmailBounceEntryId,
+                            Cust_NotificationID: item.Cust_NotificationID,
+                            CategoryID: item.CategoryID,
+                            ActionType: item.ActionType,
+                            ReadStatus: item.ReadStatus
                         });
                     });
                     return scope.arraydata;
@@ -261,7 +265,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                         case 'Assigned Profiles from Last 10 Days':
                             scope.typeofslidedate = "Assigned Date";
                             break;
-
                         case "Email Bounce Info":
                             scope.typeofslidedate = "Bounced On";
                             break;
@@ -398,6 +401,11 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                 scope.updatebouncedemail = function(entryid, email, Custid) {
                     scope.$emit("updatebouncedemailmethod", entryid, email, Custid);
                 };
+                scope.notificationread = function(Cust_NotificationID, index, parentindex, Custid, CategoryID) {
+                    scope.$emit("notificationread", Cust_NotificationID, index, parentindex, Custid, CategoryID);
+                };
+
+
             }
         };
     }
