@@ -224,6 +224,7 @@
                 }
             };
             searchpageServices.generalsearchsubmit(model.CgetDetails).then(function(response) {
+                model.isshortlistprogressbar = true;
                 console.log(response);
                 model.slideshowarray = [];
                 _.each(response.data, function(item) {
@@ -386,6 +387,7 @@
             };
             searchpageServices.advancedsearchsubmit(model.CgetDetails).then(function(response) {
                 console.log(response);
+                model.isshortlistprogressbar = true;
                 model.slideshowarray = [];
                 _.each(response.data, function(item) {
                     model.slideshowarray.push(item);
@@ -639,9 +641,7 @@
             searchpageServices.getprofileidcustdetails(custids).then(function(response) {
                 console.log(response);
                 model.FromProfileId = model.getpageloadobject.ProfileID;
-
                 _.each(response.data, function(item) {
-                    debugger;
                     model.Toprofileids.push(item.ProfileID);
                 });
                 expressInterestModel.FromProfileID(model.FromProfileId);
@@ -661,12 +661,16 @@
         };
 
         model.bookmark = function() {
-            var strToCustIDs = model.hdnshortlistProfile;
+            var strToCustIDs = [];
+            _.each(model.shortlistmodel.slides, function(item) {
+                strToCustIDs.push(item.Custid);
+            });
+            var custids = strToCustIDs.length > 0 ? (strToCustIDs).toString() : null;
             var obj = {
                 FromCustID: model.getpageloadobject.Cust_ID,
-                ToCustID: strToCustIDs,
+                ToCustID: custids,
                 BookmaredFlag: 1,
-                StrTocustIDs: strToCustIDs
+                StrTocustIDs: custids
             };
             searchpageServices.insertbookmark(obj).then(function(response) {
                 console.log(response);
@@ -676,8 +680,6 @@
                     alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Bookmark failed', 2000);
                 }
             });
-
-
         };
         model.viewfullprofile = function(profileid) {
             window.open("Viewfullprofile/" + profileid, "_blank");

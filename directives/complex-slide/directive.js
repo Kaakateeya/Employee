@@ -14,6 +14,9 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.mainshortlist = false;
                 $scope.Viwedslide = 1;
                 $scope.playbutton = false;
+
+
+                $scope.width = "";
                 $scope.pauseResume = function(action) {
                     if (action === 'play') {
                         $scope.myInterval = 5000;
@@ -51,6 +54,23 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     $scope.popupmodalbody = true;
                     modelpopupopenmethod.showPopupphotopoup('dynamicphotopopup.html', $scope, '', "modalclassdashboardphotopopup");
                 };
+                // $scope.ngclassprogress = function(slidelength, type) {
+                //     var classslide = "";
+                //     $scope.width = "width:" + slidelength + "%";
+                //     if (type == "class") {
+                //         classslide = "progress-bar progress-bar-striped progress-bar-danger active";
+                //         if (slidelength <= 10) {
+                //             classslide = "progress-bar progress-bar-striped progress-bar-danger active";
+                //         } else if (slidelength > 10 && slidelength <= 30) {
+                //             classslide = "progress-bar progress-bar-striped progress-bar-warning active";
+                //         } else if (slidelength > 30 && slidelength <= 50) {
+                //             classslide = "progress-bar progress-bar-striped progress-bar-info active";
+                //         } else {
+                //             classslide = "progress-bar progress-bar-striped progress-bar-success active";
+                //         }
+                //     }
+                //     return classslide;
+                // };
             }
         };
     }

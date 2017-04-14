@@ -147,24 +147,7 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                 return false;
             },
 
-            moveonenter: function() {
-                // $(function() {
-                //     var wage = document.getElementById("txtGotoVal");
-                //     wage.addEventListener("keydown", function(e) {
-                //         if (e.keyCode === 13) {
-                //             obj.gotoSlide(wage);
-                //             $('#myCarousel').carousel(parseInt($(wage).val()) - 1);
-                //             $('#myCarousel').carousel('pause');
-                //             $('#playButton').show();
-                //             $('#pauseButton').hide();
-                //             return false;
-                //         }
-
-                //     });
-                // });
-            },
             ShowPhotoPopup: function(custid, scope) {
-                debugger;
                 SelectBindServiceApp.getphotoslideimages(custid).then(function(response) {
                     scope.slides = [];
                     _.each(response.data, function(item) {

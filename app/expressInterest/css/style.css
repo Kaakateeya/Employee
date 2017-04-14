@@ -1,52 +1,69 @@
- .control-label {
-     cursor: default;
-     font-weight: 400;
-     font-size: 15px;
-     display: block;
-     color: black;
-     font-family: "Open Sans ", sans-serif !important;
- }
- 
- .maroon {
-     color: maroon;
- }
- 
- .maindivCls {
-     line-height: 44px;
-     font-weight: 700;
- }
- 
- .ExpressintrstCls input[type="text "],
- .ExpressintrstCls textarea,
- select {
-     color: #000 !important;
-     border: 1px solid #ADA2A2 !important;
-     width: 111%;
- }
- 
- .multiselect {
-     width: 111% !important;
-     border: 1px solid #ADA2A2 !important;
- }
- 
- .form-horizontal .control-label {
-     padding-top: 7px;
-     margin-bottom: 0px;
-     text-align: right;
- }
- 
- .requiredStar::after {
-     content: " * ";
-     float: right;
-     color: red;
-     font-size: 22px !important;
-     padding-left: 6px;
- }
- 
- .ExpressintrstCls>.form-control {
-     width: 111% !important;
- }
- 
- .mismatch {
-     z-index: 99999 !important;
- }
+.ExpressintrstCls .control-label {
+  cursor: default;
+  font-weight: 400;
+  font-size: 15px;
+  display: block;
+  color: black;
+  font-family: "Open Sans ", sans-serif !important; }
+
+.maindivCls .maroon {
+  color: maroon; }
+
+.maindivCls {
+  line-height: 44px;
+  font-weight: 700; }
+
+.ExpressintrstCls input[type="text"],
+.ExpressintrstCls textarea,
+select {
+  color: #000 !important;
+  border: 1px solid #ADA2A2 !important;
+  width: 111%; }
+
+.maindivCls .multiselect {
+  width: 111% !important;
+  border: 1px solid #ADA2A2 !important; }
+
+.maindivCls .form-horizontal .control-label {
+  padding-top: 7px;
+  margin-bottom: 0px;
+  text-align: right; }
+
+.ExpressintrstCls .requiredStar::after {
+  content: " * ";
+  float: right;
+  color: red;
+  font-size: 22px !important;
+  padding-left: 6px; }
+
+.ExpressintrstCls > .form-control {
+  width: 111% !important; }
+
+.ExpressintrstCls .mismatch {
+  z-index: 99999 !important; }
+
+.maindivCls button.multiselect.dropdown-toggle.btn.ng-pristine.ng-untouched.ng-valid.ng-isolate-scope {
+  width: 111%; }
+
+.buttoncls {
+  color: #fff;
+  background-color: #96a196;
+  border-color: #4cae4c;
+  font-weight: 700; }
+
+.chkmailscls {
+  line-height: 18px;
+  width: 275px;
+  display: block;
+  height: 97px;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  border-top: solid 1px #a2a2a2;
+  border-left: solid 1px #a2a2a2;
+  border-right: solid 1px #a2a2a2;
+  border-bottom: solid 1px #a2a2a2; }
+
+.reuiredcls {
+  color: #a94442; }
+
+/*# sourceMappingURL=style.css.map */

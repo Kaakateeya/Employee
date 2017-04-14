@@ -66,7 +66,6 @@
 
          vm.uploadsaformtable = function(profileid) {
              model.proceedprofileid = profileid;
-             debugger;
              commonpage.showPopupphotopoup('uploadsaform.html', model.scope, 'sm', "modalclassdashboardphotopopup");
          };
 
@@ -75,9 +74,9 @@
                  console.log(response);
                  if (response !== undefined && response !== null && response !== "" && response.data !== undefined) {
                      if (response.data === 1) {
-                         alerts.timeoutoldalerts(model.scope, 'alert-success', 'PhotoRequest send successfully', 7000);
+                         alerts.timeoutoldalerts(model.scope, 'alert-success', 'PhotoRequest send successfully', 4000);
                      } else {
-                         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'PhotoRequest send Failed', 7000);
+                         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'PhotoRequest send Failed', 4000);
                      }
                  }
              });

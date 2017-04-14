@@ -823,7 +823,7 @@ h2 {
 
 .x_panel {
     width: 100%;
-    padding: 10px 17px;
+    /*padding: 10px 17px;*/
     display: inline-block;
     background: #fff;
     border: 1px solid #E6E9ED;
@@ -836,7 +836,8 @@ h2 {
 
 .x_title {
     border-bottom: 2px solid #E6E9ED;
-    padding: 1px 5px 6px
+    padding: 1px 5px 6px;
+    background-color: rgba(197, 205, 50, 0.42)
 }
 
 .x_title .filter {
@@ -851,7 +852,7 @@ table.tile_info {
 }
 
 .x_title h2 {
-    margin: 0px 0 6px;
+    margin: 5px 0 6px;
     float: left;
     display: block
 }

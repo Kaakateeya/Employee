@@ -141,7 +141,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     files: [
                         'app/expressInterest/controller/expressInterestctrl.js',
 
-                        // 'app/expressInterest/css/style.css',
+                        'app/expressInterest/css/style.css',
 
                         'app/expressInterest/model/expressInterestMdl.js',
                         'app/expressInterest/service/expressInterestservice.js'

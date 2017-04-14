@@ -4,6 +4,7 @@
     function factory($http) {
         var model = {};
         model.arraydata = [];
+        model.isshortlistprogressbar = false;
         model.init = function() {
             model.setSlides = function(data, topage) {
                 model.slides = [];
@@ -80,7 +81,6 @@
                         HoroscopePath: item.HoroscopePath
                     });
                 });
-                debugger;
                 return model.slides;
             };
             return model;
