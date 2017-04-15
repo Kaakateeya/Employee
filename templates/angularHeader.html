@@ -51,5 +51,9 @@
     <!--<div class="progress" ng-bind-html="model.progressbarhtml">-->
     <div class="progress">
         <div ng-class='ngclassprogress(model.slides)' ng-style="{'width' : width}"><span> {{progressbar.length}}  Shortlisted</span></div>
+
+
+        <!--<div ng-class="{'progress-bar progress-bar-striped progress-bar-danger active': config.progressbar.length <= 10 , 'progress-bar progress-bar-striped progress-bar-warning active': config.progressbar.length > 10 && config.progressbar.length <= 30,
+              'progress-bar progress-bar-striped progress-bar-info active': config.progressbar.length > 30 && config.progressbar.length <= 50, 'progress-bar progress-bar-striped progress-bar-success active': config.progressbar.length > 50}" ng-style="{'width' : {{config.progressbar.length}}}"><span> {{config.progressbar.length}}  Shortlisted</span></div>-->
     </div>
 </div>

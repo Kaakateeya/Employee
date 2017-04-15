@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="dynamicSlideshow.html">
-    <div class="row" style="margin-left: 10px;margin-right: 10px;background-color: #f1f1e4;padding: 4px;margin-top: 10px;">
+    <div class="row" style="margin-left: 10px;margin-right: 10px;background-color:rgba(197, 205, 50, 0.42);padding-top: 5px;margin-top: 10px;">
         <div class="col-lg-12">
             <h4 class="col-lg-10" style="color:maroon;font-size: 16px;">{{headerhtml}}</h4>
             <div class="col-lg-2" ng-if="slidetype==='popup'">
@@ -255,13 +255,29 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row" style="margin-left: 21px;
-    margin-right: 26px;
+
+                                <a data-target="#myCarousel" class="carousel-control left" href="javascript:void(0)" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                </a>
+                                <a data-target="#myCarousel" class="carousel-control right" href="javascript:void(0)" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                                <div id="carouselButtons" class="col-lg-offset-5">
+                                    <button id="playButton" type="button" ng-show="ShowPause" ng-click="pauseResume('play');" class="btn btn-default btn-xs pauseBtns" title="Play">
+                                    <i class="fa fa-play"></i>
+                                </button>
+                                    <button id="pauseButton" type="button" ng-show="!ShowPause" ng-click="pauseResume('pause');" class="btn btn-default btn-xs pauseBtns" title="Pause">
+                                    <i class="fa fa-pause"></i>
+                                </button>
+                                </div>
+                                </br>
+                                <div class="row" style="
+       margin-left: 75px;
+    margin-right: 75px;
     border: 1px solid #ccc;
     border-radius: 6px;height: auto;
-    padding: 10px;">
+    padding: 10px;background: #f6f3ea;">
                                     <div class="col-lg-12">
-
                                         <a href='javascript:void(0);' ng-click="pagesredirect('Partner',itemval.Custid)" style='font-size: 14px;margin-left:15px;'>Edit Partnerpreference</a>
                                         <span>|</span>
                                         <a href='javascript:void(0);' ng-click="pagesredirect('general',0)" style='font-size: 14px;'>General search</a>
@@ -269,28 +285,14 @@
                                         <a href='javascript:void(0);' ng-click="pagesredirect('contacts',itemval.Custid)" style='font-size: 14px;'>View Contacts</a>
 
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <a data-target="#myCarousel" class="carousel-control left" href="javascript:void(0)" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </a>
-                    <a data-target="#myCarousel" class="carousel-control right" href="javascript:void(0)" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </a>
-                    <br>
 
                 </div>
-                <div id="carouselButtons" class="col-lg-offset-5" style="margin-top: -10px;">
-                    <button id="playButton" type="button" ng-show="ShowPause" ng-click="pauseResume('play');" class="btn btn-default btn-xs pauseBtns" title="Play">
-                                    <i class="fa fa-play"></i>
-                                </button>
-                    <button id="pauseButton" type="button" ng-show="!ShowPause" ng-click="pauseResume('pause');" class="btn btn-default btn-xs pauseBtns" title="Pause">
-                                    <i class="fa fa-pause"></i>
-                                </button>
-                </div>
+
             </div>
         </div>
     </div>

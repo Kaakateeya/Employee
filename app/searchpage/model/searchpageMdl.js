@@ -225,7 +225,6 @@
             };
             searchpageServices.generalsearchsubmit(model.CgetDetails).then(function(response) {
                 model.isshortlistprogressbar = true;
-                console.log(response);
                 model.slideshowarray = [];
                 _.each(response.data, function(item) {
                     model.slideshowarray.push(item);
@@ -234,8 +233,10 @@
                     model.headervisileble = true;
                     model.tablename = "general";
                     if (parseInt(frompage) === 1) {
+                        model.divcontrolls = false;
+                        model.slideshowtrue = true;
                         model.setSlides(model.slideshowarray, parseInt(topage));
-                        model.totalRecords = parseInt(frompage) === 1 && response !== undefined && response !== "" && response !== null && response.data !== undefined ? model.slideshowarray[0].TotalRows : 0;
+                        model.totalRecords = parseInt(frompage) === 1 && response !== undefined && response.data !== undefined && model.slideshowarray.length > 0 ? model.slideshowarray[0].TotalRows : 0;
                     } else {
                         model.addSlides(model.slideshowarray, model.slides, parseInt(topage));
                     }
@@ -243,10 +244,7 @@
                 } else {
                     model.scope.$broadcast('submittablesearch', model.slideshowarray, frompage);
                 }
-                model.divcontrolls = false;
-                model.slideshowtrue = true;
             });
-
         };
         model.closepopup = function() {
 
@@ -396,7 +394,7 @@
                 if (model.typrofsearch === "2") {
                     model.tablename = "advanced";
                     if (parseInt(frompage) === 1) {
-                        model.totalRecords = parseInt(frompage) === 1 && response !== undefined && response !== "" && response !== null && response.data !== undefined ? model.slideshowarray[0].TotalRows : 0;
+                        model.totalRecords = parseInt(frompage) === 1 && response !== undefined && response.data !== undefined && model.slideshowarray.length > 0 ? model.slideshowarray[0].TotalRows : 0;
                         model.setSlides(model.slideshowarray, parseInt(topage));
                     } else {
                         model.addSlides(model.slideshowarray, model.slides, parseInt(topage));
@@ -465,6 +463,8 @@
             }
             slide.isShortlisted = true;
             alerts.timeoutoldalerts(model.scope, 'alert-success', 'profile has been shortlisted successfully', 2000);
+            // model.progressbar = [];
+            //model.progressbar = _.where(model.slides, { isShortlisted: true });
         };
 
         model.mismatchProfileCheck = function(slide) {
