@@ -46,7 +46,6 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     return paid;
                 };
                 scope.ViewHoro = function(row) {
-                    debugger;
                     var paid = (row.HoroPhotoName).indexOf('Horo_no') !== -1 ? "View" : "<a  href='javascript:void(0);' ng-click='showHoromethod(" + JSON.stringify(row.HoroPhotoName) + ");'>View</a>";
                     return paid;
                 };
@@ -65,7 +64,11 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     scope.page.model.image = Settle;
                     commonpage.showPopup('templates/bindImagePopup.html', scope, 'md', '');
                 };
-
+                scope.sendtopayment = function(row) {
+                    var pay = row.paidamount === '0/0' ? 'unpaid' : row.paidamount;
+                    var paymant = "<a style='cursor:pointer;' href='javascript:void(0);'>" + pay + "</a>";
+                    return paymant;
+                };
                 scope.page.model.close = function(row) {
                     commonpage.closepopup();
                 };
@@ -74,7 +77,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     data.detailcolumns = [
                         { text: 'Profile Id', key: 'Profileid', type: 'link', method: scope.ViewProfile },
                         { text: 'Branch-Dor', key: 'RegistrationDate', type: 'label' },
-                        { text: 'Paid', key: 'paidamount', type: 'label' },
+                        { text: 'Paid', key: '', type: 'custom', templateUrl: scope.sendtopayment },
                         { text: 'Paid Date', key: 'paiddate', type: 'label' },
                         { text: 'S/R', key: 'sentreceivecount', type: 'link', method: scope.sendreceive },
                         { text: 'PC', key: 'photocount', type: 'label' },

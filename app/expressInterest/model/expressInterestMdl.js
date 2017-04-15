@@ -64,13 +64,16 @@
                                 if (_.isArray(response.data) && response.data.length > 3) {
                                     model.Emailsarray = response.data[3];
                                     model.emailselectedArr = [];
+                                    model.exiObj.chkmails = [];
                                     if (model.Emailsarray.length > 0) {
                                         _.each(model.Emailsarray, function(item) {
-                                            //   all.Id = r.email.Substring(0, r.email.Length > 2 ? 3 : (r.email.Length > 1 ? 2 : 1));
-                                            // all.Id += "*****@";
-                                            model.emailselectedArr.push(item.Email);
+                                            var email = item.Email.substring(0, item.Email.length > 2 ? 3 : (item.Email.length > 1 ? 2 : 1));
+                                            email += "*****@";
+                                            model.emailselectedArr.push({ Email: email, emailid: item.Email });
                                         });
-                                        model.exiObj.chkmails = model.emailselectedArr;
+                                        _.map(model.emailselectedArr, function(item) {
+                                            model.exiObj.chkmails.push(item.emailid);
+                                        });
                                     }
                                 }
                             }

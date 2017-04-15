@@ -40,7 +40,6 @@
                 oppclose: 0,
                 Empwaiting: 0
             };
-            debugger;
             matchFollowupServices.matchFollowupSelect(inputobj).then(function(response) {
 
             });
