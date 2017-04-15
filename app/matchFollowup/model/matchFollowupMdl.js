@@ -42,7 +42,7 @@
             };
             debugger;
             matchFollowupServices.matchFollowupSelect(inputobj).then(function(response) {
-                console.log(response);
+
             });
         };
 

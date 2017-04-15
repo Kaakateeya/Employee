@@ -2,7 +2,6 @@
     'use strict';
 
     function factory(EmployeePaymentInsertservice, stateParams, filter, authSvc, modelpopupopenmethod) {
-
         var model = {};
         model.obj = {};
         model.array = [];
@@ -15,7 +14,6 @@
         model.parseInt = parseInt;
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
         model.ServiceTaxPercent = app.ServiceTaxPercent;
-
         model.EmployeePaymentInsert = function(inobj, type) {
             var monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                 DateArr, dateformatt = '';
@@ -23,7 +21,6 @@
                 DateArr = model.custobj.StartDate.split('-');
                 dateformatt = DateArr[0] + '/' + ((_.indexOf(monthArr, DateArr[1])) + 1) + '/' + DateArr[2];
             }
-
             var obj = {
                 ProfileID: model.custobj.ProfileID,
                 Cust_id: model.custobj.Cust_ID,
@@ -52,13 +49,11 @@
                 AccessFeatureID: 0,
                 PaysmsID: inobj.rbtnmail
             };
-
             model.PiObj = {};
             EmployeePaymentInsertservice.paymentInsert(obj).then(function(response) {
-
-                alert('Payment Entered Successfully');
                 model.scope.paymentForm.$setPristine();
                 model.scope.paymentForm.$setUntouched();
+                alert('Payment Entered Successfully');
                 // if (response.data === 1 || response.data === '1') {
                 //     alert('submited successfully');
                 //     model.PiObj = {};
@@ -66,9 +61,7 @@
                 //     alert('submission failed');
                 // }
             });
-
         };
-
         model.getpaymentProfile = function(profileID) {
             model.custobj = {};
             model.PiObj.rdnServicetax = '1';
@@ -84,13 +77,11 @@
                         model.PiObj.txtAgreedAmt = model.custobj.AgreedAmount;
                         model.PiObj.txtAmountPaid = model.custobj.Price;
                     }
-                    console.log(model.custobj);
                 }
-
             });
         };
 
-        model.PaidAmtChange = function(paidAmt, agreeAmt) {;
+        model.PaidAmtChange = function(paidAmt, agreeAmt) {
             if (agreeAmt === '' || agreeAmt === undefined) {
                 model.PiObj.txtAmountPaid = '';
                 alert('Please enter  Agreed amount');
@@ -105,9 +96,7 @@
                 var num = paidAmt * app.PaymentDays;
                 model.ExpiryDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
                 model.ExpiryDaterev = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
-
             }
-
         };
         model.showOfferDetails = function(Amt, type) {
             if (Amt !== undefined && Amt !== '') {
@@ -120,18 +109,34 @@
                     // alert(infm);
                     // alertss.timeoutoldalerts(model.scope, 'alert-success', infm, 9500);
                     modelpopupopenmethod.showPopup('alert.html', model.scope, 'sm', '');
-
                 }
             }
-
         };
         model.closepopup = function() {
             modelpopupopenmethod.closepopup();
+        };
+        model.resetemployeepaymetinsert = function() {
+            //model.PiObj = {};
+            model.PiObj.txtAgreedAmt = model.custobj.AgreedAmount;
+            model.PiObj.txtAmountPaid = model.custobj.Price;
+            model.PiObj.txtSettlementAmount = "";
+            model.PiObj.rbtnPaymode = "";
+            model.PiObj.rbtnmail = "";
+            model.PiObj.txtbillno = "";
+            model.PiObj.txttransactionid = "";
+            model.PiObj.txtcheckno = "";
+            model.PiObj.txtbankname = "";
+            model.PiObj.txtbranch = "";
+            model.PiObj.txtplace = "";
+            model.PiObj.txtpayDescription = "";
+            model.PiObj.rdnServicetax = 1;
+            model.scope.paymentForm.$setPristine();
+            model.scope.paymentForm.$setUntouched();
         };
         return model;
     }
     angular
         .module('Kaakateeya')
-        .factory('EmployeePaymentInsertModel', factory)
+        .factory('EmployeePaymentInsertModel', factory);
     factory.$inject = ['EmployeePaymentinsertservice', '$stateParams', '$filter', 'authSvc', 'modelpopupopenmethod'];
 })(angular);

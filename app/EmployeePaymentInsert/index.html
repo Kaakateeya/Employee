@@ -1,4 +1,4 @@
-<div class="right_col" role="main">
+<div class="right_col" role="main" id="paymentinsert">
     <div class="search_page_main">
         <h4 style="font-size: 18px;
     color: #b10c0c;">Pament details</h4>
@@ -9,7 +9,7 @@
             <span class="infn">Expiry Date </span>- {{page.model.strDate}}
             </span>&nbsp;&nbsp;
             <span ng-if="page.model.PiObj.txtAmountPaid!==undefined && (page.model.PiObj.txtAgreedAmt|number)!==(page.model.PiObj.txtAmountPaid|number)">
- <span class="infn">Balance Amount </span>- {{page.model.PiObj.txtAgreedAmt-page.model.PiObj.txtAmountPaid}}
+             <span class="infn">Balance Amount </span>- {{page.model.PiObj.txtAgreedAmt-page.model.PiObj.txtAmountPaid}}
             </span>
             </span>
 
@@ -246,81 +246,29 @@
                     <div class="row">
                         <div class="form-group col-lg-11 col-lg-offset-2">
                             <md-button class="md-raised md-warn md-hue-2" type="submit">Submit</md-button>
-                            <md-button class="md-raised md-hue-1" type="reset">Reset</md-button>
+                            <md-button class="md-raised md-hue-1" ng-click="page.model.resetemployeepaymetinsert()">Reset</md-button>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+
+    <script type="text/ng-template" id="alert.html">
+        <div class="modal-header  alert-info">
+            <button type="button" class="close" ng-click='page.model.closepopup();'>×</button>
+            <h4 class="modal-title">Payment offer</h4>
+        </div>
+        <div class="modal-body" style="line-height:20px;">
+            <div class='row'>
+                <span class="paymentOfr col-lg-5"> Amount </span>&nbsp;&nbsp; {{page.model.strAmt}}
+            </div>
+            <div class='row'>
+                <span class="paymentOfr col-lg-5">No of Points </span>&nbsp; &nbsp; {{page.model.strPoints}}
+            </div>
+            <div class='row'>
+                <span class="paymentOfr col-lg-5">Expiry Date </span>&nbsp; &nbsp;{{page.model.strDate }}
+            </div>
+        </div>
+    </script>
 </div>
-<script type="text/ng-template" id="alert.html">
-    <div class="modal-header  alert-info">
-        <button type="button" class="close" ng-click='page.model.closepopup();'>×</button>
-        <h4 class="modal-title">Payment offer</h4>
-    </div>
-    <div class="modal-body" style="line-height:20px;">
-        <div class=row>
-            <span class="paymentOfr col-lg-5"> Amount </span>&nbsp;&nbsp; {{page.model.strAmt}}
-        </div>
-        <div class=row>
-            <span class="paymentOfr col-lg-5">No of Points </span>&nbsp; &nbsp; {{page.model.strPoints}}
-        </div>
-        <div class=row>
-            <span class="paymentOfr col-lg-5">Expiry Date </span>&nbsp; &nbsp;{{page.model.strDate }}
-        </div>
-    </div>
-</script>
-<style type="text/css">
-    .regmain {
-        border: solid 1px #ccc;
-        border-radius: 5px;
-        padding: 7px;
-        font-family: 'Open Sans', sans-serif;
-    }
-    
-    label {
-        font-weight: normal;
-        font-family: 'Open Sans', sans-serif !important;
-        cursor: default;
-        display: block !important;
-        color: #000 !important;
-        font-size: 14px;
-        margin: 0;
-    }
-    
-    .txtclass {
-        line-height: 46px;
-    }
-    
-    input[type="text"],
-    textarea {
-        color: #000 !important;
-        border: 1px solid #ADA2A2 !important;
-    }
-    
-    .control-label {
-        color: #000 !important;
-        font-weight: 400;
-        font-size: 14px;
-    }
-    
-    .lblclass {
-        line-height: 31px;
-    }
-    
-    .help-block {
-        margin-top: 0px;
-        margin-bottom: 0px;
-    }
-    
-    .infn {
-        font-weight: 700 !important;
-        color: #9f1bb7
-    }
-    
-    .paymentOfr {
-        color: red;
-        font-weight: 700;
-    }
-</style>

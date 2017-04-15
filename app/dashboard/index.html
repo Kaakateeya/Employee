@@ -1,52 +1,50 @@
 <div id="dashBoardPage" class="right_col" role="main">
-    <div class="">
-        <div class="row">
-            <div ng-id="dash_{{$index}}" class="col-md-4" ng-repeat="item in page.model.landingItems" ng-show="item.length>0">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>{{item[0].TableName}} ({{item[0].ServiceCount}})
-                        </h2>
-                        <a href="javascript:void(0)" class="close-link pull-right" title="Close" ng-click="page.arrayslice($index)"><i class="fa fa-close"></i></a>
-                        <br>
-                        <div class="clearfix">
-                        </div>
-                        <ul class="nav pull-right panel_toolbox">
-                            <li>
-                                <a title="Excel" ng-click="page.model.loadmore(page.model.empid, page.model.empBranchID,1,item[0].ServiceCount,item[0].TableName,'export',item,0)" href="javascript:void(0)">
-                                    <img src="src/images/EXCEL.jpg"></img>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="excelshow" title="Slideshow" ng-click="page.slideshowfunction(true,page.model.empid, page.model.empBranchID,1,10,item[0].TableName,'slideshow',item,1)" href="javascript:void(0)">Slide Show</a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
+    <div class="row">
+        <div ng-id="dash_{{$index}}" class="col-md-4" ng-repeat="item in page.model.landingItems" ng-show="item.length>0">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>{{item[0].TableName}} ({{item[0].ServiceCount}})
+                    </h2>
+                    <a href="javascript:void(0)" class="close-link pull-right" title="Close" ng-click="page.arrayslice($index)"><i class="fa fa-close"></i></a>
+                    <br>
+                    <div class="clearfix">
                     </div>
-                    <div class="scrolldashboard">
-                        <div class="x_content">
-                            <article class="media event" ng-repeat="inneritem in item">
-
-                                <a class="pull-left date">
-                                    <img ng-src="{{inneritem.Photo}}"></img>
-                                </a>
-                                <div class="media-body">
-                                    <p class="title">{{inneritem.Name}}
-                                        <a href="javascript:void(0)" ng-click="page.model.viewfullprofile(inneritem.Profileid)" ng-class="inneritem.PaidStatus===1?'colorpaid':'colorunpaid'"> ({{inneritem.Profileid}})</a></p>
-                                    <p class="titleservice"><span ng-if="inneritem.Date!=='Upload SA Form'"> {{inneritem.Date}}</span>
-                                        <span ng-if="inneritem.Date==='Upload SA Form'">&nbsp;&nbsp;<a href="javascript:void(0)" ng-click="page.uploadsaformtable(inneritem.Profileid)" class="alllinkscolor" >Click Here To Upload SA Form</a></span>
-                                        <!--<span ng-if="inneritem.TableName==='Customer Notification Status'"><a href="javascript:void(0)" ng-click="page.model.notificationread(inneritem.NotificationID,$parent.$index,$parent.$parent.$index,inneritem.cust_id,inneritem.CategoryID)" class="alllinkscolor" >Read</a></span>-->
-                                    </p>
-                                </div>
-
-                            </article>
-                        </div>
-                    </div>
-                    <article class="media event">
-                        <div class="pull-right">
-                            <a class="loadmoredashboard" ng-click="page.model.loadmore(page.model.empid, page.model.empBranchID,page.model.frompage,page.model.topage,item[0].TableName, 'load',item,0)" href="javascript:void(0)">Load More</a>
-                        </div>
-                    </article>
+                    <ul class="nav pull-right panel_toolbox">
+                        <li>
+                            <a title="Excel" ng-click="page.model.loadmore(page.model.empid, page.model.empBranchID,1,item[0].ServiceCount,item[0].TableName,'export',item,0)" href="javascript:void(0)">
+                                <img src="src/images/EXCEL.jpg"></img>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="excelshow" title="Slideshow" ng-click="page.slideshowfunction(true,page.model.empid, page.model.empBranchID,1,10,item[0].TableName,'slideshow',item,1)" href="javascript:void(0)">Slide Show</a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
                 </div>
+                <div class="scrolldashboard">
+                    <div class="x_content">
+                        <article class="media event" ng-repeat="inneritem in item">
+
+                            <a class="pull-left date">
+                                <img ng-src="{{inneritem.Photo}}"></img>
+                            </a>
+                            <div class="media-body">
+                                <p class="title">{{inneritem.Name}}
+                                    <a href="javascript:void(0)" ng-click="page.model.viewfullprofile(inneritem.Profileid)" ng-class="inneritem.PaidStatus===1?'colorpaid':'colorunpaid'"> ({{inneritem.Profileid}})</a></p>
+                                <p class="titleservice"><span ng-if="inneritem.Date!=='Upload SA Form'"> {{inneritem.Date}}</span>
+                                    <span ng-if="inneritem.Date==='Upload SA Form'">&nbsp;&nbsp;<a href="javascript:void(0)" ng-click="page.uploadsaformtable(inneritem.Profileid)" class="alllinkscolor" >Click Here To Upload SA Form</a></span>
+                                    <!--<span ng-if="inneritem.TableName==='Customer Notification Status'"><a href="javascript:void(0)" ng-click="page.model.notificationread(inneritem.NotificationID,$parent.$index,$parent.$parent.$index,inneritem.cust_id,inneritem.CategoryID)" class="alllinkscolor" >Read</a></span>-->
+                                </p>
+                            </div>
+
+                        </article>
+                    </div>
+                </div>
+
+                <div class="pull-right">
+                    <a class="loadmoredashboard" ng-click="page.model.loadmore(page.model.empid, page.model.empBranchID,page.model.frompage,page.model.topage,item[0].TableName, 'load',item,0)" href="javascript:void(0)">Load More</a>
+                </div>
+
             </div>
         </div>
     </div>

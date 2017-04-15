@@ -33,7 +33,9 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 scope.ViewProfile = function(row) {
                     window.open('/Viewfullprofile/' + row.Profileid, '_blank');
                 };
-
+                scope.sendreceive = function(row) {
+                    return "<a style='cursor:pointer;'  href='javascript:void(0);'>" + row.sentreceivecount + "</a>";
+                };
                 scope.ViewContact = function(row) {
                     // var paid = "<a style='cursor:pointer;'  href='/Contact/" + row.custid + "'>View</a>";
                     // return paid;
@@ -74,7 +76,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                         { text: 'Branch-Dor', key: 'RegistrationDate', type: 'label' },
                         { text: 'Paid', key: 'paidamount', type: 'label' },
                         { text: 'Paid Date', key: 'paiddate', type: 'label' },
-                        { text: 'S/R', key: 'sentreceivecount', type: 'label' },
+                        { text: 'S/R', key: 'sentreceivecount', type: 'link', method: scope.sendreceive },
                         { text: 'PC', key: 'photocount', type: 'label' },
                         { text: 'PD', key: 'PD', type: 'label' },
                         { text: 'DPD', key: 'DPD', type: 'label' },
@@ -90,7 +92,6 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     ];
                     SelectBindServiceApp.playbtnProfileData(data.ProfileID).then(function(response) {
                         data.detaildata = response.data;
-                        console.log(data.detaildata);
                     });
                 };
                 scope.minus = function(data) {

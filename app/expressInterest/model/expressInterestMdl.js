@@ -2,7 +2,6 @@
     'use strict';
 
     function factory(http, expressInterestService, modelpopupopenmethod, authSvc, timeout, alertss) {
-
         var model = {};
         model.scope = {};
         model.strimages = '';
@@ -22,8 +21,6 @@
                             model.ProfileStatusID = response.data[0][0].ProfileStatusID;
                         }
                         if (_.isArray(response.data[1]) && response.data[1].length > 0) {
-
-
                             model.fromcustid = response.data[1][0].Cust_ID;
                             model.FromAgeMax = response.data[1][0].AgeMax;
                             model.FromAgeMin = response.data[1][0].AgeMin;
@@ -42,7 +39,6 @@
                             // model.SelectProfilelst = [];
                             model.showHide = 1;
                             if (response.data.length > 0) {
-
                                 if (response.data[0].length > 0) {
                                     model.relationarray.push({ "label": "--Select--", "title": "--Select--", "value": 0 });
                                     _.each(response.data[0], function(item) {
@@ -67,22 +63,19 @@
 
                                 if (_.isArray(response.data) && response.data.length > 3) {
                                     model.Emailsarray = response.data[3];
-
                                     model.emailselectedArr = [];
                                     if (model.Emailsarray.length > 0) {
                                         _.each(model.Emailsarray, function(item) {
+                                            //   all.Id = r.email.Substring(0, r.email.Length > 2 ? 3 : (r.email.Length > 1 ? 2 : 1));
+                                            // all.Id += "*****@";
                                             model.emailselectedArr.push(item.Email);
                                         });
                                         model.exiObj.chkmails = model.emailselectedArr;
                                     }
                                 }
-
-
                             }
-
                         });
                     } else {
-
                         model.OfflineMembershipExpiryDate = '';
                         model.NAME = '';
                         model.Max_Offline_Allowed = '';
@@ -106,7 +99,6 @@
             });
         };
         model.ToprofileIDChange = function(ID) {
-
             if (ID !== '' && ID !== null && ID !== undefined) {
                 var chkProfileID = _.where(model.SelectProfilelst, { label: model.exiObj.txtToprofileID });
                 if (chkProfileID.length > 0) {
@@ -114,8 +106,8 @@
                     // alert('ProfileID has been already added to the list');
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'ProfileID has been already added to the list', 9500);
                 } else {
-                    if (ID != 0) {
-                        if (model.exiObj.txtFromprofileID != null && model.exiObj.txtFromprofileID.length != 0) {
+                    if (ID !== 0) {
+                        if (model.exiObj.txtFromprofileID !== null && model.exiObj.txtFromprofileID.length != 0) {
                             model.mismatch = [];
                             expressInterestService.getEIprofileID(6, ID, '').then(function(response) {
                                 if (_.isArray(response.data) && response.data.length > 0) {
@@ -133,19 +125,15 @@
                                         model.ToGenderID = response.data[1][0].GenderID;
                                         model.Tocasteid = response.data[1][0].casteid;
                                         if ((model.FromAgeMax) < (model.FromAgeMin) && model.ToAgeMax > (model.ToAgeMin)) {
-
                                             model.mismatch.push(" Age not Matched to this profileid");
                                         }
                                         if (model.ToMinHeight < (model.FromMinHeight) && model.ToMaxHeight > (model.FromMaxHeight)) {
-
                                             model.mismatch.push("  Height not Matched to this profileid");
                                         }
                                         if (model.Tomaritalstatusid != model.Frommaritalstatusid) {
-
                                             model.mismatch.push("  MaritalStatus not Matched to this profileid");
                                         }
                                         if (model.ToGenderID == model.FromGenderID) {
-
                                             model.mismatch.push(" Gender not Matched to this profileid");
                                         }
                                         if (model.Tocasteid != model.Fromcasteid) {
@@ -162,13 +150,11 @@
                                         }
 
                                     } else if ((model.ToProfileStatusID === 57) || (model.ToProfileStatusID === 393)) {
-
                                         // alert("Settled or WaitingforSettled Authorization Profile");
                                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Settled or WaitingforSettled Authorization Profile', 9500);
                                         model.exiObj.txtToprofileID = '';
                                         return false;
                                     } else if ((model.ToProfileStatusID === 56) || (model.ToProfileStatusID === 394)) {
-
                                         // alert("Deleted or WaitingforDeltd authorization Profile");
                                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Deleted or WaitingforDeltd authorization Profile', 9500);
                                         model.exiObj.txtToprofileID = '';
@@ -196,9 +182,7 @@
             model.exiObj.txtToprofileID = '';
             modelpopupopenmethod.closepopup();
         };
-
         model.pushToProfileIDs = function(type) {
-
             if (type === 'conflict')
                 modelpopupopenmethod.closepopup();
             model.getImages(model.exiObj.txtToprofileID);
@@ -207,9 +191,7 @@
                 model.exiObj.txtToprofileID = '';
             }, 500);
         };
-
         model.Submit = function(obj) {
-
             var ExpressArray = [];
             var inputObj = {};
             var strMails = '';
@@ -224,7 +206,6 @@
                 emailaddress: _.isArray(obj.chkmails) ? (obj.chkmails).join(',') : ''
             };
             _.each(model.SelectProfilelst, function(item) {
-
                 var toobj = {
                     FromProfileID: obj.txtFromprofileID,
                     ToProfileID: item.label,
@@ -246,14 +227,11 @@
                 };
                 ExpressArray.push(toobj);
             });
-
             inputObj = {
                 customerpersonaldetails: fromobj,
                 GetDetails: ExpressArray
             };
-
             expressInterestService.submitExpressintrst(inputObj).then(function(response) {
-                console.log(response);
                 var status = 0;
                 if (_.isArray(response.data.m_Item1))
                     status = response.data.m_Item1[0].Status;
@@ -267,9 +245,7 @@
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Expressinterest failed', 2000);
                 }
             });
-
         };
-
         model.clearform = function() {
             model.exiObj = {};
             model.Emailsarray = [];
@@ -289,9 +265,6 @@
             model.Max_Offline_Allowed = '';
             model.Offline_Used_Count = '';
         };
-
-
-
         model.getImages = function(profileid) {
             var imgArr = [];
             var strimgs = '';
@@ -314,7 +287,6 @@
                 var imgs = strimgArr[0].split(',');
 
                 expressInterestService.getprofileidcustdetails(profileid).then(function(response) {
-                    console.log(response);
                     if (_.isArray(response.data)) {
                         _.each(imgs, function(item) {
                             var imgwithnoJpg = (item.split('.'))[0];
@@ -342,7 +314,6 @@
             }
             modelpopupopenmethod.closepopup();
         };
-
         model.close = function() {
             modelpopupopenmethod.closepopuppoptopopup();
         };

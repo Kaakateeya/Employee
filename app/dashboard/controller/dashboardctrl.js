@@ -39,7 +39,6 @@
 
                      scope.$broadcast("slideshowdynamic", model.slidearray, model.slidearray[0].TotalRows, tablename, frompage);
                  }
-                 console.log(model.slidearray);
              });
          };
 
@@ -71,7 +70,6 @@
 
          scope.$on("photorequest", function(event, profileid) {
              dashboardServices.PhotoRequest(profileid, model.empid).then(function(response) {
-                 console.log(response);
                  if (response !== undefined && response !== null && response !== "" && response.data !== undefined) {
                      if (response.data === 1) {
                          alerts.timeoutoldalerts(model.scope, 'alert-success', 'PhotoRequest send successfully', 4000);

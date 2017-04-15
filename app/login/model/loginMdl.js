@@ -11,7 +11,6 @@
 
         // model.getip = function() {
         //     helperservice.getipAddressReturn().then(function(response) {
-        //         console.log(response);
         //     });
         // };
         model.init = function() {
@@ -19,7 +18,6 @@
             authSvc.getClientIp();
 
             loginservice.getEmployeeLoginCoutDetails().then(function(response) {
-                console.log(response.data);
                 var login = JSON.parse(response.data);
                 model.logincounts = login;
             });
@@ -37,7 +35,6 @@
                     if (response.data !== undefined && response.data !== "" && response.data !== null) {
                         switch (response.data.m_Item5) {
                             case 1:
-                                console.log(response.data);
                                 model.loginarray = response.data.m_Item1;
                                 model.empphoto = response.data.m_Item1.EmpPhotoPath;
                                 authSvc.user(response.data.m_Item1);

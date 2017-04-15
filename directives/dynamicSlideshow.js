@@ -52,7 +52,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                 scope.BranchName = getArray.GArray('BranchName');
                 scope.dynamicslideshow = scope.nghide !== undefined && scope.nghide !== "" ? scope.nghide : true;
                 scope.displayArraydashboard = function(arr, frompage) {
-                    console.log(arr);
                     if (frompage === 1) {
                         scope.arraydata = [];
                     }
@@ -241,7 +240,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     commonpage.closepopuppoptopopup();
                 };
                 scope.$on("slideshowdynamic", function(event, array, totalrows, tablename, frompage) {
-                    console.log(tablename);
                     scope.headerhtml = tablename;
                     switch (tablename) {
                         case "No-Service From Last 1 Month":
@@ -314,7 +312,6 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                 };
                 scope.forgetpassword = function(usernamepassword) {
                     SelectBindServiceApp.forgotpasswordemail(usernamepassword).then(function(response) {
-                        console.log(response.data);
                         if (response.data === 1) {
                             alert('Mail sent to your email, To reset your password check your mail');
                         }
@@ -334,14 +331,12 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     scope.custfamilyID = CustFamilyID;
                     scope.popupMobilenumber = MobileNumber;
                     SelectBindServiceApp.sendMobileCode(obj).then(function(response) {
-                        console.log(response.data);
                         scope.mobileVerificationCode = response.data;
                         commonpage.showPopupphotopoup('verifyMobileContent.html', scope, '', "modalclassdashboardphotopopup");
                     });
                 };
                 scope.verifymail = function(custID) {
                     SelectBindServiceApp.verifyEmail(custID).then(function(response) {
-                        console.log(response);
                         if (response.data !== undefined) {
                             if (response.data === 1) {
                                 alert('Email verify mail send Successfully');
@@ -353,9 +348,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                     if (val === "") {
                         alerts.timeoutoldalerts(scope, 'alert-danger', 'Please enter Mobile verify Code', 4500);
                     } else if (scope.mobileVerificationCode === val) {
-
                         SelectBindServiceApp.verifyMobile(scope.mobileVerificationCode, scope.custfamilyID).then(function(response) {
-                            console.log(response);
                             commonpage.closepopuppoptopopup();
                         });
                     } else {

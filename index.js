@@ -244,7 +244,6 @@ app.run(function($rootScope, $state, $stateParams) {
         if (to.data && to.data.requiresLogin) {
             if (sessionStorage.getItem('LoginEmpid') === null || sessionStorage.getItem('LoginEmpid') === undefined || sessionStorage.getItem('LoginEmpid') === "") {
                 e.preventDefault();
-                console.log('success');
                 $state.go('dashboard');
             } else {
                 if (sessionStorage.getItem('LoginEmpid') !== null && sessionStorage.getItem('LoginEmpid') !== undefined && sessionStorage.getItem('LoginEmpid') !== "") {}

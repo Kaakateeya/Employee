@@ -12,9 +12,6 @@
                 });
             },
             matchFollowupSelect: function(obj) {
-                console.log(JSON.stringify({
-                    Mobj: obj
-                }));
                 return http.get(app.apiroot + 'EmployeeReportPage/getMatchfollowupSlideShowResult', {
                     params: {
                         Mobj: obj

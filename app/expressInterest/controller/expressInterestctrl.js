@@ -20,6 +20,6 @@
      }
      angular
          .module('Kaakateeya')
-         .controller('expressInterestCtrl', controller)
+         .controller('expressInterestCtrl', controller);
      controller.$inject = ['expressInterestModel', '$scope', '$rootScope'];
  })(angular);
