@@ -5,7 +5,7 @@
     <div class="col-lg-6">
         <div class="row" ng-if="slide.serviceDate!=='--' && slide.serviceDate!=='' && slide.serviceDate!== null">
             <div class="row">
-                <div class="col-lg-7">
+                <div class="col-lg-7" ng-style="{'left': slide.Mystatus.trim()!=='I' && slide.FromTicketIdSuf.trim()!=='V' && slide.Mystatus.trim()!=='NI'?'1%':'5%'}">
                     <label class="colormarron">Status/Ticket :</label>
                     <label class="color_black"><span  ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI'" ng-bind-html="config.statusbind(slide.Mystatus.trim())"></span><span>
                         <img class="imgheight" ng-if="slide.Mystatus.trim()==='I'"  ng-show="slide.Mystatus.trim()==='I'" src="src/images/heartgrren.gif"><img>

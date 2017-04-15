@@ -527,7 +527,13 @@
 
         };
         model.shortListPopup = function() {
-            model.shortlistmodel.slides = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true });
+            var arrayshortListPopup = [];
+            arrayshortListPopup = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true });
+            if (arrayshortListPopup.length > 0) {
+                model.shortlistmodel.slides = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true });
+            } else {
+                model.shortlistmodel.slides = (model.shortlistmodel.slides);
+            }
         };
         model.shortlistmodel.checkServicetoShortlist = function(slide) {
             model.slide = slide;
