@@ -8,8 +8,12 @@
         model.aboutmyself = {};
         model.personalinfo = {};
         model.custid = 0;
-        model.EmpViewfullProfile = function() {
-            employeeViewfullprofileservice.getEmpViewfullProfile(stateParams.ProfileID, '1').then(function(response) {
+        model.stateprofileid = stateParams.ProfileID;
+        model.textboxshowhide = true;
+        model.fullprofileshow = true;
+        model.EmpViewfullProfile = function(stateprofileid) {
+            employeeViewfullprofileservice.getEmpViewfullProfile(stateprofileid, '1').then(function(response) {
+                model.fullprofileshow = false;
                 if (response.data !== undefined && response.data !== "" && response.data !== null) {
                     _.each(response.data, function(item) {
                         var testArr = JSON.parse(item);
@@ -36,6 +40,8 @@
                 }
             });
         };
+
+
 
         model.showPhotoPopup = function() {
             commonpage.ShowPhotoPopup(model.custid, model.scope);

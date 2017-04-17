@@ -19,7 +19,7 @@
   border: 1px solid #ADA2A2 !important; }
 #paymentinsert .control-label {
   color: #000 !important;
-  font-weight: 400;
+  font-weight: bold;
   font-size: 14px; }
 #paymentinsert .lblclass {
   line-height: 31px; }

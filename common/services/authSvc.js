@@ -42,10 +42,12 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
     }
 
     function clearSession(key) {
+        debugger;
         sessionStorage.removeItem(key);
     }
 
     function clearUserSession() {
+        debugger;
         clearSession('LoginEmpid');
         clearSession('LoginEmpName');
         clearSession('empBranchID');

@@ -7,6 +7,12 @@
                     Search Kaakateeya Customers <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
                 </uib-accordion-heading>
                 <div class="row maindiv">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-2"></div>
+                </div>
+                <div class="row maindiv">
                     <div class="col-lg-7">
                         <div class="clearfix">
                             <label for="kmplProfileID" class="col-lg-4">KMPL ProfileID</label>
@@ -58,63 +64,123 @@
             <div class="SetlemainCls" id="settle" ng-if="page.model.typeOfProfile==='S'">
                 <div class="row">
                     <div class="col-lg-7">
-                        <label for="" class="col-lg-3">Bride Details :</label>
-                        <a href=javascript:void(0); class="col-lg-3">{{page.model.settleArr.BrideProfileID}}</a>
-                        <label for="" class="col-lg-6">{{page.model.settleArr.BrideName}} </label>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label for="" class="control-label">Bride Details</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <a class="col-lg-2" href="javascript:void(0);">{{page.model.settleArr.BrideProfileID}}</a>
+                                <p class="col-lg-10" for="">{{page.model.settleArr.BrideName}} </p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-5">
-                        <label for="" class="col-lg-6">Bride Owner:  </label>
-                        <label for="" class="col-lg-6">{{page.model.settleArr.BrideOwner}} </label>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="" class="">Bride Owner</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <p for="" class="">{{page.model.settleArr.BrideOwner}} </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-7">
-                        <label for="" class="col-lg-3 control-label">Groom Details </label>
-                        <a href=javascript:void(0); class="col-lg-3">{{page.model.settleArr.GroomProfileID}}</a>
-                        <label for="" class="col-lg-6 control-label">{{page.model.settleArr.GroomName}} </label>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label for="" class="control-label">Groom Details</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <a class="col-lg-2" href="javascript:void(0);">{{page.model.settleArr.GroomProfileID}}</a>
+                                <p class="col-lg-10" for="">{{page.model.settleArr.GroomName}} </p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-5">
-                        <label for="" class="col-lg-6 control-label">Groom Owner</label>
-                        <label for="" class="col-lg-6 control-label">	{{page.model.settleArr.GroomOwner}}</label>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="" class="">Groom Owner</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <p for="" class="control-label">{{page.model.settleArr.GroomOwner}}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-lg-7">
-                        <label for="" class="col-lg-3 control-label">Settled Date : </label>
-                        <label for="" class="col-lg-6 control-label">{{page.model.settleArr.SettledDate}}  </label>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label for="" class="control-label">Settled Date</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <p for="" class="col-lg-10">{{page.model.settleArr.SettledDate}} </p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-5">
-                        <label for="" class="col-lg-6 control-label">Entered By : </label>
-                        <label for="" class="col-lg-6 control-label">{{page.model.settleArr.settletedby}}</label>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="" class="control-label">Entered By </label>
+                            </div>
+                            <div class="col-lg-8">
+                                <p for="" class="control-label">{{page.model.settleArr.settletedby}}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <br>
                 <div>{{page.model.settleArr.Settlenotes}} </div>
-
             </div>
-
             <div class="SetlemainCls" id="delete" ng-if="page.model.typeOfProfile==='D'">
                 <div class="row">
                     <div class="col-lg-6">
-                        <label for="" class="col-lg-5">Deleted Details   :</label>
-                        <label for="" class="col-lg-6">{{page.model.settleArr.ProfileID}} </label>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="">Deleted Details </label>
+                            </div>
+                            <div class="col-lg-8">
+                                <p for="">{{page.model.settleArr.ProfileID}} </p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-6">
-                        <label for="" class="col-lg-6">Deleted Profile Owner  : </label>
-                        <label for="" class="col-lg-6">{{page.model.settleArr.Name}} </label>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="">Deleted Profile Owner</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <p for="">{{page.model.settleArr.Name}} </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <label for="" class="col-lg-5 control-label">Deleted Date </label>
-                        <label for="" class="col-lg-6 control-label">{{page.model.settleArr.DeletedDate}}  </label>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="" class="">Deleted Date </label>
+                            </div>
+                            <div class="col-lg-8">
+                                <p for="" class="">{{page.model.settleArr.DeletedDate}} </p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-6">
-                        <label for="" class="col-lg-6 control-label">Entered By : </label>
-                        <label for="" class="col-lg-6 control-label">{{page.model.settleArr.DeleteBy}}</label>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="" class="">Entered By </label>
+                            </div>
+                            <div class="col-lg-8">
+                                <p for="" class="">{{page.model.settleArr.DeleteBy}}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div>{{page.model.settleArr.deletenotes}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-11">{{page.model.settleArr.deletenotes}}</div>
                 </div>
                 <br>
 

@@ -18,8 +18,8 @@
 
         vm.logout = function() {
             vm.name = "";
-            $state.go("login", {});
             authSvc.logout();
+            $state.go("login", {});
         };
         vm.lockscreen = function() {
             vm.lock = true;

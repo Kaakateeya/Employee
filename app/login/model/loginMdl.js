@@ -31,10 +31,11 @@
             }
             if (formvalid === true) {
                 loginservice.getloginpage(form).then(function(response) {
-                    authSvc.clearUserSessionDetails();
                     if (response.data !== undefined && response.data !== "" && response.data !== null) {
                         switch (response.data.m_Item5) {
                             case 1:
+                                debugger;
+                                authSvc.logout();
                                 model.loginarray = response.data.m_Item1;
                                 model.empphoto = response.data.m_Item1.EmpPhotoPath;
                                 authSvc.user(response.data.m_Item1);

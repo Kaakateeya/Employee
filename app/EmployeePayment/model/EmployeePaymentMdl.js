@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function factory(http, EmployeePaymentservice, state, config) {
+    function factory(http, EmployeePaymentservice, state, config, authSvc) {
         var model = {};
         model = config;
         model.obj = {};
@@ -21,22 +21,12 @@
         model.EmployeePayment = function(txtval) {
             if (txtval !== undefined && txtval !== '' && txtval !== null && txtval !== "undefined") {
                 model.paymentArr = [];
-                model.columns = [
-                    { text: '', key: 'ProfileID', type: 'custom', templateUrl: model.paymentProfileID },
-                    { text: 'Pay Mode', key: 'Type', type: 'label' },
-                    { text: 'Membership', key: 'membershiptype', type: 'label' },
-                    { text: 'Agreed', key: 'AgreedAmount', type: 'label' },
-                    { text: 'Paid', key: 'PaidAmount', type: 'label' },
-                    // { text: 'Date', key: 'PaymentDate', type: 'label' },
-                    //{ text: 'Expires', key: 'ExpiryDate', type: 'label' },
-                    { text: 'Paid Date/Expiry Date', key: 'ExpiryDate', type: 'custom', templateUrl: model.expirydate },
-                    { text: 'Allowed', key: 'Allowed', type: 'label' },
-                    { text: 'Used', key: 'Used', type: 'label' },
-                    { text: 'Entered', key: 'CreatedByEmpID', type: 'label', width: '150px' },
-                    { text: 'Status', key: 'Status', type: 'label' },
-                    { text: 'Authorized by', key: 'StatusBy', type: 'label' },
-                    { text: 'Description', key: 'Description', type: 'label' }
-                ];
+                model.columns = [];
+                if (model.isManagement === "true" && model.isAdmin === "1") {
+                    debugger;
+                    model.columns.push({ text: '', key: 'ProfileID', type: 'custom', templateUrl: model.paymentProfileID });
+                }
+                model.columns.push({ text: 'Pay Mode', key: 'Type', type: 'label' }, { text: 'Membership', key: 'membershiptype', type: 'label' }, { text: 'Agreed', key: 'AgreedAmount', type: 'label' }, { text: 'Paid', key: 'PaidAmount', type: 'label' }, { text: 'Paid Date', key: 'PaymentDate', type: 'label' }, { text: 'Expiry Date', key: 'ExpiryDate', type: 'label' }, { text: 'Allowed', key: 'Allowed', type: 'label' }, { text: 'Used', key: 'Used', type: 'label' }, { text: 'Entered', key: 'CreatedByEmpID', type: 'label', width: '150px' }, { text: 'Status', key: 'Status', type: 'label' }, { text: 'Authorized by', key: 'StatusBy', type: 'label' }, { text: 'Description', key: 'Description', type: 'label' });
                 EmployeePaymentservice.getEmployeePayment(txtval).then(
                     function(response) {
                         // var gridArray = JSON.parse(response.data);
@@ -69,5 +59,5 @@
     angular
         .module('Kaakateeya')
         .factory('EmployeePaymentmodel', factory);
-    factory.$inject = ['$http', 'EmployeePaymentservice', '$state', 'complex-grid-config'];
+    factory.$inject = ['$http', 'EmployeePaymentservice', '$state', 'complex-grid-config', 'authSvc'];
 })(angular);
