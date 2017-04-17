@@ -778,3 +778,17 @@ md-input-container .md-placeholder {
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
 }
+
+._md-datepicker-floating-label>md-datepicker .md-datepicker-button {
+    float: none;
+    margin-top: -12px;
+    top: 9.5px;
+}
+
+._md-datepicker-floating-label>md-datepicker .md-datepicker-button {
+    margin-left: -9px;
+}
+
+.md-icon-button+.md-datepicker-input-container {
+    margin-left: -11px;
+}

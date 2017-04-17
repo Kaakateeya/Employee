@@ -121,7 +121,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/accessForm.js',
                         'directives/invalidFocus.js',
                         'directives/focusDirective.js',
-                        'directives/bindHtmlEvents.js'
+                        'directives/bindHtmlEvents.js',
+                        'directives/tickethistryInfm.js'
                     ]
                 },
                 {

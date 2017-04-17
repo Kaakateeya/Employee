@@ -6,14 +6,23 @@
         model.arraydata = [];
         model.isshortlistprogressbar = false;
         model.init = function() {
-            model.setSlides = function(data, topage) {
+            model.setSlides = function(data, topage, typeofpage) {
                 model.slides = [];
-                model.slides = data;
-                model.slides = model.displayArray(model.slides, topage);
+
+                if (typeofpage === 'normal') {
+                    model.slides = data;
+                } else {
+                    model.slides = model.displayArray(model.slides, topage);
+                }
             };
-            model.addSlides = function(data, arrayslide, topage) {
-                model.displayArray(data, 11);
-                //$.merge(model.slides, data);
+            model.addSlides = function(data, arrayslide, topage, typeofpage) {
+                if (typeofpage === 'normal') {
+                    debugger;
+                    model.slides = $.merge(model.slides, data);
+                } else {
+                    model.displayArray(data, 11);
+                }
+
             };
             model.backtosearchpage = function() {
                 model.divcontrolls = true;
@@ -81,6 +90,8 @@
                         HoroscopePath: item.HoroscopePath
                     });
                 });
+                model.slides = arr;
+
                 return model.slides;
             };
             return model;

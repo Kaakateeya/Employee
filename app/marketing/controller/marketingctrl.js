@@ -5,14 +5,14 @@
          .module('Kaakateeya')
          .controller('marketingCtrl', controller)
 
-     controller.$inject = ['$location'];
+     controller.$inject = ['marketingModel'];
 
-     function controller($location) {
+     function controller(marketingModel) {
          /* jshint validthis:true */
          var vm = this;
-
-         activate();
-
-         function activate() {}
+         vm.init = function() {
+             vm.model = marketingModel;
+         };
+         vm.init();
      }
  })();

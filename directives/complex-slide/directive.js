@@ -36,7 +36,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.$watch('activeslide', function(news, old) {
                     if (news !== undefined && news !== "" && news !== null) {
                         $scope.Viwedslide = news;
-                        $scope.config.slidebind(old, news, $scope.model.slides);
+                        $scope.config.slidebind(old, news, $scope.model.slides, $scope.model.typeofPage);
                     }
                 });
                 $scope.slidepopup = function(custid) {
