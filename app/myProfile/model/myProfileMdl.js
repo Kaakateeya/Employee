@@ -146,15 +146,12 @@
                 { text: 'AllLinks', key: '', type: 'morelinks', templateUrl: model.allLinksTemplateDUrl },
             ];
             myProfileservice.getMyprofileSlide(inputobj).then(function(response) {
-                console.log(response);
                 if (_.isArray(response.data) && response.data.length > 0) {
-
                     if (type === 'grid') {
                         model.opendiv = false;
                         model.grid.TotalRows = response.data[0].TotalRows;
                         model.grid.setData(response.data);
                     } else {
-
                         model.slide.totalRecords = response.data[0].TotalRows;
                         if (parseInt(from) === 1) {
                             model.slide.setSlides(response.data, 10);
@@ -168,8 +165,7 @@
                 }
             });
 
-        }
-
+        };
         model.grid.pagechange = function(val) {
             var to = val * 10;
             var from = val === 1 ? 1 : to - 9;

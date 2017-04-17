@@ -807,7 +807,8 @@ h2 {
 
 .x_panel,
 .x_title {
-    margin-bottom: 10px
+    /*margin-bottom: 10px*/
+    margin-bottom: 1px
 }
 
 .accordion .panel-heading {
@@ -826,7 +827,8 @@ h2 {
     /*padding: 10px 17px;*/
     display: inline-block;
     background: #fff;
-    border: 1px solid #E6E9ED;
+    /*border: 1px solid #E6E9ED;*/
+    border: 1px solid maroon;
     -webkit-column-break-inside: avoid;
     -moz-column-break-inside: avoid;
     column-break-inside: avoid;

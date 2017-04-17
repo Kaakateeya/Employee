@@ -19,7 +19,6 @@
                         } else if (testArr.length > 0 && testArr[0].TableName !== undefined && testArr[0].TableName === "Primary") {
                             model.personalinfo = testArr;
                             model.custid = model.personalinfo[0].Cust_ID;
-                            console.log(model.personalinfo);
                             var photocount = model.personalinfo[0].PhotoName_Cust;
                             model.horoscopeimage = model.personalinfo[0].HoroscopeImage === "" ||
                                 model.personalinfo[0].HoroscopeImage === null ||

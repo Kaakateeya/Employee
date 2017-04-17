@@ -1,12 +1,9 @@
 (function(angular) {
     'use strict';
 
-
-
     function factory($http, ViewAllCustomerService, state, helpService, config, alerts, modelpopupopenmethod) {
         var model = {};
         var modelinactive = {};
-
         model = config;
         model.showplus = true;
         model.tablearray = [];
@@ -48,12 +45,8 @@
         model.profileownerMethod = function(row) {
             var type = row.ProfileStatusID === 57 || row.ProfileStatusID === 393 ? 'S' : (row.ProfileStatusID === 56 || row.ProfileStatusID === 394 ? 'D' : (row.ProfileStatusID === 55 ? 'I' : ''));
             ViewAllCustomerService.SettleDeleteInactive(row.CustID, type).then(function(response) {
-
                 model.settleArr = JSON.parse(response.data[0])[0];
-                console.log(response);
-                console.log(model.settleArr);
                 model.typeOfProfile = type;
-
             });
 
             modelpopupopenmethod.showPopup('settlePopup.html', model.scope, 'lg', 'SettleDelete');
@@ -94,27 +87,18 @@
                 { text: 'Gender', key: 'GenderID', type: 'custom', templateUrl: model.GenderStr },
                 // { text: 'Confidential', key: 'Confidential', type: 'label' }
             ];
-
-
             ViewAllCustomerService.getViewCustomerData(2, (inpuobj !== undefined && inpuobj.ProfileIDsearch !== undefined ? inpuobj.ProfileIDsearch : ''), (inpuobj !== undefined && inpuobj.chkProfileIDsts !== undefined ? model.returnnullvalue(inpuobj.chkProfileIDsts) : ""), from, to).then(function(response) {
-                console.log(response.data);
-
                 if (_.isArray(response.data) && response.data.length > 0) {
                     model.TotalRows = response.data[0].TotalRows;
                     _.map(response.data, function(item) {
                         item.rowtype = model.rowStyle(item);
                     });
-
                     model.opendiv = false;
                     model.setData(response.data);
-
-
                 }
             });
-
             return model;
         };
-
         model.kmplSubmit = function(inpuobj) {
             if (inpuobj === undefined || inpuobj === "" || inpuobj === null || inpuobj.KmlProfileID === undefined || inpuobj.KmlProfileID === null || inpuobj.KmlProfileID === "") {
 

@@ -32,7 +32,7 @@ body {
   margin-left: 10px; }
 
 #dashBoardPage .x_panel {
-  height: 500px; }
+  height: 460px; }
 
 #dashBoardPage .loadmoredashboard {
   color: #3030d8; }
@@ -100,5 +100,34 @@ span.fa.fa-angle-down {
   margin-top: -4px;
   width: 40px;
   height: 38px; }
+
+.dashboardpopupdesign {
+  margin-left: 75px;
+  margin-right: 75px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  height: auto;
+  padding: 10px;
+  background: #f6f3ea; }
+
+.dashboardheaderpopup {
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: rgba(197, 205, 50, 0.42);
+  padding-top: 5px;
+  margin-top: 10px; }
+
+.dashboardheaderhtml {
+  color: maroon;
+  font-size: 16px; }
+
+.dahboardheaderclose {
+  fill: #c73e5f;
+  font-size: 13pt;
+  width: 30px;
+  margin-left: 85px; }
+
+.dashboardmodelheader {
+  border-bottom: 1px solid #ffffff; }
 
 /*# sourceMappingURL=style.css.map */

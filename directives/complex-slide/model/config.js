@@ -33,7 +33,6 @@
                 if (topage === parseInt(10)) {
                     model.slides = [];
                 }
-                console.log(arr);
                 $.each(arr, function(index, item) {
                     model.data = [];
                     model.data.push({

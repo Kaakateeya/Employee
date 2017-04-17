@@ -104,9 +104,10 @@
                                     <!--<div ng-repeat="rEmail in page.model.Emailsarray">
                                         <input type="checkbox" checked><span><b> {{rEmail.Email}}</b> </span>
                                     </div>-->
-                                    <label ng-repeat="role in page.model.Emailsarray">
-                                   <md-checkbox  data-checklist-model="page.model.exiObj.chkmails" data-checklist-checked="true" data-checklist-value="role.Email"> {{role.Email}}&nbsp;
-                                  </md-checkbox>
+                                    <label ng-repeat="role in page.model.emailselectedArr" style="width: 100%;">
+                                    <md-checkbox  data-checklist-model="page.model.exiObj.chkmails" data-checklist-checked="true" data-checklist-value="role.emailid"> {{role.Email}}&nbsp;
+                                    </md-checkbox>
+                                      <br>
                                      </label>
                                 </div>
                             </div>

@@ -17,7 +17,7 @@
  }
  
  .pauseBtns {
-     width: 330px;
+     //  width: 330px;
      height: 33px;
      font-size: 16px;
  }
@@ -113,4 +113,32 @@
  
  .ProfileOwner {
      width: 105px !important;
+ }
+ 
+ #editandviewprofile {
+     .ProfileOwner {
+         width: 105px !important;
+     }
+     .Height {
+         width: 122px !important;
+     }
+     .Profession {
+         width: 122px !important;
+     }
+     .profileImage {
+         cursor: pointer;
+     }
+     .SettleDelete {
+         width: 80% !important;
+         left: 14%;
+         font-weight: normal;
+     }
+     .SettleDelete label {
+         font-weight: normal;
+     }
+     .SetlemainCls {
+         border: 1px solid #c8bcbc;
+         padding: 13px;
+         border-radius: 7px;
+     }
  }

@@ -34,7 +34,6 @@
         model.tabledata = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
             dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                 if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
-                    console.log(response);
                     if (type === 'pageload') {
                         model.landingItems = response.data;
                     } else if (type === 'load') {
@@ -109,10 +108,8 @@
                 } else if (size > 4194304) {
                     alert('Sorry,Upload Photo Size Must Be Less than 4 mb');
                 } else {
-                    console.log(obj.myFile);
                     var keyname = app.prefixPath + model.proceedprofileid + '_settlementImages' + '/' + model.proceedprofileid + '_settlementImages.' + extension;
                     fileUpload.uploadFileToUrl(obj.myFile, '/settlementformupload', keyname).then(function(res) {
-                        console.log(res.status);
                         if (res.status == 200) {
                             model.closeupload();
                             var today = $filter('date')(new Date(), 'MM/dd/yyyy hh:mm:ss a');
@@ -130,7 +127,6 @@
                                 Profileidnew: model.proceedprofileid
                             };
                             dashboardServices.uploadsettlementform(object).then(function(response) {
-                                console.log(response);
                                 if (response !== undefined && response.data === 1) {
                                     alerts.timeoutoldalerts(model.scope, 'alert-success', 'SA Form Uploaded successfully', 2000);
                                 } else {
@@ -153,9 +149,13 @@
                 CustID: custid
             };
             dashboardServices.readNotifications(obj).then(function(response) {
-                console.log(response);
+                if (response.data !== undefined) {
+                    alerts.timeoutoldalerts(model.scope, 'alert-success', 'Notification Readed successfully', 2000);
+                } else {
+                    alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Notification Read Failed', 2000);
+                }
             });
-            ((model.landingItems)[parentid]).splice(index, 1);
+            // ((model.landingItems)[parentid]).splice(index, 1);
         };
 
         model.bouncedemail = function(obj) {

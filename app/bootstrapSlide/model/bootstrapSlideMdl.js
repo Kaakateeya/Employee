@@ -164,8 +164,6 @@
         model.totalRecords = arrayslide[0].TotalRows;
         model.setSlides(arrayslide);
         model.slide = function(old, news) {
-
-            console.log(news);
             if (news === 1) {
                 arrayslide[0].ProfileID = Math.random();
                 arrayslide[1].ProfileID = Math.random();

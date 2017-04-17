@@ -136,7 +136,6 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
         // },
         getClientIp: function() {
             helperservice.getipAddressReturn().then(function(response) {
-                console.log(response);
                 var responsedata;
                 if ((response.data).indexOf("::1") !== -1 || (response.data).indexOf("127.0.0.1") !== -1) {
                     responsedata = "183.82.98.109";

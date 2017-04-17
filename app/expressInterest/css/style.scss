@@ -43,14 +43,12 @@
      }
  }
  
- .ExpressintrstCls {
-     .requiredStar::after {
-         content: " * ";
-         float: right;
-         color: red;
-         font-size: 22px !important;
-         padding-left: 6px;
-     }
+ .requiredStar::after {
+     content: " * ";
+     float: right;
+     color: red;
+     font-size: 22px !important;
+     padding-left: 6px;
  }
  
  .ExpressintrstCls>.form-control {
