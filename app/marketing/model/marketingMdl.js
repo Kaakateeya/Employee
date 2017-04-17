@@ -5,15 +5,25 @@
         .module('Kaakateeya')
         .factory('marketingModel', factory)
 
-    factory.$inject = ['$http'];
+    factory.$inject = ['marketingservice', 'complex-slide-config'];
 
-    function factory($http) {
-        var service = {
-            getData: getData
+    function factory(marketingservice, config) {
+        var model = {};
+        model = config;
+        model.headervisileble = true;
+        model.templateUrl = "templates/marketingSlide.html";
+        model.headettemp = "templates/marketingSlideHeader.html";
+
+        model.init = function() {
+            model.arraydata = [{ custid: 91022, name: 'dsdfsdf' }, { custid: 12121, name: 'fgdfg' }, { custid: 34343, name: 'ffffff' }];
+            model.setSlides(model.arraydata, 10, 'normal');
+            return model;
+
         };
 
-        return service;
+        model.slidebind = function(old, news, array, type) {}
 
-        function getData() {}
+
+        return model.init();
     }
 })();

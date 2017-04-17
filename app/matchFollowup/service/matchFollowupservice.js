@@ -12,11 +12,7 @@
                 });
             },
             matchFollowupSelect: function(obj) {
-                return http.get(app.apiroot + 'EmployeeReportPage/getMatchfollowupSlideShowResult', {
-                    params: {
-                        Mobj: obj
-                    }
-                });
+                return http.post(app.apiroot + 'EmployeeReportPage/MatchfollowupSlideShowResult', obj);
             }
         };
     }

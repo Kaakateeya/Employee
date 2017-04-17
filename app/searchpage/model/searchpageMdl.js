@@ -524,7 +524,6 @@
             model.shortlistmodel.headettemp = "templates/SearchpopupHeader.html";
             model.shortlistmodel.slides = _.where(model.slides, { isShortlisted: true });
             modelpopupopenmethod.showPopupphotopoup('mainShortListProfiles.html', model.scope, 'lg', "modalclassdashboardphotopopupinner");
-
         };
         model.shortListPopup = function() {
             var arrayshortListPopup = [];

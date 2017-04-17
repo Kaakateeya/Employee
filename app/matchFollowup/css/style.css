@@ -48,4 +48,35 @@
  #matchfollowupdiv .maroon {
      color: maroon;
  }
+ 
+ .maroon {
+     color: maroon;
+ }
+ 
+ .ticketHistryCls {
+     border: 1px solid;
+     border-color: orange;
+     border-radius: 20px;
+     width: 74%;
+     text-align: left;
+ }
+ 
+ #matchfollowupdiv {
+     font-weight: 700;
+     font-family: 'Open Sans', sans-serif !important;
+     color: gray;
+ }
+ 
+ .sidebuttons {
+     height: 26px;
+     padding: 3px;
+ }
+ 
+ .green {
+     background-color: green;
+ }
+ 
+ .modalclassdashboardphotopopup {
+     z-index: 9999999 !important;
+ }
  /*# sourceMappingURL=style.css.map */

@@ -3,7 +3,7 @@
 
     angular
         .module('Kaakateeya')
-        .factory('marketingModel', factory)
+        .factory('marketingservice', factory)
 
     factory.$inject = ['$http'];
 
