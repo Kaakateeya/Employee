@@ -1,5 +1,5 @@
-<div class="">
-    <div class="edit_pages_sidebar clearfix" ng-controller="baseCtrl">
+<div class="" ng-controller="baseCtrl">
+    <div class="edit_pages_sidebar clearfix" ng-style="{'background':backgroundcolor(model.PersonalObj.ProfileStatusID)}">
         <div class="edit_page_profile_pic">
             <img style="cursor:pointer;" ng-src="{{model.PersonalObj.ProfilePic}}" ng-click="model.photorequestAndshow();">
             <a href="javascript:void(0);" style="font-weight: bold;" ng-click="model.photorequestAndshow();"> 
@@ -94,3 +94,4 @@
         </div>
 
     </div>
+</div>

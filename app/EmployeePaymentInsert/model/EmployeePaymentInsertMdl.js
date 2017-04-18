@@ -78,6 +78,7 @@
                         model.showOfferDetails(model.custobj.Price, 'pageload');
                         model.PiObj.txtAgreedAmt = model.custobj.AgreedAmount;
                         model.PiObj.txtAmountPaid = model.custobj.Price;
+                        model.PiObj.rdnServicetax = model.custobj.ServiceTax !== null ? 1 : 0;
                     }
                 }
             });

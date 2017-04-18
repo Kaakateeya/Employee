@@ -53,7 +53,6 @@
             searchpageServices.getPrimaryCustomerDataResponse(obj.ProfileIDpopup, model.empid).then(function(response) {
                 if (response !== null && response.data !== undefined && response.data !== null && response.data !== "") {
                     var data = model.getpageloadobject = response.data;
-                    console.log(model.getpageloadobject);
                     model.Cust_ID = data.Cust_ID;
                     model.generalsearch.gender = data.GenderID;
                     model.generalsearch.generalAgefrom = data.AgeMin;
@@ -158,7 +157,6 @@
             return str;
         };
         model.submitgeneral = function(object, frompage, topage) {
-            console.log(object);
             model.topage = topage;
             if (parseInt(frompage) === 1) {
                 model.slides = [];
@@ -256,7 +254,6 @@
         };
         model.submitadvancedsearch = function(object, frompage, topage) {
             model.topage = topage;
-            console.log(object);
             if (parseInt(frompage) === 1) {
                 model.slides = [];
                 model.CgetDetails.GetDetails = {
@@ -384,7 +381,6 @@
                 }
             };
             searchpageServices.advancedsearchsubmit(model.CgetDetails).then(function(response) {
-                console.log(response);
                 model.isshortlistprogressbar = true;
                 model.slideshowarray = [];
                 _.each(response.data, function(item) {
@@ -409,17 +405,14 @@
         };
         model.getrelationshipstypes = function(flag, profileid, about) {
             searchpageServices.getrelationships(flag, profileid, "").then(function(response) {
-                console.log(response);
                 _.each(response.data, function(item) {
                     model.Relationships = JSON.parse(item);
-                    console.log(model.Relationships);
                 });
             });
 
         };
         model.relationshipbind = function(flag, profileid, about) {
             searchpageServices.getrelationships(flag, profileid, about).then(function(response) {
-                console.log(response);
                 model.popupFirstName = "";
                 model.popupLastName = "";
                 if (response !== null && response.data !== undefined && response.data !== null && response.data !== "") {
@@ -545,7 +538,6 @@
 
         };
         model.slidebind = function(old, news, array) {
-            console.log(news);
             if (parseInt(model.topage) - parseInt(news) === 4) {
                 switch (model.tablename) {
                     case "general":
@@ -630,7 +622,6 @@
             });
             var custids = model.cloumsarr.length > 0 ? (model.cloumsarr).toString() : null;
             searchpageServices.getprofileidcustdetails(custids).then(function(response) {
-                console.log(response);
                 model.FromProfileId = model.getpageloadobject.ProfileID;
                 _.each(response.data, function(item) {
                     model.Toprofileids.push(item.ProfileID);
@@ -664,7 +655,6 @@
                 StrTocustIDs: custids
             };
             searchpageServices.insertbookmark(obj).then(function(response) {
-                console.log(response);
                 if (response.data === 1) {
                     alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Bookmarked SuccessFully', 2000);
                 } else {

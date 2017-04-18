@@ -11,19 +11,22 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.myInterval = 0;
                 $scope.noWrapSlides = true;
                 $scope.activeslide = 0;
+                $scope.activeslidephoto = 0;
                 $scope.mainshortlist = false;
                 $scope.Viwedslide = 1;
                 $scope.playbutton = false;
-                $scope.isPrevDisabled = function() {
-                    if ($scope.activeslide === 0) {
-                        return true;
-                    }
-                };
-                $scope.isNextDisabled = function() {
-                    if ($scope.activeslide === model.totalRecords) {
-                        return true;
-                    }
-                };
+                $scope.myIntervalphoto = 0;
+                $scope.noWrapSlidesphoto = true;
+                // $scope.isPrevDisabled = function() {
+                //     if ($scope.activeslide === 0) {
+                //         return true;
+                //     }
+                // };
+                // $scope.isNextDisabled = function() {
+                //     if ($scope.activeslide === $scope.model.totalRecords) {
+                //         return true;
+                //     }
+                // };
                 $scope.width = "";
                 $scope.pauseResume = function(action) {
                     if (action === 'play') {
@@ -45,8 +48,8 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     if (news !== undefined && news !== "" && news !== null) {
                         $scope.Viwedslide = news;
                         $scope.config.slidebind(old, news, $scope.model.slides, $scope.model.typeofPage);
-                        $scope.isPrevDisabled();
-                        $scope.isNextDisabled();
+                        //$scope.isPrevDisabled();
+                        //$scope.isNextDisabled();
                     }
                 });
                 $scope.slidepopup = function(custid) {
