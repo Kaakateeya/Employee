@@ -7,11 +7,29 @@
                     Search Kaakateeya Customers <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
                 </uib-accordion-heading>
                 <div class="row maindiv">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-2"></div>
+                    <div class="col-lg-2"><input type="text" ng-keyup="$event.keyCode == 13 && page.model.kmplSubmit(page.model.obj);" placeholder="Surname" ng-model="page.model.obj.KmlProfileID" class="form-control"> </div>
+                    <div class="col-lg-2"><input type="text" ng-keyup="$event.keyCode == 13 && page.model.kmplSubmit(page.model.obj);" placeholder="Name" ng-model="page.model.obj.KmlProfileID" class="form-control"></div>
+                    <div class="col-lg-2"><input type="text" ng-keyup="$event.keyCode == 13 && page.model.kmplSubmit(page.model.obj);" placeholder="KMPLID" ng-model="page.model.obj.KmlProfileID" class="form-control"></div>
+                    <div class="col-lg-2"> <input focus-me="true" type="text" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,10);" placeholder="Profile ID" ng-model="page.model.obj.ProfileIDsearch" class="form-control"></div>
+                    <div class="clearfix col-lg-3">
+                        <md-radio-group name="IsHighestDegree" ng-change="page.model.genderChange(page.model.obj.rdnGender);" layout="row" ng-model="page.model.obj.rdnGender" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                            <md-radio-button value="3" class="md-primary">Both</md-radio-button>
+                            <md-radio-button value="1"> Male </md-radio-button>
+                            <md-radio-button value="2"> Female </md-radio-button>
+                        </md-radio-group>
+                    </div>
                 </div>
+                <br>
+                <div>
+                    <div class="clearfix">
+                        <label ng-repeat="role in page.model.profileidstatus">
+                        <md-checkbox data-checklist-change="page.model.chkChange();"  data-checklist-model="page.model.obj.chkProfileIDsts" data-checklist-value="role.value"> {{role.name}}&nbsp;
+                          </md-checkbox>
+                       </label>
+
+                    </div>
+                </div>
+
                 <div class="row maindiv">
                     <div class="col-lg-7">
                         <div class="clearfix">
