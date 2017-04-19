@@ -29,13 +29,14 @@
              //call http method here after then function call the broadcast method
              dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                  if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0 && response.data[0].length > 0) {
-                     if (frompage === 1) {
-                         model.slidearray = response.data[0];
-                     } else {
-                         _.each(response.data, function(inneritem) {
-                             model.slidearray.push(inneritem);
-                         });
-                     }
+
+                     //if (frompage === 1) {
+                     model.slidearray = response.data[0];
+                     //  } else {
+                     //      _.each(response.data, function(inneritem) {
+                     //          model.slidearray.push(inneritem);
+                     //      });
+                     //  }
 
                      scope.$broadcast("slideshowdynamic", model.slidearray, model.slidearray[0].TotalRows, tablename, frompage);
                  }

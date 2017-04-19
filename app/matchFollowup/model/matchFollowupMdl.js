@@ -74,9 +74,7 @@
                 inputobj.pagefrom = model.frompage;
                 inputobj.pageto = model.topage;
             }
-            console.log(JSON.stringify(inputobj));
             matchFollowupServices.matchFollowupSelect(inputobj).then(function(response) {
-                console.log(response);
                 if (_.isArray(response.data) && response.data.length > 0) {
                     if (typeofpopup === 'proceedpopup') {
                         model.proceed.totalRecords = response.data[0].TotalRows;
@@ -102,14 +100,12 @@
         model.slidebind = function(old, news, array, type) {
             if (type === 'popup') {
                 if (parseInt(model.proceed.topage) - parseInt(news) === 4) {
-                    debugger;
                     model.proceed.frompage = parseInt(model.proceed.topage) + 1;
                     model.proceed.topage = parseInt(model.proceed.topage) + 10;
                     model.matchFollowupSelect(undefined, model.custid, 'proceedpopup');
                 }
             } else {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
-                    debugger;
                     model.frompage = parseInt(model.topage) + 1;
                     model.topage = parseInt(model.topage) + 10;
                     model.matchFollowupSelect();

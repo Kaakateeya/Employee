@@ -69,7 +69,7 @@
         };
 
         model.horoTemplate = function(row) {
-            var paid = row.HoroscopeStatus === 1 ? "<img  src='src/images/ico_horoscope.jpg' class='horoImgcls' >" : "";
+            var paid = row.HoroscopeStatus === 1 ? "<img  src='src/images/ico_horoscope.jpg' class='horoImgcls'>" : "";
             return paid;
         };
         model.editviewRedirect = function(row) {
@@ -136,7 +136,7 @@
                 pageto: to
             };
             model.grid.columns = [
-                { text: '', key: '', type: 'customlink', templateUrl: model.horoTemplate, method: model.horoscopeimage },
+                { text: '', key: 'HoroScopeImage', type: 'customlink', templateUrl: model.horoTemplate, method: model.horoscopeimage },
                 { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
                 { text: 'Gender', key: 'GenderID', type: 'label' },
                 { text: 'FirstName', key: 'LastName', type: 'link', method: model.editviewRedirect },

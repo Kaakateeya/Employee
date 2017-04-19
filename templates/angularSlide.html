@@ -42,7 +42,7 @@
     </div>
 </div>
 <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
-    <div style="margin-left:60px;" class="edit_page_details_item_descsearch clearfix" ng-repeat="slidedata in slide.itmArr" ng-if="slidedata.label!=='backendFields'">
+    <div style="margin-left:60px;" class="edit_page_details_item_descsearch clearfix" ng-repeat="slidedata in slide.itmArr">
         <h6> <span style="font-weight: bold;">{{slidedata.label}}</span></h6>
         <h5>
             <div ng-class="slidedata.label==='ServiceDate'?'redcolor':'blackcolor'"> <span>{{slidedata.value}}</span> </div>

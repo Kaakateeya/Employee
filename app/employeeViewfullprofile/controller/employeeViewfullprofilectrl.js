@@ -4,11 +4,15 @@
      function controller(employeeViewfullprofileModel, scope) {
          var vm = this,
              model;
-
          vm.init = function() {
              vm.model = model = employeeViewfullprofileModel;
              vm.model.scope = scope;
-             model.EmpViewfullProfile();
+             if (parseInt(model.stateprofileid) !== 0) {
+                 model.textboxshowhide = true;
+                 model.EmpViewfullProfile(model.stateprofileid);
+             } else {
+                 model.textboxshowhide = false;
+             }
          };
 
          vm.init();

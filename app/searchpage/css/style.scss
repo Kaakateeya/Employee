@@ -299,3 +299,27 @@ button.multiselect.dropdown-toggle.btn.ng-pristine.ng-untouched.ng-valid.ng-isol
     width: 40px;
     height: 38px;
 }
+
+#generalsearchdiv {
+    a.left.carousel-control.disabled {
+        display: none;
+    }
+}
+
+#generalsearchdiv {
+    a.right.carousel-control.disabled {
+        display: none;
+    }
+}
+
+#slideshow {
+    a.left.carousel-control.disabled {
+        display: none;
+    }
+}
+
+#slideshow {
+    a.right.carousel-control.disabled {
+        display: none;
+    }
+}

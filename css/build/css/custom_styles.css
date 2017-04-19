@@ -242,7 +242,7 @@ acronym {
   display: block;
   padding: 10px 14px;
   font-weight: 700;
-  color: #4E4A4A;
+  color: rgba(27, 25, 25, 0.84);
   transition: all 0.4s ease-in-out; }
 
 .edit_pages_sidebar_menu ul li a.active,

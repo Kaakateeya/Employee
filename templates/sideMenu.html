@@ -1,8 +1,9 @@
-<div class="">
-    <div class="edit_pages_sidebar clearfix" ng-controller="baseCtrl">
+<div class="" ng-controller="baseCtrl">
+    <div class="edit_pages_sidebar clearfix" ng-style="{'background':backgroundcolor(model.PersonalObj.ProfileStatusID)}">
         <div class="edit_page_profile_pic">
             <img style="cursor:pointer;" ng-src="{{model.PersonalObj.ProfilePic}}" ng-click="model.photorequestAndshow();">
-            <a href="javascript:void(0);" style="font-weight: bold;" ng-click="model.photorequestAndshow();"> {{model.PersonalObj.ProfilePic.indexOf('Fnoimage.jpg')!==-1 || model.PersonalObj.ProfilePic.indexOf('Mnoimage.jpg')!==-1?'Photo Request':'View Photo' }}         </a>
+            <a href="javascript:void(0);" style="font-weight: bold;" ng-click="model.photorequestAndshow();"> 
+                            {{model.PersonalObj.ProfilePic.indexOf('Fnoimage.jpg')!==-1 || model.PersonalObj.ProfilePic.indexOf('Mnoimage.jpg')!==-1?(model.PersonalObj.ProfileStatusID===54?'Photo Request':''):'View Photo' }}  </a>
         </div>
 
         <div class="edit_pages_sidebar_profile_details">
@@ -93,3 +94,4 @@
         </div>
 
     </div>
+</div>

@@ -1,19 +1,15 @@
 <div ng-if="model.data.length!==0">
     <div class="row">
-
-        <div class="col-md-3 totalrecordCls" ng-if="config.showsearch">
-            <label for="noofRecords" class="control-label">Total Records : {{model.TotalRows}}</label>
+        <div class="col-lg-5 totalrecordCls" ng-if="config.showsearch">
+            <label class="col-lg-6" for="noofRecords" class="control-label">Total Records : {{model.TotalRows}}</label>
+            <input type="image" src="src\images\EXCEL.jpg" ng-click="exportexcel(model.data, model.columns)" style="height: 20px;width: 20px;" class="css-class"></input>
         </div>
-        <div ng-class="config.showsearch?'col-md-1 totalrecordCls':'col-md-10 pull-left'">
-            <button ng-click="exportexcel(model.data, model.columns)" class="css-class"><i class="fa fa-file-excel-o fa-6" aria-hidden="true"></i></button>
+        <div class="col-lg-2 m-b-2 mainDiv totalrecordCls" ng-if="config.showsearch">
+            <input class="form-control" type="text" ng-model="searchKeyword" placeholder="Search" />
         </div>
-        <div class="col-md-3 m-b-2 mainDiv totalrecordCls" ng-if="config.showsearch">
-            <input class="form-control" type="text" ng-model="searchKeyword" placeholder="Search">
+        <div class="col-lg-5" ng-if="config.showpaging" style="margin-top: -10px;">
+            <ul uib-pagination class="row" total-items="model.TotalRows" ng-model="pagen" ng-change="config.pagechange(pagen)" max-size="5" class="pagination-md" boundary-link-numbers="true" rotate="false"></ul>
         </div>
-        <div class="col-md-5" ng-if="config.showpaging">
-            <ul uib-pagination total-items="model.TotalRows" ng-model="pagen" ng-change="config.pagechange(pagen)" max-size="5" class="pagination-md" boundary-link-numbers="true" rotate="false"></ul>
-        </div>
-
     </div>
     <div class="clearfix"></div>
     <div class="row table-responsive">
@@ -29,36 +25,36 @@
             <tbody>
                 <tr ng-class="inneritem.rowtype" ng-repeat-start="inneritem in model.data |orderBy:sortKey:reverse|filter: searchKeyword |startFrom:currentPage*pageSize | limitTo:pageSize">
                     <td ng-if="!inneritem.isDetail && config.showplus">
-                        <a class="detail-icon " ng-click="plus(inneritem)" href="javascript: "><i class="glyphicon glyphicon-plus icon-plus "></i></a>
+                        <a class="detail-icon" ng-click="plus(inneritem)" href="javascript:"><i class="glyphicon glyphicon-plus icon-plus"></i></a>
                     </td>
                     <td ng-if="inneritem.isDetail">
-                        <a class="detail-icon " ng-click="minus(inneritem)" href="javascript: "><i class="glyphicon glyphicon-minus icon-minus "></i></a>
+                        <a class="detail-icon" ng-click="minus(inneritem)" href="javascript:"><i class="glyphicon glyphicon-minus icon-minus"></i></a>
                     </td>
                     <td ng-repeat="colitem in model.columns">
                         <span ng-if="colitem.type==='label'"> {{inneritem[colitem.key]}}</span>
-                        <a href="#" ng-if="colitem.type==='link' " ng-click="colitem.method(inneritem)">{{inneritem[colitem.key]}}</a>
+                        <a href="#" ng-if="colitem.type==='link'" ng-click="colitem.method(inneritem)">{{inneritem[colitem.key]}}</a>
                         <span ng-if="colitem.type==='custom'" ng-bind-html="colitem.templateUrl(inneritem)"></span>
-                        <span ng-if="colitem.type==='customlink'" ng-bind-html="colitem.templateUrl(inneritem)" ng-click="colitem.method(inneritem) "></span>
+                        <span ng-if="colitem.type==='customlink'" ng-bind-html="colitem.templateUrl(inneritem)" ng-click="colitem.method(inneritem)"></span>
                         <span ng-if="colitem.type==='morelinks'" compile="colitem.templateUrl(inneritem)"></span>
 
                     </td>
                 </tr>
                 <tr ng-repeat-end="">
                     <td ng-if="inneritem.isDetail"></td>
-                    <td colspan="24 " ng-if="inneritem.isDetail">
+                    <td colspan="24" ng-if="inneritem.isDetail">
                         <table class="Datatable table table-hover table-bordered subtable SubTableCls">
                             <thead>
                                 <tr>
-                                    <th class={{detailitem.key}} style="min-width: 80px;background-color: rgba(99, 56, 31, 0.46);" ng-repeat="detailitem in inneritem.detailcolumns ">{{detailitem.text}}</th>
+                                    <th class={{detailitem.key}} style="min-width: 80px;background-color: rgba(99, 56, 31, 0.46);" ng-repeat="detailitem in inneritem.detailcolumns">{{detailitem.text}}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="detailinneritem in inneritem.detaildata ">
-                                    <td ng-repeat="detailcolitem in inneritem.detailcolumns ">
-                                        <span ng-if="detailcolitem.type==='label' "> {{detailinneritem[detailcolitem.key]}}</span>
-                                        <a href="#" ng-if="detailcolitem.type==='link' " ng-click="detailcolitem.method(detailinneritem) ">{{ detailcolitem.key!==''?detailinneritem[detailcolitem.key]:'View'}}</a>
-                                        <span ng-if="detailcolitem.type==='custom' " ng-bind-html="detailcolitem.templateUrl(detailinneritem) "></span>
-                                        <span ng-if="detailcolitem.type==='customlink'" ng-bind-html="detailcolitem.templateUrl(inneritem)" ng-click="detailcolitem.method(inneritem) "></span>
+                                <tr ng-repeat="detailinneritem in inneritem.detaildata">
+                                    <td ng-repeat="detailcolitem in inneritem.detailcolumns">
+                                        <span ng-if="detailcolitem.type==='label'"> {{detailinneritem[detailcolitem.key]}}</span>
+                                        <a href="#" ng-if="detailcolitem.type==='link'" ng-click="detailcolitem.method(detailinneritem)">{{ detailcolitem.key!==''?detailinneritem[detailcolitem.key]:'View'}}</a>
+                                        <span ng-if="detailcolitem.type==='custom'" ng-bind-html="detailcolitem.templateUrl(detailinneritem)"></span>
+                                        <span ng-if="detailcolitem.type==='customlink'" ng-bind-html="detailcolitem.templateUrl(inneritem)" ng-click="detailcolitem.method(inneritem)"></span>
                                         <span ng-if="detailcolitem.type==='morelinks'" compile="detailcolitem.templateUrl(detailinneritem)"></span>
                                     </td>
                                 </tr>
@@ -66,10 +62,10 @@
                         </table>
                     </td>
                 </tr>
-                <tr ng-if="model.data.length===0 ">
+                <tr ng-if="model.data.length===0">
                     <td colspan="14">
-                        <div layout="row" layout-sm="column" layout-align="space-around ">
-                            <md-progress-circular md-mode="indeterminate "></md-progress-circular>
+                        <div layout="row" layout-sm="column" layout-align="space-around">
+                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                         </div>
                     </td>
                 </tr>
@@ -134,10 +130,14 @@
     }
     
     .totalrecordCls {
-        margin-top: 19px;
+        margin-top: 10px;
     }
     
     .RegistrationDate {
         min-width: 197px !important;
+    }
+    
+    .HoroScopeImage {
+        width: 35px;
     }
 </style>

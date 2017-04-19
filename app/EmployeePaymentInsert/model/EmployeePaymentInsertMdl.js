@@ -13,6 +13,8 @@
         model.ExpiryDaterev = '';
         model.parseInt = parseInt;
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+        model.isManagement = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+        model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
         model.ServiceTaxPercent = app.ServiceTaxPercent;
         model.EmployeePaymentInsert = function(inobj, type) {
             var monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
@@ -76,6 +78,7 @@
                         model.showOfferDetails(model.custobj.Price, 'pageload');
                         model.PiObj.txtAgreedAmt = model.custobj.AgreedAmount;
                         model.PiObj.txtAmountPaid = model.custobj.Price;
+                        model.PiObj.rdnServicetax = model.custobj.ServiceTax !== null ? 1 : 0;
                     }
                 }
             });

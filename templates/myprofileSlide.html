@@ -1,14 +1,3 @@
-<div class="row text-center myprofileSlidecls">
-    <div class="col-lg-4">
-        <a href="javascript:void(0);" ng-click="config.redirectEdit(slide.Custid,'Partnerpreference');">Edit Partnerpreference</a>
-    </div>
-    <div class="col-lg-4">
-        <a href="javascript:void(0);" ng-click="config.redirectEdit(slide.Custid,'search');">General Search</a>
-    </div>
-    <div class="col-lg-4">
-        <a href="javascript:void(0);" ng-click="config.redirectEdit(slide.Custid,'Contact');">View Contacts</a>
-    </div>
-</div>
 <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
     <div style="margin-left:60px;" class="edit_page_details_item_descsearch clearfix" ng-repeat="slidedata in slide.itmArr" ng-if="slidedata.label!=='backendFields'">
         <h6> <span style="font-weight: bold;">{{slidedata.label}}</span></h6>
@@ -38,3 +27,18 @@
     </div>
 
 </div>
+<br>
+<div class="clearfix"> </div>
+<div class="row text-center myprofileSlidecls">
+    <div class="col-lg-4">
+        <a href="javascript:void(0);" ng-click="config.redirectEdit(slide.Custid,'Partnerpreference');">Edit Partnerpreference</a>
+    </div>
+    <div class="col-lg-4">
+        <a href="javascript:void(0);" ng-click="config.redirectEdit(slide.Custid,'search');">General Search</a>
+    </div>
+    <div class="col-lg-4">
+        <a href="javascript:void(0);" ng-click="config.redirectEdit(slide.Custid,'Contact');">View Contacts</a>
+    </div>
+</div>
+<br>
+<div class="clearfix"> </div>

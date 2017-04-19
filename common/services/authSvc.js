@@ -113,7 +113,6 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
         },
         getmacaddress: function() {
             return $http.get('/getmac').then(function(res) {
-                console.log(res);
                 setSession("macAddress", res.data);
                 return res.data;
             });

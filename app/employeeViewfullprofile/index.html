@@ -1,11 +1,26 @@
 <div class="right_col" role="main">
     <button class="btn btn-danger pull-right" ng-print print-element-id="printThisElement">
       <i class="fa fa-print"></i>
- Print</button>
+           Print</button>
     <div id="printThisElement">
 
         <h2 class="headerStyles">Kaakateeya Marriages</h2>
-        <div class="profile_full_main">
+        <div class="text-center" ng-hide="page.model.textboxshowhide">
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="profileid" class="control-label pull-right">ProfileID</label>
+                </div>
+                <div class="col-lg-2">
+                    <input focus-me="true" type="text" maxlength="10" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.txtProfileID" class="form-control" ng-keyup="$event.keyCode == 13 && page.model.EmpViewfullProfile(page.model.txtProfileID)">
+                </div>
+                <div class="col-lg-1">
+                    <button class="btn btn-danger" ng-click="page.model.EmpViewfullProfile(page.model.txtProfileID)">Go</button>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div class="clearfix"></div>
+        <div class="profile_full_main" ng-hide="page.model.fullprofileshow">
             <div class="profile_full_header clearfix">
                 <div class="profile_full_header_pic">
                     <div ng-class="divclassmask(LoginPhotoIsActive)">
@@ -18,20 +33,6 @@
                         <span>
                 <span id="lblProfileIDs">(Profile ID:{{page.model.personalinfo[0].ProfileID}})     </span></span>
                     </h6>
-                    <!--<p>
-                        <span>
-                 <span id="lblAge">{{page.model.personalinfo[0].Age}}</span></span> | <span>
-                  <span id="lblheight">{{page.model.personalinfo[0].Height}}</span>
-                        </span>| <span>
-               <span id="lblreligion">{{page.model.personalinfo[0].ReligionName}}</span>-<span id="lblCasts">{{page.model.personalinfo[0].Caste}}</span>
-                        </span>| <span>
-                      <span id="lblNativePlace">{{page.model.personalinfo[0].StateName}}</span></span> | <span>
-                       <span id="lblEducation">{{page.model.personalinfo[0].Education}}</span>
-                        </span>
-                    </p>
-                    <p>
-                        <span id="lblNames"></span> is: Family oriented, well educated, attractive
-                    </p>-->
                 </div>
 
                 <div class="profile_full_header_in_ui clearfix">
@@ -48,10 +49,6 @@
                 </div>
             </div>
             <div class="personal_inform_main">
-                <!--<div class="personal_inform_head clearfix" style="background-color: rgb(244, 182, 36); padding: 0px 10px; border-bottom: solid 1px #ccc;">
-                    <h4 style="color: #d42e02;">personal information</h4>
-                    <a href="#" class="edit_prsnl"></a>
-                </div>-->
                 <div class="personal_inform_main_in" ng-hide="page.model.aboutmyself[0].Aboutyourself==='NOT Given' || page.model.aboutmyself[0].Aboutyourself===''">
                     <h4>about my
                         <span id="lblRelation">{{page.model.personalinfo[0].GenderID===2?"Daughter":"Son"}}</span></h4>
@@ -81,27 +78,6 @@
                 </div>
             </div>
         </div>
-        <!--<alert-directive></alert-directive>-->
-        <!--<script type="text/ng-template" id="myModalContent.html">
-
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" ng-click="modalpopupclose()">×</button>
-                    <h4 class="modal-title" id="commontitle" style="color: black;">{{modalpopupheadertext}}</h4>
-                </div>
-                <div class="modal-body" id="commonbody">
-                    <div class="row col-lg-offset-1">
-                        <textarea ng-model="form.message" name="txtmsgPartner" rows="6" cols="20" id="txtmsgPartner" class="col-lg-10"></textarea></div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" ng-click="modalpopupclose()">Close</button>
-                        <button type="button" class="btn btn-primary" ng-show="modalheader===1" ng-click="sendmessages(form)">Send Message</button>
-                        <button type="button" class="btn btn-primary" ng-show="modalheader===2" ng-click="sendmessagestoRM(form)">Send Message</button>
-                    </div>
-                </div>
-
-        </script>-->
-
-
     </div>
 </div>
 

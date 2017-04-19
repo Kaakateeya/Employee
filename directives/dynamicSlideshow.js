@@ -53,7 +53,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                 scope.dynamicslideshow = scope.nghide !== undefined && scope.nghide !== "" ? scope.nghide : true;
                 scope.displayArraydashboard = function(arr, frompage) {
                     if (frompage === 1) {
-                        scope.arraydata = [];
+                        scope.displayArr = [];
                     }
                     $.each(arr, function(index, item) {
                         var data = [];
@@ -85,7 +85,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             CustPhoto: item.ApplicationPhotoPath,
                             totalrecords: item.TotalRows
                         });
-                        scope.arraydata.push({
+                        scope.displayArr.push({
                             itmArr: data,
                             custPhoto: item.ApplicationPhotoPath,
                             Custid: item.Cust_ID,
@@ -122,10 +122,11 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             Cust_NotificationID: item.Cust_NotificationID,
                             CategoryID: item.CategoryID,
                             ActionType: item.ActionType,
-                            ReadStatus: item.ReadStatus
+                            ReadStatus: item.ReadStatus,
+                            TicketIDs: item.TicketIDs
                         });
                     });
-                    return scope.arraydata;
+
                 };
                 scope.checkitemnew = function(carouselID) {
                     var $this;
@@ -184,7 +185,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                 };
 
                 scope.pageload = function(frompage) {
-                    scope.displayArr = scope.displayArraydashboard(scope.slidearray, frompage);
+                    scope.displayArraydashboard(scope.slidearray, frompage);
                     var totalItems1 = $('#' + scope.carousalID).find('.item').length;
                     var currentIndex1 = $('#' + scope.carousalID).find('div.active').index() + 1;
                     scope.slidNum = currentIndex1 + 1;
@@ -280,6 +281,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             break;
 
                     }
+                    scope.slidearray = [];
                     scope.slidearray = array;
                     if (frompage === 1) {
                         scope.currentslide = 1;

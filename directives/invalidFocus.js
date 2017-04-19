@@ -9,7 +9,6 @@
                      firstInvalid.focus();
                  var firstInvalidselect = elem[0][1];
                  $('select').each(function() {
-                     console.log('valilog');
                      var testtt = $(this).attr('class');
                      if (testtt.indexOf('ng-invalid-required') !== -1) {
                          firstInvalidselect.focus();
