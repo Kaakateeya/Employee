@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function factory($http, getArray, timeout, matchFollowupServices, config, authSvc, Commondependency, modelpopupopenmethod) {
+    function factory($http, getArray, timeout, matchFollowupServices, config, authSvc, Commondependency, modelpopupopenmethod, alertss) {
         var model = {};
         model = config;
         model.proceed = {};
@@ -27,6 +27,8 @@
         model.topage = 10;
         model.proceed.frompage = 1;
         model.proceed.topage = 10;
+        model.dynamicPopover = {};
+        model.ReplyArr = [];
         model.init = function() {
             model.lstEmpnames = [parseInt(model.empid)];
             model.activebutton = 'bothside';
@@ -40,6 +42,16 @@
                 }
             });
         });
+
+        model.smsarray = [
+            { id: 1, text: 'We missed to reach you on 91-XXXXX. please call back' },
+            { id: 2, text: 'Bride is interested in your profile.' },
+            { id: 3, text: 'Groom is interested in your profile' },
+            { id: 4, text: 'Contact details of the Groom/bride is given below.' }
+        ];
+
+
+
 
         model.matchFollowupSelect = function(empid, custID, typeofpopup) {
 
@@ -122,11 +134,7 @@
         };
 
 
-        model.dynamicPopover = {
-            content: 'Hello, World!',
-            templateUrl: 'myPopoverTemplate.html',
-            title: 'Title'
-        };
+
 
         model.proceedImage = function(status) {
 
@@ -163,10 +171,112 @@
         model.close = function() {
             modelpopupopenmethod.closepopuppoptopopup();
         };
+        model.dynamicPopover = {
+            templateUrl: 'myPopoverTemplate.html',
+            title: 'Ticket history',
+            isOpen: false
+        };
+        model.dynamicPopover.fromisOpen = false;
+        model.dynamicPopover.toisOpen = false;
+        model.histryPopover = function(ticketID, type) {
+            matchFollowupServices.ticketHistry(ticketID, type).then(function(response) {
+                console.log(response);
+                if (_.isArray(response.data) && response.data.length > 0) {
+                    model.ticketHistryArr = response.data;
+                    model.dynamicPopover = {
+                        templateUrl: 'myPopoverTemplate.html',
+                        title: 'Ticket history'
+                    };
+                }
+            });
+        };
+
+        model.closepopover = function() {
+            model.dynamicPopover.isOpen = false;
+        };
+        model.typeofmailSms = '';
+
+        model.openSmsMail = function(type, name, profileid, email, mobilenumber, mobileCountryCode, ticketID, EmpmobileNumber, fromcustid, tocustid, ticketStatusId, ToProfileID) {
+            model.typeofmailSms = type;
+            if (type === 'sms') {
+                model.smsInput = [];
+                var strempNumber = (EmpmobileNumber.split('-'))[1];
+                model.smsInput = {
+                    strbody: model.txtsmsmail,
+                    strMobileNumber: mobilenumber,
+                    strName: name,
+                    strEmpname: model.loginempName,
+                    strEmpid: model.empid,
+                    strEmpmobileNumber: strempNumber,
+                    strMobileCountryCode: mobileCountryCode,
+                    i_TicketID: ticketID,
+                    marketbothflag: 'Bothone'
+                }
+            } else {
+                model.custName = name + '(' + profileid + ')';
+                model.custemail = email;
+
+                matchFollowupServices.bothreplytypeBind().then(function(response) {
+                    var data = response.data[0];
+                    console.log(data);
+                    if (_.isArray(response.data[0]) && response.data[0].length > 0 && model.ReplyArr.length === 0) {
+                        _.each(response.data[0], function(item) {
+                            model.ReplyArr.push({ "label": item.Heder, "title": item.Heder, "value": item.ID, "text": item.TEXT });
+                        });
+                    }
+                });
+
+                model.mailInput = {
+                    Notes: model.txtsmsmail,
+                    EMPID: model.empid,
+                    profileid: profileid,
+                    LTicketID: ticketID,
+                    HistoryUpdate: 1,
+                    FromCustID: fromcustid,
+                    TocustID: tocustid,
+                    TicketStatusID: ticketStatusId,
+                    FromProfileID: profileid,
+                    ToProfileID: ToProfileID
+                }
+
+            }
+            modelpopupopenmethod.showPopup('sendsmsMail.html', model.scope, 'md', '');
+        };
+        model.smsOnchange = function(val) {
+            model.txtsmsmail = _.where(model.smsarray, { id: parseInt(val) })[0].text;
+        };
+
+
+        model.smsMailSubmit = function(type) {
+            if (type === 'sms') {
+                model.smsInput.strbody = model.txtsmsmail;
+                matchFollowupServices.sendSms(model.smsInput).then(function(response) {
+                    console.log(response);
+                    if (parseInt(response.data) === 1) {
+                        model.proceed.closepopup();
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'sms sent successfully', 9500);
+                    }
+                });
+            } else {
+                model.mailInput.Notes = model.txtsmsmail;
+                matchFollowupServices.sendMail(model.mailInput).then(function(response) {
+                    console.log(response);
+                    if (parseInt(response.data) === 1) {
+                        model.proceed.closepopup();
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent successfully', 9500);
+                    }
+                });
+            }
+        };
+        model.mailchange = function(val) {
+            model.txtsmsmail = _.where(model.ReplyArr, { value: parseInt(val) })[0].text;
+        };
         return model;
     }
     angular
         .module('Kaakateeya')
         .factory('matchFollowupModel', factory);
-    factory.$inject = ['$http', 'getArraysearch', '$timeout', 'matchFollowupServices', 'complex-slide-config', 'authSvc', 'Commondependency', 'modelpopupopenmethod'];
+    factory.$inject = ['$http', 'getArraysearch', '$timeout', 'matchFollowupServices',
+        'complex-slide-config', 'authSvc', 'Commondependency', 'modelpopupopenmethod', 'alert'
+    ];
 })(angular);

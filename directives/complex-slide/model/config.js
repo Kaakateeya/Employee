@@ -8,7 +8,6 @@
         model.init = function() {
             model.setSlides = function(data, topage, typeofpage) {
                 model.slides = [];
-
                 if (typeofpage === 'normal') {
                     model.slides = data;
                 } else {

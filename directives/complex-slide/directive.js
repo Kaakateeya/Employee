@@ -14,8 +14,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.mainshortlist = false;
                 $scope.Viwedslide = 1;
                 $scope.playbutton = false;
-
-
                 $scope.width = "";
                 $scope.pauseResume = function(action) {
                     if (action === 'play') {

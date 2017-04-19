@@ -12,11 +12,11 @@
                                     <div> <img src="{{slide.fromemp}}" class="center-block" height="57px" width="57px"></div>
                                     <div class="row">{{slide.fromempname}}-</div>
                                 </div><br>
-                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" style="" onclick="return sendSms('91-8142984592','Lakshmim  fffffffffffff','lakshmidevi407@gmail.com','91','1054519','KAKHD1054519','myCarousel1','Updatedivfrom','lnkAddaction');">Send Sms</button></div>
+                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.openSmsMail('sms',slide.FromName,slide.FromProfileid,slide.FromEmail,slide.FromMobileNumber,slide.FromMobileCountryCode,slide.FromTicket,slide.fromempname);">Send Sms</button></div>
                                 <div class="clearfix"></div><br>
-                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" onclick="return sendMail('310910220','1054519','KAKHD1054519','myCarousel1','Updatedivfrom','lnkAddaction','91022','16948','I','Lakshmim  fffffffffffff','lakshmidevi407@gmail.com','110169486');">Send Email</button></div>
+                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.openSmsMail('mail',slide.FromName,slide.FromProfileid,slide.FromEmail,undefined,undefined,slide.FromTicket,undefined,slide.fromcust_id,slide.tocustid,slide.FromticketStatusIDb,slide.Toprofileid);">Send Email</button></div>
                                 <div class="clearfix"></div><br>
-                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" onclick="return Settlementfom('310910220','');">No SA Form</button></div>
+                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-class="{maroon:slide.ToSaPath!==''}" onclick="return Settlementfom('310910220','');">{{slide.ToSaPath!==''?'View SA Form':'No SA Form'}}</button></div>
                                 <div class="clearfix"></div><br>
                                 <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" onclick="return Contactpage(91022);">View Contacts</button></div>
                                 <div class="clearfix"></div><br>
@@ -57,8 +57,20 @@
                         </div>
                     </div><br>
                     <div class="col-lg-offset-1">
-                        <button type="button" id="lnkAddactionmyCarousel1" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.FromTicket);" ng-click="model.openTicketPopup();">{{slide.fromticketid}}</button>
-                        <button type="button" uib-popover-template="model.dynamicPopover.templateUrl" popover-title="{{model.dynamicPopover.title}}" class="btn btn-success-outline col-lg-offset-2">Ticket history</button>
+
+                        <div ng-class="slide.FromTicket!==null && slide.FromTicket!==''?'col-lg-5 col-lg-offset-1':'col-lg-3'">
+                            <button type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.FromTicket);">{{slide.fromticketid}}</button>
+                            <button type="button" ng-if="slide.FromTicket===null || slide.FromTicket===''" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.FromTicket);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
+                        </div>
+                        <div ng-class="slide.FromTicket!==null && slide.FromTicket!==''?'col-lg-6':'col-lg-9'">
+                            <div ng-if="slide.FromTicket===null || slide.FromTicket===''" style="color:maroon">
+                                {{slide.FromofflineDetails}}
+                                <br> {{slide.FromonlineDetails}}
+                            </div>
+                            <button type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" ng-click="model.histryPopover(slide.FromTicket,'H');" uib-popover-template="model.dynamicPopover.templateUrl" class="btn btn-success-outline">Ticket history</button>
+                        </div>
+
+
                     </div>
                 </div>
                 <div class="col-lg-6" style="border-radius: 20px; border-left: 1px solid maroon;">
@@ -94,11 +106,11 @@
                                     <div> <img src="{{slide.toemp}}" class="center-block" height="57px" width="57px"></div>
                                     <div class="row">{{slide.toempname}}</div>
                                 </div><br>
-                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" onclick="return sendSms('91-9440408305','SURESH KUMAR  AKANA','kusumavishwaneni@gmail.com','91','null','--','myCarousel1','Updatedivto','lnkAddactionto');">Send Sms</button></div>
+                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.openSmsMail('sms',slide.ToName,slide.Toprofileid,slide.TOEmail,slide.ToMobileNumber,slide.ToMobileCountryCode,slide.ToTicket,slide.toempname);">Send Sms</button></div>
                                 <div class="clearfix"></div><br>
-                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" onclick="return sendMail('110169486','null','--','myCarousel1','Updatedivto','lnkAddactionto','16948','91022','NV','SURESH KUMAR  AKANA','kusumavishwaneni@gmail.com','310910220');">Send Email</button></div>
+                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.openSmsMail('mail',slide.ToName,slide.Toprofileid,slide.TOEmail,undefined,undefined,slide.ToTicket,undefined,slide.tocustid,slide.fromcust_id,slide.ToticketStatusIDb,slide.FromProfileid);">Send Email</button></div>
                                 <div class="clearfix"></div><br>
-                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" onclick="return Settlementfom('110169486','');">No SA Form</button></div>
+                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-class="{maroon:slide.FromSaPath!==''}" onclick="return Settlementfom('110169486',slide.FromSaPath==='');">   {{slide.FromSaPath!==''?'View SA Form':'No SA Form'}}</button></div>
                                 <div class="clearfix"></div><br>
                                 <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" onclick="return Contactpage(16948);">View Contacts</button></div>
                                 <div class="clearfix"></div><br>
@@ -113,44 +125,44 @@
                                 strrelationship="slide.ToTicketHisoryRelationShip"></tickethistry-infm>
                         </div>
                     </div><br>
-                    <div class="text-left col-lg-offset-1"><button type="button" id="lnkAddactionmyCarousel1" class="btn btn-success-outline">{{slide.Toticketid}}</button>
-                        <!--<button type="button" style="" data-toggle="popover" data-placement="top" class="btn btn-success-outline col-lg-offset-2" data-original-title="" title="">Ticket history</button>-->
-                        <button type="button" uib-popover-template="model.dynamicPopover.templateUrl" popover-title="{{model.dynamicPopover.title}}" class="btn btn-success-outline col-lg-offset-2">Ticket history</button>
+                    <div class="text-left">
+                        <div ng-class="slide.ToTicket!==null && slide.ToTicket!==''?'col-lg-6':'col-lg-3'">
+                            <button type="button" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.FromTicket);">{{slide.Toticketid}}</button>
+                            <button type="button" ng-if="slide.ToTicket===null || slide.ToTicket===''" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.FromTicket);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
+                        </div>
+                        <div ng-class="slide.ToTicket!==null && slide.ToTicket!==''?'col-lg-6':'col-lg-9'">
+                            <div ng-if="slide.ToTicket===null || slide.ToTicket===''" style="color:maroon">
+                                {{slide.TofflineDetails}}
+                                <br> {{slide.ToonlineDetails}}
+                            </div>
+                            <button type="button" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" ng-click="model.histryPopover(slide.ToTicket,'H');" uib-popover-template="model.dynamicPopover.templateUrl" class="btn btn-success-outline">Ticket history</button>
+                        </div>
                     </div>
                 </div>
             </ul>
         </div>
     </div>
 </div>
-<style>
-    .btn-success-outline {
-        color: rgb(35, 82, 124);
-        background-color: transparent;
-        background-image: none;
-        border-color: rgb(35, 82, 124);
-    }
-</style>
+
 <script type="text/ng-template" id="myPopoverTemplate.html">
     <div class="row">
-        <div class="col-lg-12 text-center" style="font-weight:bold;">
-            <c class="maroon">MatchFollowup Replied on 25 Mar 2017 21:47:37</c>
+        <div class="text-center row">
+            <h4 class="col-lg-10">Ticket History</h4>
+            <a href="javascript:void(0);" ng-click="isOpen = false" class="pull-right col-lg-2">
+                <span class="fa fa-close red"></span>
+            </a>
         </div>
-        <div class="clearfix"></div>
-        <div class="col-lg-5" style="color:maroon;"><label>Employee Name</label></div>
-        <div class="col-lg-7"><label><div>Customer</div></label></div>
-        <div class="clearfix"></div>
-        <div class="col-lg-12"><label style="color:maroon;">Comments</label>
-            <div><label>Proceed This Profile</label></div>
+        <br>
+        <div ng-repeat="item in model.ticketHistryArr" ng-class-odd="'odd'">
+            <tickethistry-infm strtype="item.TicketType" strdate="item.TicketInfo" strempname="item.EmployeeName" strstatus="item.CallResult" strcustName="item.RelationName" strcomments="item.Body" strrelationship="item.Relation"></tickethistry-infm>
+            <br>
         </div>
-        <div class="clearfix"></div>
     </div>
 </script>
 
 <script type="text/ng-template" id="Actions.html">
-
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" style="margin-top: -13px;">&times;</button>
-
         <h4 class="modal-title text-center" style="margin-top: -13px; color: maroon; display: none;">TICKET INFORMATION</h4>
     </div>
     <div class="modal-body">
@@ -342,10 +354,7 @@
                             <li class="clearfix">
                                 <label class="pop_label_left Notrequired">Display to customer </label>
                                 <div class="pop_controls_right pop_radios_list">
-                                    <!--<label class="radio">
-                                                    <input name="displaycustomeroutmrkt" value="1" type="radio">&nbsp;&nbsp;Yes&nbsp;&nbsp;&nbsp;&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <label class="radio">
-                                                        <input name="displaycustomeroutmrkt" value="0" checked type="radio">&nbsp;&nbsp;No</label>-->
+
                                     <md-radio-group ng-required="true" name="rbtnPaymode" layout="row" ng-model="page.model.PiObj.rbtnPaymode" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                         <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
                                         <md-radio-button value="2"> No</md-radio-button>
@@ -458,10 +467,86 @@
                 </uib-tab>
 
             </uib-tabset>
-
-
         </div>
     </div>
-
-
 </script>
+
+
+<script type="text/ng-template" id="sendsmsMail.html">
+    <div class="modal-header">
+        <a href="javascript:void(0);" class="pull-right" ng-click="page.model.proceed.closepopup();">
+            <span class="fa fa-close red"></span>
+        </a>
+    </div>
+    <div class="modal-body">
+        <div class="row" id="smsdiv" ng-if="page.model.typeofmailSms=='sms'">
+
+            <div class="col-lg-offset-1">
+                <md-radio-group ng-required="true" name="rbtnPaymode" ng-change="page.model.smsOnchange(page.model.rbtnsms);" ng-model="page.model.rbtnsms" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                    <md-radio-button ng-repeat="item in page.model.smsarray" ng-value="item.id" class="md-primary">{{item.text}}</md-radio-button>
+                </md-radio-group>
+
+            </div>
+        </div>
+        <div class="row" id="sendmailtxtdiv" ng-if="page.model.typeofmailSms=='mail'">
+            <div id="divcustnameemail" class="col-lg-offset-1">
+                <div class="col-lg-12">
+                    <label for="" class="control-label col-lg-4 maroon">Customer Name</label>
+                    <label for="" class="control-label col-lg-8">{{page.model.custName}}</label>
+                </div>
+                <div class="col-lg-12">
+                    <label for="" class="control-label col-lg-4 maroon">Email going to </label>
+                    <label for="" class="control-label col-lg-8">{{page.model.custemail}}</label>
+                </div>
+
+            </div>
+            <div class="col-lg-12">
+                <br>
+                <div class="col-lg-4">
+                    <label class="control-label pull-right">Mail Type</label>
+                </div>
+                <div class="col-lg-8">
+
+                    <select multiselectdropdown ng-model="page.model.ddlmail" ng-change=page.model.mailchange(page.model.ddlmail); ng-options="item.value as item.label for item in page.model.ReplyArr">   
+                                </select>
+                </div>
+                <div class="clearfix"></div>
+                <br />
+            </div>
+        </div>
+
+        <div class="col-lg-offset-1">
+            <textarea rows="4" ng-model="page.model.txtsmsmail" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="modal-footer" style="font-weight:normal;">
+        <button class="button_custom button_custom_reset" ng-click="page.model.proceed.closepopup();">close</button>
+        <button class="button_custom pull-right" ng-click="page.model.smsMailSubmit(page.model.typeofmailSms);">send {{page.model.typeofmailSms}}</button>
+    </div>
+</script>
+
+<style>
+    .btn-success-outline {
+        color: rgb(35, 82, 124);
+        background-color: transparent;
+        background-image: none;
+        border-color: rgb(35, 82, 124);
+    }
+    
+    .red {
+        color: red;
+    }
+    
+    .popover {
+        height: 400px;
+        max-width: 400px;
+        overflow-x: auto;
+        overflow-y: auto;
+        width: 100%;
+    }
+    
+    body {
+        font-family: 'Open Sans', sans-serif !important;
+        font-size: 13px;
+    }
+</style>
