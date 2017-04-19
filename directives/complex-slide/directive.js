@@ -15,18 +15,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.mainshortlist = false;
                 $scope.Viwedslide = 1;
                 $scope.playbutton = false;
-                $scope.myIntervalphoto = 0;
-                $scope.noWrapSlidesphoto = true;
-                // $scope.isPrevDisabled = function() {
-                //     if ($scope.activeslide === 0) {
-                //         return true;
-                //     }
-                // };
-                // $scope.isNextDisabled = function() {
-                //     if ($scope.activeslide === $scope.model.totalRecords) {
-                //         return true;
-                //     }
-                // };
                 $scope.width = "";
                 $scope.pauseResume = function(action) {
                     if (action === 'play') {

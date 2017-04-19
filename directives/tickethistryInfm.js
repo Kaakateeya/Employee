@@ -8,10 +8,7 @@
     directive.$inject = ['$window'];
 
     function directive($window) {
-        // Usage:
-        //     <directive></directive>
-        // Creates:
-        //
+        debugger;
         var directive = {
             link: link,
             restrict: 'EA',
@@ -29,11 +26,9 @@
         return directive;
 
         function link(scope, element, attrs) {
-
-            scope.strcustName = scope.strcustName + '(' + scope.strrelationship + ')';
-
-
-
+            debugger;
+            scope.relationname = '';
+            scope.relationname = scope.strcustName !== undefined && scope.strcustName !== "" ? (scope.strcustName + '(' + scope.strrelationship + ')') : '';
         }
     }
 
