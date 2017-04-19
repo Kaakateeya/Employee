@@ -123,7 +123,8 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             CategoryID: item.CategoryID,
                             ActionType: item.ActionType,
                             ReadStatus: item.ReadStatus,
-                            TicketIDs: item.TicketIDs
+                            Tickets: item.Tickets,
+                            TicketID: item.TicketID
                         });
                     });
 
