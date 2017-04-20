@@ -122,6 +122,9 @@
         };
 
         model.slidebind = function(old, news, array, type) {
+
+            model.frompopoverIsOpen = false;
+            model.topopoverIsOpen = false;
             if (type === 'popup') {
                 if (parseInt(model.proceed.topage) - parseInt(news) === 4) {
                     model.proceed.frompage = parseInt(model.proceed.topage) + 1;
@@ -342,7 +345,7 @@
                         alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent successfully', 9500);
                     }
                 } else {
-                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail send Failed', 9500);
+                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sending Failed', 9500);
                 }
             });
         };
