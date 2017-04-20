@@ -13,6 +13,9 @@
         model.scope = {};
         model.slide.templateUrl = "templates/myprofileSlide.html";
         model.slide.headettemp = "myprofileheader.html";
+        model.grid.showsearchrows = true;
+        model.grid.showsearch = true;
+        model.grid.showpaging = true;
         model.MyProfilePageLoad = function() {
 
             myProfileservice.getMyprofilebind(1, 2, '').then(function(response) {

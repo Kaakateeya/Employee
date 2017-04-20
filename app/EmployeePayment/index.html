@@ -24,7 +24,7 @@
                 <md-button class="md-primary pull-right" ng-show="page.model.freshLink" href="javascript:void(0);" ng-click="page.model.paymentInsertLink(page.model.txtProfileID);">Renewal</md-button>
             </div>
             <div>
-                <complex-grid ng-if="page.model.columns" model="page.model" hidesearch="true" hidepaging="true"></complex-grid>
+                <complex-grid ng-if="page.model.columns" model="page.model" config="page.model" hidesearch="true" hidepaging="true"></complex-grid>
             </div>
         </div>
     </div>

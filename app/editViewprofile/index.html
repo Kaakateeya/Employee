@@ -24,7 +24,11 @@
                     <div class="col-lg-2"><input type="text" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,10);" placeholder="Name" ng-model="page.model.obj.Name" class="form-control"></div>
                     <div class="col-lg-2"> <input type="text" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,10);" placeholder="Profile ID" ng-model="page.model.obj.ProfileIDsearch" class="form-control"></div>
                     <div class="col-lg-2"><input type="text" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,10);" placeholder="KMPLID" ng-model="page.model.obj.KmlProfileID" class="form-control"></div>
-                    <div class="col-lg-2"><button class="btn btn-warning pull-left" ng-click="page.model.ViewAllsubmit(page.model.obj,1,10)">Go</button></div>
+                    <div class="col-lg-1"><button class="btn btn-warning pull-left" ng-click="page.model.ViewAllsubmit(page.model.obj,1,10)">Go</button></div>
+                    <div class="col-lg-3" ng-show="page.model.totalrowsshow">
+                        <label class="col-lg-10" for="noofRecords" class="control-label">Total Records : {{page.model.TotalRows}}</label>
+                        <input type="image" src="src\images\EXCEL.jpg" ng-click="page.exportexcel(page.model.data, page.model.columns)" style="height: 20px;width: 20px;" class="css-class"></input>
+                    </div>
                 </div>
             </div>
 

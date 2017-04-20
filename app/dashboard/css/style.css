@@ -134,4 +134,32 @@ span.fa.fa-angle-down {
   font-size: 16px;
   line-height: 1.8; }
 
+.modal-dialog.modal-md {
+  width: 70%; }
+
+md-content.md-padding._md {
+  padding: 5px; }
+
+.dashboardticketpopup {
+  color: maroon;
+  font-size: 17px; }
+
+.ticketpopuplabel {
+  color: black; }
+
+.ticketpopuppopupheader {
+  background-color: #fedc01;
+  color: white;
+  padding-top: 2px;
+  padding-bottom: 4px; }
+
+c.maroon {
+  color: maroon; }
+
+#Updatediv1 label {
+  color: gray; }
+
+.maroon {
+  color: maroon !important; }
+
 /*# sourceMappingURL=style.css.map */

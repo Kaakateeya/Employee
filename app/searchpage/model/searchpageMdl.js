@@ -29,7 +29,6 @@
         model.sidebarnavshow = true;
         model.mySidenavdiv = false;
         model.mystylenamediv = true;
-        var count = 0;
         model.headervisileble = false;
         model.dynamicFunction = '';
         model.slidephotos = [];
@@ -44,7 +43,6 @@
         model.arrayToString = function(string) {
             return string !== null && string !== "" ? (string.split(',')).map(Number) : null;
         };
-
         model.profileidupdate = function(obj) {
             if (model.divcontrollsbind === 0) {
                 model.init();
@@ -240,6 +238,7 @@
                     }
 
                 } else {
+                    debugger;
                     model.scope.$broadcast('submittablesearch', model.slideshowarray, frompage);
                 }
             });
@@ -434,7 +433,6 @@
                     break;
             }
         };
-
         model.applycolors = function(value, id) {
             alerts.applycolors(value, id);
         };
@@ -449,17 +447,13 @@
         model.close = function(type) {
             modelpopupopenmethod.closepopuppoptopopup();
         };
-
         model.getClickedCustID = function(slide) {
             if (model.dynamicFunction === "getClickedCustID" || model.dynamicFunction === "mismatchProfileCheck") {
                 model.close();
             }
             slide.isShortlisted = true;
             alerts.timeoutoldalerts(model.scope, 'alert-success', 'profile has been shortlisted successfully', 2000);
-            // model.progressbar = [];
-            //model.progressbar = _.where(model.slides, { isShortlisted: true });
         };
-
         model.mismatchProfileCheck = function(slide) {
             if (model.dynamicFunction === "getClickedCustID" || model.dynamicFunction === "mismatchProfileCheck") {
                 model.close();
@@ -494,7 +488,6 @@
                 }
             }
         };
-
         model.checkServicetoShortlist = function(slide) {
             model.slide = slide;
             if (slide.isShortlisted) {
@@ -512,7 +505,6 @@
                 }
             }
         };
-
         model.mainShortListProfile = function() {
             model.shortlistmodel.headettemp = "templates/SearchpopupHeader.html";
             model.shortlistmodel.slides = _.where(model.slides, { isShortlisted: true });
@@ -564,7 +556,6 @@
             }
             return status;
         };
-
         model.proceedanddontproceed = function(typeofbtn, fromcustid, tocustid, logid, AcceptStatus, MatchFollwupStatus) {
             var MobjViewprofile = {
                 ExpressInrestID: logid,

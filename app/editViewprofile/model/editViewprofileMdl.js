@@ -11,6 +11,10 @@
         model.obj.rdnGender = '3';
         model.opendiv = true;
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+        model.totalrowsshow = false;
+        model.showsearchrows = false;
+        model.showsearch = true;
+        model.showpaging = true;
         model.init = function() {
             modelinactive = {};
             return model;
@@ -101,6 +105,7 @@
             ViewAllCustomerService.getViewCustomerData(obj).then(function(response) {
                 if (_.isArray(response.data) && response.data.length > 0) {
                     model.TotalRows = response.data[0].TotalRows;
+                    model.totalrowsshow = true;
                     _.map(response.data, function(item) {
                         item.rowtype = model.rowStyle(item);
                     });
@@ -135,7 +140,21 @@
             var to = val * 10;
             var from = val === 1 ? 1 : to - 9;
             model.ViewAllsubmit(model.obj, from, to);
-        }
+        };
+        model.exportexcel = function(array, columns) {
+            var cloumsarr = [];
+            var selectarray = [];
+            _.each(_.filter(columns, function(item) { return item.key !== "" && item.key !== undefined; }), function(inneritem) {
+                cloumsarr.push({ columnid: inneritem.key, title: inneritem.text });
+            });
+            var options = {
+                headers: true,
+                columns: cloumsarr
+            };
+            var join = _.map(cloumsarr, 'columnid').join(',');
+            var select = 'SELECT ' + join + ' INTO  XLSX("john.xlsx",?) FROM ?';
+            alasql(select, [options, array]);
+        };
         return model.init();
     }
     angular

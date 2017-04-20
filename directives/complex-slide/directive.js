@@ -38,8 +38,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     if (news !== undefined && news !== "" && news !== null) {
                         $scope.Viwedslide = news;
                         $scope.config.slidebind(old, news, $scope.model.slides, $scope.model.typeofPage);
-                        //$scope.isPrevDisabled();
-                        //$scope.isNextDisabled();
                     }
                 });
                 $scope.slidepopup = function(custid) {

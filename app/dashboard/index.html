@@ -50,6 +50,10 @@
             </div>
         </div>
     </div>
+    <script type="text/ng-template" id="tickethistory.html">
+        <div ng-include="page.model.tickethistory">
+        </div>
+    </script>
 </div>
 <script type="text/ng-template" id="uploadsaform.html">
     <form name="uploadForm" novalidate role="form" ng-submit="page.model.uploadfromsubmit===false?page.model.upload(page.model.uploadf):page.model.bouncedemail(page.model.uploadf)">
