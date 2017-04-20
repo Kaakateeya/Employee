@@ -1,8 +1,8 @@
 <uib-accordion close-others="oneAtATime" ng-if="model.typeofPage==='page'">
 
-    <div uib-accordion-group style="margin-top: -12px;" class="panel-default" is-open="true">
+    <div uib-accordion-group style="margin-top: -12px;" class="panel-default" is-open="model.isopenFlag">
         <uib-accordion-heading>
-            Search Tickets<i class="glyphicon" ng-class="{'glyphicon-chevron-down': model.opendiv, 'glyphicon-chevron-right': !model.opendiv}"></i>
+            Search Tickets<i class="glyphicon" ng-class="{'glyphicon-chevron-down': model.isopenFlag, 'glyphicon-chevron-right': !model.isopenFlag}"></i>
         </uib-accordion-heading>
         <div class="row">
             <div class="col-lg-1 form-group">
@@ -44,7 +44,7 @@
                 <label for="Region" class="control-label" ng-hide="true"></label>
                 <br>
                 <div>
-                    <input type="submit" class="btn btn-danger" value="Submit" ng-click="model.matchFollowupSelect(0);">
+                    <input type="submit" class="btn btn-danger" value="Submit" ng-click="model.matchFollowupSelect();">
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
         </div>
     </div>
     <div class="pull-right" ng-if="model.typeofPage!=='page'">
-        <a href="javascript:void(0);" ng-click="model.closepopup();">
+        <a href="javascript:void(0);" ng-click="config.closeprocced();">
             <ng-md-icon icon='close' style='fill:#c73e5f' class='pull-right' size='25'></ng-md-icon>
         </a>
 

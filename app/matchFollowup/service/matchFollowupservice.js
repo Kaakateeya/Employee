@@ -36,7 +36,22 @@
                         RelationShipID: ''
                     }
                 });
-            }
+            },
+            ResendMail: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/MatchFollowupResendMail', obj);
+            },
+            ActionSubmit: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/Insertout_incomingcallCommunicationlogData', obj);
+            },
+            getRaltionName: function(flag, ID, RelationShipID) {
+                return http.get(app.apiroot + 'ExpressInterest/getExpressInterest_linq', {
+                    params: {
+                        flag: flag,
+                        ID: ID,
+                        RelationShipID: RelationShipID
+                    }
+                });
+            },
         };
     }
     angular

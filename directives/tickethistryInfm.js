@@ -8,7 +8,7 @@
     directive.$inject = ['$window'];
 
     function directive($window) {
-        debugger;
+
         var directive = {
             link: link,
             restrict: 'EA',
@@ -17,7 +17,7 @@
                 strdate: '=',
                 strempname: '=',
                 strstatus: '=',
-                strcustName: '=',
+                strcustname: '=',
                 strcomments: '=',
                 strrelationship: '='
             },
@@ -26,9 +26,8 @@
         return directive;
 
         function link(scope, element, attrs) {
-            debugger;
-            scope.relationname = '';
-            scope.relationname = scope.strcustName !== undefined && scope.strcustName !== "" ? (scope.strcustName + '(' + scope.strrelationship + ')') : '';
+            // scope.relationname = '';
+            // scope.relationname = scope.strcustname !== undefined && scope.strcustname !== "" ? (scope.strcustname + '(' + scope.strrelationship + ')') : '';
         }
     }
 

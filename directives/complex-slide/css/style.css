@@ -1,30 +1,45 @@
 .paidCls {
-  color: Green;
-  text-decoration: underline;
-  margin-left: -16px;
-  padding-left: 10px; }
+    color: Green;
+    text-decoration: underline;
+    margin-left: -16px;
+    padding-left: 10px;
+}
 
 .unpaidCls {
-  color: red;
-  text-decoration: underline;
-  margin-left: -16px;
-  padding-left: 10px; }
+    color: red;
+    text-decoration: underline;
+    margin-left: -16px;
+    padding-left: 10px;
+}
 
 .modal-lg {
-  width: 90% !important; }
+    width: 90% !important;
+}
 
 .pauseBtns {
-  width: 33px;
-  height: 33px;
-  font-size: 16px; }
+    width: 33px;
+    height: 33px;
+    font-size: 16px;
+}
 
 .panel {
-  margin-bottom: 0px !important; }
+    margin-bottom: 0px !important;
+}
 
 .nav-sm .menu_section h3,
 .nav-sm .profile,
 .nav-sm span.fa,
 .nav-sm .kaakateeyalogo {
-  display: block; }
+    display: block;
+}
+
+a.left.carousel-control.disabled {
+    display: none;
+}
+
+a.right.carousel-control.disabled {
+    display: none;
+}
+
 
 /*# sourceMappingURL=style.css.map */

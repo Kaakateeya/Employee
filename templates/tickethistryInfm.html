@@ -10,7 +10,7 @@
     <div class="col-lg-7"><label><div> {{strstatus}} </div></label></div>
     <div class="clearfix"></div>
     <div class="col-lg-5" style="color:maroon;"><label>Call Received By</label></div>
-    <div class="col-lg-7"><label><div> {{relationname}} </div></label></div>
+    <div class="col-lg-7"><label><div> {{strcustname !== undefined && strcustname !== "" ? (strcustname + '(' + strrelationship + ')') : ''}} </div></label></div>
     <div class="clearfix"></div>
     <div class="col-lg-12"><label style="color:maroon;">Call Discussion</label>
         <div><label> {{strcomments}} </label></div>

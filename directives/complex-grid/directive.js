@@ -69,7 +69,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     var paymant = "<a style='cursor:pointer;' href='javascript:void(0);'>" + pay + "</a>";
                     return paymant;
                 };
-                scope.page.model.close = function(row) {
+                scope.page.model.close = function() {
                     commonpage.closepopup();
                 };
                 scope.plus = function(data) {
