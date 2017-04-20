@@ -1,5 +1,5 @@
 <div ng-if="model.data.length!==0">
-    <div class="row">
+    <div class="row" ng-if="config.showsearchrows">
         <div class="col-lg-5 totalrecordCls" ng-if="config.showsearch">
             <label class="col-lg-6" for="noofRecords" class="control-label">Total Records : {{model.TotalRows}}</label>
             <input type="image" src="src\images\EXCEL.jpg" ng-click="exportexcel(model.data, model.columns)" style="height: 20px;width: 20px;" class="css-class"></input>
@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="clearfix"></div>
-    <div class="row table-responsive">
+    <div class="table-responsive">
         <table class="Datatable table table-fixed table-hover table-bordered mainTableCls">
             <thead>
                 <tr>

@@ -4,24 +4,8 @@
     function factory(http) {
         var ProfileID = null;
         return {
-            getViewCustomerData: function(EmpID, ProfileIDName, ProfileIDStatus, from, to) {
-                return http.get(app.apiroot + 'CustomerPersonal/getViewAllCustomersSearch', {
-                    params: {
-                        EmpID: EmpID,
-                        SearchData: ProfileIDName,
-                        ProfileIDStatus: ProfileIDStatus,
-                        StartIndex: from,
-                        EndIndex: to
-                    }
-                });
-            },
-            kmplprofileIDData: function(EmpID, ProfileIDName) {
-                return http.get(app.apiroot + 'CustomerPersonal/getViewAllCustomersKMPLProfileID', {
-                    params: {
-                        EmpID: EmpID,
-                        SearchData: ProfileIDName
-                    }
-                });
+            getViewCustomerData: function(obj) {
+                return http.post(app.apiroot + 'CustomerPersonal/Search_ViewEditProfile', obj);
             },
             playbtnProfileData: function(profileid) {
                 return http.get(app.apiroot + 'CustomerPersonal/getProfileIDPlaybutton', {

@@ -19,7 +19,9 @@
              model.emailbounce = null;
              model.uploadfromsubmit = false;
              model.Custidbounce = null;
+             model.tickethistory = "templates/ticketHistoryPopup.html";
              model.slideshowfunction(false);
+             commonpage.showPopupphotopoup('tickethistory.html', model.scope, 'md', "modalclassdashboardphotopopup");
              model.init();
          };
          vm.init();

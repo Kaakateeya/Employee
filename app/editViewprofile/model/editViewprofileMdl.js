@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function factory($http, ViewAllCustomerService, state, helpService, config, alerts, modelpopupopenmethod) {
+    function factory($http, ViewAllCustomerService, state, helpService, config, alerts, modelpopupopenmethod, authSvc) {
         var model = {};
         var modelinactive = {};
         model = config;
@@ -10,6 +10,11 @@
         model.obj = {};
         model.obj.rdnGender = '3';
         model.opendiv = true;
+        model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+        model.totalrowsshow = false;
+        model.showsearchrows = false;
+        model.showsearch = true;
+        model.showpaging = true;
         model.init = function() {
             modelinactive = {};
             return model;
@@ -55,7 +60,6 @@
             modelpopupopenmethod.closepopup();
         };
         model.rowStyle = function(row) {
-
             var classes = ['settled', 'Deleted', 'inactive'];
             // alert(row.ProfileStatusID);
             var test = [
@@ -85,34 +89,33 @@
                 { text: 'Profession', key: 'Profession', type: 'label' },
                 { text: 'Dob', key: 'Age', type: 'label', width: '150px' },
                 { text: 'Gender', key: 'GenderID', type: 'custom', templateUrl: model.GenderStr },
-                // { text: 'Confidential', key: 'Confidential', type: 'label' }
             ];
-            ViewAllCustomerService.getViewCustomerData(2, (inpuobj !== undefined && inpuobj.ProfileIDsearch !== undefined ? inpuobj.ProfileIDsearch : ''), (inpuobj !== undefined && inpuobj.chkProfileIDsts !== undefined ? model.returnnullvalue(inpuobj.chkProfileIDsts) : ""), from, to).then(function(response) {
+
+            var obj = {
+                strFName: inpuobj.Name !== undefined ? inpuobj.Name : "",
+                strSurName: inpuobj.surname !== undefined ? inpuobj.surname : "",
+                strProfileID: inpuobj.ProfileIDsearch !== undefined ? inpuobj.ProfileIDsearch : "",
+                strKMMLID: inpuobj.KmlProfileID !== undefined ? inpuobj.KmlProfileID : "",
+                profileStatus: inpuobj.chkProfileIDsts !== undefined ? model.returnnullvalue(inpuobj.chkProfileIDsts) : "",
+                intStartIndex: from,
+                intEndIndex: to,
+                intEmpID: model.empid
+            };
+
+            ViewAllCustomerService.getViewCustomerData(obj).then(function(response) {
                 if (_.isArray(response.data) && response.data.length > 0) {
                     model.TotalRows = response.data[0].TotalRows;
+                    model.totalrowsshow = true;
                     _.map(response.data, function(item) {
                         item.rowtype = model.rowStyle(item);
                     });
-                    model.opendiv = false;
+                    // model.opendiv = false;
                     model.setData(response.data);
                 }
             });
             return model;
         };
-        model.kmplSubmit = function(inpuobj) {
-            if (inpuobj === undefined || inpuobj === "" || inpuobj === null || inpuobj.KmlProfileID === undefined || inpuobj.KmlProfileID === null || inpuobj.KmlProfileID === "") {
 
-                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please Enter Profileid', 4500);
-            } else {
-                ViewAllCustomerService.kmplprofileIDData(2, (inpuobj !== undefined && inpuobj.KmlProfileID !== undefined ? inpuobj.KmlProfileID : '')).then(function(response) {
-                    if (response.data !== undefined && response.data !== "" && response.data !== null && response.data.length > 0) {
-                        model.opendiv = false;
-                        model.scope.$broadcast('submittable', JSON.parse(response.data[0]));
-                    }
-                });
-            }
-            return model;
-        };
         model.editLink = function(custid) {
             state.go("/", {});
         };
@@ -137,11 +140,25 @@
             var to = val * 10;
             var from = val === 1 ? 1 : to - 9;
             model.ViewAllsubmit(model.obj, from, to);
-        }
+        };
+        model.exportexcel = function(array, columns) {
+            var cloumsarr = [];
+            var selectarray = [];
+            _.each(_.filter(columns, function(item) { return item.key !== "" && item.key !== undefined; }), function(inneritem) {
+                cloumsarr.push({ columnid: inneritem.key, title: inneritem.text });
+            });
+            var options = {
+                headers: true,
+                columns: cloumsarr
+            };
+            var join = _.map(cloumsarr, 'columnid').join(',');
+            var select = 'SELECT ' + join + ' INTO  XLSX("john.xlsx",?) FROM ?';
+            alasql(select, [options, array]);
+        };
         return model.init();
     }
     angular
         .module('Kaakateeya')
         .factory('editViewprofileModel', factory);
-    factory.$inject = ['$http', 'editViewprofileservice', '$state', 'helperservice', 'complex-grid-config', 'alert', 'modelpopupopenmethod'];
+    factory.$inject = ['$http', 'editViewprofileservice', '$state', 'helperservice', 'complex-grid-config', 'alert', 'modelpopupopenmethod', 'authSvc'];
 })(angular);

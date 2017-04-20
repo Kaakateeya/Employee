@@ -9,6 +9,7 @@
         model.topage = 10;
         model.tablenameflag = "";
         model.proceedprofileid = "";
+        model.selectedIndex = 0;
         model.exportData = function(id) {
             var options = {
                 headers: true,

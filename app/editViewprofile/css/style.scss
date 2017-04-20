@@ -142,3 +142,20 @@
          border-radius: 7px;
      }
  }
+ 
+ #editandviewprofile {
+     .panel-default>.panel-heading {
+         height: 40px;
+     }
+ }
+ 
+ #editandviewprofile {
+     .search_page_main {
+         max-width: 1160px;
+         // margin: 30px auto 60px;
+         border: 1px solid #cecece;
+         border-radius: 3px;
+         box-shadow: 2px 2px 6px #ccc;
+         min-height: 200px;
+     }
+ }

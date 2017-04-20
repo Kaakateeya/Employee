@@ -122,7 +122,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/invalidFocus.js',
                         'directives/focusDirective.js',
                         'directives/bindHtmlEvents.js',
-                        'directives/tickethistryInfm.js'
+                        'directives/tickethistryInfm.js',
+                        'directives/marketingticket.js'
                     ]
                 },
                 {
@@ -199,13 +200,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             } else if (item.name === 'dashboard') {
                                 $ocLazyLoad.load('dashboard');
-                                // $ocLazyLoad.load('commonjs');
-                                // $ocLazyLoad.load('directives');
-                                // $ocLazyLoad.load('constants');
-                                // $ocLazyLoad.load('modules');
-                                // $ocLazyLoad.load('complex-grid');
-                                // $ocLazyLoad.load('complex-slide');
-                                // $ocLazyLoad.load('Expressintrst');
+                                $ocLazyLoad.load('commonjs');
+                                $ocLazyLoad.load('directives');
+                                $ocLazyLoad.load('constants');
+                                $ocLazyLoad.load('modules');
+                                $ocLazyLoad.load('complex-grid');
+                                $ocLazyLoad.load('complex-slide');
+                                $ocLazyLoad.load('Expressintrst');
                                 return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
                             } else if (item.name === 'editViewprofile' || item.name === 'EmployeePayment') {
                                 $ocLazyLoad.load('commonjs');

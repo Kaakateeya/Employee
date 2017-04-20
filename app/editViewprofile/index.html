@@ -1,27 +1,17 @@
 <div class="right_col" role="main" id="editandviewprofile">
-    <div class="">
-        <uib-accordion close-others="oneAtATime">
-
-            <div uib-accordion-group style="margin-top: -12px;" class="panel-default" is-open="page.model.opendiv">
-                <uib-accordion-heading>
-                    Search Kaakateeya Customers <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
-                </uib-accordion-heading>
-                <div class="row maindiv">
-                    <div class="col-lg-2"><input type="text" ng-keyup="$event.keyCode == 13 && page.model.kmplSubmit(page.model.obj);" placeholder="Surname" ng-model="page.model.obj.KmlProfileID" class="form-control"> </div>
-                    <div class="col-lg-2"><input type="text" ng-keyup="$event.keyCode == 13 && page.model.kmplSubmit(page.model.obj);" placeholder="Name" ng-model="page.model.obj.KmlProfileID" class="form-control"></div>
-                    <div class="col-lg-2"><input type="text" ng-keyup="$event.keyCode == 13 && page.model.kmplSubmit(page.model.obj);" placeholder="KMPLID" ng-model="page.model.obj.KmlProfileID" class="form-control"></div>
-                    <div class="col-lg-2"> <input focus-me="true" type="text" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,10);" placeholder="Profile ID" ng-model="page.model.obj.ProfileIDsearch" class="form-control"></div>
-                    <div class="clearfix col-lg-3">
+    <div class="search_page_main">
+        <div>
+            <div class="panel-default">
+                <div class="panel-heading">
+                    <h4 class="col-lg-4" style="color: #A00201;font-size: 17px;">Search Kaakateeya Customers</h4>
+                    <div class="col-lg-3" style="color: black;font-size: 13px;">
                         <md-radio-group name="IsHighestDegree" ng-change="page.model.genderChange(page.model.obj.rdnGender);" layout="row" ng-model="page.model.obj.rdnGender" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                             <md-radio-button value="3" class="md-primary">Both</md-radio-button>
                             <md-radio-button value="1"> Male </md-radio-button>
                             <md-radio-button value="2"> Female </md-radio-button>
                         </md-radio-group>
                     </div>
-                </div>
-                <br>
-                <div>
-                    <div class="clearfix">
+                    <div class="col-lg-5" style="color: black;font-size: 13px;">
                         <label ng-repeat="role in page.model.profileidstatus">
                         <md-checkbox data-checklist-change="page.model.chkChange();"  data-checklist-model="page.model.obj.chkProfileIDsts" data-checklist-value="role.value"> {{role.name}}&nbsp;
                           </md-checkbox>
@@ -29,48 +19,20 @@
 
                     </div>
                 </div>
-
-                <div class="row maindiv">
-                    <div class="col-lg-7">
-                        <div class="clearfix">
-                            <label for="kmplProfileID" class="col-lg-4">KMPL ProfileID</label>
-                            <div class="col-lg-5">
-                                <input type="text" ng-keyup="$event.keyCode == 13 && page.model.kmplSubmit(page.model.obj);" ng-model="page.model.obj.KmlProfileID" class="form-control">
-                            </div>
-                            <div class="col-lg-3">
-                                <button class="btn btn-warning pull-left" ng-click="page.model.kmplSubmit(page.model.obj)">Go</button>
-                            </div>
-                        </div>
-                        <div class="clearfix">
-                            <label for="kmplProfileID" class="col-lg-4">Search By ProfileID / Name</label>
-                            <div class="col-lg-5">
-                                <input focus-me="true" type="text" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,10);" ng-model="page.model.obj.ProfileIDsearch" class="form-control">
-                            </div>
-                            <div class="col-lg-3">
-                                <button class="btn btn-warning pull-left" ng-click="page.model.ViewAllsubmit(page.model.obj,1,10)">Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-5">
-                        <div class="clearfix">
-                            <md-radio-group name="IsHighestDegree" ng-change="page.model.genderChange(page.model.obj.rdnGender);" layout="row" ng-model="page.model.obj.rdnGender" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                <md-radio-button value="3" class="md-primary">Both</md-radio-button>
-                                <md-radio-button value="1"> Male </md-radio-button>
-                                <md-radio-button value="2"> Female </md-radio-button>
-                            </md-radio-group>
-                        </div>
-                        <div class="clearfix" style="text-align: left;">
-                            <label ng-repeat="role in page.model.profileidstatus">
-                        <md-checkbox data-checklist-change="page.model.chkChange();"  data-checklist-model="page.model.obj.chkProfileIDsts" data-checklist-value="role.value"> {{role.name}}&nbsp;
-                          </md-checkbox>
-                       </label>
-
-                        </div>
+                <div class="row maindiv panel-body">
+                    <div class="col-lg-2"><input type="text" focus-me="true" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,10);" placeholder="Surname" ng-model="page.model.obj.surname" class="form-control"> </div>
+                    <div class="col-lg-2"><input type="text" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,10);" placeholder="Name" ng-model="page.model.obj.Name" class="form-control"></div>
+                    <div class="col-lg-2"> <input type="text" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,10);" placeholder="Profile ID" ng-model="page.model.obj.ProfileIDsearch" class="form-control"></div>
+                    <div class="col-lg-2"><input type="text" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,10);" placeholder="KMPLID" ng-model="page.model.obj.KmlProfileID" class="form-control"></div>
+                    <div class="col-lg-1"><button class="btn btn-warning pull-left" ng-click="page.model.ViewAllsubmit(page.model.obj,1,10)">Go</button></div>
+                    <div class="col-lg-3" ng-show="page.model.totalrowsshow">
+                        <label class="col-lg-10" for="noofRecords" class="control-label">Total Records : {{page.model.TotalRows}}</label>
+                        <input type="image" src="src\images\EXCEL.jpg" ng-click="page.exportexcel(page.model.data, page.model.columns)" style="height: 20px;width: 20px;" class="css-class"></input>
                     </div>
                 </div>
             </div>
 
-        </uib-accordion>
+        </div>
         <complex-grid ng-if="page.model.columns" config="page.model" model="page.model"></complex-grid>
     </div>
     <script type="text/ng-template" id="settlePopup.html">

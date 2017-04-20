@@ -137,6 +137,7 @@ app.directive("bootstrapTable", ['commonpage', '$timeout',
                     scope.BootstrapTableLoad(array);
                 });
                 scope.$on('submittablesearch', function(event, array, frompage) {
+                    debugger;
                     scope.tablebtnshow = true;
                     scope.dynamictableshow = true;
                     tableArray = array;

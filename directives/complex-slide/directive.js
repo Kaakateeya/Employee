@@ -9,7 +9,9 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
             templateUrl: "directives/complex-slide/index.html",
             link: function($scope, element, attrs) {
                 $scope.myInterval = 0;
+                $scope.myIntervalphoto = 0;
                 $scope.noWrapSlides = true;
+                $scope.noWrapSlidesphoto = true;
                 $scope.activeslide = 0;
                 $scope.activeslidephoto = 0;
                 $scope.mainshortlist = false;
@@ -36,8 +38,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     if (news !== undefined && news !== "" && news !== null) {
                         $scope.Viwedslide = news;
                         $scope.config.slidebind(old, news, $scope.model.slides, $scope.model.typeofPage);
-                        //$scope.isPrevDisabled();
-                        //$scope.isNextDisabled();
                     }
                 });
                 $scope.slidepopup = function(custid) {

@@ -1,0 +1,33 @@
+<div class="row" ng-if="strtype==='INCOMING' || strtype==='OUT GOING'">
+    <div class="col-lg-12 text-center" style="font-weight:bold;">
+        <span class="maroon"> {{strdate}} </span>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-5" style="color:maroon;"><label>Call Done By</label></div>
+    <div class="col-lg-7"><label> {{strempname}} </label></div>
+    <div class="clearfix"></div>
+    <div class="col-lg-5" style="color:maroon;"><label>Call Status</label></div>
+    <div class="col-lg-7"><label><div> {{strstatus}} </div></label></div>
+    <div class="clearfix"></div>
+    <div class="col-lg-5" style="color:maroon;"><label>Call Received By</label></div>
+    <div class="col-lg-7"><label><div> {{relationname}} </div></label></div>
+    <div class="clearfix"></div>
+    <div class="col-lg-12"><label style="color:maroon;">Call Discussion</label>
+        <div><label> {{strcomments}} </label></div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<div class="row" ng-if="strtype==='MatchFollowupReply' || strtype==='MatchFollowUpStatus' || strtype==='INTERNAL MEMO' || strtype==='CLOSE' || strtype==='REPLY'">
+    <div class="col-lg-12 text-center" style="font-weight:bold;">
+        <c class="maroon"> {{strdate}} </c>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-5" style="color:maroon;"><label>Employee Name</label></div>
+    <div class="col-lg-7"><label><div> {{strempname}} </div></label></div>
+    <div class="clearfix"></div>
+    <div class="col-lg-12"><label style="color:maroon;">Comments</label>
+        <div><label> {{strcomments}} </label></div>
+    </div>
+    <div class="clearfix"></div>
+</div>
