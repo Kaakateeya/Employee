@@ -123,15 +123,18 @@
 
         model.slidebind = function(old, news, array, type) {
 
-            model.frompopoverIsOpen = false;
-            model.topopoverIsOpen = false;
+
             if (type === 'popup') {
+                model.proceed.frompopoverIsOpen = false;
+                model.proceed.topopoverIsOpen = false;
                 if (parseInt(model.proceed.topage) - parseInt(news) === 4) {
                     model.proceed.frompage = parseInt(model.proceed.topage) + 1;
                     model.proceed.topage = parseInt(model.proceed.topage) + 10;
                     model.matchFollowupSelect(undefined, model.custid, 'proceedpopup');
                 }
             } else {
+                model.frompopoverIsOpen = false;
+                model.topopoverIsOpen = false;
                 if (parseInt(model.topage) - parseInt(news) === 4) {
                     model.frompage = parseInt(model.topage) + 1;
                     model.topage = parseInt(model.topage) + 10;
@@ -182,7 +185,7 @@
             model.proceed.frompage = 1;
             model.proceed.topage = 10;
             model.matchFollowupSelect(undefined, custid, 'proceedpopup');
-            modelpopupopenmethod.showPopup('Proceedslide.html', model.scope, 'lg', "");
+            modelpopupopenmethod.showPopup('Proceedslide.html', model.scope, 'lg', "proceedcls");
         };
 
         model.proceed.closepopup = function() {
