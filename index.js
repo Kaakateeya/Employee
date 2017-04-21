@@ -37,20 +37,21 @@ app.BucketName = 'angularkaknew';
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider',
     function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
         var states = [
-            { name: 'dashboard', url: '/dashboardpage', isloginrequired: true },
-            { name: 'login', url: '/', isloginrequired: false },
-            { name: 'searchpage', url: '/search/:id', isloginrequired: true },
-            { name: 'editViewprofile', url: '/editViewprofileurl', isloginrequired: false },
-            { name: 'EmployeePayment', url: '/EmployeePayments', isloginrequired: false },
-            { name: 'EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID/:status/:paymentID', isloginrequired: false },
-            { name: 'bootstrapTable', url: '/bootstrapTables', isloginrequired: false },
-            { name: 'employeeViewfullprofile', url: '/Viewfullprofile/:ProfileID', isloginrequired: false },
-            { name: 'expressInterest', url: '/expressInterestpage', isloginrequired: false },
-            { name: 'myProfile', url: '/myProfilepage', isloginrequired: false },
-            { name: 'matchFollowup', url: '/matchFollowuppage', isloginrequired: false },
-            { name: 'marketing', url: '/marketingpage', isloginrequired: false },
-            { name: 'bootstrapSlide', url: '/bootstrapSlideshow', isloginrequired: false, module: 'complex-slide' },
-            { name: 'bootstrapPopup', url: '/bootstrapPopups', isloginrequired: false, module: 'complex-popup' }
+            // { routeName: 'base', name: 'base', abstract: true },
+            { routeName: 'login', name: 'base.login', url: '/', isloginrequired: false },
+            { routeName: 'dashboard', name: 'base.dashboard', url: '/dashboardpage', isloginrequired: true, module: 'dashboard' },
+            { routeName: 'searchpage', name: 'base.searchpage', url: '/search/:id', isloginrequired: true },
+            { routeName: 'editViewprofile', name: 'base.editViewprofile', url: '/editViewprofileurl', isloginrequired: false },
+            { routeName: 'EmployeePayment', name: 'base.EmployeePayment', url: '/EmployeePayments', isloginrequired: false },
+            { routeName: 'EmployeePaymentInsert', name: 'base.EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID/:status/:paymentID', isloginrequired: false },
+            { routeName: 'bootstrapTable', name: 'base.bootstrapTable', url: '/bootstrapTables', isloginrequired: false },
+            { routeName: 'employeeViewfullprofile', name: 'base.employeeViewfullprofile', url: '/Viewfullprofile/:ProfileID', isloginrequired: false },
+            { routeName: 'expressInterest', name: 'base.expressInterest', url: '/expressInterestpage', isloginrequired: false },
+            { routeName: 'myProfile', name: 'base.myProfile', url: '/myProfilepage', isloginrequired: false },
+            { routeName: 'matchFollowup', name: 'base.matchFollowup', url: '/matchFollowuppage', isloginrequired: false },
+            { routeName: 'marketing', name: 'base.marketing', url: '/marketingpage', isloginrequired: false },
+            { routeName: 'bootstrapSlide', name: 'base.bootstrapSlide', url: '/bootstrapSlideshow', isloginrequired: false, module: 'complex-slide' },
+            { routeName: 'bootstrapPopup', name: 'base.bootstrapPopup', url: '/bootstrapPopups', isloginrequired: false, module: 'complex-popup' }
         ];
         $ocLazyLoadProvider.config({
             debug: true
@@ -154,13 +155,26 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
         });
 
         $urlRouterProvider.otherwise('/');
+        $stateProvider.state('base', {
+            abstract: true,
+            resolve: {
+                loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    $ocLazyLoad.load('commonjs');
+                    $ocLazyLoad.load('directives');
+                    $ocLazyLoad.load('constants');
+                    $ocLazyLoad.load('modules');
+                    $ocLazyLoad.load('complex-grid');
+                    $ocLazyLoad.load('complex-slide');
+                }]
+            }
+        });
         _.each(states, function(item) {
             var innerView = {};
-            if (item.name === "login") {
+            if (item.routeName === "login") {
                 innerView = {
                     "lazyLoadView@": {
-                        templateUrl: "app/" + item.name + '/index.html',
-                        controller: item.name + 'Ctrl as page'
+                        templateUrl: "app/" + item.routeName + '/index.html',
+                        controller: item.routeName + 'Ctrl as page'
                     }
                 };
             } else {
@@ -169,8 +183,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         templateUrl: "templates/topheader.html"
                     },
                     "lazyLoadView@": {
-                        templateUrl: "app/" + item.name + '/index.html',
-                        controller: item.name + 'Ctrl as page'
+                        templateUrl: "app/" + item.routeName + '/index.html',
+                        controller: item.routeName + 'Ctrl as page'
                     },
                     "bottompanel@": {
                         templateUrl: "templates/footer.html"
@@ -189,46 +203,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                             if (item.module !== undefined) {
                                 $ocLazyLoad.load(item.module);
                             }
-                            if (item.name === 'login' || item.name === "employeeViewfullprofile" || item.name === "EmployeePayment") {
-                                $ocLazyLoad.load('commonjs');
-                                $ocLazyLoad.load('directives');
-                                $ocLazyLoad.load('constants');
-                                $ocLazyLoad.load('modules');
-                                $ocLazyLoad.load('complex-grid');
-                                $ocLazyLoad.load('complex-slide');
-                                $ocLazyLoad.load('Expressintrst');
-                                return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
-                            } else if (item.name === 'dashboard') {
-                                $ocLazyLoad.load('dashboard');
-                                $ocLazyLoad.load('commonjs');
-                                $ocLazyLoad.load('directives');
-                                $ocLazyLoad.load('constants');
-                                $ocLazyLoad.load('modules');
-                                $ocLazyLoad.load('complex-grid');
-                                $ocLazyLoad.load('complex-slide');
-                                $ocLazyLoad.load('Expressintrst');
-                                return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
-                            } else if (item.name === 'editViewprofile' || item.name === 'EmployeePayment') {
-                                $ocLazyLoad.load('commonjs');
-                                $ocLazyLoad.load('directives');
-                                $ocLazyLoad.load('constants');
-                                $ocLazyLoad.load('modules');
-                                $ocLazyLoad.load('complex-grid');
-                                $ocLazyLoad.load('complex-slide');
-                                $ocLazyLoad.load('Expressintrst');
-                                return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
-                            } else {
-                                $ocLazyLoad.load('commonjs');
-                                $ocLazyLoad.load('directives');
-                                $ocLazyLoad.load('constants');
-                                $ocLazyLoad.load('modules');
-                                $ocLazyLoad.load('complex-grid');
-                                $ocLazyLoad.load('complex-slide');
-                                $ocLazyLoad.load('Expressintrst');
-                                return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/controller/' + item.name + 'ctrl.js', 'app/' + item.name + '/model/' + item.name + 'Mdl.js', 'app/' + item.name + '/service/' + item.name + 'service.js']);
-                            }
+                            return $ocLazyLoad.load([
+                                'app/' + item.routeName + '/css/style.css',
+                                'app/' + item.routeName + '/controller/' + item.routeName + 'ctrl.js',
+                                'app/' + item.routeName + '/model/' + item.routeName + 'Mdl.js',
+                                'app/' + item.routeName + '/service/' + item.routeName + 'service.js'
+                            ]);
                         } else {
-                            return $ocLazyLoad.load(['app/' + item.name + '/css/style.css', 'app/' + item.name + '/src/scripts.min.js']);
+                            return $ocLazyLoad.load(['app/' + item.routeName + '/css/style.css', 'app/' + item.routeName + '/src/scripts.min.js']);
                         }
                     }]
                 },

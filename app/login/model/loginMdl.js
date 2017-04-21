@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function factory($http, uibModal, loginservice, route, authSvc, $state, helperservice) {
+    function factory($http, uibModal, loginservice, authSvc, $state, helperservice) {
         var model = {},
             modalpopupopen;
         model.loginsubmit = {};
@@ -38,7 +38,7 @@
                                 model.loginarray = response.data.m_Item1;
                                 model.empphoto = response.data.m_Item1.EmpPhotoPath;
                                 authSvc.user(response.data.m_Item1);
-                                $state.go("dashboard", {});
+                                $state.go("base.dashboard", {});
                                 model.loginsubmit.usernameemployee = "";
                                 model.loginsubmit.passwordemployee = "";
                                 break;
@@ -91,6 +91,6 @@
         .module('Kaakateeya')
         .factory('loginModel', factory);
 
-    factory.$inject = ['$http', '$uibModal', 'loginservice', 'route', 'authSvc', '$state', 'helperservice'];
+    factory.$inject = ['$http', '$uibModal', 'loginservice', 'authSvc', '$state', 'helperservice'];
 
 })();
