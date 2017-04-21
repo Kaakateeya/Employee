@@ -2,7 +2,7 @@
      'use strict';
 
      angular
-         .module('module')
+         .module('Kaakateeya')
          .controller('parametervalueCtrl', controller)
 
      controller.$inject = ['$location'];

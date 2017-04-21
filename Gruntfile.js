@@ -169,7 +169,7 @@ module.exports = function(grunt) {
                         }
                     },
                     {
-                        file: ('app/' + (grunt.option('option-path') + '/css/') + (grunt.option('option-path') + "style.css")),
+                        file: ('app/' + (grunt.option('option-path') + '/css/style.css')),
                         method: function(fs, fd, done) {
                             done();
                         }

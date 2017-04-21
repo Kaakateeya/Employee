@@ -1,0 +1,179 @@
+<div class="right_col myprofile" role="main">
+    <div ng-init="page.model.pageload()">
+        <div id="printablediv">
+            <div class="profile_full_main" ng-show="page.model.PageDiv">
+                <div ng-show="page.model.divacceptreject" style="border: solid 1px #fff;">
+                    <div id="upAll">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <h2 style="color: rgb(92, 82, 82);">Kaakateeya Marriages{{page.model.liticket}}</h2>
+                            </div>
+                            <div id="updateContentssa" class="">
+                                <div class="profile_full_header_in_ui clearfix col-lg-4" ng-show="page.model.liproceed">
+                                    <a id="btnProceed" href="javascript:void(0)" ng-click="page.model.btnProceed_Click('btnProceed')">Proceed</a>
+                                    <a id="btnDontProceed" href="javascript:void(0)" ng-click="page.model.btnProceed_Click('btnDontProceed')">Don't Proceed</a>
+                                </div>
+                            </div>
+                            <div ng-show="page.model.liaccept" class="profile_full_header_in_ui clearfix col-lg-4">
+                                <div id="UpdatePanel6">
+                                    <a id="btnaccept" href="javascript:void(0)" ng-click="page.model.acceptreject('btnaccept')">Accept</a>
+                                    <a id="btnreject" href="javascript:void(0)" ng-click="page.model.acceptreject('btnreject')">Reject</a>
+                                </div>
+                            </div>
+                            <div ng-show="page.model.liticket" class="profile_full_header_in_ui clearfix col-lg-3 col-lg-offset-1">
+                                <a class="">{{page.model.btnticket}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div id="divProfile" class="profile_full_header clearfix">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div id="UpdateImagesContent">
+                                <div id="divmask" class="profile_full_header_pic">
+                                    <img name="iProfilePic" id="iProfilePic" ng-click="page.model.photoalbum()" ng-src="{{page.model.personalinfo[0].ApplicationPhotoPath}}" style="height:150px;width:150px;cursor:pointer;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="profile_full_header_in">
+                                <h6>
+                                    <span id="lblName">{{page.model.personalinfo[0].NAME}}</span>
+                                    <span>
+                                <span id="lblonlychild" style="font-weight:bold;"></span>
+                                    <span id="lblProfileIDs"> (Profile ID:{{page.model.personalinfo[0].ProfileID}})</span>
+                                    </span>
+                                </h6>
+                                <p>
+                                    <span id="lblAboutMyself" class="lblAboutMyself" style="color:Black;font-weight:bold;color: #000">About Myself :</span>
+                                </p>
+                                <p>
+                                    <span id="lblDescMy" class="fontsize" style="width: 750px;">{{page.model.aboutmyself[0].Aboutyourself}}</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <img name="iProfilePic" ng-click="page.model.viewhoroscopeimage()" ng-hide="!(page.model.horoscopeimage)" ng-src="{{page.model.horoimagesrc}}" style="height:160px;width:150px;cursor:pointer;" />
+                        </div>
+                    </div>
+                </div>
+                <div id="printdiv">
+                    <div class="personal_inform_main">
+
+                        <div ng-repeat="item in page.model.arr" ng-if="item.header=='Headings' || item.header=='About'?'':item.header">
+                            <div id="ctl00_divmain" class="personal_inform_head clearfix" style="background-color: rgb(244, 182, 36); padding: 6px 10px; border-bottom: solid 1px #ccc;">
+                                <h6>
+                                    <span id="ctl00_lblHeadings" class="lblHeadings" style="color: black;font-weight: 700;">{{item.header}}</span></h6>
+                            </div>
+
+                            <div id="ctl00_divsub" class="personal_inform_main_in">
+                                <div id="ctl00_divStyle" ng-class="item.header=='My Basic Details'|| item.header=='My Location Information'?'personal_inform_main_in_list clearfix': ''">
+                                    <p ng-repeat="itm in item.value">
+                                        <span id="ctl00_innerRepeater_ctl00_lblContentName" class="lblContentName" style="color:Black;font-weight:bold;">{{itm.columnname || itm.ColumnName}}</span>
+                                        <span>
+                              <span  style="color:DarkBlue;"> 
+                                <span ng-if="(itm.columnname!='' && itm.columnname!=null) ||(itm.ColumnName!='' && itm.ColumnName!=null) " style="color:DarkBlue;">:</span>
+                                        <span ng-bind-html="itm.value || itm.Value" style="color:DarkBlue;"></span>
+
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/ng-template" id="TabClosePopup.html">
+                <div class="modal-message modal-danger">
+                    <div class="modal-header" id="divhead1">
+                        <i class="glyphicon glyphicon-fire"></i>
+                    </div>
+                    <div class="modal-body" id="modalbodyID1">
+                        {{modalbodyID1}}
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnclose" class="btn btn-default" ng-click="page.model.modalpopupclose1()">Close</button>
+                    </div>
+                </div>
+            </script>
+            <script type="text/ng-template" id="PopupDivToclose.html">
+                <div class="modal-message modal-danger" id="PopupDivToclosedialog" ng-style="page.model.PopupDivToclosedialog===true?{'width':'541px'}:''">
+                    <div class="modal-header" id="div5">
+                        <i class="glyphicon glyphicon-fire"></i>
+                    </div>
+                    <div class="modal-body">
+                        {{page.model.divmodalbodytoClose}}
+                    </div>
+                    <div class="modal-footer">
+                        <button id="Button3" class="btn btn-default" ng-click="page.model.modalpopupclosetab()">Close</button>
+                    </div>
+                </div>
+            </script>
+            <script type="text/ng-template" id="PageloadAcceptRejectpopup.html">
+                <div class="modal-message modal-danger">
+                    <div class="modal-header" id="div6">
+                        <i class="glyphicon glyphicon-fire"></i>
+                    </div>
+                    <div class="modal-body">
+                        {{page.model.modalbodydivContent}}
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnOk" class="btn btn-default" ng-click="page.model.btnoksubmit()">Ok</button>
+                        <button id="Button2" class="btn btn-default" ng-click="page.model.modalpopupclosetab()">Close</button>
+                    </div>
+                </div>
+            </script>
+            <script type="text/ng-template" id="photopopup.html">
+                <button type="button" class="glyphicon glyphicon-remove" style="font-size: 18px; color: white; float: right; background-color: black; right: 286px;"></button>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="page.model.modalpopupclose()">×</button>
+                        <h4 class="modal-title">{{scope.headerpopup}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="bs-example">
+                            <div id="slideshow" class="carousel slide" data-interval="3000" data-ride="carousel" ng-hide="page.model.popupmodalbody">
+                                <ol class="carousel-indicators">
+                                    <li ng-repeat="slide in page.model.slides" data-target="#slideshow" ng-class="$index+1==1?'active':''" data-slide-to="$index+1-1"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div ng-class="($index+1)==1?'item active':'item'" ng-repeat="slide in slides"><img id="imh" ng-src="{{slide.FullPhotoPath}}"></div>
+                                </div>
+                                <a data-target="#slideshow" id="a1" class="carousel-control left" href="javascript:void(0)" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                </a>
+                                <a data-target="#slideshow" id="a2" class="carousel-control right" href="javascript:void(0)" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                            </div>
+                            <div ng-hide="!(page.model.popupmodalbody)">
+
+                                <img ng-src="{{((page.model.personalinfo[0].HoroscopeImage).indexOf('Imagesnew')!==-1)?((personalinfo[0].HoroscopeImage).replace('http://d16o2fcjgzj2wp.cloudfront.net/Imagesnew','https://s3.ap-south-1.amazonaws.com/angularkaknew/Imagesnew')):(personalinfo[0].HoroscopeImage)}}"
+                                    style="height: 500px; width: 500px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </script>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .profile_full_header_in_ui a {
+        border-radius: 3px;
+        margin: 0 0 0 10px;
+        display: block;
+        float: left;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        color: white;
+        background-color: rgb(102, 204, 255);
+        border: solid 1px #ccc;
+        transition: all 0.4s ease-in-out;
+    }
+    
+    .modal-backdrop {
+        z-index: 1040 !important;
+    }
+</style>
