@@ -37,7 +37,7 @@ app.BucketName = 'angularkaknew';
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider',
     function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
         var states = [
-            { routeName: 'base', name: 'base', abstract: true },
+            // { routeName: 'base', name: 'base', abstract: true },
             { routeName: 'login', name: 'base.login', url: '/', isloginrequired: false },
             { routeName: 'dashboard', name: 'base.dashboard', url: '/dashboardpage', isloginrequired: true, module: 'dashboard' },
             { routeName: 'searchpage', name: 'base.searchpage', url: '/search/:id', isloginrequired: true },
@@ -154,20 +154,19 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
         });
 
         $urlRouterProvider.otherwise('/');
-        // $stateProvider.state('base', {
-        //     abstract: true,
-        //     resolve: {
-        //         loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-        //             console.log(item.routeName);
-        //             $ocLazyLoad.load('commonjs');
-        //             $ocLazyLoad.load('directives');
-        //             $ocLazyLoad.load('constants');
-        //             $ocLazyLoad.load('modules');
-        //             $ocLazyLoad.load('complex-grid');
-        //             $ocLazyLoad.load('complex-slide');
-        //         }]
-        //     }
-        // });
+        $stateProvider.state('base', {
+            abstract: true,
+            resolve: {
+                loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    $ocLazyLoad.load('commonjs');
+                    $ocLazyLoad.load('directives');
+                    $ocLazyLoad.load('constants');
+                    $ocLazyLoad.load('modules');
+                    $ocLazyLoad.load('complex-grid');
+                    $ocLazyLoad.load('complex-slide');
+                }]
+            }
+        });
         _.each(states, function(item) {
             var innerView = {};
             if (item.routeName === "login") {
@@ -193,7 +192,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                 };
             }
 
-            $stateProvider.state(item.routeName, {
+            $stateProvider.state(item.name, {
                 url: item.url,
                 views: innerView,
                 resolve: { // Any property in resolve should return a promise and is executed before the view is loaded
@@ -203,21 +202,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                             if (item.module !== undefined) {
                                 $ocLazyLoad.load(item.module);
                             }
-                            if (item.routeName === 'base') {
-                                $ocLazyLoad.load('commonjs');
-                                $ocLazyLoad.load('directives');
-                                $ocLazyLoad.load('constants');
-                                $ocLazyLoad.load('modules');
-                                $ocLazyLoad.load('complex-grid');
-                                $ocLazyLoad.load('complex-slide');
-                            } else {
-                                return $ocLazyLoad.load([
-                                    'app/' + item.routeName + '/css/style.css',
-                                    'app/' + item.routeName + '/controller/' + item.routeName + 'ctrl.js',
-                                    'app/' + item.routeName + '/model/' + item.routeName + 'Mdl.js',
-                                    'app/' + item.routeName + '/service/' + item.routeName + 'service.js'
-                                ]);
-                            }
+                            return $ocLazyLoad.load([
+                                'app/' + item.routeName + '/css/style.css',
+                                'app/' + item.routeName + '/controller/' + item.routeName + 'ctrl.js',
+                                'app/' + item.routeName + '/model/' + item.routeName + 'Mdl.js',
+                                'app/' + item.routeName + '/service/' + item.routeName + 'service.js'
+                            ]);
                         } else {
                             return $ocLazyLoad.load(['app/' + item.routeName + '/css/style.css', 'app/' + item.routeName + '/src/scripts.min.js']);
                         }
