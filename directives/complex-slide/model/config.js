@@ -40,7 +40,8 @@
                         paid: item.paid,
                         IsConfidential: item.IsConfidential,
                         SuperConfidentila: item.SuperConfidentila,
-                        HoroscopeStatus: item.HoroscopeStatus
+                        HoroscopeStatus: item.HoroscopeStatus,
+                        HoroscopePath: item.HoroscopePath
                     });
                     model.data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
                     model.data.push({ label: 'DOB(age)', value: item.DOB + '(' + item.Age + ')' });
@@ -83,7 +84,9 @@
                         CasteID: item.CasteID,
                         serviceDate: item.serviceDate,
                         ProfileID: item.ProfileID,
-                        HoroscopePath: item.HoroscopePath
+                        HoroscopePath: item.HoroscopePath,
+                        FTicketStatus: item.FTicketStatus,
+                        TTicketStatus: item.TTicketStatus
                     });
                 });
             };

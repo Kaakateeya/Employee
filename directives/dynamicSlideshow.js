@@ -400,7 +400,9 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                 scope.notificationread = function(Cust_NotificationID, index, parentindex, Custid, CategoryID) {
                     scope.$emit("notificationread", Cust_NotificationID, index, parentindex, Custid, CategoryID);
                 };
-
+                scope.tickethistoryupdate = function(ticketid) {
+                    scope.$emit("ticketupdate", ticketid);
+                };
 
             }
         };

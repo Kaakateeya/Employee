@@ -207,7 +207,7 @@ button.multiselect.dropdown-toggle.btn.ng-pristine.ng-untouched.ng-valid.ng-isol
   color: maroon; }
 
 .color_black {
-  color: #000; }
+  color: #655d5d; }
 
 .imgheight {
   height: 29px; }
@@ -236,5 +236,8 @@ button.multiselect.dropdown-toggle.btn.ng-pristine.ng-untouched.ng-valid.ng-isol
 
 #slideshow a.right.carousel-control.disabled {
   display: none; }
+
+.modalclassdashboardphotopopup .modal-dialog.modal-md {
+  width: 70%; }
 
 /*# sourceMappingURL=style.css.map */

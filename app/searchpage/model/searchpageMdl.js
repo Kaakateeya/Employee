@@ -22,7 +22,6 @@
         model.selectedIndex = 0;
         model.activatedmobile = true;
         model.searchpopuptext = "General Search";
-        model.divcontrollsbind = 0;
         model.Relationshipname = "";
         model.relationshippopup = null;
         model.typrofsearch = "2";
@@ -35,12 +34,16 @@
         model.divmismatchData = [];
         model.templateUrl = "templates/angularSlide.html";
         model.headettemp = "templates/angularHeader.html";
+        model.tickethistory = "templates/ticketHistoryPopup.html";
+        model.selectedIndex = 0;
+        model.tabsshowhidecontrols = true;
         model.shortlistmodel = {};
         model.returnnullvalue = function(value) {
             var obj = helpService.checkstringvalue(value) && (value.toString()) !== "0" && (value.toString()) !== 0 ? (value.toString()) : null;
             return obj;
         };
         model.arrayToString = function(string) {
+            debugger;
             return string !== null && string !== "" ? (string.split(',')).map(Number) : null;
         };
         model.profileidupdate = function(obj) {
@@ -95,10 +98,15 @@
                     model.advancedsearch.Drink = model.arrayToString(data.Drink);
                     model.advancedsearch.advancedbodyType = model.arrayToString(data.BodyTypeID);
                     model.advancedsearch.advancedPhysicalStatus = model.arrayToString(data.physicalstatusid);
+                    //
                     timeout(function() {
                         model.generalsearch.caste = model.arrayToString(data.casteid);
                         model.advancedsearch.advancedcaste = model.arrayToString(data.casteid);
                     }, 100);
+                    model.generalsearch.Applicationstatusidgeneral = model.arrayToString("54");
+                    model.generalsearch.Showprofile = model.arrayToString("1");
+                    model.advancedsearch.Applicationstatusidadvanced = model.arrayToString("54");
+                    model.advancedsearch.Showprofileadvanced = model.arrayToString("1");
 
                 }
                 alerts.dynamicpopupclose();
@@ -134,11 +142,11 @@
             model.Applicationstatus = getArray.GArray("Applicationstatus");
             model.Smoke = getArray.GArray("Smoke");
             model.Diet = getArray.GArray("Diet");
-            model.generalsearch.Applicationstatus = model.arrayToString("54");
+            model.generalsearch.Applicationstatusidgeneral = model.arrayToString("54");
             model.generalsearch.Showprofile = model.arrayToString("1");
             model.generalsearch.mothertongue = model.arrayToString("1");
             model.generalsearch.Religion = model.arrayToString("1");
-            model.advancedsearch.Applicationstatus = model.arrayToString("54");
+            model.advancedsearch.Applicationstatusidadvanced = model.arrayToString("54");
             model.advancedsearch.Showprofileadvanced = model.arrayToString("1");
             model.advancedsearch.advancedmothertongue = model.arrayToString("1");
             model.advancedsearch.advancedReligion = model.arrayToString("1");
@@ -194,7 +202,7 @@
                     Dateofregto: helpService.checkstringvalue(object.dortoreg) ? filter('date')(object.dortoreg, 'MM/dd/yyyy') : null,
                     LastestLoginsfrom: helpService.checkstringvalue(object.lastloginfrom) ? filter('date')(object.lastloginfrom, 'MM/dd/yyyy') : null,
                     LastestLoginsto: helpService.checkstringvalue(object.lastloginto) ? filter('date')(object.lastloginto, 'MM/dd/yyyy') : null,
-                    ApplicationstatusID: model.returnnullvalue(object.Applicationstatus),
+                    ApplicationstatusID: model.returnnullvalue(object.Applicationstatusidgeneral),
                     ApplicationstatusText: null,
                     PropertyValuefrom: helpService.checkstringvalue(object.propertyfrom) ? object.propertyfrom : null,
                     PropertyValueto: helpService.checkstringvalue(object.propertyto) ? object.propertyto : null,
@@ -220,6 +228,7 @@
                 }
             };
             searchpageServices.generalsearchsubmit(model.CgetDetails).then(function(response) {
+                console.log(response.data);
                 model.isshortlistprogressbar = true;
                 model.slideshowarray = [];
                 _.each(response.data, function(item) {
@@ -244,7 +253,6 @@
             });
         };
         model.closepopup = function() {
-
             if (model.divcontrollsbind === 0) {
                 model.init();
             }
@@ -291,7 +299,7 @@
                     Dateofregto: helpService.checkstringvalue(object.dateofregto) ? object.dateofregto : null,
                     LastestLoginsfrom: helpService.checkstringvalue(object.latestloginfrom) ? object.latestloginfrom : null,
                     LastestLoginsto: helpService.checkstringvalue(object.latestloginto) ? object.latestloginto : null,
-                    ApplicationstatusID: model.returnnullvalue(object.Applicationstatus),
+                    ApplicationstatusID: model.returnnullvalue(object.Applicationstatusidadvanced),
                     ApplicationstatusText: null,
                     PropertyValuefrom: helpService.checkstringvalue(object.propertyfrom) ? object.propertyfrom : null,
                     PropertyValueto: helpService.checkstringvalue(object.propertyto) ? object.propertyto : null,
@@ -443,6 +451,9 @@
 
         model.applycolorsfortextboxesdate = function(value, id) {
             alerts.applycolorsfortextboxesdate(value, id);
+        };
+        model.closeupload = function(type) {
+            modelpopupopenmethod.closepopuppoptopopup();
         };
         model.close = function(type) {
             modelpopupopenmethod.closepopuppoptopopup();
@@ -656,7 +667,16 @@
         model.viewfullprofile = function(profileid) {
             window.open("Viewfullprofile/" + profileid, "_blank");
         };
-
+        model.ticketclass = function(status) {
+            var background = "#fff";
+            if (parseInt(status) === 258) {
+                background = "#C8E6E6";
+            }
+            return background;
+        };
+        model.tickethistoryupdation = function(ticket) {
+            modelpopupopenmethod.showPopupphotopoup('tickethistory.html', model.scope, 'md', "modalclassdashboardphotopopup");
+        };
         return model;
     }
     angular

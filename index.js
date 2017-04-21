@@ -165,6 +165,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     $ocLazyLoad.load('modules');
                     $ocLazyLoad.load('complex-grid');
                     $ocLazyLoad.load('complex-slide');
+                    $ocLazyLoad.load('Expressintrst');
                 }]
             }
         });
@@ -228,7 +229,7 @@ app.run(function($rootScope, $state, $stateParams) {
         if (to.data && to.data.requiresLogin) {
             if (sessionStorage.getItem('LoginEmpid') === null || sessionStorage.getItem('LoginEmpid') === undefined || sessionStorage.getItem('LoginEmpid') === "") {
                 e.preventDefault();
-                $state.go('dashboard');
+                $state.go('base.dashboard');
             } else {
                 if (sessionStorage.getItem('LoginEmpid') !== null && sessionStorage.getItem('LoginEmpid') !== undefined && sessionStorage.getItem('LoginEmpid') !== "") {}
             }
