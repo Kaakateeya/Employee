@@ -239,6 +239,9 @@
             }
 
         };
+        model.mailchange = function(val) {
+            return _.where(model.ReplyArr, { value: parseInt(val) })[0].text;
+        };
         model.openSmsMail = function(type, name, profileid, email, mobilenumber, mobileCountryCode, ticketID, EmpmobileNumber, fromcustid, tocustid, ticketStatusId, ToProfileID) {
             model.typeofmailSms = type;
             model.txtsmsmail = '';
@@ -263,9 +266,14 @@
                     marketbothflag: 'Bothone'
                 }
             } else {
+
+
+
                 model.custName = name + '(' + profileid + ')';
                 model.custemail = email;
                 model.bindreplytype();
+                model.ddlmail = 5;
+
                 model.mailInput = {
                     Notes: model.txtsmsmail,
                     EMPID: model.empid,
@@ -278,6 +286,9 @@
                     FromProfileID: profileid,
                     ToProfileID: ToProfileID
                 }
+                timeout(function() {
+                    model.txtsmsmail = model.mailchange(model.ddlmail);
+                }, 500);
 
             }
             modelpopupopenmethod.showPopup('sendsmsMail.html', model.scope, 'md', 'mailCls');
@@ -309,9 +320,7 @@
                 });
             }
         };
-        model.mailchange = function(val) {
-            return _.where(model.ReplyArr, { value: parseInt(val) })[0].text;
-        };
+
         model.Settlementfom = function(val) {
             model.image = val;
             modelpopupopenmethod.showPopupphotopoup('templates/bindImagePopup.html', model.scope, 'md', 'settlecls');

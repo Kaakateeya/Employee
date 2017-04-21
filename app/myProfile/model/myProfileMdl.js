@@ -52,6 +52,17 @@
             var paid = "<a>" + row.ProfileID + ' (' + row.KMPLID + ')' + "</a>";
             return paid;
         };
+        model.reset = function() {
+            model.mpObj = {};
+            model.mpObj.rdnprofileType = '';
+            model.mpObj.rdnGender = '';
+            model.mpObj.rdnWebsiteLogin = '';
+            model.mpObj.rdncontactsVerified = '';
+            model.mpObj.rdnWebsiteBlocked = '';
+            model.mpObj.ddlApplicationStatus = [54];
+            model.mpObj.ddlCaste = [402];
+        };
+
         model.allLinksTemplateDUrl = function(row) {
             var stronlineliteclass = row.onlinepaidcls == "light" ? row.onlinepaidcls + ' Linkdisabled' : row.onlinepaidcls;
             var strofflineliteclass = row.offlinepaidcls == "light" ? row.offlinepaidcls + ' Linkdisabled' : row.offlinepaidcls;

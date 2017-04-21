@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('module')
+        .module('Kaakateeya')
         .factory('parametervalueModel', factory)
 
     factory.$inject = ['$http'];
