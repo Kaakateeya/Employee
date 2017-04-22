@@ -1,32 +1,17 @@
 <div class="right_col" role="main" class="ExpressintrstCls" ng-controller="expressInterestCtrl as page">
     <div class="search_page_main">
-        <h4 style="font-size: 18px;color: #b10c0c;">Express Interest <a ng-if="page.model.disableinput" href="javascript:void(0);" ng-click="page.model.close();" class="pull-right" style="padding:1%;">X</a></h4>
+        <div style="font-size: 18px;color: #b10c0c;margin-bottom: -16px;">Express Interest &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="text-center" ng-if="page.model.showHide==1"> <span class="custheaderCls maroon">Name :   </span><span class="headervalue">{{page.model.NAME}}</span>&nbsp;&nbsp;
+            <span class="custheaderCls maroon">Membership Expires on   </span><span class="headervalue">{{page.model.OfflineMembershipExpiryDate|date:'dd-MM-yyyy'}}  ({{page.model.Offline_Used_Count}} / {{page.model.Max_Offline_Allowed}})</span>
+            </span>
+            <a ng-if="page.model.disableinput" href="javascript:void(0);" ng-click="page.model.close();" class="pull-right" style="padding:1%;">X</a>
+        </div>
         <br />
         <div class="regmain register_page_main">
             <form name="ExpressintrstForm" novalidate role="form" ng-submit="ExpressintrstForm.$valid && page.model.Submit(page.model.exiObj);">
                 <div class="maindivCls">
                     <div ng-if="page.model.showHide==1">
-                        <div class="row">
-                            <div class="col-lg-5">
-                                <label for="" class="control-label col-lg-7 maroon">Membership expiry date </label><span class="control-label col-lg-5"> {{page.model.OfflineMembershipExpiryDate|date:'dd-MM-yyyy'}}</span>
-                            </div>
-                            <div class="col-lg-3">
-                                <label for="" class="control-label col-lg-6 maroon">Total points </label><span class="control-label col-lg-6"> {{page.model.Max_Offline_Allowed}}</span>
-                            </div>
-                            <div class="col-lg-4">
-                                <label for="" class="control-label col-lg-5 maroon">Balance points </label><span class="control-label col-lg-6"> {{page.model.Offline_Used_Count}}</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="col-lg-4">
-                                    <label for="" class="control-label pull-right">Name</label>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="" class="control-label" style="color: rgb(228, 101, 31);">{{page.model.NAME}}</label>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="col-lg-4">
@@ -35,9 +20,7 @@
                                 <div class="col-lg-6">
                                     <select multiselectdropdown name="exiModeofservice" class="smalldropdown" ng-model="page.model.exiObj.ModeofService" ng-options="item.value as item.label for item in page.model.Modeservicearray" required>   
                                 </select>
-                                    <!--<div class="reuiredcls" ng-if="ExpressintrstForm.exiModeofservice.$invalid && ExpressintrstForm.$submitted">
-                                        This field is required
-                                    </div>-->
+
                                 </div>
                             </div>
                         </div>
@@ -90,7 +73,7 @@
                                 <label for="" class="control-label pull-right">Selected profiles list</label>
                             </div>
                             <div class="col-lg-4">
-                                <select multiple style="width: 275px;height: 97px;" ng-change="page.model.bindImages(page.model.exiObj.lstProfiles)" ng-options="item.value as item.label for item in page.model.SelectProfilelst" ng-model="page.model.exiObj.lstProfiles">
+                                <select multiple style="width: 275px;height: 61px;" ng-change="page.model.bindImages(page.model.exiObj.lstProfiles)" ng-options="item.value as item.label for item in page.model.SelectProfilelst" ng-model="page.model.exiObj.lstProfiles">
                                  </select>
                             </div>
                         </div>
@@ -100,10 +83,6 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="chkmailscls">
-
-                                    <!--<div ng-repeat="rEmail in page.model.Emailsarray">
-                                        <input type="checkbox" checked><span><b> {{rEmail.Email}}</b> </span>
-                                    </div>-->
                                     <label ng-repeat="role in page.model.emailselectedArr" style="width: 100%;">
                                     <md-checkbox  data-checklist-model="page.model.exiObj.chkmails" data-checklist-checked="true" data-checklist-value="role.emailid"> {{role.Email}}&nbsp;
                                     </md-checkbox>
@@ -147,9 +126,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="col-lg-4">
+
+                    <div class="row" style="padding-top:1%;">
+                        <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label for="" class="control-label pull-right">Send sms</label>
                             </div>
                             <div class="col-lg-6">
@@ -159,19 +139,15 @@
                                 </md-radio-group>
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="col-lg-4">
-                                <md-checkbox ng-model="page.model.exiObj.chkrvrsend">RVR send</md-checkbox>
-                            </div>
+                        <div class="col-lg-3">
+                            <md-checkbox ng-model="page.model.exiObj.chkrvrsend">RVR send</md-checkbox>
                         </div>
-                    </div>
-                    <div class="clearfix"></div>
 
-                    <div class="row">
-                        <div class="text-center">
+                        <div class="col-lg-4">
                             <button class="button_custom" style="display:initial;" type="submit">Sent to Service</button>
                             <button type="reset" ng-click="page.model.clearform();" style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset">Reset</button>
                         </div>
+
                     </div>
                     <div class="clearfix"></div>
                     </br>
