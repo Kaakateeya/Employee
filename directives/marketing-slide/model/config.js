@@ -77,12 +77,18 @@
         };
 
         model.memoSubmit = function(obj) {
-
-            marketsvc.InOutSubmit(inputObj).then(function(respnse) {
+            //msg, tktID, empid, assignEmpid
+            marketsvc.memoSubmit(obj.txtmrktcalldiscussionMemo, model.ticketID, model.empid, obj.ddlmrktAssignmemo).then(function(respnse) {
                 console.log(respnse);
             });
         };
 
+        model.closeSubmit = function(obj) {
+            //reasn, tktID, empid
+            marketsvc.closeSubmit(obj.txtmrktcloseReasn, model.ticketID, model.empid).then(function(respnse) {
+                console.log(respnse);
+            });
+        };
 
         return model.init();
     }

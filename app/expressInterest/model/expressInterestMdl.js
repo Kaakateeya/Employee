@@ -4,7 +4,7 @@
     function factory(http, expressInterestService, modelpopupopenmethod, authSvc, timeout, alertss) {
         var model = {};
         model.scope = {};
-        strimages = '';
+        var strimages = '';
         model.exiObj = {};
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
         model.fromcustid = '';
