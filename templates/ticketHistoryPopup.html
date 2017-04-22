@@ -1,6 +1,5 @@
+<button type="button" class="close" ng-click="page.model.closeupload()">&times;</button>
 <div class="col-lg-12">
-    <button type="button" class="close" ng-click="page.model.closeupload()">&times;</button>
-    <h4 class="modal-title text-center" style="color: maroon;">TICKET INFORMATION</h4>
     <div class="text-center ticketpopuppopupheader">
         <div class="row">
             <div class="col-lg-2">
@@ -31,13 +30,85 @@
         </div>
     </div>
 </div>
+<!--<div class="search_page_tabs" id="MainTabs">
+    <ul id="tabs">
+        <li class="active"><a href="#divhistory" data-toggle="tab" id="lnkticketview" onclick="return HideshowContacts();">View</a></li>
+        <li class=""><a href="#divSendMail" data-toggle="tab" id="lnkticketAdd">Send Mail</a></li>
+        <li class=""><a href="#divIncomingCall" data-toggle="tab" id="lnkIncoming">Incoming Call</a></li>
+        <li class=""><a href="#divOutgoing" id="lnkOutgoing" data-toggle="tab">Outgoing Call</a></li>
+        <li class=""><a href="#divMemo" id="lnkmemo" data-toggle="tab">Internal Memo</a></li>
+        <li class=""><a href="#divCloseTicket" id="lnkcloseticket" data-toggle="tab">Close ticket</a></li>
+        <li><a href="#divAssignTicket" id="lnkAssignticket" data-toggle="tab" style="display: none;">Assign/Reassign ticket</a></li>
+    </ul>
+    <div class="clear">&nbsp;</div>
+</div>-->
 <div>
     <md-content class="md-padding">
         <md-tabs md-selected="page.model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
-            <md-tab label="Enter Incoming Call" ng-click="page.model.tabsshowhidecontrols=!page.model.tabsshowhidecontrols">
+            <md-tab label="View">
+                <div class="tab">
+                    <div class="col-lg-12">
+                        <div id="Updatediv1" style="overflow-y: scroll;height: 450px;overflow-x: hidden;">
+                            <div class="row">
+                                <div class="col-lg-12 text-center" style="font-weight:bold;">
+                                    <c class="maroon">Reply</c> <label>done on</label>
+                                    <c class="maroon">22-Jun-2016-15:46:03</c>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div>
+                                    <div class="col-lg-5"><label class="maroon"> Replied By</label></div>
+                                    <div class="col-lg-7"><label>Sujatha Motukhayala</label></div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-lg-12"><label style="color:maroon;">Comments</label>
+                                    <div><label>Thanks for Contacting kaakateeya.com. Your Profile is not Verified. Kindly call below contact number.
+                                     sujatha: 9848535373..Sent Mail</label></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-lg-12 text-center" style="font-weight:bold;">
+                                    <c class="maroon">OUT GOING</c> <label>Call done on</label>
+                                    <c class="maroon">16-Jun-2016-18:27:30</c>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-lg-5"><label class="maroon">Call Done By</label></div>
+                                <div class="col-lg-7"><label>Lakshmi kudithipudi</label></div>
+                                <div class="clearfix"></div>
+                                <div class="col-lg-5"><label class="maroon">Call Status</label></div>
+                                <div class="col-lg-7"><label><div>UnSucessfull</div></label></div>
+                                <div class="clearfix"></div>
+                                <div class="col-lg-5"><label class="maroon">Call Received By</label>
+                                </div>
+                                <div class="col-lg-7"><label><div></div></label></div>
+                                <div class="clearfix"></div>
+                                <div class="col-lg-12"><label style="color:maroon;">Call Discussion</label>
+                                    <div><label>this is lakshmi(hd022) call not lifted</label></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-lg-12 text-center" style="font-weight:bold;">
+                                    <c class="maroon">InternalMemo</c> <label>done on</label>
+                                    <c class="maroon">30-May-2016-09:34:30</c>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-lg-5"><label class="maroon"> Employee Name</label></div>
+                                <div class="col-lg-7"><label><div>SANDHYA DOMA</div></label></div>
+                                <div class="clearfix"></div>
+                                <div class="col-lg-12"><label style="color:maroon;">Comments</label>
+                                    <div><label>this profile(111013412)is assigned to lakshmi(HD)</label></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div><br></div>
+                    </div>
+                </div>
+            </md-tab>
+
+            <md-tab label="Incoming Call">
                 <div class="tab">
                     <br>
-                    <div ng-hide="page.model.tabsshowhidecontrols">
+                    <div>
                         <ul>
                             <div class="col-lg-12">
                                 <li class="col-lg-6">
@@ -114,67 +185,12 @@
                         <br>
                         <md-divider></md-divider>
                     </div>
-                    <div class="col-lg-12">
-                        <div id="Updatediv1" style="overflow-y: scroll;height: 450px;overflow-x: hidden;">
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">Reply</c> <label>done on</label>
-                                    <c class="maroon">22-Jun-2016-15:46:03</c>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div>
-                                    <div class="col-lg-5"><label class="maroon"> Replied By</label></div>
-                                    <div class="col-lg-7"><label>Sujatha Motukhayala</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Comments</label>
-                                    <div><label>Thanks for Contacting kaakateeya.com. Your Profile is not Verified. Kindly call below contact number.
-                                     sujatha: 9848535373..Sent Mail</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">OUT GOING</c> <label>Call done on</label>
-                                    <c class="maroon">16-Jun-2016-18:27:30</c>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Done By</label></div>
-                                <div class="col-lg-7"><label>Lakshmi kudithipudi</label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Status</label></div>
-                                <div class="col-lg-7"><label><div>UnSucessfull</div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Received By</label>
-                                </div>
-                                <div class="col-lg-7"><label><div></div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Call Discussion</label>
-                                    <div><label>this is lakshmi(hd022) call not lifted</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">InternalMemo</c> <label>done on</label>
-                                    <c class="maroon">30-May-2016-09:34:30</c>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon"> Employee Name</label></div>
-                                <div class="col-lg-7"><label><div>SANDHYA DOMA</div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Comments</label>
-                                    <div><label>this profile(111013412)is assigned to lakshmi(HD)</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br></div>
-                    </div>
                 </div>
             </md-tab>
-            <md-tab label="Enter Outgoing Call" ng-click="page.model.tabsshowhidecontrols=!page.model.tabsshowhidecontrols">
+            <md-tab label="Outgoing Call">
                 <div class="tab">
                     <br>
-                    <div ng-hide="page.model.tabsshowhidecontrols">
+                    <div>
                         <ul>
                             <div class="col-lg-12">
                                 <li class="col-lg-6">
@@ -252,67 +268,13 @@
                         </div>
                         <md-divider></md-divider>
                     </div>
-                    <div class="col-lg-12">
-                        <div id="Updatediv1" style="overflow-y: scroll;height: 450px;overflow-x: hidden;">
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">Reply</c> <label>done on</label>
-                                    <c class="maroon">22-Jun-2016-15:46:03</c>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div>
-                                    <div class="col-lg-5"><label class="maroon"> Replied By</label></div>
-                                    <div class="col-lg-7"><label>Sujatha Motukhayala</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Comments</label>
-                                    <div><label>Thanks for Contacting kaakateeya.com. Your Profile is not Verified. Kindly call below contact number.
-                                     sujatha: 9848535373..Sent Mail</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">OUT GOING</c> <label>Call done on</label>
-                                    <c class="maroon">16-Jun-2016-18:27:30</c>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Done By</label></div>
-                                <div class="col-lg-7"><label>Lakshmi kudithipudi</label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Status</label></div>
-                                <div class="col-lg-7"><label><div>UnSucessfull</div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Received By</label>
-                                </div>
-                                <div class="col-lg-7"><label><div></div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Call Discussion</label>
-                                    <div><label>this is lakshmi(hd022) call not lifted</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">InternalMemo</c> <label>done on</label>
-                                    <c class="maroon">30-May-2016-09:34:30</c>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon"> Employee Name</label></div>
-                                <div class="col-lg-7"><label><div>SANDHYA DOMA</div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Comments</label>
-                                    <div><label>this profile(111013412)is assigned to lakshmi(HD)</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br></div>
-                    </div>
+
                 </div>
             </md-tab>
-            <md-tab label="Enter Internal Memo" ng-click="page.model.tabsshowhidecontrols=!page.model.tabsshowhidecontrols">
+            <md-tab label="Internal Memo">
                 <div class="tab">
                     <br>
-                    <div ng-hide="page.model.tabsshowhidecontrols">
+                    <div>
                         <ul>
                             <div class="col-lg-12">
                                 <li class="col-lg-6">
@@ -357,67 +319,13 @@
 
                         <md-divider></md-divider>
                     </div>
-                    <div class="col-lg-12">
-                        <div id="Updatediv1" style="overflow-y: scroll;height: 450px;overflow-x: hidden;">
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">Reply</c> <label>done on</label>
-                                    <c class="maroon">22-Jun-2016-15:46:03</c>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div>
-                                    <div class="col-lg-5"><label class="maroon"> Replied By</label></div>
-                                    <div class="col-lg-7"><label>Sujatha Motukhayala</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Comments</label>
-                                    <div><label>Thanks for Contacting kaakateeya.com. Your Profile is not Verified. Kindly call below contact number.
-                                     sujatha: 9848535373..Sent Mail</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">OUT GOING</c> <label>Call done on</label>
-                                    <c class="maroon">16-Jun-2016-18:27:30</c>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Done By</label></div>
-                                <div class="col-lg-7"><label>Lakshmi kudithipudi</label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Status</label></div>
-                                <div class="col-lg-7"><label><div>UnSucessfull</div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Received By</label>
-                                </div>
-                                <div class="col-lg-7"><label><div></div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Call Discussion</label>
-                                    <div><label>this is lakshmi(hd022) call not lifted</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">InternalMemo</c> <label>done on</label>
-                                    <c class="maroon">30-May-2016-09:34:30</c>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon"> Employee Name</label></div>
-                                <div class="col-lg-7"><label><div>SANDHYA DOMA</div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Comments</label>
-                                    <div><label>this profile(111013412)is assigned to lakshmi(HD)</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br></div>
-                    </div>
+
                 </div>
             </md-tab>
-            <md-tab label="Enter Close Ticket" ng-click="page.model.tabsshowhidecontrols=!page.model.tabsshowhidecontrols">
+            <md-tab label="Close Ticket">
                 <div class="tab">
                     <br>
-                    <div ng-hide="page.model.tabsshowhidecontrols">
+                    <div>
                         <ul>
                             <div class="col-lg-12">
                                 <li class="col-lg-6">
@@ -452,67 +360,13 @@
                         </div>
                         <md-divider></md-divider>
                     </div>
-                    <div class="col-lg-12">
-                        <div id="Updatediv1" style="overflow-y: scroll;height: 450px;overflow-x: hidden;">
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">Reply</c> <label>done on</label>
-                                    <c class="maroon">22-Jun-2016-15:46:03</c>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div>
-                                    <div class="col-lg-5"><label class="maroon"> Replied By</label></div>
-                                    <div class="col-lg-7"><label>Sujatha Motukhayala</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Comments</label>
-                                    <div><label>Thanks for Contacting kaakateeya.com. Your Profile is not Verified. Kindly call below contact number.
-                                     sujatha: 9848535373..Sent Mail</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">OUT GOING</c> <label>Call done on</label>
-                                    <c class="maroon">16-Jun-2016-18:27:30</c>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Done By</label></div>
-                                <div class="col-lg-7"><label>Lakshmi kudithipudi</label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Status</label></div>
-                                <div class="col-lg-7"><label><div>UnSucessfull</div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Received By</label>
-                                </div>
-                                <div class="col-lg-7"><label><div></div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Call Discussion</label>
-                                    <div><label>this is lakshmi(hd022) call not lifted</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">InternalMemo</c> <label>done on</label>
-                                    <c class="maroon">30-May-2016-09:34:30</c>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon"> Employee Name</label></div>
-                                <div class="col-lg-7"><label><div>SANDHYA DOMA</div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Comments</label>
-                                    <div><label>this profile(111013412)is assigned to lakshmi(HD)</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br></div>
-                    </div>
+
                 </div>
             </md-tab>
-            <md-tab label="Enter Assign/Reassign Ticket" ng-click="page.model.tabsshowhidecontrols=!page.model.tabsshowhidecontrols">
+            <md-tab label="Assign/Reassign Ticket">
                 <div class="tab">
                     <br>
-                    <div ng-hide="page.model.tabsshowhidecontrols">
+                    <div>
                         <ul>
                             <div class="col-lg-12">
                                 <li class="col-lg-6">
@@ -539,61 +393,6 @@
                         <div class="clearfix">
                         </div>
                         <md-divider></md-divider>
-                    </div>
-                    <div class="col-lg-12">
-                        <div id="Updatediv1" style="overflow-y: scroll;height: 450px;overflow-x: hidden;">
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">Reply</c> <label>done on</label>
-                                    <c class="maroon">22-Jun-2016-15:46:03</c>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div>
-                                    <div class="col-lg-5"><label class="maroon"> Replied By</label></div>
-                                    <div class="col-lg-7"><label>Sujatha Motukhayala</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Comments</label>
-                                    <div><label>Thanks for Contacting kaakateeya.com. Your Profile is not Verified. Kindly call below contact number.
-                                     sujatha: 9848535373..Sent Mail</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">OUT GOING</c> <label>Call done on</label>
-                                    <c class="maroon">16-Jun-2016-18:27:30</c>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Done By</label></div>
-                                <div class="col-lg-7"><label>Lakshmi kudithipudi</label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Status</label></div>
-                                <div class="col-lg-7"><label><div>UnSucessfull</div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Received By</label>
-                                </div>
-                                <div class="col-lg-7"><label><div></div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Call Discussion</label>
-                                    <div><label>this is lakshmi(hd022) call not lifted</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">InternalMemo</c> <label>done on</label>
-                                    <c class="maroon">30-May-2016-09:34:30</c>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon"> Employee Name</label></div>
-                                <div class="col-lg-7"><label><div>SANDHYA DOMA</div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Comments</label>
-                                    <div><label>this profile(111013412)is assigned to lakshmi(HD)</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br></div>
                     </div>
                 </div>
             </md-tab>

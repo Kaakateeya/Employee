@@ -227,3 +227,38 @@ c.maroon {
 .maroon {
     color: maroon !important;
 }
+
+.search_page_tabs {}
+
+.search_page_tabs ul {}
+
+.search_page_tabs ul li {
+    float: left;
+}
+
+.search_page_tabs ul li a {
+    cursor: pointer;
+    display: block;
+    text-transform: uppercase;
+    color: #898989 !important;
+    line-height: 18px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 12px 30px !important;
+    border-right: solid 1px #b8b8b8;
+    border-bottom: solid 2px #898989;
+    transition: all 0.4s ease-in-out;
+}
+
+.search_page_tabs ul li a:focus,
+.search_page_tabs ul li a:hover,
+.search_page_tabs ul li a.active {
+    color: #a00201 !important;
+    border-bottom-color: #a00201;
+}
+
+.modalclassdashboardphotopopup {
+    .md-tab {
+        padding: 14px 15px;
+    }
+}

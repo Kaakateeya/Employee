@@ -280,6 +280,9 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                         case "Customer Notification Status":
                             scope.typeofslidedate = "Action Date";
                             break;
+                        case "NoData Service Profiles":
+                            scope.typeofslidedate = "Registered Date";
+                            break;
 
                     }
                     scope.slidearray = [];
