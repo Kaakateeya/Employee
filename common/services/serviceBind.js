@@ -122,6 +122,23 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
                     ProfileID: profileid
                 }
             });
+        },
+        marketReplytype: function(type) {
+            return http.get(app.apiroot + 'ExpressInterest/getMatchFollowup_linq', {
+                params: {
+                    flag: 'Market_replytype',
+                    ID: '',
+                    RelationShipID: ''
+                }
+            });
+        },
+        EmpBinding: function(flag, ID) {
+            return http.get(app.apiroot + 'EmployeeReportPage/getMyProfileBindings', {
+                params: {
+                    flag: flag,
+                    ID: ID,
+                }
+            });
         }
 
     };
