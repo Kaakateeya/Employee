@@ -21,7 +21,6 @@
              model.Custidbounce = null;
              model.tickethistory = "templates/ticketHistoryPopup.html";
              model.slideshowfunction(false);
-             commonpage.showPopupphotopoup('tickethistory.html', model.scope, 'md', "modalclassdashboardphotopopup");
              model.init();
          };
          vm.init();
@@ -85,6 +84,10 @@
 
          scope.$on("notificationread", function(event, Cust_NotificationID, index, parentindex, Custid, CategoryID) {
              model.notificationread(Cust_NotificationID, index, parentindex, Custid, CategoryID);
+         });
+
+         scope.$on("ticketupdate", function(event, ticketid) {
+             model.tickethistorypopup(ticketid);
          });
      }
      angular.module('Kaakateeya').controller('dashboardCtrl', ['dashboardModel', '$scope', 'dashboardServices', 'modelpopupopenmethod', 'alert', Controller]);

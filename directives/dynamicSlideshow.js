@@ -280,6 +280,9 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                         case "Customer Notification Status":
                             scope.typeofslidedate = "Action Date";
                             break;
+                        case "NoData Service Profiles":
+                            scope.typeofslidedate = "Registered Date";
+                            break;
 
                     }
                     scope.slidearray = [];
@@ -400,7 +403,9 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                 scope.notificationread = function(Cust_NotificationID, index, parentindex, Custid, CategoryID) {
                     scope.$emit("notificationread", Cust_NotificationID, index, parentindex, Custid, CategoryID);
                 };
-
+                scope.tickethistoryupdate = function(ticketid) {
+                    scope.$emit("ticketupdate", ticketid);
+                };
 
             }
         };

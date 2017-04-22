@@ -18,6 +18,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.Viwedslide = 1;
                 $scope.playbutton = false;
                 $scope.width = "";
+                $scope.photoalbum = "Photo Album";
                 $scope.pauseResume = function(action) {
                     if (action === 'play') {
                         $scope.myInterval = 5000;
@@ -41,6 +42,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     }
                 });
                 $scope.slidepopup = function(custid) {
+                    $scope.photoalbum = "Photo Album";
                     SelectBindServiceApp.getphotoslideimages(custid).then(function(response) {
                         $scope.slidephotos = [];
                         $scope.popupmodalbody = false;
@@ -51,6 +53,8 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     });
                 };
                 $scope.horoscopeimage = function(image) {
+                    debugger;
+                    $scope.photoalbum = "Horoscope Path";
                     $scope.HoroscopeImage = image;
                     $scope.popupmodalbody = true;
                     modelpopupopenmethod.showPopupphotopoup('dynamicphotopopup.html', $scope, '', "modalclassdashboardphotopopup");

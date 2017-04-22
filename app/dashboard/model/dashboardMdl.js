@@ -10,6 +10,7 @@
         model.tablenameflag = "";
         model.proceedprofileid = "";
         model.selectedIndex = 0;
+        model.tabsshowhidecontrols = true;
         model.exportData = function(id) {
             var options = {
                 headers: true,
@@ -172,6 +173,9 @@
                     alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Email Updated Failed', 2000);
                 }
             });
+        };
+        model.tickethistorypopup = function(TicketID) {
+            commonpage.showPopupphotopoup('tickethistory.html', model.scope, 'md', "modalclassdashboardphotopopup");
         };
         return model;
     }

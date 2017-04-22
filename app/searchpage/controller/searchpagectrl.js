@@ -17,6 +17,7 @@
              model.ProfileIDpopup = "";
              model.generalsearch = {};
              model.advancedsearch = {};
+             model.divcontrollsbind = 0;
              model.divcontrolls = true;
              model.headervisileble = false;
              model.slideshowtrue = false;
