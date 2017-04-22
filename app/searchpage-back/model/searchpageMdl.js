@@ -42,7 +42,7 @@
             return obj;
         };
         model.arrayToString = function(string) {
-            debugger;
+
             return string !== null && string !== "" ? (string.split(',')).map(Number) : null;
         };
         model.profileidupdate = function(obj) {
@@ -118,6 +118,11 @@
             return Arr;
         };
         model.init = function() {
+            model.photogradearray = [{ value: 216, name: 'A' },
+                { value: 217, name: 'B' },
+                { value: 218, name: 'C' },
+                { value: 219, name: 'D' }
+            ];
             model.divcontrollsbind = 1;
             model.maritalstatus = model.removeSelect(arrayConstants.MaritalStatus);
             model.Religion = model.removeSelect(arrayConstants.Religion);
@@ -126,7 +131,7 @@
             model.stars = model.removeSelect(arrayConstants.stars);
             model.Country = getArray.GArray('Country');
             model.Professiongroup = getArray.GArray('ProfGroup');
-            model.educationcategory = model.removeSelect(arrayConstants.educationcategorywithoutselect);
+            // model.educationcategory = model.removeSelect(arrayConstants.educationcategorywithoutselect);
             model.currency = getArray.GArray('currency');
             model.Complexion = model.removeSelect(arrayConstants.Complexion);
             model.Professionsearch = model.removeSelect(arrayConstants.Professionsearch);
@@ -151,7 +156,19 @@
             model.advancedsearch.advancedReligion = model.arrayToString("1");
             model.generalsearch.country = model.arrayToString("1");
             model.Caste = Commondependency.casteDepedency(model.generalsearch.Religion, model.generalsearch.mothertongue);
+
+            _.each(model.dom, function(parentItem) {
+                _.each(parentItem.controlList, function(item) {
+                    if (item.dataBind) {
+                        model[item.dataSource] = model.removeSelect(arrayConstants[item.dataBind]);
+                    } else if (item.dataApi) {
+                        model[item.dataSource] = getArray.GArray(item.dataBind);
+                    }
+                });
+
+            });
         };
+
         model.GetPhotoandHoroscopevalues = function(strType, str) {
             if (str !== null && str !== undefined && str !== "") {
                 if (strType == "horo") {
@@ -247,19 +264,25 @@
                     }
 
                 } else {
-                    debugger;
+
                     model.scope.$broadcast('submittablesearch', model.slideshowarray, frompage);
                 }
             });
         };
         model.closepopup = function() {
-            if (model.divcontrollsbind === 0) {
-                model.init();
-            }
+            //if (model.divcontrollsbind === 0) {
+            model.init();
+            //  }
             model.sidebarnavshow = true;
             alerts.dynamicpopupclose();
         };
         model.submitadvancedsearch = function(object, frompage, topage) {
+            var paramters = {};
+            _.each(model.dom, function(parentItem) {
+                _.each(parentItem.controlList, function(item) {
+                    paramters[item.ngModel] = model[item.ngModel];
+                });
+            });
             model.topage = topage;
             if (parseInt(frompage) === 1) {
                 model.slides = [];
@@ -682,6 +705,24 @@
             modelpopupopenmethod.showPopupphotopoup('tickethistory.html', model.scope, 'md', "modalclassdashboardphotopopup");
         };
 
+        /**
+         * Array Creation for controls creation for Serches 
+         */
+
+        model.getControlList = function() {
+            model.domData = [{
+                headerName: 'Education and Profession',
+                controlList: [{ divClear: true, type: 'EducationCatgory', ngModel: 'EducationCatgoryID', labelName: 'Education category', controlType: 'dropdown', isShow: true, dataBind: 'educationcategorywithoutselect', dataSource: 'educationcategory', validation: true },
+                    { type: 'educationGroup', ngModel: 'educationGroupId', labelName: 'Education', controlType: 'dropdown', isShow: true, dataSource: 'Educationgroup', validation: true },
+                    { ngModel: 'EducationspeciallisationId', labelName: 'Specialization', controlType: 'dropdown', isShow: true, dataSource: 'educationspeciallisation', validation: true },
+                    { ngModel: 'University', labelName: 'University', controlType: 'textBox', isShow: true, validation: true },
+                    { divClear: true, ngModel: 'photograde', labelName: 'Photo', controlType: 'checkBoxList', dataSource: 'photogradearray', isShow: true, validation: true },
+                    { ngModelFrom: 'dateofregfrom', ngModelTo: 'dateofregto', labelName: 'DOR', controlType: 'datePicker', isShow: true, validation: true },
+                    { typeofdata: 'Ageselect', ngModelFrom: 'ageFrom', ngModelTo: 'ageTo', labelName: 'Age', controlType: 'dualDropdown', isShow: true, validation: true },
+                ]
+            }];
+        };
+        model.getControlList();
         return model;
     }
     angular

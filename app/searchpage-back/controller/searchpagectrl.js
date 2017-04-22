@@ -5,11 +5,7 @@
          /* jshint validthis:true */
          var vm = this,
              model;
-         vm.photogradearray = [{ value: 216, name: 'A' },
-             { value: 217, name: 'B' },
-             { value: 218, name: 'C' },
-             { value: 219, name: 'D' }
-         ];
+
          vm.init = function() {
              vm.model = model = searchpageModel;
              model.scope = scope;
@@ -43,7 +39,7 @@
                      model.Educationgroup = [];
                      model.Educationgroup = Commondependency.educationGroupBind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                      break;
-                 case 'educationspeciallisation':
+                 case 'educationGroup':
                      model.educationspeciallisation = [];
                      model.educationspeciallisation = Commondependency.educationSpeciakisationBind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                      break;
