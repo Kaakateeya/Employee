@@ -19,4 +19,5 @@ app.service('helperservice', ['$http', function(http) {
     this.getipAddressReturn = function() {
         return http.get(app.apiroot + 'StaticPages/getipAddressReturn', { params: {} });
     };
+
 }]);

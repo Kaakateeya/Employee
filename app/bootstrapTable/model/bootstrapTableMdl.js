@@ -3,9 +3,10 @@
 
 
 
-    function factory($http) {
+    function factory($http, commonpage) {
         var model = {};
         model.init = function() {
+            commonpage.showPopupphotopoup('market.html', model.scope, 'lg', "modalclassdashboardphotopopup");
             model.test = 'dddd';
             model.headings = ['Profile', 'LastName', 'Firstname', 'caste', 'ProfileOwner', 'height'];
             model.columns = [
@@ -38,5 +39,5 @@
         .module('Kaakateeya')
         .factory('bootstrapTableModel', factory)
 
-    factory.$inject = ['$http'];
+    factory.$inject = ['$http', 'modelpopupopenmethod'];
 })();

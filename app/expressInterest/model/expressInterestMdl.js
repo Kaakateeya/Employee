@@ -4,7 +4,7 @@
     function factory(http, expressInterestService, modelpopupopenmethod, authSvc, timeout, alertss) {
         var model = {};
         model.scope = {};
-        model.strimages = '';
+        var strimages = '';
         model.exiObj = {};
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
         model.fromcustid = '';
@@ -189,10 +189,7 @@
             if (type === 'conflict')
                 modelpopupopenmethod.closepopup();
             model.getImages(model.exiObj.txtToprofileID);
-            timeout(function() {
-                model.SelectProfilelst.push({ "label": model.exiObj.txtToprofileID, "title": model.exiObj.txtToprofileID, "value": model.strimages, custid: model.toCustID });
-                model.exiObj.txtToprofileID = '';
-            }, 500);
+            model.exiObj.txtToprofileID = '';
         };
         model.Submit = function(obj) {
             var ExpressArray = [];
@@ -268,19 +265,22 @@
             model.Max_Offline_Allowed = '';
             model.Offline_Used_Count = '';
         };
+
         model.getImages = function(profileid) {
-            var imgArr = [];
-            var strimgs = '';
-            model.strimages = '';
+            var imgArr = [],
+                strimgs = '',
+                strimages = '';
             expressInterestService.getEIprofileID(4, profileid, '').then(function(response) {
                 if (_.isArray(response.data) && response.data.length > 0 && response.data[0].length > 0) {
                     imgArr = response.data[0];
                     _.each(imgArr, function(item) {
                         strimgs += strimgs === '' ? item.PhotoName : ',' + item.PhotoName;
                     });
-                    model.strimages = strimgs + ';' + profileid;
+                    strimages = strimgs + ';' + profileid;
+                    model.SelectProfilelst.push({ "label": profileid, "title": profileid, "value": strimages });
                 }
             });
+
         };
         model.bindImages = function(val) {
             model.displayToimages = [];

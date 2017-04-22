@@ -144,11 +144,18 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     name: 'Expressintrst',
                     files: [
                         'app/expressInterest/controller/expressInterestctrl.js',
-
                         'app/expressInterest/css/style.css',
-
                         'app/expressInterest/model/expressInterestMdl.js',
                         'app/expressInterest/service/expressInterestservice.js'
+                    ]
+                },
+                {
+                    name: 'marketing-slide',
+                    files: [
+                        'directives/marketing-slide/css/style.css',
+                        'directives/marketing-slide/model/config.js',
+                        'directives/marketing-slide/service/svc.js',
+                        'directives/marketing-slide/directive.js'
                     ]
                 }
 
@@ -167,6 +174,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     $ocLazyLoad.load('complex-grid');
                     $ocLazyLoad.load('complex-slide');
                     $ocLazyLoad.load('Expressintrst');
+                    $ocLazyLoad.load('marketing-slide');
                 }]
             }
         });
