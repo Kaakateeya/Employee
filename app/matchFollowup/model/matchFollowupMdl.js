@@ -8,10 +8,6 @@
         model.proceed = {};
 
         model.BranchName = [];
-        model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-        model.loginempName = authSvc.LoginEmpName() !== undefined && authSvc.LoginEmpName() !== null && authSvc.LoginEmpName() !== "" ? authSvc.LoginEmpName() : "";
-
-        model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
 
         model.templateUrl = "templates/matchFollowupSlide.html";
         model.headettemp = "templates/matchFollowupHeader.html";
@@ -34,31 +30,41 @@
         model.actobj = {};
         model.HistryObj = [];
         model.isopenFlag = true;
+        model.curSlide = 0;
         model.init = function() {
+            model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+            model.loginempName = authSvc.LoginEmpName() !== undefined && authSvc.LoginEmpName() !== null && authSvc.LoginEmpName() !== "" ? authSvc.LoginEmpName() : "";
+            model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
 
+            if ((model.Managementid) === 'true') {
+                model.bindEmpnames();
+                model.BranchName = getArray.GArray('BranchName');
+                model.RegionArr = getArray.GArray('Regionofbranches');
+                model.lstregions = '';
+            } else {
+                model.BranchName = [];
+                model.RegionArr = [];
+                model.EmpNamesArr = [];
+            }
             model.lstEmpnames = [parseInt(model.empid)];
             model.activebutton = 'bothside';
             model.matchFollowupSelect(model.empid);
-            model.BranchName = getArray.GArray('BranchName');
         };
-        matchFollowupServices.getMyprofilebind(1, 2, '').then(function(response) {
-            model.EmpNamesArr.push({ "label": "--Select--", "title": "--Select--", "value": "" });
-            _.each(response.data, function(item) {
-                if (item.CountryCode === 'Profile Owner') {
-                    model.EmpNamesArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                }
+        model.bindEmpnames = function() {
+            matchFollowupServices.getMyprofilebind(1, 2, '').then(function(response) {
+                _.each(response.data, function(item) {
+                    if (item.CountryCode === 'Profile Owner') {
+                        model.EmpNamesArr.push({ "label": item.Name, "title": item.Name, "value": item.ID, 'children': 'fffffff' });
+                    }
+                });
             });
-        });
-
+        };
         model.smsarray = [
             { id: 1, text: 'We missed to reach you on 91-XXXXX. please call back' },
             { id: 2, text: 'Bride is interested in your profile.' },
             { id: 3, text: 'Groom is interested in your profile' },
             { id: 4, text: 'Contact details of the Groom/bride is given below.' }
         ];
-
-
-
 
         model.matchFollowupSelect = function(empid, custID, typeofpopup) {
             debugger;
@@ -95,16 +101,19 @@
                     });
 
                     if (typeofpopup === 'proceedpopup') {
-                        model.proceed.totalRecords = response.data[0].TotalRows;
+
                         if (parseInt(model.proceed.frompage) === 1) {
                             model.proceed.slides = [];
                             model.proceed.slides = response.data;
+                            model.proceed.totalRecords = response.data[0].TotalRows;
                         } else {
                             model.proceed.slides = $.merge(model.proceed.slides, response.data);
                         }
                     } else {
-                        model.totalRecords = response.data[0].TotalRows;
+
                         if (parseInt(model.frompage) === 1) {
+                            model.totalRecords = response.data[0].TotalRows;
+                            model.slides = [];
                             model.setSlides(response.data, 10, 'normal');
                         } else {
                             model.addSlides(response.data, model.slides, parseInt(model.topage), 'normal');
@@ -115,9 +124,7 @@
                     if (parseInt(model.frompage) === 1) {
                         model.slides = [];
                     }
-
                 }
-
             });
         };
 
@@ -159,7 +166,7 @@
             model.BranchName = Commondependency.BranchNamebind((parent !== undefined && parent !== null && parent !== "") ? (parent).toString() : "");
         };
 
-        model.proceedImage = function(status) {
+        model.proceed.proceedImage = model.proceedImage = function(status) {
 
             var src = '';
             if (status.trim() === "I") {
@@ -169,8 +176,6 @@
             }
             return src;
         };
-
-
 
         model.ProceededProfiles = function(serviceCount, empname) {
             var splitEmpName = '';
@@ -529,6 +534,10 @@
 
         model.viewProfileRedirect = function(profileid) {
             window.open('Viewfullprofile/' + profileid, '_blank');
+        };
+        model.sendNumbers = function() {
+
+
         };
 
         return model;

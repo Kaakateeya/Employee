@@ -85,7 +85,9 @@ app.factory('getArraysearch', ['arrayConstants', 'SelectBindServiceApp', functio
                 case 'PhysicalStatus':
                     option = cons.PhysicalStatus;
                     break;
-
+                case 'Regionofbranches':
+                    option = cons.Regionofbranches;
+                    break;
 
                 case 'Country':
                     service.countrySelect().then(function(response) {

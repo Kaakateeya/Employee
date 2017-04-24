@@ -5,11 +5,13 @@
         var model = {};
         model.arraydata = [];
         model.isshortlistprogressbar = false;
+        model.currentrecord = 0;
         model.init = function() {
             model.setSlides = function(data, topage, typeofpage) {
                 model.slides = [];
-                if (typeofpage && typeofpage === 'normal') {
+                if (typeofpage === 'normal') {
                     model.slides = data;
+
                 } else {
                     model.displayArray(data, topage);
                 }

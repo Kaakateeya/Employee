@@ -15,7 +15,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.activeslide = 0;
                 $scope.activeslidephoto = 0;
                 $scope.mainshortlist = false;
-                $scope.Viwedslide = 1;
+                $scope.Viwedslide = 0;
                 $scope.playbutton = false;
                 $scope.width = "";
                 $scope.photoalbum = "Photo Album";
@@ -28,19 +28,23 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         $scope.playbutton = false;
                     }
                 };
+
                 $scope.gotoSlide = function(slideIndex) {
                     if (slideIndex !== undefined && slideIndex !== "" && slideIndex !== null && slideIndex !== 0 &&
                         slideIndex !== "0") {
                         $scope.activeslide = parseInt(slideIndex) - 1;
                         slideIndex = 0;
+
                     }
                 };
+
                 $scope.$watch('activeslide', function(news, old) {
                     if (news !== undefined && news !== "" && news !== null) {
                         $scope.Viwedslide = news;
                         $scope.config.slidebind(old, news, $scope.model.slides, $scope.model.typeofPage);
                     }
                 });
+
                 $scope.slidepopup = function(custid) {
                     $scope.photoalbum = "Photo Album";
                     SelectBindServiceApp.getphotoslideimages(custid).then(function(response) {
