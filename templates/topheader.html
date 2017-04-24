@@ -12,10 +12,11 @@
                             <img ng-src="{{head.empphoto}}" alt="">
                             <span class="fa fa-angle-down" id="spandownheader"></span>
                         </a>
-                        <ul class="dropdown-menu dropdown-usermenu pull-right">
-                            <li><a href="javascript:void(0)" ng-click="head.logout()"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                        <ul class="dropdown-menu dropdown-usermenu pull-right" style="background-color: #A00201;">
+                            <li><a style="color: white;" href="javascript:void(0)" ng-click="head.logout()"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                            <md-divider></md-divider>
                             <li>
-                                <a data-toggle="tooltip" data-placement="top" title="Lock" href="javascript:void(0)" ng-click="head.lockscreen()">
+                                <a style="color: white;" data-toggle="tooltip" data-placement="top" title="Lock" href="javascript:void(0)" ng-click="head.lockscreen()">
                                     <span class="glyphicon glyphicon-eye-close pull-right" aria-hidden="true"></span>Lock
                                 </a>
                             </li>
@@ -34,12 +35,12 @@
                             <li><a href="Viewfullprofile/0">Customer New Admin Profile</a></li>
                             <li><a href="expressInterestpage">Expressinterest</a></li>
                             <li><a href="myProfilepage">My Profile</a></li>
-                            <li class="has-sub"><a href="#">SUB SUB LIST</a>
+                            <!--<li class="has-sub"><a href="#">SUB SUB LIST</a>
                                 <ul>
                                     <li><a href="#">Sub Sub Item 1</a></li>
                                     <li><a href="#">Sub Sub Item 2</a></li>
                                 </ul>
-                            </li>
+                            </li>-->
                         </ul>
                     </li>
                     <li class="has-sub"><a href="javascript:void(0)"> Search </a>
@@ -96,62 +97,92 @@
             </nav>
         </div>
     </div>
-    <!--  <script type="text/ng-template" id="loginContent.html">
-        <form name="loginForm" novalidate role="form" style='z-index: 99999'>
-            <div class="modal-body clearfix pop_content_my" id="modal-body">
-                <p class="currendate row" style="margin: 0 0 0px;"> {{head.CurrentDate | date:'dd MMMM yyyy hh.mm.ss'}},{{head.CurrentDate |date:'EEEE'}}</p>
-                <div class="row">
-                    <div class='col-lg-6 col-lg-offset-3'>
-                        <h3 class='colorlogin row' style="margin-top: 0px;">Employee Login <img src="src/images/kaakateeyalogo_001.jpg" style="width:50px;height:50px;"></img>
-                        </h3>
-                    </div>
 
-                </div>
-                <div class='row'>
-                    <div class="col-lg-offset-2">
-                        <div class="row">
-                            <label for="username" style="color:black;" class='col-lg-3'>User Name</label>
-                            <md-input-container class="inputcontainer col-lg-6" ng-show="!head.lock">
-                                <input ng-keyup="loginForm.$valid && $event.keyCode == 13 && head.loginsubmit(head)" type="text" class="usernameemployee" ng-model="head.usernameemployee" name="usernameemployee" required md-no-asterisk>
-                                <div ng-messages="loginForm.usernameemployee.$error">
-                                    <div ng-message="required">This is required.</div>
+    <script type="text/ng-template" id="loginContent.html">
+
+        <form id="loginnewidcc" name="loginForm" novalidate role="form" style='z-index: 99999'>
+            <div class="login">
+                <div class="login-box">
+                    <div class="login-border">
+                        <div class="login-style">
+                            <div class="login-header">
+                                <div class="logo clear">
+                                    <img src="src/images/1234 yellow01.png" style="width: 90px;height: 76px;" alt="" class="picture" />
+                                    <span class="textlogo"><span class="title">Kaakateeya Marraiages</span> </span>
                                 </div>
-                            </md-input-container>
-                            <label ng-show="head.lock" class="form-label">{{head.usernameemployee}}</label>
-                        </div>
-                        <div class="row">
-                            <label for="Password" style="color:black;" class='col-lg-3'>Pass Word</label>
-                            <md-input-container class="inputcontainer col-lg-6">
-                                <input ng-keyup="loginForm.$valid && $event.keyCode == 13 && head.loginsubmit(head)" type="Password" class="usernameemployee" ng-model="head.passwordemployee" name="passwordemployee" required md-no-asterisk>
-                                <div ng-messages="loginForm.passwordemployee.$error">
-                                    <div ng-message="required">This is required.</div>
-                                    <div ng-message="pattern">username is invalid</div>
+                            </div>
+                            <form name="loginForm" novalidate>
+                                <div class="login-inside">
+                                    <div class="login-data">
+                                        <div class="row clear">
+                                            <label for="user">
+                                               User Name:</label>
+                                            <input ng-readonly="true" ng-keyup="loginForm.$valid && $event.keyCode == 13 && head.loginsubmit(head,loginForm.usernameemployee.$error,loginForm.passwordemployee.$error,loginForm.$valid)" type="text" class="text" ng-model="head.usernameemployeeid" name="usernameemployee"
+                                                required>
+                                            <div ng-show="head.model.usernameemployeepop" ng-messages="loginForm.usernameemployee.$error" style="color: red;">
+                                                <div ng-message="required">This is required.</div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row clear">
+                                            <label for="password">
+                                           Password:</label>
+
+                                            <input focus-me="true" ng-keyup="loginForm.$valid && $event.keyCode == 13 && head.loginsubmit(head,loginForm.usernameemployee.$error,loginForm.passwordemployee.$error,loginForm.$valid)" type="Password" class="text" ng-model="head.passwordemployee" name="passwordemployee"
+                                                required>
+                                            <div style="color: red;" ng-show="head.model.usernameemployeepasswordpop" ng-messages="loginForm.passwordemployee.$error">
+                                                <div ng-message="required">This is required.</div>
+
+                                            </div>
+
+                                        </div>
+                                        <button ng-click="head.loginsubmit(head,loginForm.usernameemployee.$error,loginForm.passwordemployee.$error,loginForm.$valid)" class="button">Login</button>
+
+                                    </div>
+
+
+                                    <div class="pull-right"> {{head.CurrentDate | date:'dd MMMM yyyy hh.mm.ss'}},{{head.CurrentDate |date:'EEEE'}}</div>
+
                                 </div>
-                            </md-input-container>
-                            <label class="labelred">{{head.errormessage}}</label>
+
                         </div>
-                        <div class='col-lg-offset-4'>
-                            <md-button class="md-raised md-warn md-hue-2" ng-disabled="loginForm.$invalid" ng-click="head.loginsubmit(head)">Login
-                            </md-button>
+                        <div class="login-footer">
+                            <div class="row">
+                                <div class="col-lg-3  col-lg-offset-1">
+                                    <label style="color:#ffffff;font-size: 14px;">AP:</label>
+                                    <label style="color:#ffffff;font-size: 14px;">{{head.logincounts[0].LoggedCount!==undefind?head.logincounts[0].LoggedCount:0}}-{{head.logincounts[0].EmpCount!==undefined?head.logincounts[0].EmpCount:0}}</label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label style="color:#ffffff;font-size: 14px;">TN:</label>
+                                    <label style="color:#ffffff;font-size: 14px;">{{head.logincounts[1].LoggedCount!==undefined?head.logincounts[1].LoggedCount:0}}-{{head.logincounts[1].EmpCount!==undefined?head.logincounts[1].EmpCount:0}}</label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label style="color:#ffffff;font-size: 14px;">KA:</label>
+                                    <label style="color:#ffffff;font-size: 14px;">{{head.logincounts[2].LoggedCount!==undefined?head.logincounts[2].LoggedCount:0}}-{{head.logincounts[2].EmpCount!==undefined?head.logincounts[2].EmpCount:0}}</label>
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
-                    <div class="row">
-                        <br>
-                        <div class="col-lg-3  col-lg-offset-1">
-                            <label style="color:black;">AP:</label>
-                            <label style="color:maroon;">{{head.logincounts[0].LoggedCount!==undefind?head.logincounts[0].LoggedCount:0}}/{{head.logincounts[0].EmpCount!==undefined?head.logincounts[0].EmpCount:0}}</label>
-                        </div>
-                        <div class="col-lg-3">
-                            <label style="color:black;">TN:</label>
-                            <label style="color:maroon;">{{head.logincounts[1].LoggedCount!==undefined?head.logincounts[1].LoggedCount:0}}/{{head.logincounts[1].EmpCount!==undefined?head.logincounts[1].EmpCount:0}}</label>
-                        </div>
-                        <div class="col-lg-3">
-                            <label style="color:black;">KA:</label>
-                            <label style="color:maroon;">{{head.logincounts[2].LoggedCount!==undefined?head.logincounts[2].LoggedCount:0}}/{{head.logincounts[2].EmpCount!==undefined?head.logincounts[2].EmpCount:0}}</label>
-                        </div>
+
+                        </form>
                     </div>
                 </div>
             </div>
         </form>
-    </script>-->
+
+    </script>
 </div>
+
+
+<style type="text/css">
+    .modalclassdashboardphotopopuplogin {
+        z-index: 999999 !important;
+        width: 80%;
+        left: 10%;
+    }
+    
+    .modal-open .modal {
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+</style>

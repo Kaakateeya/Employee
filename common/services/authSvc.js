@@ -19,7 +19,6 @@
 
 app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function($injector, Idle, $http, helperservice) {
     function setUser(value) {
-
         setSession("LoginEmpid", value.EmpID);
         setSession("LoginEmpName", value.FirstName + " " + value.LastName);
         setSession("empBranchID", value.BranchID);
@@ -54,6 +53,7 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
         clearSession('empRegionID');
         clearSession('macAddress');
         clearSession('empphoto');
+        clearSession("usernameemployeeid");
     }
 
     function getUser() {
@@ -63,8 +63,8 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
             empBranchID: getSession('empBranchID'),
             isAdmin: getSession('isAdmin'),
             isManagement: getSession('isManagement'),
-            empRegionID: getSession('empRegionID')
-
+            empRegionID: getSession('empRegionID'),
+            // usernameemployee: getSession("usernameemployee")
         };
     }
     return {
@@ -73,6 +73,9 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
                 setUser(value);
             }
             return getUser();
+        },
+        userempid: function(value) {
+            setSession("usernameemployee", value);
         },
         isAuthenticated: function() {
             return !!getSession('cust.id');
@@ -117,6 +120,10 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
                 return res.data;
             });
         },
+        // usernameemployee: function() {
+        //     return getSession("usernameemployee");
+        // },
+
         // getClientIp: function() {
         //     return $http.get('/getClientIp').then(function(res) {
         //         console.log(res);

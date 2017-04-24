@@ -982,12 +982,12 @@
                                                     <div class="md-toolbar-tools">
                                                         <h4 class="md-flex  col-lg-12" style="font-size: 15px;">{{parentItem.headerName}}
                                                         </h4>
-                                                        <i class="fa fa-plus-square pull-right" style="cursor:pointer;" aria-hidden="true" data-toggle="collapse" href="#collapse2"></i>
+                                                        <i class="fa fa-plus-square pull-right" style="cursor:pointer;" aria-hidden="true" data-toggle="collapse" href="#collapsedynamic"></i>
                                                     </div>
                                                 </div>
                                             </md-toolbar>
-                                            <div id="collapse2" class="panel-collapse collapse in">
-                                                <div ng-repeat="item in parentItem.controlsList">
+                                            <div id="collapsedynamic" class="panel-collapse collapse in">
+                                                <div ng-repeat="item in parentItem.controlList">
                                                     <div ng-if="item.divClear" class="clearfix"></div>
                                                     <br ng-if="item.divClear">
                                                     <div class="col-lg-3" ng-if="item.controlType==='dropdown'">

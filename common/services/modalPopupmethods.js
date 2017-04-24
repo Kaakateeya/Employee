@@ -1,5 +1,5 @@
-app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$timeout',
-    function(uibModal, SelectBindServiceApp, timeout) {
+app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$timeout', 'authSvc', '$http',
+    function(uibModal, SelectBindServiceApp, timeout, authSvc, http) {
         var modalinstance, modalpopupopen, modalpopupopenphoto;
         var obj = {};
         var $table = $('#GridTable');
@@ -201,6 +201,20 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                         "    </div>                                                                                                       "
                 });
 
+            },
+            getloginpage: function(form) {
+                return http.get(app.apiroot + 'DB/getValidateLoginNew', {
+                    params: {
+                        LoginName: form.usernameemployeeid,
+                        Password: form.passwordemployee,
+                        sMAC: authSvc.clientIp()
+                    }
+                });
+            },
+            getEmployeeLoginCoutDetails: function() {
+                return http.get(app.apiroot + 'StaticPages/getEmployeeLoginCoutDetails', {
+                    params: {}
+                });
             }
         };
     }
