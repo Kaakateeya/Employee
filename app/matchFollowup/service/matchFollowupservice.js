@@ -44,17 +44,24 @@
                 return http.post(app.apiroot + 'EmployeeReportPage/Insertout_incomingcallCommunicationlogData', obj);
             },
             getRaltionName: function(flag, ID, RelationShipID) {
-                    return http.get(app.apiroot + 'ExpressInterest/getExpressInterest_linq', {
-                        params: {
-                            flag: flag,
-                            ID: ID,
-                            RelationShipID: RelationShipID
-                        }
-                    });
-                }
-                // ActionSubmit: function(obj) {
-                //     return http.post(app.apiroot + 'EmployeeReportPage/Insertout_incomingcallCommunicationlogData', obj);
-                // }
+                return http.get(app.apiroot + 'ExpressInterest/getExpressInterest_linq', {
+                    params: {
+                        flag: flag,
+                        ID: ID,
+                        RelationShipID: RelationShipID
+                    }
+                });
+            },
+            sendNumbers: function(fromcustid, tocustID, empid, text) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getSendNumbersMatchfollowup', {
+                    params: {
+                        LFromCustID: fromcustid,
+                        LToCustID: tocustID,
+                        empid: empid,
+                        mailTxt: text
+                    }
+                });
+            }
         };
     }
     angular

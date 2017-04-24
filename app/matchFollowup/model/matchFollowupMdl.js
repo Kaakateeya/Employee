@@ -535,9 +535,13 @@
         model.viewProfileRedirect = function(profileid) {
             window.open('Viewfullprofile/' + profileid, '_blank');
         };
-        model.sendNumbers = function() {
 
-
+        model.sendNumbers = function(fromcustid, toCustID) {
+            matchFollowupServices.sendNumbers(fromcustid, toCustID, model.empid, '').then(function(response) {
+                if (parseInt(response.data) === 1) {
+                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'contact numbers Mail sent successfully', 9500);
+                }
+            });
         };
 
         return model;
