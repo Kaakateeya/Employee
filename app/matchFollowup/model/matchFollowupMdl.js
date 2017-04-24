@@ -145,6 +145,7 @@
 
 
         model.CondtionButtonClick = function(activeType, flag, flagClose, flagEmpwaiting) {
+            model.slides = [];
             model.activebutton = activeType;
             model.spflag = flag;
             model.closeflag = flagClose;
@@ -152,6 +153,7 @@
             model.frompage = 1;
             model.topage = 10;
             model.matchFollowupSelect();
+            model.activeslide = 0;
         };
 
         model.regionChange = function(parent) {
