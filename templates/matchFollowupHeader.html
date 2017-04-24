@@ -8,7 +8,7 @@
             <div class="col-lg-1 form-group">
                 <label for="Region" class="control-label">Region</label>
                 <div>
-                    <select class="smalldropdown" ng-change="model.regionChange(model.lstregions);" ng-model="model.lstregions" multiselectdropdown typeofdata="'Regionofbranches'">                                        
+                    <select class="smalldropdown" ng-change="model.regionChange(model.lstregions);" ng-model="model.lstregions" multiselectdropdown ng-options="item.value as item.label for item in model.RegionArr">                                        
              </select>
 
                 </div>
@@ -16,16 +16,17 @@
             <div class="col-lg-3 form-group">
                 <label for="Region" class="control-label">Branch</label>
                 <div>
-                    <angular-multiselect id="'Branchid'" class="general" array="model.BranchName" model="model.lstBranchs">
-                    </angular-multiselect>
-
+                    <select class="smalldropdown" ng-model="model.lstBranchs" multiple multiselectdropdown ng-options="item.value as item.label for item in model.BranchName">                                        
+                        </select>
                 </div>
             </div>
             <div class="col-lg-3 form-group">
                 <label for="Region" class="control-label">EmpName</label>
                 <div class="">
-                    <angular-multiselect id="'Branchid'" class="general" array="model.EmpNamesArr" model="model.lstEmpnames">
-                    </angular-multiselect>
+
+                    <select class="smalldropdown" ng-model="model.lstEmpnames" multiple multiselectdropdown ng-options="item.value as item.label for item in model.EmpNamesArr" multiple data-live-search='true'>                                        
+                        </select>
+
                 </div>
             </div>
             <div class="col-lg-2 form-group">

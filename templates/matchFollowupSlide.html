@@ -20,7 +20,7 @@
                                 <div class="clearfix"></div><br>
                                 <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="config.redirectContactPage(slide.fromcust_id);">View Contacts</button></div>
                                 <div class="clearfix"></div><br>
-                                <!--<div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" onclick="return sendNumbers('91022','16948','2','texting......from');">Send Numbers</button></div>-->
+                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="config.sendNumbers(slide.fromcust_id,slide.tocustid);">Send Numbers</button></div>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="col-lg-8 col-lg-offset-1">
@@ -114,7 +114,7 @@
                                 <div class="clearfix"></div><br>
                                 <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="config.redirectContactPage(slide.tocustid);">View Contacts</button></div>
                                 <div class="clearfix"></div><br>
-                                <!--<div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" onclick="return sendNumbers('16948','91022','2','texting......to');">Send Numbers</button></div>-->
+                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="config.sendNumbers(slide.tocustid,slide.fromcust_id);">Send Numbers</button></div>
                                 <div class="clearfix"></div>
                             </div>
                         </div>
@@ -173,10 +173,15 @@
             </a>
         </div>
         <br>
-        <div ng-repeat="item in config.ToticketHistryArr" ng-class-odd="'odd'">
-            <tickethistry-infm strtype="item.TicketType" strdate="item.TicketInfo" strempname="item.EmployeeName" strstatus="item.CallResult" strcustname="item.RelationName" strcomments="item.Body" strrelationship="item.Relation"></tickethistry-infm>
-            <br>
+
+        <div class="popovercls">
+            <div ng-repeat="item in config.ToticketHistryArr" ng-class-odd="'odd'">
+                <tickethistry-infm strtype="item.TicketType" strdate="item.TicketInfo" strempname="item.EmployeeName" strstatus="item.CallResult" strcustname="item.RelationName" strcomments="item.Body" strrelationship="item.Relation"></tickethistry-infm>
+                <br>
+            </div>
         </div>
+
+
     </div>
 </script>
 

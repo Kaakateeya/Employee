@@ -265,7 +265,6 @@
             model.Max_Offline_Allowed = '';
             model.Offline_Used_Count = '';
         };
-
         model.getImages = function(profileid) {
             var imgArr = [],
                 strimgs = '',
