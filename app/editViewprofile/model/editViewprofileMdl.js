@@ -111,6 +111,10 @@
                     });
                     // model.opendiv = false;
                     model.setData(response.data);
+                } else {
+                    if (from === parseInt(1)) {
+                        model.data = [];
+                    }
                 }
 
             });

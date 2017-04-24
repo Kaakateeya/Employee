@@ -14,7 +14,7 @@
         model.EmpViewfullProfile = function(stateprofileid) {
             employeeViewfullprofileservice.getEmpViewfullProfile(stateprofileid, '1').then(function(response) {
                 model.fullprofileshow = false;
-                if (response.data !== undefined && response.data !== "" && response.data !== null) {
+                if (response.data !== undefined && response.data !== "" && response.data !== null && response.data.length > 0) {
                     _.each(response.data, function(item) {
                         var testArr = JSON.parse(item);
                         if (testArr.length > 0 && testArr[0].TableName !== undefined && testArr[0].TableName === "About") {
