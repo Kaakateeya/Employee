@@ -21,6 +21,9 @@
              model.sidebarnavshow = true;
              model.activatedmobile = true;
              model.selectedIndex = $stateParams.id;
+             model.templateUrl = "templates/angularSlide.html";
+             model.headettemp = "templates/angularHeader.html";
+             model.tickethistory = "templates/ticketHistoryPopup.html";
              model.searchpopuptext = model.selectedIndex === "0" ? "General Search" : "Advance Search";
              alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass", 'searchpageCtrl');
          };

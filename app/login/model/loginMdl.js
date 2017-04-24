@@ -38,6 +38,7 @@
                                 model.loginarray = response.data.m_Item1;
                                 model.empphoto = response.data.m_Item1.EmpPhotoPath;
                                 authSvc.user(response.data.m_Item1);
+                                sessionStorage.setItem("usernameemployeeid", model.loginsubmit.usernameemployee);
                                 $state.go("base.dashboard", {});
                                 model.loginsubmit.usernameemployee = "";
                                 model.loginsubmit.passwordemployee = "";
