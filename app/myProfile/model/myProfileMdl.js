@@ -168,7 +168,7 @@
                     } else {
                         model.slide.totalRecords = response.data[0].TotalRows;
                         if (parseInt(from) === 1) {
-                            model.slide.setSlides(response.data, 10);
+                            model.slide.setSlides(response.data, 10, "myprofile");
                             modelpopupopenmethod.showPopupphotopoup('myprofileSlide.html', model.scope, 'lg', "");
                         } else {
                             model.slide.addSlides(response.data, model.slides, parseInt(to));
