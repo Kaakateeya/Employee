@@ -21,13 +21,12 @@
                     <input type="text" class="form-control" placeholder="Search Profile ID">
                 </div>
                 <div class="col-lg-2">
-
-                    <date-pickersearch placeholder="'From Reminder Date'" id="fromremainderdate" strdate="page.model.markting.fromremainderdate"></date-pickersearch>
-
+                    <!-- <date-pickersearch placeholder="'From Reminder Date'" id="fromremainderdate" strdate="page.model.markting.fromremainderdate"></date-pickersearch>-->
+                    <custom-datepicker placeholder="'From Reminder Date'" id="fromremainderdate" ng-model="page.model.markting.fromremainderdate" date-options="page.model.dateOptions"></custom-datepicker>
                 </div>
                 <div class="col-lg-2">
-                    <date-pickersearch placeholder="'To Reminder Date'" id="toremainderdate" strdate="page.model.markting.toremainderdate"></date-pickersearch>
-
+                    <!--<date-pickersearch placeholder="'To Reminder Date'" id="toremainderdate" strdate="page.model.markting.toremainderdate"></date-pickersearch>-->
+                    <custom-datepicker placeholder="'To Reminder Date'" id="toremainderdate" ng-model="page.model.markting.toremainderdate" date-options="page.model.dateOptions"></custom-datepicker>
                 </div>
 
             </div>
@@ -57,14 +56,16 @@
                 <div class="col-lg-2 form-group">
                     <label for="Region" class="control-label">From Ticket Created</label>
                     <div>
-                        <date-pickersearch id="fromticketcreateddate" strdate="page.model.markting.fromticketcreateddate"></date-pickersearch>
+                        <!--<date-pickersearch id="fromticketcreateddate" strdate="page.model.markting.fromticketcreateddate"></date-pickersearch>-->
+                        <custom-datepicker id="fromticketcreateddate" ng-model="page.model.markting.fromticketcreateddate" date-options="page.model.dateOptions"></custom-datepicker>
 
                     </div>
                 </div>
                 <div class="col-lg-2 form-group">
                     <label for="Region" class="control-label">To Ticket Created</label>
                     <div class="">
-                        <date-pickersearch id="toticketcreateddate" strdate="page.model.markting.toticketcreateddate"></date-pickersearch>
+                        <!--<date-pickersearch id="toticketcreateddate" strdate="page.model.markting.toticketcreateddate"></date-pickersearch>-->
+                        <custom-datepicker id="toticketcreateddate" ng-model="page.model.markting.toticketcreateddate" date-options="page.model.dateOptions"></custom-datepicker>
                     </div>
                 </div>
                 <div class="col-lg-3 form-group">

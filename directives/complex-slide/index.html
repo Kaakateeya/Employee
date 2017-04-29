@@ -40,3 +40,78 @@
         </div>
     </div>
 </script>
+
+
+
+<script type="text/ng-template" id="verifyMobileContent.html">
+    <form name="refForm" novalidate role="form" ng-submit="verifyMobCode(refForm.txtVerificationcode)">
+        <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-title">Mobile verification code sent successfully to {{popupMobilenumber}}
+                <a href="javascript:void(0);" ng-click="closepopuppoptopopup()">
+                    <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="25"></ng-md-icon>
+                </a>
+            </h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <ul>
+                <li class="clearfix">
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <span style="color: #000; font-size: 13px; margin-left: 20px; font-weight: bold;">Click yes, If you want to verify by you 
+                        </span>
+                        </div>
+                        <div id="Divrbt" class="radio-group-my col-lg-4">
+                            <label class="control-label">
+                         <md-radio-group name="rbtnVerf" layout="row" ng-model="refForm.rbtnVerf" class="md-block" ng-change="refForm.rbtnVerf==='2'?closepopuppoptopopup():''" flex-gt-sm >
+                            <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                            <md-radio-button value="2"> No </md-radio-button>
+                        </md-radio-group>
+                       </label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div ng-if="refForm.rbtnVerf==='1'" class="col-lg-offset-3">
+                            <b>Mobile verify Code : </b><input type="text" height="40" ng-model="refForm.txtVerificationcode" maxlength="6" class="form-control" style="width:50%;" />
+                            <br>
+                        </div>
+                    </div>
+                </li>
+                <li class="row">
+                    <div class="col-lg-offset-4">
+                        <button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" type="submit">submit</button>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </form>
+</script>
+
+
+<script type="text/ng-template" id="uploadsaform.html">
+    <form name="uploadForm" novalidate role="form" ng-submit="uploadfromsubmit===false?upload(uploadf):bouncedemail(uploadf)">
+        <div class="modal-header">
+            <h3 class="modal-title text-center" ng-hide="uploadfromsubmit">Upload SA Form </h3>
+            <h3 class="modal-title text-center" ng-hide="!uploadfromsubmit">Update Email </h3>
+        </div>
+        <div class="modal-body" ng-hide="uploadfromsubmit">
+            <ul id="ulprofession">
+                <input type="file" file-model="uploadf.myFile" />
+            </ul>
+        </div>
+        <div class="modal-body" ng-hide="uploadfromsubmit">
+            <div class="row">
+                <label for="newemail">New Email</label>
+                <input type="text" class="form-control" ng-model="uploadf.newemail" />
+            </div>
+        </div>
+        <div class="modal-footer">
+            <input value="Upload" ng-hide="uploadfromsubmit" class="btn btn-success" type="submit">
+            <input value="Update" ng-hide="!uploadfromsubmit" class="btn btn-success" type="submit">
+            <input value="Cancel" class="btn btn-danger" ng-click="closepopuppoptopopup();" type="button">
+        </div>
+
+    </form>
+</script>

@@ -1,6 +1,6 @@
 app.service('helperservice', ['$http', function(http) {
     this.checkstringvalue = function(value) {
-        if (value !== null && value !== "" && value !== undefined) {
+        if (value !== null && $.trim(value) !== "" && value !== undefined) {
             return true;
         } else {
             return false;
@@ -19,5 +19,16 @@ app.service('helperservice', ['$http', function(http) {
     this.getipAddressReturn = function() {
         return http.get(app.apiroot + 'StaticPages/getipAddressReturn', { params: {} });
     };
+    this.PhotoRequest = function(ProfileID, empid) {
+        return http.get(app.apiroot + 'CustomerPersonal/getCustomerphotoRequestDisplay', {
+            params: { profileid: ProfileID, EMPID: empid, ticketIDs: '' }
+        });
+    };
 
+    this.uploadsettlementform = function(obj) {
+        return http.post(app.apiroot + 'CustomerPersonalUpdate/UploadsettlementForm', obj);
+    };
+    this.getUpdateEmailBounce = function(obj) {
+        return http.get(app.apiroot + 'StaticPages/getUpdateEmailBounce', { params: { CustID: obj.CustID, EmailBounceEntryId: obj.EmailBounceEntryId, BounceMailid: obj.BounceMailid } });
+    };
 }]);

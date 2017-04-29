@@ -3,22 +3,24 @@
         <div ng-id="dash_{{$index}}" class="col-md-4" ng-repeat="item in page.model.landingItems" ng-show="item.length>0">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>{{item[0].TableName}} ({{item[0].ServiceCount}})
-                    </h2>
-                    <a href="javascript:void(0)" class="close-link pull-right" title="Close" ng-click="page.arrayslice($index)"><i class="fa fa-close"></i></a>
-                    <br>
-                    <div class="clearfix">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h2>{{item[0].TableName}} ({{item[0].ServiceCount}})
+                            </h2>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row">
+                                <a title="Excel" ng-click="page.model.loadmore(page.model.empid, page.model.empBranchID,1,item[0].ServiceCount,item[0].TableName,'export',item,0)" href="javascript:void(0)">
+                                    <img src="src/images/EXCEL.jpg"></img>
+                                </a>
+
+                                <a class="excelshow" title="Slideshow" ng-click="page.slideshowfunction(true,page.model.empid, page.model.empBranchID,1,10,item[0].TableName,'slideshow',item,1)" href="javascript:void(0)">
+                                    <img style="width: 32px;height: 29px;" src="src/images/slideshowimg.png"></img>
+                                </a>
+                                <a href="javascript:void(0)" class="close-link pull-right" title="Close" ng-click="page.arrayslice($index)"><i class="fa fa-close"></i></a>
+                            </div>
+                        </div>
                     </div>
-                    <ul class="nav pull-right panel_toolbox">
-                        <li>
-                            <a title="Excel" ng-click="page.model.loadmore(page.model.empid, page.model.empBranchID,1,item[0].ServiceCount,item[0].TableName,'export',item,0)" href="javascript:void(0)">
-                                <img src="src/images/EXCEL.jpg"></img>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="excelshow" title="Slideshow" ng-click="page.slideshowfunction(true,page.model.empid, page.model.empBranchID,1,10,item[0].TableName,'slideshow',item,1)" href="javascript:void(0)">Slide Show</a>
-                        </li>
-                    </ul>
                     <div class="clearfix"></div>
                 </div>
                 <div class="scrolldashboard">

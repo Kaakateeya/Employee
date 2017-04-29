@@ -38,6 +38,9 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
 
             return http.get(app.apiroot + 'Dependency/getProfessionDependency', { params: { dependencyName: "ProfessionGroup", dependencyValue: dependencyVal2 } });
         },
+        profspecialization: function(dependencyVal2) {
+            return http.get(app.apiroot + 'Dependency/getProfessionDependency', { params: { dependencyName: "ProfessionSpecialisation", dependencyValue: dependencyVal2 } });
+        },
         casteselect: function() {
 
             return http.get(app.apiroot + 'Dependency/getDropdown_filling_values', { params: { strDropdownname: "CasteName" } });

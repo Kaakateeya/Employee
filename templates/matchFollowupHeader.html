@@ -1,5 +1,4 @@
 <uib-accordion close-others="oneAtATime" ng-if="model.typeofPage==='page'">
-
     <div uib-accordion-group style="margin-top: -12px;" class="panel-default" is-open="model.isopenFlag">
         <uib-accordion-heading>
             Search Tickets<i class="glyphicon" ng-class="{'glyphicon-chevron-down': model.isopenFlag, 'glyphicon-chevron-right': !model.isopenFlag}"></i>
@@ -10,7 +9,6 @@
                 <div>
                     <select class="smalldropdown" ng-change="model.regionChange(model.lstregions);" ng-model="model.lstregions" multiselectdropdown ng-options="item.value as item.label for item in model.RegionArr">                                        
              </select>
-
                 </div>
             </div>
             <div class="col-lg-3 form-group">
@@ -23,22 +21,23 @@
             <div class="col-lg-3 form-group">
                 <label for="Region" class="control-label">EmpName</label>
                 <div class="">
-
                     <select class="smalldropdown" ng-model="model.lstEmpnames" multiple multiselectdropdown ng-options="item.value as item.label for item in model.EmpNamesArr" multiple data-live-search='true'>                                        
                         </select>
-
                 </div>
             </div>
             <div class="col-lg-2 form-group">
                 <label for="Region" class="control-label">FromProceed</label>
                 <div>
-                    <date-pickersearch id="FromProceed" strdate="model.txtFromProceedDate"></date-pickersearch>
+                    <custom-datepicker id="FromProceed" ng-model="model.txtFromProceedDate" date-options="model.dateOptions"></custom-datepicker>
+                    <!--<date-pickersearch id="FromProceed" strdate="model.txtFromProceedDate"></date-pickersearch>-->
                 </div>
             </div>
             <div class="col-lg-2 form-group">
                 <label for="Region" class="control-label">ToProceed</label>
                 <div>
-                    <date-pickersearch id="ToProceed" strdate="model.txtToProceedDate"></date-pickersearch>
+                    <custom-datepicker id="ToProceed" ng-model="model.txtToProceedDate" date-options="model.dateOptions"></custom-datepicker>
+
+                    <!--<date-pickersearch id="ToProceed" strdate="model.txtToProceedDate"></date-pickersearch>-->
                 </div>
             </div>
             <div class="col-lg-1 form-group">
@@ -50,7 +49,6 @@
             </div>
         </div>
     </div>
-
 </uib-accordion>
 <div class="row">
     <div class="col-lg-2">
@@ -78,16 +76,8 @@
         <a href="javascript:void(0);" ng-click="config.closeprocced();">
             <ng-md-icon icon='close' style='fill:#c73e5f' class='pull-right' size='25'></ng-md-icon>
         </a>
-
     </div>
 </div>
-
-
-
-
-
-
-
 <style>
     .panel-title {
         color: #b10c0c;

@@ -65,6 +65,15 @@ app.factory('Commondependency', ['SelectBindServiceApp', function(SelectBindServ
             });
             return professionArr;
         },
+        professionspecialisationBind: function(parentval) {
+            var professionArr = [];
+            SelectBindService.profspecialization(parentval).then(function(response) {
+                _.each(response.data, function(item) {
+                    professionArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                });
+            });
+            return professionArr;
+        },
         educationGroupBind: function(parentval) {
             var educationGroupArr = [];
             SelectBindService.EducationGroup(parentval).then(function(response) {
