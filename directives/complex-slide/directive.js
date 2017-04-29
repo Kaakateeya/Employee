@@ -1,5 +1,6 @@
 angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupopenmethod', 'SelectBindServiceApp',
-    function(timeout, modelpopupopenmethod, SelectBindServiceApp) {
+    'helperservice', 'alert',
+    function(timeout, modelpopupopenmethod, SelectBindServiceApp, helperservice, alerts) {
         return {
             restrict: "E",
             scope: {
@@ -19,6 +20,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.playbutton = false;
                 $scope.width = "";
                 $scope.photoalbum = "Photo Album";
+                $scope.uploadfromsubmit = false;
                 $scope.pauseResume = function(action) {
                     if (action === 'play') {
                         $scope.myInterval = 5000;
@@ -57,7 +59,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     });
                 };
                 $scope.horoscopeimage = function(image) {
-                    debugger;
                     $scope.photoalbum = "Horoscope Path";
                     $scope.HoroscopeImage = image;
                     $scope.popupmodalbody = true;
@@ -78,6 +79,145 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         classslide = "progress-bar progress-bar-striped progress-bar-success active";
                     }
                     return classslide;
+                };
+                /////slide events
+
+                $scope.closepopuppoptopopup = function() {
+                    modelpopupopenmethod.closepopuppoptopopup();
+                };
+                $scope.viewfullprofile = function(ProfileID) {
+                    window.open('/Viewfullprofile/' + ProfileID, '_blank');
+                };
+                $scope.forgetpassword = function(ProfileID) {
+                    SelectBindServiceApp.forgotpasswordemail(ProfileID).then(function(response) {
+                        if (response.data === 1) {
+                            alert('Mail sent to your email, To reset your password check your mail');
+                        }
+                    });
+                };
+                $scope.paymentpage = function(ProfileID) {
+                    window.open("EmployeePayments" + "?idsss=" + ProfileID, "_blank");
+                };
+                $scope.tickethistoryupdate = function(matkteingticket) {
+                    modelpopupopenmethod.showPopupphotopoup('tickethistory.html', $scope, 'md', "modalclassdashboardphotopopup");
+                };
+                $scope.photorequest = function(ProfileID, empid) {
+                    helperservice.PhotoRequest(ProfileID, empid).then(function(response) {
+                        if (response !== undefined && response !== null && response !== "" && response.data !== undefined) {
+                            if (response.data === 1) {
+                                alerts.timeoutoldalerts($scope, 'alert-success', 'PhotoRequest send successfully', 4000);
+                            } else {
+                                alerts.timeoutoldalerts($scope, 'alert-danger', 'PhotoRequest send Failed', 4000);
+                            }
+                        }
+                    });
+                };
+                $scope.verifymail = function(custid) {
+                    SelectBindServiceApp.verifyEmail(custID).then(function(response) {
+                        if (response.data !== undefined) {
+                            if (response.data === 1) {
+                                alerts.timeoutoldalerts($scope, 'alert-success', 'Email verify mail send Successfully', 4000);
+                            }
+                        }
+                    });
+                };
+                $scope.sendMobileCode = function(slide) {
+                    var obj = {
+                        iCountryID: slide.CountryCodeID,
+                        iCCode: slide.CountryCodeID,
+                        MobileNumber: slide.primarynumber,
+                        CustFamilyID: slide.Cust_Family_ID
+                    };
+                    $scope.custfamilyID = slide.Cust_Family_ID;
+                    $scope.popupMobilenumber = slide.primarynumber;
+                    SelectBindServiceApp.sendMobileCode(obj).then(function(response) {
+                        $scope.mobileVerificationCode = response.data;
+                        modelpopupopenmethod.showPopupphotopoup('verifyMobileContent.html', $scope, '', "modalclassdashboardphotopopup");
+                    });
+                };
+                $scope.updatebouncedemail = function(slide) {
+                    $scope.entryid = slide.bouncedemailentryid;
+                    $scope.emailbounce = slide.bouncedEmailID;
+                    $scope.Custidbounce = slide.Custid;
+                    $scope.uploadfromsubmit = true;
+                    modelpopupopenmethod.showPopupphotopoup('uploadsaform.html', $scope, 'sm', "modalclassdashboardphotopopup");
+                };
+                $scope.saformupload = function(profileid) {
+                    $scope.proceedprofileid = profileid;
+                    $scope.uploadfromsubmit = false;
+                    modelpopupopenmethod.showPopupphotopoup('uploadsaform.html', $scope, 'sm', "modalclassdashboardphotopopup");
+                };
+                $scope.pagesredirect = function(type, custid) {
+                    switch (type) {
+                        case "Partner":
+                            window.open("Partnerpreference/" + custid, "_blank");
+                            break;
+                        case "general":
+                            window.open("search/" + custid, "_blank");
+                            break;
+                        case "contacts":
+                            window.open("Contact/" + custid, "_blank");
+                            break;
+                    }
+                };
+
+                $scope.upload = function(obj) {
+                    var extension = (obj.myFile.name !== '' && obj.myFile.name !== undefined && obj.myFile.name !== null) ? (obj.myFile.name.split('.'))[1] : null;
+                    extension = angular.lowercase(extension);
+                    var gifFormat = "gif,jpeg,jpg";
+                    if (typeof(obj.myFile.name) != "undefined") {
+                        var size = obj.myFile.size;
+                        if (extension !== null && gifFormat.indexOf(angular.lowercase(extension)) === -1) {
+                            alert('Your uploaded image contains an unapproved file formats.');
+                        } else if (size > 4194304) {
+                            alert('Sorry,Upload Photo Size Must Be Less than 4 mb');
+                        } else {
+                            var keyname = app.prefixPath + $scope.proceedprofileid + '_settlementImages' + '/' + $scope.proceedprofileid + '_settlementImages.' + extension;
+                            fileUpload.uploadFileToUrl(obj.myFile, '/settlementformupload', keyname).then(function(res) {
+                                if (res.status == 200) {
+                                    model.closeupload();
+                                    var today = $filter('date')(new Date(), 'MM/dd/yyyy hh:mm:ss a');
+                                    var object = {
+                                        CreatedByEmpID: $scope.model.empid,
+                                        CreatedDate: today,
+                                        ModifiedByEmpID: $scope.model.empid,
+                                        ModifiedEmpDate: today,
+                                        SettlementAgreedAmount: 0,
+                                        Notes: "",
+                                        isActive: 0,
+                                        Settlementfrompath: '~/Images/SettlementImages/' + $scope.proceedprofileid + '_settlementImages/' + $scope.proceedprofileid + '_settlementImages.' + extension,
+                                        isassigned: 0,
+                                        ReferenceID: 0,
+                                        Profileidnew: $scope.proceedprofileid
+                                    };
+                                    helperservice.uploadsettlementform(object).then(function(response) {
+                                        if (response !== undefined && response.data === 1) {
+                                            alerts.timeoutoldalerts($scope, 'alert-success', 'SA Form Uploaded successfully', 2000);
+                                        } else {
+                                            alerts.timeoutoldalerts($scope, 'alert-danger', 'SA Form Uploaded Failed', 2000);
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    } else {
+                        alert("This browser does not support HTML5.");
+                    }
+                };
+
+                $scope.bouncedemail = function(obj) {
+                    var object = {
+                        CustID: $scope.Custidbounce,
+                        EmailBounceEntryId: $scope.entryid,
+                        BounceMailid: obj.newemail
+                    };
+                    helperservice.getUpdateEmailBounce(object).then(function(response) {
+                        if (response !== undefined && response.data === 1) {
+                            alerts.timeoutoldalerts($scope, 'alert-success', 'Email Updated successfully', 2000);
+                        } else {
+                            alerts.timeoutoldalerts($scope, 'alert-danger', 'Email Updated Failed', 2000);
+                        }
+                    });
                 };
             }
         };

@@ -5,7 +5,11 @@
          /* jshint validthis:true */
          var vm = this,
              model;
-
+         vm.photogradearray = [{ value: 216, name: 'A' },
+             { value: 217, name: 'B' },
+             { value: 218, name: 'C' },
+             { value: 219, name: 'D' }
+         ];
          vm.init = function() {
              vm.model = model = searchpageModel;
              model.scope = scope;
@@ -17,6 +21,9 @@
              model.sidebarnavshow = true;
              model.activatedmobile = true;
              model.selectedIndex = $stateParams.id;
+             model.templateUrl = "templates/angularSlide.html";
+             model.headettemp = "templates/angularHeader.html";
+             model.tickethistory = "templates/ticketHistoryPopup.html";
              model.searchpopuptext = model.selectedIndex === "0" ? "General Search" : "Advance Search";
              alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass", 'searchpageCtrl');
          };
@@ -39,7 +46,7 @@
                      model.Educationgroup = [];
                      model.Educationgroup = Commondependency.educationGroupBind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                      break;
-                 case 'educationGroup':
+                 case 'educationspeciallisation':
                      model.educationspeciallisation = [];
                      model.educationspeciallisation = Commondependency.educationSpeciakisationBind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                      break;
@@ -53,7 +60,7 @@
                      break;
                  case 'professionBind':
                      model.professionBind = [];
-                     model.professionBind = Commondependency.professionBind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
+                     model.professionBind = Commondependency.professionspecialisationBind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                      break;
 
                  case 'star':

@@ -122,7 +122,6 @@ app.factory('getArraysearch', ['arrayConstants', 'SelectBindServiceApp', functio
                         option = option;
                     });
                     break;
-
                 case 'indiaStates':
                     service.stateSelect('1').then(function(response) {
 

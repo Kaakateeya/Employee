@@ -11,7 +11,7 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ngAnimate', 'ngIdle', 'ngMaterial',
     'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate',
     'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons',
-    'KaakateeyaEmpReg', 'KaakateeyaEmpEdit', 'ngPrint'
+    'KaakateeyaEmpReg', 'KaakateeyaEmpEdit', 'ngPrint', 'ui.date'
 ]);
 app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.apirootold = 'http://183.82.0.58:8010/Api/';
@@ -40,7 +40,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             // { routeName: 'base', name: 'base', abstract: true },
             { routeName: 'login', name: 'base.login', url: '/', isloginrequired: false },
             { routeName: 'dashboard', name: 'base.dashboard', url: '/dashboardpage', isloginrequired: true, module: 'dashboard' },
-            { routeName: 'searchpage', name: 'base.searchpage', url: '/search/:id', isloginrequired: true },
+            { routeName: 'searchpage', name: 'base.searchpage', url: '/search/:id', isloginrequired: false },
             { routeName: 'editViewprofile', name: 'base.editViewprofile', url: '/editViewprofileurl', isloginrequired: false },
             { routeName: 'EmployeePayment', name: 'base.EmployeePayment', url: '/EmployeePayments', isloginrequired: false },
             { routeName: 'EmployeePaymentInsert', name: 'base.EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID/:status/:paymentID', isloginrequired: false },
@@ -125,7 +125,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/focusDirective.js',
                         'directives/bindHtmlEvents.js',
                         'directives/tickethistryInfm.js',
-                        'directives/marketingticket.js'
+                        'directives/marketingticket.js',
+                        'directives/newdatePicker.js'
                     ]
                 },
                 {

@@ -54,13 +54,15 @@
                         <div class="clearfix form-group">
                             <label for="Gender" class="control-label col-lg-4">Date OF Reg.From</label>
                             <div class="col-lg-7">
-                                <date-picker strdate="page.model.mpObj.txtRegFromDate"></date-picker>
+                                <!--<date-picker strdate="page.model.mpObj.txtRegFromDate"></date-picker>-->
+                                <custom-datepicker ng-model="page.model.mpObj.txtRegFromDate" date-options="page.model.dateOptions"></custom-datepicker>
                             </div>
                         </div>
                         <div class="clearfix form-group">
                             <label for="Gender" class="control-label col-lg-4">Assigned From Date</label>
                             <div class="col-lg-7">
-                                <date-picker strdate="page.model.mpObj.txtAssignFromdate"></date-picker>
+                                <!--<date-picker strdate="page.model.mpObj.txtAssignFromdate"></date-picker>-->
+                                <custom-datepicker ng-model="page.model.mpObj.txtAssignFromdate" date-options="page.model.dateOptions"></custom-datepicker>
                             </div>
                         </div>
                         <div class="clearfix form-group">
@@ -141,13 +143,15 @@
                         <div class="clearfix form-group">
                             <label for="Gender" class="control-label col-lg-4">Date OF Reg.To</label>
                             <div class="col-lg-7">
-                                <date-picker strdate="page.model.mpObj.txtRegToDate"></date-picker>
+                                <!--<date-picker strdate="page.model.mpObj.txtRegToDate"></date-picker>-->
+                                <custom-datepicker ng-model="page.model.mpObj.txtRegToDate" date-options="page.model.dateOptions"></custom-datepicker>
                             </div>
                         </div>
                         <div class="clearfix form-group">
                             <label for="Gender" class="control-label col-lg-4">Assigned To Date</label>
                             <div class="col-lg-7">
-                                <date-picker strdate="page.model.mpObj.txtToAssignedDate"></date-picker>
+                                <!--<date-picker strdate="page.model.mpObj.txtToAssignedDate"></date-picker>-->
+                                <custom-datepicker ng-model="page.model.mpObj.txtToAssignedDate" date-options="page.model.dateOptions"></custom-datepicker>
                             </div>
                         </div>
                         <div class="clearfix form-group">
@@ -241,3 +245,10 @@
     </div>
 
 </script>
+
+<style>
+    .datepicker3 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+        /*height: 35px !important;*/
+    }
+</style>

@@ -11,7 +11,6 @@
                 model.slides = [];
                 if (typeofpage === 'normal') {
                     model.slides = data;
-
                 } else if (typeofpage === 'myprofile') {
                     model.displayArray(data, topage, "myprofile");
                 } else {
@@ -21,6 +20,8 @@
             model.addSlides = function(data, arrayslide, topage, typeofpage) {
                 if (typeofpage === 'normal') {
                     model.slides = $.merge(model.slides, data);
+                } else if (typeofpage === 'myprofile') {
+                    model.displayArray(data, topage, "myprofile");
                 } else {
                     model.displayArray(data, 11);
                 }
@@ -46,28 +47,15 @@
                             IsConfidential: item.IsConfidential,
                             SuperConfidentila: item.SuperConfidentila,
                             HoroscopeStatus: item.HoroscopeStatus,
-                            HoroscopeImage: item.HoroscopeImage
+                            HoroscopeImage: item.HoroScopeImage
                         });
                         model.data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
-                        model.data.push({ label: 'Caste', value: item.MotherTongue + "-" + item.Caste });
-                        model.data.push({ label: 'Dor', value: item.DOR });
+                        model.data.push({ label: 'Caste', value: item.mothertongue + "-" + item.Caste });
+                        model.data.push({ label: 'Dor', value: item.RegistrationDate });
                         model.data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
-                        model.data.push({
-                            label: 'backendFields',
-                            Custid: item.Cust_ID,
-                            ProfileID: item.ProfileID,
-                            PhotoCount: item.PhotoCount,
-                            Age: item.Age,
-                            HeightInCentimeters: item.HeightInCentimeters,
-                            MaritalStatusID: item.MaritalStatusID,
-                            CasteID: item.CasteID,
-                            serviceDate: item.serviceDate,
-                            CustPhoto: item.ApplicationPhotoPath,
-                            totalrecords: item.TotalRows
-                        });
                         model.slides.push({
                             itmArr: model.data,
-                            custPhoto: item.ApplicationPhotoPath,
+                            custPhoto: item.Photo,
                             Custid: item.Cust_ID,
                             lastlogin: item.LastLoginDate,
                             logincount: item.LoginCount,
@@ -75,7 +63,7 @@
                             matchmarktingcount: item.MatchMeetingCount,
                             ownername: item.EmpName,
                             branch: item.KMPLID,
-                            reg: item.DOR,
+                            reg: item.RegistrationDate,
                             SAForm: item.SAForm,
                             primarynumber: item.ContactNumber,
                             primaryemail: item.Email,
@@ -104,7 +92,22 @@
                             ActionType: item.ActionType,
                             ReadStatus: item.ReadStatus,
                             Tickets: item.Tickets,
-                            TicketID: item.TicketID
+                            TicketID: item.TicketID,
+                            onlinepaidcls: item.onlinepaidcls,
+                            onlinepaid: item.onlinepaid,
+                            offlinepaidcls: item.offlinepaidcls,
+                            offlinepaid: item.offlinepaid,
+                            educationspecialisation: item.educationspecialisation,
+                            currency: item.currency,
+                            countrylivingin: item.countrylivingin,
+                            UploadedPhotoscount: item.UploadedPhotoscount,
+                            TOB: item.TOB,
+                            SubCaste: item.SubCaste,
+                            Star: item.Star,
+                            Profession: item.Profession,
+                            PlaceOfBirth: item.PlaceOfBirth,
+                            MFNative: item.MFNative
+
                         });
                     });
                 } else {

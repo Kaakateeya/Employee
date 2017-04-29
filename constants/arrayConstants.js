@@ -459,5 +459,14 @@ app.constant('arrayConstants', {
         { label: "30 days", title: "30 days", value: 30 },
         { label: "40 days", title: "40 days", value: 40 },
         { label: "50 days", title: "50 days", value: 50 }
+    ],
+    'Applicationstatus': [
+        { label: "Active", title: "Active", value: 54 },
+        { label: "InActive", title: "InActive", value: 55 },
+        { label: "Deleted", title: "Deleted", value: 56 },
+        { label: "Settled", title: "Settled", value: 57 },
+        { label: "WaitingforSetldAuth", title: "WaitingforSetldAuth", value: 393 },
+        { label: "WaitingforDeltdAuth", title: "WaitingforDeltdAuth", value: 394 },
+        { label: "MMSerious", title: "MMSerious", value: 395 }
     ]
 });

@@ -8,7 +8,7 @@
         model.slide = configslide;
 
         model.mpObj = {};
-        model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+        model.empid = model.slide.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
         model.opendiv = true;
         model.scope = {};
         model.slide.templateUrl = "templates/myprofileSlide.html";
@@ -16,8 +16,98 @@
         model.grid.showsearchrows = true;
         model.grid.showsearch = true;
         model.grid.showpaging = true;
-        model.MyProfilePageLoad = function() {
+        model.dateOptions = {
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-40:+5",
+            dateFormat: 'mm/dd/yy'
+        };
 
+
+        model.displayArrayprofile = function(arr, topage) {
+            debugger;
+            model.headervisileble = true;
+            if (topage === parseInt(10)) {
+                model.slides = [];
+            }
+            $.each(arr, function(index, item) {
+                model.data = [];
+                model.data.push({
+                    label: 'ProfileID',
+                    value: '',
+                    ProfileID: item.ProfileID,
+                    KMPLID: item.KMPLID,
+                    paid: item.paid,
+                    IsConfidential: item.IsConfidential,
+                    SuperConfidentila: item.SuperConfidentila,
+                    HoroscopeStatus: item.HoroscopeStatus,
+                    HoroscopeImage: item.HoroScopeImage
+                });
+                model.data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
+                model.data.push({ label: 'Caste', value: item.mothertongue + "-" + item.Caste });
+                model.data.push({ label: 'Dor', value: item.RegistrationDate });
+                model.data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
+                model.slides.push({
+                    itmArr: model.data,
+                    custPhoto: item.Photo,
+                    Custid: item.Cust_ID,
+                    lastlogin: item.LastLoginDate,
+                    logincount: item.LoginCount,
+                    matkteingticket: item.TicketID,
+                    matchmarktingcount: item.MatchMeetingCount,
+                    ownername: item.EmpName,
+                    branch: item.KMPLID,
+                    reg: item.RegistrationDate,
+                    SAForm: item.SAForm,
+                    primarynumber: item.ContactNumber,
+                    primaryemail: item.Email,
+                    CreatedDate: item.CreatedDate,
+                    SRCount: item.SRCount,
+                    PaidAmount: item.PaidAmount,
+                    ExpiryDate: item.ExpiryDate,
+                    Points: item.Points,
+                    mobilestatus: item.CNumberVerStatus,
+                    emailstatus: item.CEmailVerStatus,
+                    UserName: item.UserName,
+                    Reason4InActive: item.Reason4InActive,
+                    ProfileID: item.ProfileID,
+                    CountryCodeID: item.CountryCodeID,
+                    Cust_Family_ID: item.Cust_Family_ID,
+                    PhotoCount: item.PhotoCount,
+                    Age: item.Age,
+                    HeightInCentimeters: item.HeightInCentimeters,
+                    MaritalStatusID: item.MaritalStatusID,
+                    CasteID: item.CasteID,
+                    serviceDate: item.serviceDate,
+                    bouncedEmailID: item.EmailID,
+                    bouncedemailentryid: item.Cust_EmailBounceEntryId,
+                    Cust_NotificationID: item.Cust_NotificationID,
+                    CategoryID: item.CategoryID,
+                    ActionType: item.ActionType,
+                    ReadStatus: item.ReadStatus,
+                    Tickets: item.Tickets,
+                    TicketID: item.TicketID,
+                    onlinepaidcls: item.onlinepaidcls,
+                    onlinepaid: item.onlinepaid,
+                    offlinepaidcls: item.offlinepaidcls,
+                    offlinepaid: item.offlinepaid,
+                    educationspecialisation: item.educationspecialisation,
+                    currency: item.currency,
+                    countrylivingin: item.countrylivingin,
+                    UploadedPhotoscount: item.UploadedPhotoscount,
+                    TOB: item.TOB,
+                    SubCaste: item.SubCaste,
+                    Star: item.Star,
+                    Profession: item.Profession,
+                    PlaceOfBirth: item.PlaceOfBirth,
+                    MFNative: item.MFNative
+
+                });
+            });
+            return model.slides;
+        };
+
+        model.MyProfilePageLoad = function() {
             myProfileservice.getMyprofilebind(1, 2, '').then(function(response) {
                 model.mpObj.ddlProfileOwner = model.empid;
                 model.applicationStatusarray = [];
@@ -93,9 +183,6 @@
         model.ViewProfile = function(row) {
             window.open('/Viewfullprofile/' + row.ProfileID, '_blank');
         };
-        model.slide.viewfullprofile = function(ProfileID) {
-            window.open('/Viewfullprofile/' + ProfileID, '_blank');
-        };
         model.horoscopeimage = function(row) {
             model.image = row.HoroScopeImage;
             if ((row.HoroScopeImage).indexOf('.html') === -1)
@@ -168,10 +255,10 @@
                     } else {
                         model.slide.totalRecords = response.data[0].TotalRows;
                         if (parseInt(from) === 1) {
-                            model.slide.setSlides(response.data, 10, "myprofile");
+                            model.slide.setSlides(response.data, model.topage, "myprofile");
                             modelpopupopenmethod.showPopupphotopoup('myprofileSlide.html', model.scope, 'lg', "");
                         } else {
-                            model.slide.addSlides(response.data, model.slides, parseInt(to));
+                            model.slide.addSlides(response.data, model.slides, parseInt(to), "myprofile");
                         }
                     }
                 } else {
@@ -194,21 +281,21 @@
                 model.MyprofileResult(model.mpObj, (model.topage) + 1, (model.topage) + 10);
             }
         };
-        model.slide.close = function() {
-            modelpopupopenmethod.closepopuppoptopopup();
-        };
-
         // slide events
-
         model.slide.redirectEdit = function(custid, type) {
             window.open('/' + type + '/' + custid, '_blank');
         };
-
+        model.slide.viewfullprofile = function(ProfileID) {
+            window.open('/Viewfullprofile/' + ProfileID, '_blank');
+        };
+        model.slide.close = function() {
+            modelpopupopenmethod.closepopuppoptopopup();
+        };
         return model;
     }
     angular
         .module('Kaakateeya')
-        .factory('myProfileModel', factory)
+        .factory('myProfileModel', factory);
     factory.$inject = ['$http', 'myProfileservice', 'authSvc', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'SelectBindServiceApp', '$uibModal', '$timeout', 'complex-slide-config'];
 
 })(angular);
