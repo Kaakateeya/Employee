@@ -1,0 +1,83 @@
+<div ng-if="strtype==='INCOMING' || strtype==='OUT GOING'">
+    <div class='row'>
+        <div class='col-lg-12 text-center' style='font-weight:bold;'>
+            <c class='maroon'> {{strtype}} </c> Call done on
+            <c class='maroon'> {{strdate}} </c>
+        </div>
+        <div class='clearfix'></div>
+        <div class='col-lg-5'><label class="maroon">Call Done By</label></div>
+        <div class='col-lg-7'><label> {{strempname}} </label></div>
+        <div class='clearfix'></div>
+        <div class='col-lg-5'><label class="maroon">Call Status</label></div>
+        <div class='col-lg-7'><label><div> {{strstatus}} </div></label></div>
+        <div class='clearfix'></div>
+        <div class='col-lg-5'><label class="maroon">Call Received By</label></div>
+        <div class='col-lg-7'><label><div> {{strcustname+(strrelation!==''?'('+strrelation+')':'')}} </div></label></div>
+        <div class='clearfix'></div>
+        <div class='col-lg-12'><label class="maroon">Call Discussion</label>
+            <div><label> {{strcomments}} </label></div>
+        </div>
+        <div class='clearfix'></div>
+    </div>
+</div>
+<div ng-if="strtype==='InternalMemo' || strtype==='Close' || strtype==='REPLY'">
+    <div class='row'>
+        <div class='col-lg-12 text-center' style='font-weight:bold;'>
+            <c class='maroon'> {{strtype}} </c> done on
+            <c class='maroon'> {{strdate}} </c>
+        </div>
+        <div class='clearfix'></div>
+        <div class='col-lg-5'><label class="maroon">Employee Name</label></div>
+        <div class='col-lg-7'><label><div> {{strempname}} </div></label></div>
+        <div class='clearfix'></div>
+        <div class='col-lg-12'><label class="maroon">Comments</label>
+            <div><label> {{strcomments}} </label></div>
+        </div>
+        <div class='clearfix'></div>
+    </div>
+
+</div>
+
+<div ng-if="strtype==='MatchFollowupReply'">
+    <div class='row'>
+        <div class='col-lg-12' style='font-weight:bold;'>
+            <c class='maroon'> {{strtype}} </c> done on
+            <c class='maroon'> {{strdate}} </c>
+        </div>
+        <div class='clearfix'></div>
+        <div>
+            <div class='col-lg-5'><label class="maroon">Replied By</label></div>
+            <div class='col-lg-7'><label> {{strempname}} </label></div>
+        </div>
+        <div class='clearfix'></div>
+        <div>
+            <div class='col-lg-5'><label class="maroon">Match Followup Status</label></div>
+            <div class='col-lg-7'><label><div> {{strmatchMeetingStatus}} </div></label></div>
+        </div>
+        <div class='clearfix'></div>
+        <div class='col-lg-12'><label class="maroon">Match Meeting Reason 	</label>
+            <div><label> {{strmatchMeetingReason}} </label></div>
+        </div>
+        <div class='clearfix'></div>
+    </div>
+
+</div>
+
+<div ng-if="strtype==='Reply'">
+    <div class='row'>
+        <div class='col-lg-12 text-center' style='font-weight:bold;'>
+            <c class='maroon'> {{strtype}} </c> done on
+            <c class='maroon'> {{strdate}} </c>
+        </div>
+        <div class='clearfix'></div>
+        <div>
+            <div class='col-lg-5'><label class="maroon">Replied By</label></div>
+            <div class='col-lg-7'><label> {{strempname}} </label></div>
+        </div>
+        <div class='clearfix'></div>
+        <div class='col-lg-12'><label class="maroon">Comments</label>
+            <div><label> {{strcomments}} </label></div>
+        </div>
+        <div class='clearfix'></div>
+    </div>
+</div>

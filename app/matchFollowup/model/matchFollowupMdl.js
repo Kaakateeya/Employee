@@ -2,7 +2,7 @@
     'use strict';
 
     function factory($http, getArray, timeout, matchFollowupServices, config,
-        authSvc, Commondependency, modelpopupopenmethod, alertss, arrayConstants) {
+        authSvc, Commondependency, modelpopupopenmethod, alertss, arrayConstants, SelectBindServiceApp) {
         var model = {};
         model = config;
         model.proceed = {};
@@ -58,6 +58,34 @@
                     }
                 });
             });
+
+
+
+
+            // SelectBindServiceApp.EmpwithBranch('ProfileBranch', '').then(function(response) {
+            //     console.log(response.data);
+            //     var empBranchData = response.data;
+            //     var EmpNames = [];
+            //     var branchids = '1';
+            //     _.each(empBranchData, function(item) {
+            //         if (branchids === '' || branchids.indexOf(JSON.stringify(item.Branch_ID)) === -1) {
+            //             branchids = branchids === '' ? item.Branch_ID : branchids + ',' + item.Branch_ID;
+
+            //             _.where(response.data, { Branch_ID: parseInt(item.Branch_ID) },
+            //                 function(item) {
+            //                     EmpNames.push({ ParentName: item.Branch_ID });
+            //                 });
+            //             debugger;
+            //             model.EmpNamesArr.push({
+            //                 ParentName: item.BranchesName,
+            //                 groupData: EmpNames
+            //             });
+
+            //         }
+            //     });
+            //     debugger;
+            //     console.log(model.EmpNamesArr);
+            // });
         };
         model.smsarray = [
             { id: 1, text: 'We missed to reach you on 91-XXXXX. please call back' },
@@ -67,7 +95,7 @@
         ];
 
         model.matchFollowupSelect = function(empid, custID, typeofpopup) {
-            debugger;
+
             var inputobj = {
                 empid: model.empid,
                 strProfileOwner: empid !== undefined ? empid : ((model.Managementid) === 'true' ? (_.isArray(model.lstEmpnames) ? (model.lstEmpnames).join(',') : '') : model.empid),
@@ -88,8 +116,8 @@
                 inputobj.pageto = model.topage;
             }
             matchFollowupServices.matchFollowupSelect(inputobj).then(function(response) {
-                debugger;
-                console.log(response);
+
+
                 if (_.isArray(response.data) && response.data.length > 0) {
                     var currentdate = new Date();
                     currentdate = moment(currentdate).format("YYYY-MM-DD");
@@ -199,7 +227,7 @@
             modelpopupopenmethod.closepopup();
         };
         model.close = function() {
-            debugger;
+
             modelpopupopenmethod.closepopuppoptopopup();
 
         };
@@ -306,7 +334,7 @@
 
 
         model.smsMailSubmit = function(type) {
-            debugger;
+
             if (type === 'sms') {
                 model.smsInput.strbody = model.txtsmsmail;
                 matchFollowupServices.sendSms(model.smsInput).then(function(response) {
@@ -440,7 +468,7 @@
             matchFollowupServices.ActionSubmit(inputObj).then(function(response) {
                 if (parseInt(response.data) === 1) {
                     model.closeAction();
-                    debugger;
+
                     var curdate = moment().format('Do MMMM YYYY, h:mm:ss');
                     if (str === 'Incoming') {
                         alertmsg = 'Incoming call created ';
@@ -459,7 +487,7 @@
                     if (obj.RelationID !== undefined) {
                         relation = (_.where(arrayConstants.childStayingWith, { value: parseInt(obj.RelationID) }))[0].label;
                     }
-                    debugger;
+
                     _.each(model.slides, function(item) {
 
                         if (model.ActionTicket === item.FromTicket && replyTypedisplay !== 'Close') {
@@ -552,6 +580,6 @@
         .module('Kaakateeya')
         .factory('matchFollowupModel', factory);
     factory.$inject = ['$http', 'getArraysearch', '$timeout', 'matchFollowupServices',
-        'complex-slide-config', 'authSvc', 'Commondependency', 'modelpopupopenmethod', 'alert', 'arrayConstants'
+        'complex-slide-config', 'authSvc', 'Commondependency', 'modelpopupopenmethod', 'alert', 'arrayConstants', 'SelectBindServiceApp'
     ];
 })(angular);

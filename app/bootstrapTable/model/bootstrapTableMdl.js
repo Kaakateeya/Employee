@@ -6,7 +6,7 @@
     function factory($http, commonpage) {
         var model = {};
         model.init = function() {
-            commonpage.showPopupphotopoup('market.html', model.scope, 'lg', "modalclassdashboardphotopopup");
+            commonpage.showPopup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
             model.test = 'dddd';
             model.headings = ['Profile', 'LastName', 'Firstname', 'caste', 'ProfileOwner', 'height'];
             model.columns = [

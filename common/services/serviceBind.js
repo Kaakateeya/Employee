@@ -139,7 +139,25 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
                     ID: ID,
                 }
             });
+        },
+        getRelationName: function(flag, ID, RelationShipID) {
+            return http.get(app.apiroot + 'ExpressInterest/getExpressInterest_linq', {
+                params: {
+                    flag: flag,
+                    ID: ID,
+                    RelationShipID: RelationShipID
+                }
+            });
+        },
+        EmpwithBranch: function(flag, ID) {
+            return http.get(app.apiroot + 'EmployeeReportPage/getMyProfileBindingsBranch', {
+                params: {
+                    flag: flag,
+                    ID: ID
+                }
+            });
         }
+
 
     };
 }]);

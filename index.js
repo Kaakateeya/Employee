@@ -23,7 +23,6 @@ app.PaymentDays = parseInt(app.payDays) / parseInt(app.payfixedAmt);
 app.paymentPoints = parseInt(app.paypoints) / parseInt(app.payfixedAmt);
 app.ServiceTaxPercent = 14 / 100;
 
-
 app.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
 //regapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
 app.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/angularkaknew/';
@@ -125,7 +124,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/focusDirective.js',
                         'directives/bindHtmlEvents.js',
                         'directives/tickethistryInfm.js',
-                        'directives/marketingticket.js'
+                        'directives/marketingticket.js',
+                        'directives/marketHistryDirective.js'
                     ]
                 },
                 {
@@ -199,7 +199,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     "bottompanel@": {
                         templateUrl: "templates/footer.html"
                     }
-
                 };
             }
 

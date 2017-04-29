@@ -1,376 +1,336 @@
-<button type="button" class="close" ng-click="page.model.closeupload()">&times;</button>
-<div class="col-lg-12">
-    <div class="text-center ticketpopuppopupheader">
-        <div class="row">
-            <div class="col-lg-2">
-                <b class="dashboardticketpopup">TicketID:</b>
-                <br />
-                <label id="lblmrktTicketID" class="ticketpopuplabel"></label>
-            </div>
-            <div class="col-lg-1">
-                <b class="dashboardticketpopup">Status</b>
-                <br />
-                <label id="lblmrktStatus" class="ticketpopuplabel"></label>
-            </div>
-            <div class="col-lg-3">
-                <b class="dashboardticketpopup">Opened on</b>
-                <br />
-                <label id="lblmrktOpened" class="ticketpopuplabel"></label>
-            </div>
-            <div class="col-lg-2">
-                <b class="dashboardticketpopup">Assigned to</b>
-                <br />
-                <label id="lblmrktAssigned" class="ticketpopuplabel"></label>
-            </div>
-            <div class="col-lg-2">
-                <b class="dashboardticketpopup">No of days</b>
-                <br />
-                <label id="lblNoofdays" class="ticketpopuplabel"></label>
+<!--<script type="text/ng-template" id="market.html">-->
+<div class="modal-body">
+
+    <button type="button" class="close" ng-click="model.close();">&times;</button>
+    <div class="col-lg-12">
+        <div class="text-center ticketpopuppopupheader">
+            <div class="row">
+                <div class="col-lg-2">
+                    <b class="dashboardticketpopup">TicketID:</b>
+                    <br />
+                    <label id="lblmrktTicketID" class="ticketpopuplabel">{{model.marInfo[0].TicketID}}</label>
+                </div>
+                <div class="col-lg-1">
+                    <b class="dashboardticketpopup">Status</b>
+                    <br />
+                    <label id="lblmrktStatus" class="ticketpopuplabel">{{model.marInfo[0].TicketStatus}}</label>
+                </div>
+                <div class="col-lg-3">
+                    <b class="dashboardticketpopup">Opened on</b>
+                    <br />
+                    <label id="lblmrktOpened" class="ticketpopuplabel">{{model.marInfo[0].TicketOpenedOn}}</label>
+                </div>
+                <div class="col-lg-2">
+                    <b class="dashboardticketpopup">Catgory</b>
+                    <br />
+                    <label id="lblNoofdays" class="ticketpopuplabel">{{model.marInfo[0].Prirority}}</label>
+                </div>
+                <div class="col-lg-2">
+                    <b class="dashboardticketpopup">Assigned to</b>
+                    <br />
+                    <label id="lblmrktAssigned" class="ticketpopuplabel">{{model.marInfo[0].EmpName}}</label>
+                </div>
+                <div class="col-lg-2">
+                    <b class="dashboardticketpopup">No of days</b>
+                    <br />
+                    <label id="lblNoofdays" class="ticketpopuplabel">{{model.marInfo[0].NoofDays}}</label>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div>
-    <md-content class="md-padding">
-        <md-tabs md-selected="page.model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
-            <md-tab label="View">
-                <div class="tab">
-                    <div class="col-lg-12">
-                        <div id="Updatediv1" style="overflow-y: scroll;height: 450px;overflow-x: hidden;">
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">Reply</c> <label>done on</label>
-                                    <c class="maroon">22-Jun-2016-15:46:03</c>
+    <div>
+        <md-content class="md-padding">
+            <md-tabs md-selected="page.model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
+                <md-tab label="View">
+                    <div class="tab">
+                        <div class="col-lg-12">
+                            <div id="Updatediv1" style="overflow-y: scroll;height: 450px;overflow-x: hidden;">
+                                <div ng-repeat="item in model.marHistry">
+                                    <br>
+                                    <market-histry strtype="item.TicketType" strdate="item.ReplyDatenew" strempname="item.NAME" strstatus="item.CallStatus" strcustname="item.CallReceivedBy" strcomments="item.ReplyDesc" strnoofdays="item.NoOfDays" strrelation="item.RelationShip"></market-histry>
                                 </div>
-                                <div class="clearfix"></div>
-                                <div>
-                                    <div class="col-lg-5"><label class="maroon"> Replied By</label></div>
-                                    <div class="col-lg-7"><label>Sujatha Motukhayala</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Comments</label>
-                                    <div><label>Thanks for Contacting kaakateeya.com. Your Profile is not Verified. Kindly call below contact number.
-                                     sujatha: 9848535373..Sent Mail</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">OUT GOING</c> <label>Call done on</label>
-                                    <c class="maroon">16-Jun-2016-18:27:30</c>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Done By</label></div>
-                                <div class="col-lg-7"><label>Lakshmi kudithipudi</label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Status</label></div>
-                                <div class="col-lg-7"><label><div>UnSucessfull</div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon">Call Received By</label>
-                                </div>
-                                <div class="col-lg-7"><label><div></div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Call Discussion</label>
-                                    <div><label>this is lakshmi(hd022) call not lifted</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                                    <c class="maroon">InternalMemo</c> <label>done on</label>
-                                    <c class="maroon">30-May-2016-09:34:30</c>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-5"><label class="maroon"> Employee Name</label></div>
-                                <div class="col-lg-7"><label><div>SANDHYA DOMA</div></label></div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12"><label style="color:maroon;">Comments</label>
-                                    <div><label>this profile(111013412)is assigned to lakshmi(HD)</label></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><br></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </md-tab>
+                </md-tab>
 
-            <md-tab label="Incoming Call">
-                <div class="tab">
-                    <br>
-                    <div>
-                        <form name="inform" novalidate role="form" ng-submit="inform.$valid && model.incallSubmit(model.MAobj);">
-                            <ul>
-                                <div class="col-lg-12">
-                                    <li class="col-lg-6">
-                                        <label class="pop_label_left">Call received from </label>
-                                        <div class="pop_controls_right">
-                                            <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktreceivedIn" multiselectdropdown typeofdata="'EmpNames'">   
+                <md-tab label="Incoming Call">
+                    <div class="tab">
+                        <br>
+                        <div>
+                            <form name="inform" novalidate role="form" ng-submit="inform.$valid && model.incallSubmit(model.MAobj);">
+                                <ul>
+                                    <div class="col-lg-12">
+                                        <li class="col-lg-6">
+                                            <label class="pop_label_left">Call received from </label>
+                                            <div class="pop_controls_right">
+                                                <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktreceivedIn" ng-change="model.RelationshipChange(model.MAobj.ddlmrktreceivedIn,'In');" multiselectdropdown typeofdata="'childStayingWith'">   
                                                      </select>
-                                        </div>
-                                    </li>
-                                    <li class="col-lg-6">
-                                        <label class="pop_label_left">Relation name  </label>
-                                        <div class="pop_controls_right">
-                                            <input ng-model="model.MAobj.txtmrktRelationnameIn" type="text" class="form-control required"></input>
-                                        </div>
-                                    </li>
-                                </div>
-                                <div class="col-lg-12">
-                                    <li class="col-lg-6">
-                                        <label class="pop_label_left">Call result </label>
-                                        <div class="pop_controls_right">
-                                            <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktCallresultIn" multiselectdropdown>   
+                                            </div>
+                                        </li>
+                                        <li class="col-lg-6">
+                                            <label class="pop_label_left">Relation name  </label>
+                                            <div class="pop_controls_right">
+                                                <input ng-model="model.MAobj.txtmrktRelationnameIn" type="text" class="form-control required"></input>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <li class="col-lg-6">
+                                            <label class="pop_label_left">Call result </label>
+                                            <div class="pop_controls_right">
+                                                <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktCallresultIn" multiselectdropdown>   
                                                     <option value="">-- Select --</option>
                                                     <option value="417">Successfull</option>
                                                     <option value="418">UnSuccessfull</option>
                                                      </select>
-                                        </div>
-                                    </li>
-                                    <li class="col-lg-6">
-                                        <label class="pop_label_left">Call telephone number </label>
-                                        <div class="pop_controls_right">
-                                            <input type="text" ng-model="model.MAobj.txtmrktCalltelephonenumberIn" class="form-control" maxlength="12" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
-                                            />
-                                        </div>
-                                    </li>
-                                </div>
-                                <div class="col-lg-12">
-                                    <li class="col-lg-6">
-                                        <label class="pop_label_left">Reply Type </label>
-                                        <div class="pop_controls_right select-box-my">
-                                            <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktReplyTypeIn" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr">   
+                                            </div>
+                                        </li>
+                                        <li class="col-lg-6">
+                                            <label class="pop_label_left">Call telephone number </label>
+                                            <div class="pop_controls_right">
+                                                <input type="text" ng-model="model.MAobj.txtmrktCalltelephonenumberIn" class="form-control" maxlength="12" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
+                                                />
+                                            </div>
+                                        </li>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <li class="col-lg-6">
+                                            <label class="pop_label_left">Reply Type </label>
+                                            <div class="pop_controls_right select-box-my">
+                                                <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktReplyTypeIn" ng-change="model.MAobj.txtmrktCalldiscussionin=model.mailchange(model.MAobj.ddlmrktReplyTypeIn);" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr">   
                                                      </select>
-                                        </div>
-                                    </li>
-                                    <li class="col-lg-6">
-                                        <label class="pop_label_left Notrequired">Display to customer </label>
-                                        <div class="pop_controls_right pop_radios_list">
-                                            <md-radio-group ng-required="true" name="rbtnmarketDisplay" layout="row" ng-model="model.MAobj.rbtnmarketDisplayIn" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                                <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
-                                                <md-radio-button value="2"> No</md-radio-button>
-                                            </md-radio-group>
-                                        </div>
-                                    </li>
-                                </div>
-                                <div class="col-lg-12">
-                                    <li class="col-lg-12">
-                                        <label class="pop_label_left" style="width: 19%;">Call discussion </label>
-                                        <div class="pop_controls_right" style="width: 80% !important;">
-                                            <textarea type="text" ng-model="model.MAobj.txtmrktCalldiscussionin" class="form-control"></textarea>
-                                        </div>
-                                    </li>
-                                </div>
-                                <div class="col-lg-12">
-                                    <br>
-                                    <li class="col-lg-12">
-                                        <div class="col-lg-5">
-                                            <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" value="Submit" id="btnmrktsubmitIncoming" class="button_custom pull-right" onclick="return submitInCalls(this);">Incoming Call</button>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="button" id="btnIncomeAssignme" class="button_custom" onclick="return submitInCalls(this);">Incomg Call & Assign me</button>
-                                            <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset" onclick='modalpopupopen.close()'>Close</button>
-                                        </div>
-                                    </li>
-                                </div>
-                            </ul>
-                        </form>
-                        <div class="clearfix">
+                                            </div>
+                                        </li>
+                                        <li class="col-lg-6">
+                                            <label class="pop_label_left Notrequired">Display to customer </label>
+                                            <div class="pop_controls_right pop_radios_list">
+                                                <md-radio-group ng-required="true" name="rbtnmarketDisplay" layout="row" ng-model="model.MAobj.rbtnmarketDisplayIn" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                                    <md-radio-button value="2"> No</md-radio-button>
+                                                </md-radio-group>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <li class="col-lg-12">
+                                            <label class="pop_label_left" style="width: 19%;">Call discussion </label>
+                                            <div class="pop_controls_right" style="width: 80% !important;">
+                                                <textarea type="text" ng-model="model.MAobj.txtmrktCalldiscussionin" class="form-control"></textarea>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <br>
+                                        <li class="col-lg-12">
+                                            <div class="col-lg-5">
+                                                <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" value="Submit" id="btnmrktsubmitIncoming" class="button_custom pull-right" ng-click="model.incallSubmit(model.MAobj);">Incoming Call</button>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="button" id="btnIncomeAssignme" class="button_custom" ng-click="model.incallSubmit(model.MAobj,'assign');">Incomg Call & Assign me</button>
+                                                <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset" ng-click="model.close();">Close</button>
+                                            </div>
+                                        </li>
+                                    </div>
+                                </ul>
+                            </form>
+                            <div class="clearfix">
+                            </div>
+                            <br>
+                            <md-divider></md-divider>
                         </div>
-                        <br>
-                        <md-divider></md-divider>
                     </div>
-                </div>
-            </md-tab>
-            <md-tab label="Outgoing Call">
-                <div class="tab">
-                    <br>
-                    <div>
-                        <form name="outform" novalidate role="form" ng-submit="outform.$valid && model.outcallSubmit(model.MAobj);">
-                            <ul>
-                                <div class="col-lg-12">
-                                    <li class="col-lg-6">
-                                        <label class="pop_label_left">Call received by </label>
-                                        <div class="pop_controls_right select-box-my">
+                </md-tab>
+                <md-tab label="Outgoing Call">
+                    <div class="tab">
+                        <br>
+                        <div>
+                            <form name="outform" novalidate role="form" ng-submit="outform.$valid && model.outcallSubmit(model.MAobj);">
+                                <ul>
+                                    <div class="col-lg-12">
+                                        <li class="col-lg-6">
+                                            <label class="pop_label_left">Call received by </label>
+                                            <div class="pop_controls_right select-box-my">
 
-                                            <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktreceivedout" multiselectdropdown typeofdata="'EmpNames'">   
+                                                <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktreceivedout" ng-change="model.RelationshipChange(model.MAobj.ddlmrktreceivedout,'Out');" multiselectdropdown typeofdata="'childStayingWith'">   
                                                      </select>
-                                        </div>
-                                    </li>
-                                    <li class="col-lg-6">
-                                        <label class="pop_label_left">Relation name  </label>
-                                        <div class="pop_controls_right">
-                                            <input ng-model="model.MAobj.txtmrktRelationnameout" type="text" class="form-control" />
-                                        </div>
-                                    </li>
-                                </div>
-                                <div class="col-lg-12">
-                                    <li class="col-lg-6">
-                                        <label class="pop_label_left">Call result </label>
-                                        <div class="pop_controls_right">
-                                            <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktcallresultout" multiselectdropdown>   
+                                            </div>
+                                        </li>
+                                        <li class="col-lg-6">
+                                            <label class="pop_label_left">Relation name  </label>
+                                            <div class="pop_controls_right">
+                                                <input ng-model="model.MAobj.txtmrktRelationnameout" type="text" class="form-control" />
+                                            </div>
+                                        </li>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <li class="col-lg-6">
+                                            <label class="pop_label_left">Call result </label>
+                                            <div class="pop_controls_right">
+                                                <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktcallresultout" multiselectdropdown>   
                                              <option value="">-- Select --</option>
                                                     <option value="417">Successfull</option>
                                                     <option value="418">UnSuccessfull</option>
                                                      </select>
-                                        </div>
-                                    </li>
+                                            </div>
+                                        </li>
 
-                                    <li class="col-lg-6">
-                                        <label class="pop_label_left">Call telephone number </label>
-                                        <div class="pop_controls_right">
-                                            <input ng-model="model.MAobj.txtmrktCalltelephonenumberout" type="text" class="form-control" maxlength="12" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
-                                            />
-                                        </div>
-                                    </li>
-                                </div>
-                                <div class="col-lg-12">
-                                    <li class="col-lg-6">
-                                        <label class="pop_label_left">Reply Type </label>
-                                        <div class="pop_controls_right select-box-my">
-                                            <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktreplytypeout" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr">   
+                                        <li class="col-lg-6">
+                                            <label class="pop_label_left">Call telephone number </label>
+                                            <div class="pop_controls_right">
+                                                <input ng-model="model.MAobj.txtmrktCalltelephonenumberout" type="text" class="form-control" maxlength="12" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
+                                                />
+                                            </div>
+                                        </li>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <li class="col-lg-6">
+                                            <label class="pop_label_left">Reply Type </label>
+                                            <div class="pop_controls_right select-box-my">
+                                                <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktreplytypeout" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr" ng-change="model.MAobj.txtmrktCalldiscussionout=model.mailchange(model.MAobj.ddlmrktreplytypeout);">   
                                                      </select>
-                                        </div>
-                                    </li>
-                                    <li class="col-lg-6">
-                                        <label class="pop_label_left Notrequired">Display to customer </label>
-                                        <div class="pop_controls_right pop_radios_list">
-                                            <md-radio-group ng-required="true" name="rbtndisplayOut" layout="row" ng-model="model.MAobj.rbtndisplayOut" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                                <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
-                                                <md-radio-button value="2"> No</md-radio-button>
-                                            </md-radio-group>
-                                        </div>
-                                    </li>
-                                </div>
-                                <div class="col-lg-12">
-                                    <li class="col-lg-12">
-                                        <label class="pop_label_left" style="width:19%;">Call discussion </label>
-                                        <div class="pop_controls_right" style="width:80% !important;">
-                                            <textarea ng-model="model.MAobj.txtmrktCalldiscussionout" type="text" class="form-control"></textarea>
-                                        </div>
-                                    </li>
-                                </div>
-                                <div class="col-lg-12">
-                                    <br>
-                                    <li class="col-lg-12">
-                                        <div class="col-lg-5">
-                                            <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" value="Submit" id="btnmrktoutgng" class="button_custom pull-right" onclick="return submitOutCalls(this);">Outgoing Call</button>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <button type="button" style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" id="btnOutgngAssignme" value="Submit" class="button_custom" onclick="return submitOutCalls(this);">Outgoing Call & Assign me</button>
-                                            <button type="button" style="margin-top: 2px;padding: 5px 5px 5px 5px;" class="button_custom button_custom_reset" data-dismiss="modal" onclick='modalpopupopen.close()'>Close</button>&nbsp;
-                                        </div>
-                                    </li>
-                                </div>
-                            </ul>
-                        </form>
-                        <div class="clearfix">
+                                            </div>
+                                        </li>
+                                        <li class="col-lg-6">
+                                            <label class="pop_label_left Notrequired">Display to customer </label>
+                                            <div class="pop_controls_right pop_radios_list">
+                                                <md-radio-group ng-required="true" name="rbtndisplayOut" layout="row" ng-model="model.MAobj.rbtndisplayOut" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                                    <md-radio-button value="2"> No</md-radio-button>
+                                                </md-radio-group>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <li class="col-lg-12">
+                                            <label class="pop_label_left" style="width:19%;">Call discussion </label>
+                                            <div class="pop_controls_right" style="width:80% !important;">
+                                                <textarea ng-model="model.MAobj.txtmrktCalldiscussionout" type="text" class="form-control"></textarea>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <br>
+                                        <li class="col-lg-12">
+                                            <div class="col-lg-5">
+                                                <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" value="Submit" id="btnmrktoutgng" class="button_custom pull-right" ng-click="model.outcallSubmit(model.MAobj);">Outgoing Call</button>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <button type="button" style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" id="btnOutgngAssignme" value="Submit" class="button_custom" ng-click="model.outcallSubmit(model.MAobj,'assign');">Outgoing Call & Assign me</button>
+                                                <button type="button" style="margin-top: 2px;padding: 5px 5px 5px 5px;" class="button_custom button_custom_reset" ng-click="model.close();">Close</button>&nbsp;
+                                            </div>
+                                        </li>
+                                    </div>
+                                </ul>
+                            </form>
+                            <div class="clearfix">
+                            </div>
+                            <md-divider></md-divider>
                         </div>
-                        <md-divider></md-divider>
-                    </div>
 
-                </div>
-            </md-tab>
-            <md-tab label="Internal Memo">
+                    </div>
+                </md-tab>
+                <md-tab label="Internal Memo">
+                    <div class="tab">
+                        <br>
+                        <div>
+                            <form name="memoform" novalidate role="form" ng-submit="memoform.$valid && model.memoSubmit(model.MAobj);">
+                                <ul>
+                                    <div class="col-lg-12">
+                                        <li class="col-lg-6">
+                                            <label class="pop_label_left">Assign/Re-assign </label>
+                                            <div class="pop_controls_right select-box-my">
+                                                <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktAssignmemo" multiselectdropdown typeofdata="'EmpNames'">   
+                                                     </select>
+                                            </div>
+                                        </li>
+                                        <li class="col-lg-6">
+                                            <label class="pop_label_left">Reply Type  </label>
+                                            <div class="pop_controls_right select-box-my">
+                                                <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktReplyMemo" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr" ng-change="model.MAobj.txtmrktcalldiscussionMemo=model.mailchange(model.MAobj.ddlmrktReplyMemo);">   
+                                                     </select>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <li class="col-lg-12">
+                                            <label class="pop_label_left" style="width:19%;">Enter memo  </label>
+                                            <div class="pop_controls_right" style="width:80% !important;">
+                                                <textarea ng-model="model.MAobj.txtmrktcalldiscussionMemo" type="text" class="form-control"></textarea>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <br>
+                                        <li class="col-lg-12">
+                                            <div class="col-lg-5">
+                                                <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" value="Submit" class="button_custom pull-right" ng-click="model.memoSubmit(model.MAobj);">Internal Memo</button>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="button" id="btnIMAssignme" value="Submit" class="button_custom" ng-click="model.memoSubmit(model.MAobj,'assign');">Internal Memo & Assign me</button>
+
+                                                <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset" ng-click="model.close();">Close</button>&nbsp;
+                                            </div>
+                                        </li>
+                                    </div>
+                                </ul>
+                            </form>
+                            <div class="clearfix">
+                            </div>
+
+                            <md-divider></md-divider>
+                        </div>
+                    </div>
+                </md-tab>
+                <md-tab label="Close Ticket">
+                    <div class="tab">
+                        <br>
+                        <div>
+                            <form name="closeform" novalidate role="form" ng-submit="closeform.$valid && model.closeSubmit(model.MAobj);">
+                                <ul>
+                                    <div class="col-lg-12">
+                                        <li class="col-lg-6">
+                                            <label class="pop_label_left">Reply Type </label>
+                                            <div class="pop_controls_right select-box-my">
+                                                <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktreplyClose" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr" ng-change="model.MAobj.txtmrktcloseReasn=model.mailchange(model.MAobj.ddlmrktreplyClose);">   
+                                                     </select>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <li class="col-lg-12">
+                                            <label class="pop_label_left" style="width:19%">Reason for close </label>
+                                            <div class="pop_controls_right" style="width:80% !important;">
+                                                <textarea type="text" ng-model="model.MAobj.txtmrktcloseReasn" class="form-control"></textarea>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <br>
+                                        <li class="col-lg-12">
+                                            <div class="col-lg-offset-3 col-lg-3">
+                                                <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="button" value="Submit" class="button_custom pull-right" ng-click="model.closeSubmit(model.MAobj);">Close Ticket</button>
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset pull-right" ng-click="model.close();">Cancel</button>&nbsp;
+                                            </div>
+                                        </li>
+                                    </div>
+                                </ul>
+                            </form>
+                            <div class="clearfix">
+                            </div>
+                            <md-divider></md-divider>
+                        </div>
+
+                    </div>
+                </md-tab>
+                <!--<md-tab label="Assign/Reassign Ticket" ng-hide="true">
                 <div class="tab">
                     <br>
                     <div>
-                        <form name="memoform" novalidate role="form" ng-submit="memoform.$valid && model.memoSubmit(model.MAobj);">
-                            <ul>
-                                <div class="col-lg-12">
-                                    <li class="col-lg-6">
-                                        <label class="pop_label_left">Assign/Re-assign </label>
-                                        <div class="pop_controls_right select-box-my">
-                                            <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktAssignmemo" multiselectdropdown typeofdata="'EmpNames'">   
-                                                     </select>
-                                        </div>
-                                    </li>
-                                    <li class="col-lg-6">
-                                        <label class="pop_label_left">Reply Type  </label>
-                                        <div class="pop_controls_right select-box-my">
-                                            <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktReplyMemo" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr">   
-                                                     </select>
-                                        </div>
-                                    </li>
-                                </div>
-                                <div class="col-lg-12">
-                                    <li class="col-lg-12">
-                                        <label class="pop_label_left" style="width:19%;">Enter memo  </label>
-                                        <div class="pop_controls_right" style="width:80% !important;">
-                                            <textarea ng-model="model.MAobj.txtmrktcalldiscussionMemo" type="text" class="form-control"></textarea>
-                                        </div>
-                                    </li>
-                                </div>
-                                <div class="col-lg-12">
-                                    <br>
-                                    <li class="col-lg-12">
-                                        <div class="col-lg-5">
-                                            <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" value="Submit" class="button_custom pull-right" onclick="return submitMemo(this);">Internal Memo</button>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="button" id="btnIMAssignme" value="Submit" class="button_custom" onclick="return submitMemo(this);">Internal Memo & Assign me</button>
-
-                                            <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset" data-dismiss="modal">Close</button>&nbsp;
-                                        </div>
-                                    </li>
-                                </div>
-                            </ul>
-                        </form>
-                        <div class="clearfix">
-                        </div>
-
-                        <md-divider></md-divider>
-                    </div>
-
-                </div>
-            </md-tab>
-            <md-tab label="Close Ticket">
-                <div class="tab">
-                    <br>
-                    <div>
-                        <form name="closeform" novalidate role="form" ng-submit="closeform.$valid && model.closeSubmit(model.MAobj);">
-                            <ul>
-                                <div class="col-lg-12">
-                                    <li class="col-lg-6">
-                                        <label class="pop_label_left">Reply Type </label>
-                                        <div class="pop_controls_right select-box-my">
-                                            <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktreplyClose" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr">   
-                                                     </select>
-                                        </div>
-                                    </li>
-                                </div>
-                                <div class="col-lg-12">
-                                    <li class="col-lg-12">
-                                        <label class="pop_label_left" style="width:19%">Reason for close </label>
-                                        <div class="pop_controls_right" style="width:80% !important;">
-                                            <textarea type="text" ng-model="model.MAobj.txtmrktcloseReasn" class="form-control"></textarea>
-                                        </div>
-                                    </li>
-                                </div>
-                                <div class="col-lg-12">
-                                    <br>
-                                    <li class="col-lg-12">
-                                        <div class="col-lg-offset-3 col-lg-3">
-                                            <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="button" value="Submit" class="button_custom pull-right" onclick="return submitCloseTicket();">Close Ticket</button>
-                                        </div>
-                                        <div class="col-lg-1">
-                                            <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset pull-right" data-dismiss="modal">Cancel</button>&nbsp;
-                                        </div>
-                                    </li>
-                                </div>
-                            </ul>
-                        </form>
-                        <div class="clearfix">
-                        </div>
-                        <md-divider></md-divider>
-                    </div>
-
-                </div>
-            </md-tab>
-            <md-tab label="Assign/Reassign Ticket">
-                <div class="tab">
-                    <br>
-                    <div>
-                        <form name="assignform" novalidate role="form" ng-submit="assignform.$valid && model.xxxx(model.MAobj);">
+                        <form name="assignform" novalidate role="form" ng-submit="assignform.$valid && model.assignSubmit(model.MAobj);">
                             <ul>
                                 <div class="col-lg-12">
                                     <li class="col-lg-6">
@@ -389,7 +349,7 @@
                                             <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="button" value="Submit" class="button_custom pull-right" onclick="return submitCloseTicket();">Assign Ticket</button>
                                         </div>
                                         <div class="col-lg-1">
-                                            <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset pull-right" data-dismiss="modal">Cancel</button>&nbsp;
+                                            <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset pull-right" ng-click="model.close();">Cancel</button>&nbsp;
                                         </div>
                                     </li>
                                 </div>
@@ -400,14 +360,57 @@
                         <md-divider></md-divider>
                     </div>
                 </div>
-            </md-tab>
-        </md-tabs>
-    </md-content>
+            </md-tab>-->
+            </md-tabs>
+        </md-content>
+
+    </div>
 </div>
 
-
+<!--</script>-->
 <style type="text/css">
     .modalclassdashboardphotopopup .md-tab {
         padding: 14px 15px;
     }
+    
+    .ticketpopuplabel {
+        color: black;
+    }
+    
+    .ticketpopuppopupheader {
+        background-color: #fedc01;
+        color: white;
+        padding-top: 2px;
+        padding-bottom: 4px;
+    }
+    
+    c.maroon {
+        color: maroon;
+    }
+    
+    #Updatediv1 label {
+        color: gray;
+    }
+    
+    .maroon {
+        color: maroon !important;
+    }
+    
+    .modalclassdashboardphotopopup .md-tab {
+        padding: 14px 15px;
+    }
+    
+    .modalclassdashboardphotopopup .modal-dialog.modal-md {
+        width: 70%;
+    }
+    
+    .dashboardticketpopup {
+        color: maroon;
+        font-size: 17px;
+    }
+    
+    md-content.md-padding._md {
+        padding: 5px;
+    }
+    /*# sourceMappingURL=style.css.map */
 </style>

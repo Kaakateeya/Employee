@@ -25,6 +25,11 @@
                 return http.get(app.apiroot + 'EmployeeReportPage/getReaasignEmployee', {
                     params: { TicketID: tktID, AssignedEmpID: assignEmpid, EmpID: empid, StatusID: 2 }
                 });
+            },
+            getmarSlide: function(tktID, type) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getMarketingTicketinformation', {
+                    params: { Ticketid: tktID, Type: type }
+                });
             }
         };
     }
