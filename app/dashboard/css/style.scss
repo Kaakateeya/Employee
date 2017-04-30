@@ -57,7 +57,7 @@ body {
 
 #dashBoardPage {
     .x_panel {
-        height: 460px;
+        height: 440px;
     }
 }
 
@@ -152,8 +152,8 @@ span.fa.fa-angle-down {
 }
 
 .dashboardpopupdesign {
-    margin-left: 75px;
-    margin-right: 75px;
+    margin-left: 57px;
+    margin-right: 57px;
     border: 1px solid #ccc;
     border-radius: 6px;
     height: auto;
@@ -186,7 +186,7 @@ span.fa.fa-angle-down {
 }
 
 .dashboardfooterlinks {
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.8;
 }
 
@@ -260,5 +260,11 @@ c.maroon {
 .modalclassdashboardphotopopup {
     .md-tab {
         padding: 14px 15px;
+    }
+}
+
+.modalclassdashboard {
+    .carousel-control {
+        width: 5%;
     }
 }

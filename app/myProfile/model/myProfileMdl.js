@@ -16,6 +16,8 @@
         model.grid.showsearchrows = true;
         model.grid.showsearch = true;
         model.grid.showpaging = true;
+        model.grid.myprofileexcel = true;
+        model.grid.normalexcel = true;
         model.dateOptions = {
             changeMonth: true,
             changeYear: true,
@@ -138,8 +140,13 @@
         model.arrayToString = function(string) {
             return _.isArray(string) ? string.join(',') : null;
         };
+        model.grid.paidstatusclass = function(paid) {
+            var paidstatusclass = paid === true ? 'paidclass' : 'unpaid';
+            return paidstatusclass;
+        };
         model.ProfileIdTemplateDUrl = function(row) {
-            var paid = "<a>" + row.ProfileID + ' (' + row.KMPLID + ')' + "</a>";
+            var paidstatusclass = row.paid === true ? 'paidclass' : 'unpaid';
+            var paid = "<a class='{{paidstatusclass}}'>" + row.ProfileID + ' (' + row.KMPLID + ')' + "</a>";
             return paid;
         };
         model.reset = function() {
@@ -157,9 +164,14 @@
             var stronlineliteclass = row.onlinepaidcls == "light" ? row.onlinepaidcls + ' Linkdisabled' : row.onlinepaidcls;
             var strofflineliteclass = row.offlinepaidcls == "light" ? row.offlinepaidcls + ' Linkdisabled' : row.offlinepaidcls;
             var photodisbled = row.PhotoshopCount == 0 ? 'Linkdisabled' : "";
+            // var paid = "<a style='cursor:pointer;'>Factsheet</a>&nbsp;&nbsp;&nbsp;<a style='' >Tickets</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' >Servicelog</a>" +
+            //     "&nbsp;&nbsp;&nbsp;<a ng-click='model.showphoto(" + row.Cust_ID + ");' class='" + photodisbled + "'>" + row.UploadedPhotoscount + " / " + row.PhotoshopCount + "</a>" +
+            //     "&nbsp;&nbsp;&nbsp;<a class='oukuCls " + stronlineliteclass + "' ng-click='model.RedirectPayment(" + row.ProfileID + ");'>" + row.onlinepaid + "</a>/<a class='oukuCls " + strofflineliteclass + "' ng-click='model.RedirectPayment(" + row.ProfileID + ");' >" + row.offlinepaid + "</a>&nbsp;&nbsp;&nbsp;" +
+            //     "<label class='fontweight'>" + row.OwnerName + "</label>";
+            var paidstatus = row.paid === true ? "Paid" : "UnPaid";
             var paid = "<a style='cursor:pointer;'>Factsheet</a>&nbsp;&nbsp;&nbsp;<a style='' >Tickets</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' >Servicelog</a>" +
                 "&nbsp;&nbsp;&nbsp;<a ng-click='model.showphoto(" + row.Cust_ID + ");' class='" + photodisbled + "'>" + row.UploadedPhotoscount + " / " + row.PhotoshopCount + "</a>" +
-                "&nbsp;&nbsp;&nbsp;<a class='oukuCls " + stronlineliteclass + "' ng-click='model.RedirectPayment(" + row.ProfileID + ");'>" + row.onlinepaid + "</a>/<a class='oukuCls " + strofflineliteclass + "' ng-click='model.RedirectPayment(" + row.ProfileID + ");' >" + row.offlinepaid + "</a>&nbsp;&nbsp;&nbsp;" +
+                "&nbsp;&nbsp;&nbsp;<a ng-class='model.paidstatusclass(" + row.paid + ")' ng-click='model.RedirectPayment(" + row.ProfileID + ");'>" + paidstatus + "</a>&nbsp;&nbsp;&nbsp;" +
                 "<label class='fontweight'>" + row.OwnerName + "</label>";
             return paid;
         };
@@ -167,7 +179,6 @@
         model.showphoto = function(custid) {
             modelpopupopenmethod.ShowPhotoPopup(custid, model.scope);
         };
-
         model.grid.RedirectPayment = function(profileid) {
             window.open("EmployeePayments" + "?profileid=" + profileid, "_blank");
         };
@@ -252,11 +263,43 @@
                         model.opendiv = false;
                         model.grid.TotalRows = response.data[0].TotalRows;
                         model.grid.setData(response.data);
+                    } else if (type === 'excel') {
+                        model.grid.exportarray = [];
+                        model.grid.exportarray = response.data;
+                        console.log(model.grid.exportarray);
+                        var options = {
+                            headers: true,
+                            columns: [{
+                                    columnid: 'ProfileID',
+                                    title: 'ProfileID'
+                                }, {
+                                    columnid: 'Gender',
+                                    title: 'Gender'
+                                }, {
+                                    columnid: 'FirstName',
+                                    title: 'FirstName'
+                                },
+                                {
+                                    columnid: 'SurName',
+                                    title: 'SurName'
+                                },
+                                {
+                                    columnid: 'Caste',
+                                    title: 'Caste'
+                                },
+                                {
+                                    columnid: 'RegistrationDate',
+                                    title: 'RegistrationDate'
+                                }
+                            ]
+                        };
+                        alasql('SELECT ProfileID,GenderID as Gender,FirstName,LastName as SurName,Caste,RegistrationDate INTO  XLSX("john.xlsx",?) FROM ?', [options, model.grid.exportarray]);
+
                     } else {
                         model.slide.totalRecords = response.data[0].TotalRows;
                         if (parseInt(from) === 1) {
                             model.slide.setSlides(response.data, model.topage, "myprofile");
-                            modelpopupopenmethod.showPopupphotopoup('myprofileSlide.html', model.scope, 'lg', "");
+                            modelpopupopenmethod.showPopupphotopoup('myprofileSlide.html', model.scope, 'lg', "myprofileslide");
                         } else {
                             model.slide.addSlides(response.data, model.slides, parseInt(to), "myprofile");
                         }
@@ -271,6 +314,9 @@
             var to = val * 10;
             var from = val === 1 ? 1 : to - 9;
             model.MyprofileResult(model.mpObj, from, to, 'grid');
+        };
+        model.grid.exportexcel = function(topage) {
+            model.MyprofileResult(model.mpObj, 1, topage, 'excel');
         };
         model.close = function() {
             modelpopupopenmethod.closepopup();

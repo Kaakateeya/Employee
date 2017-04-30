@@ -15,6 +15,9 @@
         model.showsearchrows = false;
         model.showsearch = true;
         model.showpaging = true;
+        model.myprofileexcel = false;
+        model.normalexcel = false;
+
         model.init = function() {
             modelinactive = {};
             return model;
@@ -75,7 +78,7 @@
             return row.GenderID === 1 ? 'Male' : 'Female';
         };
 
-        model.ViewAllsubmit = function(inpuobj, from, to) {
+        model.ViewAllsubmit = function(inpuobj, from, to, typeofbind) {
 
             model.columns = [
                 { text: 'Profile ID', key: 'ProfileID', type: 'custom', templateUrl: model.ProfileIdTemplateDUrl, rowtype: "success" },
@@ -110,7 +113,17 @@
                         item.rowtype = model.rowStyle(item);
                     });
                     // model.opendiv = false;
-                    model.setData(response.data);
+                    if (typeofbind === "export") {
+                        model.exportarray = [];
+                        model.exportarray = response.data;
+                        console.log(model.exportarray);
+                        var options = {
+                            headers: true,
+                        };
+                        alasql('SELECT ProfileID,FirstName,LastName as SurName,CasteName as Caste,ProfileOwner,Height,LoginStatus as Loagin,educationgroup as Education,Profession,Age as DOB,GenderID as Gender INTO  XLSX("john.xlsx",?) FROM ?', [options, model.exportarray]);
+                    } else {
+                        model.setData(response.data);
+                    }
                 } else {
                     if (from === parseInt(1)) {
                         model.data = [];
@@ -147,18 +160,20 @@
             model.ViewAllsubmit(model.obj, from, to);
         };
         model.exportexcel = function(array, columns) {
-            var cloumsarr = [];
-            var selectarray = [];
-            _.each(_.filter(columns, function(item) { return item.key !== "" && item.key !== undefined; }), function(inneritem) {
-                cloumsarr.push({ columnid: inneritem.key, title: inneritem.text });
-            });
-            var options = {
-                headers: true,
-                columns: cloumsarr
-            };
-            var join = _.map(cloumsarr, 'columnid').join(',');
-            var select = 'SELECT ' + join + ' INTO  XLSX("john.xlsx",?) FROM ?';
-            alasql(select, [options, array]);
+            model.ViewAllsubmit(model.obj, 1, model.TotalRows, "export");
+            // debugger;
+            // var cloumsarr = [];
+            // var selectarray = [];
+            // _.each(_.filter(columns, function(item) { return item.key !== "" && item.key !== undefined; }), function(inneritem) {
+            //     cloumsarr.push({ columnid: inneritem.key, title: inneritem.text });
+            // });
+            // var options = {
+            //     headers: true,
+            //     columns: cloumsarr
+            // };
+            // var join = _.map(cloumsarr, 'columnid').join(',');
+            // var select = 'SELECT ' + join + ' INTO  XLSX("john.xlsx",?) FROM ?';
+            // alasql(select, [options, array]);
         };
         return model.init();
     }

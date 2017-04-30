@@ -57,6 +57,14 @@ a {
   color: #16713d;
   font-size: 15px; }
 
+.unpaid {
+  color: red;
+  font-weight: 700; }
+
+.paidclass {
+  color: #16713d;
+  font-weight: 700; }
+
 /*slide*/
 .edit_page_details_item_descsearch {
   padding: 4px 0;
@@ -98,7 +106,21 @@ a {
 .carousel-indicators li {
   display: none; }
 
-.headerStyles {
+.HoroScopeImage {
   width: 50px; }
+
+.myprofilepopupdesign {
+  margin-left: 60px;
+  margin-right: 60px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f6f3ea; }
+
+.myprofilefooterlinks {
+  font-size: 14px;
+  padding: 4px; }
+
+.myprofileslide .carousel-control {
+  width: 5%; }
 
 /*# sourceMappingURL=style.css.map */

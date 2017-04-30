@@ -99,12 +99,13 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 };
                 scope.minus = function(data) {
                     data.isDetail = false;
-                }
+                };
                 scope.sort = function(keyname) {
                     scope.sortKey = keyname; //set the sortKey to the param passed
                     scope.reverse = !scope.reverse; //if true make it false and vice versa
                 };
                 scope.exportexcel = function(array, columns) {
+                    debugger;
                     var cloumsarr = [];
                     var selectarray = [];
                     _.each(_.filter(columns, function(item) { return item.key !== "" && item.key !== undefined; }), function(inneritem) {
@@ -115,10 +116,12 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                         columns: cloumsarr
                     };
                     var join = _.map(cloumsarr, 'columnid').join(',');
-                    var select = 'SELECT ' + join + ' INTO  XLSX("john.xlsx",?) FROM ?';
+                    var select = 'SELECT ' + join + ' INTO  XLSX("Reports.xlsx",?) FROM ?';
                     alasql(select, [options, array]);
                 };
-
+                scope.myprofileexportexcel = function(val) {
+                    scope.config.exportexcel(val);
+                };
                 scope.init();
             }
         };

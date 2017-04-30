@@ -2,7 +2,9 @@
     <div class="row" ng-if="config.showsearchrows">
         <div class="col-lg-5 totalrecordCls" ng-if="config.showsearch">
             <label class="col-lg-6" for="noofRecords" class="control-label">Total Records : {{model.TotalRows}}</label>
-            <input type="image" src="src\images\EXCEL.jpg" ng-click="exportexcel(model.data, model.columns)" style="height: 20px;width: 20px;" class="css-class"></input>
+            <input type="image" ng-hide="config.normalexcel" src="src\images\EXCEL.jpg" ng-click="exportexcel(model.data, model.columns)" style="height: 20px;width: 20px;" class="css-class"></input>
+
+            <input type="image" ng-show="config.myprofileexcel" src="src\images\EXCEL.jpg" ng-click="myprofileexportexcel(model.TotalRows)" style="height: 20px;width: 20px;" class="css-class"></input>
         </div>
         <div class="col-lg-2 m-b-2 mainDiv totalrecordCls" ng-if="config.showsearch">
             <input class="form-control" type="text" ng-model="searchKeyword" placeholder="Search" />
@@ -134,7 +136,7 @@
     }
     
     .RegistrationDate {
-        min-width: 197px !important;
+        min-width: 110px !important;
     }
     
     .HoroScopeImage {

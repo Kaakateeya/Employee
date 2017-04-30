@@ -847,7 +847,8 @@ h2 {
 .x_title {
     border-bottom: 2px solid #E6E9ED;
     padding: 1px 5px 6px;
-    background-color: rgba(197, 205, 50, 0.42)
+    background-color: rgba(197, 205, 50, 0.42);
+    height: 47px;
 }
 
 .x_title .filter {

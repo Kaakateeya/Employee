@@ -113,7 +113,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     });
                 };
                 $scope.verifymail = function(custid) {
-                    SelectBindServiceApp.verifyEmail(custID).then(function(response) {
+                    SelectBindServiceApp.verifyEmail(custid).then(function(response) {
                         if (response.data !== undefined) {
                             if (response.data === 1) {
                                 alerts.timeoutoldalerts($scope, 'alert-success', 'Email verify mail send Successfully', 4000);
@@ -134,6 +134,19 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         $scope.mobileVerificationCode = response.data;
                         modelpopupopenmethod.showPopupphotopoup('verifyMobileContent.html', $scope, '', "modalclassdashboardphotopopup");
                     });
+                };
+
+                $scope.verifyMobCode = function(val) {
+                    if (val === "") {
+                        alerts.timeoutoldalerts($scope, 'alert-danger', 'Please enter Mobile verify Code', 4500);
+                    } else if ($scope.mobileVerificationCode === val) {
+                        SelectBindServiceApp.verifyMobile($scope.mobileVerificationCode, $scope.custfamilyID).then(function(response) {
+                            modelpopupopenmethod.closepopuppoptopopup();
+                            alerts.timeoutoldalerts($scope, 'alert-success', 'Mobile Verified Successfully', 4500);
+                        });
+                    } else {
+                        alert('Please Enter Valid Verification code');
+                    }
                 };
                 $scope.updatebouncedemail = function(slide) {
                     $scope.entryid = slide.bouncedemailentryid;

@@ -11,6 +11,8 @@
         model.showsearchrows = false;
         model.showsearch = false;
         model.showpaging = false;
+        model.myprofileexcel = false;
+        model.normalexcel = false;
         model.paymentProfileID = function(row) {
             var status = row.membershiptype === 'Registration' ? 0 : 1;
             var paid = "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.ProfileID + "/" + status + "/" + row.PaymentID + "'>Edit</a>";
