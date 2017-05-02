@@ -1,10 +1,11 @@
 (function(angular) {
     'use strict';
 
-    function factory($http, ViewAllCustomerService, state, helpService, config, alerts, modelpopupopenmethod, authSvc) {
+    function factory($http, ViewAllCustomerService, state, helpService, config, alerts, modelpopupopenmethod, authSvc, configslide) {
         var model = {};
         var modelinactive = {};
         model = config;
+        model.slide = configslide;
         model.showplus = true;
         model.tablearray = [];
         model.obj = {};
@@ -17,7 +18,8 @@
         model.showpaging = true;
         model.myprofileexcel = false;
         model.normalexcel = false;
-
+        model.slide.templateUrl = "templates/myprofileSlide.html";
+        model.slide.headettemp = "myprofileheader.html";
         model.init = function() {
             modelinactive = {};
             return model;
@@ -154,6 +156,19 @@
         };
 
         model.pagechange = function(val) {
+            model.columns = [
+                { text: 'Profile ID', key: 'ProfileID', type: 'custom', templateUrl: model.ProfileIdTemplateDUrl, rowtype: "success" },
+                { text: 'SurName', key: 'LastName', type: 'label' },
+                { text: 'Name', key: 'FirstName', type: 'label' },
+                { text: 'Caste', key: 'CasteName', type: 'label' },
+                { text: 'Profile Owner', key: 'ProfileOwner', type: 'customlink', templateUrl: model.ProfileOwnerImg, method: model.profileownerMethod },
+                { text: 'Height', key: 'Height', type: 'label' },
+                { text: 'Login', key: 'LoginStatus', type: 'label' },
+                { text: 'Education', key: 'educationgroup', type: 'label' },
+                { text: 'Profession', key: 'Profession', type: 'label' },
+                { text: 'Dob', key: 'Age', type: 'label', width: '150px' },
+                { text: 'Gender', key: 'GenderID', type: 'custom', templateUrl: model.GenderStr },
+            ];
             var to = val * 10;
             var from = val === 1 ? 1 : to - 9;
             model.ViewAllsubmit(model.obj, from, to);
@@ -178,5 +193,5 @@
     angular
         .module('Kaakateeya')
         .factory('editViewprofileModel', factory);
-    factory.$inject = ['$http', 'editViewprofileservice', '$state', 'helperservice', 'complex-grid-config', 'alert', 'modelpopupopenmethod', 'authSvc'];
+    factory.$inject = ['$http', 'editViewprofileservice', '$state', 'helperservice', 'complex-grid-config', 'alert', 'modelpopupopenmethod', 'authSvc', 'complex-slide-config'];
 })(angular);
