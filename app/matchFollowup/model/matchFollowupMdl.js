@@ -57,41 +57,16 @@
             model.matchFollowupSelect(model.empid);
         };
         model.bindEmpnames = function() {
-            matchFollowupServices.getMyprofilebind(1, 2, '').then(function(response) {
-                _.each(response.data, function(item) {
-                    if (item.CountryCode === 'Profile Owner') {
-                        model.EmpNamesArr.push({ "label": item.Name, "title": item.Name, "value": item.ID, 'children': 'fffffff' });
-                    }
+
+            SelectBindServiceApp.EmpwithBranch('ProfileBranch', '').then(function(response) {
+                console.log(response.data);
+                var empBranchData = response.data;
+
+                var branchids = '1';
+                _.each(empBranchData, function(item) {
+                    model.EmpNamesArr.push({ "label": item.Name, "title": item.Name, "value": item.ID, ParentName: item.BranchesName });
                 });
             });
-
-
-
-
-            // SelectBindServiceApp.EmpwithBranch('ProfileBranch', '').then(function(response) {
-            //     console.log(response.data);
-            //     var empBranchData = response.data;
-            //     var EmpNames = [];
-            //     var branchids = '1';
-            //     _.each(empBranchData, function(item) {
-            //         if (branchids === '' || branchids.indexOf(JSON.stringify(item.Branch_ID)) === -1) {
-            //             branchids = branchids === '' ? item.Branch_ID : branchids + ',' + item.Branch_ID;
-
-            //             _.where(response.data, { Branch_ID: parseInt(item.Branch_ID) },
-            //                 function(item) {
-            //                     EmpNames.push({ ParentName: item.Branch_ID });
-            //                 });
-            //             debugger;
-            //             model.EmpNamesArr.push({
-            //                 ParentName: item.BranchesName,
-            //                 groupData: EmpNames
-            //             });
-
-            //         }
-            //     });
-            //     debugger;
-            //     console.log(model.EmpNamesArr);
-            // });
         };
         model.smsarray = [
             { id: 1, text: 'We missed to reach you on 91-XXXXX. please call back' },
