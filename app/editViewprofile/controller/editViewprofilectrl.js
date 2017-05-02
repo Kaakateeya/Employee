@@ -11,11 +11,12 @@
 
         vm.init = function() {
             vm.model = model = editViewprofileModel;
-
-
             vm.model.scope = scope;
             vm.model.opendiv = true;
             vm.model.obj.ProfileIDsearch = "";
+            vm.model.obj.surname = '';
+            vm.model.obj.Name = '';
+            vm.model.obj.KmlProfileID = '';
         };
 
         vm.init();
