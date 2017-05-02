@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AACI,YAAS;EACL,KAAK,EAAE,KAAK",
-"sources": ["sasstest.scss"],
-"names": [],
-"file": "sasstest.css"
-}
