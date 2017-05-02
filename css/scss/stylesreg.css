@@ -64,8 +64,9 @@
 
 .pics_selected_list_itemreg img {
     display: block;
-    width: 100% !important;
+    /*width: 100% !important;*/
     height: 220px !important;
+    width: 256px;
 }
 
 .pics_selected_list_item_ui {}
