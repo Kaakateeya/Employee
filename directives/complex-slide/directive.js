@@ -49,6 +49,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
 
                 $scope.slidepopup = function(custid) {
                     $scope.photoalbum = "Photo Album";
+                    $scope.slidephotos = [];
                     SelectBindServiceApp.getphotoslideimages(custid).then(function(response) {
                         $scope.slidephotos = [];
                         $scope.popupmodalbody = false;
@@ -58,10 +59,15 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         modelpopupopenmethod.showPopupphotopoup('dynamicphotopopup.html', $scope, '', "modalclassdashboardphotopopup");
                     });
                 };
-                $scope.horoscopeimage = function(image) {
-                    $scope.photoalbum = "Horoscope Path";
+                $scope.horoscopeimage = function(image, type) {
+                    $scope.photoalbum = "Horoscope Image";
                     $scope.HoroscopeImage = image;
                     $scope.popupmodalbody = true;
+                    if (type === "SA") {
+                        $scope.photoalbum = "SA FORM";
+                    } else {
+                        $scope.photoalbum = "Horoscope Image";
+                    }
                     modelpopupopenmethod.showPopupphotopoup('dynamicphotopopup.html', $scope, '', "modalclassdashboardphotopopup");
                 };
                 $scope.ngclassprogress = function(slidelength) {
@@ -91,7 +97,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.forgetpassword = function(ProfileID) {
                     SelectBindServiceApp.forgotpasswordemail(ProfileID).then(function(response) {
                         if (response.data === 1) {
-                            alert('Mail sent to your email, To reset your password check your mail');
+                            alerts.timeoutoldalerts($scope, 'alert-success', 'Mail sent to your email, To reset your password check your mail', 4000);
                         }
                     });
                 };
@@ -171,6 +177,15 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         case "contacts":
                             window.open("Contact/" + custid, "_blank");
                             break;
+                        case 'myprofile':
+                            window.open("myProfilepage", "_blank");
+                            break;
+                        case 'marketing':
+                            window.open("marketingpage", "_blank");
+                            break;
+                        case 'matchfollowup':
+                            window.open("matchFollowuppage", "_blank");
+                            break;
                     }
                 };
 
@@ -229,6 +244,23 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                             alerts.timeoutoldalerts($scope, 'alert-success', 'Email Updated successfully', 2000);
                         } else {
                             alerts.timeoutoldalerts($scope, 'alert-danger', 'Email Updated Failed', 2000);
+                        }
+                    });
+                };
+
+                $scope.notificationread = function(slide, index, parentid) {
+                    var obj = {
+                        EmpID: $scope.model.empid,
+                        idisplay: 2,
+                        NotificationID: slide.Cust_NotificationID,
+                        CategoryID: slide.CategoryID,
+                        CustID: slide.Custid
+                    };
+                    helperservice.readNotifications(obj).then(function(response) {
+                        if (response.data !== undefined) {
+                            alerts.timeoutoldalerts($scope, 'alert-success', 'Notification Readed successfully', 2000);
+                        } else {
+                            alerts.timeoutoldalerts($scope, 'alert-danger', 'Notification Read Failed', 2000);
                         }
                     });
                 };

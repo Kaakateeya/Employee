@@ -2,8 +2,9 @@
     'use strict';
 
     function factory($http, dashboardServices, uibModal, authSvc, helperservice, window,
-        commonpage, $filter, fileUpload, alerts) {
+        commonpage, $filter, fileUpload, alerts, config) {
         var model = {};
+        model = config;
         var flag = 0;
         model.frompage = 6;
         model.topage = 10;
@@ -11,6 +12,8 @@
         model.proceedprofileid = "";
         model.selectedIndex = 0;
         model.tabsshowhidecontrols = true;
+        model.templateUrl = "templates/dashBoardslide.html";
+        model.headettemp = "dashboardheader.html";
         model.exportData = function(id) {
             var options = {
                 headers: true,
@@ -177,10 +180,148 @@
         model.tickethistorypopup = function(TicketID) {
             commonpage.showPopupphotopoup('tickethistory.html', model.scope, 'md', "modalclassdashboardphotopopup");
         };
+
+
+        model.displayArrayprofile = function(arr, topage) {
+            model.headervisileble = true;
+            if (topage === parseInt(10)) {
+                model.slides = [];
+            }
+            $.each(arr, function(index, item) {
+                model.data = [];
+                model.data.push({
+                    label: 'ProfileID',
+                    value: '',
+                    ProfileID: item.ProfileID,
+                    KMPLID: item.KMPLID,
+                    paid: item.paid,
+                    IsConfidential: item.IsConfidential,
+                    SuperConfidentila: item.SuperConfidentila,
+                    HoroscopeStatus: item.HoroscopeStatus,
+                    HoroscopeImage: item.HoroscopeImage
+                });
+                model.data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
+                model.data.push({ label: 'Caste', value: item.MotherTongue + "-" + item.Caste });
+                model.data.push({ label: 'Dor', value: item.DOR });
+                model.data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
+                model.slides.push({
+                    itmArr: model.data,
+                    custPhoto: item.ApplicationPhotoPath,
+                    Custid: item.Cust_ID,
+                    lastlogin: item.LastLoginDate,
+                    logincount: item.LoginCount,
+                    matkteingticket: item.TicketID,
+                    matchmarktingcount: item.MatchMeetingCount,
+                    ownername: item.EmpName,
+                    branch: item.KMPLID,
+                    reg: item.DOR,
+                    SAForm: item.SAForm,
+                    primarynumber: item.ContactNumber,
+                    primaryemail: item.Email,
+                    CreatedDate: item.CreatedDate,
+                    SRCount: item.SRCount,
+                    PaidAmount: item.PaidAmount,
+                    ExpiryDate: item.ExpiryDate,
+                    Points: item.Points,
+                    mobilestatus: item.CNumberVerStatus,
+                    emailstatus: item.CEmailVerStatus,
+                    UserName: item.UserName,
+                    Reason4InActive: item.Reason4InActive,
+                    ProfileID: item.ProfileID,
+                    CountryCodeID: item.CountryCodeID,
+                    Cust_Family_ID: item.Cust_Family_ID,
+                    PhotoCount: item.PhotoCount,
+                    Age: item.Age,
+                    HeightInCentimeters: item.HeightInCentimeters,
+                    MaritalStatusID: item.MaritalStatusID,
+                    CasteID: item.CasteID,
+                    serviceDate: item.serviceDate,
+                    bouncedEmailID: item.EmailID,
+                    bouncedemailentryid: item.Cust_EmailBounceEntryId,
+                    Cust_NotificationID: item.Cust_NotificationID,
+                    CategoryID: item.CategoryID,
+                    ActionType: item.ActionType,
+                    ReadStatus: item.ReadStatus,
+                    Tickets: item.Tickets,
+                    TicketID: item.TicketID
+                });
+            });
+            return model.slides;
+        };
+        model.slideshowfunction = function(flag, empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
+            dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
+                if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0 && response.data[0].length > 0) {
+                    model.slidearray = response.data[0];
+                    //  scope.$broadcast("slideshowdynamic", model.slidearray, model.slidearray[0].TotalRows, tablename, frompage);
+                    model.totalRecords = model.slidearray[0].TotalRows;
+                    model.headerhtml = tablename;
+                    switch (tablename) {
+                        case "No-Service From Last 1 Month":
+                            model.typeofslidedate = "Service Date";
+                            break;
+                        case "Near by offline Expiry":
+                        case "Offline Expired Customers":
+                        case "Un-Paid Customers":
+                            model.typeofslidedate = "Expired Date";
+                            break;
+                        case "Inactive Customers":
+                            model.typeofslidedate = "Inactive Date";
+                            break;
+                        case "Today Remainders":
+                            model.typeofslidedate = "Reminder Date";
+                            break;
+                        case "Yesterday Proceeding Profiles":
+                            model.typeofslidedate = "proceeding Date";
+                            break;
+                        case "Tickets Assigned from Last 10 Days":
+                        case 'Assigned Profiles from Last 10 Days':
+                            model.typeofslidedate = "Assigned Date";
+                            break;
+                        case "Email Bounce Info":
+                            model.typeofslidedate = "Bounced On";
+                            break;
+                        case "SA Form status for Paid Users":
+                            model.typeofslidedate = "Upload Date";
+                            break;
+                        case "Present In India":
+                            model.typeofslidedate = "ArrivalDate at";
+                            break;
+                        case "Marketing Ticket Expiry With in Two days":
+                            model.typeofslidedate = "Ticket Exipry Date";
+                            break;
+                        case "Customer Notification Status":
+                            model.typeofslidedate = "Action Date";
+                            break;
+                        case "NoData Service Profiles":
+                            model.typeofslidedate = "Registered Date";
+                            break;
+                    }
+                    if (topage === parseInt(10)) {
+                        commonpage.showPopup('dashboardslide.html', model.scope, 'lg', "modalclassdashboard");
+                        model.setSlides(model.displayArrayprofile(model.slidearray, 10), 10, 'normal');
+                    } else {
+                        model.addSlides(model.displayArrayprofile(model.slidearray, 11), model.slidearray, 11, 'normal');
+                    }
+                }
+            });
+        };
+        model.slidebind = function(old, news, array) {
+            if (parseInt(model.topage) - parseInt(news) === 4) {
+                model.slideshowfunction(true, model.empid, model.empBranchID, (model.topage) + 1, (model.topage) + 10, model.headerhtml, 'slideshow', model.slidearray, 1);
+            }
+        };
+        model.closesashboard = function() {
+            commonpage.closepopup();
+        };
+        model.close = function() {
+            commonpage.closepopuppoptopopup();
+        };
         return model;
     }
     angular
         .module('Kaakateeya')
         .factory('dashboardModel', factory);
-    factory.$inject = ['$http', 'dashboardServices', '$uibModal', 'authSvc', 'helperservice', '$window', 'modelpopupopenmethod', '$filter', 'fileUpload', 'alert'];
+    factory.$inject = ['$http', 'dashboardServices', '$uibModal', 'authSvc', 'helperservice', '$window',
+        'modelpopupopenmethod', '$filter', 'fileUpload', 'alert', 'complex-slide-config'
+    ];
 })(angular);

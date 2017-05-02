@@ -31,7 +31,6 @@
                     model.aboutmyself = testArr;
                 } else if (testArr.length > 0 && testArr[0].TableName !== undefined && testArr[0].TableName === "Primary") {
                     model.personalinfo = testArr;
-                    console.log(JSON.stringify(model.personalinfo));
                     var photocount = model.personalinfo[0].PhotoName_Cust;
                     model.horoscopeimage = model.personalinfo[0].HoroscopeImage === "" ||
                         model.personalinfo[0].HoroscopeImage === null ||
@@ -57,7 +56,6 @@
                                 model.Viewed = testArr;
                                 break;
                             case "Express":
-                                debugger;
                                 model.Express = testArr;
                                 if (testArr[0].SeenStatus === "Accept" && model.hdnAccRejFlag !== "MailReject") {
                                     if (model.flagopen !== 1) {
@@ -73,7 +71,6 @@
                                 if (testArr[0].MatchFollowUpStatus === 1) {
                                     if (testArr[0].SeenStatus === "Accept" || testArr[0].SeenStatus === "Reject") {
                                         model.divacceptreject = true;
-                                        debugger;
                                         model.btnticket = testArr[0].ViewTicket;
                                         model.liproceed = false;
                                         model.liticket = true;
@@ -146,7 +143,6 @@
             model.Searchfunctionality("DontProceed", MobjViewprofile);
         };
         model.statusalert = function(status) {
-            debugger;
             switch (status) {
                 case 0:
                 case 3:
@@ -210,8 +206,6 @@
 
         model.pageload = function() {
             mailViewFullProfileservice.getViewFullProfileMail(model.MyProfileQSAccept).then(function(response) {
-                console.log(response);
-
                 model.fromcustid = response.data.FromCustID;
                 model.tocustid = response.data.ToCustID;
                 model.ToProfileID = response.data.ToProfileID;

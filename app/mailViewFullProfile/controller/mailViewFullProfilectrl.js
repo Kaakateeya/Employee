@@ -14,7 +14,6 @@
          vm.init = function() {
              vm.model = model = mailViewFullProfileModel;
              vm.model.scope = scope;
-             debugger;
              //  scope.searchObjectquery = $location.search();
              //  var meKey = Object.getOwnPropertyNames(scope.searchObjectquery)[0];
              //  var meValue = scope.searchObjectquery[meKey];

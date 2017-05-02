@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    <div id="carouselButtons" class="col-lg-offset-5" style="margin-top: -10px;">
+    <div id="carouselButtons" class="col-lg-offset-5">
         <button ng-hide="playbutton" ng-click="pauseResume('play');" class="btn btn-default btn-xs pauseBtns" title="Play">
        <i class="fa fa-play"></i>
    </button>
@@ -15,7 +15,8 @@
    <i class="fa fa-pause"></i>
       </button>
     </div>
-
+    <div class="clearfix"></div>
+    <br>
 </div>
 <script type="text/ng-template" id="dynamicphotopopup.html">
     <div class="modal-content">
@@ -101,7 +102,7 @@
                 <input type="file" file-model="uploadf.myFile" />
             </ul>
         </div>
-        <div class="modal-body" ng-hide="uploadfromsubmit">
+        <div class="modal-body" ng-hide="!uploadfromsubmit">
             <div class="row">
                 <label for="newemail">New Email</label>
                 <input type="text" class="form-control" ng-model="uploadf.newemail" />

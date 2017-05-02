@@ -154,6 +154,13 @@ body {
     width: 130px;
 }
 
+.sidenav2 {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: maroon;
+}
+
 #mystylename {
     position: fixed;
     bottom: 0;
@@ -326,4 +333,29 @@ button.multiselect.dropdown-toggle.btn.ng-pristine.ng-untouched.ng-valid.ng-isol
 
 .modalclassdashboardphotopopup .modal-dialog.modal-md {
     width: 70%;
+}
+
+.ddlcolor {
+    button {
+        background-color: #f0f0cc !important;
+    }
+}
+
+.datepicker3 {
+    background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+}
+
+.datepicker4 {
+    background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+    background-color: #f0f0cc !important;
+}
+
+.unpaid {
+    color: red;
+    font-weight: 700;
+}
+
+.paidclass {
+    color: #16713d;
+    font-weight: 700;
 }

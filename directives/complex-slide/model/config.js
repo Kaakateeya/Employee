@@ -18,6 +18,7 @@
                 }
             };
             model.addSlides = function(data, arrayslide, topage, typeofpage) {
+                debugger;
                 if (typeofpage === 'normal') {
                     model.slides = $.merge(model.slides, data);
                 } else if (typeofpage === 'myprofile') {
@@ -29,6 +30,7 @@
             model.backtosearchpage = function() {
                 model.divcontrolls = true;
                 model.headervisileble = false;
+                model.gridTableshow = false;
             };
             model.displayArray = function(arr, topage, typebind) {
                 model.headervisileble = true;

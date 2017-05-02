@@ -116,7 +116,6 @@
                     if (typeofbind === "export") {
                         model.exportarray = [];
                         model.exportarray = response.data;
-                        console.log(model.exportarray);
                         var options = {
                             headers: true,
                         };
@@ -161,7 +160,6 @@
         };
         model.exportexcel = function(array, columns) {
             model.ViewAllsubmit(model.obj, 1, model.TotalRows, "export");
-            // debugger;
             // var cloumsarr = [];
             // var selectarray = [];
             // _.each(_.filter(columns, function(item) { return item.key !== "" && item.key !== undefined; }), function(inneritem) {

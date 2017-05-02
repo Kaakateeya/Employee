@@ -51,7 +51,6 @@
                     </div> <br>
                     <div class="row">
                         <div class="col-lg-12 col-lg-push-3 ticketHistryCls">
-
                             <tickethistry-infm strtype="slide.FromTicketHisoryType" strdate="slide.FromTicketInfo" strempname="slide.FromTicketHisoryNAME" strstatus="slide.FromTicketHisoryCallStatus" strcustname="slide.FromTicketHisoryCallReceivedBy" strcomments="slide.FromTicketHisoryReplyDesc"
                                 strrelationship="slide.FromTicketHisoryRelationShip"></tickethistry-infm>
                         </div>
@@ -69,7 +68,6 @@
                             </div>
                             <button type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" popover-is-open="model.frompopoverIsOpen" ng-click="config.histryPopover(slide.FromTicket,'H','from');" popover-trigger="outsideClick" uib-popover-template="'fromPopoverTemplate.html'"
                                 class="btn btn-success-outline">Ticket history</button>
-
                         </div>
                     </div>
                 </div>
@@ -144,7 +142,6 @@
         </div>
     </div>
 </div>
-
 <script type="text/ng-template" id="fromPopoverTemplate.html">
     <div class="row popoverheader">
         <div class="text-center row">
@@ -155,7 +152,6 @@
         </div>
         <br>
         <div class="popovercls">
-
             <div ng-repeat="item in config.ticketHistryArr" ng-class-odd="'odd'">
                 <tickethistry-infm strtype="item.TicketType" strdate="item.TicketInfo" strempname="item.EmployeeName" strstatus="item.CallResult" strcustname="item.RelationName" strcomments="item.Body" strrelationship="item.Relation"></tickethistry-infm>
                 <br>
@@ -163,7 +159,6 @@
         </div>
     </div>
 </script>
-
 <script type="text/ng-template" id="ToPopoverTemplate.html">
     <div class="row">
         <div class="text-center row">
@@ -180,12 +175,8 @@
                 <br>
             </div>
         </div>
-
-
     </div>
 </script>
-
-
 <script type="text/ng-template" id="Actions.html">
     <div class="modal-header">
         <button type="button" class="close" ng-click="page.model.closeAction();" style="margin-top: -13px;">&times;</button>
@@ -198,38 +189,28 @@
                     <b style="color: maroon; font-size: 17px;">TicketID:</b>
                     <br />
                     <label id="lblmrktTicketID" style="color: rgb(0, 0, 0);">{{page.model.infnArr.Ticket}}</label>
-
                 </div>
                 <div class="col-lg-1">
                     <b style="color: maroon; font-size: 17px;">Status</b>
                     <br />
                     <label id="lblmrktStatus" style="color: rgb(0, 0, 0);">{{page.model.infnArr.TicketStatus}}</label>
-
                 </div>
                 <div class="col-lg-3">
                     <b style="color: maroon; font-size: 17px;">Opened on</b>
                     <br />
                     <label id="lblmrktOpened" style="color: rgb(0, 0, 0);">{{page.model.infnArr.TicketCreatedDate}}</label>
-
                 </div>
-
                 <div class="col-lg-2">
                     <b style="color: maroon; font-size: 17px;">Assigned to</b>
                     <br />
                     <label id="lblmrktAssigned" style="color: rgb(0, 0, 0);">{{page.model.infnArr.TicketOwner}}</label>
-
                 </div>
                 <div class="col-lg-2">
                     <b style="color: maroon; font-size: 17px;">No of days</b>
                     <br />
                     <label id="lblNoofdays" style="color: rgb(0, 0, 0);">{{page.model.infnArr.HistoryLastUpdated}}</label>
-
                 </div>
-
-
             </div>
-
-
         </div>
         <div id="accordion">
             <uib-tabset active="active">
@@ -254,7 +235,6 @@
                                 <li class="clearfix form-group">
                                     <label class="pop_label_left">Call result </label>
                                     <div class="pop_controls_right input-group">
-
                                         <select class="smalldropdown" ng-model="page.model.actobj.ddlInCallresult" multiselectdropdown required>   
                                           <option value="">-- Select --</option>
                                                     <option value="417">Successfull</option>
@@ -273,7 +253,6 @@
                                 <li class="clearfix form-group">
                                     <label class="pop_label_left">Reply Type </label>
                                     <div class="pop_controls_right input-group">
-
                                         <select class="smalldropdown" ng-model="page.model.actobj.ddlInReplyType" multiselectdropdown ng-change="page.model.actobj.txtInCalldiscussion=page.model.mailchange(page.model.actobj.ddlInReplyType);" ng-options="item.value as item.label for item in page.model.ReplyArr"
                                             required>   
                                                      </select>
@@ -295,7 +274,6 @@
                                     </div>
                                 </li>
                             </ul>
-
                             <br />
                             <div class="row">
                                 <div class="col-lg-6">
@@ -316,7 +294,6 @@
                                 <li class="clearfix form-group">
                                     <label class="pop_label_left">Call received by </label>
                                     <div class="pop_controls_right input-group">
-
                                         <select ng-change="page.model.RelationshipChange(page.model.actobj.ddlOutreceivedby,'Out');" ng-model="page.model.actobj.ddlOutreceivedby" multiselectdropdown typeofdata="'childStayingWith'" required>   
                                                      </select>
                                     </div>
@@ -330,7 +307,6 @@
                                 <li class="clearfix form-group">
                                     <label class="pop_label_left">Call result </label>
                                     <div class="pop_controls_right input-group">
-
                                         <select ng-model="page.model.actobj.ddlOutcallresultout" multiselectdropdown required>   
                                           <option value="0">-- Select --</option>
                                                     <option value="417" >Successfull</option>
@@ -363,7 +339,6 @@
                                 <li class="clearfix form-group">
                                     <label class="pop_label_left Notrequired">Display to customer </label>
                                     <div class="pop_controls_right pop_radios_list">
-
                                         <md-radio-group ng-required="true" name="rbtnOutDisplay" layout="row" ng-model="page.model.actobj.rbtnOutDisplay" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                             <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
                                             <md-radio-button value="0"> No</md-radio-button>
@@ -373,7 +348,6 @@
                             </ul>
                             <br />
                             <div class="row">
-
                                 <div class="col-lg-6">
                                     <button type="submit" value="Submit" class="button_custom pull-right">Outgoing Call</button>
                                 </div>
@@ -386,7 +360,6 @@
                     </div>
                 </uib-tab>
                 <uib-tab index="2" heading="Internal Memo">
-
                     <div>
                         <form name="memoform" novalidate role="form" ng-submit="memoform.$valid && page.model.memoSubmit(page.model.actobj);">
                             <br>
@@ -394,16 +367,13 @@
                                 <li class="clearfix form-group">
                                     <label class="pop_label_left">Assign/Re-assign </label>
                                     <div class="pop_controls_right input-group">
-
                                         <select class="smalldropdown" ng-model="page.model.actobj.ddlMemAssign" multiselectdropdown ng-options="item.value as item.label for item in page.model.EmpNamesArr" required>   
                                                      </select>
                                     </div>
                                 </li>
-
                                 <li class="clearfix form-group">
                                     <label class="pop_label_left">Reply Type  </label>
                                     <div class="pop_controls_right input-group">
-
                                         <select class="smalldropdown" ng-model="page.model.actobj.ddlMemReplyType" ng-change="page.model.actobj.txtMemmemocalldiscussion=page.model.mailchange(page.model.actobj.ddlMemReplyType);" multiselectdropdown ng-options="item.value as item.label for item in page.model.ReplyArr"
                                             required>   
                                                      </select>
@@ -437,7 +407,6 @@
                                 <li class="clearfix form-group">
                                     <label class="pop_label_left">Reply Type </label>
                                     <div class="pop_controls_right input-group">
-
                                         <select class="smalldropdown" ng-model="page.model.actobj.ddlcloseReplyType" multiselectdropdown ng-change="page.model.actobj.txtcloseReason=page.model.mailchange(page.model.actobj.ddlcloseReplyType);" ng-options="item.value as item.label for item in page.model.ReplyArr"
                                             required>   
                                                      </select>
@@ -449,7 +418,6 @@
                                         <textarea type="text" ng-model="page.model.actobj.txtcloseReason" class="form-control" required></textarea>
                                     </div>
                                 </li>
-
                             </ul>
                             <br />
                             <div class="row">
@@ -459,18 +427,14 @@
                                 <div class="col-lg-2">
                                     <button type="button" class="button_custom button_custom_reset pull-right" ng-click="page.model.closeAction();">Cancel</button>&nbsp;
                                 </div>
-
                             </div>
                         </form>
                     </div>
                 </uib-tab>
-
             </uib-tabset>
         </div>
     </div>
 </script>
-
-
 <script type="text/ng-template" id="sendsmsMail.html">
     <div class="modal-header">
         <a href="javascript:void(0);" class="pull-right" ng-click="page.model.proceed.closepopup();">
@@ -479,7 +443,6 @@
     </div>
     <div class="modal-body">
         <div class="row" id="smsdiv" ng-if="page.model.typeofmailSms=='sms'">
-
             <div class="col-lg-offset-1">
                 <md-radio-group ng-required="true" name="rbtnsms" ng-change="page.model.smsOnchange(page.model.rbtnsms);" ng-model="page.model.rbtnsms" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                     <md-radio-button ng-repeat="item in page.model.smsarray" ng-value="item.id" class="md-primary">{{item.text}}</md-radio-button>
@@ -497,7 +460,6 @@
                     <label for="" class="control-label col-lg-4 maroon">Email going to </label>
                     <label for="" class="control-label col-lg-8">{{page.model.custemail}}</label>
                 </div>
-
             </div>
             <div class="col-lg-12">
                 <br>
@@ -505,7 +467,6 @@
                     <label class="control-label pull-right">Mail Type</label>
                 </div>
                 <div class="col-lg-8">
-
                     <select multiselectdropdown ng-model="page.model.ddlmail" ng-change="page.model.txtsmsmail=page.model.mailchange(page.model.ddlmail);" ng-options="item.value as item.label for item in page.model.ReplyArr">   
                                 </select>
                 </div>
@@ -513,7 +474,6 @@
                 <br />
             </div>
         </div>
-
         <div class="col-lg-offset-1">
             <textarea rows="4" ng-model="page.model.txtsmsmail" class="form-control"></textarea>
         </div>
@@ -523,7 +483,6 @@
         <button class="button_custom pull-right" ng-click="page.model.smsMailSubmit(page.model.typeofmailSms);">send {{page.model.typeofmailSms}}</button>
     </div>
 </script>
-
 <style>
     .btn-success-outline {
         color: rgb(35, 82, 124);

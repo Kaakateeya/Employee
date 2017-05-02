@@ -1,9 +1,8 @@
-@mixin marginbottom($value) {
-    .m-b-#{$value} {
-        margin-bottom: $value+"px";
-    }
-}
-
+// @mixin marginbottom($value) {
+//     .m-b-#{$value} {
+//         margin-bottom: $value+"px";
+//     }
+// }
 // @mixin set-value($properties, $value) {
 //     @each $prop in $properties {
 //         .m-b-#{$value} {
@@ -17,6 +16,22 @@
 // @function m-b-($value) {
 //     @return margin-bottom=$value+"px";
 // }
-@include marginbottom(2);
-@include marginbottom(2);
-@include marginbottom(2);
+// @include marginbottom(2);
+// @include marginbottom(2);
+// @include marginbottom(2);
+// @function m-b-($value) {
+//     @return margin-bottom=$value+"px";
+// }
+$columns: 1000;
+@mixin margin($b, $type) {
+    @for $i from 1 through $columns {
+        .m-#{$b}-#{$i} {
+            margin-#{$type}:#{$i}px;
+        }
+    }
+}
+
+@include margin("b", 'bottom');
+@include margin("t", 'top');
+@include margin("l", 'left');
+@include margin("r", 'right');

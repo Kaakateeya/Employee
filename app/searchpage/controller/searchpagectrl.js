@@ -5,11 +5,6 @@
          /* jshint validthis:true */
          var vm = this,
              model;
-         vm.photogradearray = [{ value: 216, name: 'A' },
-             { value: 217, name: 'B' },
-             { value: 218, name: 'C' },
-             { value: 219, name: 'D' }
-         ];
          vm.init = function() {
              vm.model = model = searchpageModel;
              model.scope = scope;
@@ -21,16 +16,12 @@
              model.sidebarnavshow = true;
              model.activatedmobile = true;
              model.selectedIndex = $stateParams.id;
-             model.templateUrl = "templates/angularSlide.html";
-             model.headettemp = "templates/angularHeader.html";
-             model.tickethistory = "templates/ticketHistoryPopup.html";
              model.searchpopuptext = model.selectedIndex === "0" ? "General Search" : "Advance Search";
              alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass", 'searchpageCtrl');
          };
-
          scope.$on('directivechangeevent', function(event, modal, type) {
              switch (type) {
-                 case 'Country':
+                 case 'state':
                      model.State = [];
                      model.State = Commondependency.StateBind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                      break;
@@ -46,50 +37,27 @@
                      model.Educationgroup = [];
                      model.Educationgroup = Commondependency.educationGroupBind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                      break;
-                 case 'educationspeciallisation':
+                 case 'educationGroup':
                      model.educationspeciallisation = [];
                      model.educationspeciallisation = Commondependency.educationSpeciakisationBind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                      break;
                  case 'caste':
                      model.Caste = [];
-                     model.Caste = Commondependency.casteDepedency(model.generalsearch.Religion, ((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : ""));
-                     break;
-                 case 'casteadvance':
-                     model.Caste = [];
-                     model.Caste = Commondependency.casteDepedency(model.advancedsearch.advancedReligion, ((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : ""));
+                     model.Caste = Commondependency.casteDepedency(model.ReligionID, ((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : ""));
                      break;
                  case 'professionBind':
                      model.professionBind = [];
                      model.professionBind = Commondependency.professionspecialisationBind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                      break;
-
                  case 'star':
                      model.stars = [];
                      model.stars = Commondependency.starBind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                      break;
-
                  case 'BranchName':
                      model.BranchName = [];
                      model.BranchName = Commondependency.BranchNamebind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                      break;
              }
-         });
-         vm.submitgeneral = function(object) {
-             model.submitgeneral(object, 1, 10);
-         };
-         vm.submitadvancedsearch = function(object) {
-             model.submitadvancedsearch(object, 1, 10);
-         };
-         scope.$on('slideshowsubmit', function(event, frompage, topage, tablename) {
-             switch (tablename) {
-                 case "general":
-                     model.submitgeneral(model.CgetDetails, frompage, topage);
-                     break;
-                 case "advanced":
-                     model.submitadvancedsearch(model.CgetDetails, frompage, topage);
-                     break;
-             }
-
          });
          vm.onTabSelected = function(value) {
              if (value === 1) {
@@ -100,14 +68,12 @@
                  alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
              }
          };
-
          vm.init();
          scope.$on("backsearchshowcontrols", function(event) {
              model.divcontrolls = true;
              model.slideshowtrue = false;
          });
      }
-
      angular
          .module('Kaakateeya')
          .controller('searchpageCtrl', ['$scope', 'searchpageModel', 'Commondependency', 'alert', '$stateParams', 'modelpopupopenmethod', controller]);

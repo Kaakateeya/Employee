@@ -27,7 +27,6 @@
 
 
         model.displayArrayprofile = function(arr, topage) {
-            debugger;
             model.headervisileble = true;
             if (topage === parseInt(10)) {
                 model.slides = [];
@@ -146,7 +145,7 @@
         };
         model.ProfileIdTemplateDUrl = function(row) {
             var paidstatusclass = row.paid === true ? 'paidclass' : 'unpaid';
-            var paid = "<a class='{{paidstatusclass}}'>" + row.ProfileID + ' (' + row.KMPLID + ')' + "</a>";
+            var paid = "<a class='" + paidstatusclass + "'>" + row.ProfileID + ' (' + row.KMPLID + ')' + "</a>";
             return paid;
         };
         model.reset = function() {
@@ -266,7 +265,6 @@
                     } else if (type === 'excel') {
                         model.grid.exportarray = [];
                         model.grid.exportarray = response.data;
-                        console.log(model.grid.exportarray);
                         var options = {
                             headers: true,
                             columns: [{
@@ -299,7 +297,7 @@
                         model.slide.totalRecords = response.data[0].TotalRows;
                         if (parseInt(from) === 1) {
                             model.slide.setSlides(response.data, model.topage, "myprofile");
-                            modelpopupopenmethod.showPopupphotopoup('myprofileSlide.html', model.scope, 'lg', "myprofileslide");
+                            modelpopupopenmethod.showPopup('myprofileSlide.html', model.scope, 'lg', "myprofileslide");
                         } else {
                             model.slide.addSlides(response.data, model.slides, parseInt(to), "myprofile");
                         }
@@ -336,6 +334,9 @@
         };
         model.slide.close = function() {
             modelpopupopenmethod.closepopuppoptopopup();
+        };
+        model.slide.closemainpopup = function() {
+            modelpopupopenmethod.closepopup();
         };
         return model;
     }

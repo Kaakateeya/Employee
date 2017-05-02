@@ -47,7 +47,6 @@
                             model.hidepaging = true;
                             model.ProfileID = (response.data)[0].ProfileID;
                             model.setData(response.data);
-                            console.log(response.data);
                         } else {
                             state.go('EmployeePaymentInsert', { ProfileID: txtval, status: 0, paymentID: 0 });
                         }

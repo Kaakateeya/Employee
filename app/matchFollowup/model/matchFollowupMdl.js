@@ -69,7 +69,6 @@
 
 
             // SelectBindServiceApp.EmpwithBranch('ProfileBranch', '').then(function(response) {
-            //     console.log(response.data);
             //     var empBranchData = response.data;
             //     var EmpNames = [];
             //     var branchids = '1';
@@ -81,7 +80,6 @@
             //                 function(item) {
             //                     EmpNames.push({ ParentName: item.Branch_ID });
             //                 });
-            //             debugger;
             //             model.EmpNamesArr.push({
             //                 ParentName: item.BranchesName,
             //                 groupData: EmpNames
@@ -89,8 +87,6 @@
 
             //         }
             //     });
-            //     debugger;
-            //     console.log(model.EmpNamesArr);
             // });
         };
         model.smsarray = [

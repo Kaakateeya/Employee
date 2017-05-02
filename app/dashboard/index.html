@@ -1,3 +1,6 @@
+<!--<div>
+    <slide-show nghide="page.model.slideshowtrue" dynamicheader="'false'" slidetype="'popup'" headertemplate="'templates/SlideHeader.html'" bodytemplate="'templates/slideDesign.html'"></slide-show>
+</div>-->
 <div id="dashBoardPage" class="right_col" role="main">
     <div class="row">
         <div ng-id="dash_{{$index}}" class="col-md-4" ng-repeat="item in page.model.landingItems" ng-show="item.length>0">
@@ -14,7 +17,7 @@
                                     <img src="src/images/EXCEL.jpg"></img>
                                 </a>
 
-                                <a class="excelshow" title="Slideshow" ng-click="page.slideshowfunction(true,page.model.empid, page.model.empBranchID,1,10,item[0].TableName,'slideshow',item,1)" href="javascript:void(0)">
+                                <a class="excelshow" title="Slideshow" ng-click="page.model.slideshowfunction(true,page.model.empid, page.model.empBranchID,1,10,item[0].TableName,'slideshow',item,1)" href="javascript:void(0)">
                                     <img style="width: 32px;height: 29px;" src="src/images/slideshowimg.png"></img>
                                 </a>
                                 <a href="javascript:void(0)" class="close-link pull-right" title="Close" ng-click="page.arrayslice($index)"><i class="fa fa-close"></i></a>
@@ -54,6 +57,9 @@
         <div ng-include="page.model.tickethistory">
         </div>
     </script>
+    <script type="text/ng-template" id="dashboardslide.html">
+        <complex-slide config="page.model" model="page.model"></complex-slide>
+    </script>
 </div>
 <script type="text/ng-template" id="uploadsaform.html">
     <form name="uploadForm" novalidate role="form" ng-submit="page.model.uploadfromsubmit===false?page.model.upload(page.model.uploadf):page.model.bouncedemail(page.model.uploadf)">
@@ -80,6 +86,35 @@
 
     </form>
 </script>
-<div>
-    <slide-show nghide="page.model.slideshowtrue" dynamicheader="'false'" slidetype="'popup'" headertemplate="'templates/SlideHeader.html'" bodytemplate="'templates/slideDesign.html'"></slide-show>
-</div>
+
+
+<script type="text/ng-template" id="dashboardheader.html">
+    <div class="row dashboardheaderpopup">
+        <div class="col-lg-12">
+            <h4 class="col-lg-4 dashboardheaderhtml">{{model.headerhtml}}</h4>
+            <div class="col-lg-6">
+                <div class="col-lg-7 col-md-7 col-xs-7 col-sm-7">
+                    <label id="lbltotalrecords">Total Records :</label>
+                    <label id="lblcurrentprofile">{{(activeslide)+1}}</label> &nbsp;of&nbsp;
+                    <label id="lblcurSlide">{{model.totalRecords}}</label>
+                </div>
+                <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5">
+                    <div class="col-lg-10 col-md-10 col-xs-10 col-sm-10">
+                        <label>Viewed</label>&nbsp;<label data-ng-bind="slidNum" style="color: blue;">{{(Viwedslide)+1}}</label>&nbsp;<label>Profiles</label>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
+                        <input type="text" ng-model="txtGotoVal" class="form-control" style="width: 50px; height: 24px; margin-left: -20px;" ng-blur="gotoSlide(txtGotoVal)" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <a href="javascript:void(0);" class="dahboardheaderclose">
+                    <a href="javascript:void(0);" ng-click="model.closesashboard()" size="25">close</a>
+                </a>
+                <a href="javascript:void(0);" ng-click="model.closesashboard()" class="pull-right">
+                    <i class="fa fa-times" aria-hidden="true" style="fill:#c73e5f;font-size: 13pt;"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</script>

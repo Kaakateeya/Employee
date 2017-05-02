@@ -28,15 +28,11 @@
                 model.marInfo = respnse.data;
                 model.ProfileID = (model.marInfo)[0].ProfileID;
                 model.MAobj.txtmrktCalltelephonenumberIn = model.MAobj.txtmrktCalltelephonenumberout = (model.marInfo)[0].PrimaryContactNumber;
-
-                console.log(model.marInfo);
                 marketsvc.getmarSlide(ticketid, 'H').then(function(innrespnse) {
                     model.marHistry = innrespnse.data;
                     _.map(model.marHistry, function(item) {
                         item.ReplyDatenew = moment(item.ReplyDatenew).format('DD-MMM-YYYY h:mm:ss');
                     });
-
-                    console.log(model.marHistry);
                 });
             });
         };
@@ -73,7 +69,6 @@
                 EmpID: model.empid
             };
             marketsvc.InOutSubmit(inputObj).then(function(response) {
-                console.log(response);
                 commonpage.closepopup();
                 var msg = parseInt(response.data) === 1 ? (obj.CallType === 1 ? 'Incoming Call Created successfully' : 'Outgoing Call Created successfully') :
                     ((obj.CallType === 1 ? 'Incoming Call updation failed' : 'Outgoing Call updation failed'));
@@ -147,14 +142,11 @@
         };
 
         model.assignSubmit = function() {
-            marketsvc.assignEmpSubmit(model.ticketid, model.empid, model.empid).then(function(respnse) {
-                console.log(respnse);
-            });
+            marketsvc.assignEmpSubmit(model.ticketid, model.empid, model.empid).then(function(respnse) {});
         };
 
         model.RelationshipChange = function(RelationshipID, type) {
             bindservice.getRelationName(3, model.ProfileID, RelationshipID).then(function(response) {
-                console.log(response);
                 if (_.isArray(response.data[0]) && response.data[0].length > 0) {
                     if (type === 'In') {
                         model.MAobj.txtmrktRelationnameIn = response.data[0][0].NAME;

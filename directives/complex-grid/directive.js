@@ -105,7 +105,6 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     scope.reverse = !scope.reverse; //if true make it false and vice versa
                 };
                 scope.exportexcel = function(array, columns) {
-                    debugger;
                     var cloumsarr = [];
                     var selectarray = [];
                     _.each(_.filter(columns, function(item) { return item.key !== "" && item.key !== undefined; }), function(inneritem) {

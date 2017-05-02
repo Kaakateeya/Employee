@@ -22,28 +22,9 @@
              model.tickethistory = "templates/ticketHistoryPopup.html";
              model.slideshowfunction(false);
              model.init();
+             // commonpage.showPopup('dashboardslide.html', scope, 'lg', "modalclassdashboard");
          };
          vm.init();
-
-         vm.slideshowfunction = function(flag, empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
-             //model.slideshowfunction(flag, empid, branchcode, frompage, topage, tablename, type, array, slideflag);
-             //call http method here after then function call the broadcast method
-             dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
-                 if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0 && response.data[0].length > 0) {
-
-                     //if (frompage === 1) {
-                     model.slidearray = response.data[0];
-                     //  } else {
-                     //      _.each(response.data, function(inneritem) {
-                     //          model.slidearray.push(inneritem);
-                     //      });
-                     //  }
-
-                     scope.$broadcast("slideshowdynamic", model.slidearray, model.slidearray[0].TotalRows, tablename, frompage);
-                 }
-             });
-         };
-
 
          scope.$on("slideshowsubmit", function(event, frompage, topage, tablename) {
              vm.slideshowfunction(true, model.empid, model.empBranchID, frompage, topage, tablename, 'slideshow', model.slidearray, 1);

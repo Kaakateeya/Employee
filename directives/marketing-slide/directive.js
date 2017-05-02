@@ -23,8 +23,6 @@
             scope.model.ticketid = scope.ticketid;
             scope.model.scope = scope;
             scope.model.getMrktSlideInfo(scope.ticketid);
-            console.log('info');
-
             scope.model.MAobj.ddlmrktCallresultIn = scope.model.MAobj.ddlmrktcallresultout = "417";
             scope.model.MAobj.ddlmrktreceivedIn = scope.model.MAobj.ddlmrktreceivedout = "39";
             scope.model.MAobj.rbtnmarketDisplayIn = scope.model.MAobj.rbtndisplayOut = "2";
