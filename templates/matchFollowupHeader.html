@@ -21,7 +21,7 @@
             <div class="col-lg-3 form-group">
                 <label for="Region" class="control-label">EmpName</label>
                 <div class="">
-                    <select class="smalldropdown" ng-model="model.lstEmpnames" multiple multiselectdropdown ng-options="item.value as item.label for item in model.EmpNamesArr" multiple data-live-search='true'>                                        
+                    <select class="smalldropdown" ng-model="model.lstEmpnames" multiple multiselectdropdown ng-options="item.value as item.label group by item.ParentName for item in model.EmpNamesArr" multiple data-live-search='true'>                                        
                         </select>
                 </div>
             </div>

@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .factory('marketticketHistrymdl', factory)
 
-    factory.$inject = ['SelectBindServiceApp', 'authSvc', 'marketingTicketHistryservice', 'alert', 'modelpopupopenmethod'];
+    factory.$inject = ['SelectBindServiceApp', 'authSvc', 'marketingTicketHistryservice', 'alert', 'modelpopupopenmethod', 'arrayConstants'];
 
-    function factory(bindservice, authSvc, marketsvc, alertss, commonpage) {
+    function factory(bindservice, authSvc, marketsvc, alertss, commonpage, arrayConstants) {
         var model = {};
         model.MAobj = {};
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
@@ -77,9 +77,33 @@
 
                 alertss.timeoutoldalerts(model.scope, msgClass, msg, 9500);
             });
+
+
+            // var relation = '';
+            // if (obj.RelationID !== undefined) {
+            //     relation = (_.where(arrayConstants.childStayingWith, { value: parseInt(obj.RelationID) }))[0].label;
+            // }
+            // _.map(model.marHistry, function() {
+            //     item.TicketType = 'INCOMING';
+            //     item.ReplyDatenew = curdate;
+            //     item.NAME = model.empid;
+            //     item.CallStatus = obj.CallResult === 417 ? 'Successfull' : (obj.CallResult === 417 ? '418' : '');
+            //     item.CallReceivedBy = obj.RelationName;
+            //     item.ReplyDesc = obj.CallDiscussion;
+            //     item.NoOfDays = 0;
+            //     item.RelationShip = relation;
+
+            // });
+
+
+
+
+
         };
 
         model.incallSubmit = function(obj) {
+            alert(111);
+
             var inobj = {
                 CallType: 1,
                 RelationID: obj.ddlmrktreceivedIn,
@@ -97,6 +121,7 @@
         };
 
         model.outcallSubmit = function(obj) {
+
             var inobj = {
                 CallType: 2,
                 RelationID: obj.ddlmrktreceivedout,

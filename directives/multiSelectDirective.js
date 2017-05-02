@@ -275,7 +275,8 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                     enableCaseInsensitiveFiltering: true,
                     filterPlaceholder: 'Type To Search',
                     buttonContainer: '<div class="btn-group" />',
-                    maxHeight: false
+                    maxHeight: false,
+                    enableClickableOptGroups: true
                 });
                 //element.multiselect('setOptions', secondConfigurationSet);
                 //element.multiselect('rebuild');
