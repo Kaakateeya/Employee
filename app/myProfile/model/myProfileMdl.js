@@ -12,7 +12,9 @@
         model.opendiv = true;
         model.scope = {};
         model.slide.templateUrl = "templates/myprofileSlide.html";
-        model.slide.headettemp = "myprofileheader.html";
+        //  model.slide.headettemp = "myprofileheader.html";
+        model.slide.headettemp = "templates/myprofileheader.html";
+
         model.grid.showsearchrows = true;
         model.grid.showsearch = true;
         model.grid.showpaging = true;

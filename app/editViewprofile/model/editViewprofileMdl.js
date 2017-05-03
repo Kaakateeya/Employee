@@ -19,7 +19,8 @@
         model.myprofileexcel = false;
         model.normalexcel = false;
         model.slide.templateUrl = "templates/myprofileSlide.html";
-        model.slide.headettemp = "myprofileheader.html";
+        model.slide.headettemp = "templates/myprofileheader.html";
+
         model.init = function() {
             modelinactive = {};
             return model;
@@ -81,7 +82,7 @@
         };
 
         model.ViewAllsubmit = function(inpuobj, from, to, typeofbind) {
-
+            model.topage = to;
             model.columns = [
                 { text: 'Profile ID', key: 'ProfileID', type: 'custom', templateUrl: model.ProfileIdTemplateDUrl, rowtype: "success" },
                 { text: 'SurName', key: 'LastName', type: 'label' },
@@ -95,7 +96,6 @@
                 { text: 'Dob', key: 'Age', type: 'label', width: '150px' },
                 { text: 'Gender', key: 'GenderID', type: 'custom', templateUrl: model.GenderStr },
             ];
-
             var obj = {
                 strFName: inpuobj.Name !== undefined ? inpuobj.Name : "",
                 strSurName: inpuobj.surname !== undefined ? inpuobj.surname : "",
@@ -106,7 +106,6 @@
                 intEndIndex: to,
                 intEmpID: model.empid
             };
-
             ViewAllCustomerService.getViewCustomerData(obj).then(function(response) {
                 if (_.isArray(response.data) && response.data.length > 0) {
                     model.TotalRows = response.data[0].TotalRows;
@@ -121,7 +120,15 @@
                         var options = {
                             headers: true,
                         };
-                        alasql('SELECT ProfileID,FirstName,LastName as SurName,CasteName as Caste,ProfileOwner,Height,LoginStatus as Loagin,educationgroup as Education,Profession,Age as DOB,GenderID as Gender INTO  XLSX("john.xlsx",?) FROM ?', [options, model.exportarray]);
+                        alasql('SELECT ProfileID,FirstName,LastName as SurName,CasteName as Caste,ProfileOwner,Height,LoginStatus as Loagin,educationgroup as Education,Profession,Age as DOB,GenderID as Gender INTO  XLSX("EditReports.xlsx",?) FROM ?', [options, model.exportarray]);
+                    } else if (typeofbind === "slideshow") {
+                        model.slide.totalRecords = response.data[0].TotalRows;
+                        if (parseInt(from) === 1) {
+                            model.slide.setSlides(response.data, to, "myprofile");
+                            modelpopupopenmethod.showPopup('myprofileSlide.html', model.scope, 'lg', "myprofileslide");
+                        } else {
+                            model.slide.addSlides(response.data, model.slides, parseInt(to), "myprofile");
+                        }
                     } else {
                         model.setData(response.data);
                     }
@@ -187,6 +194,16 @@
             // var join = _.map(cloumsarr, 'columnid').join(',');
             // var select = 'SELECT ' + join + ' INTO  XLSX("john.xlsx",?) FROM ?';
             // alasql(select, [options, array]);
+        };
+
+        model.slideshowedit = function() {
+            model.ViewAllsubmit(model.obj, 1, 10, "slideshow");
+        };
+
+        model.slide.slidebind = function(old, news, array) {
+            if (parseInt(model.topage) - parseInt(news) === 4) {
+                model.ViewAllsubmit(model.obj, (model.topage) + 1, (model.topage) + 10, "slideshow");
+            }
         };
         return model.init();
     }

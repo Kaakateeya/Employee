@@ -34,15 +34,18 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.gotoSlide = function(slideIndex) {
                     if (slideIndex !== undefined && slideIndex !== "" && slideIndex !== null && slideIndex !== 0 &&
                         slideIndex !== "0") {
-                        $scope.activeslide = parseInt(slideIndex) - 1;
-                        slideIndex = 0;
-
+                        if (slideIndex > $scope.Viwedslide) {
+                            alerts.timeoutoldalerts($scope, 'alert-danger', "you can go till " + (($scope.Viwedslide) + 1) + " slide only", 4000);
+                        } else {
+                            $scope.activeslide = parseInt(slideIndex) - 1;
+                            slideIndex = 0;
+                        }
                     }
                 };
 
                 $scope.$watch('activeslide', function(news, old) {
                     if (news !== undefined && news !== "" && news !== null) {
-                        $scope.Viwedslide = news;
+                        $scope.Viwedslide = news > $scope.Viwedslide ? news : $scope.Viwedslide;
                         $scope.config.slidebind(old, news, $scope.model.slides, $scope.model.typeofPage);
                     }
                 });
