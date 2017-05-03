@@ -200,5 +200,33 @@
             </div>
         </div>
     </script>
+    <script type="text/ng-template" id="myprofileheader.html">
+        <div>
+            <div class="col-lg-12">
+                <div class="col-lg-3">
+                    <label style="color:#585050">Total Records :</label>
+                    <label style="color:blue"> {{(activeslide)+1}}</label>
+                    <label style="color:#585050"> of {{model.totalRecords}}</label>
+                </div>
+                <div class="col-lg-5" id="divviewedprofiles">
+                    <div class="row" style="padding-top: 5px;">
+                        <div class="col-lg-5">
+                            Viewed &nbsp;&nbsp;<label id="lnkLastSlide" style="color: blue;">{{(Viwedslide)+1}}&nbsp;&nbsp;</label><label>Profiles</label>
+                        </div>
+                        <div class="col-lg-1">
+                            <input type="text" id="txtGotoVal" ng-model="txtGotoVal" class="form-control" style="width: 60px; height: 30px;" ng-blur="gotoSlide(txtGotoVal)">
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <a href="javascript:void(0);" ng-click="model.closemainpopup();" style="padding:7px;">X</a>
+                </div>
+            </div>
 
+        </div>
+
+    </script>
+    <script type="text/ng-template" id="slideshoweditd.html">
+        <complex-slide config="page.model.slide" model="page.model.slide"></complex-grid>
+    </script>
 </div>

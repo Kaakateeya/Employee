@@ -19,7 +19,7 @@
         model.myprofileexcel = false;
         model.normalexcel = false;
         model.slide.templateUrl = "templates/myprofileSlide.html";
-        model.slide.headettemp = "templates/myprofileheader.html";
+        model.slide.headettemp = "myprofileheader.html";
 
         model.init = function() {
             modelinactive = {};
@@ -125,9 +125,9 @@
                         model.slide.totalRecords = response.data[0].TotalRows;
                         if (parseInt(from) === 1) {
                             model.slide.setSlides(response.data, to, "myprofile");
-                            modelpopupopenmethod.showPopup('myprofileSlide.html', model.scope, 'lg', "myprofileslide");
+                            modelpopupopenmethod.showPopup('slideshoweditd.html', model.scope, 'lg', "myprofileslide");
                         } else {
-                            model.slide.addSlides(response.data, model.slides, parseInt(to), "myprofile");
+                            model.slide.addSlides(response.data, response.data, parseInt(to), "myprofile");
                         }
                     } else {
                         model.setData(response.data);

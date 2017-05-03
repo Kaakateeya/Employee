@@ -12,6 +12,7 @@
                 if (typeofpage === 'normal') {
                     model.slides = data;
                 } else if (typeofpage === 'myprofile') {
+                    debugger;
                     model.displayArray(data, topage, "myprofile");
                 } else {
                     model.displayArray(data, topage);
