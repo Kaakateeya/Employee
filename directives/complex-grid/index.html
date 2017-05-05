@@ -27,10 +27,10 @@
             <tbody>
                 <tr ng-class="inneritem.rowtype" ng-repeat-start="inneritem in model.data |orderBy:sortKey:reverse|filter: searchKeyword |startFrom:currentPage*pageSize | limitTo:pageSize">
                     <td ng-if="!inneritem.isDetail && config.showplus">
-                        <a class="detail-icon" ng-click="plus(inneritem)" href="javascript:"><i class="glyphicon glyphicon-plus icon-plus"></i></a>
+                        <a class="detail-icon" ng-click="plus(inneritem)" href="javascript:"><i class="glyphicon glyphicon-play icon-play"></i></a>
                     </td>
                     <td ng-if="inneritem.isDetail">
-                        <a class="detail-icon" ng-click="minus(inneritem)" href="javascript:"><i class="glyphicon glyphicon-minus icon-minus"></i></a>
+                        <a class="detail-icon" ng-click="minus(inneritem)" href="javascript:"><i class="glyphicon glyphicon-pause icon-pause"></i></a>
                     </td>
                     <td ng-repeat="colitem in model.columns">
                         <span ng-if="colitem.type==='label'"> {{inneritem[colitem.key]}}</span>
