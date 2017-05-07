@@ -246,10 +246,11 @@
                 verfiedcontacts: obj.rdncontactsVerified,
                 WebsiteBlocked: obj.rdnWebsiteBlocked,
                 pagefrom: from,
-                pageto: to
+                pageto: to,
+                intTableType: 1
             };
             model.grid.columns = [
-                { text: '', key: 'HoroScopeImage', type: 'customlink', templateUrl: model.horoTemplate, method: model.horoscopeimage },
+                { text: 'Horo', key: 'HoroScopeImage', type: 'customlink', templateUrl: model.horoTemplate, method: model.horoscopeimage },
                 { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
                 { text: 'Gender', key: 'GenderID', type: 'label' },
                 { text: 'FirstName', key: 'LastName', type: 'link', method: model.editviewRedirect },

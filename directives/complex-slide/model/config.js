@@ -10,6 +10,7 @@
             model.setSlides = function(data, topage, typeofpage) {
                 model.slides = [];
                 if (typeofpage === 'normal') {
+                    debugger;
                     model.slides = data;
                 } else if (typeofpage === 'myprofile') {
                     debugger;

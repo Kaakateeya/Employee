@@ -157,4 +157,21 @@ body {
 .modalclassdashboardphotopopup {
   z-index: 999999 !important; }
 
+.myprofilepopupdesign {
+  margin-left: 60px;
+  margin-right: 60px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f6f3ea; }
+
+.myprofilefooterlinks {
+  font-size: 14px;
+  padding: 4px; }
+
+.myprofileslide .carousel-control {
+  width: 5%; }
+
+.carousel-indicators li {
+  display: none; }
+
 /*# sourceMappingURL=style.css.map */

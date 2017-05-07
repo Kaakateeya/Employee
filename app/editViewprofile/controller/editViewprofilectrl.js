@@ -17,6 +17,8 @@
             vm.model.obj.surname = '';
             vm.model.obj.Name = '';
             vm.model.obj.KmlProfileID = '';
+            vm.model.TotalRows = "";
+            vm.model.showtaotalrows = true;
         };
 
         vm.init();
