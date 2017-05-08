@@ -243,7 +243,8 @@
                     ActionType: item.ActionType,
                     ReadStatus: item.ReadStatus,
                     Tickets: item.Tickets,
-                    TicketID: item.TicketID
+                    TicketID: item.TicketID,
+                    NoDataFound: item.NoDataFound
                 });
             });
             return model.slides;
@@ -290,7 +291,7 @@
                             model.typeofslidedate = "Ticket Exipry Date";
                             break;
                         case "Customer Notification Status":
-                            model.typeofslidedate = "Action Date";
+                            model.typeofslidedate = "Notification Date";
                             break;
                         case "NoData Service Profiles":
                             model.typeofslidedate = "Registered Date";

@@ -21,6 +21,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.width = "";
                 $scope.photoalbum = "Photo Album";
                 $scope.uploadfromsubmit = false;
+                $scope.emailpattaren = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/i;
                 $scope.pauseResume = function(action) {
                     if (action === 'play') {
                         $scope.myInterval = 5000;
@@ -131,6 +132,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     });
                 };
                 $scope.sendMobileCode = function(slide) {
+                    console.log(slide);
                     var obj = {
                         iCountryID: slide.CountryCodeID,
                         iCCode: slide.CountryCodeID,
@@ -169,25 +171,28 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     $scope.uploadfromsubmit = false;
                     modelpopupopenmethod.showPopupphotopoup('uploadsaform.html', $scope, 'sm', "modalclassdashboardphotopopup");
                 };
-                $scope.pagesredirect = function(type, custid) {
+                $scope.pagesredirect = function(type, custid, profileid) {
                     switch (type) {
                         case "Partner":
                             window.open("Partnerpreference/" + custid, "_blank");
                             break;
                         case "general":
-                            window.open("search/" + custid, "_blank");
+                            window.open("search/" + custid + "/" + profileid, "_blank");
                             break;
                         case "contacts":
                             window.open("Contact/" + custid, "_blank");
                             break;
                         case 'myprofile':
-                            window.open("myProfilepage", "_blank");
+                            window.open("myProfilepage?Profileid=" + profileid, "_blank");
                             break;
                         case 'marketing':
                             window.open("marketingpage", "_blank");
                             break;
                         case 'matchfollowup':
                             window.open("matchFollowuppage", "_blank");
+                            break;
+                        case 'nopage':
+                            alerts.timeoutoldalerts($scope, 'alert-danger', 'comming Soon page', 4500);
                             break;
                     }
                 };

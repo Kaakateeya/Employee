@@ -112,8 +112,8 @@
             </span></h6>
             <h5>
                 <div style="color:Black;">
-                    <a class="alllinkscolor" ng-show="slide.SAForm!==null" href="javascript:void(0)" ng-click="horoscopeimage(slide.SAForm,'SA')">View SA Form </a>
-                    <a href="javascript:void(0)" ng-click="saformupload(slide.ProfileID)" class="alllinkscolor" ng-show="slide.SAForm===null">Upload SA Form</a>
+                    <a class="alllinkscolor" ng-show="slide.SAForm!==null && slide.SAForm==='--' && (slide.SAForm).trim()===''" href="javascript:void(0)" ng-click="horoscopeimage(slide.SAForm,'SA')">View SA Form </a>
+                    <a href="javascript:void(0)" ng-click="saformupload(slide.ProfileID)" class="alllinkscolor" ng-show="slide.SAForm===null || slide.SAForm==='--' || (slide.SAForm).trim()===''">Upload SA Form</a>
                 </div>
                 <div class="clearfix">
                 </div>
@@ -171,23 +171,23 @@
     <div class="col-lg-12">
         <a href='javascript:void(0);' ng-click="pagesredirect('Partner',slide.Custid)" class="myprofilefooterlinks">Edit Partnerpreference</a>
         <span> | </span>
-        <a href='javascript:void(0);' ng-click="pagesredirect('general',0)" class="myprofilefooterlinks">General search</a>
+        <a href='javascript:void(0);' ng-click="pagesredirect('general',0,slide.ProfileID)" class="myprofilefooterlinks">General search</a>
         <span> | </span>
-        <a href='javascript:void(0);' ng-click="pagesredirect('general',1)" class="myprofilefooterlinks">Advanced Search</a>
+        <a href='javascript:void(0);' ng-click="pagesredirect('general',1,slide.ProfileID)" class="myprofilefooterlinks">Advanced Search</a>
         <span> | </span>
-        <a href='javascript:void(0);' class="myprofilefooterlinks">Search By Contact</a>
+        <a href='javascript:void(0);' class="myprofilefooterlinks" ng-click="pagesredirect('nopage',1)">Search By Contact</a>
         <span> | </span>
-        <a href='javascript:void(0);' class="myprofilefooterlinks">Delete Profile</a>
+        <a href='javascript:void(0);' class="myprofilefooterlinks" ng-click="pagesredirect('nopage',1)">Delete Profile</a>
         <span> | </span>
-        <a href='javascript:void(0);' class="myprofilefooterlinks">View Contacts</a>
+        <a href='javascript:void(0);' class="myprofilefooterlinks" ng-click="pagesredirect('contacts',slide.Custid)">View Contacts</a>
         <span> | </span>
-        <a href='javascript:void(0);' ng-click="pagesredirect('myprofile',0)" class="myprofilefooterlinks">My Profile</a>
+        <a href='javascript:void(0);' ng-click="pagesredirect('myprofile',0,slide.ProfileID)" class="myprofilefooterlinks">My Profile</a>
         <span> | </span>
-        <a href='javascript:void(0);' ng-click="pagesredirect('marketing',0)" class="myprofilefooterlinks">Marketing Slide Show</a>
+        <a href='javascript:void(0);' ng-click="pagesredirect('nopage',1)" class="myprofilefooterlinks">Marketing Slide Show</a>
         <span> | </span>
         <a href='javascript:void(0);' ng-click="pagesredirect('matchfollowup',0)" class="myprofilefooterlinks">Match Followup Slide Show</a>
         <span> | </span>
-        <a href='javascript:void(0);' class="myprofilefooterlinks">Create Reminder</a>
+        <a href='javascript:void(0);' ng-click="pagesredirect('nopage',1)" class="myprofilefooterlinks">Create Reminder</a>
     </div>
 </div>
 <div class="clearfix"></div>
