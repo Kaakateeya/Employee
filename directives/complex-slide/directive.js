@@ -1,6 +1,6 @@
 angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupopenmethod', 'SelectBindServiceApp',
-    'helperservice', 'alert',
-    function(timeout, modelpopupopenmethod, SelectBindServiceApp, helperservice, alerts) {
+    'helperservice', 'alert', 'fileUpload', '$filter',
+    function(timeout, modelpopupopenmethod, SelectBindServiceApp, helperservice, alerts, fileUpload, $filter) {
         return {
             restrict: "E",
             scope: {
@@ -34,15 +34,18 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.gotoSlide = function(slideIndex) {
                     if (slideIndex !== undefined && slideIndex !== "" && slideIndex !== null && slideIndex !== 0 &&
                         slideIndex !== "0") {
-                        $scope.activeslide = parseInt(slideIndex) - 1;
-                        slideIndex = 0;
-
+                        if (slideIndex > $scope.Viwedslide) {
+                            alerts.timeoutoldalerts($scope, 'alert-danger', "you can go till " + (($scope.Viwedslide) + 1) + " slide only", 4000);
+                        } else {
+                            $scope.activeslide = parseInt(slideIndex) - 1;
+                            slideIndex = 0;
+                        }
                     }
                 };
 
                 $scope.$watch('activeslide', function(news, old) {
                     if (news !== undefined && news !== "" && news !== null) {
-                        $scope.Viwedslide = news;
+                        $scope.Viwedslide = news > $scope.Viwedslide ? news : $scope.Viwedslide;
                         $scope.config.slidebind(old, news, $scope.model.slides, $scope.model.typeofPage);
                     }
                 });
@@ -203,7 +206,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                             var keyname = app.prefixPath + $scope.proceedprofileid + '_settlementImages' + '/' + $scope.proceedprofileid + '_settlementImages.' + extension;
                             fileUpload.uploadFileToUrl(obj.myFile, '/settlementformupload', keyname).then(function(res) {
                                 if (res.status == 200) {
-                                    model.closeupload();
+                                    modelpopupopenmethod.closepopuppoptopopup();
                                     var today = $filter('date')(new Date(), 'MM/dd/yyyy hh:mm:ss a');
                                     var object = {
                                         CreatedByEmpID: $scope.model.empid,
@@ -241,6 +244,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     };
                     helperservice.getUpdateEmailBounce(object).then(function(response) {
                         if (response !== undefined && response.data === 1) {
+                            modelpopupopenmethod.closepopuppoptopopup();
                             alerts.timeoutoldalerts($scope, 'alert-success', 'Email Updated successfully', 2000);
                         } else {
                             alerts.timeoutoldalerts($scope, 'alert-danger', 'Email Updated Failed', 2000);

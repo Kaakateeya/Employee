@@ -219,4 +219,7 @@ c.maroon {
   font-weight: 400;
   line-height: 20px; }
 
+.carousel-indicators li {
+  display: none; }
+
 /*# sourceMappingURL=style.css.map */

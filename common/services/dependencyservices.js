@@ -57,6 +57,7 @@ app.factory('Commondependency', ['SelectBindServiceApp', function(SelectBindServ
         },
 
         professionBind: function(parentval) {
+            debugger;
             var professionArr = [];
             SelectBindService.ProfessionSpecialisation(parentval).then(function(response) {
                 _.each(response.data, function(item) {

@@ -29,7 +29,7 @@
         model.typeofmailSms = '';
         model.actobj = {};
         model.HistryObj = [];
-        model.isopenFlag = true;
+        model.isopenFlag = false;
         model.curSlide = 0;
         model.dateOptions = {
             changeMonth: true,
