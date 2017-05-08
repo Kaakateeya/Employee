@@ -178,7 +178,8 @@
             });
         };
         model.tickethistorypopup = function(TicketID) {
-            commonpage.showPopupphotopoup('tickethistory.html', model.scope, 'md', "modalclassdashboardphotopopup");
+            model.marketingTicketid = TicketID;
+            commonpage.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
         };
 
 
@@ -243,8 +244,9 @@
                     ActionType: item.ActionType,
                     ReadStatus: item.ReadStatus,
                     Tickets: item.Tickets,
-                    TicketID: item.TicketID,
+                    TicketID: item.Emp_Ticket_Id || item.Emp_Ticket_ID,
                     NoDataFound: item.NoDataFound
+
                 });
             });
             return model.slides;

@@ -36,7 +36,7 @@
                             <div class="media-body">
                                 <p class="title">{{inneritem.Name}}
                                     <a ng-if="(item[0].TableName!=='Marketing Ticket Expiry With in Two days')&&(item[0].TableName!=='Tickets Assigned from Last 10 Days')" href="javascript:void(0)" ng-click="page.model.viewfullprofile(inneritem.Profileid)" ng-class="inneritem.PaidStatus===1?'colorpaid':'colorunpaid'"> ({{inneritem.Profileid}})</a>
-                                    <a ng-if="(item[0].TableName==='Tickets Assigned from Last 10 Days')||(item[0].TableName==='Marketing Ticket Expiry With in Two days')" href="javascript:void(0)" ng-click="page.model.tickethistorypopup(inneritem.TicketID)" ng-class="inneritem.PaidStatus===1?'colorpaid':'colorunpaid'"> ({{inneritem.Tickets}})</a>
+                                    <a ng-if="(item[0].TableName==='Tickets Assigned from Last 10 Days')||(item[0].TableName==='Marketing Ticket Expiry With in Two days')" href="javascript:void(0)" ng-click="page.model.tickethistorypopup(inneritem.Emp_Ticket_ID)" ng-class="inneritem.PaidStatus===1?'colorpaid':'colorunpaid'"> ({{inneritem.Tickets}})</a>
                                 </p>
                                 <p class="titleservice"><span ng-if="inneritem.Date!=='Upload SA Form'"> {{inneritem.Date}}</span>
                                     <span ng-if="inneritem.Date==='Upload SA Form'">&nbsp;&nbsp;<a href="javascript:void(0)" ng-click="page.uploadsaformtable(inneritem.Profileid)" class="alllinkscolor" >Click Here To Upload SA Form</a></span>
@@ -53,10 +53,7 @@
             </div>
         </div>
     </div>
-    <script type="text/ng-template" id="tickethistory.html">
-        <div ng-include="page.model.tickethistory">
-        </div>
-    </script>
+
     <script type="text/ng-template" id="dashboardslide.html">
         <complex-slide config="page.model" model="page.model"></complex-slide>
     </script>
@@ -116,5 +113,10 @@
                 </a>
             </div>
         </div>
+    </div>
+</script>
+<script type="text/ng-template" id="market.html">
+    <div class="modal-body">
+        <market-tickethistory ticketid="page.model.marketingTicketid"></market-tickethistory>
     </div>
 </script>

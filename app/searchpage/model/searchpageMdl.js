@@ -190,7 +190,8 @@
             model.Caste = Commondependency.casteDepedency(model.ReligionID, model.MothertongueID);
         };
         model.GetPhotoandHoroscopevalues = function(strType, str) {
-            if (str !== null && str !== undefined && str !== "") {
+            if (str !== null && str !== undefined && str !== "" && str.length > 0) {
+                str = str.toString();
                 if (strType == "horo") {
                     str = ((str.indexOf("2") != -1) && (str.indexOf("3") != -1) ? null : (str.indexOf("2") != -1) ? "1" : (str.indexOf("3") != -1) ? "0" : null);
                 } else {

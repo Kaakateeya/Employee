@@ -109,7 +109,9 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     window.open("EmployeePayments" + "?idsss=" + ProfileID, "_blank");
                 };
                 $scope.tickethistoryupdate = function(matkteingticket) {
-                    modelpopupopenmethod.showPopupphotopoup('tickethistory.html', $scope, 'md', "modalclassdashboardphotopopup");
+                    debugger;
+                    $scope.model.marketingTicket = matkteingticket;
+                    modelpopupopenmethod.showPopupphotopoup('marketpopup.html', $scope, 'md', "modalclassdashboardphotopopup");
                 };
                 $scope.photorequest = function(ProfileID, empid) {
                     helperservice.PhotoRequest(ProfileID, empid).then(function(response) {
@@ -273,6 +275,8 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         }
                     });
                 };
+
+
             }
         };
     }

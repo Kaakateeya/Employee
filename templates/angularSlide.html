@@ -7,7 +7,7 @@
                     <label class="color_black"><span  ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI'" ng-bind-html="config.statusbind(slide.Mystatus.trim())"></span><span>
                         <img class="imgheight" ng-if="slide.Mystatus.trim()==='I'"  ng-show="slide.Mystatus.trim()==='I'" src="src/images/heartgrren.gif"><img>
                          <img  class="imgheight"   ng-if="slide.Mystatus.trim()==='NI'" ng-show="slide.Mystatus.trim()==='NI'" ng-src="src/images/brkhrtgreen.gif"><img></span></label>
-                    <a href="javascript:void(0)" ng-click="config.tickethistoryupdation(slide.FromTicketID)" ng-style="{'background-color' : config.ticketclass(slide.FTicketStatus.trim())}" ng-if="slide.Mystatus.trim()==='I' || slide.Mystatus.trim()==='NI' || slide.Mystatus.trim()==='V'"
+                    <a href="javascript:void(0)" ng-click="tickethistoryupdate(slide.FromTicketID)" ng-style="{'background-color' : config.ticketclass(slide.FTicketStatus.trim())}" ng-if="slide.Mystatus.trim()==='I' || slide.Mystatus.trim()==='NI' || slide.Mystatus.trim()==='V'"
                         ng-show="slide.FromTicketIdSuf.trim()!=='--'">{{slide.FromTicketIdSuf}}</a>
 
                 </div>
@@ -32,7 +32,7 @@
                         <label class="color_black"><span ng-if="slide.OppStatus.trim()!=='I' && slide.OppStatus.trim()!=='NI'" ng-bind-html="config.statusbind(slide.OppStatus.trim())"></span>
                         <img  class="imgheight"  ng-if="slide.OppStatus.trim()==='I'" ng-show="slide.OppStatus.trim()==='I'" src="src/images/heartgrren.gif"><img>
                         <img  class="imgheight"  ng-if="slide.OppStatus.trim()==='NI'" ng-show="slide.OppStatus.trim()==='NI'" src="src/images/brkhrtgreen.gif"><img></label>
-                        <a href="javascript:void(0)" ng-click="config.tickethistoryupdation(slide.ToTicketID)" ng-style="{'background-color' : config.ticketclass(slide.TTicketStatus.trim())}" ng-if="slide.OppStatus.trim()==='I' || slide.OppStatus.trim()==='NI' || slide.OppStatus.trim()==='V'"
+                        <a href="javascript:void(0)" ng-click="tickethistoryupdate(slide.ToTicketID)" ng-style="{'background-color' : config.ticketclass(slide.TTicketStatus.trim())}" ng-if="slide.OppStatus.trim()==='I' || slide.OppStatus.trim()==='NI' || slide.OppStatus.trim()==='V'"
                             ng-show="slide.ToTicketIDSuf.trim()!=='--'">{{slide.ToTicketIDSuf}}</a>
                     </div>
                 </div>

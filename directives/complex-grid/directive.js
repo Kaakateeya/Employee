@@ -49,8 +49,13 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     var paid = (row.HoroPhotoName).indexOf('Horo_no') !== -1 ? "View" : "<a  href='javascript:void(0);' ng-click='showHoromethod(" + JSON.stringify(row.HoroPhotoName) + ");'>View</a>";
                     return paid;
                 };
+                scope.tickethistoryupdate = function(matkteingticket) {
+                    scope.marketingTicket = matkteingticket;
+                    commonpage.showPopupphotopoup('marketgrid.html', scope, 'md', "modalclassdashboardphotopopup");
+                };
                 scope.ViewTicket = function(row) {
-                    var paid = "<a style='cursor:pointer;'  href='/Education/" + row.custid + "'>View</a>";
+                    var paid = "<a style='cursor:pointer;' ng-click='tickethistoryupdate(135731)'  href='javascript:void(0);'>View</a>";
+                    //  var paid = "<a style='cursor:pointer;' ng-click='tickethistoryupdate(" + row.TicketID + ")'  href='javascript:void(0);'>View</a>";
                     return paid;
                 };
                 scope.showHoromethod = function(HoroPhotoName) {
@@ -90,7 +95,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                         { text: 'Contact', key: '', type: 'link', method: scope.ViewContact },
                         { text: 'Sa', key: '', type: 'morelinks', templateUrl: scope.viewSa },
                         { text: 'Horo', key: '', type: 'morelinks', templateUrl: scope.ViewHoro },
-                        { text: 'Tickets', key: '', type: 'custom', templateUrl: scope.ViewTicket },
+                        { text: 'Tickets', key: '', type: 'morelinks', templateUrl: scope.ViewTicket },
                         { text: 'Owner', key: 'OWNER', type: 'label' },
                     ];
                     SelectBindServiceApp.playbtnProfileData(data.ProfileID).then(function(response) {

@@ -21,22 +21,24 @@
             model.marketReplytype();
             return model;
         };
-
         model.getMrktSlideInfo = function(ticketid) {
             model.ticketid = ticketid;
             marketsvc.getmarSlide(ticketid, 'I').then(function(respnse) {
-                model.marInfo = respnse.data;
-                model.ProfileID = (model.marInfo)[0].ProfileID;
-                model.MAobj.txtmrktCalltelephonenumberIn = model.MAobj.txtmrktCalltelephonenumberout = (model.marInfo)[0].PrimaryContactNumber;
-                marketsvc.getmarSlide(ticketid, 'H').then(function(innrespnse) {
-                    model.marHistry = innrespnse.data;
-                    _.map(model.marHistry, function(item) {
-                        item.ReplyDatenew = moment(item.ReplyDatenew).format('DD-MMM-YYYY h:mm:ss');
+                model.marInfo = [];
+                model.marHistry = [];
+                if (respnse.data !== undefined && respnse.data !== null && respnse.data.length > 0) {
+                    model.marInfo = respnse.data;
+                    model.ProfileID = (model.marInfo)[0].ProfileID;
+                    model.MAobj.txtmrktCalltelephonenumberIn = model.MAobj.txtmrktCalltelephonenumberout = (model.marInfo)[0].PrimaryContactNumber !== "--" ? (model.marInfo)[0].PrimaryContactNumber : null;
+                    marketsvc.getmarSlide(ticketid, 'H').then(function(innrespnse) {
+                        model.marHistry = innrespnse.data;
+                        _.map(model.marHistry, function(item) {
+                            item.ReplyDatenew = moment(item.ReplyDatenew).format('DD-MMM-YYYY h:mm:ss');
+                        });
                     });
-                });
+                }
             });
         };
-
         model.marketReplytype = function() {
             bindservice.marketReplytype().then(function(response) {
                 if (_.isArray(response.data[0]) && response.data[0].length > 0) {
@@ -101,9 +103,7 @@
 
         };
 
-        model.incallSubmit = function(obj) {
-            alert(111);
-
+        model.incallSubmit = function(obj, type) {
             var inobj = {
                 CallType: 1,
                 RelationID: obj.ddlmrktreceivedIn,
@@ -120,8 +120,7 @@
 
         };
 
-        model.outcallSubmit = function(obj) {
-
+        model.outcallSubmit = function(obj, type) {
             var inobj = {
                 CallType: 2,
                 RelationID: obj.ddlmrktreceivedout,
@@ -169,7 +168,6 @@
         model.assignSubmit = function() {
             marketsvc.assignEmpSubmit(model.ticketid, model.empid, model.empid).then(function(respnse) {});
         };
-
         model.RelationshipChange = function(RelationshipID, type) {
             bindservice.getRelationName(3, model.ProfileID, RelationshipID).then(function(response) {
                 if (_.isArray(response.data[0]) && response.data[0].length > 0) {
@@ -188,9 +186,8 @@
 
             });
         };
-
         model.close = function() {
-            commonpage.closepopup();
+            commonpage.closepopuppoptopopup();
         };
 
         return model.init();
