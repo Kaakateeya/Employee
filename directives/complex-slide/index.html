@@ -105,7 +105,12 @@
         <div class="modal-body" ng-hide="!uploadfromsubmit">
             <div class="row">
                 <label for="newemail">New Email</label>
-                <input type="text" class="form-control" ng-model="uploadf.newemail" />
+                <input onkeypress="return (event.keyCode != 32 && event.which!=32)" ng-pattern="emailpattaren" name="emailbounceid" type="text" class="form-control" ng-model="uploadf.newemail" />
+                <div style="color:red;" ng-if="(uploadForm.emailbounceid.$invalid)" ng-messages="uploadForm.emailbounceid.$error" role="alert">
+                    <div ng-message-exp="pattern">
+                        This is required and enter valid e-mail address.
+                    </div>
+                </div>
             </div>
         </div>
         <div class="modal-footer">

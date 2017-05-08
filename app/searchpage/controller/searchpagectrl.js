@@ -16,6 +16,9 @@
              model.sidebarnavshow = true;
              model.activatedmobile = true;
              model.selectedIndex = $stateParams.id;
+             if (parseInt($stateParams.Profileid) !== 0) {
+                 model.ProfileIDpopup = $stateParams.Profileid;
+             }
              model.searchpopuptext = model.selectedIndex === "0" ? "General Search" : "Advance Search";
              alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass", 'searchpageCtrl');
          };
@@ -43,7 +46,7 @@
                      break;
                  case 'caste':
                      model.Caste = [];
-                     model.Caste = Commondependency.casteDepedency(model.ReligionID, ((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : ""));
+                     model.Caste = Commondependency.casteDepedency((model.ReligionID !== undefined && model.ReligionID !== null && model.ReligionID.length > 0 ? (model.ReligionID).toString() : ""), ((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : ""));
                      break;
                  case 'professionBind':
                      model.professionBind = [];

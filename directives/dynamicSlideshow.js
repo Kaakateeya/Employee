@@ -375,7 +375,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                             window.open("Partnerpreference/" + custid, "_blank");
                             break;
                         case "general":
-                            window.open("search/" + custid, "_blank");
+                            window.open("search/" + custid + "/0", "_blank");
                             break;
                         case "contacts":
                             window.open("Contact/" + custid, "_blank");

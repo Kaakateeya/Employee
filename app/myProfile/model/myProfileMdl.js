@@ -203,7 +203,7 @@
                 window.open(row.HoroScopeImage, '_blank');
         };
 
-        model.MyprofileResult = function(obj, from, to, type) {
+        model.MyprofileResult = function(obj, from, to, type, flagtype) {
             model.topage = to;
             var inputobj = {
                 Empid: model.empid,
@@ -247,7 +247,7 @@
                 WebsiteBlocked: obj.rdnWebsiteBlocked,
                 pagefrom: from,
                 pageto: to,
-                intTableType: 1
+                intTableType: flagtype
             };
             model.grid.columns = [
                 { text: 'Horo', key: 'HoroScopeImage', type: 'customlink', templateUrl: model.horoTemplate, method: model.horoscopeimage },
@@ -314,10 +314,10 @@
         model.grid.pagechange = function(val) {
             var to = val * 10;
             var from = val === 1 ? 1 : to - 9;
-            model.MyprofileResult(model.mpObj, from, to, 'grid');
+            model.MyprofileResult(model.mpObj, from, to, 'grid', 1);
         };
         model.grid.exportexcel = function(topage) {
-            model.MyprofileResult(model.mpObj, 1, topage, 'excel');
+            model.MyprofileResult(model.mpObj, 1, topage, 'excel', 1);
         };
         model.close = function() {
             modelpopupopenmethod.closepopup();
@@ -325,7 +325,7 @@
 
         model.slide.slidebind = function(old, news, array) {
             if (parseInt(model.topage) - parseInt(news) === 4) {
-                model.MyprofileResult(model.mpObj, (model.topage) + 1, (model.topage) + 10);
+                model.MyprofileResult(model.mpObj, (model.topage) + 1, (model.topage) + 10, 'slide', 0);
             }
         };
         // slide events

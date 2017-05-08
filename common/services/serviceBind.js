@@ -106,6 +106,7 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
             return http.get(app.apiroot + 'StaticPages/getForgotPassword', { params: { Username: emailorprofileid } });
         },
         sendMobileCode: function(obj) {
+            debugger;
             return http.get(app.apiroot + 'StaticPages/getCustomerdmobileVerfCodesend', {
                 params: { iCountryID: obj.iCountryID, iCCode: obj.iCCode, MobileNumber: obj.MobileNumber, CustFamilyID: obj.CustFamilyID }
             });
