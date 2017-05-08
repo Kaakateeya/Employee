@@ -442,7 +442,7 @@
         .pop_label_left {
             display: inline-block;
             float: left;
-            width: 40%;
+            width: 36%;
             position: relative;
             line-height: 36px;
             font-size: 13px;
@@ -1553,7 +1553,7 @@
         
         .select-box-my-trible input[type="text"] {
             width: 32% !important;
-            margin: 2% 0% 0% 2% !important;
+            // margin: 2% 0% 0% 2% !important;
             display: inline-block;
         }
         
@@ -1654,4 +1654,25 @@
             border-radius: 3px;
             color: #A00201;
             text-transform: capitalize;
+        }
+        
+        .requiredStar::after {
+            content: " * ";
+            float: right;
+            color: red;
+            font-size: 22px !important;
+            padding-left: 6px;
+        }
+        
+        .radiocls {
+            padding-top: 2%;
+        }
+        
+        .multiselect {
+            border: solid 1px #ADA2A2 !important;
+            color: #000;
+            background: #fff !important;
+            box-shadow: none !important;
+            height: 34px !important;
+            margin: 0 !important;
         }

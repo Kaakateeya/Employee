@@ -260,6 +260,24 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                             option.push({ "label": "--select--", "title": "--select--", "value": 0 });
                             scope.databind(option);
                             break;
+                        case 'passOfYear':
+                            var test = [];
+                            var yr = 1,
+                                maxyr = 2020,
+                                no_year = 1975;
+                            test.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                            for (var i = maxyr; i >= no_year; i--) {
+                                test.push({ "label": i, "title": i, "value": i });
+                                yr += 1;
+                            }
+                            scope.databind(test);
+                            break;
+                        case 'ageBind':
+                            scope.databind(commonFactory.numbersBind('years', 1, 80));
+                            break;
+                        case 'gradeSelection':
+                            scope.databind(cons.gradeSelection);
+                            break;
                     }
                 }, 1000);
                 element.multiselect({
