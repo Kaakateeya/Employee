@@ -27,7 +27,7 @@
         "registration": "git+https://github.com/Kaakateeya/Registration.git#EmpRegistration",
         "request-ip": "^2.0.1",
         "underscore": "latest",
-        "editviewapp": "git://github.com/Kaakateeya/EmpEditView.git#lazyLoad"
+        "editviewapp": "git://github.com/Kaakateeya/EmpEditView.git#dynamicEdits"
     },
     "devDependencies": {
         "angular-animate": "1.5.8",

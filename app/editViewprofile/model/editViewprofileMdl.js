@@ -152,7 +152,6 @@
                 var arr = val === 3 || val === '3' ? model.gridArray : _.where(model.gridArray, { GenderID: parseInt(val) });
                 model.scope.$broadcast('submittable', arr, 1);
             }
-
         };
 
         model.pagechange = function(val) {
