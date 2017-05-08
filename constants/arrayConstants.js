@@ -468,5 +468,12 @@ app.constant('arrayConstants', {
         { label: "WaitingforSetldAuth", title: "WaitingforSetldAuth", value: 393 },
         { label: "WaitingforDeltdAuth", title: "WaitingforDeltdAuth", value: 394 },
         { label: "MMSerious", title: "MMSerious", value: 395 }
+    ],
+    'gradeSelection': [
+        { "label": "--Select--", "title": "--Select--", "value": "" },
+        { "label": "A", "title": "A", "value": 216 },
+        { "label": "B", "title": "B", "value": 217 },
+        { "label": "C", "title": "C", "value": 218 },
+        { "label": "D", "title": "D", "value": 219 }
     ]
 });
