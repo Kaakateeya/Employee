@@ -29,7 +29,6 @@
         model.divmismatchData = [];
         model.templateUrl = "templates/angularSlide.html";
         model.headettemp = "templates/angularHeader.html";
-        model.tickethistory = "templates/ticketHistoryPopup.html";
         model.selectedIndex = 0;
         model.tabsshowhidecontrols = true;
         model.shortlistmodel = {};

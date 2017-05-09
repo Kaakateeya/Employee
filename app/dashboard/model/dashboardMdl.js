@@ -182,7 +182,13 @@
             commonpage.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
         };
 
-
+        model.nodataarray = function(nodatastr) {
+            var array = [];
+            if (nodatastr !== undefined && nodatastr !== "" && nodatastr !== null) {
+                array = nodatastr.split(",");
+            }
+            return array;
+        };
         model.displayArrayprofile = function(arr, topage) {
             model.headervisileble = true;
             if (topage === parseInt(10)) {
@@ -245,7 +251,7 @@
                     ReadStatus: item.ReadStatus,
                     Tickets: item.Tickets,
                     TicketID: item.Emp_Ticket_Id || item.Emp_Ticket_ID,
-                    NoDataFound: item.NoDataFound
+                    NoDataFound: (item.NoDataFound)
 
                 });
             });

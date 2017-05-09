@@ -17,7 +17,6 @@
              model.activatedmobile = true;
              model.templateUrl = "templates/angularSlide.html";
              model.headettemp = "templates/angularHeader.html";
-             model.tickethistory = "templates/ticketHistoryPopup.html";
              model.selectedIndex = $stateParams.id;
              if (parseInt($stateParams.Profileid) !== 0) {
                  model.ProfileIDpopup = $stateParams.Profileid;

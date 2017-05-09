@@ -123,4 +123,10 @@ a {
 .myprofileslide .carousel-control {
   width: 5%; }
 
+.colorforcontrols button {
+  background-color: #f0f0cc !important; }
+
+.bacg {
+  background-color: #f0f0cc !important; }
+
 /*# sourceMappingURL=style.css.map */
