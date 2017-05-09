@@ -565,7 +565,7 @@
                 }, 500);
                 _.each(model.Toprofileids, function(item) {
                     expressInterestModel.getImages(item);
-                    expressInterestModel.SelectProfilelst.push({ "label": item, "title": item, "value": expressInterestModel.strimages });
+                    // expressInterestModel.SelectProfilelst.push({ "label": item, "title": item, "value": expressInterestModel.strimages });
                 });
                 modelpopupopenmethod.showPopupphotopoup('app/expressInterest/index.html', model.scope, 'lg', "");
             });
