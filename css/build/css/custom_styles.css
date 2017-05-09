@@ -1376,9 +1376,6 @@ body {
   font-size: 22px !important;
   padding-left: 6px; }
 
-.radiocls {
-  padding-top: 2%; }
-
 .multiselect {
   border: solid 1px #ADA2A2 !important;
   color: #000;
@@ -1386,5 +1383,8 @@ body {
   box-shadow: none !important;
   height: 34px !important;
   margin: 0 !important; }
+
+.modal-header {
+  padding: 5px; }
 
 /*# sourceMappingURL=custom_styles.css.map */

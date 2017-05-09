@@ -1,10 +1,10 @@
 <div class="right_col" role="main" class="ExpressintrstCls" ng-controller="expressInterestCtrl as page">
     <div class="search_page_main">
-        <div style="font-size: 18px;color: #b10c0c;margin-bottom: -16px;">Express Interest &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div style="font-size: 18px;color: #b10c0c;margin-bottom: -16px;" ng-style="page.model.disableinput?{'margin-top': '7px'}:''">Express Interest &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span class="text-center" ng-if="page.model.showHide==1"> <span class="custheaderCls maroon">Name :   </span><span class="headervalue">{{page.model.NAME}}</span>&nbsp;&nbsp;
             <span class="custheaderCls maroon">Membership Expires on   </span><span class="headervalue">{{page.model.OfflineMembershipExpiryDate|date:'dd-MM-yyyy'}}  ({{page.model.Offline_Used_Count}} / {{page.model.Max_Offline_Allowed}})</span>
             </span>
-            <a ng-if="page.model.disableinput" href="javascript:void(0);" ng-click="page.model.close();" class="pull-right" style="padding:1%;">X</a>
+            <a ng-if="page.model.disableinput" href="javascript:void(0);" ng-click="page.model.close();" class="pull-right" style="padding-right:2%;">X</a>
         </div>
         <br />
         <div class="regmain register_page_main">

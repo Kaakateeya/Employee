@@ -60,19 +60,43 @@
                      break;
                  case 'BranchName':
                      model.BranchName = [];
-                     model.BranchName = Commondependency.BranchNamebind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
+                     model.BranchName = Commondependency.Branmodel.ProfileIDpopupchNamebind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                      break;
              }
          });
+         vm.clearSelection = function(Arr) {
+             _.each(model.domDatageneral, function(parentItem) {
+                 _.each(parentItem.controlList, function(item) {
+                     if (model[item.ngModel] !== undefined) {
+                         model[item.ngModel] = undefined;
+                     } else {
+                         model[item.ngModelFrom] = undefined;
+                         model[item.ngModelTo] = undefined;
+                     }
+                 });
+             });
+         };
+
+
          vm.onTabSelected = function(value) {
              if (value === 1) {
+                 vm.clearSelection(model.domDataadvanced);
                  model.searchpopuptext = "Advanced Search";
+                 model.ProfileIDpopup = '';
                  alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
              } else {
+                 vm.clearSelection(model.domDatageneral);
                  model.searchpopuptext = "General Search";
+                 model.ProfileIDpopup = '';
                  alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
              }
+             model.Showinprofile = model.arrayToString("1");
+             model.ApplicationstatusID = model.arrayToString("54");
+             model.MothertongueID = model.arrayToString("1");
+             model.ReligionID = model.arrayToString("1");
+             model.Caste = Commondependency.casteDepedency(model.ReligionID, model.MothertongueID);
          };
+
          vm.init();
          scope.$on("backsearchshowcontrols", function(event) {
              model.divcontrolls = true;
