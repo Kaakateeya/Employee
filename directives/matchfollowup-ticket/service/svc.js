@@ -30,6 +30,18 @@
                 return http.get(app.apiroot + 'EmployeeReportPage/getMatchFollowupTicketinformation', {
                     params: { Ticketid: tktID, Type: type }
                 });
+            },
+            ActionSubmit: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/Insertout_incomingcallCommunicationlogData', obj);
+            },
+            getRaltionName: function(flag, ID, RelationShipID) {
+                return http.get(app.apiroot + 'ExpressInterest/getExpressInterest_linq', {
+                    params: {
+                        flag: flag,
+                        ID: ID,
+                        RelationShipID: RelationShipID
+                    }
+                });
             }
         };
     }

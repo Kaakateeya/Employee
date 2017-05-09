@@ -178,6 +178,7 @@
             });
         };
         model.tickethistorypopup = function(TicketID) {
+            debugger;
             model.marketingTicketid = TicketID;
             commonpage.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
         };

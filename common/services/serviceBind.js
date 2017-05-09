@@ -160,6 +160,15 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
                     ID: ID
                 }
             });
+        },
+        bothreplytypeBind: function() {
+            return http.get(app.apiroot + 'ExpressInterest/getMatchFollowup_linq', {
+                params: {
+                    flag: 'bothside_replytype',
+                    ID: '',
+                    RelationShipID: ''
+                }
+            });
         }
 
 

@@ -76,7 +76,7 @@
                     model.ReligionID = model.arrayToString(data.religionid);
                     model.MothertongueID = model.arrayToString(data.MotherTongueID);
                     model.Caste = [];
-                    model.Caste = Commondependency.casteDepedency(model.ReligionID.length > 0 ? model.ReligionID.toString() : "", model.MothertongueID);
+                    model.Caste = Commondependency.casteDepedency(model.ReligionID !== null && model.ReligionID.length > 0 ? model.ReligionID.toString() : "", (model.MothertongueID !== null && model.MothertongueID.length > 0) ? (model.MothertongueID).toString() : "");
                     model.CountryID = model.arrayToString(data.CountryID);
                     model.EducationID = model.arrayToString(data.EducationCategoryID);
                     model.RegionID = model.arrayToString(data.Regions);
