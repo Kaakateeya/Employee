@@ -126,7 +126,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/tickethistryInfm.js',
                         'directives/marketingticket.js',
                         'directives/marketHistryDirective.js',
-                        'directives/newdatePicker.js'
+                        'directives/newdatePicker.js',
+                        'directives/matchfollowupTicketDirective.js'
                     ]
                 },
                 {
@@ -158,6 +159,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/marketing-slide/service/svc.js',
                         'directives/marketing-slide/directive.js'
                     ]
+                },
+                {
+                    name: 'matchfollowup-ticket',
+                    files: [
+                        'directives/matchfollowup-ticket/css/style.css',
+                        'directives/matchfollowup-ticket/model/config.js',
+                        'directives/matchfollowup-ticket/service/svc.js',
+                        'directives/matchfollowup-ticket/directive.js'
+                    ]
                 }
 
             ]
@@ -176,6 +186,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     $ocLazyLoad.load('complex-slide');
                     $ocLazyLoad.load('Expressintrst');
                     $ocLazyLoad.load('marketing-slide');
+                    $ocLazyLoad.load('matchfollowup-ticket');
                 }]
             }
         });

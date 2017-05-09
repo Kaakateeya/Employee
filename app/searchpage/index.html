@@ -126,7 +126,7 @@
                                                                 <select class="smalldropdown" ng-model="page.model[item.ngModel]" multiselectdropdown typeofdata="'currency'">   
                                                                       </select>
                                                                 <input ng-class="page.model[item.ngModelFrom].trim()!=='' && page.model[item.ngModelFrom]!==undefined && page.model[item.ngModelFrom]!==null?'bacg':''" class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model[item.ngModelFrom]"
-                                                                    style="width: 65px !important;margin-left: -20px;margin-right:10px;" placeholder="From" type="text">
+                                                                    style="width: 65px !important;margin-left:10px;margin-right:10px;" placeholder="From" type="text">
                                                                 </input>
                                                                 <input ng-class="page.model[item.ngModelTo].trim()!=='' && page.model[item.ngModelTo]!==undefined && page.model[item.ngModelTo]!==null?'bacg':''" class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" placeholder="To" ng-model="page.model[item.ngModelTo]"
                                                                     type="text" style="width: 65px !important;">
@@ -338,10 +338,11 @@
        </div>
     </div>
 </script>
- <script type="text/ng-template" id="tickethistory.html">
-        <div ng-include="page.model.tickethistory">
-        </div>
-</script>   
+<script type="text/ng-template" id="marketpopup.html">
+    <div class="modal-body">
+        <matchfollowup-tickethistory ticketid="model.marketingTicket"></matchfollowup-tickethistory>
+    </div>
+</script> 
 </div>
 <style>
          .datepicker3 {
