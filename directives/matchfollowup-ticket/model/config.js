@@ -21,7 +21,28 @@
             model.marketReplytype();
             return model;
         };
+        model.close = function() {
+            commonpage.closepopuppoptopopup();
+        };
+        model.RelationshipChange = function(RelationshipID, type) {
+            debugger;
+            marketsvc.getRaltionName(3, model.ProfileID, RelationshipID).then(function(response) {
+                if (_.isArray(response.data[0]) && response.data[0].length > 0) {
+                    if (type === 'In') {
+                        model.MAobj.txtmrktRelationnameIn = response.data[0][0].NAME;
+                    } else {
+                        model.MAobj.txtmrktRelationnameout = response.data[0][0].NAME;
+                    }
+                } else {
+                    if (type === 'In') {
+                        model.MAobj.txtmrktRelationnameIn = '';
+                    } else {
+                        model.MAobj.txtmrktRelationnameout = '';
+                    }
+                }
 
+            });
+        };
         model.getMrktSlideInfo = function(ticketid) {
             model.ticketid = ticketid;
             marketsvc.getmarSlide(ticketid, 'I').then(function(respnse) {
@@ -29,14 +50,17 @@
                 model.marHistry = [];
                 if (respnse.data !== undefined && respnse.data !== null && respnse.data.length > 0) {
                     model.marInfo = respnse.data;
+                    debugger;
                     model.ProfileID = (model.marInfo)[0].FromProfileID;
-                    model.MAobj.txtmrktCalltelephonenumberIn = model.MAobj.txtmrktCalltelephonenumberout = (model.marInfo)[0].PrimaryContactNumber !== "--" ? (model.marInfo)[0].PrimaryContactNumber : null;
+                    model.MAobj.txtmrktCalltelephonenumberIn = model.MAobj.txtmrktCalltelephonenumberout = (model.marInfo)[0].MobileNumber !== "--" ? (model.marInfo)[0].MobileNumber : null;
                     marketsvc.getmarSlide(ticketid, 'H').then(function(innrespnse) {
                         model.marHistry = innrespnse.data;
                         _.map(model.marHistry, function(item) {
                             item.ReplyDatenew = moment(item.ReplyDatenew).format('DD-MMM-YYYY h:mm:ss');
                         });
                     });
+                    model.RelationshipChange(39, 'In');
+                    model.RelationshipChange(39, 'Out');
                 }
             });
         };
@@ -72,9 +96,10 @@
                 Replaytypeid: obj.Replaytypeid,
                 AssignedEmpID: obj.AssignedEmpID
             };
+            model.close();
             marketsvc.ActionSubmit(inputObj).then(function(response) {
-                commonpage.closepopup();
                 var msg;
+                var msgClass = parseInt(response.data) === 1 ? 'alert-success' : 'alert-danger';
                 switch (obj.CallType) {
                     case 377:
                         if (parseInt(response.data) === 1) {
@@ -82,6 +107,7 @@
                         } else {
                             msg = 'Incoming Call updation failed';
                         }
+                        alertss.timeoutoldalerts(model.scope, msgClass, msg, 4500);
                         break;
                     case 378:
                         if (parseInt(response.data) === 1) {
@@ -89,6 +115,7 @@
                         } else {
                             msg = 'Outgoing Call updation failed';
                         }
+                        alertss.timeoutoldalerts(model.scope, msgClass, msg, 4500);
                         break;
                     case 379:
                         if (parseInt(response.data) === 1) {
@@ -96,6 +123,7 @@
                         } else {
                             msg = 'Memo updation failed';
                         }
+                        alertss.timeoutoldalerts(model.scope, msgClass, msg, 4500);
                         break;
                     case 563:
                         if (parseInt(response.data) === 1) {
@@ -103,12 +131,10 @@
                         } else {
                             msg = 'Ticket closing failed';
                         }
+                        alertss.timeoutoldalerts(model.scope, msgClass, msg, 4500);
                         break;
                 }
 
-                var msgClass = parseInt(response.data) === 1 ? 'alert-success' : 'alert-danger';
-
-                alertss.timeoutoldalerts(model.scope, msgClass, msg, 9500);
             });
         };
 
@@ -161,27 +187,8 @@
             model.ActionSubmit(inputObj, 'Close');
 
         };
-        model.RelationshipChange = function(RelationshipID, type) {
-            marketsvc.getRaltionName(3, model.ProfileID, RelationshipID).then(function(response) {
-                if (_.isArray(response.data[0]) && response.data[0].length > 0) {
-                    if (type === 'In') {
-                        model.MAobj.txtmrktRelationnameIn = response.data[0][0].NAME;
-                    } else {
-                        model.MAobj.txtmrktRelationnameout = response.data[0][0].NAME;
-                    }
-                } else {
-                    if (type === 'In') {
-                        model.MAobj.txtmrktRelationnameIn = '';
-                    } else {
-                        model.MAobj.txtmrktRelationnameout = '';
-                    }
-                }
 
-            });
-        };
-        model.close = function() {
-            commonpage.closepopuppoptopopup();
-        };
+
 
         return model.init();
     }
