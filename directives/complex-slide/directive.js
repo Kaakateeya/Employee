@@ -21,6 +21,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.width = "";
                 $scope.photoalbum = "Photo Album";
                 $scope.uploadfromsubmit = false;
+                $scope.txtGotoVal = "";
                 $scope.emailpattaren = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/i;
                 $scope.pauseResume = function(action) {
                     if (action === 'play') {
@@ -41,6 +42,8 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                             $scope.activeslide = parseInt(slideIndex) - 1;
                             slideIndex = 0;
                         }
+                        $scope.txtGotoVal = "";
+                        //$scope.apply();
                     }
                 };
 
@@ -48,6 +51,8 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     if (news !== undefined && news !== "" && news !== null) {
                         $scope.Viwedslide = news > $scope.Viwedslide ? news : $scope.Viwedslide;
                         $scope.config.slidebind(old, news, $scope.model.slides, $scope.model.typeofPage);
+                    } else {
+                        $scope.Viwedslide = 0;
                     }
                 });
 
@@ -134,7 +139,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     });
                 };
                 $scope.sendMobileCode = function(slide) {
-                    console.log(slide);
                     var obj = {
                         iCountryID: slide.CountryCodeID,
                         iCCode: slide.CountryCodeID,

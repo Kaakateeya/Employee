@@ -21,6 +21,24 @@
             model.marketReplytype();
             return model;
         };
+        model.RelationshipChange = function(RelationshipID, type) {
+            bindservice.getRelationName(3, model.ProfileID, RelationshipID).then(function(response) {
+                if (_.isArray(response.data[0]) && response.data[0].length > 0) {
+                    if (type === 'In') {
+                        model.MAobj.txtmrktRelationnameIn = response.data[0][0].NAME;
+                    } else {
+                        model.MAobj.txtmrktRelationnameout = response.data[0][0].NAME;
+                    }
+                } else {
+                    if (type === 'In') {
+                        model.MAobj.txtmrktRelationnameIn = '';
+                    } else {
+                        model.MAobj.txtmrktRelationnameout = '';
+                    }
+                }
+
+            });
+        };
         model.getMrktSlideInfo = function(ticketid) {
             model.ticketid = ticketid;
             marketsvc.getmarSlide(ticketid, 'I').then(function(respnse) {
@@ -36,6 +54,8 @@
                             item.ReplyDatenew = moment(item.ReplyDatenew).format('DD-MMM-YYYY h:mm:ss');
                         });
                     });
+                    model.RelationshipChange(39, 'In');
+                    model.RelationshipChange(39, 'Out');
                 }
             });
         };
@@ -168,24 +188,7 @@
         model.assignSubmit = function() {
             marketsvc.assignEmpSubmit(model.ticketid, model.empid, model.empid).then(function(respnse) {});
         };
-        model.RelationshipChange = function(RelationshipID, type) {
-            bindservice.getRelationName(3, model.ProfileID, RelationshipID).then(function(response) {
-                if (_.isArray(response.data[0]) && response.data[0].length > 0) {
-                    if (type === 'In') {
-                        model.MAobj.txtmrktRelationnameIn = response.data[0][0].NAME;
-                    } else {
-                        model.MAobj.txtmrktRelationnameout = response.data[0][0].NAME;
-                    }
-                } else {
-                    if (type === 'In') {
-                        model.MAobj.txtmrktRelationnameIn = '';
-                    } else {
-                        model.MAobj.txtmrktRelationnameout = '';
-                    }
-                }
 
-            });
-        };
         model.close = function() {
             commonpage.closepopuppoptopopup();
         };

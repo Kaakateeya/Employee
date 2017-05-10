@@ -10,17 +10,14 @@
             model.setSlides = function(data, topage, typeofpage) {
                 model.slides = [];
                 if (typeofpage === 'normal') {
-                    debugger;
                     model.slides = data;
                 } else if (typeofpage === 'myprofile') {
-                    debugger;
                     model.displayArray(data, topage, "myprofile");
                 } else {
                     model.displayArray(data, topage);
                 }
             };
             model.addSlides = function(data, arrayslide, topage, typeofpage) {
-                debugger;
                 if (typeofpage === 'normal') {
                     model.slides = $.merge(model.slides, data);
                 } else if (typeofpage === 'myprofile') {

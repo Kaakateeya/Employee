@@ -67,7 +67,7 @@
                                     model.exiObj.chkmails = [];
                                     if (model.Emailsarray.length > 0) {
                                         _.each(model.Emailsarray, function(item) {
-                                            debugger;
+
                                             var email = item.Email.substring(0, item.Email.length > 2 ? 3 : (item.Email.length > 1 ? 2 : 1));
                                             email += "*****@gmail.com";
                                             model.emailselectedArr.push({ Email: email, emailid: item.Email });

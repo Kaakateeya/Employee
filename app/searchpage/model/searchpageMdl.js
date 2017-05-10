@@ -65,7 +65,6 @@
             searchpageServices.getPrimaryCustomerDataResponse(obj.ProfileIDpopup, model.empid).then(function(response) {
                 if (response !== null && response.data !== undefined && response.data !== null && response.data !== "") {
                     var data = model.getpageloadobject = response.data;
-                    console.log(model.getpageloadobject);
                     model.Cust_ID = data.Cust_ID;
                     model.GenderID = data.GenderID;
                     model.AgeFromID = data.AgeMin;
@@ -520,29 +519,25 @@
                 AcceptStatus: AcceptStatus,
                 MatchFollwupStatus: MatchFollwupStatus
             };
-            if (model.getpageloadobject.PaidFlag === "1") {
-                helpService.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
-                    switch (response.data) {
-                        case 1:
-                            if (typeofbtn === "btnProceed") {
-                                model.modalbodyID1 = "To Move the Match for MatchFollowup";
-                            } else {
-                                model.modalbodyID1 = "Oops go through your search";
-                            }
-                            break;
-                        case 2:
-                        case 3:
-                            model.modalbodyID1 = "You need to Upgrade online membership";
-                            break;
-                        default:
-                            model.modalbodyID1 = "Updation failed please contact admin";
-                            break;
-                    }
-                    modelpopupopenmethod.showPopupphotopoup('TabClosePopup.html', model.scope, '', "modalclassdashboardphotopopup");
-                });
-            } else {
-                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please Upgrade Membership', 4000);
-            }
+            helpService.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
+                switch (response.data) {
+                    case 1:
+                        if (typeofbtn === "btnProceed") {
+                            model.modalbodyID1 = "To Move the Match for MatchFollowup";
+                        } else {
+                            model.modalbodyID1 = "Oops go through your search";
+                        }
+                        break;
+                    case 2:
+                    case 3:
+                        model.modalbodyID1 = "You need to Upgrade online membership";
+                        break;
+                    default:
+                        model.modalbodyID1 = "Updation failed please contact admin";
+                        break;
+                }
+                modelpopupopenmethod.showPopupphotopoup('TabClosePopup.html', model.scope, '', "modalclassdashboardphotopopup");
+            });
         };
         model.sendtoServices = function() {
             model.close();
@@ -564,7 +559,6 @@
                 }, 500);
                 _.each(model.Toprofileids, function(item) {
                     expressInterestModel.getImages(item);
-                    // expressInterestModel.SelectProfilelst.push({ "label": item, "title": item, "value": expressInterestModel.strimages });
                 });
                 modelpopupopenmethod.showPopupphotopoup('app/expressInterest/index.html', model.scope, 'lg', "");
             });
@@ -617,7 +611,6 @@
                     headerName: '',
                     controlList: [
                         { ngModel: 'GenderID', controlType: 'gender', isShow: true, validation: true },
-                        //{ ngModel: 'OnlyConfidential', controlType: 'showonly', isShow: true, validation: true },
                         { ngModel: 'FirstName', labelName: 'First Name', controlType: 'textBox', isShow: true, validation: true },
                         { ngModel: 'LastName', labelName: 'Last Name', controlType: 'textBox', isShow: true, validation: true },
                         { typeofdata: 'Ageselect', ngModelFrom: 'AgeFromID', ngModelTo: 'AgeToID', labelName: 'Age', controlType: 'dualDropdown', isShow: true, validation: true },

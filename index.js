@@ -247,7 +247,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
 app.run(function($rootScope, $state, $stateParams) {
     $rootScope.$on('$stateChangeStart', function(e, to) {
         if (to.data && to.data.requiresLogin) {
-            debugger;
             if (sessionStorage.getItem('LoginEmpid') === null || sessionStorage.getItem('LoginEmpid') === undefined || sessionStorage.getItem('LoginEmpid') === "") {
                 e.preventDefault();
                 $state.go('base.login');

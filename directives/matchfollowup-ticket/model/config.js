@@ -25,7 +25,6 @@
             commonpage.closepopuppoptopopup();
         };
         model.RelationshipChange = function(RelationshipID, type) {
-            debugger;
             marketsvc.getRaltionName(3, model.ProfileID, RelationshipID).then(function(response) {
                 if (_.isArray(response.data[0]) && response.data[0].length > 0) {
                     if (type === 'In') {
@@ -50,7 +49,6 @@
                 model.marHistry = [];
                 if (respnse.data !== undefined && respnse.data !== null && respnse.data.length > 0) {
                     model.marInfo = respnse.data;
-                    debugger;
                     model.ProfileID = (model.marInfo)[0].FromProfileID;
                     model.MAobj.txtmrktCalltelephonenumberIn = model.MAobj.txtmrktCalltelephonenumberout = (model.marInfo)[0].MobileNumber !== "--" ? (model.marInfo)[0].MobileNumber : null;
                     marketsvc.getmarSlide(ticketid, 'H').then(function(innrespnse) {

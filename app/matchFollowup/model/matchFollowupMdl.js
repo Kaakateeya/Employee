@@ -57,11 +57,8 @@
             model.matchFollowupSelect(model.empid);
         };
         model.bindEmpnames = function() {
-
             SelectBindServiceApp.EmpwithBranch('ProfileBranch', '').then(function(response) {
-                console.log(response.data);
                 var empBranchData = response.data;
-
                 var branchids = '1';
                 _.each(empBranchData, function(item) {
                     model.EmpNamesArr.push({ "label": item.Name, "title": item.Name, "value": item.ID, ParentName: item.BranchesName });
