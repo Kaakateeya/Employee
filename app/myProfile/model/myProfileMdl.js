@@ -180,7 +180,7 @@
         model.grid.tickethistorypopup = function(TicketID) {
             if (TicketID) {
                 model.marketingTicketid = TicketID;
-                commonpage.showPopup('marketpopup.html', model.scope, 'md', "modalclassdashboardphotopopup");
+                commonpage.showPopupphotopoup('marketpopup.html', model.scope, 'md', "modalclassdashboardphotopopup");
             }
         };
 

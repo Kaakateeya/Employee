@@ -71,7 +71,7 @@
                 EmpID: model.empid
             };
             marketsvc.InOutSubmit(inputObj).then(function(response) {
-                commonpage.closepopup();
+                commonpage.closepopuppoptopopup();
                 var msg = parseInt(response.data) === 1 ? (obj.CallType === 1 ? 'Incoming Call Created successfully' : 'Outgoing Call Created successfully') :
                     ((obj.CallType === 1 ? 'Incoming Call updation failed' : 'Outgoing Call updation failed'));
 
@@ -139,8 +139,8 @@
 
         model.memoSubmit = function(obj, type) {
             //msg, tktID, empid, assignEmpid
-            marketsvc.memoSubmit(obj.txtmrktcalldiscussionMemo, model.ticketid, model.empid, obj.ddlmrktAssignmemo).then(function(resresponsepnse) {
-                commonpage.closepopup();
+            marketsvc.memoSubmit(obj.txtmrktcalldiscussionMemo, model.ticketid, model.empid, obj.ddlmrktAssignmemo).then(function(response) {
+                commonpage.closepopuppoptopopup();
                 if (parseInt(response.data) === 1) {
                     if (type === 'assign') {
                         model.assignSubmit();
@@ -156,7 +156,7 @@
         model.closeSubmit = function(obj) {
             //reasn, tktID, empid
             marketsvc.closeSubmit(obj.txtmrktcloseReasn, model.ticketid, model.empid).then(function(response) {
-                commonpage.closepopup();
+                commonpage.closepopuppoptopopup();
                 if (parseInt(response.data) === 1) {
                     alertss.timeoutoldalerts(model.scope, 'alert-success', 'Ticket closed successfully', 9500);
                 } else {
