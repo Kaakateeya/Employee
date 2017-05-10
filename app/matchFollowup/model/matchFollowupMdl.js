@@ -139,8 +139,6 @@
         };
 
         model.slidebind = function(old, news, array, type) {
-
-
             if (type === 'popup') {
                 model.proceed.frompopoverIsOpen = false;
                 model.proceed.topopoverIsOpen = false;
@@ -159,7 +157,6 @@
                 }
             }
         };
-
 
         model.CondtionButtonClick = function(activeType, flag, flagClose, flagEmpwaiting) {
             model.slides = [];
@@ -254,7 +251,6 @@
                     }
                 });
             }
-
         };
         model.mailchange = function(val) {
             return _.where(model.ReplyArr, { value: parseInt(val) })[0].text;
