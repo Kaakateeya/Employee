@@ -182,12 +182,32 @@
             commonpage.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
         };
 
-        model.nodataarray = function(nodatastr) {
+        model.nodataarray = function(nodatastr, custid) {
             var array = [];
+            var arraylist = [];
             if (nodatastr !== undefined && nodatastr !== "" && nodatastr !== null) {
                 array = nodatastr.split(",");
             }
-            return array;
+            _.each(array, function(item) {
+                switch (item) {
+                    case "CustomerPersonal":
+                        arraylist.push({ linkname: item, href: "Education/" + custid });
+                        break;
+                    case "NoParent":
+                        arraylist.push({ linkname: item, href: "Parent/" + custid });
+                        break;
+                    case "Sibling":
+                        arraylist.push({ linkname: item, href: "Sibbling/" + custid });
+                        break;
+                    case "Astro":
+                        arraylist.push({ linkname: item, href: "Astro/" + custid });
+                        break;
+                    case "Property":
+                        arraylist.push({ linkname: item, href: "Property/" + custid });
+                        break;
+                }
+            });
+            return arraylist;
         };
         model.displayArrayprofile = function(arr, topage) {
             model.headervisileble = true;
@@ -251,7 +271,7 @@
                     ReadStatus: item.ReadStatus,
                     Tickets: item.Tickets,
                     TicketID: item.Emp_Ticket_Id || item.Emp_Ticket_ID,
-                    NoDataFound: model.nodataarray(item.NoDataFound)
+                    NoDataFound: model.nodataarray(item.NoDataFound, item.Cust_ID)
 
                 });
             });

@@ -26,11 +26,10 @@
                 <ul class="navtop navbar-left">
                     <li class="has-sub">
                         <a href="javascript:void(0)"></i>Registration</a>
-
                         <ul>
                             <li><a href="Registration">Customer New Registration</a></li>
                             <li><a href="editViewprofileurl">Edit/View Profile</a></li>
-                            <li><a href="javascript:void(0)">Registration Validation</a></li>
+                            <li><a href="javascript:void(0)" ng-hide="true">Registration Validation</a></li>
                             <li><a href="EmployeePayments">Payment Details</a></li>
                             <li><a href="Viewfullprofile/0">Customer New Admin Profile</a></li>
                             <li><a href="expressInterestpage">Expressinterest</a></li>
@@ -46,59 +45,50 @@
                         <ul>
                             <li><a href="search/0/0">General Search</a></li>
                             <li><a href="search/1/0">Advanced search</a></li>
-                            <li><a href="javascript:void(0)">Keyword Search</a></li>
-                            <li><a href="javascript:void(0)">Keyword Search_Kmpl</a></li>
+                            <li><a ng-hide="true" href="javascript:void(0)">Keyword Search</a></li>
+                            <li><a ng-hide="true" href="javascript:void(0)">Keyword Search_Kmpl</a></li>
                         </ul>
                     </li>
-
-
                     <li class="has-sub"><a href="javascript:void(0)"> My Account</a>
                         <ul>
                             <li><a href="myProfilepage">My Profiles</a></li>
-                            <li><a href="marketingpage">Marketing Tickets</a></li>
+                            <li><a ng-hide="true" href="marketingpage">Marketing Tickets</a></li>
                             <li><a href="matchFollowuppage">Match Followup Tickets</a></li>
-                            <li><a href="javascript:void(0)">My Assigned Photos</a></li>
+                            <li><a ng-hide="true" href="javascript:void(0)">My Assigned Photos</a></li>
                         </ul>
                     </li>
-
-
                     <li class="has-sub"><a href="javascript:void(0)">Maintance Work  </a>
-                        <ul>
-                            <li><a href="javascript:void(0)">Unassigned Profiles</a></li>
-                            <li><a href="javascript:void(0)">Unassigned Photos</a></li>
-                            <li><a href="javascript:void(0)">Match Meeting Report</a></li>
-                            <li><a href="javascript:void(0)">Upload Success Stories</a></li>
-                            <li><a href="javascript:void(0)">View Success Stories</a></li>
-                            <li><a href="javascript:void(0)">Customer Message Verification</a></li>
-                            <li><a href="javascript:void(0)">Re Assign Employee</a></li>
-                            <li><a href="javascript:void(0)">Book Marks</a></li>
-                            <li><a href="javascript:void(0)">Customer/Employee Config</a></li>
+                        <ul ng-hide="true">
+                            <li><a ng-hide="true" href="javascript:void(0)">Unassigned Profiles</a></li>
+                            <li><a ng-hide="true" href="javascript:void(0)">Unassigned Photos</a></li>
+                            <li><a ng-hide="true" href="javascript:void(0)">Match Meeting Report</a></li>
+                            <li><a ng-hide="true" href="javascript:void(0)">Upload Success Stories</a></li>
+                            <li><a ng-hide="true" href="javascript:void(0)">View Success Stories</a></li>
+                            <li><a ng-hide="true" href="javascript:void(0)">Customer Message Verification</a></li>
+                            <li><a ng-hide="true" href="javascript:void(0)">Re Assign Employee</a></li>
+                            <li><a ng-hide="true" href="javascript:void(0)">Book Marks</a></li>
+                            <li><a ng-hide="true" href="javascript:void(0)">Customer/Employee Config</a></li>
                         </ul>
                     </li>
-
-
                     <li class="has-sub"><a href="javascript:void(0)">Admin Forms  </a>
-                        <ul>
-                            <li><a href="javascript:void(0)">Branch Creation</a></li>
-                            <li><a href="javascript:void(0)">List Branches</a></li>
-                            <li><a href="javascript:void(0)">Add/Edit Faqs</a></li>
+                        <ul ng-hide="true">
+                            <li><a ng-hide="true" href="javascript:void(0)">Branch Creation</a></li>
+                            <li><a ng-hide="true" href="javascript:void(0)">List Branches</a></li>
+                            <li><a ng-hide="true" href="javascript:void(0)">Add/Edit Faqs</a></li>
                         </ul>
                     </li>
-
                     <li class="has-sub"><a href="javascript:void(0)"> Reports </a>
                         <ul>
                             <li><a href="EmployeePayments">Payment Report</a></li>
-                            <li><a href="javascript:void(0)">Summary Profile Report</a></li>
-                            <li><a href="javascript:void(0)">Profile Modification </a></li>
+                            <li><a ng-hide="true" href="javascript:void(0)">Summary Profile Report</a></li>
+                            <li><a ng-hide="true" href="javascript:void(0)">Profile Modification </a></li>
                         </ul>
                     </li>
                 </ul>
             </nav>
         </div>
     </div>
-
     <script type="text/ng-template" id="loginContent.html">
-
         <form id="loginnewidcc" name="loginForm" novalidate role="form" style='z-index: 99999'>
             <div class="login">
                 <div class="login-box">
@@ -121,7 +111,6 @@
                                             <div ng-show="head.model.usernameemployeepop" ng-messages="loginForm.usernameemployee.$error" style="color: red;">
                                                 <div ng-message="required">This is required.</div>
                                             </div>
-
                                         </div>
                                         <div class="row clear">
                                             <label for="password">
@@ -131,19 +120,12 @@
                                                 required>
                                             <div style="color: red;" ng-show="head.model.usernameemployeepasswordpop" ng-messages="loginForm.passwordemployee.$error">
                                                 <div ng-message="required">This is required.</div>
-
                                             </div>
-
                                         </div>
                                         <button ng-click="head.loginsubmit(head,loginForm.usernameemployee.$error,loginForm.passwordemployee.$error,loginForm.$valid)" class="button">Login</button>
-
                                     </div>
-
-
                                     <div class="pull-right"> {{head.CurrentDate | date:'dd MMMM yyyy hh.mm.ss'}},{{head.CurrentDate |date:'EEEE'}}</div>
-
                                 </div>
-
                         </div>
                         <div class="login-footer">
                             <div class="row">
@@ -160,19 +142,14 @@
                                     <label style="color:#ffffff;font-size: 14px;">{{head.logincounts[2].LoggedCount!==undefined?head.logincounts[2].LoggedCount:0}}-{{head.logincounts[2].EmpCount!==undefined?head.logincounts[2].EmpCount:0}}</label>
                                 </div>
                             </div>
-
                         </div>
-
                         </form>
                     </div>
                 </div>
             </div>
         </form>
-
     </script>
 </div>
-
-
 <style type="text/css">
     .modalclassdashboardphotopopuplogin {
         z-index: 999999 !important;

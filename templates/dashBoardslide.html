@@ -204,7 +204,8 @@
              </span></h6>
             <h5>
                 <div style="color:Red;">
-                    <span>{{slide.NoDataFound}}
+                    <span ng-repeat="links in slide.NoDataFound">
+                        <a href="{{links.href}}" target="_blank">{{links.linkname}}&nbsp;&nbsp;</a>
                </span>
                 </div>
                 <div class="clearfix">
