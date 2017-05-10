@@ -210,6 +210,7 @@
             });
             return arraylist;
         };
+
         model.displayArrayprofile = function(arr, topage) {
             model.headervisileble = true;
             if (topage === parseInt(10)) {
@@ -278,6 +279,7 @@
             });
             return model.slides;
         };
+
         model.slideshowfunction = function(flag, empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
             dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                 if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0 && response.data[0].length > 0) {

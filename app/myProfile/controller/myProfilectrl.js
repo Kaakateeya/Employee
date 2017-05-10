@@ -15,6 +15,7 @@
              vm.model.mpObj.ddlCaste = [402];
              vm.model.opendiv = true;
              vm.model.scope = scope;
+             vm.model.grid.showplus = false;
              vm.model.searchObjectquery = $location.search();
              var meKey = Object.getOwnPropertyNames(vm.model.searchObjectquery)[0];
              vm.model.myprofileid = vm.model.searchObjectquery[meKey];

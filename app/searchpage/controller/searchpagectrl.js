@@ -69,14 +69,14 @@
                  _.each(parentItem.controlList, function(item) {
                      if (model[item.ngModel] !== undefined) {
                          model[item.ngModel] = undefined;
-                     } else {
-                         model[item.ngModelFrom] = undefined;
-                         model[item.ngModelTo] = undefined;
                      }
                  });
              });
+             model.HeightFromID = "";
+             model.HeightToID = "";
+             model.AgeFromID = "0";
+             model.AgeToID = "0";
          };
-
 
          vm.onTabSelected = function(value) {
              if (value === 1) {

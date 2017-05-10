@@ -19,6 +19,7 @@
             vm.model.obj.KmlProfileID = '';
             vm.model.TotalRows = "";
             vm.model.showtaotalrows = true;
+            vm.model.showplus = true;
         };
 
         vm.init();

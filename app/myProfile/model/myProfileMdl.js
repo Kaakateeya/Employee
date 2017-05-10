@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function factory(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss, SelectBindServiceApp, uibModal, timeout, configslide) {
+    function factory(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss, SelectBindServiceApp, uibModal, timeout, configslide, commonpage) {
         var model = {};
 
         model.grid = config;
@@ -170,16 +170,24 @@
             //     "&nbsp;&nbsp;&nbsp;<a class='oukuCls " + stronlineliteclass + "' ng-click='model.RedirectPayment(" + row.ProfileID + ");'>" + row.onlinepaid + "</a>/<a class='oukuCls " + strofflineliteclass + "' ng-click='model.RedirectPayment(" + row.ProfileID + ");' >" + row.offlinepaid + "</a>&nbsp;&nbsp;&nbsp;" +
             //     "<label class='fontweight'>" + row.OwnerName + "</label>";
             var paidstatus = row.paid === true ? "Paid" : "UnPaid";
-            var paid = "<a style='cursor:pointer;'>Factsheet</a>&nbsp;&nbsp;&nbsp;<a style='' >Tickets</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' >Servicelog</a>" +
+            var paid = "<a style='cursor:pointer;'>Factsheet</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);'  ng-click='model.tickethistorypopup(" + row.Emp_Ticket_ID + ");'>Tickets</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' >Servicelog</a>" +
                 "&nbsp;&nbsp;&nbsp;<a ng-click='model.showphoto(" + row.Cust_ID + ");' class='" + photodisbled + "'>" + row.UploadedPhotoscount + " / " + row.PhotoshopCount + "</a>" +
                 "&nbsp;&nbsp;&nbsp;<a ng-class='model.paidstatusclass(" + row.paid + ")' ng-click='model.RedirectPayment(" + row.ProfileID + ");'>" + paidstatus + "</a>&nbsp;&nbsp;&nbsp;" +
                 "<label class='fontweight'>" + row.OwnerName + "</label>";
             return paid;
         };
 
+        model.grid.tickethistorypopup = function(TicketID) {
+            if (TicketID) {
+                model.marketingTicketid = TicketID;
+                commonpage.showPopupphotopoup('marketpopup.html', model.scope, 'md', "modalclassdashboardphotopopup");
+            }
+        };
+
         model.showphoto = function(custid) {
             modelpopupopenmethod.ShowPhotoPopup(custid, model.scope);
         };
+
         model.grid.RedirectPayment = function(profileid) {
             window.open("EmployeePayments" + "?profileid=" + profileid, "_blank");
         };
@@ -341,11 +349,14 @@
         model.slide.closemainpopup = function() {
             modelpopupopenmethod.closepopup();
         };
+
+
+
         return model;
     }
     angular
         .module('Kaakateeya')
         .factory('myProfileModel', factory);
-    factory.$inject = ['$http', 'myProfileservice', 'authSvc', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'SelectBindServiceApp', '$uibModal', '$timeout', 'complex-slide-config'];
+    factory.$inject = ['$http', 'myProfileservice', 'authSvc', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'SelectBindServiceApp', '$uibModal', '$timeout', 'complex-slide-config', 'modelpopupopenmethod'];
 
 })(angular);

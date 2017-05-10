@@ -136,8 +136,6 @@
         };
 
         model.slidebind = function(old, news, array, type) {
-
-
             if (type === 'popup') {
                 model.proceed.frompopoverIsOpen = false;
                 model.proceed.topopoverIsOpen = false;
@@ -156,7 +154,6 @@
                 }
             }
         };
-
 
         model.CondtionButtonClick = function(activeType, flag, flagClose, flagEmpwaiting) {
             model.slides = [];
@@ -188,9 +185,11 @@
 
         model.ProceededProfiles = function(serviceCount, empname) {
             var splitEmpName = '';
-            if (empname !== undefined)
+            if (empname !== undefined) {
                 splitEmpName = empname.split('-');
-            return (parseInt(serviceCount) > 1 && model.loginempName.trim() === splitEmpName[0].trim()) ? true : false;
+            }
+            var loginName = model.loginempName.indexOf(' ') !== -1 ? (model.loginempName).split(' ')[0] : model.loginempName;
+            return (parseInt(serviceCount) > 1 && loginName.trim() === splitEmpName[0].trim()) ? true : false;
         };
         model.serviceCountProfiles = function(custid) {
             model.custid = custid;
@@ -251,7 +250,6 @@
                     }
                 });
             }
-
         };
         model.mailchange = function(val) {
             return _.where(model.ReplyArr, { value: parseInt(val) })[0].text;
