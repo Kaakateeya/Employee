@@ -30,6 +30,7 @@
                 scope.model.MAobj.ddlmrktReplyMemo =
                 scope.model.MAobj.ddlmrktreplyClose =
                 scope.model.MAobj.ddlmrktReplyTypeIn = "";
+
             // timeout(function() { console.log(scope.model.marInfo); }, 25000);
 
         }

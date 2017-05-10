@@ -252,7 +252,7 @@
                     ReadStatus: item.ReadStatus,
                     Tickets: item.Tickets,
                     TicketID: item.Emp_Ticket_Id || item.Emp_Ticket_ID,
-                    NoDataFound: (item.NoDataFound)
+                    NoDataFound: model.nodataarray(item.NoDataFound)
 
                 });
             });

@@ -441,7 +441,7 @@
                 EmpID: model.empid,
                 Replaytypeid: obj.Replaytypeid,
                 AssignedEmpID: obj.AssignedEmpID
-            }
+            };
 
             matchFollowupServices.ActionSubmit(inputObj).then(function(response) {
                 if (parseInt(response.data) === 1) {
@@ -506,7 +506,7 @@
                 CallDiscussion: obj.txtInCalldiscussion,
                 DisplayStatus: obj.rbtnInDisplay,
                 Replaytypeid: obj.ddlInReplyType
-            }
+            };
             model.ActionSubmit(inputObj, 'Incoming');
         };
         model.outCallsSubmit = function(obj) {
@@ -519,7 +519,7 @@
                 CallDiscussion: obj.txtOutCalldiscussion,
                 DisplayStatus: obj.rbtnOutDisplay,
                 Replaytypeid: obj.ddlOutreplytype
-            }
+            };
             model.ActionSubmit(inputObj, 'Out going');
         };
 
@@ -528,7 +528,7 @@
                 CallType: 379,
                 CallDiscussion: obj.txtMemmemocalldiscussion,
                 AssignedEmpID: obj.ddlMemAssign
-            }
+            };
             model.ActionSubmit(inputObj, 'Internal Memo');
         };
 
