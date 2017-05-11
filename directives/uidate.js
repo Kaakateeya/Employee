@@ -52,7 +52,10 @@ angular.module('ui.date', [])
                         // if (angular.isDefined(date) && date !== null && !angular.isDate(date) && date !== "") {
                         //    throw new Error('ng-Model value must be a Date object - currently it is a ' + typeof date + ' - use ui-date-format to convert it from a string');
                         // }
-                        element.datepicker("setDate", date);
+                        if (date) {
+                            var dateformat = moment(date).format('DD-MM-YYYY');
+                            element.datepicker("setDate", date);
+                        }
                     };
                 }
                 // If we don't destroy the old one it doesn't update properly when the config changes

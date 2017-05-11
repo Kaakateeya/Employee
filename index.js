@@ -50,8 +50,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'matchFollowup', name: 'base.matchFollowup', url: '/matchFollowuppage', isloginrequired: true },
             { routeName: 'marketing', name: 'base.marketing', url: '/marketingpage', isloginrequired: true },
             { routeName: 'bootstrapSlide', name: 'base.bootstrapSlide', url: '/bootstrapSlideshow', isloginrequired: true, module: 'complex-slide' },
-            { routeName: 'bootstrapPopup', name: 'base.bootstrapPopup', url: '/bootstrapPopups', isloginrequired: true, module: 'complex-popup' },
-            { routeName: 'mailViewFullProfile', name: 'base.mailViewFullProfile', url: '/mailViewFullProfile', isloginrequired: true }
+            { routeName: 'bootstrapPopup', name: 'base.bootstrapPopup', url: '/bootstrapPopups', isloginrequired: true, module: 'complex-popup' }
         ];
         $ocLazyLoadProvider.config({
             debug: true

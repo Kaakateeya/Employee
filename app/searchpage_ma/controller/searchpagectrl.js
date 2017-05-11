@@ -24,7 +24,7 @@
              model.templateUrl = "templates/angularSlide.html";
              model.headettemp = "templates/angularHeader.html";
              model.searchpopuptext = model.selectedIndex === "0" ? "General Search" : "Advance Search";
-             alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass", 'searchpageCtrl');
+             alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
          };
 
          scope.$on('directivechangeevent', function(event, modal, type) {
