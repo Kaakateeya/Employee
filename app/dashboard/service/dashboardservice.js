@@ -38,6 +38,9 @@
 
             getUpdateEmailBounce: function(obj) {
                 return http.get(app.apiroot + 'StaticPages/getUpdateEmailBounce', { params: { CustID: obj.CustID, EmailBounceEntryId: obj.EmailBounceEntryId, BounceMailid: obj.BounceMailid } });
+            },
+            changeProfileidstatus: function(profileid) {
+                return http.get(app.apiroot + 'StaticPages/getChangeApplicationStaus', { params: { ProfileID: profileid } });
             }
         };
     }

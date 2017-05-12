@@ -348,6 +348,15 @@
         model.close = function() {
             commonpage.closepopuppoptopopup();
         };
+        model.changeProfileidstatus = function(profielid) {
+            dashboardServices.changeProfileidstatus(profielid).then(function(response) {
+                if (response !== undefined && response.data === parseInt(1)) {
+                    alerts.timeoutoldalerts(model.scope, 'alert-success', 'Profile Status Updated Successfully', 2000);
+                } else {
+                    alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Profile Status Updated Failed', 2000);
+                }
+            });
+        };
         return model;
     }
     angular
