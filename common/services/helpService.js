@@ -16,6 +16,10 @@ app.service('helperservice', ['$http', function(http) {
     this.UpdateExpressIntrestViewfullprofile = function(obj) {
         return http.post(app.apiroot + 'StaticPages/UpdateExpressIntrestViewfullprofile', obj);
     };
+
+    this.acceptrejectexpressinterest = function(fromid, toid, logid, type, empid) {
+        return http.get(app.apiroot + 'DashboardRequest/getInsertCustomerExpressinterest', { params: { fromcustid: fromid, tocustid: toid, logID: logid, interstTYpe: type, empid: empid } });
+    };
     this.getipAddressReturn = function() {
         return http.get(app.apiroot + 'StaticPages/getipAddressReturn', { params: {} });
     };

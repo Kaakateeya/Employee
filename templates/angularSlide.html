@@ -12,8 +12,8 @@
 
                 </div>
                 <div class="col-lg-5">
-                    <a href="javascript:void(0)" class="col-lg-5" ng-click="config.proceedanddontproceed('btnProceed',slide,1,1)" ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI' && slide.Mystatus.trim()!=='--'">Proceed</a>
-                    <a href="javascript:void(0)" class="col-lg-7" ng-click="config.proceedanddontproceed('btnDontProceed',slide,2,2)" ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI' && slide.Mystatus.trim()!=='--'">Dont Proceed</a>
+                    <a href="javascript:void(0)" class="col-lg-5" ng-click="config.proceedanddontproceed('btnProceed',slide,'I',1)" ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI' && slide.Mystatus.trim()!=='--'">Proceed</a>
+                    <a href="javascript:void(0)" class="col-lg-7" ng-click="config.proceedanddontproceed('btnDontProceed',slide,'NI',2)" ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI' && slide.Mystatus.trim()!=='--'">Dont Proceed</a>
                 </div>
             </div>
         </div>

@@ -7,12 +7,17 @@
         model.viewprofilearray = [];
         model.aboutmyself = {};
         model.personalinfo = {};
+        model.basicinfo = [];
         model.custid = 0;
         model.stateprofileid = stateParams.ProfileID;
         model.textboxshowhide = true;
         model.fullprofileshow = true;
         model.EmpViewfullProfile = function(stateprofileid) {
-            employeeViewfullprofileservice.getEmpViewfullProfile(stateprofileid, '1').then(function(response) {
+            model.viewprofilearray = [];
+            model.aboutmyself = {};
+            model.personalinfo = {};
+            model.basicinfo = [];
+            employeeViewfullprofileservice.getEmpViewfullProfile(stateprofileid, model.empid).then(function(response) {
                 model.fullprofileshow = false;
                 if (response.data !== undefined && response.data !== "" && response.data !== null && response.data.length > 0) {
                     _.each(response.data, function(item) {
@@ -30,6 +35,8 @@
                             if (model.personalinfo[0].HoroscopeImage !== undefined && model.personalinfo[0].HoroscopeImage !== null) {
                                 model.horoimagesrc = (model.personalinfo[0].HoroscopeImage).indexOf(".html") !== -1 ? 'src/images/view_horoscope_image.jpg' : model.personalinfo[0].HoroscopeImage;
                             }
+                        } else if (testArr.length > 0 && testArr[0].TableName !== undefined && testArr[0].TableName === "My Basic Details") {
+                            model.basicinfo = testArr;
                         } else {
                             if (testArr.length > 0 && testArr[0].TableName !== undefined) {
                                 model.viewprofilearray.push({ header: testArr[0].TableName, value: testArr });

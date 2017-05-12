@@ -510,33 +510,51 @@
             }
             return status;
         };
+        // model.proceedanddontproceed = function(typeofbtn, slide, AcceptStatus, MatchFollwupStatus) {
+        //     var MobjViewprofile = {
+        //         ExpressInrestID: slide.Cust_ProfileInterestsLog_ID,
+        //         CustID: model.getpageloadobject.Cust_ID,
+        //         FromCustID: model.getpageloadobject.Cust_ID,
+        //         ToCustID: slide.Custid,
+        //         AcceptStatus: AcceptStatus,
+        //         MatchFollwupStatus: MatchFollwupStatus
+        //     };
+        //     helpService.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
+        //         switch (response.data) {
+        //             case 1:
+        //                 if (typeofbtn === "btnProceed") {
+        //                     model.modalbodyID1 = "To Move the Match for MatchFollowup";
+        //                 } else {
+        //                     model.modalbodyID1 = "Oops go through your search";
+        //                 }
+        //                 break;
+        //             case 2:
+        //             case 3:
+        //                 model.modalbodyID1 = "You need to Upgrade online membership";
+        //                 break;
+        //             default:
+        //                 model.modalbodyID1 = "Updation failed please contact admin";
+        //                 break;
+        //         }
+        //         modelpopupopenmethod.showPopupphotopoup('TabClosePopup.html', model.scope, '', "modalclassdashboardphotopopup");
+        //     });
+        // };
         model.proceedanddontproceed = function(typeofbtn, slide, AcceptStatus, MatchFollwupStatus) {
-            var MobjViewprofile = {
-                ExpressInrestID: slide.Cust_ProfileInterestsLog_ID,
-                CustID: model.getpageloadobject.Cust_ID,
-                FromCustID: model.getpageloadobject.Cust_ID,
-                ToCustID: slide.Custid,
-                AcceptStatus: AcceptStatus,
-                MatchFollwupStatus: MatchFollwupStatus
-            };
-            helpService.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
-                switch (response.data) {
-                    case 1:
-                        if (typeofbtn === "btnProceed") {
-                            model.modalbodyID1 = "To Move the Match for MatchFollowup";
-                        } else {
-                            model.modalbodyID1 = "Oops go through your search";
-                        }
-                        break;
-                    case 2:
-                    case 3:
-                        model.modalbodyID1 = "You need to Upgrade online membership";
-                        break;
-                    default:
-                        model.modalbodyID1 = "Updation failed please contact admin";
-                        break;
+            helpService.acceptrejectexpressinterest(model.getpageloadobject.Cust_ID, slide.Custid, slide.Cust_ProfileInterestsLog_ID, AcceptStatus, model.empid).then(function(response) {
+                if (response.data === parseInt(1)) {
+                    if (typeofbtn === "btnProceed") {
+                        alerts.timeoutoldalerts(model.scope, 'alert-success', 'Proceed successfully', 4000);
+                    } else {
+                        alerts.timeoutoldalerts(model.scope, 'alert-success', 'Skipped successfully', 4000);
+                    }
+                } else {
+                    if (typeofbtn === "btnProceed") {
+                        alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Proceed fail', 4000);
+
+                    } else {
+                        alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Skipped fail', 4000);
+                    }
                 }
-                modelpopupopenmethod.showPopupphotopoup('TabClosePopup.html', model.scope, '', "modalclassdashboardphotopopup");
             });
         };
         model.sendtoServices = function() {

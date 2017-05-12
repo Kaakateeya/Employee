@@ -44,8 +44,10 @@
                         ProfileIDs: custids
                     }
                 });
+            },
+            getInsertUnpaidStatus: function(custid, tocustid, empid, typeofaction) {
+                return http.get(app.apiroot + 'StaticPages/getInsertUnpaidStatus', { params: { fromCustID: custid, ToCustID: tocustid, Empid: empid, typeofAction: typeofaction } });
             }
-
         };
     }
     angular

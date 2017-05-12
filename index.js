@@ -24,14 +24,14 @@ app.paymentPoints = parseInt(app.paypoints) / parseInt(app.payfixedAmt);
 app.ServiceTaxPercent = 14 / 100;
 
 app.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
-//regapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
-app.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/angularkaknew/';
+app.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
+//app.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/angularkaknew/';
 app.prefixPath = 'Images/SettlementImages/';
 app.S3PhotoPath = app.GlobalImgPath + 'Images/ProfilePics/';
 app.Mnoimage = app.GlobalImgPath + "Images/customernoimages/Mnoimage.jpg";
 app.Fnoimage = app.GlobalImgPath + "Images/customernoimages/Fnoimage.jpg";
 app.accesspathdots = app.GlobalImgPathforimage + app.prefixPath;
-app.BucketName = 'angularkaknew';
+app.BucketName = 'kaakateeyaprod';
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider',
     function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
