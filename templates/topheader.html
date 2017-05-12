@@ -1,13 +1,13 @@
 <div ng-controller="headerctrl as head" id="logindivheader">
     <div class="top_nav" id="top_navdiv">
         <div class="nav_menu">
-            <nav class="col-lg-12">
-                <ul class="nav navbar-nav pull-right">
-                    <li>
+            <nav class="row">
+                <ul class="nav navbar-nav pull-right col-lg-3">
+                    <li class="col-lg-9">
                         <div style="color:#fff;"><strong style="font-size: 19px;"> Welcome  {{head.name}}</strong>
                         </div>
                     </li>
-                    <li class="">
+                    <li>
                         <a href="javascript:void(0)" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             <img ng-src="{{head.empphoto}}" alt="">
                             <span class="fa fa-angle-down" id="spandownheader"></span>
@@ -23,9 +23,12 @@
                         </ul>
                     </li>
                 </ul>
-                <ul class="navtop navbar-left">
+                <ul class="navtop navbar-left col-lg-9">
+                    <li>
+                        <a href="dashboardpage"><i class="fa fa-home fa-2x" aria-hidden="true" style="font-size: 25px;"></i></a>
+                    </li>
                     <li class="has-sub">
-                        <a href="javascript:void(0)"></i>Registration</a>
+                        <a href="javascript:void(0)">Registration</a>
                         <ul>
                             <li><a href="Registration">Customer New Registration</a></li>
                             <li><a href="editViewprofileurl">Edit/View Profile</a></li>
