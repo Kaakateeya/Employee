@@ -49,6 +49,7 @@
         model.close = function() {
             commonpage.closepopup();
         };
+
         return model;
     }
     angular
