@@ -21,6 +21,8 @@
              if (parseInt($stateParams.Profileid) !== 0) {
                  model.ProfileIDpopup = $stateParams.Profileid;
              }
+
+             vm.clearSelection(model.selectedIndex === "0" ? model.domDatageneral : model.domDataadvanced);
              model.searchpopuptext = model.selectedIndex === "0" ? "General Search" : "Advance Search";
              alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass", 'searchpageCtrl');
          };
@@ -65,17 +67,25 @@
              }
          });
          vm.clearSelection = function(Arr) {
-             _.each(model.domDatageneral, function(parentItem) {
+             _.each(Arr, function(parentItem) {
+
                  _.each(parentItem.controlList, function(item) {
                      if (model[item.ngModel] !== undefined) {
                          model[item.ngModel] = undefined;
                      }
                  });
+
              });
              model.HeightFromID = "";
              model.HeightToID = "";
              model.AgeFromID = "0";
              model.AgeToID = "0";
+
+             model.Showinprofile = model.arrayToString("1");
+             model.ApplicationstatusID = model.arrayToString("54");
+             model.MothertongueID = model.arrayToString("1");
+             model.ReligionID = model.arrayToString("1");
+             model.Caste = Commondependency.casteDepedency(model.ReligionID, model.MothertongueID);
          };
 
          vm.onTabSelected = function(value) {
@@ -90,11 +100,7 @@
                  model.ProfileIDpopup = '';
                  alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
              }
-             model.Showinprofile = model.arrayToString("1");
-             model.ApplicationstatusID = model.arrayToString("54");
-             model.MothertongueID = model.arrayToString("1");
-             model.ReligionID = model.arrayToString("1");
-             model.Caste = Commondependency.casteDepedency(model.ReligionID, model.MothertongueID);
+
          };
 
          vm.init();

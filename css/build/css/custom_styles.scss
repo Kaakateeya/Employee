@@ -1491,6 +1491,7 @@
         .multiselect-container>li>a label.checkbox input[type="checkbox"] {
             margin: 4px 10px 0 0 !important;
             width: auto !important;
+            position: inherit;
         }
         
         .multiselect-container>li:hover a label,
@@ -1675,4 +1676,10 @@
         
         .modal-header {
             padding: 5px;
+        }
+        
+        span.multiselect-selected-text {
+            text-overflow: ellipsis;
+            display: block;
+            overflow: hidden;
         }

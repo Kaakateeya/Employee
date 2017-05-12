@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .factory('marketticketHistrymdl', factory)
 
-    factory.$inject = ['SelectBindServiceApp', 'authSvc', 'marketingTicketHistryservice', 'alert', 'modelpopupopenmethod', 'arrayConstants'];
+    factory.$inject = ['SelectBindServiceApp', 'authSvc', 'marketingTicketHistryservice', 'alert', 'modelpopupopenmethod', 'arrayConstants', '$timeout'];
 
-    function factory(bindservice, authSvc, marketsvc, alertss, commonpage, arrayConstants) {
+    function factory(bindservice, authSvc, marketsvc, alertss, commonpage, arrayConstants, timeout) {
         var model = {};
         model.MAobj = {};
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
@@ -18,7 +18,9 @@
         model.ProfileID = '';
         model.scope = {};
         model.init = function() {
-            model.marketReplytype();
+            timeout(function() {
+                model.marketReplytype();
+            }, 500);
             return model;
         };
         model.RelationshipChange = function(RelationshipID, type) {
@@ -54,8 +56,10 @@
                             item.ReplyDatenew = moment(item.ReplyDatenew).format('DD-MMM-YYYY h:mm:ss');
                         });
                     });
-                    model.RelationshipChange(39, 'In');
-                    model.RelationshipChange(39, 'Out');
+                    timeout(function() {
+                        model.RelationshipChange(39, 'In');
+                        model.RelationshipChange(39, 'Out');
+                    }, 500);
                 }
             });
         };
@@ -66,7 +70,6 @@
                     _.each(response.data[0], function(item) {
                         model.marReplyArr.push({ "label": item.Heder, "title": item.Heder, "value": item.ID, "text": item.TEXT });
                     });
-
                 }
             });
         };

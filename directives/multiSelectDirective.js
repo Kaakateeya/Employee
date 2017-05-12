@@ -1,8 +1,9 @@
 // AngularJS: 1.3 .15
 // bootstrap - multiselect: 0.9 .6
 //var statticdata = require('./staticArrayBindings.json');
-app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', '$timeout', 'getArraysearch',
-    function(cons, service, timeout, getArraysearch) {
+app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', '$timeout', 'getArraysearch', 'commonFactory',
+
+    function(cons, service, timeout, getArraysearch, commonFactory) {
         return {
             require: 'ng-model',
             scope: {
@@ -278,6 +279,7 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                         case 'gradeSelection':
                             scope.databind(cons.gradeSelection);
                             break;
+
                     }
                 }, 1000);
                 element.multiselect({
