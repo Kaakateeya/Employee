@@ -6,7 +6,7 @@
          var vm = this,
              model;
          vm.init = function() {
-             vm.model = model = searchpageModel;
+             vm.model = model = searchpageModel();
              model.scope = scope;
              model.ProfileIDpopup = "";
              model.divcontrollsbind = 0;

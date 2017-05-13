@@ -3,6 +3,7 @@
 
 
     function factory(secondaryRegistrationService, getArray, commondependency, filter, timeout, stateParams, authSvc, $state, dynamicalert) {
+         return function() {
         var model = {};
         model.scope = {};
 
@@ -157,7 +158,7 @@
 
         return model.init();
     }
-
+    }
     angular
         .module('Kaakateeya')
         .factory('secondaryRegistrationModel', factory);

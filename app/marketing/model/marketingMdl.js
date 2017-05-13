@@ -8,6 +8,7 @@
     factory.$inject = ['marketingservice', 'complex-slide-config'];
 
     function factory(marketingservice, config) {
+       return function() {
         var model = {};
         model = config;
         model.headervisileble = true;
@@ -30,5 +31,6 @@
 
 
         return model.init();
+    }
     }
 })();

@@ -48,7 +48,7 @@ angular.module('ui.date', [])
 
                     // Update the date picker when the model changes
                     controller.$render = function() {
-                        debugger;
+                       
                         var date = controller.$viewValue;
                         if (date) {
 

@@ -4,6 +4,7 @@
     function factory($http, searchpageServices, arrayConstants, SelectBindServiceApp, getArray, timeout,
         helpService, authSvc, alerts, Commondependency, filter, modelpopupopenmethod, config, $sce,
         expressInterestModel, configgrid) {
+        return function() {
         var model = {};
         model = config;
         model.gridtable = configgrid;
@@ -767,6 +768,7 @@
         };
         return model;
     }
+        }
     angular
         .module('Kaakateeya')
         .factory('searchpageModel', factory);

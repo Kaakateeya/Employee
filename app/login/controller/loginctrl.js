@@ -6,7 +6,7 @@
          var vm = this,
              model;
          vm.init = function() {
-             vm.model = model = loginModel;
+             vm.model = model = loginModel();
              model.init();
          };
          vm.init();

@@ -4,7 +4,7 @@
      function controller(myProfileModel, scope, $location) {
          var vm = this;
          vm.init = function() {
-             vm.model = myProfileModel;
+             vm.model = myProfileModel();
              myProfileModel.MyProfilePageLoad();
              vm.model.mpObj.rdnprofileType = '';
              vm.model.mpObj.rdnGender = '';

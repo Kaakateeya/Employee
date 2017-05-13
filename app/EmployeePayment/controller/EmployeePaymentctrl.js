@@ -5,7 +5,7 @@
          var vm = this,
              model;
          vm.init = function() {
-             vm.model = model = EmployeePaymentmodel;
+             vm.model = model = EmployeePaymentmodel();
              model.scope = scope;
              model.txtProfileID = "";
              model.freshLink = false;

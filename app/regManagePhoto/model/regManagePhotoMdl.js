@@ -3,6 +3,7 @@
 
 
     function factory(regManagePhotoService, uibModal, Commondependency, http, fileUpload, stateParams, authSvc, dynamicalert) {
+       return function() {
         var model = {};
         model.scope = {};
         // start declaration
@@ -216,7 +217,7 @@
 
         return model.init();
     }
-
+    }
     angular
         .module('Kaakateeya')
         .factory('regManagePhotoModel', factory);

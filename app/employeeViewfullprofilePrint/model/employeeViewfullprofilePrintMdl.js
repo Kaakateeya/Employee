@@ -2,7 +2,7 @@
     'use strict';
 
     function factory(employeeViewfullprofileservice, commonpage, stateParams) {
-          return function() {
+        return function() {
         var model = {};
         model.scope = {};
         model.viewprofilearray = [];
@@ -63,7 +63,7 @@
     }
     angular
         .module('Kaakateeya')
-        .factory('employeeViewfullprofileModel', factory);
-    factory.$inject = ['employeeViewfullprofileservice', 'modelpopupopenmethod', '$stateParams'];
+        .factory('employeeViewfullprofilePrintModel', factory);
+    factory.$inject = ['employeeViewfullprofilePrintservice', 'modelpopupopenmethod', '$stateParams'];
 
 })(angular);

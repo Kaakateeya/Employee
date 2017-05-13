@@ -12,7 +12,7 @@
          vm.slidNumfiled = 1;
          vm.prevhide = false;
          vm.init = function() {
-             vm.model = model = dashboardModel;
+             vm.model = model = dashboardModel();
              model.scope = scope;
              model.proceedprofileid = null;
              model.entryid = null;

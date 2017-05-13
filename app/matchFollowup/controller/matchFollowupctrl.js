@@ -7,7 +7,7 @@
              model;
 
          vm.init = function() {
-             vm.model = model = matchFollowupModel;
+             vm.model = model = matchFollowupModel();
              model.scope = scope;
              model.templateUrl = "templates/matchFollowupSlide.html";
              model.headettemp = "templates/matchFollowupHeader.html";

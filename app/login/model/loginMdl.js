@@ -2,6 +2,7 @@
     'use strict';
 
     function factory($http, uibModal, loginservice, authSvc, $state, helperservice) {
+        return function() {
         var model = {},
             modalpopupopen;
         model.loginsubmit = {};
@@ -87,6 +88,7 @@
         };
 
         return model;
+    }
     }
     angular
         .module('Kaakateeya')

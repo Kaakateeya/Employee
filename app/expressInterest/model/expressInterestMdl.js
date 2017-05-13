@@ -2,6 +2,7 @@
     'use strict';
 
     function factory(http, expressInterestService, modelpopupopenmethod, authSvc, timeout, alertss) {
+        return function() {
         var model = {};
         model.scope = {};
         var strimages = '';
@@ -322,6 +323,7 @@
             modelpopupopenmethod.closepopuppoptopopup();
         };
         return model;
+    }
     }
     angular
         .module('Kaakateeya')

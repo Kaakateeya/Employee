@@ -24,7 +24,7 @@
      }
      angular
          .module('Kaakateeya')
-         .controller('employeeViewfullprofileCtrl', controller);
-     controller.$inject = ['employeeViewfullprofileModel', '$scope', 'authSvc'];
+         .controller('employeeViewfullprofilePrintCtrl', controller);
+     controller.$inject = ['employeeViewfullprofilePrintModel', '$scope', 'authSvc'];
 
  })(angular);
