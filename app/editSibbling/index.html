@@ -1,0 +1,1174 @@
+<div ng-class="'EditViewClass'" class="right_col" style="padding-top: 6%;padding-left: 1%;">
+
+    <div ng-include="'templates/sideMenu.html'">
+    </div>
+
+
+    <div class="edit_pages_content_main clearfix">
+        <page-review dispaly-name="'Siblings details'" sectionid="'14,25,26'" custid="page.model.CustID"></page-review>
+
+        <div class="edit_page_item">
+            <div class="edit_page_item_head clearfix">
+                <h4>Sibling Details
+                </h4>
+                <div class="edit_page_item_ui clearfix" ng-if="page.model.sibblingCountArr.length===0">
+                    <a href="javascript:void(0);" ng-click="page.model.sibblingPopulatePopulate('sibCounrt')" class="edit_page_add_button">Add</a>
+                </div>
+            </div>
+
+            <div id="upnoofSibblings" class="edit_page_details_item">
+
+                <div id="lstnoofbros">
+                    <div ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'" ng-if="page.model.sibblingCountArr" ng-repeat="item in page.model.sibblingCountArr">
+                        <div>
+                            <div>
+                                <div class="form-group">
+                                    <div id="uplNoOfBrothers" class="edit_page_details_item_desc clearfix">
+                                        <h6>
+                                            <label id="NoOfBrothers" font-bold="true">No of Brothers</label>
+                                        </h6>
+                                        <h5>
+                                            <span id="lblNoOfBrothers">
+                                            {{ item.NoOfBrothers }}
+                                    </span>
+                                        </h5>
+
+                                    </div>
+                                    <div id="brotherHide">
+
+                                        <div ng-hide="item.NoOfElderBrothers===null || item.NoOfElderBrothers===0" class="edit_page_details_item_desc clearfix">
+
+                                            <h6>
+                                                <label id="noofelderbrother" font-bold="true">No of elder brothers</label></h6>
+                                            <h5>
+                                                <span id="lblnoofelderbrother">
+                                                {{ item.NoOfElderBrothers }}
+                                        </span>
+                                            </h5>
+
+
+                                        </div>
+                                        <div ng-hide="item.NoOfYoungerBrothers===null || item.NoOfYoungerBrothers===0" class="edit_page_details_item_desc clearfix">
+
+                                            <h6>
+                                                <label id="Noofyoungerbrother" font-bold="true">No of younger brother</label>
+                                            </h6>
+                                            <h5>
+                                                <span id="lblnofyoungbro">
+                                                {{ item.NoOfYoungerBrothers }}
+                                        </span>
+                                            </h5>
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="edit_page_item_ui clearfix" ng-if="page.model.sibblingCountArr.length>0">
+
+                                        <a href="javascript:void(0);" class="edit_page_edit_button" ng-click="page.model.sibblingPopulatePopulate('sibCounrt',item)">Edit</a>
+
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+
+                                    <div ng-hide="item.NoOfSisters===null" class="edit_page_details_item_desc clearfix">
+
+                                        <h6>
+                                            <label font-bold="true">No of sisters</label></h6>
+                                        <h5>
+                                            <span id="lblNoofsisters">
+                                            {{ item.NoOfSisters }}
+                                    </span>
+                                        </h5>
+
+
+                                    </div>
+                                    <div id="sisterHideDiv">
+                                        <div ng-hide="item.NoOfElderSisters===null || item.NoOfElderSisters===0" class="edit_page_details_item_desc clearfix">
+
+                                            <h6>
+                                                <label font-bold="true">No of elder sisters</label></h6>
+                                            <h5>
+                                                <span id="lblNoofeldersisters">
+                                                {{ item.NoOfElderSisters }}
+                                        </span>
+                                            </h5>
+
+
+                                        </div>
+                                        <div ng-hide="item.NoOfYoungerSisters===null || item.NoOfYoungerSisters===0" class="edit_page_details_item_desc clearfix">
+
+                                            <h6>
+                                                <label font-bold="true">No of younger sisters</label></h6>
+                                            <h5>
+                                                <span>
+                                                {{ item.NoOfYoungerSisters }}
+                                        </span>
+                                            </h5>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="edit_page_item_head clearfix">
+                <h4>Brother Details&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2" ng-show="page.model.broModifiedby!=null && page.model.broModifiedby!=='' && page.model.broModifiedby!==undefined">ModifiedBy :{{page.model.broModifiedby}}</span>
+                </h4>
+                <div class="edit_page_item_ui clearfix">
+                    <div id="uplnkbrotherdetails">
+
+                        <a href="javascript:void(0);" ng-click="page.model.sibblingPopulatePopulate('brother')" class="edit_page_add_button">Add
+                </a>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div id="uplstSibbling" class="edit_page_details_item">
+                <div ng-if="page.model.BrotherArr" ng-repeat="item in page.model.BrotherArr">
+                    <div>
+                        <div id="Div1" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
+                            <div>
+                                <div>
+                                    <div id="uplElderbrotherName" class="edit_page_details_item_desc clearfix">
+
+                                        <h6>
+                                            <label id="ElderbrotherName" font-bold="true" style="color:red;">
+                                        Brother Name</label></h6>
+                                        <h5>
+                                            <span id="lblElderbrotherName" style="color:red;">
+                                            {{ item.SibilingName+" ("+item.brotherYoungerORelder+")" }}
+                                    </span>
+                                        </h5>
+
+                                    </div>
+                                    <div id="upllnkbrodetailseb" class="edit_page_item_ui clearfix">
+
+                                        <a class="edit_page_edit_button" href="javascript:void(0);" ng-click="page.model.sibblingPopulatePopulate('brother',item)">Edit</a>
+                                        <a href="javascript:void(0);" class="edit_page_del_button" ng-click="page.model.DeletePopup('brother',item.SibilingCustfamilyID);">Delete</a>
+                                    </div>
+
+                                </div>
+                                <div id="brothereducation" class="edit_page_details_item_desc clearfix">
+
+                                    <div>
+
+                                        <h6>
+                                            <label id="lblEducationbrother" font-bold="true">Education</label></h6>
+                                        <h5>
+                                            <span id="lblBrotherEducationDetails">
+                                            {{ item.SibilingEducationDetails!=null?item.SibilingEducationDetails:''}}
+                                    </span>
+                                        </h5>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="edit_page_details_item_desc clearfix">
+                                    <div>
+                                        <h6>
+                                            <label font-bold="true">Profession Category</label></h6>
+                                        <h5>
+                                            <span>
+                                            {{ item.ProfessionCategory}}
+                                    </span>
+                                        </h5>
+                                    </div>
+                                </div>
+
+                                <div class="edit_page_details_item_desc clearfix">
+                                    <div>
+                                        <h6>
+                                            <label id="Label2" font-bold="true">Designation</label></h6>
+                                        <h5>
+                                            <span id="lblBrotherprofessionDetails">
+                                            {{ item.SibilingProfessionDetails}}
+                                    </span>
+                                        </h5>
+                                    </div>
+                                </div>
+
+                                <div id="uplprofessioneb" class="edit_page_details_item_desc clearfix">
+
+                                    <div id="professiondiv">
+                                        <h6>
+                                            <label id="profession" font-bold="true">Company&JobLocation</label></h6>
+                                        <h5>
+                                            <span id="lblprofession">
+                                            {{ (item.SibilingCompany!==null?item.SibilingCompany:'')+" "+(item.SibilingJobPLace.ToString()!="" && item.SibilingJobPLace!=null?","+item.SibilingJobPLace:"") }}
+                                    </span>
+                                        </h5>
+                                    </div>
+
+                                </div>
+
+
+                                <div id="update0">
+
+                                    <div id="ownerdiv0">
+                                        <div id="uplConactNoeb" class="edit_page_details_item_desc clearfix">
+
+                                            <div>
+
+                                                <h6>
+                                                    <label id="ConactNo" font-bold="true">Conact Nos</label></h6>
+                                                <h5>
+                                                    <span id="lblConactNo">
+                                                    {{ (item.SibilingMobileNumberWithCode!==null?item.SibilingMobileNumberWithCode:'')+
+                                                ((item.SibilngLandnumberwithcode.ToString()!="" && item.SibilngLandnumberwithcode!=null)?","+item.SibilngLandnumberwithcode:"")}}
+                                            </span>
+                                                </h5>
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div id="brotheremail" class="edit_page_details_item_desc clearfix">
+
+                                            <div>
+
+                                                <h6>
+                                                    <label id="brotheremail" font-bold="true">Email</label></h6>
+                                                <h5>
+                                                    <span id="lblbrotheremail">
+                                                    {{ item.SibilingEmail }}
+                                            </span>
+                                                </h5>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div id="uuuuuuuppp" ng-if="item.SibilingMarried==1">
+
+                                    <div id="BROTHERDIV">
+                                        <div id="uplWifeNameeb" class="edit_page_details_item_desc clearfix">
+
+                                            <div id="divWifeNamenew">
+
+                                                <h6>
+                                                    <label id="SpouseName" font-bold="true" style="font-weight: bold; font-family: helvetica; font-size: 18px">
+                                                Spouse Name</label></h6>
+                                                <h5>
+                                                    <span id="lblWifeName">
+                                                    {{ item.SibilingSpouseName}}
+                                            </span>
+                                                </h5>
+
+                                            </div>
+
+                                        </div>
+                                        <div id="lblbrotherwifeeducationdetails" class="edit_page_details_item_desc clearfix">
+
+                                            <div id="divlblbrotherwifeeducation">
+
+                                                <h6>
+                                                    <label id="lblbrotherwifeeducation" font-bold="true">Education</label></h6>
+                                                <h5>
+                                                    <span id="lblbrotherwifeeducationdetails">
+                                                    {{ item.SibilingSpouseEducationDetails}}
+                                            </span>
+                                                </h5>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="edit_page_details_item_desc clearfix">
+                                            <div>
+                                                <h6>
+                                                    <label font-bold="true">Profession Category</label></h6>
+                                                <h5>
+                                                    <span>
+                                            {{ item.SpouseProfessionCategory}}
+                                    </span>
+                                                </h5>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div id="lblbrotherwifeprofessiondetails" class="edit_page_details_item_desc clearfix">
+
+                                            <div id="divlblbrotherwifeprofession">
+
+                                                <h6>
+                                                    <label id="lblbrotherwifeprofession" font-bold="true">Designation</label></h6>
+                                                <h5>
+                                                    <span id="lblbrotherwifeprofessiondetails">
+                                                    {{ item.SibilingSpouseProfessionDetails}}
+                                            </span>
+                                                </h5>
+                                            </div>
+
+                                        </div>
+                                        <div id="uplwifeprofessioneb" class="edit_page_details_item_desc clearfix" ng-hide="item.SibilingSpouseProfessionDetails=='HouseWife'">
+                                            <h6>
+                                                <label id="wifeprofession" font-bold="true">Company&JobLocation</label></h6>
+                                            <h5>
+                                                <span id="lblwifeprofession">
+                                                    {{ ((item.spoucecompanyName.ToString()!="" && item.spoucecompanyName!=null)?item.spoucecompanyName:"")+((item.spoucejobloc.ToString()!=""
+                                                    && item.spoucejobloc!=null)?","+item.spoucejobloc:"") }}
+                                            </span>
+                                            </h5>
+
+
+                                        </div>
+                                        <div id="update1">
+
+                                            <div id="ownerdiv1">
+                                                <div id="wifenumbers" class="edit_page_details_item_desc clearfix">
+
+                                                    <div id="divspousecontactnumbers">
+
+                                                        <h6>
+                                                            <label id="lblbrotherwife" font-bold="true">Contact Nos</label></h6>
+                                                        <h5>
+                                                            <span id="lblbrotherwifemobnumbers">
+                                                           {{ (item.SibilingSpouceMobileNumberWithCode!==null?item.SibilingSpouceMobileNumberWithCode:'')
+                                                          +((item.SibilingSpouceLandNumberWithCode.ToString()!="" && item.SibilingSpouceLandNumberWithCode!=null)?","+item.SibilingSpouceLandNumberWithCode:"") }}
+                                                    </span>
+                                                        </h5>
+
+                                                    </div>
+
+
+                                                </div>
+                                                <div id="Brotherwife" class="edit_page_details_item_desc clearfix">
+                                                    <h6>
+                                                        <label id="brotherwifeemail" font-bold="true">Email</label></h6>
+                                                    <h5>
+                                                        <span id="lblbrotherwifeemail">
+                                                            {{ item.SpouseEmail }}
+                                                    </span>
+                                                    </h5>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div id="uplWifeFatherfirstnameeb" class="edit_page_details_item_desc clearfix">
+
+                                            <h6>
+                                                <label id="lWifeFatherfirstname" font-bold="true">Spouse Father's Name</label></h6>
+                                            <h5>
+                                                <span id="lblWifeFatherfirstname">
+                                                    {{ item.SibilingSpouseFatherName }}
+                                            </span>
+                                            </h5>
+
+
+                                        </div>
+                                        <div id="brotherspusefathercaste" class="edit_page_details_item_desc clearfix">
+
+                                            <h6>
+                                                <label id="botherwifefathercaste" font-bold="true">Spouse Father Caste</label></h6>
+                                            <h5>
+                                                <span id="lblbotherwifefathercaste">
+                                                    {{ item.SibilingSpouseFatherCaste }}
+                                            </span>
+                                            </h5>
+                                        </div>
+                                        <div id="upBroSpouseFatherNativePlace" class="edit_page_details_item_desc clearfix">
+                                            <h6>
+                                                <label id="BroSpouseFatherNativePlace" font-bold="true">Native Place</label></h6>
+                                            <h5>
+                                                <span id="lblBroSpouseFatherNativePlace">
+                                                   {{((item.BroSpouseFatherCity!=null && item.BroSpouseFatherCity.ToString()!="")?item.BroSpouseFatherCity:"") +
+                                        ((item.BroSpouseFatherDistrictname!=null && item.BroSpouseFatherDistrictname.ToString()!="")?" ,"+item.BroSpouseFatherDistrictname:"" )+
+                                        ((item.BroSpouseFatherStatename!=null && item.BroSpouseFatherStatename.ToString()!="")?" ,"+item.BroSpouseFatherStatename:"" )+
+                                        ((item.BroSpouseFatherCountryname!=null && item.BroSpouseFatherCountryname.ToString()!="")?" ,"+item.BroSpouseFatherCountryname:"" )}}
+                                            </span>
+                                            </h5>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <hr />
+
+                </div>
+
+            </div>
+
+            <div class="edit_page_item_head clearfix">
+                <h4>Sister Details&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2" ng-show="page.model.sisModifiedby!=null && page.model.sisModifiedby!=='' && page.model.sisModifiedby!==undefined">ModifiedBy :{{page.model.sisModifiedby}}</span>
+
+                </h4>
+                <div class="edit_page_item_ui clearfix">
+                    <div id="uplnksisterdet">
+
+                        <a href="javascript:void(0);" ng-click="page.model.sibblingPopulatePopulate('sister')" data-original-title="Add Sister Details" class="edit_page_add_button">Add
+                </a>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="uplistsister" class="edit_page_details_item">
+
+                <div ng-if="page.model.sisterArr" ng-repeat="item in page.model.sisterArr">
+
+                    <div>
+                        <div id="Div2" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
+
+
+                            <div>
+                                <div>
+                                    <div id="uplsisnamees" class="edit_page_details_item_desc clearfix">
+
+                                        <h6>
+                                            <label id="sisname" font-bold="true" style="color:red;">Sister Name
+                                    </label>
+                                        </h6>
+                                        <h5>
+                                            <span id="lblsisname" style="color:red;">
+                                            {{ item.SibilingName+" ("+item.SisterElderORyounger+")"}}
+                                    </span>
+                                        </h5>
+
+
+
+                                    </div>
+                                    <div id="upllnksisteredites" class="edit_page_item_ui clearfix">
+
+                                        <a class="edit_page_edit_button" data-original-title="Edit Sister Details" href="javascript:void(0);" ng-click="page.model.sibblingPopulatePopulate('sister',item)">Edit
+                                         
+                                    </a>
+                                        <a href="javascript:void(0);" class="edit_page_del_button" ng-click="page.model.DeletePopup('sister',item.SibilingCustfamilyID);">Delete</a>
+
+                                    </div>
+                                </div>
+
+                                <div id="sistereducationdetails" class="edit_page_details_item_desc clearfix">
+
+                                    <div>
+
+                                        <h6>
+                                            <label id="lblsistereducation" font-bold="true">Education</label></h6>
+                                        <h5>
+                                            <span id="lblsistereducationdetails">
+                                            {{ item.SibilingEducationDetails}}
+                                    </span>
+                                        </h5>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="edit_page_details_item_desc clearfix">
+                                    <div>
+                                        <h6>
+                                            <label font-bold="true">Profession Category</label></h6>
+                                        <h5>
+                                            <span>
+                                            {{ item.ProfessionCategory}}
+                                    </span>
+                                        </h5>
+                                    </div>
+                                </div>
+
+
+                                <div id="lblsisterprofessiondetails" class="edit_page_details_item_desc clearfix">
+
+                                    <div>
+
+                                        <h6>
+                                            <label id="lblsisterprofession" font-bold="true">Designation</label></h6>
+                                        <h5>
+                                            <span id="lblsisterprofessiondetails">
+                                            {{ item.SibilingProfessionDetails}}
+                                    </span>
+                                        </h5>
+                                    </div>
+
+                                </div>
+                                <div id="uplsisprofes" class="edit_page_details_item_desc clearfix" ng-hide="item.SibilingProfessionDetails=='HouseWife'">
+
+
+
+                                    <h6>
+                                        <label id="sisprof" font-bold="true">Company & Job Location </label></h6>
+                                    <h5>
+                                        <span id="lblsisprof">
+                                            {{ (item.SibilingCompany!==null?item.SibilingCompany:'')+ ((item.SibilingJobPLace.ToString()!="" && item.SibilingJobPLace!=null)?","+item.SibilingJobPLace:"")}}
+                                    </span>
+                                    </h5>
+
+
+
+                                </div>
+                                <div id="update2">
+
+                                    <div id="ownerdiv2">
+
+                                        <div id="uplsisnumbers" class="edit_page_details_item_desc clearfix">
+
+                                            <div>
+
+                                                <h6>
+                                                    <label id="sisnumbers" font-bold="true">Contact Nos</label></h6>
+                                                <h5>
+                                                    <span id="lblsisnumbers">
+                                                    {{ (item.SibilingMobileNumberWithCode!==null?item.SibilingMobileNumberWithCode:'')+
+                                                ((item.SibilngLandnumberwithcode.ToString()!="" && item.SibilngLandnumberwithcode!=null)?","+item.SibilngLandnumberwithcode:"")}}
+                                            </span>
+                                                </h5>
+                                            </div>
+
+                                        </div>
+                                        <div id="sisterwifeemail" class="edit_page_details_item_desc clearfix">
+
+                                            <div>
+
+                                                <h6>
+                                                    <label id="sisteremail" font-bold="true">Email</label></h6>
+                                                <h5>
+                                                    <span id="lblsisteremail">
+                                                    {{ item.SibilingEmail }}
+                                            </span>
+                                                </h5>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div id="pqw">
+
+                                    <div id="Sisterspousedetails" ng-if="item.SibilingMarried==1">
+                                        <div id="uplhusnamees" class="edit_page_details_item_desc clearfix">
+
+                                            <div id="divhusname">
+
+                                                <h6>
+                                                    <label id="husname" font-bold="true" style="font-weight: bold; font-family: helvetica; font-size: 18px">
+                                                Husband Name</label></h6>
+                                                <h5>
+                                                    <span id="lblhusname">
+                                                    {{ item.SibilingSpouseName}}
+                                            </span>
+                                                </h5>
+                                            </div>
+
+                                        </div>
+
+                                        <div id="lblsisterspouseeducation" class="edit_page_details_item_desc clearfix">
+                                            <div id="divlblsisterspouseeducation">
+                                                <h6>
+                                                    <label id="lblsisterspouseeducation" font-bold="true">Education</label></h6>
+                                                <h5>
+                                                    <span id="lbllblsisterspouseeducationdetails">
+                                                    {{ item.SibilingSpouseEducationDetails}}
+                                            </span>
+                                                </h5>
+                                            </div>
+                                        </div>
+
+                                        <div class="edit_page_details_item_desc clearfix">
+                                            <div>
+                                                <h6>
+                                                    <label font-bold="true">Profession Category</label></h6>
+                                                <h5>
+                                                    <span>
+                                            {{ item.SpouseProfessionCategory}}
+                                    </span>
+                                                </h5>
+                                            </div>
+                                        </div>
+
+                                        <div id="lblsisterspouseprofession" class="edit_page_details_item_desc clearfix">
+
+                                            <div id="divlblsisterspouseprofession">
+
+                                                <h6>
+                                                    <label id="lblsisterspouseprofession" font-bold="true">Designation</label></h6>
+                                                <h5>
+                                                    <span id="lblsisterspouseprofessiondetails">
+                                                    {{ item.SibilingSpouseProfessionDetails}}
+                                            </span>
+                                                </h5>
+                                            </div>
+
+                                        </div>
+                                        <div id="uplhusprofes" class="edit_page_details_item_desc clearfix">
+
+                                            <div id="divlblsisterspousecmpy">
+
+                                                <h6>
+                                                    <label id="husprof" font-bold="true">Company&JobLocation</label></h6>
+                                                <h5>
+                                                    <span id="lblhusprof">
+                                                    {{((item.spoucecompanyName.ToString()!="" && item.spoucecompanyName!=null)?" "+item.spoucecompanyName:"")+((item.spoucejobloc.ToString()!="" && item.spoucejobloc!=null)?","+item.spoucejobloc:"") }}
+                                            </span>
+                                                </h5>
+                                            </div>
+
+                                        </div>
+                                        <div id="update3">
+
+                                            <div id="ownerdiv3">
+                                                <div id="husbandnumbers" class="edit_page_details_item_desc clearfix">
+
+                                                    <div id="divmobilesisterhus">
+
+                                                        <h6>
+                                                            <label id="lblsisterhusband" font-bold="true">Conact Nos</label></h6>
+                                                        <h5>
+                                                            <span id="lblhusbandnumbers">
+                                                          {{ (item.SibilingSpouceMobileNumberWithCode!==null?item.SibilingSpouceMobileNumberWithCode:'')+((item.SibilingSpouceLandNumberWithCode.ToString()!="" && item.SibilingSpouceLandNumberWithCode!=null)?","
+                                                            +item.SibilingSpouceLandNumberWithCode:"")}}
+                                                    </span>
+                                                        </h5>
+
+                                                    </div>
+
+
+                                                </div>
+                                                <div id="lblsisterspouseemail" class="edit_page_details_item_desc clearfix">
+
+                                                    <div>
+
+                                                        <h6>
+                                                            <label id="sisterspouseemail" font-bold="true">Email</label></h6>
+                                                        <h5>
+                                                            <span id="lblsisterspouseemail">{{ item.SpouseEmail }}
+                                                    </span>
+                                                        </h5>
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div id="uplhusfathernamees" class="edit_page_details_item_desc clearfix">
+
+                                            <div id="divhusfathernames">
+
+                                                <h6>
+                                                    <label id="husfathernames" font-bold="true">Husband Father Name</label></h6>
+                                                <h5>
+                                                    <span id="lblhusfathername">
+                                                    {{ item.SibilingSpouseFatherName }}
+                                            </span>
+                                                </h5>
+                                            </div>
+
+                                        </div>
+                                        <div id="sisterspousefathercaste" class="edit_page_details_item_desc clearfix">
+
+
+                                            <div id="divsisterspousefathercaste">
+
+                                                <h6>
+                                                    <label id="sisterhusbandfathercaste" font-bold="true">Husband Father Caste</label></h6>
+                                                <h5>
+                                                    <span id="lblsisterSpousefathercaste">
+                                                    {{ item.SibilingSpouseFatherCaste }}
+                                            </span>
+                                                </h5>
+                                            </div>
+
+                                        </div>
+                                        <div id="upSisNativePlace" class="edit_page_details_item_desc clearfix">
+
+                                            <div>
+                                                <h6>
+                                                    <label id="SisSpouseFatherNativePlace" font-bold="true">Native Place</label>
+                                                </h6>
+                                                <h5>
+                                                    <span id="lblSisSpouseFatherNativePlace">
+                                                   {{((item.SisSpousefatherCity!=null && item.SisSpousefatherCity.ToString()!="")?item.SisSpousefatherCity:"") +
+                                        ((item.SisSpouseFatherDistrictname!=null && item.SisSpouseFatherDistrictname.ToString()!="")?" ,"+item.SisSpouseFatherDistrictname:"" )+
+                                        ((item.SisSpouseFatherStatename!=null && item.SisSpouseFatherStatename.ToString()!="")?" ,"+item.SisSpouseFatherStatename:"" )+
+                                        ((item.SisSpouseFatherCountryname!=null && item.SisSpouseFatherCountryname.ToString()!="")?" ,"+item.SisSpouseFatherCountryname:"" )}}
+                                            </span>
+                                                </h5>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--<script type="text/ng-template" id="SibblingCountPopup.html">
+        <form class="EditViewClass" name="sibblingCoutForm" novalidate role="form" ng-submit="page.model.sibblingCountsSubmit(page.model.SibCountObj)">
+            <div class="modal-header">
+                <h3 class="modal-title text-center" id="modal-title">Sibling Details
+                    <a href="javascript:void(0);" ng-click="page.model.cancel();">
+                        <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20"></ng-md-icon>
+                    </a>
+                </h3>
+            </div>
+            <div class="modal-body clearfix pop_content_my" id="modal-body">
+                <ul>
+                    <li class="clearfix form-group">
+                        <label for="lblnoofsiblings" class="pop_label_left">No of Brothers<span style="color: red; margin-left: 3px;">*</span></label>
+                        <div class="pop_controls_right select-box-my input-group">
+                            <select multiselectdropdown ng-model="page.model.SibCountObj.ddlnoofsiblings" ng-change="enableSubmit();" ng-options="item.value as item.label for item in page.model.sibCountsBindArr" required></select>
+                        </div>
+                    </li>
+                    <li class="clearfix form-group" ng-show="page.model.SibCountObj.ddlnoofsiblings!==0">
+                        <label for="lblnoofelderrother" class="pop_label_left">Elder Brother</label>
+                        <div class="pop_controls_right select-box-my">
+                            <select multiselectdropdown ng-model="page.model.SibCountObj.ddlnoofelderrother" ng-change="enableSubmit();" ng-options="item.value as item.label for item in page.model.sibCountsBindArr"></select>
+                        </div>
+                    </li>
+                    <li class="clearfix form-group" ng-show="page.model.SibCountObj.ddlnoofsiblings!==0">
+                        <label for="lblnoofyoungerbrother" class="pop_label_left">Younger Brother</label>
+                        <div class="pop_controls_right select-box-my">
+                            <select multiselectdropdown ng-model="page.model.SibCountObj.ddlnoofyoungerbrother" ng-change="enableSubmit();" ng-options="item.value as item.label for item in page.model.sibCountsBindArr"></select>
+                        </div>
+                    </li>
+
+                    <li class="clearfix form-group">
+                        <label for="lblnoofsisters" class="pop_label_left">No of sisters<span style="color: red; margin-left: 3px;">*</span></label>
+                        <div class="pop_controls_right select-box-my input-group">
+                            <select multiselectdropdown ng-model="page.model.SibCountObj.ddlnoofsisters" ng-change="enableSubmit();" ng-options="item.value as item.label for item in page.model.sibCountsBindArr" required></select>
+                        </div>
+                    </li>
+                    <li class="clearfix form-group" ng-show="page.model.SibCountObj.ddlnoofsisters!==0">
+                        <label for="lblnoofeldersisters" class="pop_label_left">Elder sisters</label>
+                        <div class="pop_controls_right select-box-my">
+                            <select multiselectdropdown ng-model="page.model.SibCountObj.ddlnoofeldersisters" ng-change="enableSubmit();" ng-options="item.value as item.label for item in page.model.sibCountsBindArr"></select>
+                        </div>
+                    </li>
+                    <li class="clearfix form-group" ng-show="page.model.SibCountObj.ddlnoofsisters!==0">
+                        <label for="lblnoofyoungersisters" class="pop_label_left">Younger  sisters</label>
+                        <div class="pop_controls_right select-box-my">
+                            <select multiselectdropdown ng-model="page.model.SibCountObj.ddlnoofyoungersisters" ng-change="enableSubmit();" ng-options="item.value as item.label for item in page.model.sibCountsBindArr"></select>
+                        </div>
+                    </li>
+                    <li class="row">
+                        <br/>
+
+                        <edit-footer></edit-footer>
+                    </li>
+                </ul>
+            </div>
+
+        </form>
+    </script>
+    <script type="text/ng-template" id="brotherModalContent.html">
+        <form class="EditViewClass" name="brotherForm" novalidate role="form" ng-submit="brotherForm.$valid  && page.model.sibBroSubmit(page.model.broObj)" accessible-form>
+            <div class="modal-header">
+                <h3 class="modal-title text-center" id="modal-title">Brother details
+                    <a href="javascript:void(0);" ng-click="page.model.cancel();">
+                        <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20">Delete</ng-md-icon>
+                    </a>
+                </h3>
+            </div>
+            <div class="modal-body clearfix pop_content_my" id="modal-body">
+                <ul>
+                    <li class="clearfix">
+                        <label for="lblElderYounger" style="padding-top: 2%;" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
+
+                        <md-input-container style="font-weight: 700;color:black;">
+                            <md-radio-group ng-required="true" name="rdlBElderYounger" layout="row" ng-model="page.model.broObj.rdlBElderYounger" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                <md-radio-button value="42" class="md-primary">Elder</md-radio-button>
+                                <md-radio-button value="41"> Younger </md-radio-button>
+                            </md-radio-group>
+                            <div ng-messages="brotherForm.rdlBElderYounger.$invalid">
+                                <div ng-if="brotherForm.rdlBElderYounger.$invalid && (brotherForm.$submitted)">This field is required.</div>
+                            </div>
+                        </md-input-container>
+
+                    </li>
+                    <li class="clearfix form-group">
+                        <label for="lblBroName" class="pop_label_left">Name<span style="color: red; margin-left: 3px;">*</span></label>
+                        <div class="pop_controls_right">
+                            <input ng-model="page.model.broObj.txtBName" class="form-control" tabindex="2" maxlength="100" required/>
+                        </div>
+                    </li>
+                    <li class="clearfix form-group">
+                        <label for="lblbrotherreducation" class="pop_label_left">Education</label>
+                        <div class="pop_controls_right">
+                            <input ng-model="page.model.broObj.txtbrotherreducation" class="form-control" tabindex="3" maxlength="150" />
+                        </div>
+                    </li>
+
+
+                    <li class="clearfix form-group">
+                        <label for="lblbroprofessioncat" class="pop_label_left">Profession Category</label>
+                        <div class="pop_controls_right select-box-my input-group">
+                            <select multiselectdropdown ng-model="page.model.broObj.ddlbroprofessionCatgory" typeofdata="'newProfessionCatgory'"></select>
+                        </div>
+                    </li>
+
+
+
+                    <li class="clearfix form-group">
+                        <label for="lblbrotherprofession" class="pop_label_left">Designation</label>
+                        <div class="pop_controls_right">
+                            <input ng-model="page.model.broObj.txtbrotherprofession" class="form-control" tabindex="4" maxlength="200" />
+                        </div>
+                    </li>
+
+                    <li class="clearfix form-group">
+                        <label for="lblwifescmpy" class="pop_label_left">Company Name</label>
+                        <div class="pop_controls_right">
+                            <input ng-model="page.model.broObj.txtBCompanyname" class="form-control" tabindex="5" maxlength="100" />
+                        </div>
+                    </li>
+                    <li class="clearfix form-group">
+                        <label for="lblbrojobloc" class="pop_label_left">Job Location</label>
+                        <div class="pop_controls_right">
+                            <input ng-model="page.model.broObj.txtBJoblocation" class="form-control" tabindex="6" maxlength="100" />
+                        </div>
+                    </li>
+                    <li style="height: 15px;"></li>
+
+                    <contact-directive emailhide="true" dmobile="page.model.broObj.ddlBMObileCountryID" strmobile="page.model.broObj.txtBmobilenumber" dalternative="page.model.broObj.ddlBMObileCountryID2" stralternative="page.model.broObj.txtBmobilenumber2" dland="page.model.broObj.ddlBLandLineCountryID"
+                        strareacode="page.model.broObj.txtBAreCode" strland="page.model.broObj.txtBLandNumber" strmail="page.model.broObj.txtBEmails"></contact-directive>
+
+
+                    <li class="clearfix form-group">
+                        <label for="lblIsMarried" style="padding-top: 2%;" class="pop_label_left">Married<span style="color: red; margin-left: 3px;">*</span></label>
+
+                        <md-input-container style="font-weight: 700;color:black;">
+                            <md-radio-group ng-required="true" name="rdlBIsMarried" ng-change="page.model.BIsMarried(page.model.broObj.rdlBIsMarried);" layout="row" ng-model="page.model.broObj.rdlBIsMarried" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                <md-radio-button value="0"> No </md-radio-button>
+                            </md-radio-group>
+                            <div ng-messages="brotherForm.rdlBIsMarried.$invalid">
+                                <div ng-if="brotherForm.rdlBIsMarried.$invalid && (brotherForm.$submitted)">This field is required.</div>
+                            </div>
+                        </md-input-container>
+
+                    </li>
+                    <div ng-if="page.model.broObj.rdlBIsMarried==1">
+                        <li class="clearfix form-group">
+                            <label for="lblWifeName" class="pop_label_left">Spouse Name</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.broObj.txtBWifeName" class="form-control" tabindex="19" maxlength="100" />
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblWifeEducation" class="pop_label_left">Spouse Education</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.broObj.txtbrotherwifeeducation" class="form-control" tabindex="20" maxlength="150" />
+                            </div>
+                        </li>
+
+                        <li class="clearfix form-group">
+                            <label class="pop_label_left">Profession Category</label>
+                            <div class="pop_controls_right select-box-my input-group">
+                                <select multiselectdropdown ng-model="page.model.broObj.ddlbroSpouseprofessionCatgory" typeofdata="'newProfessionCatgory'"></select>
+                            </div>
+                        </li>
+
+                        <li class="clearfix form-group">
+                            <label for="lblwifescmpy" class="pop_label_left">Spouse Designation</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.broObj.txtbrotherwifeprofession" class="form-control" tabindex="21" maxlength="200" />
+                                <label class="checkbox-inline"><input ng-model="page.model.broObj.chkboxbrotherwifeprofession" type="checkbox" ng-change="page.model.BhousewiseChk(page.model.broObj);"><span>&nbsp;HouseWife</span> </label>
+
+                            </div>
+                        </li>
+
+                        <div id="brothercmpyyy" ng-hide="page.model.broObj.chkboxbrotherwifeprofession==true">
+                            <li class="clearfix form-group">
+                                <label for="lblwifescmpy" class="pop_label_left">Company Name</label>
+                                <div class="pop_controls_right">
+                                    <input ng-model="page.model.broObj.txtBWifeCompanyName" class="form-control" tabindex="23" maxlength="100" />
+                                </div>
+                            </li>
+                            <li class="clearfix form-group">
+                                <label for="lblwifefjobloc" class="pop_label_left">Job Location</label>
+                                <div class="pop_controls_right">
+                                    <input ng-model="page.model.broObj.txtBwifeJoblocation" class="form-control" tabindex="24" maxlength="100" />
+                                </div>
+                            </li>
+                        </div>
+
+
+                        <li style="height: 15px;"></li>
+
+                        <contact-directive emailhide="true" dmobile="page.model.broObj.ddlBWMobileCode" strmobile="page.model.broObj.txtBWifeMobileNumber" dalternative="page.model.broObj.ddlBWMobileCode2" stralternative="page.model.broObj.txtBWifeMobileNumber2" dland="page.model.broObj.ddlBWifeLandLineCountryCode"
+                            strareacode="page.model.broObj.txtBWifeLandLineAreaCode" strland="page.model.broObj.txtBWifeLandLineNumber" strmail="page.model.broObj.txtwifeEmail"></contact-directive>
+
+
+                        <div id="divWifeSurname">
+                            <li class="clearfix form-group">
+
+
+                                <label for="lblwifefathername" class="pop_label_left">Spouse Father SurName</label>
+                                <div class="pop_controls_right">
+
+                                    <input ng-model="page.model.broObj.txtBWifeFatherSurName" class="form-control" tabindex="36" maxlength="50" />
+
+                                </div>
+                            </li>
+                            <li class="clearfix form-group">
+                                <label for="lblNatveWife" class="pop_label_left">Spouse Father Name</label>
+                                <div class="pop_controls_right">
+                                    <input ng-model="page.model.broObj.txtBWWifeFatherName" class="form-control" tabindex="37" maxlength="100" />
+                                </div>
+                            </li>
+
+
+                            <li class="clearfix form-group">
+
+                                <label for="lblspousefatherCaste" class="pop_label_left">Spouse Father Caste</label>
+                                <div class="pop_controls_right select-box-my">
+
+                                    <select multiselectdropdown ng-model="page.model.broObj.ddlborherspousefathercaste" typeofdata="'caste'"></select>
+                                </div>
+                            </li>
+                            <country-directive countryshow="false" dcountry="CountryVal" cityshow="false" othercity="false" dstate="page.model.broObj.ddlBroSpousefatherState" ddistrict="page.model.broObj.ddlBroSpousefatherDistrict"></country-directive>
+
+                            <li class="clearfix form-group">
+                                <label for="lblBroSpouseCity" class="pop_label_left">Native Place</label>
+                                <div class="pop_controls_right select-box-my">
+                                    <input ng-model="page.model.broObj.txtBroSpousefatherCity" <cl></cl>ass="form-control" tabindex="41" maxlength="100" />
+                                </div>
+
+                            </li>
+                        </div>
+                    </div>
+                    <li class="row ">
+
+                        <edit-footer></edit-footer>
+                    </li>
+                </ul>
+
+
+            </div>
+
+        </form>
+    </script>
+
+    <script type="text/ng-template" id="sisterModalContent.html">
+        <form class="EditViewClass" name="sibsisForm" novalidate role="form" ng-submit="sibsisForm.$valid  && page.model.sibSisSubmit(page.model.sisObj)" accessible-form>
+            <div class="modal-header">
+                <h3 class="modal-title text-center" id="modal-title">Sister details
+                    <a href="javascript:void(0);" ng-click="page.model.cancel();">
+                        <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20">Delete</ng-md-icon>
+                    </a>
+                </h3>
+            </div>
+            <div class="modal-body clearfix pop_content_my" id="modal-body">
+                <ul id="ulsibilingsister">
+                    <li class="clearfix">
+                        <label for="lblElderYounger" style="padding-top: 2%;" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
+                        <div class="radio-group-my">
+                            <md-input-container style="font-weight: 700;color:black;">
+                                <md-radio-group ng-required="true" name="rbtSElderyounger" layout="row" ng-model="page.model.sisObj.rbtSElderyounger" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="322" class="md-primary">Elder</md-radio-button>
+                                    <md-radio-button value="321"> Younger </md-radio-button>
+                                </md-radio-group>
+                                <div ng-messages="sibsisForm.rbtSElderyounger.$invalid">
+                                    <div ng-if="sibsisForm.rbtSElderyounger.$invalid && (sibsisForm.$submitted)">This field is required.</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </li>
+                    <li class="clearfix form-group">
+                        <label for="lblSisName" class="pop_label_left">Name<span style="color: red; margin-left: 3px;">*</span></label>
+                        <div class="pop_controls_right">
+                            <input ng-model="page.model.sisObj.txtSisterName" class="form-control" tabindex="2" maxlength="100" required/>
+                        </div>
+                    </li>
+
+                    <li class="clearfix form-group">
+                        <label for="lblsisEducation" class="pop_label_left">Education</label>
+                        <div class="pop_controls_right">
+                            <input ng-model="page.model.sisObj.txtsisEducation" class="form-control" tabindex="3" maxlength="150" />
+                        </div>
+                    </li>
+
+
+                    <li class="clearfix form-group">
+                        <label for="lblbroprofessioncat" class="pop_label_left">Profession Category</label>
+                        <div class="pop_controls_right select-box-my input-group">
+                            <select multiselectdropdown ng-model="page.model.sisObj.ddlsisprofessionCatgory" typeofdata="'newProfessionCatgory'"></select>
+                        </div>
+                    </li>
+
+                    <li class="clearfix form-group">
+                        <label for="lblsisProfession" class="pop_label_left">Designation</label>
+                        <div class="pop_controls_right">
+                            <input ng-model="page.model.sisObj.txtsisProfession" class="form-control" tabindex="4" maxlength="200" />
+                        </div>
+                        <div>
+                            <input ng-model="page.model.sisObj.chksisProfession" type="checkbox" ng-change="page.model.ShousewiseChk(page.model.sisObj);"><span>&nbsp;HouseWife</span>
+                        </div>
+                    </li>
+                    <div id="divsiscmpyyy" ng-hide="page.model.sisObj.chksisProfession==true">
+                        <li class="clearfix form-group">
+                            <label for="lblsisscmpy" class="pop_label_left">Company Name</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtSCompanyName" class="form-control" tabindex="6" maxlength="100" />
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblsissjobloc" class="pop_label_left">Job Location</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtSjobloc" class="form-control" tabindex="7" maxlength="100" />
+                            </div>
+
+                        </li>
+                    </div>
+
+
+                    <div style="height: 15px;"></div>
+
+                    <contact-directive emailhide="true" dmobile="page.model.sisObj.ddlSMobileCountyCodeID" strmobile="page.model.sisObj.txtSMobileNumber" dalternative="page.model.sisObj.ddlSMobileCountyCodeID2" stralternative="page.model.sisObj.txtSMobileNumber2" dland="page.model.sisObj.ddlSLandLineCountryCodeID"
+                        strareacode="page.model.sisObj.txtSAreacoude" strland="page.model.sisObj.txtSNumber" strmail="page.model.sisObj.txtSEmails"></contact-directive>
+
+                    <li class="clearfix">
+                        <label for="lblIsMarried" class="pop_label_left">Is Married<span style="color: red; margin-left: 3px;">*</span></label>
+
+                        <div class="radio-group-my">
+                            <md-input-container style="font-weight: 700;color:black;">
+                                <md-radio-group ng-required="true" name="rdlSIsMarried" layout="row" ng-change="page.model.SIsMarried(page.model.sisObj.rdlSIsMarried);" ng-model="page.model.sisObj.rdlSIsMarried" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                    <md-radio-button value="0"> No </md-radio-button>
+                                </md-radio-group>
+                                <div ng-messages="sibsisForm.rdlSIsMarried.$invalid">
+                                    <div ng-if="sibsisForm.rdlSIsMarried.$invalid && (sibsisForm.$submitted)">This field is required.</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </li>
+
+                    <div id="divSister" ng-if="page.model.sisObj.rdlSIsMarried==1">
+                        <li class="clearfix form-group">
+                            <label for="lblhussisfamilyStatus" class="pop_label_left">Husband Name</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtShusName" class="form-control" tabindex="20" maxlength="100" />
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblHusbandEducation" class="pop_label_left">Husband Education</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtHusbandEducation" class="form-control" tabindex="21" maxlength="150" />
+                            </div>
+                        </li>
+
+
+                        <li class="clearfix form-group">
+                            <label for="lblbroprofessioncat" class="pop_label_left">Profession Category</label>
+                            <div class="pop_controls_right select-box-my input-group">
+                                <select multiselectdropdown ng-model="page.model.sisObj.ddlsisSpouseprofessionCatgory" typeofdata="'newProfessionCatgory'"></select>
+                            </div>
+                        </li>
+
+
+                        <li class="clearfix form-group">
+                            <label for="lblHusbandProfession" class="pop_label_left">Husband Designation</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtHusbandProfession" class="form-control" tabindex="22" maxlength="200" />
+                            </div>
+                        </li>
+
+                        <li class="clearfix form-group">
+                            <label for="lblhuscmpy" class="pop_label_left">Company Name</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtShusCompanyName" class="form-control" tabindex="23" maxlength="100" />
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblhussjobloc" class="pop_label_left">Job Location</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtShusjobloc" class="form-control" tabindex="24" maxlength="100" />
+                            </div>
+                        </li>
+                        <li style="height: 15px;"></li>
+
+                        <contact-directive emailhide="true" dmobile="page.model.sisObj.ddlSHusMobileCountryID" strmobile="page.model.sisObj.txtSHusMobileNumber" dalternative="page.model.sisObj.ddlSHusMobileCountryID2" stralternative="page.model.sisObj.txtSHusMobileNumber2" dland="page.model.sisObj.ddlSHusLandCountryID"
+                            strareacode="page.model.sisObj.txtSHusLandArea" strland="page.model.sisObj.txtSHusLandNumber" strmail="page.model.sisObj.txtHusbandEmail"></contact-directive>
+                        <li class="clearfix form-group">
+                            <label for="lblwifefathername" class="pop_label_left">Husband Father SurName</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtHusbandFatherSurName" class="form-control" tabindex="36" maxlength="50" />
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblNatvehus" class="pop_label_left">Husband Father Name</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtHusbandFatherName" class="form-control" tabindex="37" maxlength="100" />
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+
+                            <label for="lblsisterspousefatherCaste" class="pop_label_left">Husband Father Caste</label>
+                            <div class="pop_controls_right select-box-my">
+
+                                <select multiselectdropdown ng-model="page.model.sisObj.ddlsisterspusefathercaste" typeofdata="'caste'"></select>
+                            </div>
+                        </li>
+
+                        <country-directive countryshow="false" cityshow="false" othercity="false" dcountry="CountryVal" dstate="page.model.sisObj.ddlSisSpouceFatherState" ddistrict="page.model.sisObj.ddlSisSpouceFatherDistrict"></country-directive>
+
+                        <li class="clearfix form-group">
+                            <label for="lblSisSpouceFatherCity" class="pop_label_left">Native Place</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtSisSpouceFatherCity" class="form-control" tabindex="41" maxlength="100" />
+                            </div>
+
+                        </li>
+                    </div>
+                    <li class="row ">
+
+                        <edit-footer></edit-footer>
+                    </li>
+                </ul>
+            </div>
+
+        </form>
+    </script>-->
+
+    <script type="text/ng-template" id="commonSibblingpopup.html">
+        <slide-popup model="page.model" eventtype="page.model.eventType">
+        </slide-popup>
+    </script>
+</div>
+
+<style>
+    .md-dialog-container {
+        z-index: 99999999999;
+    }
+</style>
+<script src="build/js/custom.js" type="text/javascript"></script>

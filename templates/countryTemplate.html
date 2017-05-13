@@ -1,0 +1,36 @@
+<div>
+
+    <li class="clearfix form-group" ng-show="countryshow">
+        <label for="lblCountry" class="pop_label_left">Country<span ng-if="require==true" style="color: red; margin-left: 3px;">*</span></label>
+        <div class="pop_controls_right select-box-my input-group">
+            <select multiselectdropdown ng-model="dcountry" ng-change="changeBind('Country',dcountry);" typeofdata="'Country'" ng-required="require"></select>
+        </div>
+    </li>
+    <li class="clearfix form-group">
+        <label for="State" class="pop_label_left">State<span ng-if="require==true" style="color: red; margin-left: 3px;">*</span></label>
+        <div class="pop_controls_right select-box-my input-group">
+            <select multiselectdropdown ng-model="dstate" ng-options="item.value as item.label for item in stateArr" ng-change="changeBind('State',dstate,dcountry);" ng-required="require"></select>
+        </div>
+    </li>
+    <li class="clearfix form-group">
+        <div id="divEduDistric">
+            <label for="lblDistrict" class="pop_label_left">District<span ng-if="require==true" style="color: red; margin-left: 3px;">*</span></label>
+            <div class="pop_controls_right select-box-my input-group">
+                <select multiselectdropdown ng-model="ddistrict" ng-options="item1.value as item1.label for item1 in districtArr" ng-change="changeBind('District',ddistrict);" ng-required="(dcountry===1 || dcountry==='1')?require:false"></select>
+            </div>
+        </div>
+    </li>
+    <li class="clearfix form-group" ng-show="cityshow">
+        <label for="lblCityworking" class="pop_label_left">City<span ng-if="require==true" style="color: red; margin-left: 3px;">*</span></label>
+
+        <div class="pop_controls_right select-box-my input-group">
+            <div ng-show="!cityinput">
+                <select multiselectdropdown ng-model="dcity" ng-options="item.value as item.label for item in cityeArr" ng-required="cityshow==true?require:false"></select>
+            </div>
+            <div ng-show="othercity">
+                <input ng-model="strothercity" ng-show="cityinput" class="form-control" maxlength="100" />
+                <a id="lnkCity" href="javascript:void(0);" ng-click="ShowCity();">Not in List</a>
+            </div>
+        </div>
+    </li>
+</div>

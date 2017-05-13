@@ -1,0 +1,398 @@
+<div ng-class="'EditViewClass'" class="right_col" style="padding-top: 6%;padding-left: 1%;">
+
+    <div ng-include="'templates/sideMenu.html'">
+    </div>
+
+
+
+    <div class="edit_pages_content_main clearfix">
+
+        <div class="edit_page_item">
+            <div class="edit_page_item_head clearfix">
+                <h4>Spouse Details</h4>
+                <div class="edit_page_item_ui clearfix">
+
+                    <a href="javascrip:void(0);" class="edit_page_add_button" ng-click="page.model.populatepopup('Spouse');">Add
+            </a>
+
+                </div>
+            </div>
+
+            <div class="edit_page_details_item">
+                <div ng-if="page.model.spouseArray" ng-repeat="item in page.model.spouseArray">
+
+                    <div id="reviewdiv" class="edit_page_details_item_desc clearfix">
+
+
+                        <div id="updatespousename" class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <span id="spouseName" font-bold="true">Name</span></h6>
+                            <h5>
+                                <span id="lblspouseName">{{item.NAME}}</span></h5>
+
+                        </div>
+                        <div id="UpdatePanellnkspouseedit" class="edit_page_item_ui clearfix">
+
+                            <a class="edit_page_edit_button" href="javascrip:void(0);" ng-click="page.model.populatepopup('Spouse',item);">Edit
+                    </a>
+
+
+                        </div>
+
+
+                        <div id="UpdatePanelspouseProfession" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="spouseEducation" font-bold="true">Education</span></h6>
+                                <h5>
+                                    <span id="lblspouseEducation">{{item.EducationDetails}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanelspouseProfessionDetails" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="spouseProfessionDetails" font-bold="true">Profession</span></h6>
+                                <h5>
+                                    <span id="lblspouseProfessionDetails">{{item.ProfessionDetails}}</span></h5>
+
+                            </div>
+
+                        </div>
+
+                        <div id="UpdatePanelMarriedon" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="Marriedon" font-bold="true">Married on</span></h6>
+                                <h5>
+                                    <span id="lblMarriedon">{{item.MarriageDate | date:'dd-MM-yyyy'}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanelSeparateddate" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="Separateddate" font-bold="true">Separated date</span></h6>
+                                <h5>
+                                    <span id="lblSeparateddate">
+                                {{item.SeperatedDate  | date:'dd-MM-yyyy'}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanelLegallydivorced" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="Legallydivorced" font-bold="true">Legally divorced</span></h6>
+                                <h5>
+                                    <span id="lblLegallydivorced"></span> {{item.LeagallyDivorce}}
+                                </h5>
+
+                            </div>
+
+                        </div>
+
+                        <div id="UpdatePanelFamilyplanning" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="LabelFamilyplanning" font-bold="true">Family planning</span></h6>
+                                <h5>
+                                    <span id="Familyplanning">{{item.MyFamilyPlanning}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanelDateofegallydivorce" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="Dateoflegallydivorce" font-bold="true">Date of legally divorce</span></h6>
+                                <h5>
+                                    <span id="lblDateoflegallydivorce">{{item.DateofLegallDivorce   | date:'dd-MM-yyyy'}}</span></h5>
+
+                            </div>
+
+                        </div>
+
+                        <div id="UpdatePanelReasonfordivorce" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="Reasonfordivorce" font-bold="true">Reason for divorce</span></h6>
+                                <h5>
+                                    <span id="lblReasonfordivorce">{{item.ReasonforDivorce}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanelFathername" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="Fathername" font-bold="true">Father name</span></h6>
+                                <h5>
+                                    <span id="lblFathername" ng-show="item.FatherFirstName">{{item.FatherFirstName+" "+item.FatherLastName}}</span></h5>
+
+                            </div>
+
+                        </div>
+
+                        <div id="UpdatePanellblNoOfChildrens" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="lblnoofchildrenss" font-bold="true">No Of Children</span></h6>
+                                <h5>
+                                    <span id="lblNoOfChildrens">{{item.NoOfChildrens}}</span></h5>
+
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanelHouseFlatnumber" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="HouseFlatnumber" font-bold="true">House/Flat number</span></h6>
+                                <h5>
+                                    <span id="lblHouseFlatnumber">{{item.HouseFlatNumberID}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanelApartmentname" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="Apartmentname" font-bold="true">Apartmentname</span></h6>
+                                <h5>
+                                    <span id="lblApartmentname">{{item.AppartmentName}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanelStreetname" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="Streetname" font-bold="true">Street name</span></h6>
+                                <h5>
+                                    <span id="lblStreetname">{{item.StreetName}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanelAreaname" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="Areaname" font-bold="true">Area name</span></h6>
+                                <h5>
+                                    <span id="lblAreaname">{{item.AreaName}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanelLandmark" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="lblLandark" font-bold="true">Land mark</span></h6>
+                                <h5>
+                                    <span id="lblLandmark">{{item.LandMark}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanelCountry" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="Country" font-bold="true">Country</span></h6>
+                                <h5>
+                                    <span id="lblCountry">{{item.CountryName}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanelState" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="State" font-bold="true">State</span></h6>
+                                <h5>
+                                    <span id="lblState">{{item.StateName}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanelDistrict" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="District" font-bold="true">District</span></h6>
+                                <h5>
+                                    <span id="lblDistrict">{{item.DistrictName}}</span></h5>
+
+                            </div>
+
+                        </div>
+                        <div id="UpdatePanelCity" class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span id="City" font-bold="true">City</span></h6>
+                                <h5>
+                                    <span id="lblCity">{{item.CityName}}</span></h5>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr />
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="edit_page_item">
+            <div class="edit_page_item_head clearfix">
+                <h4>Children Details </h4>
+                <div class="edit_page_item_ui clearfix">
+                    <div ID="UpdatePanelChildrenDetails">
+
+                        <a href="javascrip:void(0);" ng-click="page.model.populatepopup('Child');" class="edit_page_add_button">Add
+                    </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="edit_page_details_item">
+                <div ID="UpdatePanelfullChildrenDetails">
+
+                    <div ng-if="page.model.ChildArray" ng-repeat="item in page.model.ChildArray">
+
+                        <div id="reviewdiv" class="edit_page_details_item_desc clearfix">
+
+
+                            <div class="edit_page_details_item_desc clearfix">
+
+                                <h6>
+                                    <span ID="Nameofthechild" Font-Bold="true" ForeColor="Red">Name of the child</span></h6>
+                                <h5>
+                                    <span ID="lblNameofthechild">{{item.ChildName}}</span></h5>
+
+                            </div>
+                            <div ID="UpdatePanellnkchidrensedit" class="edit_page_item_ui clearfix">
+
+                                <a href="javascrip:void(0);" ng-click="page.model.populatepopup('Child',item);" class="edit_page_edit_button">Edit
+                                    </a>
+                                <a title="" data-placement="bottom" data-toggle="tooltip" data-original-title="Delete chidrens Details" class="edit_page_del_button">delete
+                                           
+                                    </a>
+
+                            </div>
+
+
+                            <div class="edit_page_details_item_desc clearfix">
+
+                                <div>
+
+                                    <h6>
+                                        <span ID="Genderofthechild" Font-Bold="true">Gender of the child</span></h6>
+                                    <h5>
+                                        <span ID="lblGenderofthechild">{{item.GenderName}}</span></h5>
+
+                                </div>
+
+                            </div>
+                            <div class="edit_page_details_item_desc clearfix">
+
+                                <div>
+
+                                    <h6>
+                                        <span ID="Dateofbirthofthechild" Font-Bold="true">DOB of the child</span></h6>
+                                    <h5>
+                                        <span ID="lblDateofbirthofthechild">{{item.ChildDOB}}</span></h5>
+
+                                </div>
+
+                            </div>
+
+                            <divclass="edit_page_details_item_desc clearfix">
+
+                                <div>
+
+                                    <h6>
+                                        <span ID="Childstayingwith" Font-Bold="true">Child staying with</span></h6>
+                                    <h5>
+                                        <span ID="lblChildstayingwith">{{item.ChildStayingWith}}</span></h5>
+
+                                </div>
+
+                        </div>
+                        <div class="edit_page_details_item_desc clearfix">
+
+                            <div>
+
+                                <h6>
+                                    <span ID="Childstayingwithrelation" Font-Bold="true">Child staying with relation</span></h6>
+                                <h5>
+                                    <span ID="lblChildstayingwithrelation">{{item.ChildernRelationName}}</span></h5>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <hr />
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/ng-template" id="modelContent.html">
+        <slide-popup model="page.model" eventtype="page.model.eventType">
+        </slide-popup>
+    </script>
+
+
+</div>
+<script src="build/js/custom.js" type="text/javascript"></script>

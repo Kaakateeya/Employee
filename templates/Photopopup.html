@@ -1,0 +1,30 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="model.cancel()">×</button>
+        <h4 class="modal-title">Photo Album</h4>
+    </div>
+    <div class="modal-body">
+        <div class="bs-example">
+            <div id="slideshow" class="carousel slide" data-interval="3000" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li ng-repeat="slide in model.SlideArr" data-target="#slideshow" ng-class="$index+1==1?'active':''" data-slide-to="$index+1-1"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div ng-class="($index+1)==1?'item active':'item'" ng-repeat="slide in model.SlideArr">
+                        <img id="imh" ng-src="{{slide.FullPhotoPath}}" style="margin-left: auto;
+    margin-right: auto;"></img>
+                    </div>
+                </div>
+                <a data-target="#slideshow" id="a1" class="carousel-control left" href="javascript:void(0)" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a data-target="#slideshow" id="a2" class="carousel-control right" href="javascript:void(0)" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+            <div ng-hide="true">
+                <img src="http://d16o2fcjgzj2wp.cloudfront.net/Images/HoroscopeImages/86974_HaroscopeImage/86974_HaroscopeImage.jpg" style="height: 500px; width: 500px;">
+            </div>
+        </div>
+    </div>
+</div>

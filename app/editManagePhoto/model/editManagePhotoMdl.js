@@ -2,114 +2,117 @@
     'use strict';
 
 
-    function factory(regManagePhotoService, uibModal, Commondependency, http, fileUpload, stateParams, authSvc, dynamicalert) {
+    function factory(editManagePhotoService, authSvc, alertss, commonFactory, uibModal, http, fileUpload, stateParams, baseService) {
         var model = {};
         model.scope = {};
-        // start declaration
-        var EmpIDQueryString = '2';
-        model.up = {};
+        //start declaration block
+        // var logincustid = authSvc.getCustId();
         var CustID = stateParams.CustID;
-        model.CustIDper = CustID;
-        model.profileid = stateParams.ProfileID;
-        model.photorowID = 0;
-        model.imgArr = [];
+        // logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+        model.loginpaidstatus = authSvc.getpaidstatus();
+        var genderID = 1;
+        //sessionStorage.getItem('CustGenderID');
+
+        // authSvc.getGenderID();
         var loginEmpid = authSvc.LoginEmpid();
         var AdminID = authSvc.isAdmin();
-        //end declaration
+        model.photorowID = 0;
+        model.manageArr = [];
+        //end declaration block
+        model.up = {};
         model.init = function() {
+            CustID = stateParams.CustID;
             model.getData();
             return model;
         };
-        model.cancel = function() {
-            Commondependency.closepopup();
-        };
-
-        model.refreshPageLoad = function(Arr) {
-            _.each(Arr, function(item) {
-                model.rbtProtectPassword = item.PhotoPassword === 'Admin@123' ? '1' : '0';
-                var imagepath = app.accesspathdotsImg;
-
-                if (item.IsActive === 0 && item.PhotoName !== null) {
-                    var strCustDirName1 = "KMPL_" + CustID + "_Images";
-                    var path1 = imagepath + strCustDirName1 + "/" + item.PhotoName;
-                    item.ImageUrl = path1 + '?decache=' + Math.random();
-                    item.addButtonvisible = false;
-                    item.deleteVisibility = true;
-                    item.keyname = strCustDirName1 + "/" + item.PhotoName;
-                }
-                // else if (item.IsActive === 1 && item.IsThumbNailCreated === 1) {
-
-                //     var strCustDirName = "KMPL_" + CustID + "_Images";
-                //     item.addButtonvisible = false;
-                //     item.deleteVisibility = true;
-                //     switch (item.DisplayOrder) {
-                //         case 1:
-                //             var photoshoppath = "Img1_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
-                //             var path = imagepath + strCustDirName + "/" + photoshoppath;
-                //             item.ImageUrl = path;
-                //             item.keyname = strCustDirName + "/" + photoshoppath;
-                //             break;
-                //         case 2:
-                //             var photoshoppathnew = "Img2_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
-                //             var pathnew = imagepath + strCustDirName + "/" + photoshoppathnew;
-                //             item.ImageUrl = pathnew;
-                //             item.keyname = strCustDirName + "/" + photoshoppathnew;
-                //             break;
-                //         case 3:
-                //             var photoshoppathneew3 = "Img3_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
-                //             var pathneww = imagepath + strCustDirName + "/" + photoshoppathneew3;
-                //             item.ImageUrl = pathneww;
-                //             item.keyname = strCustDirName + "/" + photoshoppathneew3;
-                //             break;
-                //     }
-                // }
-                else if (item.IsActive === 0 && item.PhotoName === null) {
-                    item.addButtonvisible = true;
-                    item.deleteVisibility = false;
-                    item.ImageUrl = stateParams.genderID === '1' || stateParams.genderID === 1 ? app.Mnoimage : app.Fnoimage;
-                }
-            });
-            return Arr;
-        };
 
         model.getData = function() {
-
-            regManagePhotoService.getPhotoData(CustID).then(function(response) {
+            editManagePhotoService.getPhotoData(CustID).then(function(response) {
+                var StrCustID = CustID;
+                console.log(response.data);
                 model.manageArr = response.data;
+
                 model.refreshPageLoad(model.manageArr);
             });
         };
 
 
+        model.refreshPageLoad = function(Arr) {
 
+            _.each(Arr, function(item) {
+                genderID = item.GenderID;
+                model.rbtProtectPassword = item.PhotoPassword === 'Admin@123' ? '1' : '0';
+                var imagepath = app.accesspathdotsImg;
+                if (item.IsActive === 0 && item.PhotoName !== null) {
+                    var strCustDirName1 = "KMPL_" + CustID + "_Images";
+                    var path1 = imagepath + strCustDirName1 + "/" + item.PhotoName;
+                    item.ImageUrl = path1 + '?decache=' + Math.random();
+                    //item.ImageUrl = path1;
+                    item.addButtonvisible = false;
+                    item.keyname = strCustDirName1 + "/" + item.PhotoName;
+
+                } else if (item.IsActive === 1 && item.IsThumbNailCreated === 1) {
+
+                    var strCustDirName = "KMPL_" + CustID + "_Images";
+                    item.addButtonvisible = false;
+
+                    switch (item.DisplayOrder) {
+                        case 1:
+                            var photoshoppath = "Img1_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
+                            var path11 = imagepath + strCustDirName + "/" + photoshoppath;
+                            item.ImageUrl = path11;
+                            item.keyname = strCustDirName + "/" + photoshoppath;
+                            break;
+                        case 2:
+                            var photoshoppathnew = "Img2_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
+                            var pathnew = imagepath + strCustDirName + "/" + photoshoppathnew;
+                            item.ImageUrl = pathnew;
+                            item.keyname = strCustDirName + "/" + photoshoppathnew;
+                            break;
+                        case 3:
+                            var photoshoppathneew3 = "Img3_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
+                            var pathneww = imagepath + strCustDirName + "/" + photoshoppathneew3;
+                            item.ImageUrl = pathneww;
+                            item.keyname = strCustDirName + "/" + photoshoppathneew3;
+                            break;
+                    }
+                } else if (item.IsActive === 0 && item.PhotoName === null) {
+                    item.addButtonvisible = true;
+
+                    item.ImageUrl = genderID === '1' || genderID === 1 ? app.Mnoimage : app.Fnoimage;
+                }
+            });
+            return Arr;
+        };
+
+        model.cancel = function() {
+            commonFactory.closepopup();
+        };
 
         model.AddImage = function(index, Cust_Photos_ID, DisplayOrder, IsActive) {
             model.photorowID = index;
             model.Cust_Photos_ID = Cust_Photos_ID;
             model.DisplayOrder = DisplayOrder;
             model.IsActive = IsActive;
-            Commondependency.open('AddimagePopup.html', model.scope, uibModal, 'sm');
+            commonFactory.open('AddimagePopup.html', model.scope, uibModal, 'sm');
         };
         model.upload = function(obj) {
             var extension = (obj.myFile.name !== '' && obj.myFile.name !== undefined && obj.myFile.name !== null) ? (obj.myFile.name.split('.'))[1] : null;
             extension = angular.lowercase(extension);
             var gifFormat = "gif, jpeg, png,jpg";
-
             if (typeof(obj.myFile.name) != "undefined") {
                 var size = parseFloat(obj.myFile.size / 1024).toFixed(2);
                 if (extension !== null && gifFormat.indexOf(angular.lowercase(extension)) === -1) {
-
-                    dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Your uploaded image contains an unapproved file formats.', 4500);
+                    alert('Your uploaded image contains an unapproved file formats.');
                 } else if (size > 4 * 1024) {
-
-                    dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Sorry,Upload Photo Size Must Be Less than 4 mb', 4500);
+                    alert('Sorry,Upload Photo Size Must Be Less than  4 mb');
                 } else {
-
+                    // var extension = ((obj.myFile.name).split('.'))[1];
                     var keyname = app.prefixPathImg + 'KMPL_' + CustID + '_Images/Img' + model.photorowID + '.' + extension;
-
                     fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
+                        console.log(res.status);
                         if (res.status == 200) {
-                            Commondependency.closepopup();
+                            commonFactory.closepopup();
                             model.uploadData = {
                                 GetDetails: {
                                     ID: model.Cust_Photos_ID,
@@ -120,7 +123,7 @@
                                     Password: 0,
                                     IsReviewed: 0,
                                     TempImageUrl: app.GlobalImgPath + keyname,
-                                    IsTempActive: Commondependency.checkvals(model.IsActive) ? model.IsActive : '0',
+                                    IsTempActive: commonFactory.checkvals(model.IsActive) ? model.IsActive : '0',
                                     DeletedImageurl: null,
                                     IsImageDeleted: 0,
                                     PhotoStatus: null,
@@ -134,31 +137,31 @@
                                 }
                             };
 
-                            regManagePhotoService.submituploadData(model.uploadData).then(function(response) {
+                            editManagePhotoService.submituploadData(model.uploadData).then(function(response) {
+                                console.log(response);
                                 if (response.status === 200) {
-
-                                    dynamicalert.timeoutoldalerts(model.scope, 'alert-success', 'Photo uploaded Succesfully', 4500);
                                     model.manageArr = response.data;
                                     model.refreshPageLoad(model.manageArr);
-
+                                    alert('Uploaded Succesfully');
+                                    //alertss.timeoutoldalerts(model.scope, 'alert-success', 'Uploaded Succesfully', 4500);
                                 } else {
-                                    dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Updation failed', 4500);
+                                    alert('Uploaded failed');
+                                    // alertss.timeoutoldalerts(model.scope, 'alert-success', 'Uploaded failed', 4500);
                                 }
                             });
-
                         }
                     });
                 }
             } else {
-
-                dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'This browser does not support HTML5.', 4500);
+                alert("This browser does not support HTML5.");
             }
+
         };
 
         model.DeleteImage = function(key, Cust_Photoid) {
             model.deleteKey = key;
             model.DCust_Photos_ID = Cust_Photoid;
-            Commondependency.open('deleteimagePopup.html', model.scope, uibModal, 'sm');
+            commonFactory.open('deleteimagePopup.html', model.scope, uibModal, 'sm');
         };
 
         model.Delete = function() {
@@ -167,36 +170,39 @@
 
             });
 
-            regManagePhotoService.linqSubmits(model.DCust_Photos_ID, 3).then(function(response) {
-
+            editManagePhotoService.linqSubmits(model.DCust_Photos_ID, 3).then(function(response) {
                 if (response.data === 1) {
-                    Commondependency.closepopup();
+                    commonFactory.closepopup();
                     model.getData();
                 }
             });
         };
+
         model.setAsProfilePic = function(cust_photoID) {
-            regManagePhotoService.linqSubmits(cust_photoID, 2).then(function(response) {
+            editManagePhotoService.linqSubmits(cust_photoID, 2).then(function(response) {
+                console.log(response.data);
 
                 if (response.data === 1) {
-                    Commondependency.closepopup();
                     model.getData();
                 }
             });
         };
+
         model.setPhotoPassword = function(obj) {
-            regManagePhotoService.linqSubmits(CustID, obj).then(function(response) {
+
+            editManagePhotoService.linqSubmits(CustID, obj).then(function(response) {
+                console.log(response);
                 if (response.data === 1) {
+
                     if (obj === '1') {
-                        dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Protect with Password  Uploaded Successfully', 4500);
+                        alert('Protect with Password  Uploaded Successfully');
                     } else {
-                        dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Protect with Password Removed Successfully', 4500);
+                        alert('Protect with Password Removed Successfully');
                     }
                 }
             });
 
         };
-
 
         model.redirectPage = function(type) {
 
@@ -219,8 +225,8 @@
 
     angular
         .module('Kaakateeya')
-        .factory('regManagePhotoModel', factory);
+        .factory('editManagePhotoModel', factory);
 
-    factory.$inject = ['regManagePhotoService', '$uibModal', 'Commondependency', '$http', 'fileUpload', '$stateParams', 'authSvc', 'alert'];
+    factory.$inject = ['editManagePhotoService', 'authSvc', 'alert', 'commonFactory', '$uibModal', '$http', 'fileUpload', '$stateParams', 'baseService'];
 
 })(angular);

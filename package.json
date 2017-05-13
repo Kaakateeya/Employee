@@ -25,8 +25,7 @@
         "multi-select": "*",
         "ng-numbers-only": "latest",
         "request-ip": "^2.0.1",
-        "underscore": "latest",
-        "editviewapp": "git://github.com/Kaakateeya/EmpEditView.git#dynamicEdits"
+        "underscore": "latest"
     },
     "devDependencies": {
         "angular-animate": "1.5.8",

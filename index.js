@@ -11,11 +11,12 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ngAnimate', 'ngIdle', 'ngMaterial',
     'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate',
     'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons',
-    'KaakateeyaEmpEdit', 'ngPrint', 'ui.date'
+    'ngPrint', 'ui.date'
 ]);
 // 'KaakateeyaEmpReg',
+//  'KaakateeyaEmpEdit',
 app.apiroot = 'http://183.82.0.58:8025/Api/';
-//app.apirootold = 'http://183.82.0.58:8010/Api/';
+app.apipathold = 'http://183.82.0.58:8010/Api/';
 app.env = "dev";
 app.payfixedAmt = 100;
 app.paypoints = 10;
@@ -35,7 +36,9 @@ app.accesspathdots = app.GlobalImgPathforimage + app.prefixPath;
 app.BucketName = 'kaakateeyaprod';
 
 app.S3PhotoPath = app.GlobalImgPath + 'Images/ProfilePics/';
+
 app.accesspathdotsImg = app.GlobalImgPathforimage + app.S3PhotoPath;
+app.prefixPathImg = 'Images/ProfilePics/';
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider',
     function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
@@ -58,7 +61,22 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'basicRegistration', name: 'base.basicRegistration', url: '/Registration' },
             { routeName: 'secondaryRegistration', name: 'base.secondaryRegistration', url: '/secondaryReg/:CustID/:ProfileID/:fn/:ln/:countryID/:genderID' },
             { routeName: 'regManagePhoto', name: 'base.regManagePhoto', url: '/ManagePhoto/:CustID/:ProfileID/:genderID' },
+
+            { routeName: 'editEducation', name: 'base.editEducation', url: '/Education/:CustID' },
+            { routeName: 'editManagePhoto', name: 'base.editManagePhoto', url: '/ManagePhoto/:CustID' },
+            { routeName: 'editParent', name: 'base.editParent', url: '/Parent/:CustID' },
+            { routeName: 'editPartnerpreference', name: 'base.editPartnerpreference', url: '/Partnerpreference/:CustID' },
+            { routeName: 'editSibbling', name: 'base.editSibbling', url: '/Sibbling/:CustID' },
+            { routeName: 'editAstro', name: 'base.editAstro', url: '/Astro/:CustID', subname: ['common/services/fileUploadSevice.js', 'common/directives/fileUploadDirective.js'] },
+            { routeName: 'editProperty', name: 'base.editProperty', url: '/Property/:CustID' },
+            { routeName: 'editRelative', name: 'base.editRelative', url: '/Relative/:CustID' },
+            { routeName: 'editReference', name: 'base.editReference', url: '/Reference/:CustID' },
+            { routeName: 'editSpouse', name: 'base.editSpouse', url: '/Spouse/:CustID', subname: ['common/directives/datePickerDirective.js'] },
+            { routeName: 'editContact', name: 'base.editContact', url: '/Contact/:CustID' },
+            { routeName: 'editOfcePurpose', name: 'base.editOfcePurpose', url: '/OfcePurpose/:CustID' },
+            { routeName: 'editProfileSetting', name: 'base.editProfileSetting', url: '/ProfileSetting/:CustID' }
         ];
+
         $ocLazyLoadProvider.config({
             debug: true
         });
@@ -116,7 +134,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'common/services/helpService.js',
                         'common/services/route.js',
                         'common/services/getArrayService.js',
-                        'common/services/selectBindServices.js'
+                        'common/services/selectBindServices.js',
+                        'common/services/selectBindServicesEdit.js',
+                        'constants/arrayBindConstatnsEdit.js',
+                        'common/services/fileuploadservice.js'
                     ]
                 },
                 {
@@ -138,7 +159,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/matchfollowupTicketDirective.js',
                         'directives/fileUploadDirective.js',
                         'directives/commondependency.js',
-                        'directives/fileUploadDirective.js'
+                        'directives/fileUploadDirective.js',
+                        'directives/commonFactory.js',
+                        'directives/contactDirecrive.js',
+                        'directives/countryDirective.js',
+                        'directives/pageReviewDirective.js',
+                        'directives/datePickerDirectiveEdit.js'
                     ]
                 },
                 {
@@ -179,8 +205,24 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/matchfollowup-ticket/service/svc.js',
                         'directives/matchfollowup-ticket/directive.js'
                     ]
+                },
+                {
+                    name: 'EditSideMenu-base',
+                    files: [
+                        'app/base/controller/basectrl.js',
+                        'app/base/model/baseMdl.js',
+                        'app/base/service/baseservice.js'
+                    ]
+                },
+                {
+                    name: 'EditSlide-popup',
+                    files: [
+                        'directives/slidePopup/config.js',
+                        'directives/slidePopup/directive.js',
+                        'directives/slidePopup/service.js',
+                        'directives/slidePopup/css/style.css'
+                    ]
                 }
-
             ]
         });
 
@@ -198,6 +240,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     $ocLazyLoad.load('Expressintrst');
                     $ocLazyLoad.load('marketing-slide');
                     $ocLazyLoad.load('matchfollowup-ticket');
+                    $ocLazyLoad.load('EditSideMenu-base');
+                    $ocLazyLoad.load('EditSlide-popup');
                 }]
             }
         });

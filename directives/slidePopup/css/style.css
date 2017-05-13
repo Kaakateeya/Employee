@@ -1,0 +1,19 @@
+.pop_content_my .select-box-my-double .btn-group {
+  float: left;
+  width: 45% !important;
+  margin: 0 1% 0 0 !important; }
+
+.pop_content_my .select-box-my-double input {
+  width: 48% !important;
+  float: left;
+  margin: 1% 0% 1% 0% !important; }
+
+.parentheader {
+  background: #E6E4E4;
+  padding: 10px 10px;
+  border-radius: 3px;
+  color: #A00201;
+  text-transform: capitalize;
+  font-size: 14px; }
+
+/*# sourceMappingURL=style.css.map */
