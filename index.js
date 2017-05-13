@@ -14,7 +14,7 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'KaakateeyaEmpReg', 'KaakateeyaEmpEdit', 'ngPrint', 'ui.date'
 ]);
 app.apiroot = 'http://183.82.0.58:8025/Api/';
-app.apirootold = 'http://183.82.0.58:8010/Api/';
+//app.apirootold = 'http://183.82.0.58:8010/Api/';
 app.env = "dev";
 app.payfixedAmt = 100;
 app.paypoints = 10;

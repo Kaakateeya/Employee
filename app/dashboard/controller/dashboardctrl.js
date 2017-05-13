@@ -1,7 +1,7 @@
  (function(angular) {
      'use strict';
 
-     function Controller(dashboardModel, scope, dashboardServices, commonpage, alerts) {
+     function Controller(dashboardModel, scope, dashboardServices, commonpage, alerts, authSvc) {
          var vm = this,
              model;
          var currentIndex = 1;
@@ -19,7 +19,10 @@
              model.emailbounce = null;
              model.uploadfromsubmit = false;
              model.Custidbounce = null;
-             model.slideshowfunction(false);
+             model.landingItems = [];
+             //model.slideshowfunction(false);
+             model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+             model.empBranchID = authSvc.empBranchID() !== undefined && authSvc.empBranchID() !== null && authSvc.empBranchID() !== "" ? authSvc.empBranchID() : "";
              model.init();
              // commonpage.showPopup('dashboardslide.html', scope, 'lg', "modalclassdashboard");
          };
@@ -70,6 +73,6 @@
              model.tickethistorypopup(ticketid);
          });
      }
-     angular.module('Kaakateeya').controller('dashboardCtrl', ['dashboardModel', '$scope', 'dashboardServices', 'modelpopupopenmethod', 'alert', Controller]);
+     angular.module('Kaakateeya').controller('dashboardCtrl', ['dashboardModel', '$scope', 'dashboardServices', 'modelpopupopenmethod', 'alert', 'authSvc', Controller]);
 
  })(angular);
