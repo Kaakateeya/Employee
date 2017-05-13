@@ -11,8 +11,9 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ngAnimate', 'ngIdle', 'ngMaterial',
     'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate',
     'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons',
-    'KaakateeyaEmpReg', 'KaakateeyaEmpEdit', 'ngPrint', 'ui.date'
+    'KaakateeyaEmpEdit', 'ngPrint', 'ui.date'
 ]);
+// 'KaakateeyaEmpReg',
 app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.apirootold = 'http://183.82.0.58:8010/Api/';
 app.env = "dev";
@@ -27,16 +28,19 @@ app.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
 app.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
 //app.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/angularkaknew/';
 app.prefixPath = 'Images/SettlementImages/';
-app.S3PhotoPath = app.GlobalImgPath + 'Images/ProfilePics/';
+
 app.Mnoimage = app.GlobalImgPath + "Images/customernoimages/Mnoimage.jpg";
 app.Fnoimage = app.GlobalImgPath + "Images/customernoimages/Fnoimage.jpg";
 app.accesspathdots = app.GlobalImgPathforimage + app.prefixPath;
 app.BucketName = 'kaakateeyaprod';
 
+app.S3PhotoPath = app.GlobalImgPath + 'Images/ProfilePics/';
+app.accesspathdotsImg = app.GlobalImgPathforimage + app.S3PhotoPath;
+
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider',
     function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
         var states = [
-            // { routeName: 'base', name: 'base', abstract: true },
+            //{ routeName: 'base', name: 'base', abstract: true },
             { routeName: 'login', name: 'base.login', url: '/', isloginrequired: false },
             { routeName: 'dashboard', name: 'base.dashboard', url: '/dashboardpage', isloginrequired: true, module: 'dashboard' },
             { routeName: 'searchpage', name: 'base.searchpage', url: '/search/:id/:Profileid', isloginrequired: true },
@@ -50,7 +54,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'matchFollowup', name: 'base.matchFollowup', url: '/matchFollowuppage', isloginrequired: true },
             { routeName: 'marketing', name: 'base.marketing', url: '/marketingpage', isloginrequired: true },
             { routeName: 'bootstrapSlide', name: 'base.bootstrapSlide', url: '/bootstrapSlideshow', isloginrequired: true, module: 'complex-slide' },
-            { routeName: 'bootstrapPopup', name: 'base.bootstrapPopup', url: '/bootstrapPopups', isloginrequired: true, module: 'complex-popup' }
+            { routeName: 'bootstrapPopup', name: 'base.bootstrapPopup', url: '/bootstrapPopups', isloginrequired: true, module: 'complex-popup' },
+            { routeName: 'basicRegistration', name: 'base.basicRegistration', url: '/Registration' },
+            { routeName: 'secondaryRegistration', name: 'base.secondaryRegistration', url: '/secondaryReg/:CustID/:ProfileID/:fn/:ln/:countryID/:genderID' },
+            { routeName: 'regManagePhoto', name: 'base.regManagePhoto', url: '/ManagePhoto/:CustID/:ProfileID/:genderID' },
         ];
         $ocLazyLoadProvider.config({
             debug: true
@@ -107,7 +114,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'common/services/dependencyservices.js',
                         'common/services/getArray.js',
                         'common/services/helpService.js',
-                        'common/services/route.js'
+                        'common/services/route.js',
+                        'common/services/getArrayService.js',
+                        'common/services/selectBindServices.js'
                     ]
                 },
                 {
@@ -126,12 +135,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/marketingticket.js',
                         'directives/marketHistryDirective.js',
                         'directives/newdatePicker.js',
-                        'directives/matchfollowupTicketDirective.js'
+                        'directives/matchfollowupTicketDirective.js',
+                        'directives/fileUploadDirective.js',
+                        'directives/commondependency.js',
+                        'directives/fileUploadDirective.js'
                     ]
                 },
                 {
                     name: 'constants',
-                    files: ['constants/arrayConstants.js']
+                    files: ['constants/arrayConstants.js', 'constants/arrayBindConstatns.js']
                 },
                 {
                     name: 'modules',

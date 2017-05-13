@@ -1,0 +1,253 @@
+<!--md-select.md-default-theme.ng-invalid.ng-touched .md-select-value,
+    md-select.ng-invalid.ng-touched .md-select-value {
+        color: rgb(221, 44, 0)!important;
+        border-bottom-color: rgb(221, 44, 0)!important;
+        font-size: 16px;
+    }-->
+<div class="right_col" role="main">
+    <div>
+
+        <div class="col-lg-12">
+            <h4 class="col-lg-2" style="color:#A00201;">
+                <label> Registration</label></h4>
+            <div class="col-lg-3">
+                <h5><span style="color:black;">Your ProfileID:</span> {{page.model.profileid}}</h5>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="regmain">
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <h6 style="font-size: 21px;">Upload Your Recent Photos For Better Response</h6>
+                </div>
+                <div class="col-lg-2">
+                    <md-button class="md-raised md-warn md-hue-2" href="Education/{{page.model.CustIDper}}">Edit This Profile</md-button>
+                </div>
+            </div>
+            <div class="dragzone">
+                <div class="pics_selected_list_main clearfix">
+                    <div class="pics_selected_list_main_lt clearfix">
+                        <p class="clearfix"><span>Upload Your Three Different Photos</span></p>
+                        <div id="dtimagephoto" class="clearfix" ng-repeat="item in page.model.manageArr" style="width:33%;float:left;">
+                            <div class="photos">
+                                <div class="pics_selected_list_itemreg">
+                                    <div ng-class="item.IsActive == 0 && item.PhotoName !== null?'cssMaskdiv clearfix':''">
+                                        <img ng-model="page.model.imgPhotoName" ng-src="{{item.ImageUrl}}" />
+                                    </div>
+
+                                    <div class="pics_selected_list_item_ui clearfix">
+                                        <div class="photos_icon">
+                                            <!--<input type="image" id="imgAdd" alt="add" ng-click="page.model.AddImage($index+1,item.Cust_Photos_ID,item.DisplayOrder,item.IsActive);" ng-show="{{item.addButtonvisible}}" />-->
+                                            <a href="javascript:void(0);" ng-click="page.model.AddImage($index+1,item.Cust_Photos_ID,item.DisplayOrder,item.IsActive);" ng-show="{{item.addButtonvisible}}">
+                                                <ng-md-icon icon="add_a_photo" style="fill:#665454" size="25">Add</ng-md-icon>
+                                            </a>
+
+                                            <a href="javascript:void(0);" ng-show="{{item.IsMain==1?false:(item.PhotoName!=null?true:false)}}" ng-click="page.model.DeleteImage(item.keyname,item.Cust_Photos_ID);">
+                                                <ng-md-icon icon="delete" style="fill:#665454" size="25">Delete</ng-md-icon>
+                                            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a href="javascript:void(0);" class="set_pic" ng-click="page.model.setAsProfilePic(item.Cust_Photos_ID);" style="color:#665454;font-weight:bold;" ng-show='{{item.IsMain=="1"?false:(item.PhotoName!=null?true:false) }}'>
+                                            Set as Profilepic
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clear"></div>
+                        <div class="edit_page_photo_manage_submit" ng-hide="true">
+                            <div class="edit_page_photo_manage_protect pull-left clearfix" id="divPassword">
+                                <label class="">
+                                <div class="radio_my2 clearfix">
+                                <label style="font-size: 14px !important; font-weight: 400;"> Protect with Password :</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                                <md-radio-group layout="row" ng-model="page.model.rbtProtectPassword" class="md-block" flex-gt-sm ng-disabled="manageakerts" ng-change="setPhotoPassword(rbtProtectPassword);">
+                                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                    <md-radio-button value="0"> No </md-radio-button>
+                                </md-radio-group>
+                            </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo_upload_instrctns_list clearfix">
+                    <a ID="phtoguide" href="javascript:void(0);" ng-click="page.model.redirectPage('PhotoGuideLines');">Photo guidelines
+                        </a>
+                    <a ID="photofaq" href="javascript:void(0);" ng-click="page.model.redirectPage('Faqs');">Photo faq’s
+                        </a>
+                    <a ID="photoupload" href="javascript:void(0);" ng-click="page.model.redirectPage('uploadTips');">Photo upload tips
+                        </a>
+                </div>
+            </div>
+
+            <div class="my_photos_main_block2 clearfix">
+                <div class="clearfix pics_incorrect_list">
+                    <h3>Such Photos cannot be Uploaded</h3>
+                    <table id="DataList3" class="clearfix" style="border-collapse: collapse;" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img id="DataList3_ctl00_images" src="src\images/Side-face.png">
+                                    <p>
+                                        Side Face
+                                    </p>
+
+                                </td>
+                                <td>
+                                    <img id="DataList3_ctl01_images" src="src\images/Blir.png">
+                                    <p>
+                                        Blur
+                                    </p>
+
+                                </td>
+                                <td>
+                                    <img id="DataList3_ctl02_images" src="src\images/Group-photos.png">
+                                    <p>
+                                        Group Photo
+                                    </p>
+
+                                </td>
+                                <td>
+                                    <img id="DataList3_ctl03_images" src="src\images/Water-mark.png">
+                                    <p>
+                                        Watermark
+                                    </p>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pics_selected_list_main_rt clearfix pics_correct_list">
+                    <h3>Photos that can be uploaded</h3>
+                    <table id="DataList2" class="clearfix" style="border-collapse: collapse;" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img id="DataList2_ctl00_images" src="src\images/Close-up.png">
+                                    <p>
+                                        Close Up
+                                    </p>
+                                </td>
+                                <td>
+                                    <img id="DataList2_ctl01_images" src="src\images/Fulsize.png">
+                                    <p>
+                                        Full Size
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="clear">&nbsp;</div>
+            </div>
+            <div class="my_photos_main_block3">
+                <p>
+                    <img src="src/images/whatsup.png" alt="Mail" style="width: 50px; height: 40px;">Whatsup your photos to
+                    <span>91-9848535373</span> - Kindly mention your Profile ID and name
+                </p>
+                <p>
+                    <img src="src/images/icon_email.png" alt="Mail">Can also Email your photos to <span>photos@telugumarriages.com</span> - Kindly mention your Profile ID and name
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<script type="text/ng-template" id="AddimagePopup.html">
+    <form name="uploadForm" novalidate role="form" ng-submit="page.model.upload(page.model.up);">
+        <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-title">Upload Photo </h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <ul id="ulprofession">
+                <input type="file" file-model="page.model.up.myFile" />
+            </ul>
+        </div>
+
+        <div class="modal-footer">
+            <input value="Upload" class="btn btn-success" type="submit">
+            <input value="Cancel" class="btn btn-danger" ng-click="page.model.cancel();" type="button">
+        </div>
+
+    </form>
+</script>
+
+<script type="text/ng-template" id="deleteimagePopup.html">
+    <form name="uploadForm" novalidate role="form" ng-submit="page.model.Delete(up);">
+        <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-title">Delete Photo </h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <div class="text-center">Are you sure to delete photo?</div>
+        </div>
+        <div class="modal-footer">
+            <input value="Close" class="btn btn-success" ng-click="page.model.cancel();" type="button">
+            <input value="Delete" class="btn btn-danger" type="submit">
+        </div>
+    </form>
+
+</script>
+</div>
+
+<style>
+    .cssMaskdiv {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+    }
+    
+    .cssMaskdiv:after {
+        background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+        color: #ffffff;
+        content: "Under Review";
+        display: block;
+        font-size: 14px;
+        /* height: 100%; */
+        left: 0;
+        padding: 50% 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+    }
+    
+    .linkdisableCls {
+        pointer-events: none;
+        cursor: default;
+    }
+    
+    .profile_own_menu ul li:hover ul {
+        top: 25px;
+        opacity: 1;
+        display: none;
+    }
+    
+    .regmain {
+        border: solid 1px #ccc;
+        border-radius: 5px;
+        padding: 7px;
+    }
+    
+    .md-input-focused>md-select.ng-invalid.ng-touched .md-select-value {
+        color: rgb(221, 44, 0)!important;
+        border-bottom-color: rgb(221, 44, 0)!important;
+        font-size: 18px;
+    }
+    
+    md-input-container.md-input-focused:not(.md-input-has-value) md-select.md-default-theme .md-select-value,
+    md-input-container.md-input-focused:not(.md-input-has-value) md-select .md-select-value,
+    md-input-container.md-input-focused:not(.md-input-has-value) md-select.md-default-theme .md-select-value.md-select-placeholder,
+    md-input-container.md-input-focused:not(.md-input-has-value) md-select .md-select-value.md-select-placeholder {
+        color: rgb(63, 81, 181);
+        font-size: 18px;
+    }
+</style>
