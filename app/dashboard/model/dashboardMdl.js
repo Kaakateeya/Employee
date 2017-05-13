@@ -87,8 +87,6 @@
             }
         };
         model.init = function() {
-            model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-            model.empBranchID = authSvc.empBranchID() !== undefined && authSvc.empBranchID() !== null && authSvc.empBranchID() !== "" ? authSvc.empBranchID() : "";
             if (model.empid !== null && model.empid !== "" && model.empBranchID !== null && model.empBranchID !== "") {
                 model.tabledata(model.empid, model.empBranchID, 1, 5, '', 'pageload', undefined, 0);
             }
