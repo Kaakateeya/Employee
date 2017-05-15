@@ -163,7 +163,7 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
                 Password: password
             };
             return $injector.invoke(function($http) {
-                return $http.post(regapp.apipath + 'DB/userLogin/person', body)
+                return $http.post(app.apiroot + 'DB/userLogin/person', body)
                     .then(function(response) {
                         if (response.status === 200) {
                             return { success: true, response: response.data };
