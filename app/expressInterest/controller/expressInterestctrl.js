@@ -5,7 +5,7 @@
          var vm = this;
 
          vm.init = function() {
-             vm.model = expressInterestModel();
+             vm.model = expressInterestModel;
              vm.model.scope = scope;
              vm.model.exiObj = {};
              vm.model.exiObj.rbtnSendSms = 1;
