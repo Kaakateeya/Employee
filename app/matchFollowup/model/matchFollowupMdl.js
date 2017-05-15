@@ -3,6 +3,8 @@
 
     function factory($http, getArray, timeout, matchFollowupServices, config,
         authSvc, Commondependency, modelpopupopenmethod, alertss, arrayConstants, SelectBindServiceApp) {
+         return function() {
+       
         var model = {};
         model = config;
         model.proceed = {};
@@ -553,6 +555,7 @@
 
         return model;
     }
+        }
     angular
         .module('Kaakateeya')
         .factory('matchFollowupModel', factory);

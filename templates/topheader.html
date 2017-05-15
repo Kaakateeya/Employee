@@ -34,7 +34,7 @@
                             <li><a href="editViewprofileurl">Edit/View Profile</a></li>
                             <li><a href="javascript:void(0)" ng-hide="true">Registration Validation</a></li>
                             <!--<li><a href="EmployeePayments">Payment Details</a></li>-->
-                            <li><a href="Viewfullprofile/0">Customer New Admin Profile</a></li>
+                            <li><a href="employeeViewfullprofiles/0">Customer New Admin Profile</a></li>
                             <li><a href="expressInterestpage">Expressinterest</a></li>
                             <!--<li class="has-sub"><a href="#">SUB SUB LIST</a>
                                 <ul>
@@ -92,7 +92,7 @@
         </div>
     </div>
     <script type="text/ng-template" id="loginContent.html">
-        <form id="loginnewidcc" name="loginForm" novalidate role="form" style='z-index: 99999'>
+        <div id="loginnewidcc" style='z-index: 99999'>
             <div class="login">
                 <div class="login-box">
                     <div class="login-border">
@@ -103,65 +103,68 @@
                                     <span class="textlogo"><span class="title">Kaakateeya Marraiages</span> </span>
                                 </div>
                             </div>
-                            <form name="loginForm" novalidate>
+                            <form name="loginForm"  novalidate ng-submit="loginForm.$valid?head.loginsubmit(head):''">
                                 <div class="login-inside">
-                                    <div class="login-data">
+                                    <div class="login-data" ng-hide="!page.model.lockscreendiv">
                                         <div class="row clear">
                                             <label for="user">
                                                User Name:</label>
-                                            <input ng-readonly="true" ng-keyup="loginForm.$valid && $event.keyCode == 13 && head.loginsubmit(head,loginForm.usernameemployee.$error,loginForm.passwordemployee.$error,loginForm.$valid)" type="text" class="text" ng-model="head.usernameemployeeid" name="usernameemployee"
-                                                required>
-                                            <div ng-show="head.model.usernameemployeepop" ng-messages="loginForm.usernameemployee.$error" style="color: red;">
-                                                <div ng-message="required">This is required.</div>
-                                            </div>
+                                            <input ng-readonly="true" type="text" class="text" ng-model="head.usernameemployeeid" name="usernameemployee" required>
                                         </div>
                                         <div class="row clear">
                                             <label for="password">
-                                           Password:</label>
-
-                                            <input focus-me="true" ng-keyup="loginForm.$valid && $event.keyCode == 13 && head.loginsubmit(head,loginForm.usernameemployee.$error,loginForm.passwordemployee.$error,loginForm.$valid)" type="Password" class="text" ng-model="head.passwordemployee" name="passwordemployee"
-                                                required>
-                                            <div style="color: red;" ng-show="head.model.usernameemployeepasswordpop" ng-messages="loginForm.passwordemployee.$error">
-                                                <div ng-message="required">This is required.</div>
-                                            </div>
+                                           Password:
+                                          </label>                                           
+                                            <input ng-focus="true" type="Password" class="text" ng-model="head.passwordemployee" name="passwordemployee" required> 
+                                            <div ng-if="loginForm.passwordemployee.$dirty && loginForm.passwordemployee.$error.required" ng-message="true">Required</div>
                                         </div>
-                                        <button ng-click="head.loginsubmit(head,loginForm.usernameemployee.$error,loginForm.passwordemployee.$error,loginForm.$valid)" class="button">Login</button>
+                                        <button type="submit" class="button">Login</button>
+                                    </div>
+                                    <div class="login-data" ng-hide="page.model.lockscreendiv">
+                                        <div class="row clear">
+                                            <div class="row">
+                                                {{head.name}} Is Locked
+                                            </div>
+                                            <div class="clearfix">
+                                            </div>
+                                            <br>
+                                            <button ng-click="page.model.lockscreendiv=true" class="button">Unlock</button>
+                                        </div>
                                     </div>
                                     <div class="pull-right"> {{head.CurrentDate | date:'dd MMMM yyyy hh.mm.ss'}},{{head.CurrentDate |date:'EEEE'}}</div>
                                 </div>
+                                <div class="login-footer">
+                                    <div class="row">
+                                        <div class="col-lg-3  col-lg-offset-1">
+                                            <label style="color:#ffffff;font-size: 14px;">AP:</label>
+                                            <label style="color:#ffffff;font-size: 14px;">{{head.logincounts[0].LoggedCount!==undefind?head.logincounts[0].LoggedCount:0}}-{{head.logincounts[0].EmpCount!==undefined?head.logincounts[0].EmpCount:0}}</label>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label style="color:#ffffff;font-size: 14px;">TN:</label>
+                                            <label style="color:#ffffff;font-size: 14px;">{{head.logincounts[1].LoggedCount!==undefined?head.logincounts[1].LoggedCount:0}}-{{head.logincounts[1].EmpCount!==undefined?head.logincounts[1].EmpCount:0}}</label>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label style="color:#ffffff;font-size: 14px;">KA:</label>
+                                            <label style="color:#ffffff;font-size: 14px;">{{head.logincounts[2].LoggedCount!==undefined?head.logincounts[2].LoggedCount:0}}-{{head.logincounts[2].EmpCount!==undefined?head.logincounts[2].EmpCount:0}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="login-footer">
-                            <div class="row">
-                                <div class="col-lg-3  col-lg-offset-1">
-                                    <label style="color:#ffffff;font-size: 14px;">AP:</label>
-                                    <label style="color:#ffffff;font-size: 14px;">{{head.logincounts[0].LoggedCount!==undefind?head.logincounts[0].LoggedCount:0}}-{{head.logincounts[0].EmpCount!==undefined?head.logincounts[0].EmpCount:0}}</label>
-                                </div>
-                                <div class="col-lg-3">
-                                    <label style="color:#ffffff;font-size: 14px;">TN:</label>
-                                    <label style="color:#ffffff;font-size: 14px;">{{head.logincounts[1].LoggedCount!==undefined?head.logincounts[1].LoggedCount:0}}-{{head.logincounts[1].EmpCount!==undefined?head.logincounts[1].EmpCount:0}}</label>
-                                </div>
-                                <div class="col-lg-3">
-                                    <label style="color:#ffffff;font-size: 14px;">KA:</label>
-                                    <label style="color:#ffffff;font-size: 14px;">{{head.logincounts[2].LoggedCount!==undefined?head.logincounts[2].LoggedCount:0}}-{{head.logincounts[2].EmpCount!==undefined?head.logincounts[2].EmpCount:0}}</label>
-                                </div>
-                            </div>
-                        </div>
-                        </form>
                     </div>
                 </div>
             </div>
-        </form>
     </script>
-</div>
-<style type="text/css">
-    .modalclassdashboardphotopopuplogin {
-        z-index: 999999 !important;
-        width: 80%;
-        left: 10%;
-    }
-    
-    .modal-open .modal {
-        overflow-x: hidden;
-        overflow-y: hidden;
-    }
-</style>
+    </div>
+    <style type="text/css">
+        .modalclassdashboardphotopopuplogin {
+            z-index: 999999 !important;
+            width: 80%;
+            left: 10%;
+        }
+        
+        .modal-open .modal {
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+    </style>

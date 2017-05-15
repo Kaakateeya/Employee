@@ -1,0 +1,195 @@
+<div ng-class="'EditViewClass'" class="right_col" style="padding-top: 6%;padding-left: 1%;">
+    <div ng-include="'templates/sideMenu.html'">
+    </div>
+    <div class="edit_pages_content_main clearfix" class="right_col">
+
+        <page-review dispaly-name="'Astro details'" sectionid="'23'" custid="page.model.CustID"></page-review>
+
+        <div id="divlnkasro" class="edit_page_item">
+            <div class="edit_page_item_head clearfix">
+                <h4>Astro Details </h4>
+                <div class="edit_page_item_ui clearfix">
+                    <div ng-if="page.model.AstroArr.length==0" cssclass="edit_page_add_button">
+                        <a ng-click="page.model.populateAstro();" class="edit_page_add_button" href="javascript:void(0);">Add</a>
+                    </div>
+                </div>
+            </div>
+            <div class="edit_page_details_item">
+                <div ng-if="page.model.AstroArr" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'" ng-repeat="item in page.model.AstroArr track by $index">
+                    <div>
+                        <div ng-hide="item.TimeOfBirth===null" class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <span id="TimeofBirth" style="font-weight:bold;">Time of Birth</span></h6>
+                            <h5>
+                                <span id="lblTimeofBirth">{{item.TimeOfBirth}}</span></h5>
+                        </div>
+                        <div class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <span id="PlaceofBirth" style="font-weight:bold;">Place of Birth</span></h6>
+                            <h5>
+                                <span id="lblPlaceofBirth">{{ item.CityOfBirth +","+item.DistrictOfBirth+","+item.StateOfBirth+","+item.CountryOfBirth}}</span>
+                            </h5>
+                        </div>
+                        <div ng-hide="item.TypeofStar===null" class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <span id="Telugustar" style="font-weight:bold;">Star Language</span></h6>
+                            <h5>
+                                <span id="lblTelugustar">{{ item.TypeofStar+((item.StarName!="" &&  item.StarName!=null)?" - "+
+                                            item.StarName:"")+((item.Paadam!="" &&  item.Paadam!=null)?" ("+item.Paadam+")":"") }}</span></h5>
+
+                        </div>
+                        <div ng-hide="item.Rassi===null" class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <span id="raasimoonsign" style="font-weight:bold;">Raasi/moon sign</span></h6>
+                            <h5>
+                                <span id="lblraasimoonsign">{{ item.Rassi}}</span></h5>
+                        </div>
+                        <div ng-hide="item.Lagnam===null" class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <span id="Lagnam" style="font-weight:bold;">Lagnam</span></h6>
+                            <h5>
+                                <span id="lblLagnam">  {{ item.Lagnam }}</span></h5>
+                        </div>
+                        <div ng-hide="item.Gothram===null" class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <span id="GothramGotra" style="font-weight:bold;">Gothram/Gotra</span></h6>
+                            <h5>
+                                <span id="lblGothramGotra">  {{ item.Gothram}}</span></h5>
+                        </div>
+                        <div ng-hide="item.MeternalGothramID===null" class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <span id="MaternalGothram" style="font-weight:bold;">Maternal Gothram</span></h6>
+                            <h5>
+                                <span id="lblMaternalGothram">{{ item.MeternalGothramID }}</span></h5>
+                        </div>
+                        <div ng-hide="item.manglikkujadosham===null" class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <span id="manglikkujadosham" style="font-weight:bold;">manglik/kuja dosham</span></h6>
+                            <h5>
+                                <span id="lblmanglikkujadosham">{{ item.manglikkujadosham }}</span></h5>
+                        </div>
+                    </div>
+                    <div class="edit_page_item_ui clearfix" ng-if="page.model.AstroArr.length>0">
+                        <a ng-click="page.model.populateAstro(item);" class="edit_page_edit_button" href="javascript:void(0);">Edit</a>
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="edit_page_details_item_desc clearfix" style="padding: 0 0 0 20px;">
+
+            <div class="radio-group-my input-group" ng-show="page.model.ImageUrl==='' || page.model.ImageUrl===null">
+                <md-radio-group ng-required="true" name="rdlUploadGenerate" layout="row" ng-model="page.model.atroObj.rdlUploadGenerate" ng-change="page.model.uploadGenerateHoro(page.model.atroObj.rdlUploadGenerate);" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                    <md-radio-button value="0">Upload Horoscope</md-radio-button>
+                    <md-radio-button value="1"> Generate Horoscope </md-radio-button>
+                </md-radio-group>
+            </div>
+
+        </div>
+
+        <div ng-hide="page.model.ImageUrl==='' || page.model.ImageUrl===null">
+            <div class="edit_page_details_item">
+                <div class="edit_page_details_item_desc clearfix">
+                    <img ng-model="page.model.imghoroName" ng-src="{{page.model.ImageUrl}}" Style="width: 250px; height: 250px;" ng-show="!page.model.iframeShow" />
+                    <iframe border="0" id="iframe" frameborder="0" height="300" width="800" ng-show="page.model.iframeShow"></iframe>
+                </div>
+            </div>
+            <div class="edit_page_details_item_desc clearfix" style="padding: 0 0 0 20px;">
+                <div class="edit_page_item_ui clearfix  pull-left">
+                    <a ID="btndeletehoro" class="edit_page_del_button" href="javascript:void(0);" ng-click="page.model.shoedeletePopup();" data-placement="bottom" data-toggle="tooltip" data-original-title="Delete Astro Details">
+               Delete <ng-md-icon icon="delete" style="fill:#665454" size="18"></ng-md-icon></a>
+                    <a Style="padding-left: 100px;" class="btn btn-link" ng-click="page.model.vewHoro();">View<span class="glyphicon glyphicon-eye-open"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/ng-template" id="astroContent.html">
+        <slide-popup model="page.model" eventtype="page.model.eventType">
+        </slide-popup>
+    </script>
+
+    <script type="text/ng-template" id="AddHoroPopup.html">
+        <form name="uploadForm" novalidate role="form" ng-submit="page.model.upload(up);">
+            <div class="modal-header">
+                <h3 class="modal-title text-center" id="modal-title">Upload Horoscope </h3>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <label class="control-label">Use this file formats like gif, jpeg, png,jpg</label>
+                <br>
+                <ul id="ulprofession">
+                    <input type="file" file-model="up.myFile" />
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <input value="Cancel" class="button_custom button_custom_reset" ng-click="page.model.cancel();" type="button">
+                <input value="Upload" class="button_custom" type="submit">
+            </div>
+        </form>
+    </script>
+    <script type="text/ng-template" id="deletehoroPopup.html">
+        <form name="uploadForm" novalidate role="form" ng-submit="page.model.deleteHoroImage();">
+            <div class="modal-header">
+                <h3 class="modal-title text-center" id="modal-title">Delete Horoscope </h3>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <div class="text-center">Are you sure to delete horoscope?</div>
+            </div>
+            <div class="modal-footer">
+                <input value="Close" class="button_custom button_custom_reset" ng-click="page.model.cancel();" type="button">
+                <input value="Delete" class="button_custom" type="submit">
+            </div>
+        </form>
+
+    </script>
+
+    <script type="text/ng-template" id="AstroCityPopup.html">
+        <div class="modal-header alert alert-danger" id="div2">
+            <button type="button" class="close" ng-click="page.model.cancel();">&times;</button>
+            <h4 class="modal-title">
+                <span id="lblcityheader">we are unable to genearte horoscope with your given city <b style="color: green"> Administrative Buildings </b>,so please select Nearest city to your place of birth</span>
+            </h4>
+        </div>
+        <div class="modal-body" id="modalbodyIDnew">
+            <div class="pop_controls_right select-box-my">
+                <select multiselectdropdown ng-model="page.model.ddlAstrocity" ng-options="item.value as item.label for item in page.model.AstrocityArr" ng-change="page.model.AstroCityChange(page.model.ddlAstrocity);"></select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="page.model.cancel();">Close</button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="AstroimagePopup.html">
+
+        <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-title">Horoscope
+                <a href="javascript:void(0);" ng-click="page.model.cancel();">
+                    <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="25"></ng-md-icon>
+                </a>
+            </h3>
+        </div>
+        <div class="modal-body clearfix pop_content_my" id="modal-body">
+            <img ng-src="{{page.model.ImageUrl}}" style="width:500px;height:500px;" />
+        </div>
+        <div class="modal-footer">
+            <div class="pull-right">
+                <input value="Cancel" class="button_custom button_custom_reset  pull-right" ng-click="page.model.cancel();" type="button">
+            </div>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="RefreshPopup.html">
+
+        <div class="modal-body clearfix" id="modal-body">
+            <button ng-click="page.model.generatedhoroS3Upload();" class="btn btn-success center-block">Refresh Page<span class="fa fa-refresh"></span></button>&nbsp;&nbsp;
+
+        </div>
+
+    </script>
+</div>
+<script src="build/js/custom.js" type="text/javascript"></script>

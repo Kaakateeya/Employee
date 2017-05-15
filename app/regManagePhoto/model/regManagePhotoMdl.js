@@ -3,6 +3,7 @@
 
 
     function factory(regManagePhotoService, uibModal, Commondependency, http, fileUpload, stateParams, authSvc, dynamicalert) {
+       return function() {
         var model = {};
         model.scope = {};
         // start declaration
@@ -105,7 +106,7 @@
                     dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Sorry,Upload Photo Size Must Be Less than 4 mb', 4500);
                 } else {
 
-                    var keyname = app.S3PhotoPath + 'KMPL_' + CustID + '_Images/Img' + model.photorowID + '.' + extension;
+                    var keyname = app.prefixPathImg + 'KMPL_' + CustID + '_Images/Img' + model.photorowID + '.' + extension;
 
                     fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
                         if (res.status == 200) {
@@ -162,7 +163,7 @@
         };
 
         model.Delete = function() {
-            var keynameq = app.S3PhotoPath + model.deleteKey;
+            var keynameq = app.prefixPathImg + model.deleteKey;
             http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {
 
             });
@@ -216,7 +217,7 @@
 
         return model.init();
     }
-
+    }
     angular
         .module('Kaakateeya')
         .factory('regManagePhotoModel', factory);

@@ -2,6 +2,7 @@
     'use strict';
 
     function factory(http, EmployeePaymentservice, state, config, authSvc) {
+        return function() {
         var model = {};
         model = config;
         model.obj = {};
@@ -63,6 +64,7 @@
             window.open('/Viewfullprofile/' + model.ProfileID, '_blank');
         };
         return model;
+    }
     }
     angular
         .module('Kaakateeya')

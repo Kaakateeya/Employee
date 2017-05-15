@@ -2,6 +2,7 @@
     'use strict';
 
     function factory(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss, SelectBindServiceApp, uibModal, timeout, configslide, commonpage) {
+         return function() {
         var model = {};
 
         model.grid = config;
@@ -353,6 +354,7 @@
 
 
         return model;
+    };
     }
     angular
         .module('Kaakateeya')

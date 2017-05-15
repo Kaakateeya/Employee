@@ -8,7 +8,7 @@
 
          vm.init = function() {
              model = {};
-             vm.model = model = secondaryRegistrationModel;
+             vm.model = model = secondaryRegistrationModel();
              vm.model.scope = scope;
              scope.$on("$destroy", scope.destroy);
          };

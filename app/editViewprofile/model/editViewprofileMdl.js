@@ -2,6 +2,8 @@
     'use strict';
 
     function factory($http, ViewAllCustomerService, state, helpService, config, alerts, modelpopupopenmethod, authSvc, configslide) {
+       return function() {
+     
         var model = {};
         var modelinactive = {};
         model = config;
@@ -302,6 +304,7 @@
             modelpopupopenmethod.closepopup();
         };
         return model.init();
+    }
     }
     angular
         .module('Kaakateeya')

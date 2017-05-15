@@ -2,6 +2,7 @@
     'use strict';
 
     function factory(EmployeePaymentInsertservice, stateParams, filter, authSvc, modelpopupopenmethod) {
+         return function() {
         var model = {};
         model.obj = {};
         model.array = [];
@@ -137,6 +138,7 @@
             model.scope.paymentForm.$setUntouched();
         };
         return model;
+    }
     }
     angular
         .module('Kaakateeya')

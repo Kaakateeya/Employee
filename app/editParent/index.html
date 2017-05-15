@@ -1,0 +1,617 @@
+<div ng-class="'EditViewClass'" class="right_col" style="padding-top: 6%;padding-left: 1%;">
+    <div ng-include="'templates/sideMenu.html'">
+    </div>
+
+    <div class="edit_pages_content_main clearfix">
+
+
+        <page-review dispaly-name="'Parent details'" sectionid="'11,12,13,15'" custid="page.model.CustID"></page-review>
+
+        <div class="edit_page_item" id="divlnkaddparents">
+            <div class="edit_page_item_head clearfix">
+                <h4>Parents Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2" id="spanEduModID" ng-show="page.model.parentmodifiedby!=null && page.model.parentmodifiedby!=='' && page.model.parentmodifiedby!==undefined">ModifiedBy :{{page.model.parentmodifiedby}}</span>
+                    <span style="color: #08CFD2" id="spanEduModID" visible="false">
+                    <label id="lblParentsDetailsmodby" forecolor="#08CFD2"></label>
+                    </span>
+                </h4>
+                <div class="edit_page_item_ui clearfix" ng-if="page.model.parentArr.length===0">
+                    <a data-toggle="tooltip" data-original-title="Add Parents Details" class="edit_page_add_button" href="javascript:void(0);" ng-click="page.model.populateModel('parent');">Add</a>
+                </div>
+            </div>
+            <div class="edit_page_details_item">
+                <div ng-if="page.model.parentArr" ng-repeat="item in page.model.parentArr">
+                    <div id="reviewdiv" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
+                        <div>
+                            <div>
+                                <div class="edit_page_details_item_desc clearfix">
+                                    <h6>
+                                        <label id="lfathername" font-bold="true"></label>Father Name</h6>
+                                    <h5>
+                                        <span id="LBfathername">{{item.FatherName}}</span>
+                                    </h5>
+
+                                </div>
+                                <div class="edit_page_item_ui clearfix" ng-if="page.model.parentArr.length>0">
+                                    <a id="LinkButton1dfd" href="javascript:void(0):" data-original-title="Edit Parents Details" class="edit_page_edit_button" ng-click="page.model.populateModel('parent',item);">Edit</a>
+
+                                </div>
+                            </div>
+
+                            <div class="edit_page_details_item_desc clearfix">
+                                <h6>
+                                    <label id="lblfathereducation" font-bold="true">Education</label>
+                                </h6>
+                                <h5>
+                                    <span id="lblfathereducationdetails">
+                                    {{item.FatherEducationDetails }}
+                            </span>
+                                </h5>
+                            </div>
+
+
+                            <div class="edit_page_details_item_desc clearfix">
+                                <h6>
+                                    <label font-bold="true">Profession Category</label>
+                                </h6>
+                                <h5>
+                                    <span>
+                                    {{item.FatherProfessionCategory }}
+                            </span>
+                                </h5>
+                            </div>
+
+                            <div class="edit_page_details_item_desc clearfix">
+
+                                <h6>
+                                    <label id="lblFatherprofession" font-bold="true">Designation</label>
+                                </h6>
+
+                                <h5>
+                                    <span id="lblfatherprofessiondetails">
+                                   {{item.FatherProfDetails }}
+                            </span>
+                                </h5>
+                            </div>
+
+
+                            <div class="edit_page_details_item_desc clearfix" id="fathercompnay">
+
+                                <h6>
+                                    <label id="lblfatherprofessionloc" font-bold="true">Company & JobLocation</label>
+                                </h6>
+                                <h5>
+                                    <span id="lblfatherprofandloc">
+                                   {{((item.FathercompanyName!=null && (item.FathercompanyName!="")?item.FathercompanyName:"NotSpecified"))
+                                        +" "+((item.FatherJoblocation!=null && (item.FatherJoblocation!="")?"," +" "+item.FatherJoblocation:''))}}
+                            </span>
+                                </h5>
+                            </div>
+
+                            <div id="ownerdiv0">
+
+                                <div class="edit_page_details_item_desc clearfix">
+                                    <h6>
+                                        <label id="lblfathernumber" font-bold="true">Father contact nos</label>
+                                    </h6>
+                                    <h5>
+                                        <span id="lblfathermobile">
+                                       {{((item.FatherMobilenumber!=null && (item.FatherMobilenumber!="")?item.FatherMobilenumber:""))
+                                        +" "+((item.FatherLandNumber!=null && (item.FatherLandNumber!="")?"&"+" "+item.FatherLandNumber:"")) }}
+                                </span>
+                                    </h5>
+
+                                </div>
+
+                                <div class="edit_page_details_item_desc clearfix">
+                                    <h6>
+                                        <label id="fatheremail" font-bold="true">Father Email</label>
+                                    </h6>
+                                    <h5>
+                                        <span id="lblFatherEmail">
+                                       {{ item.FatherEmail }}
+                                </span>
+                                    </h5>
+                                </div>
+
+                            </div>
+                            <div class="edit_page_details_item_desc clearfix">
+
+                                <h6>
+                                    <label id="lblfathersfather">Father's Father Name</label></h6>
+                                <h5>
+                                    <span id="lblfathersfath">
+                                  {{  ((item.FatherFathername!=null && (item.FatherFathername!="")?item.FatherFathername:""))
+                                        }}
+                            </span>
+                                </h5>
+                            </div>
+
+                            <div id="ownerdiv1">
+
+                                <div class="edit_page_details_item_desc clearfix">
+
+                                    <h6>
+                                        <label id="FFContactNos">FF contact nos</label></h6>
+                                    <h5>
+                                        <span id="lblFFContactNos">
+                                       {{((item.FFMobileNumberWithcode!=null && (item.FFMobileNumberWithcode!="")?item.FFMobileNumberWithcode:""))
+                                       + ((item.FFLandNumberwithCode!=null && item.FFLandNumberwithCode!="")?" & "+item.FFLandNumberwithCode:"") }}
+                                </span>
+                                    </h5>
+                                </div>
+
+                            </div>
+
+                            <div class="edit_page_details_item_desc clearfix">
+
+                                <h6>
+                                    <label id="FnativePlace" font-bold="true">Native Place</label>
+                                </h6>
+                                <h5>
+                                    <span id="lblFnativePlace">
+                                   {{
+                                        ((item.FatherNativeplace!=null && item.FatherNativeplace!="")?item.FatherNativeplace:"" )+
+                                        ((item.FatherDistric!=null && item.FatherDistric!="")?" ,"+item.FatherDistric:"")+
+                                        ((item.FatherState!=null && item.FatherState!="")?" ,"+item.FatherState:"" )+
+                                        ((item.FatherCountry!=null && item.FatherCountry!="")?" ,"+item.FatherCountry:"" )}}
+                            </span>
+                                </h5>
+                            </div>
+
+
+
+
+                        </div>
+
+                        <div>
+                            <hr />
+
+                            <div class="edit_page_details_item_desc clearfix">
+
+                                <h6>
+                                    <label id="lblmothername" font-bold="true" forecolor="Red">
+                                Mother Name
+                            </label>
+                                </h6>
+
+                                <h5>
+                                    <span id="lblmothernameandedu">
+                                    {{item.MotherName}}
+                            </span>
+                                </h5>
+                            </div>
+
+
+                            <div class="edit_page_details_item_desc clearfix">
+
+                                <h6>
+                                    <label id="lbleducationmother">Education</label></h6>
+
+                                <h5>
+                                    <span id="lblmotherducation">
+                                   {{ ((item.MotherEducationDetails!=null && item.MotherEducationDetails!="")?item.MotherEducationDetails:"" )}}
+                            </span>
+                                </h5>
+                            </div>
+
+
+
+
+                            <div class="edit_page_details_item_desc clearfix">
+                                <h6>
+                                    <label font-bold="true">Profession Category</label>
+                                </h6>
+                                <h5>
+                                    <span>
+                                    {{item.MotherProfessionCategory }}
+                            </span>
+                                </h5>
+                            </div>
+
+                            <div class="edit_page_details_item_desc clearfix">
+
+                                <h6>
+                                    <label id="lblprofessionmotherr" font-bold="true">Designation</label>
+                                </h6>
+
+                                <h5>
+                                    <span id="lblmotherprofdetails">
+                                  {{((item.MotherProfedetails!=null && item.MotherProfedetails!="")?
+                                                item.MotherProfedetails:"" )}}
+                            </span>
+                                </h5>
+                            </div>
+
+                            <div id="mothercompany" class="edit_page_details_item_desc clearfix" ng-hide="item.MotherProfedetails=='HouseWife'">
+
+                                <h6>
+                                    <label id="lblmotherprofession">Company & JobLocation</label></h6>
+                                <h5>
+                                    <span id="lblmotherprofandloc">
+                                   {{((item.MothercompanyName!=null && (item.MothercompanyName!="")?item.MothercompanyName:""))+" "+
+                                            ((item.MotherJoblocation!=null && (item.MotherJoblocation!="")?", "+" "+
+                                            item.MotherJoblocation:''))}}
+                                </span>
+                                </h5>
+                            </div>
+
+                            <div id="ownerdiv2">
+
+                                <div class="edit_page_details_item_desc clearfix">
+
+                                    <h6>
+                                        <label id="lblmothercontacts">Mother contact nos</label></h6>
+                                    <h5>
+                                        <span id="lblmompmobile">
+                                       {{((item.MotherMobilenumber!=null && item.MotherMobilenumber!="")?item.MotherMobilenumber:"" )+" "+((item.MotherLandNumber!=null && (item.MotherLandNumber!="")?"&"+" "+item.MotherLandNumber:""))}}
+                                </span>
+                                    </h5>
+                                </div>
+
+                                <div class="edit_page_details_item_desc clearfix">
+
+                                    <h6>
+                                        <label id="lblmotheremail" font-bold="true">Mother Email</label>
+                                    </h6>
+                                    <h5>
+                                        <span id="lblmomemail">
+                                        {{ item.MotherEmail }}
+                                </span>
+                                    </h5>
+
+                                </div>
+
+                            </div>
+
+                            <div class="edit_page_details_item_desc clearfix">
+
+                                <h6>
+                                    <label id="lblmotherfatherupp" font-bold="true">Mother's Father Name</label>
+                                </h6>
+                                <h5>
+                                    <span id="lblMotherFatherName">
+                                   {{item.MotherFatherName }}
+                            </span>
+                                </h5>
+                                </label>
+                            </div>
+
+
+                            <div class="edit_page_details_item_desc clearfix">
+
+                                <h6>
+                                    <label id="MotherFatherLastName" font-bold="true">Mother's Father SurName</label>
+                                </h6>
+                                <h5>
+                                    <span id="lblMotherFatherLastName">
+                                  {{item.MotherFatherLastName}}
+                            </span>
+                                </h5>
+                            </div>
+
+                            <div id="ownerdiv3">
+
+                                <div class="edit_page_details_item_desc clearfix">
+
+                                    <h6>
+                                        <label id="mContactNos" font-bold="true">MF Contact nos</label>
+                                    </h6>
+                                    <h5>
+                                        <span id="lblmContactNos">
+                                       {{ item.MMMobileNumberWithcode+
+                                        ((item.MMLandNumberwithCode!=null && item.MMLandNumberwithCode!="")?" & "+item.MMLandNumberwithCode:"") }}
+                                </span>
+                                    </h5>
+                                </div>
+
+                            </div>
+
+                            <div class="edit_page_details_item_desc clearfix">
+
+                                <h6>
+                                    <label id="MNativePlace" font-bold="true">Native Place</label>
+                                </h6>
+                                <h5>
+                                    <span id="lblMNativePlace">
+                                   {{((item.MotherNativeplace!=null && item.MotherNativeplace!="")?item.MotherNativeplace:"") +
+                                        ((item.MotherDistric!=null && item.MotherDistric!="")?" ,"+item.MotherDistric:"" )+
+                                        ((item.MotherState!=null && item.MotherState!="")?" ,"+item.MotherState:"" )+
+                                        ((item.MotherCountry!=null && item.MotherCountry!="")?" ,"+item.MotherCountry:"" )}}
+                            </span>
+                                </h5>
+                            </div>
+
+                        </div>
+                        <div>
+                            <div id="divParentIntercasteHide">
+
+                                <div class="edit_page_details_item_desc clearfix">
+
+                                    <h6>
+                                        <label id="ParentsInterCaste">Are Parents InterCaste</label></h6>
+                                    <h5>
+                                        <span id="lblParentsInterCaste">{{item.Intercaste }}</span>
+                                    </h5>
+                                </div>
+
+                                <div class="edit_page_details_item_desc clearfix" ng-if="item.Intercaste==='Yes'">
+
+                                    <h6>
+                                        <label id="lFatherCaste">Father Caste</label></h6>
+                                    <h5>
+                                        <span id="lblFatherCaste">{{item.FatherCaste }}</span>
+                                    </h5>
+                                </div>
+
+                                <div class="edit_page_details_item_desc clearfix" ng-if="item.Intercaste==='Yes'">
+
+                                    <h6>
+                                        <label id="lMotherCaste">Mother Caste</label>
+                                    </h6>
+                                    <h5>
+                                        <span id="lblMotherCaste">{{item.MotherCaste }}</span>
+                                    </h5>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+
+            </div>
+        </div>
+        <div class="edit_page_item" id="divlnkAddcontactaddress">
+            <div class="edit_page_item_head clearfix">
+                <h4>Contact Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2" ng-show="page.model.addrmodifiedby!=null && page.model.addrmodifiedby!=='' && page.model.addrmodifiedby!==undefined">ModifiedBy :{{page.model.addrmodifiedby}}</span>
+
+                </h4>
+                <div class="edit_page_item_ui clearfix" ng-if="page.model.addressArr.length===0">
+
+                    <a ng-click="page.model.populateModel('Address',item);" href="javascript:void(0);" data-original-title="Add Contact Address" class="edit_page_add_button">Add</a>
+
+                </div>
+            </div>
+            <div class="edit_page_details_item">
+
+                <div ng-if="page.model.addressArr" ng-repeat="item in page.model.addressArr">
+
+                    <div id="Div1" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
+
+                        <div class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <label id="lblhousenum" font-bold="true">House/Flat No</label>
+                            </h6>
+                            <h5>
+                                <span id="lblhouseflat">
+                                {{ item.FlatNumber}}
+                        </span>
+                            </h5>
+                        </div>
+
+                        <div id="divapartment" class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <label id="lblapartmentname" font-bold="true">Apt Name</label>
+                            </h6>
+                            <h5>
+                                <span id="lblapartment">
+                                {{ item.ApartmentName}}
+                        </span>
+                            </h5>
+                        </div>
+                        <div class="edit_page_item_ui clearfix" ng-if="page.model.addressArr.length>0">
+                            <a ng-click="page.model.populateModel('Address',item);" href="javascript:void(0);">Edit</a>
+
+                        </div>
+                        <div id="divareaname" class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <label id="lblareaname" font-bold="true">Area Name</label>
+                            </h6>
+                            <h5>
+                                <span id="lblareanamee">
+                                {{ item.AreaName}}
+                        </span>
+                            </h5>
+
+                        </div>
+
+                        <div class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <label id="lblstreet" font-bold="true">Street Name</label>
+                            </h6>
+                            <h5>
+                                <span id="lblstreetname">
+                                {{ item.StreetName}}
+                        </span>
+                            </h5>
+
+                        </div>
+
+                        <div class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <label id="lblland" font-bold="true">Land Mark</label>
+                            </h6>
+                            <h5>
+                                <span id="lbllandmark">
+                                {{ item.LandMark}}
+                        </span>
+                            </h5>
+
+                        </div>
+
+                        <div class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <label id="lblcityy" font-bold="true">City</label>
+                            </h6>
+                            <h5>
+                                <span id="lblcityname">
+                                {{ item.CityName+" "+(item.DistrictName!=null?","+ item.DistrictName:"")+(item.StateName!=null?","+ item.StateName:"")+(item.CountryName!=null?","+item.CountryName:"")+(item.Zip!=null?"-"+item.Zip:"") }}
+                        </span>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="edit_page_item" id="divlnkAddphsysicall">
+            <div class="edit_page_item_head clearfix">
+                <h4>Physical Attribute & Health Details of Candidate &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2" ng-show="page.model.physicalmodifiedby!=null && page.model.physicalmodifiedby!=='' && page.model.physicalmodifiedby!==undefined">ModifiedBy :{{page.model.physicalmodifiedby}}</span></h4>
+                <div class="edit_page_item_ui clearfix" ng-if="page.model.physicalArr.length===0">
+
+                    <a href="javascript:void(0);" ng-click="page.model.populateModel('physicalAttributes',item);" data-original-title="Add Physical Attribute & Health Details" class="edit_page_add_button">Add</a>
+                </div>
+            </div>
+            <div class="edit_page_details_item">
+
+                <divng-if="page.model.physicalArr" ng-repeat="item in page.model.physicalArr">
+
+                    <div id="Div2" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
+
+                        <div class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <label id="lbllDiet" font-bold="true">Diet</label></h6>
+                            <h5>
+                                <span id="lblDiet">
+                                {{ item.Diet}}
+                            </span>
+                            </h5>
+                        </div>
+                        <div class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <label id="lbllDrink">Drink</label></h6>
+                            <h5>
+                                <span id="lblDrink">
+                                {{ item.Drink}}
+                            </span>
+                            </h5>
+                        </div>
+
+                        <div class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <label id="lbllSmoke">Smoke</label>
+                            </h6>
+                            <h5>
+                                <span id="lblSmoke">
+                                {{ item.Smoke}}
+                            </span>
+                            </h5>
+                        </div>
+
+                        <div class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <label id="lbllBodyType">Body Type</label></h6>
+                            <h5>
+                                <span id="lblBodyType">
+                                {{ item.BodyType}}
+                            </span>
+                            </h5>
+                        </div>
+
+                        <div class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <label id="lblbodyweight" font-bold="true">Body Weight</label>
+                            </h6>
+                            <h5>
+                                <span id="lblweight">
+                                {{ item.BodyWeight}}
+                        </span>
+                            </h5>
+                        </div>
+
+                        <div class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <label id="lblbloodgroup" font-bold="true">Blood Group</label>
+                            </h6>
+                            <h5>
+                                <span id="lblbloodgrop">
+                                {{ item.BloodGroupName}}
+                        </span>
+                            </h5>
+                        </div>
+
+                        <div class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <label id="lblhealthconditions" font-bold="true">Health Conditions</label>
+                            </h6>
+                            <h5>
+                                <span id="lblhealthcondition">
+                                {{ item.Healthcondition}}
+                        </span>
+                            </h5>
+                        </div>
+                        <div class="edit_page_item_ui clearfix" ng-if="page.model.physicalArr.length>0">
+                            <a data-original-title="Edit Physical Attribute & Health Details" class="edit_page_edit_button" href="javascript:void(0);" ng-click="page.model.populateModel('physicalAttributes',item);">Edit</a>
+
+                        </div>
+
+                        <div class="edit_page_details_item_desc clearfix">
+                            <h6>
+                                <label id="lblhealthdescription" font-bold="true">Health Condition Description</label>
+                            </h6>
+                            <h5>
+                                <span id="lblhealthdescriptions">
+                                {{ item.HealthConditionDescription}}
+                        </span>
+                            </h5>
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+        <div class="edit_page_item" id="divlnkaboutt">
+            <div class="edit_page_item_head clearfix">
+                <h4>About My Family </h4>
+                <div class="edit_page_item_ui clearfix" ng-if="page.model.lblaboutMyfamily==='' || page.model.lblaboutMyfamily===null">
+
+                    <a data-original-title="Add About My Family" class="edit_page_add_button" href="javascript:void(0);" ng-click="page.model.populateModel('AboutFamily');">Add</a>
+                </div>
+            </div>
+            <div class="edit_page_details_item">
+                <div id="lstAboutMyFamily">
+                    <div id="Div3" ng-class="AboutFamilyReviewStatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
+                        <div>
+                            <div>
+                                <h5>
+                                    <span id="lblAboutMyFamily">
+                                    {{page.model.lblaboutMyfamily}}
+                                </span>
+                                </h5>
+                                <label id="Label5" visible="false"></label>
+                            </div>
+
+                            <div class="edit_page_item_ui clearfix" ng-if="page.model.lblaboutMyfamily!='' && page.model.lblaboutMyfamily!=null">
+                                <a href="javascript:void(0);" class="edit_page_edit_button" data-original-title="Edit About My Family" ng-click="page.model.populateModel('AboutFamily',page.model.lblaboutMyfamily);">Edit</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="popupDiv">
+    <script type="text/ng-template" id="commonParentpopup.html">
+        <slide-popup model="page.model" eventtype="page.model.eventType">
+        </slide-popup>
+    </script>
+
+
+</div>
+</div>
+<style>
+    .md-dialog-container {
+        z-index: 99999999999;
+    }
+</style>
+<script src="build/js/custom.js" type="text/javascript"></script>

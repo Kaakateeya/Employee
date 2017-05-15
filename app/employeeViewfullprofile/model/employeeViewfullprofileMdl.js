@@ -2,6 +2,7 @@
     'use strict';
 
     function factory(employeeViewfullprofileservice, commonpage, stateParams) {
+          return function() {
         var model = {};
         model.scope = {};
         model.viewprofilearray = [];
@@ -58,6 +59,7 @@
         };
 
         return model;
+    }
     }
     angular
         .module('Kaakateeya')

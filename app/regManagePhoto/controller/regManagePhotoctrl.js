@@ -6,7 +6,7 @@
          var vm = this;
          vm.init = function() {
              window.scrollTo(0, 0);
-             vm.model = regManagePhotoModel;
+             vm.model = regManagePhotoModel();
              vm.model.scope = scope;
          };
          vm.init();

@@ -3,6 +3,7 @@
 
     function factory($http, dashboardServices, uibModal, authSvc, helperservice, window,
         commonpage, $filter, fileUpload, alerts, config) {
+        return function() {
         var model = {};
         model = config;
         var flag = 0;
@@ -356,6 +357,7 @@
             });
         };
         return model;
+        };
     }
     angular
         .module('Kaakateeya')

@@ -124,7 +124,7 @@
         //     }
         // };
         model.mobilemailvalidation = function() {
-            debugger;
+           
             if (model.reg.Chkfree_reg === true) {
                 if ((model.reg.txtEmail !== "" && model.reg.txtEmail !== undefined && model.reg.txtEmail !== null)) {
                     model.mobilenumberrequired = false;

@@ -11,10 +11,10 @@
              vm.model = model = basicRegistrationModel;
              vm.model.scope = scope;
              model.reg.Chkfree_reg = true;
-             scope.$on("$destroy", scope.destroy);
+             scope.$on("$destroy", vm.destroy);
              // write destroy method 
          };
-         scope.destroy = function() {
+         vm.destroy = function() {
              model.casteArr = [];
              model.reg = {};
              model.reg.Chkprivacy = true;

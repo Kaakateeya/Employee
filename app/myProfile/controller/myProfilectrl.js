@@ -2,26 +2,26 @@
      'use strict';
 
      function controller(myProfileModel, scope, $location) {
-         var vm = this;
+         var vm = this,model;
          vm.init = function() {
-             vm.model = myProfileModel;
-             myProfileModel.MyProfilePageLoad();
-             vm.model.mpObj.rdnprofileType = '';
-             vm.model.mpObj.rdnGender = '';
-             vm.model.mpObj.rdnWebsiteLogin = '';
-             vm.model.mpObj.rdncontactsVerified = '';
-             vm.model.mpObj.rdnWebsiteBlocked = '';
-             vm.model.mpObj.ddlApplicationStatus = [54];
-             vm.model.mpObj.ddlCaste = [402];
-             vm.model.opendiv = true;
-             vm.model.scope = scope;
-             vm.model.grid.showplus = false;
-             vm.model.searchObjectquery = $location.search();
-             var meKey = Object.getOwnPropertyNames(vm.model.searchObjectquery)[0];
-             vm.model.myprofileid = vm.model.searchObjectquery[meKey];
-             if (vm.model.myprofileid !== "" && vm.model.myprofileid !== null && vm.model.myprofileid !== undefined && vm.model.myprofileid !== "undefined") {
-                 vm.model.mpObj.txtProfileID = vm.model.myprofileid;
-                 // vm.model.MyprofileResult(vm.model.mpObj, 1, 10, 'grid', 1);
+             vm.model =model= myProfileModel();
+             model.MyProfilePageLoad();
+             model.mpObj.rdnprofileType = '';
+             model.mpObj.rdnGender = '';
+             model.mpObj.rdnWebsiteLogin = '';
+             model.mpObj.rdncontactsVerified = '';
+             model.mpObj.rdnWebsiteBlocked = '';
+             model.mpObj.ddlApplicationStatus = [54];
+             model.mpObj.ddlCaste = [402];
+             model.opendiv = true;
+             model.scope = scope;
+             model.grid.showplus = false;
+             model.searchObjectquery = $location.search();
+             var meKey = Object.getOwnPropertyNames(model.searchObjectquery)[0];
+             model.myprofileid = model.searchObjectquery[meKey];
+             if (model.myprofileid !== "" && model.myprofileid !== null && model.myprofileid !== undefined && model.myprofileid !== "undefined") {
+                 model.mpObj.txtProfileID = model.myprofileid;
+                 // model.MyprofileResult(model.mpObj, 1, 10, 'grid', 1);
              }
          };
          vm.click = function() {

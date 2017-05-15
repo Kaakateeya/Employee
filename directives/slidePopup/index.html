@@ -1,0 +1,172 @@
+<form class="EditViewClass" name="dynamicForm" novalidate role="form" ng-submit="dynamicForm.$valid && submit();" accessible-form>
+    <div class="modal-header">
+        <h3 class="modal-title text-center" id="modal-title">{{model.popupHeader}}
+            <a href="javascript:void(0);" ng-click="cancel();">
+                <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20"> </ng-md-icon>
+            </a>
+        </h3>
+    </div>
+    <div class="modal-body">
+        <ul class="modal-body pop_content_my clearfix">
+            <li ng-show="item.parentDependecy===undefined?true:model[item.parentDependecy](item)" class="clearfix form-group" ng-repeat="item in model.popupdata">
+
+                <label ng-if="item.controlType!=='country' && item.controlType!=='contact'  && item.controlType!=='bindHtml' && item.controlType!=='about'" for="item.lblname" ng-class="{'radiocls':item.controlType==='radio'}" class="pop_label_left">{{item.lblname}}<span ng-if="item.required" style="color: red; margin-left: 3px;">*</span></label>
+                <label class="col-lg-12" ng-class="item.classname" ng-if="item.controlType==='bindHtml'">
+               <span ng-bind-html="item.html"></span>
+                </label>
+                <div ng-if="!item.dataSource && item.controlType==='select'" class="pop_controls_right select-box-my input-group">
+                    <select multiselectdropdown ng-model="model[item.ngmodel]" typeofdata="item.typeofdata" ng-required="item.required" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi)"></select>
+                </div>
+                <div ng-if="item.controlType==='select' && item.dataSource" class="pop_controls_right select-box-my input-group">
+                    <select multiselectdropdown ng-model="model[item.ngmodel]" ng-required="item.required" ng-options="item1.value as item1.label for item1 in item.dataSource"></select>
+                </div>
+                <div ng-if="item.controlType==='Changeselect'" class="pop_controls_right select-box-my input-group">
+                    <select multiselectdropdown ng-model="model[item.ngmodel]" ng-required="item.required" ng-options="itm.value as itm.label for itm in item.dataSource" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi)"></select>
+                </div>
+
+                <div ng-if="item.controlType==='textbox'" class="pop_controls_right">
+                    <input type="text" ng-model="model[item.ngmodel]" ng-change="model[item.method]();" maxlength="150" class="form-control" ng-required="item.required" />
+                </div>
+                <div ng-if="item.controlType==='textboxNumber'" class="pop_controls_right select-box-my-double">
+                    <input type="text" ng-model="model[item.ngmodel]" ng-change="model[item.method]();" maxlength="{{item.maxLength}}" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)))"
+                        class="form-control" ng-required="item.required" />
+                    <span ng-if="item.span" font-bold="true">{{item.spanText}}</span>
+                </div>
+
+                <div ng-if="item.controlType==='textboxNumberrestrict'" class="pop_controls_right">
+                    <input type="text" ng-model="model[item.ngmodel]" maxlength="{{item.maxLength}}" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)))"
+                        class="form-control" ng-required="item.required" />
+                </div>
+                <div ng-if="item.controlType==='textarea'">
+                    <textarea ng-model="model[item.ngmodel]" maxlength="500" rows="4" cols="20" ng-required="item.required" style="max-width:515px;width:100%;"></textarea>
+                </div>
+
+                <div ng-if="item.controlType==='textareaSide'" class="pop_controls_right select-box-my" style="padding-bottom:2%;">
+                    <textarea type="text" ng-model="model[item.ngmodel]" rows="2" class="form-control" ng-required="item.required" style="width:96%;" />
+                </div>
+
+
+                <div ng-if="item.controlType==='textboxSelect'" class="pop_controls_right select-box-my select-box-my-double">
+
+                    <select multiselectdropdown ng-model="model[item.ngmodelSelect]" typeofdata="item.typeofdata"></select>
+                    <input ng-model="model[item.ngmodelText]" class="form-control" maxlength="7" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
+                    />
+                </div>
+
+                <md-input-container ng-if="item.controlType==='radio'" style="font-weight: 700; color: black;margin-top:-1px;">
+                    <md-radio-group ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi)" ng-required="item.required" layout="row" ng-model="model[item.ngmodel]" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                        <md-radio-button ng-value="rd.value" ng-repeat="rd in item.dataSource" class="md-primary">{{rd.label}}</md-radio-button>
+                    </md-radio-group>
+                    <div ng-if="dynamicForm.$invalid && dynamicForm.$submitted">
+                        <span style="color:red;">This field is required</span>
+                    </div>
+                </md-input-container>
+
+                <div ng-if="item.controlType==='checkbox'" class="pop_controls_right">
+
+                    <md-checkbox ng-model="model[item.ngmodel]" name="chkisconfidential" aria-label="Checkbox 1" ng-change="model[item.method](model[item.ngmodel],item.ngmodel)">
+                    </md-checkbox>
+                </div>
+                <div ng-if="item.controlType==='date'" class="pop_controls_right">
+                    <!--<custom-datepickeredit ng-model="model[item.ngmodel]" ngClass="'dateclass'" date-options="dateOptions"></custom-datepickeredit>-->
+                    <date-picker strdate="model[item.ngmodel]"></date-picker>
+                </div>
+                <div ng-if="item.controlType==='country'">
+                    <country-directive require="item.require" countryshow="item.countryshow" cityshow="item.cityshow" othercity="item.othercity" dcountry="model[item.dcountry]" dstate="model[item.dstate]" ddistrict="model[item.ddistrict]" dcity="model[item.dcity]" strothercity="model[item.strothercity]"></country-directive>
+                </div>
+
+                <div ng-if="item.controlType==='contact'">
+                    <contact-directive emailhide="item.emailhide" dmobile="model[item.dmobile]" strmobile="model[item.strmobile]" dalternative="model[item.dalternative]" stralternative="model[item.stralternative]" dland="model[item.dland]" strareacode="model[item.strareacode]"
+                        strland="model[item.strland]" strmail="model[item.strmail]"></contact-directive>
+                </div>
+
+                <div ng-if="item.controlType==='housewife'" class="pop_controls_right">
+
+                    <input ng-model="model[item.ngmodelText]" class="form-control" maxlength="200" tabindex="32" />
+
+                    <label class="checkbox-inline checkbox_my" style="padding: 5px 0 6px 0;">
+                <input type=checkbox ng-model="model[item.ngmodelChk]"  ng-change="model[item.ngmodelText]=chkChange(model[item.ngmodelChk]);"/><span>&nbsp;HouseWife</span>
+                    </label>
+                </div>
+
+                <div ng-if="item.controlType==='about'" class="form-group">
+                    <label class="control-label" style="color: #9b2828; font-size: 13px;">{{item.displayTxt}}</label>
+                    <textarea ng-model="model[item.ngmodel]" ng-maxlength="item.maxlength" rows="4" cols="20" ng-required="item.required" style="max-width:515px;width:100%;"></textarea>
+                    <label id="Label1" style="color: red; font-size: 13px;" class="pull-right" ng-if="item.maxlength!=undefined">(max {{item.maxlength}} characters)</label>
+                </div>
+                <div ng-if="item.controlType==='multiselect'" class="pop_controls_right select-box-my input-group">
+                    <select multiselectdropdown ng-model="model[item.ngmodel]" multiple typeofdata="item.typeofdata" ng-required="item.required" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi)"></select>
+                </div>
+                <div ng-if="item.controlType==='Changemultiselect'" class="pop_controls_right select-box-my input-group">
+                    <select multiselectdropdown ng-model="model[item.ngmodel]" multiple ng-required="item.required" ng-options="inneritem.value as inneritem.label for inneritem in item.dataSource" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi)"></select>
+                </div>
+                <div ng-if="item.controlType==='doublemultiselect'" class="pop_controls_right select-box-my select-box-my-double input-group">
+                    <select multiselectdropdown ng-model="model[item.ngmodelSelect1]" typeofdata="item.typeofdata" ng-required="item.required" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi)"></select>
+                    <select multiselectdropdown ng-model="model[item.ngmodelSelect2]" typeofdata="item.typeofdata" ng-required="item.required" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi)"></select>
+                </div>
+                <div ng-if="item.controlType==='astroTimeOfBirth'" class="pop_controls_right select-box-my select-box-my-trible select-box-my-trible3 input-group">
+                    <select multiselectdropdown ng-model="model.ddlFromHours" ng-options="item.value as item.label for item in model.hrsbindArr" required></select>
+                    <select multiselectdropdown ng-model="model.ddlFromMinutes" ng-options="item.value as item.label for item in model.minbindArr" required></select>
+                    <select multiselectdropdown ng-model="model.ddlFromSeconds" ng-options="item.value as item.label for item in model.secbindArr" required></select>
+                </div>
+                <div ng-if="item.controlType==='break'">
+                    <br>
+                </div>
+            </li>
+            <li class="row">
+                <br/>
+
+                <div class="col-lg-9">
+                    <button class="button_custom  pull-right" ng-disabled="loading" type="submit" promise-btn="page.model.submitPromise">Submit</button>
+                </div>
+                <div class="col-lg-3">
+                    <input value="Cancel" class="button_custom button_custom_reset pull-right" ng-click="cancel();" type="button"></div>
+            </li>
+        </ul>
+    </div>
+</form>
+
+
+<style>
+    /*.requiredStar::after {
+        content: " * ";
+        float: right;
+        color: red;
+        font-size: 22px !important;
+        padding-left: 6px;
+    }
+    
+    .radiocls {
+        padding-top: 2%;
+    }
+    
+    .multiselect {
+        border: solid 1px #ADA2A2 !important;
+        color: #000;
+        background: #fff !important;
+        box-shadow: none !important;
+        height: 34px !important;
+        margin: 0 !important;
+    }*/
+    /*.help-block {
+        padding-left: 40%;
+    }*/
+    
+    .datepicker3 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+        /*height: 35px !important;*/
+    }
+    
+    .datepicker3 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+    }
+    
+    .datepicker4 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+        background-color: #f0f0cc !important;
+    }
+    
+    .dateclass {
+        width: 96% !important;
+    }
+</style>
