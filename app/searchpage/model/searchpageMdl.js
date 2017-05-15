@@ -103,6 +103,7 @@
                     model.physicalStatusID = model.arrayToString(data.physicalstatusid);
                     timeout(function() {
                         model.castID = model.arrayToString(data.casteid);
+                         model.casteID = model.arrayToString(data.casteid);
                     }, 100);
                 }
                 alerts.dynamicpopupclose();
@@ -631,6 +632,7 @@
 
             model.domDataadvanced = [{
                     headerName: '',
+                     collapseid: 3,
                     controlList: [
                         { ngModel: 'GenderID', controlType: 'gender', isShow: true, validation: true },
                         { ngModel: 'FirstName', labelName: 'First Name', controlType: 'textBox', isShow: true, validation: true },
@@ -640,7 +642,7 @@
                         { divClear: true, ngModel: 'MaritalstatusID', labelName: 'Marital status', controlType: 'dropdown', isShow: true, dataBind: 'MaritalStatus', dataSource: 'maritalstatusg', validation: true },
                         { type: 'caste', ngModel: 'ReligionID', labelName: 'Religion', controlType: 'dropdown', isShow: true, dataBind: 'Religion', dataSource: 'religiong', validation: true },
                         { type: 'caste', ngModel: 'MothertongueID', labelName: 'Mother tongue', controlType: 'dropdown', isShow: true, dataBind: 'Mothertongue', dataSource: 'Mothertongueg', validation: true },
-                        { ngModel: 'castID', labelName: 'Caste', controlType: 'dropdown', isShow: true, dataSource: 'Caste', validation: true },
+                        { ngModel: 'casteID', labelName: 'Caste', controlType: 'dropdown', isShow: true, dataSource: 'Caste', validation: true },
                         { divClear: true, ngModel: 'ComplexionID', labelName: 'Complexion', controlType: 'dropdown', isShow: true, dataBind: 'Complexion', dataSource: 'Complexion', validation: true },
                         { ngModel: 'Showinprofile', labelName: 'Show Profile', controlType: 'dropdown', isShow: true, dataBind: 'Showprofile', dataSource: 'Showprofiles', validation: true },
                         { ngModel: 'ApplicationstatusID', labelName: 'Application Status', controlType: 'dropdown', isShow: true, dataBind: 'Applicationstatus', dataSource: 'Applicationstatus', validation: true },
@@ -648,6 +650,7 @@
                     ]
                 }, {
                     headerName: 'Education and Profession',
+                        collapseid: 4,
                     controlList: [{ divClear: true, type: 'EducationCatgory', ngModel: 'EducationCategoryID', labelName: 'Education category', controlType: 'dropdown', isShow: true, dataBind: 'educationcategorywithoutselect', dataSource: 'educationcategory', validation: true },
                         { type: 'educationGroup', ngModel: 'EducationGroupID', labelName: 'Education', controlType: 'dropdown', isShow: true, dataSource: 'Educationgroup', validation: true },
                         { ngModel: 'EducationSpecializationID', labelName: 'Specialization', controlType: 'dropdown', isShow: true, dataSource: 'educationspeciallisation', validation: true },
@@ -661,6 +664,7 @@
                 },
                 {
                     headerName: 'Job location details',
+                        collapseid: 5,
                     controlList: [{ divClear: true, type: 'state', ngModel: 'jobCountryID', labelName: 'Country Living In', controlType: 'dropdown', isShow: true, dataApi: 'Country', dataSource: 'Country', validation: true },
                         { type: 'district', ngModel: 'StateID', labelName: 'State Living In', controlType: 'dropdown', isShow: true, dataSource: 'State', validation: true },
                         { type: 'city', ngModel: 'DistrictID', labelName: 'District Living In', controlType: 'dropdown', isShow: true, dataSource: 'DistrictBind', validation: true },
@@ -673,6 +677,7 @@
                 },
                 {
                     headerName: 'Astro Details',
+                        collapseid: 6,
                     controlList: [{ divClear: true, type: 'star', ngModel: 'StarLanguageID', labelName: 'Star Language', controlType: 'dropdown', isShow: true, dataApi: 'starLanguage', dataSource: 'starLanguage', validation: true },
                         { ngModel: 'StarsID', labelName: 'Star', controlType: 'dropdown', isShow: true, dataSource: 'stars', dataBind: 'stars', validation: true },
                         { ngModel: 'KojadoshamID', labelName: 'Manglik/Kuja Dosham', controlType: 'radiomalagik', isShow: true, validation: true }
@@ -680,6 +685,7 @@
                 },
                 {
                     headerName: 'Partner Native Location',
+                        collapseid: 7,
                     controlList: [{ divClear: true, type: 'Country', ngModel: 'PreferedCountryID', labelName: 'Preferred Country', controlType: 'dropdown', isShow: true, dataApi: 'Country', dataSource: 'Country', validation: true },
                         { type: 'district', ngModel: 'PreferedStateID', labelName: 'Preferred State', controlType: 'dropdown', isShow: true, dataSource: 'State', validation: true },
                         { type: 'city', ngModel: 'preferedDistrictID', labelName: 'Preferred District', controlType: 'dropdown', isShow: true, dataSource: 'DistrictBind', validation: true },
@@ -689,6 +695,7 @@
 
                 {
                     headerName: 'Profile Settings',
+                        collapseid: 8,
                     controlList: [{ divClear: true, type: 'BranchName', ngModel: 'RegionID', labelName: 'Region Of Branches', controlType: 'dropdown', isShow: true, dataBind: 'Regionofbranches', dataSource: 'Regionofbranches', validation: true },
                         { ngModel: 'BranchID', labelName: 'Branch', controlType: 'dropdown', isShow: true, dataSource: 'BranchName', validation: true, dataApi: 'BranchName' },
                         { ngModelFrom: 'Dateofregfrom', ngModelTo: 'Dateofregto', labelName: 'Date Of Reg', controlType: 'datePicker', isShow: true, validation: true },
@@ -699,6 +706,7 @@
                 },
                 {
                     headerName: 'Habit Details',
+                        collapseid: 9,
                     controlList: [{ divClear: true, ngModel: 'DrinkID', labelName: 'Drink', controlType: 'dropdown', isShow: true, dataApi: 'Smoke', dataSource: 'Smoke', validation: true },
                         { ngModel: 'SmokeID', labelName: 'Smoke', controlType: 'dropdown', isShow: true, dataApi: 'Smoke', dataSource: 'Smoke', validation: true },
                         { ngModel: 'DietID', labelName: 'Diet', controlType: 'dropdown', isShow: true, dataBind: 'Diet', dataSource: 'Diet', validation: true },
@@ -708,6 +716,7 @@
                 },
                 {
                     headerName: 'Grade Selections',
+                        collapseid: 10,
                     controlList: [{ divClear: true, ngModel: 'Status_Photo', labelName: 'Photo', controlType: 'checkBoxList', dataSource: 'photogradearray', isShow: true, validation: true },
                         { ngModel: 'Status_Education', labelName: 'Education', controlType: 'checkBoxList', dataSource: 'photogradearray', isShow: true, validation: true },
                         { ngModel: 'Status_Property', labelName: 'Property', controlType: 'checkBoxList', dataSource: 'photogradearray', isShow: true, validation: true },
