@@ -9,14 +9,14 @@
                 '/node_modules/angular-material/angular-material.min.css',
                 '/css/build/css/custom.min.css',
                 '/css/scss/mainstyles.css',
-                '/css/build/css/custom_styles.css'
+                '/css/build/css/custom_styles.css',
+                '/app/employeeViewfullprofilePrint/css/style.css'
             ];
 
             scope.printDiv = function() {
                 var contents = '';
                 if (scope.divInfo) {
                     styles = styles.concat(scope.divInfo.styles);
-
                     $timeout(function() {
                         contents = $('#' + scope.divInfo.printDivId).html();
                         var frameData = $('<iframe/>');

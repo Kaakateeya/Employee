@@ -1,10 +1,4 @@
-#viwprofilecustomerprint {
-    .headerStyles {
-        color: rgb(92, 82, 82);
-        font-size: 22px;
-        font-weight: bold;
-        padding: 6px;
-    }
+#viewProfileId {
     .profile_full_main {
         width: 1160px;
         margin: 0 auto;
@@ -27,7 +21,7 @@
         font-size: 20px;
         font-weight: 400;
         color: #d93036;
-        margin: 0 0 20px 0;
+        margin: 0 0 20px 0 !important;
     }
     .profile_full_header h6 span {
         color: #000;
@@ -145,5 +139,45 @@
     }
     .personal_inform_main_in_new {
         padding: 6px 20px;
+    }
+    .AboutLbl {
+        color: Black;
+        font-weight: bold;
+        color: #000;
+        padding-bottom: 2%;
+        font-size: 15px;
+    }
+    .aboutval {
+        width: 750px;
+    }
+    .imgSize {
+        height: 160px;
+        width: 150px;
+    }
+}
+
+.headerStyles {
+    color: rgb(92, 82, 82);
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: -2%;
+}
+
+@media screen {
+    /*# sourceMappingURL=style.css.map */
+    .printCls {
+        display: none;
+    }
+    .displayCls {
+        display: block;
+    }
+}
+
+@media print {
+    .printCls {
+        display: block;
+    }
+    .displayCls {
+        display: none;
     }
 }

@@ -11,13 +11,13 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ngAnimate', 'ngIdle', 'ngMaterial',
     'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate',
     'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons',
-    'ngPrint', 'ui.date'
+    'ui.date'
 ]);
 
-app.apiroot = 'http://52.66.131.254:8025/Api/';
-app.apipathold = 'http://52.66.131.254:8010/Api/';
-// app.apiroot = 'http://183.82.0.58:8025/Api/';
-// app.apipathold = 'http://183.82.0.58:8010/Api/';
+// app.apiroot = 'http://52.66.131.254:8025/Api/';
+// app.apipathold = 'http://52.66.131.254:8010/Api/';
+app.apiroot = 'http://183.82.0.58:8025/Api/';
+app.apipathold = 'http://183.82.0.58:8010/Api/';
 
 app.env = "dev";
 app.payfixedAmt = 100;
@@ -53,7 +53,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'EmployeePayment', name: 'base.EmployeePayment', url: '/EmployeePayments', isloginrequired: true },
             { routeName: 'EmployeePaymentInsert', name: 'base.EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID/:status/:paymentID', isloginrequired: true },
             { routeName: 'bootstrapTable', name: 'base.bootstrapTable', url: '/bootstrapTables', isloginrequired: true },
-            { routeName: 'employeeViewfullprofile', name: 'base.employeeViewfullprofile', url: '/Viewfullprofile/:ProfileID', isloginrequired: true },
+            { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofile', url: '/Viewfullprofile/:ProfileID', isloginrequired: true },
             { routeName: 'expressInterest', name: 'base.expressInterest', url: '/expressInterestpage', isloginrequired: true },
             { routeName: 'myProfile', name: 'base.myProfile', url: '/myProfilepage', isloginrequired: true },
             { routeName: 'matchFollowup', name: 'base.matchFollowup', url: '/matchFollowuppage', isloginrequired: true },

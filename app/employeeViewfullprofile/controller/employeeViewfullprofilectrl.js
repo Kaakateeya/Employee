@@ -19,7 +19,11 @@
                  model.textboxshowhide = false;
              }
          };
-
+         vm.divInfo = {
+             printDivId: 'printThisElement',
+             styles: ['/app/employeeViewfullprofile/css/style.css'], //Extra Styles
+             title: 'View Profile',
+         };
          vm.init();
      }
      angular
