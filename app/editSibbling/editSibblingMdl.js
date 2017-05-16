@@ -132,7 +132,7 @@
                         model.broObj = {};
                         commonFactory.open('commonSibblingpopup.html', model.scope, uibModal);
                     } else {
-                        alertss.timeoutoldalerts(model.model, 'alert-danger', 'Cannot add more brothers', 4500);
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Cannot add more brothers', 4500);
                     }
 
                     break;
@@ -207,7 +207,7 @@
                         model.sisObj = {};
                         commonFactory.open('commonSibblingpopup.html', model.scope, uibModal);
                     } else {
-                        alertss.timeoutoldalerts(model.model, 'alert-danger', 'Cannot add more sisters', 4500);
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Cannot add more sisters', 4500);
                         break;
                     }
             }

@@ -14,7 +14,7 @@
             baseService.personalDetails(CustID).then(function(response) {
                 model.PersonalObj = response.data;
                 // model.imgsrc = authSvc.getprofilepic();
-                debugger;
+
                 if (model.PersonalObj !== null && model.PersonalObj !== undefined) {
                     baseService.nodatastatus(model.PersonalObj.ProfileID).then(function(res) {
                         model.rev = res.data;
