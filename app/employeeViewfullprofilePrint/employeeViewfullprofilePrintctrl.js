@@ -21,7 +21,7 @@
          };
          vm.divInfo = {
              printDivId: 'printThisElement',
-             styles: ['/app/employeeViewfullprofilePrint/css/style.css'], //Extra Styles
+             styles: ['/app/employeeViewfullprofilePrint/style.css'], //Extra Styles
              title: 'View Profile',
          };
          vm.init();
