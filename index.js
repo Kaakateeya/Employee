@@ -11,12 +11,14 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ngAnimate', 'ngIdle', 'ngMaterial',
     'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate',
     'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons',
-    'ngPrint', 'ui.date'
+    'ui.date'
 ]);
-// 'KaakateeyaEmpReg',
-//  'KaakateeyaEmpEdit',
+
+// app.apiroot = 'http://52.66.131.254:8025/Api/';
+// app.apipathold = 'http://52.66.131.254:8010/Api/';
 app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.apipathold = 'http://183.82.0.58:8010/Api/';
+
 app.env = "dev";
 app.payfixedAmt = 100;
 app.paypoints = 10;
@@ -37,7 +39,7 @@ app.BucketName = 'kaakateeyaprod';
 
 app.S3PhotoPath = app.GlobalImgPath + 'Images/ProfilePics/';
 
-app.accesspathdotsImg = app.GlobalImgPathforimage + app.S3PhotoPath;
+app.accesspathdotsImg = app.S3PhotoPath;
 app.prefixPathImg = 'Images/ProfilePics/';
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider',
@@ -51,7 +53,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'EmployeePayment', name: 'base.EmployeePayment', url: '/EmployeePayments', isloginrequired: true },
             { routeName: 'EmployeePaymentInsert', name: 'base.EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID/:status/:paymentID', isloginrequired: true },
             { routeName: 'bootstrapTable', name: 'base.bootstrapTable', url: '/bootstrapTables', isloginrequired: true },
-            { routeName: 'employeeViewfullprofile', name: 'base.employeeViewfullprofile', url: '/Viewfullprofile/:ProfileID', isloginrequired: true },
+            { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofile', url: '/Viewfullprofile/:ProfileID', isloginrequired: true },
             { routeName: 'expressInterest', name: 'base.expressInterest', url: '/expressInterestpage', isloginrequired: true },
             { routeName: 'myProfile', name: 'base.myProfile', url: '/myProfilepage', isloginrequired: true },
             { routeName: 'matchFollowup', name: 'base.matchFollowup', url: '/matchFollowuppage', isloginrequired: true },
@@ -76,8 +78,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'editContact', name: 'base.editContact', url: '/Contact/:CustID' },
             { routeName: 'editOfcePurpose', name: 'base.editOfcePurpose', url: '/OfcePurpose/:CustID' },
             { routeName: 'editProfileSetting', name: 'base.editProfileSetting', url: '/ProfileSetting/:CustID' },
-            { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID' }
-
+            { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID', subname: ['directives/divPrint.js'] }
         ];
 
         $ocLazyLoadProvider.config({
@@ -167,7 +168,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/contactDirecrive.js',
                         'directives/countryDirective.js',
                         'directives/pageReviewDirective.js',
-                        'directives/datePickerDirectiveEdit.js'
+                        'directives/datePickerDirectiveEdit.js',
+                        'directives/divPrint.js'
                     ]
                 },
                 {

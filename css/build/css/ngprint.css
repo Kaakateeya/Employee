@@ -2,6 +2,13 @@
     #printSection {
         display: none;
     }
+    .headerStyles {
+        color: #5c5252;
+        font-size: 22px;
+        font-weight: bold;
+        padding: 6px;
+    }
+    /*# sourceMappingURL=style.css.map */
 }
 
 @media print {
