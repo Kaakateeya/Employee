@@ -14,19 +14,11 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ngPrint', 'ui.date'
 ]);
 
-
 // app.apiroot = 'http://52.66.131.254:8025/Api/';
 // app.apipathold = 'http://52.66.131.254:8010/Api/';
 
-
-app.apiroot = 'http://52.66.131.254:8025/Api/';
-app.apipathold = 'http://52.66.131.254:8010/Api/';
-
-// app.apiroot = 'http://183.82.0.58:8025/Api/';
-// app.apipathold = 'http://183.82.0.58:8010/Api/';
-
-
-
+app.apiroot = 'http://183.82.0.58:8025/Api/';
+app.apipathold = 'http://183.82.0.58:8010/Api/';
 
 app.env = "dev";
 app.payfixedAmt = 100;
@@ -87,8 +79,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'editContact', name: 'base.editContact', url: '/Contact/:CustID' },
             { routeName: 'editOfcePurpose', name: 'base.editOfcePurpose', url: '/OfcePurpose/:CustID' },
             { routeName: 'editProfileSetting', name: 'base.editProfileSetting', url: '/ProfileSetting/:CustID' },
-            { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID' }
-
+            { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID', subname: ['directives/divPrint.js'] }
         ];
 
         $ocLazyLoadProvider.config({
@@ -178,7 +169,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/contactDirecrive.js',
                         'directives/countryDirective.js',
                         'directives/pageReviewDirective.js',
-                        'directives/datePickerDirectiveEdit.js'
+                        'directives/datePickerDirectiveEdit.js',
+                        'directives/divPrint.js'
                     ]
                 },
                 {

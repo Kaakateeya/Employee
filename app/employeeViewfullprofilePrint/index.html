@@ -1,8 +1,9 @@
 <div class="right_col" role="main" id="viwprofilecustomerprint">
     <h2 class="headerStyles">Kaakateeya Marriages</h2>
-    <button class="btn btn-danger pull-right" ng-print print-element-id="printThisElement">
+    <!--<button class="btn btn-danger pull-right" ng-print print-element-id="printThisElement">
       <i class="fa fa-print"></i>
-           Print</button>
+           Print</button>-->
+    <div-print div-info="page.divInfo"></div-print>
     <div class="text-center" ng-hide="page.model.textboxshowhide">
         <div class="row">
             <div class="col-lg-4">
@@ -33,15 +34,15 @@
         <div class="profile_full_main" ng-hide="page.model.fullprofileshow">
             <div class="profile_full_header clearfix">
                 <div class="row">
-                    <div class="col-lg-2">
+                    <div class="col-lg-2 col-xs-2 col-md-2 col-sm-2">
                         <div ng-class="divclassmask(LoginPhotoIsActive)">
                             <img name="iProfilePic" ng-click="page.model.showPhotoPopup()" ng-src="{{page.model.personalinfo[0].ApplicationPhotoPath}}" style="height:150px;width:150px;cursor:pointer;" />
                         </div>
                     </div>
-                    <div class="col-lg-10">
+                    <div class="col-lg-10 col-xs-10 col-md-10 col-sm-10">
                         <div class="profile_full_header_in">
                             <div class='row'>
-                            <!--<p ng-repeat="itm in page.model.basicinfo">
+                                <!--<p ng-repeat="itm in page.model.basicinfo">
                                     <span style="color:Black;font-weight:bold;">{{itm.columnname|| (itm.columnName==='1'?'Education':(itm.columnName==='2'|| itm.columnName==='3' || itm.columnName==='4' || itm.columnName==='5')?"":itm.columnName) ||itm.ColumnName}}</span>
                                     <span>
                      <span style="color:DarkBlue;"> <span ng-if="itm.columnname!='' && itm.columnname!=null">:</span>
@@ -51,14 +52,14 @@
                                 </p>-->
 
 
-                                <div ng-repeat="itm in page.model.basicinfo" class="col-lg-6">  <span style="color:Black;font-weight:bold;">{{itm.columnname|| (itm.columnName==='1'?'Education':(itm.columnName==='2'|| itm.columnName==='3' || itm.columnName==='4' || itm.columnName==='5')?"":itm.columnName) ||itm.ColumnName}}</span>
-                                        <span>
+                                <div ng-repeat="itm in page.model.basicinfo" class="col-lg-6 col-xs-6 col-sm-6 col-md-6"> <span style="color:Black;font-weight:bold;">{{itm.columnname|| (itm.columnName==='1'?'Education':(itm.columnName==='2'|| itm.columnName==='3' || itm.columnName==='4' || itm.columnName==='5')?"":itm.columnName) ||itm.ColumnName}}</span>
+                                    <span>
                                   <span style="color:DarkBlue;"> <span ng-if="itm.columnname!='' && itm.columnname!=null">:</span>
                                     <span ng-bind-html="itm.value || itm.Value" style="color:DarkBlue;"></span>
                                     </span>
                                     </span>
-                                    
-                                     </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -109,4 +110,3 @@
         </div>
     </div>
 </div>
-
