@@ -20,7 +20,8 @@
 app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function($injector, Idle, $http, helperservice) {
     function setUser(value) {
         setSession("LoginEmpid", value.EmpID);
-        setSession("LoginEmpName", value.FirstName + " " + value.LastName);
+        //setSession("LoginEmpName", value.FirstName + " " + value.LastName);
+        setSession("LoginEmpName", value.FirstName);
         setSession("empBranchID", value.BranchID);
         setSession("isAdmin", value.isAdmin);
         setSession("isManagement", value.isManagement);
