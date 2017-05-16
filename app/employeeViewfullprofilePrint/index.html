@@ -1,8 +1,7 @@
 <div class="right_col" role="main" id="viwprofilecustomerprint">
-    <h2 class="headerStyles">Kaakateeya Marriages</h2>
-    <button class="btn btn-danger pull-right" ng-print print-element-id="printThisElement">
-      <i class="fa fa-print"></i>
-           Print</button>
+    <h2 class="headerStyles" ng-if="page.model.personalinfo.length>0">Kaakateeya Marriages</h2>
+
+    <div-print div-info="page.divInfo"></div-print>
     <div class="text-center" ng-hide="page.model.textboxshowhide">
         <div class="row">
             <div class="col-lg-4">
@@ -18,95 +17,117 @@
         <br>
     </div>
     <div id="printThisElement">
-        <div ng-hide="page.model.fullprofileshow">
-            <div>
-                <div class="profile_full_header_in">
-                    <h6 style="font-size: 18px;">
-                        <span id="lblName">{{page.model.personalinfo[0].NAME}}</span>
-                        <span>
+        <div id="viewProfileId">
+            <div ng-hide="page.model.fullprofileshow" class="printCls">
+                <div>
+                    <div class="profile_full_header_in">
+                        <h6 style="font-size: 18px;">
+                            <span id="lblName">{{page.model.personalinfo[0].NAME}}</span>
+                            <span>
                 <span id="lblProfileIDs">(Profile ID:{{page.model.personalinfo[0].ProfileID}})     </span></span>
-                    </h6>
+                        </h6>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="profile_full_main" ng-hide="page.model.fullprofileshow">
-            <div class="profile_full_header clearfix">
-                <div class="row">
-                    <div class="col-lg-2">
+            <div class="clearfix"></div>
+            <div class="profile_full_main" ng-hide="page.model.fullprofileshow">
+                <div class="profile_full_header clearfix printCls">
+                    <div class="row">
+
+                        <div class="col-lg-10 col-xs-10 col-md-10 col-sm-10">
+                            <div class="profile_full_header_in">
+                                <div class='row'>
+                                    <div ng-repeat="itm in page.model.basicinfo" class="col-lg-4 col-xs-4 col-sm-4 col-md-4">
+                                        <span style="color:Black;font-weight:bold;">{{itm.columnname|| (itm.columnName==='1'?'Education':(itm.columnName==='2'|| itm.columnName==='3' || itm.columnName==='4' || itm.columnName==='5')?"":itm.columnName) ||itm.ColumnName}}</span>
+                                        <span>
+                                  <span style="color:DarkBlue;" > <span ng-if="itm.columnname!='' && itm.columnname!=null">:</span>
+                                        <span ng-bind-html="itm.value || itm.Value" style="color:DarkBlue;"></span>
+                                        </span>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-xs-2 col-md-2 col-sm-2">
+                            <div ng-class="divclassmask(LoginPhotoIsActive)">
+                                <img name="iProfilePic" ng-click="page.model.showPhotoPopup()" ng-src="{{page.model.personalinfo[0].ApplicationPhotoPath}}" style="height:150px;width:150px;cursor:pointer;" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="profile_full_header clearfix displayCls">
+                    <div class="profile_full_header_pic">
                         <div ng-class="divclassmask(LoginPhotoIsActive)">
                             <img name="iProfilePic" ng-click="page.model.showPhotoPopup()" ng-src="{{page.model.personalinfo[0].ApplicationPhotoPath}}" style="height:150px;width:150px;cursor:pointer;" />
                         </div>
                     </div>
-                    <div class="col-lg-10">
-                        <div class="profile_full_header_in">
-                            <div class='row'>
-                            <!--<p ng-repeat="itm in page.model.basicinfo">
+                    <div class="profile_full_header_in">
+                        <h6>
+                            <span id="lblName">{{page.model.personalinfo[0].NAME}}</span>
+                            <span>
+                <span id="lblProfileIDs">(Profile ID:{{page.model.personalinfo[0].ProfileID}})     </span></span>
+                        </h6>
+
+
+
+                        <div class="" ng-hide="page.model.aboutmyself[0].Aboutyourself==='NOT Given' || page.model.aboutmyself[0].Aboutyourself===''">
+
+                            <h4 class="AboutLbl">About my
+                                <span id="lblRelation">{{page.model.personalinfo[0].GenderID===2?"Daughter":"Son"}}</span></h4>
+                            <p class="aboutval">
+                                <span id="lblDesc">{{page.model.aboutmyself[0].Aboutyourself}}</span>
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="profile_full_header_in_ui clearfix">
+                        <div id="updateHoror" ng-if="page.model.personalinfo[0].HoroscopeImage!=='' && page.model.personalinfo[0].HoroscopeImage!==null && page.model.personalinfo[0].HoroscopeImage!=='Not given'
+                 && (page.model.personalinfo[0].HoroscopeImage).indexOf('Horo_no.jpg')===-1">
+                            <img ng-src="src/images/viewhoroscopeimage.jpg" class="imgSize" ng-click="page.model.viewhoroscopeimage(page.model.personalinfo[0].HoroscopeImage)">
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="personal_inform_main">
+                    <div ng-repeat="item in page.model.viewprofilearray" ng-if="item.header=='Headings' || item.header=='About' || item.header=='Primary'?'':item.header">
+                        <div class="personal_inform_head clearfix" ng-class="item.header=='My Basic Details'?'displayCls':''" style="background-color: rgb(244, 182, 36); padding: 0px 10px; border-bottom: solid 1px #ccc;">
+                            <h4>
+                                <span class="lblHeadings">{{item.header}}</span></h4>
+                            <a href="#" class="edit_prsnl"></a>
+                        </div>
+                        <div class="personal_inform_main_in">
+
+                            <div id="divStyle" ng-class="page.model.applyCls(item.header);">
+                                <p ng-repeat="itm in item.value">
                                     <span style="color:Black;font-weight:bold;">{{itm.columnname|| (itm.columnName==='1'?'Education':(itm.columnName==='2'|| itm.columnName==='3' || itm.columnName==='4' || itm.columnName==='5')?"":itm.columnName) ||itm.ColumnName}}</span>
                                     <span>
-                     <span style="color:DarkBlue;"> <span ng-if="itm.columnname!='' && itm.columnname!=null">:</span>
+                                
+                           <span style="color:DarkBlue;"> <span ng-if="itm.columnname!='' && itm.columnname!=null">:</span>
                                     <span ng-bind-html="itm.value || itm.Value" style="color:DarkBlue;"></span>
                                     </span>
                                     </span>
-                                </p>-->
-
-
-                                <div ng-repeat="itm in page.model.basicinfo" class="col-lg-6">  <span style="color:Black;font-weight:bold;">{{itm.columnname|| (itm.columnName==='1'?'Education':(itm.columnName==='2'|| itm.columnName==='3' || itm.columnName==='4' || itm.columnName==='5')?"":itm.columnName) ||itm.ColumnName}}</span>
-                                        <span>
-                                  <span style="color:DarkBlue;"> <span ng-if="itm.columnname!='' && itm.columnname!=null">:</span>
-                                    <span ng-bind-html="itm.value || itm.Value" style="color:DarkBlue;"></span>
-                                    </span>
-                                    </span>
-                                    
-                                     </div>
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <!--<div class="profile_full_header_in_ui clearfix">
-                    <div id="updateHoror" ng-if="page.model.personalinfo[0].HoroscopeImage!=='' && page.model.personalinfo[0].HoroscopeImage!==null && page.model.personalinfo[0].HoroscopeImage!=='Not given'
-                 && (page.model.personalinfo[0].HoroscopeImage).indexOf('Horo_no.jpg')===-1">
-                        <a ng-show="lnkViewHoro" href="javascript:void(0);" ng-click="viewhoroscopeimage()">View Horo</a>
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                </div>-->
-                </div>
-            </div>
-            <div class="personal_inform_main">
-                <div ng-repeat="item in page.model.viewprofilearray" ng-if="item.header=='My Basic Details'|| item.header=='Headings' || item.header=='About' || item.header=='Primary'?'':item.header">
-                    <div class="personal_inform_head clearfix" style="background-color: rgb(244, 182, 36); padding: 0px 10px; border-bottom: solid 1px #ccc;">
-                        <h4>
-                            <span class="lblHeadings">{{item.header}}</span></h4>
-                        <a href="#" class="edit_prsnl"></a>
-                    </div>
-                    <div class="personal_inform_main_in">
-                        <div id="divStyle" ng-class="item.header=='My Location Information'?'personal_inform_main_in_list clearfix': ''">
-                            <p ng-repeat="itm in item.value">
-                                <span style="color:Black;font-weight:bold;">{{itm.columnname|| (itm.columnName==='1'?'Education':(itm.columnName==='2'|| itm.columnName==='3' || itm.columnName==='4' || itm.columnName==='5')?"":itm.columnName) ||itm.ColumnName}}</span>
-                                <span>
-                                
-                           <span style="color:DarkBlue;"> <span ng-if="itm.columnname!='' && itm.columnname!=null">:</span>
-                                <span ng-bind-html="itm.value || itm.Value" style="color:DarkBlue;"></span>
-                                </span>
-                                </span>
+                    <div class="printCls" ng-hide="page.model.aboutmyself[0].Aboutyourself==='NOT Given' || page.model.aboutmyself[0].Aboutyourself===''">
+                        <div class="personal_inform_head clearfix" style="background-color: rgb(244, 182, 36); padding: 0px 10px; border-bottom: solid 1px #ccc;">
+                            <h4>about my
+                                <span id="lblRelation">{{page.model.personalinfo[0].GenderID===2?"Daughter":"Son"}}</span></h4>
+                        </div>
+                        <div class="personal_inform_main_in">
+                            <p>
+                                <span id="lblDesc">{{page.model.aboutmyself[0].Aboutyourself}}</span>
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="" ng-hide="page.model.aboutmyself[0].Aboutyourself==='NOT Given' || page.model.aboutmyself[0].Aboutyourself===''">
-                    <div class="personal_inform_head clearfix" style="background-color: rgb(244, 182, 36); padding: 0px 10px; border-bottom: solid 1px #ccc;">
-                        <h4>about my
-                            <span id="lblRelation">{{page.model.personalinfo[0].GenderID===2?"Daughter":"Son"}}</span></h4>
-                    </div>
-                    <div class="personal_inform_main_in">
-                        <p>
-                            <span id="lblDesc">{{page.model.aboutmyself[0].Aboutyourself}}</span>
-                        </p>
-                    </div>
-                </div>
             </div>
+
         </div>
     </div>
 </div>
-
