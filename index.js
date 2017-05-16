@@ -14,10 +14,10 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ngPrint', 'ui.date'
 ]);
 
-app.apiroot = 'http://52.66.131.254:8025/Api/';
-app.apipathold = 'http://52.66.131.254:8010/Api/';
-// app.apiroot = 'http://183.82.0.58:8025/Api/';
-// app.apipathold = 'http://183.82.0.58:8010/Api/';
+// app.apiroot = 'http://52.66.131.254:8025/Api/';
+// app.apipathold = 'http://52.66.131.254:8010/Api/';
+app.apiroot = 'http://183.82.0.58:8025/Api/';
+app.apipathold = 'http://183.82.0.58:8010/Api/';
 
 app.env = "dev";
 app.payfixedAmt = 100;
@@ -187,10 +187,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                 {
                     name: 'Expressintrst',
                     files: [
-                        'app/expressInterest/controller/expressInterestctrl.js',
-                        'app/expressInterest/css/style.css',
-                        'app/expressInterest/model/expressInterestMdl.js',
-                        'app/expressInterest/service/expressInterestservice.js'
+                        'app/expressInterest/expressInterestctrl.js',
+                        'app/expressInterest/style.css',
+                        'app/expressInterest/expressInterestMdl.js',
+                        'app/expressInterest/expressInterestservice.js'
                     ]
                 },
                 {
@@ -214,9 +214,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                 {
                     name: 'EditSideMenu-base',
                     files: [
-                        'app/base/controller/basectrl.js',
-                        'app/base/model/baseMdl.js',
-                        'app/base/service/baseservice.js'
+                        'app/base/basectrl.js',
+                        'app/base/baseMdl.js',
+                        'app/base/baseservice.js'
                     ]
                 },
                 {
@@ -285,13 +285,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                                 $ocLazyLoad.load(item.module);
                             }
                             return $ocLazyLoad.load([
-                                'app/' + item.routeName + '/css/style.css',
-                                'app/' + item.routeName + '/controller/' + item.routeName + 'ctrl.js',
-                                'app/' + item.routeName + '/model/' + item.routeName + 'Mdl.js',
-                                'app/' + item.routeName + '/service/' + item.routeName + 'service.js'
+                                'app/' + item.routeName + '/style.css',
+                                'app/' + item.routeName + '/' + item.routeName + 'ctrl.js',
+                                'app/' + item.routeName + '/' + item.routeName + 'Mdl.js',
+                                'app/' + item.routeName + '/' + item.routeName + 'service.js'
                             ]);
                         } else {
-                            return $ocLazyLoad.load(['app/' + item.routeName + '/css/style.css', 'app/' + item.routeName + '/src/scripts.min.js']);
+                            return $ocLazyLoad.load(['app/' + item.routeName + '/style.css', 'app/' + item.routeName + '/scripts.min.js']);
                         }
                     }]
                 },
