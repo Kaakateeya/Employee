@@ -37,6 +37,8 @@
 
             editAstroService.getAstroData(stateParams.CustID).then(function(response) {
 
+          if(response.data!==undefined && response.data!==null && response.data!=="" && response.data.length>0)
+           {
                 if (commonFactory.checkvals(response.data[0])) {
                     model.AstroArr = JSON.parse(response.data[0]);
                     model.generateData = JSON.parse(response.data[1]);
@@ -75,7 +77,7 @@
                         }
                     }
 
-
+                }
 
                 }
 

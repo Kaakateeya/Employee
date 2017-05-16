@@ -198,10 +198,11 @@
             var array = [];
             var arraylist = [];
             if (nodatastr !== undefined && nodatastr !== "" && nodatastr !== null) {
+                debugger;
                 array = nodatastr.split(",");
             }
             _.each(array, function(item) {
-                switch (item) {
+                switch (item.trim()) {
                     case "CustomerPersonal":
                         arraylist.push({ linkname: item, href: "Education/" + custid });
                         break;
@@ -330,7 +331,7 @@
                             model.typeofslidedate = "ArrivalDate at";
                             break;
                         case "Marketing Ticket Expiry With in Two days":
-                            model.typeofslidedate = "Ticket Exipry Date";
+                            model.typeofslidedate = "Ticket Last Updated";
                             break;
                         case "Customer Notification Status":
                             model.typeofslidedate = "Notification Date";
