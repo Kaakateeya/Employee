@@ -137,7 +137,7 @@
                         model.data.push({ label: 'Qualification', value: item.EducationGroup + "," + item.EduGroupnamenew });
                         model.data.push({ label: 'Profession', value: item.Profession });
                         model.data.push({ label: 'Job Location', value: item.JobLocation });
-                        model.data.push({ label: 'Income(P.M)', value: item.Income });
+                        model.data.push({ label: 'Income(P.M)', value:item.Income!==null && item.Income!==""?item.currency+" "+item.Income:"--" });
                         model.data.push({ label: 'Father Native', value: item.FFNative });
                         model.data.push({ label: 'Mother Native', value: item.MFNative });
                         model.data.push({ label: 'Property(Lakhs)', value: item.Property });
@@ -145,8 +145,8 @@
                             model.data.push({ label: 'ServiceDate', value: item.serviceDate, style: 'color:red;' });
                         if (item.Intercaste == "True")
                             model.data.push({ label: 'Intercaste', value: (item.fathercaste + "/" + item.mothercaste) });
-                        if (item.ProfileGrade !== 0)
-                            model.data.push({ label: 'ProfileGrade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
+                        // if (item.ProfileGrade !== 0)
+                        //     model.data.push({ label: 'ProfileGrade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
                         model.slides.push({
                             itmArr: model.data,
                             custPhoto: item.CustomerFullPhoto || item.Photo,

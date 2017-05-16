@@ -170,7 +170,8 @@
         model.memoSubmit = function(obj) {
             var inputObj = {
                 CallType: 379,
-                AssignedEmpID: obj.ddlmrktAssignmemo,
+                //AssignedEmpID: obj.ddlmrktAssignmemo,
+                AssignedEmpID: null,
                 TicketID: model.ticketid,
                 EmpID: model.empid,
                 CallDiscussion: obj.txtmrktcalldiscussionMemo

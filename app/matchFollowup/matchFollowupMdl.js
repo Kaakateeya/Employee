@@ -201,7 +201,7 @@
                 model.proceed.frompage = 1;
                 model.proceed.topage = 10;
                 model.matchFollowupSelect(undefined, custid, 'proceedpopup');
-                modelpopupopenmethod.showPopup('Proceedslide.html', model.scope, 'lg', "proceedcls");
+                modelpopupopenmethod.showPopupphotopoup('Proceedslide.html', model.scope, 'lg', "proceedcls");
             };
 
             model.proceed.closepopup = function() {
@@ -344,7 +344,7 @@
                 modelpopupopenmethod.closepopup();
             };
             model.closeprocced = function() {
-                modelpopupopenmethod.closepopup();
+                modelpopupopenmethod.closepopuppoptopopup();
             };
             model.redirectContactPage = function(custid) {
                 window.open('/Contact/' + custid, '_blank');
@@ -412,7 +412,7 @@
 
                 model.ActionTicket = ticketID;
 
-                model.actobj.ddlMemAssign = parseInt(model.empid);
+                //model.actobj.ddlMemAssign = parseInt(model.empid);
                 model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = '0';
                 model.actobj.txtInCalltelephonenumber = model.actobj.txtOutCalltelephonenumber = number;
 
@@ -529,7 +529,8 @@
                 var inputObj = {
                     CallType: 379,
                     CallDiscussion: obj.txtMemmemocalldiscussion,
-                    AssignedEmpID: obj.ddlMemAssign
+                    // AssignedEmpID: obj.ddlMemAssign
+                    AssignedEmpID: null
                 };
                 model.ActionSubmit(inputObj, 'Internal Memo');
             };
@@ -538,7 +539,7 @@
                 var inputObj = {
                     CallType: 563,
                     CallDiscussion: obj.txtcloseReason
-                }
+                };
                 model.ActionSubmit(inputObj, 'Close');
             };
 
