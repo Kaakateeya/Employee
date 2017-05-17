@@ -69,18 +69,20 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'editEducation', name: 'base.editEducation', url: '/Education/:CustID', isloginrequired: true },
             { routeName: 'editManagePhoto', name: 'base.editManagePhoto', url: '/ManagePhoto/:CustID' },
             { routeName: 'editParent', name: 'base.editParent', url: '/Parent/:CustID' },
-            { routeName: 'editPartnerpreference', name: 'base.editPartnerpreference', url: '/Partnerpreference/:CustID', isloginrequired: true },
-            { routeName: 'editSibbling', name: 'base.editSibbling', url: '/Sibbling/:CustID', isloginrequired: true },
-            { routeName: 'editAstro', name: 'base.editAstro', url: '/Astro/:CustID', subname: ['common/services/fileUploadSevice.js', 'common/directives/fileUploadDirective.js'], isloginrequired: true },
-            { routeName: 'editProperty', name: 'base.editProperty', url: '/Property/:CustID', isloginrequired: true },
-            { routeName: 'editRelative', name: 'base.editRelative', url: '/Relative/:CustID', isloginrequired: true },
-            { routeName: 'editReference', name: 'base.editReference', url: '/Reference/:CustID', isloginrequired: true },
-            { routeName: 'editSpouse', name: 'base.editSpouse', url: '/Spouse/:CustID', subname: ['common/directives/datePickerDirective.js'], isloginrequired: true },
-            { routeName: 'editContact', name: 'base.editContact', url: '/Contact/:CustID', isloginrequired: true },
-            { routeName: 'editOfcePurpose', name: 'base.editOfcePurpose', url: '/OfcePurpose/:CustID', isloginrequired: true },
-            { routeName: 'editProfileSetting', name: 'base.editProfileSetting', url: '/ProfileSetting/:CustID', isloginrequired: true },
-            { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID', subname: ['directives/divPrint.js'], isloginrequired: true },
+            { routeName: 'editPartnerpreference', name: 'base.editPartnerpreference', url: '/Partnerpreference/:CustID' },
+            { routeName: 'editSibbling', name: 'base.editSibbling', url: '/Sibbling/:CustID' },
+            { routeName: 'editAstro', name: 'base.editAstro', url: '/Astro/:CustID', subname: ['common/services/fileUploadSevice.js', 'common/directives/fileUploadDirective.js'] },
+            { routeName: 'editProperty', name: 'base.editProperty', url: '/Property/:CustID' },
+            { routeName: 'editRelative', name: 'base.editRelative', url: '/Relative/:CustID' },
+            { routeName: 'editReference', name: 'base.editReference', url: '/Reference/:CustID' },
+            { routeName: 'editSpouse', name: 'base.editSpouse', url: '/Spouse/:CustID', subname: ['common/directives/datePickerDirective.js'] },
+            { routeName: 'editContact', name: 'base.editContact', url: '/Contact/:CustID' },
+            { routeName: 'editOfcePurpose', name: 'base.editOfcePurpose', url: '/OfcePurpose/:CustID' },
+            { routeName: 'editProfileSetting', name: 'base.editProfileSetting', url: '/ProfileSetting/:CustID' },
+            { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID', subname: ['directives/divPrint.js'] },
+            { routeName: 'registrationValidation', name: 'base.registrationValidation', url: '/registrationValidations' },
             { routeName: 'communicationLog', name: 'base.communicationLog', url: '/communicationLogs', isloginrequired: true }
+
         ];
 
         $ocLazyLoadProvider.config({
