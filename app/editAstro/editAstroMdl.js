@@ -55,7 +55,7 @@
                                     extension = "jpg";
                                 }
 
-                                model.ImageUrl = app.GlobalImgPathforimage + "Images/Horoscopeimages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+                                model.ImageUrl = app.GlobalImgPath + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
                                 if (extension === "html") {
                                     model.iframeShow = true;
                                     $('#iframe').attr('src', model.ImageUrl);
@@ -70,7 +70,7 @@
                                     model.iframeShow = false;
                                     extensn = "jpg";
                                 }
-                                model.ImageUrl = app.GlobalImgPathforimage + "Images/Horoscopeimages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extensn;
+                                model.ImageUrl = app.GlobalImgPath + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extensn;
                                 if (extensn === "html") {
                                     model.iframeShow = true;
                                     $('#iframe').attr('src', model.ImageUrl);
@@ -173,8 +173,6 @@
         };
 
         model.upload = function(obj) {
-
-
             var extension = (obj.myFile.name !== '' && obj.myFile.name !== undefined && obj.myFile.name !== null) ? (obj.myFile.name.split('.'))[1] : null;
             var gifFormat = "gif, jpeg, png,jpg";
 
@@ -209,7 +207,7 @@
 
                                 model.astropageload(custID);
 
-                                model.ImageUrl = app.GlobalImgPathforimage + "Images/Horoscopeimages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+                                model.ImageUrl = app.GlobalImgPathforimage + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
                             });
                         }
                     });
@@ -231,9 +229,9 @@
             editAstroService.generateHoroscope(inputobj).then(function(response) {
                 console.log(response);
                 if (commonFactory.checkvals(response.data.AstroGeneration)) {
-                    // s3obj = { Path: response.data.Path, KeyName: response.data.KeyName };
-                    s3obj = { Path: 'C:\\inetpub\\wwwroot\\access\\Images\\HoroscopeImages\\91022_HaroscopeImage\\91022_HaroscopeImage.html', KeyName: response.data.KeyName };
-
+                    // response.data.Path = (response.data.Path).Replace("\",'\\');
+                    s3obj = { Path: response.data.Path, KeyName: response.data.KeyName };
+                    // s3obj = { Path: 'C:\\inetpub\\wwwroot\\access\\Images\\HoroscopeImages\\91022_HaroscopeImage\\91022_HaroscopeImage.html', KeyName: response.data.KeyName };
                     window.open('' + response.data.AstroGeneration + '', '_blank');
                     commonFactory.closepopup();
                     commonFactory.open('RefreshPopup.html', model.scope, uibModal);
