@@ -62,24 +62,25 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'bootstrapSlide', name: 'base.bootstrapSlide', url: '/bootstrapSlideshow', isloginrequired: true, module: 'complex-slide' },
             { routeName: 'bootstrapPopup', name: 'base.bootstrapPopup', url: '/bootstrapPopups', isloginrequired: true, module: 'complex-popup' },
 
-            { routeName: 'basicRegistration', name: 'base.basicRegistration', url: '/Registration' },
-            { routeName: 'secondaryRegistration', name: 'base.secondaryRegistration', url: '/secondaryReg/:CustID/:ProfileID/:fn/:ln/:countryID/:genderID' },
-            { routeName: 'regManagePhoto', name: 'base.regManagePhoto', url: '/ManagePhoto/:CustID/:ProfileID/:genderID' },
+            { routeName: 'basicRegistration', name: 'base.basicRegistration', url: '/Registration', isloginrequired: true },
+            { routeName: 'secondaryRegistration', name: 'base.secondaryRegistration', url: '/secondaryReg/:CustID/:ProfileID/:fn/:ln/:countryID/:genderID', isloginrequired: true },
+            { routeName: 'regManagePhoto', name: 'base.regManagePhoto', url: '/ManagePhoto/:CustID/:ProfileID/:genderID', isloginrequired: true },
 
-            { routeName: 'editEducation', name: 'base.editEducation', url: '/Education/:CustID' },
+            { routeName: 'editEducation', name: 'base.editEducation', url: '/Education/:CustID', isloginrequired: true },
             { routeName: 'editManagePhoto', name: 'base.editManagePhoto', url: '/ManagePhoto/:CustID' },
             { routeName: 'editParent', name: 'base.editParent', url: '/Parent/:CustID' },
-            { routeName: 'editPartnerpreference', name: 'base.editPartnerpreference', url: '/Partnerpreference/:CustID' },
-            { routeName: 'editSibbling', name: 'base.editSibbling', url: '/Sibbling/:CustID' },
-            { routeName: 'editAstro', name: 'base.editAstro', url: '/Astro/:CustID', subname: ['common/services/fileUploadSevice.js', 'common/directives/fileUploadDirective.js'] },
-            { routeName: 'editProperty', name: 'base.editProperty', url: '/Property/:CustID' },
-            { routeName: 'editRelative', name: 'base.editRelative', url: '/Relative/:CustID' },
-            { routeName: 'editReference', name: 'base.editReference', url: '/Reference/:CustID' },
-            { routeName: 'editSpouse', name: 'base.editSpouse', url: '/Spouse/:CustID', subname: ['common/directives/datePickerDirective.js'] },
-            { routeName: 'editContact', name: 'base.editContact', url: '/Contact/:CustID' },
-            { routeName: 'editOfcePurpose', name: 'base.editOfcePurpose', url: '/OfcePurpose/:CustID' },
-            { routeName: 'editProfileSetting', name: 'base.editProfileSetting', url: '/ProfileSetting/:CustID' },
-            { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID', subname: ['directives/divPrint.js'] }
+            { routeName: 'editPartnerpreference', name: 'base.editPartnerpreference', url: '/Partnerpreference/:CustID', isloginrequired: true },
+            { routeName: 'editSibbling', name: 'base.editSibbling', url: '/Sibbling/:CustID', isloginrequired: true },
+            { routeName: 'editAstro', name: 'base.editAstro', url: '/Astro/:CustID', subname: ['common/services/fileUploadSevice.js', 'common/directives/fileUploadDirective.js'], isloginrequired: true },
+            { routeName: 'editProperty', name: 'base.editProperty', url: '/Property/:CustID', isloginrequired: true },
+            { routeName: 'editRelative', name: 'base.editRelative', url: '/Relative/:CustID', isloginrequired: true },
+            { routeName: 'editReference', name: 'base.editReference', url: '/Reference/:CustID', isloginrequired: true },
+            { routeName: 'editSpouse', name: 'base.editSpouse', url: '/Spouse/:CustID', subname: ['common/directives/datePickerDirective.js'], isloginrequired: true },
+            { routeName: 'editContact', name: 'base.editContact', url: '/Contact/:CustID', isloginrequired: true },
+            { routeName: 'editOfcePurpose', name: 'base.editOfcePurpose', url: '/OfcePurpose/:CustID', isloginrequired: true },
+            { routeName: 'editProfileSetting', name: 'base.editProfileSetting', url: '/ProfileSetting/:CustID', isloginrequired: true },
+            { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID', subname: ['directives/divPrint.js'], isloginrequired: true },
+            { routeName: 'communicationLog', name: 'base.communicationLog', url: '/communicationLogs', isloginrequired: true }
         ];
 
         $ocLazyLoadProvider.config({

@@ -71,7 +71,7 @@
             };
 
             model.viewhoroscopeimage = function(horopath) {
-                debugger;
+
                 if (horopath.indexOf('.html') !== -1) {
                     window.open(horopath, '_blank');
                 } else {

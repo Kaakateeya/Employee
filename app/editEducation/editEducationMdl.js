@@ -108,7 +108,7 @@
                         model.universityId = item.EduUniversity;
                         model.collegeId = item.EduCollege;
                         model.passOfyear = commonFactory.checkvals(item.EduPassOfYear) ? parseInt(item.EduPassOfYear) : null;
-                        debugger;
+
                         model.countryId = item.CountryID;
 
                         model.stateId = item.StateID;
@@ -141,7 +141,7 @@
                         model.profDistrictId = item.DistrictID;
                         model.profCityId = item.CityID;
                         // model.profTxtcity = item.CityWorkingIn;
-                        debugger;
+
                         model.WorkingForm = commonFactory.convertDateFormat(item.WorkingFromDate, 'DD-MM-YYYY');
                         model.visaStatus = item.VisaTypeID;
                         model.sinceDate = commonFactory.convertDateFormat(item.ResidingSince, 'DD-MM-YYYY');
@@ -187,7 +187,7 @@
                     }
                     break;
             }
-            debugger;
+
             commonFactory.open('commonEduCatiobpopup.html', model.scope, uibModal);
 
         };
