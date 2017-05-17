@@ -1,0 +1,99 @@
+<div class="right_col myprofile" role="main" id="regval">
+    <uib-accordion close-others="oneAtATime">
+
+        <div uib-accordion-group class="panel-default regValheader" is-open="true">
+            <uib-accordion-heading style=" color: rgb(160, 2, 1);">
+                RegistrationValidation <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+            </uib-accordion-heading>
+            <div class="row">
+                <div class="col-lg-3 form-group">
+                    <label for="FF/MF NATIVE" class="control-label">FF/MF NATIVE</label>
+                    <div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 form-group">
+                    <label for="Father Name" class="control-label">Father Name</label>
+                    <div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 form-group">
+                    <label for="Mother Name" class="control-label">Mother Name</label>
+                    <div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 form-group">
+                    <label for="FF Name" class="control-label">FF Name</label>
+                    <div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+
+                <div class="col-lg-3 form-group">
+                    <label for="MF SurName" class="control-label">MF SurName</label>
+                    <div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 form-group">
+                    <label for="MF Name" class="control-label">MF Name</label>
+                    <div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 form-group">
+                    <label for="C/F/FF SurName" class="control-label">C/F/FF SurName</label>
+                    <div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 form-group">
+                    <label for="C Name" class="control-label">C Name</label>
+                    <div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-lg-3 form-group">
+                    <label for="Caste" class="control-label">Caste</label>
+                    <div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 form-group">
+                    <label for="All Phones" class="control-label">All Phones</label>
+                    <div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 form-group">
+                    <label for="All Emails" class="control-label">All Emails</label>
+                    <div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 form-group">
+                    <label for="Application Status" class="control-label">Application Status</label>
+                    <div>
+                        <select multiselectdropdown class="smalldropdown" ng-model="page.model.ddlApplicationStatus" ng-options="item.value as item.label for item in page.model.applicationstatusArr">   
+                              </select>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <div class="form-group text-center" style="border-top: 1px solid #ddd;padding-top: 1%;">
+                <button class="button_custom" style="display:initial;" type="submit" ng-click="page.model.MyprofileResult(page.model.mpObj,1,10,'grid',1);">Search</button>
+                <button style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset" ng-click="page.model.reset();">Reset</button>
+            </div>
+        </div>
+    </uib-accordion>
+</div>

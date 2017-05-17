@@ -79,7 +79,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'editContact', name: 'base.editContact', url: '/Contact/:CustID' },
             { routeName: 'editOfcePurpose', name: 'base.editOfcePurpose', url: '/OfcePurpose/:CustID' },
             { routeName: 'editProfileSetting', name: 'base.editProfileSetting', url: '/ProfileSetting/:CustID' },
-            { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID', subname: ['directives/divPrint.js'] }
+            { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID', subname: ['directives/divPrint.js'] },
+            { routeName: 'registrationValidation', name: 'base.registrationValidation', url: '/registrationValidations' }
         ];
 
         $ocLazyLoadProvider.config({

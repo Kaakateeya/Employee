@@ -140,7 +140,7 @@
             };
 
             model.arrayToString = function(string) {
-                return _.isArray(string) ? string.join(',') : null;
+                return _.isArray(string) && string.length > 0 ? string.join(',') : null;
             };
             model.grid.paidstatusclass = function(paid) {
                 var paidstatusclass = paid === true ? 'paidclass' : 'unpaid';
