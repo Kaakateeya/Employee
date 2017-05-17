@@ -9,8 +9,8 @@
                 '/node_modules/angular-material/angular-material.min.css',
                 '/css/build/css/custom.min.css',
                 '/css/scss/mainstyles.css',
-                '/css/build/css/custom_styles.css',
-                '/app/employeeViewfullprofilePrint/css/style.css'
+                '/css/build/css/custom_styles.css'
+               // '/app/employeeViewfullprofilePrint/style.css'
             ];
 
             scope.printDiv = function() {
