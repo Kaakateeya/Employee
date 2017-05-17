@@ -1,5 +1,5 @@
-angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '$timeout', 'SelectBindServiceApp',
-    function(commonpage, timeout, SelectBindServiceApp) {
+angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '$timeout', 'SelectBindServiceApp', 'authSvc', 'alert',
+    function(commonpage, timeout, SelectBindServiceApp, authSvc, alertss) {
         return {
             restrict: "E",
             scope: {
@@ -8,7 +8,13 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
             },
             templateUrl: "directives/complex-grid/index.html",
             link: function(scope, element, attrs) {
+
+                var AdminID = authSvc.isAdmin();
+                var loginempName = authSvc.LoginEmpName() !== undefined && authSvc.LoginEmpName() !== null && authSvc.LoginEmpName() !== "" ? authSvc.LoginEmpName() : "";
+                var Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+
                 scope.init = function() {
+
                     scope.model.data = [];
                     scope.currentPage = 0;
                     scope.pageSize = 10;
@@ -39,7 +45,12 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 scope.ViewContact = function(row) {
                     // var paid = "<a style='cursor:pointer;'  href='/Contact/" + row.custid + "'>View</a>";
                     // return paid;
-                    window.open('/Contact/' + row.custid, '_blank');
+
+                    var owner = row.OWNER !== 'Not Assigned' && (row.OWNER).indexOf('(') !== -1 ? (row.OWNER).split('(')[0] : row.OWNER;
+                    if (AdminID && parseInt(AdminID) === 1 || Managementid === 'true' || owner === loginempName)
+                        window.open('/Contact/' + row.custid, '_blank');
+                    else
+                        alertss.timeoutoldalerts(scope, 'alert-danger', 'Allowed only for Admin or Management or profleOwners', 4500);
                 };
                 scope.viewSa = function(row) {
                     var paid = row.Settle === null ? "view" : "<a style='cursor:pointer;' ng-click='showSAmethod(" + JSON.stringify(row.Settle) + ");' href='javascript:void(0);'>View</a>";

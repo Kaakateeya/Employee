@@ -18,7 +18,7 @@
         var loginEmpid = authSvc.LoginEmpid();
         var AdminID = authSvc.isAdmin();
         var custID = model.CustID = stateParams.CustID;
-
+        model.eventType = 'add';
 
         var isSubmit = true;
 
@@ -29,7 +29,9 @@
         model.init = function() {
             custID = model.CustID = stateParams.CustID;
             model.astropageload();
-
+            model.ddlFromHours = '';
+            model.ddlFromMinutes = '';
+            model.ddlFromSeconds = '';
             return model;
         };
 
@@ -37,47 +39,46 @@
 
             editAstroService.getAstroData(stateParams.CustID).then(function(response) {
 
-          if(response.data!==undefined && response.data!==null && response.data!=="" && response.data.length>0)
-           {
-                if (commonFactory.checkvals(response.data[0])) {
-                    model.AstroArr = JSON.parse(response.data[0]);
-                    model.generateData = JSON.parse(response.data[1]);
+                if (response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
+                    if (commonFactory.checkvals(response.data[0])) {
+                        model.AstroArr = JSON.parse(response.data[0]);
+                        model.generateData = JSON.parse(response.data[1]);
 
-                    if (commonFactory.checkvals(model.AstroArr[0] && commonFactory.checkvals(model.AstroArr[0].Horoscopeimage))) {
+                        if (commonFactory.checkvals(model.AstroArr[0] && commonFactory.checkvals(model.AstroArr[0].Horoscopeimage))) {
 
-                        if (commonFactory.checkvals(model.AstroArr[0].Horoscopeimage) && (model.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
-                            var extension = "jpg";
-                            if ((model.AstroArr[0].Horoscopeimage).indexOf('.html') !== -1) {
-                                extension = "html";
-                            } else {
-                                model.iframeShow = false;
-                                extension = "jpg";
+                            if (commonFactory.checkvals(model.AstroArr[0].Horoscopeimage) && (model.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
+                                var extension = "jpg";
+                                if ((model.AstroArr[0].Horoscopeimage).indexOf('.html') !== -1) {
+                                    extension = "html";
+                                } else {
+                                    model.iframeShow = false;
+                                    extension = "jpg";
+                                }
+
+                                model.ImageUrl = app.GlobalImgPath + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+                                if (extension === "html") {
+                                    model.iframeShow = true;
+                                    $('#iframe').attr('src', model.ImageUrl);
+                                }
                             }
-
-                            model.ImageUrl = app.GlobalImgPathforimage + "Images/Horoscopeimages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
-                            if (extension === "html") {
-                                model.iframeShow = true;
-                                $('#iframe').attr('src', model.ImageUrl);
+                        } else if (commonFactory.checkvals(model.generateData[0].Horoscopeimage) && (model.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
+                            if (commonFactory.checkvals(model.generateData[0].Horoscopeimage) && (model.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
+                                var extensn = "jpg";
+                                if ((model.generateData[0].Horoscopeimage).indexOf('.html') !== -1) {
+                                    extensn = "html";
+                                } else {
+                                    model.iframeShow = false;
+                                    extensn = "jpg";
+                                }
+                                model.ImageUrl = app.GlobalImgPath + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extensn;
+                                if (extensn === "html") {
+                                    model.iframeShow = true;
+                                    $('#iframe').attr('src', model.ImageUrl);
+                                }
                             }
                         }
-                    } else if (commonFactory.checkvals(model.generateData[0].Horoscopeimage) && (model.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
-                        if (commonFactory.checkvals(model.generateData[0].Horoscopeimage) && (model.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
-                            var extensn = "jpg";
-                            if ((model.generateData[0].Horoscopeimage).indexOf('.html') !== -1) {
-                                extensn = "html";
-                            } else {
-                                model.iframeShow = false;
-                                extensn = "jpg";
-                            }
-                            model.ImageUrl = app.GlobalImgPathforimage + "Images/Horoscopeimages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extensn;
-                            if (extensn === "html") {
-                                model.iframeShow = true;
-                                $('#iframe').attr('src', model.ImageUrl);
-                            }
-                        }
+
                     }
-
-                }
 
                 }
 
@@ -93,6 +94,7 @@
             isSubmit = true;
             model.popupdata = model.astro;
             model.popupHeader = "Astro details";
+            model.eventType = 'add';
             if (item !== undefined) {
                 model.eventType = 'edit';
                 if (item.TimeOfBirth !== undefined) {
@@ -171,8 +173,6 @@
         };
 
         model.upload = function(obj) {
-
-
             var extension = (obj.myFile.name !== '' && obj.myFile.name !== undefined && obj.myFile.name !== null) ? (obj.myFile.name.split('.'))[1] : null;
             var gifFormat = "gif, jpeg, png,jpg";
 
@@ -207,7 +207,7 @@
 
                                 model.astropageload(custID);
 
-                                model.ImageUrl = app.GlobalImgPathforimage + "Images/Horoscopeimages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+                                model.ImageUrl = app.GlobalImgPathforimage + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
                             });
                         }
                     });
@@ -229,9 +229,9 @@
             editAstroService.generateHoroscope(inputobj).then(function(response) {
                 console.log(response);
                 if (commonFactory.checkvals(response.data.AstroGeneration)) {
-                    // s3obj = { Path: response.data.Path, KeyName: response.data.KeyName };
-                    s3obj = { Path: 'C:\\inetpub\\wwwroot\\access\\Images\\HoroscopeImages\\91022_HaroscopeImage\\91022_HaroscopeImage.html', KeyName: response.data.KeyName };
-
+                    // response.data.Path = (response.data.Path).Replace("\",'\\');
+                    s3obj = { Path: response.data.Path, KeyName: response.data.KeyName };
+                    // s3obj = { Path: 'C:\\inetpub\\wwwroot\\access\\Images\\HoroscopeImages\\91022_HaroscopeImage\\91022_HaroscopeImage.html', KeyName: response.data.KeyName };
                     window.open('' + response.data.AstroGeneration + '', '_blank');
                     commonFactory.closepopup();
                     commonFactory.open('RefreshPopup.html', model.scope, uibModal);
