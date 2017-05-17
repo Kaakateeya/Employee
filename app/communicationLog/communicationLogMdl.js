@@ -11,13 +11,17 @@
             model.gridtable4 = gridconfig;
             model.showsearchrows = true;
             model.showsearch = true;
-            model.showpaging = true;
+            //model.showpaging = false;
+            model.gridtable1.showpaging = false;
+            model.gridtable2.showpaging = false;
+            model.gridtable3.showpaging = false;
+            model.gridtable4.showpaging = false;
             model.myprofileexcel = true;
             model.normalexcel = true;
             model.gridTableshow = false;
             model.communicationlogsubmit = function(profileid) {
                 communicationLogService.Submitcommunicationlog(profileid, model.empid).then(function(response) {
-                    debugger;
+
                     console.log(response);
                     model.slideshowarray = [];
                     _.each(response.data[0].log, function(item) {
