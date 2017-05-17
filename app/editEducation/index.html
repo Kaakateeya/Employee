@@ -15,7 +15,7 @@
             </div>
 
             <div class="edit_page_details_item">
-                <div ng-if="page.model.CustomerDataArr" ng-repeat="item in page.model.CustomerDataArr">
+                <div ng-if="page.model.CustomerDataArr.length>0" ng-repeat="item in page.model.CustomerDataArr">
 
                     <div id="reviewdivpersonal" class="edit_page_details_item_desc clearfix">
                         <div id="UpdatePanel6" class="edit_page_details_item_desc clearfix">
@@ -357,7 +357,6 @@
         line-height: 33px;
         margin: 0 !important;
     }
-       
 </style>
 
 <script src="build/js/custom.js" type="text/javascript"></script>

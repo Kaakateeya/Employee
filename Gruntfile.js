@@ -151,25 +151,25 @@ module.exports = function(grunt) {
         "file-creator": {
             "option": {
                 files: [{
-                        file: ('app/' + (grunt.option('option-path') + '/controller/') + (grunt.option('option-path') + "ctrl.js")),
+                        file: ('app/' + (grunt.option('option-path') + '/') + (grunt.option('option-path') + "ctrl.js")),
                         method: function(fs, fd, done) {
                             done();
                         }
                     },
                     {
-                        file: ('app/' + (grunt.option('option-path') + '/model/') + (grunt.option('option-path') + "Mdl.js")),
+                        file: ('app/' + (grunt.option('option-path') + '/') + (grunt.option('option-path') + "Mdl.js")),
                         method: function(fs, fd, done) {
                             done();
                         }
                     },
                     {
-                        file: ('app/' + (grunt.option('option-path') + '/service/') + (grunt.option('option-path') + "service.js")),
+                        file: ('app/' + (grunt.option('option-path') + '/') + (grunt.option('option-path') + "service.js")),
                         method: function(fs, fd, done) {
                             done();
                         }
                     },
                     {
-                        file: ('app/' + (grunt.option('option-path') + '/css/style.css')),
+                        file: ('app/' + (grunt.option('option-path') + '/style.scss')),
                         method: function(fs, fd, done) {
                             done();
                         }
@@ -194,15 +194,15 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                         src: './PageCode/ctrlFormat.js',
-                        dest: ('app/' + (grunt.option('option-path') + '/controller/') + (grunt.option('option-path') + "ctrl.js"))
+                        dest: ('app/' + (grunt.option('option-path') + '/') + (grunt.option('option-path') + "ctrl.js"))
                     },
                     {
                         src: './PageCode/mdlFormat.js',
-                        dest: ('app/' + (grunt.option('option-path') + '/model/') + (grunt.option('option-path') + "Mdl.js"))
+                        dest: ('app/' + (grunt.option('option-path') + '/') + (grunt.option('option-path') + "Mdl.js"))
                     },
                     {
                         src: './PageCode/serviceFormat.js',
-                        dest: ('app/' + (grunt.option('option-path') + '/service/') + (grunt.option('option-path') + "service.js")),
+                        dest: ('app/' + (grunt.option('option-path') + '/') + (grunt.option('option-path') + "service.js")),
                     },
                     {
                         src: './PageCode/viewFormat.html',
