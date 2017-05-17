@@ -94,6 +94,23 @@
         <div ng-hide="page.model.ImageUrl==='' || page.model.ImageUrl===null">
             <div class="edit_page_details_item">
                 <div class="edit_page_details_item_desc clearfix">
+                    <h6>
+                        <span id="TimeofBirth" style="font-weight:bold;">Generted By </span></h6>
+                    <h5>
+                        <span id="lblTimeofBirth"> {{page.model.AstroArr[0].EMpNAme}}</span></h5>
+                </div>
+                <div class="edit_page_details_item_desc clearfix">
+                    <h6>
+                        <span id="PlaceofBirth" style="font-weight:bold;">Upload Date</span></h6>
+                    <h5>
+                        <span id="lblPlaceofBirth">{{page.model.AstroArr[0].UploadDate}}</span>
+                    </h5>
+                </div>
+
+            </div>
+
+            <div class="edit_page_details_item">
+                <div class="edit_page_details_item_desc clearfix">
                     <img ng-model="page.model.imghoroName" ng-src="{{page.model.ImageUrl}}" Style="width: 250px; height: 250px;" ng-show="!page.model.iframeShow" />
                     <iframe border="0" id="iframe" frameborder="0" height="300" width="800" ng-show="page.model.iframeShow"></iframe>
                 </div>
