@@ -41,7 +41,7 @@
                                     <span id="ApplicationStatusmodifyby" font-bold="true">Application Status ModifiedBy</span>
                                 </h6>
                                 <h5>
-                                    <span id="lblApplicationStatusmodifyby">{{item.EmployeeName}}</span>
+                                    <span id="lblApplicationStatusmodifyby" class="red">{{item.EmployeeName}}</span>
                                 </h5>
                             </div>
 
@@ -223,7 +223,7 @@
                                         <span id="lblcreatedate">{{item.LoginStatusName == "Blocked" ? "Blocked Date": "Allowed Date" }}</span>
                                     </h6>
                                     <h5>
-                                        <span id="lblcreateblockeddate">{{item.BlockDate}}</span>
+                                        <span id="lblcreateblockeddate" class="red">{{item.BlockDate}}</span>
                                     </h5>
                                 </div>
 
@@ -235,7 +235,7 @@
                                         <span id="lblblockedempname">{{item.LoginStatusName == "Blocked" ? "Blocked By": "Allowed By" }}</span>
                                     </h6>
                                     <h5>
-                                        <span id="span2">{{item.BlockEmapName}}</span>
+                                        <span id="span2" class="red">{{item.BlockEmapName}}</span>
                                     </h5>
                                 </div>
 
@@ -353,7 +353,7 @@
                                 <h6>
                                     <span id="lblCreatedBYEmp">Created By</span> </h6>
                                 <h5>
-                                    <span id="lblCreatedBYEmpGrade">{{item.CreatedBYEmp}}</span>
+                                    <span id="lblCreatedBYEmpGrade" class="red">{{item.CreatedBYEmp}}</span>
                                 </h5>
                             </div>
 
@@ -365,7 +365,7 @@
                                 <h6>
                                     <span id="lblCreatedDateGrade">CreatedDate</span> </h6>
                                 <h5>
-                                    <span id="lblCreatedDatedisplay">{{item.CreatedDate}}</span>
+                                    <span id="lblCreatedDatedisplay" class="red">{{item.CreatedDate}}</span>
                                 </h5>
                             </div>
 
