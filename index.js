@@ -62,11 +62,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'bootstrapSlide', name: 'base.bootstrapSlide', url: '/bootstrapSlideshow', isloginrequired: true, module: 'complex-slide' },
             { routeName: 'bootstrapPopup', name: 'base.bootstrapPopup', url: '/bootstrapPopups', isloginrequired: true, module: 'complex-popup' },
 
-            { routeName: 'basicRegistration', name: 'base.basicRegistration', url: '/Registration' },
-            { routeName: 'secondaryRegistration', name: 'base.secondaryRegistration', url: '/secondaryReg/:CustID/:ProfileID/:fn/:ln/:countryID/:genderID' },
-            { routeName: 'regManagePhoto', name: 'base.regManagePhoto', url: '/ManagePhoto/:CustID/:ProfileID/:genderID' },
+            { routeName: 'basicRegistration', name: 'base.basicRegistration', url: '/Registration', isloginrequired: true },
+            { routeName: 'secondaryRegistration', name: 'base.secondaryRegistration', url: '/secondaryReg/:CustID/:ProfileID/:fn/:ln/:countryID/:genderID', isloginrequired: true },
+            { routeName: 'regManagePhoto', name: 'base.regManagePhoto', url: '/ManagePhoto/:CustID/:ProfileID/:genderID', isloginrequired: true },
 
-            { routeName: 'editEducation', name: 'base.editEducation', url: '/Education/:CustID' },
+            { routeName: 'editEducation', name: 'base.editEducation', url: '/Education/:CustID', isloginrequired: true },
             { routeName: 'editManagePhoto', name: 'base.editManagePhoto', url: '/ManagePhoto/:CustID' },
             { routeName: 'editParent', name: 'base.editParent', url: '/Parent/:CustID' },
             { routeName: 'editPartnerpreference', name: 'base.editPartnerpreference', url: '/Partnerpreference/:CustID' },
@@ -80,7 +80,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'editOfcePurpose', name: 'base.editOfcePurpose', url: '/OfcePurpose/:CustID' },
             { routeName: 'editProfileSetting', name: 'base.editProfileSetting', url: '/ProfileSetting/:CustID' },
             { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID', subname: ['directives/divPrint.js'] },
-            { routeName: 'registrationValidation', name: 'base.registrationValidation', url: '/registrationValidations' }
+            { routeName: 'registrationValidation', name: 'base.registrationValidation', url: '/registrationValidations' },
+            { routeName: 'communicationLog', name: 'base.communicationLog', url: '/communicationLogs', isloginrequired: true }
+
         ];
 
         $ocLazyLoadProvider.config({

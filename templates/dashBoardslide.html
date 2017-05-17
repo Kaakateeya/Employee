@@ -147,7 +147,8 @@
             </span></h6>
             <h5>
                 <div style="color:Black;">
-                    <span>{{slide.CreatedDate}}</span>
+                    <span ng-show="model.typeofslidedate!=='Ticket Last Updated'">{{slide.CreatedDate}}</span>
+                    <span ng-show="model.typeofslidedate==='Ticket Last Updated'">{{slide.LastModifiedDate}}</span>
                 </div>
                 <div class="clearfix">
                 </div>
@@ -159,11 +160,20 @@
             <h6> <span style="font-weight: bold;color:Red;"> Inactive Reason 
            </span></h6>
             <h5>
-                <div style="color:Red;width: 319px;float:left;">
-                    <span>{{slide.Reason4InActive}}
-                        <br>
-                    <a href="javascript:void(0)" ng-click="model.changeProfileidstatus(slide.ProfileID)">Active This Profile </a>
+                <div style="color:Red;">
+                    <span>{{slide.Reason4InActive}}     
                   </span>
+                </div>
+                <div class="clearfix">
+                </div>
+            </h5>
+        </div>
+        <div class="edit_page_details_item_descsearch clearfix">
+            <h6> <span style="font-weight: bold;color:Red;">Active This Profile
+           </span></h6>
+            <h5>
+                <div>
+                    <a href="javascript:void(0)" ng-click="model.changeProfileidstatus(slide.ProfileID)">Click here to Active this Profile </a>
                 </div>
                 <div class="clearfix">
                 </div>
@@ -190,15 +200,28 @@
             <h6> <span style="font-weight: bold;color:Red;">Notification
              </span></h6>
             <h5>
-                <div style="color:Red;width: 319px;float:left;">
+                <div style="color:Red;">
                     <span>{{slide.ActionType}}
-                     <a href="javascript:void(0)" ng-click="notificationread(slide,$parent.$index,$parent.$parent.$index)">Read</a>
+                     
                  </span>
                 </div>
                 <div class="clearfix">
                 </div>
             </h5>
         </div>
+
+        <div class="edit_page_details_item_descsearch clearfix">
+            <h6> <span style="font-weight: bold;color:Red;">Read Notification
+             </span></h6>
+            <h5>
+                <div>
+                    <a href="javascript:void(0)" ng-click="notificationread(slide,$parent.$index,$parent.$parent.$index)">Click Here To Read</a>
+                </div>
+                <div class="clearfix">
+                </div>
+            </h5>
+        </div>
+
     </div>
     <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" ng-show="model.typeofslidedate ==='Registered Date'">
         <div class="edit_page_details_item_descsearch clearfix">

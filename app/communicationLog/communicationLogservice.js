@@ -1,19 +1,22 @@
-(function() {
+(function(angular) {
     'use strict';
 
-    angular
-        .module('Kaakateeya')
-        .factory('communicationLogModel', factory)
+    function factory(http) {
+        return {
+            Submitcommunicationlog: function(profileid, empid) {
 
-    factory.$inject = ['$http'];
-
-    function factory($http) {
-        var service = {
-            getData: getData
+                return http.get(app.apiroot + 'EmployeeReportPage/getEmployeeCommunicationLog', {
+                    params: {
+                        ProfileID: profileid,
+                        intEmpId: empid
+                    }
+                });
+            },
         };
 
-        return service;
-
-        function getData() {}
     }
-})();
+    angular
+        .module('Kaakateeya')
+        .factory('communicationLogService', factory);
+    factory.$inject = ['$http'];
+})(angular);

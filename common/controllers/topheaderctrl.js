@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
     /** @ngInject */
-    function ControllerCtrl(scope, authSvc, $uibModal, $state, modelpopupopenmethod) {
+    function ControllerCtrl(scope, authSvc, $uibModal, $state, modelpopupopenmethod,$stateParams,$window) {
         var vm = this,
             model = {};
 
@@ -42,8 +42,6 @@
 
 
         vm.loginsubmit = function(form) {
-
-
             modelpopupopenmethod.getloginpage(form).then(function(response) {
                 if (response.data !== undefined && response.data !== "" && response.data !== null) {
                     switch (response.data.m_Item5) {
@@ -99,10 +97,25 @@
 
 
         };
+        vm.searchredirect=function(statename,id,Profileid)
+        {
+            // $state.go(statename, {
+            //         id:  1,
+            //         Profileid: 0
+            //     }, {
+            //         location: "replace",
+            //         //inherit: false,
+            //         relative: $state.$current,
+            //        // notify: false
+            //     });
+           // $window.location.replace("search/"+id+"/0");
+            //$window.location.href="search/"+id+"/0";
+
+        };
     }
     angular
         .module('Kaakateeya')
-        .controller('headerctrl', ['$scope', 'authSvc', '$uibModal', '$state', 'modelpopupopenmethod',
+        .controller('headerctrl', ['$scope', 'authSvc', '$uibModal', '$state', 'modelpopupopenmethod','$stateParams','$window',
             ControllerCtrl
         ]);
 
