@@ -4,11 +4,11 @@
     function factory($http, communicationLogService, gridconfig) {
         return function() {
             var model = {};
-            //model = gridconfig;
-            model.gridtable1 = gridconfig;
-            model.gridtable2 = gridconfig;
-            model.gridtable3 = gridconfig;
-            model.gridtable4 = gridconfig;
+            model.gridtable1 = {};
+            model.gridtable2 = {};
+            model.gridtable3 = {};
+            model.gridtable4 = {};
+            model.Profileidcommunication = "210212849";
             model.showsearchrows = true;
             model.showsearch = true;
             model.gridtable1.showpaging = false;
@@ -20,16 +20,36 @@
             model.gridTableshow = false;
             model.communicationlogsubmit = function(profileid) {
                 communicationLogService.Submitcommunicationlog(profileid, model.empid).then(function(response) {
-
                     console.log(response);
-                    model.slideshowarray = [];
+                    model.sendarray = [];
+                    model.sendarray2 = [];
+                    model.sendarray3 = [];
+                    model.sendarray4 = [];
                     _.each(response.data[0].log, function(item) {
-                        model.slideshowarray.push(item);
+                        model.sendarray.push(item);
+                    });
+                    _.each(response.data[1].log, function(item) {
+                        model.sendarray2.push(item);
+                    });
+                    _.each(response.data[2].log, function(item) {
+                        model.sendarray3.push(item);
+                    });
+                    _.each(response.data[3].log, function(item) {
+                        model.sendarray4.push(item);
                     });
                     model.gridtable1.TotalRows = response.data[0].log[0].TotalRows;
-                    model.gridtable1.setData(model.slideshowarray);
+                    model.gridtable1.data = model.sendarray;
                     model.gridTableshow = true;
                     model.Nameofcandidate = response.data[0].log[0].FromName;
+                    //2
+                    model.gridtable2.TotalRows = response.data[1].log[0].TotalRows;
+                    model.gridtable2.data = model.sendarray2;
+                    //
+                    model.gridtable3.TotalRows = response.data[2].log[0].TotalRows;
+                    model.gridtable3.data = model.sendarray3;
+                    //
+                    model.gridtable4.TotalRows = response.data[3].log[0].TotalRows;
+                    model.gridtable4.data = model.sendarray4;
                 });
 
             };
@@ -66,6 +86,13 @@
                 var PhotoCount = row.PhotoCount !== null && row.PhotoCount !== "" && row.PhotoCount !== undefined ? "<p>" + row.PhotoCount + "</p>" : "--";
                 return PhotoCount;
             };
+            model.ResendTempurl = function(row) {
+                var paid = "<a>Resend</a>";
+                return paid;
+            };
+            model.Resendemail = function(row) {
+
+            };
             model.gridtable1.columns = [
                 { text: 'Sno', key: 'Sno', type: 'label' },
                 { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
@@ -77,37 +104,37 @@
                 { text: 'TicketID', key: 'TicketID', type: 'customlink', templateUrl: model.Tickidwithtype, method: model.clickticketupdate },
                 { text: 'PhotoCount', key: 'PhotoCount', type: 'customlink', templateUrl: model.photocount }
             ];
-            // model.gridtable2.columns = [
-            //     { text: 'Sno', key: 'Sno', type: 'label' },
-            //     { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
-            //     { text: 'Name', key: 'LastName', type: 'label' },
-            //     { text: 'ServiceDate', key: 'FirstName', type: 'label' },
-            //     { text: 'ProfileOwner', key: 'Caste', type: 'label' },
-            //     { text: 'Service Done', key: 'maritalstatus', type: 'label' },
-            //     { text: 'Viewed/Proceed Date', key: 'DOB', type: 'customlink', templateUrl: model.AgeTemplate },
-            //     { text: 'Options', key: 'Gender', type: 'label' },
-            //     { text: 'TicketID', key: 'Gender', type: 'label' },
-            //     { text: 'PhotoCount', key: 'Height', type: 'label' }
-            // ];
-            // model.gridtable3.columns = [
-            //     { text: 'Sno', key: 'Sno', type: 'label' },
-            //     { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
-            //     { text: 'Name', key: 'LastName', type: 'label' },
-            //     { text: 'ServiceDate', key: 'FirstName', type: 'label' },
-            //     { text: 'Service Done', key: 'Caste', type: 'label' },
-            //     { text: 'ResendDate', key: 'maritalstatus', type: 'label' },
-            //     { text: 'PhotoCount', key: 'DOB', type: 'customlink', templateUrl: model.AgeTemplate }
+            model.gridtable2.columns = [
+                { text: 'Sno', key: 'Sno', type: 'label' },
+                { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
+                { text: 'Name', key: 'Name', type: 'label' },
+                { text: 'ServiceDate', key: 'ServiceDate', type: 'label' },
+                { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' },
+                { text: 'Service Done', key: 'Branch', type: 'customlink', templateUrl: model.servicedone },
+                { text: 'Viewed/Proceed Date', key: 'MFPStatusDate', type: 'customlink', templateUrl: model.viewdproceeddate },
+                { text: 'TicketID', key: 'TicketID', type: 'customlink', templateUrl: model.Tickidwithtype, method: model.clickticketupdate },
+                { text: 'Options', key: 'TicketID', type: 'customlink', templateUrl: model.ResendTempurl, method: model.Resendemail },
+                { text: 'PhotoCount', key: 'PhotoCount', type: 'customlink', templateUrl: model.photocount }
+            ];
+            model.gridtable3.columns = [
+                { text: 'Sno', key: 'Sno', type: 'label' },
+                { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
+                { text: 'Name', key: 'Name', type: 'label' },
+                { text: 'ServiceDate', key: 'ServiceDate', type: 'label' },
+                { text: 'Service Done', key: 'Branch', type: 'customlink', templateUrl: model.servicedone },
+                { text: 'ResendDate', key: 'ResendDate', type: 'label' },
+                { text: 'PhotoCount', key: 'PhotoCount', type: 'customlink', templateUrl: model.photocount }
 
-            // ];
-            // model.gridtable4.columns = [
-            //     { text: 'Sno', key: 'Sno', type: 'label' },
-            //     { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
-            //     { text: 'Name', key: 'LastName', type: 'label' },
-            //     { text: 'LastName', key: 'FirstName', type: 'label' },
-            //     { text: 'ProfileOwner', key: 'Caste', type: 'label' },
-            //     { text: 'MeetingDate', key: 'maritalstatus', type: 'label' }
+            ];
+            model.gridtable4.columns = [
+                { text: 'Sno', key: 'Sno', type: 'label' },
+                { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
+                { text: 'Name', key: 'Name', type: 'label' },
+                { text: 'LastName', key: 'LastName', type: 'label' },
+                { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' },
+                { text: 'MeetingDate', key: 'MeetingDate', type: 'label' }
 
-            // ];
+            ];
             model.pagechange = function(val) {
                 var to = val * 10;
                 var from = val === 1 ? 1 : to - 9;
