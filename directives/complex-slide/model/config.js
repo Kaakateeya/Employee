@@ -14,7 +14,7 @@
                 } else if (typeofpage === 'myprofile') {
                     model.displayArray(data, topage, "myprofile");
                 } else {
-                    model.displayArray(data, topage);
+                    model.displayArray(data, topage, typeofpage);
                 }
             };
             model.addSlides = function(data, arrayslide, topage, typeofpage) {
@@ -23,7 +23,7 @@
                 } else if (typeofpage === 'myprofile') {
                     model.displayArray(data, topage, "myprofile");
                 } else {
-                    model.displayArray(data, 11);
+                    model.displayArray(data, 11, typeofpage);
                 }
             };
             model.backtosearchpage = function() {
@@ -134,14 +134,17 @@
                         model.data.push({ label: 'Caste', value: item.Caste });
                         model.data.push({ label: 'Marital Status', value: item.maritalstatus || item.MaritalStatusID });
                         model.data.push({ label: 'Star', value: item.Star });
+                        if (typebind === 'regvali') {
+                            model.data.push({ label: 'Color', value: item.Color });
+                        }
                         model.data.push({ label: 'Qualification', value: item.EducationGroup + "," + item.EduGroupnamenew });
                         model.data.push({ label: 'Profession', value: item.Profession });
                         model.data.push({ label: 'Job Location', value: item.JobLocation });
-                        model.data.push({ label: 'Income(P.M)', value:item.Income!==null && item.Income!==""?item.currency+" "+item.Income:"--" });
+                        model.data.push({ label: 'Income(P.M)', value: item.Income !== null && item.Income !== "" ? item.currency + " " + item.Income : "--" });
                         model.data.push({ label: 'Father Native', value: item.FFNative });
                         model.data.push({ label: 'Mother Native', value: item.MFNative });
                         model.data.push({ label: 'Property(Lakhs)', value: item.Property });
-                        if (item.serviceDate != "--" && item.serviceDate !== "" && item.serviceDate !== null)
+                        if (item.serviceDate != "--" && item.serviceDate !== "" && item.serviceDate !== null && typebind !== 'regvali')
                             model.data.push({ label: 'ServiceDate', value: item.serviceDate, style: 'color:red;' });
                         if (item.Intercaste == "True")
                             model.data.push({ label: 'Intercaste', value: (item.fathercaste + "/" + item.mothercaste) });

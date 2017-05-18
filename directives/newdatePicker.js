@@ -22,6 +22,7 @@
         return directive;
 
         function link(scope, element, attrs) {
+
             //  if (scope.strdate !== '' && scope.strdate !== undefined && scope.strdate !== null)
             // scope.strdate = new Date(scope.strdate);
         }

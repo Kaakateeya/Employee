@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function factory(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss, SelectBindServiceApp, uibModal, timeout, configslide, commonpage) {
+    function factory(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss, SelectBindServiceApp, uibModal, timeout, configslide, commonpage, filter) {
         return function() {
             var model = {};
 
@@ -25,7 +25,7 @@
                 changeMonth: true,
                 changeYear: true,
                 yearRange: "-40:+5",
-                dateFormat: 'mm/dd/yy'
+                dateFormat: 'dd/mm/yy'
             };
 
 
@@ -158,18 +158,25 @@
                 model.mpObj.rdnWebsiteLogin = '';
                 model.mpObj.rdncontactsVerified = '';
                 model.mpObj.rdnWebsiteBlocked = '';
+                model.mpObj.txtRegFromDate = undefined;
+                model.mpObj.txtRegToDate = '';
+                model.mpObj.txtAssignFromdate = '';
+                model.mpObj.txtToAssignedDate = '';
                 model.mpObj.ddlApplicationStatus = [54];
                 model.mpObj.ddlCaste = [402];
+                model.mpObj.ddlProfileOwner = [parseInt(model.empid)];
             };
 
             model.allLinksTemplateDUrl = function(row) {
                 var stronlineliteclass = row.onlinepaidcls == "light" ? row.onlinepaidcls + ' Linkdisabled' : row.onlinepaidcls;
                 var strofflineliteclass = row.offlinepaidcls == "light" ? row.offlinepaidcls + ' Linkdisabled' : row.offlinepaidcls;
                 var photodisbled = row.PhotoshopCount == 0 ? 'Linkdisabled' : "";
+
                 // var paid = "<a style='cursor:pointer;'>Factsheet</a>&nbsp;&nbsp;&nbsp;<a style='' >Tickets</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' >Servicelog</a>" +
                 //     "&nbsp;&nbsp;&nbsp;<a ng-click='model.showphoto(" + row.Cust_ID + ");' class='" + photodisbled + "'>" + row.UploadedPhotoscount + " / " + row.PhotoshopCount + "</a>" +
                 //     "&nbsp;&nbsp;&nbsp;<a class='oukuCls " + stronlineliteclass + "' ng-click='model.RedirectPayment(" + row.ProfileID + ");'>" + row.onlinepaid + "</a>/<a class='oukuCls " + strofflineliteclass + "' ng-click='model.RedirectPayment(" + row.ProfileID + ");' >" + row.offlinepaid + "</a>&nbsp;&nbsp;&nbsp;" +
                 //     "<label class='fontweight'>" + row.OwnerName + "</label>";
+
                 var paidstatus = row.paid === true ? "Paid" : "UnPaid";
                 var paid = "<a style='cursor:pointer;'>Factsheet</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);'  ng-click='model.tickethistorypopup(" + row.Emp_Ticket_ID + ");'>Tickets</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' >Servicelog</a>" +
                     "&nbsp;&nbsp;&nbsp;<a ng-click='model.showphoto(" + row.Cust_ID + ");' class='" + photodisbled + "'>" + row.UploadedPhotoscount + " / " + row.PhotoshopCount + "</a>" +
@@ -212,12 +219,19 @@
                     window.open(row.HoroScopeImage, '_blank');
             };
 
+
+            model.chkVal = function(val) {
+                return val !== undefined && val !== '' ? val : null;
+            };
+
+
             model.MyprofileResult = function(obj, from, to, type, flagtype) {
                 model.topage = to;
                 var inputobj = {
                     Empid: model.empid,
                     Kmpl: obj.txtKMPLID,
                     Profileid: obj.txtProfileID,
+                    //  model.chkVal(obj.txtProfileID),
                     HighConfidential: obj.chkHighConfidential,
                     Confidential: obj.chkIsConfidential,
                     Renewal: obj.chkRenewal,
@@ -241,10 +255,16 @@
                     // Owneroftheprofile: getvaluestext('#OwneroftheProfile'),
                     HavingprofilesID: model.arrayToString(obj.ddlHavingProfiles),
                     // Havingprofiles: gethavingprofiletext('#lsthavingprofiles'),
-                    Assigneddatefromdate: obj.txtAssignFromdate !== '' && obj.txtAssignFromdate !== undefined ? moment(obj.txtAssignFromdate).format('DD-MM-YYYY') : '',
-                    Assigneddatetodate: obj.txtToAssignedDate !== '' && obj.txtToAssignedDate !== undefined ? moment(obj.txtToAssignedDate).format('DD-MM-YYYY') : '',
-                    DORFromdate: obj.txtRegFromDate !== '' && obj.txtRegFromDate !== undefined ? moment(obj.txtRegFromDate).format('DD-MM-YYYY') : '',
-                    DORTodate: obj.txtRegToDate !== '' && obj.txtRegToDate !== undefined ? moment(obj.txtRegToDate).format('DD-MM-YYYY') : '',
+                    Assigneddatefromdate: obj.txtAssignFromdate !== '' && obj.txtAssignFromdate !== undefined ? filter('date')(obj.txtAssignFromdate, 'yyyy/MM/dd') : '',
+
+                    Assigneddatetodate: obj.txtToAssignedDate !== '' && obj.txtToAssignedDate !== undefined ? filter('date')(obj.txtToAssignedDate, 'yyyy/MM/dd') : '',
+                    DORFromdate: obj.txtRegFromDate !== '' && obj.txtRegFromDate !== undefined ? filter('date')(obj.txtRegFromDate, 'yyyy/MM/dd') : '',
+
+
+
+                    // helpService.checkstringvalue(model[item.ngModelFrom]) ? filter('date')(model[item.ngModelFrom], 'MM/dd/yyyy') : null;
+
+                    DORTodate: obj.txtRegToDate !== '' && obj.txtRegToDate !== undefined ? filter('date')(obj.txtRegToDate, 'yyyy/MM/dd') : '',
                     FatherName: obj.txtFatherName,
                     MotherName: obj.txtMotherName,
                     LogoutId: obj.rdnWebsiteLogin,
@@ -360,6 +380,6 @@
     angular
         .module('Kaakateeya')
         .factory('myProfileModel', factory);
-    factory.$inject = ['$http', 'myProfileservice', 'authSvc', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'SelectBindServiceApp', '$uibModal', '$timeout', 'complex-slide-config', 'modelpopupopenmethod'];
+    factory.$inject = ['$http', 'myProfileservice', 'authSvc', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'SelectBindServiceApp', '$uibModal', '$timeout', 'complex-slide-config', 'modelpopupopenmethod', '$filter'];
 
 })(angular);

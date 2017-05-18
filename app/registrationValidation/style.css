@@ -1,21 +1,58 @@
 #regval label {
-    font-weight: normal !important;
-}
+  font-weight: normal !important; }
+#regval .resetCls {
+  display: initial;
+  margin-left: 2%; }
+#regval .regValheader {
+  margin-top: -12px;
+  box-shadow: 2px 2px 6px #ccc; }
+#regval .panel-title {
+  color: #b10c0c; }
+#regval input[type="text"],
+#regval .multiselect {
+  color: #000 !important;
+  border: 1px solid #ADA2A2 !important;
+  max-width: 300px;
+  width: 100%; }
+#regval label {
+  margin-bottom: 0px; }
+#regval .panel-body {
+  padding: 1% 3% 0 3%; }
+#regval .spanHdr {
+  padding-left: 4%; }
+#regval .settled {
+  background-color: #17F067; }
+#regval .Deleted {
+  background-color: #BCC3BE; }
+#regval .closed {
+  background-color: #C8E6E6; }
+#regval .input[type=image]::before {
+  content: "Read this -"; }
 
-.regValheader {
-    margin-top: -12px;
-    box-shadow: 2px 2px 6px #ccc;
-}
-
-.panel-title {
-    color: #b10c0c;
-}
-
-input[type="text"],
-textarea {
-    color: #000 !important;
-    border: 1px solid #ADA2A2 !important;
-}
-
+.myregvaliprofile .edit_page_details_item_descsearch {
+  padding: 4px 0;
+  background-size: 522px auto;
+  background-position: -29% center;
+  position: relative; }
+.myregvaliprofile .edit_page_details_item_descsearch h6 {
+  float: left;
+  width: 30%;
+  position: relative;
+  color: #7a7a7a;
+  text-transform: capitalize;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: left; }
+.myregvaliprofile .edit_page_details_item_descsearch h6:after {
+  content: ":";
+  position: absolute;
+  right: 10px; }
+.myregvaliprofile .edit_page_details_item_descsearch h5 {
+  float: left;
+  color: #000;
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px; }
 
 /*# sourceMappingURL=style.css.map */

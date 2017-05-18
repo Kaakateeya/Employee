@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+    <div class="row">
+        <div class="col-lg-3">
+            <label style="color:#9c9696">Total Records :</label>
+            <label style="color:blue"> {{(activeslide)+1}}</label>
+            <label style="color:#9c9696"> of {{model.totalRecords}}</label>
+        </div>
+        <div class="col-lg-5" id="divviewedprofiles">
+            <div class="row" style="padding-top: 5px;">
+                <div class="col-lg-5">
+                    <label style="color:#9c9696">Viewed &nbsp;&nbsp;</label><label id="lnkLastSlide" style="color: blue;">{{(Viwedslide)+1}}&nbsp;&nbsp;</label><label style="color:#9c9696">Profiles</label>
+                </div>
+                <div class="col-lg-1">
+                    <input type="text" ng-model="txtGotoVal" class="form-control" style="width: 60px; height: 30px !important;margin-bottom: 2px;" ng-blur="gotoSlide(txtGotoVal)">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2" ng-show="model.getpageloadobject.Cust_ID!=='' && model.getpageloadobject.Cust_ID!==null && model.getpageloadobject.Cust_ID!==undefined">
+            <a style="font-size: 18px;color:#337ab7" href="javascript:void(0);" ng-click="model.mainShortListProfile()"><span class="glyphicon glyphicon-star">ShowShortList</span></a>
+        </div>
+
+    </div>
+
+</div>
