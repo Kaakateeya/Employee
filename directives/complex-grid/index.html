@@ -1,7 +1,8 @@
 <div ng-if="model.data.length!==0">
     <div class="row" ng-if="config.showsearchrows">
         <div class="col-lg-5 totalrecordCls" ng-if="config.showsearch">
-            <label class="col-lg-6" for="noofRecords" class="control-label">Total Records : {{model.TotalRows}} <span ng-show="config.myprofileexcel"><img  style="height: 20px;width: 31px;margin-left: 11px;" src="src/images/arraowimages.png"></img></span></label>
+            <label class="col-lg-6 control-label arrow" for="noofRecords">Total Records : {{model.TotalRows}} <span ng-show="config.myprofileexcel">
+                </span></label>
 
             <input type="image" ng-hide="config.normalexcel" src="src\images\EXCEL.jpg" ng-click="exportexcel(model.data, model.columns)" style="height: 20px;width: 20px;" class="css-class"></input>
 
