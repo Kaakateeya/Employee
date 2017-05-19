@@ -190,7 +190,9 @@
             model.ActionSubmit(inputObj, 'Close');
 
         };
+        model.sendemailsubmit = function(obj) {
 
+        };
 
 
         return model.init();

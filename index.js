@@ -14,11 +14,11 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ui.date'
 ]);
 
-app.apiroot = 'http://52.66.131.254:8025/Api/';
-app.apipathold = 'http://52.66.131.254:8010/Api/';
+// app.apiroot = 'http://52.66.131.254:8025/Api/';
+// app.apipathold = 'http://52.66.131.254:8010/Api/';
 
-// app.apiroot = 'http://183.82.0.58:8025/Api/';
-// app.apipathold = 'http://183.82.0.58:8010/Api/';
+app.apiroot = 'http://183.82.0.58:8025/Api/';
+app.apipathold = 'http://183.82.0.58:8010/Api/';
 
 app.env = "dev";
 app.payfixedAmt = 100;
@@ -66,19 +66,19 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'secondaryRegistration', name: 'base.secondaryRegistration', url: '/secondaryReg/:CustID/:ProfileID/:fn/:ln/:countryID/:genderID', isloginrequired: true },
             { routeName: 'regManagePhoto', name: 'base.regManagePhoto', url: '/ManagePhoto/:CustID/:ProfileID/:genderID', isloginrequired: true },
 
-            { routeName: 'editEducation', name: 'base.editEducation', url: '/Education/:CustID', isloginrequired: true },
-            { routeName: 'editManagePhoto', name: 'base.editManagePhoto', url: '/ManagePhoto/:CustID' },
-            { routeName: 'editParent', name: 'base.editParent', url: '/Parent/:CustID' },
-            { routeName: 'editPartnerpreference', name: 'base.editPartnerpreference', url: '/Partnerpreference/:CustID' },
-            { routeName: 'editSibbling', name: 'base.editSibbling', url: '/Sibbling/:CustID' },
-            { routeName: 'editAstro', name: 'base.editAstro', url: '/Astro/:CustID', subname: ['common/services/fileUploadSevice.js', 'common/directives/fileUploadDirective.js'] },
-            { routeName: 'editProperty', name: 'base.editProperty', url: '/Property/:CustID' },
-            { routeName: 'editRelative', name: 'base.editRelative', url: '/Relative/:CustID' },
-            { routeName: 'editReference', name: 'base.editReference', url: '/Reference/:CustID' },
-            { routeName: 'editSpouse', name: 'base.editSpouse', url: '/Spouse/:CustID', subname: ['common/directives/datePickerDirective.js'] },
-            { routeName: 'editContact', name: 'base.editContact', url: '/Contact/:CustID' },
-            { routeName: 'editOfcePurpose', name: 'base.editOfcePurpose', url: '/OfcePurpose/:CustID' },
-            { routeName: 'editProfileSetting', name: 'base.editProfileSetting', url: '/ProfileSetting/:CustID' },
+            { routeName: 'editEducation', name: 'editandviewbase.editEducation', url: '/Education', isloginrequired: true },
+            { routeName: 'editManagePhoto', name: 'editandviewbase.editManagePhoto', url: '/ManagePhoto' },
+            { routeName: 'editParent', name: 'editandviewbase.editParent', url: '/Parent' },
+            { routeName: 'editPartnerpreference', name: 'editandviewbase.editPartnerpreference', url: '/Partnerpreference' },
+            { routeName: 'editSibbling', name: 'editandviewbase.editSibbling', url: '/Sibbling' },
+            { routeName: 'editAstro', name: 'editandviewbase.editAstro', url: '/Astro', subname: ['common/services/fileUploadSevice.js', 'common/directives/fileUploadDirective.js'] },
+            { routeName: 'editProperty', name: 'editandviewbase.editProperty', url: '/Property' },
+            { routeName: 'editRelative', name: 'editandviewbase.editRelative', url: '/Relative' },
+            { routeName: 'editReference', name: 'editandviewbase.editReference', url: '/Reference' },
+            { routeName: 'editSpouse', name: 'editandviewbase.editSpouse', url: '/Spouse', subname: ['common/directives/datePickerDirective.js'] },
+            { routeName: 'editContact', name: 'editandviewbase.editContact', url: '/Contact' },
+            { routeName: 'editOfcePurpose', name: 'editandviewbase.editOfcePurpose', url: '/OfcePurpose' },
+            { routeName: 'editProfileSetting', name: 'editandviewbase.editProfileSetting', url: '/ProfileSetting' },
             { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID', subname: ['directives/divPrint.js'] },
             { routeName: 'registrationValidation', name: 'base.registrationValidation', url: '/registrationValidations' },
             { routeName: 'communicationLog', name: 'base.communicationLog', url: '/communicationLogs', isloginrequired: true }
@@ -239,6 +239,39 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
         $urlRouterProvider.otherwise('/');
         $stateProvider.state('base', {
             abstract: true,
+            resolve: {
+                loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    $ocLazyLoad.load('commonjs');
+                    $ocLazyLoad.load('directives');
+                    $ocLazyLoad.load('constants');
+                    $ocLazyLoad.load('modules');
+                    $ocLazyLoad.load('complex-grid');
+                    $ocLazyLoad.load('complex-slide');
+                    $ocLazyLoad.load('Expressintrst');
+                    $ocLazyLoad.load('marketing-slide');
+                    $ocLazyLoad.load('matchfollowup-ticket');
+                    $ocLazyLoad.load('EditSideMenu-base');
+                    $ocLazyLoad.load('EditSlide-popup');
+                }]
+            }
+        });
+        ///editView/71668/Education
+        ///State.go('editandviewbase.editEducation',{CustID:71668});
+        var innerView = {
+            "topbar@": {
+                templateUrl: "templates/topheader.html"
+            },
+            "lazyLoadView@": {
+                templateUrl: "app/editandviewbase/index.html",
+            },
+            "bottompanel@": {
+                templateUrl: "templates/footer.html"
+            }
+        };
+        $stateProvider.state('editandviewbase', {
+            abstract: true,
+            url: '/editView/:CustID',
+            views: innerView,
             resolve: {
                 loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                     $ocLazyLoad.load('commonjs');

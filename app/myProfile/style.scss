@@ -150,6 +150,7 @@ a {
 .myprofilefooterlinks {
     font-size: 14px;
     padding: 4px;
+    line-height: 2.1;
 }
 
 .myprofileslide {
@@ -173,4 +174,10 @@ a {
     padding-left: 14%;
     padding-top: 0.5%;
     z-index: 99;
+}
+
+.myprofileheaderpopup {
+    background-color: rgba(197, 205, 50, 0.42);
+    margin-bottom: 10px;
+    margin-top: -10px;
 }
