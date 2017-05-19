@@ -34,3 +34,31 @@
 .imgwidth {
     width: 28px;
 }
+
+.modalclassdashboardphotopopup {
+    z-index: 9999999999 !important;
+    top: 0%;
+    left: 0%;
+}
+
+.modalclassdashboardphotopopup .modal-dialog.modal-md {
+    width: 70%;
+}
+
+.modalclassdashboardphotopopup {
+    .pop_label_left {
+        width: 40%;
+    }
+}
+
+.settled {
+    background-color: #17F067;
+}
+
+.Deleted {
+    background-color: #BCC3BE;
+}
+
+.inactive {
+    background-color: #185615;
+}

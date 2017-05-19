@@ -190,7 +190,20 @@
             model.ActionSubmit(inputObj, 'Close');
 
         };
-
+        model.sendemailsubmit = function(obj) {
+            var mobj = {
+                Notes: obj.txtresendemail,
+                EMPID: model.empid,
+                profileid: model.marInfo[0].FromProfileID,
+                LTicketID: model.ticketid,
+                HistoryUpdate: 1,
+                FromCustID: model.marInfo[0].FromCustID,
+                TocustID: model.marInfo[0].TocustID,
+                TicketStatusID: model.FromName,
+                FromProfileID: model.marInfo[0].FromProfileID,
+                ToProfileID: model.marInfo[0].ToProfileID
+            };
+        };
 
 
         return model.init();

@@ -15,6 +15,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     scope.model.data = [];
                     scope.currentPage = 0;
                     scope.pageSize = 10;
+                    // scope.model.pageSize = 10;
                     scope.model.exportColumns = {};
                     _.each(scope.model.columns, function(item) {
                         if (item.text !== '')

@@ -14,11 +14,11 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ui.date'
 ]);
 
-// app.apiroot = 'http://52.66.131.254:8025/Api/';
-// app.apipathold = 'http://52.66.131.254:8010/Api/';
+app.apiroot = 'http://52.66.131.254:8025/Api/';
+app.apipathold = 'http://52.66.131.254:8010/Api/';
 
-app.apiroot = 'http://183.82.0.58:8025/Api/';
-app.apipathold = 'http://183.82.0.58:8010/Api/';
+// app.apiroot = 'http://183.82.0.58:8025/Api/';
+// app.apipathold = 'http://183.82.0.58:8010/Api/';
 
 app.env = "dev";
 app.payfixedAmt = 100;
@@ -260,6 +260,39 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     $ocLazyLoad.load('EditSideMenu-base');
                     $ocLazyLoad.load('EditSlide-popup');
                     $ocLazyLoad.load('single-grid');
+                }]
+            }
+        });
+        ///editView/71668/Education
+        ///State.go('editandviewbase.editEducation',{CustID:71668});
+        var innerView = {
+            "topbar@": {
+                templateUrl: "templates/topheader.html"
+            },
+            "lazyLoadView@": {
+                templateUrl: "app/editandviewbase/index.html",
+            },
+            "bottompanel@": {
+                templateUrl: "templates/footer.html"
+            }
+        };
+        $stateProvider.state('editandviewbase', {
+            abstract: true,
+            url: '/editView/:CustID',
+            views: innerView,
+            resolve: {
+                loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    $ocLazyLoad.load('commonjs');
+                    $ocLazyLoad.load('directives');
+                    $ocLazyLoad.load('constants');
+                    $ocLazyLoad.load('modules');
+                    $ocLazyLoad.load('complex-grid');
+                    $ocLazyLoad.load('complex-slide');
+                    $ocLazyLoad.load('Expressintrst');
+                    $ocLazyLoad.load('marketing-slide');
+                    $ocLazyLoad.load('matchfollowup-ticket');
+                    $ocLazyLoad.load('EditSideMenu-base');
+                    $ocLazyLoad.load('EditSlide-popup');
                 }]
             }
         });

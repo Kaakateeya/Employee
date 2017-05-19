@@ -1,23 +1,24 @@
 (function(angular) {
     'use strict';
 
-    function factory($http, communicationLogService, gridconfig) {
+    function factory($http, communicationLogService, gridconfig, modelpopupopenmethod, alerts) {
         return function() {
             var model = {};
             model.gridtable1 = {};
             model.gridtable2 = {};
             model.gridtable3 = {};
             model.gridtable4 = {};
-            model.Profileidcommunication = "210212849";
+            // model.Profileidcommunication = "210212849";
+            model.Profileidcommunication = "210910352";
             model.showsearchrows = true;
             model.showsearch = true;
-            model.gridtable1.showpaging = false;
-            model.gridtable2.showpaging = false;
-            model.gridtable3.showpaging = false;
-            model.gridtable4.showpaging = false;
+            model.showpaging = true;
             model.myprofileexcel = true;
             model.normalexcel = true;
             model.gridTableshow = false;
+            model.receivedprofiles = 1;
+            model.sentprofile = 1;
+            model.Nameofcandidate = "";
             model.communicationlogsubmit = function(profileid) {
                 communicationLogService.Submitcommunicationlog(profileid, model.empid).then(function(response) {
                     console.log(response);
@@ -37,21 +38,36 @@
                     _.each(response.data[3].log, function(item) {
                         model.sendarray4.push(item);
                     });
-                    model.gridtable1.TotalRows = response.data[0].log[0].TotalRows;
+                    model.gridtable1.TotalRows = model.sendarray.length > 0 ? model.sendarray[0].TotalRows : 0;
                     model.gridtable1.data = model.sendarray;
                     model.gridTableshow = true;
-                    model.Nameofcandidate = response.data[0].log[0].FromName;
+                    model.Nameofcandidate = model.sendarray.length > 0 ? model.sendarray[0].FromName : "";
                     //2
-                    model.gridtable2.TotalRows = response.data[1].log[0].TotalRows;
+                    model.gridtable2.TotalRows = model.sendarray2.length > 0 ? model.sendarray2[0].TotalRows : 0;
                     model.gridtable2.data = model.sendarray2;
-                    //
-                    model.gridtable3.TotalRows = response.data[2].log[0].TotalRows;
+                    //3
+                    model.gridtable3.TotalRows = model.sendarray3.length > 0 ? model.sendarray3[0].TotalRows : 0;
                     model.gridtable3.data = model.sendarray3;
-                    //
-                    model.gridtable4.TotalRows = response.data[3].log[0].TotalRows;
+                    //4
+                    model.gridtable4.TotalRows = model.sendarray4.length > 0 ? model.sendarray4[0].TotalRows : 0;
                     model.gridtable4.data = model.sendarray4;
+                    // model.gridtable1.pageSize = 10000;
+                    // model.gridtable2.pageSize = 10000;
+                    // model.gridtable3.pageSize = 10000;
+                    // model.gridtable4.pageSize = 10000;
                 });
 
+            };
+            model.rowStyle = function(row) {
+                var test = [
+                    { StatusID: 57, classes: 'settled' },
+                    { StatusID: 393, classes: 'settled' },
+                    { StatusID: 56, classes: 'Deleted' },
+                    { StatusID: 394, classes: 'Deleted' },
+                    { StatusID: 258, classes: 'closed' }
+                ];
+
+                return _.where(test, { StatusID: parseInt(row.ProfileStatusID) }).length > 0 ? _.where(test, { StatusID: parseInt(row.ProfileStatusID) })[0].classes : '';
             };
             model.ProfileIdTemplateDUrl = function(row) {
                 var paidstatusclass = row.paid === 1 ? 'paidclass' : 'unpaid';
@@ -74,7 +90,8 @@
                 return ticketid;
             };
             model.clickticketupdate = function(row) {
-
+                model.marketingTicket = row.Emp_FollowupTicket_ID;
+                modelpopupopenmethod.showPopupphotopoup('matchfollowup.html', model.scope, 'md', "modalclassdashboardphotopopup");
             };
             model.viewdproceeddate = function(row) {
 
@@ -86,12 +103,67 @@
                 var PhotoCount = row.PhotoCount !== null && row.PhotoCount !== "" && row.PhotoCount !== undefined ? "<p>" + row.PhotoCount + "</p>" : "--";
                 return PhotoCount;
             };
-            model.ResendTempurl = function(row) {
-                var paid = "<a>Resend</a>";
-                return paid;
+            model.gridtable2.Resendemail = function(type, fromcustid, tocustid, toprofileid, expressintid, logid) {
+                var obj = {
+                    FromcustID: fromcustid,
+                    TocustID: tocustid,
+                    strFromProfileID: model.Profileidcommunication,
+                    strToProfileID: toprofileid,
+                    ExpressInterestId: expressintid,
+                    LogID: logid,
+                    isRvrflag: type === 1 ? "RVR" : "RS",
+                    empid: model.empid
+                };
+                communicationLogService.EmployeeCommunicationLogRvrAndResend(obj).then(function(response) {
+                    console.log(response);
+                    if (response.data !== undefined && response.data) {
+                        if (response.data.m_Item1 === 1) {
+                            if (type === 2) {
+                                model.sendarray3 = [];
+                                _.each(response.data.m_Item2, function(item) {
+                                    model.sendarray3.push(item);
+                                });
+                                model.gridtable3.TotalRows = model.sendarray3.length > 0 ? model.sendarray3[0].TotalRows : 0;
+                                model.gridtable3.data = model.sendarray3;
+                                alerts.timeoutoldalerts(model.scope, 'alert-success', 'Resend successfully', 3000);
+                            } else {
+                                model.communicationlogsubmit(model.Profileidcommunication);
+                                alerts.timeoutoldalerts(model.scope, 'alert-success', 'Reversend successfully', 3000);
+                            }
+                        } else {
+                            if (type === 2) {
+                                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Resend fail', 3000);
+                            } else {
+                                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Reversend fail', 3000);
+                            }
+                        }
+                    }
+                });
             };
-            model.Resendemail = function(row) {
-
+            model.ResendTempurl = function(row) {
+                var dd = "";
+                if (row.ProfileStatusID === 54) {
+                    var lnkRvr = row.ISRvrSend == 1 ? "" : "<br/><a href='javascript:void(0)' ng-click='model.Resendemail(1," + row.iFromCustID + "," + row.iToCustID + "," + row.ProfileID + "," + row.ExpressInterestID + "," + row.LogID + ")'>Rvrsend</a>";
+                    dd = "<a href='javascript:void(0)' ng-click='model.Resendemail(2," + row.iFromCustID + "," + row.iToCustID + "," + row.ProfileID + "," + row.ExpressInterestID + "," + row.LogID + ")'>Resend</a>" + lnkRvr;
+                }
+                return dd;
+            };
+            model.gridtable2.photossent = function(custid, emailid) {
+                communicationLogService.Sentphotosemail(emailid, custid).then(function(resonse) {
+                    console.log(resonse);
+                    if (parseInt(resonse.data) === 1) {
+                        alerts.timeoutoldalerts(model.scope, 'alert-success', 'email sent successfully', 3000);
+                    } else {
+                        alerts.timeoutoldalerts(model.scope, 'alert-danger', 'email sent failed', 3000);
+                    }
+                });
+            };
+            model.sendphotosurl = function(row) {
+                var dd = "";
+                if (row.ProfileStatusID === 54 && row.PhotoCount !== 0 && row.PhotoCount !== undefined && row.PhotoCount !== null) {
+                    dd = "<a href='javascript:void(0)' ng-click='model.photossent(" + (row.iFromCustID) + "," + JSON.stringify(row.FromEmail) + ");'>Photos</a>";
+                }
+                return "</br>" + dd;
             };
             model.gridtable1.columns = [
                 { text: 'Sno', key: 'Sno', type: 'label' },
@@ -105,7 +177,7 @@
                 { text: 'PhotoCount', key: 'PhotoCount', type: 'customlink', templateUrl: model.photocount }
             ];
             model.gridtable2.columns = [
-                { text: 'Sno', key: 'Sno', type: 'label' },
+                { text: 'Sno', key: '', type: 'morelinks', templateUrl: model.sendphotosurl },
                 { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
                 { text: 'Name', key: 'Name', type: 'label' },
                 { text: 'ServiceDate', key: 'ServiceDate', type: 'label' },
@@ -113,7 +185,7 @@
                 { text: 'Service Done', key: 'Branch', type: 'customlink', templateUrl: model.servicedone },
                 { text: 'Viewed/Proceed Date', key: 'MFPStatusDate', type: 'customlink', templateUrl: model.viewdproceeddate },
                 { text: 'TicketID', key: 'TicketID', type: 'customlink', templateUrl: model.Tickidwithtype, method: model.clickticketupdate },
-                { text: 'Options', key: 'TicketID', type: 'customlink', templateUrl: model.ResendTempurl, method: model.Resendemail },
+                { text: 'Options', key: '', type: 'morelinks', templateUrl: model.ResendTempurl },
                 { text: 'PhotoCount', key: 'PhotoCount', type: 'customlink', templateUrl: model.photocount }
             ];
             model.gridtable3.columns = [
@@ -138,22 +210,46 @@
             model.pagechange = function(val) {
                 var to = val * 10;
                 var from = val === 1 ? 1 : to - 9;
-                switch (model.tablename) {
-                    case "general":
-                        model.submitgeneral(from, to);
+
+            };
+            model.exportexcel = function(topage) {
+
+            };
+            model.receivedarraybind = function(type) {
+                debugger;
+                switch (type) {
+                    case "V":
+                    case "NV":
+                    case "I":
+                    case "NI":
+                        var test = _.where(model.sendarray, { MFPStatus: type });
+                        if (test.length > 0) {
+                            model.gridtable1.data = test;
+                        } else {
+                            model.gridtable1.data = test;
+                        }
                         break;
-                    case "advanced":
-                        model.submitadvancedsearch(from, to);
+                    default:
+                        model.gridtable1.data = model.sendarray;
                         break;
                 }
             };
-            model.exportexcel = function(topage) {
-                switch (model.tablename) {
-                    case "general":
-                        model.submitgeneral(1, model.gridtable.TotalRows, 'excel');
+            model.sentarraybind = function(type) {
+                debugger;
+                switch (type) {
+                    case "V":
+                    case "NV":
+                    case "I":
+                    case "NI":
+                        var test = _.where(model.sendarray2, { MFPStatus: $.trim(type) });
+                        if (test.length > 0) {
+                            model.gridtable2.data = test;
+                        } else {
+                            model.gridtable2.data = test;
+                        }
                         break;
-                    case "advanced":
-                        model.submitadvancedsearch(1, model.gridtable.TotalRows, 'excel');
+                    default:
+                        model.gridtable2.data = model.sendarray2;
                         break;
                 }
             };
@@ -164,5 +260,5 @@
         .module('Kaakateeya')
         .factory('communicationLogModel', factory);
 
-    factory.$inject = ['$http', 'communicationLogService', 'complex-grid-config'];
+    factory.$inject = ['$http', 'communicationLogService', 'complex-grid-config', 'modelpopupopenmethod', 'alert'];
 })(angular);
