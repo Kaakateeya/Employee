@@ -10,6 +10,11 @@ angular.module('ui.date', [])
     return {
         require: '?ngModel',
         link: function(scope, element, attrs, controller) {
+            // scope.$watch('attrs.ngModel', function(value) {
+            //     if (!value) {
+            //         initDateWidget();
+            //     }
+            // });
             var getOptions = function() {
                 return angular.extend({}, uiDateConfig, scope.$eval(attrs.uiDate));
             };
@@ -48,7 +53,7 @@ angular.module('ui.date', [])
 
                     // Update the date picker when the model changes
                     controller.$render = function() {
-                       
+
                         var date = controller.$viewValue;
                         if (date) {
 
