@@ -1,231 +1,284 @@
 body {
-  background: none;
-  font-family: arial; }
+    background: none;
+    font-family: arial;
+}
 
 #dashBoardPage h2 {
-  font-size: 16px;
-  color: maroon;
-  font-weight: 600;
-  width: 90%; }
+    font-size: 16px;
+    color: maroon;
+    font-weight: 600;
+    width: 90%;
+}
 
 #dashBoardPage .scrolldashboard {
-  height: 356px;
-  overflow-y: scroll;
-  min-height: 350px; }
+    height: 356px;
+    overflow-y: scroll;
+    min-height: 350px;
+}
 
 #dashBoardPage .date img {
-  width: 54px;
-  height: 48px; }
+    width: 54px;
+    height: 48px;
+}
 
 #dashBoardPage .counts {
-  color: green; }
+    color: green;
+}
 
 #dashBoardPage .title {
-  color: black;
-  margin: 0 0 4px; }
+    color: black;
+    margin: 0 0 4px;
+}
 
 #dashBoardPage .titleservice {
-  color: black; }
+    color: black;
+}
 
 #dashBoardPage .excelshow {
-  color: #3030d8;
-  margin-left: 10px; }
+    color: #3030d8;
+    margin-left: 10px;
+}
 
 #dashBoardPage .x_panel {
-  height: 440px; }
+    height: 440px;
+}
 
 #dashBoardPage .loadmoredashboard {
-  color: #3030d8; }
+    color: #3030d8;
+}
 
 .modalclassdashboard {
-  z-index: 99999 !important;
-  top: 0%;
-  left: 0%; }
+    z-index: 99999 !important;
+    top: 0%;
+    left: 0%;
+}
 
 .modalclassdashboardphotopopup {
-  z-index: 9999999 !important;
-  top: 0%;
-  left: 0%; }
+    z-index: 9999999 !important;
+    top: 0%;
+    left: 0%;
+}
 
 .modalheader {
-  padding: 0px !important; }
+    padding: 0px !important;
+}
 
 .fa-check-circle {
-  color: green; }
+    color: green;
+}
 
 span.fa.fa-angle-down {
-  display: none; }
+    display: none;
+}
 
 .paidCls {
-  color: Green;
-  text-decoration: underline;
-  margin-left: -16px;
-  padding-left: 10px; }
+    color: Green;
+    text-decoration: underline;
+    margin-left: -16px;
+    padding-left: 10px;
+}
 
 .unpaidCls {
-  color: red;
-  text-decoration: underline;
-  margin-left: -16px;
-  padding-left: 10px; }
+    color: red;
+    text-decoration: underline;
+    margin-left: -16px;
+    padding-left: 10px;
+}
 
 .modal-lg {
-  width: 90% !important; }
+    width: 90% !important;
+}
 
 .pauseBtns {
-  width: 33px;
-  height: 33px;
-  font-size: 16px; }
+    width: 33px;
+    height: 33px;
+    font-size: 16px;
+}
 
 .panel {
-  margin-bottom: 0px !important; }
+    margin-bottom: 0px !important;
+}
 
 .colormarron {
-  color: maroon; }
+    color: maroon;
+}
 
 .color_black {
-  color: #000; }
+    color: #000;
+}
 
 .imgheight {
-  height: 29px; }
+    height: 29px;
+}
 
 .Photoscount {
-  color: Black;
-  font-size: 9pt; }
+    color: Black;
+    font-size: 9pt;
+}
 
 .shortlistclass {
-  font-size: 13pt;
-  color: #337ab7; }
+    font-size: 13pt;
+    color: #337ab7;
+}
 
 .twopng {
-  margin-top: -4px;
-  width: 40px;
-  height: 38px; }
+    margin-top: -4px;
+    width: 40px;
+    height: 38px;
+}
 
 .dashboardpopupdesign {
-  margin-left: 57px;
-  margin-right: 57px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  height: auto;
-  padding: 10px;
-  background: #f6f3ea; }
+    margin-left: 57px;
+    margin-right: 57px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    height: auto;
+    padding: 10px;
+    background: #f6f3ea;
+}
 
 .dashboardheaderpopup {
-  margin-left: 10px;
-  margin-right: 10px;
-  background-color: rgba(197, 205, 50, 0.42);
-  padding-top: 5px;
-  margin-top: 2px; }
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: rgba(197, 205, 50, 0.42);
+    padding-top: 5px;
+    margin-top: 2px;
+}
 
 .dashboardheaderhtml {
-  color: maroon;
-  font-size: 16px; }
+    color: maroon;
+    font-size: 16px;
+}
 
 .dahboardheaderclose {
-  fill: #c73e5f;
-  font-size: 13pt;
-  width: 30px;
-  margin-left: 85px; }
+    fill: #c73e5f;
+    font-size: 13pt;
+    width: 30px;
+    margin-left: 85px;
+}
 
 .dashboardmodelheader {
-  border-bottom: 1px solid #ffffff; }
+    border-bottom: 1px solid #ffffff;
+}
 
 .dashboardfooterlinks {
-  font-size: 15px;
-  line-height: 1.8; }
+    font-size: 15px;
+    line-height: 1.8;
+}
 
 .modalclassdashboardphotopopup .modal-dialog.modal-md {
-  width: 70%; }
+    width: 70%;
+}
 
 md-content.md-padding._md {
-  padding: 5px; }
+    padding: 5px;
+}
 
 .dashboardticketpopup {
-  color: maroon;
-  font-size: 17px; }
+    color: maroon;
+    font-size: 17px;
+}
 
 .ticketpopuplabel {
-  color: black; }
+    color: black;
+}
 
 .ticketpopuppopupheader {
-  background-color: #fedc01;
-  color: white;
-  padding-top: 2px;
-  padding-bottom: 4px; }
+    background-color: #fedc01;
+    color: white;
+    padding-top: 2px;
+    padding-bottom: 4px;
+}
 
 c.maroon {
-  color: maroon; }
+    color: maroon;
+}
 
 #Updatediv1 label {
-  color: gray; }
+    color: gray;
+}
 
 .maroon {
-  color: maroon !important; }
+    color: maroon !important;
+}
 
 .search_page_tabs ul li {
-  float: left; }
+    float: left;
+}
 
 .search_page_tabs ul li a {
-  cursor: pointer;
-  display: block;
-  text-transform: uppercase;
-  color: #898989 !important;
-  line-height: 18px;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 12px 30px !important;
-  border-right: solid 1px #b8b8b8;
-  border-bottom: solid 2px #898989;
-  transition: all 0.4s ease-in-out; }
+    cursor: pointer;
+    display: block;
+    text-transform: uppercase;
+    color: #898989 !important;
+    line-height: 18px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 12px 30px !important;
+    border-right: solid 1px #b8b8b8;
+    border-bottom: solid 2px #898989;
+    transition: all 0.4s ease-in-out;
+}
 
 .search_page_tabs ul li a:focus,
 .search_page_tabs ul li a:hover,
 .search_page_tabs ul li a.active {
-  color: #a00201 !important;
-  border-bottom-color: #a00201; }
+    color: #a00201 !important;
+    border-bottom-color: #a00201;
+}
 
 .modalclassdashboardphotopopup .md-tab {
-  padding: 14px 15px; }
+    padding: 14px 15px;
+}
 
 .modalclassdashboard .carousel-control {
-  width: 5%; }
+    width: 5%;
+}
 
 .edit_page_details_item_descsearch {
-  padding: 4px 0;
-  background-size: 522px auto;
-  background-position: -29% center;
-  position: relative; }
+    padding: 4px 0;
+    background-size: 522px auto;
+    background-position: -29% center;
+    position: relative;
+}
 
 .edit_page_details_item_descsearch h6 {
-  float: left;
-  width: 30%;
-  position: relative;
-  color: #7a7a7a;
-  text-transform: capitalize;
-  font-size: 14px;
-  line-height: 20px;
-  text-align: left; }
+    float: left;
+    width: 30%;
+    position: relative;
+    color: #7a7a7a;
+    text-transform: capitalize;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: left;
+}
 
 .edit_page_details_item_descsearch h6:after {
-  content: ":";
-  position: absolute;
-  right: 10px; }
+    content: ":";
+    position: absolute;
+    right: 10px;
+}
 
 .edit_page_details_item_descsearch h5 {
-  float: left;
-  color: #000;
-  text-transform: capitalize;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px; }
+    float: left;
+    color: #000;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
 
 .carousel-indicators li {
-  display: none; }
+    display: none;
+}
 
 .modalclassdashboardphotopopup .pop_label_left {
-  width: 40%; }
+    width: 40%;
+}
 
 body .container.body .right_col {
-  background: #f7f7f7 !important; }
+    background: white !important;
+}
+
 
 /*# sourceMappingURL=style.css.map */

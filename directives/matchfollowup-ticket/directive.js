@@ -7,7 +7,8 @@
             restrict: 'EA',
             scope: {
                 ticketid: '=',
-                showsendemail: "="
+                showsendemail: "=",
+                ticketstatus: "="
             },
             templateUrl: 'directives/matchfollowup-ticket/index.html'
         };
@@ -17,6 +18,7 @@
             scope.model = marketticketHistrymdl;
             scope.model.ticketid = scope.ticketid;
             scope.model.showsendemail = scope.showsendemail === '1' ? true : false;
+            scope.model.ticketstatus = scope.ticketstatus;
             scope.model.scope = scope;
             scope.model.getMrktSlideInfo(scope.ticketid);
             scope.model.MAobj.ddlmrktCallresultIn = scope.model.MAobj.ddlmrktcallresultout = "417";
