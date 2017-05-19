@@ -1,0 +1,69 @@
+<!--<div class="row">
+    <div class="col-lg-6">
+        <div class="row" ng-if="slide.serviceDate!=='--' && slide.serviceDate!=='' && slide.serviceDate!== null">
+            <div class="row">
+                <div class="col-lg-7" ng-style="{'left': slide.Mystatus.trim()!=='I' && slide.FromTicketIdSuf.trim()!=='V' && slide.Mystatus.trim()!=='NI'?'1%':'5%'}">
+                    <label class="colormarron">Status/Ticket :</label>
+                    <label class="color_black"><span  ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI'" ng-bind-html="config.statusbind(slide.Mystatus.trim())"></span><span>
+                        <img class="imgheight" ng-if="slide.Mystatus.trim()==='I'"  ng-show="slide.Mystatus.trim()==='I'" src="src/images/heartgrren.gif"><img>
+                         <img  class="imgheight"   ng-if="slide.Mystatus.trim()==='NI'" ng-show="slide.Mystatus.trim()==='NI'" ng-src="src/images/brkhrtgreen.gif"><img></span></label>
+                    <a href="javascript:void(0)" ng-click="tickethistoryupdate(slide.FromTicketID)" ng-style="{'background-color' : config.ticketclass(slide.FTicketStatus.trim())}" ng-if="slide.Mystatus.trim()==='I' || slide.Mystatus.trim()==='NI' || slide.Mystatus.trim()==='V'"
+                        ng-show="slide.FromTicketIdSuf.trim()!=='--'">{{slide.FromTicketIdSuf}}</a>
+
+                </div>
+                <div class="col-lg-5">
+                    <a href="javascript:void(0)" class="col-lg-5" ng-click="config.proceedanddontproceed('btnProceed',slide,'I',1)" ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI' && slide.Mystatus.trim()!=='--'">Proceed</a>
+                    <a href="javascript:void(0)" class="col-lg-7" ng-click="config.proceedanddontproceed('btnDontProceed',slide,'NI',2)" ng-if="slide.Mystatus.trim()!=='I' && slide.Mystatus.trim()!=='NI' && slide.Mystatus.trim()!=='--'">Dont Proceed</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="row">
+            <a class="col-lg-3" ng-click="model.checkServicetoShortlist(slide)" class="Heart center-block" href="javascript:void(0);" ng-show="config.getpageloadobject.Cust_ID!=='' && config.getpageloadobject.Cust_ID!==null && config.getpageloadobject.Cust_ID!==undefined">
+                <div><img src="src/images/two.png" class="twopng" />
+                    <span> <lable class="shortlistclass">Shortlist</lable></span>
+                </div>
+            </a>
+            <div class="col-lg-8" ng-if="slide.serviceDate!=='--' && slide.serviceDate!=='' && slide.serviceDate!== null">
+                <div class="row">
+                    <div class="row">
+                        <label class="colormarron"> Status/Ticket :</label>
+                        <label class="color_black"><span ng-if="slide.OppStatus.trim()!=='I' && slide.OppStatus.trim()!=='NI'" ng-bind-html="config.statusbind(slide.OppStatus.trim())"></span>
+                        <img  class="imgheight"  ng-if="slide.OppStatus.trim()==='I'" ng-show="slide.OppStatus.trim()==='I'" src="src/images/heartgrren.gif"><img>
+                        <img  class="imgheight"  ng-if="slide.OppStatus.trim()==='NI'" ng-show="slide.OppStatus.trim()==='NI'" src="src/images/brkhrtgreen.gif"><img></label>
+                        <a href="javascript:void(0)" ng-click="tickethistoryupdate(slide.ToTicketID)" ng-style="{'background-color' : config.ticketclass(slide.TTicketStatus.trim())}" ng-if="slide.OppStatus.trim()==='I' || slide.OppStatus.trim()==='NI' || slide.OppStatus.trim()==='V'"
+                            ng-show="slide.ToTicketIDSuf.trim()!=='--'">{{slide.ToTicketIDSuf}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<br>
+
+<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+    <div style="margin-left:60px;" class="edit_page_details_item_descsearch clearfix" ng-repeat="slidedata in slide.itmArr">
+        <h6> <span style="font-weight: bold;">{{slidedata.label}}</span></h6>
+        <h5>
+            <div ng-class="slidedata.label==='ServiceDate'?'redcolor':'blackcolor'"> <span>{{slidedata.value}}</span> </div>
+            <span ng-if="slidedata.label=='ProfileID'">&nbsp;<a href="javascript:void(0);" ng-click="config.viewfullprofile(slidedata.ProfileID)" ng-class="slidedata.paid==='1'?'paidCls':'unpaidCls'" >{{slidedata.ProfileID}}</a> {{slidedata.KMPLID}} {{(slidedata.IsConfidential===true) ||(slidedata.IsConfidential==='True')?'C':''}}  
+            {{(slidedata.SuperConfidentila==="1") ||(slidedata.SuperConfidentila===1)?'SC':''}}  
+           <input ng-click="horoscopeimage(slidedata.HoroscopePath)" ng-show="slidedata.HoroscopeStatus===1" src='src/images/ico_horoscope.jpg' style='height:20px;width:25px;' type='image'>
+          </span>
+            <div class="clearfix">
+            </div>
+        </h5>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+    <div class="clearfix"></div>
+    <div class="row">
+        <img ng-click="slidepopup(slide.Custid)" ng-src="{{slide.custPhoto}}" class="image" style="cursor: pointer;" />
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div><a href="javascript:void(0)"><span class="Photoscount">No of Photos {{slide.PhotoCount}}</span></a></div>
+    </div>
+</div>

@@ -7,13 +7,11 @@
 
     factory.$inject = ['$http'];
 
-    function factory($http) {
-        var service = {
-            getData: getData
+    function factory(http) {
+        return {
+            getRegSearchProfile: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/RegistrationValidation', obj);
+            }
         };
-
-        return service;
-
-        function getData() {}
     }
 })();
