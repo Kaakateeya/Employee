@@ -111,7 +111,7 @@
                 return _.where(test, { StatusID: parseInt(row.ProfileStatusID) }).length > 0 ? _.where(test, { StatusID: parseInt(row.ProfileStatusID) })[0].classes : ''
             };
             model.grid.exportexcel = function(array, columns) {
-                model.getSearchData(1, model.TotalRows, "export", model.ddlApplicationStatus);
+                model.getSearchData(1, model.grid.topage, "export", model.ddlApplicationStatus);
             };
             model.grid.pagechange = function(val) {
                 var to = val * 10;
@@ -147,12 +147,41 @@
                         if (_.isArray(response.data) && response.data.length > 0) {
 
                             if (typeofbind === "export") {
-                                model.exportarray = [];
-                                model.exportarray = response.data;
+                                model.grid.exportarray = [];
+                                model.grid.exportarray = response.data;
                                 var options = {
                                     headers: true,
+                                    columns: [{
+                                            columnid: 'ProfileID',
+                                            title: 'ProfileID'
+                                        }, {
+                                            columnid: 'FirstName',
+                                            title: 'FirstName'
+                                        }, {
+                                            columnid: 'LastName',
+                                            title: 'LastName'
+                                        },
+                                        {
+                                            columnid: 'Caste',
+                                            title: 'Caste'
+                                        },
+                                        {
+                                            columnid: 'DOR',
+                                            title: 'DOR'
+                                        },
+                                        {
+                                            columnid: 'ProfileOwner',
+                                            title: 'ProfileOwner'
+                                        },
+                                        {
+                                            columnid: 'Ticket',
+                                            title: 'Ticket'
+                                        }
+                                    ]
                                 };
-                                alasql('SELECT ProfileID as Profile ID,FirstName,LastName,Caste,DOR,ProfileOwner,TicketHistoryID as Ticket  INTO  XLSX("EditReports.xlsx",?) FROM ?', [options, model.exportarray]);
+
+                                alasql('SELECT ProfileID as ProfileID,FirstName,LastName,Caste,DOR,ProfileOwner,TicketHistoryID as Ticket  INTO  XLSX("EditReports.xlsx",?) FROM ?', [options, model.grid.exportarray]);
+
                             } else if (typeofbind === 'slide') {
                                 model.topage = to;
                                 model.slide.totalRecords = response.data[0].TotalRows;
@@ -164,6 +193,7 @@
                                 }
 
                             } else {
+                                model.grid.topage = to;
                                 model.opendiv = false;
                                 _.map(response.data, function(item) {
                                     item.rowtype = model.rowStyle(item);
@@ -177,6 +207,8 @@
                                 model.grid.TotalRows = response.data[0].TotalRows;
                                 model.grid.setData(response.data);
                             }
+                        } else {
+                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 4500);
                         }
                     });
 
@@ -187,7 +219,7 @@
 
             model.slide.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
-                    model.MyprofileResult(model.mpObj, (model.topage) + 1, (model.topage) + 10, 'slide', 0);
+                    model.getSearchData((model.topage) + 1, (model.topage) + 10, 'slide', model.ddlApplicationStatus);
                 }
             };
 
@@ -207,8 +239,9 @@
                     model.rbtGender = '';
             };
             model.backtosearch = function() {
-                model.data = [];
-                model.opendiv = !model.opendiv;
+                model.grid.data = [];
+                model.grid.TotalRows = '';
+                model.opendiv = false;;
             };
             return model.init();
         }
