@@ -190,22 +190,29 @@
             model.ActionSubmit(inputObj, 'Close');
 
         };
-        model.sendemailsubmit = function(obj) {
+        model.sendemailsubmit = function(ticketid, obj, matchobj, ticketstatusid) {
             var mobj = {
                 Notes: obj.txtresendemail,
                 EMPID: model.empid,
-                profileid: model.marInfo[0].FromProfileID,
-                LTicketID: model.ticketid,
+                profileid: matchobj.FromProfileID,
+                LTicketID: ticketid,
                 HistoryUpdate: 1,
-                FromCustID: model.marInfo[0].FromCustID,
-                TocustID: model.marInfo[0].TocustID,
-                TicketStatusID: model.FromName,
-                FromProfileID: model.marInfo[0].FromProfileID,
-                ToProfileID: model.marInfo[0].ToProfileID
+                FromCustID: matchobj.FromCustID,
+                TocustID: matchobj.TocustID,
+                TicketStatusID: ticketstatusid,
+                FromProfileID: matchobj.FromProfileID,
+                ToProfileID: matchobj.ToProfileID
             };
+            marketsvc.submitemails(mobj).then(function(response) {
+                console.log(response);
+                if (parseInt(response.data) === 1) {
+                    alertss.timeoutoldalerts(model.scope, "alert-success", "Mail sent succesfully", 4500);
+                } else {
+                    alertss.timeoutoldalerts(model.scope, "alert-danger", "Mail sending failed", 4500);
+                }
+                commonpage.closepopuppoptopopup();
+            });
         };
-
-
         return model.init();
     }
 })();
