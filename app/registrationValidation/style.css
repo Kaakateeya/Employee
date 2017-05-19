@@ -28,6 +28,14 @@
   background-color: #C8E6E6; }
 #regval .input[type=image]::before {
   content: "Read this -"; }
+#regval .backtoSearchCls {
+  color: #ffffff;
+  background-color: #28a4c9;
+  margin-left: 7%; }
+#regval .linkdisabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.6; }
 
 .myregvaliprofile .edit_page_details_item_descsearch {
   padding: 4px 0;
@@ -54,5 +62,11 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 20px; }
+
+.closecls {
+  padding-right: 1% !important; }
+
+.modalclassdashboardphotopopup {
+  z-index: 999999 !important; }
 
 /*# sourceMappingURL=style.css.map */

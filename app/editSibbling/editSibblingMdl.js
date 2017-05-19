@@ -171,7 +171,7 @@
                             model.sisEmail = item.SibilingEmail;
                             model.sisIsMarried = item.SibilingMarried;
 
-                            model.husbandName = item.SibilingName;
+                            model.husbandName = item.SibilingSpouseName;
                             model.husbandEducation = item.SibilingSpouseEducationDetails;
                             model.husbandDesignation = item.SibilingSpouseProfessionDetails;
                             model.husbandCompany = item.spoucecompanyName;
