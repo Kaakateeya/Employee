@@ -1,0 +1,36 @@
+<table class="Datatable table table-fixed table-hover table-bordered mainTableCls">
+    <thead>
+        <tr>
+            <th ng-if="!inneritem.isDetail && config.showplus" class="headerStyles"></th>
+            <th ng-click="sort(item.key)" class="{{item.key}} headerStyles" ng-repeat="item in model.columns">{{item.text}}
+                <span class="glyphicon sort-icon" ng-show="sortKey==item.key" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-class="inneritem.rowtype" ng-repeat="inneritem in model.sdata |orderBy:sortKey:reverse|filter: searchKeyword |startFrom:currentPage*pageSize | limitTo:pageSize">
+            <td ng-if="!inneritem.isDetail && config.showplus">
+                <a class="detail-icon" ng-click="plus(inneritem)" href="javascript:"><i class="glyphicon glyphicon-play icon-play"></i></a>
+            </td>
+            <td ng-if="inneritem.isDetail">
+                <a class="detail-icon" ng-click="minus(inneritem)" href="javascript:"><i class="glyphicon glyphicon-pause icon-pause"></i></a>
+            </td>
+            <td ng-repeat="colitem in model.columns">
+                <span ng-if="colitem.type==='label'"> {{inneritem[colitem.key]}}</span>
+                <a href="#" ng-if="colitem.type==='link'" ng-click="colitem.method(inneritem)">{{inneritem[colitem.key]}}</a>
+                <span ng-if="colitem.type==='custom'" ng-bind-html="colitem.templateUrl(inneritem)"></span>
+                <span ng-if="colitem.type==='customlink'" ng-bind-html="colitem.templateUrl(inneritem)" ng-click="colitem.method(inneritem)"></span>
+                <span ng-if="colitem.type==='morelinks'" compile="colitem.templateUrl(inneritem)"></span>
+                <span ng-if="colitem.type==='play'"><a class="detail-icon" ng-click="colitem.method(inneritem)" href="javascript:void(0);"><i class="glyphicon glyphicon-play icon-play"></i></a></span>
+            </td>
+        </tr>
+
+        <tr ng-if="model.data.length===0">
+            <td colspan="14">
+                <div layout="row" layout-sm="column" layout-align="space-around">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

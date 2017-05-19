@@ -5,14 +5,15 @@
         .module('Kaakateeya')
         .factory('registrationValidationModel', factory)
 
-    factory.$inject = ['registrationValidationservice', 'authSvc', 'complex-grid-config', 'alert', 'complex-slide-config', 'modelpopupopenmethod'];
+    factory.$inject = ['registrationValidationservice', 'authSvc', 'complex-grid-config', 'alert', 'complex-slide-config', 'modelpopupopenmethod', 'single-grid-config'];
 
-    function factory(svc, authSvc, gridConfig, alertss, slideConfig, modelpopupopenmethod) {
+    function factory(svc, authSvc, gridConfig, alertss, slideConfig, modelpopupopenmethod, sinlegrid) {
         return function() {
             var model = {},
                 empid = '';
             model.grid = gridConfig;
             model.slide = slideConfig;
+            model.SingleGrid = sinlegrid;
             model.scope = {};
 
             //grid
@@ -37,10 +38,42 @@
                 { "label": "Settled/WaitingforSetldAuth", "title": "Settled/WaitingforSetldAuth", "value": 57 },
                 { "label": "MMSerious", "title": "MMSerious", "value": 395 }
             ];
-            model.playFunction = function() {
+            model.playFunction = function(row) {
+                model.SingleGrid.columns = [
+                    { text: 'Profileid', key: 'Profileid', type: 'label' },
+                    { text: 'Branch_Dor', key: 'Branch_Dor', type: 'label' },
+                    { text: 'OP/KP', key: 'paidamount', type: 'label' },
+                    { text: 'OPD/KPD', key: 'paiddate', type: 'label' },
+                    { text: 'S/R COUNT', key: 'sentreceivecount', type: 'label' },
+                    { text: 'PC', key: 'PC', type: 'label' },
+                    { text: 'PD', key: 'PD', type: 'label' },
+                    { text: 'DPD', key: 'DPD', type: 'label' },
+                    { text: 'View', key: 'View', type: 'label' },
+                    { text: 'Nview', key: 'Nview', type: 'label' },
+                    { text: 'BI', key: 'BI', type: 'label' },
+                    { text: 'OppI', key: 'OppI', type: 'label' },
+                    { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' }
+                ];
 
+                svc.regValiplayBtn(row.ProfileID).then(function(response) {
+                    console.log(response);
+                    model.SingleGrid.setDatagrid(response.data);
+                });
+                modelpopupopenmethod.showPopup('singleGrid.html', model.scope, 'lg', "myregvaliPlay");
+            };
+            model.close = function() {
+                debugger;
+                modelpopupopenmethod.closepopuppoptopopup();
             };
 
+            model.slide.close = function() {
+                debugger;
+                modelpopupopenmethod.closepopuppoptopopup();
+            };
+            model.slide.closeslide = function() {
+                debugger;
+                modelpopupopenmethod.closepopup();
+            };
             model.init = function() {
 
                 empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
@@ -81,7 +114,7 @@
                 return _.where(test, { StatusID: parseInt(row.ProfileStatusID) }).length > 0 ? _.where(test, { StatusID: parseInt(row.ProfileStatusID) })[0].classes : ''
             };
             model.grid.exportexcel = function(array, columns) {
-                model.getSearchData(1, model.TotalRows, "export", model.ddlApplicationStatus);
+                model.getSearchData(1, model.grid.topage, "export", model.ddlApplicationStatus);
             };
             model.grid.pagechange = function(val) {
                 var to = val * 10;
@@ -117,12 +150,41 @@
                         if (_.isArray(response.data) && response.data.length > 0) {
 
                             if (typeofbind === "export") {
-                                model.exportarray = [];
-                                model.exportarray = response.data;
+                                model.grid.exportarray = [];
+                                model.grid.exportarray = response.data;
                                 var options = {
                                     headers: true,
+                                    columns: [{
+                                            columnid: 'ProfileID',
+                                            title: 'ProfileID'
+                                        }, {
+                                            columnid: 'FirstName',
+                                            title: 'FirstName'
+                                        }, {
+                                            columnid: 'LastName',
+                                            title: 'LastName'
+                                        },
+                                        {
+                                            columnid: 'Caste',
+                                            title: 'Caste'
+                                        },
+                                        {
+                                            columnid: 'DOR',
+                                            title: 'DOR'
+                                        },
+                                        {
+                                            columnid: 'ProfileOwner',
+                                            title: 'ProfileOwner'
+                                        },
+                                        {
+                                            columnid: 'Ticket',
+                                            title: 'Ticket'
+                                        }
+                                    ]
                                 };
-                                alasql('SELECT ProfileID as Profile ID,FirstName,LastName,Caste,DOR,ProfileOwner,TicketHistoryID as Ticket  INTO  XLSX("EditReports.xlsx",?) FROM ?', [options, model.exportarray]);
+
+                                alasql('SELECT ProfileID as ProfileID,FirstName,LastName,Caste,DOR,ProfileOwner,TicketHistoryID as Ticket  INTO  XLSX("EditReports.xlsx",?) FROM ?', [options, model.grid.exportarray]);
+
                             } else if (typeofbind === 'slide') {
                                 model.topage = to;
                                 model.slide.totalRecords = response.data[0].TotalRows;
@@ -134,6 +196,7 @@
                                 }
 
                             } else {
+                                model.grid.topage = to;
                                 model.opendiv = false;
                                 _.map(response.data, function(item) {
                                     item.rowtype = model.rowStyle(item);
@@ -145,9 +208,10 @@
                                 model.inactiveCount = response.data[0].InActiveCount;
                                 model.mmserisCount = response.data[0].MMSerious;
                                 model.grid.TotalRows = response.data[0].TotalRows;
-
                                 model.grid.setData(response.data);
                             }
+                        } else {
+                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 4500);
                         }
                     });
 
@@ -156,18 +220,11 @@
                 }
             };
 
-
-
-
-
             model.slide.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
-                    model.MyprofileResult(model.mpObj, (model.topage) + 1, (model.topage) + 10, 'slide', 0);
+                    model.getSearchData((model.topage) + 1, (model.topage) + 10, 'slide', model.ddlApplicationStatus);
                 }
             };
-
-
-
 
             model.reset = function() {
                 model.txtFFMFNATIVE =
@@ -184,7 +241,11 @@
                     model.ddlApplicationStatus =
                     model.rbtGender = '';
             };
-
+            model.backtosearch = function() {
+                model.grid.data = [];
+                model.grid.TotalRows = '';
+                model.opendiv = false;;
+            };
             return model.init();
         }
     }

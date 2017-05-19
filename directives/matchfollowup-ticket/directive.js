@@ -1,18 +1,14 @@
 (function() {
     'use strict';
-    angular
-        .module('Kaakateeya')
-        .directive('matchfollowupTickethistory', directive);
-
-    directive.$inject = ['matchfollowupticketHistrymdl', 'modelpopupopenmethod', '$timeout'];
 
     function directive(marketticketHistrymdl, modelpopupopenmethod, timeout) {
-
         var directive = {
             link: link,
             restrict: 'EA',
             scope: {
-                ticketid: '='
+                ticketid: '=',
+                showsendemail: "=",
+                ticketstatus: "="
             },
             templateUrl: 'directives/matchfollowup-ticket/index.html'
         };
@@ -21,6 +17,8 @@
         function link(scope, element, attrs) {
             scope.model = marketticketHistrymdl;
             scope.model.ticketid = scope.ticketid;
+            scope.model.showsendemail = scope.showsendemail === '1' ? true : false;
+            scope.model.ticketstatus = scope.ticketstatus;
             scope.model.scope = scope;
             scope.model.getMrktSlideInfo(scope.ticketid);
             scope.model.MAobj.ddlmrktCallresultIn = scope.model.MAobj.ddlmrktcallresultout = "417";
@@ -30,10 +28,13 @@
                 scope.model.MAobj.ddlmrktReplyMemo =
                 scope.model.MAobj.ddlmrktreplyClose =
                 scope.model.MAobj.ddlmrktReplyTypeIn = "";
-
+            scope.model.MAobj.ddlresendemailmatchfollowup = "5";
+            scope.model.MAobj.txtresendemail = scope.model.mailchange(scope.model.MAobj.ddlresendemailmatchfollowup);
             // timeout(function() { console.log(scope.model.marInfo); }, 25000);
-
         }
     }
-
+    angular
+        .module('Kaakateeya')
+        .directive('matchfollowupTickethistory', directive);
+    directive.$inject = ['matchfollowupticketHistrymdl', 'modelpopupopenmethod', '$timeout'];
 })();

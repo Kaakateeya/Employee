@@ -41,6 +41,16 @@
     .input[type=image]::before {
         content: "Read this -";
     }
+    .backtoSearchCls {
+        color: #ffffff;
+        background-color: #28a4c9;
+        margin-left: 7%;
+    }
+    .linkdisabled {
+        pointer-events: none;
+        cursor: default;
+        opacity: 0.6;
+    }
 }
 
 .myregvaliprofile {
@@ -73,4 +83,14 @@
         font-weight: 400;
         line-height: 20px;
     }
+}
+
+.myregvaliPlay {}
+
+.closecls {
+    padding-right: 1% !important;
+}
+
+.modalclassdashboardphotopopup {
+    z-index: 999999 !important;
 }

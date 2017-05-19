@@ -36,8 +36,18 @@
         <md-tabs md-selected="page.model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
             <md-tab label="View">
                 <div class="tab">
-                    <div class="col-lg-12">
-                        <div id="Updatediv1" style="overflow-y: scroll;height: 450px;overflow-x: hidden;">
+                    <div class="row well" data-ng-if="model.showsendemail">
+                        <div class="col-lg-4 col-lg-push-1">
+                            <label style="color: maroon;">Mobile:</label>
+                            <label id="lblmobilenumber" style="color: black;">{{model.marInfo[0].Number}}</label>
+                        </div>
+                        <div class="col-lg-6">
+                            <label style="color: maroon;">Email:</label>
+                            <label id="lblemailhis" style="color: black;">{{model.marInfo[0].Email}}</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" style="overflow-y: scroll;height: 450px;overflow-x: hidden;">
+                        <div>
                             <div ng-repeat="item in model.marHistry">
                                 <br>
                                 <matchfollow-histry strrelationname="item.RelationName" strtype="item.TicketType" strdate="item.TicketInfo" strempname="item.EmployeeName" strstatus="item.CallResult" strcustname="item.RelationName" strcomments="item.Body" strnoofdays="item.NoOfDays"
@@ -46,6 +56,47 @@
                         </div>
                     </div>
                 </div>
+            </md-tab>
+            <md-tab label="Send Mail" data-ng-if="model.showsendemail">
+                <form name="sendemail" novalidate role="form" ng-submit="">
+                    <div class="tab-pane active">
+                        <div class="row">
+                            <div id="divcustnameemail" class="col-lg-offset-1">
+                                <div class="form-group"><label class="control-label col-sm-4 maroon">Customer Name</label>
+                                    <div class="pull-left"><label class="control-label pull-left">{{model.marInfo[0].FromName}} ({{model.marInfo[0].FromProfileID}})</label></div>
+                                </div>
+                                <div class="clearfix"></div><br>
+                                <div class="form-group"><label class="control-label  col-sm-4 maroon">Email going to </label>
+                                    <div class="pull-left"><label class="control-label pull-left">{{model.marInfo[0].Email}}</label></div>
+                                </div>
+                                <div class="clearfix"></div><br></div>
+                            <div class="col-lg-12">
+                                <div class="col-lg-offset-1 col-lg-2">
+                                    <label class="control-label">Mail Type</label>
+                                </div>
+                                <div class="col-lg-6 select-box-my">
+                                    <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlresendemailmatchfollowup" ng-change="model.MAobj.txtresendemail=model.mailchange(model.MAobj.ddlresendemailmatchfollowup);" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr">   
+                               </select>
+                                </div>
+                                <div class="clearfix"></div>
+                                <br>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-offset-1">
+                            <textarea ng-model="model.MAobj.txtresendemail" style="height: 96px; width: 500px;" class="form-control"></textarea>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <button type="button" class="button_custom pull-right" ng-click="model.sendemailsubmit(model.ticketid,model.MAobj,model.marInfo[0],model.ticketstatus);">Send Mail</button>
+                            </div>
+                            <div class="col-lg-4">
+                                <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset" ng-click="model.close();">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </md-tab>
             <md-tab label="Incoming Call">
                 <div class="tab">
@@ -229,7 +280,7 @@
                         <form name="memoform" novalidate role="form" ng-submit="">
                             <ul>
                                 <div class="col-lg-12">
-                                   <!-- <li class="col-lg-6 form-group">
+                                    <!-- <li class="col-lg-6 form-group">
                                         <label class="pop_label_left">Assign/Re-assign </label>
                                         <div class="pop_controls_right select-box-my   input-group">
                                             <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktAssignmemo" multiselectdropdown typeofdata="'EmpNames'" required>   

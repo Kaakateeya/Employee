@@ -36,6 +36,7 @@
                             <!--<li><a href="EmployeePayments">Payment Details</a></li>-->
                             <li><a href="employeeViewfullprofiles/0">Customer New Admin Profile</a></li>
                             <li><a href="expressInterestpage">Expressinterest</a></li>
+                            <li><a href="communicationLogs">Communication Log</a></li>
                             <!--<li class="has-sub"><a href="#">SUB SUB LIST</a>
                                 <ul>
                                     <li><a href="#">Sub Sub Item 1</a></li>
@@ -46,7 +47,7 @@
                     </li>
                     <li class="has-sub"><a href="javascript:void(0)"> Search </a>
                         <ul>
-                          <!--<li><a ng-click="head.searchredirect('base.searchpage',0,0)" href="javascript:void(0)">General Search</a></li>
+                            <!--<li><a ng-click="head.searchredirect('base.searchpage',0,0)" href="javascript:void(0)">General Search</a></li>
                             <li><a ng-click="head.searchredirect('base.searchpage',1,0)" href="javascript:void(0)">Advanced search</a></li>-->
 
                             <li><a href="search/0/0">General Search</a></li>
@@ -106,7 +107,7 @@
                                     <span class="textlogo"><span class="title">Kaakateeya Marraiages</span> </span>
                                 </div>
                             </div>
-                            <form name="loginForm"  novalidate ng-submit="loginForm.$valid?head.loginsubmit(head):''">
+                            <form name="loginForm" novalidate ng-submit="loginForm.$valid?head.loginsubmit(head):''">
                                 <div class="login-inside">
                                     <div class="login-data" ng-hide="!page.model.lockscreendiv">
                                         <div class="row clear">
@@ -117,8 +118,8 @@
                                         <div class="row clear">
                                             <label for="password">
                                            Password:
-                                          </label>                                           
-                                            <input ng-focus="true" type="Password" class="text" ng-model="head.passwordemployee" name="passwordemployee" required> 
+                                          </label>
+                                            <input ng-focus="true" type="Password" class="text" ng-model="head.passwordemployee" name="passwordemployee" required>
                                             <div ng-if="loginForm.passwordemployee.$dirty && loginForm.passwordemployee.$error.required" ng-message="true">Required</div>
                                         </div>
                                         <button type="submit" class="button">Login</button>

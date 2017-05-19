@@ -4,6 +4,8 @@
         <div uib-accordion-group class="panel-default regValheader" is-open="page.model.opendiv">
             <uib-accordion-heading style=" color: rgb(160, 2, 1);">
                 RegistrationValidation <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+
+                <button class="btn btn-default backtoSearchCls" ng-show="!page.model.opendiv" ng-click="page.model.backtosearch();">Back to Search page</button>
             </uib-accordion-heading>
             <div class="row">
                 <div class="">
@@ -113,27 +115,40 @@
             <br>
         </div>
     </uib-accordion>
+
     <div>
         <div ng-if="page.model.grid.TotalRows">
             <span class="spanHdr">
              <span>Active Count : </span>
-            <span><a href="javascript:void(0);" ng-click="page.model.getSearchData(1,10,'slide',54);">{{page.model.activeCount}}</a></span>
+            <span><a href="javascript:void(0);"  ng-class="{'linkdisabled':page.model.activeCount===0 || page.model.activeCount==='0'}" ng-click="page.model.getSearchData(1,10,'slide',54);">{{page.model.activeCount}}</a></span>
             </span>
             <span class="spanHdr">
                 <span>Deleted Count : </span>
-            <span><a href="javascript:void(0);" ng-click="page.model.getSearchData(1,10,'slide',56);">{{page.model.deleteCount}}</a></span>
+            <span><a href="javascript:void(0);"  ng-class="{'linkdisabled':page.model.deleteCount===0 || page.model.deleteCount==='0'}" ng-click="page.model.getSearchData(1,10,'slide',56);">{{page.model.deleteCount}}</a></span>
             </span>
-            <span class="spanHdr"><span>Settled Count : </span><span><a href="javascript:_" ng-click="page.model.getSearchData(1,10,'slide',57);">{{page.model.settleCount}}</a></span></span>
-            <span class="spanHdr"><span>InActive Count : </span><span><a href="javascript:_" ng-click="page.model.getSearchData(1,10,'slide',55);">{{page.model.inactiveCount}}</a></span></span>
-            <span class="spanHdr"><span>MMSerious Count : </span><span><a href="javascript:_" ng-click="page.model.getSearchData(1,10,'slide',394);">{{page.model.mmserisCount}}</a></span></span>
+            <span class="spanHdr"><span>Settled Count : </span><span><a href="javascript:_" ng-class="{'linkdisabled':page.model.settleCount===0 || page.model.settleCount==='0'}" ng-click="page.model.getSearchData(1,10,'slide',57);">{{page.model.settleCount}}</a></span></span>
+            <span class="spanHdr"><span>InActive Count : </span><span><a href="javascript:_"  ng-class="{'linkdisabled':page.model.inactiveCount===0 || page.model.inactiveCount==='0'}" ng-click="page.model.getSearchData(1,10,'slide',55);">{{page.model.inactiveCount}}</a></span></span>
+            <span class="spanHdr"><span>MMSerious Count : </span><span><a href="javascript:_"  ng-class="{'linkdisabled':page.model.mmserisCount===0 || page.model.mmserisCount==='0'}" ng-click="page.model.getSearchData(1,10,'slide',394);">{{page.model.mmserisCount}}</a></span></span>
 
         </div>
+        <br>
         <complex-grid model="page.model.grid" config="page.model.grid"></complex-grid>
     </div>
+
 </div>
 <script type="text/ng-template" id="myprofileSlide.html">
     <div class="modal-body">
         <complex-slide config="page.model.slide" model="page.model.slide"></complex-slide>
+        <div class="clearfix"></div>
+    </div>
+</script>
+<script type="text/ng-template" id="singleGrid.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="page.model.close()">×</button>
+        <h6 class="modal-title">Customer Full Details</h6>
+    </div>
+    <div class="modal-body">
+        <single-grid config="page.model.SingleGrid" model="page.model.SingleGrid"></single-grid>
         <div class="clearfix"></div>
     </div>
 </script>

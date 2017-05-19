@@ -81,7 +81,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'editProfileSetting', name: 'base.editProfileSetting', url: '/ProfileSetting/:CustID' },
             { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID', subname: ['directives/divPrint.js'] },
             { routeName: 'registrationValidation', name: 'base.registrationValidation', url: '/registrationValidations' },
-            { routeName: 'communicationLog', name: 'base.communicationLog', url: '/communicationLogs', isloginrequired: true }
+            { routeName: 'communicationLog', name: 'base.communicationLog', url: '/communicationLogs', isloginrequired: true },
+            { routeName: 'clientSidepagging', name: 'base.clientSidepagging', url: '/clientSidepaggings', isloginrequired: true }
 
         ];
 
@@ -232,6 +233,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/slidePopup/service.js',
                         'directives/slidePopup/css/style.css'
                     ]
+                },
+                {
+                    name: 'single-grid',
+                    files: [
+                        'directives/singel-grid/config.js',
+                        'directives/singel-grid/directive.js'
+                    ]
                 }
             ]
         });
@@ -239,6 +247,40 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
         $urlRouterProvider.otherwise('/');
         $stateProvider.state('base', {
             abstract: true,
+            resolve: {
+                loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    $ocLazyLoad.load('commonjs');
+                    $ocLazyLoad.load('directives');
+                    $ocLazyLoad.load('constants');
+                    $ocLazyLoad.load('modules');
+                    $ocLazyLoad.load('complex-grid');
+                    $ocLazyLoad.load('complex-slide');
+                    $ocLazyLoad.load('Expressintrst');
+                    $ocLazyLoad.load('marketing-slide');
+                    $ocLazyLoad.load('matchfollowup-ticket');
+                    $ocLazyLoad.load('EditSideMenu-base');
+                    $ocLazyLoad.load('EditSlide-popup');
+                    $ocLazyLoad.load('single-grid');
+                }]
+            }
+        });
+        ///editView/71668/Education
+        ///State.go('editandviewbase.editEducation',{CustID:71668});
+        var innerView = {
+            "topbar@": {
+                templateUrl: "templates/topheader.html"
+            },
+            "lazyLoadView@": {
+                templateUrl: "app/editandviewbase/index.html",
+            },
+            "bottompanel@": {
+                templateUrl: "templates/footer.html"
+            }
+        };
+        $stateProvider.state('editandviewbase', {
+            abstract: true,
+            url: '/editView/:CustID',
+            views: innerView,
             resolve: {
                 loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                     $ocLazyLoad.load('commonjs');
