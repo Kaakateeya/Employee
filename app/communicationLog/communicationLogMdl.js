@@ -8,20 +8,22 @@
             model.gridtable2 = {};
             model.gridtable3 = {};
             model.gridtable4 = {};
-            model.Profileidcommunication = "210212849";
+            //model.Profileidcommunication = "210212849";
             // model.Profileidcommunication = "210910352";
             model.showsearchrows = true;
             model.showsearch = true;
             model.showpaging = false;
-            model.showpagingclientside = true;
+            model.showClientpaging = true;
             model.myprofileexcel = false;
             model.normalexcel = false;
             model.gridTableshow = false;
             model.receivedprofiles = 1;
             model.sentprofile = 1;
             model.Nameofcandidate = "";
-
-
+            model.gridtable1.type = 'grid1';
+            model.gridtable2.type = 'grid2';
+            model.gridtable3.type = 'grid3';
+            model.gridtable4.type = 'grid4';
             model.rowStyle = function(row) {
                 var test = [
                     { StatusID: 57, classes: 'settled' },
@@ -33,8 +35,6 @@
 
                 return _.where(test, { StatusID: parseInt(row.ProfileStatusID) }).length > 0 ? _.where(test, { StatusID: parseInt(row.ProfileStatusID) })[0].classes : '';
             };
-
-
             model.addingserialnumber = function(array) {
                 var SNum = 1;
                 _.map(array, function(item) {
@@ -61,6 +61,10 @@
                     model.sendarray2 = [];
                     model.sendarray3 = [];
                     model.sendarray4 = [];
+                    model.gridtable1.mainArray = [];
+                    model.gridtable2.mainArray = [];
+                    model.gridtable3.mainArray = [];
+                    model.gridtable4.mainArray = [];
                     _.each(response.data[0].log, function(item) {
                         model.sendarray.push(item);
                     });
@@ -73,25 +77,24 @@
                     _.each(response.data[3].log, function(item) {
                         model.sendarray4.push(item);
                     });
+                    model.gridtable1.mainArray = model.addingserialnumber(model.sendarray);
                     model.gridtable1.TotalRows = model.sendarray.length > 0 ? model.sendarray[0].TotalRows : 0;
-
-
-                    model.gridtable1.data = model.addingserialnumber(model.sendarray);
+                    model.gridtable1.data = model.gridtable1.mainArray.slice(0, 10);
                     model.gridTableshow = true;
                     model.Nameofcandidate = model.sendarray.length > 0 ? model.sendarray[0].FromName : "";
                     //2
+                    model.gridtable2.mainArray = model.addingserialnumber(model.sendarray2);
                     model.gridtable2.TotalRows = model.sendarray2.length > 0 ? model.sendarray2[0].TotalRows : 0;
-                    model.gridtable2.data = model.addingserialnumber(model.sendarray2);
+                    model.gridtable2.data = model.gridtable2.mainArray.slice(0, 10);
                     //3
+                    model.gridtable3.mainArray = model.addingserialnumber(model.sendarray3);
                     model.gridtable3.TotalRows = model.sendarray3.length > 0 ? model.sendarray3[0].TotalRows : 0;
-                    model.gridtable3.data = model.addingserialnumber(model.sendarray3);
+                    model.gridtable3.data = model.gridtable3.mainArray.slice(0, 10);
                     //4
+                    model.gridtable4.mainArray = model.addingserialnumber(model.sendarray4);
                     model.gridtable4.TotalRows = model.sendarray4.length > 0 ? model.sendarray4[0].TotalRows : 0;
-                    model.gridtable4.data = model.addingserialnumber(model.sendarray4);
-                    // model.gridtable1.pageSize = 10000;
-                    // model.gridtable2.pageSize = 10000;
-                    // model.gridtable3.pageSize = 10000;
-                    // model.gridtable4.pageSize = 10000;
+                    model.gridtable4.data = model.gridtable4.mainArray.slice(0, 10);
+
                 });
 
             };
@@ -235,10 +238,28 @@
                 { text: 'MeetingDate', key: 'MeetingDate', type: 'label' }
 
             ];
-            model.pagechange = function(val) {
-                var to = val * 10;
-                var from = val === 1 ? 1 : to - 9;
-
+            model.pagechange = function(val, type) {
+                switch (type) {
+                    case "grid1":
+                        model.gridtable1.data = model.gridtable1.mainArray.slice((val - 1) * 10, model.gridtable1.TotalRows);
+                        break;
+                    case "grid2":
+                        model.gridtable2.data = model.gridtable2.mainArray.slice((val - 1) * 10, model.gridtable2.TotalRows);
+                        break;
+                    case "grid3":
+                        model.gridtable3.data = model.gridtable3.mainArray.slice((val - 1) * 10, model.gridtable3.TotalRows);
+                        break;
+                    case "grid4":
+                        model.gridtable4.data = model.gridtable4.mainArray.slice((val - 1) * 10, model.gridtable4.TotalRows);
+                        break;
+                }
+                // var arr = ['grid1', 'grid2', 'grid3', 'grid4'];
+                // _.each(arr, function(item, index) {
+                //     alert(index);
+                //     if (item === type) {
+                //         model['gridtable' + parseInt(index) + 1].data = model['gridtable' + parseInt(index) + 1].mainArray.slice((val - 1) * 10, model['gridtable' + parseInt(index) + 1].TotalRows);
+                //     }
+                // });
             };
             model.receivedarraybind = function(type) {
                 switch (type) {
@@ -250,13 +271,16 @@
                         test = _.where(model.sendarray, { MFPStatus: type });
                         if (test.length > 0) {
                             model.gridtable1.data = test;
+                            model.gridtable1.TotalRows = test.length > 0 ? test.length : 0;
                         } else {
                             test.push("1");
                             model.gridtable1.data = test;
+                            model.gridtable1.TotalRows = 0;
                         }
                         break;
                     default:
                         model.gridtable1.data = model.sendarray;
+                        model.gridtable1.TotalRows = model.sendarray.length > 0 ? model.sendarray.length : 0;
                         break;
                 }
             };
@@ -270,13 +294,16 @@
                         test = _.where(model.sendarray2, { MFPStatus: $.trim(type) });
                         if (test.length > 0) {
                             model.gridtable2.data = test;
+                            model.gridtable2.TotalRows = test.length > 0 ? test.length : 0;
                         } else {
                             test.push("1");
                             model.gridtable2.data = test;
+                            model.gridtable2.TotalRows = 0;
                         }
                         break;
                     default:
                         model.gridtable2.data = model.sendarray2;
+                        model.gridtable2.TotalRows = model.sendarray2.length > 0 ? model.sendarray2.length : 0;
                         break;
                 }
             };

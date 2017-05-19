@@ -13,8 +13,9 @@
         <div class="col-lg-5" ng-if="config.showpaging" style="margin-top: -10px;">
             <ul uib-pagination class="row" total-items="model.TotalRows" ng-model="pagen" ng-change="config.pagechange(pagen)" max-size="5" class="pagination-md" boundary-link-numbers="true" rotate="false"></ul>
         </div>
-        <div class="col-lg-5" ng-if="config.showpagingclientside" style="margin-top: -10px;">
-            <ul uib-pagination class="row" direction-links="false" boundary-links="true" total-items="model.TotalRows" ng-model="pagen" max-size="5" class="pagination-md"></ul>
+
+        <div class="col-lg-5" ng-if="config.showClientpaging" style="margin-top: -10px;">
+            <ul uib-pagination class="row" total-items="model.TotalRows" ng-model="pagen" ng-change="config.pagechange(pagen,model.type)" max-size="5" class="pagination-md" boundary-link-numbers="true" rotate="false"></ul>
         </div>
     </div>
     <div class="clearfix"></div>
