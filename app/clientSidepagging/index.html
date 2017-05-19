@@ -1,10 +1,9 @@
-<div class="right_col" role="main">
-
+<div class="right_col" role="main" ng-controller="clientSidepaggingCtrl">
     <h1>Todos</h1>
-    <h4>{{page.todos.length}} total</h4>
+    <h4>{{todos.length}} total</h4>
     <ul>
-        <li ng-repeat="todo in page.filteredTodos">{{todo.text}}</li>
+        <li ng-repeat="todo in filteredTodos">{{todo.text}}</li>
     </ul>
-    <uib-pagination ng-model="page.currentPage" total-items="page.todos.length" max-size="page.maxSize" boundary-links="true">
-    </uib-pagination>
+    <ul uib-pagination ng-model="currentPage" total-items="todos.length" max-size="maxSize" boundary-links="true">
+    </ul uib-pagination>
 </div>
