@@ -69,7 +69,7 @@
                 case 'brother':
                     model.popupdata = model.brother;
                     model.popupHeader = 'Brother details';
-                    debugger;
+
                     if (item !== undefined && model.BrotherArr.length <= parseInt(model.BroCount)) {
                         model.SibilingCustfamilyID = null;
                         model.broObj = {};

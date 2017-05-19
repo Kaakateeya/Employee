@@ -1,11 +1,78 @@
-<html>
+<div id="communicationlogid" class="right_col" role="main">
+    <div class="communicationlogheader">
+        Communication Log
+    </div>
+    <div class="search_page_main">
+        <br>
+        <div class="row">
+            <div class="col-lg-offset-4">
+                <p class="col-lg-1 lblprofileid">ProfileID</p>
+                <input ng-model="page.model.Profileidcommunication" type="text" maxlength="12" class="form-control txtboxwidth col-lg-2" onfocus="true">
+                <button class="btn btn-danger col-lg-1" ng-click="page.model.communicationlogsubmit(page.model.Profileidcommunication)">Submit</button>
+                <label class="col-lg-5" style="margin-left: 26px; margin-top: 5px;">{{page.model.Nameofcandidate}}</label>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <br>
+        <div ng-show="page.model.gridTableshow">
+            <div class="col-lg-12">
+                <p class="col-lg-offset-4">Match Meeting Data
+                </p>
+            </div>
+            <complex-grid model="page.model.gridtable4" config="page.model"></complex-grid>
+        </div>
+        <div ng-show="page.model.gridTableshow">
+            <div class="col-lg-12">
+                <p class="col-lg-offset-4">List of members to whom your profile was sent <img style="width: 43px;height: 29px;" src="src/images/hndreverse.gif"></img>
+                </p>
+            </div>
+            <br>
+            <div class="col-lg-12">
+                <md-radio-group layout="row" ng-change="page.model.receivedarraybind(page.model.receivedprofiles);" ng-model="page.model.receivedprofiles" class="md-block" flex-gt-sm>
+                    <md-radio-button value="1" class="md-primary"> <span>&nbsp;<span class="glyphicon glyphicon-home"></span><b>&nbsp;({{page.model.sendarray[0].TotalRows}})</b></span>
+                    </md-radio-button>
+                    <md-radio-button value="V"> <span>&nbsp;<img src="src/images/Viewed.jpg" ><b >&nbsp;({{page.model.sendarray[0].Viewed}})</b></span> </md-radio-button>
+                    <md-radio-button value="NV"> <span>&nbsp;<img src="src/images/notviewed.jpg" ><b >&nbsp;({{page.model.sendarray[0].NViewed}})</b></span> </md-radio-button>
+                    <md-radio-button value="I"> <span>&nbsp;<img src="src/images/heartgrren.gif" style="width: 28px;"><b >&nbsp;({{page.model.sendarray[0].PD}})</b></span> </md-radio-button>
+                    <md-radio-button value="NI"> <span>&nbsp;<img src="src/images/brkhrtgreen.gif" style="width: 28px;"><b>&nbsp;({{page.model.sendarray[0].DPD}})</b>
+                     </span>
+                    </md-radio-button>
+                </md-radio-group>
+            </div>
+            <complex-grid model="page.model.gridtable1" config="page.model"></complex-grid>
+        </div>
+        <div ng-show="page.model.gridTableshow">
+            <div class="col-lg-12">
+                <p class="col-lg-offset-4"> <img style="width: 43px;height: 29px;" src="src/images/hnd.gif"></img>List of members to who you contacted
+                </p>
+            </div>
+            <br>
+            <div class="col-lg-12">
+                <md-radio-group layout="row" ng-change="page.model.sentarraybind(page.model.sentprofile);" ng-model="page.model.sentprofile" class="md-block" flex-gt-sm>
+                    <md-radio-button value="1" class="md-primary"> <span>&nbsp;<span class="glyphicon glyphicon-home"></span><b>&nbsp;({{page.model.sendarray2[0].TotalRows}})</b></span>
+                    </md-radio-button>
+                    <md-radio-button value="V"> <span>&nbsp;<img src="src/images/Viewed.jpg" ><b >&nbsp;({{page.model.sendarray2[0].Viewed}})</b></span> </md-radio-button>
+                    <md-radio-button value="NV"> <span>&nbsp;<img src="src/images/notviewed.jpg" ><b >&nbsp;({{page.model.sendarray2[0].NViewed}})</b></span> </md-radio-button>
+                    <md-radio-button value="I"> <span>&nbsp;<img src="src/images/heartgrren.gif" style="width: 28px;"><b >&nbsp;({{page.model.sendarray2[0].PD}})</b></span> </md-radio-button>
+                    <md-radio-button value="NI"> <span>&nbsp;<img src="src/images/brkhrtgreen.gif" style="width: 28px;"><b>&nbsp;({{page.model.sendarray2[0].DPD}})</b>
+                     </span>
+                    </md-radio-button>
+                </md-radio-group>
+            </div>
+            <complex-grid model="page.model.gridtable2" config="page.model"></complex-grid>
+        </div>
+        <div ng-show="page.model.gridTableshow">
+            <div class="col-lg-12">
+                <p class="col-lg-offset-4">List of profile to whom mails has resent
+                </p>
+            </div>
+            <complex-grid model="page.model.gridtable3" config="page.model"></complex-grid>
+        </div>
+    </div>
+</div>
 
-<head>
-    <title></title>
-</head>
-
-<body>
-
-</body>
-
-</html>
+<script type="text/ng-template" id="matchfollowup.html">
+    <div class="modal-body">
+        <matchfollowup-tickethistory ticketid="page.model.marketingTicket" showsendemail="'1'"></matchfollowup-tickethistory>
+    </div>
+</script>
