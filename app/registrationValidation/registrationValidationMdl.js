@@ -62,13 +62,16 @@
                 modelpopupopenmethod.showPopup('singleGrid.html', model.scope, 'lg', "myregvaliPlay");
             };
             model.close = function() {
-                modelpopupopenmethod.closepopup();
+                debugger;
+                modelpopupopenmethod.closepopuppoptopopup();
             };
 
             model.slide.close = function() {
-                modelpopupopenmethod.closepopup();
+                debugger;
+                modelpopupopenmethod.closepopuppoptopopup();
             };
             model.slide.closeslide = function() {
+                debugger;
                 modelpopupopenmethod.closepopup();
             };
             model.init = function() {
