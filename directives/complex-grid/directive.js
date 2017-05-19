@@ -8,13 +8,10 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
             },
             templateUrl: "directives/complex-grid/index.html",
             link: function(scope, element, attrs) {
-
                 var AdminID = authSvc.isAdmin();
                 var loginempName = authSvc.LoginEmpName() !== undefined && authSvc.LoginEmpName() !== null && authSvc.LoginEmpName() !== "" ? authSvc.LoginEmpName() : "";
                 var Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
-
                 scope.init = function() {
-
                     scope.model.data = [];
                     scope.currentPage = 0;
                     scope.pageSize = 10;

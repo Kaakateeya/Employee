@@ -285,7 +285,8 @@
                         Tickets: item.Tickets,
                         TicketID: item.Emp_Ticket_Id || item.Emp_Ticket_ID,
                         NoDataFound: model.nodataarray(item.NoDataFound, item.Cust_ID),
-                        LastModifiedDate: item.LastModifiedDate
+                        LastModifiedDate: item.LastModifiedDate,
+                        To_Profile_ID: item.To_Profile_ID
 
                     });
                 });

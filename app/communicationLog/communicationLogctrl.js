@@ -9,6 +9,7 @@
              vm.model = model = communicationLogModel();
              model.scope = scope;
              model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+             model.communicationlogsubmit(model.Profileidcommunication);
          };
          vm.init();
      }
