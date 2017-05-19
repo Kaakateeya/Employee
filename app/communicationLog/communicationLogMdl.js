@@ -148,9 +148,9 @@
                 }
                 return dd;
             };
-            model.photossent = function(custid, emailid) {
+            model.gridtable2.photossent = function(custid, emailid) {
                 communicationLogService.Sentphotosemail(emailid, custid).then(function(resonse) {
-                    console.lg(resonse);
+                    console.log(resonse);
                     if (parseInt(resonse.data) === 1) {
                         alerts.timeoutoldalerts(model.scope, 'alert-success', 'email sent successfully', 3000);
                     } else {
@@ -161,7 +161,7 @@
             model.sendphotosurl = function(row) {
                 var dd = "";
                 if (row.ProfileStatusID === 54 && row.PhotoCount !== 0 && row.PhotoCount !== undefined && row.PhotoCount !== null) {
-                    dd = "<a href='javascript:void(0)' ng-click='model.photossent(" + (row.iFromCustID) + ");'>Photos</a>";
+                    dd = "<a href='javascript:void(0)' ng-click='model.photossent(" + (row.iFromCustID) + "," + JSON.stringify(row.FromEmail) + ");'>Photos</a>";
                 }
                 return "</br>" + dd;
             };

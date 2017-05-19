@@ -125,7 +125,7 @@
             };
 
             model.ProfileIdTemplateDUrl = function(row) {
-                var paid = "<a style='cursor:pointer;'  href='/editView/" + row.CustID + "/Education'>" + row.ProfileID + row.Confidential + "</a>";
+                var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "'>" + row.ProfileID + row.Confidential + "</a>";
                 return paid;
             };
 
