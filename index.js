@@ -232,6 +232,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/slidePopup/service.js',
                         'directives/slidePopup/css/style.css'
                     ]
+                },
+                {
+                    name: 'single-grid',
+                    files: [
+                        'directives/singel-grid/config.js',
+                        'directives/singel-grid/directive.js'
+                    ]
                 }
             ]
         });
@@ -252,6 +259,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     $ocLazyLoad.load('matchfollowup-ticket');
                     $ocLazyLoad.load('EditSideMenu-base');
                     $ocLazyLoad.load('EditSlide-popup');
+                    $ocLazyLoad.load('single-grid');
                 }]
             }
         });

@@ -5,14 +5,15 @@
         .module('Kaakateeya')
         .factory('registrationValidationModel', factory)
 
-    factory.$inject = ['registrationValidationservice', 'authSvc', 'complex-grid-config', 'alert', 'complex-slide-config', 'modelpopupopenmethod'];
+    factory.$inject = ['registrationValidationservice', 'authSvc', 'complex-grid-config', 'alert', 'complex-slide-config', 'modelpopupopenmethod', 'single-grid-config'];
 
-    function factory(svc, authSvc, gridConfig, alertss, slideConfig, modelpopupopenmethod) {
+    function factory(svc, authSvc, gridConfig, alertss, slideConfig, modelpopupopenmethod, sinlegrid) {
         return function() {
             var model = {},
                 empid = '';
             model.grid = gridConfig;
             model.slide = slideConfig;
+            model.SingleGrid = sinlegrid;
             model.scope = {};
 
             //grid
@@ -37,10 +38,39 @@
                 { "label": "Settled/WaitingforSetldAuth", "title": "Settled/WaitingforSetldAuth", "value": 57 },
                 { "label": "MMSerious", "title": "MMSerious", "value": 395 }
             ];
-            model.playFunction = function() {
+            model.playFunction = function(row) {
+                model.SingleGrid.columns = [
+                    { text: 'Profileid', key: 'Profileid', type: 'label' },
+                    { text: 'Branch_Dor', key: 'Branch_Dor', type: 'label' },
+                    { text: 'OP/KP', key: 'paidamount', type: 'label' },
+                    { text: 'OPD/KPD', key: 'paiddate', type: 'label' },
+                    { text: 'S/R COUNT', key: 'sentreceivecount', type: 'label' },
+                    { text: 'PC', key: 'PC', type: 'label' },
+                    { text: 'PD', key: 'PD', type: 'label' },
+                    { text: 'DPD', key: 'DPD', type: 'label' },
+                    { text: 'View', key: 'View', type: 'label' },
+                    { text: 'Nview', key: 'Nview', type: 'label' },
+                    { text: 'BI', key: 'BI', type: 'label' },
+                    { text: 'OppI', key: 'OppI', type: 'label' },
+                    { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' }
+                ];
 
+                svc.regValiplayBtn(row.ProfileID).then(function(response) {
+                    console.log(response);
+                    model.SingleGrid.setDatagrid(response.data);
+                });
+                modelpopupopenmethod.showPopup('singleGrid.html', model.scope, 'lg', "myregvaliPlay");
+            };
+            model.close = function() {
+                modelpopupopenmethod.closepopup();
             };
 
+            model.slide.close = function() {
+                modelpopupopenmethod.closepopup();
+            };
+            model.slide.closeslide = function() {
+                modelpopupopenmethod.closepopup();
+            };
             model.init = function() {
 
                 empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
@@ -145,7 +175,6 @@
                                 model.inactiveCount = response.data[0].InActiveCount;
                                 model.mmserisCount = response.data[0].MMSerious;
                                 model.grid.TotalRows = response.data[0].TotalRows;
-
                                 model.grid.setData(response.data);
                             }
                         }
@@ -156,18 +185,11 @@
                 }
             };
 
-
-
-
-
             model.slide.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
                     model.MyprofileResult(model.mpObj, (model.topage) + 1, (model.topage) + 10, 'slide', 0);
                 }
             };
-
-
-
 
             model.reset = function() {
                 model.txtFFMFNATIVE =
@@ -184,7 +206,10 @@
                     model.ddlApplicationStatus =
                     model.rbtGender = '';
             };
-
+            model.backtosearch = function() {
+                model.data = [];
+                model.opendiv = !model.opendiv;
+            };
             return model.init();
         }
     }
