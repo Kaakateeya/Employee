@@ -36,6 +36,9 @@
   pointer-events: none;
   cursor: default;
   opacity: 0.6; }
+#regval .arrow::after {
+  content: '-->';
+  margin-left: 16%; }
 
 .myregvaliprofile .edit_page_details_item_descsearch {
   padding: 4px 0;

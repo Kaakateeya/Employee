@@ -25,6 +25,7 @@
             model.grid.myprofileexcel = true;
             model.grid.normalexcel = true;
 
+
             //slide
 
             model.slide.templateUrl = "templates/regvalidationSlide.html";
