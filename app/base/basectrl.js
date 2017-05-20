@@ -13,7 +13,7 @@
 
          scope.redirect = function(type) {
 
-             $state.go('base.' + type, { CustID: stateParams.CustID });
+             $state.go('editandviewbase.' + type, { CustID: stateParams.CustID });
 
          };
          scope.backgroundcolor = function(status) {
