@@ -2,20 +2,12 @@
     <div class="communicationlogheader">
         Communication Log
     </div>
-
-
-
-
-
-
-
-
     <div class="search_page_main">
         <br>
         <div class="row">
             <div class="col-lg-offset-4">
                 <p class="col-lg-1 lblprofileid">ProfileID</p>
-                <input ng-model="page.model.Profileidcommunication" type="text" maxlength="12" class="form-control txtboxwidth col-lg-2" onfocus="true">
+                <input focus-me="true" ng-model="page.model.Profileidcommunication" ng-keyup="$event.keyCode == 13 && page.model.communicationlogsubmit(page.model.Profileidcommunication)" type="text" maxlength="12" class="form-control txtboxwidth col-lg-2" onfocus="true">
                 <button class="btn btn-danger col-lg-1" ng-click="page.model.communicationlogsubmit(page.model.Profileidcommunication)">Submit</button>
                 <label class="col-lg-5" style="margin-left: 26px; margin-top: 5px;">{{page.model.Nameofcandidate}}</label>
             </div>
