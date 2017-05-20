@@ -51,6 +51,11 @@
         cursor: default;
         opacity: 0.6;
     }
+    .arrow::after {
+        content: '-->';
+        margin-left: 16%;
+        // content: url(../../src/images/arraowimages.png);
+    }
 }
 
 .myregvaliprofile {

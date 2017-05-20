@@ -1,0 +1,15 @@
+getmac
+valid mac
+getmac
+valid mac
+getmac
+valid mac
+getmac
+valid mac
+5C-D9-98-F6-6F-FC
+5C-D9-98-F6-6F-FC
+5C-D9-98-F6-6F-FC
+getmac
+valid mac
+5C-D9-98-F6-6F-FC
+5C-D9-98-F6-6F-FC
