@@ -46,8 +46,7 @@ app.prefixPathImg = 'Images/ProfilePics/';
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider',
     function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
         var states = [
-            //{ routeName: 'base', name: 'base', abstract: true },
-            { routeName: 'login', name: 'base.login', url: '/', isloginrequired: false },
+            { routeName: 'login', name: 'login', url: '/', isloginrequired: false },
             { routeName: 'dashboard', name: 'base.dashboard', url: '/dashboardpage', isloginrequired: true, module: 'dashboard' },
             { routeName: 'searchpage', name: 'base.searchpage', url: '/search/:id/:Profileid', isloginrequired: true },
             { routeName: 'editViewprofile', name: 'base.editViewprofile', url: '/editViewprofileurl', isloginrequired: true },
@@ -133,13 +132,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     name: 'commonjs',
                     files: ['common/services/modalPopupmethods.js',
                         'common/services/errorInterceptor.js',
-                        'common/controllers/LoaderCtrl.js',
-                        'common/services/authSvc.js',
                         'common/controllers/topheaderctrl.js',
+                        'common/controllers/LoaderCtrl.js',
+                        'common/services/helpService.js',
+                        'common/services/authSvc.js',
                         'common/services/serviceBind.js',
                         'common/services/dependencyservices.js',
                         'common/services/getArray.js',
-                        'common/services/helpService.js',
                         'common/services/route.js',
                         'common/services/getArrayService.js',
                         'common/services/selectBindServices.js',
@@ -239,6 +238,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
         $urlRouterProvider.otherwise('/');
         $stateProvider.state('base', {
             abstract: true,
+            templateUrl:"app/base/index.html",
             resolve: {
                 loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                     $ocLazyLoad.load('commonjs');
@@ -255,23 +255,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                 }]
             }
         });
-        ///editView/71668/Education
-        ///State.go('editandviewbase.editEducation',{CustID:71668});
-        var innerView = {
-            "topbar@": {
-                templateUrl: "templates/topheader.html"
-            },
-            "lazyLoadView@": {
-                templateUrl: "app/editandviewbase/index.html",
-            },
-            "bottompanel@": {
-                templateUrl: "templates/footer.html"
-            }
-        };
+        
+       
         $stateProvider.state('editandviewbase', {
             abstract: true,
             url: '/editView/:CustID',
-            views: innerView,
+            templateUrl: "app/editandviewbase/index.html",
             resolve: {
                 loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                     $ocLazyLoad.load('commonjs');
@@ -314,7 +303,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
 
             $stateProvider.state(item.name, {
                 url: item.url,
-                views: innerView,
+                templateUrl: "app/" + item.routeName + '/index.html',
+                controller: item.routeName + 'Ctrl as page',
                 resolve: { // Any property in resolve should return a promise and is executed before the view is loaded
                     loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                         // you can lazy load files for an existing module
