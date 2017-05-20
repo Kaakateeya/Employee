@@ -1,4 +1,7 @@
+<div ng-class="'EditViewClass'" class="right_col" style="padding-top: 6%;padding-left: 1%;">
 
+    <div ng-include="'templates/sideMenu.html'">
+    </div>
 
 
     <div class="edit_pages_content_main clearfix">
@@ -729,13 +732,443 @@
     </div>
 
 
-     <script type="text/ng-template" id="commonSibblingpopup.html">
+    <!--<script type="text/ng-template" id="SibblingCountPopup.html">
+        <form class="EditViewClass" name="sibblingCoutForm" novalidate role="form" ng-submit="page.model.sibblingCountsSubmit(page.model.SibCountObj)">
+            <div class="modal-header">
+                <h3 class="modal-title text-center" id="modal-title">Sibling Details
+                    <a href="javascript:void(0);" ng-click="page.model.cancel();">
+                        <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20"></ng-md-icon>
+                    </a>
+                </h3>
+            </div>
+            <div class="modal-body clearfix pop_content_my" id="modal-body">
+                <ul>
+                    <li class="clearfix form-group">
+                        <label for="lblnoofsiblings" class="pop_label_left">No of Brothers<span style="color: red; margin-left: 3px;">*</span></label>
+                        <div class="pop_controls_right select-box-my input-group">
+                            <select multiselectdropdown ng-model="page.model.SibCountObj.ddlnoofsiblings" ng-change="enableSubmit();" ng-options="item.value as item.label for item in page.model.sibCountsBindArr" required></select>
+                        </div>
+                    </li>
+                    <li class="clearfix form-group" ng-show="page.model.SibCountObj.ddlnoofsiblings!==0">
+                        <label for="lblnoofelderrother" class="pop_label_left">Elder Brother</label>
+                        <div class="pop_controls_right select-box-my">
+                            <select multiselectdropdown ng-model="page.model.SibCountObj.ddlnoofelderrother" ng-change="enableSubmit();" ng-options="item.value as item.label for item in page.model.sibCountsBindArr"></select>
+                        </div>
+                    </li>
+                    <li class="clearfix form-group" ng-show="page.model.SibCountObj.ddlnoofsiblings!==0">
+                        <label for="lblnoofyoungerbrother" class="pop_label_left">Younger Brother</label>
+                        <div class="pop_controls_right select-box-my">
+                            <select multiselectdropdown ng-model="page.model.SibCountObj.ddlnoofyoungerbrother" ng-change="enableSubmit();" ng-options="item.value as item.label for item in page.model.sibCountsBindArr"></select>
+                        </div>
+                    </li>
+
+                    <li class="clearfix form-group">
+                        <label for="lblnoofsisters" class="pop_label_left">No of sisters<span style="color: red; margin-left: 3px;">*</span></label>
+                        <div class="pop_controls_right select-box-my input-group">
+                            <select multiselectdropdown ng-model="page.model.SibCountObj.ddlnoofsisters" ng-change="enableSubmit();" ng-options="item.value as item.label for item in page.model.sibCountsBindArr" required></select>
+                        </div>
+                    </li>
+                    <li class="clearfix form-group" ng-show="page.model.SibCountObj.ddlnoofsisters!==0">
+                        <label for="lblnoofeldersisters" class="pop_label_left">Elder sisters</label>
+                        <div class="pop_controls_right select-box-my">
+                            <select multiselectdropdown ng-model="page.model.SibCountObj.ddlnoofeldersisters" ng-change="enableSubmit();" ng-options="item.value as item.label for item in page.model.sibCountsBindArr"></select>
+                        </div>
+                    </li>
+                    <li class="clearfix form-group" ng-show="page.model.SibCountObj.ddlnoofsisters!==0">
+                        <label for="lblnoofyoungersisters" class="pop_label_left">Younger  sisters</label>
+                        <div class="pop_controls_right select-box-my">
+                            <select multiselectdropdown ng-model="page.model.SibCountObj.ddlnoofyoungersisters" ng-change="enableSubmit();" ng-options="item.value as item.label for item in page.model.sibCountsBindArr"></select>
+                        </div>
+                    </li>
+                    <li class="row">
+                        <br/>
+
+                        <edit-footer></edit-footer>
+                    </li>
+                </ul>
+            </div>
+
+        </form>
+    </script>
+    <script type="text/ng-template" id="brotherModalContent.html">
+        <form class="EditViewClass" name="brotherForm" novalidate role="form" ng-submit="brotherForm.$valid  && page.model.sibBroSubmit(page.model.broObj)" accessible-form>
+            <div class="modal-header">
+                <h3 class="modal-title text-center" id="modal-title">Brother details
+                    <a href="javascript:void(0);" ng-click="page.model.cancel();">
+                        <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20">Delete</ng-md-icon>
+                    </a>
+                </h3>
+            </div>
+            <div class="modal-body clearfix pop_content_my" id="modal-body">
+                <ul>
+                    <li class="clearfix">
+                        <label for="lblElderYounger" style="padding-top: 2%;" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
+
+                        <md-input-container style="font-weight: 700;color:black;">
+                            <md-radio-group ng-required="true" name="rdlBElderYounger" layout="row" ng-model="page.model.broObj.rdlBElderYounger" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                <md-radio-button value="42" class="md-primary">Elder</md-radio-button>
+                                <md-radio-button value="41"> Younger </md-radio-button>
+                            </md-radio-group>
+                            <div ng-messages="brotherForm.rdlBElderYounger.$invalid">
+                                <div ng-if="brotherForm.rdlBElderYounger.$invalid && (brotherForm.$submitted)">This field is required.</div>
+                            </div>
+                        </md-input-container>
+
+                    </li>
+                    <li class="clearfix form-group">
+                        <label for="lblBroName" class="pop_label_left">Name<span style="color: red; margin-left: 3px;">*</span></label>
+                        <div class="pop_controls_right">
+                            <input ng-model="page.model.broObj.txtBName" class="form-control" tabindex="2" maxlength="100" required/>
+                        </div>
+                    </li>
+                    <li class="clearfix form-group">
+                        <label for="lblbrotherreducation" class="pop_label_left">Education</label>
+                        <div class="pop_controls_right">
+                            <input ng-model="page.model.broObj.txtbrotherreducation" class="form-control" tabindex="3" maxlength="150" />
+                        </div>
+                    </li>
+
+
+                    <li class="clearfix form-group">
+                        <label for="lblbroprofessioncat" class="pop_label_left">Profession Category</label>
+                        <div class="pop_controls_right select-box-my input-group">
+                            <select multiselectdropdown ng-model="page.model.broObj.ddlbroprofessionCatgory" typeofdata="'newProfessionCatgory'"></select>
+                        </div>
+                    </li>
+
+
+
+                    <li class="clearfix form-group">
+                        <label for="lblbrotherprofession" class="pop_label_left">Designation</label>
+                        <div class="pop_controls_right">
+                            <input ng-model="page.model.broObj.txtbrotherprofession" class="form-control" tabindex="4" maxlength="200" />
+                        </div>
+                    </li>
+
+                    <li class="clearfix form-group">
+                        <label for="lblwifescmpy" class="pop_label_left">Company Name</label>
+                        <div class="pop_controls_right">
+                            <input ng-model="page.model.broObj.txtBCompanyname" class="form-control" tabindex="5" maxlength="100" />
+                        </div>
+                    </li>
+                    <li class="clearfix form-group">
+                        <label for="lblbrojobloc" class="pop_label_left">Job Location</label>
+                        <div class="pop_controls_right">
+                            <input ng-model="page.model.broObj.txtBJoblocation" class="form-control" tabindex="6" maxlength="100" />
+                        </div>
+                    </li>
+                    <li style="height: 15px;"></li>
+
+                    <contact-directive emailhide="true" dmobile="page.model.broObj.ddlBMObileCountryID" strmobile="page.model.broObj.txtBmobilenumber" dalternative="page.model.broObj.ddlBMObileCountryID2" stralternative="page.model.broObj.txtBmobilenumber2" dland="page.model.broObj.ddlBLandLineCountryID"
+                        strareacode="page.model.broObj.txtBAreCode" strland="page.model.broObj.txtBLandNumber" strmail="page.model.broObj.txtBEmails"></contact-directive>
+
+
+                    <li class="clearfix form-group">
+                        <label for="lblIsMarried" style="padding-top: 2%;" class="pop_label_left">Married<span style="color: red; margin-left: 3px;">*</span></label>
+
+                        <md-input-container style="font-weight: 700;color:black;">
+                            <md-radio-group ng-required="true" name="rdlBIsMarried" ng-change="page.model.BIsMarried(page.model.broObj.rdlBIsMarried);" layout="row" ng-model="page.model.broObj.rdlBIsMarried" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                <md-radio-button value="0"> No </md-radio-button>
+                            </md-radio-group>
+                            <div ng-messages="brotherForm.rdlBIsMarried.$invalid">
+                                <div ng-if="brotherForm.rdlBIsMarried.$invalid && (brotherForm.$submitted)">This field is required.</div>
+                            </div>
+                        </md-input-container>
+
+                    </li>
+                    <div ng-if="page.model.broObj.rdlBIsMarried==1">
+                        <li class="clearfix form-group">
+                            <label for="lblWifeName" class="pop_label_left">Spouse Name</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.broObj.txtBWifeName" class="form-control" tabindex="19" maxlength="100" />
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblWifeEducation" class="pop_label_left">Spouse Education</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.broObj.txtbrotherwifeeducation" class="form-control" tabindex="20" maxlength="150" />
+                            </div>
+                        </li>
+
+                        <li class="clearfix form-group">
+                            <label class="pop_label_left">Profession Category</label>
+                            <div class="pop_controls_right select-box-my input-group">
+                                <select multiselectdropdown ng-model="page.model.broObj.ddlbroSpouseprofessionCatgory" typeofdata="'newProfessionCatgory'"></select>
+                            </div>
+                        </li>
+
+                        <li class="clearfix form-group">
+                            <label for="lblwifescmpy" class="pop_label_left">Spouse Designation</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.broObj.txtbrotherwifeprofession" class="form-control" tabindex="21" maxlength="200" />
+                                <label class="checkbox-inline"><input ng-model="page.model.broObj.chkboxbrotherwifeprofession" type="checkbox" ng-change="page.model.BhousewiseChk(page.model.broObj);"><span>&nbsp;HouseWife</span> </label>
+
+                            </div>
+                        </li>
+
+                        <div id="brothercmpyyy" ng-hide="page.model.broObj.chkboxbrotherwifeprofession==true">
+                            <li class="clearfix form-group">
+                                <label for="lblwifescmpy" class="pop_label_left">Company Name</label>
+                                <div class="pop_controls_right">
+                                    <input ng-model="page.model.broObj.txtBWifeCompanyName" class="form-control" tabindex="23" maxlength="100" />
+                                </div>
+                            </li>
+                            <li class="clearfix form-group">
+                                <label for="lblwifefjobloc" class="pop_label_left">Job Location</label>
+                                <div class="pop_controls_right">
+                                    <input ng-model="page.model.broObj.txtBwifeJoblocation" class="form-control" tabindex="24" maxlength="100" />
+                                </div>
+                            </li>
+                        </div>
+
+
+                        <li style="height: 15px;"></li>
+
+                        <contact-directive emailhide="true" dmobile="page.model.broObj.ddlBWMobileCode" strmobile="page.model.broObj.txtBWifeMobileNumber" dalternative="page.model.broObj.ddlBWMobileCode2" stralternative="page.model.broObj.txtBWifeMobileNumber2" dland="page.model.broObj.ddlBWifeLandLineCountryCode"
+                            strareacode="page.model.broObj.txtBWifeLandLineAreaCode" strland="page.model.broObj.txtBWifeLandLineNumber" strmail="page.model.broObj.txtwifeEmail"></contact-directive>
+
+
+                        <div id="divWifeSurname">
+                            <li class="clearfix form-group">
+
+
+                                <label for="lblwifefathername" class="pop_label_left">Spouse Father SurName</label>
+                                <div class="pop_controls_right">
+
+                                    <input ng-model="page.model.broObj.txtBWifeFatherSurName" class="form-control" tabindex="36" maxlength="50" />
+
+                                </div>
+                            </li>
+                            <li class="clearfix form-group">
+                                <label for="lblNatveWife" class="pop_label_left">Spouse Father Name</label>
+                                <div class="pop_controls_right">
+                                    <input ng-model="page.model.broObj.txtBWWifeFatherName" class="form-control" tabindex="37" maxlength="100" />
+                                </div>
+                            </li>
+
+
+                            <li class="clearfix form-group">
+
+                                <label for="lblspousefatherCaste" class="pop_label_left">Spouse Father Caste</label>
+                                <div class="pop_controls_right select-box-my">
+
+                                    <select multiselectdropdown ng-model="page.model.broObj.ddlborherspousefathercaste" typeofdata="'caste'"></select>
+                                </div>
+                            </li>
+                            <country-directive countryshow="false" dcountry="CountryVal" cityshow="false" othercity="false" dstate="page.model.broObj.ddlBroSpousefatherState" ddistrict="page.model.broObj.ddlBroSpousefatherDistrict"></country-directive>
+
+                            <li class="clearfix form-group">
+                                <label for="lblBroSpouseCity" class="pop_label_left">Native Place</label>
+                                <div class="pop_controls_right select-box-my">
+                                    <input ng-model="page.model.broObj.txtBroSpousefatherCity" <cl></cl>ass="form-control" tabindex="41" maxlength="100" />
+                                </div>
+
+                            </li>
+                        </div>
+                    </div>
+                    <li class="row ">
+
+                        <edit-footer></edit-footer>
+                    </li>
+                </ul>
+
+
+            </div>
+
+        </form>
+    </script>
+
+    <script type="text/ng-template" id="sisterModalContent.html">
+        <form class="EditViewClass" name="sibsisForm" novalidate role="form" ng-submit="sibsisForm.$valid  && page.model.sibSisSubmit(page.model.sisObj)" accessible-form>
+            <div class="modal-header">
+                <h3 class="modal-title text-center" id="modal-title">Sister details
+                    <a href="javascript:void(0);" ng-click="page.model.cancel();">
+                        <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="20">Delete</ng-md-icon>
+                    </a>
+                </h3>
+            </div>
+            <div class="modal-body clearfix pop_content_my" id="modal-body">
+                <ul id="ulsibilingsister">
+                    <li class="clearfix">
+                        <label for="lblElderYounger" style="padding-top: 2%;" class="pop_label_left">Elder/Younger<span style="color: red; margin-left: 3px;">*</span></label>
+                        <div class="radio-group-my">
+                            <md-input-container style="font-weight: 700;color:black;">
+                                <md-radio-group ng-required="true" name="rbtSElderyounger" layout="row" ng-model="page.model.sisObj.rbtSElderyounger" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="322" class="md-primary">Elder</md-radio-button>
+                                    <md-radio-button value="321"> Younger </md-radio-button>
+                                </md-radio-group>
+                                <div ng-messages="sibsisForm.rbtSElderyounger.$invalid">
+                                    <div ng-if="sibsisForm.rbtSElderyounger.$invalid && (sibsisForm.$submitted)">This field is required.</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </li>
+                    <li class="clearfix form-group">
+                        <label for="lblSisName" class="pop_label_left">Name<span style="color: red; margin-left: 3px;">*</span></label>
+                        <div class="pop_controls_right">
+                            <input ng-model="page.model.sisObj.txtSisterName" class="form-control" tabindex="2" maxlength="100" required/>
+                        </div>
+                    </li>
+
+                    <li class="clearfix form-group">
+                        <label for="lblsisEducation" class="pop_label_left">Education</label>
+                        <div class="pop_controls_right">
+                            <input ng-model="page.model.sisObj.txtsisEducation" class="form-control" tabindex="3" maxlength="150" />
+                        </div>
+                    </li>
+
+
+                    <li class="clearfix form-group">
+                        <label for="lblbroprofessioncat" class="pop_label_left">Profession Category</label>
+                        <div class="pop_controls_right select-box-my input-group">
+                            <select multiselectdropdown ng-model="page.model.sisObj.ddlsisprofessionCatgory" typeofdata="'newProfessionCatgory'"></select>
+                        </div>
+                    </li>
+
+                    <li class="clearfix form-group">
+                        <label for="lblsisProfession" class="pop_label_left">Designation</label>
+                        <div class="pop_controls_right">
+                            <input ng-model="page.model.sisObj.txtsisProfession" class="form-control" tabindex="4" maxlength="200" />
+                        </div>
+                        <div>
+                            <input ng-model="page.model.sisObj.chksisProfession" type="checkbox" ng-change="page.model.ShousewiseChk(page.model.sisObj);"><span>&nbsp;HouseWife</span>
+                        </div>
+                    </li>
+                    <div id="divsiscmpyyy" ng-hide="page.model.sisObj.chksisProfession==true">
+                        <li class="clearfix form-group">
+                            <label for="lblsisscmpy" class="pop_label_left">Company Name</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtSCompanyName" class="form-control" tabindex="6" maxlength="100" />
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblsissjobloc" class="pop_label_left">Job Location</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtSjobloc" class="form-control" tabindex="7" maxlength="100" />
+                            </div>
+
+                        </li>
+                    </div>
+
+
+                    <div style="height: 15px;"></div>
+
+                    <contact-directive emailhide="true" dmobile="page.model.sisObj.ddlSMobileCountyCodeID" strmobile="page.model.sisObj.txtSMobileNumber" dalternative="page.model.sisObj.ddlSMobileCountyCodeID2" stralternative="page.model.sisObj.txtSMobileNumber2" dland="page.model.sisObj.ddlSLandLineCountryCodeID"
+                        strareacode="page.model.sisObj.txtSAreacoude" strland="page.model.sisObj.txtSNumber" strmail="page.model.sisObj.txtSEmails"></contact-directive>
+
+                    <li class="clearfix">
+                        <label for="lblIsMarried" class="pop_label_left">Is Married<span style="color: red; margin-left: 3px;">*</span></label>
+
+                        <div class="radio-group-my">
+                            <md-input-container style="font-weight: 700;color:black;">
+                                <md-radio-group ng-required="true" name="rdlSIsMarried" layout="row" ng-change="page.model.SIsMarried(page.model.sisObj.rdlSIsMarried);" ng-model="page.model.sisObj.rdlSIsMarried" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                    <md-radio-button value="0"> No </md-radio-button>
+                                </md-radio-group>
+                                <div ng-messages="sibsisForm.rdlSIsMarried.$invalid">
+                                    <div ng-if="sibsisForm.rdlSIsMarried.$invalid && (sibsisForm.$submitted)">This field is required.</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </li>
+
+                    <div id="divSister" ng-if="page.model.sisObj.rdlSIsMarried==1">
+                        <li class="clearfix form-group">
+                            <label for="lblhussisfamilyStatus" class="pop_label_left">Husband Name</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtShusName" class="form-control" tabindex="20" maxlength="100" />
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblHusbandEducation" class="pop_label_left">Husband Education</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtHusbandEducation" class="form-control" tabindex="21" maxlength="150" />
+                            </div>
+                        </li>
+
+
+                        <li class="clearfix form-group">
+                            <label for="lblbroprofessioncat" class="pop_label_left">Profession Category</label>
+                            <div class="pop_controls_right select-box-my input-group">
+                                <select multiselectdropdown ng-model="page.model.sisObj.ddlsisSpouseprofessionCatgory" typeofdata="'newProfessionCatgory'"></select>
+                            </div>
+                        </li>
+
+
+                        <li class="clearfix form-group">
+                            <label for="lblHusbandProfession" class="pop_label_left">Husband Designation</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtHusbandProfession" class="form-control" tabindex="22" maxlength="200" />
+                            </div>
+                        </li>
+
+                        <li class="clearfix form-group">
+                            <label for="lblhuscmpy" class="pop_label_left">Company Name</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtShusCompanyName" class="form-control" tabindex="23" maxlength="100" />
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblhussjobloc" class="pop_label_left">Job Location</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtShusjobloc" class="form-control" tabindex="24" maxlength="100" />
+                            </div>
+                        </li>
+                        <li style="height: 15px;"></li>
+
+                        <contact-directive emailhide="true" dmobile="page.model.sisObj.ddlSHusMobileCountryID" strmobile="page.model.sisObj.txtSHusMobileNumber" dalternative="page.model.sisObj.ddlSHusMobileCountryID2" stralternative="page.model.sisObj.txtSHusMobileNumber2" dland="page.model.sisObj.ddlSHusLandCountryID"
+                            strareacode="page.model.sisObj.txtSHusLandArea" strland="page.model.sisObj.txtSHusLandNumber" strmail="page.model.sisObj.txtHusbandEmail"></contact-directive>
+                        <li class="clearfix form-group">
+                            <label for="lblwifefathername" class="pop_label_left">Husband Father SurName</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtHusbandFatherSurName" class="form-control" tabindex="36" maxlength="50" />
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+                            <label for="lblNatvehus" class="pop_label_left">Husband Father Name</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtHusbandFatherName" class="form-control" tabindex="37" maxlength="100" />
+                            </div>
+                        </li>
+                        <li class="clearfix form-group">
+
+                            <label for="lblsisterspousefatherCaste" class="pop_label_left">Husband Father Caste</label>
+                            <div class="pop_controls_right select-box-my">
+
+                                <select multiselectdropdown ng-model="page.model.sisObj.ddlsisterspusefathercaste" typeofdata="'caste'"></select>
+                            </div>
+                        </li>
+
+                        <country-directive countryshow="false" cityshow="false" othercity="false" dcountry="CountryVal" dstate="page.model.sisObj.ddlSisSpouceFatherState" ddistrict="page.model.sisObj.ddlSisSpouceFatherDistrict"></country-directive>
+
+                        <li class="clearfix form-group">
+                            <label for="lblSisSpouceFatherCity" class="pop_label_left">Native Place</label>
+                            <div class="pop_controls_right">
+                                <input ng-model="page.model.sisObj.txtSisSpouceFatherCity" class="form-control" tabindex="41" maxlength="100" />
+                            </div>
+
+                        </li>
+                    </div>
+                    <li class="row ">
+
+                        <edit-footer></edit-footer>
+                    </li>
+                </ul>
+            </div>
+
+        </form>
+    </script>-->
+
+    <script type="text/ng-template" id="commonSibblingpopup.html">
         <slide-popup model="page.model" eventtype="page.model.eventType">
         </slide-popup>
     </script>
+</div>
 
 <style>
     .md-dialog-container {
         z-index: 99999999999;
     }
 </style>
+<script src="build/js/custom.js" type="text/javascript"></script>

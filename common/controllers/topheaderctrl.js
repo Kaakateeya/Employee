@@ -29,7 +29,7 @@
         vm.logout = function() {
             vm.name = "";
             authSvc.logout();
-            $state.go("login", {});
+            $state.go("base.login", {});
         };
         vm.lockscreen = function() {
             vm.lock = true;

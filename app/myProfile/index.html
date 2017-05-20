@@ -1,4 +1,3 @@
-
 <div class="right_col myprofile" role="main" id="myprofileid">
     <div class="">
         <uib-accordion close-others="oneAtATime">
@@ -14,11 +13,10 @@
                     <span class="green">OP</span>--Online-Paid &nbsp; <span class="green">KP</span>--Kmpl-Paid &nbsp; <span class="green">OR</span>--Online-Renew &nbsp; <span class="green">KR</span>-- Kmpl-Renew
                     </span>
                 </uib-accordion-heading>
-                <form name="myprofileForm">
                 <div class="row">
                     <div class="col-lg-6 subColumnClass">
                         <div class="clearfix form-group">
-                            <label for="Gender" class="ocontrol-label col-lg-4">Gender</label>
+                            <label for="Gender" class="control-label col-lg-4">Gender</label>
                             <div class="col-lg-7">
                                 <md-radio-group ng-required="true" name="rdnServicetax" layout="row" ng-model="page.model.mpObj.rdnGender" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                     <md-radio-button value="" class="md-primary">Both</md-radio-button>
@@ -204,10 +202,9 @@
                 </div>
                 <div class="form-group text-center" style="border-top: 1px solid #ddd;padding-top: 1%;">
                     <button class="button_custom" style="display:initial;" type="submit" ng-click="page.model.MyprofileResult(page.model.mpObj,1,10,'grid',1);">Submit</button>
-                    <input type="reset" style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset" ng-click="page.model.reset();"/>
+                    <button style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset" ng-click="page.model.reset();">Reset</button>
                     <button style="display:initial;margin-left: 2%;" class="button_custom" ng-click="page.model.MyprofileResult(page.model.mpObj,1,10,'slide',0);">Slideshow</button>
                 </div>
-                </form>
             </div>
         </uib-accordion>
 
