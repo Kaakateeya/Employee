@@ -44,9 +44,15 @@
 
 <body class="nav-sm" ng-app="Kaakateeya" ui-router-styles>
     <div class="container body">
-        <div class="main_container">       
-            <div ui-view>
-            </div>         
+        <div class="main_container">
+            <div ui-view="topbar">
+            </div>
+            <div ng-include="'templates/loader.html'"></div>
+            <div ui-view="lazyLoadView">
+            </div>
+
+            <div ui-view="bottompanel">
+            </div>
         </div>
     </div>
     <!-- jQuery -->
@@ -79,6 +85,7 @@
     <script type="text/javascript" src="bower_components/jquery-ui/jquery-ui.js"></script>
     <!--<script type="text/javascript" src="bower_components/angular-ui-date/dist/date.js"></script>-->
     <script type="text/javascript" src="directives\uidate.js"></script>
+
 
 </body>
 

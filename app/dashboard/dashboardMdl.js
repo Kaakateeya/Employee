@@ -224,10 +224,12 @@
 
             model.displayArrayprofile = function(arr, topage) {
                 model.headervisileble = true;
-                var array = [];
-                _.each(arr, function(item) {
-                    var data = [];
-                    data.push({
+                if (topage === parseInt(10)) {
+                    model.slides = [];
+                }
+                $.each(arr, function(index, item) {
+                    model.data = [];
+                    model.data.push({
                         label: 'ProfileID',
                         value: '',
                         ProfileID: item.ProfileID,
@@ -238,12 +240,12 @@
                         HoroscopeStatus: item.HoroscopeStatus,
                         HoroscopeImage: item.HoroscopeImage
                     });
-                    data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
-                    data.push({ label: 'Caste', value: item.MotherTongue + "-" + item.Caste });
-                    data.push({ label: 'Dor', value: item.DOR });
-                    data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
-                    array.push({
-                        itmArr: data,
+                    model.data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
+                    model.data.push({ label: 'Caste', value: item.MotherTongue + "-" + item.Caste });
+                    model.data.push({ label: 'Dor', value: item.DOR });
+                    model.data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
+                    model.slides.push({
+                        itmArr: model.data,
                         custPhoto: item.ApplicationPhotoPath,
                         Custid: item.Cust_ID,
                         lastlogin: item.LastLoginDate,
@@ -288,13 +290,14 @@
 
                     });
                 });
-                return array;
+                return model.slides;
             };
 
             model.slideshowfunction = function(flag, empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
                 dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                     if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0 && response.data[0].length > 0) {
                         model.slidearray = response.data[0];
+                        //  scope.$broadcast("slideshowdynamic", model.slidearray, model.slidearray[0].TotalRows, tablename, frompage);
                         model.totalRecords = model.slidearray[0].TotalRows;
                         model.headerhtml = tablename;
                         switch (tablename) {
