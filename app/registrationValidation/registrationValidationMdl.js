@@ -24,7 +24,7 @@
             model.grid.showpaging = true;
             model.grid.myprofileexcel = true;
             model.grid.normalexcel = true;
-
+            model.grid.showplus = true;
 
             //slide
 
@@ -39,29 +39,7 @@
                 { "label": "Settled/WaitingforSetldAuth", "title": "Settled/WaitingforSetldAuth", "value": 57 },
                 { "label": "MMSerious", "title": "MMSerious", "value": 395 }
             ];
-            model.playFunction = function(row) {
-                model.SingleGrid.columns = [
-                    { text: 'Profileid', key: 'Profileid', type: 'label' },
-                    { text: 'Branch_Dor', key: 'Branch_Dor', type: 'label' },
-                    { text: 'OP/KP', key: 'paidamount', type: 'label' },
-                    { text: 'OPD/KPD', key: 'paiddate', type: 'label' },
-                    { text: 'S/R COUNT', key: 'sentreceivecount', type: 'label' },
-                    { text: 'PC', key: 'PC', type: 'label' },
-                    { text: 'PD', key: 'PD', type: 'label' },
-                    { text: 'DPD', key: 'DPD', type: 'label' },
-                    { text: 'View', key: 'View', type: 'label' },
-                    { text: 'Nview', key: 'Nview', type: 'label' },
-                    { text: 'BI', key: 'BI', type: 'label' },
-                    { text: 'OppI', key: 'OppI', type: 'label' },
-                    { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' }
-                ];
 
-                svc.regValiplayBtn(row.ProfileID).then(function(response) {
-                    console.log(response);
-                    model.SingleGrid.setDatagrid(response.data);
-                });
-                modelpopupopenmethod.showPopup('singleGrid.html', model.scope, 'lg', "myregvaliPlay");
-            };
             model.close = function() {
                 debugger;
                 modelpopupopenmethod.closepopuppoptopopup();
@@ -80,7 +58,7 @@
                 empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 model.grid.columns = [
                     { text: 'Profile ID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
-                    { text: '', key: '', type: 'play', method: model.playFunction },
+                    // { text: '', key: '', type: 'play', method: model.playFunction },
                     { text: 'FirstName', key: 'FirstName', type: 'label' },
                     { text: 'LastName', key: 'LastName', type: 'label' },
                     { text: 'Caste', key: 'Caste', type: 'label' },

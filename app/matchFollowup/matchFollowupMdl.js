@@ -66,7 +66,6 @@
                         model.EmpNamesArr.push({ "label": item.Name, "title": item.Name, "value": item.ID, ParentName: item.BranchesName });
                     });
                 });
-
             };
             model.smsarray = [
                 { id: 1, text: 'We missed to reach you on 91-XXXXX. please call back' },
