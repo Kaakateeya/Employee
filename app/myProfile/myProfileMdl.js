@@ -25,7 +25,9 @@
                 changeMonth: true,
                 changeYear: true,
                 yearRange: "-40:+5",
-                dateFormat: 'dd/mm/yy'
+                dateFormat: 'dd/mm/yy',
+                minDate: null,
+                maxDate: null
             };
 
 
@@ -165,6 +167,14 @@
                 model.mpObj.ddlApplicationStatus = [54];
                 model.mpObj.ddlCaste = [402];
                 model.mpObj.ddlProfileOwner = [parseInt(model.empid)];
+                model.dateOptions = {
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: "-40:+5",
+                    dateFormat: 'dd/mm/yy',
+                    minDate: null,
+                    maxDate: null
+                };
             };
 
             model.allLinksTemplateDUrl = function(row) {
@@ -371,8 +381,6 @@
             model.slide.closemainpopup = function() {
                 modelpopupopenmethod.closepopup();
             };
-
-
 
             return model;
         };

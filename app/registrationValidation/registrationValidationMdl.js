@@ -28,8 +28,8 @@
 
             //slide
 
-            model.slide.templateUrl = "templates/regvalidationSlide.html";
-            model.slide.headettemp = "templates/regvalidationSlideHeader.html";
+            model.slide.templateUrl = "templates/myprofileSlide.html";
+            model.slide.headettemp = "templates/myprofileheader.html";
 
             model.applicationstatusArr = [
                 { "label": "--Select--", "title": "--Select--", "value": '' },
@@ -168,10 +168,10 @@
                                 model.topage = to;
                                 model.slide.totalRecords = response.data[0].TotalRows;
                                 if (parseInt(from) === 1) {
-                                    model.slide.setSlides(response.data, model.topage, 'regvali');
+                                    model.slide.setSlides(response.data, model.topage, "regvali");
                                     modelpopupopenmethod.showPopup('myprofileSlide.html', model.scope, 'lg', "myregvaliprofile");
                                 } else {
-                                    model.slide.addSlides(response.data, model.slides, parseInt(to), 'regvali');
+                                    model.slide.addSlides(response.data, model.slides, parseInt(to), "regvali");
                                 }
 
                             } else {

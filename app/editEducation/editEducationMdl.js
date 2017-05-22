@@ -34,6 +34,9 @@
         var CustID = stateParams.CustID;
 
         model.init = function() {
+            loginEmpid = authSvc.LoginEmpid();
+            AdminID = model.Admin = authSvc.isAdmin();
+            model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
             CustID = stateParams.CustID;
             model.CustID = CustID;
             model.getdata();
