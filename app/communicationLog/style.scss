@@ -1,0 +1,138 @@
+#communicationlogid {
+    .search_page_main {
+        max-width: 1200px;
+        // margin: 30px auto 60px;
+        border: 1px solid #cecece;
+        border-radius: 3px;
+        box-shadow: 2px 2px 6px #ccc;
+        min-height: 200px;
+    }
+    .communicationlogheader {
+        color: maroon;
+        font-size: 19px;
+        font-weight: bold;
+    }
+    .txtboxwidth {
+        width: 150px;
+        margin-right: 10px;
+    }
+    .lblprofileid {
+        width: 100px;
+    }
+}
+
+.unpaid {
+    color: red;
+    font-weight: 700;
+}
+
+.paidclass {
+    color: #16713d;
+    font-weight: 700;
+}
+
+.imgwidth {
+    width: 28px;
+}
+
+.modalclassdashboardphotopopup {
+    z-index: 9999999999 !important;
+    top: 0%;
+    left: 0%;
+}
+
+.modalclassdashboardphotopopup .modal-dialog.modal-md {
+    width: 70%;
+}
+
+.modalclassdashboardphotopopup {
+    .pop_label_left {
+        width: 40%;
+    }
+}
+
+.inactive {
+    background-color: #185615;
+}
+
+.Green {
+    background-color: green;
+}
+
+.settled {
+    background-color: #17F067;
+}
+
+.Deleted {
+    background-color: #BCC3BE;
+}
+
+.closed {
+    background-color: #C8E6E6;
+}
+
+.communicationtableheight {
+    height: 330px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.communicationtabledynamicheight {
+    height: 500px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.innertablebody {
+    overflow-x: auto;
+    overflow-y: auto;
+    // height: 100%;
+}
+
+// .table-fixed {
+//     width: 100%;
+//     background-color: #f3f3f3;
+//     tbody {
+//         height: 200px;
+//         overflow-y: auto;
+//         width: 100%;
+//     }
+//     thead,
+//     tbody,
+//     tr,
+//     td,
+//     th {
+//         display: block;
+//     }
+//     tbody {
+//         td {
+//             float: left;
+//         }
+//     }
+//     thead {
+//         tr {
+//             th {
+//                 float: left;
+//                 background-color: #f39c12;
+//                 border-color: #e67e22;
+//             }
+//         }
+//     }
+// }
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+.fixed-table-body {
+    overflow-x: auto;
+    overflow-y: auto;
+    height: 100%;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}

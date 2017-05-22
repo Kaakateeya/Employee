@@ -66,7 +66,6 @@
 </div>
 <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="margin-top: -4px;">
     <div class="row">
-        {{slide.custPhoto}}
         <img ng-click="slidepopup(slide.Custid)" ng-src="{{slide.custPhoto}}" class="image" style="cursor: pointer;" />
         <br>
         <div ng-if="slide.PhotoCount!==0" class="col-lg-8 col-lg-offset-3"><a href="javascript:void(0)"><span style="color:Black;font-size:9pt;">No of Photos {{slide.PhotoCount}}</span></a></div>
@@ -109,6 +108,7 @@
 <div class="row">
     <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
         <div style="margin-left:69px;" class="edit_page_details_item_descsearch clearfix">
+            {{slide.SAForm}}
             <h6> <span style="font-weight: bold;">{{slide.SAForm!==null ? "View SA Form":"SA Form"}}
             </span></h6>
             <h5>
