@@ -66,6 +66,11 @@
   font-weight: 400;
   line-height: 20px; }
 
+.myprofileheaderpopup {
+  background-color: rgba(197, 205, 50, 0.42);
+  margin-bottom: 10px;
+  margin-top: -10px; }
+
 .closecls {
   padding-right: 1% !important; }
 
