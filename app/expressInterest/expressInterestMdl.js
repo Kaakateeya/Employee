@@ -258,7 +258,7 @@
             model.exiObj.rbtnBasic = 358;
             model.exiObj.rbtnTypeofService = 366;
             // model.disableinput = false;
-            model.SelectProfilelst = [];
+
             model.exiObj.txtFromprofileID = '';
             model.exiObj.chkrvrsend = true;
             model.showHide = 0;
@@ -280,6 +280,7 @@
                     });
                     strimages = strimgs + ';' + profileid;
                 }
+
                 model.SelectProfilelst.push({ "label": profileid, "title": profileid, "value": strimages });
             });
 
