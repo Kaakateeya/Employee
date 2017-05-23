@@ -197,6 +197,9 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         case 'matchfollowup':
                             window.open("matchFollowuppage", "_blank");
                             break;
+                        case 'searchbycontact':
+                            window.open("registrationValidations", "_blank");
+                            break;
                         case 'nopage':
                             alerts.timeoutoldalerts($scope, 'alert-danger', 'comming Soon page', 4500);
                             break;
