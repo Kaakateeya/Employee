@@ -39,8 +39,10 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 scope.ViewProfile = function(row) {
                     window.open('/Viewfullprofile/' + row.Profileid, '_blank');
                 };
+
                 scope.sendreceive = function(row) {
-                    return "<a style='cursor:pointer;'  href='javascript:void(0);'>" + row.sentreceivecount + "</a>";
+                    window.open('/communicationLogs?Profileid=' + row.Profileid, '_blank');
+                    // return "<a style='cursor:pointer;' ng-click='sendreceivecounts(" + JSON.stringify(row.Profileid) + ");'  href='javascript:void(0);'>" + row.sentreceivecount + "</a>";
                 };
                 scope.ViewContact = function(row) {
                     // var paid = "<a style='cursor:pointer;'  href='/Contact/" + row.custid + "'>View</a>";
