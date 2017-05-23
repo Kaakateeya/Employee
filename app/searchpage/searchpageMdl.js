@@ -544,10 +544,15 @@
                 model.close();
                 model.cloumsarr = [];
                 model.Toprofileids = [];
-                _.each(model.shortlistmodel.slides, function(item) {
+                debugger;
+                var finalArray = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true }).length > 0 ? _.where(model.shortlistmodel.slides, { isshortlistaedgain: true }) :
+                    _.where(model.shortlistmodel.slides, { isShortlisted: true });
+
+                _.each(finalArray, function(item) {
                     model.cloumsarr.push(item.Custid);
                 });
                 var custids = model.cloumsarr.length > 0 ? (model.cloumsarr).toString() : null;
+
                 searchpageServices.getprofileidcustdetails(custids).then(function(response) {
                     model.FromProfileId = model.getpageloadobject.ProfileID;
                     _.each(response.data, function(item) {
@@ -558,10 +563,12 @@
                         expressInterestModel.exiObj.txtFromprofileID = model.FromProfileId;
                         expressInterestModel.disableinput = true;
                     }, 500);
+
                     _.each(model.Toprofileids, function(item) {
                         expressInterestModel.getImages(item);
                     });
-                    modelpopupopenmethod.showPopupphotopoup('app/expressInterest/index.html', model.scope, 'lg', "");
+                    if (finalArray.length === model.Toprofileids.length)
+                        modelpopupopenmethod.showPopupphotopoup('app/expressInterest/index.html', model.scope, 'lg', "");
                 });
             };
 

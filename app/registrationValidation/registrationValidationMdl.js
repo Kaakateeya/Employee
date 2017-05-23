@@ -49,7 +49,7 @@
                 debugger;
                 modelpopupopenmethod.closepopuppoptopopup();
             };
-            model.slide.closeslide = function() {
+            model.slide.closemainpopup = function() {
                 debugger;
                 modelpopupopenmethod.closepopup();
             };
