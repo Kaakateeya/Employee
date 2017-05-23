@@ -13,7 +13,7 @@
             model.showsearchrows = true;
             model.showsearch = true;
             model.showpaging = false;
-            model.showClientpaging = true;
+            model.showClientpaging = false;
             model.myprofileexcel = false;
             model.normalexcel = false;
             model.gridTableshow = false;
@@ -34,6 +34,16 @@
                 ];
 
                 return _.where(test, { StatusID: parseInt(row.ProfileStatusID) }).length > 0 ? _.where(test, { StatusID: parseInt(row.ProfileStatusID) })[0].classes : '';
+            };
+            model.maintableheightcommunication = function(array) {
+                var height = "";
+                debugger;
+                if (array.length <= 3) {
+                    height = "communicationtableheight";
+                } else {
+                    height = "communicationtabledynamicheight";
+                }
+                return height;
             };
             model.addingserialnumber = function(array) {
                 var SNum = 1;
@@ -79,21 +89,29 @@
                     });
                     model.gridtable1.mainArray = model.addingserialnumber(model.sendarray);
                     model.gridtable1.TotalRows = model.sendarray.length > 0 ? model.sendarray[0].TotalRows : 0;
-                    model.gridtable1.data = model.gridtable1.mainArray.slice(0, 10);
+                    model.gridtable1.data = model.gridtable1.mainArray;
+                    //model.gridtable1.mainArray.slice(0, 10);
+                    model.gridtable1.class = model.maintableheightcommunication(model.gridtable1.mainArray);
                     model.gridTableshow = true;
                     model.Nameofcandidate = model.sendarray.length > 0 ? model.sendarray[0].FromName : "";
                     //2
                     model.gridtable2.mainArray = model.addingserialnumber(model.sendarray2);
                     model.gridtable2.TotalRows = model.sendarray2.length > 0 ? model.sendarray2[0].TotalRows : 0;
-                    model.gridtable2.data = model.gridtable2.mainArray.slice(0, 10);
+                    model.gridtable2.data = model.gridtable2.mainArray;
+                    model.gridtable2.class = model.maintableheightcommunication(model.gridtable2.mainArray);
+                    //model.gridtable2.mainArray.slice(0, 10);
                     //3
                     model.gridtable3.mainArray = model.addingserialnumber(model.sendarray3);
                     model.gridtable3.TotalRows = model.sendarray3.length > 0 ? model.sendarray3[0].TotalRows : 0;
-                    model.gridtable3.data = model.gridtable3.mainArray.slice(0, 10);
+                    model.gridtable3.data = model.gridtable3.mainArray;
+                    model.gridtable3.class = model.maintableheightcommunication(model.gridtable3.mainArray);
+                    //model.gridtable3.mainArray.slice(0, 10);
                     //4
                     model.gridtable4.mainArray = model.addingserialnumber(model.sendarray4);
                     model.gridtable4.TotalRows = model.sendarray4.length > 0 ? model.sendarray4[0].TotalRows : 0;
-                    model.gridtable4.data = model.gridtable4.mainArray.slice(0, 10);
+                    model.gridtable4.data = model.gridtable4.mainArray;
+                    model.gridtable4.class = model.maintableheightcommunication(model.gridtable4.mainArray);
+                    //model.gridtable4.mainArray.slice(0, 10);
 
                 });
 
@@ -307,6 +325,7 @@
                         break;
                 }
             };
+
             return model;
         };
     }

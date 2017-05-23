@@ -20,6 +20,8 @@
             vm.model.TotalRows = "";
             vm.model.showtaotalrows = true;
             vm.model.showplus = true;
+            model.slide.templateUrl = "templates/myprofileSlide.html";
+            model.slide.headettemp = "myprofileheader.html";
         };
 
         vm.init();

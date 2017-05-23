@@ -279,7 +279,9 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         }
                     });
                 };
-
+                $scope.communicationlogredirect = function(profileid) {
+                    window.open("communicationLogs?Profileid=" + profileid, "_blank");
+                };
 
             }
         };
