@@ -23,6 +23,7 @@
                 } else if (typeofpage === 'myprofile') {
                     model.displayArray(data, topage, "myprofile");
                 } else {
+                    debugger;
                     model.displayArray(data, 11, typeofpage);
                 }
             };
@@ -58,13 +59,13 @@
                             itmArr: model.data,
                             custPhoto: item.Photo,
                             Custid: item.Cust_ID,
-                            lastlogin: item.LastLoginDate,
-                            logincount: item.LoginCount,
+                            // lastlogin: item.LastLoginDate,
+                            // logincount: item.LoginCount,
                             matkteingticket: item.TicketID,
                             matchmarktingcount: item.MatchMeetingCount,
                             ownername: item.ProfileOwnername,
                             branch: item.KMPLID,
-                            reg: item.RegistrationDate,
+                            // reg: item.RegistrationDate,
                             SAForm: item.SAForm,
                             primarynumber: item.Primarynumber,
                             primaryemail: item.Primaryemail,
@@ -85,13 +86,13 @@
                             HeightInCentimeters: item.HeightInCentimeters,
                             MaritalStatusID: item.MaritalStatusID,
                             CasteID: item.CasteID,
-                            serviceDate: item.serviceDate,
-                            bouncedEmailID: item.EmailID,
-                            bouncedemailentryid: item.Cust_EmailBounceEntryId,
-                            Cust_NotificationID: item.Cust_NotificationID,
-                            CategoryID: item.CategoryID,
-                            ActionType: item.ActionType,
-                            ReadStatus: item.ReadStatus,
+                            // serviceDate: item.serviceDate,
+                            // bouncedEmailID: item.EmailID,
+                            // bouncedemailentryid: item.Cust_EmailBounceEntryId,
+                            // Cust_NotificationID: item.Cust_NotificationID,
+                            // CategoryID: item.CategoryID,
+                            // ActionType: item.ActionType,
+                            // ReadStatus: item.ReadStatus,
                             Tickets: item.Tickets,
                             TicketID: item.TicketID,
                             onlinepaidcls: item.onlinepaidcls,
@@ -111,6 +112,65 @@
 
                         });
                     });
+                } else if (typebind === "regvali") {
+                    debugger;
+                    $.each(arr, function(index, item) {
+                        model.data = [];
+                        model.data.push({
+                            label: 'ProfileID',
+                            value: '',
+                            ProfileID: item.ProfileID,
+                            KMPLID: item.KMPLID,
+                            paid: item.paid,
+                            IsConfidential: item.IsConfidential,
+                            SuperConfidentila: item.SuperConfidentila,
+                            HoroscopeStatus: item.HoroscopeStatus,
+                            HoroscopeImage: item.HoroScopeImage
+                        });
+                        model.data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
+                        model.data.push({ label: 'Caste', value: item.mothertongue + "-" + item.Caste });
+                        model.data.push({ label: 'Dor', value: item.DOR });
+                        model.data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
+                        model.slides.push({
+                            itmArr: model.data,
+                            custPhoto: item.CustomerFullPhoto,
+                            Custid: item.Cust_ID,
+                            lastlogin: item.LastLoginDate,
+                            logincount: item.LoginCount,
+                            matkteingticket: item.TicketHistoryID,
+                            matchmarktingcount: item.MatchMeetingCount,
+                            ownername: item.ProfileOwnername,
+                            branch: item.KMPL,
+                            reg: item.DOR,
+                            SAForm: item.SAForm,
+                            primarynumber: item.Primarynumber,
+                            primaryemail: item.Primaryemail,
+                            CreatedDate: item.CreatedDate,
+                            SRCount: item.SRCount,
+                            PaidAmount: item.PaidAmount,
+                            ExpiryDate: item.ExpiryDate,
+                            Points: item.Points,
+                            mobilestatus: item.CNumberVerStatus,
+                            emailstatus: item.CEmailVerStatus,
+                            UserName: item.EmpUserName,
+                            Reason4InActive: item.Reason4InActive,
+                            ProfileID: item.ProfileID,
+                            CountryCodeID: item.CountryCodeID,
+                            Cust_Family_ID: item.Cust_Family_ID,
+                            PhotoCount: item.PhotoCount,
+                            Age: item.Age,
+                            HeightInCentimeters: item.HeightInCentimeters,
+                            MaritalStatusID: item.MaritalStatusID,
+                            Tickets: item.TicketHistoryID,
+                            TicketID: item.TicketID,
+                            onlinepaidcls: item.onlinepaidcls,
+                            onlinepaid: item.onlinepaid,
+                            offlinepaidcls: item.offlinepaidcls,
+                            offlinepaid: item.offlinepaid,
+                            TOB: item.DOB
+                        });
+                    });
+
                 } else {
                     $.each(arr, function(index, item) {
                         model.data = [];
@@ -134,9 +194,7 @@
                         model.data.push({ label: 'Caste', value: item.Caste });
                         model.data.push({ label: 'Marital Status', value: item.maritalstatus || item.MaritalStatusID });
                         model.data.push({ label: 'Star', value: item.Star });
-                        if (typebind === 'regvali') {
-                            model.data.push({ label: 'Color', value: item.Color });
-                        }
+
                         model.data.push({ label: 'Qualification', value: item.EducationGroup + "," + item.EduGroupnamenew });
                         model.data.push({ label: 'Profession', value: item.Profession });
                         model.data.push({ label: 'Job Location', value: item.JobLocation });

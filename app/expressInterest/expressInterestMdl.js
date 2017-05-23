@@ -220,7 +220,7 @@
                     NotesofCustomer: obj.txtNotecustomer,
                     Sendsms: obj.rbtnSendSms === "1" ? 1 : 0,
                     IsRvrSend: obj.chkrvrsend === true ? 1 : 0,
-                    SelectedImages: item.value,
+                    SelectedImages: item.value !== '' && item.value !== undefined && item.value !== undefined ? ((item.value).split(';'))[0] : '',
                     Acceptlink: '',
                     Rejectlink: '',
                     EmailAddress: _.isArray(obj.chkmails) ? (obj.chkmails).join(',') : '',

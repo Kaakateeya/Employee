@@ -2,9 +2,10 @@
      'use strict';
 
      function controller(myProfileModel, scope, $location) {
-         var vm = this,model;
+         var vm = this,
+             model;
          vm.init = function() {
-             vm.model =model= myProfileModel();
+             vm.model = model = myProfileModel();
              model.MyProfilePageLoad();
              model.mpObj.rdnprofileType = '';
              model.mpObj.rdnGender = '';
@@ -23,9 +24,6 @@
                  model.mpObj.txtProfileID = model.myprofileid;
                  // model.MyprofileResult(model.mpObj, 1, 10, 'grid', 1);
              }
-         };
-         vm.click = function() {
-             alert(1111);
          };
 
          vm.init();
