@@ -147,7 +147,9 @@
             </span></h6>
             <h5>
                 <div style="color:Black;">
-                    <span ng-show="model.typeofslidedate!=='Ticket Last Updated'">{{slide.CreatedDate}}</span>
+                    <span ng-show="model.typeofslidedate!=='Ticket Last Updated'">{{slide.CreatedDate}}
+                        <a href="javascript:void(0)" ng-click="" ng-if="model.typeofslidedate==='Reminder Date'">Change Reminder</a>
+                    </span>
                     <span ng-show="model.typeofslidedate==='Ticket Last Updated'">{{slide.LastModifiedDate}}</span>
                 </div>
                 <div class="clearfix">

@@ -39,6 +39,7 @@
                 // alasql('SELECT * INTO  XLSX("john.xlsx",{headers:true}) FROM ?', [model.exportDataarray]);
             };
             model.tabledata = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
+
                 dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                     if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
                         if (type === 'pageload') {
@@ -292,6 +293,7 @@
             };
 
             model.slideshowfunction = function(flag, empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
+                model.topage = topage;
                 dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                     if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0 && response.data[0].length > 0) {
                         model.slidearray = response.data[0];
@@ -348,6 +350,7 @@
                 });
             };
             model.slidebind = function(old, news, array) {
+                debugger;
                 if (parseInt(model.topage) - parseInt(news) === 4) {
                     model.slideshowfunction(true, model.empid, model.empBranchID, (model.topage) + 1, (model.topage) + 10, model.headerhtml, 'slideshow', model.slidearray, 1);
                 }
@@ -367,6 +370,7 @@
                     }
                 });
             };
+
             return model;
         };
     }
