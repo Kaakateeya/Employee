@@ -280,7 +280,9 @@
                     });
                     strimages = strimgs + ';' + profileid;
                 }
-                model.SelectProfilelst.push({ "label": profileid, "title": profileid, "value": strimages });
+                timeout(function() {
+                    model.SelectProfilelst.push({ "label": profileid, "title": profileid, "value": strimages });
+                }, 500);
             });
 
         };
