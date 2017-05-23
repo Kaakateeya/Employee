@@ -99,9 +99,9 @@
                                 <span class="lblHeadings">{{item.header}}</span></h4>
                             <a href="#" class="edit_prsnl"></a>
                         </div>
-                        <div class="personal_inform_main_in">
+                        <div class="personal_inform_main_in" ng-class="item.header==='My Basic Details'?'displayCls':''">
 
-                            <div id="divStyle" ng-class="page.model.applyCls(item.header);">
+                            <div ng-class="page.model.applyCls(item.header);">
                                 <p ng-repeat="itm in item.value">
                                     <span style="color:Black;font-weight:bold;">{{itm.columnname|| (itm.columnName==='1'?'Education':(itm.columnName==='2'|| itm.columnName==='3' || itm.columnName==='4' || itm.columnName==='5')?"":itm.columnName) ||itm.ColumnName}}</span>
                                     <span>

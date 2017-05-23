@@ -4,7 +4,8 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
             restrict: "E",
             scope: {
                 model: '=',
-                config: '='
+                config: '=',
+                pagesizecommunication: '='
             },
             templateUrl: "directives/complex-grid/index.html",
             link: function(scope, element, attrs) {
@@ -14,7 +15,8 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 scope.init = function() {
                     scope.model.data = [];
                     scope.currentPage = 0;
-                    scope.pageSize = 10;
+                    debugger;
+                    scope.pageSize = scope.pagesizecommunication !== undefined && scope.pagesizecommunication !== null && scope.pagesizecommunication !== "" ? scope.pagesizecommunication : 10;
                     // scope.model.pageSize = 10;
                     scope.model.exportColumns = {};
                     _.each(scope.model.columns, function(item) {
@@ -135,6 +137,11 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 scope.myprofileexportexcel = function(val) {
                     scope.config.exportexcel(val);
                 };
+                scope.maintableheight = function(array) {
+                    scope.config.maintableheightcommunication(array);
+                };
+
+
                 scope.init();
             }
         };

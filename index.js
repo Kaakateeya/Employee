@@ -175,7 +175,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/pageReviewDirective.js',
                         'directives/datePickerDirectiveEdit.js',
                         'directives/divPrint.js',
-                        'directives/editFooter.js'
+                        'directives/editFooter.js',
+                        'directives/fixedHeader.js'
                     ]
                 },
                 {

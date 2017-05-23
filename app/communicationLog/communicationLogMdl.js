@@ -13,7 +13,7 @@
             model.showsearchrows = true;
             model.showsearch = true;
             model.showpaging = false;
-            model.showClientpaging = true;
+            model.showClientpaging = false;
             model.myprofileexcel = false;
             model.normalexcel = false;
             model.gridTableshow = false;
