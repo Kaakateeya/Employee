@@ -105,7 +105,7 @@
                 return paid;
             };
             model.ViewProfile = function(row) {
-                window.open('/Viewfullprofile/' + row.ProfileID, '_blank');
+                window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
             };
             model.servicedone = function(row) {
                 var servicedone = row.Branch !== undefined ? "<p>" + row.Branch + "-->(" + row.EmpName + ")</p>" : "";

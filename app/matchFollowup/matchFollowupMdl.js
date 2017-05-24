@@ -543,7 +543,7 @@
             };
 
             model.viewProfileRedirect = function(profileid) {
-                window.open('Viewfullprofile/' + profileid, '_blank');
+                window.open('Viewfullprofile/' + profileid + '/0', '_blank');
             };
 
             model.sendNumbers = function(fromcustid, toCustID) {

@@ -121,7 +121,7 @@
                 return paid;
             };
             model.ViewProfile = function(row) {
-                window.open('/Viewfullprofile/' + row.ProfileID, '_blank');
+                window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
             };
             model.AgeTemplate = function(row) {
                 var paid = row.DOB + "(" + row.Age + ")";
@@ -593,7 +593,7 @@
                 });
             };
             model.viewfullprofile = function(profileid) {
-                window.open("Viewfullprofile/" + profileid, "_blank");
+                window.open("Viewfullprofile/" + profileid + '/0', "_blank");
             };
             model.ticketclass = function(status) {
                 var background = "#fff";

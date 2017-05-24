@@ -11,6 +11,7 @@
             model.basicinfo = [];
             model.custid = 0;
             model.stateprofileid = stateParams.ProfileID;
+            model.statecontacts = stateParams.contacts;
             model.textboxshowhide = true;
             model.fullprofileshow = true;
             model.EmpViewfullProfile = function(stateprofileid) {

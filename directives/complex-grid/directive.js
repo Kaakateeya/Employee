@@ -37,7 +37,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     alert(row);
                 };
                 scope.ViewProfile = function(row) {
-                    window.open('/Viewfullprofile/' + row.Profileid, '_blank');
+                    window.open('/Viewfullprofile/' + row.Profileid + '/0', '_blank');
                 };
 
                 scope.sendreceive = function(row) {

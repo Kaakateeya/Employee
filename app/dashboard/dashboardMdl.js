@@ -106,7 +106,7 @@
             };
 
             model.viewfullprofile = function(profileid) {
-                window.open("Viewfullprofile/" + profileid, "_blank");
+                window.open("Viewfullprofile/" + profileid + "/0", "_blank");
             };
 
             model.closeupload = function() {
@@ -285,7 +285,12 @@
                         TicketID: item.Emp_Ticket_Id || item.Emp_Ticket_ID,
                         NoDataFound: model.nodataarray(item.NoDataFound, item.Cust_ID),
                         LastModifiedDate: item.LastModifiedDate,
-                        To_Profile_ID: item.To_Profile_ID
+                        To_Profile_ID: item.To_Profile_ID,
+                        TicketOwner: item.TicketOwner,
+                        Ticketuserid: item.Ticketuserid,
+                        CountryCode: item.CountryCode,
+                        PrimaryContact: item.PrimaryContact,
+                        PriWithoutCode: item.PriWithoutCode
 
                     });
                 });
@@ -370,7 +375,9 @@
                     }
                 });
             };
+            model.changereminder = function(profileid) {
 
+            };
             return model;
         };
     }

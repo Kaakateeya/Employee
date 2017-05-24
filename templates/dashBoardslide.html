@@ -60,7 +60,7 @@
         <h5>
             <div style="color:Black;">
                 <a ng-click="tickethistoryupdate(slide.TicketID)" class="alllinkscolor" href='javascript:void(0)'>{{slide.matkteingticket}}</a>
-                <span>({{slide.ownername}}-{{slide.UserName}})</span>
+                <span>({{slide.TicketOwner}}-{{slide.Ticketuserid}})</span>
             </div>
             <div class="clearfix">
             </div>
@@ -129,7 +129,7 @@
              </span></h6>
             <h5>
                 <div style="color:Black;">
-                    <span>{{slide.primarynumber}}
+                    <span>{{slide.PrimaryContact}}
                       <i style="line-height:0;" ng-class="slide.mobilestatus===true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></i>
                      <a href="javascript:void(0)" ng-hide="slide.mobilestatus===true" ng-click="sendMobileCode(slide)">Verify mobile</a>
                       </span>
@@ -148,7 +148,7 @@
             <h5>
                 <div style="color:Black;">
                     <span ng-show="model.typeofslidedate!=='Ticket Last Updated'">{{slide.CreatedDate}}
-                        <a href="javascript:void(0)" ng-click="" ng-if="model.typeofslidedate==='Reminder Date'">Change Reminder</a>
+                        <a class="alllinkscolor" href="javascript:void(0)" ng-click="model.changereminder(slide.ProfileID)" ng-if="slide.CreatedDate!==null && slide.CreatedDate!=='' && slide.CreatedDate!==undefined && model.typeofslidedate==='Reminder Date'">Change Reminder</a>
                     </span>
                     <span ng-show="model.typeofslidedate==='Ticket Last Updated'">{{slide.LastModifiedDate}}</span>
                 </div>
