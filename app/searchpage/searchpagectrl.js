@@ -73,10 +73,10 @@
                      if (model[item.ngModel] !== undefined) {
                          model[item.ngModel] = undefined;
                      }
-                      if (model[item.ngModelFrom] !== undefined) {
+                     if (model[item.ngModelFrom] !== undefined) {
                          model[item.ngModelFrom] = undefined;
                      }
-                      if (model[item.ngModelTo] !== undefined) {
+                     if (model[item.ngModelTo] !== undefined) {
                          model[item.ngModelTo] = undefined;
                      }
                  });
