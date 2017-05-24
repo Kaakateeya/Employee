@@ -7,6 +7,16 @@
          color: black;
          font-family: "Open Sans ", sans-serif !important;
      }
+     input[type="text"],
+     textarea,
+     select {
+         color: #000 !important;
+         border: 1px solid #ADA2A2 !important;
+         width: 111%;
+     }
+     .mismatch {
+         z-index: 99999 !important;
+     }
  }
  
  .maindivCls {
@@ -18,14 +28,6 @@
  .maindivCls {
      line-height: 44px;
      font-weight: 700;
- }
- 
- .ExpressintrstCls input[type="text"],
- .ExpressintrstCls textarea,
- select {
-     color: #000 !important;
-     border: 1px solid #ADA2A2 !important;
-     width: 111%;
  }
  
  .maindivCls {
@@ -55,12 +57,6 @@
      width: 111% !important;
  }
  
- .ExpressintrstCls {
-     .mismatch {
-         z-index: 99999 !important;
-     }
- }
- 
  .maindivCls {
      button.multiselect.dropdown-toggle.btn.ng-pristine.ng-untouched.ng-valid.ng-isolate-scope {
          width: 111%;
@@ -78,7 +74,7 @@
      line-height: 18px;
      width: 275px;
      display: block;
-     height: 97px;
+     height: 61px;
      overflow-x: scroll;
      overflow-y: scroll;
      border-top: solid 1px #a2a2a2;
