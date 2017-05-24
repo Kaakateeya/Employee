@@ -470,11 +470,47 @@
                     }
                 }
             };
+            // model.mainShortListProfile = function() {
+            //     model.shortlistmodel.headettemp = "templates/SearchpopupHeader.html";
+            //     model.shortlistmodel.slides = _.where(model.slides, { isShortlisted: true });
+            //     modelpopupopenmethod.showPopupphotopoup('mainShortListProfiles.html', model.scope, 'lg', "modalclassdashboardphotopopupinner");
+            // };
+
             model.mainShortListProfile = function() {
+                debugger;
                 model.shortlistmodel.headettemp = "templates/SearchpopupHeader.html";
-                model.shortlistmodel.slides = _.where(model.slides, { isShortlisted: true });
+                if (!model.shortlistmodel.slides) {
+                    model.shortlistmodel.slides = angular.copy(_.where(model.slides, { isShortlisted: true }));
+                    _.map(model.shortlistmodel.slides, function(item) {
+                        item.isShortlisted = false;
+                    });
+                } else {
+                    var newshortListeddata = [];
+                    _.each(_.where(model.slides, { isShortlisted: true }), function(item) {
+                        if (_.where(model.shortlistmodel.slides, { ProfileID: item.ProfileID }).length > 0) {
+
+                        } else {
+                            newshortListeddata.push(item);
+                        }
+                    });
+                    _.map(newshortListeddata, function(item) {
+                        item.isShortlisted = false;
+                    });
+                    var isshortlistaedgainProfile = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true });
+                    if (isshortlistaedgainProfile && isshortlistaedgainProfile.length > 0) {
+                        isshortlistaedgainProfile = isshortlistaedgainProfile.concat(newshortListeddata || []);
+                        _.map(isshortlistaedgainProfile, function(item) {
+                            item.isShortlisted = false;
+                        });
+                        model.shortlistmodel.slides = isshortlistaedgainProfile;
+                    } else {
+                        model.shortlistmodel.slides = model.shortlistmodel.slides.concat(newshortListeddata || []);
+                    }
+                }
                 modelpopupopenmethod.showPopupphotopoup('mainShortListProfiles.html', model.scope, 'lg', "modalclassdashboardphotopopupinner");
             };
+
+
             model.shortListPopup = function() {
                 var arrayshortListPopup = [];
                 arrayshortListPopup = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true });
@@ -484,6 +520,7 @@
                     model.shortlistmodel.slides = (model.shortlistmodel.slides);
                 }
             };
+
             model.shortlistmodel.checkServicetoShortlist = function(slide) {
                 model.slide = slide;
                 if (slide.isshortlistaedgain) {
@@ -492,8 +529,8 @@
                     slide.isshortlistaedgain = true;
                     alerts.timeoutoldalerts(model.scope, 'alert-success', 'profile has been shortlisted successfully', 4000);
                 }
-
             };
+
             model.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
                     switch (model.tablename) {
@@ -545,10 +582,12 @@
                 model.cloumsarr = [];
                 model.Toprofileids = [];
                 debugger;
-                var finalArray = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true }).length > 0 ? _.where(model.shortlistmodel.slides, { isshortlistaedgain: true }) :
-                    _.where(model.shortlistmodel.slides, { isShortlisted: true });
+                // var finalArray = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true }).length > 0 ? _.where(model.shortlistmodel.slides, { isshortlistaedgain: true }) :
+                //     _.where(model.shortlistmodel.slides, { isShortlisted: true });
 
-                _.each(finalArray, function(item) {
+                var finalArray = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true });
+
+                _.each((finalArray.length > 0 ? finalArray : model.shortlistmodel.slides), function(item) {
                     model.cloumsarr.push(item.Custid);
                 });
                 var custids = model.cloumsarr.length > 0 ? (model.cloumsarr).toString() : null;
@@ -567,8 +606,8 @@
                     _.each(model.Toprofileids, function(item) {
                         expressInterestModel.getImages(item);
                     });
-                    if (finalArray.length === model.Toprofileids.length)
-                        modelpopupopenmethod.showPopupphotopoup('app/expressInterest/index.html', model.scope, 'lg', "");
+                    // if (finalArray.length === model.Toprofileids.length)
+                    modelpopupopenmethod.showPopupphotopoup('app/expressInterest/index.html', model.scope, 'lg', "");
                 });
             };
 
