@@ -14,11 +14,11 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ui.date'
 ]);
 
-// app.apiroot = 'http://52.66.131.254:8025/Api/';
-// app.apipathold = 'http://52.66.131.254:8010/Api/';
+app.apiroot = 'http://52.66.131.254:8025/Api/';
+app.apipathold = 'http://52.66.131.254:8010/Api/';
 
-app.apiroot = 'http://183.82.0.58:8025/Api/';
-app.apipathold = 'http://183.82.0.58:8010/Api/';
+// app.apiroot = 'http://183.82.0.58:8025/Api/';
+// app.apipathold = 'http://183.82.0.58:8010/Api/';
 
 app.env = "dev";
 app.payfixedAmt = 100;
@@ -82,7 +82,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID/:contacts', subname: ['directives/divPrint.js'] },
             { routeName: 'registrationValidation', name: 'base.registrationValidation', url: '/registrationValidations' },
             { routeName: 'communicationLog', name: 'base.communicationLog', url: '/communicationLogs', isloginrequired: true },
-            { routeName: 'clientSidepagging', name: 'base.clientSidepagging', url: '/clientSidepaggings', isloginrequired: true }
+            { routeName: 'clientSidepagging', name: 'base.clientSidepagging', url: '/clientSidepaggings', isloginrequired: true },
 
         ];
 

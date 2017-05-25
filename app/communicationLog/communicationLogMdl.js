@@ -40,7 +40,7 @@
                 var SNum = 1;
                 _.map(array, function(item) {
                     if (item.MFPStatus !== null) {
-                        var strMFPStatus = $.trim(item.MFPStatus);
+                        item.MFPStatus = $.trim(item.MFPStatus);
                     }
                 });
                 _.map(array, function(item) {
@@ -192,7 +192,7 @@
                 if (row.ProfileStatusID === 54 && row.PhotoCount !== 0 && row.PhotoCount !== undefined && row.PhotoCount !== null) {
                     dd = "<a href='javascript:void(0)' ng-click='model.photossent(" + (row.iFromCustID) + "," + JSON.stringify(row.FromEmail) + ");'>Photos</a>";
                 }
-                return row.Sno + "</br>" + dd;
+                return row.Sno !== undefined ? (row.Sno + "</br>" + dd) : "";
             };
             model.gridtable1.columns = [
                 { text: 'Sno', key: 'Sno', type: 'label' },
@@ -236,29 +236,6 @@
                 { text: 'MeetingDate', key: 'MeetingDate', type: 'label' }
 
             ];
-            model.pagechange = function(val, type) {
-                switch (type) {
-                    case "grid1":
-                        model.gridtable1.data = model.gridtable1.mainArray.slice((val - 1) * 10, model.gridtable1.TotalRows);
-                        break;
-                    case "grid2":
-                        model.gridtable2.data = model.gridtable2.mainArray.slice((val - 1) * 10, model.gridtable2.TotalRows);
-                        break;
-                    case "grid3":
-                        model.gridtable3.data = model.gridtable3.mainArray.slice((val - 1) * 10, model.gridtable3.TotalRows);
-                        break;
-                    case "grid4":
-                        model.gridtable4.data = model.gridtable4.mainArray.slice((val - 1) * 10, model.gridtable4.TotalRows);
-                        break;
-                }
-                // var arr = ['grid1', 'grid2', 'grid3', 'grid4'];
-                // _.each(arr, function(item, index) {
-                //     alert(index);
-                //     if (item === type) {
-                //         model['gridtable' + parseInt(index) + 1].data = model['gridtable' + parseInt(index) + 1].mainArray.slice((val - 1) * 10, model['gridtable' + parseInt(index) + 1].TotalRows);
-                //     }
-                // });
-            };
             model.receivedarraybind = function(type) {
                 switch (type) {
                     case "V":

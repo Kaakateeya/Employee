@@ -1,52 +1,34 @@
-app.directive("angularMultiselect", ["$injector", 'authSvc',
-    '$timeout',
-    function($injector, authSvc, timeout) {
-
+app.directive("angularMultiselect",
+    function() {
         return {
             restrict: "E",
             scope: {
                 array: '=',
                 type: '=',
-                model: '=',
-                castehideval: '@',
-                id: '='
+                ngmodel: '='
             },
             templateUrl: "templates/angualarMaterialmultiselect.html",
             link: function(scope, element, attrs) {
                 scope.selectallMdl = false;
-                scope.IDs = scope.id;
-                scope.Caste = scope.array !== undefined && scope.array !== "" && scope.array !== null && scope.array.length > 0 ? scope.array : [];
-                scope.Castehide = scope.array !== undefined && scope.array !== "" && scope.array !== null ? false : true;
-                scope.Castehide = scope.castehideval === 'castehid' ? true : false;
+                scope.dynamicarray = [];
+                scope.dynamicarray = scope.array !== undefined && scope.array !== "" && scope.array !== null && scope.array.length > 0 ? scope.array : [];
                 scope.$watch('array', function() {
-                    scope.Caste = scope.array !== undefined && scope.array !== "" && scope.array !== null ? scope.array : [];
+                    scope.dynamicarray = scope.array !== undefined && scope.array !== "" && scope.array !== null ? scope.array : [];
                 });
-                scope.$watch('model', function(current, old) {
-                    if (scope.array !== undefined && scope.array !== "" && scope.array !== null && scope.array.length > 100 && scope.model !== undefined && scope.model !== "" && scope.model !== null && scope.model.length > 100) {
-                        if (scope.model.length === scope.array.length) {
-                            scope.model = null;
-                        }
-                    } else if (scope.model !== undefined && scope.model !== "" && scope.model !== null && scope.model.length > 0) {
-                        scope.model = current;
-                    }
-                });
-                scope.directivechangeevent = function(model) {
-                    scope.$emit('directivechangeevent', model, scope.type);
-                };
-                scope.applycolorsdirecive = function(value, id) {
-                    var colors = "selectborderclass";
-                    if (value !== 0 && value !== "0" && value !== "" && value !== null && value !== undefined && value.length > 0) {
-                        if (value.toString() !== "0") {
-                            colors = "selectborderclasscolor";
-                            $('#' + id).next().find('button').addClass("bacg");
-                        }
-                    } else {
-                        colors = "selectborderclass";
-                        $('#' + id).next().find('button').removeClass("bacg");
-                    }
-                    return colors;
+                // scope.$watch('ngmodel', function(current, old) {
+                //     if (scope.array !== undefined && scope.array !== "" && scope.array !== null && scope.array.length > 100 && scope.ngmodel !== undefined && scope.ngmodel !== "" && scope.ngmodel !== null && scope.ngmodel.length > 100) {
+                //         if (scope.ngmodel.length === scope.array.length) {
+                //             scope.ngmodel = null;
+                //         }
+                //     } else if (scope.ngmodel !== undefined && scope.ngmodel !== "" && scope.ngmodel !== null && scope.ngmodel.length > 0) {
+                //         debugger;
+                //         scope.ngmodel = current.toString();
+                //     }
+                // });
+                scope.directivechangeevent = function(ngmodel) {
+                    scope.$emit('directivechangeevent', ngmodel, scope.type);
                 };
             }
         };
     }
-]);
+);

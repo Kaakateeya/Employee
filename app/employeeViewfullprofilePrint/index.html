@@ -39,12 +39,9 @@
                                 <div class='row'>
                                     <div ng-repeat="itm in page.model.basicinfo" class="col-lg-4 col-xs-4 col-sm-4 col-md-4">
                                         <span style="color:Black;font-weight:bold;">{{itm.columnname|| (itm.columnName==='1'?'Education':(itm.columnName==='2'|| itm.columnName==='3' || itm.columnName==='4' || itm.columnName==='5')?"":itm.columnName) ||itm.ColumnName}}</span>
-                                        <span>
-                                  <span style="color:DarkBlue;" > <span ng-if="itm.columnname!='' && itm.columnname!=null">:</span>
+                                        <span style="color:DarkBlue;"> <span ng-if="itm.columnname!='' && itm.columnname!=null">:</span>
                                         <span ng-bind-html="itm.value || itm.Value" style="color:DarkBlue;"></span>
                                         </span>
-                                        </span>
-
                                     </div>
                                 </div>
                             </div>

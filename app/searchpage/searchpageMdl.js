@@ -56,8 +56,7 @@
                 return obj;
             };
             model.arrayToString = function(string) {
-                debugger;
-                return string !== null && string !== "" ? (string.split(',')).map(Number) : null;
+                return string !== null ? (string.split(',')).map(Number) : null;
             };
             model.profileidupdate = function(obj) {
                 if (model.divcontrollsbind === 0) {
@@ -477,7 +476,6 @@
             // };
 
             model.mainShortListProfile = function() {
-                debugger;
                 model.shortlistmodel.headettemp = "templates/SearchpopupHeader.html";
                 if (!model.shortlistmodel.slides) {
                     model.shortlistmodel.slides = angular.copy(_.where(model.slides, { isShortlisted: true }));
@@ -581,7 +579,6 @@
                 model.close();
                 model.cloumsarr = [];
                 model.Toprofileids = [];
-                debugger;
                 // var finalArray = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true }).length > 0 ? _.where(model.shortlistmodel.slides, { isshortlistaedgain: true }) :
                 //     _.where(model.shortlistmodel.slides, { isShortlisted: true });
 

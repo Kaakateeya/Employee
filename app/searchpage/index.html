@@ -37,12 +37,12 @@
                                                     </div>
                                                     <div ng-if="item.divClear" class="clearfix"></div>
                                                     <br ng-if="item.divClear">
-                                                    <div class="col-lg-3" ng-if="item.controlType==='dropdown'">
+                                                    <div class="col-lg-3" ng-show="item.controlType==='dropdown'">
                                                         <p>{{item.labelName}}</p>
-                                                        <div ng-class="page.model[item.ngModel]===undefined || page.model[item.ngModel]===null || page.model[item.ngModel].length===0 ?'':'ddlcolor'" class="controls clearfix">
-                                                            <angular-multiselect ng-if="item.type!==undefined" type=item.type class="general" array=page.model[item.dataSource] model="page.model[item.ngModel]">
+                                                        <div ng-class="page.model[item.ngModel]===undefined || page.model[item.ngModel]===null || page.model[item.ngModel].length===0 ?'':'ddlcolor'" class="controls">
+                                                            <angular-multiselect ng-show="item.type!==undefined" type=item.type class="general" array=page.model[item.dataSource] ngmodel="page.model[item.ngModel]">
                                                             </angular-multiselect>
-                                                            <angular-multiselect ng-if="item.type===undefined" class="general" array=page.model[item.dataSource] model="page.model[item.ngModel]">
+                                                            <angular-multiselect ng-show="item.type===undefined" class="general" array=page.model[item.dataSource] ngmodel="page.model[item.ngModel]">
                                                             </angular-multiselect>
                                                         </div>
                                                     </div>

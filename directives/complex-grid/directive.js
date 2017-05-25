@@ -15,7 +15,6 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 scope.init = function() {
                     scope.model.data = [];
                     scope.currentPage = 0;
-                    debugger;
                     scope.pageSize = scope.pagesizecommunication !== undefined && scope.pagesizecommunication !== null && scope.pagesizecommunication !== "" ? scope.pagesizecommunication : 10;
                     // scope.model.pageSize = 10;
                     scope.model.exportColumns = {};
@@ -142,8 +141,13 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 scope.maintableheight = function(array) {
                     scope.config.maintableheightcommunication(array);
                 };
-
-
+                // scope.search = function() {
+                //     scope.filteredList =
+                //         filteredListService.searched(scope.allItems, scope.searchText);
+                //     if (scope.searchText === '') {
+                //         scope.filteredList = scope.allItems;
+                //     }
+                // };
                 scope.init();
             }
         };

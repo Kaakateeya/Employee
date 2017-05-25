@@ -41,16 +41,13 @@
             ];
 
             model.close = function() {
-                debugger;
                 modelpopupopenmethod.closepopuppoptopopup();
             };
 
             model.slide.close = function() {
-                debugger;
                 modelpopupopenmethod.closepopuppoptopopup();
             };
             model.slide.closemainpopup = function() {
-                debugger;
                 modelpopupopenmethod.closepopup();
             };
             model.init = function() {
