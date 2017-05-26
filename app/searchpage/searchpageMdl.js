@@ -56,7 +56,8 @@
                 return obj;
             };
             model.arrayToString = function(string) {
-                return string !== null ? (string.split(',')).map(Number) : null;
+                debugger;
+                return string !== null && string !== "" ? (string.split(',')).map(Number) : null;
             };
             model.profileidupdate = function(obj) {
                 if (model.divcontrollsbind === 0) {
@@ -120,7 +121,7 @@
                 return paid;
             };
             model.ViewProfile = function(row) {
-                window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
+                window.open('/Viewfullprofile/' + row.ProfileID, '_blank');
             };
             model.AgeTemplate = function(row) {
                 var paid = row.DOB + "(" + row.Age + ")";
@@ -469,46 +470,11 @@
                     }
                 }
             };
-            // model.mainShortListProfile = function() {
-            //     model.shortlistmodel.headettemp = "templates/SearchpopupHeader.html";
-            //     model.shortlistmodel.slides = _.where(model.slides, { isShortlisted: true });
-            //     modelpopupopenmethod.showPopupphotopoup('mainShortListProfiles.html', model.scope, 'lg', "modalclassdashboardphotopopupinner");
-            // };
-
             model.mainShortListProfile = function() {
                 model.shortlistmodel.headettemp = "templates/SearchpopupHeader.html";
-                if (!model.shortlistmodel.slides) {
-                    model.shortlistmodel.slides = angular.copy(_.where(model.slides, { isShortlisted: true }));
-                    _.map(model.shortlistmodel.slides, function(item) {
-                        item.isShortlisted = false;
-                    });
-                } else {
-                    var newshortListeddata = [];
-                    _.each(_.where(model.slides, { isShortlisted: true }), function(item) {
-                        if (_.where(model.shortlistmodel.slides, { ProfileID: item.ProfileID }).length > 0) {
-
-                        } else {
-                            newshortListeddata.push(item);
-                        }
-                    });
-                    _.map(newshortListeddata, function(item) {
-                        item.isShortlisted = false;
-                    });
-                    var isshortlistaedgainProfile = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true });
-                    if (isshortlistaedgainProfile && isshortlistaedgainProfile.length > 0) {
-                        isshortlistaedgainProfile = isshortlistaedgainProfile.concat(newshortListeddata || []);
-                        _.map(isshortlistaedgainProfile, function(item) {
-                            item.isShortlisted = false;
-                        });
-                        model.shortlistmodel.slides = isshortlistaedgainProfile;
-                    } else {
-                        model.shortlistmodel.slides = model.shortlistmodel.slides.concat(newshortListeddata || []);
-                    }
-                }
+                model.shortlistmodel.slides = _.where(model.slides, { isShortlisted: true });
                 modelpopupopenmethod.showPopupphotopoup('mainShortListProfiles.html', model.scope, 'lg', "modalclassdashboardphotopopupinner");
             };
-
-
             model.shortListPopup = function() {
                 var arrayshortListPopup = [];
                 arrayshortListPopup = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true });
@@ -518,7 +484,6 @@
                     model.shortlistmodel.slides = (model.shortlistmodel.slides);
                 }
             };
-
             model.shortlistmodel.checkServicetoShortlist = function(slide) {
                 model.slide = slide;
                 if (slide.isshortlistaedgain) {
@@ -527,8 +492,8 @@
                     slide.isshortlistaedgain = true;
                     alerts.timeoutoldalerts(model.scope, 'alert-success', 'profile has been shortlisted successfully', 4000);
                 }
-            };
 
+            };
             model.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
                     switch (model.tablename) {
@@ -579,12 +544,11 @@
                 model.close();
                 model.cloumsarr = [];
                 model.Toprofileids = [];
-                // var finalArray = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true }).length > 0 ? _.where(model.shortlistmodel.slides, { isshortlistaedgain: true }) :
-                //     _.where(model.shortlistmodel.slides, { isShortlisted: true });
+                debugger;
+                var finalArray = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true }).length > 0 ? _.where(model.shortlistmodel.slides, { isshortlistaedgain: true }) :
+                    _.where(model.shortlistmodel.slides, { isShortlisted: true });
 
-                var finalArray = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true });
-
-                _.each((finalArray.length > 0 ? finalArray : model.shortlistmodel.slides), function(item) {
+                _.each(finalArray, function(item) {
                     model.cloumsarr.push(item.Custid);
                 });
                 var custids = model.cloumsarr.length > 0 ? (model.cloumsarr).toString() : null;
@@ -603,8 +567,8 @@
                     _.each(model.Toprofileids, function(item) {
                         expressInterestModel.getImages(item);
                     });
-                    // if (finalArray.length === model.Toprofileids.length)
-                    modelpopupopenmethod.showPopupphotopoup('app/expressInterest/index.html', model.scope, 'lg', "");
+                    if (finalArray.length === model.Toprofileids.length)
+                        modelpopupopenmethod.showPopupphotopoup('app/expressInterest/index.html', model.scope, 'lg', "");
                 });
             };
 
@@ -629,7 +593,7 @@
                 });
             };
             model.viewfullprofile = function(profileid) {
-                window.open("Viewfullprofile/" + profileid + '/0', "_blank");
+                window.open("Viewfullprofile/" + profileid, "_blank");
             };
             model.ticketclass = function(status) {
                 var background = "#fff";
