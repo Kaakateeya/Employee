@@ -66,10 +66,27 @@
   font-weight: 400;
   line-height: 20px; }
 
+.myprofileheaderpopup {
+  background-color: rgba(197, 205, 50, 0.42);
+  margin-bottom: 10px;
+  margin-top: -10px; }
+
 .closecls {
   padding-right: 1% !important; }
 
 .modalclassdashboardphotopopup {
   z-index: 999999 !important; }
+
+.myprofilepopupdesign {
+  margin-left: 60px;
+  margin-right: 60px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f6f3ea; }
+
+.myprofilefooterlinks {
+  font-size: 14px;
+  padding: 4px;
+  line-height: 2.1; }
 
 /*# sourceMappingURL=style.css.map */

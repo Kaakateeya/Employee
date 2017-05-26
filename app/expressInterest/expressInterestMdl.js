@@ -220,7 +220,7 @@
                     NotesofCustomer: obj.txtNotecustomer,
                     Sendsms: obj.rbtnSendSms === "1" ? 1 : 0,
                     IsRvrSend: obj.chkrvrsend === true ? 1 : 0,
-                    SelectedImages: item.value,
+                    SelectedImages: item.value !== '' && item.value !== undefined && item.value !== undefined ? ((item.value).split(';'))[0] : '',
                     Acceptlink: '',
                     Rejectlink: '',
                     EmailAddress: _.isArray(obj.chkmails) ? (obj.chkmails).join(',') : '',
@@ -258,7 +258,7 @@
             model.exiObj.rbtnBasic = 358;
             model.exiObj.rbtnTypeofService = 366;
             // model.disableinput = false;
-            model.SelectProfilelst = [];
+
             model.exiObj.txtFromprofileID = '';
             model.exiObj.chkrvrsend = true;
             model.showHide = 0;
@@ -280,7 +280,10 @@
                     });
                     strimages = strimgs + ';' + profileid;
                 }
-                model.SelectProfilelst.push({ "label": profileid, "title": profileid, "value": strimages });
+
+                timeout(function() {
+                    model.SelectProfilelst.push({ "label": profileid, "title": profileid, "value": strimages });
+                }, 500);
             });
 
         };

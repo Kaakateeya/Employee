@@ -82,7 +82,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.ngclassprogress = function(slidelength) {
                     $scope.progressbar = [];
                     var classslide = "";
-                    $scope.progressbar = _.where(slidelength, { isShortlisted: true });
+                    $scope.progressbar = slidelength;
                     $scope.width = $scope.progressbar.length + "%";
                     if ($scope.progressbar.length <= 10) {
                         classslide = "progress-bar progress-bar-striped progress-bar-danger active";
@@ -101,7 +101,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
                 $scope.viewfullprofile = function(ProfileID) {
-                    window.open('/Viewfullprofile/' + ProfileID, '_blank');
+                    window.open('/Viewfullprofile/' + ProfileID + '/0', '_blank');
                 };
                 $scope.forgetpassword = function(ProfileID) {
                     SelectBindServiceApp.forgotpasswordemail(ProfileID).then(function(response) {
@@ -142,11 +142,11 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     var obj = {
                         iCountryID: slide.CountryCodeID,
                         iCCode: slide.CountryCodeID,
-                        MobileNumber: slide.primarynumber,
+                        MobileNumber: slide.PriWithoutCode,
                         CustFamilyID: slide.Cust_Family_ID
                     };
                     $scope.custfamilyID = slide.Cust_Family_ID;
-                    $scope.popupMobilenumber = slide.primarynumber;
+                    $scope.popupMobilenumber = slide.PriWithoutCode;
                     SelectBindServiceApp.sendMobileCode(obj).then(function(response) {
                         $scope.mobileVerificationCode = response.data;
                         modelpopupopenmethod.showPopupphotopoup('verifyMobileContent.html', $scope, '', "modalclassdashboardphotopopup");
@@ -196,6 +196,9 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                             break;
                         case 'matchfollowup':
                             window.open("matchFollowuppage", "_blank");
+                            break;
+                        case 'searchbycontact':
+                            window.open("registrationValidations", "_blank");
                             break;
                         case 'nopage':
                             alerts.timeoutoldalerts($scope, 'alert-danger', 'comming Soon page', 4500);
@@ -279,7 +282,9 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         }
                     });
                 };
-
+                $scope.communicationlogredirect = function(profileid) {
+                    window.open("communicationLogs?Profileid=" + profileid, "_blank");
+                };
 
             }
         };

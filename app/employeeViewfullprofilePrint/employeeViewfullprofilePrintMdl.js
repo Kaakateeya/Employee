@@ -11,6 +11,7 @@
             model.basicinfo = [];
             model.custid = 0;
             model.stateprofileid = stateParams.ProfileID;
+            model.statecontacts = stateParams.contacts;
             model.textboxshowhide = true;
             model.fullprofileshow = true;
             model.EmpViewfullProfile = function(stateprofileid) {
@@ -61,17 +62,16 @@
             };
 
             model.applyCls = function(header) {
-                if (header == 'My Location Information') {
+                if (header === 'My Location Information') {
                     return 'personal_inform_main_in_list clearfix';
-                } else if (header == 'My Basic Details') {
+                } else if (header === 'My Basic Details') {
+
                     return 'personal_inform_main_in_list clearfix displayCls';
-                } else {
-                    return '';
                 }
+                return '';
             };
 
             model.viewhoroscopeimage = function(horopath) {
-
                 if (horopath.indexOf('.html') !== -1) {
                     window.open(horopath, '_blank');
                 } else {

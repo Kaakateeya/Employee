@@ -39,6 +39,7 @@
                 // alasql('SELECT * INTO  XLSX("john.xlsx",{headers:true}) FROM ?', [model.exportDataarray]);
             };
             model.tabledata = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
+
                 dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                     if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
                         if (type === 'pageload') {
@@ -105,7 +106,7 @@
             };
 
             model.viewfullprofile = function(profileid) {
-                window.open("Viewfullprofile/" + profileid, "_blank");
+                window.open("Viewfullprofile/" + profileid + "/0", "_blank");
             };
 
             model.closeupload = function() {
@@ -284,7 +285,12 @@
                         TicketID: item.Emp_Ticket_Id || item.Emp_Ticket_ID,
                         NoDataFound: model.nodataarray(item.NoDataFound, item.Cust_ID),
                         LastModifiedDate: item.LastModifiedDate,
-                        To_Profile_ID: item.To_Profile_ID
+                        To_Profile_ID: item.To_Profile_ID,
+                        TicketOwner: item.TicketOwner,
+                        Ticketuserid: item.Ticketuserid,
+                        CountryCode: item.CountryCode,
+                        PrimaryContact: item.PrimaryContact,
+                        PriWithoutCode: item.PriWithoutCode
 
                     });
                 });
@@ -292,6 +298,7 @@
             };
 
             model.slideshowfunction = function(flag, empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
+                model.topage = topage;
                 dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                     if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0 && response.data[0].length > 0) {
                         model.slidearray = response.data[0];
@@ -366,6 +373,9 @@
                         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Profile Status Updated Failed', 2000);
                     }
                 });
+            };
+            model.changereminder = function(profileid) {
+
             };
             return model;
         };

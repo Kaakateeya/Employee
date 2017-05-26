@@ -29,7 +29,7 @@
         <h6> <span style="font-weight: bold;">Send/Recv</span></h6>
         <h5>
             <div style="color:Black;">
-                <a class="alllinkscolor" href='javascript:void(0)'>{{slide.SRCount}}</a>
+                <a class="alllinkscolor" href='javascript:void(0)' ng-click="communicationlogredirect(slide.ProfileID)">{{slide.SRCount}}</a>
             </div>
             <div class="clearfix">
             </div>
@@ -60,7 +60,7 @@
         <h5>
             <div style="color:Black;">
                 <a ng-click="tickethistoryupdate(slide.TicketID)" class="alllinkscolor" href='javascript:void(0)'>{{slide.matkteingticket}}</a>
-                <span>({{slide.ownername}}-{{slide.UserName}})</span>
+                <span>({{slide.TicketOwner}}-{{slide.Ticketuserid}})</span>
             </div>
             <div class="clearfix">
             </div>
@@ -129,7 +129,7 @@
              </span></h6>
             <h5>
                 <div style="color:Black;">
-                    <span>{{slide.primarynumber}}
+                    <span>{{slide.PrimaryContact}}
                       <i style="line-height:0;" ng-class="slide.mobilestatus===true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></i>
                      <a href="javascript:void(0)" ng-hide="slide.mobilestatus===true" ng-click="sendMobileCode(slide)">Verify mobile</a>
                       </span>
@@ -147,7 +147,9 @@
             </span></h6>
             <h5>
                 <div style="color:Black;">
-                    <span ng-show="model.typeofslidedate!=='Ticket Last Updated'">{{slide.CreatedDate}}</span>
+                    <span ng-show="model.typeofslidedate!=='Ticket Last Updated'">{{slide.CreatedDate}}
+                        <a class="alllinkscolor" href="javascript:void(0)" ng-click="model.changereminder(slide.ProfileID)" ng-if="slide.CreatedDate!==null && slide.CreatedDate!=='' && slide.CreatedDate!==undefined && model.typeofslidedate==='Reminder Date'">Change Reminder</a>
+                    </span>
                     <span ng-show="model.typeofslidedate==='Ticket Last Updated'">{{slide.LastModifiedDate}}</span>
                 </div>
                 <div class="clearfix">
@@ -264,7 +266,7 @@
         <span> | </span>
         <a href='javascript:void(0);' ng-click="pagesredirect('general',1,slide.ProfileID)" class="dashboardfooterlinks">Advanced Search</a>
         <span> | </span>
-        <a href='javascript:void(0);' class="dashboardfooterlinks" ng-click="pagesredirect('nopage',1)">Search By Contact</a>
+        <a href='javascript:void(0);' class="dashboardfooterlinks" ng-click="pagesredirect('searchbycontact',1)">Search By Contact</a>
         <span> | </span>
         <a href='javascript:void(0);' class="dashboardfooterlinks" ng-click="pagesredirect('nopage',1)">Delete Profile</a>
         <span> | </span>

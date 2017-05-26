@@ -13,7 +13,7 @@
             model.showsearchrows = true;
             model.showsearch = true;
             model.showpaging = false;
-            model.showClientpaging = false;
+            model.showClientpaging = true;
             model.myprofileexcel = false;
             model.normalexcel = false;
             model.gridTableshow = false;
@@ -35,12 +35,11 @@
 
                 return _.where(test, { StatusID: parseInt(row.ProfileStatusID) }).length > 0 ? _.where(test, { StatusID: parseInt(row.ProfileStatusID) })[0].classes : '';
             };
-
             model.addingserialnumber = function(array) {
                 var SNum = 1;
                 _.map(array, function(item) {
                     if (item.MFPStatus !== null) {
-                        item.MFPStatus = $.trim(item.MFPStatus);
+                        var strMFPStatus = $.trim(item.MFPStatus);
                     }
                 });
                 _.map(array, function(item) {
@@ -78,25 +77,28 @@
                     _.each(response.data[3].log, function(item) {
                         model.sendarray4.push(item);
                     });
-                    model.gridtable1.mainArray = model.sendarray.length > 0 ? model.addingserialnumber(model.sendarray) : [];
+                    model.gridtable1.mainArray = model.addingserialnumber(model.sendarray);
                     model.gridtable1.TotalRows = model.sendarray.length > 0 ? model.sendarray[0].TotalRows : 0;
-                    model.gridtable1.data = model.gridtable1.mainArray;
+                    model.gridtable1.data = model.gridtable1.mainArray.slice(0, 10);
                     model.gridTableshow = true;
                     model.Nameofcandidate = model.sendarray.length > 0 ? model.sendarray[0].FromName : "";
                     //2
-                    model.gridtable2.mainArray = model.sendarray2.length > 0 ? model.addingserialnumber(model.sendarray2) : [];
+                    model.gridtable2.mainArray = model.addingserialnumber(model.sendarray2);
                     model.gridtable2.TotalRows = model.sendarray2.length > 0 ? model.sendarray2[0].TotalRows : 0;
-                    model.gridtable2.data = model.gridtable2.mainArray;
+                    model.gridtable2.data = model.gridtable2.mainArray.slice(0, 10);
                     //3
-                    model.gridtable3.mainArray = model.sendarray3.length > 0 ? model.addingserialnumber(model.sendarray3) : [];
+                    model.gridtable3.mainArray = model.addingserialnumber(model.sendarray3);
                     model.gridtable3.TotalRows = model.sendarray3.length > 0 ? model.sendarray3[0].TotalRows : 0;
-                    model.gridtable3.data = model.gridtable3.mainArray;
+                    model.gridtable3.data = model.gridtable3.mainArray.slice(0, 10);
                     //4
-                    model.gridtable4.mainArray = model.sendarray4.length > 0 ? model.addingserialnumber(model.sendarray4) : [];
+                    model.gridtable4.mainArray = model.addingserialnumber(model.sendarray4);
                     model.gridtable4.TotalRows = model.sendarray4.length > 0 ? model.sendarray4[0].TotalRows : 0;
-                    model.gridtable4.data = model.gridtable4.mainArray;
+                    model.gridtable4.data = model.gridtable4.mainArray.slice(0, 10);
+
                 });
+
             };
+
             model.ProfileIdTemplateDUrl = function(row) {
                 var paidstatusclass = row.paid === 1 ? 'paidclass' : 'unpaid';
                 var paid = row.ProfileID !== undefined ? "<a class='" + paidstatusclass + "'>" + row.ProfileID + "</a>" : "";
@@ -154,16 +156,16 @@
                                 });
                                 model.gridtable3.TotalRows = model.sendarray3.length > 0 ? model.sendarray3[0].TotalRows : 0;
                                 model.gridtable3.data = model.sendarray3;
-                                alerts.timeoutoldalerts(model.scope, 'alert-success', 'Resend successfully', 4000);
+                                alerts.timeoutoldalerts(model.scope, 'alert-success', 'Resend successfully', 3000);
                             } else {
                                 model.communicationlogsubmit(model.Profileidcommunication);
-                                alerts.timeoutoldalerts(model.scope, 'alert-success', 'Reversend successfully', 4000);
+                                alerts.timeoutoldalerts(model.scope, 'alert-success', 'Reversend successfully', 3000);
                             }
                         } else {
                             if (type === 2) {
-                                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Resend fail', 4000);
+                                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Resend fail', 3000);
                             } else {
-                                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Reversend fail', 4000);
+                                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Reversend fail', 3000);
                             }
                         }
                     }
@@ -181,9 +183,9 @@
                 communicationLogService.Sentphotosemail(emailid, custid).then(function(resonse) {
                     console.log(resonse);
                     if (parseInt(resonse.data) === 1) {
-                        alerts.timeoutoldalerts(model.scope, 'alert-success', 'email sent successfully', 4000);
+                        alerts.timeoutoldalerts(model.scope, 'alert-success', 'email sent successfully', 3000);
                     } else {
-                        alerts.timeoutoldalerts(model.scope, 'alert-danger', 'email sent failed', 4000);
+                        alerts.timeoutoldalerts(model.scope, 'alert-danger', 'email sent failed', 3000);
                     }
                 });
             };
@@ -192,7 +194,7 @@
                 if (row.ProfileStatusID === 54 && row.PhotoCount !== 0 && row.PhotoCount !== undefined && row.PhotoCount !== null) {
                     dd = "<a href='javascript:void(0)' ng-click='model.photossent(" + (row.iFromCustID) + "," + JSON.stringify(row.FromEmail) + ");'>Photos</a>";
                 }
-                return row.Sno !== undefined ? (row.Sno + "</br>" + dd) : "";
+                return row.Sno + "</br>" + dd;
             };
             model.gridtable1.columns = [
                 { text: 'Sno', key: 'Sno', type: 'label' },
@@ -236,6 +238,29 @@
                 { text: 'MeetingDate', key: 'MeetingDate', type: 'label' }
 
             ];
+            model.pagechange = function(val, type) {
+                switch (type) {
+                    case "grid1":
+                        model.gridtable1.data = model.gridtable1.mainArray.slice((val - 1) * 10, model.gridtable1.TotalRows);
+                        break;
+                    case "grid2":
+                        model.gridtable2.data = model.gridtable2.mainArray.slice((val - 1) * 10, model.gridtable2.TotalRows);
+                        break;
+                    case "grid3":
+                        model.gridtable3.data = model.gridtable3.mainArray.slice((val - 1) * 10, model.gridtable3.TotalRows);
+                        break;
+                    case "grid4":
+                        model.gridtable4.data = model.gridtable4.mainArray.slice((val - 1) * 10, model.gridtable4.TotalRows);
+                        break;
+                }
+                // var arr = ['grid1', 'grid2', 'grid3', 'grid4'];
+                // _.each(arr, function(item, index) {
+                //     alert(index);
+                //     if (item === type) {
+                //         model['gridtable' + parseInt(index) + 1].data = model['gridtable' + parseInt(index) + 1].mainArray.slice((val - 1) * 10, model['gridtable' + parseInt(index) + 1].TotalRows);
+                //     }
+                // });
+            };
             model.receivedarraybind = function(type) {
                 switch (type) {
                     case "V":
@@ -282,7 +307,6 @@
                         break;
                 }
             };
-
             return model;
         };
     }

@@ -26,7 +26,7 @@
         <h6> <span style="font-weight: bold;">Send/Recv</span></h6>
         <h5>
             <div style="color:Black;">
-                <a class="alllinkscolor" href='javascript:void(0)'>{{slide.SRCount}}</a>
+                <a class="alllinkscolor" href='javascript:void(0)' ng-click="communicationlogredirect(slide.ProfileID)">{{slide.SRCount}}</a>
             </div>
             <div class="clearfix">
             </div>
@@ -175,7 +175,7 @@
         <span> | </span>
         <a href='javascript:void(0);' ng-click="pagesredirect('general',1,slide.ProfileID)" class="myprofilefooterlinks">Advanced Search</a>
         <span> | </span>
-        <a href='javascript:void(0);' class="myprofilefooterlinks" ng-click="pagesredirect('nopage',1)">Search By Contact</a>
+        <a href='javascript:void(0);' class="myprofilefooterlinks" ng-click="pagesredirect('searchbycontact',1)">Search By Contact</a>
         <span> | </span>
         <a href='javascript:void(0);' class="myprofilefooterlinks" ng-click="pagesredirect('nopage',1)">Delete Profile</a>
         <span> | </span>

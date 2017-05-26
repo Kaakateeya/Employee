@@ -36,48 +36,13 @@
 .modalclassdashboardphotopopup .pop_label_left {
   width: 40%; }
 
-.inactive {
-  background-color: #185615; }
-
-.Green {
-  background-color: green; }
-
 .settled {
   background-color: #17F067; }
 
 .Deleted {
   background-color: #BCC3BE; }
 
-.closed {
-  background-color: #C8E6E6; }
-
-.communicationtableheight {
-  height: 330px;
-  overflow-x: auto;
-  overflow-y: auto; }
-
-.communicationtabledynamicheight {
-  height: 500px;
-  overflow-x: auto;
-  overflow-y: auto; }
-
-.innertablebody {
-  overflow-x: auto;
-  overflow-y: auto; }
-
-tbody {
-  display: table-row-group;
-  vertical-align: middle;
-  border-color: inherit; }
-
-.fixed-table-body {
-  overflow-x: auto;
-  overflow-y: auto;
-  height: 100%; }
-
-tr {
-  display: table-row;
-  vertical-align: inherit;
-  border-color: inherit; }
+.inactive {
+  background-color: #185615; }
 
 /*# sourceMappingURL=style.css.map */

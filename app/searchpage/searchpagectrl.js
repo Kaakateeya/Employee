@@ -21,7 +21,6 @@
              if (parseInt($stateParams.Profileid) !== 0) {
                  model.ProfileIDpopup = $stateParams.Profileid;
              }
-
              vm.clearSelection(model.selectedIndex === "0" ? model.domDatageneral : model.domDataadvanced);
              model.searchpopuptext = model.selectedIndex === "0" ? "General Search" : "Advance Search";
              alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass", 'searchpageCtrl');
@@ -62,7 +61,7 @@
                      break;
                  case 'BranchName':
                      model.BranchName = [];
-                     model.BranchName = Commondependency.Branmodel.ProfileIDpopupchNamebind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
+                     model.BranchName = Commondependency.branch((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                      break;
              }
          });
@@ -73,10 +72,10 @@
                      if (model[item.ngModel] !== undefined) {
                          model[item.ngModel] = undefined;
                      }
-                      if (model[item.ngModelFrom] !== undefined) {
+                     if (model[item.ngModelFrom] !== undefined) {
                          model[item.ngModelFrom] = undefined;
                      }
-                      if (model[item.ngModelTo] !== undefined) {
+                     if (model[item.ngModelTo] !== undefined) {
                          model[item.ngModelTo] = undefined;
                      }
                  });

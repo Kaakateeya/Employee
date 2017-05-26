@@ -4,7 +4,8 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
             restrict: "E",
             scope: {
                 model: '=',
-                config: '='
+                config: '=',
+                pagesizecommunication: '='
             },
             templateUrl: "directives/complex-grid/index.html",
             link: function(scope, element, attrs) {
@@ -14,7 +15,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 scope.init = function() {
                     scope.model.data = [];
                     scope.currentPage = 0;
-                    scope.pageSize = 10;
+                    scope.pageSize = scope.pagesizecommunication !== undefined && scope.pagesizecommunication !== null && scope.pagesizecommunication !== "" ? scope.pagesizecommunication : 10;
                     // scope.model.pageSize = 10;
                     scope.model.exportColumns = {};
                     _.each(scope.model.columns, function(item) {
@@ -35,10 +36,12 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     alert(row);
                 };
                 scope.ViewProfile = function(row) {
-                    window.open('/Viewfullprofile/' + row.Profileid, '_blank');
+                    window.open('/Viewfullprofile/' + row.Profileid + '/0', '_blank');
                 };
+
                 scope.sendreceive = function(row) {
-                    return "<a style='cursor:pointer;'  href='javascript:void(0);'>" + row.sentreceivecount + "</a>";
+                    window.open('/communicationLogs?Profileid=' + row.Profileid, '_blank');
+                    // return "<a style='cursor:pointer;' ng-click='sendreceivecounts(" + JSON.stringify(row.Profileid) + ");'  href='javascript:void(0);'>" + row.sentreceivecount + "</a>";
                 };
                 scope.ViewContact = function(row) {
                     // var paid = "<a style='cursor:pointer;'  href='/Contact/" + row.custid + "'>View</a>";
@@ -135,6 +138,16 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 scope.myprofileexportexcel = function(val) {
                     scope.config.exportexcel(val);
                 };
+                scope.maintableheight = function(array) {
+                    scope.config.maintableheightcommunication(array);
+                };
+                // scope.search = function() {
+                //     scope.filteredList =
+                //         filteredListService.searched(scope.allItems, scope.searchText);
+                //     if (scope.searchText === '') {
+                //         scope.filteredList = scope.allItems;
+                //     }
+                // };
                 scope.init();
             }
         };

@@ -105,7 +105,7 @@
             };
 
             model.viewfullprofile = function(profileid) {
-                window.open("Viewfullprofile/" + profileid, "_blank");
+                window.open("Viewfullprofile/" + profileid + "/0", "_blank");
             };
 
             model.closeupload = function() {

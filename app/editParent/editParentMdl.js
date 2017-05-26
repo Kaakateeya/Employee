@@ -98,13 +98,13 @@
 
                         model.gfMobileCodeId = item.FatherfatherMobileCountryID;
                         model.gfMobileNumber = item.FatherFatherMobileNumber;
-
+                        debugger;
                         if (commonFactory.checkvals(item.FatherFatherLandAreaCode)) {
                             model.gflandCountryCodeId = item.FatherfatherLandCountryCodeID;
                             model.gfAreaCodeid = item.FatherFatherLandAreaCode;
                             model.gflandNumber = item.FatherFatherLandNumber;
                         } else {
-                            model.gfAltermobileCodeId = item.FatherfatherMobileCountrycode1;
+                            model.gfAltermobileCodeId = item.FatherfatherLandCountryCodeID;
                             model.gfAlterMobileNumber = item.FatherFatherLandNumber;
                         }
 
@@ -142,7 +142,7 @@
                             model.mfAreaCodeid = item.MotherFatherLandAreaCode;
                             model.mflandNumber = item.MotherFatherLandNumber;
                         } else {
-                            model.mfAltermobileCodeId = item.MotherfatherMobileCountryID1;
+                            model.mfAltermobileCodeId = item.motherfatherLandCountryID;
                             model.mfAlterMobileNumber = item.MotherFatherLandNumber;
                         }
                         model.mStateid = item.motherStateID;
@@ -279,7 +279,7 @@
 
                     case 'About My Family':
 
-                        model.submitPromise = editParentService.submitAboutFamilyData({ CustID: custID, AboutYourself: inObj.GetDetails.AboutYourself, flag: 1 }).then(function(response) {
+                        model.submitPromise = editParentService.submitAboutFamilyData({ CustID: custID, AboutYourself: inObj.GetDetails.AboutYourself === null ? '' : inObj.GetDetails.AboutYourself, flag: 1 }).then(function(response) {
                             console.log(response);
                             model.lblaboutMyfamily = inObj.GetDetails.AboutYourself;
                             commonFactory.closepopup();
@@ -503,7 +503,7 @@
             { lblname: 'Health Condition Description', controlType: 'textarea', ngmodel: 'healthDescritionId', parameterValue: 'HealthConditiondesc' },
         ];
         model.aboutFamily = [
-            { lblname: '', controlType: 'about', required: true, displayTxt: '(Do Not Mention Any Contact Information Phone Numbers, Email Id’s or your Profile May be Rejected.)', ngmodel: 'aboutFamilyId', parameterValue: 'AboutYourself' },
+            { lblname: '', controlType: 'about', displayTxt: '(Do Not Mention Any Contact Information Phone Numbers, Email Id’s or your Profile May be Rejected.)', ngmodel: 'aboutFamilyId', parameterValue: 'AboutYourself' },
         ];
 
         return model.init();
