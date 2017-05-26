@@ -61,7 +61,7 @@
                      break;
                  case 'BranchName':
                      model.BranchName = [];
-                     model.BranchName = Commondependency.Branmodel.ProfileIDpopupchNamebind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
+                     model.BranchName = Commondependency.branch((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                      break;
              }
          });

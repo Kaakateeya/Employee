@@ -2,24 +2,19 @@
  * AngularJS 
  * @author vinu <vinodanasuri@gmail.com>
  */
-
 /**
  * Main App Creation
  */
-
 var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap', 'angular-loading-bar',
     'ngAnimate', 'ngIdle', 'ngMaterial',
     'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate',
     'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons',
     'ui.date'
 ]);
-
 app.apiroot = 'http://52.66.131.254:8025/Api/';
 app.apipathold = 'http://52.66.131.254:8010/Api/';
-
 // app.apiroot = 'http://183.82.0.58:8025/Api/';
 // app.apipathold = 'http://183.82.0.58:8010/Api/';
-
 app.env = "dev";
 app.payfixedAmt = 100;
 app.paypoints = 10;
@@ -27,22 +22,17 @@ app.payDays = 30;
 app.PaymentDays = parseInt(app.payDays) / parseInt(app.payfixedAmt);
 app.paymentPoints = parseInt(app.paypoints) / parseInt(app.payfixedAmt);
 app.ServiceTaxPercent = 14 / 100;
-
 app.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
 app.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
 //app.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/angularkaknew/';
 app.prefixPath = 'Images/SettlementImages/';
-
 app.Mnoimage = app.GlobalImgPath + "Images/customernoimages/Mnoimage.jpg";
 app.Fnoimage = app.GlobalImgPath + "Images/customernoimages/Fnoimage.jpg";
 app.accesspathdots = app.GlobalImgPathforimage + app.prefixPath;
 app.BucketName = 'kaakateeyaprod';
-
 app.S3PhotoPath = app.GlobalImgPath + 'Images/ProfilePics/';
-
 app.accesspathdotsImg = app.S3PhotoPath;
 app.prefixPathImg = 'Images/ProfilePics/';
-
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider',
     function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
         var states = [
@@ -61,11 +51,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'marketing', name: 'base.marketing', url: '/marketingpage', isloginrequired: true },
             { routeName: 'bootstrapSlide', name: 'base.bootstrapSlide', url: '/bootstrapSlideshow', isloginrequired: true, module: 'complex-slide' },
             { routeName: 'bootstrapPopup', name: 'base.bootstrapPopup', url: '/bootstrapPopups', isloginrequired: true, module: 'complex-popup' },
-
             { routeName: 'basicRegistration', name: 'base.basicRegistration', url: '/Registration', isloginrequired: true },
             { routeName: 'secondaryRegistration', name: 'base.secondaryRegistration', url: '/secondaryReg/:CustID/:ProfileID/:fn/:ln/:countryID/:genderID', isloginrequired: true },
             { routeName: 'regManagePhoto', name: 'base.regManagePhoto', url: '/ManagePhoto/:CustID/:ProfileID/:genderID', isloginrequired: true },
-
             { routeName: 'editEducation', name: 'base.editEducation', url: '/Education/:CustID', isloginrequired: true },
             { routeName: 'editManagePhoto', name: 'base.editManagePhoto', url: '/ManagePhoto/:CustID' },
             { routeName: 'editParent', name: 'base.editParent', url: '/Parent/:CustID' },
@@ -83,13 +71,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'registrationValidation', name: 'base.registrationValidation', url: '/registrationValidations' },
             { routeName: 'communicationLog', name: 'base.communicationLog', url: '/communicationLogs', isloginrequired: true },
             { routeName: 'clientSidepagging', name: 'base.clientSidepagging', url: '/clientSidepaggings', isloginrequired: true },
-
         ];
-
         $ocLazyLoadProvider.config({
             debug: true
         });
-
         $ocLazyLoadProvider.config({
             modules: [{
                     name: 'dashboard',
@@ -118,7 +103,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/complex-slide/directive.js',
                         'directives/complex-slide/model/config.js',
                         'directives/complex-slide/css/style.css'
-
                     ]
                 },
                 {
@@ -127,7 +111,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/complex-popup/directive.js',
                         'directives/complex-popup/model/config.js',
                         'directives/complex-popup/css/style.css'
-
                     ]
                 },
                 {
@@ -351,7 +334,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
         });
     }
 ]);
-
 app.run(function($rootScope, $state, $stateParams) {
     $rootScope.$on('$stateChangeStart', function(e, to) {
         if (to.data && to.data.requiresLogin) {
