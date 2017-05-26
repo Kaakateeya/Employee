@@ -65,6 +65,7 @@
                 if (model.divcontrollsbind === 0) {
                     model.init();
                 }
+                model.progressbar = [];
                 model.sidebarnavshow = false;
                 searchpageServices.getPrimaryCustomerDataResponse(obj.ProfileIDpopup, model.empid).then(function(response) {
                     if (response !== null && response.data !== undefined && response.data !== null && response.data !== "") {
@@ -478,7 +479,7 @@
                 } else {
                     model.shortlistmodel.slides = model.shortlistmodel.slides.concat(angular.copy(_.where(model.slides, { isShortlisted: true })) || []);
                 }
-
+                model.progressbar = model.shortlistmodel.slides = angular.copy(_.where(model.slides, { isShortlisted: true }));
                 alerts.timeoutoldalerts(model.scope, 'alert-success', 'profile has been shortlisted successfully', 2000);
             };
 
