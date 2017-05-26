@@ -298,6 +298,7 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                     maxHeight: false,
                     enableClickableOptGroups: true
                 });
+
                 //element.multiselect('setOptions', secondConfigurationSet);
                 //element.multiselect('rebuild');
                 // Watch for any changes to the length of our select element
@@ -311,8 +312,7 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                     element.multiselect('select', scope.ngModel);
                 });
                 // Watch for any changes from outside the directive and refresh
-                scope.$watch(attrs.ngModel, function() {
-                    // console.log(scope.ngModel);
+                scope.$watch('ngModel', function() {
                     element.multiselect('refresh');
                 });
             }
