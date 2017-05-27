@@ -298,6 +298,7 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                     maxHeight: false,
                     enableClickableOptGroups: true
                 });
+
                 //element.multiselect('setOptions', secondConfigurationSet);
                 //element.multiselect('rebuild');
                 // Watch for any changes to the length of our select element

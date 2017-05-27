@@ -90,7 +90,7 @@
                 </div>
 
                 <div ng-if="item.controlType==='about'" class="form-group">
-                    <label class="control-label" style="color: #9b2828; font-size: 13px;">{{item.displayTxt}}</label>
+                    <label class="control-label" style="color: #9b2828; font-size: 13px;">{{item.displayTxt}} </label>
                     <textarea ng-model="model[item.ngmodel]" ng-maxlength="item.maxlength" rows="4" cols="20" ng-required="item.required" style="max-width:515px;width:100%;"></textarea>
                     <label id="Label1" style="color: red; font-size: 13px;" class="pull-right" ng-if="item.maxlength!=undefined">(max {{item.maxlength}} characters)</label>
                 </div>

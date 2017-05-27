@@ -73,8 +73,11 @@
 
         };
         model.aboutPageload = function() {
+            debugger;
             editEducationService.getAboutData(CustID).then(function(response) {
+                debugger;
                 if (commonFactory.checkvals(response.data)) {
+
                     var AboutData = (response.data).split(';');
                     model.lblaboutUrself = (AboutData[0].split(':'))[1];
                     model.AboutReviewStatusID = (AboutData[1].split(':'))[1];
@@ -262,7 +265,7 @@
 
                     case 'About your self':
 
-                        model.submitPromise = editEducationService.submitAboutUrData({ CustID: CustID, AboutYourself: inObj.GetDetails.txtAboutUS, flag: 1 }).then(function(response) {
+                        model.submitPromise = editEducationService.submitAboutUrData({ CustID: CustID, AboutYourself: inObj.GetDetails.txtAboutUS === null ? '' : inObj.GetDetails.txtAboutUS, flag: 1 }).then(function(response) {
                             commonFactory.closepopup();
                             if (response.data === '1') {
                                 model.aboutPageload();
@@ -385,10 +388,8 @@
         ];
 
         model.aboutUrSelf = [
-            { lblname: '', controlType: 'about', maxlength: '1000', ngmodel: 'txtAboutUS', displayTxt: "(Please don't write phone numbers/emails/any junk characters)*", ngmodel: "aboutFamilyId", parameterValue: 'txtAboutUS' }
+            { lblname: '', controlType: 'about', maxlength: '1000', ngmodel: 'txtAboutUS', displayTxt: "(Please don't write phone numbers/emails/any junk characters)*", parameterValue: 'txtAboutUS' }
         ];
-
-
         return model.init();
     }
 

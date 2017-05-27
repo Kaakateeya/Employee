@@ -82,7 +82,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.ngclassprogress = function(slidelength) {
                     $scope.progressbar = [];
                     var classslide = "";
-                    $scope.progressbar = _.where(slidelength, { isShortlisted: true });
+                    $scope.progressbar = slidelength;
                     $scope.width = $scope.progressbar.length + "%";
                     if ($scope.progressbar.length <= 10) {
                         classslide = "progress-bar progress-bar-striped progress-bar-danger active";
