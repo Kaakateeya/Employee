@@ -6,14 +6,13 @@
         var model = {};
         model.scope = {};
         //start declaration block
-        // var logincustid = authSvc.getCustId();
+
         var CustID = stateParams.CustID;
-        // logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+
         model.loginpaidstatus = authSvc.getpaidstatus();
         var genderID = 1;
-        //sessionStorage.getItem('CustGenderID');
 
-        // authSvc.getGenderID();
+
         var loginEmpid = authSvc.LoginEmpid();
         var AdminID = authSvc.isAdmin();
         model.photorowID = 0;
@@ -21,6 +20,10 @@
         //end declaration block
         model.up = {};
         model.init = function() {
+            model.loginEmpid = authSvc.LoginEmpid();
+            model.Admin = model.Admin = authSvc.isAdmin();
+            model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+
             CustID = stateParams.CustID;
             model.getData();
             return model;
@@ -41,6 +44,7 @@
 
             _.each(Arr, function(item) {
                 genderID = item.GenderID;
+                debugger;
                 model.rbtProtectPassword = item.PhotoPassword === 'Admin@123' ? '1' : '0';
                 var imagepath = app.accesspathdotsImg;
                 if (item.IsActive === 0 && item.PhotoName !== null) {
@@ -195,9 +199,9 @@
                 if (response.data === 1) {
 
                     if (obj === '1') {
-                        alert('Protect with Password  Uploaded Successfully');
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Protect with Password  Uploaded Successfully', 4500);
                     } else {
-                        alert('Protect with Password Removed Successfully');
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Protect with Password Removed Successfully', 4500);
                     }
                 }
             });

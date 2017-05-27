@@ -74,14 +74,14 @@
 
                             <div class="clear"></div>
                             <div class="edit_page_photo_manage_submit">
-                                <div class="edit_page_photo_manage_protect pull-left clearfix" ng-show="{{loginpaidstatus===1}}">
-                                    <label class="">
+                                <div class="edit_page_photo_manage_protect pull-left clearfix" ng-show="page.model.Admin === 1 || page.model.Admin === '1' ||  page.model.Managementid==='true'">
+                                    <label class=" ">
                                 
-                                <div class="radio_my2 clearfix">
-                                <label style="font-size: 14px !important; font-weight: 400;"> Protect with Password :</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                                    <md-radio-group layout="row" ng-model="rbtProtectPassword" class="md-block" flex-gt-sm ng-disabled="manageakerts" ng-change="page.model.setPhotoPassword(rbtProtectPassword);">
-                                        <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
-                                        <md-radio-button value="0"> No </md-radio-button>
+                                <div class="radio_my2 clearfix ">
+                                <label style="font-size: 14px !important; font-weight: 400; "> Protect with Password :</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                                    <md-radio-group layout="row " ng-model="page.model.rbtProtectPassword " class="md-block " flex-gt-sm ng-disabled="manageakerts " ng-change="page.model.setPhotoPassword(page.model.rbtProtectPassword); ">
+                                        <md-radio-button value="1 " class="md-primary ">Yes</md-radio-button>
+                                        <md-radio-button value="0 "> No </md-radio-button>
                                     </md-radio-group>
                                 </div>
                                 </label>
@@ -89,14 +89,14 @@
                         </div>
                         </br>
 
-                        <div class="clearfix"></div>
-                        <div class="photo_upload_instrctns_list clearfix">
+                        <div class="clearfix "></div>
+                        <div class="photo_upload_instrctns_list clearfix ">
 
-                            <a ID="phtoguide" href="javascript:void(0);" ng-click="page.model.redirectPage('PhotoGuideLines');">Photo guidelines
+                            <a ID="phtoguide " href="javascript:void(0); " ng-click="page.model.redirectPage( 'PhotoGuideLines'); ">Photo guidelines
                         </a>
-                            <a ID="photofaq" href="javascript:void(0);" ng-click="page.model.redirectPage('Faqs');">Photo faq’s
+                            <a ID="photofaq " href="javascript:void(0); " ng-click="page.model.redirectPage( 'Faqs'); ">Photo faq’s
                         </a>
-                            <a ID="photoupload" href="javascript:void(0);" ng-click="page.model.redirectPage('uploadTips');">Photo upload tips
+                            <a ID="photoupload " href="javascript:void(0); " ng-click="page.model.redirectPage( 'uploadTips'); ">Photo upload tips
                         </a>
                         </div>
                     </div>
@@ -105,36 +105,36 @@
 
             </div>
 
-            <div class="my_photos_main_block2 clearfix">
-                <div class="clearfix pics_incorrect_list">
+            <div class="my_photos_main_block2 clearfix ">
+                <div class="clearfix pics_incorrect_list ">
 
                     <h3> Such Photos cannot be Uploaded</h3>
-                    <table id="DataList3" class="clearfix" style="border-collapse: collapse;" cellspacing="0">
+                    <table id="DataList3 " class="clearfix " style="border-collapse: collapse; " cellspacing="0 ">
                         <tbody>
                             <tr>
                                 <td>
-                                    <img id="DataList3_ctl00_images" src="src\images/Side-face.png">
+                                    <img id="DataList3_ctl00_images " src="src\images/Side-face.png ">
                                     <p>
                                         Side Face
                                     </p>
 
                                 </td>
                                 <td>
-                                    <img id="DataList3_ctl01_images" src="src\images/Blir.png">
+                                    <img id="DataList3_ctl01_images " src="src\images/Blir.png ">
                                     <p>
                                         Blur
                                     </p>
 
                                 </td>
                                 <td>
-                                    <img id="DataList3_ctl02_images" src="src\images/Group-photos.png">
+                                    <img id="DataList3_ctl02_images " src="src\images/Group-photos.png ">
                                     <p>
                                         Group Photo
                                     </p>
 
                                 </td>
                                 <td>
-                                    <img id="DataList3_ctl03_images" src="src\images/Water-mark.png">
+                                    <img id="DataList3_ctl03_images " src="src\images/Water-mark.png ">
                                     <p>
                                         Watermark
                                     </p>
@@ -145,19 +145,19 @@
                     </table>
                 </div>
 
-                <div class="pics_selected_list_main_rt clearfix pics_correct_list">
+                <div class="pics_selected_list_main_rt clearfix pics_correct_list ">
                     <h3>Photos that can be uploaded</h3>
-                    <table id="DataList2" class="clearfix" style="border-collapse: collapse;" cellspacing="0">
+                    <table id="DataList2 " class="clearfix " style="border-collapse: collapse; " cellspacing="0 ">
                         <tbody>
                             <tr>
                                 <td>
-                                    <img id="DataList2_ctl00_images" src="src\images/Close-up.png">
+                                    <img id="DataList2_ctl00_images " src="src\images/Close-up.png ">
                                     <p>
                                         Close Up
                                     </p>
                                 </td>
                                 <td>
-                                    <img id="DataList2_ctl01_images" src="src\images/Fulsize.png">
+                                    <img id="DataList2_ctl01_images " src="src\images/Fulsize.png ">
                                     <p>
                                         Full Size
                                     </p>
@@ -166,50 +166,50 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="clear">&nbsp;</div>
+                <div class="clear ">&nbsp;</div>
             </div>
-            <div class="my_photos_main_block3">
+            <div class="my_photos_main_block3 ">
 
                 <p>
-                    <img src="src/images/whatsup.png" alt="Mail" style="width: 50px; height: 40px;">Whatsup your photos to
+                    <img src="src/images/whatsup.png " alt="Mail " style="width: 50px; height: 40px; ">Whatsup your photos to
                     <span>91-9848535373</span> - Kindly mention your Profile ID and name
                 </p>
                 <p>
-                    <img src="src/images/icon_email.png" alt="Mail">Can also Email your photos to <span>photos@telugumarriages.com</span> - Kindly mention your Profile ID and name
+                    <img src="src/images/icon_email.png " alt="Mail ">Can also Email your photos to <span>photos@telugumarriages.com</span> - Kindly mention your Profile ID and name
                 </p>
 
             </div>
         </div>
     </div>
 
-    <script type="text/ng-template" id="AddimagePopup.html">
-        <form class="EditViewClass" name="uploadForm" novalidate role="form" ng-submit="page.model.upload(page.model.up)">
-            <div class="modal-header">
-                <h3 class="modal-title text-center" id="modal-title">Upload Photo </h3>
+    <script type="text/ng-template " id="AddimagePopup.html ">
+        <form class="EditViewClass " name="uploadForm " novalidate role="form " ng-submit="page.model.upload(page.model.up) ">
+            <div class="modal-header ">
+                <h3 class="modal-title text-center " id="modal-title ">Upload Photo </h3>
             </div>
-            <div class="modal-body" id="modal-body">
-                <ul id="ulprofession">
-                    <input type="file" file-model="page.model.up.myFile" />
+            <div class="modal-body " id="modal-body ">
+                <ul id="ulprofession ">
+                    <input type="file " file-model="page.model.up.myFile " />
                 </ul>
             </div>
-            <div class="modal-footer">
-                <input value="Cancel" class="button_custom button_custom_reset" ng-click="page.model.cancel();" type="button">
-                <input value="Upload" class="button_custom" type="submit">
+            <div class="modal-footer ">
+                <input value="Cancel " class="button_custom button_custom_reset " ng-click="page.model.cancel(); " type="button ">
+                <input value="Upload " class="button_custom " type="submit ">
             </div>
         </form>
     </script>
 
-    <script type="text/ng-template" id="deleteimagePopup.html">
-        <form class="EditViewClass" name="uploadForm" novalidate role="form" ng-submit="page.model.Delete(up);">
-            <div class="modal-header">
-                <h3 class="modal-title text-center" id="modal-title">Delete Photo </h3>
+    <script type="text/ng-template " id="deleteimagePopup.html ">
+        <form class="EditViewClass " name="uploadForm " novalidate role="form " ng-submit="page.model.Delete(up); ">
+            <div class="modal-header ">
+                <h3 class="modal-title text-center " id="modal-title ">Delete Photo </h3>
             </div>
-            <div class="modal-body" id="modal-body">
-                <div class="text-center">Are you sure to delete photo?</div>
+            <div class="modal-body " id="modal-body ">
+                <div class="text-center ">Are you sure to delete photo?</div>
             </div>
-            <div class="modal-footer">
-                <input value="Close" class="button_custom button_custom_reset" ng-click="page.model.cancel();" type="button">
-                <input value="Delete" class="button_custom" type="submit">
+            <div class="modal-footer ">
+                <input value="Close " class="button_custom button_custom_reset " ng-click="page.model.cancel(); " type="button ">
+                <input value="Delete " class="button_custom " type="submit ">
             </div>
         </form>
 
@@ -227,7 +227,7 @@
     .cssMaskdiv:after {
         background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
         color: #ffffff;
-        content: "Under Review";
+        content: "Under Review ";
         display: block;
         font-size: 14px;
         /* height: 100%; */
