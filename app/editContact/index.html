@@ -217,7 +217,7 @@
                                 <h6>
                                     <span Font-Bold="true">{{item.Motheremailreletionship==="39"?" FF Moblie #":"MF Moblie #"}}</span></h6>
                                 <h5>
-                                    <span>{{item.FFCountryIDCode+'-'+item.FatherMobileNumber}}</span></h5>
+                                    <span ng-hide="item.FatherMobileNumber===null">{{item.FFCountryIDCode+'-'+item.FatherMobileNumber}}</span></h5>
                             </div>
                         </div>
                         <div class="edit_page_details_item_desc clearfix">
@@ -225,7 +225,7 @@
                                 <h6>
                                     <span Font-Bold="true">{{item.Motheremailreletionship==="39"?" FF Land Line #":"MF Land Line #"}}</span></h6>
                                 <h5>
-                                    <span>{{item.FFLandCountyCode+'-'+item.FatherLandAreaCode+'-'+item.FatherLandNumber}}</span></h5>
+                                    <span ng-hide="item.FatherLandNumber===null">{{item.FFLandCountyCode+(item.FatherLandAreaCode!==null?'-'+item.FatherLandAreaCode:'')+'-'+item.FatherLandNumber}}</span></h5>
                             </div>
                         </div>
 
