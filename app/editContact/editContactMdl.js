@@ -67,7 +67,7 @@
                 Email: IEmail,
                 intCusID: custID,
                 EmpID: loginEmpid,
-                Admin: 1,
+                Admin: authSvc.isAdmin(),
                 SibblingFlag: ISibblingFlag,
                 FFMobileCountryID: FFcountryCode,
                 FFMobileNumber: FFNumber,

@@ -13,9 +13,15 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
 ]);
 
 
+<<<<<<< HEAD
+=======
+app.apiroot = 'http://52.66.131.254:8025/Api/';
+app.apipathold = 'http://52.66.131.254:8010/Api/';
 
-app.apiroot = 'http://183.82.0.58:8025/Api/';
-app.apipathold = 'http://183.82.0.58:8010/Api/';
+>>>>>>> c8e5239bda88c3938478e12210e1272991ba1949
+
+// app.apiroot = 'http://183.82.0.58:8025/Api/';
+// app.apipathold = 'http://183.82.0.58:8010/Api/';
 app.env = "dev";
 app.payfixedAmt = 100;
 app.paypoints = 10;
