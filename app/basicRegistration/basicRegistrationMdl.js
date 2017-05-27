@@ -18,8 +18,6 @@
         model.emailmeessages = false;
         model.mobilemessages = false;
         var monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        //  model.emailpattaren = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,3}(?:\.[a-z]{2})?)$/i;
-        // model.emailpattaren = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/i;
         model.emailpattaren = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/i;
         //end declaration
 
@@ -124,7 +122,7 @@
         //     }
         // };
         model.mobilemailvalidation = function() {
-           
+
             if (model.reg.Chkfree_reg === true) {
                 if ((model.reg.txtEmail !== "" && model.reg.txtEmail !== undefined && model.reg.txtEmail !== null)) {
                     model.mobilenumberrequired = false;
