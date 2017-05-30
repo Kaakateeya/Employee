@@ -61,7 +61,6 @@
             model.bindEmpnames = function() {
                 SelectBindServiceApp.EmpwithBranch('ProfileBranch', '').then(function(response) {
                     var empBranchData = response.data;
-                    var branchids = '1';
                     _.each(empBranchData, function(item) {
                         model.EmpNamesArr.push({ "label": item.Name, "title": item.Name, "value": item.ID, ParentName: item.BranchesName });
                     });
@@ -240,7 +239,6 @@
             };
             model.bindreplytype = function() {
                 if (model.ReplyArr.length === 0) {
-
                     matchFollowupServices.bothreplytypeBind().then(function(response) {
                         var data = response.data[0];
 
@@ -317,7 +315,6 @@
                 if (type === 'sms') {
                     model.smsInput.strbody = model.txtsmsmail;
                     matchFollowupServices.sendSms(model.smsInput).then(function(response) {
-
                         if (parseInt(response.data) === 1) {
                             model.proceed.closepopup();
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'sms sent successfully', 9500);

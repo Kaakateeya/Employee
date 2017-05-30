@@ -23,6 +23,7 @@ app.env = "dev";
 app.payfixedAmt = 100;
 app.paypoints = 10;
 app.payDays = 30;
+
 app.PaymentDays = parseInt(app.payDays) / parseInt(app.payfixedAmt);
 app.paymentPoints = parseInt(app.paypoints) / parseInt(app.payfixedAmt);
 app.ServiceTaxPercent = 14 / 100;

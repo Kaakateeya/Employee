@@ -43,6 +43,7 @@
         model.refreshPageLoad = function(Arr) {
 
             _.each(Arr, function(item) {
+
                 genderID = item.GenderID;
                 debugger;
                 model.rbtProtectPassword = item.PhotoPassword === 'Admin@123' ? '1' : '0';
