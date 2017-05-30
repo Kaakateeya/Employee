@@ -313,6 +313,7 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                 });
                 // Watch for any changes from outside the directive and refresh
                 scope.$watch('ngModel', function() {
+                    // console.log(scope.ngModel);
                     element.multiselect('refresh');
                 });
             }
