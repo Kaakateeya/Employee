@@ -2,7 +2,7 @@
     'use strict';
 
     function factory($http, dashboardServices, uibModal, authSvc, helperservice, window,
-        commonpage, $filter, fileUpload, alerts, config) {
+        commonpage, $filter, fileUpload, alerts, config, arrayConstants) {
         return function() {
             var model = {};
             model = config;
@@ -14,6 +14,11 @@
             model.selectedIndex = 0;
             model.tabsshowhidecontrols = true;
             model.landingItems = [];
+            model.Hoursarray = [];
+            model.miniutearray = [];
+            model.calltypearray = [];
+            model.replaytypearray = [];
+            model.categoryarray = [];
             model.templateUrl = "templates/dashBoardslide.html";
             model.headettemp = "dashboardheader.html";
             model.exportData = function(id) {
@@ -38,8 +43,13 @@
                 alasql('SELECT Sno,Profileid,Name,Date INTO  XLSX("john.xlsx",?) FROM ?', [options, model.exportDataarray]);
                 // alasql('SELECT * INTO  XLSX("john.xlsx",{headers:true}) FROM ?', [model.exportDataarray]);
             };
+            model.dateOptions = {
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-40:+5",
+                dateFormat: 'dd-mm-yy'
+            };
             model.tabledata = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
-
                 dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                     if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
                         if (type === 'pageload') {
@@ -99,12 +109,39 @@
                     model.tabledata(empid, branchcode, frompage, topage, tablename, type, array, slideflag);
                 }
             };
+            model.controlsbind = function() {
+
+            };
+
+            model.getnumberbind = function(fromval, Toval, str, incrementval) {
+                var options = [];
+                options.push({ label: str, title: str, value: "" });
+                for (var i = fromval; i <= Toval; i += incrementval) {
+                    if (i < 10) {
+                        options.push({ label: "0" + i + " " + str, title: "0" + i + " " + str, value: (parseInt(i) + 1) });
+                    } else {
+
+                        options.push({ label: i + " " + str, title: i + " " + str, value: (parseInt(i) + 1) });
+                    }
+                }
+                return options;
+            };
+            model.replytype = function(type) {
+                var options = [];
+                options.push({ label: '--select--', title: '--select--', value: "" });
+                if (type === 'calltype') {
+                    var calltypeArray = [{ value: 377, text: 'INCOMING' }, { value: 378, text: 'OUT GOING' }, { value: 379, text: 'INTERNAL MEMO' }];
+                    for (var i = 0; i < calltypeArray.length; i++) {
+                        options.push({ label: calltypeArray[i].text, title: calltypeArray[i].text, value: calltypeArray[i].value });
+                    }
+                }
+                return options;
+            };
             model.init = function() {
                 if (model.empid !== null && model.empid !== "" && model.empBranchID !== null && model.empBranchID !== "") {
                     model.tabledata(model.empid, model.empBranchID, 1, 5, '', 'pageload', undefined, 0);
                 }
             };
-
             model.viewfullprofile = function(profileid) {
                 window.open("Viewfullprofile/" + profileid + "/0", "_blank");
             };
@@ -290,7 +327,10 @@
                         Ticketuserid: item.Ticketuserid,
                         CountryCode: item.CountryCode,
                         PrimaryContact: item.PrimaryContact,
-                        PriWithoutCode: item.PriWithoutCode
+                        PriWithoutCode: item.PriWithoutCode,
+                        EmpReminderID: item.EmpReminderID,
+                        ReminderCreatedDate: item.ReminderCreatedDate,
+                        ReminderCreatedDatepopup: $filter('date')(item.ReminderCreatedDate, 'dd-MM-yyyy')
 
                     });
                 });
@@ -374,8 +414,47 @@
                     }
                 });
             };
-            model.changereminder = function(profileid) {
+            model.changereminder = function(slidearray) {
+                model.reminderslidearray = {};
+                model.reminderslidearray = slidearray;
+                model.txtprofileidreminder = slidearray.ProfileID;
+                model.reminderticketid = slidearray.matkteingticket;
+                model.txtreminderDate = $filter('date')(slidearray.ReminderCreatedDate, "dd-MM-yyyy");
+                model.ddlHrs = "";
+                model.ddlmins = "";
+                model.ddlcontactperson = "";
+                model.ddlremCatgory = 0;
+                model.ddlremCaltype = "";
+                commonpage.showPopupphotopoup('Reminderticket.html', model.scope, 'md', "modalclassdashboardremainder");
+                model.Hoursarray = model.getnumberbind(0, 23, 'Hrs', 1);
+                model.miniutearray = model.getnumberbind(0, 59, 'Mins', 1);
+                model.calltypearray = model.replytype('calltype');
+                model.replaytypearray = arrayConstants.childStayingWith;
+                model.categoryarray = arrayConstants.catgory;
 
+            };
+            model.reminderSubmit = function(obj) {
+                var Mobj = {
+                    ProfileID: obj.txtprofileidreminder,
+                    ReminderID: model.reminderslidearray.EmpReminderID,
+                    EmpID: model.empid,
+                    TicketID: model.reminderslidearray.Emp_Ticket_Id,
+                    DateOfReminder: $filter('date')(obj.txtreminderDate, 'dd-MM-yyyy'),
+                    ReminderType1: obj.ddlremCaltype,
+                    Body: obj.remembertickets,
+                    RelationID: obj.ddlcontactperson,
+                    Name: obj.contactpersonname,
+                    Category: obj.ddlremCatgory,
+                    IsFollowup: 0
+                };
+                commonpage.closepopuppoptopopup();
+                dashboardServices.upadateremainderdate(Mobj).then(function(response) {
+                    if (response !== undefined && response.data === parseInt(1)) {
+                        alerts.timeoutoldalerts(model.scope, 'alert-success', 'Reminder date  Updated Successfully', 3000);
+                    } else {
+                        alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Reminder date Updated Failed', 3000);
+                    }
+                });
             };
             return model;
         };
@@ -384,6 +463,6 @@
         .module('Kaakateeya')
         .factory('dashboardModel', factory);
     factory.$inject = ['$http', 'dashboardServices', '$uibModal', 'authSvc', 'helperservice', '$window',
-        'modelpopupopenmethod', '$filter', 'fileUpload', 'alert', 'complex-slide-config'
+        'modelpopupopenmethod', '$filter', 'fileUpload', 'alert', 'complex-slide-config', 'arrayConstants'
     ];
 })(angular);

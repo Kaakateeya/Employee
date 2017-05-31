@@ -147,8 +147,10 @@
             </span></h6>
             <h5>
                 <div style="color:Black;">
-                    <span ng-show="model.typeofslidedate!=='Ticket Last Updated'">{{slide.CreatedDate}}
-                        <a class="alllinkscolor" href="javascript:void(0)" ng-click="model.changereminder(slide.ProfileID)" ng-if="slide.CreatedDate!==null && slide.CreatedDate!=='' && slide.CreatedDate!==undefined && model.typeofslidedate==='Reminder Date'">Change Reminder</a>
+                    <span ng-show="model.typeofslidedate!=='Ticket Last Updated' && model.typeofslidedate!=='Reminder Date'">{{slide.CreatedDate}}
+                    </span>
+                    <span ng-show="model.typeofslidedate==='Reminder Date'">{{slide.ReminderCreatedDatepopup}}
+                        <a class="alllinkscolor" href="javascript:void(0)" ng-click="model.changereminder(slide)" ng-if="slide.CreatedDate!==null && slide.CreatedDate!=='' && slide.CreatedDate!==undefined && model.typeofslidedate==='Reminder Date'">Change Reminder</a>
                     </span>
                     <span ng-show="model.typeofslidedate==='Ticket Last Updated'">{{slide.LastModifiedDate}}</span>
                 </div>
