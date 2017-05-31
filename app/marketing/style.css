@@ -25,10 +25,11 @@ span.multiselect-selected-text {
 .checkbox input[type=checkbox] {
   position: relative; }
 
+.maroon {
+  color: maroon; }
+
 #marketingdivid div#myCarousel.carousel.slide {
   color: gray; }
-#marketingdivid .maroon {
-  color: maroon; }
 #marketingdivid .pauseBtns {
   text-align: center; }
 #marketingdivid .carousel-control {
@@ -60,5 +61,16 @@ span.multiselect-selected-text {
   pointer-events: none;
   cursor: default;
   opacity: 0.6; }
+#marketingdivid .nologinCls {
+  border: 1px solid;
+  border-color: orange;
+  border-radius: 20px;
+  width: 83%; }
+#marketingdivid .fa-check-circle:before {
+  color: green; }
+
+.Setlemainclss {
+  font-size: 16px;
+  line-height: 28px; }
 
 /*# sourceMappingURL=style.css.map */

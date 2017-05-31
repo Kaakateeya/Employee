@@ -33,6 +33,12 @@
                     }
                 });
             },
+            SettleDeleteInactive: function(custID, typeOfData) {
+                return http.get(app.apiroot + 'CustomerPersonal/getViewAllCustomersSettledeleteinfo', { params: { CustID: custID, typeofdata: typeOfData } });
+            },
+            ResendMail: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/MatchFollowupResendMail', obj);
+            }
         };
     }
 

@@ -31,12 +31,13 @@ span.multiselect-selected-text {
     position: relative;
 }
 
+.maroon {
+    color: maroon;
+}
+
 #marketingdivid {
     div#myCarousel.carousel.slide {
         color: gray;
-    }
-    .maroon {
-        color: maroon;
     }
     .pauseBtns {
         text-align: center;
@@ -86,6 +87,20 @@ span.multiselect-selected-text {
         cursor: default;
         opacity: 0.6;
     }
+    .nologinCls {
+        border: 1px solid;
+        border-color: orange;
+        border-radius: 20px;
+        width: 83%;
+    }
+    .fa-check-circle:before {
+        color: green;
+    }
+}
+
+.Setlemainclss {
+    font-size: 16px;
+    line-height: 28px;
 }
 
 // $columns: 32;

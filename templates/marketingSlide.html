@@ -14,10 +14,8 @@
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="slide.Photo.indexOf('noimage') !== -1 && slide.Photo.indexOf('_Rev') === -1 && model.siblingsFlag!==1" ng-click="model.PhotoRequest(slide.ProfileID,slide.Emp_Ticket_ID);">Photo Request</a>
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="!slide.Lastlogin  && model.siblingsFlag!==1" ng-click="model.forgetpassword(slide.ProfileID);">Forgot Password</a>
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag!==1" ng-click="model.NotIntrstToPay('P',slide.Emp_Ticket_ID,slide.CustID);">Not Int To Pay</a>
-
-
-                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-class="slide.settleddeleted?'':'linkdisabled'" ng-show="model.siblingsFlag===1" ng-click="model.NotIntrstToPay('Y',slide.Emp_Ticket_ID,slide.CustID);">{{slide.settleddeleted?'Show':'No'}} SA Form</a>
-                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag===1" ng-click="model.NotIntrstToPay('Y',slide.Emp_Ticket_ID,slide.CustID);">Set/Del Reason</a>
+                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-class="slide.settleddeleted?'':'linkdisabled'" ng-show="model.siblingsFlag===1" ng-click="model.showSAmethod(slide.SAPath);">{{slide.settleddeleted?'Show':'No'}} SA Form</a>
+                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag===1" ng-click="model.getSettleDelete(slide.ProfileStatusID,slide.CustID);">Set/Del Reason</a>
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag===1" ng-click="model.NotIntrstToPay('Y',slide.Emp_Ticket_ID,slide.CustID);">Sibling Created</a>
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-click="model.NotIntrstToPay('N',slide.Emp_Ticket_ID,slide.CustID);">Do not Disturb</a>
 
@@ -35,15 +33,14 @@
                         <a href="javascript:void(0);">{{slide.BI}}</a> , OppI :<a href="javascript:void(0);">{{slide.OppI}}</a>
                     </div>
                     <img id="CustImg11" ng-click='slidepopup(slide.CustID)' ng-src='{{slide.Photo}}' class="imgCls">
-                    <div style="line-height: 22px;"><br><b>{{slide.CustomerName}} (<b><a href="javascript:void(0)" id="lnkProfileID11"  class="">{{slide.ProfileID}}</a> - {{slide.registeredBranch}})</b></b><br>
+                    <div style="line-height: 22px;"><br><b>{{slide.CustomerName}} (<b><a href="javascript:void(0)" ng-click="model.ViewProfile(slide.ProfileID);">{{slide.ProfileID}}</a> - {{slide.registeredBranch}})</b></b><br>
                         <div ng-show="model.guestticketFlag!==1">
                             <div>
                                 <span class="maroon">DOR:</span> {{slide.RegistrationDate}}
                             </div>
                             <br><span>
-                        <span class="maroon" >Create Reminder </span>
-                            <label style="display:none;"></label> &nbsp;
-                            <a class="fa fa-pencil-square-o Linkdisabled" title="Create Reminder" href="javascript:void(0)"></a>
+                        <span class="maroon"> {{slide.ReminderDate?'Reminder date:':'Create Reminder'}}    </span>
+                            <a ng-class="slide.ReminderDate?'':'fa fa-pencil-square-o Linkdisabled'" title="Create Reminder" href="javascript:void(0)">{{slide.ReminderDate?slide.ReminderDate:''}}</a>
                             </span>
                         </div>
                     </div>
@@ -51,22 +48,26 @@
             </div>
         </div><br>
         <div ng-show="model.guestticketFlag!==1">
-            <div class="col-lg-7 col-lg-offset-4"><a href="javascript:void(0);" id="lnkmissingmail" style="font-weight: bold;">Send Full Profile Tocustomer</a></div><br>
-            <div class="col-lg-12 col-lg-push-2" style="border:1px solid;border-color:orange;border-radius: 20px;width:81%;display:block;">
+            <div class="col-lg-7 col-lg-offset-4" ng-show="model.siblingsFlag!==1"><a href="javascript:void(0);" ng-click="model.Resendmail(slide.CustID,slide.ProfileID);" style="font-weight: bold;">Send Full Profile Tocustomer</a></div><br>
+            <div class="col-lg-12 col-lg-push-2" ng-show="model.siblingsFlag!==1" style="border:1px solid;border-color:orange;border-radius: 20px;width:81%;display:block;">
                 <div class="row">
-                    <div class="col-lg-6" id="lnkEducationProfessiondiv" style="display:none;"><a id="lnkEducationProfession" href="javascript:void(0);" style="color: red;font-underline:true;">No Education &amp; Profession</a></div>
-                    <div class="col-lg-6" id="lnkParentDetailsdiv" style="display:none;"><a id="lnkParentDetails" href="javascript:void(0);" style="color: red;font-underline:true;">No Parent Details</a></div>
-                    <div class="col-lg-6" id="lnkSiblingdiv" style="display:block;"><a id="lnkSibling" href="javascript:void(0);" style="color: red;font-underline:true;">No Sibling Details</a></div>
-                    <div class="col-lg-6" id="lnkAstroDetailsdiv" style="display:block;"><a id="lnkAstroDetails" href="javascript:void(0);" style="color: red;font-underline:true;">No Astro Details</a></div>
-                    <div class="col-lg-6" id="lnkPropertyDetailsdiv" style="display:block;"><a id="lnkPropertyDetails" href="javascript:void(0);" style="color: red;font-underline:true;">No Property Details</a></div>
+                    <div class="col-lg-6" ng-repeat="itm in slide.nodataFoundArr">
+                        <a href="javascript:void(0);" ng-click="model.editRedirect(slide.CustID,itm.type)" style="color: red;font-underline:true;">{{itm.displayname}}</a>
+                    </div>
                 </div>
             </div>
             <div class="clearfix">
             </div>
             <br>
-            <div class="col-lg-12 col-lg-push-2" style="border:1px solid;border-color:orange;border-radius: 20px;width:81%;display:block;">
+            <div class="col-lg-12 col-lg-push-2 nologinCls">
                 <div class="row text-left">
-                    <div class="col-lg-12" style="font-weight:bold;">No logins since registration,click forgot password</div>
+                    <div class="col-lg-12" style="font-weight:bold;">
+                        <span>{{slide.Lastlogin?'':'No logins since registration,click forgot password'}}</span>
+                        <div ng-if="slide.Lastlogin">
+                            <span class="maroon">Last login Date</span>
+                            <span>{{slide.Lastlogin}}</span>
+                        </div>
+                    </div>
                     <div class="clearfix"></div><br>
                     <div>
                         <div class="col-lg-10" style="color:maroon;"><label>No of logins</label></div>
@@ -106,22 +107,36 @@
     </div>
     <div class="col-lg-7 rightdiv">
         <div>
-            <div class="text-center"><b><u><a href="javascript:void(0);" id="lblticID11">{{slide.TicketID}}</a></u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="return redirecttoContactPage(97374,141,1);">  ViewContacts/Edit Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Delayed : </label><label>  {{slide.NoofDays}}</label></b></div>
+            <div class="text-center"><b><u><a href="javascript:void(0);" id="lblticID11">{{slide.TicketID}}</a></u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" ng-click="model.redirectContact(slide.CustID);">  ViewContacts/Edit Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Delayed : </label><label>  {{slide.NoofDays}}</label></b></div>
             <br>
             <div class="row">
-                <div class="text-left"><b class="maroon" style="padding-left:10px;"> Mobile : </b><b>{{slide.PrimaryContactNumberCountyCode}} -{{slide.PrimaryContactNumber}}&nbsp;<span class="glyphicon glyphicon-ok"></span></b> <b style=""><a href="javascript:void(0);" >&nbsp;&nbsp;verify mobile</a></b>                    </div>
-                <div class="text-left"><b class="maroon" style="padding-left:10px;">Email : </b><b>{{slide.PrimaryEmail}}&nbsp;<span class="glyphicon glyphicon-ok"></span></b> <b style=""><a href="javascript:void(0);" >&nbsp;&nbsp;verify email</a></b> </div>
+                <div class="text-left"><span class="maroon" style="padding-left:10px;"> Mobile : </span>
+                    <span>{{slide.PrimaryContactNumberCountyCode}} -{{slide.PrimaryContactNumber}}&nbsp;
+                        <b  ng-class="slide.IsMobileVerified==='False'?'glyphicon glyphicon-ok':'fa fa-check-circle'"></b>
+                    </span>
+                    <a href="javascript:void(0);" ng-show="slide.IsMobileVerified==='False'" ng-click="model.sendMobileCode(slide.primaryCountryID,slide.PrimaryContactNumberCountyCode,slide.PrimaryContactNumber,slide.IsCustContactNumbersID);">&nbsp;&nbsp;verify mobile</a>
+                </div>
+                <div class="text-left"><span class="maroon" style="padding-left:10px;">Email : </span> {{slide.PrimaryEmail}}
+                    <b ng-class="slide.isEmailVerified==='False'?'glyphicon glyphicon-ok':'fa fa-check-circle'"></b>
+                    <a href="javascript:void(0);" ng-show="slide.isEmailVerified==='False'" ng-click="model.verifymail(slide.CustID);">&nbsp;&nbsp;verify email</a> </div>
             </div>
         </div> <br>
         <div class="row text-left">
+
+
             <div class="col-lg-6"><span class="maroon" style="font-size:12px;font-weight:bold;">Proposed Reg Fee</span><br>
-                <div id="feeEdit11" style="display:none;"><label id="lblfee11"></label> {{slide.Feedetails}} &nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="return editFee(11);">Edit </a></div>
-                <div id="feeupdate11" style="display:block;"><input type="text" class="form-control" id="txtfees11" style="width:80px;float:left;" onkeydown="return !(event.keyCode == 32);" maxlength="7" value="">&nbsp;&nbsp;&nbsp;<a id="lnkfeeupdate11" href="javascript:void(0);">Save </a></div>
+                <label ng-if="slide.Feedetails && slide.editval==='Edit'">{{slide.Feedetails}}</label>
+                <input type="text" ng-model="slide.txtFeeValue" ng-if="!slide.Feedetails || slide.editval!=='Edit'" class="form-control" style="width:80px;float:left;" maxlength="7">
+                <a href="javascript:void(0);" ng-click="model.updateREGFee(slide,slide.txtFeeValue);">{{slide.editval}} </a>
             </div>
-            <div class="col-lg-6"> <span class="maroon" style="font-size:12px;font-weight:bold;"> Proposed SA Fee</span><br>
-                <div id="SAEditdiv11" style="display:none;"><label id="lblSAamount11"></label>{{slide.SettlementValue}}&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="return editSAamount(11);"> Edit </a></div>
-                <div id="SAupdatediv11" style="display:block;"><input type="text" class="form-control" id="txtSAamount11" style="width:80px;float:left;" onkeydown="return !(event.keyCode == 32);" maxlength="7" value="">&nbsp;&nbsp;&nbsp;<a id="lnksaupdate11" href="javascript:void(0);">Save </a></div>
+
+
+            <div class="col-lg-6"><span class="maroon" style="font-size:12px;font-weight:bold;">Proposed SA Fee</span><br>
+                <label ng-if="slide.SettlementValue && slide.editSAval==='Edit'">{{slide.SettlementValue}}</label>
+                <input type="text" ng-model="slide.txtSAFeeValue" ng-if="!slide.SettlementValue || slide.editSAval!=='Edit'" class="form-control" style="width:80px;float:left;" maxlength="7">
+                <a href="javascript:void(0);" ng-click="model.updateSAFee(slide,slide.txtSAFeeValue);">{{slide.editSAval}} </a>
             </div>
+
         </div>
         <br>
         <div>

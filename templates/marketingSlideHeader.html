@@ -69,7 +69,7 @@
                                </select>
                         </div>
                         <div class="col-lg-4">
-                            <input type="submit" class="btn btn-danger" value="Submit" ng-click="model.MarketingTicket(0,0,0,0);">
+                            <input type="submit" class="btn btn-danger" value="Submit" ng-click="model.MarketingSlideShowBind(1, 10);">
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
         <input type="submit" ng-class="model.ActiveButton==='guest'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('guest',2,0,1, 0, 0, 5);" value="Guest Tkts" />&nbsp;
         <input type="submit" ng-class="model.ActiveButton==='online'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('online',2,0, 0,1,0, 6);" value="Online Exprd" />&nbsp;
         <input type="submit" ng-class="model.ActiveButton==='offline'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('offline',2, 0, 0, 0, 1,7);" value="Offline Exprd" />&nbsp;
-        <input type="submit" ng-class="model.ActiveButton==='notinpay'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('notinpay',0, 0, 0, 0, 4, 'P');" value="NotInPay" />
+        <input type="submit" ng-class="model.ActiveButton==='notinpay'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('notinpay',2,0, 0, 0, 0, 4, 'P');" value="NotInPay" />
 
     </div>
 </div>

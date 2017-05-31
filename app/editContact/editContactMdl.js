@@ -134,12 +134,9 @@
                     if (item !== undefined) {
                         model.candidateobj.emaILcust_family_id = item.emaILcust_family_id;
 
-
-
                         model.candidateobj.ddlcandidateMobileCountryID = commonFactory.checkvals(item.Candidatemobilecountrycode) ? parseInt(item.Candidatemobilecountrycode) : 0;
                         model.candidateobj.txtcandidatemobilenumber = item.CandidateMobileNumber;
                         if (commonFactory.checkvals(item.Candidatelandareacode)) {
-
                             model.candidateobj.ddlcandidateLandLineCountry = commonFactory.checkvals(item.CandidateLandlinecountrycode) ? parseInt(item.CandidateLandlinecountrycode) : 0;
                             model.candidateobj.txtcandidateAreCode = item.Candidatelandareacode;
                             model.candidateobj.txttxtcandidateAreCodeLandNumber = item.CandidateLandlinenumber;
@@ -148,7 +145,6 @@
                             model.candidateobj.txtFBMobileNumber2 = item.CandidateLandlinenumber;
                         }
                         model.candidateobj.txtcandidateEmails = item.CandidateEmail;
-
                     }
                     commonFactory.open('candidateContactContent.html', model.scope, uibModal);
 
@@ -419,8 +415,6 @@
             }
 
         };
-
-
 
 
         return model.init();

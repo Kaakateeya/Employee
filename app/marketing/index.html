@@ -57,3 +57,109 @@
         <button class="button_custom pull-right" ng-click="page.model.smsMailSubmit(page.model.typeofmailSms);">send {{page.model.typeofmailSms}}</button>
     </div>
 </script>
+
+
+<script type="text/ng-template" id="settlePopup.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click='page.model.closepopup();'>×</button>
+        <h4 class="modal-title">Settle/Delete Details</h4>
+    </div>
+    <div class="modal-body">
+        <div class="Setlemainclss" id="settle" ng-if="page.model.typeOfProfile==='S'">
+            <div class="row">
+                <div class="col-lg-4 maroon"><label for="" class="control-label pull-right">Bride Details</label></div>
+                <div class="col-lg-6">{{page.model.settleArr.BrideProfileID}}-{{page.model.settleArr.BrideName}}</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 maroon"><label for="" class="control-label  pull-right">Bride Owner</label></div>
+                <div class="col-lg-6">{{page.model.settleArr.BrideOwner}} </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 maroon"><label for="" class="control-label  pull-right">Groom Details</label></div>
+                <div class="col-lg-6">{{page.model.settleArr.GroomProfileID}}-{{page.model.settleArr.GroomName}}</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 maroon"><label for="" class="control-label  pull-right">Groom Owner</label></div>
+                <div class="col-lg-6">{{page.model.settleArr.GroomOwner}}</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 maroon"><label for="" class="control-label  pull-right">Settled Date</label></div>
+                <div class="col-lg-6">{{page.model.settleArr.SettledDate}}</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 maroon"><label for="" class="control-label  pull-right">Settled By</label></div>
+                <div class="col-lg-6">{{page.model.settleArr.settletedby}}</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-11">{{page.model.settleArr.Settlenotes}}</div>
+            </div>
+
+            <br>
+
+        </div>
+        <div class="Setlemainclss" id="delete" ng-if="page.model.typeOfProfile==='D'">
+
+            <div class="row">
+                <div class="col-lg-4 maroon"><label for="" class="control-label  pull-right">Deleted Details</label></div>
+                <div class="col-lg-6">{{page.model.settleArr.ProfileID}}</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 maroon"><label for="" class="control-label  pull-right">Deleted Profile Owner</label></div>
+                <div class="col-lg-6">{{page.model.settleArr.NAME}}</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 maroon"><label for="" class="control-label  pull-right">Deleted Date</label></div>
+                <div class="col-lg-6">{{page.model.settleArr.DeletedDate}}</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 maroon"><label for="" class="control-label  pull-right">Deleted By</label></div>
+                <div class="col-lg-6">{{page.model.settleArr.DeleteBy}}</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-11">{{page.model.settleArr.deletenotes}}</div>
+            </div>
+
+            <br>
+        </div>
+    </div>
+</script>
+
+
+<script type="text/ng-template" id="verifyMobileContentmar.html">
+    <form name="refForm" novalidate role="form" ng-submit="page.model.verifyMobCode(page.model.verifymobObj.txtVerificationcode)">
+        <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-title">Mobile verification code sent successfully to {{page.model.popupMobilenumber}}
+                <a href="javascript:void(0);" ng-click="page.model.cancel();">
+                    <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="25"></ng-md-icon>
+                </a>
+            </h3>
+        </div>
+        <div class="modal-body clearfix pop_content_my" id="modal-body">
+            <ul>
+                <li class="clearfix">
+                    <div class="row">
+                        <span style="color: #000; font-size: 13px; margin-left: 20px; font-weight: bold;">Click yes, If you want to verify by you 
+                        </span>
+                    </div>
+                    <br />
+                    <div id="Divrbt" class="radio-group-my" runat="server">
+                        <label class="control-label">
+               <md-radio-group name="rbtnVerf" layout="row" ng-model="page.model.verifymobObj.rbtnVerf" class="md-block" ng-change="page.model.verifymobObj.rbtnVerf==='2'?page.model.cancel():''" flex-gt-sm ng-disabled="manageakerts">
+                            <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                            <md-radio-button value="2"> No </md-radio-button>
+                        </md-radio-group>
+                     </label>
+                    </div>
+                    <br />
+                    <br />
+                    <div ng-if="page.model.verifymobObj.rbtnVerf==='1'">
+                        <b>Mobile verify Code : </b><input type="text" height="40" ng-model="page.model.verifymobObj.txtVerificationcode" maxlength="6" class="form-control" style="width:50%;" />
+                    </div>
+                </li>
+                <li class="row">
+                    <edit-footer></edit-footer>
+                </li>
+            </ul>
+        </div>
+    </form>
+</script>
