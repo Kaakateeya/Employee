@@ -79,6 +79,12 @@ body {
     left: 0%;
 }
 
+.modalclassdashboardremainder {
+    z-index: 9999999 !important;
+    top: 0%;
+    left: 0%;
+}
+
 .modalheader {
     padding: 0px !important;
 }
@@ -192,6 +198,10 @@ span.fa.fa-angle-down {
 
 .modalclassdashboardphotopopup .modal-dialog.modal-md {
     width: 70%;
+}
+
+.modalclassdashboardremainder .modal-dialog.modal-md {
+    //  width: 70%;
 }
 
 md-content.md-padding._md {
@@ -315,4 +325,44 @@ c.maroon {
 
 body .container.body .right_col {
     background: white !important;
+}
+
+.reminderticket {
+    .smalldropdown {
+        width: 100px;
+        height: 33px;
+        cursor: pointer;
+        text-rendering: auto;
+        letter-spacing: normal;
+        word-spacing: normal;
+        text-indent: 0px;
+        text-shadow: none;
+        text-align: start;
+        text-overflow: ellipsis;
+        margin-right: 26px;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-top: 1px;
+    }
+}
+
+.reminderticket {
+    .smalldropdownperson {
+        width: 140px;
+        height: 33px;
+        cursor: pointer;
+        text-rendering: auto;
+        letter-spacing: normal;
+        word-spacing: normal;
+        text-indent: 0px;
+        text-shadow: none;
+        text-align: start;
+        text-overflow: ellipsis;
+        margin-right: 26px;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-top: 1px;
+    }
 }
