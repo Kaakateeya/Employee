@@ -5,7 +5,8 @@
   color: #23527c;
   background-color: transparent;
   background-image: none;
-  border-color: #23527c; }
+  border-color: #23527c;
+  margin-bottom: 11%; }
 
 .multiselect {
   margin: 0; }
@@ -28,8 +29,36 @@ span.multiselect-selected-text {
   color: gray; }
 #marketingdivid .maroon {
   color: maroon; }
-
 #marketingdivid .pauseBtns {
   text-align: center; }
+#marketingdivid .carousel-control {
+  width: 4%; }
+#marketingdivid .imgCls {
+  border: 1px solid gray; }
+#marketingdivid .width, #marketingdivid .smalldropdown.btn-group, #marketingdivid .pop_controls_right > input {
+  width: 100% !important; }
+#marketingdivid .smalldropdown.btn-group {
+  max-width: 70px !important; }
+#marketingdivid .pop_label_left {
+  text-align: left; }
+#marketingdivid .ticketpopuppopupheader {
+  margin-top: -10px;
+  border: 1px solid rgba(103, 58, 183, 0.3);
+  border-radius: 10px; }
+#marketingdivid .md-padding {
+  padding: 0 !important; }
+#marketingdivid .dashboardticketpopup {
+  color: #673AB7; }
+#marketingdivid .rightdiv {
+  border: 1px solid;
+  border-color: orange;
+  border-radius: 20px; }
+#marketingdivid .servicedate {
+  font-size: 13px;
+  font-weight: bold; }
+#marketingdivid .linkdisabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.6; }
 
 /*# sourceMappingURL=style.css.map */

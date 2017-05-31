@@ -195,7 +195,6 @@
             }
 
             commonFactory.open('commonEduCatiobpopup.html', model.scope, uibModal);
-
         };
 
         model.cancel = function() {

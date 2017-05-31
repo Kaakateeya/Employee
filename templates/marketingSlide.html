@@ -1,108 +1,444 @@
-<div class="row container">
-    {{slide.custid}}
-    <div class="col-lg-6 col-lg-offset-1" style="border-radius: 20px">
+<div class="row container" id="marketingdivid">
+
+    <div class="col-lg-5" style="border-radius: 20px">
         <div>
             <div class="row">
-                <div class="col-lg-3">
-                    <div><img src="http://d16o2fcjgzj2wp.cloudfront.net/Images/EmployeeImages/HD006_EmplyeeImage/HD006_EmplyeeImage.jpg" height="57px" width="57px" class="center-block"></div>Alekhya M<br><br><u><a href="javascript:void(0);" class="btn btn-success-outline">Send SMS</a></u><br><br>
-                    <a href="javascript:void(0);" class="btn btn-success-outline">Send Mail</a>
-                    <a href="javascript:void(0);" style="display:none;" class="btn btn-success-outline">Missing Fields</a><br><br>
-                    <a href="javascript:void(0);" class="btn btn-success-outline">Photo Request</a><br><br><a href="javascript:void(0);" class="btn btn-success-outline">Not Int To Pay</a><br><br>
-                    <a href="javascript:void(0);" class="btn btn-success-outline">Do not Distrub</a>
+                <div class="col-lg-3 col-lg-offset-1 text-left lh-">
+                    <div>
+                        <img ng-src="{{slide.EmpPhoto}}" height="57px" width="57px">
+                    </div>{{slide.EmpName}}<br><br>
+                    <div ng-show="model.guestticketFlag!==1">
+                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag!==1" ng-click="config.openSmsMail('sms',slide.CustomerName,slide.ProfileID,slide.PrimaryEmail,slide.PrimaryContactNumber,slide.PrimaryContactNumberCountyCode,slide.Emp_Ticket_ID,slide.EmpName);">Send SMS</a>
+                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag!==1" ng-click="config.openSmsMail('mail',slide.CustomerName,slide.ProfileID,slide.PrimaryEmail,slide.PrimaryContactNumber,slide.PrimaryContactNumberCountyCode,slide.Emp_Ticket_ID);">Send Mail</a>
+                        <a href="javascript:void(0);" style="display:none;" class="btn btn-success-outline">Missing Fields</a>
+                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="slide.Photo.indexOf('noimage') !== -1 && slide.Photo.indexOf('_Rev') === -1 && model.siblingsFlag!==1" ng-click="model.PhotoRequest(slide.ProfileID,slide.Emp_Ticket_ID);">Photo Request</a>
+                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="!slide.Lastlogin  && model.siblingsFlag!==1" ng-click="model.forgetpassword(slide.ProfileID);">Forgot Password</a>
+                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag!==1" ng-click="model.NotIntrstToPay('P',slide.Emp_Ticket_ID,slide.CustID);">Not Int To Pay</a>
+
+
+                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-class="slide.settleddeleted?'':'linkdisabled'" ng-show="model.siblingsFlag===1" ng-click="model.NotIntrstToPay('Y',slide.Emp_Ticket_ID,slide.CustID);">{{slide.settleddeleted?'Show':'No'}} SA Form</a>
+                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag===1" ng-click="model.NotIntrstToPay('Y',slide.Emp_Ticket_ID,slide.CustID);">Set/Del Reason</a>
+                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag===1" ng-click="model.NotIntrstToPay('Y',slide.Emp_Ticket_ID,slide.CustID);">Sibling Created</a>
+                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-click="model.NotIntrstToPay('N',slide.Emp_Ticket_ID,slide.CustID);">Do not Disturb</a>
+
+                        <div ng-show="model.siblingsFlag===1">
+                            <label class='control-label'>Online</label> :{{slide.onlinePayment?'Rs'+slide.onlinePayment:'Unpaid'}}
+                            <br>
+                            <label class='control-label'>Offline</label> : {{slide.offlinePayment?'Rs'+slide.offlinePayment:'Unpaid'}}
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-8 text-center">
-                    <div class="" style="color: maroon;font-size: 13px;font-weight: bold;display:block;">Service Date: 08 Mar 2017 21:44:12</div>
-                    <div style="font-size:14px;display:block;" class="row">PD:<a href="javascript:void(0);">1</a>, DPD:<a href="javascript:void(0);">0</a>, View:<a href="javascript:void(0);">0</a>, NView:
-                        <a href="javascript:void(0);">0</a>, BI:<a href="javascript:void(0);">0</a>, OppI :<a href="javascript:void(0);">0</a></div>
-                    <input type="image" id="CustImg11" ng-click="slidepopup(96429)" src="http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_96429_Images/Img1_Images/110964299_ApplicationPhoto.jpg" class="img-thumbnail" style="border: 1px solid gray;">
-                    <div class="text-center" style="line-height: 22px;"><br><b>Priyanka Gurijala (<b><a href="javascript:void(0)" id="lnkProfileID11"  class="">310973741</a> - WB)</b></b><br>
-                        <div style="display:block;"><b><f class="maroon">DOR:</f> 29 Feb 2016 09:22:25</b></div><br><b><f class="maroon" id="lblcreateremainder11">Create Reminder </f> <label id="lblcreateremainderdate11" style="display:none;"></label>&nbsp; <a class="fa fa-pencil-square-o Linkdisabled" title="Create Reminder" href="javascript:void(0)" ></a></b></div>
+                <div class="col-lg-8">
+                    <div class="maroon servicedate" ng-show="slide.ServiceDate">Service Date: {{slide.ServiceDate}}</div>
+                    <div style="font-size:14px;" class="row" ng-show="slide.ServiceDate">
+                        PD:<a href="javascript:void(0);">{{slide.PD}}</a> , DPD:<a href="javascript:void(0);">{{slide.DPD}}</a> , View:<a href="javascript:void(0);">{{slide.ViewCount}}</a> , NView:<a href="javascript:void(0);">{{slide.NView}}</a> , BI:
+                        <a href="javascript:void(0);">{{slide.BI}}</a> , OppI :<a href="javascript:void(0);">{{slide.OppI}}</a>
+                    </div>
+                    <img id="CustImg11" ng-click='slidepopup(slide.CustID)' ng-src='{{slide.Photo}}' class="imgCls">
+                    <div style="line-height: 22px;"><br><b>{{slide.CustomerName}} (<b><a href="javascript:void(0)" id="lnkProfileID11"  class="">{{slide.ProfileID}}</a> - {{slide.registeredBranch}})</b></b><br>
+                        <div ng-show="model.guestticketFlag!==1">
+                            <div>
+                                <span class="maroon">DOR:</span> {{slide.RegistrationDate}}
+                            </div>
+                            <br><span>
+                        <span class="maroon" >Create Reminder </span>
+                            <label style="display:none;"></label> &nbsp;
+                            <a class="fa fa-pencil-square-o Linkdisabled" title="Create Reminder" href="javascript:void(0)"></a>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div><br>
-        <div class="col-lg-7 col-lg-offset-4"><a href="javascript:void(0);" id="lnkmissingmail" style="font-weight: bold;">Send Full Profile Tocustomer</a></div><br>
-        <div class="col-lg-12 col-lg-push-2" style="border:1px solid;border-color:orange;border-radius: 20px;width:81%;display:block;">
-            <div class="row">
-                <div class="col-lg-6" id="lnkEducationProfessiondiv" style="display:none;"><a id="lnkEducationProfession" href="javascript:void(0);" style="color: red;font-underline:true;">No Education &amp; Profession</a></div>
-                <div class="col-lg-6" id="lnkParentDetailsdiv" style="display:none;"><a id="lnkParentDetails" href="javascript:void(0);" style="color: red;font-underline:true;">No Parent Details</a></div>
-                <div class="col-lg-6" id="lnkSiblingdiv" style="display:block;"><a id="lnkSibling" href="javascript:void(0);" style="color: red;font-underline:true;">No Sibling Details</a></div>
-                <div class="col-lg-6" id="lnkAstroDetailsdiv" style="display:block;"><a id="lnkAstroDetails" href="javascript:void(0);" style="color: red;font-underline:true;">No Astro Details</a></div>
-                <div class="col-lg-6" id="lnkPropertyDetailsdiv" style="display:block;"><a id="lnkPropertyDetails" href="javascript:void(0);" style="color: red;font-underline:true;">No Property Details</a></div>
+        <div ng-show="model.guestticketFlag!==1">
+            <div class="col-lg-7 col-lg-offset-4"><a href="javascript:void(0);" id="lnkmissingmail" style="font-weight: bold;">Send Full Profile Tocustomer</a></div><br>
+            <div class="col-lg-12 col-lg-push-2" style="border:1px solid;border-color:orange;border-radius: 20px;width:81%;display:block;">
+                <div class="row">
+                    <div class="col-lg-6" id="lnkEducationProfessiondiv" style="display:none;"><a id="lnkEducationProfession" href="javascript:void(0);" style="color: red;font-underline:true;">No Education &amp; Profession</a></div>
+                    <div class="col-lg-6" id="lnkParentDetailsdiv" style="display:none;"><a id="lnkParentDetails" href="javascript:void(0);" style="color: red;font-underline:true;">No Parent Details</a></div>
+                    <div class="col-lg-6" id="lnkSiblingdiv" style="display:block;"><a id="lnkSibling" href="javascript:void(0);" style="color: red;font-underline:true;">No Sibling Details</a></div>
+                    <div class="col-lg-6" id="lnkAstroDetailsdiv" style="display:block;"><a id="lnkAstroDetails" href="javascript:void(0);" style="color: red;font-underline:true;">No Astro Details</a></div>
+                    <div class="col-lg-6" id="lnkPropertyDetailsdiv" style="display:block;"><a id="lnkPropertyDetails" href="javascript:void(0);" style="color: red;font-underline:true;">No Property Details</a></div>
+                </div>
             </div>
-        </div>
-        <div class="clearfix"></div><br>
-        <div class="col-lg-12 col-lg-push-2" style="border:1px solid;border-color:orange;border-radius: 20px;width:81%;display:block;">
-            <div class="row">
-                <div class="col-lg-12 text-center" style="font-weight:bold;">No logins since registration,click forgot password</div>
-                <div class="clearfix"></div><br>
-                <div>
-                    <div class="col-lg-10" style="color:maroon;"><label>No of logins</label></div>
-                    <div class="col-lg-2"><label>0</label></div>
+            <div class="clearfix">
+            </div>
+            <br>
+            <div class="col-lg-12 col-lg-push-2" style="border:1px solid;border-color:orange;border-radius: 20px;width:81%;display:block;">
+                <div class="row text-left">
+                    <div class="col-lg-12" style="font-weight:bold;">No logins since registration,click forgot password</div>
+                    <div class="clearfix"></div><br>
+                    <div>
+                        <div class="col-lg-10" style="color:maroon;"><label>No of logins</label></div>
+                        <div class="col-lg-2"><label>{{slide.LoginCount}}</label></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div>
+                        <div class="col-lg-10" style="color:maroon;"><label>Total Viewed profiles</label></div>
+                        <div class="col-lg-2"><label><div>{{slide.RectViewedProfCount}}</div></label></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div>
+                        <div class="col-lg-10" style="color:maroon;"><label>Total Viewed profiles by others</label></div>
+                        <div class="col-lg-2"><label><div>{{slide.RectWhoViewedCout}}</div></label></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div>
+                        <div class="col-lg-10" style="color:maroon;"><label>Total Bookmarked profiles</label></div>
+                        <div class="col-lg-2"><label><div>{{slide.MybookMarkedProfCount}}</div></label></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div>
+                        <div class="col-lg-10" style="color:maroon;"><label>Total Bookmarked profiles by others</label></div>
+                        <div class="col-lg-2"><label><div>{{slide.WhobookmarkedCount}}</div></label></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div>
+                        <div class="col-lg-10" style="color:maroon;"><label>Total ignore profiles Count</label></div>
+                        <div class="col-lg-2"><label><div>{{slide.IgnoreProfileCount}}</div></label></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-12 text-center" style="font-weight:bold;"></div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="clearfix"></div>
-                <div>
-                    <div class="col-lg-10" style="color:maroon;"><label>Total Viewed profiles</label></div>
-                    <div class="col-lg-2"><label><div>0</div></label></div>
-                </div>
-                <div class="clearfix"></div>
-                <div>
-                    <div class="col-lg-10" style="color:maroon;"><label>Total Viewed profiles by others</label></div>
-                    <div class="col-lg-2"><label><div>2</div></label></div>
-                </div>
-                <div class="clearfix"></div>
-                <div>
-                    <div class="col-lg-10" style="color:maroon;"><label>Total Bookmarked profiles</label></div>
-                    <div class="col-lg-2"><label><div>0</div></label></div>
-                </div>
-                <div class="clearfix"></div>
-                <div>
-                    <div class="col-lg-10" style="color:maroon;"><label>Total Bookmarked profiles by others</label></div>
-                    <div class="col-lg-2"><label><div>0</div></label></div>
-                </div>
-                <div class="clearfix"></div>
-                <div>
-                    <div class="col-lg-10" style="color:maroon;"><label>Total ignore profiles Count</label></div>
-                    <div class="col-lg-2"><label><div>0</div></label></div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="col-lg-12 text-center" style="font-weight:bold;"></div>
-                <div class="clearfix"></div>
             </div>
         </div>
     </div>
-    <div class="col-lg-5" style="border:1px solid;border-color:orange;border-radius: 20px;">
-        <div style="">
-            <div class="text-center"><b><u><a href="javascript:void(0);" id="lblticID11">KakWB144827</a></u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="return redirecttoContactPage(97374,141,1);">  ViewContacts/Edit Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Delayed : </label><label>  236</label></b></div>
+    <div class="col-lg-7 rightdiv">
+        <div>
+            <div class="text-center"><b><u><a href="javascript:void(0);" id="lblticID11">{{slide.TicketID}}</a></u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="return redirecttoContactPage(97374,141,1);">  ViewContacts/Edit Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Delayed : </label><label>  {{slide.NoofDays}}</label></b></div>
             <br>
             <div class="row">
-                <div><b class="maroon" style="padding-left:10px;"> Mobile : </b><b style="">001 - 6692558127&nbsp;<span class="glyphicon glyphicon-ok"></span></b> <b style=""><a href="javascript:void(0);" >&nbsp;&nbsp;verify mobile</a></b> </div>
-                <div><b class="maroon" style="padding-left:10px;">Email : </b><b style="">fibrepacks@gmail.com&nbsp;<span class="glyphicon glyphicon-ok"></span></b> <b style=""><a href="javascript:void(0);" >&nbsp;&nbsp;verify email</a></b> </div>
+                <div class="text-left"><b class="maroon" style="padding-left:10px;"> Mobile : </b><b>{{slide.PrimaryContactNumberCountyCode}} -{{slide.PrimaryContactNumber}}&nbsp;<span class="glyphicon glyphicon-ok"></span></b> <b style=""><a href="javascript:void(0);" >&nbsp;&nbsp;verify mobile</a></b>                    </div>
+                <div class="text-left"><b class="maroon" style="padding-left:10px;">Email : </b><b>{{slide.PrimaryEmail}}&nbsp;<span class="glyphicon glyphicon-ok"></span></b> <b style=""><a href="javascript:void(0);" >&nbsp;&nbsp;verify email</a></b> </div>
             </div>
         </div> <br>
-        <div class="row" style="display:block;">
+        <div class="row text-left">
             <div class="col-lg-6"><span class="maroon" style="font-size:12px;font-weight:bold;">Proposed Reg Fee</span><br>
-                <div id="feeEdit11" style="display:none;"><label id="lblfee11"></label>&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="return editFee(11);">Edit </a></div>
+                <div id="feeEdit11" style="display:none;"><label id="lblfee11"></label> {{slide.Feedetails}} &nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="return editFee(11);">Edit </a></div>
                 <div id="feeupdate11" style="display:block;"><input type="text" class="form-control" id="txtfees11" style="width:80px;float:left;" onkeydown="return !(event.keyCode == 32);" maxlength="7" value="">&nbsp;&nbsp;&nbsp;<a id="lnkfeeupdate11" href="javascript:void(0);">Save </a></div>
             </div>
             <div class="col-lg-6"> <span class="maroon" style="font-size:12px;font-weight:bold;"> Proposed SA Fee</span><br>
-                <div id="SAEditdiv11" style="display:none;"><label id="lblSAamount11"></label>&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="return editSAamount(11);"> Edit </a></div>
+                <div id="SAEditdiv11" style="display:none;"><label id="lblSAamount11"></label>{{slide.SettlementValue}}&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="return editSAamount(11);"> Edit </a></div>
                 <div id="SAupdatediv11" style="display:block;"><input type="text" class="form-control" id="txtSAamount11" style="width:80px;float:left;" onkeydown="return !(event.keyCode == 32);" maxlength="7" value="">&nbsp;&nbsp;&nbsp;<a id="lnksaupdate11" href="javascript:void(0);">Save </a></div>
             </div>
-        </div><br>
-        <div id="Updatediv11" style="overflow: scroll;height:600px;">
-            <div class="row">
-                <div class="col-lg-12 text-center" style="font-weight:bold;">
-                    <c class="maroon">InternalMemo</c> done on
-                    <c class="maroon">11-Aug-2016-11:41:05</c>
+        </div>
+        <br>
+        <div>
+            <div class="row ticketpopuppopupheader">
+
+                <div class="col-lg-1">
+                    <b class="dashboardticketpopup">Status</b>
+                    <br />
+                    <label id="lblmrktStatus" class="ticketpopuplabel">{{slide.TicketStatus}}</label>
                 </div>
-                <div class="clearfix"></div>
-                <div class="col-lg-5" style="color:maroon;"><label>Employee Name</label></div>
-                <div class="col-lg-7"><label><div>Alekhya M</div></label></div>
-                <div class="clearfix"></div>
-                <div class="col-lg-12"><label style="color:maroon;">Comments</label>
-                    <div><label>Email To Reset Forgot Password</label></div>
+                <div class="col-lg-4">
+                    <b class="dashboardticketpopup">Opened on</b>
+                    <br />
+                    <label id="lblmrktOpened" class="ticketpopuplabel">{{slide.TicketOpenedOn}}</label>
                 </div>
-                <div class="clearfix"></div>
-            </div><br><br><br></div><br>
-        <div></div>
-    </div><br></div>
+                <div class="col-lg-2">
+                    <b class="dashboardticketpopup">Catgory</b>
+                    <br />
+                    <label id="lblNoofdays" class="ticketpopuplabel">{{slide.HighPriority}}</label>
+                </div>
+                <div class="col-lg-3">
+                    <b class="dashboardticketpopup">Assigned to</b>
+                    <br />
+                    <label id="lblmrktAssigned" class="ticketpopuplabel">{{slide.EmpName}}</label>
+                </div>
+                <div class="col-lg-2">
+                    <b class="dashboardticketpopup">No of days</b>
+                    <br />
+                    <label id="lblNoofdays" class="ticketpopuplabel">{{slide.NoofDays}}</label>
+                </div>
+            </div>
+
+            <div>
+                <md-content class="md-padding">
+                    <md-tabs md-selected="page.model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
+                        <md-tab label="View">
+                            <div class="tab">
+                                <div class="col-lg-12">
+                                    <div id="Updatediv1" style="overflow-y: scroll;height: 450px;overflow-x: hidden;">
+
+                                        <div ng-repeat="item in slide.histryObj" class="text-left">
+                                            <br>
+                                            <market-histry strtype="item.TicketType" strdate="item.ReplyDate" strempname="item.NAME" strstatus="item.CallStatus" strcustname="item.CallReceivedBy" strcomments="item.ReplyDesc" strnoofdays="item.NoOfDays" strrelation="item.RelationShip"></market-histry>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </md-tab>
+
+                        <md-tab label="Incoming Call">
+                            <div class="tab">
+                                <br>
+                                <div>
+                                    <form name="inform" novalidate role="form" ng-submit="">
+                                        <ul>
+
+                                            <li class="clearfix form-group">
+                                                <label class="pop_label_left">Call received from </label>
+                                                <div class="pop_controls_right  input-group">
+                                                    <select name="ddlmrktreceivedIn" class="smalldropdown" ng-model="model.MAobj.ddlmrktreceivedIn" ng-change="model.RelationshipChange(model.MAobj.ddlmrktreceivedIn,'In');" multiselectdropdown typeofdata="'childStayingWith'" required>   
+                                                     </select>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix form-group">
+                                                <label class="pop_label_left">Relation name  </label>
+                                                <div class="pop_controls_right">
+                                                    <input name="txtmrktRelationnameIn" ng-model="model.MAobj.txtmrktRelationnameIn" type="text" class="form-control required" required></input>
+                                                </div>
+                                            </li>
+
+                                            <li class="clearfix form-group">
+                                                <label class="pop_label_left">Call result </label>
+                                                <div class="pop_controls_right input-group">
+                                                    <select class="smalldropdown" ng-model="model.MAobj.ddlmrktCallresultIn" multiselectdropdown required>   
+                                                    <option value="">-- Select --</option>
+                                                    <option value="417">Successfull</option>
+                                                    <option value="418">UnSuccessfull</option>
+                                                     </select>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix form-group">
+                                                <label class="pop_label_left">Call telephone number </label>
+                                                <div class="pop_controls_right">
+                                                    <input type="text" ng-model="model.MAobj.txtmrktCalltelephonenumberIn" class="form-control" maxlength="12" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
+                                                        required/>
+                                                </div>
+                                            </li>
+
+                                            <li class="clearfix form-group">
+                                                <label class="pop_label_left">Reply Type </label>
+                                                <div class="pop_controls_right select-box-my   input-group">
+                                                    <select class="smalldropdown" ng-model="model.MAobj.ddlmrktReplyTypeIn" ng-change="model.MAobj.txtmrktCalldiscussionin=model.mailchange(model.MAobj.ddlmrktReplyTypeIn);" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr">   
+                                                     </select>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix form-group">
+                                                <label class="pop_label_left Notrequired">Display to customer </label>
+                                                <div class="pop_controls_right pop_radios_list">
+                                                    <md-radio-group ng-required="true" name="rbtnmarketDisplay" layout="row" ng-model="model.MAobj.rbtnmarketDisplayIn" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                                        <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                                        <md-radio-button value="2"> No</md-radio-button>
+                                                    </md-radio-group>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix form-group">
+                                                <label class="pop_label_left" style="width: 19%;">Call discussion </label>
+                                                <div class="pop_controls_right" style="width: 80% !important;">
+                                                    <textarea type="text" ng-model="model.MAobj.txtmrktCalldiscussionin" class="form-control" required></textarea>
+                                                </div>
+                                            </li>
+                                            <br>
+                                            <li>
+                                                <div class="col-lg-4">
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktsubmitIncoming" class="button_custom pull-right" ng-click="inform.$valid && model.incallSubmit(model.MAobj);">Incoming Call</button>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIncomeAssignme" class="button_custom" ng-click="inform.$valid && model.incallSubmit(model.MAobj,'assign');">Incomg Call & Assign me</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset" ng-click="model.close();">Close</button>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                    <div class="clearfix">
+                                    </div>
+                                    <br>
+                                    <md-divider></md-divider>
+                                </div>
+                            </div>
+                        </md-tab>
+                        <md-tab label="Outgoing Call">
+                            <div class="tab">
+                                <br>
+                                <div>
+                                    <form name="outform" novalidate role="form" ng-submit="">
+                                        <ul>
+
+                                            <li class="clearfix form-group">
+                                                <label class="pop_label_left">Call received by </label>
+                                                <div class="pop_controls_right select-box-my input-group">
+
+                                                    <select class="smalldropdown" ng-model="model.MAobj.ddlmrktreceivedout" ng-change="model.RelationshipChange(model.MAobj.ddlmrktreceivedout,'Out');" multiselectdropdown typeofdata="'childStayingWith'" required>   
+                                                     </select>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix form-group">
+                                                <label class="pop_label_left">Relation name  </label>
+                                                <div class="pop_controls_right">
+                                                    <input ng-model="model.MAobj.txtmrktRelationnameout" type="text" class="form-control" required/>
+                                                </div>
+                                            </li>
+
+
+                                            <li class="clearfix form-group">
+                                                <label class="pop_label_left">Call result </label>
+                                                <div class="pop_controls_right   input-group">
+                                                    <select class="smalldropdown" ng-model="model.MAobj.ddlmrktcallresultout" multiselectdropdown required>   
+                                                      <option value="">-- Select --</option>
+                                                    <option value="417">Successfull</option>
+                                                    <option value="418">UnSuccessfull</option>
+                                                     </select>
+                                                </div>
+                                            </li>
+
+                                            <li class="clearfix form-group">
+                                                <label class="pop_label_left">Call telephone number </label>
+                                                <div class="pop_controls_right">
+                                                    <input ng-model="model.MAobj.txtmrktCalltelephonenumberout" type="text" class="form-control" maxlength="12" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
+                                                        required/>
+                                                </div>
+                                            </li>
+
+                                            <li class="clearfix form-group">
+                                                <label class="pop_label_left">Reply Type </label>
+                                                <div class="pop_controls_right select-box-my   input-group">
+                                                    <select class="smalldropdown" ng-model="model.MAobj.ddlmrktreplytypeout" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr" ng-change="model.MAobj.txtmrktCalldiscussionout=model.mailchange(model.MAobj.ddlmrktreplytypeout);">   
+                                                     </select>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix form-group">
+                                                <label class="pop_label_left Notrequired">Display to customer </label>
+                                                <div class="pop_controls_right pop_radios_list">
+                                                    <md-radio-group ng-required="true" name="rbtndisplayOut" layout="row" ng-model="model.MAobj.rbtndisplayOut" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                                        <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                                        <md-radio-button value="2"> No</md-radio-button>
+                                                    </md-radio-group>
+                                                </div>
+                                            </li>
+
+                                            <li class="clearfix">
+                                                <label class="pop_label_left" style="width:19%;">Call discussion </label>
+                                                <div class="pop_controls_right" style="width:80% !important;">
+                                                    <textarea ng-model="model.MAobj.txtmrktCalldiscussionout" type="text" class="form-control" required></textarea>
+                                                </div>
+                                            </li>
+
+                                            <br>
+
+                                            <li class="col-lg-12">
+                                                <div class="col-lg-4">
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktoutgng" class="button_custom pull-right" ng-click="outform.$valid && model.outcallSubmit(model.MAobj);">Outgoing Call</button>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <button type="submit" style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" id="btnOutgngAssignme" value="Submit" class="button_custom" ng-click="outform.$valid && model.outcallSubmit(model.MAobj,'assign');">Outgoing Call & Assign me</button>
+                                                    <button type="button" style="margin-top: 2px;padding: 5px 5px 5px 5px;" class="button_custom button_custom_reset" ng-click="model.close();">Close</button>&nbsp;
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </form>
+                                    <div class="clearfix">
+                                    </div>
+                                    <md-divider></md-divider>
+                                </div>
+
+                            </div>
+                        </md-tab>
+                        <md-tab label="Internal Memo">
+                            <div class="tab">
+                                <br>
+                                <div>
+                                    <form name="memoform" novalidate role="form" ng-submit="">
+                                        <ul>
+
+                                            <li class="clearfix form-group">
+                                                <label class="pop_label_left">Assign/Re-assign </label>
+                                                <div class="pop_controls_right select-box-my   input-group">
+                                                    <select class="smalldropdown" ng-model="model.MAobj.ddlmrktAssignmemo" multiselectdropdown typeofdata="'EmpNames'" required>   
+                                                     </select>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix form-group">
+                                                <label class="pop_label_left">Reply Type  </label>
+                                                <div class="pop_controls_right select-box-my   input-group">
+                                                    <select class="smalldropdown" ng-model="model.MAobj.ddlmrktReplyMemo" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr" ng-change="model.MAobj.txtmrktcalldiscussionMemo=model.mailchange(model.MAobj.ddlmrktReplyMemo);"
+                                                        required>   
+                                                     </select>
+                                                </div>
+                                            </li>
+
+
+                                            <li class="clearfix">
+                                                <label class="pop_label_left" style="width:19%;">Enter memo  </label>
+                                                <div class="pop_controls_right" style="width:80% !important;">
+                                                    <textarea ng-model="model.MAobj.txtmrktcalldiscussionMemo" type="text" class="form-control" required></textarea>
+                                                </div>
+                                            </li>
+
+                                            <br>
+
+                                            <li class="col-lg-12">
+                                                <div class="col-lg-4">
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" class="button_custom pull-right" ng-click="memoform.$valid && model.memoSubmit(model.MAobj);">Internal Memo</button>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIMAssignme" value="Submit" class="button_custom" ng-click="memoform.$valid && model.memoSubmit(model.MAobj,'assign');">Internal Memo & Assign me</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset" ng-click="model.close();">Close</button>&nbsp;
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </form>
+                                    <div class="clearfix">
+                                    </div>
+
+                                    <md-divider></md-divider>
+                                </div>
+                            </div>
+                        </md-tab>
+                        <md-tab label="Close Ticket">
+                            <div class="tab">
+                                <br>
+                                <div>
+                                    <form name="closeform" novalidate role="form" ng-submit="closeform.$valid && model.closeSubmit(model.MAobj);">
+                                        <ul>
+                                            <li class="clearfix form-group">
+                                                <label class="pop_label_left">Reply Type </label>
+                                                <div class="pop_controls_right select-box-my input-group">
+                                                    <select class="smalldropdown" ng-model="model.MAobj.ddlmrktreplyClose" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr" ng-change="model.MAobj.txtmrktcloseReasn=model.mailchange(model.MAobj.ddlmrktreplyClose);" required>   
+                                                     </select>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix form-group">
+                                                <label class="pop_label_left">Reason for close </label>
+                                                <div class="pop_controls_right">
+                                                    <textarea type="text" ng-model="model.MAobj.txtmrktcloseReasn" class="form-control" required></textarea>
+                                                </div>
+                                            </li>
+                                            <br>
+                                            <li class="col-lg-12">
+                                                <div class="col-lg-offset-1 col-lg-6">
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" value="Submit" class="button_custom pull-right  pull-right">Close Ticket</button>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset pull-right" ng-click="model.close();">Cancel</button>&nbsp;
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                    <div class="clearfix">
+                                    </div>
+                                    <md-divider></md-divider>
+                                </div>
+
+                            </div>
+                        </md-tab>
+
+                    </md-tabs>
+                </md-content>
+
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
+    <br>
+</div>

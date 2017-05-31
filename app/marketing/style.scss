@@ -1,46 +1,99 @@
-  .panel-title {
-      color: #b10c0c;
-  }
-  
-  .btn-success-outline {
-      color: rgb(35, 82, 124);
-      background-color: transparent;
-      background-image: none;
-      border-color: rgb(35, 82, 124);
-  }
-  
-  .multiselect {
-      margin: 0;
-  }
-  
-  input[type="text"],
-  textarea,
-  select {
-      color: #000 !important;
-      border: 1px solid #ADA2A2 !important;
-  }
-  
-  span.multiselect-selected-text {
-      text-overflow: ellipsis;
-      display: block;
-      overflow: hidden;
-  }
-  
-  .checkbox input[type=checkbox] {
-      position: relative;
-  }
-  
-  #marketingdivid {
-      div#myCarousel.carousel.slide {
-          color: gray;
-      }
-      .maroon {
-          color: maroon;
-      }
-  }
-  
-  #marketingdivid {
-      .pauseBtns {
-          text-align: center;
-      }
-  }
+.panel-title {
+    color: #b10c0c;
+}
+
+.btn-success-outline {
+    color: rgb(35, 82, 124);
+    background-color: transparent;
+    background-image: none;
+    border-color: rgb(35, 82, 124);
+    margin-bottom: 11%;
+}
+
+.multiselect {
+    margin: 0;
+}
+
+input[type="text"],
+textarea,
+select {
+    color: #000 !important;
+    border: 1px solid #ADA2A2 !important;
+}
+
+span.multiselect-selected-text {
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+}
+
+.checkbox input[type=checkbox] {
+    position: relative;
+}
+
+#marketingdivid {
+    div#myCarousel.carousel.slide {
+        color: gray;
+    }
+    .maroon {
+        color: maroon;
+    }
+    .pauseBtns {
+        text-align: center;
+    }
+    .carousel-control {
+        width: 4%;
+    }
+    .imgCls {
+        border: 1px solid gray;
+    }
+    .width {
+        width: 100% !important;
+    }
+    .smalldropdown.btn-group,
+    {
+        max-width: 70px !important;
+        @extend .width;
+    }
+    .pop_label_left {
+        text-align: left;
+    }
+    .pop_controls_right>input {
+        @extend .width;
+    }
+    .ticketpopuppopupheader {
+        margin-top: -10px;
+        border: 1px solid rgba(103, 58, 183, 0.3);
+        border-radius: 10px;
+    }
+    .md-padding {
+        padding: 0 !important;
+    }
+    .dashboardticketpopup {
+        color: #673AB7;
+    }
+    .rightdiv {
+        border: 1px solid;
+        border-color: orange;
+        border-radius: 20px;
+    }
+    .servicedate {
+        font-size: 13px;
+        font-weight: bold;
+    }
+    .linkdisabled {
+        pointer-events: none;
+        cursor: default;
+        opacity: 0.6;
+    }
+}
+
+// $columns: 32;
+// @mixin lineHeight() {
+//     @for $i from 1 through $columns {
+//         .lh-#{$i} {
+//             line-height:#{$i}px;
+//         }
+//     }
+// }
+// @include lineHeight();
