@@ -1,19 +1,17 @@
  (function() {
      'use strict';
 
-     function controller(marketingModel, scope, myFactory) {
+     function controller(marketingModel, scope) {
          var vm = this;
          vm.init = function() {
              vm.model = marketingModel();
              vm.model.scope = scope;
          };
-         this.title = 'testttttttt';
 
-         myFactory.setTitle('testtttt');
          vm.init();
      }
      angular
          .module('Kaakateeya')
          .controller('marketingCtrl', controller)
-     controller.$inject = ['marketingModel', '$scope', 'myFactory'];
+     controller.$inject = ['marketingModel', '$scope'];
  })(angular);
