@@ -2,9 +2,9 @@
     'use strict';
 
     function factory(marketingservice, config, authSvc, helperservice, commonFactory, uibModal, alertss, modelpopupopenmethod,
-        SelectBindServiceApp, timeout, marketticketHistrymdl) {
+        SelectBindServiceApp, timeout, $filter, arrayConstants, marketsvc) {
         var model = {};
-        model = marketticketHistrymdl;
+
         model.scope = {};
 
         model = config;
@@ -14,8 +14,15 @@
         model.EmpNamesArr = [];
         model.ReplyArr = [];
         model.topage = 1;
-        var curdate = moment().format('Do MMMM YYYY, h:mm:ss');
+        var curdate = moment().format('DD-MMM-YYYY hh:mm:ss');
+        model.dateOptions = {
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-40:+5",
+            dateFormat: 'mm/dd/yy'
+        };
 
+        model.opendiv = false;
         var empid, AdminID, TicketId, custId, isSibbling;
 
         model.init = function() {
@@ -37,7 +44,10 @@
             model.notinpay = null;
             model.EmpNamesArr = [];
             model.MarketingSlideShowBind(1, 10);
-
+            timeout(function() {
+                model.marketReplytype();
+            }, 500);
+            model.ddlmail = "";
             return model;
         };
 
@@ -64,14 +74,15 @@
         };
 
         model.splitArray = function(val) {
-            return val = val ? val.join(',') : null;
+            return val = val !== '' && val !== undefined && val.length > 0 ? val.join(',') : null;
         };
 
         model.MarketingSlideShowBind = function(from, to) {
+            debugger;
             model.topage = to;
             var inputobj = {
                 strBranch: model.splitArray(model.Branchs),
-                strEmpName: model.splitArray(model.ProfileOwner) === null ? empid : model.splitArray(model.ProfileOwner),
+                strEmpName: model.splitArray(model.ProfileOwner),
                 i_isAdmin: AdminID,
                 i_EmpID: empid,
                 i_PageFrom: from,
@@ -101,10 +112,22 @@
                     model.Marketingslideticket = response.data.Marketingslideticket;
                     model.MarketingslideHistory = response.data.MarketingslideHistory;
                     model.TotalRows = model.Marketingslideticket[0].TotalRows;
+
                     _.map(response.data.Marketingslideticket, function(item) {
 
                         item.editval = item.Feedetails ? 'Edit' : 'Save';
                         item.editSAval = item.SettlementValue ? 'Edit' : 'Save';
+                        item.ddlmrktCallresultIn = item.ddlmrktcallresultout = "417";
+                        item.ddlmrktreceivedIn = item.ddlmrktreceivedout = "39";
+                        item.rbtnmarketDisplayIn = item.rbtndisplayOut = "2";
+                        item.ddlmrktreplytypeout =
+                            item.ddlmrktReplyMemo =
+                            item.ddlmrktreplyClose =
+                            item.ddlmrktReplyTypeIn = "";
+                        item.txtmrktRelationnameIn = model.RelationshipChangebind(item, 39, 'In');
+                        item.txtmrktRelationnameout = model.RelationshipChangebind(item, 39, 'Out');
+                        item.ddlmrktAssignmemo = empid;
+                        item.txtmrktCalltelephonenumberIn = item.txtmrktCalltelephonenumberout = item.PrimaryContactNumber;
 
                         item.histryObj = _.where(response.data.MarketingslideHistory, { Emp_Ticket_ID: item.Emp_Ticket_ID.toString() });
                         _.map(item.histryObj, function(iiitm) {
@@ -150,6 +173,8 @@
                     }
                 } else {
                     model.slides = [];
+                    if (from === 1)
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No Records Found', 4500);
                 }
             });
         };
@@ -198,10 +223,13 @@
             });
         };
 
-        model.PhotoRequest = function(profileID, ticketID) {
-            helperservice.PhotoRequest(profileID, empid, ticketID).then(function(response) {
+        model.PhotoRequest = function(row) {
+            helperservice.PhotoRequest(row.ProfileID, empid, row.Emp_Ticket_ID).then(function(response) {
                 console.log(response);
                 if (response.data && parseInt(response.data) === 1) {
+                    row.histryObj.splice(0, 0, model.pushTicketHistry('InternalMemo',
+                        '', '', 'Photo request for Upload Photo'
+                    ));
                     alertss.timeoutoldalerts(model.scope, 'alert-success', 'Photo Request sent successfully', 4500);
                 }
             });
@@ -218,7 +246,15 @@
             commonFactory.open('notInpayPopup.html', model.scope, uibModal);
         };
 
-
+        model.pushTicketHistryToArray = function(ticketID, val) {
+            _.map(model.Marketingslideticket, function(item) {
+                if (item.Emp_Ticket_ID === ticketID) {
+                    item.histryObj.splice(0, 0, model.pushTicketHistry('InternalMemo',
+                        '', '', val
+                    ));
+                }
+            });
+        };
         model.updateData = function(inObj, type) {
             var datainobj = {
                 EmpTicketID: TicketId,
@@ -233,13 +269,11 @@
             marketingservice.feeUpdate(datainobj).then(function(response) {
                 console.log(response);
                 if (response.data && parseInt(response.data) === 1) {
-
+                    commonFactory.closepopup();
+                    model.pushTicketHistryToArray(TicketId, inObj.GetDetails.txtsibblingval);
                 }
             });
         };
-
-
-
 
 
 
@@ -295,15 +329,16 @@
             modelpopupopenmethod.closepopup();
         };
 
-        model.close = function() {
-            modelpopupopenmethod.closepopup();
-        };
+        // model.close = function() {
+        //     modelpopupopenmethod.closepopuppoptopopup();
+        // };
         model.smsMailSubmit = function(type) {
             if (type === 'sms') {
                 model.smsInput.strbody = model.txtsmsmail;
                 marketingservice.sendSms(model.smsInput).then(function(response) {
                     if (parseInt(response.data) === 1) {
                         model.closepopup();
+                        model.pushTicketHistryToArray(model.smsInput.Emp_TicketingCallHistoryID, model.txtsmsmail);
                         alertss.timeoutoldalerts(model.scope, 'alert-success', 'sms sent successfully', 9500);
                     }
                 });
@@ -312,6 +347,7 @@
                 marketingservice.sendMail(model.mailInput).then(function(response) {
                     if (parseInt(response.data) === 1) {
                         model.closepopup();
+                        model.pushTicketHistryToArray(model.mailInput.LTicketID, model.txtsmsmail);
                         alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent successfully', 9500);
                     }
                 });
@@ -336,15 +372,17 @@
             return model.ReplyArr.length > 0 ? (_.where(model.ReplyArr, { value: parseInt(val) })[0].text) : '';
         };
 
-        model.forgetpassword = function(ProfileID) {
+        model.forgetpassword = function(row) {
             SelectBindServiceApp.forgotpasswordemail(ProfileID).then(function(response) {
                 if (response.data === 1) {
+
+                    row.histryObj.splice(0, 0, model.pushTicketHistry('InternalMemo',
+                        '', '', 'Email To Reset Forgot Password'
+                    ));
                     alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent to your email, To reset your password check your mail', 4000);
                 }
             });
         };
-
-
         model.getSettleDelete = function(ProfileStatusID, CustID) {
             var type = ProfileStatusID === 57 || ProfileStatusID === 393 ? 'S' : (ProfileStatusID === 56 || ProfileStatusID === 394 ? 'D' : (ProfileStatusID === 55 ? 'I' : ''));
             marketingservice.SettleDeleteInactive(CustID, type).then(function(response) {
@@ -433,14 +471,16 @@
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Verification failed', 4500);
                     }
                 });
-                modelpopupopenmethod.closepopup();
             }
         };
-
+        model.cancel = function() {
+            modelpopupopenmethod.closepopup();
+        };
 
         model.updateREGFee = function(row, txtval) {
             if (row.editval === 'Edit') {
                 row.editval = 'update Fee'
+                row.txtFeeValue = row.Feedetails;
             } else if (row.editval === 'update Fee' || row.editval === 'Save') {
                 row.editval = 'Edit'
 
@@ -459,6 +499,7 @@
                         row.Feedetails = txtval;
                         var Appendobj = {
                             TicketType: 'InternalMemo',
+                            ReplyDate: curdate,
                             ReplyDatenew: curdate,
                             NAME: model.loginempName,
                             CallStatus: '',
@@ -481,7 +522,10 @@
 
         model.updateSAFee = function(row, txtval) {
             if (row.editSAval === 'Edit') {
-                row.editSAval = 'update Fee'
+                {
+                    row.editSAval = 'update Fee'
+                    row.txtSAFeeValue = row.SettlementValue;
+                }
             } else if (row.editSAval === 'update Fee' || row.editSAval === 'Save') {
                 row.editSAval = 'Edit'
 
@@ -520,6 +564,294 @@
             }
         };
 
+
+
+
+        model.getnumberbind = function(fromval, Toval, str, incrementval) {
+            var options = [];
+            options.push({ label: str, title: str, value: "" });
+            for (var i = fromval; i <= Toval; i += incrementval) {
+                if (i < 10) {
+                    options.push({ label: "0" + i + " " + str, title: "0" + i + " " + str, value: (parseInt(i) + 1) });
+                } else {
+
+                    options.push({ label: i + " " + str, title: i + " " + str, value: (parseInt(i) + 1) });
+                }
+            }
+            return options;
+        };
+
+
+        model.replytype = function(type) {
+            var options = [];
+            options.push({ label: '--select--', title: '--select--', value: "" });
+            if (type === 'calltype') {
+                var calltypeArray = [{ value: 377, text: 'INCOMING' }, { value: 378, text: 'OUT GOING' }, { value: 379, text: 'INTERNAL MEMO' }];
+                for (var i = 0; i < calltypeArray.length; i++) {
+                    options.push({ label: calltypeArray[i].text, title: calltypeArray[i].text, value: calltypeArray[i].value });
+                }
+            }
+            return options;
+        };
+
+        model.changereminder = function(slidearray) {
+
+            model.reminderslidearray = {};
+            model.reminderslidearray = slidearray;
+            model.txtprofileidreminder = slidearray.ProfileID;
+            model.reminderticketid = slidearray.TicketID;
+            model.txtreminderDate = $filter('date')(slidearray.ReminderCreatedDate, "dd-MM-yyyy");
+            model.ddlHrs = "";
+            model.ddlmins = "";
+            model.ddlcontactperson = "";
+
+            model.ddlremCaltype = "";
+            modelpopupopenmethod.showPopup('Reminderticket.html', model.scope, 'md', "reminderCls");
+            model.Hoursarray = model.getnumberbind(0, 23, 'Hrs', 1);
+            model.miniutearray = model.getnumberbind(0, 59, 'Mins', 1);
+            model.calltypearray = model.replytype('calltype');
+            model.replaytypearray = arrayConstants.childStayingWith;
+            model.categoryarray = arrayConstants.catgory;
+            model.ddlremCatgory = 462;
+
+            model.ticketIDRem = slidearray.Emp_Ticket_ID;
+            model.RemID = slidearray.ReminderID;
+
+            if (slidearray.ReminderID) {
+
+                model.txtreminderDate = slidearray.ReminderDatepopup;
+                model.ddlHrs = slidearray.ReminderID;
+                model.ddlmins = slidearray.ReminderID;
+                model.ddlremCaltype = parseInt(slidearray.TicketTypeID);
+                model.ddlcontactperson = slidearray.ReminderRelationID;
+                model.contactpersonname = slidearray.ReminderRelationName;
+                model.ddlremCatgory = parseInt(slidearray.Category);
+                model.remembertickets = slidearray.Reminderbody;
+                if (slidearray.ReminderTime) {
+                    var remindertimeArr = slidearray.ReminderTime.split(':');
+                    // $('#ddlHrs').multiselect('select', parseInt(remindertimeArr[0]) + 1);
+
+                    // $('#ddlmins').multiselect('select', [parseInt(remindertimeArr[1]) + 1]);
+                    model.ddlHrs = parseInt(remindertimeArr[0]) + 1;
+                    model.ddlmins = parseInt(remindertimeArr[1]) + 1;
+                }
+            }
+
+
+        };
+        model.reminderSubmit = function() {
+            var Mobj = {
+                ProfileID: model.txtprofileidreminder,
+                ReminderID: model.RemID,
+                EmpID: empid,
+                TicketID: model.ticketIDRem,
+                DateOfReminder: $filter('date')(model.txtreminderDate, 'dd-MM-yyyy'),
+                ReminderType1: model.ddlremCaltype,
+                Body: model.remembertickets,
+                RelationID: model.ddlcontactperson,
+                Name: model.contactpersonname,
+                Category: model.ddlremCatgory,
+                IsFollowup: 0
+            };
+
+            modelpopupopenmethod.closepopup();
+            marketingservice.upadateremainderdate(Mobj).then(function(response) {
+                if (response !== undefined && response.data === parseInt(1)) {
+                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Reminder date  Updated Successfully', 3000);
+                } else {
+                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Reminder date Updated Failed', 3000);
+                }
+            });
+        };
+
+        model.RelationshipChange = function(RelationshipID) {
+            SelectBindServiceApp.getRelationName(3, model.txtprofileidreminder, RelationshipID).then(function(response) {
+                if (_.isArray(response.data[0]) && response.data[0].length > 0) {
+                    model.contactpersonname = response.data[0][0].NAME;
+                }
+            });
+        };
+
+
+        // xtra in out code--------------------------
+
+
+        model.MAobj = {};
+        model.empid = empid;
+        model.ticketid = '';
+        model.marReplyArr = [];
+        model.marInfo = [];
+        model.marHistry = [];
+        // model.ProfileID = '';
+
+
+        model.RelationshipChangebind = function(row, RelationshipID, type) {
+            SelectBindServiceApp.getRelationName(3, row.ProfileID, RelationshipID).then(function(response) {
+                if (_.isArray(response.data[0]) && response.data[0].length > 0) {
+                    if (type === 'In') {
+                        row.txtmrktRelationnameIn = response.data[0][0].NAME;
+                    } else {
+                        row.txtmrktRelationnameout = response.data[0][0].NAME;
+                    }
+                } else {
+                    if (type === 'In') {
+                        row.txtmrktRelationnameIn = '';
+                    } else {
+                        row.txtmrktRelationnameout = '';
+                    }
+                }
+            });
+        };
+
+
+        model.marketReplytype = function() {
+            SelectBindServiceApp.marketReplytype().then(function(response) {
+                if (_.isArray(response.data[0]) && response.data[0].length > 0) {
+                    model.marReplyArr.push({ "label": "--Select--", "title": "--Select--", "value": "", "text": "" });
+                    _.each(response.data[0], function(item) {
+                        model.marReplyArr.push({ "label": item.Heder, "title": item.Heder, "value": item.ID, "text": item.TEXT });
+                    });
+                }
+
+            });
+        };
+
+        model.mailchange = function(val) {
+            return _.where(model.marReplyArr, { value: parseInt(val) })[0].text;
+        };
+
+        model.pushTicketHistry = function(TicketType, CallStatus, CallReceivedBy, ReplyDesc, NoOfDays, RelationShip) {
+            debugger;
+            var relation;
+            if (RelationShip) {
+                relation = (_.where(arrayConstants.childStayingWith, { value: parseInt(RelationShip) }))[0].label;
+            }
+            var Appendobj = {
+                TicketType: TicketType,
+                ReplyDate: curdate,
+                ReplyDatenew: moment(curdate).format('YYYY-MM-DD hh:mm:ss'),
+                NAME: model.loginempName,
+                CallStatus: CallStatus,
+                CallReceivedBy: CallReceivedBy,
+                ReplyDesc: ReplyDesc,
+                NoOfDays: NoOfDays,
+                RelationShip: relation
+            };
+            return Appendobj;
+        };
+
+
+        model.inOutSubmit = function(obj) {
+
+            //22-Apr-2017 18:32:39'
+            var inputObj = {
+                CallType: obj.CallType,
+                Calledon: curdate,
+                RelationID: obj.RelationID,
+                RelationName: obj.RelationName,
+                CallResult: obj.CallResult,
+                StaffCalled: empid,
+                PhoneNum: obj.PhoneNum,
+                CallDiscussion: obj.CallDiscussion,
+                DisplayStatus: obj.DisplayStatus,
+                ticketid: obj.Emp_Ticket_ID,
+                EmpID: empid
+            };
+
+            marketsvc.InOutSubmit(inputObj).then(function(response) {
+                var msg = parseInt(response.data) === 1 ? (obj.CallType === 1 ? 'Incoming Call Created successfully' : 'Outgoing Call Created successfully') :
+                    ((obj.CallType === 1 ? 'Incoming Call updation failed' : 'Outgoing Call updation failed'));
+                var msgClass = parseInt(response.data) === 1 ? 'alert-success' : 'alert-danger';
+                alertss.timeoutoldalerts(model.scope, msgClass, msg, 9500);
+            });
+
+        };
+
+        model.incallSubmit = function(obj, type) {
+            var inobj = {
+                CallType: 1,
+                RelationID: obj.ddlmrktreceivedIn,
+                RelationName: obj.txtmrktRelationnameIn,
+                CallResult: obj.ddlmrktCallresultIn,
+                PhoneNum: obj.txtmrktCalltelephonenumberIn,
+                CallDiscussion: obj.txtmrktCalldiscussionin,
+                DisplayStatus: obj.rbtnmarketDisplayIn,
+                Emp_Ticket_ID: obj.Emp_Ticket_ID
+            };
+            model.inOutSubmit(inobj);
+            if (type === 'assign') {
+                model.assignSubmit(obj.Emp_Ticket_ID);
+            }
+            obj.histryObj.splice(0, 0, model.pushTicketHistry('INCOMING',
+                obj.ddlmrktCallresultIn === '417' ? 'Successfull' : (obj.ddlmrktCallresultIn === '418' ? 'UnSuccessfull' : ''),
+                obj.txtmrktRelationnameIn, obj.txtmrktCalldiscussionin, '', obj.ddlmrktreceivedIn
+            ));
+        };
+
+        model.outcallSubmit = function(obj, type) {
+            var inobj = {
+                CallType: 2,
+                RelationID: obj.ddlmrktreceivedout,
+                RelationName: obj.txtmrktRelationnameout,
+                CallResult: obj.ddlmrktcallresultout,
+                PhoneNum: obj.txtmrktCalltelephonenumberout,
+                CallDiscussion: obj.txtmrktCalldiscussionout,
+                DisplayStatus: obj.rbtndisplayOut,
+                Emp_Ticket_ID: obj.Emp_Ticket_ID
+            };
+            model.inOutSubmit(inobj);
+            if (type === 'assign') {
+                model.assignSubmit(obj.Emp_Ticket_ID);
+            }
+            obj.histryObj.splice(0, 0, model.pushTicketHistry('OUT GOING',
+                obj.ddlmrktcallresultout === '417' ? 'Successfull' : (obj.ddlmrktcallresultout === '418' ? 'UnSuccessfull' : ''),
+                obj.txtmrktRelationnameout, obj.txtmrktCalldiscussionout, '', obj.ddlmrktreceivedout
+            ));
+        };
+
+        model.memoSubmit = function(obj, type) {
+            //msg, tktID, empid, assignEmpid
+            marketsvc.memoSubmit(obj.txtmrktcalldiscussionMemo, obj.Emp_Ticket_ID, empid, obj.ddlmrktAssignmemo).then(function(response) {
+
+                if (parseInt(response.data) === 1) {
+                    if (type === 'assign') {
+                        model.assignSubmit(obj.Emp_Ticket_ID);
+                    }
+
+                    obj.histryObj.splice(0, 0, model.pushTicketHistry('InternalMemo',
+                        '', '', obj.txtmrktcalldiscussionMemo, ''
+                    ));
+
+                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Memo Created successfully', 9500);
+                } else {
+                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Memo updation failed', 9500);
+                }
+            });
+        };
+
+        model.closeSubmit = function(obj) {
+            //reasn, tktID, empid
+            marketsvc.closeSubmit(obj.txtmrktcloseReasn, obj.Emp_Ticket_ID, empid).then(function(response) {
+
+                if (parseInt(response.data) === 1) {
+                    obj.histryObj.splice(0, 0, model.pushTicketHistry('Close',
+                        '', '', obj.txtmrktcloseReasn, ''
+                    ));
+                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Ticket closed successfully', 9500);
+                } else {
+                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Ticket closing failed', 9500);
+                }
+            });
+        };
+
+        model.assignSubmit = function(Emp_Ticket_ID) {
+            marketsvc.assignEmpSubmit(Emp_Ticket_ID, model.empid, model.empid).then(function(respnse) {});
+        };
+        model.close = function() {
+
+
+        };
+
         return model.init();
     }
 
@@ -528,7 +860,7 @@
         .factory('marketingModel', factory)
     factory.$inject = ['marketingservice', 'complex-slide-config',
         'authSvc', 'helperservice', 'commonFactory', '$uibModal', 'alert',
-        'modelpopupopenmethod', 'SelectBindServiceApp', '$timeout', 'marketticketHistrymdl'
+        'modelpopupopenmethod', 'SelectBindServiceApp', '$timeout', '$filter', 'arrayConstants', 'marketingTicketHistryservice'
     ];
 
 })(angular);

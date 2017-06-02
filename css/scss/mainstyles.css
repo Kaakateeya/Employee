@@ -548,4 +548,7 @@ select:focus:invalid:focus {
 #loginnewidcc .breadcrumb li span {
   padding-left: 5px; }
 
+.close {
+  opacity: .9; }
+
 /*# sourceMappingURL=mainstyles.css.map */

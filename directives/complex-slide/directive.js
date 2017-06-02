@@ -68,6 +68,10 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         modelpopupopenmethod.showPopupphotopoup('dynamicphotopopup.html', $scope, '', "modalclassdashboardphotopopup");
                     });
                 };
+                $scope.config.close = function() {
+                    modelpopupopenmethod.closepopuppoptopopup();
+                };
+
                 $scope.horoscopeimage = function(image, type) {
                     $scope.photoalbum = "Horoscope Image";
                     $scope.HoroscopeImage = image;

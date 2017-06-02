@@ -7,11 +7,11 @@
                     <div>
                         <img ng-src="{{slide.EmpPhoto}}" height="57px" width="57px">
                     </div>{{slide.EmpName}}<br><br>
-                    <div ng-show="model.guestticketFlag!==1">
+                    <div ng-show="model.guestticketFlag!==1 && slide.CustID">
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag!==1" ng-click="config.openSmsMail('sms',slide.CustomerName,slide.ProfileID,slide.PrimaryEmail,slide.PrimaryContactNumber,slide.PrimaryContactNumberCountyCode,slide.Emp_Ticket_ID,slide.EmpName);">Send SMS</a>
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag!==1" ng-click="config.openSmsMail('mail',slide.CustomerName,slide.ProfileID,slide.PrimaryEmail,slide.PrimaryContactNumber,slide.PrimaryContactNumberCountyCode,slide.Emp_Ticket_ID);">Send Mail</a>
                         <a href="javascript:void(0);" style="display:none;" class="btn btn-success-outline">Missing Fields</a>
-                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="slide.Photo.indexOf('noimage') !== -1 && slide.Photo.indexOf('_Rev') === -1 && model.siblingsFlag!==1" ng-click="model.PhotoRequest(slide.ProfileID,slide.Emp_Ticket_ID);">Photo Request</a>
+                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="slide.Photo.indexOf('noimage') !== -1 && slide.Photo.indexOf('_Rev') === -1 && model.siblingsFlag!==1" ng-click="model.PhotoRequest(slide);">Photo Request</a>
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="!slide.Lastlogin  && model.siblingsFlag!==1" ng-click="model.forgetpassword(slide.ProfileID);">Forgot Password</a>
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag!==1" ng-click="model.NotIntrstToPay('P',slide.Emp_Ticket_ID,slide.CustID);">Not Int To Pay</a>
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-class="slide.settleddeleted?'':'linkdisabled'" ng-show="model.siblingsFlag===1" ng-click="model.showSAmethod(slide.SAPath);">{{slide.settleddeleted?'Show':'No'}} SA Form</a>
@@ -34,25 +34,26 @@
                     </div>
                     <img id="CustImg11" ng-click='slidepopup(slide.CustID)' ng-src='{{slide.Photo}}' class="imgCls">
                     <div style="line-height: 22px;"><br><b>{{slide.CustomerName}} (<b><a href="javascript:void(0)" ng-click="model.ViewProfile(slide.ProfileID);">{{slide.ProfileID}}</a> - {{slide.registeredBranch}})</b></b><br>
-                        <div ng-show="model.guestticketFlag!==1">
+                        <div ng-show="model.guestticketFlag!==1 && slide.CustID">
                             <div>
                                 <span class="maroon">DOR:</span> {{slide.RegistrationDate}}
                             </div>
                             <br><span>
                         <span class="maroon"> {{slide.ReminderDate?'Reminder date:':'Create Reminder'}}    </span>
-                            <a ng-class="slide.ReminderDate?'':'fa fa-pencil-square-o Linkdisabled'" title="Create Reminder" href="javascript:void(0)">{{slide.ReminderDate?slide.ReminderDate:''}}</a>
+                            <span>{{slide.ReminderDate?slide.ReminderDate:''}}</span>
+                            <a ng-class="'fa fa-pencil-square-o Linkdisabled'" title="Create Reminder" href="javascript:void(0)" ng-click="model.changereminder(slide);"></a>
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
         </div><br>
-        <div ng-show="model.guestticketFlag!==1">
+        <div ng-show="model.guestticketFlag!==1 && slide.CustID">
             <div class="col-lg-7 col-lg-offset-4" ng-show="model.siblingsFlag!==1"><a href="javascript:void(0);" ng-click="model.Resendmail(slide.CustID,slide.ProfileID);" style="font-weight: bold;">Send Full Profile Tocustomer</a></div><br>
-            <div class="col-lg-12 col-lg-push-2" ng-show="model.siblingsFlag!==1" style="border:1px solid;border-color:orange;border-radius: 20px;width:81%;display:block;">
+            <div class="col-lg-12 col-lg-push-2" ng-show="model.siblingsFlag!==1 && slide.nodataFoundArr.length>0" style="border:1px solid;border-color:orange;border-radius: 20px;width:81%;display:block;">
                 <div class="row">
                     <div class="col-lg-6" ng-repeat="itm in slide.nodataFoundArr">
-                        <a href="javascript:void(0);" ng-click="model.editRedirect(slide.CustID,itm.type)" style="color: red;font-underline:true;">{{itm.displayname}}</a>
+                        <a href="javascript:void(0);" ng-click="model.editRedirect(slide.CustID,itm.type)" style="font-underline:true;">{{itm.displayname}}</a>
                     </div>
                 </div>
             </div>
@@ -64,38 +65,38 @@
                     <div class="col-lg-12" style="font-weight:bold;">
                         <span>{{slide.Lastlogin?'':'No logins since registration,click forgot password'}}</span>
                         <div ng-if="slide.Lastlogin">
-                            <span class="maroon">Last login Date</span>
+                            <span>Last login Date</span>
                             <span>{{slide.Lastlogin}}</span>
                         </div>
                     </div>
                     <div class="clearfix"></div><br>
                     <div>
-                        <div class="col-lg-10" style="color:maroon;"><label>No of logins</label></div>
+                        <div class="col-lg-10"><label>No of logins</label></div>
                         <div class="col-lg-2"><label>{{slide.LoginCount}}</label></div>
                     </div>
                     <div class="clearfix"></div>
                     <div>
-                        <div class="col-lg-10" style="color:maroon;"><label>Total Viewed profiles</label></div>
+                        <div class="col-lg-10"><label>Total Viewed profiles</label></div>
                         <div class="col-lg-2"><label><div>{{slide.RectViewedProfCount}}</div></label></div>
                     </div>
                     <div class="clearfix"></div>
                     <div>
-                        <div class="col-lg-10" style="color:maroon;"><label>Total Viewed profiles by others</label></div>
+                        <div class="col-lg-10"><label>Total Viewed profiles by others</label></div>
                         <div class="col-lg-2"><label><div>{{slide.RectWhoViewedCout}}</div></label></div>
                     </div>
                     <div class="clearfix"></div>
                     <div>
-                        <div class="col-lg-10" style="color:maroon;"><label>Total Bookmarked profiles</label></div>
+                        <div class="col-lg-10"><label>Total Bookmarked profiles</label></div>
                         <div class="col-lg-2"><label><div>{{slide.MybookMarkedProfCount}}</div></label></div>
                     </div>
                     <div class="clearfix"></div>
                     <div>
-                        <div class="col-lg-10" style="color:maroon;"><label>Total Bookmarked profiles by others</label></div>
+                        <div class="col-lg-10"><label>Total Bookmarked profiles by others</label></div>
                         <div class="col-lg-2"><label><div>{{slide.WhobookmarkedCount}}</div></label></div>
                     </div>
                     <div class="clearfix"></div>
                     <div>
-                        <div class="col-lg-10" style="color:maroon;"><label>Total ignore profiles Count</label></div>
+                        <div class="col-lg-10"><label>Total ignore profiles Count</label></div>
                         <div class="col-lg-2"><label><div>{{slide.IgnoreProfileCount}}</div></label></div>
                     </div>
                     <div class="clearfix"></div>
@@ -107,67 +108,45 @@
     </div>
     <div class="col-lg-7 rightdiv">
         <div>
-            <div class="text-center"><b><u><a href="javascript:void(0);" id="lblticID11">{{slide.TicketID}}</a></u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" ng-click="model.redirectContact(slide.CustID);">  ViewContacts/Edit Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Delayed : </label><label>  {{slide.NoofDays}}</label></b></div>
+            <div class="submainhdr">
+                <span style="margin-left: -28px !important;">{{slide.TicketID+' ('+slide.TicketStatus+')'}}</span>
+                <span class="subHdrSpan"><b>Opened on:</b> {{slide.TicketOpenedOn | date:'dd MMM y'}}</span>
+                <span class="subHdrSpan"><a href="javascript:void(0);" ng-click="model.redirectContact(slide.CustID);">  ViewContacts/Edit Profile</a></span>
+                <span class="subHdrSpan">Delayed : {{slide.NoofDays}}
+                </span>
+            </div>
             <br>
-            <div class="row">
-                <div class="text-left"><span class="maroon" style="padding-left:10px;"> Mobile : </span>
-                    <span>{{slide.PrimaryContactNumberCountyCode}} -{{slide.PrimaryContactNumber}}&nbsp;
+            <div class="row text-left">
+
+                <span class="maroon" style="padding-left:10px;"> Mobile : </span>
+                <span>{{slide.PrimaryContactNumberCountyCode}} -{{slide.PrimaryContactNumber}}&nbsp;
                         <b  ng-class="slide.IsMobileVerified==='False'?'glyphicon glyphicon-ok':'fa fa-check-circle'"></b>
                     </span>
-                    <a href="javascript:void(0);" ng-show="slide.IsMobileVerified==='False'" ng-click="model.sendMobileCode(slide.primaryCountryID,slide.PrimaryContactNumberCountyCode,slide.PrimaryContactNumber,slide.IsCustContactNumbersID);">&nbsp;&nbsp;verify mobile</a>
-                </div>
-                <div class="text-left"><span class="maroon" style="padding-left:10px;">Email : </span> {{slide.PrimaryEmail}}
-                    <b ng-class="slide.isEmailVerified==='False'?'glyphicon glyphicon-ok':'fa fa-check-circle'"></b>
-                    <a href="javascript:void(0);" ng-show="slide.isEmailVerified==='False'" ng-click="model.verifymail(slide.CustID);">&nbsp;&nbsp;verify email</a> </div>
+                <a href="javascript:void(0);" ng-show="slide.IsMobileVerified==='False'" ng-click="model.sendMobileCode(slide.primaryCountryID,slide.PrimaryContactNumberCountyCode,slide.PrimaryContactNumber,slide.IsCustContactNumbersID);">&nbsp;&nbsp;verify mobile</a>
+
+                <span class="maroon" style="padding-left:39px;">Email : </span> {{slide.PrimaryEmail}}
+                <b ng-class="slide.isEmailVerified==='False'?'glyphicon glyphicon-ok':'fa fa-check-circle'"></b>
+                <a href="javascript:void(0);" ng-show="slide.isEmailVerified==='False'" ng-click="model.verifymail(slide.CustID);">&nbsp;&nbsp;verify email</a>
             </div>
         </div> <br>
         <div class="row text-left">
-
-
-            <div class="col-lg-6"><span class="maroon" style="font-size:12px;font-weight:bold;">Proposed Reg Fee</span><br>
-                <label ng-if="slide.Feedetails && slide.editval==='Edit'">{{slide.Feedetails}}</label>
-                <input type="text" ng-model="slide.txtFeeValue" ng-if="!slide.Feedetails || slide.editval!=='Edit'" class="form-control" style="width:80px;float:left;" maxlength="7">
-                <a href="javascript:void(0);" ng-click="model.updateREGFee(slide,slide.txtFeeValue);">{{slide.editval}} </a>
+            <div class="col-lg-6">
+                <label for="regfee" ng-show="slide.editval==='Edit'">Proposed Reg Fee</label>
+                <span ng-if="slide.Feedetails && slide.editval==='Edit'">{{slide.Feedetails}}</span>
+                <input type="text" ng-model="slide.txtFeeValue" placeholder="Proposed Reg Fee" ng-if="!slide.Feedetails || slide.editval!=='Edit'" class="form-control feeInputClass" style="width:50%;" maxlength="7">
+                <a href="javascript:void(0);" ng-click="model.updateREGFee(slide,slide.txtFeeValue);" class="feeCls">{{slide.editval}} </a>
             </div>
 
-
-            <div class="col-lg-6"><span class="maroon" style="font-size:12px;font-weight:bold;">Proposed SA Fee</span><br>
-                <label ng-if="slide.SettlementValue && slide.editSAval==='Edit'">{{slide.SettlementValue}}</label>
-                <input type="text" ng-model="slide.txtSAFeeValue" ng-if="!slide.SettlementValue || slide.editSAval!=='Edit'" class="form-control" style="width:80px;float:left;" maxlength="7">
-                <a href="javascript:void(0);" ng-click="model.updateSAFee(slide,slide.txtSAFeeValue);">{{slide.editSAval}} </a>
+            <div class="col-lg-6">
+                <label for="regfee" ng-show="slide.editSAval==='Edit'">Proposed SA Fee</label>
+                <span ng-if="slide.SettlementValue && slide.editSAval==='Edit'">{{slide.SettlementValue}}</span>
+                <input type="text" ng-model="slide.txtSAFeeValue" placeholder="Proposed SA Fee" ng-if="!slide.SettlementValue || slide.editSAval!=='Edit'" class="form-control feeInputClass" maxlength="7">
+                <a href="javascript:void(0);" ng-click="model.updateSAFee(slide,slide.txtSAFeeValue);" class="feeCls">{{slide.editSAval}} </a>
             </div>
 
         </div>
         <br>
         <div>
-            <div class="row ticketpopuppopupheader">
-
-                <div class="col-lg-1">
-                    <b class="dashboardticketpopup">Status</b>
-                    <br />
-                    <label id="lblmrktStatus" class="ticketpopuplabel">{{slide.TicketStatus}}</label>
-                </div>
-                <div class="col-lg-4">
-                    <b class="dashboardticketpopup">Opened on</b>
-                    <br />
-                    <label id="lblmrktOpened" class="ticketpopuplabel">{{slide.TicketOpenedOn}}</label>
-                </div>
-                <div class="col-lg-2">
-                    <b class="dashboardticketpopup">Catgory</b>
-                    <br />
-                    <label id="lblNoofdays" class="ticketpopuplabel">{{slide.HighPriority}}</label>
-                </div>
-                <div class="col-lg-3">
-                    <b class="dashboardticketpopup">Assigned to</b>
-                    <br />
-                    <label id="lblmrktAssigned" class="ticketpopuplabel">{{slide.EmpName}}</label>
-                </div>
-                <div class="col-lg-2">
-                    <b class="dashboardticketpopup">No of days</b>
-                    <br />
-                    <label id="lblNoofdays" class="ticketpopuplabel">{{slide.NoofDays}}</label>
-                </div>
-            </div>
 
             <div>
                 <md-content class="md-padding">
@@ -196,21 +175,21 @@
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Call received from </label>
                                                 <div class="pop_controls_right  input-group">
-                                                    <select name="ddlmrktreceivedIn" class="smalldropdown" ng-model="model.MAobj.ddlmrktreceivedIn" ng-change="model.RelationshipChange(model.MAobj.ddlmrktreceivedIn,'In');" multiselectdropdown typeofdata="'childStayingWith'" required>   
+                                                    <select name="ddlmrktreceivedIn" class="smalldropdown" ng-model="slide.ddlmrktreceivedIn" ng-change="model.RelationshipChangebind(slide,slide.ddlmrktreceivedIn,'In');" multiselectdropdown typeofdata="'childStayingWith'" required>   
                                                      </select>
                                                 </div>
                                             </li>
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Relation name  </label>
                                                 <div class="pop_controls_right">
-                                                    <input name="txtmrktRelationnameIn" ng-model="model.MAobj.txtmrktRelationnameIn" type="text" class="form-control required" required></input>
+                                                    <input name="txtmrktRelationnameIn" ng-model="slide.txtmrktRelationnameIn" type="text" class="form-control required" required></input>
                                                 </div>
                                             </li>
 
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Call result </label>
                                                 <div class="pop_controls_right input-group">
-                                                    <select class="smalldropdown" ng-model="model.MAobj.ddlmrktCallresultIn" multiselectdropdown required>   
+                                                    <select class="smalldropdown" ng-model="slide.ddlmrktCallresultIn" multiselectdropdown required>   
                                                     <option value="">-- Select --</option>
                                                     <option value="417">Successfull</option>
                                                     <option value="418">UnSuccessfull</option>
@@ -220,7 +199,7 @@
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Call telephone number </label>
                                                 <div class="pop_controls_right">
-                                                    <input type="text" ng-model="model.MAobj.txtmrktCalltelephonenumberIn" class="form-control" maxlength="12" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
+                                                    <input type="text" ng-model="slide.txtmrktCalltelephonenumberIn" class="form-control" maxlength="12" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
                                                         required/>
                                                 </div>
                                             </li>
@@ -228,14 +207,14 @@
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Reply Type </label>
                                                 <div class="pop_controls_right select-box-my   input-group">
-                                                    <select class="smalldropdown" ng-model="model.MAobj.ddlmrktReplyTypeIn" ng-change="model.MAobj.txtmrktCalldiscussionin=model.mailchange(model.MAobj.ddlmrktReplyTypeIn);" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr">   
+                                                    <select class="smalldropdown" ng-model="slide.ddlmrktReplyTypeIn" ng-change="slide.txtmrktCalldiscussionin=model.mailchange(slide.ddlmrktReplyTypeIn);" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr">   
                                                      </select>
                                                 </div>
                                             </li>
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left Notrequired">Display to customer </label>
                                                 <div class="pop_controls_right pop_radios_list">
-                                                    <md-radio-group ng-required="true" name="rbtnmarketDisplay" layout="row" ng-model="model.MAobj.rbtnmarketDisplayIn" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                                    <md-radio-group ng-required="true" name="rbtnmarketDisplay" layout="row" ng-model="slide.rbtnmarketDisplayIn" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                                         <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
                                                         <md-radio-button value="2"> No</md-radio-button>
                                                     </md-radio-group>
@@ -244,17 +223,16 @@
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left" style="width: 19%;">Call discussion </label>
                                                 <div class="pop_controls_right" style="width: 80% !important;">
-                                                    <textarea type="text" ng-model="model.MAobj.txtmrktCalldiscussionin" class="form-control" required></textarea>
+                                                    <textarea type="text" ng-model="slide.txtmrktCalldiscussionin" class="form-control" required rows="3"></textarea>
                                                 </div>
                                             </li>
                                             <br>
                                             <li>
                                                 <div class="col-lg-4">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktsubmitIncoming" class="button_custom pull-right" ng-click="inform.$valid && model.incallSubmit(model.MAobj);">Incoming Call</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktsubmitIncoming" class="button_custom pull-right" ng-click="inform.$valid && model.incallSubmit(slide);">Incoming Call</button>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIncomeAssignme" class="button_custom" ng-click="inform.$valid && model.incallSubmit(model.MAobj,'assign');">Incomg Call & Assign me</button>
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset" ng-click="model.close();">Close</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIncomeAssignme" class="button_custom" ng-click="inform.$valid && model.incallSubmit(slide,'assign');">Incomg Call & Assign me</button>
                                                 </div>
                                             </li>
                                         </ul>
@@ -277,14 +255,14 @@
                                                 <label class="pop_label_left">Call received by </label>
                                                 <div class="pop_controls_right select-box-my input-group">
 
-                                                    <select class="smalldropdown" ng-model="model.MAobj.ddlmrktreceivedout" ng-change="model.RelationshipChange(model.MAobj.ddlmrktreceivedout,'Out');" multiselectdropdown typeofdata="'childStayingWith'" required>   
+                                                    <select class="smalldropdown" ng-model="slide.ddlmrktreceivedout" ng-change="model.RelationshipChangebind(slide,slide.ddlmrktreceivedout,'Out');" multiselectdropdown typeofdata="'childStayingWith'" required>   
                                                      </select>
                                                 </div>
                                             </li>
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Relation name  </label>
                                                 <div class="pop_controls_right">
-                                                    <input ng-model="model.MAobj.txtmrktRelationnameout" type="text" class="form-control" required/>
+                                                    <input ng-model="slide.txtmrktRelationnameout" type="text" class="form-control" required/>
                                                 </div>
                                             </li>
 
@@ -292,7 +270,7 @@
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Call result </label>
                                                 <div class="pop_controls_right   input-group">
-                                                    <select class="smalldropdown" ng-model="model.MAobj.ddlmrktcallresultout" multiselectdropdown required>   
+                                                    <select class="smalldropdown" ng-model="slide.ddlmrktcallresultout" multiselectdropdown required>   
                                                       <option value="">-- Select --</option>
                                                     <option value="417">Successfull</option>
                                                     <option value="418">UnSuccessfull</option>
@@ -303,7 +281,7 @@
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Call telephone number </label>
                                                 <div class="pop_controls_right">
-                                                    <input ng-model="model.MAobj.txtmrktCalltelephonenumberout" type="text" class="form-control" maxlength="12" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
+                                                    <input ng-model="slide.txtmrktCalltelephonenumberout" type="text" class="form-control" maxlength="12" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
                                                         required/>
                                                 </div>
                                             </li>
@@ -311,14 +289,14 @@
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Reply Type </label>
                                                 <div class="pop_controls_right select-box-my   input-group">
-                                                    <select class="smalldropdown" ng-model="model.MAobj.ddlmrktreplytypeout" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr" ng-change="model.MAobj.txtmrktCalldiscussionout=model.mailchange(model.MAobj.ddlmrktreplytypeout);">   
+                                                    <select class="smalldropdown" ng-model="slide.ddlmrktreplytypeout" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr" ng-change="slide.txtmrktCalldiscussionout=model.mailchange(slide.ddlmrktreplytypeout);">   
                                                      </select>
                                                 </div>
                                             </li>
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left Notrequired">Display to customer </label>
                                                 <div class="pop_controls_right pop_radios_list">
-                                                    <md-radio-group ng-required="true" name="rbtndisplayOut" layout="row" ng-model="model.MAobj.rbtndisplayOut" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                                    <md-radio-group ng-required="true" name="rbtndisplayOut" layout="row" ng-model="slide.rbtndisplayOut" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                                         <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
                                                         <md-radio-button value="2"> No</md-radio-button>
                                                     </md-radio-group>
@@ -328,7 +306,7 @@
                                             <li class="clearfix">
                                                 <label class="pop_label_left" style="width:19%;">Call discussion </label>
                                                 <div class="pop_controls_right" style="width:80% !important;">
-                                                    <textarea ng-model="model.MAobj.txtmrktCalldiscussionout" type="text" class="form-control" required></textarea>
+                                                    <textarea ng-model="slide.txtmrktCalldiscussionout" type="text" class="form-control" required rows="3"></textarea>
                                                 </div>
                                             </li>
 
@@ -336,11 +314,10 @@
 
                                             <li class="col-lg-12">
                                                 <div class="col-lg-4">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktoutgng" class="button_custom pull-right" ng-click="outform.$valid && model.outcallSubmit(model.MAobj);">Outgoing Call</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktoutgng" class="button_custom pull-right" ng-click="outform.$valid && model.outcallSubmit(slide);">Outgoing Call</button>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <button type="submit" style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" id="btnOutgngAssignme" value="Submit" class="button_custom" ng-click="outform.$valid && model.outcallSubmit(model.MAobj,'assign');">Outgoing Call & Assign me</button>
-                                                    <button type="button" style="margin-top: 2px;padding: 5px 5px 5px 5px;" class="button_custom button_custom_reset" ng-click="model.close();">Close</button>&nbsp;
+                                                    <button type="submit" style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" id="btnOutgngAssignme" value="Submit" class="button_custom" ng-click="outform.$valid && model.outcallSubmit(slide,'assign');">Outgoing Call & Assign me</button>
                                                 </div>
                                             </li>
 
@@ -363,15 +340,14 @@
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Assign/Re-assign </label>
                                                 <div class="pop_controls_right select-box-my   input-group">
-                                                    <select class="smalldropdown" ng-model="model.MAobj.ddlmrktAssignmemo" multiselectdropdown typeofdata="'EmpNames'" required>   
+                                                    <select class="smalldropdown" ng-model="slide.ddlmrktAssignmemo" multiselectdropdown typeofdata="'EmpNames'" required>   
                                                      </select>
                                                 </div>
                                             </li>
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Reply Type  </label>
                                                 <div class="pop_controls_right select-box-my   input-group">
-                                                    <select class="smalldropdown" ng-model="model.MAobj.ddlmrktReplyMemo" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr" ng-change="model.MAobj.txtmrktcalldiscussionMemo=model.mailchange(model.MAobj.ddlmrktReplyMemo);"
-                                                        required>   
+                                                    <select class="smalldropdown" ng-model="slide.ddlmrktReplyMemo" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr" ng-change="slide.txtmrktcalldiscussionMemo=model.mailchange(slide.ddlmrktReplyMemo);" required>   
                                                      </select>
                                                 </div>
                                             </li>
@@ -380,7 +356,7 @@
                                             <li class="clearfix">
                                                 <label class="pop_label_left" style="width:19%;">Enter memo  </label>
                                                 <div class="pop_controls_right" style="width:80% !important;">
-                                                    <textarea ng-model="model.MAobj.txtmrktcalldiscussionMemo" type="text" class="form-control" required></textarea>
+                                                    <textarea ng-model="slide.txtmrktcalldiscussionMemo" type="text" class="form-control" required rows="3"></textarea>
                                                 </div>
                                             </li>
 
@@ -388,11 +364,10 @@
 
                                             <li class="col-lg-12">
                                                 <div class="col-lg-4">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" class="button_custom pull-right" ng-click="memoform.$valid && model.memoSubmit(model.MAobj);">Internal Memo</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" class="button_custom pull-right" ng-click="memoform.$valid && model.memoSubmit(slide);">Internal Memo</button>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIMAssignme" value="Submit" class="button_custom" ng-click="memoform.$valid && model.memoSubmit(model.MAobj,'assign');">Internal Memo & Assign me</button>
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset" ng-click="model.close();">Close</button>&nbsp;
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIMAssignme" value="Submit" class="button_custom" ng-click="memoform.$valid && model.memoSubmit(slide,'assign');">Internal Memo & Assign me</button>
                                                 </div>
                                             </li>
 
@@ -409,19 +384,19 @@
                             <div class="tab">
                                 <br>
                                 <div>
-                                    <form name="closeform" novalidate role="form" ng-submit="closeform.$valid && model.closeSubmit(model.MAobj);">
+                                    <form name="closeform" novalidate role="form" ng-submit="closeform.$valid && model.closeSubmit(slide);">
                                         <ul>
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Reply Type </label>
                                                 <div class="pop_controls_right select-box-my input-group">
-                                                    <select class="smalldropdown" ng-model="model.MAobj.ddlmrktreplyClose" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr" ng-change="model.MAobj.txtmrktcloseReasn=model.mailchange(model.MAobj.ddlmrktreplyClose);" required>   
+                                                    <select class="smalldropdown" ng-model="slide.ddlmrktreplyClose" multiselectdropdown ng-options="item.value as item.label for item in model.marReplyArr" ng-change="slide.txtmrktcloseReasn=model.mailchange(slide.ddlmrktreplyClose);" required>   
                                                      </select>
                                                 </div>
                                             </li>
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Reason for close </label>
                                                 <div class="pop_controls_right">
-                                                    <textarea type="text" ng-model="model.MAobj.txtmrktcloseReasn" class="form-control" required></textarea>
+                                                    <textarea type="text" ng-model="slide.txtmrktcloseReasn" class="form-control" required rows="3"></textarea>
                                                 </div>
                                             </li>
                                             <br>
@@ -429,9 +404,7 @@
                                                 <div class="col-lg-offset-1 col-lg-6">
                                                     <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" value="Submit" class="button_custom pull-right  pull-right">Close Ticket</button>
                                                 </div>
-                                                <div class="col-lg-2">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset pull-right" ng-click="model.close();">Cancel</button>&nbsp;
-                                                </div>
+
                                             </li>
                                         </ul>
                                     </form>

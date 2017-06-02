@@ -58,9 +58,11 @@ span.multiselect-selected-text {
     }
     .pop_label_left {
         text-align: left;
+        width: 28% !important;
     }
-    .pop_controls_right>input {
-        @extend .width;
+    .pop_controls_right>input,
+    .pop_controls_right>.btn-group {
+        width: 73% !important;
     }
     .ticketpopuppopupheader {
         margin-top: -10px;
@@ -96,11 +98,65 @@ span.multiselect-selected-text {
     .fa-check-circle:before {
         color: green;
     }
+    .carousel-indicators {
+        display: none;
+    }
+    color:gray !important;
+    market-histry {
+        color: gray !important;
+    }
+    .feeCls {
+        margin-left: 6%;
+        font-weight: bold;
+        font-size: 16px;
+    }
+    .feeInputClass {
+        width: 50%;
+        float: left;
+    }
+    .subHdrSpan {
+        padding-left: 1%;
+    }
+    .submainhdr {
+        color: black;
+    }
+    md-next-button,
+    md-prev-button {
+        display: none;
+    }
+    md-tabs-canvas.md-paginated {
+        margin: 0 !important;
+    }
+    .md-tab {
+        padding: 9px 17px;
+    }
+    .md-tab.md-ink-ripple.md-active {
+        background-color: rgba(178, 111, 151, 0.25);
+    }
+    md-pagination-wrapper {
+        height: 36px;
+    }
+    md-tabs-canvas {
+        height: 36px;
+    }
 }
 
 .Setlemainclss {
     font-size: 16px;
     line-height: 28px;
+}
+
+.reminderCls {
+    .pop_controls_right>input,
+    .selectCls {
+        width: 73% !important;
+    }
+    .doublesmalldropdown {
+        margin-left: -25px !important;
+    }
+    // .margin28 {
+    //     margin-left: -28px !important;
+    // }
 }
 
 // $columns: 32;

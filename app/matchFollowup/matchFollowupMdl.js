@@ -278,9 +278,6 @@
                         marketbothflag: 'Bothone'
                     }
                 } else {
-
-
-
                     model.custName = name + '(' + profileid + ')';
                     model.custemail = email;
                     model.bindreplytype();
@@ -470,7 +467,7 @@
                                 item.FromTicketHisoryType = replyTypedisplay;
                                 item.FromTicketInfo = replyTypedisplay + ' done on ' + curdate + '(0 days ago)';
                                 item.FromTicketHisoryNAME = model.loginempName;
-                                item.FromTicketHisoryCallStatus = obj.CallResult === 417 ? 'Successfull' : (obj.CallResult === 417 ? '418' : '');
+                                item.FromTicketHisoryCallStatus = obj.CallResult === 417 ? 'Successfull' : (obj.CallResult === 418 ? 'UnSuccessfull' : '');
                                 item.FromTicketHisoryCallReceivedBy = obj.RelationName;
                                 item.FromTicketHisoryReplyDesc = obj.CallDiscussion;
                                 item.FromTicketHisoryRelationShip = relation;
@@ -479,7 +476,7 @@
                                 item.ToTicketHisoryType = replyTypedisplay;
                                 item.ToTicketInfo = replyTypedisplay + ' done on ' + curdate + '(0 days ago)';
                                 item.ToTicketHisoryNAME = model.loginempName;
-                                item.ToTicketHisoryCallStatus = obj.CallResult === 417 ? 'Successfull' : (obj.CallResult === 417 ? '418' : '');
+                                item.ToTicketHisoryCallStatus = obj.CallResult === 417 ? 'Successfull' : (obj.CallResult === 418 ? 'UnSuccessfull' : '');
                                 item.ToTicketHisoryCallReceivedBy = obj.RelationName;
                                 item.ToTicketHisoryReplyDesc = obj.CallDiscussion;
                                 item.ToTicketHisoryRelationShip = relation;
@@ -550,6 +547,11 @@
                     }
                 });
             };
+
+
+
+
+
 
             return model;
         }

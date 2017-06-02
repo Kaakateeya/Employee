@@ -38,6 +38,9 @@
             },
             ResendMail: function(obj) {
                 return http.post(app.apiroot + 'EmployeeReportPage/MatchFollowupResendMail', obj);
+            },
+            upadateremainderdate: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/createReminderInsert', obj);
             }
         };
     }

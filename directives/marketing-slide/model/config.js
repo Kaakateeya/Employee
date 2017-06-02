@@ -38,7 +38,6 @@
                         model.MAobj.txtmrktRelationnameout = '';
                     }
                 }
-
             });
         };
         model.getMrktSlideInfo = function(ticketid) {
@@ -64,6 +63,7 @@
             });
         };
         model.marketReplytype = function() {
+
             bindservice.marketReplytype().then(function(response) {
                 if (_.isArray(response.data[0]) && response.data[0].length > 0) {
                     model.marReplyArr.push({ "label": "--Select--", "title": "--Select--", "value": "", "text": "" });
@@ -71,6 +71,7 @@
                         model.marReplyArr.push({ "label": item.Heder, "title": item.Heder, "value": item.ID, "text": item.TEXT });
                     });
                 }
+                debugger;
             });
         };
 
