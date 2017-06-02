@@ -159,6 +159,15 @@ span.multiselect-selected-text {
     // }
 }
 
+.vertical-text {
+    transform: rotate(-15deg);
+    font-weight: bold;
+    position: absolute;
+    padding: 15px;
+    /*background-color: rgb(160, 2, 1);*/
+    color: white;
+}
+
 // $columns: 32;
 // @mixin lineHeight() {
 //     @for $i from 1 through $columns {
