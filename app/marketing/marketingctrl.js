@@ -4,7 +4,7 @@
      function controller(marketingModel, scope) {
          var vm = this;
          vm.init = function() {
-             vm.model = marketingModel;
+             vm.model = marketingModel();
              vm.model.scope = scope;
          };
 

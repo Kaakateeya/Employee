@@ -9,7 +9,8 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
             scope: {
                 ngModel: '=',
                 typeofdata: "=",
-                parentVal: "="
+                parentVal: "=",
+                pagetype: '='
             },
             link: function(scope, element, attrs) {
                 scope.options = [];
@@ -312,10 +313,13 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                     element.multiselect('select', scope.ngModel);
                 });
                 // Watch for any changes from outside the directive and refresh
-                scope.$watch('ngModel', function() {
+
+
+                scope.$watch(scope.pagetype === 'search' ? 'ngModel' : attrs.ngModel, function() {
                     // console.log(scope.ngModel);
                     element.multiselect('refresh');
                 });
+
             }
         };
     }

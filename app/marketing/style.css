@@ -28,49 +28,97 @@ span.multiselect-selected-text {
 .maroon {
   color: maroon; }
 
-#marketingdivid div#myCarousel.carousel.slide {
-  color: gray; }
-#marketingdivid .pauseBtns {
-  text-align: center; }
-#marketingdivid .carousel-control {
-  width: 4%; }
-#marketingdivid .imgCls {
-  border: 1px solid gray; }
-#marketingdivid .width, #marketingdivid .smalldropdown.btn-group, #marketingdivid .pop_controls_right > input {
-  width: 100% !important; }
-#marketingdivid .smalldropdown.btn-group {
-  max-width: 70px !important; }
-#marketingdivid .pop_label_left {
-  text-align: left; }
-#marketingdivid .ticketpopuppopupheader {
-  margin-top: -10px;
-  border: 1px solid rgba(103, 58, 183, 0.3);
-  border-radius: 10px; }
-#marketingdivid .md-padding {
-  padding: 0 !important; }
-#marketingdivid .dashboardticketpopup {
-  color: #673AB7; }
-#marketingdivid .rightdiv {
-  border: 1px solid;
-  border-color: orange;
-  border-radius: 20px; }
-#marketingdivid .servicedate {
-  font-size: 13px;
-  font-weight: bold; }
-#marketingdivid .linkdisabled {
-  pointer-events: none;
-  cursor: default;
-  opacity: 0.6; }
-#marketingdivid .nologinCls {
-  border: 1px solid;
-  border-color: orange;
-  border-radius: 20px;
-  width: 83%; }
-#marketingdivid .fa-check-circle:before {
-  color: green; }
+#marketingdivid {
+  color: gray !important; }
+  #marketingdivid div#myCarousel.carousel.slide {
+    color: gray; }
+  #marketingdivid .pauseBtns {
+    text-align: center; }
+  #marketingdivid .carousel-control {
+    width: 4%; }
+  #marketingdivid .imgCls {
+    border: 1px solid gray; }
+  #marketingdivid .width, #marketingdivid .smalldropdown.btn-group {
+    width: 100% !important; }
+  #marketingdivid .smalldropdown.btn-group {
+    max-width: 70px !important; }
+  #marketingdivid .pop_label_left {
+    text-align: left;
+    width: 28% !important; }
+  #marketingdivid .pop_controls_right > input,
+  #marketingdivid .pop_controls_right > .btn-group {
+    width: 73% !important; }
+  #marketingdivid .ticketpopuppopupheader {
+    margin-top: -10px;
+    border: 1px solid rgba(103, 58, 183, 0.3);
+    border-radius: 10px; }
+  #marketingdivid .md-padding {
+    padding: 0 !important; }
+  #marketingdivid .dashboardticketpopup {
+    color: #673AB7; }
+  #marketingdivid .rightdiv {
+    border: 1px solid;
+    border-color: orange;
+    border-radius: 20px; }
+  #marketingdivid .servicedate {
+    font-size: 13px;
+    font-weight: bold; }
+  #marketingdivid .linkdisabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.6; }
+  #marketingdivid .nologinCls {
+    border: 1px solid;
+    border-color: orange;
+    border-radius: 20px;
+    width: 83%; }
+  #marketingdivid .fa-check-circle:before {
+    color: green; }
+  #marketingdivid .carousel-indicators {
+    display: none; }
+  #marketingdivid market-histry {
+    color: gray !important; }
+  #marketingdivid .feeCls {
+    margin-left: 6%;
+    font-weight: bold;
+    font-size: 16px; }
+  #marketingdivid .feeInputClass {
+    width: 50%;
+    float: left; }
+  #marketingdivid .subHdrSpan {
+    padding-left: 1%; }
+  #marketingdivid .submainhdr {
+    color: black; }
+  #marketingdivid md-next-button,
+  #marketingdivid md-prev-button {
+    display: none; }
+  #marketingdivid md-tabs-canvas.md-paginated {
+    margin: 0 !important; }
+  #marketingdivid .md-tab {
+    padding: 9px 17px; }
+  #marketingdivid .md-tab.md-ink-ripple.md-active {
+    background-color: rgba(178, 111, 151, 0.25); }
+  #marketingdivid md-pagination-wrapper {
+    height: 36px; }
+  #marketingdivid md-tabs-canvas {
+    height: 36px; }
 
 .Setlemainclss {
   font-size: 16px;
   line-height: 28px; }
+
+.reminderCls .pop_controls_right > input,
+.reminderCls .selectCls {
+  width: 73% !important; }
+.reminderCls .doublesmalldropdown {
+  margin-left: -25px !important; }
+
+.vertical-text {
+  transform: rotate(-15deg);
+  font-weight: bold;
+  position: absolute;
+  padding: 15px;
+  /*background-color: rgb(160, 2, 1);*/
+  color: white; }
 
 /*# sourceMappingURL=style.css.map */
