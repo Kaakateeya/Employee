@@ -79,16 +79,30 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     }
                     modelpopupopenmethod.showPopupphotopoup('dynamicphotopopup.html', $scope, '', "modalclassdashboardphotopopup");
                 };
+                // $scope.ngclassprogress = function(slidelength) {
+                //     $scope.progressbar = [];
+                //     var classslide = "";
+                //     $scope.progressbar = slidelength;
+                //     $scope.width = $scope.progressbar.length + "%";
+                //     if ($scope.progressbar.length <= 10) {
+                //         classslide = "progress-bar progress-bar-striped progress-bar-danger active";
+                //     } else if ($scope.progressbar.length > 10 && $scope.progressbar.length <= 30) {
+                //         classslide = "progress-bar progress-bar-striped progress-bar-warning active";
+                //     } else if ($scope.progressbar.length > 30 && $scope.progressbar.length <= 50) {
+                //         classslide = "progress-bar progress-bar-striped progress-bar-info active";
+                //     } else {
+                //         classslide = "progress-bar progress-bar-striped progress-bar-success active";
+                //     }
+                //     return classslide;
+                // };
                 $scope.ngclassprogress = function(slidelength) {
-                    $scope.progressbar = [];
                     var classslide = "";
-                    $scope.progressbar = slidelength;
-                    $scope.width = $scope.progressbar.length + "%";
-                    if ($scope.progressbar.length <= 10) {
+                    $scope.width = slidelength + "%";
+                    if (slidelength <= 10) {
                         classslide = "progress-bar progress-bar-striped progress-bar-danger active";
-                    } else if ($scope.progressbar.length > 10 && $scope.progressbar.length <= 30) {
+                    } else if (slidelength > 10 && slidelength <= 30) {
                         classslide = "progress-bar progress-bar-striped progress-bar-warning active";
-                    } else if ($scope.progressbar.length > 30 && $scope.progressbar.length <= 50) {
+                    } else if (slidelength > 30 && slidelength <= 50) {
                         classslide = "progress-bar progress-bar-striped progress-bar-info active";
                     } else {
                         classslide = "progress-bar progress-bar-striped progress-bar-success active";

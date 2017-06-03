@@ -30,6 +30,7 @@
                             model.Frommaritalstatusid = response.data[1][0].maritalstatusid;
                             model.FromGenderID = response.data[1][0].GenderID;
                             model.Fromcasteid = response.data[1][0].casteid;
+                            model.Fromsurname = response.data[1][0].CSName;
                         }
                     }
                     if (model.ProfileStatusID == 54) {
@@ -129,6 +130,7 @@
                                         model.Tomaritalstatusid = response.data[1][0].maritalstatusid;
                                         model.ToGenderID = response.data[1][0].GenderID;
                                         model.Tocasteid = response.data[1][0].casteid;
+                                        model.Tosurname = response.data[1][0].CSName;
                                         if ((model.FromAgeMax) < (model.FromAgeMin) && model.ToAgeMax > (model.ToAgeMin)) {
                                             model.mismatch.push(" Age not Matched to this profileid");
                                         }
@@ -143,6 +145,9 @@
                                         }
                                         if (model.Tocasteid != model.Fromcasteid) {
                                             model.mismatch.push("  Caste not Matched to this profileid");
+                                        }
+                                        if (angular.lowercase(model.Fromsurname) === angular.lowercase(model.Tosurname)) {
+                                            model.mismatch.push(" Surname is Matched to this profileid");
                                         }
                                     }
 
