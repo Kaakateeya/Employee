@@ -20,12 +20,10 @@
              model.uploadfromsubmit = false;
              model.Custidbounce = null;
              model.landingItems = [];
-             model.norecordstable=false;
-             //model.slideshowfunction(false);
+             model.norecordstable = false;
              model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
              model.empBranchID = authSvc.empBranchID() !== undefined && authSvc.empBranchID() !== null && authSvc.empBranchID() !== "" ? authSvc.empBranchID() : "";
              model.init();
-             // commonpage.showPopup('dashboardslide.html', scope, 'lg', "modalclassdashboard");
          };
          vm.init();
 

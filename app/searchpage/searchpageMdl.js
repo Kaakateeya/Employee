@@ -175,7 +175,6 @@
                 return Arr;
             };
             model.init = function() {
-
                 model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
                 model.divcontrollsbind = 1;
@@ -210,7 +209,7 @@
                         str = ((str.indexOf("0") != -1) && (str.indexOf("1") != -1) ? null : (str.indexOf("1") != -1) ? "1" : (str.indexOf("0") != -1) ? "0" : null);
                     }
                 }
-                return str !== undefined ? str : null;
+                return str !== null && str !== undefined && str !== "" && str.length > 0 ? str : null;
             };
             model.submitgeneral = function(frompage, topage, typeofexcel) {
                 var paramters = {};
@@ -237,6 +236,7 @@
                 paramters.CustID = model.Cust_ID;
                 model.topage = topage;
                 if (parseInt(frompage) === 1) {
+                    model.progressbar = [];
                     model.slides = [];
                 }
                 model.CgetDetails = {
@@ -322,6 +322,7 @@
                 paramters.OnlyConfidential = model.OnlyConfidential === true ? 1 : 0;
                 model.topage = topage;
                 if (parseInt(frompage) === 1) {
+                    model.progressbar = [];
                     model.slides = [];
                 }
                 model.CgetDetails = {

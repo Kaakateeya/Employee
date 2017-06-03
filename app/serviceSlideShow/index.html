@@ -1,0 +1,46 @@
+<div class="right_col" role="main" id="serviceslideshow">
+    <div class="communicationlogheader">
+        Service Slide Show
+    </div>
+    <div class="search_page_main">
+        <br>
+        <div class="row">
+            <div class="col-lg-6">
+
+                <md-radio-group layout="row" ng-model="page.model.typeofbind" class="md-block" flex-gt-sm>
+                    <md-radio-button value="0"> All</md-radio-button>
+                    <md-radio-button value="1"> Proceed </md-radio-button>
+                    <md-radio-button value="2"> DProceed </md-radio-button>
+                    <md-radio-button value="3"> View </md-radio-button>
+                    <md-radio-button value="4"> Notview </md-radio-button>
+                    <md-radio-button value="5"> BI </md-radio-button>
+                    <md-radio-button value="6"> Oppi</md-radio-button>
+                </md-radio-group>
+
+                <br>
+
+                <div class="col-lg-2">
+                    <label class="row">Profileid</label>
+                </div>
+                <div class="col-lg-4">
+                    <input maxlength="11" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" class="form-control" type="text" ng-model="page.model.viewsettlementprofileid"></input>
+                </div>
+                <div class="col-lg-1">
+                    <button class="btn btn-danger" ng-click="page.model.viewprofilesubmit(page.model.viewsettlementprofileid)">Submit</button>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="col-lg-3">
+                    <img style="height: 74px; width: 74px;" ng-src=""></img>
+                </div>
+                <div class="col-lg-7" style="display: block;" id="divfromname"><label style="color: #504848;" id="lblfromname">Lakshmi  A</label><label style="color: #504848;display:none;" id="lblpaidis">UnPaid</label> </div>
+                <br>
+                <br>
+                <div class="col-lg-4" id="fromviewprofilediv" style="display: block;"><a href="javascript:void(0);" id="lnkfromviewprofile" onclick="ViewProfilewithvalueredirect();"> View Full Profile </a></div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <complex-slide model="page.model" config="page.model"></complex-slide>
+    </div>
+</div>
