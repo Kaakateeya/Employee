@@ -152,7 +152,7 @@
 
             <div>
                 <md-content class="md-padding">
-                    <md-tabs md-selected="page.model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
+                    <md-tabs md-selected="slide.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
                         <md-tab label="View">
                             <div class="tab">
                                 <div class="col-lg-12">
@@ -167,11 +167,11 @@
                             </div>
                         </md-tab>
 
-                        <md-tab label="Incoming Call">
+                        <md-tab md-on-select="slide.incomeTab=true" label="Incoming Call">
                             <div class="tab">
                                 <br>
                                 <div>
-                                    <form name="inform" novalidate role="form" ng-submit="">
+                                    <form ng-if="slide.incomeTab" name="inform" novalidate role="form" ng-submit="">
                                         <ul>
 
                                             <li class="clearfix form-group">
@@ -231,10 +231,10 @@
                                             <br>
                                             <li>
                                                 <div class="col-lg-4">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktsubmitIncoming" class="button_custom pull-right" ng-click="inform.$valid && model.incallSubmit(slide);">Incoming Call</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktsubmitIncoming" class="button_custom pull-right" ng-click="inform.$valid && model.incallSubmit(slide);slide.selectedIndex=0;">Incoming Call</button>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIncomeAssignme" class="button_custom" ng-click="inform.$valid && model.incallSubmit(slide,'assign');">Incomg Call & Assign me</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIncomeAssignme" class="button_custom" ng-click="inform.$valid && model.incallSubmit(slide,'assign');slide.selectedIndex=0;">Incomg Call & Assign me</button>
                                                 </div>
                                             </li>
                                         </ul>
@@ -246,11 +246,11 @@
                                 </div>
                             </div>
                         </md-tab>
-                        <md-tab label="Outgoing Call">
+                        <md-tab md-on-select="slide.outgoingTab=true" label="Outgoing Call">
                             <div class="tab">
                                 <br>
                                 <div>
-                                    <form name="outform" novalidate role="form" ng-submit="">
+                                    <form ng-if="slide.outgoingTab" name="outform" novalidate role="form" ng-submit="">
                                         <ul>
 
                                             <li class="clearfix form-group">
@@ -316,10 +316,10 @@
 
                                             <li class="col-lg-12">
                                                 <div class="col-lg-4">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktoutgng" class="button_custom pull-right" ng-click="outform.$valid && model.outcallSubmit(slide);">Outgoing Call</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktoutgng" class="button_custom pull-right" ng-click="outform.$valid && model.outcallSubmit(slide);slide.selectedIndex=0;">Outgoing Call</button>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <button type="submit" style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" id="btnOutgngAssignme" value="Submit" class="button_custom" ng-click="outform.$valid && model.outcallSubmit(slide,'assign');">Outgoing Call & Assign me</button>
+                                                    <button type="submit" style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" id="btnOutgngAssignme" value="Submit" class="button_custom" ng-click="outform.$valid && model.outcallSubmit(slide,'assign');slide.selectedIndex=0;">Outgoing Call & Assign me</button>
                                                 </div>
                                             </li>
 
@@ -332,17 +332,17 @@
 
                             </div>
                         </md-tab>
-                        <md-tab label="Internal Memo">
+                        <md-tab md-on-select="slide.internalMemoTab=true" label="Internal Memo">
                             <div class="tab">
                                 <br>
                                 <div>
-                                    <form name="memoform" novalidate role="form" ng-submit="">
+                                    <form ng-if="slide.internalMemoTab" name="memoform" novalidate role="form" ng-submit="">
                                         <ul>
 
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Assign/Re-assign </label>
                                                 <div class="pop_controls_right select-box-my   input-group">
-                                                    <select class="smalldropdown" ng-model="slide.ddlmrktAssignmemo" multiselectdropdown typeofdata="'EmpNames'" required>   
+                                                    <select class="smalldropdown" ng-model="slide.ddlmrktAssignmemo" multiselectdropdown ng-options="item.value as item.label for item in model.empNamesInOutArr" required>   
                                                      </select>
                                                 </div>
                                             </li>
@@ -366,10 +366,10 @@
 
                                             <li class="col-lg-12">
                                                 <div class="col-lg-4">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" class="button_custom pull-right" ng-click="memoform.$valid && model.memoSubmit(slide);">Internal Memo</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" class="button_custom pull-right" ng-click="memoform.$valid && model.memoSubmit(slide);slide.selectedIndex=0;">Internal Memo</button>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIMAssignme" value="Submit" class="button_custom" ng-click="memoform.$valid && model.memoSubmit(slide,'assign');">Internal Memo & Assign me</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIMAssignme" value="Submit" class="button_custom" ng-click="memoform.$valid && model.memoSubmit(slide,'assign');slide.selectedIndex=0;">Internal Memo & Assign me</button>;
                                                 </div>
                                             </li>
 
@@ -382,11 +382,11 @@
                                 </div>
                             </div>
                         </md-tab>
-                        <md-tab label="Close Ticket">
+                        <md-tab md-on-select="slide.closeTab=true" label="Close Ticket">
                             <div class="tab">
                                 <br>
                                 <div>
-                                    <form name="closeform" novalidate role="form" ng-submit="closeform.$valid && model.closeSubmit(slide);">
+                                    <form ng-if="slide.closeTab" name="closeform" novalidate role="form" ng-submit="closeform.$valid && model.closeSubmit(slide);slide.selectedIndex=0;">
                                         <ul>
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Reply Type </label>
@@ -420,9 +420,7 @@
 
                     </md-tabs>
                 </md-content>
-
             </div>
-
         </div>
     </div>
     <br>

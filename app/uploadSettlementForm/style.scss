@@ -1,0 +1,31 @@
+.maincls {
+    border: 1px solid #cecece;
+    padding: 1%;
+    border-radius: 12px;
+    box-shadow: 2px 2px 6px #ccc;
+}
+
+.hdrsettleCls {
+    font-size: 18px;
+    color: rgb(160, 2, 1);
+}
+
+.boderCls {
+    border-top: 1px solid #cecece;
+}
+
+#uploadSettle {
+    .reset {
+        margin-left: 5%;
+        background-color: #b0aaaa;
+        color: #ffffff;
+    }
+    label {
+        padding-left: 5%;
+    }
+    label::after {
+        content: '*';
+        color: red;
+        padding-left: 2%;
+    }
+}

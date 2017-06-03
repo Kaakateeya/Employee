@@ -11,7 +11,6 @@
                     }
                 });
             },
-
             getMarketingSlideShowBind: function(obj) {
                 return http.post(app.apiroot + 'EmployeeReportPage/MarketingTicketHistoryInfo', obj);
             },

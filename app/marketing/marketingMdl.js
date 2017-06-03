@@ -13,6 +13,8 @@
             model.EmpNamesArr = [];
             model.ReplyArr = [];
             model.topage = 1;
+
+            model.empNamesInOutArr = [];
             var curdate = moment().format('DD-MMM-YYYY hh:mm:ss');
             model.dateOptions = {
                 changeMonth: true,
@@ -26,9 +28,12 @@
                 empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 model.loginempName = authSvc.LoginEmpName() !== undefined && authSvc.LoginEmpName() !== null && authSvc.LoginEmpName() !== "" ? authSvc.LoginEmpName() : "";
                 AdminID = model.Admin = authSvc.isAdmin();
+                model.getEmpnamesinout();
                 model.bindEmpnames();
+
                 model.ProfileOwner = [parseInt(empid)];
                 model.ActiveButton = 'unpaid';
+
                 model.MarketingTicketBind(1, 2);
                 model.Marketingslideticket = [];
                 model.MarketingslideHistory = [];
@@ -40,6 +45,7 @@
                 model.Excelflag = 2;
                 model.notinpay = null;
                 model.EmpNamesArr = [];
+
                 model.MarketingSlideShowBind(1, 10);
                 timeout(function() {
                     model.marketReplytype();
@@ -47,6 +53,18 @@
                 model.ddlmail = "";
                 return model;
             };
+
+            model.getEmpnamesinout = function() {
+                SelectBindServiceApp.EmpBinding(1, 2, '').then(function(response) {
+                    model.empNamesInOutArr.push({ "label": "--Select--", "title": "--Select--", "value": "" });
+                    _.each(response.data, function(item) {
+                        if (item.CountryCode === 'Profile Owner') {
+                            model.empNamesInOutArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                        }
+                    });
+                });
+            };
+
 
 
             model.marsmsarray = [
@@ -75,7 +93,7 @@
             };
 
             model.MarketingSlideShowBind = function(from, to) {
-                debugger;
+
                 model.topage = to;
                 var inputobj = {
                     strBranch: model.splitArray(model.Branchs),
@@ -121,9 +139,10 @@
                                 item.ddlmrktReplyMemo =
                                 item.ddlmrktreplyClose =
                                 item.ddlmrktReplyTypeIn = "";
-                            item.txtmrktRelationnameIn = model.RelationshipChangebind(item, 39, 'In');
-                            item.txtmrktRelationnameout = model.RelationshipChangebind(item, 39, 'Out');
-                            item.ddlmrktAssignmemo = empid;
+                            item.txtmrktRelationnameout = item.txtmrktRelationnameIn = item.FatherName;
+
+                            item.selectedIndex = 0;
+                            item.ddlmrktAssignmemo = parseInt(empid);
                             item.txtmrktCalltelephonenumberIn = item.txtmrktCalltelephonenumberout = item.PrimaryContactNumber;
 
                             item.histryObj = _.where(response.data.MarketingslideHistory, { Emp_Ticket_ID: item.Emp_Ticket_ID.toString() });
@@ -718,7 +737,7 @@
             };
 
             model.pushTicketHistry = function(TicketType, CallStatus, CallReceivedBy, ReplyDesc, NoOfDays, RelationShip) {
-                debugger;
+
                 var relation;
                 if (RelationShip) {
                     relation = (_.where(arrayConstants.childStayingWith, { value: parseInt(RelationShip) }))[0].label;
@@ -807,7 +826,7 @@
             };
 
             model.memoSubmit = function(obj, type) {
-                //msg, tktID, empid, assignEmpid
+
                 marketsvc.memoSubmit(obj.txtmrktcalldiscussionMemo, obj.Emp_Ticket_ID, empid, obj.ddlmrktAssignmemo).then(function(response) {
 
                     if (parseInt(response.data) === 1) {

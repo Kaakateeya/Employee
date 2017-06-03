@@ -144,8 +144,6 @@
                                     <h5>
                                         <span id="lblpreferredstarLanguage">{{ item.StarLanguage}}</span></h5>
                                 </div>
-
-
                             </div>
 
                             <div id="UpdatePanel8" class="edit_page_details_item_desc clearfix">
@@ -153,7 +151,7 @@
                                 <div>
 
                                     <h6>
-                                        <span id="preferredstar" style="font-weight:bold;">Non preferred stars</span></h6>
+                                        <span id="preferredstar" style="font-weight:bold;">{{(item.TypeOfStar==='1'?'Non preferred stars':'Preferred stars')}}</span></h6>
                                     <h5>
                                         <span id="lblpreferredstar">{{ item.Stars}}</span></h5>
 
@@ -163,8 +161,6 @@
                             <div id="UpdatePanel12" class="edit_page_details_item_desc clearfix">
 
                                 <div>
-
-
                                     <h6>
                                         <span id="Diet" style="font-weight:bold;">Diet</span></h6>
                                     <h5>

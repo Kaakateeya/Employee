@@ -147,6 +147,7 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
             });
         },
         EmpBinding: function(flag, ID) {
+
             return http.get(app.apiroot + 'EmployeeReportPage/getMyProfileBindings', {
                 params: {
                     flag: flag,
