@@ -22,6 +22,7 @@
                 });
             },
             assignEmpSubmit: function(tktID, empid, assignEmpid) {
+                debugger;
                 return http.get(app.apiroot + 'EmployeeReportPage/getReaasignEmployee', {
                     params: { TicketID: tktID, AssignedEmpID: assignEmpid, EmpID: empid, StatusID: 2 }
                 });

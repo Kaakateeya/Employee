@@ -23,9 +23,15 @@
     label {
         padding-left: 5%;
     }
-    label::after {
+    .form-group>label::after {
         content: '*';
         color: red;
         padding-left: 2%;
+    }
+    md-input-container {
+        margin: 0px !important;
+    }
+    .help-block {
+        float: left;
     }
 }
