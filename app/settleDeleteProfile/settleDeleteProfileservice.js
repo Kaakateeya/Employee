@@ -3,7 +3,7 @@
 
     angular
         .module('Kaakateeya')
-        .factory('parametervalueService', factory)
+        .factory('settleDeleteProfileService', factory)
 
     factory.$inject = ['$http'];
 

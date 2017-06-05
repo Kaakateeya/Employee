@@ -20,7 +20,7 @@
                 changeMonth: true,
                 changeYear: true,
                 yearRange: "-40:+5",
-                dateFormat: 'mm/dd/yy'
+                dateFormat: 'dd-mm-yy'
             };
             model.opendiv = false;
             var empid, AdminID, TicketId, custId, isSibbling;
@@ -614,12 +614,11 @@
             };
 
             model.changereminder = function(slidearray) {
-
+                debugger;
                 model.reminderslidearray = {};
                 model.reminderslidearray = slidearray;
                 model.txtprofileidreminder = slidearray.ProfileID;
                 model.reminderticketid = slidearray.TicketID;
-                model.txtreminderDate = $filter('date')(slidearray.ReminderCreatedDate, "dd-MM-yyyy");
                 model.ddlHrs = "";
                 model.ddlmins = "";
                 model.ddlcontactperson = "";
@@ -638,7 +637,7 @@
 
                 if (slidearray.ReminderID) {
 
-                    model.txtreminderDate = slidearray.ReminderDatepopup;
+                    model.txtreminderDate = moment(slidearray.ReminderDate).format('MM-DD-YYYY');
                     model.ddlHrs = slidearray.ReminderID;
                     model.ddlmins = slidearray.ReminderID;
                     model.ddlremCaltype = parseInt(slidearray.TicketTypeID);

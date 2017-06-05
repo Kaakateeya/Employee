@@ -3,16 +3,16 @@
 
      angular
          .module('Kaakateeya')
-         .controller('parametervalueCtrl', controller)
+         .controller('settleDeleteProfileCtrl', controller)
 
-     controller.$inject = ['parametervalueModel'];
+     controller.$inject = ['settleDeleteProfileModel'];
 
-     function controller(parametervalueModel) {
+     function controller(settleDeleteProfileModel) {
          /* jshint validthis:true */
          var vm = this;
 
          vm.init = function() {
-             vm.model = parametervalueModel();
+             vm.model = settleDeleteProfileModel();
          };
 
          vm.init();

@@ -3,11 +3,11 @@
 
     angular
         .module('Kaakateeya')
-        .factory('parametervalueModel', factory)
+        .factory('settleDeleteProfileModel', factory)
 
-    factory.$inject = ['parametervalueService'];
+    factory.$inject = ['settleDeleteProfileService'];
 
-    function factory(parametervalueService) {
+    function factory(settleDeleteProfileService) {
         return function() {
             var model = {};
 
