@@ -73,10 +73,11 @@
                                 <label for="" class="control-label pull-right">Selected profiles list</label>
                             </div>
                             <div class="col-lg-4">
-                                <select multiple style="width: 275px;height: 61px;" ng-change="page.model.bindImages(page.model.exiObj.lstProfiles)" ng-options="item.value as item.label for item in page.model.SelectProfilelst" ng-model="page.model.exiObj.lstProfiles">
+                                <select multiple style="max-width: 294px;width:100%;height: 61px;" ng-change="page.model.bindImages(page.model.exiObj.lstProfiles)" ng-options="item.value as item.label for item in page.model.SelectProfilelst" ng-model="page.model.exiObj.lstProfiles">
                                  </select>
                             </div>
                         </div>
+
                         <div class="col-lg-6">
                             <div class="col-lg-2">
                                 <label for="" class="control-label pull-right">Emails </label>
@@ -116,16 +117,7 @@
                             </md-radio-group>
                         </div>
                     </div>
-                    <div class="row">
-                        <div>
-                            <div class="col-lg-2">
-                                <label for="" class="control-label pull-right">Notes for customer</label>
-                            </div>
-                            <div class="col-lg-4">
-                                <textarea style="width: 187%;" rows="4" cols="20" ng-model="page.model.exiObj.txtNotecustomer" class="form-control"></textarea>
-                            </div>
-                        </div>
-                    </div>
+
 
                     <div class="row" style="padding-top:1%;">
                         <div class="col-lg-4">
@@ -148,6 +140,16 @@
                             <button type="reset" ng-click="page.model.clearform();" style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset">Reset</button>
                         </div>
 
+                    </div>
+                    <div class="row">
+                        <div>
+                            <div class="col-lg-2">
+                                <label for="" class="control-label pull-right">Notes for customer</label>
+                            </div>
+                            <div class="col-lg-4">
+                                <textarea style="width: 204%;" rows="4" cols="20" ng-model="page.model.exiObj.txtNotecustomer" class="form-control"></textarea>
+                            </div>
+                        </div>
                     </div>
                     <div class="clearfix"></div>
                     </br>

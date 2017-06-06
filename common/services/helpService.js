@@ -23,9 +23,9 @@ app.service('helperservice', ['$http', function(http) {
     this.getipAddressReturn = function() {
         return http.get(app.apiroot + 'StaticPages/getipAddressReturn', { params: {} });
     };
-    this.PhotoRequest = function(ProfileID, empid) {
+    this.PhotoRequest = function(ProfileID, empid, ticketId) {
         return http.get(app.apiroot + 'CustomerPersonal/getCustomerphotoRequestDisplay', {
-            params: { profileid: ProfileID, EMPID: empid, ticketIDs: '' }
+            params: { profileid: ProfileID, EMPID: empid, ticketIDs: ticketId }
         });
     };
 

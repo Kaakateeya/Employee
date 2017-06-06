@@ -23,7 +23,6 @@
                 } else if (typeofpage === 'myprofile') {
                     model.displayArray(data, topage, "myprofile");
                 } else {
-                    debugger;
                     model.displayArray(data, 11, typeofpage);
                 }
             };
@@ -113,7 +112,6 @@
                         });
                     });
                 } else if (typebind === "regvali") {
-                    debugger;
                     $.each(arr, function(index, item) {
                         model.data = [];
                         model.data.push({

@@ -478,9 +478,9 @@
         }
         
         .pop_content_my ul .select-box-my-double input {
-            width: 48% !important;
+            width: 49% !important;
             float: left;
-            margin: 1% 0% 1% 0% !important;
+            margin: 0% 0% 2% 1% !important;
         }
         
         .pop_content_my ul .select-box-my .chzn-container {
@@ -1524,10 +1524,6 @@
             float: left;
         }
         
-        .select-box-my-trible .btn-group {
-            width: 34% !important;
-        }
-        
         .select-box-my-trible .chzn-container {
             width: 34% !important;
             float: left;
@@ -1540,7 +1536,7 @@
             box-shadow: none;
             margin: 3px 0 0 4px;
             font-size: 14px;
-            padding: 0px 0px;
+            padding: 2px 3px;
             font-weight: 700;
             border-radius: 3px !important;
         }
@@ -1553,9 +1549,10 @@
         }
         
         .select-box-my-trible input[type="text"] {
-            width: 32% !important;
+            width: 33% !important;
             // margin: 2% 0% 0% 2% !important;
             display: inline-block;
+            margin-top: 2%;
         }
         
         .pop_content_my ul .select-box-my-double .btn-group {
@@ -1682,4 +1679,10 @@
             text-overflow: ellipsis;
             display: block;
             overflow: hidden;
+        }
+        
+        input[type="text"],
+        textarea {
+            color: #000 !important;
+            border: 1px solid #ADA2A2 !important;
         }

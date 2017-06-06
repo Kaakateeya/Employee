@@ -401,7 +401,7 @@ app.constant('arrayConstants', {
         { "label": "MotherYoungerSister", "title": "MotherYoungerSister", "value": 329 },
         { "label": "MotherElderSister", "title": "MotherElderSister", "value": 320 },
         { "label": "Spouse", "title": "Spouse", "value": 334 },
-        { "label": "XRelation", "title": "XRelation", "value": 554 },
+        // { "label": "XRelation", "title": "XRelation", "value": 554 },
         { "label": "GrandFather", "title": "GrandFather", "value": 556 },
         { "label": "GrandMother", "title": "GrandMother", "value": 557 },
         { "label": "SisterHusband", "title": "SisterHusband", "value": 558 },

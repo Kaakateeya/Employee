@@ -40,6 +40,9 @@
             model.myprofileexcel = true;
             model.normalexcel = true;
             model.gridTableshow = false;
+            model.shortlistmodelinner = [];
+
+
             model.dateOptions = {
                 changeMonth: true,
                 changeYear: true,
@@ -56,13 +59,13 @@
                 return obj;
             };
             model.arrayToString = function(string) {
-                debugger;
-                return string !== null && string !== "" ? (string.split(',')).map(Number) : null;
+                return string !== null ? (string.split(',')).map(Number) : null;
             };
             model.profileidupdate = function(obj) {
                 if (model.divcontrollsbind === 0) {
                     model.init();
                 }
+                model.progressbar = [];
                 model.sidebarnavshow = false;
                 searchpageServices.getPrimaryCustomerDataResponse(obj.ProfileIDpopup, model.empid).then(function(response) {
                     if (response !== null && response.data !== undefined && response.data !== null && response.data !== "") {
@@ -121,7 +124,7 @@
                 return paid;
             };
             model.ViewProfile = function(row) {
-                window.open('/Viewfullprofile/' + row.ProfileID, '_blank');
+                window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
             };
             model.AgeTemplate = function(row) {
                 var paid = row.DOB + "(" + row.Age + ")";
@@ -172,7 +175,6 @@
                 return Arr;
             };
             model.init = function() {
-
                 model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
                 model.divcontrollsbind = 1;
@@ -207,7 +209,7 @@
                         str = ((str.indexOf("0") != -1) && (str.indexOf("1") != -1) ? null : (str.indexOf("1") != -1) ? "1" : (str.indexOf("0") != -1) ? "0" : null);
                     }
                 }
-                return str !== undefined ? str : null;
+                return str !== null && str !== undefined && str !== "" && str.length > 0 ? str : null;
             };
             model.submitgeneral = function(frompage, topage, typeofexcel) {
                 var paramters = {};
@@ -234,6 +236,7 @@
                 paramters.CustID = model.Cust_ID;
                 model.topage = topage;
                 if (parseInt(frompage) === 1) {
+                    model.progressbar = [];
                     model.slides = [];
                 }
                 model.CgetDetails = {
@@ -319,6 +322,7 @@
                 paramters.OnlyConfidential = model.OnlyConfidential === true ? 1 : 0;
                 model.topage = topage;
                 if (parseInt(frompage) === 1) {
+                    model.progressbar = [];
                     model.slides = [];
                 }
                 model.CgetDetails = {
@@ -412,13 +416,7 @@
             model.close = function(type) {
                 modelpopupopenmethod.closepopuppoptopopup();
             };
-            model.getClickedCustID = function(slide) {
-                if (model.dynamicFunction === "getClickedCustID" || model.dynamicFunction === "mismatchProfileCheck") {
-                    model.close();
-                }
-                slide.isShortlisted = true;
-                alerts.timeoutoldalerts(model.scope, 'alert-success', 'profile has been shortlisted successfully', 2000);
-            };
+
             model.mismatchProfileCheck = function(slide) {
                 if (model.dynamicFunction === "getClickedCustID" || model.dynamicFunction === "mismatchProfileCheck") {
                     model.close();
@@ -470,11 +468,46 @@
                     }
                 }
             };
+
+            model.getClickedCustID = function(slide) {
+
+                if (model.dynamicFunction === "getClickedCustID" || model.dynamicFunction === "mismatchProfileCheck") {
+                    model.close();
+                }
+                slide.isShortlisted = true;
+                if (!model.shortlistmodel.slides) {
+                    model.shortlistmodel.slides = angular.copy(_.where(model.slides, { isShortlisted: true }));
+                } else {
+                    model.shortlistmodel.slides = model.shortlistmodel.slides.concat(angular.copy(_.where(model.slides, { isShortlisted: true })) || []);
+                }
+                model.progressbar = model.shortlistmodel.slides = angular.copy(_.where(model.slides, { isShortlisted: true }));
+                alerts.timeoutoldalerts(model.scope, 'alert-success', 'profile has been shortlisted successfully', 2000);
+            };
+
+
+            model.shortlistmodel.checkServicetoShortlist = function(slide) {
+
+                model.slide = slide;
+                if (slide.isshortlistaedgain) {
+                    alerts.timeoutoldalerts(model.scope, 'alert-danger', 'You have already Shortlisted this Profile ID', 4000);
+                } else {
+                    slide.isshortlistaedgain = true;
+
+                    model.shortlistmodelinner = angular.copy(_.where(model.shortlistmodel.slides, { isshortlistaedgain: true }));
+                    _.map(model.slides, function(item) {
+                        item.isShortlisted = false;
+                    });
+                    alerts.timeoutoldalerts(model.scope, 'alert-success', 'profile has been shortlisted successfully', 4000);
+                }
+            };
+
             model.mainShortListProfile = function() {
                 model.shortlistmodel.headettemp = "templates/SearchpopupHeader.html";
-                model.shortlistmodel.slides = _.where(model.slides, { isShortlisted: true });
+                model.shortlistmodel.slides = model.shortlistmodelinner.concat(_.where(model.slides, { isShortlisted: true }));
                 modelpopupopenmethod.showPopupphotopoup('mainShortListProfiles.html', model.scope, 'lg', "modalclassdashboardphotopopupinner");
             };
+
+
             model.shortListPopup = function() {
                 var arrayshortListPopup = [];
                 arrayshortListPopup = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true });
@@ -484,16 +517,7 @@
                     model.shortlistmodel.slides = (model.shortlistmodel.slides);
                 }
             };
-            model.shortlistmodel.checkServicetoShortlist = function(slide) {
-                model.slide = slide;
-                if (slide.isshortlistaedgain) {
-                    alerts.timeoutoldalerts(model.scope, 'alert-danger', 'You have already Shortlisted this Profile ID', 4000);
-                } else {
-                    slide.isshortlistaedgain = true;
-                    alerts.timeoutoldalerts(model.scope, 'alert-success', 'profile has been shortlisted successfully', 4000);
-                }
 
-            };
             model.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
                     switch (model.tablename) {
@@ -504,7 +528,6 @@
                             model.submitadvancedsearch((model.topage) + 1, (model.topage) + 10);
                             break;
                     }
-
                 }
             };
             model.statusbind = function(status) {
@@ -544,11 +567,9 @@
                 model.close();
                 model.cloumsarr = [];
                 model.Toprofileids = [];
-                debugger;
-                var finalArray = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true }).length > 0 ? _.where(model.shortlistmodel.slides, { isshortlistaedgain: true }) :
-                    _.where(model.shortlistmodel.slides, { isShortlisted: true });
+                var finalArray = model.shortlistmodel.slides;
 
-                _.each(finalArray, function(item) {
+                _.each((finalArray.length > 0 ? finalArray : model.shortlistmodel.slides), function(item) {
                     model.cloumsarr.push(item.Custid);
                 });
                 var custids = model.cloumsarr.length > 0 ? (model.cloumsarr).toString() : null;
@@ -567,8 +588,8 @@
                     _.each(model.Toprofileids, function(item) {
                         expressInterestModel.getImages(item);
                     });
-                    if (finalArray.length === model.Toprofileids.length)
-                        modelpopupopenmethod.showPopupphotopoup('app/expressInterest/index.html', model.scope, 'lg', "");
+                    // if (finalArray.length === model.Toprofileids.length)
+                    modelpopupopenmethod.showPopupphotopoup('app/expressInterest/index.html', model.scope, 'lg', "");
                 });
             };
 
@@ -593,7 +614,7 @@
                 });
             };
             model.viewfullprofile = function(profileid) {
-                window.open("Viewfullprofile/" + profileid, "_blank");
+                window.open("Viewfullprofile/" + profileid + '/0', "_blank");
             };
             model.ticketclass = function(status) {
                 var background = "#fff";

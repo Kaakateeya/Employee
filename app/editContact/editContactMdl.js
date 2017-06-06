@@ -27,7 +27,9 @@
         model.popupMobilenumber = '';
         model.mobileVerificationCode = "";
         model.ID = 0;
+        var loginEmpid;
         model.init = function() {
+            loginEmpid = authSvc.LoginEmpid();
             custID = model.CustID = stateParams.CustID;
             model.pageload();
             return model;
@@ -52,7 +54,8 @@
         };
 
         model.commonContactSubmit = function(Icustfamiliyid, IName, IMoblieCountryCode, IMobileNumber, IMoblieCountryCode2, IMobileNumber2, ILandCountryCode,
-            ILandAreaCode, ILandNumber, IEmail, ISibblingFlag) {
+            ILandAreaCode, ILandNumber, IEmail, ISibblingFlag,
+            FFcountryCode, FFNumber, FFcountryCode2, FFnumber2, FFLandCode, FFareaCode, FFLandNumber, FFflag) {
             model.Mobj = {
                 familyID: Icustfamiliyid,
                 Name: IName,
@@ -63,9 +66,15 @@
                 LandNumber: commonFactory.checkvals(IMobileNumber2) ? IMobileNumber2 : commonFactory.checkvals(ILandNumber) ? ILandNumber : null,
                 Email: IEmail,
                 intCusID: custID,
-                EmpID: '2',
-                Admin: 1,
-                SibblingFlag: ISibblingFlag
+                EmpID: loginEmpid,
+                Admin: authSvc.isAdmin(),
+                SibblingFlag: ISibblingFlag,
+                FFMobileCountryID: FFcountryCode,
+                FFMobileNumber: FFNumber,
+                FFLandLineCountryCodeID: commonFactory.checkvals(FFcountryCode2) ? FFcountryCode2 : commonFactory.checkvals(FFLandCode) ? FFLandCode : null,
+                FFLandAreaCode: commonFactory.checkvals(FFnumber2) ? null : (commonFactory.checkvals(FFareaCode) ? FFareaCode : null),
+                FFLandNumber: commonFactory.checkvals(FFnumber2) ? FFnumber2 : commonFactory.checkvals(FFLandNumber) ? FFLandNumber : null,
+                iflagFF: FFflag
             };
             editContactService.submitContactData(model.Mobj).then(function(response) {
                 console.log(response);
@@ -125,12 +134,9 @@
                     if (item !== undefined) {
                         model.candidateobj.emaILcust_family_id = item.emaILcust_family_id;
 
-
-
                         model.candidateobj.ddlcandidateMobileCountryID = commonFactory.checkvals(item.Candidatemobilecountrycode) ? parseInt(item.Candidatemobilecountrycode) : 0;
                         model.candidateobj.txtcandidatemobilenumber = item.CandidateMobileNumber;
                         if (commonFactory.checkvals(item.Candidatelandareacode)) {
-
                             model.candidateobj.ddlcandidateLandLineCountry = commonFactory.checkvals(item.CandidateLandlinecountrycode) ? parseInt(item.CandidateLandlinecountrycode) : 0;
                             model.candidateobj.txtcandidateAreCode = item.Candidatelandareacode;
                             model.candidateobj.txttxtcandidateAreCodeLandNumber = item.CandidateLandlinenumber;
@@ -139,7 +145,6 @@
                             model.candidateobj.txtFBMobileNumber2 = item.CandidateLandlinenumber;
                         }
                         model.candidateobj.txtcandidateEmails = item.CandidateEmail;
-
                     }
                     commonFactory.open('candidateContactContent.html', model.scope, uibModal);
 
@@ -197,6 +202,7 @@
 
                 case 'parent':
                     model.parentobj = {};
+                    model.parentIdentityID = '';
                     model.parentobj.MotheremaILcust_family_id = item.MotheremaILcust_family_id;
 
                     model.parentobj.ddlcandidatefathermobcode = commonFactory.checkvals(item.mobilecountrycode) ? parseInt(item.mobilecountrycode) : 0;
@@ -214,6 +220,19 @@
                     model.parentobj.txtcandidatefatheremail = item.Email;
                     model.parentobj.txtFathername = item.NAME;
 
+                    model.parentobj.ddlFFmobcode = commonFactory.checkvals(item.FatherMobileCountryID) ? parseInt(item.FatherMobileCountryID) : 0;
+                    model.parentobj.txtFFrmob = item.FatherMobileNumber;
+
+                    if (commonFactory.checkvals(item.FatherLandAreaCode)) {
+                        model.parentobj.ddlFFlandcode = commonFactory.checkvals(item.FarherLandLineCountryCodeID) ? parseInt(item.FarherLandLineCountryCodeID) : 0;
+                        model.parentobj.txtFFlandareacode = item.FatherLandAreaCode;
+                        model.parentobj.txtFFlandnumber = item.FatherLandNumber;
+                    } else {
+                        model.parentobj.ddlFFmob2code = commonFactory.checkvals(item.FarherLandLineCountryCodeID) ? parseInt(item.FarherLandLineCountryCodeID) : 0;
+                        model.parentobj.txtFFmob2 = item.FatherLandNumber;
+                    }
+                    model.parentIdentityID = item.Motheremailreletionship;
+                    model.parentobj.ffname = item.MotherFatherFirstName;
                     commonFactory.open('parentContactContent.html', model.scope, uibModal);
 
                     break;
@@ -368,10 +387,6 @@
                 model.mobileVerificationCode = response.data;
                 commonFactory.open('verifyMobileContent.html', model.scope, uibModal);
             });
-
-
-
-
         };
 
 
@@ -400,8 +415,6 @@
             }
 
         };
-
-
 
 
         return model.init();

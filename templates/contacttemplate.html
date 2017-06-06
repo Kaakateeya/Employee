@@ -1,59 +1,59 @@
-<div id="ownerdiv4">
+<!--<div id="ownerdiv4">-->
 
-    <li id="divfathernumbersowner" class="clearfix form-group">
-        <label for="lblContactNumbersfather" class="pop_label_left">Contact Numbers</label>
-        <div class="pop_controls_right">
+<li id="divfathernumbersowner" class="clearfix form-group">
+    <label for="lblContactNumbersfather" class="pop_label_left">Contact Numbers</label>
+    <div class="pop_controls_right">
 
-            <a data-toggle="tooltip" style="padding-right:20%;" data-original-title="Add Mobile Number" tabindex="6" ng-click="showhidemob($event,'mob');" href=javascript:void(0);>
-                <ng-md-icon icon="smartphone" style="fill:#337ab7" size="20"></ng-md-icon>
-            </a>
+        <a data-toggle="tooltip" style="padding-right:20%;" data-original-title="Add Mobile Number" tabindex="6" ng-click="showhidemob($event,'mob');" href=javascript:void(0);>
+            <ng-md-icon icon="smartphone" style="fill:#337ab7" size="20"></ng-md-icon>
+        </a>
 
-            <a data-toggle="tooltip" style="padding-right:20%;" data-original-title="Add  Land Number" tabindex="7" ng-click="showhidemob($event,'land');" href=javascript:void(0);>
-                <ng-md-icon icon="call" style="fill:#337ab7" size="20"></ng-md-icon>
-            </a>
+        <a data-toggle="tooltip" style="padding-right:20%;" data-original-title="Add  Land Number" tabindex="7" ng-click="showhidemob($event,'land');" href=javascript:void(0);>
+            <ng-md-icon icon="call" style="fill:#337ab7" size="20"></ng-md-icon>
+        </a>
 
-            <a data-toggle="tooltip" ng-show="emailhide" data-original-title="Add  Email ID" tabindex="8" ng-click="showhidemob($event,'mail');" href=javascript:void(0);>
-                <ng-md-icon icon="mail" style="fill:#337ab7" size="20"></ng-md-icon>
-            </a>
+        <a data-toggle="tooltip" ng-show="emailhide" data-original-title="Add  Email ID" tabindex="8" ng-click="showhidemob($event,'mail');" href=javascript:void(0);>
+            <ng-md-icon icon="mail" style="fill:#337ab7" size="20"></ng-md-icon>
+        </a>
+    </div>
+</li>
+
+<li class="clearfix form-group" ng-show="pmob">
+    <div>
+        <label for="lblMobile" class="pop_label_left">Mobile #  </label>
+        <div class="pop_controls_right select-box-my select-box-my-double">
+            <select multiselectdropdown ng-model="dmobile" typeofdata="'countryCode'"></select>
+            <input type=text ng-model="strmobile" class="form-control" maxlength="10" tabindex="10" />
         </div>
-    </li>
+    </div>
+</li>
+<li class="clearfix form-group" ng-show="amob">
+    <div>
+        <label for="lblMobilefather" class="pop_label_left">Altenate Number</label>
+        <div class="pop_controls_right select-box-my select-box-my-double">
+            <select multiselectdropdown ng-model="dalternative" typeofdata="'countryCode'"></select>
+            <input type=text class="form-control" ng-model="stralternative" maxlength="10" tabindex="12" />
+        </div>
+    </div>
+</li>
+<li class="clearfix form-group landcls" ng-show="land">
+    <div>
+        <label for="lblLandLine" class="pop_label_left">Land line #  </label>
+        <div class="pop_controls_right select-box-my select-box-my-trible">
+            <select multiselectdropdown ng-model="dland" typeofdata="'countryCode'"></select>
+            <input type=text ng-model="strareacode" class="form-control" maxlength="4" tabindex="14" />
+            <input type=text ng-model="strland" class="form-control" maxlength="8" tabindex="15" />
+        </div>
+    </div>
 
-    <li class="clearfix form-group" ng-show="pmob">
-        <div>
-            <label for="lblMobile" class="pop_label_left">Mobile #  </label>
-            <div class="pop_controls_right select-box-my select-box-my-double">
-                <select multiselectdropdown ng-model="dmobile" typeofdata="'countryCode'"></select>
-                <input type=text ng-model="strmobile" class="form-control" maxlength="10" tabindex="10" />
-            </div>
-        </div>
-    </li>
-    <li class="clearfix form-group" ng-show="amob">
-        <div>
-            <label for="lblMobilefather" class="pop_label_left">Altenate Number</label>
-            <div class="pop_controls_right select-box-my select-box-my-double">
-                <select multiselectdropdown ng-model="dalternative" typeofdata="'countryCode'"></select>
-                <input type=text class="form-control" ng-model="stralternative" maxlength="10" tabindex="12" />
-            </div>
-        </div>
-    </li>
-    <li class="clearfix form-group" ng-show="land">
-        <div>
-            <label for="lblLandLine" class="pop_label_left">Land line #  </label>
-            <div class="pop_controls_right select-box-my select-box-my-trible">
-                <select multiselectdropdown ng-model="dland" typeofdata="'countryCode'"></select>
-                <input type=text ng-model="strareacode" class="form-control" maxlength="4" tabindex="14" />
-                <input type=text ng-model="strland" class="form-control" maxlength="8" tabindex="15" />
-            </div>
-        </div>
-
-    </li>
-    <li class="clearfix form-group" ng-show="mail">
-        <label for="lblEmail" class="pop_label_left">Email  </label>
-        <div class="pop_controls_right">
-            <input type=text ng-model="strmail" class="form-control" placeholder="Enter Email" text=" " tabindex="16" />
-        </div>
-    </li>
-</div>
+</li>
+<li class="clearfix form-group" ng-show="mail">
+    <label for="lblEmail" class="pop_label_left">Email  </label>
+    <div class="pop_controls_right">
+        <input type=text ng-model="strmail" class="form-control" placeholder="Enter Email" text=" " tabindex="16" />
+    </div>
+</li>
+<!--</div>-->
 
 <style type="text/css">
     body {
@@ -63,5 +63,9 @@
     .multiselect-selected-text {
         overflow: hidden;
         display: block;
+    }
+    
+    .landcls {
+        margin-bottom: 1%;
     }
 </style>

@@ -100,7 +100,6 @@
         return directive;
 
         function link($scope, $elem, $attrs, $ctrl) {
-            debugger;
             var elem = $elem[0];
 
             // wait

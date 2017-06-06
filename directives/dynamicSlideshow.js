@@ -363,7 +363,7 @@ app.directive("slideShow", ['$uibModal', 'modelpopupopenmethod', '$timeout', 'Se
                 };
 
                 scope.viewfullprofile = function(profileid) {
-                    window.open("Viewfullprofile/" + profileid, "_blank");
+                    window.open("Viewfullprofile/" + profileid + '/0', "_blank");
                 };
                 scope.paymentpage = function(profileid) {
                     window.open("EmployeePayments" + "?idsss=" + profileid, "_blank");

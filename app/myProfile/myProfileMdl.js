@@ -219,7 +219,7 @@
             };
 
             model.ViewProfile = function(row) {
-                window.open('/Viewfullprofile/' + row.ProfileID, '_blank');
+                window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
             };
             model.horoscopeimage = function(row) {
                 model.image = row.HoroScopeImage;
@@ -373,7 +373,7 @@
                 window.open('/' + type + '/' + custid, '_blank');
             };
             model.slide.viewfullprofile = function(ProfileID) {
-                window.open('/Viewfullprofile/' + ProfileID, '_blank');
+                window.open('/Viewfullprofile/' + ProfileID + '/0', '_blank');
             };
             model.slide.close = function() {
                 modelpopupopenmethod.closepopuppoptopopup();

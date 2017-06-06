@@ -4,13 +4,13 @@
     <div class="edit_pages_content_main clearfix">
         <div class="edit_page_item">
             <div class="edit_page_item_head clearfix">
-                <div >
+                <div>
                     <h4>Candidate Contact details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <span style="color: #08CFD2;">RelationName :Mobile :{{page.model.primaryRel.PrimaryMobileRelName}} & Email :{{page.model.primaryRel.PrimaryEmailRelName}}</span></h4>
                 </div>
 
                 <div class="edit_page_item_ui clearfix">
-                    <div >
+                    <div>
                         <a href="javascript:void(0);" class="edit_page_add_button" ng-click="page.model.showContactPopup('Candidate');">Add
                     </a>
                     </div>
@@ -19,28 +19,28 @@
             <div class="edit_page_details_item">
                 <div ng-if="page.model.candidateContactArr" ng-repeat="item in page.model.candidateContactArr">
                     <div id="reviewdiv" class="edit_page_details_item_desc clearfix">
-                        <div  class="edit_page_details_item_desc clearfix">
+                        <div class="edit_page_details_item_desc clearfix">
                             <h6>
-                                <span  Font-Bold="true">Moblie #</span></h6>
+                                <span Font-Bold="true">Moblie #</span></h6>
                             <h5>
-                                <span >{{item.CandidateMobilewithcode}}</span>
+                                <span>{{item.CandidateMobilewithcode}}</span>
                                 <label ng-show="(item.primarymobile===1)|| (item.mobileisverfied) ?true:false ">
     <span  ng-class="item.mobileisverfied==true?'fa fa-check-circle':'glyphicon glyphicon-ok'">
-    </span></label>                                <a href="javascript:void(0);" ng-show="(item.primarymobile)&&(((item.mobileisverfied))==true?false:true) ?true:false" ng-click="page.model.sendMobileCode(item.Candidatemobilecountrycode,item.Candidatemobilecountrycode,item.CandidateMobileNumber,item.emaILcust_family_id);"> &nbsp;&nbsp;&nbsp;&nbsp;verify mobile</a>                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></label> <a href="javascript:void(0);" ng-show="(item.primarymobile)&&(((item.mobileisverfied))==true?false:true) ?true:false" ng-click="page.model.sendMobileCode(item.Candidatemobilecountrycode,item.Candidatemobilecountrycode,item.CandidateMobileNumber,item.emaILcust_family_id);"> &nbsp;&nbsp;&nbsp;&nbsp;verify mobile</a>                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="javascript:void(0);" ng-click="page.model.setprimaryrelationPopup();">RelationName</a>
                             </h5>
                         </div>
-                        <div  class="edit_page_item_ui clearfix">
+                        <div class="edit_page_item_ui clearfix">
                             <a href="javascript:void(0);" class="edit_page_edit_button" ng-click="page.model.showContactPopup('Candidate',item);">Edit
                                     </a>
                         </div>
 
-                        <div >
+                        <div>
                             <div class="edit_page_details_item_desc clearfix">
                                 <h6>
                                     <span Font-Bold="true">Land line #</span></h6>
                                 <h5>
-                                    <span >{{item.Candidatelandlinewithcode}}</span>
+                                    <span>{{item.Candidatelandlinewithcode}}</span>
 
                                     <label ng-show="(item.primarylandline==1)|| (item.Landisverfied) ?true:false">
      <span  ng-class="(item.Landisverfied)==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"  style="color:#00FF00;"></span>
@@ -51,14 +51,14 @@
                             </div>
 
                         </div>
-                        <div >
+                        <div>
 
                             <div class="edit_page_details_item_desc clearfix">
 
                                 <h6>
-                                    <span  Font-Bold="true">Email</span></h6>
+                                    <span Font-Bold="true">Email</span></h6>
                                 <h5>
-                                    <span >{{item.CandidateEmail}}</span>
+                                    <span>{{item.CandidateEmail}}</span>
 
 
 
@@ -69,7 +69,7 @@
                                 </h5>
                             </div>
                         </div>
-                   </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,57 +81,57 @@
             </div>
             <div class="edit_page_details_item">
                 <div ng-if="page.model.candidateAddrArr" ng-repeat="item in page.model.candidateAddrArr">
-                    <div  class="edit_page_details_item_desc clearfix">
+                    <div class="edit_page_details_item_desc clearfix">
                         <div class="edit_page_details_item_desc clearfix">
                             <div class="edit_page_details_item_desc clearfix" id="flatdiv">
                                 <h6>
-                                    <span  Font-Bold="true">Flat no</span></h6>
+                                    <span Font-Bold="true">Flat no</span></h6>
                                 <h5>
-                                    <span >{{item.Flatno}}</span></h5>
+                                    <span>{{item.Flatno}}</span></h5>
                             </div>
                         </div>
                         <div class="edit_page_item_ui clearfix">
                             <a href="javascript:void(0);" class="edit_page_edit_button" ng-click="page.model.showContactPopup('candidateAddr',item);">Edit
                                     </a>
                         </div>
-                        <div  class="edit_page_details_item_desc clearfix">
+                        <div class="edit_page_details_item_desc clearfix">
                             <div id="divapartment" class="edit_page_details_item_desc clearfix">
                                 <h6>
-                                    <span  Font-Bold="true">Apartment no</span></h6>
+                                    <span Font-Bold="true">Apartment no</span></h6>
                                 <h5>
-                                    <span >{{item.Apartmentno}}</span></h5>
+                                    <span>{{item.Apartmentno}}</span></h5>
                             </div>
                         </div>
-                        <div  class="edit_page_details_item_desc clearfix">
+                        <div class="edit_page_details_item_desc clearfix">
                             <div id="divareaname" class="edit_page_details_item_desc clearfix">
                                 <h6>
-                                    <span  Font-Bold="true">Area name</span></h6>
+                                    <span Font-Bold="true">Area name</span></h6>
                                 <h5>
-                                    <span >{{item.Areaname}}</span></h5>
+                                    <span>{{item.Areaname}}</span></h5>
                             </div>
                         </div>
-                        <div  class="edit_page_details_item_desc clearfix">
+                        <div class="edit_page_details_item_desc clearfix">
                             <div class="edit_page_details_item_desc clearfix" id="streetname">
                                 <h6>
-                                    <span  Font-Bold="true">Street name</span></h6>
+                                    <span Font-Bold="true">Street name</span></h6>
                                 <h5>
-                                    <span >{{item.Streetname}}</span></h5>
+                                    <span>{{item.Streetname}}</span></h5>
                             </div>
                         </div>
-                        <div  class="edit_page_details_item_desc clearfix">
+                        <div class="edit_page_details_item_desc clearfix">
                             <div class="edit_page_details_item_desc clearfix" id="landmarkdiv">
                                 <h6>
-                                    <span  Font-Bold="true">Landmark</span></h6>
+                                    <span Font-Bold="true">Landmark</span></h6>
                                 <h5>
-                                    <span >{{item.Landmark}}</span></h5>
+                                    <span>{{item.Landmark}}</span></h5>
                             </div>
                         </div>
-                        <div >
+                        <div>
                             <div class="edit_page_details_item_desc clearfix" id="CountryNamediv">
                                 <h6>
-                                    <span  Font-Bold="true">Country</span></h6>
+                                    <span Font-Bold="true">Country</span></h6>
                                 <h5>
-                                    <span >{{item.fulladdress}}</span>
+                                    <span>{{item.fulladdress}}</span>
                                 </h5>
                             </div>
                         </div>
@@ -143,7 +143,7 @@
             <div class="edit_page_item_head clearfix">
                 <h4>Parent Contact Details</h4>
                 <div class="edit_page_item_ui clearfix">
-                    <div >
+                    <div>
 
                     </div>
                 </div>
@@ -151,9 +151,9 @@
             <div class="edit_page_details_item">
                 <div ng-if="page.model.parentContactArr" ng-repeat="item in page.model.parentContactArr">
                     <div class="edit_page_details_item_desc clearfix">
-                        <div  class="edit_page_details_item_desc clearfix">
+                        <div class="edit_page_details_item_desc clearfix">
                         </div>
-                        <div  class="edit_page_item_ui clearfix">
+                        <div class="edit_page_item_ui clearfix">
                             <a href="javascript:void(0);" class="edit_page_edit_button" ng-click="page.model.showContactPopup('parent',item);">Edit
                                     </a>
                         </div>
@@ -162,15 +162,15 @@
                                 <h6>
                                     <span Font-Bold="true">{{item.Motheremailreletionship==="39"?"Father Name":"Mother Name"}}</span></h6>
                                 <h5>
-                                    <span >{{item.NAME}}</span></h5>
+                                    <span>{{item.NAME}}</span></h5>
                             </div>
                         </div>
-                        <div  class="edit_page_details_item_desc clearfix">
+                        <div class="edit_page_details_item_desc clearfix">
                             <div>
                                 <h6>
-                                    <span  Font-Bold="true">Moblie #</span></h6>
+                                    <span Font-Bold="true">Moblie #</span></h6>
                                 <h5>
-                                    <span >{{item.Mobilewithcode}}</span>
+                                    <span>{{item.Mobilewithcode}}</span>
 
                                     <label ng-show="(item.primarymobile===1)|| (item.Mothermobileisverfied) ?true:false ">
     <span  ng-class="item.Mothermobileisverfied==true?'fa fa-check-circle':'glyphicon glyphicon-ok'">
@@ -179,21 +179,21 @@
                                 </h5>
                             </div>
                         </div>
-                        <div  class="edit_page_details_item_desc clearfix">
+                        <div class="edit_page_details_item_desc clearfix">
                             <div>
                                 <h6>
-                                    <span  Font-Bold="true">Land line #</span></h6>
+                                    <span Font-Bold="true">Land line #</span></h6>
                                 <h5>
-                                    <span >{{item.landlinewithcode}}</span></h5>
+                                    <span>{{item.landlinewithcode}}</span></h5>
                                 <label ng-show="(item.primarylandline==1)|| (item.MotherLandisverfied) ?true:false">
      <span  ng-class="(item.MotherLandisverfied)==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"  style="color:#00FF00;"></span>
  </label>
                             </div>
                         </div>
-                        <div  class="edit_page_details_item_desc clearfix">
+                        <div class="edit_page_details_item_desc clearfix">
                             <div>
                                 <h6>
-                                    <span  Font-Bold="true">Email</span></h6>
+                                    <span Font-Bold="true">Email</span></h6>
                                 <h5>
                                     <span>{{item.Email}}</span>
 
@@ -204,17 +204,42 @@
                                 </h5>
                             </div>
                         </div>
+                        <div class="edit_page_details_item_desc clearfix">
+                            <div>
+                                <h6>
+                                    <span Font-Bold="true">{{item.Motheremailreletionship==="39"?"FF Name":"MF Name"}}</span></h6>
+                                <h5>
+                                    <span>{{item.MotherFatherFirstName}}</span></h5>
+                            </div>
+                        </div>
+                        <div class="edit_page_details_item_desc clearfix">
+                            <div>
+                                <h6>
+                                    <span Font-Bold="true">{{item.Motheremailreletionship==="39"?" FF Moblie #":"MF Moblie #"}}</span></h6>
+                                <h5>
+                                    <span ng-hide="item.FatherMobileNumber===null">{{item.FFCountryIDCode+'-'+item.FatherMobileNumber}}</span></h5>
+                            </div>
+                        </div>
+                        <div class="edit_page_details_item_desc clearfix">
+                            <div>
+                                <h6>
+                                    <span Font-Bold="true">{{item.Motheremailreletionship==="39"?" FF Land Line #":"MF Land Line #"}}</span></h6>
+                                <h5>
+                                    <span ng-hide="item.FatherLandNumber===null">{{item.FFLandCountyCode+(item.FatherLandAreaCode!==null?'-'+item.FatherLandAreaCode:'')+'-'+item.FatherLandNumber}}</span></h5>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
 
-       <div class="edit_page_item">
+        <div class="edit_page_item">
             <div class="edit_page_item_head clearfix">
                 <h4>Siblings Contact Details</h4>
                 <div class="edit_page_item_ui clearfix">
 
-                    <div >
+                    <div>
                     </div>
                 </div>
             </div>
@@ -222,10 +247,10 @@
 
                 <div ng-if="page.model.SiiblingContactArr" ng-repeat="item in page.model.SiiblingContactArr">
 
-                    <div  class="edit_page_details_item_desc clearfix">
+                    <div class="edit_page_details_item_desc clearfix">
 
 
-                        <div  class="edit_page_details_item_desc clearfix">
+                        <div class="edit_page_details_item_desc clearfix">
 
 
                         </div>
@@ -234,26 +259,26 @@
                             <a href="javascript:void(0);" class="edit_page_edit_button" ng-click="page.model.showContactPopup('sibbling',item,'SelfFlag');">Edit
                         </a>
                         </div>
-                        <div  class="edit_page_details_item_desc clearfix">
+                        <div class="edit_page_details_item_desc clearfix">
 
                             <div>
 
                                 <h6>
-                                    <span  Font-Bold="true">{{(item.Siblingemailreletionship==="41" || item.Siblingemailreletionship==="42" )?"Brother Name":"Sister Name"}}</span></h6>
+                                    <span Font-Bold="true">{{(item.Siblingemailreletionship==="41" || item.Siblingemailreletionship==="42" )?"Brother Name":"Sister Name"}}</span></h6>
                                 <h5>
-                                    <span >{{item.SiblingName}}</span></h5>
+                                    <span>{{item.SiblingName}}</span></h5>
 
                             </div>
 
                         </div>
-                        <div  class="edit_page_details_item_desc clearfix">
+                        <div class="edit_page_details_item_desc clearfix">
 
                             <div>
 
                                 <h6>
-                                    <span  Font-Bold="true">Moblie #</span></h6>
+                                    <span Font-Bold="true">Moblie #</span></h6>
                                 <h5>
-                                    <span >{{item.SiblingMobilewithcode}}</span>
+                                    <span>{{item.SiblingMobilewithcode}}</span>
 
                                     <label ng-show="(item.primarymobile===1)|| (item.Siblingmobileisverfied) ?true:false ">
     <span  ng-class="item.Siblingmobileisverfied==true?'fa fa-check-circle':'glyphicon glyphicon-ok'">
@@ -267,7 +292,7 @@
 
                         </div>
 
-                        <div  class="edit_page_details_item_desc clearfix ">
+                        <div class="edit_page_details_item_desc clearfix ">
 
                             <div>
 
@@ -286,14 +311,14 @@
                             </div>
 
                         </div>
-                        <div  class="edit_page_details_item_desc clearfix">
+                        <div class="edit_page_details_item_desc clearfix">
 
                             <div>
 
                                 <h6>
-                                    <span  Font-Bold="true">Email</span></h6>
+                                    <span Font-Bold="true">Email</span></h6>
                                 <h5>
-                                    <span >{{item.SiblingEmail}}</span>
+                                    <span>{{item.SiblingEmail}}</span>
 
                                     <label ng-show="(item.Siblingprimaryemail || item.SiblingisemailVerified) ?true:false">
     <span  ng-class="item.SiblingisemailVerified==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></span>
@@ -306,37 +331,37 @@
                             </div>
 
                         </div>
-                        <div >
+                        <div>
 
                             <div class="edit_page_details_item_desc clearfix ">
-                                <div >
-                                    <div >
+                                <div>
+                                    <div>
 
-                                        <div  class="edit_page_item_ui clearfix">
+                                        <div class="edit_page_item_ui clearfix">
 
                                             <a href="javascript:void(0);" class="edit_page_edit_button" ng-click="page.model.showContactPopup('sibbling',item,'SpouseFlag');">Edit
                                                             </a>
                                         </div>
 
-                                        <div  class="edit_page_details_item_desc clearfix">
+                                        <div class="edit_page_details_item_desc clearfix">
 
                                             <div>
                                                 <h6>
-                                                    <span  Font-Bold="true ">{{item.Siblingemailreletionship===41 || item.Siblingemailreletionship==42 ?"Brother Wife ":"Sister Husband"}}</span></h6>
+                                                    <span Font-Bold="true ">{{item.Siblingemailreletionship===41 || item.Siblingemailreletionship==42 ?"Brother Wife ":"Sister Husband"}}</span></h6>
                                                 <h5>
                                                     <span>{{item.SiblingSpouseNAme}}</span></h5>
                                             </div>
 
                                         </div>
 
-                                        <div  class="edit_page_details_item_desc clearfix">
+                                        <div class="edit_page_details_item_desc clearfix">
 
                                             <div>
 
                                                 <h6>
-                                                    <span  Font-Bold="true">Moblie #</span></h6>
+                                                    <span Font-Bold="true">Moblie #</span></h6>
                                                 <h5>
-                                                    <span >{{item.SiblingSpouseMobilenumberwithcode}}</span>
+                                                    <span>{{item.SiblingSpouseMobilenumberwithcode}}</span>
 
                                                 </h5>
 
@@ -344,27 +369,27 @@
 
                                         </div>
 
-                                        <div  class="edit_page_details_item_desc clearfix">
+                                        <div class="edit_page_details_item_desc clearfix">
 
                                             <div>
 
                                                 <h6>
                                                     <span Font-Bold="true">Land line #</span></h6>
                                                 <h5>
-                                                    <span >{{item.SiblingSpouseLandnumberwithcode}}</span>
+                                                    <span>{{item.SiblingSpouseLandnumberwithcode}}</span>
                                                 </h5>
 
                                             </div>
 
                                         </div>
-                                        <div  class="edit_page_details_item_desc clearfix">
+                                        <div class="edit_page_details_item_desc clearfix">
 
                                             <div>
 
                                                 <h6>
-                                                    <span  Font-Bold="true">Email</span></h6>
+                                                    <span Font-Bold="true">Email</span></h6>
                                                 <h5>
-                                                    <span >{{item.SiblingSpouseEmail}}</span>
+                                                    <span>{{item.SiblingSpouseEmail}}</span>
 
                                                 </h5>
 
@@ -392,51 +417,51 @@
             </div>
             <div class="edit_page_details_item">
                 <div ng-if="page.model.relativeContactArr" ng-repeat="item in page.model.relativeContactArr">
-                    <div  class="edit_page_details_item_desc clearfix">
-                        <div  class="edit_page_details_item_desc clearfix">
+                    <div class="edit_page_details_item_desc clearfix">
+                        <div class="edit_page_details_item_desc clearfix">
                         </div>
-                        <div  class="edit_page_item_ui clearfix">
+                        <div class="edit_page_item_ui clearfix">
                             <a href="javascript:void(0);" class="edit_page_edit_button" ng-click="page.model.showContactPopup('relative',item);">Edit
                                     </a>
                         </div>
                         <div class="edit_page_details_item_desc clearfix">
                             <div>
                                 <h6>
-                                    <span  Font-Bold="true">{{item.lblname}}</span></h6>
+                                    <span Font-Bold="true">{{item.lblname}}</span></h6>
                                 <h5>
-                                    <span >{{item.NAME}}</span></h5>
+                                    <span>{{item.NAME}}</span></h5>
                             </div>
                         </div>
                         <div class="edit_page_details_item_desc clearfix">
                             <div>
                                 <h6>
-                                    <span  Font-Bold="true">Moblie #</span></h6>
+                                    <span Font-Bold="true">Moblie #</span></h6>
                                 <h5>
-                                    <span >{{item.Mobilewithcode}}</span>
+                                    <span>{{item.Mobilewithcode}}</span>
 
                                     <label ng-show="(item.primarymobile===1)|| (item.mobileisverfied) ?true:false ">
     <span  ng-class="item.mobileisverfied==true?'fa fa-check-circle':'glyphicon glyphicon-ok'">
-    </span></label>                                    <a href="javascript:void(0);" ng-show="(item.primarymobile)&&(((item.mobileisverfied))==true?false:true) ?true:false" ng-click="page.model.sendMobileCode(item.mobilecountrycode,item.mobilecountrycode,item.mobilenumber,item.emaILcust_family_id);"> &nbsp;&nbsp;&nbsp;&nbsp;verify mobile</a>                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></label> <a href="javascript:void(0);" ng-show="(item.primarymobile)&&(((item.mobileisverfied))==true?false:true) ?true:false" ng-click="page.model.sendMobileCode(item.mobilecountrycode,item.mobilecountrycode,item.mobilenumber,item.emaILcust_family_id);"> &nbsp;&nbsp;&nbsp;&nbsp;verify mobile</a>                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </h5>
                             </div>
                         </div>
-                        <div  class="edit_page_details_item_desc clearfix ">
+                        <div class="edit_page_details_item_desc clearfix ">
                             <div>
                                 <h6>
-                                    <span  Font-Bold="true ">Land line #</span></h6>
+                                    <span Font-Bold="true ">Land line #</span></h6>
                                 <h5>
-                                    <span >{{item.landlinewithcode}}</span>
+                                    <span>{{item.landlinewithcode}}</span>
                                     <label ng-show="(item.primarylandline==1)|| (item.Landisverfied) ?true:false">
      <span  ng-class="(item.Landisverfied)==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"  style="color:#00FF00;"></span>
- </label>                                </h5>
+ </label> </h5>
                             </div>
                         </div>
-                        <div  class="edit_page_details_item_desc clearfix ">
+                        <div class="edit_page_details_item_desc clearfix ">
                             <div>
                                 <h6>
                                     <span Font-Bold="true ">Email</span></h6>
                                 <h5>
-                                    <span >{{item.Email}}</span>
+                                    <span>{{item.Email}}</span>
                                     <label ng-show="(item.primaryemail || item.isemailVerified) ?true:false">
     <span  ng-class="item.isemailVerified==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></span>
 </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -452,55 +477,55 @@
             <div class="edit_page_item_head clearfix ">
                 <h4>Reference Contact details</h4>
                 <div class="edit_page_item_ui clearfix ">
-                    <div >
+                    <div>
                     </div>
                 </div>
             </div>
             <div class="edit_page_details_item ">
                 <div ng-if="page.model.referenceContactArr" ng-repeat="item in page.model.referenceContactArr">
-                    <div  class="edit_page_details_item_desc clearfix ">
-                        <div  class="edit_page_details_item_desc clearfix ">
+                    <div class="edit_page_details_item_desc clearfix ">
+                        <div class="edit_page_details_item_desc clearfix ">
                             <div>
                                 <h6>
-                                    <span  Font-Bold="true ">Name</span></h6>
+                                    <span Font-Bold="true ">Name</span></h6>
                                 <h5>
-                                    <span >{{item.CandidateName}}</span></h5>
+                                    <span>{{item.CandidateName}}</span></h5>
                             </div>
                         </div>
                         <div class="edit_page_details_item_desc clearfix ">
                             <h6>
-                                <span  Font-Bold="true ">Moblie #</span></h6>
+                                <span Font-Bold="true ">Moblie #</span></h6>
                             <h5>
-                                <span >{{item.CandidateMobilewithcode}}</span>
+                                <span>{{item.CandidateMobilewithcode}}</span>
                             </h5>
                         </div>
-                        <div  class="edit_page_item_ui clearfix ">
+                        <div class="edit_page_item_ui clearfix ">
                             <a class="edit_page_edit_button" href="javascript:void(0);" ng-click="page.model.showContactPopup('reference',item);">Edit
                                     </a>
                         </div>
-                        <div  class="edit_page_details_item_desc clearfix ">
+                        <div class="edit_page_details_item_desc clearfix ">
                             <div>
                                 <h6>
-                                    <span  Font-Bold="true ">Land line #</span></h6>
+                                    <span Font-Bold="true ">Land line #</span></h6>
                                 <h5>
-                                    <span >{{item.Candidatelandlinewithcode}}</span>
+                                    <span>{{item.Candidatelandlinewithcode}}</span>
                                 </h5>
 
                             </div>
 
                         </div>
-                        <div  class="edit_page_details_item_desc clearfix ">
+                        <div class="edit_page_details_item_desc clearfix ">
                             <div>
                                 <h6>
-                                    <span  Font-Bold="true ">Email</span></h6>
+                                    <span Font-Bold="true ">Email</span></h6>
                                 <h5>
-                                    <span >{{item.CandidateEmail}}</span>
+                                    <span>{{item.CandidateEmail}}</span>
                                 </h5>
 
                             </div>
 
                         </div>
-                   </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -546,7 +571,9 @@
     <form name="parentForm" novalidate role="form" ng-submit="page.model.commonContactSubmit(page.model.parentobj.MotheremaILcust_family_id,
     page.model.parentobj.txtFathername,page.model.parentobj.ddlcandidatefathermobcode,page.model.parentobj.txtcandidatefathermob,page.model.parentobj.ddlcandidatefathermob2code,
     page.model.parentobj.txtcandidatefathermob2,page.model.parentobj.ddlcandidatefathelandcode,page.model.parentobj.txtcandidatefathelandareacode
-    ,page.model.parentobj.txtcandidatefathelandnumber,page.model.parentobj.txtcandidatefatheremail,'Parent')">
+    ,page.model.parentobj.txtcandidatefathelandnumber,page.model.parentobj.txtcandidatefatheremail,'Parent',
+    page.model.parentobj.ddlFFmobcode, page.model.parentobj.txtFFrmob, page.model.parentobj.ddlFFmob2code, page.model.parentobj.txtFFmob2, page.model.parentobj.ddlFFlandcode, page.model.parentobj.txtFFlandareacode, page.model.parentobj.txtFFlandnumber,1
+    )">
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Parent contact details
                 <a href="javascript:void(0);" ng-click="page.model.cancel();">
@@ -566,6 +593,15 @@
 
                 <contact-directive emailhide="true" dmobile="page.model.parentobj.ddlcandidatefathermobcode" strmobile="page.model.parentobj.txtcandidatefathermob" dalternative="page.model.parentobj.ddlcandidatefathermob2code" stralternative="page.model.parentobj.txtcandidatefathermob2"
                     dland="page.model.parentobj.ddlcandidatefathelandcode" strareacode="page.model.parentobj.txtcandidatefathelandareacode" strland="page.model.parentobj.txtcandidatefathelandnumber" strmail="page.model.parentobj.txtcandidatefatheremail"></contact-directive>
+
+                <li class="clearfix">
+                    <label for="lblrelativename" class="pop_label_left">{{page.model.parentIdentityID==="39"?"FF Name":"MF Name"}}</label>
+                    <div class="pop_controls_right">
+                        <input type="text" ng-model="page.model.parentobj.ffname" class="form-control" readonly="true" tabindex="1" />
+                    </div>
+                </li>
+                <contact-directive emailhide="false" dmobile="page.model.parentobj.ddlFFmobcode" strmobile="page.model.parentobj.txtFFrmob" dalternative="page.model.parentobj.ddlFFmob2code" stralternative="page.model.parentobj.txtFFmob2" dland="page.model.parentobj.ddlFFlandcode"
+                    strareacode="page.model.parentobj.txtFFlandareacode" strland="page.model.parentobj.txtFFlandnumber"></contact-directive>
 
                 <li class="row">
                     <edit-footer></edit-footer>
@@ -849,9 +885,9 @@
         font-size: 21px;
         color: green;
     }
-        .md-dialog-container {
+    
+    .md-dialog-container {
         z-index: 99999999999;
     }
-
 </style>
 <script src="build/js/custom.js" type="text/javascript"></script>

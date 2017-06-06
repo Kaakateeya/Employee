@@ -11,7 +11,7 @@
              model.aboutmyself = {};
              model.personalinfo = {};
              model.basicinfo = [];
-             model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+             model.empid = parseInt(model.statecontacts) !== 0 ? (authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "") : "";
              if (parseInt(model.stateprofileid) !== 0) {
                  model.textboxshowhide = true;
                  model.EmpViewfullProfile(model.stateprofileid);

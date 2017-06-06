@@ -68,6 +68,10 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         modelpopupopenmethod.showPopupphotopoup('dynamicphotopopup.html', $scope, '', "modalclassdashboardphotopopup");
                     });
                 };
+                $scope.config.close = function() {
+                    modelpopupopenmethod.closepopuppoptopopup();
+                };
+
                 $scope.horoscopeimage = function(image, type) {
                     $scope.photoalbum = "Horoscope Image";
                     $scope.HoroscopeImage = image;
@@ -79,16 +83,30 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     }
                     modelpopupopenmethod.showPopupphotopoup('dynamicphotopopup.html', $scope, '', "modalclassdashboardphotopopup");
                 };
+                // $scope.ngclassprogress = function(slidelength) {
+                //     $scope.progressbar = [];
+                //     var classslide = "";
+                //     $scope.progressbar = slidelength;
+                //     $scope.width = $scope.progressbar.length + "%";
+                //     if ($scope.progressbar.length <= 10) {
+                //         classslide = "progress-bar progress-bar-striped progress-bar-danger active";
+                //     } else if ($scope.progressbar.length > 10 && $scope.progressbar.length <= 30) {
+                //         classslide = "progress-bar progress-bar-striped progress-bar-warning active";
+                //     } else if ($scope.progressbar.length > 30 && $scope.progressbar.length <= 50) {
+                //         classslide = "progress-bar progress-bar-striped progress-bar-info active";
+                //     } else {
+                //         classslide = "progress-bar progress-bar-striped progress-bar-success active";
+                //     }
+                //     return classslide;
+                // };
                 $scope.ngclassprogress = function(slidelength) {
-                    $scope.progressbar = [];
                     var classslide = "";
-                    $scope.progressbar = _.where(slidelength, { isShortlisted: true });
-                    $scope.width = $scope.progressbar.length + "%";
-                    if ($scope.progressbar.length <= 10) {
+                    $scope.width = slidelength + "%";
+                    if (slidelength <= 10) {
                         classslide = "progress-bar progress-bar-striped progress-bar-danger active";
-                    } else if ($scope.progressbar.length > 10 && $scope.progressbar.length <= 30) {
+                    } else if (slidelength > 10 && slidelength <= 30) {
                         classslide = "progress-bar progress-bar-striped progress-bar-warning active";
-                    } else if ($scope.progressbar.length > 30 && $scope.progressbar.length <= 50) {
+                    } else if (slidelength > 30 && slidelength <= 50) {
                         classslide = "progress-bar progress-bar-striped progress-bar-info active";
                     } else {
                         classslide = "progress-bar progress-bar-striped progress-bar-success active";
@@ -101,7 +119,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
                 $scope.viewfullprofile = function(ProfileID) {
-                    window.open('/Viewfullprofile/' + ProfileID, '_blank');
+                    window.open('/Viewfullprofile/' + ProfileID + '/0', '_blank');
                 };
                 $scope.forgetpassword = function(ProfileID) {
                     SelectBindServiceApp.forgotpasswordemail(ProfileID).then(function(response) {
@@ -142,11 +160,11 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     var obj = {
                         iCountryID: slide.CountryCodeID,
                         iCCode: slide.CountryCodeID,
-                        MobileNumber: slide.primarynumber,
+                        MobileNumber: slide.PriWithoutCode,
                         CustFamilyID: slide.Cust_Family_ID
                     };
                     $scope.custfamilyID = slide.Cust_Family_ID;
-                    $scope.popupMobilenumber = slide.primarynumber;
+                    $scope.popupMobilenumber = slide.PriWithoutCode;
                     SelectBindServiceApp.sendMobileCode(obj).then(function(response) {
                         $scope.mobileVerificationCode = response.data;
                         modelpopupopenmethod.showPopupphotopoup('verifyMobileContent.html', $scope, '', "modalclassdashboardphotopopup");

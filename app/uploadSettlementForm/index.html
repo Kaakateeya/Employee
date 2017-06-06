@@ -1,0 +1,58 @@
+<div class="right_col" role="main" id="uploadSettle">
+
+    <div>
+        <h3 class="hdrsettleCls">Settled files</h3>
+
+        <div class="maincls">
+            <form name="uploadSettleForm" novalidate role="form" ng-submit="uploadSettleForm.$valid && page.model.submitUpload();">
+                <div class="row form-group clearfix">
+                    <label for="" class="col-lg-3">Settled profile ID</label>
+                    <div class="col-lg-3">
+                        <input type="text" required class="form-control" ng-model="page.model.txtProfileID" ng-blur="page.model.checkProfileID(page.model.txtProfileID);">
+                    </div>
+                </div>
+                <br>
+                <div class="row form-group clearfix">
+                    <label for="" class="col-lg-3">Upload settlement form</label>
+                    <div class="col-lg-3">
+                        <input type="file" file-model="page.model.upFile">
+                    </div>
+                </div>
+                <br>
+                <div class="row form-group clearfix">
+                    <label for="" class="col-lg-3">Settlement agreement form</label>
+                    <div class="col-lg-3">
+                        <md-radio-group ng-required="true" name="rdnSignIn" layout="row" ng-model="page.model.rdnSignIn" class="md-block" flex-gt-sm ng-disabled="manageakerts" required>
+                            <md-radio-button value="1" class="md-primary">With sign </md-radio-button>
+                            <md-radio-button value="0"> Without sign</md-radio-button>
+                        </md-radio-group>
+                        <div ng-if="rdnSignIn.$invalid && uploadSettleForm.$submitted">
+                            <span style="color:red;">This field is required</span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="row form-group clearfix">
+                    <div class="col-lg-3  col-lg-offset-3" ng-show="page.model.rdnSignIn==='1' || page.model.rdnSignIn==='0'">
+                        <textarea name="" id="" cols="30" rows="3" class="form-control" ng-model="page.model.txtDesc"></textarea>
+                    </div>
+                    <div class="col-lg-3" ng-show="page.model.rdnSignIn==='0'">
+                        <select multiselectdropdown ng-model="page.model.typeOfReference" ng-options="item.value as item.label for item in page.model.relationArr" required>   
+                                </select>
+                    </div>
+                </div>
+                <br>
+                <div class="boderCls"></div>
+                <br>
+                <div class="row form-group clearfix">
+                    <div class="col-lg-3  col-lg-offset-3">
+                        <input type="submit" value="UploadForm" class="btn btn-danger">
+                        <input type="reset" value="Reset" class="btn btn-default reset">
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

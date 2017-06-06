@@ -32,7 +32,7 @@
             model.slide.headettemp = "templates/myprofileheader.html";
 
             model.applicationstatusArr = [
-                { "label": "--Select--", "title": "--Select--", "value": '' },
+                { "label": "-- Select All --", "title": "-- Select All --", "value": '' },
                 { "label": "Active", "title": "Active", "value": 54 },
                 { "label": "InActive", "title": "InActive", "value": 55 },
                 { "label": "Deleted/WaitingforDeltdAuth", "title": "Deleted/WaitingforDeltdAuth", "value": 56 },
@@ -41,16 +41,13 @@
             ];
 
             model.close = function() {
-                debugger;
                 modelpopupopenmethod.closepopuppoptopopup();
             };
 
             model.slide.close = function() {
-                debugger;
                 modelpopupopenmethod.closepopuppoptopopup();
             };
             model.slide.closemainpopup = function() {
-                debugger;
                 modelpopupopenmethod.closepopup();
             };
             model.init = function() {
@@ -78,7 +75,7 @@
                 return paid;
             };
             model.ViewProfile = function(row) {
-                window.open('/Viewfullprofile/' + row.ProfileID, '_blank');
+                window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
             };
 
             model.rowStyle = function(row) {
