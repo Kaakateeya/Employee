@@ -1,4 +1,67 @@
-<div class="right_col">
+<div class="right_col" id="settleDelete">
 
+    <div>
+        <h3 class="hdrsettleCls">Settled Profiles</h3>
+        <div class="maincls">
+            <div class="row">
 
+                <div class="col-lg-6 mainRow">
+                    <div class="row">
+                        <label for="narration" class="col-lg-4">Settled type</label>
+                        <div class="col-lg-7">
+                            <md-radio-group layout="row" ng-model="page.model.settleType" ng-change="page.model.changeDiv(page.model.settleType);" class="md-block" flex-gt-sm>
+                                <md-radio-button value="0" class="md-primary"> With Kaakateeya </md-radio-button>
+                                <md-radio-button value="1"> Outside </md-radio-button>
+                            </md-radio-group>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mainRow">
+                    <div class="row">
+                        <label for="narration" class="col-lg-4">{{page.model.settleType==='0'?'Settled ':'Deleted '}} profile owner</label>
+                        <div class="col-lg-7">
+                            <label for="" class="control-label">{{page.model.ProfileOwner}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mainRow" ng-repeat="item in page.model.mainArray">
+                    <div class="row form-group" ng-repeat="inItm in item.div">
+                        <label for="" class="col-lg-4">{{inItm.name}}</label>
+                        <div class="col-lg-7" ng-if="inItm.controlType==='label'">
+                            <label for="">{{page.model[inItm.ngModel]}}</label>
+                        </div>
+                        <div class="col-lg-7" ng-if="inItm.controlType==='textbox'">
+                            <input type="text" class="form-control" ng-model="page.model[inItm.ngModel]" ng-change="page.model[inItm.method]">
+                        </div>
+                        <div class="col-lg-7" ng-if="inItm.controlType==='date'">
+                            <custom-datepicker class="datepicker3" ng-model="page.model[inItm.ngModel]" date-options="model.dateOptions"></custom-datepicker>
+                        </div>
+                        <div class="col-lg-7" ng-if="inItm.controlType==='select'">
+                            <select multiselectdropdown class="smalldropdown" ng-model="page.model.mpObj.ddlApplicationStatus" typeofdata="'childStayingWith'">   
+                              </select>
+                        </div>
+                        <div class="col-lg-8" ng-if="inItm.controlType==='radio'">
+                            <md-radio-group layout="row" ng-model="page.model[inItm.ngModel]" class="md-block" flex-gt-sm>
+                                <md-radio-button ng-value="itm.value" class="md-primary" ng-class="itm.ngModel" ng-repeat="itm in page.model[inItm.Arrbind]"> {{itm.label}}</md-radio-button>
+                            </md-radio-group>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label for="narration" class="col-lg-2">Narration</label>
+                <div class="col-lg-10">
+                    <textarea name="" id="" rows="4" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<style>
+    .datepicker3 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+    }
+</style>

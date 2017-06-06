@@ -9,8 +9,8 @@
 
     function factory(http) {
         return {
-            test: function() {
-                return http.get(app.apiroot + 'test', { params: '' });
+            checkProfileStatus: function(id) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getcheckSettlementProfileIDandEmail', { params: { profileID: id } });
             }
         };
     }
