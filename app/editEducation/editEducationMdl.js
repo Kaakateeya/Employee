@@ -73,9 +73,9 @@
 
         };
         model.aboutPageload = function() {
-            debugger;
+
             editEducationService.getAboutData(CustID).then(function(response) {
-                debugger;
+
                 if (commonFactory.checkvals(response.data)) {
 
                     var AboutData = (response.data).split(';');

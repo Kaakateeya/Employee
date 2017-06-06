@@ -18,9 +18,10 @@
         model.ProfileID = '';
         model.scope = {};
         model.init = function() {
-            timeout(function() {
-                model.marketReplytype();
-            }, 1000);
+            // timeout(function() {
+            model.marketReplytype();
+            //     model.MAobj.txtresendemail = model.mailchange(model.MAobj.ddlresendemailmatchfollowup);
+            // }, 1000);
             return model;
         };
         model.close = function() {
@@ -79,6 +80,7 @@
         };
 
         model.mailchange = function(val) {
+            debugger;
             return _.where(model.marReplyArr, { value: parseInt(val) })[0].text;
         };
 
@@ -212,6 +214,10 @@
                 }
                 commonpage.closepopuppoptopopup();
             });
+        };
+        model.converttodatetime = function(date) {
+            var dd = moment(date).fromNow();
+            return dd;
         };
         return model.init();
     }

@@ -50,14 +50,15 @@
                         <div>
                             <div ng-repeat="item in model.marHistry">
                                 <br>
-                                <matchfollow-histry strrelationname="item.RelationName" strtype="item.TicketType" strdate="item.TicketInfo" strempname="item.EmployeeName" strstatus="item.CallResult" strcustname="item.RelationName" strcomments="item.Body" strnoofdays="item.NoOfDays"
-                                    strrelation="item.Relation"></matchfollow-histry>
+                                <matchfollow-histry strrelationname="item.RelationName" strtype="item.TicketType" strdate="item.TicketInfo" strempname="item.EmployeeName" strstatus="item.CallResult" strcustname="item.RelationName" strcomments="item.Body" strnoofdays="model.converttodatetime(item.TicketCreatedDatehistry)"
+                                    strrelation="item.Relation" customername="model.marInfo[0].FromName"></matchfollow-histry>
                             </div>
                         </div>
                     </div>
                 </div>
             </md-tab>
             <md-tab label="Send Mail" data-ng-if="model.showsendemail">
+                <br>
                 <form name="sendemail" novalidate role="form" ng-submit="">
                     <div class="tab-pane active">
                         <div class="row">
@@ -88,8 +89,8 @@
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-lg-8">
-                                <button type="button" class="button_custom pull-right" ng-click="model.sendemailsubmit(model.ticketid,model.MAobj,model.marInfo[0],model.ticketstatus);">Send Mail</button>
+                            <div class="col-lg-6">
+                                <button type="button" style="margin-top: 2px;padding: 5px 5px 5px 5px;" class="button_custom pull-right" ng-click="model.sendemailsubmit(model.ticketid,model.MAobj,model.marInfo[0],model.ticketstatus);">Send Mail</button>
                             </div>
                             <div class="col-lg-4">
                                 <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset" ng-click="model.close();">Close</button>

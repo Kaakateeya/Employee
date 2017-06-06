@@ -14,8 +14,7 @@
 //         };
 
 //         function link($scope, $elem, $attrs, $ctrl) {
-//             debugger;
-//             // var elem = $elem[0];
+///             // var elem = $elem[0];
 
 //             // wait for data to load and then transform the table
 //             // $scope.$watch(tableDataLoaded, function(isTableDataLoaded) {

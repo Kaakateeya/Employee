@@ -32,7 +32,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         $scope.playbutton = false;
                     }
                 };
-
                 $scope.gotoSlide = function(slideIndex) {
                     if (slideIndex !== undefined && slideIndex !== "" && slideIndex !== null && slideIndex !== 0 &&
                         slideIndex !== "0") {
@@ -46,7 +45,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         //$scope.apply();
                     }
                 };
-
                 $scope.$watch('activeslide', function(news, old) {
                     if (news !== undefined && news !== "" && news !== null) {
                         $scope.Viwedslide = news > $scope.Viwedslide ? news : $scope.Viwedslide;
@@ -55,7 +53,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         $scope.Viwedslide = 0;
                     }
                 });
-
                 $scope.slidepopup = function(custid) {
                     $scope.photoalbum = "Photo Album";
                     $scope.slidephotos = [];
@@ -71,7 +68,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.config.close = function() {
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
-
                 $scope.horoscopeimage = function(image, type) {
                     $scope.photoalbum = "Horoscope Image";
                     $scope.HoroscopeImage = image;
@@ -83,22 +79,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     }
                     modelpopupopenmethod.showPopupphotopoup('dynamicphotopopup.html', $scope, '', "modalclassdashboardphotopopup");
                 };
-                // $scope.ngclassprogress = function(slidelength) {
-                //     $scope.progressbar = [];
-                //     var classslide = "";
-                //     $scope.progressbar = slidelength;
-                //     $scope.width = $scope.progressbar.length + "%";
-                //     if ($scope.progressbar.length <= 10) {
-                //         classslide = "progress-bar progress-bar-striped progress-bar-danger active";
-                //     } else if ($scope.progressbar.length > 10 && $scope.progressbar.length <= 30) {
-                //         classslide = "progress-bar progress-bar-striped progress-bar-warning active";
-                //     } else if ($scope.progressbar.length > 30 && $scope.progressbar.length <= 50) {
-                //         classslide = "progress-bar progress-bar-striped progress-bar-info active";
-                //     } else {
-                //         classslide = "progress-bar progress-bar-striped progress-bar-success active";
-                //     }
-                //     return classslide;
-                // };
                 $scope.ngclassprogress = function(slidelength) {
                     var classslide = "";
                     $scope.width = slidelength + "%";
@@ -114,7 +94,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     return classslide;
                 };
                 /////slide events
-
                 $scope.closepopuppoptopopup = function() {
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
@@ -170,7 +149,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         modelpopupopenmethod.showPopupphotopoup('verifyMobileContent.html', $scope, '', "modalclassdashboardphotopopup");
                     });
                 };
-
                 $scope.verifyMobCode = function(val) {
                     if (val === "") {
                         alerts.timeoutoldalerts($scope, 'alert-danger', 'Please enter Mobile verify Code', 4500);
@@ -283,7 +261,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         }
                     });
                 };
-
                 $scope.notificationread = function(slide, index, parentid) {
                     var obj = {
                         EmpID: $scope.model.empid,
@@ -303,7 +280,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.communicationlogredirect = function(profileid) {
                     window.open("communicationLogs?Profileid=" + profileid, "_blank");
                 };
-
             }
         };
     }

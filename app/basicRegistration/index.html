@@ -1,6 +1,5 @@
 <div role="main" class="right_col">
     <div class="register_page_main">
-
         <h4>Registration</h4>
         <div class="regmain">
             <div layout="column" ng-cloak="" class="inputdemoErrors">
@@ -47,7 +46,6 @@
                                 </md-input-container>
                                 <md-input-container class="col-lg-3">
                                     <label>Email<span style="color:red;">*</span></label>
-                                    <!--ng-pattern="/^.+@.+\..+$/"-->
                                     <input ng-keydown="page.model.emailvalidation(regForm.txtEmail.$invalid)" ng-change="page.model.mobilemailvalidation()" ng-required="page.model.emailrequired" maxlength="50" md-no-asterisk="" name="txtEmail" ng-model="page.model.reg.txtEmail" ng-pattern="page.model.emailpattaren"
                                         ng-blur="page.model.valueExists('email',0,page.model.reg.txtEmail);" onkeypress="return (event.keyCode != 32 && event.which!=32)">
                                     <div ng-if="page.model.emailmeessages || ((regForm.txtEmail.$invalid) && (regForm.$submitted))" ng-messages="regForm.txtEmail.$error" role="alert">
@@ -145,7 +143,6 @@
                                         <div ng-if="regForm.ddlcountry.$invalid && (regForm.$submitted)" ng-message="required">Required</div>
                                     </div>
                                 </md-input-container>
-
                                 <div class="col-lg-3">
                                     <md-input-container class="col-lg-4" style="width: 50%;">
                                         <label>Country code</label>
@@ -176,9 +173,7 @@
                                         <md-select name="ddllandcountry" ng-model="page.model.reg.ddllandcountry">
                                             <md-option ng-value="h.value" ng-repeat="h in page.model.countryCode">{{h.label}} </md-option>
                                         </md-select>
-
                                     </md-input-container>
-
                                     <md-input-container class="md-block col-lg-4" style="width:33%;">
                                         <label>Area code</label>
                                         <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="8" name="txtArea" ng-model="page.model.reg.txtArea" ng-pattern="/^[0-9]+$/">
@@ -212,22 +207,17 @@
                                         </div>
                                     </md-input-container>
                                 </div>
-
-
                                 <div class="col-lg-2">
                                     <md-button type="submit" class="md-raised md-warn md-hue-2" TabIndex="18">SUBMIT</md-button>
                                 </div>
                             </div>
-
                             <label ID="lblResult" Font-Bold="true" />
-
                         </div>
                     </form>
                 </md-content>
             </div>
         </div>
     </div>
-
 </div>
 <style>
     .btn-group {
@@ -346,12 +336,6 @@
         border-bottom-color: rgb(221, 44, 0)!important;
         font-size: 18px;
     }
-    /*md-select.md-default-theme.ng-invalid.ng-touched .md-select-value,
-    md-select.ng-invalid.ng-touched .md-select-value {
-        color: rgb(221, 44, 0)!important;
-        border-bottom-color: rgb(221, 44, 0)!important;
-        font-size: 16px;
-    }*/
     
     md-input-container.md-input-focused:not(.md-input-has-value) md-select.md-default-theme .md-select-value,
     md-input-container.md-input-focused:not(.md-input-has-value) md-select .md-select-value,

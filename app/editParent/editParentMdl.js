@@ -98,7 +98,6 @@
 
                         model.gfMobileCodeId = item.FatherfatherMobileCountryID;
                         model.gfMobileNumber = item.FatherFatherMobileNumber;
-                        debugger;
                         if (commonFactory.checkvals(item.FatherFatherLandAreaCode)) {
                             model.gflandCountryCodeId = item.FatherfatherLandCountryCodeID;
                             model.gfAreaCodeid = item.FatherFatherLandAreaCode;

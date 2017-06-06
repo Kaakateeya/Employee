@@ -41,8 +41,6 @@
             model.normalexcel = true;
             model.gridTableshow = false;
             model.shortlistmodelinner = [];
-
-
             model.dateOptions = {
                 changeMonth: true,
                 changeYear: true,

@@ -74,7 +74,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID/:contacts', subname: ['directives/divPrint.js'] },
             { routeName: 'registrationValidation', name: 'base.registrationValidation', url: '/registrationValidations' },
             { routeName: 'communicationLog', name: 'base.communicationLog', url: '/communicationLogs', isloginrequired: true },
-            { routeName: 'clientSidepagging', name: 'base.clientSidepagging', url: '/clientSidepaggings', isloginrequired: true },
             { routeName: 'uploadSettlementForm', name: 'base.uploadSettlementForm', url: '/uploadSettlementFormPage', isloginrequired: true },
             { routeName: 'viewSettlementform', name: 'base.viewSettlementform', url: '/viewSettlementforms', isloginrequired: true },
             { routeName: 'serviceSlideShow', name: 'base.serviceSlideShow', url: '/serviceSlideShows', isloginrequired: true }
