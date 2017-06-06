@@ -211,7 +211,7 @@ module.exports = function(grunt) {
                 ],
                 options: {
                     replacements: [{
-                        pattern: 'parametervalue',
+                        pattern: /parametervalue/g,
                         replacement: grunt.option('option-path')
                     }]
                 }

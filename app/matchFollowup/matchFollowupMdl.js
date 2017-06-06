@@ -554,7 +554,7 @@
 
 
             return model;
-        }
+        };
     }
     angular
         .module('Kaakateeya')
