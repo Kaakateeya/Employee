@@ -6,13 +6,12 @@
             <div ng-include="config.templateUrl"> </div>
         </div>
     </div>
-
-    <div id="carouselButtons" class="col-lg-offset-5">
+    <div ng-show="model.slides.length>0" id="carouselButtons" class="col-lg-offset-5">
         <button ng-hide="playbutton" ng-click="pauseResume('play');" class="btn btn-default btn-xs pauseBtns" title="Play">
        <i class="fa fa-play"></i>
-   </button>
+         </button>
         <button ng-hide="!playbutton" ng-click="pauseResume('pause');" class="btn btn-default btn-xs pauseBtns" title="Pause">
-   <i class="fa fa-pause"></i>
+        <i class="fa fa-pause"></i>
       </button>
     </div>
     <div class="clearfix"></div>
@@ -41,9 +40,6 @@
         </div>
     </div>
 </script>
-
-
-
 <script type="text/ng-template" id="verifyMobileContent.html">
     <form name="refForm" novalidate role="form" ng-submit="verifyMobCode(refForm.txtVerificationcode)">
         <div class="modal-header">
@@ -85,12 +81,9 @@
                     </div>
                 </li>
             </ul>
-
         </div>
     </form>
 </script>
-
-
 <script type="text/ng-template" id="uploadsaform.html">
     <form name="uploadForm" novalidate role="form" ng-submit="uploadfromsubmit===false?upload(uploadf):bouncedemail(uploadf)">
         <div class="modal-header">
@@ -118,6 +111,5 @@
             <input value="Update" ng-hide="!uploadfromsubmit" class="btn btn-success" type="submit">
             <input value="Cancel" class="btn btn-danger" ng-click="closepopuppoptopopup();" type="button">
         </div>
-
     </form>
 </script>

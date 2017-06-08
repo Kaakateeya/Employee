@@ -9,7 +9,6 @@
              vm.model = model = communicationLogModel();
              model.scope = scope;
              model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-             // model.communicationlogsubmit(model.Profileidcommunication);
              model.searchObjectquery = $location.search();
              var meKey = Object.getOwnPropertyNames(model.searchObjectquery)[0];
              model.Profileidcommunication = model.searchObjectquery[meKey];

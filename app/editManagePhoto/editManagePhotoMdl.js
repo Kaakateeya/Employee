@@ -45,7 +45,7 @@
             _.each(Arr, function(item) {
 
                 genderID = item.GenderID;
-                debugger;
+
                 model.rbtProtectPassword = item.PhotoPassword === 'Admin@123' ? '1' : '0';
                 var imagepath = app.accesspathdotsImg;
                 if (item.IsActive === 0 && item.PhotoName !== null) {

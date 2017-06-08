@@ -22,7 +22,8 @@
                 strnoofdays: '=',
                 strmatchmeetingStatus: '=',
                 strrelation: '=',
-                strrelationname: "="
+                strrelationname: "=",
+                customername: "="
 
             },
             templateUrl: 'templates/matchfollowupHistory.html'

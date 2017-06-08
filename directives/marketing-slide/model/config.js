@@ -4,7 +4,6 @@
     angular
         .module('Kaakateeya')
         .factory('marketticketHistrymdl', factory)
-
     factory.$inject = ['SelectBindServiceApp', 'authSvc', 'marketingTicketHistryservice', 'alert', 'modelpopupopenmethod', 'arrayConstants', '$timeout'];
 
     function factory(bindservice, authSvc, marketsvc, alertss, commonpage, arrayConstants, timeout) {
@@ -63,7 +62,6 @@
             });
         };
         model.marketReplytype = function() {
-
             bindservice.marketReplytype().then(function(response) {
                 if (_.isArray(response.data[0]) && response.data[0].length > 0) {
                     model.marReplyArr.push({ "label": "--Select--", "title": "--Select--", "value": "", "text": "" });
@@ -71,7 +69,6 @@
                         model.marReplyArr.push({ "label": item.Heder, "title": item.Heder, "value": item.ID, "text": item.TEXT });
                     });
                 }
-                debugger;
             });
         };
 
@@ -98,35 +95,10 @@
                 commonpage.closepopuppoptopopup();
                 var msg = parseInt(response.data) === 1 ? (obj.CallType === 1 ? 'Incoming Call Created successfully' : 'Outgoing Call Created successfully') :
                     ((obj.CallType === 1 ? 'Incoming Call updation failed' : 'Outgoing Call updation failed'));
-
                 var msgClass = parseInt(response.data) === 1 ? 'alert-success' : 'alert-danger';
-
                 alertss.timeoutoldalerts(model.scope, msgClass, msg, 9500);
             });
-
-
-            // var relation = '';
-            // if (obj.RelationID !== undefined) {
-            //     relation = (_.where(arrayConstants.childStayingWith, { value: parseInt(obj.RelationID) }))[0].label;
-            // }
-            // _.map(model.marHistry, function() {
-            //     item.TicketType = 'INCOMING';
-            //     item.ReplyDatenew = curdate;
-            //     item.NAME = model.empid;
-            //     item.CallStatus = obj.CallResult === 417 ? 'Successfull' : (obj.CallResult === 417 ? '418' : '');
-            //     item.CallReceivedBy = obj.RelationName;
-            //     item.ReplyDesc = obj.CallDiscussion;
-            //     item.NoOfDays = 0;
-            //     item.RelationShip = relation;
-
-            // });
-
-
-
-
-
         };
-
         model.incallSubmit = function(obj, type) {
             var inobj = {
                 CallType: 1,
@@ -141,9 +113,7 @@
             if (type === 'assign') {
                 model.assignSubmit();
             }
-
         };
-
         model.outcallSubmit = function(obj, type) {
             var inobj = {
                 CallType: 2,

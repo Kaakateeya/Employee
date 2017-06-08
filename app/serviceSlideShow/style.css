@@ -1,9 +1,9 @@
 #serviceslideshow .search_page_main {
-  max-width: 1160px;
+  max-width: 1300px;
   border: 1px solid #cecece;
   border-radius: 3px;
   box-shadow: 2px 2px 6px #ccc;
-  min-height: 120px; }
+  min-height: 110px; }
 #serviceslideshow .communicationlogheader {
   color: maroon;
   font-size: 19px;
@@ -13,5 +13,74 @@
   z-index: 9999999999 !important;
   top: 0%;
   left: 0%; }
+
+.searchpageheader {
+  width: 39px;
+  color: #bd1515;
+  font-size: 20px;
+  margin-left: 11px;
+  padding-top: 3px;
+  cursor: pointer; }
+
+.carousel-indicators li {
+  display: none; }
+
+.edit_page_details_item_descsearch {
+  padding: 4px 0;
+  background-size: 522px auto;
+  background-position: -29% center;
+  position: relative; }
+
+.edit_page_details_item_descsearch h6 {
+  float: left;
+  width: 30%;
+  position: relative;
+  color: #7a7a7a;
+  text-transform: capitalize;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: left; }
+
+.edit_page_details_item_descsearch h6:after {
+  content: ":";
+  position: absolute;
+  right: 10px; }
+
+.edit_page_details_item_descsearch h5 {
+  float: left;
+  color: #000;
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px; }
+
+.blackcolor {
+  color: black; }
+
+.redcolor {
+  color: red; }
+
+.modalclassdashboardphotopopup {
+  z-index: 9999999999 !important;
+  top: 0%;
+  left: 0%; }
+
+.modalclassdashboardphotopopup .modal-dialog.modal-md {
+  width: 70%; }
+
+.modalclassdashboardphotopopup .pop_label_left {
+  width: 40%; }
+
+#serviceslideshow .tostatuslable {
+  font-weight: bold;
+  width: 135px; }
+
+#serviceslideshow .tostatusdiv {
+  border: 1px solid maroon;
+  border-radius: 7px !important;
+  width: 375px;
+  height: 89px; }
+#serviceslideshow .toticketidclass {
+  font-weight: bold; }
 
 /*# sourceMappingURL=style.css.map */
