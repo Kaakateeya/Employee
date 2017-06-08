@@ -482,6 +482,25 @@
             },
             { lblname: 'Spouse Father SurName', controlType: 'textbox', ngmodel: 'spouseFatherLastName', parameterValue: 'BroWifeFatherSurName', parentDependecy: 'ismarried' },
             { lblname: 'Spouse Father Name', controlType: 'textbox', ngmodel: 'spouseFatherFirstName', parameterValue: 'BroWifeFatherName', parentDependecy: 'ismarried' },
+            {
+                controlType: 'contact',
+                emailhide: false,
+                dmobile: 'sfCountryCodeId',
+                strmobile: 'sfMobileNumber',
+                dalternative: 'sfAlternativeCountryCodeId',
+                stralternative: 'sfAlternativeNumber',
+                dland: 'sfLandountryCodeId',
+                strareacode: 'sfLandAreaCodeId',
+                strland: 'sfLandNumberId'
+
+
+                // mobileCodeIdParameterValue: 'BroMobileCountryCodeID',
+                // mobileNumberParameterValue: 'BroMobileNumber',
+                // landCountryCodeIdParameterValue: 'BroLandCountryCodeID',
+                // landAreaCodeIdParameterValue: 'BroLandAreaCode',
+                // landNumberParameterValue: 'BroLandNumber'
+            },
+
             { lblname: 'Spouse Father Caste', controlType: 'select', ngmodel: 'spouseFatherCaste', typeofdata: 'caste', parameterValue: 'SibilingSpouseFatherCasteID', parentDependecy: 'ismarried' },
             {
                 controlType: 'country',
@@ -554,6 +573,25 @@
             },
             { lblname: 'Husband Father SurName', controlType: 'textbox', ngmodel: 'husbandFatherLastName', parameterValue: 'SisHusbandFatherSurName', parentDependecy: 'isSismarried' },
             { lblname: 'Husband Father Name', controlType: 'textbox', ngmodel: 'spouseFatherFirstName', parameterValue: 'SisHusbandFatherName', parentDependecy: 'isSismarried' },
+
+            {
+                controlType: 'contact',
+                emailhide: false,
+                dmobile: 'hfCountryCodeId',
+                strmobile: 'hfMobileNumber',
+                dalternative: 'hfAlternativeCountryCodeId',
+                stralternative: 'hfAlternativeNumber',
+                dland: 'hfLandountryCodeId',
+                strareacode: 'hfLandAreaCodeId',
+                strland: 'hfLandNumberId'
+                    // mobileCodeIdParameterValue: 'BroMobileCountryCodeID',
+                    // mobileNumberParameterValue: 'BroMobileNumber',
+                    // landCountryCodeIdParameterValue: 'BroLandCountryCodeID',
+                    // landAreaCodeIdParameterValue: 'BroLandAreaCode',
+                    // landNumberParameterValue: 'BroLandNumber'
+            },
+
+
             { lblname: 'Husband Father Caste', controlType: 'select', ngmodel: 'spouseFatherCaste', typeofdata: 'caste', parameterValue: 'SibilingSpouseFatherCasteID', parentDependecy: 'isSismarried' },
             {
                 controlType: 'country',

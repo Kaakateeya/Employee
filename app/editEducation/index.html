@@ -130,6 +130,10 @@
         <div class="edit_page_item" id="divEducation">
             <div class="edit_page_item_head clearfix">
                 <h4>Education Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2" ng-show="page.model.eduEmpLastModificationDate!=null && page.model.eduEmpLastModificationDate!=='' && page.model.eduEmpLastModificationDate!==undefined">ModifiedBy :{{page.model.eduEmpLastModificationDate}}</span></h4>
+
+                <md-checkbox ng-model="model.chkGrade" class="gradeCls" name="chkisconfidential" aria-label="Checkbox 1">Grade
+                </md-checkbox>
+
                 <div class="edit_page_item_ui clearfix ">
                     <a class="edit_page_add_button" href="javascript:void(0); " ng-click="page.model.showpopup('showEduModal'); ">Add</a>
                 </div>
@@ -209,9 +213,9 @@
                     <div id="reviewdiv " ng-class="item.reviewstatus===false? 'reviewCls': '' ">
                         <div class="edit_page_details_item_desc clearfix ">
                             <h6>
-                                <span id="lblprofession " style="font-weight:bold; ">Profession</span></h6>
+                                <span id="lblprofession " style="font-weight:bold;">{{(item.ProfessionCategoryID===5 || item.ProfessionCategoryID===7 || item.ProfessionCategoryID===9)?'occupation':'Profession' }}       </span></h6>
                             <h5>
-                                <span id="txtProfession ">{{item.Professional+" "+(item.CompanyName !=null && item.CompanyName !=" "?"in "+" "+item.CompanyName:'')}}</span></h5>
+                                <span id="txtProfession ">{{(item.ProfessionCategoryID===5 || item.ProfessionCategoryID===7 || item.ProfessionCategoryID===9)? item.ProfessionCategory:(item.Professional+" "+(item.CompanyName !=null && item.CompanyName !=" "?"in "+" "+item.CompanyName:''))  }}</span></h5>
                         </div>
                         <div class="edit_page_item_ui clearfix " ng-if="page.model.ProfessionSelectArray.length>0">
 
@@ -224,7 +228,7 @@
                                 <span id="lblcityworkingg">{{(item.CityWorkingIn!=null?" "+item.CityWorkingIn:" ")+ " " +(item.StateWorkingIn!=null && item.StateWorkingIn!=" "?","+item.StateWorkingIn:"")+" "+(item.CountryWorkingIn!=null && item.CountryWorkingIn!=""? ", "+item.CountryWorkingIn:" ")}}</span></h5>
                         </div>
                         <div id="Div1">
-                            <div class="edit_page_details_item_desc clearfix" ng-hide="item.Salary===null">
+                            <div class="edit_page_details_item_desc clearfix" ng-hide="item.Salary===null || item.Currency===null">
                                 <h6>
                                     <span id="lblsal" style="font-weight:bold;">Monthly salary</span></h6>
                                 <h5>
@@ -335,9 +339,6 @@
 
         </form>
     </script>
-
-
-
 
     <script type="text/ng-template" id="commonEduCatiobpopup.html">
         <slide-popup model="page.model" eventtype="page.model.eventType">

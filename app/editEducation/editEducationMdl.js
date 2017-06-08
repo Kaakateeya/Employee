@@ -302,6 +302,21 @@
             return true;
         };
 
+        model.hideIFnotworking = function(item) {
+            if (parseInt(model.EmployedInId) === 5 || parseInt(model.EmployedInId) === 7 || parseInt(model.EmployedInId) === 9) {
+                model.ProfessionGroupId = '';
+                model.ProfessionId = '';
+                model.CompanyName = '';
+                model.currency = '';
+                model.salary = '';
+                return false;
+            }
+            return true;
+        };
+
+
+
+
 
         //performance code
         model.Education = [
@@ -340,10 +355,10 @@
 
         model.profession = [
             { lblname: 'Employed In', controlType: 'select', ngmodel: 'EmployedInId', required: true, typeofdata: 'ProfCatgory', parameterValue: 'EmployedIn' },
-            { lblname: 'Professional group', controlType: 'select', ngmodel: 'ProfessionGroupId', required: true, typeofdata: 'ProfGroup', parameterValue: 'Professionalgroup', childName: 'Profession', changeApi: 'ProfessionSpecialisation' },
-            { lblname: 'Profession', controlType: 'Changeselect', ngmodel: 'ProfessionId', required: true, parentName: 'Profession', parameterValue: 'Profession' },
-            { lblname: 'Company name', controlType: 'textbox', ngmodel: 'CompanyName', parameterValue: 'Companyname' },
-            { lblname: 'Monthly salary', controlType: 'textboxSelect', ngmodelSelect: 'currency', ngmodelText: 'salary', typeofdata: 'currency', parameterValueSelect: 'Currency', parameterValueText: 'Monthlysalary' },
+            { lblname: 'Professional group', controlType: 'select', ngmodel: 'ProfessionGroupId', required: true, typeofdata: 'ProfGroup', parameterValue: 'Professionalgroup', childName: 'Profession', changeApi: 'ProfessionSpecialisation', parentDependecy: 'hideIFnotworking' },
+            { lblname: 'Profession', controlType: 'Changeselect', ngmodel: 'ProfessionId', required: true, parentName: 'Profession', parameterValue: 'Profession', parentDependecy: 'hideIFnotworking' },
+            { lblname: 'Company name', controlType: 'textbox', ngmodel: 'CompanyName', parameterValue: 'Companyname', parentDependecy: 'hideIFnotworking' },
+            { lblname: 'Monthly salary', controlType: 'textboxSelect', ngmodelSelect: 'currency', ngmodelText: 'salary', typeofdata: 'currency', parameterValueSelect: 'Currency', parameterValueText: 'Monthlysalary', parentDependecy: 'hideIFnotworking' },
             {
                 controlType: 'country',
                 countryshow: true,

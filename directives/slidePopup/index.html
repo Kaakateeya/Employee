@@ -8,7 +8,7 @@
     </div>
     <div class="modal-body">
         <ul class="modal-body pop_content_my clearfix">
-            <li ng-show="item.parentDependecy===undefined?true:model[item.parentDependecy](item)" class="clearfix form-group" ng-repeat="item in model.popupdata">
+            <li ng-if="item.parentDependecy===undefined?true:model[item.parentDependecy](item)" class="clearfix form-group" ng-repeat="item in model.popupdata">
 
                 <label ng-if="item.controlType!=='country' && item.controlType!=='contact'  && item.controlType!=='bindHtml' && item.controlType!=='about'" for="item.lblname" ng-class="{'radiocls':item.controlType==='radio'}" class="pop_label_left">{{item.lblname}}<span ng-if="item.required" style="color: red; margin-left: 3px;">*</span></label>
                 <label class="col-lg-12" ng-class="item.classname" ng-if="item.controlType==='bindHtml'">
