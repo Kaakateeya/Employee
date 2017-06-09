@@ -27,10 +27,8 @@
                     params: { flag: '9', ID: custid, AboutProfile: '', IsConfidential: '', HighConfendential: '' }
                 });
             }
-
         };
     }
-
     angular
         .module('Kaakateeya')
         .factory('baseService', factory);

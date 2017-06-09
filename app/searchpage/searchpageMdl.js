@@ -1,15 +1,13 @@
 (function(angular) {
     'use strict';
 
-    function factory($http, searchpageServices, arrayConstants, SelectBindServiceApp, getArray, timeout,
-        helpService, authSvc, alerts, Commondependency, filter, modelpopupopenmethod, config, $sce,
+    function factory($http, searchpageServices, arrayConstants, getArray, timeout,
+        helpService, authSvc, alerts, Commondependency, filter, modelpopupopenmethod, config,
         expressInterestModel, configgrid) {
         return function() {
             var model = {};
             model = config;
             model.gridtable = configgrid;
-            // model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-            // model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
             model.CgetDetails = {};
             model.getpageloadobject = {};
             model.Relationships = [];
@@ -28,10 +26,6 @@
             model.dynamicFunction = '';
             model.slidephotos = [];
             model.divmismatchData = [];
-            model.templateUrl = "templates/angularSlide.html";
-            model.headettemp = "templates/angularHeader.html";
-            model.selectedIndex = 0;
-            model.tabsshowhidecontrols = true;
             model.shortlistmodel = {};
             model.opendiv = true;
             model.showsearchrows = true;
@@ -60,9 +54,7 @@
                 return string !== null ? (string.split(',')).map(Number) : null;
             };
             model.profileidupdate = function(obj) {
-                if (model.divcontrollsbind === 0) {
-                    model.init();
-                }
+                model.init();
                 model.progressbar = [];
                 model.sidebarnavshow = false;
                 searchpageServices.getPrimaryCustomerDataResponse(obj.ProfileIDpopup, model.empid).then(function(response) {
@@ -175,28 +167,32 @@
             model.init = function() {
                 model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
-                model.divcontrollsbind = 1;
-                _.each(model.domDataadvanced, function(parentItem) {
-                    _.each(parentItem.controlList, function(item) {
-                        if (item.dataBind) {
-                            model[item.dataSource] = model.removeSelect(arrayConstants[item.dataBind]);
-                        } else if (item.dataApi) {
-                            model[item.dataSource] = getArray.GArray(item.dataApi);
-                        }
+                if (model.selectedIndex === 1) {
+                    _.each(model.domDataadvanced, function(parentItem) {
+                        _.each(parentItem.controlList, function(item) {
+                            if (item.dataBind) {
+                                model[item.dataSource] = model.removeSelect(arrayConstants[item.dataBind]);
+                            } else if (item.dataApi) {
+                                model[item.dataSource] = getArray.GArray(item.dataApi);
+                            }
+                        });
                     });
-                });
-                _.each(model.domDatageneral, function(parentItem) {
-                    _.each(parentItem.controlList, function(item) {
-                        if (item.dataBind === 'Professionsearch') {
-                            model[item.dataSource] = model.removeSelect(arrayConstants[item.dataBind]);
-                        }
+                } else {
+                    _.each(model.domDatageneral, function(parentItem) {
+                        _.each(parentItem.controlList, function(item) {
+                            if (item.dataBind) {
+                                model[item.dataSource] = model.removeSelect(arrayConstants[item.dataBind]);
+                            } else if (item.dataApi) {
+                                model[item.dataSource] = getArray.GArray(item.dataApi);
+                            }
+                        });
                     });
-                });
+                }
                 model.Showinprofile = model.arrayToString("1");
                 model.ApplicationstatusID = model.arrayToString("54");
                 model.MothertongueID = model.arrayToString("1");
                 model.ReligionID = model.arrayToString("1");
-                model.Caste = Commondependency.casteDepedency(model.ReligionID, model.MothertongueID);
+                model.Caste = Commondependency.casteDepedency((model.ReligionID !== undefined && model.ReligionID !== null && model.ReligionID.length > 0 ? (model.ReligionID).toString() : ""), ((model.MothertongueID !== undefined && model.MothertongueID !== null && model.MothertongueID !== "" && model.MothertongueID.length > 0) ? (model.MothertongueID).toString() : []));
             };
             model.GetPhotoandHoroscopevalues = function(strType, str) {
                 if (str !== null && str !== undefined && str !== "" && str.length > 0) {
@@ -213,7 +209,7 @@
                 var paramters = {};
                 _.each(model.domDatageneral, function(parentItem) {
                     _.each(_.filter(parentItem.controlList, function(seconditem) { return seconditem !== undefined; }), function(item) {
-                        if (item.controlType !== 'datePicker') {
+                        if (item.controlType !== 'datePicker' && item.controlType !== 'dobirth') {
                             if (item.ngModel !== undefined) {
                                 paramters[item.ngModel] = model.returnnullvalue(model[item.ngModel]);
                             }
@@ -290,11 +286,9 @@
                 });
             };
             model.closepopup = function() {
-                if (model.divcontrollsbind === 0) {
-                    model.init();
-                }
-                model.sidebarnavshow = true;
                 alerts.dynamicpopupclose();
+                model.init();
+                model.sidebarnavshow = true;
             };
             model.submitadvancedsearch = function(frompage, topage, typeofexcel) {
                 var paramters = {};
@@ -372,9 +366,7 @@
                             model.gridtable.setData(model.slideshowarray);
                         }
                     }
-
                 });
-
             };
             model.getrelationshipstypes = function(flag, profileid, about) {
                 searchpageServices.getrelationships(flag, profileid, "").then(function(response) {
@@ -382,13 +374,12 @@
                         model.Relationships = JSON.parse(item);
                     });
                 });
-
             };
             model.relationshipbind = function(flag, profileid, about) {
                 searchpageServices.getrelationships(flag, profileid, about).then(function(response) {
                     model.popupFirstName = "";
                     model.popupLastName = "";
-                    if (response !== null && response.data !== undefined && response.data !== null && response.data !== "") {
+                    if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
                         var Relationships = JSON.parse(response.data);
                         model.popupFirstName = Relationships[0].FirstName;
                         model.popupLastName = Relationships[0].LastName;
@@ -407,14 +398,12 @@
                         break;
                 }
             };
-
             model.closeupload = function(type) {
                 modelpopupopenmethod.closepopuppoptopopup();
             };
             model.close = function(type) {
                 modelpopupopenmethod.closepopuppoptopopup();
             };
-
             model.mismatchProfileCheck = function(slide) {
                 if (model.dynamicFunction === "getClickedCustID" || model.dynamicFunction === "mismatchProfileCheck") {
                     model.close();
@@ -462,13 +451,10 @@
                         modelpopupopenmethod.showPopupphotopoup('shortlistpopup.html', model.scope, '', "modalclassdashboardphotopopup");
                     } else {
                         model.mismatchProfileCheck(slide);
-
                     }
                 }
             };
-
             model.getClickedCustID = function(slide) {
-
                 if (model.dynamicFunction === "getClickedCustID" || model.dynamicFunction === "mismatchProfileCheck") {
                     model.close();
                 }
@@ -482,15 +468,12 @@
                 alerts.timeoutoldalerts(model.scope, 'alert-success', 'profile has been shortlisted successfully', 2000);
             };
 
-
             model.shortlistmodel.checkServicetoShortlist = function(slide) {
-
                 model.slide = slide;
                 if (slide.isshortlistaedgain) {
                     alerts.timeoutoldalerts(model.scope, 'alert-danger', 'You have already Shortlisted this Profile ID', 4000);
                 } else {
                     slide.isshortlistaedgain = true;
-
                     model.shortlistmodelinner = angular.copy(_.where(model.shortlistmodel.slides, { isshortlistaedgain: true }));
                     _.map(model.slides, function(item) {
                         item.isShortlisted = false;
@@ -504,8 +487,6 @@
                 model.shortlistmodel.slides = model.shortlistmodelinner.concat(_.where(model.slides, { isShortlisted: true }));
                 modelpopupopenmethod.showPopupphotopoup('mainShortListProfiles.html', model.scope, 'lg', "modalclassdashboardphotopopupinner");
             };
-
-
             model.shortListPopup = function() {
                 var arrayshortListPopup = [];
                 arrayshortListPopup = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true });
@@ -515,7 +496,6 @@
                     model.shortlistmodel.slides = (model.shortlistmodel.slides);
                 }
             };
-
             model.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
                     switch (model.tablename) {
@@ -566,12 +546,10 @@
                 model.cloumsarr = [];
                 model.Toprofileids = [];
                 var finalArray = model.shortlistmodel.slides;
-
                 _.each((finalArray.length > 0 ? finalArray : model.shortlistmodel.slides), function(item) {
                     model.cloumsarr.push(item.Custid);
                 });
                 var custids = model.cloumsarr.length > 0 ? (model.cloumsarr).toString() : null;
-
                 searchpageServices.getprofileidcustdetails(custids).then(function(response) {
                     model.FromProfileId = model.getpageloadobject.ProfileID;
                     _.each(response.data, function(item) {
@@ -586,7 +564,6 @@
                     _.each(model.Toprofileids, function(item) {
                         expressInterestModel.getImages(item);
                     });
-                    // if (finalArray.length === model.Toprofileids.length)
                     modelpopupopenmethod.showPopupphotopoup('app/expressInterest/index.html', model.scope, 'lg', "");
                 });
             };
@@ -624,7 +601,6 @@
             model.tickethistoryupdation = function(ticket) {
                 modelpopupopenmethod.showPopupphotopoup('tickethistory.html', model.scope, 'md', "modalclassdashboardphotopopup");
             };
-
             /**
              * Array Creation for controls creation for Serches 
              */
@@ -633,7 +609,6 @@
                     { tabname: "General Search", arrayname: 1, formame: "generalsearch" },
                     { tabname: "Advanced Search", arrayname: 2, formame: "advancedsearch" }
                 ];
-
                 model.domDataadvanced = [{
                         headerName: '',
                         collapseid: 3,
@@ -641,7 +616,8 @@
                             { ngModel: 'GenderID', controlType: 'gender', isShow: true, validation: true },
                             { ngModel: 'FirstName', labelName: 'First Name', controlType: 'textBox', isShow: true, validation: true },
                             { ngModel: 'LastName', labelName: 'Last Name', controlType: 'textBox', isShow: true, validation: true },
-                            { typeofdata: 'Ageselect', ngModelFrom: 'AgeFromID', ngModelTo: 'AgeToID', labelName: 'Age', controlType: 'dualDropdown', isShow: true, validation: true },
+                            { ngModelFrom: 'DOBfrom', ngModelTo: 'DOBTo', labelName: 'Date Of Birth', controlType: 'dobirth', isShow: true, validation: true },
+                            // { typeofdata: 'Ageselect', ngModelFrom: 'AgeFromID', ngModelTo: 'AgeToID', labelName: 'Age', controlType: 'dualDropdown', isShow: true, validation: true },
                             { typeofdata: 'heightregistration', ngModelFrom: 'HeightFromID', ngModelTo: 'HeightToID', labelName: 'Height', controlType: 'dualDropdown', isShow: true, validation: true },
                             { divClear: true, ngModel: 'MaritalstatusID', labelName: 'Marital status', controlType: 'dropdown', isShow: true, dataBind: 'MaritalStatus', dataSource: 'maritalstatusg', validation: true },
                             { type: 'caste', ngModel: 'ReligionID', labelName: 'Religion', controlType: 'dropdown', isShow: true, dataBind: 'Religion', dataSource: 'religiong', validation: true },
@@ -705,7 +681,8 @@
                             { ngModelFrom: 'Dateofregfrom', ngModelTo: 'Dateofregto', labelName: 'Date Of Reg', controlType: 'datePicker', isShow: true, validation: true },
                             { divClear: true, ngModelFrom: 'LastestLoginsfrom', ngModelTo: 'LastestLoginsto', labelName: 'Lastest Logins', controlType: 'datePicker', isShow: true, validation: true },
                             { ngModel: 'ProfileID', labelName: 'Profile ID', controlType: 'profileid', isShow: true, validation: true },
-                            { ngModel: 'MembershipTypeID', labelName: 'Membership type', controlType: 'dropdown', isShow: true, dataSource: 'Membershiptype', validation: true, dataBind: 'Membershiptype' }
+                            { ngModel: 'MembershipTypeID', labelName: 'Membership type', controlType: 'dropdown', isShow: true, dataSource: 'Membershiptype', validation: true, dataBind: 'Membershiptype' },
+                            { divClear: true, ngModel: 'EmpIds', labelName: 'Ower of Profile', controlType: 'empbranches', isShow: true, dataSource: 'Empnamesarray', validation: true, dataApi: 'EmployeeNameswithbranches' }
                         ]
                     },
                     {
@@ -735,7 +712,8 @@
                         collapseid: 1,
                         controlList: [
                             { ngModel: 'GenderID', controlType: 'gender', isShow: true, validation: true },
-                            { typeofdata: 'Ageselect', ngModelFrom: 'AgeFromID', ngModelTo: 'AgeToID', labelName: 'Age', controlType: 'dualDropdown', isShow: true, validation: true },
+                            { ngModelFrom: 'DOBfrom', ngModelTo: 'DOBTo', labelName: 'Date Of Birth', controlType: 'dobirth', isShow: true, validation: true },
+                            // { typeofdata: 'Ageselect', ngModelFrom: 'AgeFromID', ngModelTo: 'AgeToID', labelName: 'Age', controlType: 'dualDropdown', isShow: true, validation: true },
                             { typeofdata: 'heightregistration', ngModelFrom: 'HeightFromID', ngModelTo: 'HeightToID', labelName: 'Height', controlType: 'dualDropdown', isShow: true, validation: true },
                             { ngModel: 'MaritalstatusID', labelName: 'Marital status', controlType: 'dropdown', isShow: true, dataBind: 'MaritalStatus', dataSource: 'maritalstatusg', validation: true },
                             { type: 'caste', ngModel: 'ReligionID', labelName: 'Religion', controlType: 'dropdown', isShow: true, dataBind: 'Religion', dataSource: 'religiong', validation: true },
@@ -758,13 +736,13 @@
                             { divClear: true, ngModelFrom: 'PropertyValuefrom', ngModelTo: 'PropertyValueto', labelName: 'Property In Lakhs', controlType: 'textproperty', isShow: true, validation: true },
                             { ngModel: 'ProfileID', labelName: 'Profile ID', controlType: 'profileid', isShow: true, validation: true },
                             { typeofdata: 'currency', ngModelFrom: 'AnnualIncomefrom', ngModel: 'AnnualincomeID', ngModelTo: 'AnnualIncometo', labelName: 'Monthly income', controlType: 'triblecontrols', isShow: true, validation: true },
-                            { ngModel: 'OnlyConfidential', controlType: 'singlechkbox', isShow: true, validation: true }
+                            { ngModel: 'OnlyConfidential', controlType: 'singlechkbox', isShow: true, validation: true },
+                            { divClear: true, ngModel: 'EmpIds', labelName: 'Ower of Profile', controlType: 'empbranches', isShow: true, dataSource: 'Empnamesarray', validation: true, dataApi: 'EmployeeNameswithbranches' }
                         ]
                     }
 
                 ];
             };
-            model.getControlList();
             model.returndynamicarray = function(val) {
                 var array;
                 if (val === 1) {
@@ -785,9 +763,9 @@
     angular
         .module('Kaakateeya')
         .factory('searchpageModel', factory);
-    factory.$inject = ['$http', 'searchpageServices', 'arrayConstants', 'SelectBindServiceApp',
+    factory.$inject = ['$http', 'searchpageServices', 'arrayConstants',
         'getArraysearch', '$timeout', 'helperservice',
-        'authSvc', 'alert', 'Commondependency', '$filter', 'modelpopupopenmethod', 'complex-slide-config', '$sce',
+        'authSvc', 'alert', 'Commondependency', '$filter', 'modelpopupopenmethod', 'complex-slide-config',
         'expressInterestModel', 'complex-grid-config'
     ];
 })(angular);

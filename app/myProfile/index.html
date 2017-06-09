@@ -108,12 +108,30 @@
                                 </md-radio-group>
                             </div>
                         </div>
-                        <div class="clearfix form-group">
+                        <!--<div class="clearfix form-group">
                             <label for="Gender" class="control-label col-lg-4">KMPLID</label>
                             <div class="col-lg-7">
                                 <input ng-class="(page.model.mpObj.txtKMPLID).trim()!=='' && page.model.mpObj.txtKMPLID!==undefined && page.model.mpObj.txtKMPLID!==null?'bacg':''" type="text" class="form-control" placeholder="KMPLID" ng-model="page.model.mpObj.txtKMPLID">
                             </div>
+                        </div>-->
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Domacile</label>
+                            <div class="col-lg-7">
+                                <md-radio-group name="rdndocmacile" layout="row" ng-model="page.model.mpObj.rdndocmacile" class="md-block" flex-gt-sm>
+                                    <md-radio-button value="1"> India</md-radio-button>
+                                    <md-radio-button value="0"> Abroad</md-radio-button>
+                                    <md-radio-button value="" class="md-primary">Both</md-radio-button>
+                                </md-radio-group>
+                            </div>
                         </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Marital Status</label>
+                            <div class="col-lg-7" ng-class="page.model.mpObj.ddlMaritalstatus===undefined || page.model.mpObj.ddlMaritalstatus===null || page.model.mpObj.ddlMaritalstatus.length===0 ?'':'colorforcontrols'">
+                                <select multiselectdropdown multiple id="MarketingOwner" class="smalldropdown" ng-model="page.model.mpObj.ddlMaritalstatus" ng-options="item.value as item.label for item in page.model.maritalstatusarray">   
+                                 </select>
+                            </div>
+                        </div>
+
                         <div class="clearfix form-group">
                             <label for="Gender" class="control-label col-lg-4">Caste</label>
                             <div class="col-lg-7" ng-class="page.model.mpObj.ddlCaste===undefined || page.model.mpObj.ddlCaste===null || page.model.mpObj.ddlCaste.length===0 ?'':'colorforcontrols'">
@@ -121,13 +139,13 @@
                                  </select>
                             </div>
                         </div>
-                        <div class="clearfix form-group">
+                        <!--<div class="clearfix form-group">
                             <label for="Gender" class="control-label col-lg-4">Marketing Owner</label>
                             <div class="col-lg-7" ng-class="page.model.mpObj.ddlMarketingOwner===undefined || page.model.mpObj.ddlMarketingOwner===null || page.model.mpObj.ddlMarketingOwner.length===0 ?'':'colorforcontrols'">
                                 <select multiselectdropdown multiple id="MarketingOwner" class="smalldropdown" ng-model="page.model.mpObj.ddlMarketingOwner" ng-options="item.value as item.label for item in page.model.ProfileOwnerarray">   
                                  </select>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="clearfix form-group">
                             <label for="Gender" class="control-label col-lg-4">Having Profiles</label>
                             <div class="col-lg-7" ng-class="page.model.mpObj.ddlHavingProfiles===undefined || page.model.mpObj.ddlHavingProfiles===null || page.model.mpObj.ddlHavingProfiles.length===0 ?'':'colorforcontrols'">

@@ -2,9 +2,7 @@
     <div ng-include="'templates/sideMenu.html'">
     </div>
     <div class="edit_pages_content_main clearfix" class="right_col">
-
         <page-review dispaly-name="'Astro details'" sectionid="'23'" custid="page.model.CustID"></page-review>
-
         <div id="divlnkasro" class="edit_page_item">
             <div class="edit_page_item_head clearfix">
                 <h4>Astro Details </h4>
@@ -76,20 +74,15 @@
                     <br>
                 </div>
             </div>
-
-
         </div>
         <div class="edit_page_details_item_desc clearfix" style="padding: 0 0 0 20px;">
-
             <div class="radio-group-my input-group" ng-show="page.model.ImageUrl==='' || page.model.ImageUrl===null">
                 <md-radio-group ng-required="true" name="rdlUploadGenerate" layout="row" ng-model="page.model.atroObj.rdlUploadGenerate" ng-change="page.model.uploadGenerateHoro(page.model.atroObj.rdlUploadGenerate);" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                     <md-radio-button value="0">Upload Horoscope</md-radio-button>
                     <md-radio-button value="1"> Generate Horoscope </md-radio-button>
                 </md-radio-group>
             </div>
-
         </div>
-
         <div ng-hide="page.model.ImageUrl==='' || page.model.ImageUrl===null">
             <div class="edit_page_details_item">
                 <div class="edit_page_details_item_desc clearfix">
@@ -106,7 +99,6 @@
                     </h5>
                 </div>
             </div>
-
             <div class="edit_page_details_item">
                 <div class="edit_page_details_item_desc clearfix">
                     <img ng-model="page.model.imghoroName" ng-src="{{page.model.ImageUrl}}" Style="width: 250px; height: 250px;" ng-show="!page.model.iframeShow" />
@@ -122,12 +114,10 @@
             </div>
         </div>
     </div>
-
     <script type="text/ng-template" id="astroContent.html">
         <slide-popup model="page.model" eventtype="page.model.eventType">
         </slide-popup>
     </script>
-
     <script type="text/ng-template" id="AddHoroPopup.html">
         <form name="uploadForm" novalidate role="form" ng-submit="page.model.upload(up);">
             <div class="modal-header">
@@ -159,9 +149,7 @@
                 <input value="Delete" class="button_custom" type="submit">
             </div>
         </form>
-
     </script>
-
     <script type="text/ng-template" id="AstroCityPopup.html">
         <div class="modal-header alert alert-danger" id="div2">
             <button type="button" class="close" ng-click="page.model.cancel();">&times;</button>
@@ -178,9 +166,7 @@
             <button type="button" class="btn btn-default" ng-click="page.model.cancel();">Close</button>
         </div>
     </script>
-
     <script type="text/ng-template" id="AstroimagePopup.html">
-
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Horoscope
                 <a href="javascript:void(0);" ng-click="page.model.cancel();">
@@ -197,14 +183,10 @@
             </div>
         </div>
     </script>
-
     <script type="text/ng-template" id="RefreshPopup.html">
-
         <div class="modal-body clearfix" id="modal-body">
             <button ng-click="page.model.generatedhoroS3Upload();" class="btn btn-success center-block">Refresh Page<span class="fa fa-refresh"></span></button>&nbsp;&nbsp;
-
         </div>
-
     </script>
 </div>
 <script src="build/js/custom.js" type="text/javascript"></script>

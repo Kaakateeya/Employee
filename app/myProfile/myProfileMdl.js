@@ -1,13 +1,12 @@
 (function() {
     'use strict';
 
-    function factory(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss, SelectBindServiceApp, uibModal, timeout, configslide, commonpage, filter) {
+    function factory(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss,
+        SelectBindServiceApp, uibModal, timeout, configslide, commonpage, filter, arrayConstants) {
         return function() {
             var model = {};
-
             model.grid = config;
             model.slide = configslide;
-
             model.mpObj = {};
             model.empid = model.slide.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             model.opendiv = true;
@@ -29,8 +28,6 @@
                 minDate: null,
                 maxDate: null
             };
-
-
             model.displayArrayprofile = function(arr, topage) {
                 model.headervisileble = true;
                 if (topage === parseInt(10)) {
@@ -107,7 +104,6 @@
                         Profession: item.Profession,
                         PlaceOfBirth: item.PlaceOfBirth,
                         MFNative: item.MFNative
-
                     });
                 });
                 return model.slides;
@@ -120,10 +116,11 @@
                     model.Castearray = [];
                     model.ProfileOwnerarray = [];
                     model.Brancharray = [];
+                    model.maritalstatusarray = [];
+                    model.maritalstatusarray = arrayConstants.MaritalStatus;
                     model.mpObj.ddlProfileOwner = [parseInt(model.empid)];
                     _.each(response.data, function(item) {
                         switch (item.CountryCode) {
-
                             case "Application Status":
                                 model.applicationStatusarray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                 break;
@@ -176,17 +173,14 @@
                     maxDate: null
                 };
             };
-
             model.allLinksTemplateDUrl = function(row) {
                 var stronlineliteclass = row.onlinepaidcls == "light" ? row.onlinepaidcls + ' Linkdisabled' : row.onlinepaidcls;
                 var strofflineliteclass = row.offlinepaidcls == "light" ? row.offlinepaidcls + ' Linkdisabled' : row.offlinepaidcls;
-                var photodisbled = row.PhotoshopCount == 0 ? 'Linkdisabled' : "";
-
+                var photodisbled = row.PhotoshopCount === 0 ? 'Linkdisabled' : "";
                 // var paid = "<a style='cursor:pointer;'>Factsheet</a>&nbsp;&nbsp;&nbsp;<a style='' >Tickets</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' >Servicelog</a>" +
                 //     "&nbsp;&nbsp;&nbsp;<a ng-click='model.showphoto(" + row.Cust_ID + ");' class='" + photodisbled + "'>" + row.UploadedPhotoscount + " / " + row.PhotoshopCount + "</a>" +
                 //     "&nbsp;&nbsp;&nbsp;<a class='oukuCls " + stronlineliteclass + "' ng-click='model.RedirectPayment(" + row.ProfileID + ");'>" + row.onlinepaid + "</a>/<a class='oukuCls " + strofflineliteclass + "' ng-click='model.RedirectPayment(" + row.ProfileID + ");' >" + row.offlinepaid + "</a>&nbsp;&nbsp;&nbsp;" +
                 //     "<label class='fontweight'>" + row.OwnerName + "</label>";
-
                 var paidstatus = row.paid === true ? "Paid" : "UnPaid";
                 var paid = "<a style='cursor:pointer;'>Factsheet</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);'  ng-click='model.tickethistorypopup(" + row.Emp_Ticket_ID + ");'>Tickets</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' >Servicelog</a>" +
                     "&nbsp;&nbsp;&nbsp;<a ng-click='model.showphoto(" + row.Cust_ID + ");' class='" + photodisbled + "'>" + row.UploadedPhotoscount + " / " + row.PhotoshopCount + "</a>" +
@@ -194,22 +188,18 @@
                     "<label class='fontweight'>" + row.OwnerName + "</label>";
                 return paid;
             };
-
             model.grid.tickethistorypopup = function(TicketID) {
                 if (TicketID) {
                     model.marketingTicketid = TicketID;
                     commonpage.showPopupphotopoup('marketpopup.html', model.scope, 'md', "modalclassdashboardphotopopup");
                 }
             };
-
             model.showphoto = function(custid) {
                 modelpopupopenmethod.ShowPhotoPopup(custid, model.scope);
             };
-
             model.grid.RedirectPayment = function(profileid) {
                 window.open("EmployeePayments" + "?profileid=" + profileid, "_blank");
             };
-
             model.horoTemplate = function(row) {
                 var paid = row.HoroscopeStatus === 1 ? "<img  src='src/images/ico_horoscope.jpg' class='horoImgcls'>" : "";
                 return paid;
@@ -217,7 +207,6 @@
             model.editviewRedirect = function(row) {
                 window.open('/Education/' + row.Cust_ID, '_blank');
             };
-
             model.ViewProfile = function(row) {
                 window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
             };
@@ -228,13 +217,9 @@
                 else
                     window.open(row.HoroScopeImage, '_blank');
             };
-
-
             model.chkVal = function(val) {
                 return val !== undefined && val !== '' ? val : null;
             };
-
-
             model.MyprofileResult = function(obj, from, to, type, flagtype) {
                 model.topage = to;
                 var inputobj = {
@@ -269,11 +254,7 @@
 
                     Assigneddatetodate: obj.txtToAssignedDate !== '' && obj.txtToAssignedDate !== undefined ? filter('date')(obj.txtToAssignedDate, 'yyyy/MM/dd') : '',
                     DORFromdate: obj.txtRegFromDate !== '' && obj.txtRegFromDate !== undefined ? filter('date')(obj.txtRegFromDate, 'yyyy/MM/dd') : '',
-
-
-
                     // helpService.checkstringvalue(model[item.ngModelFrom]) ? filter('date')(model[item.ngModelFrom], 'MM/dd/yyyy') : null;
-
                     DORTodate: obj.txtRegToDate !== '' && obj.txtRegToDate !== undefined ? filter('date')(obj.txtRegToDate, 'yyyy/MM/dd') : '',
                     FatherName: obj.txtFatherName,
                     MotherName: obj.txtMotherName,
@@ -286,7 +267,9 @@
                     WebsiteBlocked: obj.rdnWebsiteBlocked,
                     pagefrom: from,
                     pageto: to,
-                    intTableType: flagtype
+                    intTableType: flagtype,
+                    v_MaritalStatus: model.arrayToString(obj.ddlMaritalstatus),
+                    i_Domacile: obj.rdndocmacile !== undefined && obj.rdndocmacile !== "" && obj.rdndocmacile !== null ? obj.rdndocmacile : null
                 };
                 model.grid.columns = [
                     { text: 'Horo', key: 'HoroScopeImage', type: 'customlink', templateUrl: model.horoTemplate, method: model.horoscopeimage },
@@ -381,13 +364,14 @@
             model.slide.closemainpopup = function() {
                 modelpopupopenmethod.closepopup();
             };
-
             return model;
         };
     }
     angular
         .module('Kaakateeya')
         .factory('myProfileModel', factory);
-    factory.$inject = ['$http', 'myProfileservice', 'authSvc', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'SelectBindServiceApp', '$uibModal', '$timeout', 'complex-slide-config', 'modelpopupopenmethod', '$filter'];
+    factory.$inject = ['$http', 'myProfileservice', 'authSvc', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'SelectBindServiceApp',
+        '$uibModal', '$timeout', 'complex-slide-config', 'modelpopupopenmethod', '$filter', 'arrayConstantsreg'
+    ];
 
 })(angular);
