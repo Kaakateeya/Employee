@@ -16,6 +16,13 @@
     md-radio-group.layout-row md-radio-button {
         margin: 0px 2px 0px 3px !important;
     }
+    .borderCls {
+        border-top: 1px solid #cecece;
+    }
+    .required {
+        color: red;
+        font-size: 18px;
+    }
 }
 
 .hdrsettleCls {

@@ -11,6 +11,11 @@
   width: 100%; }
 #settleDelete md-radio-group.layout-row md-radio-button {
   margin: 0px 2px 0px 3px !important; }
+#settleDelete .borderCls {
+  border-top: 1px solid #cecece; }
+#settleDelete .required {
+  color: red;
+  font-size: 18px; }
 
 .hdrsettleCls {
   font-size: 18px;
