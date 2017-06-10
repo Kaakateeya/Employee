@@ -8,7 +8,6 @@
                 viewsettlementservice.getCheckprofileIDstatus(profileid).then(function(response) {
                     if (parseInt(response.data) === 1) {
                         viewsettlementservice.getViewSettlementform(profileid).then(function(response) {
-                            console.log(response.data);
                             model.settlementimage = response.data.m_Item1;
                             model.status = response.data.m_Item2;
                             if (parseInt(model.status) == 1) {

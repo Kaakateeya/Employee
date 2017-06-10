@@ -137,7 +137,6 @@
                 pageto: topage
             };
             serviceSlideShowService.getServiceSlideshowdata(obj).then(function(response) {
-                console.log(response.data);
                 if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
                     model.serviceslideshowarray = [];
                     _.each(response.data[0].BothsideInterest, function(item) {
@@ -191,9 +190,7 @@
                             }
                         });
                     } else {
-                        serviceSlideShowService.getInsertUnpaidStatus(slide.fromcust_id, slide.Custid, parseInt(model.empid), 'proceed').then(function(response) {
-                            console.log(response.data);
-                        });
+                        serviceSlideShowService.getInsertUnpaidStatus(slide.fromcust_id, slide.Custid, parseInt(model.empid), 'proceed').then(function(response) {});
                         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please Upgrade online membership', 4000);
                     }
                 }
@@ -211,7 +208,6 @@
                 Subject: "Kaakateeya Email For Bothsideinterest"
             };
             helpService.ResendMail(Mobj).then(function(response) {
-                console.log(response.data);
                 if (response.data === parseInt(1)) {
                     alerts.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent succesfully', 4000);
                 } else {

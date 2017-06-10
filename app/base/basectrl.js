@@ -14,7 +14,6 @@
              $state.go('base.' + type, { CustID: stateParams.CustID });
          };
          scope.backgroundcolor = function(status) {
-             console.log(status);
              var color = '#EFEFEF';
              switch (status) {
                  case 54:

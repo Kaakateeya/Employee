@@ -53,9 +53,7 @@
         };
 
         model.eduPageload = function() {
-
             editEducationService.getEducationData(CustID).then(function(response) {
-                console.log(response.data);
                 if (commonFactory.checkvals(response.data)) {
                     model.educationSelectArray = response.data;
                     model.eduEmpLastModificationDate = model.educationSelectArray.length > 0 ? model.educationSelectArray[0].EmpLastModificationDate : '';
@@ -64,47 +62,36 @@
 
                     model.ProfileGradestatus = model.educationSelectArray.length > 0 ? model.educationSelectArray[0].ProfileGradestatus : '';
                 }
-
             });
         };
         model.ProfPageload = function() {
-
             editEducationService.getProfessionData(CustID).then(function(response) {
                 if (commonFactory.checkvals(response.data)) {
                     model.ProfessionSelectArray = response.data;
                     model.profEmpLastModificationDate = model.ProfessionSelectArray ? model.ProfessionSelectArray[0].EmpLastModificationDate : '';
                 }
-
             });
-
         };
         model.aboutPageload = function() {
-
             editEducationService.getAboutData(CustID).then(function(response) {
-
                 if (commonFactory.checkvals(response.data)) {
-
                     var AboutData = (response.data).split(';');
                     model.lblaboutUrself = (AboutData[0].split(':'))[1];
                     model.AboutReviewStatusID = (AboutData[1].split(':'))[1];
                 }
             });
-
         };
         model.custdatapageload = function() {
             editEducationService.getCustomerData(CustID).then(function(response) {
                 model.CustomerDataArr = response.data !== undefined && response.data.length > 0 ? JSON.parse(response.data) : [];
                 model.custEmpLastModificationDate = model.CustomerDataArr[0].EmpLastModificationDate;
-
             });
         };
-
         model.showpopup = function(type, item) {
             isSubmit = true;
             model.eventType = 'add';
             switch (type) {
                 case 'showEduModal':
-
                     model.popupdata = model.Education;
                     model.popupHeader = 'Education Details';
                     model.EducationID = null;
@@ -220,7 +207,6 @@
                         inObj.customerEducation.CustID = model.CustID;
 
                         model.submitPromise = editEducationService.submitEducationData(inObj).then(function(response) {
-                            console.log(response);
                             commonFactory.closepopup();
                             if (response.data === 1) {
                                 model.eduPageload();
@@ -257,7 +243,6 @@
                         inObj.GetDetails.CustID = CustID;
                         inObj.GetDetails.DateofBirth = inObj.GetDetails.DateofBirth !== '' && inObj.GetDetails.DateofBirth !== 'Invalid date' ? filter('date')(inObj.GetDetails.DateofBirth, 'MM/dd/yyyy hh:mm:ss a') : null,
                             editEducationService.submitCustomerData(inObj).then(function(response) {
-                                console.log(response);
                                 commonFactory.closepopup();
                                 if (response.data === 1) {
                                     model.custdatapageload();
@@ -292,7 +277,6 @@
 
         model.deleteEduSubmit = function() {
             SelectBindService.DeleteSection({ sectioname: 'Education', CustID: CustID, identityid: model.educationID }).then(function(response) {
-                console.log(response);
                 model.eduPageload();
                 commonFactory.closepopup();
             });

@@ -27,9 +27,8 @@
             var loginEmpid = authSvc.LoginEmpid();
             var AdminID = authSvc.isAdmin();
             scope.getExpression = function(val) {
-                console.log(val);
                 return val;
-            }
+            };
             scope.ddlChange = function(value, value2, text, apiPath) {
                 if (apiPath) {
 

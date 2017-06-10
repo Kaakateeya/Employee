@@ -209,12 +209,9 @@
                 isSubmit = false;
                 inObj.GetDetails.CustID = custid;
                 inObj.GetDetails.FatherbrotherCust_familyID = model.FatherbrotherCustfamilyID;
-
                 model.submitPromise = editRelativeService.submitFBData(inObj).then(function(response) {
-                    console.log(response);
                     commonFactory.closepopup();
                     if (response.data === 1) {
-
                         model.relativePageLoad(custid);
                         alertss.timeoutoldalerts(model.scope, 'alert-success', "Father's Brother Details Submitted Succesfully", 4500);
                     } else {
@@ -231,10 +228,8 @@
                 inObj.GetDetails.CustID = custid;
                 inObj.GetDetails.FatherSisterCust_familyID = model.FatherSisterCustfamilyID;
                 model.submitPromise = editRelativeService.submitFSData(inObj).then(function(response) {
-                    console.log(response);
                     commonFactory.closepopup();
                     if (response.data === 1) {
-
                         model.relativePageLoad(custid);
                         alertss.timeoutoldalerts(model.scope, 'alert-success', "Father's Sister Details Submitted Succesfully", 4500);
                     } else {
@@ -247,15 +242,11 @@
         model.MBSubmit = function(inObj) {
             if (isSubmit) {
                 isSubmit = false;
-
-
                 inObj.GetDetails.CustID = custid;
                 inObj.GetDetails.MBMotherBrotherCust_familyID = model.MotherBrotherCustfamilyID;
                 model.submitPromise = editRelativeService.submitMBData(inObj).then(function(response) {
-                    console.log(response);
                     commonFactory.closepopup();
                     if (response.data === 1) {
-
                         model.relativePageLoad(custid);
                         alertss.timeoutoldalerts(model.scope, 'alert-success', "Mother's Brother Details Submitted Succesfully", 4500);
                     } else {
@@ -274,7 +265,6 @@
                 inObj.GetDetails.CustID = custid;
                 inObj.GetDetails.MSCust_familyID = model.MotherSisterCustfamilyID;
                 model.submitPromise = editRelativeService.submitMSData(inObj).then(function(response) {
-                    console.log(response);
                     commonFactory.closepopup();
                     if (response.data === 1) {
 
@@ -300,7 +290,6 @@
 
         model.deleteSubmit = function() {
             SelectBindService.DeleteSection({ sectioname: 'Family', CustID: custid, identityid: model.identityID }).then(function(response) {
-                console.log(response);
                 model.relativePageLoad();
                 commonFactory.closepopup();
             });

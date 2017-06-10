@@ -31,9 +31,7 @@
             editPartnerpreferenceService.getPartnerPreferenceData(custID).then(function(response) {
                 model.partnerPrefArr = response.data;
                 model.partnerDescription = (model.partnerPrefArr.length > 0 && model.partnerPrefArr[0].PartnerDescripition !== undefined && model.partnerPrefArr[0].PartnerDescripition !== null) ? model.partnerPrefArr[0].PartnerDescripition : '';
-
                 model.partnermodifiedby = (model.partnerPrefArr.length > 0 && model.partnerPrefArr[0].EmpLastModificationDate !== undefined && model.partnerPrefArr[0].EmpLastModificationDate !== null) ? model.partnerPrefArr[0].EmpLastModificationDate : '';
-                console.log(model.partnerPrefArr);
             });
         };
         model.removeSelect = function(data) {
@@ -120,16 +118,12 @@
                 isSubmit = false;
                 switch (type) {
                     case 'Partnerprefernece details':
-
                         inObj.GetDetails.CustID = custID;
-
                         model.submitPromise = editPartnerpreferenceService.submitPartnerPrefData(inObj).then(function(response) {
-                            console.log(response);
                             commonFactory.closepopup();
                             if (response.data === 1) {
                                 editPartnerpreferenceService.getPartnerPreferenceData(custID).then(function(response) {
                                     model.partnerPrefArr = response.data;
-                                    console.log(model.partnerPrefArr);
                                 });
                                 alertss.timeoutoldalerts(model.scope, 'alert-success', 'PartnerPreference Details Submitted Succesfully', 4500);
                             } else {
@@ -139,7 +133,6 @@
                         break;
                     case 'Partner Description':
                         model.submitPromise = editPartnerpreferenceService.submitPartnerDescData({ CustID: custID, AboutYourself: inObj.GetDetails.AboutYourself, flag: 1 }).then(function(response) {
-                            console.log(response);
                             commonFactory.closepopup();
                             if (response.data === '1') {
                                 model.partnerDescription = inObj.GetDetails.AboutYourself;

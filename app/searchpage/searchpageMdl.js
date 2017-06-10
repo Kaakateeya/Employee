@@ -39,7 +39,8 @@
                 changeMonth: true,
                 changeYear: true,
                 yearRange: "-40:+5",
-                dateFormat: 'mm/dd/yy'
+                format: "MM/DD/YYYY"
+
             };
             model.photogradearray = [{ value: 216, name: 'A' },
                 { value: 217, name: 'B' },
@@ -64,6 +65,8 @@
                         model.GenderID = data.GenderID;
                         model.AgeFromID = data.AgeMin;
                         model.AgeToID = data.AgeMax;
+                        model.DOBfrom = data.MaxDob;
+                        model.DOBTo = data.MinDob;
                         model.HeightFromID = data.MinHeight === "0" ? "9" : data.MinHeight;
                         model.HeightToID = data.MaxHeight;
                         model.MaritalstatusID = model.arrayToString(data.maritalstatusid);
@@ -294,7 +297,7 @@
                 var paramters = {};
                 _.each(model.domDataadvanced, function(parentItem) {
                     _.each(_.filter(parentItem.controlList, function(seconditem) { return seconditem !== undefined; }), function(item) {
-                        if (item.controlType !== 'datePicker') {
+                        if (item.controlType !== 'datePicker' && item.controlType !== 'dobirth') {
                             if (item.ngModel !== undefined) {
                                 paramters[item.ngModel] = model.returnnullvalue(model[item.ngModel]);
                             }

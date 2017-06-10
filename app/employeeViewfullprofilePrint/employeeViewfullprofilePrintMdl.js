@@ -49,9 +49,6 @@
 
                     }
                 });
-
-
-                console.log(model.viewprofilearray);
             };
 
             model.showPhotoPopup = function() {

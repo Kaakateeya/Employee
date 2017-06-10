@@ -16,11 +16,9 @@
         };
         model.pageload = function() {
             editOfcePurposeService.getofficeData('1', custID, '').then(function(response) {
-                console.log(response);
                 if (response.data.length > 0) {
                     model.dataval = response.data[0].length > 0 ? (JSON.parse(response.data[0]))[0].AboutProfile : '';
                 }
-                console.log(model.dataval);
             });
         };
         model.cancel = function() {
@@ -37,7 +35,6 @@
         };
         model.updateData = function(inObj, type) {
             editOfcePurposeService.getofficeData('2', custID, inObj.GetDetails.txtAboutprofile).then(function(response) {
-                console.log(response);
                 commonFactory.closepopup();
                 model.dataval = inObj.GetDetails.txtAboutprofile;
                 alertss.timeoutoldalerts(model.scope, 'alert-success', 'About Profile Details submitted Succesfully', 4500);

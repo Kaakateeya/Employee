@@ -6,7 +6,7 @@
          var vm = this,
              model;
          vm.init = function() {
-             vm.model = model = {};
+             //vm.model = model = {};
              vm.model = model = searchpageModel();
              model.scope = scope;
              model.ProfileIDpopup = "";
@@ -26,7 +26,7 @@
 
              alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass", 'searchpageCtrl');
              model.getControlList();
-             // vm.clearSelection(model.selectedIndex === "0" ? model.domDatageneral : model.domDataadvanced);
+             vm.clearSelection(model.selectedIndex === "0" ? model.domDatageneral : model.domDataadvanced);
              model.searchpopuptext = model.selectedIndex === "0" ? "General Search" : "Advance Search";
          };
          vm.directivechangeevent = function(modal, type) {
@@ -82,6 +82,8 @@
                          if (model[item.ngModelTo] !== undefined) {
                              model[item.ngModelTo] = undefined;
                          }
+                         model.DOBfrom = "";
+                         model.DOBTo = "";
                      });
 
                  });
@@ -94,7 +96,7 @@
                  model.MothertongueID = model.arrayToString("1");
                  model.ReligionID = model.arrayToString("1");
                  model.Caste = Commondependency.casteDepedency(model.ReligionID, model.MothertongueID);
-             }, 500);
+             }, 1000);
          };
 
          vm.onTabSelected = function(value) {

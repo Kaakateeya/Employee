@@ -4,7 +4,6 @@
     function factory(http) {
         return {
             submitBasicRegistration: function(obj) {
-                console.log(obj);
                 return http.post(app.apiroot + 'Registration/EmployeeRegisterCustomerHomepages', JSON.stringify(obj));
             },
             emailExists: function(obj) {

@@ -32,7 +32,6 @@
             timeout(function() {
                 scope.model.MAobj.txtresendemail = scope.model.mailchange(scope.model.MAobj.ddlresendemailmatchfollowup);
             }, 2000);
-            // timeout(function() { console.log(scope.model.marInfo); }, 25000);
         }
     }
     angular

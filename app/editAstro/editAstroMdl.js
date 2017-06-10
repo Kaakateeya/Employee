@@ -227,7 +227,6 @@
             var inputobj = { customerid: custID, EmpIDQueryString: "2", intDay: day, intMonth: month, intYear: year, CityID: commonFactory.checkvals(astrocity) ? astrocity : "" };
 
             editAstroService.generateHoroscope(inputobj).then(function(response) {
-                console.log(response);
                 if (commonFactory.checkvals(response.data.AstroGeneration)) {
                     // response.data.Path = (response.data.Path).Replace("\",'\\');
                     s3obj = { Path: response.data.Path, KeyName: response.data.KeyName };
@@ -292,14 +291,8 @@
         };
 
         model.generatedhoroS3Upload = function() {
-            console.log('s3obj');
-            console.log(s3obj);
-            //
-
             // s3obj.Path = s3obj.Path.replace('C:\\inetpub\\wwwroot\\access\\', 'http:\\e.kaakateeya.com\\access\\');
-            editAstroService.GenerateHoroS3(s3obj).then(function(response) {
-                console.log(response);
-            });
+            editAstroService.GenerateHoroS3(s3obj).then(function(response) {});
             model.astropageload(custID);
             commonFactory.closepopup();
         };

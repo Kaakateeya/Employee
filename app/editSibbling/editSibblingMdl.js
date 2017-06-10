@@ -303,7 +303,6 @@
                             model.SisCount = model.noOfSisterId;
 
                             model.submitPromise = editSibblingService.submitSibCountsData(objinput).then(function(response) {
-                                console.log(response);
                                 commonFactory.closepopup();
                                 if (response.data === 1) {
                                     model.sibPageload(custID);
@@ -322,7 +321,6 @@
                         inObj.GetDetails.CustID = custID;
                         inObj.GetDetails.BroSibilingCustfamilyID = model.SibilingCustfamilyID;
                         model.submitPromise = editSibblingService.submitSibBroData(inObj).then(function(response) {
-                            console.log(response);
                             commonFactory.closepopup();
                             if (response.data === 1) {
                                 model.sibPageload(custID);
@@ -337,7 +335,6 @@
                         inObj.GetDetails.CustID = custID;
                         inObj.GetDetails.SisSibilingCustfamilyID = model.SibilingCustfamilyID;
                         model.submitPromise = editSibblingService.submitSibSisData(inObj).then(function(response) {
-                            console.log(response);
                             commonFactory.closepopup();
                             if (response.data === 1) {
                                 model.sibPageload(custID);
@@ -346,8 +343,6 @@
                                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Sister Details Updation failed', 4500);
                             }
                         });
-
-
                         break;
                 }
             }

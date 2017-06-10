@@ -122,7 +122,6 @@
 
                                     if (response.data.m_Item2 === 1) {
                                         SelectBindServiceApp.getRelationName(7, profileID, '').then(function(res) {
-                                            console.log(res);
                                             if (res.data) {
                                                 if (type === 'from') {
                                                     model.fromProfileOwner = res.data[0][0].ProfileOwnerName;
