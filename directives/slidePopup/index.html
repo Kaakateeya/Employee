@@ -44,6 +44,10 @@
                     <textarea type="text" ng-model="model[item.ngmodel]" rows="2" class="form-control" ng-required="item.required" style="width:96%;" />
                 </div>
 
+                <div ng-if="item.controlType==='selectNumber'" class="pop_controls_right select-box-my" style="padding-bottom:2%;">
+                    <input type="number" ng-model="model[item.ngmodel]" ng-change="model[item.method]();" maxlength="{{item.maxLength}}" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)))"
+                        class="form-control" ng-required="item.required" />
+                </div>
 
                 <div ng-if="item.controlType==='textboxSelect'" class="pop_controls_right select-box-my select-box-my-double">
 

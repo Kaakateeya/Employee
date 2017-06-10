@@ -22,12 +22,16 @@
         var AdminID = authSvc.isAdmin();
         var isSubmit = true;
         var custID = model.CustID = stateParams.CustID;
-
+        model.broPrintArr = [];
+        model.sisPrintArr = [];
         //end declaration block
 
         model.init = function() {
             custID = model.CustID = stateParams.CustID;
             model.sibPageload();
+
+            model.broPrintOrder = 0;
+            model.sisPrintOrder = 0;
             return model;
         };
 
@@ -42,7 +46,21 @@
 
                 model.broModifiedby = (model.BrotherArr.length > 0 && model.BrotherArr[0].EmpLastModificationDate !== undefined && model.BrotherArr[0].EmpLastModificationDate !== null) ? model.BrotherArr[0].EmpLastModificationDate : '';
                 model.sisModifiedby = (model.sisterArr.length > 0 && model.sisterArr[0].EmpLastModificationDate !== undefined && model.sisterArr[0].EmpLastModificationDate !== null) ? model.sisterArr[0].EmpLastModificationDate : '';
+
+                model.broPrintArr = model.getNumForSibOrderbind(model.BrotherArr.length);
+                model.sisPrintArr = model.getNumForSibOrderbind(model.sisterArr.length);
+
             });
+        };
+
+
+        model.getNumForSibOrderbind = function(count) {
+            var arr = [];
+            arr.push({ "label": "--Select--", "title": "--Select--", "value": 0 });
+            for (var i = 1; i <= count; i++) {
+                arr.push({ "label": "p" + i, "title": "p" + i, "value": i });
+            }
+            return arr;
         };
 
         model.sibblingPopulatePopulate = function(type, item) {
@@ -112,8 +130,6 @@
                                 model.spouseAlternativeNumber = item.SibilngSpouseLandnumber;
                             }
 
-
-
                             model.sfCountryCodeId = item.SpouseFatherMobileCountryID;
                             model.sfMobileNumber = item.SpouseFatherMobileNo;
                             if (item.SpouseFatherLandAreaCode !== '' && item.SpouseFatherLandAreaCode !== null) {
@@ -125,18 +141,6 @@
                                 model.sfAlternativeNumber = item.SpouseFatherLandNo;
                             }
                             model.sfEmail = item.SpouseFatherEmailID;
-
-
-
-
-
-
-
-
-
-
-
-
                             model.spouseEmail = item.SpouseEmail;
                             model.spouseFatherLastName = item.SFsurname;
                             model.spouseFatherFirstName = item.SFname;
@@ -443,8 +447,8 @@
             { lblname: '', controlType: 'break' }
         ];
 
-
         model.brother = [
+            { lblname: 'printOrder', controlType: 'selectNumber', ngmodel: 'broPrintOrder', parameterValue: 'BroPrintOrderID', dataSource: model.broPrintArr },
             { lblname: 'Elder/Younger', controlType: 'radio', ngmodel: 'youngerElderBro', required: true, ownArray: 'broElderYoungerArr', parameterValue: 'BroElderYounger' },
             { lblname: 'Name', controlType: 'textbox', ngmodel: 'broName', required: true, parameterValue: 'BroName' },
             { lblname: 'Education', controlType: 'textbox', ngmodel: 'broEducation', parameterValue: 'BroEducationDetails' },
@@ -496,7 +500,6 @@
                 landAreaCodeIdParameterValue: 'BroWifeLandAreacode',
                 landNumberParameterValue: 'BroWifeLandNumber',
                 emailParameterValue: 'BrotherSpouseEmail'
-
             },
             { lblname: 'Spouse Father SurName', controlType: 'textbox', ngmodel: 'spouseFatherLastName', parameterValue: 'BroWifeFatherSurName', parentDependecy: 'ismarried' },
             { lblname: 'Spouse Father Name', controlType: 'textbox', ngmodel: 'spouseFatherFirstName', parameterValue: 'BroWifeFatherName', parentDependecy: 'ismarried' },
@@ -512,6 +515,7 @@
                 strland: 'sfLandNumberId',
                 strmail: 'sfEmail',
                 parentDependecy: 'ismarried',
+
                 mobileCodeIdParameterValue: 'BroSpouseFatherMobileCountryID',
                 mobileNumberParameterValue: 'BroSpouseFatherMobileNo',
                 landCountryCodeIdParameterValue: 'BroSpouseFatherLandCountryID',
@@ -538,6 +542,7 @@
         ];
 
         model.sister = [
+            { lblname: 'printOrder', controlType: 'selectNumber', ngmodel: 'sisPrintOrder', parameterValue: 'SisPrintOrderID', ownArray: 'sisPrintArr' },
             { lblname: 'Elder/Younger', controlType: 'radio', ngmodel: 'youngerElderSis', required: true, ownArray: 'sisElderYoungerArr', parameterValue: 'SisElderYounger' },
             { lblname: 'Name', controlType: 'textbox', ngmodel: 'sisName', required: true, parameterValue: 'SisName' },
             { lblname: 'Education', controlType: 'textbox', ngmodel: 'sisEducation', parameterValue: 'siseducationdetails' },
