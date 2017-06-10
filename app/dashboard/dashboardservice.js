@@ -41,6 +41,9 @@
             },
             changeProfileidstatus: function(profileid) {
                 return http.get(app.apiroot + 'StaticPages/getChangeApplicationStaus', { params: { ProfileID: profileid } });
+            },
+            upadateremainderdate: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/createReminderInsert', obj);
             }
         };
     }

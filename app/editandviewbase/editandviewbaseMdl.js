@@ -36,7 +36,6 @@
                     ]
                 };
                 alasql('SELECT Sno,Profileid,Name,Date INTO  XLSX("john.xlsx",?) FROM ?', [options, model.exportDataarray]);
-                // alasql('SELECT * INTO  XLSX("john.xlsx",{headers:true}) FROM ?', [model.exportDataarray]);
             };
             model.tabledata = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
                 dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
@@ -170,9 +169,7 @@
                         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Notification Read Failed', 2000);
                     }
                 });
-                // ((model.landingItems)[parentid]).splice(index, 1);
             };
-
             model.bouncedemail = function(obj) {
                 var object = {
                     CustID: model.Custidbounce,

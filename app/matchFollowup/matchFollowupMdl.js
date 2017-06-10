@@ -61,7 +61,6 @@
             model.bindEmpnames = function() {
                 SelectBindServiceApp.EmpwithBranch('ProfileBranch', '').then(function(response) {
                     var empBranchData = response.data;
-                    var branchids = '1';
                     _.each(empBranchData, function(item) {
                         model.EmpNamesArr.push({ "label": item.Name, "title": item.Name, "value": item.ID, ParentName: item.BranchesName });
                     });
@@ -240,7 +239,6 @@
             };
             model.bindreplytype = function() {
                 if (model.ReplyArr.length === 0) {
-
                     matchFollowupServices.bothreplytypeBind().then(function(response) {
                         var data = response.data[0];
 
@@ -280,9 +278,6 @@
                         marketbothflag: 'Bothone'
                     }
                 } else {
-
-
-
                     model.custName = name + '(' + profileid + ')';
                     model.custemail = email;
                     model.bindreplytype();
@@ -317,7 +312,6 @@
                 if (type === 'sms') {
                     model.smsInput.strbody = model.txtsmsmail;
                     matchFollowupServices.sendSms(model.smsInput).then(function(response) {
-
                         if (parseInt(response.data) === 1) {
                             model.proceed.closepopup();
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'sms sent successfully', 9500);
@@ -473,7 +467,7 @@
                                 item.FromTicketHisoryType = replyTypedisplay;
                                 item.FromTicketInfo = replyTypedisplay + ' done on ' + curdate + '(0 days ago)';
                                 item.FromTicketHisoryNAME = model.loginempName;
-                                item.FromTicketHisoryCallStatus = obj.CallResult === 417 ? 'Successfull' : (obj.CallResult === 417 ? '418' : '');
+                                item.FromTicketHisoryCallStatus = obj.CallResult === 417 ? 'Successfull' : (obj.CallResult === 418 ? 'UnSuccessfull' : '');
                                 item.FromTicketHisoryCallReceivedBy = obj.RelationName;
                                 item.FromTicketHisoryReplyDesc = obj.CallDiscussion;
                                 item.FromTicketHisoryRelationShip = relation;
@@ -482,7 +476,7 @@
                                 item.ToTicketHisoryType = replyTypedisplay;
                                 item.ToTicketInfo = replyTypedisplay + ' done on ' + curdate + '(0 days ago)';
                                 item.ToTicketHisoryNAME = model.loginempName;
-                                item.ToTicketHisoryCallStatus = obj.CallResult === 417 ? 'Successfull' : (obj.CallResult === 417 ? '418' : '');
+                                item.ToTicketHisoryCallStatus = obj.CallResult === 417 ? 'Successfull' : (obj.CallResult === 418 ? 'UnSuccessfull' : '');
                                 item.ToTicketHisoryCallReceivedBy = obj.RelationName;
                                 item.ToTicketHisoryReplyDesc = obj.CallDiscussion;
                                 item.ToTicketHisoryRelationShip = relation;
@@ -554,8 +548,13 @@
                 });
             };
 
+
+
+
+
+
             return model;
-        }
+        };
     }
     angular
         .module('Kaakateeya')

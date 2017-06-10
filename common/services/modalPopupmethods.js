@@ -13,21 +13,6 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                 alert('you can go till ' + lastslide + ' slide only');
             }
         };
-        // operateFormatter = function(value, row, index) {
-        //     var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "'>" + row.ProfileID + row.Confidential + "</a>";
-        //     return paid;
-        // };
-
-        // paymentProfileID = function(value, row, index) {
-        //     var status = row.Membership === 'Registration' ? 0 : 1;
-        //     var paid = "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.paymentProfileID + "/" + status + "/" + row.paymentid + "'>" + row.paymentProfileID + "</a>";
-        //     return paid;
-        // };
-
-        // ViewProfile = function(value, row, index) {
-        //     var paid = "<a style='cursor:pointer;'   href='/Viewfullprofile/" + row.viewprofileProfileid + "'>" + row.viewprofileProfileid + "</a>";
-        //     return paid;
-        // };
         ProfileOwnerImg = function(value, row, index) {
             var img = row.ProfileStatusID === 57 || row.ProfileStatusID === 393 ? 'src/images/settleimage_new.png' : (row.ProfileStatusID === 56 || row.ProfileStatusID === 394 ? 'src/images/deleteimage.png' : (row.ProfileStatusID === 55 ? 'src/images/imgInActive.png' : ''));
             var paid = "<span style='color:red;'>" + row.ProfileOwner + "</span><img style='cursor:pointer;' src=" + img + "></img>";

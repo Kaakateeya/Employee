@@ -1,86 +1,78 @@
 <uib-accordion close-others="oneAtATime">
 
-    <div uib-accordion-group style="margin-top: -12px;" class="panel-default" is-open="true">
+    <div uib-accordion-group style="margin-top: -12px;" class="panel-default" is-open="model.opendiv">
         <uib-accordion-heading>
-            Search Tickets<i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+            Marketing Tickets<i class="glyphicon" ng-class="{'glyphicon-chevron-down': model.opendiv, 'glyphicon-chevron-right': !model.opendiv}"></i>
         </uib-accordion-heading>
 
         <div class="row">
             <div class="clearfix">
                 <div class="col-lg-2">
-                    <input type="text" class="form-control" placeholder="Search Ticket">
+                    <input type="text" class="form-control" placeholder="Search Ticket" ng-model="model.TicketId">
                 </div>
                 <div class="col-lg-2">
-                    <input type="text" class="form-control" placeholder="Search Email">
-                </div>
-
-                <div class="col-lg-2">
-                    <input type="text" class="form-control" placeholder="Search Phono No">
+                    <input type="text" class="form-control" placeholder="Search Email" ng-model="model.Email">
                 </div>
                 <div class="col-lg-2">
-                    <input type="text" class="form-control" placeholder="Search Profile ID">
+                    <input type="text" class="form-control" placeholder="Search Phone No" ng-model="model.PhoneNumber">
                 </div>
                 <div class="col-lg-2">
-                    <!-- <date-pickersearch placeholder="'From Reminder Date'" id="fromremainderdate" strdate="page.model.markting.fromremainderdate"></date-pickersearch>-->
-                    <custom-datepicker placeholder="'From Reminder Date'" id="fromremainderdate" ng-model="page.model.markting.fromremainderdate" date-options="page.model.dateOptions"></custom-datepicker>
+                    <input type="text" class="form-control" placeholder="Search Profile ID" ng-model="model.ProfileID">
                 </div>
                 <div class="col-lg-2">
-                    <!--<date-pickersearch placeholder="'To Reminder Date'" id="toremainderdate" strdate="page.model.markting.toremainderdate"></date-pickersearch>-->
-                    <custom-datepicker placeholder="'To Reminder Date'" id="toremainderdate" ng-model="page.model.markting.toremainderdate" date-options="page.model.dateOptions"></custom-datepicker>
+                    <custom-datepicker class="datepicker3" placeholder="'From Reminder Date'" id="fromremainderdate" ng-model="model.fromremainderdate" date-options="model.dateOptions"></custom-datepicker>
                 </div>
-
+                <div class="col-lg-2">
+                    <custom-datepicker class="datepicker3" placeholder="'To Reminder Date'" id="toremainderdate" ng-model="model.toremainderdate" date-options="model.dateOptions"></custom-datepicker>
+                </div>
             </div>
             </br>
             <div class="clearfix" style="font-weight: normal;">
                 <div class="col-lg-1 form-group">
                     <label for="Region" class="control-label">Region</label>
                     <div>
-                        <select id="Regionofbranches" class="smalldropdown" ng-model="page.model.markting.regions" multiselectdropdown typeofdata="'Regionofbranches'">                                        
-             </select>
+                        <select id="Regionofbranches" class="smalldropdown" ng-model="model.regions" multiselectdropdown typeofdata="'Regionofbranches'">                                        
+                       </select>
                     </div>
                 </div>
                 <div class="col-lg-2 form-group">
                     <label for="Region" class="control-label">Branch</label>
                     <div>
-                        <angular-multiselect id="'Branchid'" class="general" array="BranchName" model="page.model.markting.Branchs">
+                        <angular-multiselect id="'Branchid'" class="general" array="model.Brancharray" modelpopup="model.Branchs">
                         </angular-multiselect>
                     </div>
                 </div>
                 <div class="col-lg-2 form-group">
                     <label for="Region" class="control-label">EmpName</label>
                     <div class="">
-                        <angular-multiselect id="'Branchid'" class="general" array="BranchName" model="page.model.markting.Branchs">
-                        </angular-multiselect>
+                        <select class="smalldropdown" ng-model="model.ProfileOwner" multiple multiselectdropdown ng-options="item.value as item.label group by item.ParentName for item in model.EmpNamesArr" multiple data-live-search='true'>                                        
+                        </select>
                     </div>
                 </div>
                 <div class="col-lg-2 form-group">
                     <label for="Region" class="control-label">From Ticket Created</label>
                     <div>
-                        <!--<date-pickersearch id="fromticketcreateddate" strdate="page.model.markting.fromticketcreateddate"></date-pickersearch>-->
-                        <custom-datepicker id="fromticketcreateddate" ng-model="page.model.markting.fromticketcreateddate" date-options="page.model.dateOptions"></custom-datepicker>
-
+                        <custom-datepicker id="fromticketcreateddate" class="datepicker3" ng-model="model.fromticketcreateddate" date-options="model.dateOptions"></custom-datepicker>
                     </div>
                 </div>
                 <div class="col-lg-2 form-group">
                     <label for="Region" class="control-label">To Ticket Created</label>
                     <div class="">
-                        <!--<date-pickersearch id="toticketcreateddate" strdate="page.model.markting.toticketcreateddate"></date-pickersearch>-->
-                        <custom-datepicker id="toticketcreateddate" ng-model="page.model.markting.toticketcreateddate" date-options="page.model.dateOptions"></custom-datepicker>
+                        <custom-datepicker class="datepicker3" ng-model="model.toticketcreateddate" date-options="model.dateOptions"></custom-datepicker>
                     </div>
                 </div>
                 <div class="col-lg-3 form-group">
                     <label for="Region" class="control-label">Expiry In</label>
                     <div>
                         <div class="col-lg-8">
-                            <select id="Expiryin" class="smalldropdown" ng-model="page.model.markting.Expiryin" multiselectdropdown typeofdata="'Expirydays'">                                        
+                            <select id="Expiryin" class="smalldropdown" ng-model="model.Expiryin" multiselectdropdown typeofdata="'Expirydays'">                                        
                                </select>
                         </div>
                         <div class="col-lg-4">
-                            <input type="submit" class="btn btn-danger" value="Submit">
+                            <input type="submit" class="btn btn-danger" value="Submit" ng-click="model.MarketingTicket('', 2, 0, 0, 0, 0, 1);">
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -88,29 +80,30 @@
 </uib-accordion>
 <div class="row">
     <div class="col-lg-2">
-        Total 1 of <span>6</span>
-    </div>
-    <div class="col-lg-10">
-        <button class="btn btn-default">UnPaid Tkts</button>&nbsp;
-        <button class="btn btn-default">Reminder Tkts</button>&nbsp;
-        <button class="btn btn-default">Set/Del Siblings</button>&nbsp;
-        <button class="btn btn-default">Guest Tkts</button>&nbsp;
-        <button class="btn btn-default">Online Exprd</button>&nbsp;
-        <button class="btn btn-default">Offline Exprd</button>&nbsp;
-        <button class="btn btn-default">NotInPay</button>
+        Total {{(activeslide)+1}} of <span>{{model.TotalRows}}</span>
     </div>
 
+    <div class="col-lg-2">
+        <div class="col-lg-7" style="margin-left: -21px;">
+            Viewed<label id="lnkLastSlide" style="padding-left:7px;color: blue;">{{(Viwedslide)+1}}&nbsp;&nbsp;</label>
+        </div>
+        <div class="col-lg-4">
+            <input type="text" ng-model="txtGotoVal" ng-blur="gotoSlide(txtGotoVal)" class="form-control" style="width: 66px; height: 24px; margin-left: -20px;" />
+        </div>
+    </div>
+    <div class="col-lg-8" style="margin-left: -40px;">
+        <input type="submit" ng-class="model.ActiveButton==='unpaid'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('unpaid',0, 0, 0, 0, 0, 2);" value="UnPaid Tkts" />
+        <input type="submit" ng-class="model.ActiveButton==='reminder'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('reminder',1, 0,0, 0,0, 3);" value="Reminder Tkts" />
+        <input type="submit" ng-class="model.ActiveButton==='setDel'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('setDel',2,1, 0,0, 0, 4);" value="Set/Del Siblings" />
+        <input type="submit" ng-class="model.ActiveButton==='guest'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('guest',2,0,1, 0, 0, 5);" value="Guest Tkts" />
+        <input type="submit" ng-class="model.ActiveButton==='online'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('online',2,0, 0,1,0, 6);" value="Online Exprd" />
+        <input type="submit" ng-class="model.ActiveButton==='offline'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('offline',2, 0, 0, 0, 1,7);" value="Offline Exprd" />
+        <input type="submit" ng-class="model.ActiveButton==='notinpay'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('notinpay',2,0, 0, 0, 0, 4, 'P');" value="NotInPay" />
+    </div>
 </div>
-<div class="row pull-right" style="margin-top: 1%;">
-
-    <div class="col-lg-8">
-        <label>Viewed</label>&nbsp;<label id="lnkLastSlidepopup" data-ng-bind="slidNum" style="color: blue;">{{viewedcount}}</label>&nbsp;<label>Profiles</label>
-    </div>
-    <div class="col-lg-4">
-        <input type="text" id="txtGotoValpopu" class="form-control" style="width: 66px; height: 24px; margin-left: -20px;" onchange="gotoSlide('#txtGotoValpopu','lnkLastSlidepopup')" />
-    </div>
-</div>
-
+<br>
 <style>
-
+    .datepicker3 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+    }
 </style>

@@ -32,7 +32,7 @@
             model.slide.headettemp = "templates/myprofileheader.html";
 
             model.applicationstatusArr = [
-                { "label": "--Select--", "title": "--Select--", "value": '' },
+                { "label": "-- Select All --", "title": "-- Select All --", "value": '' },
                 { "label": "Active", "title": "Active", "value": 54 },
                 { "label": "InActive", "title": "InActive", "value": 55 },
                 { "label": "Deleted/WaitingforDeltdAuth", "title": "Deleted/WaitingforDeltdAuth", "value": 56 },
@@ -122,7 +122,6 @@
                         i_EndIndex: to
                     };
                     svc.getRegSearchProfile(input).then(function(response) {
-                        console.log(response);
                         if (_.isArray(response.data) && response.data.length > 0) {
 
                             if (typeofbind === "export") {

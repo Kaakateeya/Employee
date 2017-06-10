@@ -13,7 +13,6 @@
                 return http.post(app.apipathold + 'CustomerPersonalUpdate/CustomerParentUpdatedetails', JSON.stringify(obj1));
             },
             submitAddressData: function(obj1) {
-                console.log(JSON.stringify(obj1));
                 return http.post(app.apipathold + 'CustomerPersonalUpdate/CustomerContactAddressUpdatedetails', JSON.stringify(obj1));
             },
             submitPhysicalData: function(obj1) {

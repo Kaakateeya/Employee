@@ -110,12 +110,23 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
                 params: { iCountryID: obj.iCountryID, iCCode: obj.iCCode, MobileNumber: obj.MobileNumber, CustFamilyID: obj.CustFamilyID }
             });
         },
+
+        sendMobileCodeBasedOnContactID: function(obj) {
+            return http.get(app.apiroot + 'StaticPages/getResendmobile', {
+                params: { iCountryID: obj.iCountryID, iCCode: obj.iCCode, MobileNumber: obj.MobileNumber, CustContactNumbersID: obj.CustContactNumbersID }
+            });
+        },
         verifyEmail: function(obj) {
             return http.get(app.apiroot + 'CustomerPersonal/getCandidateContactsendmailtoemailverify', { params: { CustID: obj } });
         },
         verifyMobile: function(VCode, CustFamilyid) {
             return http.get(app.apiroot + 'StaticPages/getCustomerEmilVerificationCodeUpdate', { params: { VerificationCode: VCode, CustFamilyID: CustFamilyid } });
         },
+
+        verifyMobileBasedOnContactID: function(VCode, CustContactNumbersid) {
+            return http.get(app.apiroot + 'StaticPages/getEmilVerificationCode', { params: { VerificationCode: VCode, i_EmilMobileVerification: 2, CustContactNumbersID: CustContactNumbersid } });
+        },
+
         getphotoslideimages: function(custid) {
             return http.get(app.apiroot + 'StaticPages/GetPhotoSlideImages', { params: { CustID: custid } });
         },
@@ -136,6 +147,7 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
             });
         },
         EmpBinding: function(flag, ID) {
+
             return http.get(app.apiroot + 'EmployeeReportPage/getMyProfileBindings', {
                 params: {
                     flag: flag,

@@ -21,10 +21,7 @@
         var loginEmpid = authSvc.LoginEmpid();
         var AdminID = authSvc.isAdmin();
         var isSubmit = true;
-
-        // var logincustid = authSvc.getCustId();
         var custID = model.CustID = stateParams.CustID;
-        //  model.CustID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
         //end declaration block
 
@@ -115,6 +112,31 @@
                                 model.spouseAlternativeNumber = item.SibilngSpouseLandnumber;
                             }
 
+
+
+                            model.sfCountryCodeId = item.SpouseFatherMobileCountryID;
+                            model.sfMobileNumber = item.SpouseFatherMobileNo;
+                            if (item.SpouseFatherLandAreaCode !== '' && item.SpouseFatherLandAreaCode !== null) {
+                                model.sfLandountryCodeId = item.SpouseFatherLandCountryID;
+                                model.sfLandAreaCodeId = item.SpouseFatherLandAreaCode;
+                                model.sfLandNumberId = item.SpouseFatherLandNo;
+                            } else {
+                                model.sfAlternativeCountryCodeId = item.SpouseFatherLandCountryID;
+                                model.sfAlternativeNumber = item.SpouseFatherLandNo;
+                            }
+                            model.sfEmail = item.SpouseFatherEmailID;
+
+
+
+
+
+
+
+
+
+
+
+
                             model.spouseEmail = item.SpouseEmail;
                             model.spouseFatherLastName = item.SFsurname;
                             model.spouseFatherFirstName = item.SFname;
@@ -189,6 +211,17 @@
                                 model.husbandAlternativeNumber = item.SibilngSpouseLandnumber;
 
                             }
+                            model.hfCountryCodeId = item.SpouseFatherMobileCountryID;
+                            model.hfMobileNumber = item.SpouseFatherMobileNo;
+                            if (item.SpouseFatherLandAreaCode !== '' && item.SpouseFatherLandAreaCode !== null) {
+                                model.hfLandountryCodeId = item.SpouseFatherLandCountryID;
+                                model.hfLandAreaCodeId = item.SpouseFatherLandAreaCode;
+                                model.hfLandNumberId = item.SpouseFatherLandNo;
+                            } else {
+                                model.hfAlternativeCountryCodeId = item.SpouseFatherLandCountryID;
+                                model.hfAlternativeNumber = item.SpouseFatherLandNo;
+                            }
+                            model.hfEmail = item.SpouseFatherEmailID;
 
                             model.husbandEmail = item.SpouseEmail;
                             model.husbandFatherLastName = item.SpouceFatherLName;
@@ -218,24 +251,6 @@
         model.cancel = function() {
             commonFactory.closepopup();
         };
-
-
-        // model.ShousewiseChk = function(item) {
-        //     if (item.chksisProfession === true) {
-        //         item.txtsisProfession = 'HouseWife';
-        //     } else {
-        //         item.txtsisProfession = '';
-        //     }
-        // };
-
-        // model.BhousewiseChk = function(item) {
-        //     if (item.chkboxbrotherwifeprofession === true) {
-        //         item.txtbrotherwifeprofession = 'HouseWife';
-        //     } else {
-        //         item.txtbrotherwifeprofession = '';
-        //     }
-        // };
-
         model.checkVal = function(val) {
             return (val !== '' && val !== undefined) ? val : 0;
         };
@@ -284,7 +299,6 @@
                             model.SisCount = model.noOfSisterId;
 
                             model.submitPromise = editSibblingService.submitSibCountsData(objinput).then(function(response) {
-                                console.log(response);
                                 commonFactory.closepopup();
                                 if (response.data === 1) {
                                     model.sibPageload(custID);
@@ -303,7 +317,6 @@
                         inObj.GetDetails.CustID = custID;
                         inObj.GetDetails.BroSibilingCustfamilyID = model.SibilingCustfamilyID;
                         model.submitPromise = editSibblingService.submitSibBroData(inObj).then(function(response) {
-                            console.log(response);
                             commonFactory.closepopup();
                             if (response.data === 1) {
                                 model.sibPageload(custID);
@@ -318,7 +331,6 @@
                         inObj.GetDetails.CustID = custID;
                         inObj.GetDetails.SisSibilingCustfamilyID = model.SibilingCustfamilyID;
                         model.submitPromise = editSibblingService.submitSibSisData(inObj).then(function(response) {
-                            console.log(response);
                             commonFactory.closepopup();
                             if (response.data === 1) {
                                 model.sibPageload(custID);
@@ -327,8 +339,6 @@
                                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Sister Details Updation failed', 4500);
                             }
                         });
-
-
                         break;
                 }
             }
@@ -350,6 +360,11 @@
             }
             return true;
         };
+
+        model.showHousewifespouse = function(val) {
+            return model.ismarried() ? (model.chkspousehousewife === true ? false : true) : false;
+        };
+
         model.ismarried = function() {
 
             if (parseInt(model.broIsMarried) === 0) {
@@ -408,9 +423,7 @@
         };
 
 
-        model.showHousewifespouse = function(val) {
-            return model.chkspousehousewife === true ? false : true;
-        };
+
         model.showHousewifeSis = function(val) {
             return model.chksishousewife === true ? false : true;
         };
@@ -458,8 +471,8 @@
             { lblname: 'Spouse Education', controlType: 'textbox', ngmodel: 'spouseEducation', parameterValue: 'BrowifeEducationDetails', parentDependecy: 'ismarried' },
             { lblname: 'Profession Category', controlType: 'select', ngmodel: 'spouseProfCatgory', typeofdata: 'newProfessionCatgory', parameterValue: 'BroSpouseProfessionCategoryID', parentDependecy: 'ismarried' },
             { lblname: 'Spouse Designation', controlType: 'housewife', ngmodelText: 'spouseDesignation', ngmodelChk: 'chkspousehousewife', parameterValueText: 'BroWifeProfessionDetails', parameterValueChk: 'MotherProfessiondetails', parentDependecy: 'ismarried' },
-            { lblname: 'Company Name', controlType: 'textbox', ngmodel: 'spouseCompany', parameterValue: 'BroWifeCompanyName', parentDependecy: 'ismarried', parentDependecy: 'showHousewifespouse' },
-            { lblname: 'Job Location', controlType: 'textbox', ngmodel: 'spouseJobLocation', parameterValue: 'BroWifeJobLocation', parentDependecy: 'ismarried', parentDependecy: 'showHousewifespouse' },
+            { lblname: 'Company Name', controlType: 'textbox', ngmodel: 'spouseCompany', parameterValue: 'BroWifeCompanyName', parentDependecy: 'showHousewifespouse' },
+            { lblname: 'Job Location', controlType: 'textbox', ngmodel: 'spouseJobLocation', parameterValue: 'BroWifeJobLocation', parentDependecy: 'showHousewifespouse' },
             {
                 controlType: 'contact',
                 emailhide: true,
@@ -482,6 +495,26 @@
             },
             { lblname: 'Spouse Father SurName', controlType: 'textbox', ngmodel: 'spouseFatherLastName', parameterValue: 'BroWifeFatherSurName', parentDependecy: 'ismarried' },
             { lblname: 'Spouse Father Name', controlType: 'textbox', ngmodel: 'spouseFatherFirstName', parameterValue: 'BroWifeFatherName', parentDependecy: 'ismarried' },
+            {
+                controlType: 'contact',
+                emailhide: true,
+                dmobile: 'sfCountryCodeId',
+                strmobile: 'sfMobileNumber',
+                dalternative: 'sfAlternativeCountryCodeId',
+                stralternative: 'sfAlternativeNumber',
+                dland: 'sfLandountryCodeId',
+                strareacode: 'sfLandAreaCodeId',
+                strland: 'sfLandNumberId',
+                strmail: 'sfEmail',
+                parentDependecy: 'ismarried',
+                mobileCodeIdParameterValue: 'BroSpouseFatherMobileCountryID',
+                mobileNumberParameterValue: 'BroSpouseFatherMobileNo',
+                landCountryCodeIdParameterValue: 'BroSpouseFatherLandCountryID',
+                landAreaCodeIdParameterValue: 'BroSpouseFatherLandAreaCode',
+                landNumberParameterValue: 'BroSpouseFatherLandNo',
+                emailParameterValue: 'BroSpouseFatherEmailID'
+            },
+
             { lblname: 'Spouse Father Caste', controlType: 'select', ngmodel: 'spouseFatherCaste', typeofdata: 'caste', parameterValue: 'SibilingSpouseFatherCasteID', parentDependecy: 'ismarried' },
             {
                 controlType: 'country',
@@ -554,6 +587,27 @@
             },
             { lblname: 'Husband Father SurName', controlType: 'textbox', ngmodel: 'husbandFatherLastName', parameterValue: 'SisHusbandFatherSurName', parentDependecy: 'isSismarried' },
             { lblname: 'Husband Father Name', controlType: 'textbox', ngmodel: 'spouseFatherFirstName', parameterValue: 'SisHusbandFatherName', parentDependecy: 'isSismarried' },
+
+            {
+                controlType: 'contact',
+                emailhide: true,
+                dmobile: 'hfCountryCodeId',
+                strmobile: 'hfMobileNumber',
+                dalternative: 'hfAlternativeCountryCodeId',
+                stralternative: 'hfAlternativeNumber',
+                dland: 'hfLandountryCodeId',
+                strareacode: 'hfLandAreaCodeId',
+                strland: 'hfLandNumberId',
+                strmail: 'hfEmail',
+                parentDependecy: 'isSismarried',
+                mobileCodeIdParameterValue: 'SisSpouseFatherMobileCountryID',
+                mobileNumberParameterValue: 'SisSpouseFatherMobileNo',
+                landCountryCodeIdParameterValue: 'SisSpouseFatherLandCountryID',
+                landAreaCodeIdParameterValue: 'SisSpouseFatherLandAreaCode',
+                landNumberParameterValue: 'SisSpouseFatherLandNo',
+                emailParameterValue: 'SisSpouseFatherEmailID'
+            },
+
             { lblname: 'Husband Father Caste', controlType: 'select', ngmodel: 'spouseFatherCaste', typeofdata: 'caste', parameterValue: 'SibilingSpouseFatherCasteID', parentDependecy: 'isSismarried' },
             {
                 controlType: 'country',

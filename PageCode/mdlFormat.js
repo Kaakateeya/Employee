@@ -5,15 +5,13 @@
         .module('Kaakateeya')
         .factory('parametervalueModel', factory)
 
-    factory.$inject = ['$http'];
+    factory.$inject = ['parametervalueService'];
 
-    function factory($http) {
-        var service = {
-            getData: getData
+    function factory(parametervalueService) {
+        return function() {
+            var model = {};
+
+            return model;
         };
-
-        return service;
-
-        function getData() {}
     }
 })();

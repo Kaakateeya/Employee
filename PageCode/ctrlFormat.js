@@ -5,14 +5,17 @@
          .module('Kaakateeya')
          .controller('parametervalueCtrl', controller)
 
-     controller.$inject = ['$location'];
+     controller.$inject = ['parametervalueModel'];
 
-     function controller($location) {
+     function controller(parametervalueModel) {
          /* jshint validthis:true */
          var vm = this;
 
-         activate();
+         vm.init = function() {
+             vm.model = parametervalueModel();
+         };
 
-         function activate() {}
+         vm.init();
+
      }
  })();

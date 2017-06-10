@@ -23,9 +23,9 @@ app.service('helperservice', ['$http', function(http) {
     this.getipAddressReturn = function() {
         return http.get(app.apiroot + 'StaticPages/getipAddressReturn', { params: {} });
     };
-    this.PhotoRequest = function(ProfileID, empid) {
+    this.PhotoRequest = function(ProfileID, empid, ticketId) {
         return http.get(app.apiroot + 'CustomerPersonal/getCustomerphotoRequestDisplay', {
-            params: { profileid: ProfileID, EMPID: empid, ticketIDs: '' }
+            params: { profileid: ProfileID, EMPID: empid, ticketIDs: ticketId }
         });
     };
 
@@ -38,5 +38,8 @@ app.service('helperservice', ['$http', function(http) {
 
     this.readNotifications = function(obj) {
         return http.get(app.apiroot + 'StaticPages/getCust_NotificationDetails_Employee', { params: { EmpID: obj.EmpID, idisplay: obj.idisplay, NotificationID: obj.NotificationID, CategoryID: obj.CategoryID, CustID: obj.CustID } });
+    };
+    this.ResendMail = function(obj) {
+        return http.post(app.apiroot + 'EmployeeReportPage/MatchFollowupResendMail', obj);
     };
 }]);

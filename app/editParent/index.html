@@ -1,12 +1,8 @@
 <div ng-class="'EditViewClass'" class="right_col" style="padding-top: 6%;padding-left: 1%;">
     <div ng-include="'templates/sideMenu.html'">
     </div>
-
     <div class="edit_pages_content_main clearfix">
-
-
         <page-review dispaly-name="'Parent details'" sectionid="'11,12,13,15'" custid="page.model.CustID"></page-review>
-
         <div class="edit_page_item" id="divlnkaddparents">
             <div class="edit_page_item_head clearfix">
                 <h4>Parents Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2" id="spanEduModID" ng-show="page.model.parentmodifiedby!=null && page.model.parentmodifiedby!=='' && page.model.parentmodifiedby!==undefined">ModifiedBy :{{page.model.parentmodifiedby}}</span>
@@ -263,7 +259,6 @@
                             </div>
 
                             <div class="edit_page_details_item_desc clearfix">
-
                                 <h6>
                                     <label id="lblmotherfatherupp" font-bold="true">Mother's Father Name</label>
                                 </h6>
@@ -274,24 +269,18 @@
                                 </h5>
                                 </label>
                             </div>
-
-
                             <div class="edit_page_details_item_desc clearfix">
-
                                 <h6>
                                     <label id="MotherFatherLastName" font-bold="true">Mother's Father SurName</label>
                                 </h6>
                                 <h5>
                                     <span id="lblMotherFatherLastName">
                                   {{item.MotherFatherLastName}}
-                            </span>
+                                </span>
                                 </h5>
                             </div>
-
                             <div id="ownerdiv3">
-
                                 <div class="edit_page_details_item_desc clearfix">
-
                                     <h6>
                                         <label id="mContactNos" font-bold="true">MF Contact nos</label>
                                     </h6>
@@ -299,14 +288,11 @@
                                         <span id="lblmContactNos">
                                        {{ item.MMMobileNumberWithcode+
                                         ((item.MMLandNumberwithCode!=null && item.MMLandNumberwithCode!="")?" & "+item.MMLandNumberwithCode:"") }}
-                                </span>
+                                    </span>
                                     </h5>
                                 </div>
-
                             </div>
-
                             <div class="edit_page_details_item_desc clearfix">
-
                                 <h6>
                                     <label id="MNativePlace" font-bold="true">Native Place</label>
                                 </h6>
@@ -319,31 +305,24 @@
                             </span>
                                 </h5>
                             </div>
-
                         </div>
                         <div>
                             <div id="divParentIntercasteHide">
-
                                 <div class="edit_page_details_item_desc clearfix">
-
                                     <h6>
                                         <label id="ParentsInterCaste">Are Parents InterCaste</label></h6>
                                     <h5>
                                         <span id="lblParentsInterCaste">{{item.Intercaste }}</span>
                                     </h5>
                                 </div>
-
                                 <div class="edit_page_details_item_desc clearfix" ng-if="item.Intercaste==='Yes'">
-
                                     <h6>
                                         <label id="lFatherCaste">Father Caste</label></h6>
                                     <h5>
                                         <span id="lblFatherCaste">{{item.FatherCaste }}</span>
                                     </h5>
                                 </div>
-
                                 <div class="edit_page_details_item_desc clearfix" ng-if="item.Intercaste==='Yes'">
-
                                     <h6>
                                         <label id="lMotherCaste">Mother Caste</label>
                                     </h6>
@@ -351,45 +330,34 @@
                                         <span id="lblMotherCaste">{{item.MotherCaste }}</span>
                                     </h5>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-                <hr />
-
-
+                <hr/>
             </div>
         </div>
         <div class="edit_page_item" id="divlnkAddcontactaddress">
             <div class="edit_page_item_head clearfix">
                 <h4>Contact Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2" ng-show="page.model.addrmodifiedby!=null && page.model.addrmodifiedby!=='' && page.model.addrmodifiedby!==undefined">ModifiedBy :{{page.model.addrmodifiedby}}</span>
-
                 </h4>
                 <div class="edit_page_item_ui clearfix" ng-if="page.model.addressArr.length===0">
-
                     <a ng-click="page.model.populateModel('Address',item);" href="javascript:void(0);" data-original-title="Add Contact Address" class="edit_page_add_button">Add</a>
-
                 </div>
             </div>
             <div class="edit_page_details_item">
-
                 <div ng-if="page.model.addressArr" ng-repeat="item in page.model.addressArr">
-
                     <div id="Div1" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
-
                         <div class="edit_page_details_item_desc clearfix">
-
                             <h6>
                                 <label id="lblhousenum" font-bold="true">House/Flat No</label>
                             </h6>
                             <h5>
                                 <span id="lblhouseflat">
                                 {{ item.FlatNumber}}
-                        </span>
+                                </span>
                             </h5>
                         </div>
-
                         <div id="divapartment" class="edit_page_details_item_desc clearfix">
                             <h6>
                                 <label id="lblapartmentname" font-bold="true">Apt Name</label>
@@ -397,54 +365,43 @@
                             <h5>
                                 <span id="lblapartment">
                                 {{ item.ApartmentName}}
-                        </span>
+                              </span>
                             </h5>
                         </div>
                         <div class="edit_page_item_ui clearfix" ng-if="page.model.addressArr.length>0">
                             <a ng-click="page.model.populateModel('Address',item);" href="javascript:void(0);">Edit</a>
-
                         </div>
                         <div id="divareaname" class="edit_page_details_item_desc clearfix">
-
                             <h6>
                                 <label id="lblareaname" font-bold="true">Area Name</label>
                             </h6>
                             <h5>
                                 <span id="lblareanamee">
                                 {{ item.AreaName}}
-                        </span>
+                            </span>
                             </h5>
-
                         </div>
-
                         <div class="edit_page_details_item_desc clearfix">
-
                             <h6>
                                 <label id="lblstreet" font-bold="true">Street Name</label>
                             </h6>
                             <h5>
                                 <span id="lblstreetname">
                                 {{ item.StreetName}}
-                        </span>
+                           </span>
                             </h5>
-
                         </div>
-
                         <div class="edit_page_details_item_desc clearfix">
-
                             <h6>
                                 <label id="lblland" font-bold="true">Land Mark</label>
                             </h6>
                             <h5>
                                 <span id="lbllandmark">
                                 {{ item.LandMark}}
-                        </span>
+                            </span>
                             </h5>
-
                         </div>
-
                         <div class="edit_page_details_item_desc clearfix">
-
                             <h6>
                                 <label id="lblcityy" font-bold="true">City</label>
                             </h6>
@@ -462,16 +419,12 @@
             <div class="edit_page_item_head clearfix">
                 <h4>Physical Attribute & Health Details of Candidate &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2" ng-show="page.model.physicalmodifiedby!=null && page.model.physicalmodifiedby!=='' && page.model.physicalmodifiedby!==undefined">ModifiedBy :{{page.model.physicalmodifiedby}}</span></h4>
                 <div class="edit_page_item_ui clearfix" ng-if="page.model.physicalArr.length===0">
-
                     <a href="javascript:void(0);" ng-click="page.model.populateModel('physicalAttributes',item);" data-original-title="Add Physical Attribute & Health Details" class="edit_page_add_button">Add</a>
                 </div>
             </div>
             <div class="edit_page_details_item">
-
                 <divng-if="page.model.physicalArr" ng-repeat="item in page.model.physicalArr">
-
                     <div id="Div2" ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'">
-
                         <div class="edit_page_details_item_desc clearfix">
                             <h6>
                                 <label id="lbllDiet" font-bold="true">Diet</label></h6>
@@ -547,9 +500,7 @@
                         </div>
                         <div class="edit_page_item_ui clearfix" ng-if="page.model.physicalArr.length>0">
                             <a data-original-title="Edit Physical Attribute & Health Details" class="edit_page_edit_button" href="javascript:void(0);" ng-click="page.model.populateModel('physicalAttributes',item);">Edit</a>
-
                         </div>
-
                         <div class="edit_page_details_item_desc clearfix">
                             <h6>
                                 <label id="lblhealthdescription" font-bold="true">Health Condition Description</label>
@@ -562,7 +513,6 @@
                         </div>
                     </div>
             </div>
-
         </div>
         <div class="edit_page_item" id="divlnkaboutt">
             <div class="edit_page_item_head clearfix">
@@ -584,28 +534,21 @@
                                 </h5>
                                 <label id="Label5" visible="false"></label>
                             </div>
-
                             <div class="edit_page_item_ui clearfix" ng-if="page.model.lblaboutMyfamily!='' && page.model.lblaboutMyfamily!=null">
                                 <a href="javascript:void(0);" class="edit_page_edit_button" data-original-title="Edit About My Family" ng-click="page.model.populateModel('AboutFamily',page.model.lblaboutMyfamily);">Edit</a>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
 </div>
-
 <div id="popupDiv">
     <script type="text/ng-template" id="commonParentpopup.html">
         <slide-popup model="page.model" eventtype="page.model.eventType">
         </slide-popup>
     </script>
-
-
 </div>
 </div>
 <style>

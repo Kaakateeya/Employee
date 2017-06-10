@@ -8,8 +8,7 @@
     </div>
     <div class="modal-body">
         <ul class="modal-body pop_content_my clearfix">
-            <li ng-show="item.parentDependecy===undefined?true:model[item.parentDependecy](item)" class="clearfix form-group" ng-repeat="item in model.popupdata">
-
+            <li ng-if="item.parentDependecy===undefined?true:model[item.parentDependecy](item)" class="clearfix form-group" ng-repeat="item in model.popupdata">
                 <label ng-if="item.controlType!=='country' && item.controlType!=='contact'  && item.controlType!=='bindHtml' && item.controlType!=='about'" for="item.lblname" ng-class="{'radiocls':item.controlType==='radio'}" class="pop_label_left">{{item.lblname}}<span ng-if="item.required" style="color: red; margin-left: 3px;">*</span></label>
                 <label class="col-lg-12" ng-class="item.classname" ng-if="item.controlType==='bindHtml'">
                <span ng-bind-html="item.html"></span>
@@ -64,11 +63,10 @@
 
                 <div ng-if="item.controlType==='checkbox'" class="pop_controls_right">
 
-                    <md-checkbox ng-model="model[item.ngmodel]" name="chkisconfidential" aria-label="Checkbox 1" ng-change="model[item.method](model[item.ngmodel],item.ngmodel)">
+                    <md-checkbox ng-model="model[item.ngmodel]" name="chkisconfidential" ng-change="model[item.method](model[item.ngmodel],item.ngmodel)">
                     </md-checkbox>
                 </div>
                 <div ng-if="item.controlType==='date'" class="pop_controls_right">
-                    <!--<custom-datepickeredit ng-model="model[item.ngmodel]" ngClass="'dateclass'" date-options="dateOptions"></custom-datepickeredit>-->
                     <date-picker strdate="model[item.ngmodel]"></date-picker>
                 </div>
                 <div ng-if="item.controlType==='country'">
@@ -115,7 +113,6 @@
             </li>
             <li class="row">
                 <br/>
-
                 <div class="col-lg-9">
                     <button class="button_custom  pull-right" ng-disabled="loading" type="submit" promise-btn="page.model.submitPromise">Submit</button>
                 </div>
@@ -128,30 +125,6 @@
 
 
 <style>
-    /*.requiredStar::after {
-        content: " * ";
-        float: right;
-        color: red;
-        font-size: 22px !important;
-        padding-left: 6px;
-    }
-    
-    .radiocls {
-        padding-top: 2%;
-    }
-    
-    .multiselect {
-        border: solid 1px #ADA2A2 !important;
-        color: #000;
-        background: #fff !important;
-        box-shadow: none !important;
-        height: 34px !important;
-        margin: 0 !important;
-    }*/
-    /*.help-block {
-        padding-left: 40%;
-    }*/
-    
     .datepicker3 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
         /*height: 35px !important;*/

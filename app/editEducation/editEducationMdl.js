@@ -2,7 +2,7 @@
     'use strict';
 
 
-    function factory($http, authSvc, editEducationService, commonFactory, uibModal, filter, alertss, stateParams, SelectBindService, arrayConstantsEdit) {
+    function factory($http, authSvc, editEducationService, commonFactory, uibModal, filter, alertss, stateParams, SelectBindService, arrayConstantsEdit, SelectBindServiceApp) {
         var model = {};
 
         model.scope = {};
@@ -30,10 +30,12 @@
         model.reviewdisplay = 'Education details';
         model.eventType = 'add';
         //end declaration block
-
+        model.ProfileGrade = '';
         var CustID = stateParams.CustID;
 
         model.init = function() {
+            model.ProfileGrade = '';
+            model.ProfileGradestatus = '';
             loginEmpid = authSvc.LoginEmpid();
             AdminID = model.Admin = authSvc.isAdmin();
             model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
@@ -51,54 +53,45 @@
         };
 
         model.eduPageload = function() {
-
             editEducationService.getEducationData(CustID).then(function(response) {
-                console.log(response.data);
                 if (commonFactory.checkvals(response.data)) {
                     model.educationSelectArray = response.data;
                     model.eduEmpLastModificationDate = model.educationSelectArray.length > 0 ? model.educationSelectArray[0].EmpLastModificationDate : '';
-                }
+                    model.ProfileGrade = model.educationSelectArray.length > 0 ? model.educationSelectArray[0].ProfileGrade : '';
+                    model.chkGrade = model.ProfileGrade === 216 ? true : false;
 
+                    model.ProfileGradestatus = model.educationSelectArray.length > 0 ? model.educationSelectArray[0].ProfileGradestatus : '';
+                }
             });
         };
         model.ProfPageload = function() {
-
             editEducationService.getProfessionData(CustID).then(function(response) {
                 if (commonFactory.checkvals(response.data)) {
                     model.ProfessionSelectArray = response.data;
                     model.profEmpLastModificationDate = model.ProfessionSelectArray ? model.ProfessionSelectArray[0].EmpLastModificationDate : '';
                 }
-
             });
-
         };
         model.aboutPageload = function() {
-            debugger;
             editEducationService.getAboutData(CustID).then(function(response) {
-                debugger;
                 if (commonFactory.checkvals(response.data)) {
-
                     var AboutData = (response.data).split(';');
                     model.lblaboutUrself = (AboutData[0].split(':'))[1];
                     model.AboutReviewStatusID = (AboutData[1].split(':'))[1];
                 }
             });
-
         };
         model.custdatapageload = function() {
             editEducationService.getCustomerData(CustID).then(function(response) {
                 model.CustomerDataArr = response.data !== undefined && response.data.length > 0 ? JSON.parse(response.data) : [];
                 model.custEmpLastModificationDate = model.CustomerDataArr[0].EmpLastModificationDate;
-
             });
         };
-
         model.showpopup = function(type, item) {
             isSubmit = true;
             model.eventType = 'add';
             switch (type) {
                 case 'showEduModal':
-
                     model.popupdata = model.Education;
                     model.popupHeader = 'Education Details';
                     model.EducationID = null;
@@ -195,7 +188,6 @@
             }
 
             commonFactory.open('commonEduCatiobpopup.html', model.scope, uibModal);
-
         };
 
         model.cancel = function() {
@@ -215,7 +207,6 @@
                         inObj.customerEducation.CustID = model.CustID;
 
                         model.submitPromise = editEducationService.submitEducationData(inObj).then(function(response) {
-                            console.log(response);
                             commonFactory.closepopup();
                             if (response.data === 1) {
                                 model.eduPageload();
@@ -252,7 +243,6 @@
                         inObj.GetDetails.CustID = CustID;
                         inObj.GetDetails.DateofBirth = inObj.GetDetails.DateofBirth !== '' && inObj.GetDetails.DateofBirth !== 'Invalid date' ? filter('date')(inObj.GetDetails.DateofBirth, 'MM/dd/yyyy hh:mm:ss a') : null,
                             editEducationService.submitCustomerData(inObj).then(function(response) {
-                                console.log(response);
                                 commonFactory.closepopup();
                                 if (response.data === 1) {
                                     model.custdatapageload();
@@ -287,7 +277,6 @@
 
         model.deleteEduSubmit = function() {
             SelectBindService.DeleteSection({ sectioname: 'Education', CustID: CustID, identityid: model.educationID }).then(function(response) {
-                console.log(response);
                 model.eduPageload();
                 commonFactory.closepopup();
             });
@@ -302,6 +291,21 @@
             }
             return true;
         };
+
+        model.hideIFnotworking = function(item) {
+            if (parseInt(model.EmployedInId) === 5 || parseInt(model.EmployedInId) === 7 || parseInt(model.EmployedInId) === 9) {
+                model.ProfessionGroupId = '';
+                model.ProfessionId = '';
+                model.CompanyName = '';
+                model.currency = '';
+                model.salary = '';
+                return false;
+            }
+            return true;
+        };
+
+
+
 
 
         //performance code
@@ -341,10 +345,10 @@
 
         model.profession = [
             { lblname: 'Employed In', controlType: 'select', ngmodel: 'EmployedInId', required: true, typeofdata: 'ProfCatgory', parameterValue: 'EmployedIn' },
-            { lblname: 'Professional group', controlType: 'select', ngmodel: 'ProfessionGroupId', required: true, typeofdata: 'ProfGroup', parameterValue: 'Professionalgroup', childName: 'Profession', changeApi: 'ProfessionSpecialisation' },
-            { lblname: 'Profession', controlType: 'Changeselect', ngmodel: 'ProfessionId', required: true, parentName: 'Profession', parameterValue: 'Profession' },
-            { lblname: 'Company name', controlType: 'textbox', ngmodel: 'CompanyName', parameterValue: 'Companyname' },
-            { lblname: 'Monthly salary', controlType: 'textboxSelect', ngmodelSelect: 'currency', ngmodelText: 'salary', typeofdata: 'currency', parameterValueSelect: 'Currency', parameterValueText: 'Monthlysalary' },
+            { lblname: 'Professional group', controlType: 'select', ngmodel: 'ProfessionGroupId', required: true, typeofdata: 'ProfGroup', parameterValue: 'Professionalgroup', childName: 'Profession', changeApi: 'ProfessionSpecialisation', parentDependecy: 'hideIFnotworking' },
+            { lblname: 'Profession', controlType: 'Changeselect', ngmodel: 'ProfessionId', required: true, parentName: 'Profession', parameterValue: 'Profession', parentDependecy: 'hideIFnotworking' },
+            { lblname: 'Company name', controlType: 'textbox', ngmodel: 'CompanyName', parameterValue: 'Companyname', parentDependecy: 'hideIFnotworking' },
+            { lblname: 'Monthly salary', controlType: 'textboxSelect', ngmodelSelect: 'currency', ngmodelText: 'salary', typeofdata: 'currency', parameterValueSelect: 'Currency', parameterValueText: 'Monthlysalary', parentDependecy: 'hideIFnotworking' },
             {
                 controlType: 'country',
                 countryshow: true,
@@ -390,6 +394,36 @@
         model.aboutUrSelf = [
             { lblname: '', controlType: 'about', maxlength: '1000', ngmodel: 'txtAboutUS', displayTxt: "(Please don't write phone numbers/emails/any junk characters)*", parameterValue: 'txtAboutUS' }
         ];
+
+        model.setEduGrade = function(val) {
+            var gradeval = val === true ? 216 : '';
+
+            if (model.ProfileGradestatus === 1) {
+                SelectBindServiceApp.getRelationName(8, model.CustID, gradeval).then(function(response) {
+                    alertss.timeoutoldalerts(model.scope, 'alert-success', val === true ? 'Grade A updated successfully' : 'Grade removed successfully', 4500);
+                });
+            } else {
+                model.Mobj = {};
+
+                model.Mobj = {
+                    GEducation: gradeval,
+                    CustID: model.CustID,
+                    EmpID: loginEmpid
+                };
+
+                editEducationService.submitGradeData(model.Mobj).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+                        model.pageload();
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Grade Selections Submitted Succesfully', 4500);
+                    } else {
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Grade Selections Updation failed', 4500);
+                    }
+                });
+            }
+        };
+
         return model.init();
     }
 
@@ -397,6 +431,6 @@
         .module('Kaakateeya')
         .factory('editEducationModel', factory);
 
-    factory.$inject = ['$http', 'authSvc', 'editEducationService', 'commonFactory', '$uibModal', '$filter', 'alert', '$stateParams', 'SelectBindService', 'arrayConstantsEdit'];
+    factory.$inject = ['$http', 'authSvc', 'editEducationService', 'commonFactory', '$uibModal', '$filter', 'alert', '$stateParams', 'SelectBindService', 'arrayConstantsEdit', 'SelectBindServiceApp'];
 
 })(angular);

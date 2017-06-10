@@ -14,7 +14,6 @@
             }
         };
     }
-
     angular
         .module('Kaakateeya')
         .factory('editManagePhotoService', factory);

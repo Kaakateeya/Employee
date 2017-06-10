@@ -4,13 +4,13 @@
     function factory(http) {
         return {
             getSibblingeData: function(obj) {
-                return http.get(app.apipathold + 'CustomerPersonal/getsiblingsDetailsDisplay', { params: { CustID: obj } });
+                return http.get(app.apiroot + 'CustomerPersonal/getsiblingsDetailsDisplay', { params: { CustID: obj } });
             },
             submitSibBroData: function(obj1) {
-                return http.post(app.apipathold + 'CustomerPersonalUpdate/CustomerSibBrotherUpdatedetails', JSON.stringify(obj1));
+                return http.post(app.apiroot + 'CustomerPersonalUpdate/CustomerSibBrotherUpdatedetails', JSON.stringify(obj1));
             },
             submitSibSisData: function(obj1) {
-                return http.post(app.apipathold + 'CustomerPersonalUpdate/CustomerSibSisterUpdatedetails', JSON.stringify(obj1));
+                return http.post(app.apiroot + 'CustomerPersonalUpdate/CustomerSibSisterUpdatedetails', JSON.stringify(obj1));
             },
             submitSibCountsData: function(obj1) {
                 return http.post(app.apipathold + 'CustomerPersonalUpdate/UpdateSibblingCounts', JSON.stringify(obj1));
@@ -18,7 +18,6 @@
             allowblockWebusers: function(custid) {
                 return http.get(app.apipathold + 'StaticPages/getRegisteredBranchStatus', { params: { StrCustID: custid } });
             }
-
         };
     }
 

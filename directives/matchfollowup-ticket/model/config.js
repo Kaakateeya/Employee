@@ -18,9 +18,10 @@
         model.ProfileID = '';
         model.scope = {};
         model.init = function() {
-            timeout(function() {
-                model.marketReplytype();
-            }, 1000);
+            // timeout(function() {
+            model.marketReplytype();
+            //     model.MAobj.txtresendemail = model.mailchange(model.MAobj.ddlresendemailmatchfollowup);
+            // }, 1000);
             return model;
         };
         model.close = function() {
@@ -204,7 +205,6 @@
                 ToProfileID: matchobj.ToProfileID
             };
             marketsvc.submitemails(mobj).then(function(response) {
-                console.log(response);
                 if (parseInt(response.data) === 1) {
                     alertss.timeoutoldalerts(model.scope, "alert-success", "Mail sent succesfully", 4500);
                 } else {
@@ -212,6 +212,10 @@
                 }
                 commonpage.closepopuppoptopopup();
             });
+        };
+        model.converttodatetime = function(date) {
+            var dd = moment(date).fromNow();
+            return dd;
         };
         return model.init();
     }

@@ -14,7 +14,6 @@
             baseService.personalDetails(CustID).then(function(response) {
                 model.PersonalObj = response.data;
                 // model.imgsrc = authSvc.getprofilepic();
-
                 if (model.PersonalObj !== null && model.PersonalObj !== undefined) {
                     baseService.nodatastatus(model.PersonalObj.ProfileID).then(function(res) {
                         model.rev = res.data;
@@ -24,8 +23,6 @@
             });
             return model;
         };
-
-
         model.unreviewedLinks = function() {
             switch (model.PersonalObj.ProfileStatusID) {
                 case 54:
@@ -96,10 +93,8 @@
 
         model.menuItem = function() {
             baseService.menudata(CustID).then(function(response) {
-
                 model.branchdata = JSON.parse(response.data)[0];
                 model.registrationdate = filter('date')(model.branchdata.RegistrationDate, 'dd-MM-yyyy hh:mm:ss');
-
                 model.strCon = model.branchdata.HighConfendential == 1 && model.branchdata.IsConfidential == true ? ",SC" : (model.branchdata.HighConfendential == 1 ? ",SC" : (model.branchdata.IsConfidential == true ? ",C" : null));
 
             });
@@ -126,11 +121,9 @@
                 //photo show popup
             }
         };
-
         model.cancel = function() {
             commonFactory.closepopup();
         };
-
         return model.init();
     }
     angular

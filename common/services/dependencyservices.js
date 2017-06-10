@@ -1,6 +1,5 @@
 app.factory('Commondependency', ['SelectBindServiceApp', function(SelectBindService) {
     var modalpopupopen;
-
     return {
         open: function(url, scope, uibModal, size) {
             modalpopupopen = uibModal.open({
@@ -29,7 +28,6 @@ app.factory('Commondependency', ['SelectBindServiceApp', function(SelectBindServ
         },
         StateBind: function(parentval) {
             var stateArr = [];
-
             SelectBindService.stateSelect(parentval).then(function(response) {
                 _.each(response.data, function(item) {
                     stateArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
@@ -150,14 +148,12 @@ app.factory('Commondependency', ['SelectBindServiceApp', function(SelectBindServ
             return branchArr;
         },
         showConfirm: function(ev, mdDialog, header, okTxt, cancelTxt) {
-
             var status = false;
             var confirm = mdDialog.confirm()
                 .title(header)
                 .ariaLabel('Lucky day')
                 .cancel(cancelTxt)
                 .ok(okTxt);
-
             return confirm;
 
         },

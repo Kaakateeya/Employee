@@ -1,0 +1,34 @@
+<div class="right_col" role="main" id="viewsettlementform">
+    <div class="">
+        <br>
+        <div class="row">
+            <div class="col-lg-offset-4">
+                <div class="col-lg-1">
+                    <label class="row">Profileid</label>
+                </div>
+                <div class="col-lg-3">
+                    <input maxlength="11" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" class="form-control" type="text" ng-model="page.model.viewsettlementprofileid"></input>
+                </div>
+                <div class="col-lg-1">
+                    <button class="btn btn-danger" ng-click="page.model.viewprofilesubmit(page.model.viewsettlementprofileid)">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/ng-template" id="viewsettlementform.html">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" ng-click="page.model.close()">×</button>
+                <h4 class="modal-title">Settlement Form
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="bs-example">
+                    <div>
+                        <img ng-src="{{page.model.settlementimage}}" style="height: 500px; width: 500px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+</div>

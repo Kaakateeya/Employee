@@ -1390,7 +1390,7 @@
         }
         
         .edit_page_item_head {
-            padding: 0px 18px;
+            padding: 8px 18px;
             background: #EFEFEF;
         }
         
@@ -1685,4 +1685,9 @@
         textarea {
             color: #000 !important;
             border: 1px solid #ADA2A2 !important;
+        }
+        
+        .gradeCls {
+            margin-left: 4% !important;
+            margin-bottom: 0px;
         }

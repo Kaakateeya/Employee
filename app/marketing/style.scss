@@ -1,46 +1,179 @@
-  .panel-title {
-      color: #b10c0c;
-  }
-  
-  .btn-success-outline {
-      color: rgb(35, 82, 124);
-      background-color: transparent;
-      background-image: none;
-      border-color: rgb(35, 82, 124);
-  }
-  
-  .multiselect {
-      margin: 0;
-  }
-  
-  input[type="text"],
-  textarea,
-  select {
-      color: #000 !important;
-      border: 1px solid #ADA2A2 !important;
-  }
-  
-  span.multiselect-selected-text {
-      text-overflow: ellipsis;
-      display: block;
-      overflow: hidden;
-  }
-  
-  .checkbox input[type=checkbox] {
-      position: relative;
-  }
-  
-  #marketingdivid {
-      div#myCarousel.carousel.slide {
-          color: gray;
-      }
-      .maroon {
-          color: maroon;
-      }
-  }
-  
-  #marketingdivid {
-      .pauseBtns {
-          text-align: center;
-      }
-  }
+.panel-title {
+    color: #b10c0c;
+}
+
+.btn-success-outline {
+    color: rgb(35, 82, 124);
+    background-color: transparent;
+    background-image: none;
+    border-color: rgb(35, 82, 124);
+    margin-bottom: 11%;
+}
+
+.multiselect {
+    margin: 0;
+}
+
+input[type="text"],
+textarea,
+select {
+    color: #000 !important;
+    border: 1px solid #ADA2A2 !important;
+}
+
+span.multiselect-selected-text {
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+}
+
+.checkbox input[type=checkbox] {
+    position: relative;
+}
+
+.maroon {
+    color: maroon;
+}
+
+#marketingdivid {
+    div#myCarousel.carousel.slide {
+        color: gray;
+    }
+    .pauseBtns {
+        text-align: center;
+    }
+    .carousel-control {
+        width: 4%;
+    }
+    .imgCls {
+        border: 1px solid gray;
+    }
+    .width {
+        width: 100% !important;
+    }
+    .smalldropdown.btn-group,
+    {
+        max-width: 70px !important;
+        @extend .width;
+    }
+    .pop_label_left {
+        text-align: left;
+        width: 28% !important;
+    }
+    .pop_controls_right>input,
+    .pop_controls_right>.btn-group {
+        width: 73% !important;
+    }
+    .ticketpopuppopupheader {
+        margin-top: -10px;
+        border: 1px solid rgba(103, 58, 183, 0.3);
+        border-radius: 10px;
+    }
+    .md-padding {
+        padding: 0 !important;
+    }
+    .dashboardticketpopup {
+        color: #673AB7;
+    }
+    .rightdiv {
+        border: 1px solid;
+        border-color: orange;
+        border-radius: 20px;
+    }
+    .servicedate {
+        font-size: 13px;
+        font-weight: bold;
+    }
+    .linkdisabled {
+        pointer-events: none;
+        cursor: default;
+        opacity: 0.6;
+    }
+    .nologinCls {
+        border: 1px solid;
+        border-color: orange;
+        border-radius: 20px;
+        width: 83%;
+    }
+    .fa-check-circle:before {
+        color: green;
+    }
+    .carousel-indicators {
+        display: none;
+    }
+    color:gray !important;
+    market-histry {
+        color: gray !important;
+    }
+    .feeCls {
+        margin-left: 6%;
+        font-weight: bold;
+        font-size: 16px;
+    }
+    .feeInputClass {
+        width: 50%;
+        float: left;
+    }
+    .subHdrSpan {
+        padding-left: 1%;
+    }
+    .submainhdr {
+        color: black;
+    }
+    md-next-button,
+    md-prev-button {
+        display: none;
+    }
+    md-tabs-canvas.md-paginated {
+        margin: 0 !important;
+    }
+    .md-tab {
+        padding: 9px 17px;
+    }
+    .md-tab.md-ink-ripple.md-active {
+        background-color: rgba(178, 111, 151, 0.25);
+    }
+    md-pagination-wrapper {
+        height: 36px;
+    }
+    md-tabs-canvas {
+        height: 36px;
+    }
+}
+
+.Setlemainclss {
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.reminderCls {
+    .pop_controls_right>input,
+    .selectCls {
+        width: 73% !important;
+    }
+    .doublesmalldropdown {
+        margin-left: -25px !important;
+    }
+    // .margin28 {
+    //     margin-left: -28px !important;
+    // }
+}
+
+.vertical-text {
+    transform: rotate(-15deg);
+    font-weight: bold;
+    position: absolute;
+    padding: 15px;
+    /*background-color: rgb(160, 2, 1);*/
+    color: white;
+}
+
+// $columns: 32;
+// @mixin lineHeight() {
+//     @for $i from 1 through $columns {
+//         .lh-#{$i} {
+//             line-height:#{$i}px;
+//         }
+//     }
+// }
+// @include lineHeight();

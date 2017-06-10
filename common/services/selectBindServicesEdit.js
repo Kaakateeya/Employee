@@ -74,7 +74,6 @@
                 return http.get(app.apiroot + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Horo', dependencyValue: countryName, dependencyflagID: statename } });
             },
             DeleteSection: function(obj) {
-                console.log(JSON.stringify(obj));
                 return http.get(app.apiroot + 'CustomerPersonalUpdate/getCustomerSectionsDeletions', { params: { sectioname: obj.sectioname, CustID: obj.CustID, identityid: obj.identityid } });
             }
 

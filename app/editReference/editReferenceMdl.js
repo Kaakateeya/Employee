@@ -71,7 +71,6 @@
         model.pageload = function() {
             editReferenceService.getReferenceData(custID).then(function(response) {
                 model.ReferenceArr = response.data;
-                console.log(model.ReferenceArr);
                 model.referencemodifiedby = (model.ReferenceArr !== undefined && model.ReferenceArr.length > 0 && model.ReferenceArr[0].EmpLastModificationDate !== undefined && model.ReferenceArr[0].EmpLastModificationDate !== null) ? model.ReferenceArr[0].EmpLastModificationDate : '';
             });
         };
@@ -82,7 +81,6 @@
                 inObj.GetDetails.CustID = custID;
                 inObj.GetDetails.Cust_Reference_ID = model.RefrenceCust_Reference_ID;
                 model.submitPromise = editReferenceService.submitReferenceData(inObj).then(function(response) {
-                    console.log(response);
                     commonFactory.closepopup();
                     if (response.data === 1) {
                         model.pageload();
@@ -107,7 +105,6 @@
 
         model.deleteSubmit = function(type) {
             SelectBindService.DeleteSection({ sectioname: 'Reference', CustID: custID, identityid: model.identityID }).then(function(response) {
-                console.log(response);
                 commonFactory.closepopup();
                 model.pageload();
             });

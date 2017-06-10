@@ -1,26 +1,6 @@
-//  app.factory('authInterceptor', ['$rootScope', '$q', '$window', 'authSvc', function ($rootScope, $q, $window, authSvc) {
-//     return {
-//       request: function (config) {
-//         config.headers = config.headers || {};
-//         var user = authSvc.user();
-//         if (user.token) {
-//           config.headers.Authorization = 'Bearer ' + user.token;
-//         }
-//         return config;
-//       },
-//       responseError: function (rejection) {
-//         if (rejection.status === 401) {
-//           // handle the case where the user is not authenticated
-//         }
-//         return $q.reject(rejection);
-//       }
-//     };
-//   }]);
-
 app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function($injector, Idle, $http, helperservice) {
     function setUser(value) {
         setSession("LoginEmpid", value.EmpID);
-        //setSession("LoginEmpName", value.FirstName + " " + value.LastName);
         setSession("LoginEmpName", value.FirstName);
         setSession("empBranchID", value.BranchID);
         setSession("isAdmin", value.isAdmin);
@@ -65,7 +45,6 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
             isAdmin: getSession('isAdmin'),
             isManagement: getSession('isManagement'),
             empRegionID: getSession('empRegionID'),
-            // usernameemployee: getSession("usernameemployee")
         };
     }
     return {
@@ -86,7 +65,6 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
         },
         logout: function() {
             clearUserSession();
-            //route.go('home', {});
         },
         LoginEmpid: function() {
             return getSession('LoginEmpid');
@@ -121,26 +99,6 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
                 return res.data;
             });
         },
-        // usernameemployee: function() {
-        //     return getSession("usernameemployee");
-        // },
-
-        // getClientIp: function() {
-        //     return $http.get('/getClientIp').then(function(res) {
-        //         console.log(res);
-        //         console.log(((res.data).indexOf("::1") !== -1));
-        //         console.log(((res.data).indexOf("127.0.0.1") !== -1));
-        //         var response;
-        //         if ((res.data).indexOf("::1") !== -1 || (res.data).indexOf("127.0.0.1") !== -1) {
-        //             response = "183.82.98.109";
-        //             setSession("getClientIp", response);
-        //         } else {
-        //             response = res.data;
-        //             setSession("getClientIp", response);
-        //         }
-        //         return response;
-        //     });
-        // },
         getClientIp: function() {
             helperservice.getipAddressReturn().then(function(response) {
                 var responsedata;
