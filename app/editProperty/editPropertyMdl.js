@@ -54,7 +54,6 @@
 
 
         model.updateData = function(inObj, type) {
-
             if (isSubmit) {
                 isSubmit = false;
                 inObj.GetDetails.PropertyType = '281';
@@ -62,10 +61,8 @@
                 inObj.GetDetails.PropertyID = model.Custpropertyid;
                 inObj.GetDetails.CustId = custID;
                 model.submitPromise = editPropertyService.submitPropertyData(inObj).then(function(response) {
-                    console.log(response);
                     commonFactory.closepopup();
                     if (response.data === 1) {
-
                         editPropertyService.getPropertyData(custID).then(function(response) {
                             model.propertyArr = response.data;
                         });

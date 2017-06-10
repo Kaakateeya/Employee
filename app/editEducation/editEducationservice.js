@@ -26,7 +26,6 @@
                 return http.get(app.apiroot + 'CustomerPersonal/getpersonaldetails_Customer', { params: { CustID: obj } });
             },
             submitCustomerData: function(obj1) {
-                console.log(JSON.stringify(obj1));
                 return http.post(app.apiroot + 'CustomerPersonalUpdate/UpdatePersonalDetails_Customersetails', JSON.stringify(obj1));
             }
 

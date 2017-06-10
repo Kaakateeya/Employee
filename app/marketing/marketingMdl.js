@@ -123,7 +123,6 @@
 
                 marketingservice.getMarketingSlideShowBind(inputobj).then(function(response) {
                     if (response.data && response.data.Marketingslideticket !== null && response.data.Marketingslideticket.length > 0) {
-                        console.log(response.data);
                         model.Marketingslideticket = response.data.Marketingslideticket;
                         model.MarketingslideHistory = response.data.MarketingslideHistory;
                         model.TotalRows = model.Marketingslideticket[0].TotalRows;
@@ -244,7 +243,6 @@
 
             model.PhotoRequest = function(row) {
                 helperservice.PhotoRequest(row.ProfileID, empid, row.Emp_Ticket_ID).then(function(response) {
-                    console.log(response);
                     if (response.data && parseInt(response.data) === 1) {
                         row.histryObj.splice(0, 0, model.pushTicketHistry('InternalMemo',
                             '', '', 'Photo request for Upload Photo'
@@ -286,7 +284,6 @@
                     isSiblings: isSibbling
                 }
                 marketingservice.feeUpdate(datainobj).then(function(response) {
-                    console.log(response);
                     if (response.data && parseInt(response.data) === 1) {
                         commonFactory.closepopup();
                         model.pushTicketHistryToArray(TicketId, inObj.GetDetails.txtsibblingval);
@@ -451,7 +448,6 @@
 
             model.verifymail = function(custID) {
                 SelectBindServiceApp.verifyEmail(custID).then(function(response) {
-                    console.log(response);
                     if (response.data !== undefined) {
                         if (response.data === 1) {
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Email verify mail sent Successfully', 4500);
@@ -472,7 +468,6 @@
                 };
 
                 SelectBindServiceApp.sendMobileCodeBasedOnContactID(inputOBj).then(function(response) {
-                    console.log(response);
                     model.mobileVerificationCode = response.data;
                     modelpopupopenmethod.showPopup('verifyMobileContentmar.html', model.scope, 'md', '');
                 });
@@ -483,7 +478,6 @@
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter Mobile verify Code', 4500);
                 } else {
                     SelectBindServiceApp.verifyMobileBasedOnContactID(val, model.ID).then(function(response) {
-                        console.log(response);
                         if (response.data && parseInt(response.data) === 1) {
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Verified Successfully', 4500);
                         } else {
@@ -513,7 +507,6 @@
                         SettlementValue: null
                     }
                     marketingservice.feeUpdate(datainobj).then(function(response) {
-                        console.log(response);
                         if (response.data && parseInt(response.data) === 1) {
                             row.Feedetails = txtval;
                             var Appendobj = {
@@ -558,7 +551,6 @@
                         SettlementValue: txtval
                     }
                     marketingservice.feeUpdate(datainobj).then(function(response) {
-                        console.log(response);
                         if (response.data && parseInt(response.data) === 1) {
                             row.SettlementValue = txtval;
                             var Appendobj = {

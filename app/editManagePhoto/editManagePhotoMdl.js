@@ -26,9 +26,7 @@
         model.getData = function() {
             editManagePhotoService.getPhotoData(CustID).then(function(response) {
                 var StrCustID = CustID;
-                console.log(response.data);
                 model.manageArr = response.data;
-
                 model.refreshPageLoad(model.manageArr);
             });
         };
@@ -99,7 +97,6 @@
                     // var extension = ((obj.myFile.name).split('.'))[1];
                     var keyname = app.prefixPathImg + 'KMPL_' + CustID + '_Images/Img' + model.photorowID + '.' + extension;
                     fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
-                        console.log(res.status);
                         if (res.status == 200) {
                             commonFactory.closepopup();
                             model.uploadData = {
@@ -126,7 +123,6 @@
                                 }
                             };
                             editManagePhotoService.submituploadData(model.uploadData).then(function(response) {
-                                console.log(response);
                                 if (response.status === 200) {
                                     model.manageArr = response.data;
                                     model.refreshPageLoad(model.manageArr);
@@ -165,8 +161,6 @@
         };
         model.setAsProfilePic = function(cust_photoID) {
             editManagePhotoService.linqSubmits(cust_photoID, 2).then(function(response) {
-                console.log(response.data);
-
                 if (response.data === 1) {
                     model.getData();
                 }
@@ -174,9 +168,7 @@
         };
         model.setPhotoPassword = function(obj) {
             editManagePhotoService.linqSubmits(CustID, obj).then(function(response) {
-                console.log(response);
                 if (response.data === 1) {
-
                     if (obj === '1') {
                         alertss.timeoutoldalerts(model.scope, 'alert-success', 'Protect with Password  Uploaded Successfully', 4500);
                     } else {

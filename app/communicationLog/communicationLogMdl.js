@@ -55,7 +55,6 @@
 
             model.communicationlogsubmit = function(profileid) {
                 communicationLogService.Submitcommunicationlog(profileid, model.empid).then(function(response) {
-                    console.log(response);
                     model.sendarray = [];
                     model.sendarray2 = [];
                     model.sendarray3 = [];
@@ -142,7 +141,6 @@
                     empid: model.empid
                 };
                 communicationLogService.EmployeeCommunicationLogRvrAndResend(obj).then(function(response) {
-                    console.log(response);
                     if (response.data !== undefined && response.data) {
                         if (response.data.m_Item1 === 1) {
                             if (type === 2) {
@@ -177,7 +175,6 @@
             };
             model.gridtable2.photossent = function(custid, emailid) {
                 communicationLogService.Sentphotosemail(emailid, custid).then(function(resonse) {
-                    console.log(resonse);
                     if (parseInt(resonse.data) === 1) {
                         alerts.timeoutoldalerts(model.scope, 'alert-success', 'email sent successfully', 4000);
                     } else {

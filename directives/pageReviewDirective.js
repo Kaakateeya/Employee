@@ -1,10 +1,8 @@
 (function() {
     'use strict';
-
     angular
         .module('Kaakateeya')
         .directive('pageReview', directive);
-
     directive.$inject = ['commonFactory', '$uibModal', 'baseService', 'baseModel', 'authSvc'];
 
     function directive(commonFactory, uibModal, baseService, baseModel, authSvc) {
@@ -35,10 +33,8 @@
 
                 }
             };
-
             scope.reviewSubmit = function() {
                 baseService.menuReviewstatus(scope.custid, '1', scope.sectionid).then(function(response) {
-
                     if (response.data !== undefined && response.data.length > 0) {
                         if (JSON.parse(response.data[0])[0].STATUS === 1) {
                             commonFactory.closepopup();
@@ -94,7 +90,6 @@
             scope.cancel = function() {
                 commonFactory.closepopup();
             };
-
             if (AdminID === 1 || AdminID === '1') {
                 baseService.menuReviewstatus(scope.custid, '2', scope.sectionid).then(function(response) {
                     model.revstatus = JSON.parse(response.data);
@@ -112,5 +107,4 @@
             }
         }
     }
-
 })();

@@ -205,7 +205,6 @@
                 ToProfileID: matchobj.ToProfileID
             };
             marketsvc.submitemails(mobj).then(function(response) {
-                console.log(response);
                 if (parseInt(response.data) === 1) {
                     alertss.timeoutoldalerts(model.scope, "alert-success", "Mail sent succesfully", 4500);
                 } else {

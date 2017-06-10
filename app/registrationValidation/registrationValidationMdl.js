@@ -122,7 +122,6 @@
                         i_EndIndex: to
                     };
                     svc.getRegSearchProfile(input).then(function(response) {
-                        console.log(response);
                         if (_.isArray(response.data) && response.data.length > 0) {
 
                             if (typeofbind === "export") {
