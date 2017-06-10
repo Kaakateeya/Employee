@@ -2,7 +2,7 @@
     'use strict';
 
 
-    function factory($http, authSvc, editEducationService, commonFactory, uibModal, filter, alertss, stateParams, SelectBindService, arrayConstantsEdit) {
+    function factory($http, authSvc, editEducationService, commonFactory, uibModal, filter, alertss, stateParams, SelectBindService, arrayConstantsEdit, SelectBindServiceApp) {
         var model = {};
 
         model.scope = {};
@@ -30,10 +30,12 @@
         model.reviewdisplay = 'Education details';
         model.eventType = 'add';
         //end declaration block
-
+        model.ProfileGrade = '';
         var CustID = stateParams.CustID;
 
         model.init = function() {
+            model.ProfileGrade = '';
+            model.ProfileGradestatus = '';
             loginEmpid = authSvc.LoginEmpid();
             AdminID = model.Admin = authSvc.isAdmin();
             model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
@@ -57,6 +59,10 @@
                 if (commonFactory.checkvals(response.data)) {
                     model.educationSelectArray = response.data;
                     model.eduEmpLastModificationDate = model.educationSelectArray.length > 0 ? model.educationSelectArray[0].EmpLastModificationDate : '';
+                    model.ProfileGrade = model.educationSelectArray.length > 0 ? model.educationSelectArray[0].ProfileGrade : '';
+                    model.chkGrade = model.ProfileGrade === 216 ? true : false;
+
+                    model.ProfileGradestatus = model.educationSelectArray.length > 0 ? model.educationSelectArray[0].ProfileGradestatus : '';
                 }
 
             });
@@ -404,6 +410,36 @@
         model.aboutUrSelf = [
             { lblname: '', controlType: 'about', maxlength: '1000', ngmodel: 'txtAboutUS', displayTxt: "(Please don't write phone numbers/emails/any junk characters)*", parameterValue: 'txtAboutUS' }
         ];
+
+        model.setEduGrade = function(val) {
+            var gradeval = val === true ? 216 : '';
+
+            if (model.ProfileGradestatus === 1) {
+                SelectBindServiceApp.getRelationName(8, model.CustID, gradeval).then(function(response) {
+                    alertss.timeoutoldalerts(model.scope, 'alert-success', val === true ? 'Grade A updated successfully' : 'Grade removed successfully', 4500);
+                });
+            } else {
+                model.Mobj = {};
+
+                model.Mobj = {
+                    GEducation: gradeval,
+                    CustID: model.CustID,
+                    EmpID: loginEmpid
+                };
+
+                editEducationService.submitGradeData(model.Mobj).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+                        model.pageload();
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Grade Selections Submitted Succesfully', 4500);
+                    } else {
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Grade Selections Updation failed', 4500);
+                    }
+                });
+            }
+        };
+
         return model.init();
     }
 
@@ -411,6 +447,6 @@
         .module('Kaakateeya')
         .factory('editEducationModel', factory);
 
-    factory.$inject = ['$http', 'authSvc', 'editEducationService', 'commonFactory', '$uibModal', '$filter', 'alert', '$stateParams', 'SelectBindService', 'arrayConstantsEdit'];
+    factory.$inject = ['$http', 'authSvc', 'editEducationService', 'commonFactory', '$uibModal', '$filter', 'alert', '$stateParams', 'SelectBindService', 'arrayConstantsEdit', 'SelectBindServiceApp'];
 
 })(angular);

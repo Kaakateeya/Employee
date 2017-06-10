@@ -129,11 +129,15 @@
                                                     model.fromprofileOwnerId = res.data[0][0].ProfileOwnerEmpID;
                                                     model.fromGenderID = res.data[0][0].GenderID;
                                                     model.fromCustID = res.data[0][0].Cust_ID;
+                                                    model.fromticketID = res.data[0][0].EmpTicketID;
+                                                    model.fromEmpNumber = res.data[0][0].OfficialContactNumber;
                                                 } else {
                                                     model.toProfileOwner = res.data[0][0].ProfileOwnerName;
                                                     model.toprofileOwnerId = res.data[0][0].ProfileOwnerEmpID;
                                                     model.toGenderID = res.data[0][0].GenderID;
                                                     model.toCustID = res.data[0][0].Cust_ID;
+                                                    model.toticketID = res.data[0][0].EmpTicketID;
+                                                    model.toEmpNumber = res.data[0][0].OfficialContactNumber;
                                                     if (model.fromGenderID === model.toGenderID) {
                                                         model.toProfileOwner = 'Owner Name';
                                                         model.alertmsg('Sorry Same Gender');
@@ -211,11 +215,11 @@
 
             model.settleSubmit = function() {
 
-                if (model.ProfileID)
+                if (!model.ProfileID)
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter Settled Profile ID', 4500);
-                else if (model.settledWithProfileID)
+                else if (!model.settledWithProfileID)
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter Settled with Profile ID', 4500);
-                else if (model.marriageDate)
+                else if (!model.marriageDate)
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter Marriage Date', 4500);
 
                 var GroomCustID, GroomEmpID, BrideCustID, BrideEmpID;
@@ -239,7 +243,7 @@
                     BrideCustID: BrideCustID ? BrideCustID : null,
                     BrideEmpID: BrideEmpID ? BrideEmpID : null,
                     Engagementdate: model.convertToDate(model.engagementDate),
-                    EngagementVenue: engageMentVenue,
+                    EngagementVenue: model.engageMentVenue,
                     Marriagedate: model.convertToDate(model.marriageDate),
                     MarriageVenue: model.marriagevenue,
                     InformedBySide: model.informedBy,
@@ -248,13 +252,18 @@
                     EmpID: empid,
                     AuthorizeStatus: 0,
                     SendMailfornew: model.issendMail,
-                    Settleddate: model.convertToDate(model.settleDate)
+                    Settleddate: model.convertToDate(model.settleDate),
+                    smslist: [{ empname: model.fromProfileOwner, number: model.fromEmpNumber, ticketId: model.fromticketID },
+                        { empname: model.toProfileOwner, number: model.toEmpNumber, ticketId: model.toticketID }
+                    ]
                 };
 
 
                 settleDeleteProfileService.settleSubmit(obj).then(function(response) {
                     if (response.data && parseInt(response.data) === 1) {
                         model.reset();
+                        model.scope.settledDeleteForm.$setPristine();
+                        model.scope.settledDeleteForm.$setUntouched();
                         alertss.timeoutoldalerts(model.scope, 'alert-success', 'Settled submitted Successfully', 4500);
                     } else {
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Settled submission Failed', 4500);
@@ -265,7 +274,7 @@
             };
 
             model.deleteSubmit = function() {
-                if (model.ProfileID)
+                if (!model.ProfileID)
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter Deleted Profile ID', 4500);
 
                 var obj = {
@@ -287,13 +296,16 @@
                     Narriation: model.narration,
                     EmpID: empid,
                     AuthorizeStatus: 0,
-                    SendMailfornew: model.issendMail
+                    SendMailfornew: model.issendMail,
+                    smslist: [{ empname: model.fromProfileOwner, number: '8985201371', ticketId: model.fromticketID }]
                 };
-
+                //model.fromEmpNumber
                 settleDeleteProfileService.deleteSubmit(obj).then(function(response) {
                     if (response.data && parseInt(response.data) === 1) {
                         model.reset();
-                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Deleted submitted Successfully', 4500);
+                        model.scope.settledDeleteForm.$setPristine();
+                        model.scope.settledDeleteForm.$setUntouched();
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Profile deleted Successfully', 4500);
                     } else {
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Deleted submitted Failed', 4500);
                     }
@@ -326,6 +338,7 @@
                 model.issendMail = 2;
                 model.fromProfileOwner = model.toProfileOwner = 'Owner name';
                 model.relationshipName = model.deletedbyRelation = '';
+                model.narration = '';
             };
 
             return model.init();

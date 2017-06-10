@@ -189,9 +189,10 @@
                             model.addSlides(response.data.Marketingslideticket, model.slides, parseInt(model.topage), 'normal');
                         }
                     } else {
-                        model.slides = [];
-                        if (from === 1)
+                        if (from === 1) {
                             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No Records Found', 4500);
+                            model.slides = [];
+                        }
                     }
                 });
             };

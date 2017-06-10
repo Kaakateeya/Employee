@@ -131,7 +131,7 @@
             <div class="edit_page_item_head clearfix">
                 <h4>Education Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2" ng-show="page.model.eduEmpLastModificationDate!=null && page.model.eduEmpLastModificationDate!=='' && page.model.eduEmpLastModificationDate!==undefined">ModifiedBy :{{page.model.eduEmpLastModificationDate}}</span></h4>
 
-                <md-checkbox ng-model="model.chkGrade" class="gradeCls" name="chkisconfidential" aria-label="Checkbox 1">Grade
+                <md-checkbox ng-model="page.model.chkGrade" ng-change="page.model.setEduGrade(page.model.chkGrade);" class="gradeCls" name="chkisconfidential" aria-label="Checkbox 1">Grade
                 </md-checkbox>
 
                 <div class="edit_page_item_ui clearfix ">
