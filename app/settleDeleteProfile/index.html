@@ -38,7 +38,7 @@
                                 <input type="text" class="form-control" ng-readonly="inItm.readonly" ng-required="inItm.required" ng-model="page.model[inItm.ngModel]" ng-blur="page.model[inItm.method](inItm.param)">
                             </div>
                             <div class="col-lg-7" ng-if="inItm.controlType==='date'">
-                                <custom-datepicker class="datepicker3" ng-required="inItm.required" ng-model="page.model[inItm.ngModel]" date-options="page.model.dateOptions"></custom-datepicker>
+                                <custom-datepicker class="datepicker3 input-group" ng-required="inItm.required" ng-model="page.model[inItm.ngModel]" date-options="page.model.dateOptions"></custom-datepicker>
                             </div>
                             <div class="col-lg-7" ng-if="inItm.controlType==='select'">
                                 <select multiselectdropdown class="smalldropdown" ng-model="page.model[inItm.ngModel]" typeofdata="'childStayingWith'" ng-change="page.model.RelationshipChange(page.model[inItm.ngModel])">   

@@ -27,6 +27,9 @@
             },
             submitCustomerData: function(obj1) {
                 return http.post(app.apiroot + 'CustomerPersonalUpdate/UpdatePersonalDetails_Customersetails', JSON.stringify(obj1));
+            },
+            submitGradeData: function(obj1) {
+                return http.post(app.apiroot + 'CustomerPersonalUpdate/CustomerProfileSetting_Gradeselection', JSON.stringify(obj1));
             }
 
         };
