@@ -145,11 +145,9 @@
                 <input type="text" ng-model="slide.txtSAFeeValue" placeholder="Proposed SA Fee" ng-if="!slide.SettlementValue || slide.editSAval!=='Edit'" class="form-control feeInputClass" maxlength="7">
                 <a href="javascript:void(0);" ng-click="model.updateSAFee(slide,slide.txtSAFeeValue);" class="feeCls">{{slide.editSAval}} </a>
             </div>
-
         </div>
         <br>
         <div>
-
             <div>
                 <md-content class="md-padding">
                     <md-tabs md-selected="slide.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
@@ -166,14 +164,12 @@
                                 </div>
                             </div>
                         </md-tab>
-
                         <md-tab md-on-select="slide.incomeTab=true" label="Incoming Call">
                             <div class="tab">
                                 <br>
                                 <div>
                                     <form ng-if="slide.incomeTab" name="inform" novalidate role="form" ng-submit="">
                                         <ul>
-
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Call received from </label>
                                                 <div class="pop_controls_right  input-group">

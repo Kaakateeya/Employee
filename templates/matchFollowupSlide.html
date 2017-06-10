@@ -361,19 +361,12 @@
                     <form name="memoform" novalidate role="form" ng-submit="memoform.$valid && page.model.memoSubmit(page.model.actobj);">
                         <br>
                         <ul>
-                            <!--<li class="clearfix form-group">
-                                <label class="pop_label_left">Assign/Re-assign </label>
-                                <div class="pop_controls_right input-group">
-                                    <select class="smalldropdown" ng-model="page.model.actobj.ddlMemAssign" multiselectdropdown ng-options="item.value as item.label for item in page.model.EmpNamesArr" required>   
-                                                     </select>
-                                </div>
-                            </li>-->
                             <li class="clearfix form-group">
                                 <label class="pop_label_left">Reply Type  </label>
                                 <div class="pop_controls_right input-group">
                                     <select class="smalldropdown" ng-model="page.model.actobj.ddlMemReplyType" ng-change="page.model.actobj.txtMemmemocalldiscussion=page.model.mailchange(page.model.actobj.ddlMemReplyType);" multiselectdropdown ng-options="item.value as item.label for item in page.model.ReplyArr"
                                         required>   
-                                                     </select>
+                                  </select>
                                 </div>
                             </li>
                             <li class="clearfix form-group">

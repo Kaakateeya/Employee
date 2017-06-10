@@ -9,14 +9,11 @@
         var custID = stateParams.CustID;
         //  logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
         model.dataval = '';
-
-
         model.init = function() {
             custID = stateParams.CustID;
             model.pageload();
             return model;
         };
-
         model.pageload = function() {
             editOfcePurposeService.getofficeData('1', custID, '').then(function(response) {
                 console.log(response);
@@ -26,12 +23,10 @@
                 console.log(model.dataval);
             });
         };
-
         model.cancel = function() {
             commonFactory.closepopup();
         };
         model.showPopup = function(val) {
-
             model.popupHeader = 'About Your Profile';
             model.txtAboutprofile = '';
             if (val !== undefined) {
@@ -40,9 +35,7 @@
             }
             commonFactory.open('AboutModalContent.html', model.scope, uibModal);
         };
-
         model.updateData = function(inObj, type) {
-
             editOfcePurposeService.getofficeData('2', custID, inObj.GetDetails.txtAboutprofile).then(function(response) {
                 console.log(response);
                 commonFactory.closepopup();
@@ -54,21 +47,12 @@
                 //     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'About Profile Details Updation failed', 4500);
                 // }
             });
-
         };
-
-
         model.popupdata = [
             { lblname: '', controlType: 'about', required: true, maxlength: '1000', displayTxt: '(You can write anything about this profile)*', ngmodel: 'txtAboutprofile', parameterValue: 'txtAboutprofile' }
         ];
-
-
-
-
-
         return model.init();
     }
-
     angular
         .module('Kaakateeya')
         .factory('editOfcePurposeModel', factory);

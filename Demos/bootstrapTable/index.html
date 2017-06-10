@@ -1,0 +1,23 @@
+<div class="right_col">
+    <table class="Datatable table table-hover table-bordered table-responsive" style="min-width: 750px;">
+        <thead>
+            <tr>
+                <th ng-repeat="item in page.model.columns">{{item.key}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="inneritem in page.model.data">
+                <td ng-repeat="colitem in page.model.columns">
+                    <span ng-if="colitem.type==='label'"> {{inneritem[colitem.key]}}</span>
+                    <a href="#" ng-if="colitem.type ==='link'" ng-click="page.model[colitem.method]">{{inneritem[colitem.key]}}</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/ng-template" id="market.html">
+    <div class="modal-body">
+        <market-tickethistory ticketid="'135731'"></market-tickethistory>
+    </div>
+</script>

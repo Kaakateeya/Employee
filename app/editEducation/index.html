@@ -1,8 +1,6 @@
 <div ng-class="'EditViewClass'" class="right_col" style="padding-top: 6%;padding-left: 1%;">
-
     <div ng-include="'templates/sideMenu.html'">
     </div>
-
     <div class="edit_pages_content_main clearfix">
         <page-review dispaly-name="'Education details'" linkval="model.lnkeducationandprofReview" sectionid="'6,7,8'" custid="page.model.CustID"></page-review>
         <div class="edit_page_item">
@@ -13,94 +11,74 @@
                     <a id="lnkpersonaldetailsadd" class="edit_page_add_button" href="javascript:void(0);" ng-click="page.model.showpopup('custData');">Add</a>
                 </div>
             </div>
-
             <div class="edit_page_details_item">
                 <div ng-if="page.model.CustomerDataArr.length>0" ng-repeat="item in page.model.CustomerDataArr">
-
                     <div id="reviewdivpersonal" class="edit_page_details_item_desc clearfix">
                         <div id="UpdatePanel6" class="edit_page_details_item_desc clearfix">
-
                             <h6>
                                 <span id="gender">Gender</span></h6>
                             <h5>
                                 <span id="lblGender">
                             {{item.Gender}}</span></h5>
-
                         </div>
                         <div id="UpdatePanellblMaritalStatus" class="edit_page_details_item_desc clearfix">
-
                             <h6>
                                 <span id="MaritalStatus">Marital Status</span></h6>
                             <h5>
                                 <span id="lblMaritalStatus">
                             {{item.MartialStatus}}</span></h5>
                         </div>
-
                         <div id="UpdatePanelLnkpersonaledit" class="edit_page_item_ui clearfix">
-
                             <a href="javascript:void(0);" ng-click="page.model.showpopup('custData',item);" ng-if="page.model.Admin === 1 || page.model.Admin === '1' ||  page.model.Managementid==='true'" class="edit_page_edit_button">Edit
-                    </a>
+                             </a>
                         </div>
                         <div id="UpdatePaneldateofbirth">
-
                             <div id="divdateofbirth" class="edit_page_details_item_desc clearfix">
                                 <h6>
                                     <span id="dateofbirth" font-bold="true">Date Of Birth</span></h6>
-
                                 <h5>
                                     <span id="lbldateofbirth">{{item.DateofBirth}}</span></h5>
                             </div>
-
                         </div>
                         <div id="UpdatePanelheight">
-
                             <div id="divcandidateheight" class="edit_page_details_item_desc clearfix">
                                 <h6>
                                     <span id="lblcandidateheight" font-bold="true">Height</span></h6>
                                 <h5>
                                     <span id="lblheight">{{item.Height}}</span></h5>
                             </div>
-
                         </div>
                         <div id="UpdatePanelcolor">
-
                             <div class="edit_page_details_item_desc clearfix" id="divcomplexion">
                                 <h6>
                                     <span id="lblcolor" font-bold="true">Complexion</span></h6>
                                 <h5>
                                     <span id="lblcomplexion">{{item.Complexion}}</span></h5>
                             </div>
-
                         </div>
                         <div id="UpdatePanelreligion">
-
                             <div id="divreligion" class="edit_page_details_item_desc clearfix">
                                 <h6>
                                     <span id="religion" font-bold="true">Religion</span></h6>
                                 <h5>
                                     <span id="lblReligion">{{item.Religion}}</span></h5>
                             </div>
-
                         </div>
                         <div id="UpdatePanel1">
-
                             <div id="div1" class="edit_page_details_item_desc clearfix">
                                 <h6>
                                     <span id="span1" font-bold="true">Mother Tongue</span></h6>
                                 <h5>
                                     <span id="lblmothertongue">{{item.Mothertongue}}</span></h5>
                             </div>
-
                         </div>
                         <div id="UpdatePanelpersonalcaste">
-
                             <div id="divpersonalcaste" class="edit_page_details_item_desc clearfix">
                                 <h6>
                                     <span id="lblcaste" font-bold="true">Caste</span></h6>
                                 <h5>
                                     <span id="lblcandidatecaste">{{item.Caste+(item.SubCaste!=='' && item.SubCaste!==null?'('+item.SubCaste+')':'')}}</span></h5>
                             </div>
-
                         </div>
 
                         <div class="edit_page_details_item_desc clearfix">
@@ -110,23 +88,17 @@
                                 <span id="lblsubcastecandidate">{{item.PhysicalStatus}}</span></h5>
                         </div>
                         <div id="UpdatePanelBorncitizenship">
-
                             <div id="divBorncitizenship" class="edit_page_details_item_desc clearfix">
                                 <h6>
                                     <span id="lblcitizenship" font-bold="true">BornCitizenship</span></h6>
                                 <h5>
                                     <span id="lblborncitizenship">{{item.Citizenship}}</span></h5>
                             </div>
-
                         </div>
-
-
                     </div>
-
                 </div>
             </div>
         </div>
-
         <div class="edit_page_item" id="divEducation">
             <div class="edit_page_item_head clearfix">
                 <h4>Education Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2" ng-show="page.model.eduEmpLastModificationDate!=null && page.model.eduEmpLastModificationDate!=='' && page.model.eduEmpLastModificationDate!==undefined">ModifiedBy :{{page.model.eduEmpLastModificationDate}}</span></h4>
@@ -153,7 +125,6 @@
 
                         <div id="editeducationbutton " class="edit_page_item_ui clearfix ">
                             <a id="LinkButton1dfd " href="javascript:void(0); " ng-click="page.model.showpopup( 'showEduModal',item) ">Edit</a>
-
                             <a ng-if="item.EduHighestDegree!==1" href="javascript:void(0); " class="edit_page_del_button " ng-click="page.model.DeleteEduPopup(item.EducationID); ">Delete</a>
                         </div>
 
@@ -161,12 +132,10 @@
                             <h6>
                                 <span id="Label1 ">University</span>
                             </h6>
-
                             <h5>
                                 <span id="lblTuniversity ">{{item.EduUniversity}}</span>
                             </h5>
                         </div>
-
                         <div id="divCollege " class="edit_page_details_item_desc clearfix " ng-hide="item.EduCollege===null ">
                             <h6>
                                 <span id="Label9 ">College</span>
@@ -175,7 +144,6 @@
                                 <span id="lblTcollege ">{{item.EduCollege}}</span>
                             </h5>
                         </div>
-
                         <div class="edit_page_details_item_desc clearfix " id="divcityviewhiding " ng-hide="item.EduCityIn===null ">
                             <h6>
                                 <span id="Label3 " font-bold="true ">City Study In</span>
@@ -196,7 +164,6 @@
                 </div>
             </div>
         </div>
-
         <div class="edit_page_item ">
             <div id="divlnkAddProfession " class="edit_page_item_head clearfix ">
                 <h4>Professional Details&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #08CFD2 " ng-show="page.model.profEmpLastModificationDate!=null && page.model.profEmpLastModificationDate!=='' && page.model.profEmpLastModificationDate!==undefined">ModifiedBy :{{page.model.profEmpLastModificationDate}}</span></h4>
@@ -207,7 +174,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="edit_page_details_item ">
                 <div ng-if="page.model.ProfessionSelectArray" ng-repeat="item in page.model.ProfessionSelectArray">
                     <div id="reviewdiv " ng-class="item.reviewstatus===false? 'reviewCls': '' ">
@@ -218,7 +184,6 @@
                                 <span id="txtProfession ">{{(item.ProfessionCategoryID===5 || item.ProfessionCategoryID===7 || item.ProfessionCategoryID===9)? item.ProfessionCategory:(item.Professional+" "+(item.CompanyName !=null && item.CompanyName !=" "?"in "+" "+item.CompanyName:''))  }}</span></h5>
                         </div>
                         <div class="edit_page_item_ui clearfix " ng-if="page.model.ProfessionSelectArray.length>0">
-
                             <a id="Linkedit" class="edit_page_add_button" href="javascript:void(0);" ng-click="page.model.showpopup('showProfModal',item)">Edit</a>
                         </div>
                         <div id="divcitywork" class="edit_page_details_item_desc clearfix" ng-hide="item.CityWorkingIn==null">
@@ -234,7 +199,6 @@
                                 <h5>
                                     <span id="lblsalaryy">{{item.Currency+" "+(item.Salary!=null && item.Salary!=""?" "+item.Salary+"/-":"")}}</span></h5>
                             </div>
-
                             <div id="Div2" class="edit_page_details_item_desc clearfix" ng-hide="item.WorkingFromDate===null">
                                 <h6>
                                     <span id="lblworkfrom" style="font-weight:bold;">Working from date</span></h6>
@@ -251,7 +215,6 @@
                             </h5>
                         </div>
                         <div id="Div4" class="edit_page_details_item_desc clearfix" ng-hide="item.ResidingSince===null">
-
                             <h6>
                                 <span id="lblsincedate">Since date</span>
                             </h6>
@@ -259,9 +222,7 @@
                                 <span id="txtsincedate">{{item.ResidingSince | date:'dd-MM-yyyy'}}</span>
                             </h5>
                         </div>
-
                         <div id="Div5" class="edit_page_details_item_desc clearfix" ng-hide="item.ArrivingDate===null">
-
                             <h6>
                                 <span id="lblarrival">Arrival Date</span>
                             </h6>
@@ -270,7 +231,6 @@
                             </h5>
                         </div>
                         <div id="Div6" class="edit_page_details_item_desc clearfix" ng-hide="item.DepartureDate===null">
-
                             <h6>
                                 <span id="lbldepartture">Departure Date</span>
                             </h6>
@@ -279,18 +239,15 @@
                             </h5>
                         </div>
                         <div id="Div7" class="edit_page_details_item_desc clearfix" ng-hide="item.OccupationDetails===null">
-
                             <h6>
                                 <span id="lblOccupation" style="font-weight:bold;">Occupation Details</span></h6>
                             <h5>
                                 <span>{{item.OccupationDetails}} </span></h5>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-
         <div id="divlnkadd" class="edit_page_item">
             <div class="edit_page_item_head clearfix">
                 <h4>Mention your goals, interests and hobbies etc</h4>
@@ -312,13 +269,11 @@
                         <div ng-if="page.model.lblaboutUrself!==undefined && page.model.lblaboutUrself!=='' && page.model.lblaboutUrself!==null" class="edit_page_item_ui clearfix">
                             <a class="edit_page_edit_button" href="javascript:void(0);" ng-click="page.model.showpopup('showAboutModal',page.model.lblaboutUrself)">Edit</a>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <script type="text/ng-template" id="deleteEduContent.html">
         <form class="EditViewClass" name="deletetForm" novalidate role="form" ng-submit="page.model.deleteEduSubmit();">
             <div class="modal-header">
@@ -331,21 +286,17 @@
             <div class="modal-body clearfix" id="modal-body">
                 <b class="text-center"> Do you want to delete Education details</b>
             </div>
-
             <div class="modal-footer">
                 <button type="submit" class="btn btn-success">Delete</button>
                 <button type="button" class="btn btn-danger" ng-click="page.model.cancel();">Cancel</button>
             </div>
-
         </form>
     </script>
-
     <script type="text/ng-template" id="commonEduCatiobpopup.html">
         <slide-popup model="page.model" eventtype="page.model.eventType">
         </slide-popup>
     </script>
 </div>
-
 <style>
     .multiselect {
         border: solid 1px #ADA2A2 !important;

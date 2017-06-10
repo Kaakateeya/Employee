@@ -51,7 +51,6 @@
              model.proceedprofileid = profileid;
              commonpage.showPopupphotopoup('uploadsaform.html', model.scope, 'sm', "modalclassdashboardphotopopup");
          };
-
          scope.$on("photorequest", function(event, profileid) {
              dashboardServices.PhotoRequest(profileid, model.empid).then(function(response) {
                  if (response !== undefined && response !== null && response !== "" && response.data !== undefined) {

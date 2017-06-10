@@ -14,6 +14,7 @@
              model.mpObj.rdnWebsiteBlocked = '';
              model.mpObj.ddlApplicationStatus = [54];
              model.mpObj.ddlCaste = [402];
+             model.mpObj.rdndocmacile = "";
              model.opendiv = true;
              model.scope = scope;
              model.grid.showplus = false;

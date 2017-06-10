@@ -1,6 +1,6 @@
 <div class="right_col" role="main" id="generalsearchdiv">
     <div class="search_page_main" ng-show="page.model.divcontrolls">
-        <div class="sample" layout="column" ng-cloak>
+        <div class="sample" layout="column">
             <md-content class="md-padding">
                 <md-tabs md-selected="page.model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
                     <md-tab ng-repeat="tab in page.model.tabsselected" label="{{tab.tabname}}" ng-click="page.onTabSelected(page.model.selectedIndex)">
@@ -40,10 +40,14 @@
                                                     <div class="col-lg-3" ng-show="item.controlType==='dropdown'">
                                                         <p>{{item.labelName}}</p>
                                                         <div ng-class="page.model[item.ngModel]===undefined || page.model[item.ngModel]===null || page.model[item.ngModel].length===0 ?'':'ddlcolor'" class="controls clearfix">
-                                                            <angular-multiselect ng-show="item.type!==undefined" type=item.type class="general" array=page.model[item.dataSource] model="page.model[item.ngModel]">
-                                                            </angular-multiselect>
-                                                            <angular-multiselect ng-show="item.type===undefined" class="general" array=page.model[item.dataSource] model="page.model[item.ngModel]">
-                                                            </angular-multiselect>
+                                                            <div ng-show="item.type!==undefined">
+                                                                <select multiple ng-model="page.model[item.ngModel]" multiselectdropdown typeofdata="" ng-options="caste.value as caste.label for caste in page.model[item.dataSource]" pagetype="'search'" ng-change="page.directivechangeevent(page.model[item.ngModel],item.type)">
+                                                            </select>
+                                                            </div>
+                                                            <div ng-show="item.type===undefined">
+                                                                <select multiple ng-model="page.model[item.ngModel]" multiselectdropdown typeofdata="" ng-options="caste.value as caste.label for caste in page.model[item.dataSource]" pagetype="'search'">
+                                                            </select>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-3  clearfix" ng-if="item.controlType==='textBox'">
@@ -76,10 +80,20 @@
                                                         <p>{{item.labelName}}</p>
                                                         <div class="controls clearfix row">
                                                             <div class="col-lg-6 datepicker">
-                                                                {{page.model[item.ngModelFrom]}}
                                                                 <custom-datepicker ng-class="page.model[item.ngModelFrom].trim()!=='' && page.model[item.ngModelFrom]!==undefined &&  page.model[item.ngModelFrom]!==null?'datepicker4':''" ng-model="page.model[item.ngModelFrom]" date-options="page.model.dateOptions"></custom-datepicker>
                                                             </div>
                                                             <div class="col-lg-6 datepicker">
+                                                                <custom-datepicker ng-class="page.model[item.ngModelTo].trim()!=='' && page.model[item.ngModelTo]!==undefined &&  page.model[item.ngModelTo]!==null?'datepicker4':''" ng-model="page.model[item.ngModelTo]" date-options="page.model.dateOptions"></custom-datepicker>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3" ng-if="item.controlType==='dobirth'">
+                                                        <p>{{item.labelName}}</p>
+                                                        <div class="controls clearfix row">
+                                                            <div class="col-lg-6 datepicker" style="width: 125px;padding: 6px;">
+                                                                <custom-datepicker ng-class="page.model[item.ngModelFrom].trim()!=='' && page.model[item.ngModelFrom]!==undefined &&  page.model[item.ngModelFrom]!==null?'datepicker4':''" ng-model="page.model[item.ngModelFrom]" date-options="page.model.dateOptions"></custom-datepicker>
+                                                            </div>
+                                                            <div class="col-lg-6 datepicker" style="width: 125px;padding: 6px;">
                                                                 <custom-datepicker ng-class="page.model[item.ngModelTo].trim()!=='' && page.model[item.ngModelTo]!==undefined &&  page.model[item.ngModelTo]!==null?'datepicker4':''" ng-model="page.model[item.ngModelTo]" date-options="page.model.dateOptions"></custom-datepicker>
                                                             </div>
                                                         </div>
@@ -91,11 +105,20 @@
                                                                 <select ng-model="page.model[item.ngModelFrom]" multiselectdropdown typeofdata=item.typeofdata class="smalldropdown">   
                                                                  </select>
                                                             </div>
-                                                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6  generalane" style="margin-left: -20px;" ng-class="page.model[item.ngModelTo]===undefined || page.model[item.ngModelTo]===null || page.model[item.ngModelTo].length===0 || page.model[item.ngModelFrom]==='0' ?'':'ddlcolor'">
+                                                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6  generalane" style="margin-left: -20px;" ng-class="page.model[item.ngModelTo]===undefined || page.model[item.ngModelTo]===null || page.model[item.ngModelTo].length===0 || page.model[item.ngModelTo]==='0' ?'':'ddlcolor'">
                                                                 <select class="smalldropdown" ng-model="page.model[item.ngModelTo]" multiselectdropdown typeofdata=item.typeofdata>
                                                                 </select>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-lg-3" ng-if="item.controlType==='empbranches'">
+                                                        <p>{{item.labelName}}</p>
+                                                        <div ng-class="page.model[item.ngModel]===undefined || page.model[item.ngModel]===null || page.model[item.ngModel].length===0 ?'':'ddlcolor'" class="controls clearfix">
+                                                            <select ng-model="page.model[item.ngModel]" multiple multiselectdropdown ng-options="item.value as item.label group by item.ParentName for item in page.model[item.dataSource]" data-live-search='true'>                                        
+                                                            </select>
+                                                        </div>
+                                                        <br>
+                                                        <br>
                                                     </div>
                                                     <div class="col-lg-4" ng-if="item.controlType==='radiomalagik'">
                                                         <p>{{item.labelName}}</p>
@@ -114,7 +137,6 @@
                                                             <div layout-gt-sm="row" class="generalane">
                                                                 <input ng-class="page.model[item.ngModelFrom].trim()!==''&& page.model[item.ngModelFrom]!==undefined && page.model[item.ngModelFrom]!==null?'bacg':''" class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model[item.ngModelFrom]"
                                                                     style="width:100px !important;margin-right:10px;" placeholder="From" type="text">
-
                                                                 <input ng-class="page.model[item.ngModelTo].trim()!==''&& page.model[item.ngModelTo]!==undefined && page.model[item.ngModelTo]!==null?'bacg':''" class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" placeholder="To" ng-model="page.model[item.ngModelTo]"
                                                                     type="text" style="width: 100px !important;">
                                                             </div>
@@ -169,7 +191,8 @@
                                         <br>
                                         <div class="col-lg-offset-5">
                                             <md-button class="md-raised md-warn md-hue-2" ng-click="tab.arrayname===1?page.model.submitgeneral(1,10):page.model.submitadvancedsearch(1,10)">Search</md-button>
-                                            <md-button class="md-raised md-hue-1" ng-click="page.model[item.ngModelFrom]=undefined;tab.arrayname===1?page.clearSelection(page.model.domDatageneral):page.clearSelection(page.model.domDataadvanced)">Reset</md-button>
+                                            <!--<md-button class="md-raised md-hue-1" ng-click="tab.arrayname===1?page.clearSelection(page.model.domDatageneral):page.clearSelection(page.model.domDataadvanced)">Reset</md-button>-->
+                                            <input type="reset" class="btn btn-default" ng-click="tab.arrayname===1?page.clearSelection(page.model.domDatageneral):page.clearSelection(page.model.domDataadvanced)" value="Reset">
                                         </div>
                                     </div>
                                 </div>
@@ -257,7 +280,7 @@
                     <label class="generalpopuplabel">Relationship<label>
                 </div>
                 <div class="col-lg-8">
-            <select  class="col-lg-12"  ng-model="page.model.relationshippopup" multiselectdropdown typeofdata=" 'childStayingWith'" ng-change="page.model.relationshipbind(5,page.model.ProfileIDpopup,page.model.relationshippopup)">   
+              <select  class="col-lg-12"  ng-model="page.model.relationshippopup" multiselectdropdown typeofdata="'childStayingWith'" ng-change="page.model.relationshipbind(5,page.model.ProfileIDpopup,page.model.relationshippopup)">   
              </select>
                 </div>
              </div>

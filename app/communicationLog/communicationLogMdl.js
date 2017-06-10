@@ -8,8 +8,6 @@
             model.gridtable2 = {};
             model.gridtable3 = {};
             model.gridtable4 = {};
-            //model.Profileidcommunication = "210212849";
-            // model.Profileidcommunication = "210910352";
             model.showsearchrows = true;
             model.showsearch = true;
             model.showpaging = false;

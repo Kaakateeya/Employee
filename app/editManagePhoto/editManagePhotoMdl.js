@@ -6,13 +6,9 @@
         var model = {};
         model.scope = {};
         //start declaration block
-
         var CustID = stateParams.CustID;
-
         model.loginpaidstatus = authSvc.getpaidstatus();
         var genderID = 1;
-
-
         var loginEmpid = authSvc.LoginEmpid();
         var AdminID = authSvc.isAdmin();
         model.photorowID = 0;
@@ -23,12 +19,10 @@
             model.loginEmpid = authSvc.LoginEmpid();
             model.Admin = model.Admin = authSvc.isAdmin();
             model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
-
             CustID = stateParams.CustID;
             model.getData();
             return model;
         };
-
         model.getData = function() {
             editManagePhotoService.getPhotoData(CustID).then(function(response) {
                 var StrCustID = CustID;
@@ -38,14 +32,9 @@
                 model.refreshPageLoad(model.manageArr);
             });
         };
-
-
         model.refreshPageLoad = function(Arr) {
-
             _.each(Arr, function(item) {
-
                 genderID = item.GenderID;
-
                 model.rbtProtectPassword = item.PhotoPassword === 'Admin@123' ? '1' : '0';
                 var imagepath = app.accesspathdotsImg;
                 if (item.IsActive === 0 && item.PhotoName !== null) {
@@ -55,12 +44,9 @@
                     //item.ImageUrl = path1;
                     item.addButtonvisible = false;
                     item.keyname = strCustDirName1 + "/" + item.PhotoName;
-
                 } else if (item.IsActive === 1 && item.IsThumbNailCreated === 1) {
-
                     var strCustDirName = "KMPL_" + CustID + "_Images";
                     item.addButtonvisible = false;
-
                     switch (item.DisplayOrder) {
                         case 1:
                             var photoshoppath = "Img1_Images/" + item.ProfileID + "_ApplicationPhoto.jpg";
@@ -89,11 +75,9 @@
             });
             return Arr;
         };
-
         model.cancel = function() {
             commonFactory.closepopup();
         };
-
         model.AddImage = function(index, Cust_Photos_ID, DisplayOrder, IsActive) {
             model.photorowID = index;
             model.Cust_Photos_ID = Cust_Photos_ID;
@@ -141,7 +125,6 @@
                                     Admin: AdminID
                                 }
                             };
-
                             editManagePhotoService.submituploadData(model.uploadData).then(function(response) {
                                 console.log(response);
                                 if (response.status === 200) {
@@ -160,7 +143,6 @@
             } else {
                 alert("This browser does not support HTML5.");
             }
-
         };
 
         model.DeleteImage = function(key, Cust_Photoid) {
@@ -168,7 +150,6 @@
             model.DCust_Photos_ID = Cust_Photoid;
             commonFactory.open('deleteimagePopup.html', model.scope, uibModal, 'sm');
         };
-
         model.Delete = function() {
             var keynameq = app.prefixPathImg + model.deleteKey;
             http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {
@@ -182,7 +163,6 @@
                 }
             });
         };
-
         model.setAsProfilePic = function(cust_photoID) {
             editManagePhotoService.linqSubmits(cust_photoID, 2).then(function(response) {
                 console.log(response.data);
@@ -192,9 +172,7 @@
                 }
             });
         };
-
         model.setPhotoPassword = function(obj) {
-
             editManagePhotoService.linqSubmits(CustID, obj).then(function(response) {
                 console.log(response);
                 if (response.data === 1) {
@@ -206,11 +184,8 @@
                     }
                 }
             });
-
         };
-
         model.redirectPage = function(type) {
-
             switch (type) {
                 case 'PhotoGuideLines':
                     window.open('registration/photoGuideLines', '_blank');
@@ -223,11 +198,8 @@
                     break;
             }
         };
-
-
         return model.init();
     }
-
     angular
         .module('Kaakateeya')
         .factory('editManagePhotoModel', factory);

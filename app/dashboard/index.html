@@ -123,9 +123,8 @@
         <h4 class="modal-title text-center">Update Reminder</h4>
     </div>
     <div class="modal-body reminderticket">
-        <div>
+        <div class="reminderCls">
             <form name="reminderform" novalidate role="form" ng-submit="reminderform.$valid  && page.model.reminderSubmit(page.model);">
-
                 <ul>
                     <li class="clearfix">
                         <label class="pop_label_left Notrequired">Profile ID</label>
@@ -136,25 +135,22 @@
                     <li class="clearfix">
                         <label class="pop_label_left">Date of reminder<span style="color:red;">*</span>  </label>
                         <div class="pop_controls_right">
-                            <!--<custom-datepicker name="txtremedateofrember" ng-model="page.model.txtreminderDate" date-options="page.model.dateOptions"></custom-datepicker>-->
-
                             <input required="" type="text" name="txtremedateofrember" ui-date-format="dd-MM-yyyy" class="datepicker3 form-control" ng-model="page.model.txtreminderDate" ui-date="page.model.dateOptions" />
                             <div ng-messages="reminderform.txtremedateofrember.$invalid">
                                 <div style="color: red;font-size: 12px;" ng-if="reminderform.txtremedateofrember.$invalid && (reminderform.$submitted)">*Required.</div>
                             </div>
-
                         </div>
                     </li>
                     <li class="clearfix">
                         <label class="pop_label_left">Time of reminder<span style="color:red;">*</span></label>
                         <div class="pop_controls_right">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-5">
                                     <select required="" name="ddlhrsreminder" ng-model="page.model.ddlHrs" ng-options="hour.value as hour.label for hour in page.model.Hoursarray" multiselectdropdown class="smalldropdown">   
                                    </select>
                                 </div>
-                                <div class="col-lg-6">
-                                    <select required="" name="ddlminsreminder" ng-model="page.model.ddlmins" ng-options="min.value as min.label for min in page.model.miniutearray" multiselectdropdown class="smalldropdown">   
+                                <div class="col-lg-5">
+                                    <select required="" name="ddlminsreminder" ng-model="page.model.ddlmins" ng-options="min.value as min.label for min in page.model.miniutearray" multiselectdropdown class="doublesmalldropdown">   
                                 </select>
                                 </div>
                             </div>
@@ -171,27 +167,24 @@
                     <li class="clearfix">
                         <label class="pop_label_left">Call type<span style="color:red;">*</span></label>
                         <div class="pop_controls_right">
-                            <select required="" name="calltypeddl" ng-model="page.model.ddlremCaltype" ng-options="call.value as call.label for call in page.model.calltypearray" multiselectdropdown>   
+                            <select class="selectCls" required="" name="calltypeddl" ng-model="page.model.ddlremCaltype" ng-options="call.value as call.label for call in page.model.calltypearray" multiselectdropdown>   
                        </select>
-
                             <div ng-messages="reminderform.calltypeddl.$invalid">
                                 <div style="color: red;font-size: 12px;" ng-if="reminderform.calltypeddl.$invalid && (reminderform.$submitted)">*Required.</div>
                             </div>
-
                         </div>
                     </li>
                     <li class="clearfix">
                         <label class="pop_label_left">Contact person<span style="color:red;">*</span> </label>
                         <div class="pop_controls_right">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-5">
                                     <select name="ddlcontactpersonrember" required="" ng-model="page.model.ddlcontactperson" ng-options="person.value as person.label for person in page.model.replaytypearray" multiselectdropdown class="smalldropdownperson">
                              </select>
                                 </div>
-                                <div class="col-lg-6">
-                                    <input ng-model="page.model.contactpersonname" name="txtcontactPersnname" type="text" class="form-control">
+                                <div class="col-lg-5">
+                                    <input ng-model="page.model.contactpersonname" name="txtcontactPersnname" type="text" class="form-control doublesmalldropdown">
                                 </div>
-
                             </div>
                             <div ng-messages="reminderform.ddlcontactpersonrember.$invalid">
                                 <div style="color: red;font-size: 12px;" ng-if="reminderform.ddlcontactpersonrember.$invalid && (reminderform.$submitted)">*Required.</div>
@@ -207,14 +200,14 @@
                     <li class="clearfix">
                         <label class="pop_label_left Notrequired">Category</label>
                         <div class="pop_controls_right">
-                            <select ng-options="category.value as category.label for category in page.model.categoryarray" ng-model="page.model.ddlremCatgory" multiselectdropdown>   
+                            <select class="selectCls" ng-options="category.value as category.label for category in page.model.categoryarray" ng-model="page.model.ddlremCatgory" multiselectdropdown>   
                        </select>
                         </div>
                     </li>
                     <li class="clearfix">
                         <label class="pop_label_left">Notes<span style="color:red;">*</span></label>
                         <div class="pop_controls_right">
-                            <textarea required="" ng-model="page.model.remembertickets" name="txtremNotes" class="form-control"></textarea>
+                            <textarea class="selectCls" required="" ng-model="page.model.remembertickets" name="txtremNotes" class="form-control"></textarea>
                             <div ng-messages="reminderform.txtremNotes.$invalid">
                                 <div style="color: red;font-size: 12px;" ng-if="reminderform.txtremNotes.$invalid && (reminderform.$submitted)">*Required.</div>
                             </div>

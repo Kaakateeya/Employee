@@ -78,12 +78,8 @@
 //     }
 // })();
 
-
-
-
 (function() {
     'use strict';
-
     angular
         .module('Kaakateeya')
         .directive('fixedHeader', directive);

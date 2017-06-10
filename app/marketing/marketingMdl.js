@@ -615,7 +615,7 @@
             };
 
             model.changereminder = function(slidearray) {
-                debugger;
+
                 model.reminderslidearray = {};
                 model.reminderslidearray = slidearray;
                 model.txtprofileidreminder = slidearray.ProfileID;

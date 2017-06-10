@@ -80,7 +80,6 @@
         };
 
         model.mailchange = function(val) {
-            debugger;
             return _.where(model.marReplyArr, { value: parseInt(val) })[0].text;
         };
 
