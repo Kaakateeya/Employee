@@ -144,6 +144,9 @@
                             item.ddlmrktAssignmemo = parseInt(empid);
                             item.txtmrktCalltelephonenumberIn = item.txtmrktCalltelephonenumberout = item.PrimaryContactNumber;
 
+                            item.ddlmrktReplyTypeIn = item.ddlmrktreplytypeout = item.ddlmrktReplyMemo = 7;
+                            item.txtmrktcalldiscussionMemo = item.txtmrktCalldiscussionin = item.txtmrktCalldiscussionout = model.mailchange(7);
+
                             item.histryObj = _.where(response.data.MarketingslideHistory, { Emp_Ticket_ID: item.Emp_Ticket_ID.toString() });
                             _.map(item.histryObj, function(iiitm) {
                                 iiitm.ReplyDatenew = moment(iiitm.ReplyDatenew).format('YYYY/MM/DD h:mm a')

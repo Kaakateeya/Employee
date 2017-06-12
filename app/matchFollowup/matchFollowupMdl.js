@@ -73,6 +73,17 @@
                 { id: 4, text: 'Contact details of the Groom/bride is given below.' }
             ];
 
+            model.notInrstarray = [
+                { id: 1, text: 'The horoscope is not matching' },
+                { id: 2, text: 'Is not in the age criteria.' },
+                { id: 3, text: 'Is not satisfied with the height' },
+                { id: 4, text: 'Is not satisfied with the educational criteria.' },
+                { id: 5, text: 'Is not satisfied with the professional criteria.' },
+                { id: 6, text: 'There is financial incompatibility' },
+                { id: 7, text: 'Is not satisfied with the photos provided' }
+            ];
+
+
             model.matchFollowupSelect = function(empid, custID, typeofpopup) {
 
                 var inputobj = {
@@ -276,7 +287,7 @@
                         strMobileCountryCode: mobileCountryCode,
                         i_TicketID: ticketID,
                         marketbothflag: 'Bothone'
-                    }
+                    };
                 } else {
                     model.custName = name + '(' + profileid + ')';
                     model.custemail = email;
@@ -294,7 +305,7 @@
                         TicketStatusID: model.checkStatusID(ticketStatusId),
                         FromProfileID: profileid,
                         ToProfileID: ToProfileID
-                    }
+                    };
                     timeout(function() {
                         model.txtsmsmail = model.mailchange(model.ddlmail);
                     }, 500);
@@ -388,7 +399,7 @@
 
                 });
             };
-            model.openActionPopup = function(ticketID, profileID, number) {
+            model.openActionPopup = function(ticketID, profileID, number, fromcustid, tocustid, ticketStatusId, ToProfileID) {
                 model.bindreplytype();
                 model.actobj.ddlInreceivedfrom = 39;
                 model.actobj.ddlOutreceivedby = 39;
@@ -399,8 +410,8 @@
 
                 model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = '';
                 model.actobj.ddlInReplyType =
-                    model.actobj.ddlOutreplytype =
-                    model.actobj.ddlMemReplyType =
+                    model.actobj.rbtnReplyTypeout =
+                    model.actobj.rbtnReplyType =
                     model.actobj.ddlcloseReplyType = '';
 
                 model.ActionTicket = ticketID;
@@ -417,11 +428,27 @@
 
                     }
                 });
+                model.mailInput = {};
+                model.mailInput = {
+                    // Notes: obj.CallDiscussion,
+                    EMPID: model.empid,
+                    profileid: profileID,
+                    LTicketID: ticketID,
+                    HistoryUpdate: 2,
+                    FromCustID: fromcustid,
+                    TocustID: tocustid,
+                    TicketStatusID: model.checkStatusID(ticketStatusId),
+                    FromProfileID: profileID,
+                    ToProfileID: ToProfileID
+                };
+
+
                 modelpopupopenmethod.showPopup('Actions.html', model.scope, 'lg', 'Actioncls');
             };
 
 
-            model.ActionSubmit = function(obj, str) {
+            model.ActionSubmit = function(obj, str, intrstType) {
+                obj.CallDiscussion = intrstType ? (parseInt(intrstType) === 1 ? 'Interested in your match' : obj.CallDiscussion) : obj.CallDiscussion;
                 var alertmsg = '',
                     replyTypedisplay = '';
                 var inputObj = {
@@ -434,13 +461,22 @@
                     DisplayStatus: obj.DisplayStatus,
                     TicketID: model.ActionTicket,
                     EmpID: model.empid,
-                    Replaytypeid: obj.Replaytypeid,
+                    // Replaytypeid: obj.Replaytypeid,
                     AssignedEmpID: obj.AssignedEmpID
                 };
 
                 matchFollowupServices.ActionSubmit(inputObj).then(function(response) {
                     if (parseInt(response.data) === 1) {
                         model.closeAction();
+                        model.mailInput.Notes = obj.CallDiscussion;
+                        if (str === 'Incoming' || str === 'Out going' || str === 'Internal Memo') {
+                            matchFollowupServices.sendMail(model.mailInput).then(function(response) {
+                                if (parseInt(response.data) === 1) {
+                                    // model.proceed.closepopup();
+                                    // alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent successfully', 9500);
+                                }
+                            });
+                        }
 
                         var curdate = moment().format('Do MMMM YYYY, h:mm:ss');
                         if (str === 'Incoming') {
@@ -500,9 +536,9 @@
                     PhoneNum: obj.txtInCalltelephonenumber,
                     CallDiscussion: obj.txtInCalldiscussion,
                     DisplayStatus: obj.rbtnInDisplay,
-                    Replaytypeid: obj.ddlInReplyType
+                    // Replaytypeid: obj.ddlInReplyType
                 };
-                model.ActionSubmit(inputObj, 'Incoming');
+                model.ActionSubmit(inputObj, 'Incoming', obj.rbtnReplyType);
             };
             model.outCallsSubmit = function(obj) {
                 var inputObj = {
@@ -513,9 +549,9 @@
                     PhoneNum: obj.txtOutCalltelephonenumber,
                     CallDiscussion: obj.txtOutCalldiscussion,
                     DisplayStatus: obj.rbtnOutDisplay,
-                    Replaytypeid: obj.ddlOutreplytype
+                    // Replaytypeid: obj.ddlOutreplytype
                 };
-                model.ActionSubmit(inputObj, 'Out going');
+                model.ActionSubmit(inputObj, 'Out going', obj.rbtnReplyTypeout);
             };
 
             model.memoSubmit = function(obj) {
@@ -525,7 +561,7 @@
                     // AssignedEmpID: obj.ddlMemAssign
                     AssignedEmpID: null
                 };
-                model.ActionSubmit(inputObj, 'Internal Memo');
+                model.ActionSubmit(inputObj, 'Internal Memo', obj.rbtnReplyTypememo);
             };
 
             model.closeSubmit = function(obj) {
@@ -548,11 +584,22 @@
                 });
             };
 
+            model.NotIntrstChnge = function(val, type) {
+                model.typeOFCall = type;
+                if (val === '0') {
+                    modelpopupopenmethod.showPopupphotopoup('notIntrstPopup.html', model.scope, 'md', 'notintrstCls');
+                }
+            };
 
-
-
-
-
+            model.notIntrstchangeBind = function(val) {
+                if (model.typeOFCall === 'In') {
+                    model.actobj.txtInCalldiscussion = _.where(model.notInrstarray, { id: parseInt(val) })[0].text;
+                } else if (model.typeOFCall === 'Out') {
+                    model.actobj.txtOutCalldiscussion = _.where(model.notInrstarray, { id: parseInt(val) })[0].text;
+                } else {
+                    model.actobj.txtMemmemocalldiscussion = _.where(model.notInrstarray, { id: parseInt(val) })[0].text;
+                }
+            };
             return model;
         };
     }

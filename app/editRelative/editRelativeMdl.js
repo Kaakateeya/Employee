@@ -2,7 +2,7 @@
     'use strict';
 
 
-    function factory(editRelativeService, authSvc, alertss, commonFactory, uibModal, SelectBindService, stateParams) {
+    function factory(editRelativeService, authSvc, alertss, commonFactory, uibModal, SelectBindService, stateParams, modelpopupopenmethod) {
         var model = {};
         model.scope = {};
 
@@ -15,9 +15,7 @@
         model.deleteDisplayTxt = '';
         model.identityID = 0;
         model.ddlFSHCountryID = 1;
-        // var logincustid = authSvc.getCustId();
         var custid = model.CustID = stateParams.CustID;
-        //  model. = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
         var loginEmpid = authSvc.LoginEmpid();
         var AdminID = authSvc.isAdmin();
         //end declaration block
@@ -47,12 +45,18 @@
             model.eventType = 'add';
             switch (type) {
                 case 'FB':
+                    model.fatherBrother[0].dataSource = modelpopupopenmethod.getNumForPrintOrderbind(model.FBArr.length + 1);
+
                     model.FatherbrotherCustfamilyID = null;
                     model.popupdata = model.fatherBrother;
                     model.popupHeader = "Father's Brother Details";
+
                     if (item !== undefined) {
+                        model.fatherBrother[0].dataSource = modelpopupopenmethod.getNumForPrintOrderbind(model.FBArr.length);
                         model.eventType = 'edit';
                         model.FatherbrotherCustfamilyID = item.FatherbrotherCustfamilyID;
+
+                        model.fbPrintOrder = item.BornOrder;
                         model.rdlFBElderORyounger = item.FatherBrotherElderyounger == 'Elder' ? 324 : (item.FatherBrotherElderyounger == 'Younger' ? 323 : '-1');
                         model.txtFatherbrothername = item.FatherbrotherName;
                         model.txtFBEducationdetails = item.FatherBrotherEducationDetails;
@@ -79,12 +83,17 @@
                     break;
 
                 case 'FS':
+                    model.fatherSister[0].dataSource = modelpopupopenmethod.getNumForPrintOrderbind(model.FSArr.length + 1);
                     model.FatherSisterCustfamilyID = null;
                     model.popupdata = model.fatherSister;
                     model.popupHeader = "Father's Sister Details";
                     if (item !== undefined) {
                         model.eventType = 'edit';
+                        model.fatherSister[0].dataSource = modelpopupopenmethod.getNumForPrintOrderbind(model.FSArr.length);
+
                         model.FatherSisterCustfamilyID = item.FatherSisterCustfamilyID;
+                        model.fsPrintOrder = item.BornOrder;
+
                         model.rdlFSElderYounger = item.FatherSisterElderyounger == 'Elder' ? 326 : (item.FatherSisterElderyounger == 'Younger' ? 325 : '-1');
                         model.txtFathersistername = item.FatherSisterName;
                         model.txtFSHusbandfirstname = item.SpouceFName;
@@ -117,12 +126,15 @@
                     break;
 
                 case 'MB':
+                    model.motherBrother[0].dataSource = modelpopupopenmethod.getNumForPrintOrderbind(model.MBrr.length + 1);
                     model.MotherBrotherCustfamilyID = null;
                     model.popupdata = model.motherBrother;
                     model.popupHeader = "Mother's Brother Details";
                     if (item !== undefined) {
                         model.eventType = 'edit';
+                        model.motherBrother[0].dataSource = modelpopupopenmethod.getNumForPrintOrderbind(model.MBrr.length);
                         model.MotherBrotherCustfamilyID = item.MotherBrotherCustfamilyID;
+                        model.mbPrintOrder = item.BornOrder;
                         model.rdlMBElderYounger = item.MotherBrotherElderyounger == 'Elder' ? 328 : (item.MotherBrotherElderyounger == 'Younger' ? 327 : '-1');
                         model.txtMBName = item.MotherBrotherName;
                         model.txtMBEducation = item.MotherBrotherEducationDetails;
@@ -149,12 +161,15 @@
 
                     break;
                 case 'MS':
+                    model.motherSister[0].dataSource = modelpopupopenmethod.getNumForPrintOrderbind(model.MSArr.length + 1);
                     model.MotherSisterCustfamilyID = null;
                     model.popupdata = model.motherSister;
                     model.popupHeader = "Mother's Sister Details";
                     if (item !== undefined) {
                         model.eventType = 'edit';
+                        model.motherSister[0].dataSource = modelpopupopenmethod.getNumForPrintOrderbind(model.MSArr.length);
                         model.MotherSisterCustfamilyID = item.MotherSisterCustfamilyID;
+                        model.msPrintOrder = item.BornOrder;
                         model.rdlMSElderYounger = item.MotherSisterElderyounger == 'Elder' ? 330 : (item.MotherSisterElderyounger == 'Younger' ? 329 : '-1');
                         model.txtMSName = item.MotherSisterName;
                         model.txtMsHusbandfirstname = item.SpouceFName;
@@ -296,6 +311,7 @@
         };
         //Father Details
         model.fatherBrother = [
+            { lblname: 'PrintOrder in view profile', controlType: 'select', ngmodel: 'fbPrintOrder', parameterValue: 'BornOrder' },
             { lblname: 'Elder/Younger', controlType: 'radio', ngmodel: 'rdlFBElderORyounger', required: true, ownArray: 'FBElderYounger', parameterValue: 'FBElderYounger' },
             { lblname: "Father's brother name", controlType: 'textbox', ngmodel: 'txtFatherbrothername', required: true, parameterValue: 'Fatherbrothername' },
             { lblname: 'Education', controlType: 'textbox', ngmodel: 'txtFBEducationdetails', parameterValue: 'FatherBrotherEducationDetails' },
@@ -311,7 +327,6 @@
                 strareacode: 'txtFBAreCode',
                 strland: 'txtFBLandNumber',
                 strmail: 'txtFBEmails',
-
                 mobileCodeIdParameterValue: 'FBMobileCountryID',
                 mobileNumberParameterValue: 'FBMobileNumber',
                 landCountryCodeIdParameterValue: 'FBLandLineCountryID',
@@ -324,13 +339,13 @@
         ];
 
         model.fatherSister = [
+            { lblname: 'PrintOrder in view profile', controlType: 'select', ngmodel: 'fsPrintOrder', parameterValue: 'BornOrder' },
             { lblname: 'Elder/Younger', controlType: 'radio', ngmodel: 'rdlFSElderYounger', required: true, ownArray: 'FSElderYounger', parameterValue: 'FSElderYounger' },
             { lblname: "Father's sister name", controlType: 'textbox', ngmodel: 'txtFathersistername', required: true, parameterValue: 'FSFathersistername' },
             { lblname: "Husband first name", controlType: 'textbox', ngmodel: 'txtFSHusbandfirstname', parameterValue: 'FSHusbandfirstname' },
             { lblname: "Husband last name", controlType: 'textbox', ngmodel: 'txtFSHusbandlastname', parameterValue: 'FSHusbandlastname' },
             { lblname: 'FSH Education', controlType: 'textbox', ngmodel: 'txtFSHEDucation', parameterValue: 'FSHEducationdetails' },
             { lblname: 'FSH Profession', controlType: 'textbox', ngmodel: 'txtFSProfessiondetails', parameterValue: 'FSHProfessiondetails' },
-
             {
                 controlType: 'country',
                 countryshow: false,
@@ -371,6 +386,7 @@
 
         //mother Details
         model.motherBrother = [
+            { lblname: 'PrintOrder in view profile', controlType: 'select', ngmodel: 'mbPrintOrder', parameterValue: 'BornOrder' },
             { lblname: 'Elder/Younger', controlType: 'radio', ngmodel: 'rdlFBElderORyounger', required: true, ownArray: 'MBElderYounger', parameterValue: 'MBElderYounger' },
             { lblname: "Mother's brother name", controlType: 'textbox', ngmodel: 'txtMBName', required: true, parameterValue: 'Motherbrothername' },
             { lblname: 'Education', controlType: 'textbox', ngmodel: 'txtMBEducation', parameterValue: 'MBEducationdetails' },
@@ -399,13 +415,13 @@
         ];
 
         model.motherSister = [
+            { lblname: 'PrintOrder in view profile', controlType: 'select', ngmodel: 'msPrintOrder', parameterValue: 'BornOrder' },
             { lblname: 'Elder/Younger', controlType: 'radio', ngmodel: 'rdlMSElderYounger', required: true, ownArray: 'MSElderYounger', parameterValue: 'MSElderYounger' },
             { lblname: "Mother's sister name", controlType: 'textbox', ngmodel: 'txtMSName', required: true, parameterValue: 'Mothersistername' },
             { lblname: "Husband first name", controlType: 'textbox', ngmodel: 'txtMsHusbandfirstname', parameterValue: 'MSHusbandfirstname' },
             { lblname: "Husband last name", controlType: 'textbox', ngmodel: 'txtMsHusbandlastname', parameterValue: 'MSHusbandlastname' },
             { lblname: 'FSH Education', controlType: 'textbox', ngmodel: 'txtMSHEducation', parameterValue: 'MSEducationdetails' },
             { lblname: 'FSH Profession', controlType: 'textbox', ngmodel: 'txtMSProfessiondetails', parameterValue: 'MSProfessiondetails' },
-
             {
                 controlType: 'country',
                 countryshow: false,
@@ -416,11 +432,9 @@
                 ddistrict: 'ddlMsDistrict',
                 countryParameterValue: 'MSCountryID',
                 stateParameterValue: 'MSMSHStateID',
-                districtParameterValue: 'MSMSHDistrictID',
-
+                districtParameterValue: 'MSMSHDistrictID'
             },
             { lblname: 'Native place', controlType: 'textbox', ngmodel: 'txtMSNativePlace', parameterValue: 'MSNativeplace' },
-
             {
                 controlType: 'contact',
                 emailhide: true,
@@ -466,6 +480,6 @@
         .module('Kaakateeya')
         .factory('editRelativeModel', factory);
 
-    factory.$inject = ['editRelativeService', 'authSvc', 'alert', 'commonFactory', '$uibModal', 'SelectBindService', '$stateParams'];
+    factory.$inject = ['editRelativeService', 'authSvc', 'alert', 'commonFactory', '$uibModal', 'SelectBindService', '$stateParams', 'modelpopupopenmethod'];
 
 })(angular);
