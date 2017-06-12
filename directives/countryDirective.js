@@ -28,7 +28,6 @@
         return directive;
 
         function link(scope, element, attrs) {
-
             if (scope.countryshow === true) {
                 if (scope.dcountry !== undefined) {
                     scope.stateArr = commonFactory.StateBind(scope.dcountry);
@@ -50,15 +49,12 @@
                     scope.cityeArr = commonFactory.districtBind(scope.dstate);
                 }
             }
-
             if (scope.cityshow === true && scope.cityeArr === undefined) {
                 if (scope.ddistrict !== undefined) {
                     scope.cityeArr = commonFactory.cityBind(scope.ddistrict);
                 }
             }
-
             scope.changeBind = function(type, parentval, countryVal) {
-
                 switch (type) {
                     case 'Country':
                         scope.stateArr = commonFactory.StateBind(parentval);
@@ -79,16 +75,11 @@
                         }
                         break;
                 }
-
             };
             scope.ShowCity = function() {
                 scope.cityinput = true;
                 scope.dcity = '';
             };
-
-
-
         }
     }
-
 })();

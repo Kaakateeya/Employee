@@ -15,6 +15,5 @@
      angular
          .module('Kaakateeya')
          .controller('editManagePhotoCtrl', controller);
-
      controller.$inject = ['editManagePhotoModel', '$scope', '$window'];
  })(angular);

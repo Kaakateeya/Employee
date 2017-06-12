@@ -60,6 +60,8 @@
                         <div ng-class="slide.FromTicket!==null && slide.FromTicket!==''?'col-lg-5 col-lg-offset-1':'col-lg-3'">
                             <button type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" class="btn btn-success-outline" ng-click="config.openActionPopup(slide.FromTicket,slide.FromProfileid,slide.FromMobileNumber,slide.fromcust_id, slide.tocustid, slide.FromticketStatusIDb, slide.Toprofileid);">{{slide.fromticketid}}</button>
                             <button type="button" ng-if="slide.FromTicket===null || slide.FromTicket===''" class="btn btn-success-outline" ng-click="config.Resendmail(slide.fromcust_id,slide.tocustid,slide.FromProfileid,slide.Toprofileid,slide.FromOfflineExpiryDate,slide.FromOnlineMembershipExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
+                            <br>
+                            <label>{{slide.FromName}}</label>
                         </div>
                         <div ng-class="slide.FromTicket!==null && slide.FromTicket!==''?'col-lg-6':'col-lg-9'">
                             <div ng-if="slide.FromTicket===null || slide.FromTicket===''" style="color:maroon">
@@ -127,6 +129,8 @@
                         <div ng-class="slide.ToTicket!==null && slide.ToTicket!==''?'col-lg-6':'col-lg-3'">
                             <button type="button" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" class="btn btn-success-outline" ng-click="config.openActionPopup(slide.ToTicket,slide.Toprofileid,slide.ToMobileNumber, slide.tocustid, slide.fromcust_id,slide.ToticketStatusIDb, slide.FromProfileid);">{{slide.Toticketid}}</button>
                             <button type="button" ng-if="slide.ToTicket===null || slide.ToTicket===''" class="btn btn-success-outline" ng-click="config.Resendmail(slide.tocustid,slide.fromcust_id,slide.Toprofileid,slide.FromProfileid,slide.ToOfflineExpiryDate,slide.ToonlineExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
+                            <br>
+                            <label>{{slide.ToName}}</label>
                         </div>
                         <div ng-class="slide.ToTicket!==null && slide.ToTicket!==''?'col-lg-6':'col-lg-9'">
                             <div ng-if="slide.ToTicket===null || slide.ToTicket===''" style="color:maroon">
@@ -168,7 +172,6 @@
             </a>
         </div>
         <br>
-
         <div class="popovercls">
             <div ng-repeat="item in config.ToticketHistryArr" ng-class-odd="'odd'">
                 <tickethistry-infm strtype="item.TicketType" strdate="item.TicketInfo" strempname="item.EmployeeName" strstatus="item.CallResult" strcustname="item.RelationName" strcomments="item.Body" strrelationship="item.Relation"></tickethistry-infm>
@@ -219,7 +222,7 @@
                                 <label class="pop_label_left">Call received from </label>
                                 <div class="pop_controls_right input-group">
                                     <select class="smalldropdown" name="ddlInreceivedfrom" ng-change="page.model.RelationshipChange(page.model.actobj.ddlInreceivedfrom,'In');" ng-model="page.model.actobj.ddlInreceivedfrom" multiselectdropdown typeofdata="'childStayingWith'" required>   
-                                                     </select>
+                                    </select>
                                 </div>
                             </li>
                             <li class="clearfix form-group">
@@ -233,12 +236,11 @@
                                 <div class="pop_controls_right input-group">
                                     <select class="smalldropdown" ng-model="page.model.actobj.ddlInCallresult" multiselectdropdown required>   
                                           <option value="">-- Select --</option>
-                                                    <option value="417">Successfull</option>
-                                                    <option value="418">UnSuccessfull</option>
-                                                     </select>
+                                          <option value="417">Successfull</option>
+                                          <option value="418">UnSuccessfull</option>
+                                    </select>
                                 </div>
                             </li>
-
                             <li class="clearfix form-group">
                                 <label class="pop_label_left">Call telephone number </label>
                                 <div class="pop_controls_right">
@@ -249,12 +251,18 @@
                             <li class="clearfix form-group">
                                 <label class="pop_label_left">Reply Type </label>
                                 <div class="pop_controls_right input-group">
+<<<<<<< HEAD
                                     <!--<select class="smalldropdown" ng-model="page.model.actobj.ddlInReplyType" multiselectdropdown ng-change="page.model.actobj.txtInCalldiscussion=page.model.mailchange(page.model.actobj.ddlInReplyType);" ng-options="item.value as item.label for item in page.model.ReplyArr"
                                         required></select>-->
                                     <md-radio-group ng-required="true" name="rbtnReplyType" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyType,'In');" layout="row" ng-model="page.model.actobj.rbtnReplyType" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                         <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
                                         <md-radio-button value="0"> Not Interested</md-radio-button>
                                     </md-radio-group>
+=======
+                                    <select class="smalldropdown" ng-model="page.model.actobj.ddlInReplyType" multiselectdropdown ng-change="page.model.actobj.txtInCalldiscussion=page.model.mailchange(page.model.actobj.ddlInReplyType);" ng-options="item.value as item.label for item in page.model.ReplyArr"
+                                        required>   
+                                      </select>
+>>>>>>> cc9937d5e09880acbaee9fa293b36fe4bd3a6eef
                                 </div>
                             </li>
                             <li class="clearfix form-group" ng-if="page.model.actobj.rbtnReplyType==='0'">
@@ -295,7 +303,7 @@
                                 <label class="pop_label_left">Call received by </label>
                                 <div class="pop_controls_right input-group">
                                     <select ng-change="page.model.RelationshipChange(page.model.actobj.ddlOutreceivedby,'Out');" ng-model="page.model.actobj.ddlOutreceivedby" multiselectdropdown typeofdata="'childStayingWith'" required>   
-                                                     </select>
+                                     </select>
                                 </div>
                             </li>
                             <li class="clearfix form-group">
@@ -309,9 +317,9 @@
                                 <div class="pop_controls_right input-group">
                                     <select ng-model="page.model.actobj.ddlOutcallresultout" multiselectdropdown required>   
                                           <option value="0">-- Select --</option>
-                                                    <option value="417" >Successfull</option>
-                                                    <option value="418">UnSuccessfull</option>
-                                                     </select>
+                                           <option value="417" >Successfull</option>
+                                           <option value="418">UnSuccessfull</option>
+                                     </select>
                                 </div>
                             </li>
 
@@ -327,12 +335,16 @@
                                 <div class="pop_controls_right input-group">
                                     <!--<select class="smalldropdown" ng-model="page.model.actobj.ddlOutreplytype" multiselectdropdown ng-change="page.model.actobj.txtOutCalldiscussion=page.model.mailchange(page.model.actobj.ddlOutreplytype);" ng-options="item.value as item.label for item in page.model.ReplyArr"
                                         required>   
+<<<<<<< HEAD
                                                      </select>-->
 
                                     <md-radio-group ng-required="true" name="rbtnReplyTypeout" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyTypeout,'Out');" layout="row" ng-model="page.model.actobj.rbtnReplyTypeout" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                         <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
                                         <md-radio-button value="0"> Not Interested</md-radio-button>
                                     </md-radio-group>
+=======
+                                   </select>
+>>>>>>> cc9937d5e09880acbaee9fa293b36fe4bd3a6eef
                                 </div>
                             </li>
                             <li class="clearfix form-group" ng-if="page.model.actobj.rbtnReplyTypeout==='0'">
@@ -397,7 +409,6 @@
                             <div class="col-lg-6">
                                 <button type="button" class="button_custom button_custom_reset" data-dismiss="modal" ng-click="page.model.closeAction();">Close</button>&nbsp;
                             </div>
-
                         </div>
                     </form>
                 </div>
@@ -412,7 +423,7 @@
                                 <div class="pop_controls_right input-group">
                                     <select class="smalldropdown" ng-model="page.model.actobj.ddlcloseReplyType" multiselectdropdown ng-change="page.model.actobj.txtcloseReason=page.model.mailchange(page.model.actobj.ddlcloseReplyType);" ng-options="item.value as item.label for item in page.model.ReplyArr"
                                         required>   
-                                                     </select>
+                                     </select>
                                 </div>
                             </li>
                             <li class="clearfix form-group">
@@ -437,7 +448,6 @@
             </uib-tab>
         </uib-tabset>
     </div>
-
 </script>
 <script type="text/ng-template" id="sendsmsMail.html">
     <div class="modal-header">

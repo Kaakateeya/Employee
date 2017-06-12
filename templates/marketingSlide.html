@@ -1,5 +1,4 @@
 <div class="row container" id="marketingdivid">
-
     <div class="col-lg-5" style="border-radius: 20px">
         <div>
             <div class="row">
@@ -18,7 +17,6 @@
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag===1" ng-click="model.getSettleDelete(slide.ProfileStatusID,slide.CustID);">Set/Del Reason</a>
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag===1" ng-click="model.NotIntrstToPay('Y',slide.Emp_Ticket_ID,slide.CustID);">Sibling Created</a>
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-click="model.NotIntrstToPay('N',slide.Emp_Ticket_ID,slide.CustID);">Do not Disturb</a>
-
                         <div ng-show="model.siblingsFlag===1">
                             <label class='control-label'>Online</label> :{{slide.onlinePayment?'Rs'+slide.onlinePayment:'Unpaid'}}
                             <br>
@@ -32,7 +30,6 @@
                         PD:<a href="javascript:void(0);">{{slide.PD}}</a> , DPD:<a href="javascript:void(0);">{{slide.DPD}}</a> , View:<a href="javascript:void(0);">{{slide.ViewCount}}</a> , NView:<a href="javascript:void(0);">{{slide.NView}}</a> , BI:
                         <a href="javascript:void(0);">{{slide.BI}}</a> , OppI :<a href="javascript:void(0);">{{slide.OppI}}</a>
                     </div>
-
                     <div class="vertical-text" ng-show="model.siblingsFlag===1" style="background-color: rgb(160, 2, 1);">{{slide.ProfileStatusID===56 || slide.ProfileStatusID===394?'DELETED':(slide.ProfileStatusID===57 || slide.ProfileStatusID===393?'SETTLED':'')}}</div>
                     <img id="CustImg11" ng-click='slidepopup(slide.CustID)' ng-src='{{slide.Photo}}' class="imgCls">
                     <div style="line-height: 22px;"><br><b>{{slide.CustomerName}} (<b><a href="javascript:void(0)" ng-click="model.ViewProfile(slide.ProfileID);">{{slide.ProfileID}}</a> - {{slide.registeredBranch}})</b></b><br>
@@ -119,7 +116,6 @@
             </div>
             <br>
             <div class="row text-left">
-
                 <span class="maroon" style="padding-left:10px;"> Mobile : </span>
                 <span>{{slide.PrimaryContactNumberCountyCode}} -{{slide.PrimaryContactNumber}}&nbsp;
                         <b  ng-class="slide.IsMobileVerified==='False'?'glyphicon glyphicon-ok':'fa fa-check-circle'"></b>
@@ -138,7 +134,6 @@
                 <input type="text" ng-model="slide.txtFeeValue" placeholder="Proposed Reg Fee" ng-if="!slide.Feedetails || slide.editval!=='Edit'" class="form-control feeInputClass" style="width:50%;" maxlength="7">
                 <a href="javascript:void(0);" ng-click="model.updateREGFee(slide,slide.txtFeeValue);" class="feeCls">{{slide.editval}} </a>
             </div>
-
             <div class="col-lg-6">
                 <label for="regfee" ng-show="slide.editSAval==='Edit'">Proposed SA Fee</label>
                 <span ng-if="slide.SettlementValue && slide.editSAval==='Edit'">{{slide.SettlementValue}}</span>
@@ -183,7 +178,6 @@
                                                     <input name="txtmrktRelationnameIn" ng-model="slide.txtmrktRelationnameIn" type="text" class="form-control required" required></input>
                                                 </div>
                                             </li>
-
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Call result </label>
                                                 <div class="pop_controls_right input-group">
@@ -201,7 +195,6 @@
                                                         required/>
                                                 </div>
                                             </li>
-
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Reply Type </label>
                                                 <div class="pop_controls_right select-box-my   input-group">
@@ -248,7 +241,6 @@
                                 <div>
                                     <form ng-if="slide.outgoingTab" name="outform" novalidate role="form" ng-submit="">
                                         <ul>
-
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Call received by </label>
                                                 <div class="pop_controls_right select-box-my input-group">
@@ -263,8 +255,6 @@
                                                     <input ng-model="slide.txtmrktRelationnameout" type="text" class="form-control" required/>
                                                 </div>
                                             </li>
-
-
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Call result </label>
                                                 <div class="pop_controls_right   input-group">
@@ -275,7 +265,6 @@
                                                      </select>
                                                 </div>
                                             </li>
-
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Call telephone number </label>
                                                 <div class="pop_controls_right">
@@ -283,7 +272,6 @@
                                                         required/>
                                                 </div>
                                             </li>
-
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Reply Type </label>
                                                 <div class="pop_controls_right select-box-my   input-group">
@@ -300,16 +288,13 @@
                                                     </md-radio-group>
                                                 </div>
                                             </li>
-
                                             <li class="clearfix">
                                                 <label class="pop_label_left" style="width:19%;">Call discussion </label>
                                                 <div class="pop_controls_right" style="width:80% !important;">
                                                     <textarea ng-model="slide.txtmrktCalldiscussionout" type="text" class="form-control" required rows="3"></textarea>
                                                 </div>
                                             </li>
-
                                             <br>
-
                                             <li class="col-lg-12">
                                                 <div class="col-lg-4">
                                                     <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktoutgng" class="button_custom pull-right" ng-click="outform.$valid && model.outcallSubmit(slide);slide.selectedIndex=0;">Outgoing Call</button>
@@ -318,14 +303,12 @@
                                                     <button type="submit" style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" id="btnOutgngAssignme" value="Submit" class="button_custom" ng-click="outform.$valid && model.outcallSubmit(slide,'assign');slide.selectedIndex=0;">Outgoing Call & Assign me</button>
                                                 </div>
                                             </li>
-
                                         </ul>
                                     </form>
                                     <div class="clearfix">
                                     </div>
                                     <md-divider></md-divider>
                                 </div>
-
                             </div>
                         </md-tab>
                         <md-tab md-on-select="slide.internalMemoTab=true" label="Internal Memo">
@@ -334,7 +317,6 @@
                                 <div>
                                     <form ng-if="slide.internalMemoTab" name="memoform" novalidate role="form" ng-submit="">
                                         <ul>
-
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Assign/Re-assign </label>
                                                 <div class="pop_controls_right select-box-my   input-group">
@@ -349,17 +331,13 @@
                                                      </select>
                                                 </div>
                                             </li>
-
-
                                             <li class="clearfix">
                                                 <label class="pop_label_left" style="width:19%;">Enter memo  </label>
                                                 <div class="pop_controls_right" style="width:80% !important;">
                                                     <textarea ng-model="slide.txtmrktcalldiscussionMemo" type="text" class="form-control" required rows="3"></textarea>
                                                 </div>
                                             </li>
-
                                             <br>
-
                                             <li class="col-lg-12">
                                                 <div class="col-lg-4">
                                                     <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" class="button_custom pull-right" ng-click="memoform.$valid && model.memoSubmit(slide);slide.selectedIndex=0;">Internal Memo</button>
@@ -368,12 +346,10 @@
                                                     <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIMAssignme" value="Submit" class="button_custom" ng-click="memoform.$valid && model.memoSubmit(slide,'assign');slide.selectedIndex=0;">Internal Memo & Assign me</button>;
                                                 </div>
                                             </li>
-
                                         </ul>
                                     </form>
                                     <div class="clearfix">
                                     </div>
-
                                     <md-divider></md-divider>
                                 </div>
                             </div>
@@ -402,7 +378,6 @@
                                                 <div class="col-lg-offset-1 col-lg-6">
                                                     <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" value="Submit" class="button_custom pull-right  pull-right">Close Ticket</button>
                                                 </div>
-
                                             </li>
                                         </ul>
                                     </form>
@@ -410,10 +385,8 @@
                                     </div>
                                     <md-divider></md-divider>
                                 </div>
-
                             </div>
                         </md-tab>
-
                     </md-tabs>
                 </md-content>
             </div>

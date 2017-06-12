@@ -1,6 +1,5 @@
 <div class="right_col" role="main" id="viwprofilecustomerprint">
     <h2 class="headerStyles" ng-if="page.model.personalinfo.length>0">Kaakateeya Marriages</h2>
-
     <div-print div-info="page.divInfo"></div-print>
     <div class="text-center" ng-hide="page.model.textboxshowhide">
         <div class="row">
@@ -22,7 +21,6 @@
                 <div>
                     <div class="profile_full_header_in">
                         <h6 style="font-size: 18px;">
-                            <!--<span id="lblName">{{page.model.personalinfo[0].NAME}}</span>-->
                             <span style="margin-left:350px;">(Profile ID:{{page.model.personalinfo[0].ProfileID}})</span>
                         </h6>
                     </div>
@@ -32,7 +30,6 @@
             <div class="profile_full_main" ng-hide="page.model.fullprofileshow">
                 <div class="profile_full_header clearfix printCls">
                     <div class="row">
-
                         <div class="col-lg-10 col-xs-10 col-md-10 col-sm-10">
                             <div class="profile_full_header_in">
                                 <div class='row'>
@@ -50,10 +47,8 @@
                                 <img name="iProfilePic" ng-click="page.model.showPhotoPopup()" ng-src="{{page.model.personalinfo[0].ApplicationPhotoPath}}" style="height:150px;width:150px;cursor:pointer;" />
                             </div>
                         </div>
-
                     </div>
                 </div>
-
                 <div class="profile_full_header clearfix displayCls">
                     <div class="profile_full_header_pic">
                         <div ng-class="divclassmask(LoginPhotoIsActive)">
@@ -90,13 +85,11 @@
                             <a href="#" class="edit_prsnl"></a>
                         </div>
                         <div class="personal_inform_main_in" ng-class="item.header==='My Basic Details'?'displayCls':''">
-
                             <div ng-class="page.model.applyCls(item.header);">
                                 <p ng-repeat="itm in item.value">
                                     <span style="color:Black;font-weight:bold;">{{itm.columnname|| (itm.columnName==='1'?'Education':(itm.columnName==='2'|| itm.columnName==='3' || itm.columnName==='4' || itm.columnName==='5')?"":itm.columnName) ||itm.ColumnName}}</span>
                                     <span>
-                                
-                           <span style="color:DarkBlue;"> <span ng-if="itm.columnname!='' && itm.columnname!=null">:</span>
+                                     <span style="color:DarkBlue;"> <span ng-if="itm.columnname!='' && itm.columnname!=null">:</span>
                                     <span ng-bind-html="itm.value || itm.Value" style="color:DarkBlue;"></span>
                                     </span>
                                     </span>
@@ -113,6 +106,30 @@
                             <p>
                                 <span>{{page.model.aboutmyself[0].Aboutyourself}}</span>
                             </p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="personal_inform_head clearfix" style="background-color: rgb(244, 182, 36); padding: 0px 10px; border-bottom: solid 1px #ccc;">
+                            <h4>{{page.model.personalinfo[0].GenderID===2?"Bride Contacts":"Groom Contacts"}}
+                            </h4>
+                        </div>
+                        <div class="personal_inform_main_in">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <span style="color:Black;font-weight:bold;">Mobile</span>
+                                    <span>
+                                     <span style="color:DarkBlue;"> <span>:</span>
+                                    <span style="color:DarkBlue;">{{page.model.aboutmyself[0].SelfContactNumber}}</span>
+                                    </span>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <span style="color:Black;font-weight:bold;">Email</span>
+                                    <span>
+                                     <span style="color:DarkBlue;"> <span>:</span>
+                                    <span style="color:DarkBlue;">{{page.model.aboutmyself[0].SelfEmailID}}</span>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

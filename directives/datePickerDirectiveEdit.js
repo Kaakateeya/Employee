@@ -22,16 +22,12 @@
         return directive;
 
         function link(scope, element, attrs) {
-
             if (scope.strdate !== '' && scope.strdate !== undefined && scope.strdate !== null)
                 scope.strdate = new Date(scope.strdate); //moment(new Date()).format();
             scope.showdate = false;
-
             scope.open2 = function() {
                 scope.showdate = true;
             };
-
         }
     }
-
 })();
