@@ -50,46 +50,6 @@ app.factory('alert', ['$uibModal', '$timeout', function(uibModal, timeout) {
                 windowClass: classs,
 
             });
-        },
-
-
-
-        applycolors: function(value, id) {
-            var colors = "selectborderclass";
-            if (value !== 0 && value !== "0" && value !== "" && value !== undefined && value !== null) {
-                colors = "selectborderclasscolor";
-                $('#' + id).next().find('button').addClass("bacg");
-            } else {
-                colors = "selectborderclass";
-                $('#' + id).next().find('button').removeClass("bacg");
-            }
-            return colors;
-        },
-
-        applycolorsfortextboxes: function(value, id) {
-            var colors = "textboxremvecolor";
-            if (value !== "" && value !== undefined && value !== null) {
-                colors = "bacg";
-                $('#' + id).addClass("bacg");
-            } else {
-                colors = "textboxremvecolor";
-                $('#' + id).removeClass("bacg");
-            }
-            return colors;
-        },
-
-        applycolorsfortextboxesdate: function(value, id) {
-            var colors = "textboxremvecolor";
-            if (value !== "" && value !== undefined && value !== null) {
-                colors = "bacg";
-                $('#' + id).next().find('input').addClass("bacg");
-            } else {
-                colors = "textboxremvecolor";
-                $('#' + id).next().find('input').removeClass("bacg");
-            }
-            return colors;
         }
-
-
     };
 }]);

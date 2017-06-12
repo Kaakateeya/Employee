@@ -7,7 +7,6 @@
     directive.$inject = ['$parse'];
 
     function directive($parse) {
-
         var directive = {
             link: link,
             restrict: 'A'
@@ -17,14 +16,11 @@
         function link(scope, element, attrs) {
             var model = $parse(attrs.fileModel);
             var modelSetter = model.assign;
-
             element.bind('change', function() {
                 scope.$apply(function() {
                     modelSetter(scope, element[0].files[0]);
                 });
             });
-
-
         }
     }
 

@@ -80,7 +80,6 @@
                 }
                 return cityeArr;
             },
-
             professionBind: function(parentval) {
                 var professionArr = [];
                 if (parentval !== undefined && parentval !== null && parentval !== '') {
@@ -95,7 +94,6 @@
                 return professionArr;
             },
             educationGroupBind: function(parentval) {
-
                 var educationGroupArr = [];
                 if (parentval !== undefined && parentval !== null && parentval !== '') {
                     if (parentval !== undefined && parentval !== null && parentval !== '') {
@@ -122,7 +120,6 @@
                 }
                 return educationSpecialArr;
             },
-
             numbersBind: function(str, from, to) {
                 var numArr = [];
 
@@ -219,7 +216,6 @@
                     return '';
                 }
             },
-
             AstroCity: function(countryName, stateName) {
                 var AstrocityArr = [];
                 AstrocityArr.push({ "label": "--select--", "title": "--select--", "value": "" });
@@ -231,6 +227,5 @@
                 return AstrocityArr;
             }
         };
-
     }
 })();
