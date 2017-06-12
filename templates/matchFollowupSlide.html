@@ -251,18 +251,12 @@
                             <li class="clearfix form-group">
                                 <label class="pop_label_left">Reply Type </label>
                                 <div class="pop_controls_right input-group">
-<<<<<<< HEAD
                                     <!--<select class="smalldropdown" ng-model="page.model.actobj.ddlInReplyType" multiselectdropdown ng-change="page.model.actobj.txtInCalldiscussion=page.model.mailchange(page.model.actobj.ddlInReplyType);" ng-options="item.value as item.label for item in page.model.ReplyArr"
                                         required></select>-->
                                     <md-radio-group ng-required="true" name="rbtnReplyType" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyType,'In');" layout="row" ng-model="page.model.actobj.rbtnReplyType" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                         <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
                                         <md-radio-button value="0"> Not Interested</md-radio-button>
                                     </md-radio-group>
-=======
-                                    <select class="smalldropdown" ng-model="page.model.actobj.ddlInReplyType" multiselectdropdown ng-change="page.model.actobj.txtInCalldiscussion=page.model.mailchange(page.model.actobj.ddlInReplyType);" ng-options="item.value as item.label for item in page.model.ReplyArr"
-                                        required>   
-                                      </select>
->>>>>>> cc9937d5e09880acbaee9fa293b36fe4bd3a6eef
                                 </div>
                             </li>
                             <li class="clearfix form-group" ng-if="page.model.actobj.rbtnReplyType==='0'">
@@ -335,16 +329,12 @@
                                 <div class="pop_controls_right input-group">
                                     <!--<select class="smalldropdown" ng-model="page.model.actobj.ddlOutreplytype" multiselectdropdown ng-change="page.model.actobj.txtOutCalldiscussion=page.model.mailchange(page.model.actobj.ddlOutreplytype);" ng-options="item.value as item.label for item in page.model.ReplyArr"
                                         required>   
-<<<<<<< HEAD
                                                      </select>-->
 
                                     <md-radio-group ng-required="true" name="rbtnReplyTypeout" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyTypeout,'Out');" layout="row" ng-model="page.model.actobj.rbtnReplyTypeout" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                         <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
                                         <md-radio-button value="0"> Not Interested</md-radio-button>
                                     </md-radio-group>
-=======
-                                   </select>
->>>>>>> cc9937d5e09880acbaee9fa293b36fe4bd3a6eef
                                 </div>
                             </li>
                             <li class="clearfix form-group" ng-if="page.model.actobj.rbtnReplyTypeout==='0'">

@@ -11,11 +11,8 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons',
     'ui.date'
 ]);
-<<<<<<< HEAD
 
 
-=======
->>>>>>> cc9937d5e09880acbaee9fa293b36fe4bd3a6eef
 // app.apiroot = 'http://52.66.131.254:8025/Api/';
 // app.apipathold = 'http://52.66.131.254:8010/Api/';
 app.apiroot = 'http://183.82.0.58:8025/Api/';
