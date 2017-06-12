@@ -125,7 +125,15 @@ app.factory('getArraysearch', ['arrayConstants', 'SelectBindServiceApp', functio
                         option = option;
                     });
                     break;
-
+                case 'currencyselect':
+                    service.currency().then(function(response) {
+                        option.push({ "label": "--select--", "title": "--select--", "value": "" });
+                        _.each(response.data, function(item) {
+                            option.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                        });
+                        option = option;
+                    });
+                    break;
                 case 'BranchName':
                     service.BranchName().then(function(response) {
                         _.each(response.data, function(item) {

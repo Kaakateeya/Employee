@@ -6,7 +6,6 @@
          var vm = this,
              model;
          vm.init = function() {
-             //vm.model = model = {};
              vm.model = model = searchpageModel();
              model.scope = scope;
              model.ProfileIDpopup = "";
@@ -23,10 +22,9 @@
              if (parseInt($stateParams.Profileid) !== 0) {
                  model.ProfileIDpopup = $stateParams.Profileid;
              }
-
+             vm.clearSelection(model.selectedIndex === "0" ? model.domDatageneral : model.domDataadvanced);
              alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass", 'searchpageCtrl');
              model.getControlList();
-             vm.clearSelection(model.selectedIndex === "0" ? model.domDatageneral : model.domDataadvanced);
              model.searchpopuptext = model.selectedIndex === "0" ? "General Search" : "Advance Search";
          };
          vm.directivechangeevent = function(modal, type) {
@@ -91,14 +89,14 @@
                  model.HeightToID = "";
                  model.AgeFromID = "0";
                  model.AgeToID = "0";
+                 model.AnnualincomeID = "";
                  model.Showinprofile = model.arrayToString("1");
                  model.ApplicationstatusID = model.arrayToString("54");
                  model.MothertongueID = model.arrayToString("1");
                  model.ReligionID = model.arrayToString("1");
                  model.Caste = Commondependency.casteDepedency(model.ReligionID, model.MothertongueID);
-             }, 1000);
+             }, 10);
          };
-
          vm.onTabSelected = function(value) {
              if (value === 1) {
                  vm.clearSelection(model.domDataadvanced);
@@ -111,7 +109,6 @@
                  model.ProfileIDpopup = '';
                  alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
              }
-
          };
          vm.init();
      }
