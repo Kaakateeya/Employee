@@ -5,6 +5,7 @@
         return function() {
             var model = {};
             model = slideconfig;
+            model.opendiv = true;
             model.getstatus = function(val) {
                 var oppositestatus = "";
                 switch (val) {
