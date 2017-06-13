@@ -200,6 +200,14 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                 return http.get(app.apiroot + 'StaticPages/getEmployeeLoginCoutDetails', {
                     params: {}
                 });
+            },
+            getNumForPrintOrderbind: function(count) {
+                var arr = [];
+                arr.push({ "label": "--Select--", "title": "--Select--", "value": '' });
+                for (var i = 1; i <= count; i++) {
+                    arr.push({ "label": "p" + i, "title": "p" + i, "value": i });
+                }
+                return arr;
             }
         };
     }
