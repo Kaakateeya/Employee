@@ -22,7 +22,7 @@
         <table class="Datatable table table-fixed table-hover table-bordered mainTableCls">
             <thead>
                 <tr>
-                    <th ng-if="!inneritem.isDetail && config.showplus" class="headerStyles"></th>
+                    <th ng-if="!inneritem.isDetail && config.showplus" class="headerStyles plusiconshow"></th>
                     <th ng-click="sort(item.key)" class="{{item.key}} headerStyles" ng-repeat="item in model.columns">{{item.text}}
                         <span class="glyphicon sort-icon" ng-show="sortKey==item.key" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                     </th>

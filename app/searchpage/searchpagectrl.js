@@ -6,6 +6,7 @@
          var vm = this,
              model;
          vm.init = function() {
+             vm.model = model = {};
              vm.model = model = searchpageModel();
              model.scope = scope;
              model.ProfileIDpopup = "";
@@ -22,9 +23,11 @@
              if (parseInt($stateParams.Profileid) !== 0) {
                  model.ProfileIDpopup = $stateParams.Profileid;
              }
-             vm.clearSelection(model.selectedIndex === "0" ? model.domDatageneral : model.domDataadvanced);
-             alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass", 'searchpageCtrl');
+             // vm.clearSelection(model.selectedIndex === "0" ? model.domDatageneral : model.domDataadvanced);
+             alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
              model.getControlList();
+             model.DOBfrom = "";
+             model.DOBTo = "";
              model.searchpopuptext = model.selectedIndex === "0" ? "General Search" : "Advance Search";
          };
          vm.directivechangeevent = function(modal, type) {
@@ -68,6 +71,7 @@
              }
          };
          vm.clearSelection = function(Arr) {
+             model.getpageloadobject = {};
              timeout(function() {
                  _.each(Arr, function(parentItem) {
                      _.each(parentItem.controlList, function(item) {
@@ -80,16 +84,17 @@
                          if (model[item.ngModelTo] !== undefined) {
                              model[item.ngModelTo] = undefined;
                          }
-                         model.DOBfrom = "";
-                         model.DOBTo = "";
                      });
 
                  });
-                 model.HeightFromID = "";
-                 model.HeightToID = "";
+                 model.getpageloadobject = {};
+                 model.HeightFromID = 0;
+                 model.HeightToID = 0;
                  model.AgeFromID = "0";
                  model.AgeToID = "0";
                  model.AnnualincomeID = "";
+                 model.DOBfrom = "";
+                 model.DOBTo = "";
                  model.Showinprofile = model.arrayToString("1");
                  model.ApplicationstatusID = model.arrayToString("54");
                  model.MothertongueID = model.arrayToString("1");

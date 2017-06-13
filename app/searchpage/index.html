@@ -99,13 +99,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-3" ng-if="item.controlType==='dualDropdown'">
-                                                        <p>{{item.labelName}}{{page.model[item.ngModelFrom]}}</p>
+                                                        <p>{{item.labelName}}</p>
                                                         <div class="controls clearfix row">
-                                                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6  generalane" ng-class="page.model[item.ngModelFrom]===undefined || page.model[item.ngModelFrom]===null || page.model[item.ngModelFrom].length===0 || page.model[item.ngModelFrom]==='0'?'':'ddlcolor'">
+                                                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6  generalane" ng-class="page.model[item.ngModelFrom]===undefined || page.model[item.ngModelFrom]===null || page.model[item.ngModelFrom].length===0 || page.model[item.ngModelFrom]===0?'':'ddlcolor'">
                                                                 <select ng-model="page.model[item.ngModelFrom]" multiselectdropdown ng-options="caste.value as caste.label for caste in page.model[item.dataSource]" class="smalldropdown">   
                                                                  </select>
                                                             </div>
-                                                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6  generalane" style="margin-left: -20px;" ng-class="page.model[item.ngModelTo]===undefined || page.model[item.ngModelTo]===null || page.model[item.ngModelTo].length===0 || page.model[item.ngModelTo]==='0' ?'':'ddlcolor'">
+                                                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6  generalane" style="margin-left: -20px;" ng-class="page.model[item.ngModelTo]===undefined || page.model[item.ngModelTo]===null || page.model[item.ngModelTo].length===0 || page.model[item.ngModelTo]===0?'':'ddlcolor'">
                                                                 <select class="smalldropdown" ng-model="page.model[item.ngModelTo]" multiselectdropdown ng-options="caste.value as caste.label for caste in page.model[item.dataSource]">
                                                                 </select>
                                                             </div>
@@ -318,6 +318,7 @@
             </div>
         </div>
         <div class="modal-footer">
+            <!--<input type="reset" class="btn btn-default" ng-click="page.model.closepopup()" value="Cancel"></input>-->
             <md-button class="md-raised md-hue-1" ng-click="page.model.closepopup()">Cancel</md-button>
             <md-button class="md-raised md-warn md-hue-2" ng-click="page.model.profileidupdate(page.model)">Submit</md-button>
         </div>

@@ -9,7 +9,6 @@
             model = config;
             model.gridtable = configgrid;
             model.CgetDetails = {};
-            model.getpageloadobject = {};
             model.Relationships = [];
             model.slideshowarray = [];
             model.divcontrolls = true;
@@ -52,7 +51,7 @@
                 return obj;
             };
             model.arrayToString = function(string) {
-                return string !== null ? (string.split(',')).map(Number) : null;
+                return string !== null && string !== "" && string !== undefined ? (string.split(',')).map(Number) : null;
             };
             model.profileidupdate = function(obj) {
                 model.init();
@@ -83,7 +82,7 @@
                         model.EducationCategoryID = model.arrayToString(data.EducationCategoryID);
                         model.Educationgroup = Commondependency.educationGroupBind((data.EducationCategoryID !== undefined && data.EducationCategoryID !== null && data.EducationCategoryID !== "") ? (data.EducationCategoryID) : "");
                         model.educationspeciallisation = Commondependency.educationSpeciakisationBind((data.EducationGroupID !== undefined && data.EducationGroupID !== null && data.EducationGroupID !== "") ? (data.EducationGroupID) : "");
-                        model.HeightFromID = data.MinHeight === "" ? 9 : parseInt(data.MinHeight);
+                        model.HeightFromID = data.MinHeight === 0 ? 9 : parseInt(data.MinHeight);
                         model.HeightToID = parseInt(data.MaxHeight);
                         if (model.selectedIndex === 1) {
                             model.ProfessionID = model.arrayToString(data.ProfessionGroup);
@@ -169,14 +168,14 @@
                 return Arr;
             };
             model.init = function() {
+                model.getpageloadobject = {};
                 model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
-
                 if (model.selectedIndex === 1) {
                     _.each(model.domDataadvanced, function(parentItem) {
                         _.each(parentItem.controlList, function(item) {
                             if (item.dataBind) {
-                                model[item.dataSource] = item.dataBind === "heightregistration" ? arrayConstants[item.dataBind] : model.removeSelect(arrayConstants[item.dataBind]);
+                                model[item.dataSource] = item.dataBind === "heightreSearch" ? arrayConstants[item.dataBind] : model.removeSelect(arrayConstants[item.dataBind]);
                             } else if (item.dataApi) {
                                 model[item.dataSource] = getArray.GArray(item.dataApi);
                             }
@@ -186,7 +185,7 @@
                     _.each(model.domDatageneral, function(parentItem) {
                         _.each(parentItem.controlList, function(item) {
                             if (item.dataBind) {
-                                model[item.dataSource] = item.dataBind === "heightregistration" ? arrayConstants[item.dataBind] : model.removeSelect(arrayConstants[item.dataBind]);
+                                model[item.dataSource] = item.dataBind === "heightreSearch" ? arrayConstants[item.dataBind] : model.removeSelect(arrayConstants[item.dataBind]);
                             } else if (item.dataApi) {
                                 model[item.dataSource] = getArray.GArray(item.dataApi);
                             }
@@ -197,6 +196,14 @@
                 model.ApplicationstatusID = model.arrayToString("54");
                 model.MothertongueID = model.arrayToString("1");
                 model.ReligionID = model.arrayToString("1");
+                model.HeightFromID = 0;
+                model.HeightToID = 0;
+                model.AgeFromID = "0";
+                model.AgeToID = "0";
+                model.DOBfrom = "";
+                model.DOBTo = "";
+                model.AnnualincomeID = "";
+                model.getpageloadobject = {};
                 model.Caste = Commondependency.casteDepedency((model.ReligionID !== undefined && model.ReligionID !== null && model.ReligionID.length > 0 ? (model.ReligionID).toString() : ""), ((model.MothertongueID !== undefined && model.MothertongueID !== null && model.MothertongueID !== "" && model.MothertongueID.length > 0) ? (model.MothertongueID).toString() : []));
             };
             model.GetPhotoandHoroscopevalues = function(strType, str) {
@@ -621,7 +628,7 @@
                             { ngModel: 'LastName', labelName: 'Last Name', controlType: 'textBox', isShow: true, validation: true },
                             { ngModelFrom: 'DOBfrom', ngModelTo: 'DOBTo', labelName: 'Date Of Birth', controlType: 'dobirth', isShow: true, validation: true },
                             // { typeofdata: 'Ageselect', ngModelFrom: 'AgeFromID', ngModelTo: 'AgeToID', labelName: 'Age', controlType: 'dualDropdown', isShow: true, validation: true },
-                            { ngModelFrom: 'HeightFromID', ngModelTo: 'HeightToID', labelName: 'Height', controlType: 'dualDropdown', isShow: true, dataBind: 'heightregistration', dataSource: 'heightregistrationarray', validation: true },
+                            { ngModelFrom: 'HeightFromID', ngModelTo: 'HeightToID', labelName: 'Height', controlType: 'dualDropdown', isShow: true, dataBind: 'heightreSearch', dataSource: 'heightregistrationarray', validation: true },
                             { divClear: true, ngModel: 'MaritalstatusID', labelName: 'Marital status', controlType: 'dropdown', isShow: true, dataBind: 'MaritalStatus', dataSource: 'maritalstatusg', validation: true },
                             { type: 'caste', ngModel: 'ReligionID', labelName: 'Religion', controlType: 'dropdown', isShow: true, dataBind: 'Religion', dataSource: 'religiong', validation: true },
                             { type: 'caste', ngModel: 'MothertongueID', labelName: 'Mother tongue', controlType: 'dropdown', isShow: true, dataBind: 'Mothertongue', dataSource: 'Mothertongueg', validation: true },
@@ -718,8 +725,8 @@
                             { ngModel: 'GenderID', controlType: 'gender', isShow: true, validation: true },
                             { ngModelFrom: 'DOBfrom', ngModelTo: 'DOBTo', labelName: 'Date Of Birth', controlType: 'dobirth', isShow: true, validation: true },
                             // { typeofdata: 'Ageselect', ngModelFrom: 'AgeFromID', ngModelTo: 'AgeToID', labelName: 'Age', controlType: 'dualDropdown', isShow: true, validation: true },
-                            // { typeofdata: 'heightregistration', ngModelFrom: 'HeightFromID', ngModelTo: 'HeightToID', labelName: 'Height', controlType: 'dualDropdown', isShow: true, dataBind: 'MaritalStatus', dataSource: 'maritalstatusg', validation: true },
-                            { ngModelFrom: 'HeightFromID', ngModelTo: 'HeightToID', labelName: 'Height', controlType: 'dualDropdown', isShow: true, dataBind: 'heightregistration', dataSource: 'heightregistrationarray', validation: true },
+                            // { typeofdata: 'heightreSearch', ngModelFrom: 'HeightFromID', ngModelTo: 'HeightToID', labelName: 'Height', controlType: 'dualDropdown', isShow: true, dataBind: 'MaritalStatus', dataSource: 'maritalstatusg', validation: true },
+                            { ngModelFrom: 'HeightFromID', ngModelTo: 'HeightToID', labelName: 'Height', controlType: 'dualDropdown', isShow: true, dataBind: 'heightreSearch', dataSource: 'heightregistrationarray', validation: true },
                             { ngModel: 'MaritalstatusID', labelName: 'Marital status', controlType: 'dropdown', isShow: true, dataBind: 'MaritalStatus', dataSource: 'maritalstatusg', validation: true },
                             { type: 'caste', ngModel: 'ReligionID', labelName: 'Religion', controlType: 'dropdown', isShow: true, dataBind: 'Religion', dataSource: 'religiong', validation: true },
                             { divClear: true, type: 'caste', ngModel: 'MothertongueID', labelName: 'Mother tongue', controlType: 'dropdown', isShow: true, dataBind: 'Mothertongue', dataSource: 'Mothertongueg', validation: true },

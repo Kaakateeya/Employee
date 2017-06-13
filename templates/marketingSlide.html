@@ -31,7 +31,7 @@
                         <a href="javascript:void(0);">{{slide.BI}}</a> , OppI :<a href="javascript:void(0);">{{slide.OppI}}</a>
                     </div>
                     <div class="vertical-text" ng-show="model.siblingsFlag===1" style="background-color: rgb(160, 2, 1);">{{slide.ProfileStatusID===56 || slide.ProfileStatusID===394?'DELETED':(slide.ProfileStatusID===57 || slide.ProfileStatusID===393?'SETTLED':'')}}</div>
-                    <img id="CustImg11" ng-click='slidepopup(slide.CustID)' ng-src='{{slide.Photo}}' class="imgCls">
+                    <img style="width:252px;height:252px;" ng-click='slidepopup(slide.CustID)' ng-src='{{slide.Photo}}' class="imgCls">
                     <div style="line-height: 22px;"><br><b>{{slide.CustomerName}} (<b><a href="javascript:void(0)" ng-click="model.ViewProfile(slide.ProfileID);">{{slide.ProfileID}}</a> - {{slide.registeredBranch}})</b></b><br>
                         <div ng-show="model.guestticketFlag!==1 && slide.CustID">
                             <div>
