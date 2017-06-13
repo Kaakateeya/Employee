@@ -52,7 +52,6 @@
 
         model.AboutPageloadData = function() {
             editParentService.getAboutFamilyData(custID).then(function(response) {
-                console.log(response);
                 model.lblaboutMyfamily = response.data;
             });
         };
@@ -98,7 +97,6 @@
 
                         model.gfMobileCodeId = item.FatherfatherMobileCountryID;
                         model.gfMobileNumber = item.FatherFatherMobileNumber;
-                        debugger;
                         if (commonFactory.checkvals(item.FatherFatherLandAreaCode)) {
                             model.gflandCountryCodeId = item.FatherfatherLandCountryCodeID;
                             model.gfAreaCodeid = item.FatherFatherLandAreaCode;
@@ -248,7 +246,6 @@
                         inObj.GetDetails.CustID = custID;
                         inObj.GetDetails.Cust_Family_ID = model.Cust_Family_ID;
                         model.submitPromise = editParentService.submitAddressData(inObj).then(function(response) {
-                            console.log(response);
                             commonFactory.closepopup();
                             if (response.data === 1) {
                                 model.parentBindData(custID);
@@ -260,27 +257,19 @@
                         break;
 
                     case 'Physical Attributes & Health Details of Candidate':
-
                         inObj.GetDetails.CustID = custID;
-
                         model.submitPromise = editParentService.submitPhysicalData(inObj).then(function(response) {
-                            console.log(response);
                             commonFactory.closepopup();
                             if (response.data === 1) {
-
                                 model.parentBindData(custID);
                                 alertss.timeoutoldalerts(model.scope, 'alert-success', 'Physical Attribute & Health Details Of Candidate submitted Succesfully', 4500);
                             } else {
                                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Physical Attribute & Health Details Of Candidate Updation failed', 4500);
                             }
                         });
-
                         break;
-
                     case 'About My Family':
-
                         model.submitPromise = editParentService.submitAboutFamilyData({ CustID: custID, AboutYourself: inObj.GetDetails.AboutYourself === null ? '' : inObj.GetDetails.AboutYourself, flag: 1 }).then(function(response) {
-                            console.log(response);
                             model.lblaboutMyfamily = inObj.GetDetails.AboutYourself;
                             commonFactory.closepopup();
                             if (parseInt(response.data) === 1) {
@@ -290,7 +279,6 @@
                                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'About My Family Updation failed', 4500);
                             }
                         });
-
                         break;
                 }
             }
@@ -299,8 +287,6 @@
         model.AboutMyfamilySubmit = function(obj) {
             if (isSubmit) {
                 isSubmit = false;
-
-
             }
         };
 

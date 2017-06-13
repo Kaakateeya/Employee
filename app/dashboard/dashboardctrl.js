@@ -24,10 +24,8 @@
              model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
              model.empBranchID = authSvc.empBranchID() !== undefined && authSvc.empBranchID() !== null && authSvc.empBranchID() !== "" ? authSvc.empBranchID() : "";
              model.init();
-             // commonpage.showPopup('dashboardslide.html', scope, 'lg', "modalclassdashboard");
          };
          vm.init();
-
          scope.$on("slideshowsubmit", function(event, frompage, topage, tablename) {
              vm.slideshowfunction(true, model.empid, model.empBranchID, frompage, topage, tablename, 'slideshow', model.slidearray, 1);
          });
@@ -47,12 +45,10 @@
              model.uploadfromsubmit = true;
              commonpage.showPopupphotopoup('uploadsaform.html', model.scope, 'sm', "modalclassdashboardphotopopup");
          });
-
          vm.uploadsaformtable = function(profileid) {
              model.proceedprofileid = profileid;
              commonpage.showPopupphotopoup('uploadsaform.html', model.scope, 'sm', "modalclassdashboardphotopopup");
          };
-
          scope.$on("photorequest", function(event, profileid) {
              dashboardServices.PhotoRequest(profileid, model.empid).then(function(response) {
                  if (response !== undefined && response !== null && response !== "" && response.data !== undefined) {

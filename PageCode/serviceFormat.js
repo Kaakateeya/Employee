@@ -3,17 +3,15 @@
 
     angular
         .module('Kaakateeya')
-        .factory('parametervalueModel', factory)
+        .factory('parametervalueService', factory)
 
     factory.$inject = ['$http'];
 
-    function factory($http) {
-        var service = {
-            getData: getData
+    function factory(http) {
+        return {
+            test: function() {
+                return http.get(app.apiroot + 'test', { params: '' });
+            }
         };
-
-        return service;
-
-        function getData() {}
     }
 })();

@@ -1,20 +1,12 @@
 (function() {
     'use strict';
 
-
     function factory($http) {
-        var service = {
-
-        };
-
-        return service;
-
-
+        var model = {};
+        return model;
     }
     angular
         .module('Kaakateeya')
-        .factory('clientSidepaggingservice', factory);
-
+        .factory('bootstrapPopupService', factory);
     factory.$inject = ['$http'];
-
 })();

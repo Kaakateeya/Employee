@@ -267,4 +267,11 @@ body .container.body .right_col {
   white-space: nowrap;
   margin-top: 1px; }
 
+.reminderCls .pop_controls_right > input,
+.reminderCls .selectCls {
+  width: 73% !important; }
+
+.reminderCls .doublesmalldropdown {
+  margin-left: -25px !important; }
+
 /*# sourceMappingURL=style.css.map */

@@ -8,7 +8,6 @@
                     <h4>Candidate Contact details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <span style="color: #08CFD2;">RelationName :Mobile :{{page.model.primaryRel.PrimaryMobileRelName}} & Email :{{page.model.primaryRel.PrimaryEmailRelName}}</span></h4>
                 </div>
-
                 <div class="edit_page_item_ui clearfix">
                     <div>
                         <a href="javascript:void(0);" class="edit_page_add_button" ng-click="page.model.showContactPopup('Candidate');">Add
@@ -25,8 +24,8 @@
                             <h5>
                                 <span>{{item.CandidateMobilewithcode}}</span>
                                 <label ng-show="(item.primarymobile===1)|| (item.mobileisverfied) ?true:false ">
-    <span  ng-class="item.mobileisverfied==true?'fa fa-check-circle':'glyphicon glyphicon-ok'">
-    </span></label> <a href="javascript:void(0);" ng-show="(item.primarymobile)&&(((item.mobileisverfied))==true?false:true) ?true:false" ng-click="page.model.sendMobileCode(item.Candidatemobilecountrycode,item.Candidatemobilecountrycode,item.CandidateMobileNumber,item.emaILcust_family_id);"> &nbsp;&nbsp;&nbsp;&nbsp;verify mobile</a>                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <span  ng-class="item.mobileisverfied==true?'fa fa-check-circle':'glyphicon glyphicon-ok'">
+                                     </span></label> <a href="javascript:void(0);" ng-show="(item.primarymobile)&&(((item.mobileisverfied))==true?false:true) ?true:false" ng-click="page.model.sendMobileCode(item.Candidatemobilecountrycode,item.Candidatemobilecountrycode,item.CandidateMobileNumber,item.emaILcust_family_id);"> &nbsp;&nbsp;&nbsp;&nbsp;verify mobile</a>                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="javascript:void(0);" ng-click="page.model.setprimaryrelationPopup();">RelationName</a>
                             </h5>
                         </div>
@@ -34,37 +33,27 @@
                             <a href="javascript:void(0);" class="edit_page_edit_button" ng-click="page.model.showContactPopup('Candidate',item);">Edit
                                     </a>
                         </div>
-
                         <div>
                             <div class="edit_page_details_item_desc clearfix">
                                 <h6>
                                     <span Font-Bold="true">Land line #</span></h6>
                                 <h5>
                                     <span>{{item.Candidatelandlinewithcode}}</span>
-
                                     <label ng-show="(item.primarylandline==1)|| (item.Landisverfied) ?true:false">
-     <span  ng-class="(item.Landisverfied)==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"  style="color:#00FF00;"></span>
- </label>
-
+                                       <span  ng-class="(item.Landisverfied)==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"  style="color:#00FF00;"></span>
+                                      </label>
                                 </h5>
-
                             </div>
-
                         </div>
                         <div>
-
                             <div class="edit_page_details_item_desc clearfix">
-
                                 <h6>
                                     <span Font-Bold="true">Email</span></h6>
                                 <h5>
                                     <span>{{item.CandidateEmail}}</span>
-
-
-
                                     <label ng-show="(item.primaryemail || item.isemailVerified) ?true:false">
-    <span  ng-class="item.isemailVerified==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></span>
-</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                          <span  ng-class="item.isemailVerified==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></span>
+                                      </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <a href="javascript:void(0);" ng-show="(item.primaryemail)&&(((item.isemailVerified))==true?false:true) ?true:false" ng-click="page.model.verifymail();">verify email</a>
                                 </h5>
                             </div>
@@ -144,7 +133,6 @@
                 <h4>Parent Contact Details</h4>
                 <div class="edit_page_item_ui clearfix">
                     <div>
-
                     </div>
                 </div>
             </div>
@@ -155,7 +143,7 @@
                         </div>
                         <div class="edit_page_item_ui clearfix">
                             <a href="javascript:void(0);" class="edit_page_edit_button" ng-click="page.model.showContactPopup('parent',item);">Edit
-                                    </a>
+                           </a>
                         </div>
                         <div class="edit_page_details_item_desc clearfix">
                             <div>
@@ -171,10 +159,9 @@
                                     <span Font-Bold="true">Moblie #</span></h6>
                                 <h5>
                                     <span>{{item.Mobilewithcode}}</span>
-
                                     <label ng-show="(item.primarymobile===1)|| (item.Mothermobileisverfied) ?true:false ">
-    <span  ng-class="item.Mothermobileisverfied==true?'fa fa-check-circle':'glyphicon glyphicon-ok'">
-    </span></label>
+                                        <span  ng-class="item.Mothermobileisverfied==true?'fa fa-check-circle':'glyphicon glyphicon-ok'">
+                                     </span></label>
                                     <a href="javascript:void(0);" ng-show="(item.primarymobile)&&(((item.Mothermobileisverfied))==true?false:true) ?true:false" ng-click="page.model.sendMobileCode(item.mobilecountrycode,item.mobilecountrycode,item.mobilenumber,item.MotheremaILcust_family_id);"> &nbsp;&nbsp;&nbsp;&nbsp;verify mobile</a>                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </h5>
                             </div>
@@ -186,8 +173,8 @@
                                 <h5>
                                     <span>{{item.landlinewithcode}}</span></h5>
                                 <label ng-show="(item.primarylandline==1)|| (item.MotherLandisverfied) ?true:false">
-     <span  ng-class="(item.MotherLandisverfied)==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"  style="color:#00FF00;"></span>
- </label>
+                                   <span  ng-class="(item.MotherLandisverfied)==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"  style="color:#00FF00;"></span>
+                                  </label>
                             </div>
                         </div>
                         <div class="edit_page_details_item_desc clearfix">
@@ -196,10 +183,9 @@
                                     <span Font-Bold="true">Email</span></h6>
                                 <h5>
                                     <span>{{item.Email}}</span>
-
                                     <label ng-show="(item.Motherprimaryemail || item.MotherisemailVerified) ?true:false">
-    <span  ng-class="item.MotherisemailVerified==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></span>
-</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <span  ng-class="item.MotherisemailVerified==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></span>
+                                  </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <a href="javascript:void(0);" ng-show="(item.Motherprimaryemail)&&(((item.MotherisemailVerified))==true?false:true) ?true:false" ng-click="page.model.verifymail();">verify email</a>
                                 </h5>
                             </div>
@@ -228,191 +214,128 @@
                                     <span ng-hide="item.FatherLandNumber===null">{{item.FFLandCountyCode+(item.FatherLandAreaCode!==null?'-'+item.FatherLandAreaCode:'')+'-'+item.FatherLandNumber}}</span></h5>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="edit_page_item">
             <div class="edit_page_item_head clearfix">
                 <h4>Siblings Contact Details</h4>
                 <div class="edit_page_item_ui clearfix">
-
                     <div>
                     </div>
                 </div>
             </div>
             <div class="edit_page_details_item">
-
                 <div ng-if="page.model.SiiblingContactArr" ng-repeat="item in page.model.SiiblingContactArr">
-
                     <div class="edit_page_details_item_desc clearfix">
-
-
                         <div class="edit_page_details_item_desc clearfix">
-
-
                         </div>
                         <div class="edit_page_item_ui clearfix">
-
                             <a href="javascript:void(0);" class="edit_page_edit_button" ng-click="page.model.showContactPopup('sibbling',item,'SelfFlag');">Edit
                         </a>
                         </div>
                         <div class="edit_page_details_item_desc clearfix">
-
                             <div>
-
                                 <h6>
                                     <span Font-Bold="true">{{(item.Siblingemailreletionship==="41" || item.Siblingemailreletionship==="42" )?"Brother Name":"Sister Name"}}</span></h6>
                                 <h5>
                                     <span>{{item.SiblingName}}</span></h5>
-
                             </div>
-
                         </div>
                         <div class="edit_page_details_item_desc clearfix">
-
                             <div>
-
                                 <h6>
                                     <span Font-Bold="true">Moblie #</span></h6>
                                 <h5>
                                     <span>{{item.SiblingMobilewithcode}}</span>
-
                                     <label ng-show="(item.primarymobile===1)|| (item.Siblingmobileisverfied) ?true:false ">
-    <span  ng-class="item.Siblingmobileisverfied==true?'fa fa-check-circle':'glyphicon glyphicon-ok'">
-    </span></label>
+                              <span  ng-class="item.Siblingmobileisverfied==true?'fa fa-check-circle':'glyphicon glyphicon-ok'">
+                              </span></label>
                                     <a href="javascript:void(0);" ng-show="(item.primarymobile)&&(((item.Siblingmobileisverfied))==true?false:true) ?true:false" ng-click="page.model.sendMobileCode(item.Siblingmobilecountrycode,item.Siblingmobilecountrycode,item.Siblingmobilenumber,item.SiblingemaILcust_family_id);"> &nbsp;&nbsp;&nbsp;&nbsp;verify mobile</a>                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
                                 </h5>
-
                             </div>
-
                         </div>
-
-                        <div class="edit_page_details_item_desc clearfix ">
-
+                        <div class="edit_page_details_item_desc clearfix">
                             <div>
-
                                 <h6>
                                     <span Font-Bold="true ">Land line #</span></h6>
                                 <h5>
                                     <span>{{item.Siblinglandlinewithcode}}</span>
-
-
-
                                     <label ng-show="(item.primarylandline==1)|| (item.SiblingLandisverfied) ?true:false">
-     <span  ng-class="(item.SiblingLandisverfied)==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"  style="color:#00FF00;"></span>
- </label>
+                                      <span  ng-class="(item.SiblingLandisverfied)==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"  style="color:#00FF00;"></span>
+                                      </label>
                                 </h5>
-
                             </div>
-
                         </div>
                         <div class="edit_page_details_item_desc clearfix">
-
                             <div>
-
                                 <h6>
                                     <span Font-Bold="true">Email</span></h6>
                                 <h5>
                                     <span>{{item.SiblingEmail}}</span>
-
                                     <label ng-show="(item.Siblingprimaryemail || item.SiblingisemailVerified) ?true:false">
-    <span  ng-class="item.SiblingisemailVerified==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></span>
-</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                     <span  ng-class="item.SiblingisemailVerified==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></span>
+                                     </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <a href="javascript:void(0);" ng-show="(item.Siblingprimaryemail)&&(((item.SiblingisemailVerified))==true?false:true) ?true:false" ng-click="page.model.verifymail();">verify email</a>
-
-
                                 </h5>
-
                             </div>
-
                         </div>
                         <div>
-
                             <div class="edit_page_details_item_desc clearfix ">
                                 <div>
                                     <div>
-
                                         <div class="edit_page_item_ui clearfix">
-
                                             <a href="javascript:void(0);" class="edit_page_edit_button" ng-click="page.model.showContactPopup('sibbling',item,'SpouseFlag');">Edit
-                                                            </a>
+                                              </a>
                                         </div>
-
                                         <div class="edit_page_details_item_desc clearfix">
-
                                             <div>
                                                 <h6>
                                                     <span Font-Bold="true ">{{item.Siblingemailreletionship===41 || item.Siblingemailreletionship==42 ?"Brother Wife ":"Sister Husband"}}</span></h6>
                                                 <h5>
                                                     <span>{{item.SiblingSpouseNAme}}</span></h5>
                                             </div>
-
                                         </div>
-
                                         <div class="edit_page_details_item_desc clearfix">
-
                                             <div>
-
                                                 <h6>
                                                     <span Font-Bold="true">Moblie #</span></h6>
                                                 <h5>
                                                     <span>{{item.SiblingSpouseMobilenumberwithcode}}</span>
-
                                                 </h5>
-
                                             </div>
-
                                         </div>
-
                                         <div class="edit_page_details_item_desc clearfix">
-
                                             <div>
-
                                                 <h6>
                                                     <span Font-Bold="true">Land line #</span></h6>
                                                 <h5>
                                                     <span>{{item.SiblingSpouseLandnumberwithcode}}</span>
                                                 </h5>
-
                                             </div>
-
                                         </div>
                                         <div class="edit_page_details_item_desc clearfix">
-
                                             <div>
-
                                                 <h6>
                                                     <span Font-Bold="true">Email</span></h6>
                                                 <h5>
                                                     <span>{{item.SiblingSpouseEmail}}</span>
-
                                                 </h5>
-
                                             </div>
-
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="edit_page_item">
             <div class="edit_page_item_head clearfix">
                 <h4>Relative Contact Details</h4>
                 <div class="edit_page_item_ui clearfix">
-
                 </div>
             </div>
             <div class="edit_page_details_item">
@@ -440,8 +363,8 @@
                                     <span>{{item.Mobilewithcode}}</span>
 
                                     <label ng-show="(item.primarymobile===1)|| (item.mobileisverfied) ?true:false ">
-    <span  ng-class="item.mobileisverfied==true?'fa fa-check-circle':'glyphicon glyphicon-ok'">
-    </span></label> <a href="javascript:void(0);" ng-show="(item.primarymobile)&&(((item.mobileisverfied))==true?false:true) ?true:false" ng-click="page.model.sendMobileCode(item.mobilecountrycode,item.mobilecountrycode,item.mobilenumber,item.emaILcust_family_id);"> &nbsp;&nbsp;&nbsp;&nbsp;verify mobile</a>                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span  ng-class="item.mobileisverfied==true?'fa fa-check-circle':'glyphicon glyphicon-ok'">
+                        </span></label> <a href="javascript:void(0);" ng-show="(item.primarymobile)&&(((item.mobileisverfied))==true?false:true) ?true:false" ng-click="page.model.sendMobileCode(item.mobilecountrycode,item.mobilecountrycode,item.mobilenumber,item.emaILcust_family_id);"> &nbsp;&nbsp;&nbsp;&nbsp;verify mobile</a>                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </h5>
                             </div>
                         </div>
@@ -452,8 +375,8 @@
                                 <h5>
                                     <span>{{item.landlinewithcode}}</span>
                                     <label ng-show="(item.primarylandline==1)|| (item.Landisverfied) ?true:false">
-     <span  ng-class="(item.Landisverfied)==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"  style="color:#00FF00;"></span>
- </label> </h5>
+                          <span  ng-class="(item.Landisverfied)==true?'fa fa-check-circle':'glyphicon glyphicon-ok'"  style="color:#00FF00;"></span>
+                         </label> </h5>
                             </div>
                         </div>
                         <div class="edit_page_details_item_desc clearfix ">
@@ -510,9 +433,7 @@
                                 <h5>
                                     <span>{{item.Candidatelandlinewithcode}}</span>
                                 </h5>
-
                             </div>
-
                         </div>
                         <div class="edit_page_details_item_desc clearfix ">
                             <div>
@@ -521,9 +442,7 @@
                                 <h5>
                                     <span>{{item.CandidateEmail}}</span>
                                 </h5>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -531,10 +450,6 @@
         </div>
     </div>
 </div>
-
-
-
-
 <script type="text/ng-template" id="SibContactContent.html">
     <form name="sibForm" novalidate role="form" ng-submit="page.model.commonContactSubmit(page.model.sibobj.SiblingemaILcust_family_id,page.model.sibobj.txtsiblingname,
     page.model.sibobj.ddlSiblingmob,page.model.sibobj.txtSiblingmob,page.model.sibobj.ddlsiblingmob2,page.model.sibobj.txtsiblingmob2,page.model.sibobj.ddlsiblinglandcode,
@@ -564,9 +479,6 @@
         </div>
     </form>
 </script>
-
-
-
 <script type="text/ng-template" id="parentContactContent.html">
     <form name="parentForm" novalidate role="form" ng-submit="page.model.commonContactSubmit(page.model.parentobj.MotheremaILcust_family_id,
     page.model.parentobj.txtFathername,page.model.parentobj.ddlcandidatefathermobcode,page.model.parentobj.txtcandidatefathermob,page.model.parentobj.ddlcandidatefathermob2code,
@@ -583,17 +495,14 @@
         </div>
         <div class="modal-body clearfix pop_content_my" id="modal-body">
             <ul>
-
                 <li class="clearfix">
                     <label for="lblFathername" class="pop_label_left">Name</label>
                     <div class="pop_controls_right">
                         <input type="text" ng-model="page.model.parentobj.txtFathername" class="form-control" readonly="true" tabindex="1" />
                     </div>
                 </li>
-
                 <contact-directive emailhide="true" dmobile="page.model.parentobj.ddlcandidatefathermobcode" strmobile="page.model.parentobj.txtcandidatefathermob" dalternative="page.model.parentobj.ddlcandidatefathermob2code" stralternative="page.model.parentobj.txtcandidatefathermob2"
                     dland="page.model.parentobj.ddlcandidatefathelandcode" strareacode="page.model.parentobj.txtcandidatefathelandareacode" strland="page.model.parentobj.txtcandidatefathelandnumber" strmail="page.model.parentobj.txtcandidatefatheremail"></contact-directive>
-
                 <li class="clearfix">
                     <label for="lblrelativename" class="pop_label_left">{{page.model.parentIdentityID==="39"?"FF Name":"MF Name"}}</label>
                     <div class="pop_controls_right">
@@ -602,18 +511,13 @@
                 </li>
                 <contact-directive emailhide="false" dmobile="page.model.parentobj.ddlFFmobcode" strmobile="page.model.parentobj.txtFFrmob" dalternative="page.model.parentobj.ddlFFmob2code" stralternative="page.model.parentobj.txtFFmob2" dland="page.model.parentobj.ddlFFlandcode"
                     strareacode="page.model.parentobj.txtFFlandareacode" strland="page.model.parentobj.txtFFlandnumber"></contact-directive>
-
                 <li class="row">
                     <edit-footer></edit-footer>
                 </li>
             </ul>
-
         </div>
     </form>
 </script>
-
-
-
 <script type="text/ng-template" id="relativeContactContent.html">
     <form name="relativeForm" novalidate role="form" ng-submit="page.model.commonContactSubmit(page.model.relativeobj.emaILcust_family_id,page.model.relativeobj.txtrelativename
     ,page.model.relativeobj.ddlRelativemob,
@@ -634,20 +538,15 @@
                         <input type="text" ng-model="page.model.relativeobj.txtrelativename" class="form-control" readonly="true" tabindex="1" />
                     </div>
                 </li>
-
                 <contact-directive emailhide="true" dmobile="page.model.relativeobj.ddlRelativemob" strmobile="page.model.relativeobj.txtRelativemob" dalternative="page.model.relativeobj.ddlRelativemob2" stralternative="page.model.relativeobj.txtRelativemob2" dland="page.model.relativeobj.ddllandRelativecode"
                     strareacode="page.model.relativeobj.txtRelativeareacode" strland="page.model.relativeobj.txtlandnumberRelative" strmail="page.model.relativeobj.txtRelativeemail"></contact-directive>
-
                 <li class="row">
                     <edit-footer></edit-footer>
                 </li>
             </ul>
-
         </div>
     </form>
 </script>
-
-
 <script type="text/ng-template" id="candidateContactContent.html">
     <form name="candidateForm" novalidate role="form" ng-submit="page.model.commonContactSubmit(page.model.candidateobj.emaILcust_family_id,'',
     page.model.candidateobj.ddlcandidateMobileCountryID,
@@ -664,7 +563,6 @@
         </div>
         <div class="modal-body clearfix pop_content_my" id="modal-body">
             <ul>
-
                 <li class="clearfix">
                     <div id="divrelationer">
                         <label for="lblreationName" class="pop_label_left">Details of</label>
@@ -672,20 +570,15 @@
                         </div>
                     </div>
                 </li>
-
                 <contact-directive emailhide="true" dmobile="page.model.candidateobj.ddlcandidateMobileCountryID" strmobile="page.model.candidateobj.txtcandidatemobilenumber" dalternative="page.model.candidateobj.ddlcandidateMobileCountryID2" stralternative="page.model.candidateobj.txtFBMobileNumber2"
                     dland="page.model.candidateobj.ddlcandidateLandLineCountry" strareacode="page.model.candidateobj.txtcandidateAreCode" strland="page.model.candidateobj.txttxtcandidateAreCodeLandNumber" strmail="page.model.candidateobj.txtcandidateEmails"></contact-directive>
-
                 <li class="row">
                     <edit-footer></edit-footer>
                 </li>
             </ul>
-
         </div>
     </form>
 </script>
-
-
 <script type="text/ng-template" id="referenceContactContent.html">
     <form name="refForm" novalidate role="form" ng-submit="page.model.submitContactReference(page.model.referenceobj)">
         <div class="modal-header">
@@ -703,7 +596,6 @@
                         <input type="text" ng-model="page.model.referenceobj.txtreferencename" class="form-control" readonly="true" tabindex="1" />
                     </div>
                 </li>
-
                 <contact-directive emailhide="true" dmobile="page.model.referenceobj.ddlreferencemobile" strmobile="page.model.referenceobj.txtreferencemobile" dalternative="page.model.referenceobj.ddlreferencemobile2" stralternative="page.model.referenceobj.txtreferencemobile2"
                     dland="page.model.referenceobj.ddlreferencelandnumber" strareacode="page.model.referenceobj.txtreferenceAreCode" strland="page.model.referenceobj.txtreferencelandnumber" strmail="page.model.referenceobj.txtreferenceemail"></contact-directive>
 
@@ -711,7 +603,6 @@
                     <edit-footer></edit-footer>
                 </li>
             </ul>
-
         </div>
     </form>
 </script>
@@ -734,61 +625,40 @@
                         </div>
                     </li>
                     <li class="clearfix">
-
                         <label for="lblCandidateApartmentName" class="pop_label_left">Apartment name</label>
                         <div class="pop_controls_right">
                             <input type="text" ng-model="page.model.canAddrobj.txtCandidateApartmentName" class="form-control" maxlength="100" tabindex="2" />
                         </div>
                     </li>
-
                     <li class="clearfix">
-
                         <label for="lblCandidateStreetName" class="pop_label_left">Street name</label>
                         <div class="pop_controls_right">
                             <input type="text" ng-model="page.model.canAddrobj.txtCandidateStreetName" class="form-control" maxlength="100" tabindex="3" />
                         </div>
                     </li>
-
                     <li class="clearfix">
-
                         <label for="lblCandidateAreaName" class="pop_label_left">Area Name</label>
                         <div class="pop_controls_right">
-
-
                             <input type="text" ng-model="page.model.canAddrobj.txtCandidateAreaName" class="form-control" maxlength="100" tabindex="4" />
-
-
                         </div>
                     </li>
-
                     <li class="clearfix">
-
                         <label for="lblCandidateeLandmark" class="pop_label_left">Landmark</label>
                         <div class="pop_controls_right">
                             <input type="text" ng-model="page.model.canAddrobj.txtCandidateLandmark" class="form-control" maxlength="100" tabindex="5" />
                         </div>
                     </li>
-
                     <country-directive countryshow="true" cityshow="false" othercity="false" dcountry="page.model.canAddrobj.ddlCandidateCountryContact" dstate="page.model.canAddrobj.ddlCandidateStateContact" ddistrict="page.model.canAddrobj.ddlCandidateDistricContact" require=true></country-directive>
-
                     <li class="clearfix">
-
-
                         <label for="lblCityCandidate" class="pop_label_left">City<span style="color: red; margin-left: 3px;">*</span></label>
                         <div class="pop_controls_right">
-
                             <input type="text" ng-model="page.model.canAddrobj.txtCandidateCity" class="form-control" maxlength="100" tabindex="9" />
-
                         </div>
                     </li>
-
                     <li class="clearfix">
-
                         <label for="lblCandidateZip_pin" class="pop_label_left">Zip/Pin</label>
                         <div class="pop_controls_right">
-
                             <input type="text" ng-model="page.model.canAddrobj.txtCandidateZip_no" class="form-control" maxlength="8" onkeydown="return checkwhitespace(event,this.id);" tabindex="10" />
-
                         </div>
                     </li>
                 </ul>
@@ -796,12 +666,9 @@
                     <edit-footer></edit-footer>
                 </li>
             </ul>
-
         </div>
     </form>
 </script>
-
-
 <script type="text/ng-template" id="primaryRelationContent.html">
     <form name="refForm" novalidate role="form" ng-submit="page.model.primaryRelationSubmit(page.model.setrelObj.ddlPrimaryMobileRel,page.model.setrelObj.ddlPrimaryEmailRel,'1')">
         <div class="modal-header">

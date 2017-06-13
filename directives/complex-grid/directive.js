@@ -16,7 +16,6 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     scope.model.data = [];
                     scope.currentPage = 0;
                     scope.pageSize = scope.pagesizecommunication !== undefined && scope.pagesizecommunication !== null && scope.pagesizecommunication !== "" ? scope.pagesizecommunication : 10;
-                    // scope.model.pageSize = 10;
                     scope.model.exportColumns = {};
                     _.each(scope.model.columns, function(item) {
                         if (item.text !== '')
@@ -41,12 +40,8 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
 
                 scope.sendreceive = function(row) {
                     window.open('/communicationLogs?Profileid=' + row.Profileid, '_blank');
-                    // return "<a style='cursor:pointer;' ng-click='sendreceivecounts(" + JSON.stringify(row.Profileid) + ");'  href='javascript:void(0);'>" + row.sentreceivecount + "</a>";
                 };
                 scope.ViewContact = function(row) {
-                    // var paid = "<a style='cursor:pointer;'  href='/Contact/" + row.custid + "'>View</a>";
-                    // return paid;
-
                     var owner = row.OWNER !== 'Not Assigned' && (row.OWNER).indexOf('(') !== -1 ? (row.OWNER).split('(')[0] : row.OWNER;
                     if (AdminID && parseInt(AdminID) === 1 || Managementid === 'true' || owner === loginempName)
                         window.open('/Contact/' + row.custid, '_blank');
@@ -67,17 +62,14 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 };
                 scope.ViewTicket = function(row) {
                     var paid = "<a style='cursor:pointer;' ng-click='tickethistoryupdate(135731)'  href='javascript:void(0);'>View</a>";
-                    //  var paid = "<a style='cursor:pointer;' ng-click='tickethistoryupdate(" + row.TicketID + ")'  href='javascript:void(0);'>View</a>";
                     return paid;
                 };
                 scope.showHoromethod = function(HoroPhotoName) {
-                    // commonpage.showPopup(row.HoroPhotoName);
                     scope.page.model.image = HoroPhotoName;
                     commonpage.showPopup('templates/bindImagePopup.html', scope, 'md', '');
                 };
 
                 scope.showSAmethod = function(Settle) {
-                    // commonpage.showAndBindPopup(Settle);
                     scope.page.model.image = Settle;
                     commonpage.showPopup('templates/bindImagePopup.html', scope, 'md', '');
                 };
@@ -141,13 +133,6 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 scope.maintableheight = function(array) {
                     scope.config.maintableheightcommunication(array);
                 };
-                // scope.search = function() {
-                //     scope.filteredList =
-                //         filteredListService.searched(scope.allItems, scope.searchText);
-                //     if (scope.searchText === '') {
-                //         scope.filteredList = scope.allItems;
-                //     }
-                // };
                 scope.init();
             }
         };

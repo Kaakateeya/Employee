@@ -2,10 +2,8 @@
      'use strict';
 
      function controller(basicRegistrationModel, scope) {
-
          var vm = this,
              model;
-
          vm.init = function() {
              model = {};
              vm.model = model = basicRegistrationModel;

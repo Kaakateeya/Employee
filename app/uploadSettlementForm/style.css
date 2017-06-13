@@ -17,9 +17,13 @@
   color: #ffffff; }
 #uploadSettle label {
   padding-left: 5%; }
-#uploadSettle label::after {
+#uploadSettle .form-group > label::after {
   content: '*';
   color: red;
   padding-left: 2%; }
+#uploadSettle md-input-container {
+  margin: 0px !important; }
+#uploadSettle .help-block {
+  float: left; }
 
 /*# sourceMappingURL=style.css.map */

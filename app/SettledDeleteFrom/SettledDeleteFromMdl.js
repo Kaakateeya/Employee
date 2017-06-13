@@ -3,7 +3,7 @@
 
     angular
         .module('Kaakateeya')
-        .factory('MVCModel', factory)
+        .factory('SettledDeleteFromModel', factory)
 
     factory.$inject = ['$http'];
 

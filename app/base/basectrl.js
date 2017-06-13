@@ -10,14 +10,10 @@
              model.scope = scope;
              scope.model.init();
          };
-
          scope.redirect = function(type) {
-
              $state.go('base.' + type, { CustID: stateParams.CustID });
-
          };
          scope.backgroundcolor = function(status) {
-             console.log(status);
              var color = '#EFEFEF';
              switch (status) {
                  case 54:

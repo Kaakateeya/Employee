@@ -1,16 +1,11 @@
 <div ng-class="'EditViewClass'" class="right_col" style="padding-top: 6%;padding-left: 1%;">
-
     <div ng-include="'templates/sideMenu.html'">
     </div>
     <div class="edit_pages_content_main clearfix">
-
         <div class="register_page_main">
-
             <div class="my_photos_main my_photos_main_edit">
                 <!--<h6>Upload your recent Photos for better response</h6>-->
-
                 <div class="clear">&nbsp;</div>
-
                 <br />
                 <div class="dragzone">
                     <div class="pics_selected_list_main clearfix">
@@ -19,11 +14,8 @@
                             <div ng-if="page.model.manageArr" class="clearfix" ng-repeat="item in page.model.manageArr" style="width:33%;float:left;">
                                 <div class="photos">
                                     <div class="pics_selected_list_item clearfix">
-
-
                                         <div id="divFalseCustomer">
                                             <div>
-
                                                 <div class="row" ng-show='item.UploadedBy== null?false:true'>
                                                     <div class="col-lg-12" ng-show='item.UploadedBy== null?false:true'>
                                                         <label style="color: maroon !important;">Uploaded By :</label>
@@ -35,7 +27,6 @@
                                                         <label id="lblUploadedDateText" font-bold="true" forecolor="Black">{{item.UploadedDate}}</label>
                                                     </div>
                                                 </div>
-
                                                 <div id="Div3" class="row" ng-show='item.strModifiedByEmpID==null?false:true'>
                                                     <div class="col-lg-12">
                                                         <label id="lblModifiedBy" font-bold="true" style="color: maroon !important;">Modified By :</label>
@@ -47,14 +38,11 @@
                                                         <label id="lblModifiedDateText" font-bold="true" text="" forecolor="Black">{{item.ModifiedDate}}</label>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
-
                                         <div ng-class="item.IsActive == 0 && item.PhotoName !== null?'cssMaskdiv clearfix':''">
                                             <img ng-model="imgPhotoName" ng-src="{{item.ImageUrl}}" />
                                         </div>
-
                                         <div class="pics_selected_list_item_ui clearfix">
                                             <div class="photos_icon">
                                                 <a href="javascript:void(0);" ng-click="page.model.AddImage($index+1,item.Cust_Photos_ID,item.DisplayOrder,item.IsActive);" ng-show="{{item.addButtonvisible}}">
@@ -71,13 +59,11 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="clearfix"></div>
                             <div class="edit_page_photo_manage_submit">
                                 <div class="edit_page_photo_manage_protect pull-left clearfix" ng-show="page.model.Admin === 1 || page.model.Admin === '1' ||  page.model.Managementid==='true'">
                                     <label class="">
-                                
-                                <div class="radio_my2 clearfix">
+                                     <div class="radio_my2 clearfix">
                                 <label style="font-size: 14px !important; font-weight: 400;"> Protect with Password :</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                                     <md-radio-group layout="row" ng-model="page.model.rbtProtectPassword" class="md-block" flex-gt-sm ng-disabled="manageakerts" ng-change="page.model.setPhotoPassword(page.model.rbtProtectPassword);">
                                         <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
@@ -88,10 +74,8 @@
                             </div>
                         </div>
                         </br>
-
                         <div class="clearfix"></div>
                         <div class="photo_upload_instrctns_list clearfix">
-
                             <a ID="phtoguide" href="javascript:void(0);" ng-click="page.model.redirectPage( 'PhotoGuideLines');">Photo guidelines
                         </a>
                             <a ID="photofaq" href="javascript:void(0);" ng-click="page.model.redirectPage( 'Faqs');">Photo faq’s
@@ -100,14 +84,10 @@
                         </a>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
             <div class="my_photos_main_block2 clearfix">
                 <div class="clearfix pics_incorrect_list">
-
                     <h3> Such Photos cannot be Uploaded</h3>
                     <table id="DataList3" class="clearfix" style="border-collapse: collapse;" cellspacing="0">
                         <tbody>
@@ -117,34 +97,29 @@
                                     <p>
                                         Side Face
                                     </p>
-
                                 </td>
                                 <td>
                                     <img id="DataList3_ctl01_images" src="src\images/Blir.png">
                                     <p>
                                         Blur
                                     </p>
-
                                 </td>
                                 <td>
                                     <img id="DataList3_ctl02_images" src="src\images/Group-photos.png">
                                     <p>
                                         Group Photo
                                     </p>
-
                                 </td>
                                 <td>
                                     <img id="DataList3_ctl03_images" src="src\images/Water-mark.png">
                                     <p>
                                         Watermark
                                     </p>
-
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-
                 <div class="pics_selected_list_main_rt clearfix pics_correct_list">
                     <h3>Photos that can be uploaded</h3>
                     <table id="DataList2" class="clearfix" style="border-collapse: collapse;" cellspacing="0">
@@ -169,7 +144,6 @@
                 <div class="clear">&nbsp;</div>
             </div>
             <div class="my_photos_main_block3">
-
                 <p>
                     <img src="src/images/whatsup.png" alt="Mail" style="width: 50px; height: 40px;">Whatsup your photos to
                     <span>91-9848535373</span> - Kindly mention your Profile ID and name
@@ -177,11 +151,9 @@
                 <p>
                     <img src="src/images/icon_email.png" alt="Mail">Can also Email your photos to <span>photos@telugumarriages.com</span> - Kindly mention your Profile ID and name
                 </p>
-
             </div>
         </div>
     </div>
-
     <script type="text/ng-template" id="AddimagePopup.html">
         <form class="EditViewClass" name="uploadForm" novalidate role="form" ng-submit="page.model.upload(page.model.up)">
             <div class="modal-header">
@@ -198,7 +170,6 @@
             </div>
         </form>
     </script>
-
     <script type="text/ng-template" id="deleteimagePopup.html">
         <form class="EditViewClass" name="uploadForm" novalidate role="form" ng-submit="page.model.Delete(up);">
             <div class="modal-header">
@@ -212,11 +183,8 @@
                 <input value="Delete" class="button_custom" type="submit">
             </div>
         </form>
-
     </script>
 </div>
-
-
 <style>
     .cssMaskdiv {
         position: relative;

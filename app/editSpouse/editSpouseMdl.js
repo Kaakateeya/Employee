@@ -27,11 +27,7 @@
                 if (response.data.length > 0) {
                     model.spouseArray = response.data[0].length > 0 ? JSON.parse(response.data[0]) : [];
                     model.ChildArray = response.data[1].length > 0 ? JSON.parse(response.data[1]) : [];
-
                     model.childCount = response.data !== undefined && response.data[0].length > 0 && (JSON.parse(response.data[0])).length > 0 ? (JSON.parse(response.data[0]))[0].NoOfChildrens : [];
-
-                    console.log(model.spouseArray);
-                    console.log(model.ChildArray);
                 }
             });
         };
@@ -119,9 +115,7 @@
             inObj.GetDetails.CustID = custID;
             inObj.GetDetails.Cust_Spouse_ID = model.Cust_Spouse_ID;
             model.childCount = inObj.GetDetails.ddlspousechidrens;
-
             editSpouseService.submitSpouseData(inObj).then(function(response) {
-                console.log(response);
                 commonFactory.closepopup();
                 if (response.data === 1) {
                     model.pageload();
@@ -137,7 +131,6 @@
             inObj.GetDetails.CustID = custID;
             inObj.GetDetails.Cust_Children_ID = model.Cust_Children_ID;
             editSpouseService.submitChildeData(inObj).then(function(response) {
-                console.log(response);
                 commonFactory.closepopup();
                 if (response.data === 1) {
                     model.pageload();

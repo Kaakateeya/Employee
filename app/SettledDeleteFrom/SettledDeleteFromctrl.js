@@ -3,12 +3,12 @@
 
      angular
          .module('Kaakateeya')
-         .controller('MVCCtrl', parametervalue)
+         .controller('SettledDeleteFromCtrl', controller)
 
      controller.$inject = ['$location'];
 
      function controller($location) {
-         /* jshint validthis:true */
+
          var vm = this;
 
          activate();

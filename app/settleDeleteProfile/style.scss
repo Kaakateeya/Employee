@@ -1,0 +1,35 @@
+#settleDelete {
+    .maincls {
+        border: 1px solid #cecece;
+        padding: 1% 3% 3% 3%;
+        border-radius: 12px;
+        box-shadow: 2px 2px 6px #ccc;
+    }
+    input[type=text],
+    .btn-group,
+    textarea {
+        margin-top: 5px;
+    }
+    textarea {
+        width: 100%;
+    }
+    md-radio-group.layout-row md-radio-button {
+        margin: 0px 2px 0px 3px !important;
+    }
+    .borderCls {
+        border-top: 1px solid #cecece;
+    }
+    .required {
+        color: red;
+        font-size: 18px;
+    }
+}
+
+.hdrsettleCls {
+    font-size: 18px;
+    color: rgb(160, 2, 1);
+}
+
+.mainRow {
+    line-height: 44px;
+}

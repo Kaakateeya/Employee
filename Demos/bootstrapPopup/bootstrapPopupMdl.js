@@ -1,9 +1,6 @@
 (function() {
     'use strict';
 
-
-
-
     function factory($http) {
         var model = {};
         model.title = "Pop  Up Name";
@@ -12,8 +9,6 @@
         model.bodyUrl = "stackedModal.html";
         model.name = "ggggg";
         return model;
-
-
     }
     angular
         .module('Kaakateeya')

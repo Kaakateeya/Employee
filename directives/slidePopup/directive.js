@@ -27,9 +27,8 @@
             var loginEmpid = authSvc.LoginEmpid();
             var AdminID = authSvc.isAdmin();
             scope.getExpression = function(val) {
-                console.log(val);
                 return val;
-            }
+            };
             scope.ddlChange = function(value, value2, text, apiPath) {
                 if (apiPath) {
 
@@ -141,8 +140,6 @@
                     } else if (item.controlType === 'astroTimeOfBirth') {
                         parameters.TimeofBirth = scope.model.ddlFromHours + ":" + scope.model.ddlFromMinutes + ":" + scope.model.ddlFromSeconds;
                     } else if (item.controlType === 'date') {
-
-                        //parameters[item.parameterValueDate] = scope.model[item.ngmodel];
                         parameters[item.parameterValueDate] = scope.model[item.ngmodel] !== '' && scope.model[item.ngmodel] !== 'Invalid date' ? filter('date')(scope.model[item.ngmodel], 'yyyy-MM-dd') : '';
                     }
                 });

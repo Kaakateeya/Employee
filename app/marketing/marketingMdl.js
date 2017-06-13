@@ -20,7 +20,7 @@
                 changeMonth: true,
                 changeYear: true,
                 yearRange: "-40:+5",
-                dateFormat: 'mm/dd/yy'
+                dateFormat: 'dd-mm-yy'
             };
             model.opendiv = false;
             var empid, AdminID, TicketId, custId, isSibbling;
@@ -123,7 +123,6 @@
 
                 marketingservice.getMarketingSlideShowBind(inputobj).then(function(response) {
                     if (response.data && response.data.Marketingslideticket !== null && response.data.Marketingslideticket.length > 0) {
-                        console.log(response.data);
                         model.Marketingslideticket = response.data.Marketingslideticket;
                         model.MarketingslideHistory = response.data.MarketingslideHistory;
                         model.TotalRows = model.Marketingslideticket[0].TotalRows;
@@ -182,15 +181,17 @@
                             }
                         });
                         if (from === 1) {
+                            model.slides = [];
                             model.setSlides(response.data.Marketingslideticket, 10, 'normal');
 
                         } else {
                             model.addSlides(response.data.Marketingslideticket, model.slides, parseInt(model.topage), 'normal');
                         }
                     } else {
-                        model.slides = [];
-                        if (from === 1)
+                        if (from === 1) {
                             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No Records Found', 4500);
+                            model.slides = [];
+                        }
                     }
                 });
             };
@@ -204,7 +205,9 @@
                 model.offlineexprdFlag = offlineexprdFlag;
                 model.Excelflag = Excelflag;
                 model.notinpay = notinpay;
+                model.slides = [];
                 model.MarketingSlideShowBind(1, 10);
+
             };
 
             model.MarketingTicketBind = function(flag, ID) {
@@ -241,7 +244,6 @@
 
             model.PhotoRequest = function(row) {
                 helperservice.PhotoRequest(row.ProfileID, empid, row.Emp_Ticket_ID).then(function(response) {
-                    console.log(response);
                     if (response.data && parseInt(response.data) === 1) {
                         row.histryObj.splice(0, 0, model.pushTicketHistry('InternalMemo',
                             '', '', 'Photo request for Upload Photo'
@@ -283,7 +285,6 @@
                     isSiblings: isSibbling
                 }
                 marketingservice.feeUpdate(datainobj).then(function(response) {
-                    console.log(response);
                     if (response.data && parseInt(response.data) === 1) {
                         commonFactory.closepopup();
                         model.pushTicketHistryToArray(TicketId, inObj.GetDetails.txtsibblingval);
@@ -448,7 +449,6 @@
 
             model.verifymail = function(custID) {
                 SelectBindServiceApp.verifyEmail(custID).then(function(response) {
-                    console.log(response);
                     if (response.data !== undefined) {
                         if (response.data === 1) {
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Email verify mail sent Successfully', 4500);
@@ -469,7 +469,6 @@
                 };
 
                 SelectBindServiceApp.sendMobileCodeBasedOnContactID(inputOBj).then(function(response) {
-                    console.log(response);
                     model.mobileVerificationCode = response.data;
                     modelpopupopenmethod.showPopup('verifyMobileContentmar.html', model.scope, 'md', '');
                 });
@@ -480,7 +479,6 @@
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter Mobile verify Code', 4500);
                 } else {
                     SelectBindServiceApp.verifyMobileBasedOnContactID(val, model.ID).then(function(response) {
-                        console.log(response);
                         if (response.data && parseInt(response.data) === 1) {
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Verified Successfully', 4500);
                         } else {
@@ -510,7 +508,6 @@
                         SettlementValue: null
                     }
                     marketingservice.feeUpdate(datainobj).then(function(response) {
-                        console.log(response);
                         if (response.data && parseInt(response.data) === 1) {
                             row.Feedetails = txtval;
                             var Appendobj = {
@@ -555,7 +552,6 @@
                         SettlementValue: txtval
                     }
                     marketingservice.feeUpdate(datainobj).then(function(response) {
-                        console.log(response);
                         if (response.data && parseInt(response.data) === 1) {
                             row.SettlementValue = txtval;
                             var Appendobj = {
@@ -616,7 +612,6 @@
                 model.reminderslidearray = slidearray;
                 model.txtprofileidreminder = slidearray.ProfileID;
                 model.reminderticketid = slidearray.TicketID;
-                model.txtreminderDate = $filter('date')(slidearray.ReminderCreatedDate, "dd-MM-yyyy");
                 model.ddlHrs = "";
                 model.ddlmins = "";
                 model.ddlcontactperson = "";
@@ -635,7 +630,7 @@
 
                 if (slidearray.ReminderID) {
 
-                    model.txtreminderDate = slidearray.ReminderDatepopup;
+                    model.txtreminderDate = moment(slidearray.ReminderDate).format('MM-DD-YYYY');
                     model.ddlHrs = slidearray.ReminderID;
                     model.ddlmins = slidearray.ReminderID;
                     model.ddlremCaltype = parseInt(slidearray.TicketTypeID);
@@ -645,9 +640,6 @@
                     model.remembertickets = slidearray.Reminderbody;
                     if (slidearray.ReminderTime) {
                         var remindertimeArr = slidearray.ReminderTime.split(':');
-                        // $('#ddlHrs').multiselect('select', parseInt(remindertimeArr[0]) + 1);
-
-                        // $('#ddlmins').multiselect('select', [parseInt(remindertimeArr[1]) + 1]);
                         model.ddlHrs = parseInt(remindertimeArr[0]) + 1;
                         model.ddlmins = parseInt(remindertimeArr[1]) + 1;
                     }
@@ -656,12 +648,19 @@
 
             };
             model.reminderSubmit = function() {
+                var remDate = $filter('date')(model.txtreminderDate, 'MM-dd-yyyy');
+                var hrs = parseInt(model.ddlHrs) - 1;
+                hrs = hrs < 10 ? '0' + hrs : hrs;
+
+                var mins = parseInt(model.ddlmins) - 1;
+                mins = mins < 10 ? '0' + mins : mins;
+
                 var Mobj = {
                     ProfileID: model.txtprofileidreminder,
                     ReminderID: model.RemID,
                     EmpID: empid,
                     TicketID: model.ticketIDRem,
-                    DateOfReminder: $filter('date')(model.txtreminderDate, 'dd-MM-yyyy'),
+                    DateOfReminder: remDate + ' ' + hrs + ':' + mins + ':00',
                     ReminderType1: model.ddlremCaltype,
                     Body: model.remembertickets,
                     RelationID: model.ddlcontactperson,
@@ -673,6 +672,12 @@
                 modelpopupopenmethod.closepopup();
                 marketingservice.upadateremainderdate(Mobj).then(function(response) {
                     if (response !== undefined && response.data === parseInt(1)) {
+                        _.map(model.Marketingslideticket, function(item) {
+                            if (item.Emp_Ticket_ID === model.ticketIDRem) {
+                                item.ReminderDate = moment(model.txtreminderDate).format('DD MMM YYYY') + ' ' + hrs + ':' + mins + ':00';
+                            }
+                        });
+
                         alertss.timeoutoldalerts(model.scope, 'alert-success', 'Reminder date  Updated Successfully', 3000);
                     } else {
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Reminder date Updated Failed', 3000);
@@ -784,6 +789,7 @@
             };
 
             model.incallSubmit = function(obj, type) {
+
                 var inobj = {
                     CallType: 1,
                     RelationID: obj.ddlmrktreceivedIn,
@@ -861,11 +867,7 @@
             };
 
             model.assignSubmit = function(Emp_Ticket_ID) {
-                marketsvc.assignEmpSubmit(Emp_Ticket_ID, model.empid, model.empid).then(function(respnse) {});
-            };
-            model.close = function() {
-
-
+                marketsvc.assignEmpSubmit(Emp_Ticket_ID, empid, empid).then(function(respnse) {});
             };
 
             return model.init();
@@ -873,7 +875,7 @@
     }
     angular
         .module('Kaakateeya')
-        .factory('marketingModel', factory)
+        .factory('marketingModel', factory);
     factory.$inject = ['marketingservice', 'complex-slide-config',
         'authSvc', 'helperservice', 'commonFactory', '$uibModal', 'alert',
         'modelpopupopenmethod', 'SelectBindServiceApp', '$timeout', '$filter', 'arrayConstants', 'marketingTicketHistryservice'

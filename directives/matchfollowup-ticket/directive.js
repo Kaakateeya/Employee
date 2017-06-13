@@ -28,9 +28,10 @@
                 scope.model.MAobj.ddlmrktReplyMemo =
                 scope.model.MAobj.ddlmrktreplyClose =
                 scope.model.MAobj.ddlmrktReplyTypeIn = "";
-            scope.model.MAobj.ddlresendemailmatchfollowup = "5";
-            scope.model.MAobj.txtresendemail = scope.model.mailchange(scope.model.MAobj.ddlresendemailmatchfollowup);
-            // timeout(function() { console.log(scope.model.marInfo); }, 25000);
+            scope.model.MAobj.ddlresendemailmatchfollowup = 5;
+            timeout(function() {
+                scope.model.MAobj.txtresendemail = scope.model.mailchange(scope.model.MAobj.ddlresendemailmatchfollowup);
+            }, 2000);
         }
     }
     angular

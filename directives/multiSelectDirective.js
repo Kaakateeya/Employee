@@ -275,7 +275,7 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                             scope.databind(test);
                             break;
                         case 'ageBind':
-                            scope.databind(commonFactory.numbersBind('years', 1, 80));
+                            scope.databind(commonFactory.numbersBind('years', 0, 80));
                             break;
                         case 'gradeSelection':
                             scope.databind(cons.gradeSelection);

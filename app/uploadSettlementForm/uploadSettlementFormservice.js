@@ -10,10 +10,10 @@
     function factory(http) {
         return {
             submitUpload: function(obj) {
-                http.post(app.apiroot + 'EmployeeReportPage/uploadSettlementForm', obj);
+                return http.post(app.apiroot + 'EmployeeReportPage/uploadSettlementForm', obj);
             },
             checkProfileID: function(profileid) {
-                http.get(app.apiroot + 'EmployeeReportPage/getcheckSettlementProfileID', { params: { profileID: profileid } });
+                return http.get(app.apiroot + 'EmployeeReportPage/getcheckSettlementProfileID', { params: { profileID: profileid } });
             }
         };
     }

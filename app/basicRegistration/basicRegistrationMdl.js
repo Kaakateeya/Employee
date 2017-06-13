@@ -20,7 +20,6 @@
         var monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         model.emailpattaren = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/i;
         //end declaration
-
         model.monthBind = function() {
             var option = [];
             _.each(monthArr, function(item) {
@@ -41,7 +40,6 @@
             }
             return Arr;
         };
-
         model.year = function(str, from, to) {
             var Arr = [];
             for (var i = to; i >= from; i--) {
@@ -49,7 +47,6 @@
             }
             return Arr;
         };
-
         model.pageload = function() {
             model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             model.monthArr = model.monthBind();
@@ -64,7 +61,6 @@
             timeout(function() {
                 var Country = [],
                     CountryCode = [];
-
                 svcSelectBindServicereg.CountryWithCode().then(function(response) {
                     _.each(response.data, function(item) {
                         Country.push({ "label": item.Name, "title": item.Name, "value": item.ID });
@@ -76,9 +72,7 @@
                 });
 
             }, 100);
-
         };
-
         model.dayChange = function(obj, type) {
             var months31 = 'Jan,Mar,May,Jul,Aug,Oct,Dec';
             var minth30 = 'Apr,Jun,Sep,Nov';
@@ -93,7 +87,6 @@
                 }
             }
         };
-
         model.changeBind = function(parentval, parentval2) {
             model.casteArr = [];
             if (parentval !== undefined && parentval2 !== undefined && parentval2 !== "" && parentval2 !== null && parentval !== "" && parentval !== null) {
@@ -106,23 +99,7 @@
                 model.subCastearr = commondependency.subCaste(paerntval);
             }
         };
-        // model.mobilemailvalidation = function() {
-        //     if (model.reg.Chkfree_reg === true) {
-        //         if ((model.reg.txtEmail === "" || model.reg.txtEmail === undefined) && (model.reg.txtMobileNo === "" || model.reg.txtMobileNo === undefined)) {
-        //             model.mobilenumberrequired = true;
-        //             model.mobilecountrycoderequired = true;
-        //         } else {
-        //             model.mobilenumberrequired = false;
-        //             model.mobilecountrycoderequired = false;
-        //         }
-        //     } else {
-        //         model.emailrequired = true;
-        //         model.mobilenumberrequired = true;
-        //         model.mobilecountrycoderequired = true;
-        //     }
-        // };
         model.mobilemailvalidation = function() {
-
             if (model.reg.Chkfree_reg === true) {
                 if ((model.reg.txtEmail !== "" && model.reg.txtEmail !== undefined && model.reg.txtEmail !== null)) {
                     model.mobilenumberrequired = false;
@@ -143,7 +120,6 @@
             }
         };
         model.regSubmit = function(obj) {
-            //  model.mobilemailvalidation();
             var valmm = _.indexOf(monthArr, obj.ddlMM);
             valmm = (valmm != -1 ? parseInt(valmm) + 1 : 0);
             valmm = valmm >= 10 ? valmm : '0' + valmm;
@@ -171,12 +147,10 @@
                 intEmpID: model.empid === "" ? "2" : model.empid,
                 intCustPostedBY: obj.ddlpostedby,
                 intSubCasteID: obj.ddlsubcaste !== undefined && obj.ddlsubcaste !== null && obj.ddlsubcaste !== "" && obj.ddlsubcaste !== "undefined" ? obj.ddlsubcaste : null
-
             };
 
             basicRegistrationService.submitBasicRegistration(inputObj).then(function(res) {
                 model.genderID = 0;
-                console.log(res);
                 if (res !== undefined && res !== null && res !== "" && res.data !== undefined && res.data !== null && res.data !== "" && res.data.length > 0) {
                     authSvc.login(res.data[0].ProfileID, "Admin@123").then(function(response) {
                         model.genderID = response.response[0].GenderID;
@@ -188,7 +162,6 @@
         };
         model.valueExists = function(type, flag, val) {
             model.mobilemailvalidation();
-
             if (val !== undefined) {
                 basicRegistrationService.emailExists({ iflagEmailmobile: flag, EmailMobile: val }).then(function(response) {
                     if (response.data === 1) {
@@ -215,15 +188,12 @@
                 });
             }
         };
-
         model.redirectprivacy = function(type) {
             window.open('registration/privacyPolicy', '_blank');
         };
-
         model.residingChange = function(val) {
             model.reg.ddllandcountry = model.reg.ddlmobilecountry = val;
         };
-
         model.emailvalidation = function(condition) {
             if (condition === true) {
                 model.emailmeessages = true;
@@ -238,18 +208,14 @@
                 model.mobilemessages = false;
             }
         };
-
         model.AvoidSpace = function(event) {
             if (event.keyCode == 32) {
                 event.returnValue = false;
                 return false;
             }
         };
-
-
         return model.init();
     }
-
     angular
         .module('Kaakateeya')
         .factory('basicRegistrationModel', factory);
@@ -257,6 +223,4 @@
     factory.$inject = ['basicRegistrationService', 'getArray', 'Commondependency',
         '$filter', 'authSvc', '$timeout', '$state', 'SelectBindServicereg', 'alert'
     ];
-
-
 })(angular);
