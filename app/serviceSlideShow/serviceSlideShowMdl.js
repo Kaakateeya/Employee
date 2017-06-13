@@ -62,7 +62,7 @@
                         data.push({ label: 'Intercaste', value: (item.fathercaste + "/" + item.mothercaste) });
                     array.push({
                         itmArr: data,
-                        custPhoto: (item.ToApplicationPhoto).replace("~/", "../../"),
+                        custPhoto: (item.ApplicationPhoto).replace("~/", "../../"),
                         Custid: item.tocustid,
                         Tickid: item.TicketID,
                         PhotoCount: item.PhotoCountnew,

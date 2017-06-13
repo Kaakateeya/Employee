@@ -28,6 +28,14 @@
                     <div class="col-lg-1">
                         <button class="btn btn-danger" ng-click="page.model.serviceslideshowsubmit(page.model.viewsettlementprofileid,1,10)">Submit</button>
                     </div>
+                    <div class="col-lg-6" style="margin-top: -10px;" ng-show="page.model.datapersonal">
+                        <div class="col-lg-2">
+                            <img style="height: 54px; width: 64px;" ng-src="{{page.model.servicepersonalarray[0].ApplicationPhoto}}"></img>
+                        </div>
+                        <div class="col-lg-7"><label style="color: #504848;">{{page.model.servicepersonalarray[0].FromName}}</label> </div>
+                        <br>
+                        <div class="col-lg-4"><a href="javascript:void(0);" ng-click="page.model.ViewProfilewithvalueredirect(page.model.servicepersonalarray[0].FromProfileid)"> View Full Profile </a></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -75,8 +83,7 @@
         </div>
     </div>-->
 
-    <div>
-        <br>
+    <div class="row">
         <complex-slide model="page.model" config="page.model"></complex-slide>
     </div>
 </div>

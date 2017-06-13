@@ -82,5 +82,7 @@
   height: 89px; }
 #serviceslideshow .toticketidclass {
   font-weight: bold; }
+#serviceslideshow i.fa.fa-play {
+  padding-left: 3px; }
 
 /*# sourceMappingURL=style.css.map */
