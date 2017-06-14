@@ -1,0 +1,58 @@
+<br>
+<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+    <div style="margin-left:60px;" class="edit_page_details_item_descsearch clearfix" ng-repeat="slidedata in slide.itmArr">
+        <h6> <span style="font-weight: bold;">{{slidedata.label}}</span></h6>
+        <h5>
+            <div ng-class="slidedata.label==='ServiceDate'?'redcolor':'blackcolor'"> <span>{{slidedata.value}}</span> </div>
+            <span ng-if="slidedata.label=='ProfileID'">&nbsp;<a href="javascript:void(0);" ng-click="config.viewfullprofile(slidedata.ProfileID)" ng-class="slidedata.paid==='Paid'?'paidCls':'unpaidCls'" >{{slidedata.ProfileID}}</a> {{slidedata.KMPLID}} {{(slidedata.IsConfidential===true) ||(slidedata.IsConfidential==='True')?'C':''}}  
+            {{(slidedata.SuperConfidentila==="1") ||(slidedata.SuperConfidentila===1)?'SC':''}}  
+           <input ng-click="horoscopeimage(slidedata.HoroscopePath)" ng-show="slidedata.HoroscopeStatus===1" src='src/images/ico_horoscope.jpg' style='height:20px;width:25px;' type='image'>
+          </span>
+            <div class="clearfix">
+            </div>
+        </h5>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="col-lg-4 col-md-4 col-xs-12 col-sm-12" style="margin-left:60px;">
+    <div class="clearfix"></div>
+    <div class="row">
+        <img ng-click="slidepopup(slide.Custid)" ng-src="{{slide.custPhoto}}" class="image" style="cursor: pointer;" />
+    </div>
+    <div class="clearfix"></div>
+    <div class="row" style="margin-bottom:10px;">
+        <div><a ng-click="slidepopup(slide.Custid)" href="javascript:void(0)"><span class="Photoscount">No of Photos {{slide.PhotoCount}}</span></a></div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-12 tostatusdiv" ng-style="{'background-color':slide.TONEW===258?'#C8E6E6':''}">
+        <div class="col-lg-12"><label class="col-lg-6 col-lg-pull-1" style="width:130px;color: #2f2b2b;font-size: 14px;">{{model.servicepersonalarray[0].genderid===1?'Bride Status':'Groom Status'}}</label>
+            <label ng-style="{color: (slide.ToCust_InterestStatus).trim()==='NV'? 'green': 'maroon'}" class="col-lg-5 tostatuslable">{{slide.tostatusforticket}}</label>
+            <img ng-show="(slide.ToCust_InterestStatus).trim()==='I'?true:false" src="src/images/heartgrren.gif" style="width: 28px;">
+            <img ng-show="(slide.ToCust_InterestStatus).trim()==='NI'?true:false" src="src/images/brkhrtgreen.gif" style="width: 28px;">
+        </div>
+        <div ng-show="slide.Toticketid!=='--' && slide.Toticketid!==null && slide.Toticketid!=='' && slide.ToCust_InterestStatus.trim() === 'I' || slide.ToCust_InterestStatus.trim() === 'NI' || slide.ToCust_InterestStatus.trim() === 'V'?true:false" class="col-lg-12"><label class="col-lg-7 col-lg-pull-1" style="width:140px;color: #2f2b2b;font-size: 14px;">{{model.servicepersonalarray[0].genderid===1?'Bride Ticket Id':'Groom Ticket Id'}}</label>
+            <a ng-click="model.clickticketupdate(slide.ToTicket,slide.TONEW)" ng-style="{'color':slide.TONEW===258?'black':'maroon'}" class="col-lg-5 toticketidclass" href="javascript:void(0);">{{slide.Toticketid}}</a></div>
+        <div class="row" ng-show="(slide.ToCust_InterestStatus).trim()==='NV'?true:false">
+            <button ng-click="model.ResendMail(slide)" type="button" style="width: 101px;background-color: #5a935a;color: white;" class="btn btn-success-outline col-lg-3 col-lg-offset-1">{{slide.ISRvrSend===1?'Resend mail':'RVR Send'}}</button>
+        </div>
+        <br>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-12" style="border: 1px solid maroon;margin-top:10px;border-radius: 7px !important;height:89px;width: 366px;">
+        <div class="col-lg-12"><label class="col-lg-7 col-lg-pull-1" style="width:130px;color: #2f2b2b;font-size: 14px;">{{model.servicepersonalarray[0].genderid===1?'Groom Status':'Bride Status'}}</label>
+            <label style="color:maroon;font-weight: bold;width:135px;" class="col-lg-5">{{slide.fromstatusformticket}}</label>
+            <img ng-show="slide.Fromcustintstatus.trim()==='I'?true:false" src="src/images/heartgrren.gif" style="width: 28px;">
+            <img ng-show="slide.Fromcustintstatus.trim()==='NI'?true:false" src="src/images/brkhrtgreen.gif" style="width: 28px;">
+        </div>
+        <div ng-show="slide.fromticketid!=='--' && slide.fromticketid!==null && slide.fromticketid!=='' && slide.Fromcustintstatus.trim() === 'I' || slide.Fromcustintstatus.trim() === 'NI' || slide.Fromcustintstatus.trim() === 'V'?true:false" class="col-lg-12"><label class="col-lg-7 col-lg-pull-1" style="width:140px;color: #2f2b2b;font-size: 14px;">{{model.servicepersonalarray[0].genderid===1?'Groom Ticket Id':'Bride Ticket Id'}}</label>
+            <a style="color: maroon;font-weight: bold;" ng-click="model.clickticketupdate(slide.fromTicket,slide.FromticketStatusID)" class="col-lg-5" href="javascript:void(0);">{{slide.fromticketid}}</a></div>
+        <div ng-show="slide.Fromcustintstatus.trim()==='I' || slide.Fromcustintstatus.trim()==='NI'?false:true" class="col-lg-12">
+            <div class="col-lg-5"><button class="btn btn-danger" style="width:100px;text-align:center;" ng-click="model.acceptlink(slide,'I')">Proceed</button></div>
+            <div class="col-lg-5"><button class="btn btn-danger" ng-click="model.acceptlink(slide,'NI')" style="width:150px;">Skip This Profile</button></div>
+        </div>
+
+    </div>
+
+</div>
+<br>
+<br>

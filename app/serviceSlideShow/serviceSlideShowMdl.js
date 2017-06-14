@@ -5,7 +5,7 @@
         return function() {
             var model = {};
             model = slideconfig;
-            model.opendiv = true;
+            model.opendiv = false;
             model.getstatus = function(val) {
                 var oppositestatus = "";
                 switch (val) {
@@ -62,7 +62,7 @@
                         data.push({ label: 'Intercaste', value: (item.fathercaste + "/" + item.mothercaste) });
                     array.push({
                         itmArr: data,
-                        custPhoto: (item.ApplicationPhoto).replace("~/", "../../"),
+                        custPhoto: (item.ApplicationPhoto),
                         Custid: item.tocustid,
                         Tickid: item.TicketID,
                         PhotoCount: item.PhotoCountnew,
@@ -126,6 +126,9 @@
                 }
             };
             model.serviceslideshowsubmit = function(profileid, frompage, topage) {
+                if (parseInt(frompage) === 1) {
+                    model.slides = [];
+                }
                 model.Intetestflag(model.typeofbind);
                 model.topage = topage;
                 var obj = {
