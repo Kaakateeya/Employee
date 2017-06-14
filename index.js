@@ -72,7 +72,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'viewSettlementform', name: 'base.viewSettlementform', url: '/viewSettlementforms', isloginrequired: true },
             { routeName: 'serviceSlideShow', name: 'base.serviceSlideShow', url: '/serviceSlideShows', isloginrequired: true },
             { routeName: 'settleDeleteProfile', name: 'base.settleDeleteProfile', url: '/settleDeleteProfilePage', isloginrequired: true },
-            { routeName: 'assignSettings', name: 'base.assignSettings', url: '/assignSetting', isloginrequired: true }
+            { routeName: 'assignSettings', name: 'base.assignSettings', url: '/assignSetting', isloginrequired: true },
+            { routeName: 'employeeViewfullprofilePrintchk', name: 'base.employeeViewfullprofilePrintchk', url: '/employeeViewfullprofileschk/:ProfileID/:contacts', subname: ['directives/divPrint.js'] },
+
         ];
         $ocLazyLoadProvider.config({
             debug: true
