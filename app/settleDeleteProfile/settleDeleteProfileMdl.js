@@ -263,13 +263,11 @@
                         model.reset();
                         model.scope.settledDeleteForm.$setPristine();
                         model.scope.settledDeleteForm.$setUntouched();
-                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Settled submitted Successfully', 4500);
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Settled profile updated Successfully', 4500);
                     } else {
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Settled submission Failed', 4500);
                     }
-
                 });
-
             };
 
             model.deleteSubmit = function() {

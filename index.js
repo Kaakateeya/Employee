@@ -12,7 +12,6 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ui.date'
 ]);
 
-
 // app.apiroot = 'http://52.66.131.254:8025/Api/';
 // app.apipathold = 'http://52.66.131.254:8010/Api/';
 app.apiroot = 'http://183.82.0.58:8025/Api/';
@@ -71,7 +70,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'uploadSettlementForm', name: 'base.uploadSettlementForm', url: '/uploadSettlementFormPage', isloginrequired: true },
             { routeName: 'viewSettlementform', name: 'base.viewSettlementform', url: '/viewSettlementforms', isloginrequired: true },
             { routeName: 'serviceSlideShow', name: 'base.serviceSlideShow', url: '/serviceSlideShows', isloginrequired: true },
-            { routeName: 'settleDeleteProfile', name: 'base.settleDeleteProfile', url: '/settleDeleteProfilePage', isloginrequired: true }
+            { routeName: 'settleDeleteProfile', name: 'base.settleDeleteProfile', url: '/settleDeleteProfilePage', isloginrequired: true },
+            { routeName: 'paymentOffersAssign', name: 'base.paymentOffersAssign', url: '/paymentOffersAssignPage', isloginrequired: true }
+
         ];
         $ocLazyLoadProvider.config({
             debug: true
@@ -157,7 +158,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/datePickerDirectiveEdit.js',
                         'directives/divPrint.js',
                         'directives/editFooter.js',
-                        'directives/fixedHeader.js'
+                        'directives/fixedHeader.js',
+                        'directives/requireDirective.js'
                     ]
                 },
                 {
