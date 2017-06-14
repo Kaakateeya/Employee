@@ -25,5 +25,7 @@
   margin: 0px !important; }
 #uploadSettle .help-block {
   float: left; }
+#uploadSettle textarea {
+  width: 80% !important; }
 
 /*# sourceMappingURL=style.css.map */
