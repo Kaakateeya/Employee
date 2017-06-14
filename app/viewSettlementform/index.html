@@ -7,7 +7,7 @@
                     <label class="row">Profileid</label>
                 </div>
                 <div class="col-lg-3">
-                    <input maxlength="11" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" class="form-control" type="text" ng-model="page.model.viewsettlementprofileid"></input>
+                    <input focus-me="true" maxlength="11" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" class="form-control" type="text" ng-model="page.model.viewsettlementprofileid"></input>
                 </div>
                 <div class="col-lg-1">
                     <button class="btn btn-danger" ng-click="page.model.viewprofilesubmit(page.model.viewsettlementprofileid)">Submit</button>

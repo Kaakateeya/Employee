@@ -1,0 +1,96 @@
+<div class="right_col" role="main" id="assignsettingsid">
+    <div class="">
+        <uib-accordion close-others="oneAtATime">
+            <div uib-accordion-group style="margin-top: -12px;box-shadow: 2px 2px 6px #ccc;" class="panel-default" is-open="page.model.opendiv">
+                <uib-accordion-heading>
+                    Assign settings <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+                </uib-accordion-heading>
+                <div class="row">
+                    <div class="col-lg-6 subColumnClass">
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Profile ID</label>
+                            <div class="col-lg-7">
+                                <input ng-class="(page.model.mpObj.txtProfileID).trim()!=='' && page.model.mpObj.txtProfileID!==undefined && page.model.mpObj.txtProfileID!==null?'bacg':''" type="text" class="form-control" placeholder="Profile ID" ng-model="page.model.mpObj.txtProfileID">
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Gender</label>
+                            <div class="col-lg-7">
+                                <md-radio-group ng-required="true" name="rdnServicetax" layout="row" ng-model="page.model.mpObj.rdnGender" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="" class="md-primary">Both</md-radio-button>
+                                    <md-radio-button value="1"> Male</md-radio-button>
+                                    <md-radio-button value="2"> Female</md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Date OF Reg.From</label>
+                            <div class="col-lg-7">
+                                <custom-datepicker ng-class="(page.model.mpObj.txtRegFromDate).trim()!=='' && page.model.mpObj.txtRegFromDate!==undefined &&  page.model.mpObj.txtRegFromDate!==null?'datepicker4':''" ng-model="page.model.mpObj.txtRegFromDate" date-options="page.model.dateOptions"></custom-datepicker>
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Caste</label>
+                            <div class="col-lg-7" ng-class="page.model.mpObj.ddlCaste===undefined || page.model.mpObj.ddlCaste===null || page.model.mpObj.ddlCaste.length===0 ?'':'colorforcontrols'">
+                                <select multiselectdropdown multiple class="smalldropdown" ng-model="page.model.mpObj.ddlCaste" ng-options="item.value as item.label for item in page.model.Castearray">   
+                                 </select>
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Branch</label>
+                            <div class="col-lg-7" ng-class="page.model.mpObj.ddlBranch===undefined || page.model.mpObj.ddlBranch===null || page.model.mpObj.ddlBranch.length===0 ?'':'colorforcontrols'">
+                                <select multiselectdropdown multiple class="smalldropdown" ng-model="page.model.mpObj.ddlBranch" ng-options="item.value as item.label for item in page.model.Brancharray">   
+                                 </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 subColumnClass">
+                        <div class="clearfix form-group">
+                            <md-checkbox ng-model="page.model.mpObj.chkRenewal">Is confidential
+                            </md-checkbox>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Payments Status</label>
+                            <div class="col-lg-7">
+                                <md-radio-group name="rdndocmacile" layout="row" ng-model="page.model.mpObj.rdndocmacile" class="md-block" flex-gt-sm>
+                                    <md-radio-button value="1"> Both</md-radio-button>
+                                    <md-radio-button value="0"> Paid</md-radio-button>
+                                    <md-radio-button value="" class="md-primary">Un-paid
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Date OF Reg.To</label>
+                            <div class="col-lg-7">
+                                <custom-datepicker ng-class="(page.model.mpObj.txtRegFromDate).trim()!=='' && page.model.mpObj.txtRegFromDate!==undefined &&  page.model.mpObj.txtRegFromDate!==null?'datepicker4':''" ng-model="page.model.mpObj.txtRegFromDate" date-options="page.model.dateOptions"></custom-datepicker>
+                            </div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <label for="Gender" class="control-label col-lg-4">Application Status</label>
+                            <div class="col-lg-7" ng-class="page.model.mpObj.ddlApplicationStatus===undefined || page.model.mpObj.ddlApplicationStatus===null || page.model.mpObj.ddlApplicationStatus.length===0 ?'':'colorforcontrols'">
+                                <select multiselectdropdown multiple id="Applicationsts" class="smalldropdown" ng-model="page.model.mpObj.ddlApplicationStatus" ng-options="item.value as item.label for item in page.model.applicationStatusarray">   
+                              </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-center" style="border-top: 1px solid #ddd;padding-top: 1%;">
+                    <button class="button_custom" style="display:initial;" type="submit" ng-click="page.model.assignsettingssubmit(page.model.mpObj,1,10,'grid');">Submit</button>
+                    <button style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset" ng-click="page.model.reset();">Reset</button>
+                </div>
+            </div>
+        </uib-accordion>
+    </div>
+    <complex-grid ng-if="page.model.grid.columns" config="page.model.grid" model="page.model.grid"></complex-grid>
+</div>
+<style>
+    .datepicker3 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+    }
+    
+    .datepicker4 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+        background-color: #f0f0cc !important;
+    }
+</style>

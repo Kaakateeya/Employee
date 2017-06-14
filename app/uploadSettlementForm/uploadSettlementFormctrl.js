@@ -17,7 +17,6 @@
              vm.model.rdnSignIn = '';
              vm.model.scope = scope;
          };
-
          vm.init();
      }
  })();

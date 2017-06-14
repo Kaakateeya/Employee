@@ -8,7 +8,6 @@
     factory.$inject = ['uploadSettlementFormService', 'authSvc', 'alert', 'fileUpload'];
 
     function factory(svc, authSvc, alertss, fileUpload) {
-
         return function() {
             var model = {};
             model.scope = {};
@@ -20,19 +19,15 @@
                 { label: 'sms', title: 'sms', value: 458 },
                 { label: 'oral agreed', title: 'oral agreed', value: 459 }
             ];
-
             model.submitUpload = function(obj) {
-
                 if (obj) {
                     var extension = model.upFile ? (obj.name.split('.'))[1] : null;
                     extension = angular.lowercase(extension);
                     var empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                     var curdate = moment().format('DD-MM-YYYY');
                     var strCustDtryName = model.txtProfileID + "_settlementImages";
-
                     var keyname = "Images/SettlementImages/" + strCustDtryName + "/" + model.txtProfileID + "_settlementImages." + extension;
                     var Imgpath = "~\\Images\\SettlementImages\\" + strCustDtryName + "/" + model.txtProfileID + "_settlementImages." + extension;
-
                     var inObj = {
                         CreatedByEmpID: empid,
                         CreatedDate: curdate,
@@ -63,7 +58,6 @@
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please upload file', 4500);
                 }
             };
-
             model.checkProfileID = function(profileID) {
                 if (profileID) {
                     svc.checkProfileID(profileID).then(function(response) {
@@ -81,13 +75,11 @@
                     });
                 }
             };
-
             model.reset = function() {
                 model.typeOfReference = '';
                 model.rdnSignIn = '';
                 model.txtProfileID = '';
             };
-
             return model;
         };
     }

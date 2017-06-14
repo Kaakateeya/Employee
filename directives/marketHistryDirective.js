@@ -8,7 +8,6 @@
     directive.$inject = ['$window'];
 
     function directive($window) {
-
         var directive = {
             link: link,
             restrict: 'EA',
@@ -29,10 +28,7 @@
         return directive;
 
         function link(scope, element, attrs) {
-
-
             var datatt = scope.strtype;
-
         }
     }
 

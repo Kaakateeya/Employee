@@ -4,13 +4,10 @@
     function factory($http, getArray, timeout, matchFollowupServices, config,
         authSvc, Commondependency, modelpopupopenmethod, alertss, arrayConstants, SelectBindServiceApp) {
         return function() {
-
             var model = {};
             model = config;
             model.proceed = {};
-
             model.BranchName = [];
-
             model.templateUrl = "templates/matchFollowupSlide.html";
             model.headettemp = "templates/matchFollowupHeader.html";
             model.proceed.typeofPage = 'popup';
@@ -73,8 +70,18 @@
                 { id: 4, text: 'Contact details of the Groom/bride is given below.' }
             ];
 
-            model.matchFollowupSelect = function(empid, custID, typeofpopup) {
+            model.notInrstarray = [
+                { id: 1, text: 'The horoscope is not matching' },
+                { id: 2, text: 'Is not in the age criteria.' },
+                { id: 3, text: 'Is not satisfied with the height' },
+                { id: 4, text: 'Is not satisfied with the educational criteria.' },
+                { id: 5, text: 'Is not satisfied with the professional criteria.' },
+                { id: 6, text: 'There is financial incompatibility' },
+                { id: 7, text: 'Is not satisfied with the photos provided' }
+            ];
 
+
+            model.matchFollowupSelect = function(empid, custID, typeofpopup) {
                 var inputobj = {
                     empid: model.empid,
                     strProfileOwner: empid !== undefined ? empid : ((model.Managementid) === 'true' ? (_.isArray(model.lstEmpnames) ? (model.lstEmpnames).join(',') : '') : model.empid),
@@ -86,7 +93,7 @@
                     strregion: model.lstregions !== undefined ? model.lstregions : '',
                     oppclose: model.closeflag,
                     Empwaiting: model.Empwaitingflag
-                }
+                };
                 if (typeofpopup === 'proceedpopup') {
                     inputobj.pagefrom = model.proceed.frompage;
                     inputobj.pageto = model.proceed.topage;
@@ -95,8 +102,6 @@
                     inputobj.pageto = model.topage;
                 }
                 matchFollowupServices.matchFollowupSelect(inputobj).then(function(response) {
-
-
                     if (_.isArray(response.data) && response.data.length > 0) {
                         var currentdate = new Date();
                         currentdate = moment(currentdate).format("YYYY-MM-DD");
@@ -174,7 +179,6 @@
             };
 
             model.proceed.proceedImage = model.proceedImage = function(status) {
-
                 var src = '';
                 if (status.trim() === "I") {
                     src = 'src/images/heartgrren.gif';
@@ -206,7 +210,6 @@
                 modelpopupopenmethod.closepopup();
             };
             model.close = function() {
-
                 modelpopupopenmethod.closepopuppoptopopup();
 
             };
@@ -231,9 +234,6 @@
                     }
                 });
             };
-
-
-
             model.checkStatusID = function(val) {
                 return (val === "NI") ? "NotViewed" : (val === "I" ? "Accept" : (val === "NI" ? "Reject" : "NotViewed"));
             };
@@ -260,12 +260,10 @@
                 model.ddlmail = '';
                 model.rbtnsms = '';
                 if (type === 'sms') {
-
                     model.smsInput = [];
                     var strempNumber = '';
                     if (EmpmobileNumber !== undefined)
                         strempNumber = (EmpmobileNumber.split('-'))[1];
-
                     model.smsInput = {
                         strbody: model.txtsmsmail,
                         strMobileNumber: mobilenumber,
@@ -276,13 +274,12 @@
                         strMobileCountryCode: mobileCountryCode,
                         i_TicketID: ticketID,
                         marketbothflag: 'Bothone'
-                    }
+                    };
                 } else {
                     model.custName = name + '(' + profileid + ')';
                     model.custemail = email;
                     model.bindreplytype();
                     model.ddlmail = 5;
-
                     model.mailInput = {
                         Notes: model.txtsmsmail,
                         EMPID: model.empid,
@@ -294,7 +291,7 @@
                         TicketStatusID: model.checkStatusID(ticketStatusId),
                         FromProfileID: profileid,
                         ToProfileID: ToProfileID
-                    }
+                    };
                     timeout(function() {
                         model.txtsmsmail = model.mailchange(model.ddlmail);
                     }, 500);
@@ -305,10 +302,7 @@
             model.smsOnchange = function(val) {
                 model.txtsmsmail = _.where(model.smsarray, { id: parseInt(val) })[0].text;
             };
-
-
             model.smsMailSubmit = function(type) {
-
                 if (type === 'sms') {
                     model.smsInput.strbody = model.txtsmsmail;
                     matchFollowupServices.sendSms(model.smsInput).then(function(response) {
@@ -320,7 +314,6 @@
                 } else {
                     model.mailInput.Notes = model.txtsmsmail;
                     matchFollowupServices.sendMail(model.mailInput).then(function(response) {
-
                         if (parseInt(response.data) === 1) {
                             model.proceed.closepopup();
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent successfully', 9500);
@@ -344,7 +337,6 @@
 
             };
             model.Resendmail = function(fromcustID, toCustID, FormProfileid, Toprofileid, offlineExpiry, onlineExpiry) {
-
                 var resendInputObj = {
                     Notes: 'mail sent',
                     EMPID: model.empid,
@@ -354,11 +346,9 @@
                     ToProfileID: Toprofileid,
                     TicketStatusID: "NotViewed",
                     Subject: "Kaakateeya Email For Bothsideinterest"
-                }
-
+                };
                 matchFollowupServices.ResendMail(resendInputObj).then(function(response) {
                     if (parseInt(response.data) === 1) {
-
                         if (offlineExpiry === 'Unpaidcust' && onlineExpiry === 'Unpaidcust') {
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent succesfully</br> They Can not open View Profile because of there is No Points', 9500);
                         } else {
@@ -388,7 +378,7 @@
 
                 });
             };
-            model.openActionPopup = function(ticketID, profileID, number) {
+            model.openActionPopup = function(ticketID, profileID, number, fromcustid, tocustid, ticketStatusId, ToProfileID) {
                 model.bindreplytype();
                 model.actobj.ddlInreceivedfrom = 39;
                 model.actobj.ddlOutreceivedby = 39;
@@ -396,32 +386,42 @@
                 model.ActionProfileID = profileID;
                 model.RelationshipChange(39, 'In');
                 model.RelationshipChange(39, 'Out');
-
                 model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = '';
                 model.actobj.ddlInReplyType =
-                    model.actobj.ddlOutreplytype =
-                    model.actobj.ddlMemReplyType =
+                    model.actobj.rbtnReplyTypeout =
+                    model.actobj.rbtnReplyType =
                     model.actobj.ddlcloseReplyType = '';
-
                 model.ActionTicket = ticketID;
-
                 //model.actobj.ddlMemAssign = parseInt(model.empid);
                 model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = '0';
                 model.actobj.txtInCalltelephonenumber = model.actobj.txtOutCalltelephonenumber = number;
-
                 matchFollowupServices.ticketHistry(ticketID, 'I').then(function(response) {
-
                     if (_.isArray(response.data) && response.data.length > 0) {
                         model.infnArr = {};
                         model.infnArr = (response.data)[0];
-
                     }
                 });
+                model.mailInput = {};
+                model.mailInput = {
+                    // Notes: obj.CallDiscussion,
+                    EMPID: model.empid,
+                    profileid: profileID,
+                    LTicketID: ticketID,
+                    HistoryUpdate: 2,
+                    FromCustID: fromcustid,
+                    TocustID: tocustid,
+                    TicketStatusID: model.checkStatusID(ticketStatusId),
+                    FromProfileID: profileID,
+                    ToProfileID: ToProfileID
+                };
+
+
                 modelpopupopenmethod.showPopup('Actions.html', model.scope, 'lg', 'Actioncls');
             };
 
 
-            model.ActionSubmit = function(obj, str) {
+            model.ActionSubmit = function(obj, str, intrstType) {
+                obj.CallDiscussion = intrstType ? (parseInt(intrstType) === 1 ? 'Interested in your match' : obj.CallDiscussion) : obj.CallDiscussion;
                 var alertmsg = '',
                     replyTypedisplay = '';
                 var inputObj = {
@@ -434,13 +434,21 @@
                     DisplayStatus: obj.DisplayStatus,
                     TicketID: model.ActionTicket,
                     EmpID: model.empid,
-                    Replaytypeid: obj.Replaytypeid,
+                    // Replaytypeid: obj.Replaytypeid,
                     AssignedEmpID: obj.AssignedEmpID
                 };
-
                 matchFollowupServices.ActionSubmit(inputObj).then(function(response) {
                     if (parseInt(response.data) === 1) {
                         model.closeAction();
+                        model.mailInput.Notes = obj.CallDiscussion;
+                        if (str === 'Incoming' || str === 'Out going' || str === 'Internal Memo') {
+                            matchFollowupServices.sendMail(model.mailInput).then(function(response) {
+                                if (parseInt(response.data) === 1) {
+                                    // model.proceed.closepopup();
+                                    // alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent successfully', 9500);
+                                }
+                            });
+                        }
 
                         var curdate = moment().format('Do MMMM YYYY, h:mm:ss');
                         if (str === 'Incoming') {
@@ -460,9 +468,7 @@
                         if (obj.RelationID !== undefined) {
                             relation = (_.where(arrayConstants.childStayingWith, { value: parseInt(obj.RelationID) }))[0].label;
                         }
-
                         _.each(model.slides, function(item) {
-
                             if (model.ActionTicket === item.FromTicket && replyTypedisplay !== 'Close') {
                                 item.FromTicketHisoryType = replyTypedisplay;
                                 item.FromTicketInfo = replyTypedisplay + ' done on ' + curdate + '(0 days ago)';
@@ -471,7 +477,6 @@
                                 item.FromTicketHisoryCallReceivedBy = obj.RelationName;
                                 item.FromTicketHisoryReplyDesc = obj.CallDiscussion;
                                 item.FromTicketHisoryRelationShip = relation;
-
                             } else if (model.ActionTicket === item.ToTicket && replyTypedisplay !== 'Close') {
                                 item.ToTicketHisoryType = replyTypedisplay;
                                 item.ToTicketInfo = replyTypedisplay + ' done on ' + curdate + '(0 days ago)';
@@ -482,16 +487,13 @@
                                 item.ToTicketHisoryRelationShip = relation;
                             }
                         });
-
                         alertss.timeoutoldalerts(model.scope, 'alert-success', alertmsg + ' successfully', 9500);
                     } else {
                         alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail send Failed', 9500);
                     }
                 });
             };
-
             model.inCallsSubmit = function(obj) {
-
                 var inputObj = {
                     CallType: 377,
                     RelationID: obj.ddlInreceivedfrom,
@@ -500,9 +502,9 @@
                     PhoneNum: obj.txtInCalltelephonenumber,
                     CallDiscussion: obj.txtInCalldiscussion,
                     DisplayStatus: obj.rbtnInDisplay,
-                    Replaytypeid: obj.ddlInReplyType
+                    // Replaytypeid: obj.ddlInReplyType
                 };
-                model.ActionSubmit(inputObj, 'Incoming');
+                model.ActionSubmit(inputObj, 'Incoming', obj.rbtnReplyType);
             };
             model.outCallsSubmit = function(obj) {
                 var inputObj = {
@@ -513,11 +515,10 @@
                     PhoneNum: obj.txtOutCalltelephonenumber,
                     CallDiscussion: obj.txtOutCalldiscussion,
                     DisplayStatus: obj.rbtnOutDisplay,
-                    Replaytypeid: obj.ddlOutreplytype
+                    // Replaytypeid: obj.ddlOutreplytype
                 };
-                model.ActionSubmit(inputObj, 'Out going');
+                model.ActionSubmit(inputObj, 'Out going', obj.rbtnReplyTypeout);
             };
-
             model.memoSubmit = function(obj) {
                 var inputObj = {
                     CallType: 379,
@@ -525,7 +526,7 @@
                     // AssignedEmpID: obj.ddlMemAssign
                     AssignedEmpID: null
                 };
-                model.ActionSubmit(inputObj, 'Internal Memo');
+                model.ActionSubmit(inputObj, 'Internal Memo', obj.rbtnReplyTypememo);
             };
 
             model.closeSubmit = function(obj) {
@@ -548,11 +549,22 @@
                 });
             };
 
+            model.NotIntrstChnge = function(val, type) {
+                model.typeOFCall = type;
+                if (val === '0') {
+                    modelpopupopenmethod.showPopupphotopoup('notIntrstPopup.html', model.scope, 'md', 'notintrstCls');
+                }
+            };
 
-
-
-
-
+            model.notIntrstchangeBind = function(val) {
+                if (model.typeOFCall === 'In') {
+                    model.actobj.txtInCalldiscussion = _.where(model.notInrstarray, { id: parseInt(val) })[0].text;
+                } else if (model.typeOFCall === 'Out') {
+                    model.actobj.txtOutCalldiscussion = _.where(model.notInrstarray, { id: parseInt(val) })[0].text;
+                } else {
+                    model.actobj.txtMemmemocalldiscussion = _.where(model.notInrstarray, { id: parseInt(val) })[0].text;
+                }
+            };
             return model;
         };
     }

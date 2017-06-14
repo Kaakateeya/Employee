@@ -2,7 +2,7 @@
     'use strict';
 
 
-    function factory(editSibblingService, authSvc, alertss, commonFactory, uibModal, SelectBindService, stateParams) {
+    function factory(editSibblingService, authSvc, alertss, commonFactory, uibModal, SelectBindService, stateParams, modelpopupopenmethod) {
         var model = {};
         model.scope = {};
         //start declaration block
@@ -47,24 +47,14 @@
                 model.broModifiedby = (model.BrotherArr.length > 0 && model.BrotherArr[0].EmpLastModificationDate !== undefined && model.BrotherArr[0].EmpLastModificationDate !== null) ? model.BrotherArr[0].EmpLastModificationDate : '';
                 model.sisModifiedby = (model.sisterArr.length > 0 && model.sisterArr[0].EmpLastModificationDate !== undefined && model.sisterArr[0].EmpLastModificationDate !== null) ? model.sisterArr[0].EmpLastModificationDate : '';
 
-                model.broPrintArr = model.getNumForSibOrderbind(model.BrotherArr.length);
-                model.sisPrintArr = model.getNumForSibOrderbind(model.sisterArr.length);
 
             });
         };
 
 
-        model.getNumForSibOrderbind = function(count) {
-            var arr = [];
-            arr.push({ "label": "--Select--", "title": "--Select--", "value": 0 });
-            for (var i = 1; i <= count; i++) {
-                arr.push({ "label": "p" + i, "title": "p" + i, "value": i });
-            }
-            return arr;
-        };
-
         model.sibblingPopulatePopulate = function(type, item) {
             isSubmit = true;
+            model.eventType = 'add';
             switch (type) {
                 case 'sibCounrt':
                     model.popupdata = model.noOfSibblings;
@@ -82,15 +72,20 @@
                     break;
 
                 case 'brother':
+                    model.brother[0].dataSource = modelpopupopenmethod.getNumForPrintOrderbind(model.BrotherArr.length + 1);
                     model.popupdata = model.brother;
                     model.popupHeader = 'Brother details';
 
                     if (item !== undefined && model.BrotherArr.length <= parseInt(model.BroCount)) {
+                        model.brother[0].dataSource = modelpopupopenmethod.getNumForPrintOrderbind(model.BrotherArr.length);
+
                         model.SibilingCustfamilyID = null;
                         model.broObj = {};
                         if (item !== undefined) {
                             model.eventType = 'edit';
                             model.SibilingCustfamilyID = item.SibilingCustfamilyID;
+
+                            model.broPrintOrder = item.BornOrder;
                             model.youngerElderBro = item.brotherYoungerORelder == 'Elder' ? 42 : (item.brotherYoungerORelder == 'Younger' ? 41 : '-1');
                             model.broName = item.SibilingName;
                             model.broEducation = item.SibilingEducationDetails;
@@ -164,9 +159,11 @@
                     break;
 
                 case 'sister':
+                    model.sister[0].dataSource = modelpopupopenmethod.getNumForPrintOrderbind(model.sisterArr.length + 1);
                     model.popupdata = model.sister;
                     model.popupHeader = 'Sister details';
                     if (item !== undefined && model.sisterArr.length <= parseInt(model.SisCount)) {
+                        model.sister[0].dataSource = modelpopupopenmethod.getNumForPrintOrderbind(model.sisterArr.length);
 
                         model.SibilingCustfamilyID = null;
                         model.sisObj = {};
@@ -174,6 +171,7 @@
                         if (item !== undefined) {
                             model.eventType = 'edit';
                             model.SibilingCustfamilyID = item.SibilingCustfamilyID;
+                            model.sisPrintOrder = item.BornOrder;
                             model.youngerElderSis = item.SisterElderORyounger == 'Elder' ? '322' : (item.SisterElderORyounger == 'Younger' ? '321' : '-1');
                             model.sisName = item.SibilingName;
                             model.sisEducation = item.SibilingEducationDetails;
@@ -258,7 +256,6 @@
         model.checkVal = function(val) {
             return (val !== '' && val !== undefined) ? val : 0;
         };
-
 
         model.enableSubmit = function() {
             isSubmit = true;
@@ -443,7 +440,7 @@
         ];
 
         model.brother = [
-            { lblname: 'printOrder', controlType: 'selectNumber', ngmodel: 'broPrintOrder', parameterValue: 'BroPrintOrderID', dataSource: model.broPrintArr },
+            { lblname: 'PrintOrder in view profile', controlType: 'select', ngmodel: 'broPrintOrder', parameterValue: 'BornOrder' },
             { lblname: 'Elder/Younger', controlType: 'radio', ngmodel: 'youngerElderBro', required: true, ownArray: 'broElderYoungerArr', parameterValue: 'BroElderYounger' },
             { lblname: 'Name', controlType: 'textbox', ngmodel: 'broName', required: true, parameterValue: 'BroName' },
             { lblname: 'Education', controlType: 'textbox', ngmodel: 'broEducation', parameterValue: 'BroEducationDetails' },
@@ -537,7 +534,7 @@
         ];
 
         model.sister = [
-            { lblname: 'printOrder', controlType: 'selectNumber', ngmodel: 'sisPrintOrder', parameterValue: 'SisPrintOrderID', ownArray: 'sisPrintArr' },
+            { lblname: 'PrintOrder in view profile', controlType: 'select', ngmodel: 'sisPrintOrder', parameterValue: 'BornOrder' },
             { lblname: 'Elder/Younger', controlType: 'radio', ngmodel: 'youngerElderSis', required: true, ownArray: 'sisElderYoungerArr', parameterValue: 'SisElderYounger' },
             { lblname: 'Name', controlType: 'textbox', ngmodel: 'sisName', required: true, parameterValue: 'SisName' },
             { lblname: 'Education', controlType: 'textbox', ngmodel: 'sisEducation', parameterValue: 'siseducationdetails' },
@@ -646,6 +643,6 @@
         .module('Kaakateeya')
         .factory('editSibblingModel', factory);
 
-    factory.$inject = ['editSibblingService', 'authSvc', 'alert', 'commonFactory', '$uibModal', 'SelectBindService', '$stateParams'];
+    factory.$inject = ['editSibblingService', 'authSvc', 'alert', 'commonFactory', '$uibModal', 'SelectBindService', '$stateParams', 'modelpopupopenmethod'];
 
 })(angular);

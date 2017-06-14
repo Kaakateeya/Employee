@@ -8,7 +8,7 @@
                 <div class="row form-group clearfix">
                     <label for="" class="col-lg-3">Settled profile ID</label>
                     <div class="col-lg-3">
-                        <input type="text" ng-required="true" class="form-control" ng-model="page.model.txtProfileID" ng-blur="page.model.checkProfileID(page.model.txtProfileID);">
+                        <input focus-me="true" type="text" ng-required="true" class="form-control" ng-model="page.model.txtProfileID" ng-blur="page.model.checkProfileID(page.model.txtProfileID);">
                     </div>
                 </div>
 
@@ -36,15 +36,18 @@
                 </div>
                 <br>
 
-                <div class="row clearfix">
-                    <div class="col-lg-3  col-lg-offset-3 form-group" ng-if="page.model.rdnSignIn==='1' || page.model.rdnSignIn==='0'">
-                        <textarea name="Desc" ng-required="true" id="" cols="30" rows="3" class="form-control" ng-model="page.model.txtDesc"></textarea>
-                    </div>
-                    <div class="col-lg-3 form-group" ng-if="page.model.rdnSignIn==='0'">
+                <div class="row form-group clearfix">
+                    <div class="col-lg-3 col-lg-offset-3 form-group" ng-if="page.model.rdnSignIn==='0'">
                         <div class="input-group">
                             <select multiselectdropdown ng-required="true" ng-model="page.model.typeOfReference" ng-options="item.value as item.label for item in page.model.relationArr">   
                                 </select>
                         </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row clearfix">
+                    <div class="col-lg-10  col-lg-offset-3 form-group" ng-if="page.model.rdnSignIn==='1' || page.model.rdnSignIn==='0'">
+                        <textarea name="Desc" ng-required="true" id="" cols="30" rows="3" class="form-control" ng-model="page.model.txtDesc"></textarea>
                     </div>
                 </div>
                 <br>
