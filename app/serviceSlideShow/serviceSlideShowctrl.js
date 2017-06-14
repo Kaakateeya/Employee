@@ -6,12 +6,15 @@
          var vm = this,
              model;
          vm.init = function() {
-             vm.model = model = serviceSlideShowModel;
+             vm.model = model = serviceSlideShowModel();
              model.scope = scope;
              model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
              model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
+             model.viewsettlementprofileid = "";
+             model.typeofbind = 0;
              model.serviceslideshowarray = [];
              model.servicepersonalarray = [];
+             model.slides = [];
              model.templateUrl = "templates/serviceSlideshowSlide.html";
              model.headettemp = "seviceslideshowheader.html";
              model.typeofbind = 0;

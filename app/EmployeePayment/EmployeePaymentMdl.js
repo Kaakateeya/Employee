@@ -49,7 +49,7 @@
                                 model.ProfileID = (response.data)[0].ProfileID;
                                 model.setData(response.data);
                             } else {
-                                state.go('EmployeePaymentInsert', { ProfileID: txtval, status: 0, paymentID: 0 });
+                                state.go('base.EmployeePaymentInsert', { ProfileID: txtval, status: 0, paymentID: 0 });
                             }
                         }
                     );
@@ -58,7 +58,7 @@
                 }
             };
             model.paymentInsertLink = function(id) {
-                state.go('EmployeePaymentInsert', { ProfileID: id, status: 1, paymentID: 0 });
+                state.go('base.EmployeePaymentInsert', { ProfileID: id, status: 1, paymentID: 0 });
             };
             model.viewProfileRedirect = function() {
                 window.open('/Viewfullprofile/' + model.ProfileID + "/0", '_blank');

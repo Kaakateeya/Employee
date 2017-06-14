@@ -89,4 +89,17 @@
   padding: 4px;
   line-height: 2.1; }
 
+#regval .ProfileOwner {
+  width: 210px; }
+#regval .TicketHistoryID {
+  width: 114px; }
+#regval .headerStyles {
+  font-size: 14px; }
+#regval .ProfileID {
+  width: 130px; }
+#regval .plusiconshow {
+  width: 33px; }
+#regval .DOR {
+  width: 98px; }
+
 /*# sourceMappingURL=style.css.map */

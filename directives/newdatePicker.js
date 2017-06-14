@@ -22,12 +22,11 @@
         return directive;
 
         function link(scope, element, attrs) {
-
-
-
-
-
-
+            scope.$watch("ngModel", function(newvalue, old) {
+                console.log(old);
+                console.log(newvalue);
+                scope.ngModel = newvalue;
+            });
         }
     }
 

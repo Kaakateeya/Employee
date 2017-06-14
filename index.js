@@ -17,9 +17,9 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
 app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.apipathold = 'http://183.82.0.58:8010/Api/';
 app.env = "dev";
-app.payfixedAmt = 100;
-app.paypoints = 10;
-app.payDays = 30;
+app.payfixedAmt = 1000;
+app.paypoints = 12;
+app.payDays = 42;
 app.PaymentDays = parseInt(app.payDays) / parseInt(app.payfixedAmt);
 app.paymentPoints = parseInt(app.paypoints) / parseInt(app.payfixedAmt);
 app.ServiceTaxPercent = 14 / 100;
@@ -71,7 +71,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'viewSettlementform', name: 'base.viewSettlementform', url: '/viewSettlementforms', isloginrequired: true },
             { routeName: 'serviceSlideShow', name: 'base.serviceSlideShow', url: '/serviceSlideShows', isloginrequired: true },
             { routeName: 'settleDeleteProfile', name: 'base.settleDeleteProfile', url: '/settleDeleteProfilePage', isloginrequired: true },
-            { routeName: 'paymentOffersAssign', name: 'base.paymentOffersAssign', url: '/paymentOffersAssignPage', isloginrequired: true }
+            { routeName: 'paymentOffersAssign', name: 'base.paymentOffersAssign', url: '/paymentOffersAssignPage', isloginrequired: true },
+            { routeName: 'assignSettings', name: 'base.assignSettings', url: '/assignSetting', isloginrequired: true },
+            { routeName: 'employeeViewfullprofilePrintchk', name: 'base.employeeViewfullprofilePrintchk', url: '/employeeViewfullprofileschk/:ProfileID/:contacts', subname: ['directives/divPrint.js'] }
 
         ];
         $ocLazyLoadProvider.config({
