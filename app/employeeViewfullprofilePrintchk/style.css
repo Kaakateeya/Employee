@@ -123,6 +123,11 @@
   #viewProfileId .imgSize {
     height: 160px;
     width: 150px; }
+  #viewProfileId md-checkbox .md-icon {
+    width: 17px;
+    height: 16px; }
+  #viewProfileId md-checkbox.md-checked .md-icon:after {
+    width: 4.66667px; }
 
 .headerStyles {
   color: #5c5252;
@@ -136,6 +141,12 @@
     display: none; }
 
   .displayCls {
+    display: block; }
+
+  .hidecheckprint {
+    display: block; }
+
+  .showcheckprint {
     display: block; } }
 @media print {
   .printCls {
@@ -151,6 +162,12 @@
     font-size: 18px; }
 
   #viewProfileId .lblHeadings {
-    font-size: 18px; } }
+    font-size: 18px; }
+
+  .hidecheckprint {
+    display: none; }
+
+  .showcheckprint {
+    display: block; } }
 
 /*# sourceMappingURL=style.css.map */

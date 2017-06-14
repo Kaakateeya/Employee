@@ -78,10 +78,10 @@
                     </div>
                 </div>
                 <div class="personal_inform_main">
-                    <div ng-repeat="item in page.model.viewprofilearray" ng-if="item.header=='Headings' || item.header=='About' || item.header=='Primary'?'':item.header">
+                    <div ng-class="item.printvaluemain===true?'showcheckprint':'hidecheckprint'" ng-repeat="item in page.model.viewprofilearray" ng-if="item.header=='Headings' || item.header=='About' || item.header=='Primary'?'':item.header">
                         <div class="personal_inform_head clearfix" ng-class="item.header=='My Basic Details'?'displayCls':''" style="background-color: rgb(244, 182, 36); padding: 0px 10px; border-bottom: solid 1px #ccc;">
                             <h4>
-                                <span class="lblHeadings">{{item.header}}</span>
+                                <span class="lblHeadings">{{item.header}}{{item.printvaluemain}}</span>
                                 <md-checkbox ng-model="item.printvaluemain" ng-change="page.model.chekprint(item)">
                                 </md-checkbox>
                             </h4>
@@ -91,18 +91,11 @@
                             <div ng-class="page.model.applyCls(item.header);">
                                 <p ng-repeat="itm in item.value">
                                     <span style="color:Black;font-weight:bold;">{{itm.columnname|| (itm.columnName==='1'?'Education':(itm.columnName==='2'|| itm.columnName==='3' || itm.columnName==='4' || itm.columnName==='5')?"":itm.columnName) ||itm.ColumnName}}</span>
-                                    <span>
-                                     <span style="color:DarkBlue;"> <span ng-if="itm.columnname!='' && itm.columnname!=null">:</span>
+                                    <span style="color:DarkBlue;"> 
+                                    <span ng-if="itm.columnname!='' && itm.columnname!=null">:</span>
                                     <span ng-bind-html="itm.value || itm.Value" style="color:DarkBlue;"></span>
-                                    <span>
-                                        <!--<md-checkbox  ng-model="page.controller[itm.columnname]">
-                                       </md-checkbox>
-                                       -->
-                                        <md-checkbox ng-change="page.model.printsinglechk(item)"  ng-model="itm.printvalue">
-                                        </md-checkbox>
-                                       
-                                       </span>
-                                    </span>
+                                    <md-checkbox ng-change="page.model.printsinglechk(item)" ng-model="itm.printvalue">
+                                    </md-checkbox>
                                     </span>
                                 </p>
                             </div>

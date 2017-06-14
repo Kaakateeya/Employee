@@ -154,6 +154,13 @@
         height: 160px;
         width: 150px;
     }
+    md-checkbox .md-icon {
+        width: 17px;
+        height: 16px;
+    }
+    md-checkbox.md-checked .md-icon:after {
+        width: 4.66667px;
+    }
 }
 
 .headerStyles {
@@ -169,6 +176,12 @@
         display: none;
     }
     .displayCls {
+        display: block;
+    }
+    .hidecheckprint {
+        display: block;
+    }
+    .showcheckprint {
         display: block;
     }
 }
@@ -188,5 +201,11 @@
     }
     #viewProfileId .lblHeadings {
         font-size: 18px;
+    }
+    .hidecheckprint {
+        display: none;
+    }
+    .showcheckprint {
+        display: block;
     }
 }
