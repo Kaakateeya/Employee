@@ -21,8 +21,8 @@
              }
          };
          vm.divInfo = {
-             printDivId: 'printThisElement',
-             styles: ['/app/employeeViewfullprofilePrint/style.css'], //Extra Styles
+             printDivId: 'printThisElementnew',
+             styles: ['/app/employeeViewfullprofilePrintchk/style.css'], //Extra Styles
              title: 'View Profile',
          };
          vm.init();

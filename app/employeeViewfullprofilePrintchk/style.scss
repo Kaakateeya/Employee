@@ -1,4 +1,4 @@
-#viewProfileId {
+#viewProfileIdnew {
     .profile_full_main {
         width: 1160px;
         margin: 0 auto;
@@ -112,6 +112,7 @@
         text-overflow: ellipsis;
         float: left;
         white-space: nowrap;
+        width: 265px;
     }
     .personal_inform_main_in p span {
         color: #000;
@@ -161,6 +162,17 @@
     md-checkbox.md-checked .md-icon:after {
         width: 4.66667px;
     }
+    md-checkbox .md-container:after {
+        width: 17px;
+        height: 16px;
+    }
+    md-checkbox.ng-pristine.ng-untouched.ng-valid.ng-not-empty.md-checked {
+        width: 17px;
+        height: 16px;
+    }
+    md-checkbox {
+        margin-bottom: 0px;
+    }
 }
 
 .headerStyles {
@@ -178,12 +190,6 @@
     .displayCls {
         display: block;
     }
-    .hidecheckprint {
-        display: block;
-    }
-    .showcheckprint {
-        display: block;
-    }
 }
 
 @media print {
@@ -193,19 +199,55 @@
     .displayCls {
         display: none;
     }
+    .displayClsnew {
+        display: none;
+    }
     .personal_inform_main span {
         font-size: 18px;
     }
     .profile_full_header_in span {
         font-size: 18px;
     }
-    #viewProfileId .lblHeadings {
+    #viewProfileIdnew .lblHeadings {
         font-size: 18px;
     }
-    .hidecheckprint {
-        display: none;
+    .displayClsnewcontacts {
+        display: none !important;
     }
-    .showcheckprint {
+    md-checkbox * {
+        display: none !important;
+        visibility: hidden;
+    }
+    .personal_inform_main_in md-checkbox .md-icon {
+        display: none;
+        width: 0px;
+        height: 0px;
+    }
+    .personal_inform_main_in md-checkbox .md-container:after {
+        display: none;
+        width: 0px;
+        height: 0px;
+    }
+    .personal_inform_main_in md-checkbox.ng-pristine.ng-untouched.ng-valid.ng-not-empty.md-checked {
+        width: 0px;
+        height: 0px;
+    }
+    .personal_inform_main_in md-checkbox {
+        margin-bottom: 0px;
+    }
+    .personal_inform_main_in_list p {
         display: block;
+        width: 32%;
+        padding: 0 1% 0 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        // float: left;
+        white-space: nowrap;
+    }
+    .personal_inform_main_in p {
+        color: #717171;
+        line-height: 22px;
+        margin: 0 0 8px 0;
+        font-weight: 400;
     }
 }

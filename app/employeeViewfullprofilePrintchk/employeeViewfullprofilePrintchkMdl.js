@@ -14,6 +14,44 @@
             model.statecontacts = stateParams.contacts;
             model.textboxshowhide = true;
             model.fullprofileshow = true;
+            model.chekprint = function(obj) {
+                console.log(obj);
+                _.map(obj.value, function(item) {
+                    if (obj.printvaluemain) {
+                        item.printvalue = true;
+                    } else {
+                        item.printvalue = false;
+                    }
+
+                });
+            };
+            model.printsinglechk = function(obj) {
+                console.log(obj.value);
+                if (obj.value.length === (_.where(obj.value, { printvalue: true })).length) {
+                    obj.printvaluemain = true;
+                } else {
+                    obj.printvaluemain = false;
+                }
+            };
+
+            model.chkcontcts = function(obj) {
+                console.log(obj);
+                if (obj.printvaluemain) {
+                    obj.printvaluemobile = true;
+                    obj.printvalueemail = true;
+                } else {
+                    obj.printvaluemobile = false;
+                    obj.printvalueemail = false;
+                }
+            };
+            model.printsinglecontacts = function(obj) {
+                if (obj.printvaluemobile === true && obj.printvalueemail === true) {
+                    obj.printvaluemain = true;
+                } else {
+                    obj.printvaluemain = false;
+                }
+            };
+
             model.EmpViewfullProfile = function(stateprofileid) {
                 model.viewprofilearray = [];
                 model.aboutmyself = {};
@@ -26,7 +64,11 @@
                             var testArr = JSON.parse(item);
                             if (testArr.length > 0 && testArr[0].TableName !== undefined && testArr[0].TableName === "About") {
                                 model.aboutmyself = testArr;
-
+                                _.map(model.aboutmyself, function(item) {
+                                    item.printvaluemain = true;
+                                    item.printvaluemobile = true;
+                                    item.printvalueemail = true;
+                                });
                             } else if (testArr.length > 0 && testArr[0].TableName !== undefined && testArr[0].TableName === "Primary") {
                                 model.personalinfo = testArr;
                                 model.custid = model.personalinfo[0].Cust_ID;
@@ -38,15 +80,25 @@
                                     model.ViewHoroshow = (model.personalinfo[0].HoroscopeImage).indexOf(".html") !== -1 ? true : false;
                                 }
                             } else {
-                                if (testArr.length > 0 && testArr[0].TableName !== undefined && testArr[0].TableName === "My Basic Details") {
-                                    model.basicinfo = testArr;
-                                }
+                                // if (testArr.length > 0 && testArr[0].TableName !== undefined && testArr[0].TableName === "My Basic Details") {
+                                //     model.basicinfo = testArr;
+                                //     _.map(model.basicinfo, function(item) {
+                                //         item.printvaluemain = true;
+                                //     });
+                                // }
                                 if (testArr.length > 0 && testArr[0].TableName !== undefined) {
                                     model.viewprofilearray.push({ header: testArr[0].TableName, value: testArr });
+                                    _.map(model.viewprofilearray, function(item) {
+                                        item.printvaluemain = true;
+                                        model.chekprint(item);
+                                    });
+
                                 }
                             }
                         });
-
+                        console.log("sssss");
+                        model.basicinfo = model.viewprofilearray.length > 0 ? model.viewprofilearray[1].value : [];
+                        console.log(model.basicinfo);
                     }
                 });
             };
@@ -76,25 +128,7 @@
                     commonpage.showPopup('templates/bindImagePopup.html', model.scope, 'md', '');
                 }
             };
-            model.chekprint = function(obj) {
-                console.log(obj);
-                _.map(obj.value, function(item) {
-                    if (obj.printvaluemain) {
-                        item.printvalue = true;
-                    } else {
-                        item.printvalue = undefined;
-                    }
 
-                });
-            };
-            model.printsinglechk = function(obj) {
-                console.log(obj.value);
-                if (obj.value.length === (_.where(obj.value, { printvalue: true })).length) {
-                    obj.printvaluemain = true;
-                } else {
-                    obj.printvaluemain = undefined;
-                }
-            };
             return model;
         };
     }
