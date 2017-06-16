@@ -4,11 +4,10 @@
 
     function factory(http) {
         return {
-            getMyprofilebind: function(flag, ID) {
-                return http.get(app.apiroot + 'EmployeeReportPage/getMyProfileBindings', {
+            test: function(flag, ID) {
+                return http.get(app.apiroot + 'test', {
                     params: {
-                        flag: flag,
-                        ID: ID,
+
                     }
                 });
             }
