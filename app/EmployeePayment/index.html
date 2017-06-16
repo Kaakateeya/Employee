@@ -16,11 +16,13 @@
                     <button class="btn btn-danger" ng-click="page.model.EmployeePayment(page.model.txtProfileID)">Go</button>
                 </div>
                 <div class="col-lg-2">
+                    <a href="javascript:void(0)" ng-click="page.model.oldtablepayment(page.model.txtProfileID)">
+                     old Payment
+                   </a>
+                </div>
+                <div class="col-lg-2">
                     <md-button class="md-primary" ng-click="page.model.viewProfileRedirect();" ng-if="page.model.CustName!==''"> {{page.model.CustName}} ({{page.model.ProfileOwner}})</md-button>
                 </div>
-                <a href="javascript:void(0)" ng-click="page.model.oldtablepayment(page.model.txtProfileID)">
-                 old Payment
-                </a>
             </div>
             <div>
                 <md-button class="md-primary pull-right" ng-show="page.model.freshLink" href="javascript:void(0);" ng-click="page.model.paymentInsertLink(page.model.txtProfileID);">Renewal</md-button>
@@ -30,6 +32,15 @@
             </div>
         </div>
     </div>
+    <script type="text/ng-template" id="oldtablepayment.html">
+        <!--<a href="javascript:void(0);" ng-click="page.model.close()" class="pull-right">
+            <i class="fa fa-times" aria-hidden="true" style="fill:#c73e5f;font-size: 13pt;"></i>
+        </a>-->
+        <div class="pull-right">
+            <a href="javascript:void(0);" ng-click="page.model.close()" style="padding:7px;"> <i class="fa fa-times" aria-hidden="true" style="fill:#c73e5f;font-size: 16pt;"></i></a>
+        </div>
+        <single-grid model="page.model.singlegrid" config="page.model.singlegrid"></single-grid>
+    </script>
 </div>
 
 <style>
