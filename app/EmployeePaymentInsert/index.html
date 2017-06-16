@@ -61,7 +61,7 @@
                                 <label for="" class="control-label pull-right">Agreed amount</label>
                             </div>
                             <div class="col-lg-4">
-                                <input type="number" ng-readonly="page.model.typeofprofile!==0" ng-focus="true" ng-value="page.model.custobj.AgreedAmount" ng-model="page.model.PiObj.txtAgreedAmt" class="form-control" required ng-blur="page.model.showOfferDetails(page.model.PiObj.txtAgreedAmt);">
+                                <input type="number" ng-readonly="page.model.typeofprofile!==0" ng-focus="true" ng-value="page.model.typeofprofile!==0?page.model.custobj.AgreedAmount:''" ng-model="page.model.PiObj.txtAgreedAmt" class="form-control" required ng-blur="page.model.showOfferDetails(page.model.PiObj.txtAgreedAmt);">
                             </div>
                         </div>
                         <!--<div class="form-group col-lg-5">
@@ -95,7 +95,7 @@
                                 <label for="" class="control-label pull-right">Amount paid </label>
                             </div>
                             <div class="col-lg-4">
-                                <input type="number" ng-value="page.model.custobj.Price" ng-model="page.model.PiObj.txtAmountPaid" class="form-control" ng-blur="page.model.PaidAmtChange(page.model.PiObj.txtAmountPaid,page.model.PiObj.txtAgreedAmt);" required>
+                                <input type="number" ng-value="page.model.typeofprofile!==0?page.model.custobj.Price:''" ng-model="page.model.PiObj.txtAmountPaid" class="form-control" ng-blur="page.model.PaidAmtChange(page.model.PiObj.txtAmountPaid,page.model.PiObj.txtAgreedAmt);" required>
                             </div>
                             <!--<div class="col-lg-4">
                                 <label for="" class="col-lg-8" ng-model="page.model.PiObj.lblServiceTaxAmt">+{{page.model.PiObj.rdnServicetax=='1'?((page.model.PiObj.txtAmountPaid*page.model.ServiceTaxPercent)|number:2):0}}(Tax)</label>

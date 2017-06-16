@@ -5,7 +5,7 @@
         <page-review dispaly-name="'Education details'" linkval="model.lnkeducationandprofReview" sectionid="'6,7,8'" custid="page.model.CustID"></page-review>
         <div class="edit_page_item">
             <div class="edit_page_item_head clearfix">
-                <h4>Customer Personal Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2" ng-show="page.model.custEmpLastModificationDate!=undefined && page.model.custEmpLastModificationDate!=null && page.model.custEmpLastModificationDate!==''">ModifiedBy :{{page.model.custEmpLastModificationDate}}</span>
+                <h4>{{page.model.gend===2?'Bride':'Groom'}} Personal Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2" ng-show="page.model.custEmpLastModificationDate!=undefined && page.model.custEmpLastModificationDate!=null && page.model.custEmpLastModificationDate!==''">ModifiedBy :{{page.model.custEmpLastModificationDate}}</span>
                 </h4>
                 <div class="edit_page_item_ui clearfix" ng-if="page.model.CustomerDataArr.length==0">
                     <a id="lnkpersonaldetailsadd" class="edit_page_add_button" href="javascript:void(0);" ng-click="page.model.showpopup('custData');">Add</a>
@@ -18,9 +18,10 @@
                             <h6>
                                 <span id="gender">Gender</span></h6>
                             <h5>
-                                <span id="lblGender">
+                                <span id="lblGender" ng-init="page.model.gend=item.GenderID">
                             {{item.Gender}}</span></h5>
                         </div>
+
                         <div id="UpdatePanellblMaritalStatus" class="edit_page_details_item_desc clearfix">
                             <h6>
                                 <span id="MaritalStatus">Marital Status</span></h6>
