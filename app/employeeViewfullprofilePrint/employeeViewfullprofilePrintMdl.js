@@ -1,12 +1,13 @@
 (function(angular) {
     'use strict';
 
-    function factory(employeeViewfullprofileservice, commonpage, stateParams) {
+    function factory(employeeViewfullprofileservice, commonpage, stateParams, alerts, SelectBindServiceApp) {
         return function() {
             var model = {};
             model.scope = {};
             model.viewprofilearray = [];
             model.aboutmyself = {};
+
             model.personalinfo = [];
             model.basicinfo = [];
             model.custid = 0;
@@ -76,14 +77,68 @@
                     commonpage.showPopup('templates/bindImagePopup.html', model.scope, 'md', '');
                 }
             };
+            model.inbitdata = function(profileid) {
+                commonpage.showPopup('forinbit.html', model.scope, 'md', "");
+                employeeViewfullprofileservice.inbitdata(profileid, model.empid).then(function(response) {
+                    console.log(response);
+                    if (response.data !== undefined && response.data !== "" && response.data !== null) {
+                        model.forinbitinfo = response.data;
+                    }
+                });
+                employeeViewfullprofileservice.NoDataFoundDisplay(profileid).then(function(response) {
+                    console.log(response);
+                    if (response.data !== undefined && response.data !== "" && response.data !== null) {
+                        model.nodatasisplay = response.data;
+                    }
+                });
+            };
+            model.closeinbit = function() {
+                commonpage.closepopuppoptopopup();
+            };
+            model.verifymail = function(custid) {
+                SelectBindServiceApp.verifyEmail(custid).then(function(response) {
+                    if (response.data !== undefined) {
+                        if (response.data === 1) {
+                            alerts.timeoutoldalerts(model.scope, 'alert-success', 'Email verify mail send Successfully', 4000);
+                        }
+                    }
+                });
+            };
+            model.sendMobileCode = function(slide) {
+                var mobilenumber = slide.MobileNumber.split('-');
+                var obj = {
+                    iCountryID: slide.MobileCode,
+                    iCCode: slide.MobileCode,
+                    MobileNumber: mobilenumber[1],
+                    CustFamilyID: slide.CustContactNumbersID
+                };
+                SelectBindServiceApp.sendMobileCode(obj).then(function(response) {
+                    model.mobileVerificationCode = response.data;
+                    commonpage.showPopupphotopoup('verifyMobileContent.html', model.scope, '', "modalclassdashboardphotopopup");
+                });
+            };
+            model.verifyMobCode = function(val) {
+                if (val === "") {
+                    alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter Mobile verify Code', 3000);
+                } else if (model.mobileVerificationCode === val) {
+                    SelectBindServiceApp.verifyMobile(model.mobileVerificationCode, model.forinbitinfo.CustContactNumbersID).then(function(response) {
+                        commonpage.closepopuppoptopopup();
+                        alerts.timeoutoldalerts(model.scope, 'alert-success', 'Mobile Verified Successfully', 3000);
+                    });
+                } else {
+                    alert('Please Enter Valid Verification code');
+                }
+            };
 
 
             return model;
-        }
+        };
     }
     angular
         .module('Kaakateeya')
         .factory('employeeViewfullprofilePrintModel', factory);
-    factory.$inject = ['employeeViewfullprofilePrintservice', 'modelpopupopenmethod', '$stateParams'];
+    factory.$inject = ['employeeViewfullprofilePrintservice', 'modelpopupopenmethod',
+        '$stateParams', 'alert', 'SelectBindServiceApp'
+    ];
 
 })(angular);
