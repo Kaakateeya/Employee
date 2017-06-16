@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function factory(EmployeePaymentInsertservice, stateParams, filter, authSvc, modelpopupopenmethod) {
+    function factory(EmployeePaymentInsertservice, stateParams, filter, authSvc, modelpopupopenmethod, alertss) {
         return function() {
             var model = {};
             model.obj = {};
@@ -17,6 +17,9 @@
             model.isManagement = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
             model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
             model.ServiceTaxPercent = app.ServiceTaxPercent;
+
+            model.typeofprofile = parseInt(stateParams.paymentID);
+
             model.EmployeePaymentInsert = function(inobj, type) {
                 var monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                     DateArr, dateformatt = '';
@@ -50,13 +53,15 @@
                     EmpID: model.empid,
                     AccessFeatureID: 0,
                     PaysmsID: inobj.rbtnmail,
-                    MembershipDuration: model.noofDays
+                    MembershipDuration: parseInt(model.noofDays)
                 };
                 model.PiObj = {};
+                model.PiObj.rbtnmail = 1;
                 EmployeePaymentInsertservice.paymentInsert(obj).then(function(response) {
                     model.scope.paymentForm.$setPristine();
                     model.scope.paymentForm.$setUntouched();
-                    alert('Payment Entered Successfully');
+                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Payment Entered Successfully ', 4500);
+
                     // if (response.data === 1 || response.data === '1') {
                     //     alert('submited successfully');
                     //     model.PiObj = {};
@@ -80,6 +85,9 @@
                             model.PiObj.txtAgreedAmt = model.custobj.AgreedAmount;
                             model.PiObj.txtAmountPaid = model.custobj.Price;
                             model.PiObj.rdnServicetax = model.custobj.ServiceTax !== null ? 1 : 0;
+                            model.PiObj.txtpayDescription = model.custobj.MemberShipDescription;
+                            model.PiObj.txtSettlementAmount = model.custobj.SettlementAmount ? model.custobj.SettlementAmount : '';
+
                         }
                     }
                 });
@@ -143,5 +151,5 @@
     angular
         .module('Kaakateeya')
         .factory('EmployeePaymentInsertModel', factory);
-    factory.$inject = ['EmployeePaymentinsertservice', '$stateParams', '$filter', 'authSvc', 'modelpopupopenmethod'];
+    factory.$inject = ['EmployeePaymentinsertservice', '$stateParams', '$filter', 'authSvc', 'modelpopupopenmethod', 'alert'];
 })(angular);

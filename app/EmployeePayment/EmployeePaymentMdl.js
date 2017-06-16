@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function factory(http, EmployeePaymentservice, state, config, authSvc, singlegrid, modelpopupopenmethod) {
+    function factory(http, EmployeePaymentservice, state, config, authSvc, singlegrid, modelpopupopenmethod, alerts) {
         return function() {
             var model = {};
             model = config;
@@ -14,6 +14,13 @@
             model.singlegrid.myprofileexcel = false;
             model.singlegrid.normalexcel = false;
             model.singlegrid.gridTableshow = false;
+
+            model.init = function() {
+                model.Admin = authSvc.isAdmin();
+                model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+                return model;
+            };
+
             //
             model.obj = {};
             model.CustName = '';
@@ -26,7 +33,7 @@
             model.normalexcel = false;
             model.paymentProfileID = function(row) {
                 var status = row.membershiptype === 'Registration' ? 0 : 1;
-                var paid = "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.ProfileID + "/" + status + "/" + row.PaymentID + "'>Edit</a>";
+                var paid = parseInt(model.Admin) === 1 || model.Managementid === 'true' ? "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.ProfileID + "/" + status + "/" + row.PaymentID + "'>Edit</a>" : '';
                 return paid;
             };
             model.expirydate = function(row) {
@@ -34,8 +41,19 @@
                 var paiddate = "<span>" + row.PaymentDate + status + "</span>";
                 return paiddate;
             };
+
+            model.descriptionTemplate = function(row) {
+                var des = row.Description ? "<a href=javascript:void(0);  ng-click='model.showDescription(" + JSON.stringify(row.Description) + ");'>click me</a>" : '';
+                return des;
+            };
+
+            model.showDescription = function(val) {
+                alerts.timeoutoldalerts(model.scope, 'alert-success', val, 10000);
+            };
+
             model.EmployeePayment = function(txtval) {
-                if (txtval !== undefined && txtval !== '' && txtval !== null && txtval !== "undefined") {
+
+                if (model.txtProfileID !== undefined && model.txtProfileID !== '' && model.txtProfileID !== null && model.txtProfileID !== "undefined") {
                     model.paymentArr = [];
                     model.columns = [];
                     if (model.isManagement === "true" && model.isAdmin === "1") {
@@ -45,12 +63,17 @@
                         text: 'Status',
                         key: 'Status',
                         type: 'label'
-                    }, { text: 'Authorized by', key: 'StatusBy', type: 'label' }, { text: 'Description', key: 'Description', type: 'label' }, { text: 'Tax', key: 'TaxPaid_Status', type: 'label' });
-                    EmployeePaymentservice.getEmployeePayment(txtval).then(
+                    }, { text: 'Authorized by', key: 'StatusBy', type: 'label' }, { text: 'Description', key: 'Description', type: 'morelinks', templateUrl: model.descriptionTemplate }, { text: 'Tax', key: 'TaxPaid_Status', type: 'label' });
+                    EmployeePaymentservice.getEmployeePayment(model.txtProfileID).then(
                         function(response) {
                             if (_.isArray(response.data) && response.data.length > 0) {
                                 model.CustName = (response.data)[0].CustName;
                                 model.ProfileOwner = (response.data)[0].ProfileOwner;
+
+                                model.balancepaymentID = (response.data)[0].PaymentID;
+                                model.balancemembershiptype = (response.data)[0].membershiptype;
+                                model.RenewalStatus = (response.data)[0].RenewalStatus;
+
                                 model.freshLink = true;
                                 model.opendiv = false;
                                 model.hidesearch = true;
@@ -58,7 +81,7 @@
                                 model.ProfileID = (response.data)[0].ProfileID;
                                 model.setData(response.data);
                             } else {
-                                state.go('base.EmployeePaymentInsert', { ProfileID: txtval, status: 0, paymentID: 0 });
+                                state.go('base.EmployeePaymentInsert', { ProfileID: model.txtProfileID, status: 0, paymentID: 0 });
                             }
                         }
                     );
@@ -66,8 +89,14 @@
                     alert('please enter profileid');
                 }
             };
-            model.paymentInsertLink = function(id) {
-                state.go('base.EmployeePaymentInsert', { ProfileID: id, status: 1, paymentID: 0 });
+            model.paymentInsertLink = function(id, type) {
+                if (type === 'renewal')
+                    state.go('base.EmployeePaymentInsert', { ProfileID: id, status: 1, paymentID: 0 });
+                else {
+                    var Status = model.balancemembershiptype === 'Registration' ? 0 : 1;
+                    state.go('base.EmployeePaymentInsert', { ProfileID: id, status: Status, paymentID: model.balancepaymentID });
+                }
+
             };
             model.viewProfileRedirect = function() {
                 window.open('/Viewfullprofile/' + model.ProfileID + "/0", '_blank');
@@ -143,13 +172,13 @@
             model.close = function() {
                 modelpopupopenmethod.closepopuppoptopopup();
             };
-            return model;
+            return model.init();
         };
     }
     angular
         .module('Kaakateeya')
         .factory('EmployeePaymentmodel', factory);
     factory.$inject = ['$http', 'EmployeePaymentservice',
-        '$state', 'complex-grid-config', 'authSvc', 'single-grid-config', 'modelpopupopenmethod'
+        '$state', 'complex-grid-config', 'authSvc', 'single-grid-config', 'modelpopupopenmethod', 'alert'
     ];
 })(angular);

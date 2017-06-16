@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div>
-                <md-button class="md-primary pull-right" ng-show="page.model.freshLink" href="javascript:void(0);" ng-click="page.model.paymentInsertLink(page.model.txtProfileID);">Renewal</md-button>
+                <md-button class="md-primary pull-right" ng-show="page.model.freshLink" href="javascript:void(0);" ng-click="page.model.paymentInsertLink(page.model.txtProfileID,page.model.RenewalStatus===1?'Balance':'renewal');"> {{ page.model.RenewalStatus===1?'Balance':'Renewal'}} </md-button>
             </div>
             <div>
                 <complex-grid ng-if="page.model.columns" model="page.model" config="page.model" hidesearch="true" hidepaging="true"></complex-grid>
@@ -42,6 +42,21 @@
         <single-grid model="page.model.singlegrid" config="page.model.singlegrid"></single-grid>
     </script>
 </div>
+
+
+<script type="text/ng-template" id="myPopoverTemplate.html">
+    <div>sdffdfdgddddddddddddddddddddddddddddddddd...test</div>
+
+</script>
+
+
+
+
+
+
+
+
+
 
 <style>
     .fixed-table-container thead th .sortable,

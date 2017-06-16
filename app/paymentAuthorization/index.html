@@ -8,7 +8,7 @@
             </div>
             <div class="col-lg-2 form-group">
                 <label for="" class="control-label">Branch</label>
-                <div> <select multiselectdropdown name="memberShipType" ng-model="page.model.memberShipType" ng-options="item.value as item.label for item in page.model.branchArr"></select></div>
+                <div> <select multiselectdropdown name="memberShipType" ng-model="page.model.branch" ng-options="item.value as item.label for item in page.model.branchArr"></select></div>
             </div>
             <div class="col-lg-2 form-group">
                 <label for="" class="control-label">Start date</label>
@@ -19,11 +19,11 @@
             <div class="col-lg-2 form-group">
                 <label for="" class="control-label">End date</label>
                 <div>
-                    <custom-datepicker class="datepicker3" ng-model="page.model.eddDate" date-options="page.model.dateOptions"></custom-datepicker>
+                    <custom-datepicker class="datepicker3" ng-model="page.model.endDate" date-options="page.model.dateOptions"></custom-datepicker>
                 </div>
             </div>
             <div class="col-lg-2">
-                <div><input type="submit" class="btn btn-danger" value="Submit"></div>
+                <div><input type="submit" class="btn btn-danger" value="Submit" ng-click="page.model.paymentAuthSelect();"></div>
             </div>
 
         </div>
