@@ -64,7 +64,7 @@
                 window.open('/Viewfullprofile/' + model.ProfileID + "/0", '_blank');
             };
             return model;
-        }
+        };
     }
     angular
         .module('Kaakateeya')

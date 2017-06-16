@@ -340,8 +340,7 @@ app.constant('arrayConstants', {
         { "label": "--Select--", "title": "--Select--", "value": "" },
         { "label": "Friend", "title": "Friend", "value": 318 },
         { "label": "Relative", "title": "Relative", "value": 319 },
-        { "label": "Not Given", "title": "Not Given", "value": 549 },
-
+        { "label": "Not Given", "title": "Not Given", "value": 549 }
     ],
     'starLanguage': [
         { "label": "--select--", "title": "--select--", "value": "" },

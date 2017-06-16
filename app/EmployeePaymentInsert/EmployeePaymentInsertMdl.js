@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function factory(EmployeePaymentInsertservice, stateParams, filter, authSvc, modelpopupopenmethod) {
+    function factory(EmployeePaymentInsertservice, stateParams, filter, authSvc, modelpopupopenmethod, alertss) {
         return function() {
             var model = {};
             model.obj = {};
@@ -50,13 +50,14 @@
                     EmpID: model.empid,
                     AccessFeatureID: 0,
                     PaysmsID: inobj.rbtnmail,
-                    MembershipDuration: model.noofDays
+                    MembershipDuration: parseInt(model.noofDays)
                 };
                 model.PiObj = {};
                 EmployeePaymentInsertservice.paymentInsert(obj).then(function(response) {
                     model.scope.paymentForm.$setPristine();
                     model.scope.paymentForm.$setUntouched();
-                    alert('Payment Entered Successfully');
+                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Payment Entered Successfully ', 4500);
+
                     // if (response.data === 1 || response.data === '1') {
                     //     alert('submited successfully');
                     //     model.PiObj = {};
@@ -143,5 +144,5 @@
     angular
         .module('Kaakateeya')
         .factory('EmployeePaymentInsertModel', factory);
-    factory.$inject = ['EmployeePaymentinsertservice', '$stateParams', '$filter', 'authSvc', 'modelpopupopenmethod'];
+    factory.$inject = ['EmployeePaymentinsertservice', '$stateParams', '$filter', 'authSvc', 'modelpopupopenmethod', 'alert'];
 })(angular);
