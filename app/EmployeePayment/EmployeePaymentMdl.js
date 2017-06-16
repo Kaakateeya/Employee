@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function factory(http, EmployeePaymentservice, state, config, authSvc, singlegrid, modelpopupopenmethod) {
+    function factory(http, EmployeePaymentservice, state, config, authSvc, singlegrid, modelpopupopenmethod, alerts) {
         return function() {
             var model = {};
             model = config;
@@ -43,8 +43,12 @@
             };
 
             model.descriptionTemplate = function(row) {
-                var des = row.Description ? '<a href=javascript:void(0);  popover-animation="true" uib-popover="' + row.Description + '" type="button">click me</a>' : '';
+                var des = row.Description ? "<a href=javascript:void(0);  ng-click='model.showDescription(" + JSON.stringify(row.Description) + ");'>click me</a>" : '';
                 return des;
+            };
+
+            model.showDescription = function(val) {
+                alerts.timeoutoldalerts(model.scope, 'alert-success', val, 10000);
             };
 
             model.EmployeePayment = function(txtval) {
@@ -77,7 +81,7 @@
                                 model.ProfileID = (response.data)[0].ProfileID;
                                 model.setData(response.data);
                             } else {
-                                state.go('base.EmployeePaymentInsert', { ProfileID: txtval, status: 0, paymentID: 0 });
+                                state.go('base.EmployeePaymentInsert', { ProfileID: model.txtProfileID, status: 0, paymentID: 0 });
                             }
                         }
                     );
@@ -175,6 +179,6 @@
         .module('Kaakateeya')
         .factory('EmployeePaymentmodel', factory);
     factory.$inject = ['$http', 'EmployeePaymentservice',
-        '$state', 'complex-grid-config', 'authSvc', 'single-grid-config', 'modelpopupopenmethod'
+        '$state', 'complex-grid-config', 'authSvc', 'single-grid-config', 'modelpopupopenmethod', 'alert'
     ];
 })(angular);
