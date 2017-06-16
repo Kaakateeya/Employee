@@ -63,8 +63,13 @@
             model.viewProfileRedirect = function() {
                 window.open('/Viewfullprofile/' + model.ProfileID + "/0", '_blank');
             };
+
+            model.oldtablepayment = function(profileid) {
+
+            };
+
             return model;
-        }
+        };
     }
     angular
         .module('Kaakateeya')

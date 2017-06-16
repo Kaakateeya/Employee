@@ -1,9 +1,10 @@
-  .fixed-table-container thead th .sortable,
-  .detail {
-      cursor: pointer;
-      background-position: right;
-      background-repeat: no-repeat;
-      padding-right: 30px;
-      background-color: #fdca52;
-      color: black;
-  }
+.fixed-table-container thead th .sortable,
+.detail {
+  cursor: pointer;
+  background-position: right;
+  background-repeat: no-repeat;
+  padding-right: 30px;
+  background-color: #fdca52;
+  color: black; }
+
+/*# sourceMappingURL=style.css.map */

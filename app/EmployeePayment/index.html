@@ -6,7 +6,7 @@
         <br>
         <div class="regmain">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <label for="profileid" class="control-label pull-right">ProfileID</label>
                 </div>
                 <div class="col-lg-2">
@@ -16,9 +16,11 @@
                     <button class="btn btn-danger" ng-click="page.model.EmployeePayment(page.model.txtProfileID)">Go</button>
                 </div>
                 <div class="col-lg-2">
-
                     <md-button class="md-primary" ng-click="page.model.viewProfileRedirect();" ng-if="page.model.CustName!==''"> {{page.model.CustName}} ({{page.model.ProfileOwner}})</md-button>
                 </div>
+                <a href="javascript:void(0)" ng-click="page.model.oldtablepayment(page.model.txtProfileID)">
+                 old Payment
+                </a>
             </div>
             <div>
                 <md-button class="md-primary pull-right" ng-show="page.model.freshLink" href="javascript:void(0);" ng-click="page.model.paymentInsertLink(page.model.txtProfileID);">Renewal</md-button>
