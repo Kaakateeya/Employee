@@ -17,7 +17,8 @@
     .txtclass {
         line-height: 46px;
     }
-    input[type="text"],
+    input[type=text],
+    input[type=number],
     textarea {
         color: #000 !important;
         border: 1px solid #ADA2A2 !important;
@@ -41,5 +42,8 @@
     .paymentOfr {
         color: red;
         font-weight: 700;
+    }
+    textarea {
+        width: 783px;
     }
 }

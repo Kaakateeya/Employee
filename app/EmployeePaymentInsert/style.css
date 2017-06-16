@@ -13,7 +13,8 @@
   margin: 0; }
 #paymentinsert .txtclass {
   line-height: 46px; }
-#paymentinsert input[type="text"],
+#paymentinsert input[type=text],
+#paymentinsert input[type=number],
 #paymentinsert textarea {
   color: #000 !important;
   border: 1px solid #ADA2A2 !important; }
@@ -32,5 +33,7 @@
 #paymentinsert .paymentOfr {
   color: red;
   font-weight: 700; }
+#paymentinsert textarea {
+  width: 783px; }
 
 /*# sourceMappingURL=style.css.map */

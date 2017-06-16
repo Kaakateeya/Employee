@@ -20,10 +20,16 @@
                 model.branchArr = Commondependency.branch(val);
             };
 
-
             model.paymentAuthSelect = function() {
+                var inObj = {
+                    BranchID: model.branch,
+                    StartDate: model.startDate,
+                    EndDate: model.endDate,
+                    Region: model.region
+                };
+                paymentAuthorizationService.CustomerUnauthorizedPayments(inObj).then(function(response) {
 
-
+                });
             };
 
             return model;

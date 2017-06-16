@@ -17,6 +17,9 @@
             model.isManagement = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
             model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
             model.ServiceTaxPercent = app.ServiceTaxPercent;
+
+            model.typeofprofile = parseInt(stateParams.paymentID);
+
             model.EmployeePaymentInsert = function(inobj, type) {
                 var monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                     DateArr, dateformatt = '';
@@ -53,6 +56,7 @@
                     MembershipDuration: parseInt(model.noofDays)
                 };
                 model.PiObj = {};
+                model.PiObj.rbtnmail = 1;
                 EmployeePaymentInsertservice.paymentInsert(obj).then(function(response) {
                     model.scope.paymentForm.$setPristine();
                     model.scope.paymentForm.$setUntouched();
@@ -81,6 +85,9 @@
                             model.PiObj.txtAgreedAmt = model.custobj.AgreedAmount;
                             model.PiObj.txtAmountPaid = model.custobj.Price;
                             model.PiObj.rdnServicetax = model.custobj.ServiceTax !== null ? 1 : 0;
+                            model.PiObj.txtpayDescription = model.custobj.MemberShipDescription;
+                            model.PiObj.txtSettlementAmount = model.custobj.SettlementAmount ? model.custobj.SettlementAmount : '';
+
                         }
                     }
                 });

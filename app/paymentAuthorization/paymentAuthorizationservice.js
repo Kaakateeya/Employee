@@ -9,8 +9,10 @@
 
     function factory(http) {
         return {
-            test: function() {
-                return http.get(app.apiroot + 'test', { params: '' });
+            CustomerUnauthorizedPayments: function(obj) {
+                return http.get(app.apiroot + 'StaticPages/getCustomerUnauthorizedPayments', {
+                    params: { BranchID: obj.BranchID, StartDate: obj.StartDate, EndDate: obj.EndDate, Region: obj.Region }
+                });
             }
         };
     }
