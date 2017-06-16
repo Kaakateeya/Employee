@@ -10,6 +10,7 @@
 
 
             model.setData = function(data) {
+                debugger;
                 model.data = data;
             };
             model.appendData = function(data) {

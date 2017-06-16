@@ -10,7 +10,7 @@ angular.module('Kaakateeya').directive("singleGrid", ['modelpopupopenmethod', '$
             link: function(scope, element, attrs) {
 
                 scope.init = function() {
-                    scope.model.sdata = [];
+                    // scope.model.sdata = [];
                     scope.currentPage = 0;
                     scope.pageSize = 10;
                     scope.model.exportColumns = {};

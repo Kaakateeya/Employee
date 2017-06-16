@@ -16,6 +16,7 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
 // app.apipathold = 'http://52.66.131.254:8010/Api/';
 app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.apipathold = 'http://183.82.0.58:8010/Api/';
+
 app.env = "dev";
 app.payfixedAmt = 1000;
 app.paypoints = 12;
@@ -74,7 +75,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'paymentOffersAssign', name: 'base.paymentOffersAssign', url: '/paymentOffersAssignPage', isloginrequired: true },
             { routeName: 'assignSettings', name: 'base.assignSettings', url: '/assignSetting', isloginrequired: true },
             { routeName: 'employeeViewfullprofilePrintchk', name: 'base.employeeViewfullprofilePrintchk', url: '/employeeViewfullprofileschk/:ProfileID/:contacts', subname: ['directives/divPrint.js'] },
-            { routeName: 'paymentAuthorization', name: 'base.paymentAuthorization', url: '/paymentAuthorizationpage' }
+
+            { routeName: 'paymentAuthorization', name: 'base.paymentAuthorization', url: '/paymentAuthorizationpage' },
+
+            { routeName: 'oldPaymenttable', name: 'base.oldPaymenttable', url: '/oldPaymenttables' }
+
 
         ];
         $ocLazyLoadProvider.config({

@@ -1,6 +1,5 @@
 <div class="right_col" role="main" id="viwprofilecustomerprint">
     <h2 class="headerStyles" ng-if="page.model.personalinfo.length>0">Kaakateeya Marriages</h2>
-    <div-print div-info="page.divInfo"></div-print>
     <div class="text-center" ng-hide="page.model.textboxshowhide">
         <div class="row">
             <div class="col-lg-4">
@@ -12,11 +11,14 @@
             <div class="col-lg-1">
                 <button class="btn btn-danger" ng-click="page.model.EmpViewfullProfile(page.model.txtProfileID)">Go</button>
             </div>
+            <div class="col-lg-1 pull-left">
+                <div-print div-info="page.divInfo"></div-print>
+            </div>
         </div>
         <br>
     </div>
-    <div id="printThisElement">
-        <div id="viewProfileId">
+    <div id="printThisElementnew">
+        <div id="viewProfileIdnew">
             <div ng-hide="page.model.fullprofileshow" class="printCls">
                 <div>
                     <div class="profile_full_header_in">
@@ -34,8 +36,8 @@
                             <div class="profile_full_header_in">
                                 <div class='row'>
                                     <div ng-repeat="itm in page.model.basicinfo" class="col-lg-4 col-xs-4 col-sm-4 col-md-4">
-                                        <span style="color:Black;font-weight:bold;">{{itm.columnname|| (itm.columnName==='1'?'Education':(itm.columnName==='2'|| itm.columnName==='3' || itm.columnName==='4' || itm.columnName==='5')?"":itm.columnName) ||itm.ColumnName}}</span>
-                                        <span style="color:DarkBlue;"> <span ng-if="itm.columnname!='' && itm.columnname!=null">:</span>
+                                        <span ng-class="itm.printvalue===true?'':'displayCls'" style="color:Black;font-weight:bold;">{{itm.columnname|| (itm.columnName==='1'?'Education':(itm.columnName==='2'|| itm.columnName==='3' || itm.columnName==='4' || itm.columnName==='5')?"":itm.columnName) ||itm.ColumnName}}</span>
+                                        <span ng-class="itm.printvalue===true?'':'displayCls'" style="color:DarkBlue;"> <span ng-if="itm.columnname!='' && itm.columnname!=null">:</span>
                                         <span ng-bind-html="itm.value || itm.Value" style="color:DarkBlue;"></span>
                                         </span>
                                     </div>
@@ -78,25 +80,27 @@
                     </div>
                 </div>
                 <div class="personal_inform_main">
-                    <div ng-class="item.printvaluemain===true?'showcheckprint':'hidecheckprint'" ng-repeat="item in page.model.viewprofilearray" ng-if="item.header=='Headings' || item.header=='About' || item.header=='Primary'?'':item.header">
+                    <div ng-class="item.printvaluemain===true?'':'displayCls'" ng-repeat="item in page.model.viewprofilearray" ng-if="item.header=='Headings' || item.header=='About' || item.header=='Primary'?'':item.header">
                         <div class="personal_inform_head clearfix" ng-class="item.header=='My Basic Details'?'displayCls':''" style="background-color: rgb(244, 182, 36); padding: 0px 10px; border-bottom: solid 1px #ccc;">
                             <h4>
-                                <span class="lblHeadings">{{item.header}}{{item.printvaluemain}}</span>
-                                <md-checkbox ng-model="item.printvaluemain" ng-change="page.model.chekprint(item)">
+                                <span class="lblHeadings">{{item.header}}</span>
+                                <md-checkbox class="displayClsnew" ng-model="item.printvaluemain" ng-change="page.model.chekprint(item)">
                                 </md-checkbox>
                             </h4>
                             <a href="#" class="edit_prsnl"></a>
                         </div>
                         <div class="personal_inform_main_in" ng-class="item.header==='My Basic Details'?'displayCls':''">
                             <div ng-class="page.model.applyCls(item.header);">
-                                <p ng-repeat="itm in item.value">
+                                <p ng-repeat="itm in item.value" ng-class="itm.printvalue?'':'displayCls'">
                                     <span style="color:Black;font-weight:bold;">{{itm.columnname|| (itm.columnName==='1'?'Education':(itm.columnName==='2'|| itm.columnName==='3' || itm.columnName==='4' || itm.columnName==='5')?"":itm.columnName) ||itm.ColumnName}}</span>
                                     <span style="color:DarkBlue;"> 
                                     <span ng-if="itm.columnname!='' && itm.columnname!=null">:</span>
                                     <span ng-bind-html="itm.value || itm.Value" style="color:DarkBlue;"></span>
-                                    <md-checkbox ng-change="page.model.printsinglechk(item)" ng-model="itm.printvalue">
-                                    </md-checkbox>
                                     </span>
+
+                                    <md-checkbox class="displayClsnewcontacts" ng-change="page.model.printsinglechk(item)" ng-model="itm.printvalue">
+                                    </md-checkbox>
+
                                 </p>
                             </div>
                         </div>
@@ -112,26 +116,32 @@
                             </p>
                         </div>
                     </div>
-                    <div>
+                    <div ng-hide="true" ng-class="page.model.aboutmyself[0].printvaluemain===true?'':'displayCls'">
                         <div class="personal_inform_head clearfix" style="background-color: rgb(244, 182, 36); padding: 0px 10px; border-bottom: solid 1px #ccc;">
                             <h4>{{page.model.personalinfo[0].GenderID===2?"Bride Contacts":"Groom Contacts"}}
                             </h4>
+                            <md-checkbox class="displayClsnewcontacts" ng-model="page.model.aboutmyself[0].printvaluemain" ng-change="page.model.chkcontcts(page.model.aboutmyself[0])">
+                            </md-checkbox>
                         </div>
                         <div class="personal_inform_main_in">
                             <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-class="page.model.aboutmyself[0].printvaluemobile===true?'':'displayCls'">
                                     <span style="color:Black;font-weight:bold;">Mobile</span>
                                     <span>
                                      <span style="color:DarkBlue;"> <span>:</span>
                                     <span style="color:DarkBlue;">{{page.model.aboutmyself[0].SelfContactNumber}}</span>
                                     </span>
+                                    <md-checkbox class="displayClsnewcontacts" ng-change="page.model.printsinglecontacts(page.model.aboutmyself[0])" ng-model="page.model.aboutmyself[0].printvaluemobile">
+                                    </md-checkbox>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-class="page.model.aboutmyself[0].printvalueemail===true?'':'displayCls'">
                                     <span style="color:Black;font-weight:bold;">Email</span>
                                     <span>
                                      <span style="color:DarkBlue;"> <span>:</span>
                                     <span style="color:DarkBlue;">{{page.model.aboutmyself[0].SelfEmailID}}</span>
                                     </span>
+                                    <md-checkbox class="displayClsnewcontacts" ng-change="page.model.printsinglecontacts(page.model.aboutmyself[0])" ng-model="page.model.aboutmyself[0].printvalueemail">
+                                    </md-checkbox>
                                 </div>
                             </div>
                         </div>
