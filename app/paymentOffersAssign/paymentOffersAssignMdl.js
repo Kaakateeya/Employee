@@ -45,6 +45,8 @@
             };
 
             model.SubmitPaymentOffer = function() {
+
+
                 var obj = {
                     ProfileID: model.ProfileID,
                     MembershipID: model.memberShipType,
