@@ -17,13 +17,19 @@
                         <div class="row form-group">
                             <label for="ProfileID" class="control-label col-lg-4">ProfileID</label>
                             <div class="col-lg-6">
-                                <input type="number" ng-maxlength="'9'" class="form-control" ng-model="page.model.ProfileID" required></input>
+                                <input type="number" ng-maxlength="'9'" class="form-control" ng-model="page.model.ProfileID" ng-required="page.model.ProfileID?false:true"></input>
                             </div>
                         </div>
                         <div class="row form-group">
                             <label for="Agreementvalue" class="control-label col-lg-4">Agreed amount</label>
                             <div class="col-lg-6">
                                 <input type="number" class="form-control" ng-model="page.model.AgreedAmt" required ng-blur="page.model.showOfferDetails(page.model.AgreedAmt);"></input>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label for="" class="control-label col-lg-4">Tax</label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" ng-model="page.model.tax" required></input>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -34,28 +40,30 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <div class="col-lg-6">
                         <div class="row form-group input-control">
-                            <label for="Caste" class="control-label col-lg-2">Caste</label>
+                            <label for="Caste" class="control-label col-lg-3">Religion</label>
                             <div class="col-lg-6">
                                 <div class="input-group">
-                                    <select class="" multiselectdropdown ng-model="page.model.Caste" required typeofdata="'caste'"></select>
+                                    <select multiselectdropdown ng-model="page.model.religion" ng-required="page.model.ProfileID?false:true" typeofdata="'Religion'" ng-change="page.model.casteDependency(page.model.religion,page.model.mothertongue);"></select>
                                 </div>
                             </div>
                         </div>
-                        <div class="row form-group">
-                            <label for="" class="control-label col-lg-2">Tax</label>
-                            <div class="col-lg-6">
-                                <input type="text" class="form-control" ng-model="page.model.tax" required></input>
-                            </div>
-                        </div>
-
                         <div class="row form-group input-control">
-                            <label for="Caste" class="control-label col-lg-2">Branch</label>
+                            <label for="Caste" class="control-label col-lg-3">Mothertongue</label>
                             <div class="col-lg-6">
                                 <div class="input-group">
-                                    <select class="" multiselectdropdown ng-model="page.model.Branch" required ng-options="item.value as item.label for item in page.model.BranchName"></select>
+                                    <select class="" multiselectdropdown ng-model="page.model.mothertongue" ng-required="page.model.ProfileID?false:true" typeofdata="'Mothertongueselect'" ng-change="page.model.casteDependency(page.model.religion,page.model.mothertongue);"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group input-control">
+                            <label for="Caste" class="control-label col-lg-3">Caste</label>
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <select class="" multiselectdropdown ng-model="page.model.Caste" ng-required="page.model.ProfileID?false:true" ng-options="item.value as item.label for item in page.model.casteArr"></select>
                                 </div>
                             </div>
                         </div>

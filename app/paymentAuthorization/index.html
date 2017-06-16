@@ -1,0 +1,39 @@
+<div class="right_col" id="paymentAuthorization">
+    <h3 class="hdrCls">Payment Authorization</h3>
+    <div class="bodycls">
+        <div class="row">
+            <div class="col-lg-2 form-group">
+                <label for="" class="control-label"> Region </label>
+                <div> <select multiselectdropdown name="memberShipType" ng-model="page.model.region" ng-change="page.model.branchDependency(page.model.region);" typeofdata="'region'"></select></div>
+            </div>
+            <div class="col-lg-2 form-group">
+                <label for="" class="control-label">Branch</label>
+                <div> <select multiselectdropdown name="memberShipType" ng-model="page.model.memberShipType" ng-options="item.value as item.label for item in page.model.branchArr"></select></div>
+            </div>
+            <div class="col-lg-2 form-group">
+                <label for="" class="control-label">Start date</label>
+                <div>
+                    <custom-datepicker class="datepicker3" ng-model="page.model.startDate" date-options="page.model.dateOptions"></custom-datepicker>
+                </div>
+            </div>
+            <div class="col-lg-2 form-group">
+                <label for="" class="control-label">End date</label>
+                <div>
+                    <custom-datepicker class="datepicker3" ng-model="page.model.eddDate" date-options="page.model.dateOptions"></custom-datepicker>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div><input type="submit" class="btn btn-danger" value="Submit"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    .datepicker3 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+    }
+</style>

@@ -5,13 +5,12 @@
         .module('Kaakateeya')
         .factory('paymentOffersAssignModel', factory);
 
-    factory.$inject = ['paymentOffersAssignService', 'modelpopupopenmethod', 'getArraysearch'];
+    factory.$inject = ['paymentOffersAssignService', 'modelpopupopenmethod', 'getArraysearch', 'Commondependency'];
 
-    function factory(paymentOffersAssignService, modelpopupopenmethod, getArray) {
+    function factory(paymentOffersAssignService, modelpopupopenmethod, getArray, Commondependency) {
         return function() {
             var model = {};
             model.scope = {};
-            model.BranchName = getArray.GArray('BranchName');
             model.paymentpoints = app.paymentPoints;
             model.membershipTypeArr = [
                 { "label": "--select--", "title": "--select--", "value": "" },
@@ -49,16 +48,21 @@
                     AllocatedPts: model.strPoints,
                     MemberShipDuration: model.strDate,
                     StartTime: moment().format('DD-MM-YYYY'),
-                    EndDate: model.strDate,
-                    BranchID: model.Branch
+                    EndDate: model.strDate
+
                 };
 
-                // paymentOffersAssignService.submitPaymentOffer(obj).then(function(response) {
-                //     console.log(response);
-                //     model = {};
-                // });
+                paymentOffersAssignService.submitPaymentOffer(obj).then(function(response) {
+                    console.log(response);
+                    model = {};
+                });
 
             };
+
+            model.casteDependency = function(val1, val2) {
+                model.casteArr = Commondependency.casteDepedency(val1, val2);
+            };
+
             return model;
         };
     }

@@ -20,10 +20,11 @@
             model.EmployeePaymentInsert = function(inobj, type) {
                 var monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                     DateArr, dateformatt = '';
-                if (model.custobj.StartDate !== null && model.custobj.StartDate !== '') {
-                    DateArr = model.custobj.StartDate.split('-');
-                    dateformatt = DateArr[0] + '/' + ((_.indexOf(monthArr, DateArr[1])) + 1) + '/' + DateArr[2];
+
+                if (model.ExpiryDaterev === '') {
+                    model.PaidAmtChange(inobj.txtAmountPaid, inobj.txtAgreedAmt);
                 }
+
                 var obj = {
                     ProfileID: model.custobj.ProfileID,
                     Cust_id: model.custobj.Cust_ID,
@@ -36,8 +37,6 @@
                     ServiceTax: inobj.rdnServicetax,
                     ServiceTaxAmt: inobj.rdnServicetax === '1' ? parseInt(inobj.txtAmountPaid * model.ServiceTaxPercent) : 0,
                     AmountPaid: inobj.txtAmountPaid,
-                    StartDate: dateformatt,
-                    //  dateformatt !== '' && dateformatt !== null ? filter('date')(dateformatt, 'MM/dd/yyyy') : null,
                     EndDate: moment(model.custobj.EndDate).format('DD/MM/YYYY') === 'Invalid date' ? '' : moment(model.custobj.EndDate).format('DD/MM/YYYY'),
                     //  model.custobj.EndDate !== '' && model.custobj.EndDate !== null ? filter('date')(model.custobj.EndDate, 'MM/dd/yyyy') : null,
                     ReceiptNumber: inobj.txtbillno,
@@ -50,7 +49,8 @@
                     ModeOfPayment: inobj.rbtnPaymode,
                     EmpID: model.empid,
                     AccessFeatureID: 0,
-                    PaysmsID: inobj.rbtnmail
+                    PaysmsID: inobj.rbtnmail,
+                    MembershipDuration: model.noofDays
                 };
                 model.PiObj = {};
                 EmployeePaymentInsertservice.paymentInsert(obj).then(function(response) {
@@ -100,18 +100,18 @@
                     var num = paidAmt * app.PaymentDays;
                     model.ExpiryDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
                     model.ExpiryDaterev = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
+
+                    model.noofDays = num;
                 }
             };
             model.showOfferDetails = function(Amt, type) {
                 if (Amt !== undefined && Amt !== '') {
                     var num = Amt * app.PaymentDays;
                     model.strAmt = Amt;
-                    model.strDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
+                    model.strDate = parseInt(stateParams.paymentID) === 0 ? moment().add(7, 'days').format('DD-MM-YYYY') : moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
                     model.strPoints = parseInt(Amt * model.paymentpoints);
                     var infm = 'Agreed Amount : ' + Amt + '    \n     No of Points : ' + model.strPoints + '    \n Expiry Date : ' + model.strDate;
                     if (type === undefined) {
-                        // alert(infm);
-                        // alertss.timeoutoldalerts(model.scope, 'alert-success', infm, 9500);
                         modelpopupopenmethod.showPopup('alert.html', model.scope, 'sm', '');
                     }
                 }
