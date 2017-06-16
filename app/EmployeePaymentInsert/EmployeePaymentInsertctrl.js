@@ -10,13 +10,6 @@
              model.scope = scope;
              vm.model.getpaymentProfile(stateParams.ProfileID);
              vm.model.PiObj.rbtnmail = 1;
-             model.PiObj.txtAgreedAmt = '';
-             //  scope.$digest();
-             scope.$watch(model.PiObj.txtAgreedAmt, function() {
-                 model.PiObj.txtAgreedAmt = '';
-                 scope.$apply();
-             });
-             model.custobj = {};
          };
          vm.Number = Number;
          vm.init();
