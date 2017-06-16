@@ -52,16 +52,22 @@
             </div>
             <br>
             <div class="col-lg-12" ng-if="page.model.sendarray2.length>0">
-                <md-radio-group layout="row" ng-change="page.model.sentarraybind(page.model.sentprofile);" ng-model="page.model.sentprofile" class="md-block" flex-gt-sm>
-                    <md-radio-button value="1" class="md-primary"> <span>&nbsp;<span class="glyphicon glyphicon-home"></span><b>&nbsp;({{page.model.sendarray2[0].TotalRows}})</b></span>
-                    </md-radio-button>
-                    <md-radio-button value="V"> <span>&nbsp;<img src="src/images/Viewed.jpg" ><b >&nbsp;({{page.model.sendarray2[0].Viewed}})</b></span> </md-radio-button>
-                    <md-radio-button value="NV"> <span>&nbsp;<img src="src/images/notviewed.jpg" ><b >&nbsp;({{page.model.sendarray2[0].NViewed}})</b></span> </md-radio-button>
-                    <md-radio-button value="I"> <span>&nbsp;<img src="src/images/heartgrren.gif" style="width: 28px;"><b >&nbsp;({{page.model.sendarray2[0].PD}})</b></span> </md-radio-button>
-                    <md-radio-button value="NI"> <span>&nbsp;<img src="src/images/brkhrtgreen.gif" style="width: 28px;"><b>&nbsp;({{page.model.sendarray2[0].DPD}})</b>
+                <div class="col-lg-7">
+                    <md-radio-group layout="row" ng-change="page.model.sentarraybind(page.model.sentprofile);" ng-model="page.model.sentprofile" class="md-block" flex-gt-sm>
+                        <md-radio-button value="1" class="md-primary"> <span>&nbsp;<span class="glyphicon glyphicon-home"></span><b>&nbsp;({{page.model.sendarray2[0].TotalRows}})</b></span>
+                        </md-radio-button>
+                        <md-radio-button value="V"> <span>&nbsp;<img src="src/images/Viewed.jpg" ><b >&nbsp;({{page.model.sendarray2[0].Viewed}})</b></span> </md-radio-button>
+                        <md-radio-button value="NV"> <span>&nbsp;<img src="src/images/notviewed.jpg" ><b >&nbsp;({{page.model.sendarray2[0].NViewed}})</b></span> </md-radio-button>
+                        <md-radio-button value="I"> <span>&nbsp;<img src="src/images/heartgrren.gif" style="width: 28px;"><b >&nbsp;({{page.model.sendarray2[0].PD}})</b></span> </md-radio-button>
+                        <md-radio-button value="NI"> <span>&nbsp;<img src="src/images/brkhrtgreen.gif" style="width: 28px;"><b>&nbsp;({{page.model.sendarray2[0].DPD}})</b>
                      </span>
-                    </md-radio-button>
-                </md-radio-group>
+                        </md-radio-button>
+                    </md-radio-group>
+                </div>
+                <div class="col-lg-3">
+                    <label class="control-label col-lg-8">Expiry Date:{{page.model.sendarray2[0].ServiceExpiryDate}}</label>
+                    <label class="control-label col-lg-4">Points:{{page.model.sendarray2[0].ServicePoints}}</label>
+                </div>
             </div>
             <complex-grid model="page.model.gridtable2" config="page.model" pagesizecommunication="999"></complex-grid>
         </div>

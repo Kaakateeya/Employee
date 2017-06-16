@@ -163,6 +163,18 @@
     margin-bottom: -2%;
 }
 
+#viwprofilecustomerprint {
+    .modal-footer {
+        height: 136px;
+    }
+}
+
+.modalclassdashboardphotopopup {
+    z-index: 9999999999 !important;
+    top: 0%;
+    left: 0%;
+}
+
 @media screen {
     /*# sourceMappingURL=style.css.map */
     .printCls {

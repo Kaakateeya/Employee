@@ -292,10 +292,9 @@
                         FromProfileID: profileid,
                         ToProfileID: ToProfileID
                     };
-                    timeout(function() {
-                        model.txtsmsmail = model.mailchange(model.ddlmail);
-                    }, 500);
-
+                    // timeout(function() {
+                    //     model.txtsmsmail = model.mailchange(model.ddlmail);
+                    // }, 500);
                 }
                 modelpopupopenmethod.showPopup('sendsmsMail.html', model.scope, 'md', 'mailCls');
             };
@@ -551,7 +550,7 @@
 
             model.NotIntrstChnge = function(val, type) {
                 model.typeOFCall = type;
-                if (val === '0') {
+                if (val === '0' || val === '2') {
                     modelpopupopenmethod.showPopupphotopoup('notIntrstPopup.html', model.scope, 'md', 'notintrstCls');
                 }
             };
@@ -561,6 +560,8 @@
                     model.actobj.txtInCalldiscussion = _.where(model.notInrstarray, { id: parseInt(val) })[0].text;
                 } else if (model.typeOFCall === 'Out') {
                     model.actobj.txtOutCalldiscussion = _.where(model.notInrstarray, { id: parseInt(val) })[0].text;
+                } else if (model.typeOFCall === 'mail') {
+                    model.txtsmsmail = _.where(model.notInrstarray, { id: parseInt(val) })[0].text;
                 } else {
                     model.actobj.txtMemmemocalldiscussion = _.where(model.notInrstarray, { id: parseInt(val) })[0].text;
                 }

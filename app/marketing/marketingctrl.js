@@ -2,10 +2,11 @@
      'use strict';
 
      function controller(marketingModel, scope) {
-         var vm = this;
+         var vm = this,
+             model;
          vm.init = function() {
-             vm.model = marketingModel();
-             vm.model.scope = scope;
+             vm.model = model = marketingModel();
+             model.scope = scope;
          };
 
          vm.init();

@@ -48,15 +48,22 @@
                                 </div>
                             </div>
                         </div>
-                    </div> <br>
-                    <div class="row">
-                        <div class="col-lg-12 col-lg-push-3 ticketHistryCls">
-                            <tickethistry-infm strtype="slide.FromTicketHisoryType" strdate="slide.FromTicketInfo" strempname="slide.FromTicketHisoryNAME" strstatus="slide.FromTicketHisoryCallStatus" strcustname="slide.FromTicketHisoryCallReceivedBy" strcomments="slide.FromTicketHisoryReplyDesc"
-                                strrelationship="slide.FromTicketHisoryRelationShip"></tickethistry-infm>
+                        <br>
+                        <div class="clearfix">
                         </div>
-                    </div><br>
+                        <div class="row">
+                            <div class="col-lg-9 col-lg-offset-1  ticketHistryCls">
+                                <tickethistry-infm strtype="slide.FromTicketHisoryType" strdate="slide.FromTicketInfo" strempname="slide.FromTicketHisoryNAME" strstatus="slide.FromTicketHisoryCallStatus" strcustname="slide.FromTicketHisoryCallReceivedBy" strcomments="slide.FromTicketHisoryReplyDesc"
+                                    strrelationship="slide.FromTicketHisoryRelationShip"></tickethistry-infm>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                    </div>
                     <div class="col-lg-offset-1">
-
                         <div ng-class="slide.FromTicket!==null && slide.FromTicket!==''?'col-lg-5 col-lg-offset-1':'col-lg-3'">
                             <button type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" class="btn btn-success-outline" ng-click="config.openActionPopup(slide.FromTicket,slide.FromProfileid,slide.FromMobileNumber,slide.fromcust_id, slide.tocustid, slide.FromticketStatusIDb, slide.Toprofileid);">{{slide.fromticketid}}</button>
                             <button type="button" ng-if="slide.FromTicket===null || slide.FromTicket===''" class="btn btn-success-outline" ng-click="config.Resendmail(slide.fromcust_id,slide.tocustid,slide.FromProfileid,slide.Toprofileid,slide.FromOfflineExpiryDate,slide.FromOnlineMembershipExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
@@ -124,7 +131,8 @@
                             <tickethistry-infm strtype="slide.ToTicketHisoryType" strdate="slide.ToTicketInfo" strempname="slide.ToTicketHisoryNAME" strstatus="slide.ToTicketHisoryCallStatus" strcustname="slide.ToTicketHisoryCallReceivedBy" strcomments="slide.ToTicketHisoryReplyDesc"
                                 strrelationship="slide.ToTicketHisoryRelationShip"></tickethistry-infm>
                         </div>
-                    </div><br>
+                    </div>
+                    <br>
                     <div class="text-left">
                         <div ng-class="slide.ToTicket!==null && slide.ToTicket!==''?'col-lg-6':'col-lg-3'">
                             <button type="button" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" class="btn btn-success-outline" ng-click="config.openActionPopup(slide.ToTicket,slide.Toprofileid,slide.ToMobileNumber, slide.tocustid, slide.fromcust_id,slide.ToticketStatusIDb, slide.FromProfileid);">{{slide.Toticketid}}</button>
@@ -256,13 +264,14 @@
                                     <md-radio-group ng-required="true" name="rbtnReplyType" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyType,'In');" layout="row" ng-model="page.model.actobj.rbtnReplyType" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                         <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
                                         <md-radio-button value="0"> Not Interested</md-radio-button>
+                                        <md-radio-button value="2">Pending</md-radio-button>
                                     </md-radio-group>
                                 </div>
                             </li>
-                            <li class="clearfix form-group" ng-if="page.model.actobj.rbtnReplyType==='0'">
+                            <li class="clearfix form-group">
                                 <label class="pop_label_left">Call discussion </label>
                                 <div class="pop_controls_right">
-                                    <textarea type="text" ng-model="page.model.actobj.txtInCalldiscussion" class="form-control" required></textarea>
+                                    <textarea type="text" ng-model="page.model.actobj.txtInCalldiscussion" class="form-control" ng-required="page.model.actobj.rbtnReplyType==='0'?true:false"></textarea>
                                 </div>
                             </li>
                             <li class="clearfix form-group">
@@ -334,6 +343,8 @@
                                     <md-radio-group ng-required="true" name="rbtnReplyTypeout" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyTypeout,'Out');" layout="row" ng-model="page.model.actobj.rbtnReplyTypeout" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                         <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
                                         <md-radio-button value="0"> Not Interested</md-radio-button>
+                                        <md-radio-button value="2">Pending</md-radio-button>
+
                                     </md-radio-group>
                                 </div>
                             </li>
@@ -381,6 +392,8 @@
                                     <md-radio-group ng-required="true" name="rbtnReplyTypememo" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyTypememo,'memo');" layout="row" ng-model="page.model.actobj.rbtnReplyTypememo" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                         <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
                                         <md-radio-button value="0"> Not Interested</md-radio-button>
+                                        <md-radio-button value="2">Pending</md-radio-button>
+
                                     </md-radio-group>
                                 </div>
                             </li>
@@ -471,8 +484,16 @@
                     <label class="control-label pull-right">Mail Type</label>
                 </div>
                 <div class="col-lg-8">
-                    <select multiselectdropdown ng-model="page.model.ddlmail" ng-change="page.model.txtsmsmail=page.model.mailchange(page.model.ddlmail);" ng-options="item.value as item.label for item in page.model.ReplyArr">   
-                                </select>
+                    <!--<select multiselectdropdown ng-model="page.model.ddlmail" ng-change="page.model.txtsmsmail=page.model.mailchange(page.model.ddlmail);" ng-options="item.value as item.label for item in page.model.ReplyArr">   
+                                </select>-->
+
+
+                    <md-radio-group ng-change="page.model.NotIntrstChnge(page.model.ddlmail,'mail');" layout="row" ng-model="page.model.ddlmail" class="md-block" flex-gt-sm>
+                        <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
+                        <md-radio-button value="0"> Not Interested</md-radio-button>
+                        <md-radio-button value="2">Pending</md-radio-button>
+                    </md-radio-group>
+
                 </div>
                 <div class="clearfix"></div>
                 <br />

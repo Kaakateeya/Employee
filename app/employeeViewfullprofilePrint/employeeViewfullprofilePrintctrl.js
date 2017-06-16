@@ -7,10 +7,13 @@
          vm.init = function() {
              vm.model = model = employeeViewfullprofileModel();
              vm.model.scope = scope;
+             vm.refForm = {};
              model.viewprofilearray = [];
              model.aboutmyself = {};
              model.personalinfo = {};
              model.basicinfo = [];
+             model.forinbitinfo = {};
+             model.nodatasisplay = {};
              model.empid = parseInt(model.statecontacts) !== 0 ? (authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "") : "";
              if (parseInt(model.stateprofileid) !== 0) {
                  model.textboxshowhide = true;

@@ -9,7 +9,7 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ngAnimate', 'ngIdle', 'ngMaterial',
     'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate',
     'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons',
-    'ui.date'
+    'ui.date', 'ng-clipboard'
 ]);
 
 // app.apiroot = 'http://52.66.131.254:8025/Api/';
@@ -75,10 +75,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'paymentOffersAssign', name: 'base.paymentOffersAssign', url: '/paymentOffersAssignPage', isloginrequired: true },
             { routeName: 'assignSettings', name: 'base.assignSettings', url: '/assignSetting', isloginrequired: true },
             { routeName: 'employeeViewfullprofilePrintchk', name: 'base.employeeViewfullprofilePrintchk', url: '/employeeViewfullprofileschk/:ProfileID/:contacts', subname: ['directives/divPrint.js'] },
-
             { routeName: 'paymentAuthorization', name: 'base.paymentAuthorization', url: '/paymentAuthorizationpage' },
-
-            { routeName: 'oldPaymenttable', name: 'base.oldPaymenttable', url: '/oldPaymenttables' }
+            { routeName: 'oldPaymenttable', name: 'base.oldPaymenttable', url: '/oldPaymenttables' },
+            { routeName: 'reviewPendinrReports', name: 'base.reviewPendinrReports', url: '/reviewPendinrReport' }
 
 
         ];
