@@ -71,6 +71,7 @@
                 });
             };
             model.getpaymentProfile = function(profileID) {
+                debugger;
                 model.custobj = {};
                 model.PiObj.rdnServicetax = '1';
                 EmployeePaymentInsertservice.getEmployeePaymentdata(profileID).then(function(response) {
@@ -88,9 +89,15 @@
                             model.PiObj.txtpayDescription = model.custobj.MemberShipDescription;
                             model.PiObj.txtSettlementAmount = model.custobj.SettlementAmount ? model.custobj.SettlementAmount : '';
 
+                            if (parseInt(stateParams.paymentID) === 0) {
+                                // model.PiObj.txtAgreedAmt = '';
+                                model.PiObj.txtAmountPaid = '';
+                            }
+
                         }
                     }
                 });
+                debugger;
             };
 
             model.PaidAmtChange = function(paidAmt, agreeAmt) {
