@@ -12,6 +12,7 @@
              model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
              model.MyProfilePageLoad();
              model.scope = scope;
+             model.reviewpendingarray = [];
          };
 
          vm.init();

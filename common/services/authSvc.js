@@ -7,6 +7,8 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
         setSession("isManagement", value.isManagement);
         setSession("empRegionID", value.RegionID);
         setSession("empphoto", value.EmpPhotoPath);
+        setSession("logintime", moment().format('MM/DD/YYYY'));
+
     }
 
     function getSession(key) {

@@ -45,7 +45,6 @@
                 model.Excelflag = 2;
                 model.notinpay = null;
                 model.EmpNamesArr = [];
-
                 model.MarketingSlideShowBind(1, 10);
                 timeout(function() {
                     model.marketReplytype();
@@ -53,7 +52,6 @@
                 model.ddlmail = "";
                 return model;
             };
-
             model.getEmpnamesinout = function() {
                 SelectBindServiceApp.EmpBinding(1, 2, '').then(function(response) {
                     model.empNamesInOutArr.push({ "label": "--Select--", "title": "--Select--", "value": "" });
@@ -64,9 +62,6 @@
                     });
                 });
             };
-
-
-
             model.marsmsarray = [
                 { id: 1, text: 'We missed to reach you on 91-XXXXX. please call back' },
                 { id: 2, text: 'As per our telephonic conversation a/c details are......' },
@@ -81,19 +76,15 @@
                 { id: 11, text: " Dear Member, lots of new matches are added on kaakateeya.com everyday. Don't miss, Login now and connect with them" },
                 { id: 12, text: 'We are trying to contact you for verification but not responding.So your profile will be deactivated , please contact us' },
             ];
-
             model.slidebind = function(old, news, array, type) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
                     model.MarketingSlideShowBind(parseInt(model.topage) + 1, parseInt(model.topage) + 10);
                 }
             };
-
             model.splitArray = function(val) {
                 return val = val !== '' && val !== undefined && val.length > 0 ? val.join(',') : null;
             };
-
             model.MarketingSlideShowBind = function(from, to) {
-
                 model.topage = to;
                 var inputobj = {
                     strBranch: model.splitArray(model.Branchs),
@@ -119,16 +110,14 @@
                     dt_ToReminderdate: model.toremainderdate,
                     i_Excelflag: model.Excelflag,
                     V_Notpay: model.notinpay
-                }
+                };
 
                 marketingservice.getMarketingSlideShowBind(inputobj).then(function(response) {
                     if (response.data && response.data.Marketingslideticket !== null && response.data.Marketingslideticket.length > 0) {
                         model.Marketingslideticket = response.data.Marketingslideticket;
                         model.MarketingslideHistory = response.data.MarketingslideHistory;
                         model.TotalRows = model.Marketingslideticket[0].TotalRows;
-
                         _.map(response.data.Marketingslideticket, function(item) {
-
                             item.editval = item.Feedetails ? 'Edit' : 'Save';
                             item.editSAval = item.SettlementValue ? 'Edit' : 'Save';
                             item.ddlmrktCallresultIn = item.ddlmrktcallresultout = "417";
@@ -214,20 +203,16 @@
             };
 
             model.MarketingTicketBind = function(flag, ID) {
-
                 marketingservice.getMarketingTicketBind(flag, ID).then(function(response) {
-
                     model.applicationStatusarray = [];
                     model.Castearray = [];
                     model.ProfileOwnerarray = [];
                     model.Brancharray = [];
-
                     _.each(response.data, function(item) {
                         switch (item.CountryCode) {
                             // case "Profile Owner":
                             //     model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                             //     break;
-
                             case "Branch":
                                 model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                 break;
@@ -235,7 +220,6 @@
                     });
                 });
             };
-
             model.bindEmpnames = function() {
                 SelectBindServiceApp.EmpwithBranch('ProfileBranch', '').then(function(response) {
                     var empBranchData = response.data;
@@ -286,7 +270,7 @@
                     CustID: custId,
                     SettlementValue: null,
                     isSiblings: isSibbling
-                }
+                };
                 marketingservice.feeUpdate(datainobj).then(function(response) {
                     if (response.data && parseInt(response.data) === 1) {
                         commonFactory.closepopup();
@@ -294,8 +278,6 @@
                     }
                 });
             };
-
-
 
             model.openSmsMail = function(type, name, profileid, email, mobilenumber, mobileCountryCode, ticketID, EmpmobileNumber, fromcustid, tocustid, ticketStatusId, ToProfileID) {
                 model.typeofmailSms = type;
@@ -318,7 +300,7 @@
                         strEmpmobileNumber: strempNumber,
                         strMobileCountryCode: mobileCountryCode,
                         Emp_TicketingCallHistoryID: ticketID
-                    }
+                    };
 
                 } else {
                     model.custName = name + '(' + profileid + ')';
@@ -331,7 +313,7 @@
                         EMPID: empid,
                         profileid: profileid,
                         LTicketID: ticketID
-                    }
+                    };
 
                     timeout(function() {
                         model.txtsmsmail = model.mailchange(model.ddlmail);
@@ -874,7 +856,7 @@
             };
 
             return model.init();
-        }
+        };
     }
     angular
         .module('Kaakateeya')
