@@ -412,7 +412,6 @@
                 };
 
                 editEducationService.submitGradeData(model.Mobj).then(function(response) {
-                    console.log(response);
                     commonFactory.closepopup();
                     if (response.data === 1) {
                         model.pageload();

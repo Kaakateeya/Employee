@@ -1,7 +1,26 @@
-.subColumnClass {
+#assignsettingsid .subColumnClass {
   line-height: 40px; }
-
-.panel-title {
+#assignsettingsid .panel-title {
   color: #b10c0c; }
+#assignsettingsid .unpaid {
+  color: red;
+  font-weight: 700; }
+#assignsettingsid .paidclass {
+  color: #16713d;
+  font-weight: 700; }
+#assignsettingsid .ProfileOwner {
+  width: 200px; }
+#assignsettingsid .MarketedOwner {
+  width: 200px; }
+#assignsettingsid .ReviewOwner {
+  width: 200px; }
+#assignsettingsid .dropdownclass {
+  width: 250px; }
+#assignsettingsid .smalldropdowngrid {
+  width: 201px; }
+#assignsettingsid input {
+  width: 270px; }
+#assignsettingsid .smalldropdown {
+  width: 270px; }
 
 /*# sourceMappingURL=style.css.map */

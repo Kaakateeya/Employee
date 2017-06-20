@@ -42,6 +42,13 @@
                         <span ng-if="colitem.type==='custom'" ng-bind-html="colitem.templateUrl(inneritem)"></span>
                         <span ng-if="colitem.type==='customlink'" ng-bind-html="colitem.templateUrl(inneritem)" ng-click="colitem.method(inneritem)"></span>
                         <span ng-if="colitem.type==='morelinks'" compile="colitem.templateUrl(inneritem)"></span>
+                        <span ng-if="colitem.type==='dropdown'" class="dropdownclass">
+                        <select multiselectdropdown class="smalldropdowngrid" ng-model="model[colitem.model+inneritem.SNO]" ng-options="itemss.value as itemss.label for itemss in model.ProfileOwnerarray"></select>
+                        </span>
+                        <span ng-if="colitem.type==='dropdownlink'" class="dropdownclass">
+                        <select multiselectdropdown class="smalldropdowngrid" ng-model="model[colitem.model+inneritem.Row]" ng-options="itemss.value as itemss.label for itemss in model.ProfileOwnerarraysingle"></select>
+                        <!--<a href="javascript:void(0)" style="margin-left: 10px;" ng-click="model.Reassign(inneritem)">Reassign</a>-->
+                        </span>
                         <span ng-if="colitem.type==='play'"><a class="detail-icon" ng-click="colitem.method(inneritem)" href="javascript:void(0);"><i class="glyphicon glyphicon-play icon-play"></i></a></span>
                     </td>
                 </tr>

@@ -10,6 +10,12 @@
                         ID: ID,
                     }
                 });
+            },
+            submitreviewpending: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/ReviewpendingReports', obj);
+            },
+            ReviewpendingReassign: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/ReviewpendingReassign', obj);
             }
         };
     }

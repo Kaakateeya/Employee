@@ -340,12 +340,19 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
 ]);
 app.run(function($rootScope, $state, $stateParams) {
     $rootScope.$on('$stateChangeStart', function(e, to) {
-        if (to.data && to.data.requiresLogin) {
-            if (sessionStorage.getItem('LoginEmpid') === null || sessionStorage.getItem('LoginEmpid') === undefined || sessionStorage.getItem('LoginEmpid') === "") {
+        if (to && to.name !== 'base.login') {
+            if (sessionStorage.getItem('logintime') && (sessionStorage.getItem('logintime')) === moment().format('MM/DD/YYYY')) {
+                if (to.data && to.data.requiresLogin) {
+                    if (sessionStorage.getItem('LoginEmpid') === null || sessionStorage.getItem('LoginEmpid') === undefined || sessionStorage.getItem('LoginEmpid') === "") {
+                        e.preventDefault();
+                        $state.go('base.login');
+                    } else {
+                        if (sessionStorage.getItem('LoginEmpid') !== null && sessionStorage.getItem('LoginEmpid') !== undefined && sessionStorage.getItem('LoginEmpid') !== "") {}
+                    }
+                }
+            } else {
                 e.preventDefault();
                 $state.go('base.login');
-            } else {
-                if (sessionStorage.getItem('LoginEmpid') !== null && sessionStorage.getItem('LoginEmpid') !== undefined && sessionStorage.getItem('LoginEmpid') !== "") {}
             }
         }
     });

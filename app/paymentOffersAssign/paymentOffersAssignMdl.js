@@ -60,8 +60,6 @@
                 };
 
                 paymentOffersAssignService.submitPaymentOffer(obj).then(function(response) {
-                    console.log(response);
-                    // model = {};
                     if (response.data && parseInt(response.data) === 1) {
                         model.reset();
                         model.ProfileID = '';
