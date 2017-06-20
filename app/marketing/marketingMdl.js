@@ -286,7 +286,7 @@
                     CustID: custId,
                     SettlementValue: null,
                     isSiblings: isSibbling
-                }
+                };
                 marketingservice.feeUpdate(datainobj).then(function(response) {
                     if (response.data && parseInt(response.data) === 1) {
                         commonFactory.closepopup();
@@ -318,7 +318,7 @@
                         strEmpmobileNumber: strempNumber,
                         strMobileCountryCode: mobileCountryCode,
                         Emp_TicketingCallHistoryID: ticketID
-                    }
+                    };
 
                 } else {
                     model.custName = name + '(' + profileid + ')';
@@ -647,8 +647,6 @@
                         model.ddlmins = parseInt(remindertimeArr[1]) + 1;
                     }
                 }
-
-
             };
             model.reminderSubmit = function() {
                 var remDate = $filter('date')(model.txtreminderDate, 'MM-dd-yyyy');

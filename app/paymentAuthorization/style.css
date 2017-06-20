@@ -1,4 +1,54 @@
-#paymentAuthorization .btn-danger {
-  margin-top: 14% !important; }
+#paymentAuthorization .sideMenu {
+  border: 1px solid #8b8989 !important;
+  border-radius: 5%; }
+#paymentAuthorization .bodycls {
+  padding-left: 0% !important; }
+#paymentAuthorization .btncls {
+  height: 38px; }
+#paymentAuthorization .lblcls {
+  left: 32px; }
+#paymentAuthorization .boderCls {
+  margin: 0 1% 0 2%; }
+#paymentAuthorization .hdrCls {
+  font-size: 16px; }
+#paymentAuthorization .edit_pages_sidebar_menu ul li {
+  display: block;
+  border-top: solid 1px #ccc;
+  width: 198px; }
+#paymentAuthorization .edit_pages_sidebar_menu {
+  width: 200px; }
+#paymentAuthorization ul {
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc; }
+
+.paymentAuthorizeCls {
+  line-height: 42px;
+  width: 78%;
+  left: 12%; }
+  .paymentAuthorizeCls button.close {
+    padding-right: 12px; }
+
+tbody {
+  height: auto;
+  max-height: 350px;
+  overflow-y: auto; }
+
+md-sidemenu-button > a {
+  width: 100% !important; }
+
+.md-sidemenu-button span {
+  text-align: left; }
+
+.btnbgColor {
+  background: #A00201;
+  color: #fff !important; }
+
+.unpaid {
+  color: red;
+  font-weight: 700; }
+
+.paidclass {
+  color: #16713d;
+  font-weight: 700; }
 
 /*# sourceMappingURL=style.css.map */

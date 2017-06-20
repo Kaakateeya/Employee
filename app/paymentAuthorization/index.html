@@ -1,37 +1,191 @@
 <div class="right_col" id="paymentAuthorization">
-    <h3 class="hdrCls">Payment Authorization</h3>
+    <div class="row">
+        <div class="col-lg-2">
+            <h4 class="hdrCls">Payment Authorization</h4>
+        </div>
+
+        <div class="col-lg-3">
+            <label for="" class="control-label col-lg-3"> Region </label>
+            <div class="col-lg-7">
+                <md-radio-group name="rdnServicetax" layout="row" style="margin-left: -11px;" ng-model="page.model.rdnRegion" ng-change="page.model.branchDependency(page.model.rdnRegion);" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                    <md-radio-button value="0" class="md-primary">All</md-radio-button>
+                    <md-radio-button value="408"> AP</md-radio-button>
+                    <md-radio-button value="409"> TN</md-radio-button>
+                    <md-radio-button value="410"> KT</md-radio-button>
+                </md-radio-group>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <label for="" class="control-label col-lg-5 lblcls">Start date</label>
+            <div class="col-lg-7">
+                <custom-datepicker class="datepicker3" ng-model="page.model.startDate" date-options="page.model.dateOptions"></custom-datepicker>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <label for="" class="control-label col-lg-5 lblcls">End date</label>
+            <div class="col-lg-7">
+                <custom-datepicker class="datepicker3" ng-model="page.model.endDate" date-options="page.model.dateOptions"></custom-datepicker>
+            </div>
+        </div>
+        <div class="col-lg-1">
+            <input type="submit" class="btn btn-danger" value="Submit" ng-click="page.model.paymentAuthSelect();">
+        </div>
+
+    </div>
+    <br>
     <div class="bodycls">
         <div class="row">
-            <div class="col-lg-2 form-group">
-                <label for="" class="control-label"> Region </label>
-                <div> <select multiselectdropdown name="memberShipType" ng-model="page.model.region" ng-change="page.model.branchDependency(page.model.region);" typeofdata="'region'"></select></div>
-            </div>
-            <div class="col-lg-2 form-group">
-                <label for="" class="control-label">Branch</label>
-                <div> <select multiselectdropdown name="memberShipType" ng-model="page.model.branch" ng-options="item.value as item.label for item in page.model.branchArr"></select></div>
-            </div>
-            <div class="col-lg-2 form-group">
-                <label for="" class="control-label">Start date</label>
-                <div>
-                    <custom-datepicker class="datepicker3" ng-model="page.model.startDate" date-options="page.model.dateOptions"></custom-datepicker>
-                </div>
-            </div>
-            <div class="col-lg-2 form-group">
-                <label for="" class="control-label">End date</label>
-                <div>
-                    <custom-datepicker class="datepicker3" ng-model="page.model.endDate" date-options="page.model.dateOptions"></custom-datepicker>
-                </div>
-            </div>
             <div class="col-lg-2">
-                <div><input type="submit" class="btn btn-danger" value="Submit" ng-click="page.model.paymentAuthSelect();"></div>
+                <div class="edit_pages_sidebar_menu clearfix">
+                    <ul>
+                        <li ng-repeat="item in page.model.BranchmenuArr">
+                            <a href="javascript:void(0);" ng-class="{'btnbgColor':page.model.type===item.BranchesName}" ng-click="page.model.branchbind(item.Branch_ID,item.BranchesName);">{{item.BranchesName}}({{page.model.returnCount(item.Branch_ID)}})</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-
+            <div class="col-lg-10">
+                <complex-grid config="page.model" model="page.model" pagesizecommunication="999"></complex-grid>
+            </div>
         </div>
     </div>
 </div>
+<script type="text/ng-template" id="authorizePopup.html">
+    <div class="modal-message modal-danger">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="page.model.close();">×</button>
+            <h3> {{page.model.pType==='Authorize'?'Authorization':'Decline'}} Details</h3>
+        </div>
+        <div class="modal-body">
+            <form name="authorizeForm" novalidate role="form" ng-submit="authorizeForm.$valid && page.model.SubmitAuthorization();">
+                <div class="lblclass">
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right">Payment ID</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="" class="control-label  pull-left">{{page.model.pPaymentID}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right">Profile ID</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <label class="control-label pull-left">{{page.model.pProfileID}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="txtclass">
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right">Ticket ID</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="number" ng-focus="true" ng-if="page.model.pType==='Authorize'" ng-model="page.model.pTicketID" class="form-control">
+                                <label class="control-label pull-left" ng-if="page.model.pType==='Decline'">{{page.model.pTicketID}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right">Marketed By ID</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="number" ng-model="page.model.pMarketedBy" ng-if="page.model.pType==='Authorize'" class="form-control">
+                                <label class="control-label pull-left" ng-if="page.model.pType==='Decline'">{{page.model.pMarketedBy}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right">Agreed Amount</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="number" ng-model="page.model.pAgreementAmt" ng-if="page.model.pType==='Authorize'" class="form-control">
+                                <label class="control-label pull-left" ng-if="page.model.pType==='Decline'">{{page.model.pAgreementAmt}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right">Paid Amount</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="number" ng-model="page.model.pPaidAmt" ng-if="page.model.pType==='Authorize'" class="form-control">
+                                <label class="control-label pull-left" ng-if="page.model.pType==='Decline'">{{page.model.pPaidAmt}}</label>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right">Settlement Amount </label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" ng-if="page.model.pType==='Authorize'" ng-model="page.model.pSettlementAmt">
+                                <label class="control-label pull-left" ng-if="page.model.pType==='Decline'">{{page.model.pSettlementAmt}}</label>
+                            </div>
+                        </div>
+                        <!--<div class="form-group col-lg-6">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right">Service Tax</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" ng-if="page.model.pType==='Authorize'" ng-model="page.model.pServiceTax">
+                                <label class="control-label pull-left" ng-if="page.model.pType==='Decline'">{{page.model.pServiceTax}}</label>
+                            </div>
+                        </div>-->
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right">No of Online Points 	</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" ng-if="page.model.pType==='Authorize'" ng-model="page.model.pNoofOnlinePoints">
+                                <label class="control-label pull-left" ng-if="page.model.pType==='Decline'">{{page.model.pNoofOnlinePoints}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right">No of Offline Points</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" ng-if="page.model.pType==='Authorize'" ng-model="page.model.pOfflinePts">
+                                <label class="control-label pull-left" ng-if="page.model.pType==='Decline'">{{page.model.pOfflinePts}}</label>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="form-group col-lg-12">
+                            <div class="col-lg-3">
+                                <label for="" class="control-label pull-right">Authorization Description</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <textarea rows="3" ng-model="page.model.pAuthorizationDescription" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="form-group col-lg-11 col-lg-offset-1">
+                            <md-button class="md-raised md-warn md-hue-2" type="submit">Submit</md-button>
+                            <md-button class="md-raised md-hue-1" ng-click="page.model.close();">Cancel</md-button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</script>
 <style>
     .datepicker3 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;

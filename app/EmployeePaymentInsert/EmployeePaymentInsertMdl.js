@@ -97,7 +97,7 @@
                         }
                     }
                 });
-                debugger;
+
             };
 
             model.PaidAmtChange = function(paidAmt, agreeAmt) {
