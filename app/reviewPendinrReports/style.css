@@ -29,5 +29,9 @@ th.ReviewedEmpID.headerStyles {
 
 #rreviewpendings .smalldropdown {
   width: 270px; }
+#rreviewpendings .hasDatepicker {
+  width: 270px; }
+#rreviewpendings input {
+  width: 270px; }
 
 /*# sourceMappingURL=style.css.map */
