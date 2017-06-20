@@ -38,21 +38,17 @@
         ];
         model.oldtabledata = function(profileid) {
             oldPaymenttableService.getoldpaymentstatus(profileid).then(function(response) {
-                console.log(response.data);
                 model.tablearray = [];
                 if (response.data === 1) {
                     if (model.txtProfileID !== "" && model.txtProfileID !== undefined && model.txtProfileID !== null) {
                         oldPaymenttableService.getoldpaymentdata(model.txtProfileID, "").then(function(response) {
                             model.gridTableshow = true;
-                            console.log(response);
                             _.each(response.data[0], function(item) {
                                 model.tablearray.push(item);
                             });
                             // model.setDatagrid(model.tablearray);
                             model.sdata = model.tablearray;
-                            console.log(model.tablearray);
                             modelpopupopenmethod.showPopupphotopoup('oldtablepayment.html', model.scope, 'lg', "modalclassdashboardphotopopup");
-
                         });
                     }
 

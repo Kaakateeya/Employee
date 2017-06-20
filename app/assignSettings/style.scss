@@ -1,7 +1,31 @@
-.subColumnClass {
-    line-height: 40px;
-}
-
-.panel-title {
-    color: #b10c0c;
+#assignsettingsid {
+    .subColumnClass {
+        line-height: 40px;
+    }
+    .panel-title {
+        color: #b10c0c;
+    }
+    .unpaid {
+        color: red;
+        font-weight: 700;
+    }
+    .paidclass {
+        color: #16713d;
+        font-weight: 700;
+    }
+    .ProfileOwner {
+        width: 200px;
+    }
+    .MarketedOwner {
+        width: 200px;
+    }
+    .ReviewOwner {
+        width: 200px;
+    }
+    .dropdownclass {
+        width: 250px;
+    }
+    .smalldropdowngrid {
+        width: 201px;
+    }
 }

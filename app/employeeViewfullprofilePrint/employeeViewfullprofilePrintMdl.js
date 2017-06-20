@@ -80,13 +80,11 @@
             model.inbitdata = function(profileid) {
                 commonpage.showPopup('forinbit.html', model.scope, 'md', "");
                 employeeViewfullprofileservice.inbitdata(profileid, model.empid).then(function(response) {
-                    console.log(response);
                     if (response.data !== undefined && response.data !== "" && response.data !== null) {
                         model.forinbitinfo = response.data;
                     }
                 });
                 employeeViewfullprofileservice.NoDataFoundDisplay(profileid).then(function(response) {
-                    console.log(response);
                     if (response.data !== undefined && response.data !== "" && response.data !== null) {
                         model.nodatasisplay = response.data;
                     }

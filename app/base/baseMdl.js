@@ -1,7 +1,6 @@
 (function(angular) {
     'use strict';
 
-
     function factory(baseService, authSvc, uibModal, commonFactory, stateParams, filter) {
         var model = {};
         // var logincustid = authSvc.getCustId();

@@ -1,19 +1,18 @@
 (function() {
     'use strict';
 
-    function factory(reviewPendinrReportsService, configgrid, helpService) {
+    function factory(reviewPendinrReportsService, configgrid, helpService, alerts) {
         return function() {
             var model = {};
             model = configgrid;
             model.mpObj = {};
             model.opendiv = true;
-
             model.showsearchrows = true;
             model.showsearch = true;
             model.showpaging = true;
             model.showClientpaging = false;
-            model.myprofileexcel = false;
-            model.normalexcel = false;
+            model.myprofileexcel = true;
+            model.normalexcel = true;
             model.gridTableshow = false;
             model.dateOptions = {
                 changeMonth: true,
@@ -30,6 +29,8 @@
                     model.Castearray = [];
                     model.ProfileOwnerarray = [];
                     model.Brancharray = [];
+                    model.ProfileOwnerarraysingle = [];
+                    model.ProfileOwnerarraysingle = [{ "label": '--Select--', "title": '--Select--', "value": 0 }];
                     model.mpObj.ddlProfileOwner = [parseInt(model.empid)];
                     _.each(response.data, function(item) {
                         switch (item.CountryCode) {
@@ -41,6 +42,7 @@
                                 break;
                             case "Profile Owner":
                                 model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                                model.ProfileOwnerarraysingle.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                 break;
                             case "Branch":
                                 model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
@@ -53,22 +55,56 @@
                 var obj = helpService.checkstringvalue(value) && (value.toString()) !== "0" && (value.toString()) !== 0 ? (value.toString()) : null;
                 return obj;
             };
+
+            model.populateGridDropdownsreview = function(arr) {
+                _.each(arr, function(item) {
+                    model['ddlReviewedEmpID' + item.Row] = item.ReviewedEmpID ? item.ReviewedEmpID : 0;
+                });
+            };
             model.ProfileIdTemplateDUrl = function(row) {
-                var paidstatusclass = row.paid === 1 ? 'paidclass' : 'unpaid';
+                // model['ddlReviewedEmpID' + row.Row] = (row.ReviewedEmpID) !== undefined && row.ReviewedEmpID !== null ? row.ReviewedEmpID : 0;
+                var paidstatusclass = row.IsPaidMember === 1 ? 'paidclass' : 'unpaid';
                 var paid = row.ProfileID !== undefined ? "<a class='" + paidstatusclass + "'>" + row.ProfileID + "</a>" : "";
                 return paid;
             };
             model.ViewProfile = function(row) {
                 window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
             };
-            model.selectdropdownowner = function(row) {
-                var owner = '<select multiselectdropdown multiple  class="smalldropdown" ng-model="model.mpObj.ddlApplicationStatus" ng-options="item.value as item.label for item in model.ProfileOwnerarray"></select>';
-                // var owner = '<a>Assign</a>';
+            model.assignaction = function(row) {
+                var owner = '<a>Escalate</a>';
                 return owner;
             };
-            model.assignaction = function(row) {
-                var owner = '<a>Assign</a>';
-                return owner;
+            model.reassignmethod = function(row) {
+                var obj = {
+                    CustID: row.CustID !== "" ? row.CustID : null,
+                    EmpID: model['ddlReviewedEmpID' + row.Row] !== "" && model['ddlReviewedEmpID' + row.Row] !== 0 && model['ddlReviewedEmpID' + row.Row] !== null && model['ddlReviewedEmpID' + row.Row] !== undefined ? model['ddlReviewedEmpID' + row.Row] : null,
+                    i_Reviewpending: 1
+                };
+                reviewPendinrReportsService.ReviewpendingReassign(obj).then(function(response) {
+                    if (parseInt(response.data) === 1) {
+                        alerts.timeoutoldalerts(model.scope, 'alert-success', 'Review Assigned Successfully', 3000);
+                    } else {
+                        alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Review Assigned Fail', 3000);
+                    }
+                });
+            };
+            model.Reassign = function(row) {
+                var mobj = {
+                    CustID: row.CustID !== "" ? row.CustID : null,
+                    EmpID: row.ReviewedEmpID !== "" && row.ReviewedEmpID !== 0 && row.ReviewedEmpID !== null && row.ReviewedEmpID !== undefined ? row.ReviewedEmpID : null,
+                    i_Reviewpending: 0
+                };
+                reviewPendinrReportsService.ReviewpendingReassign(mobj).then(function(response) {
+                    if (parseInt(response.data) === 1) {
+                        alerts.timeoutoldalerts(model.scope, 'alert-success', 'Review Assigned Successfully', 3000);
+                    } else {
+                        alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Review Assigned Fail', 3000);
+                    }
+                });
+            };
+            model.reassignlink = function(row) {
+                var link = '<a href="javascript:void(0)">Reassign</a>';
+                return link;
             };
             model.columns = [
                 { text: 'Sno', key: 'Row', type: 'label' },
@@ -78,12 +114,12 @@
                 { text: 'Owner of the profile', key: 'OwnerOftheProfile', type: 'label' },
                 { text: 'Reviewed by', key: 'ReviewedBy', type: 'label' },
                 { text: 'Assigned Date', key: 'AssignedDate', type: 'label' },
-                { text: 'Assigned for Review', key: 'ReviewedEmpID', type: 'label' },
-                { text: 'Actions', key: 'NAME', type: 'customlink', templateUrl: model.assignaction }
+                { text: 'Assigned for Review', key: 'ReviewedEmpID', type: 'dropdownlink', model: 'ddlReviewedEmpID' },
+                { text: '', key: '', type: 'customlink', templateUrl: model.reassignlink, method: model.Reassign },
+                { text: 'Actions', key: 'NAME', type: 'customlink', templateUrl: model.assignaction, method: model.reassignmethod }
             ];
             model.reviewpendingsubmit = function(obj, from, to, type) {
-
-                debugger;
+                model.opendiv = false;
                 var mobj = {
                     EmpID: parseInt(model.empid),
                     genderId: obj.rdnGender !== "" ? obj.rdnGender : "1,2",
@@ -103,16 +139,63 @@
                 };
                 reviewPendinrReportsService.submitreviewpending(mobj).then(function(response) {
                     console.log(response.data);
+                    model.reviewpendingarray = [];
                     if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
                         if (from === 1) {
                             model.TotalRows = response.data[0][0].TotalRows;
                         }
-                        _.each(response.data[0], function(item) {
-                            model.reviewpendingarray.push(item);
-                        });
-                        model.data = model.reviewpendingarray;
+                        // _.each(response.data[0], function(item) {
+                        model.reviewpendingarray = response.data[0];
+                        // });
+                        if (type === 'grid') {
+                            model.data = model.reviewpendingarray;
+                        } else {
+                            model.exportarray = [];
+                            model.exportarray = response.data[0];
+                            var options = {
+                                headers: true,
+                                columns: [{
+                                        columnid: 'ProfileID',
+                                        title: 'ProfileID'
+                                    }, {
+                                        columnid: 'NAME',
+                                        title: 'NAME'
+                                    }, {
+                                        columnid: 'DOR',
+                                        title: 'DOR'
+                                    },
+                                    {
+                                        columnid: 'OwnerOftheProfile',
+                                        title: 'OwnerOftheProfile'
+                                    },
+                                    {
+                                        columnid: 'ReviewedBy',
+                                        title: 'ReviewedBy'
+                                    },
+                                    {
+                                        columnid: 'AssignedDate',
+                                        title: 'AssignedDate'
+                                    }
+                                ]
+                            };
+                            alasql('SELECT ProfileID,NAME,DOR,ReviewTcktID,OwnerOftheProfile as OwnerOftheProfile,ReviewedBy as ReviewedBy,AssignedDate as AssignedDate INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
+                        }
+
+                        model.populateGridDropdownsreview(model.reviewpendingarray);
                     }
                 });
+            };
+            model.Reassign = function() {
+
+            };
+            model.pagechange = function(val) {
+                var to = val * 10;
+                var from = val === 1 ? 1 : to - 9;
+                var valuechange = val === 1 ? 1 : val;
+                model.reviewpendingsubmit(model.mpObj, from, to, 'grid');
+            };
+            model.exportexcel = function(topage) {
+                model.reviewpendingsubmit(model.mpObj, 1, topage, 'excel');
             };
             return model;
         };
@@ -121,5 +204,5 @@
         .module('Kaakateeya')
         .factory('reviewPendinrReportsModel', factory);
 
-    factory.$inject = ['reviewPendinrReportsService', 'complex-grid-config', 'helperservice'];
+    factory.$inject = ['reviewPendinrReportsService', 'complex-grid-config', 'helperservice', 'alert'];
 })();

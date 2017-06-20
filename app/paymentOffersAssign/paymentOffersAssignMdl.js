@@ -21,7 +21,6 @@
                 { "label": "Premium plus", "title": "Premium Plus", "value": 4 }
             ];
             model.showOfferDetails = function(Amt) {
-                debugger;
                 if (Amt !== undefined && Amt !== '') {
                     var num = Amt * app.PaymentDays;
                     model.strAmt = Amt;
@@ -60,8 +59,6 @@
                 };
 
                 paymentOffersAssignService.submitPaymentOffer(obj).then(function(response) {
-                    console.log(response);
-                    // model = {};
                     if (response.data && parseInt(response.data) === 1) {
                         model.reset();
                         model.ProfileID = '';

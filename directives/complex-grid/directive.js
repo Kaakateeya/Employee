@@ -133,6 +133,9 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 scope.maintableheight = function(array) {
                     scope.config.maintableheightcommunication(array);
                 };
+                scope.Reassign = function(obj) {
+                    scope.model.Reassign(obj);
+                };
                 scope.init();
             }
         };

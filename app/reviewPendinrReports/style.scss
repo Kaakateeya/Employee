@@ -15,3 +15,25 @@
         background-color: #f0f0cc !important;
     }
 }
+
+.unpaid {
+    color: red;
+    font-weight: 700;
+}
+
+.paidclass {
+    color: #16713d;
+    font-weight: 700;
+}
+
+.smalldropdowngrid {
+    width: 150px;
+}
+
+th.ReviewedEmpID.headerStyles {
+    width: 150px;
+}
+
+.btn.smalldropdowngrid {
+    width: 150px !important;
+}

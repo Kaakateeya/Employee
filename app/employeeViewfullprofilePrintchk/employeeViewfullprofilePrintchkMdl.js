@@ -15,7 +15,6 @@
             model.textboxshowhide = true;
             model.fullprofileshow = true;
             model.chekprint = function(obj) {
-                console.log(obj);
                 _.map(obj.value, function(item) {
                     if (obj.printvaluemain) {
                         item.printvalue = true;
@@ -26,7 +25,6 @@
                 });
             };
             model.printsinglechk = function(obj) {
-                console.log(obj.value);
                 if (obj.value.length === (_.where(obj.value, { printvalue: true })).length) {
                     obj.printvaluemain = true;
                 } else {
@@ -35,7 +33,6 @@
             };
 
             model.chkcontcts = function(obj) {
-                console.log(obj);
                 if (obj.printvaluemain) {
                     obj.printvaluemobile = true;
                     obj.printvalueemail = true;
@@ -96,9 +93,7 @@
                                 }
                             }
                         });
-                        console.log("sssss");
                         model.basicinfo = model.viewprofilearray.length > 0 ? model.viewprofilearray[1].value : [];
-                        console.log(model.basicinfo);
                     }
                 });
             };
