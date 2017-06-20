@@ -27,4 +27,7 @@ th.ReviewedEmpID.headerStyles {
 .btn.smalldropdowngrid {
   width: 150px !important; }
 
+#rreviewpendings .smalldropdown {
+  width: 270px; }
+
 /*# sourceMappingURL=style.css.map */
