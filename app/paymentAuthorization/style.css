@@ -10,7 +10,7 @@
 #paymentAuthorization .boderCls {
   margin: 0 1% 0 2%; }
 #paymentAuthorization .hdrCls {
-  font-size: 16px; }
+  font-size: 15px; }
 #paymentAuthorization .edit_pages_sidebar_menu ul li {
   display: block;
   border-top: solid 1px #ccc;
@@ -20,6 +20,8 @@
 #paymentAuthorization ul {
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc; }
+#paymentAuthorization .edit_pages_sidebar_menu ul li a {
+  padding: 10px 8px !important; }
 
 .paymentAuthorizeCls {
   line-height: 42px;

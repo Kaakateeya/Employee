@@ -16,7 +16,7 @@
         margin: 0 1% 0 2%;
     }
     .hdrCls {
-        font-size: 16px;
+        font-size: 15px;
     }
     .edit_pages_sidebar_menu ul li {
         display: block;
@@ -29,6 +29,9 @@
     ul {
         border-right: 1px solid #ccc;
         border-bottom: 1px solid #ccc;
+    }
+    .edit_pages_sidebar_menu ul li a {
+        padding: 10px 8px !important;
     }
 }
 
