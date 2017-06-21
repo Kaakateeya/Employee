@@ -3,7 +3,7 @@
 
     angular
         .module('Kaakateeya')
-        .factory('paymentAuthorizationService', factory)
+        .factory('paymentAuthorizationService', factory);
 
     factory.$inject = ['$http'];
 
@@ -13,6 +13,9 @@
                 return http.get(app.apiroot + 'StaticPages/getCustomerUnauthorizedPayments', {
                     params: { BranchID: obj.BranchID, StartDate: obj.StartDate, EndDate: obj.EndDate, Region: obj.Region }
                 });
+            },
+            submitAuthorization: function(obj) {
+                return http.post(app.apiroot + 'Payment/setPaymentAuthorization', obj);
             }
         };
     }

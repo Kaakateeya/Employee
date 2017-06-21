@@ -629,8 +629,6 @@
                         model.ddlmins = parseInt(remindertimeArr[1]) + 1;
                     }
                 }
-
-
             };
             model.reminderSubmit = function() {
                 var remDate = $filter('date')(model.txtreminderDate, 'MM-dd-yyyy');

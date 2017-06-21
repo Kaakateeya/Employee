@@ -1,5 +1,74 @@
 #paymentAuthorization {
-    .btn-danger {
-        margin-top: 14% !important;
+    .sideMenu {
+        border: 1px solid #8b8989 !important;
+        border-radius: 5%;
     }
+    .bodycls {
+        padding-left: 0% !important;
+    }
+    .btncls {
+        height: 38px;
+    }
+    .lblcls {
+        left: 32px;
+    }
+    .boderCls {
+        margin: 0 1% 0 2%;
+    }
+    .hdrCls {
+        font-size: 15px;
+    }
+    .edit_pages_sidebar_menu ul li {
+        display: block;
+        border-top: solid 1px #ccc;
+        width: 198px;
+    }
+    .edit_pages_sidebar_menu {
+        width: 200px;
+    }
+    ul {
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+    .edit_pages_sidebar_menu ul li a {
+        padding: 10px 8px !important;
+    }
+}
+
+.paymentAuthorizeCls {
+    line-height: 42px;
+    width: 78%;
+    left: 12%;
+    button.close {
+        padding-right: 12px;
+    }
+}
+
+tbody {
+    height: auto;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+md-sidemenu-button>a {
+    width: 100% !important;
+}
+
+.md-sidemenu-button span {
+    text-align: left;
+}
+
+.btnbgColor {
+    background: #A00201;
+    color: #fff !important;
+}
+
+.unpaid {
+    color: red;
+    font-weight: 700;
+}
+
+.paidclass {
+    color: #16713d;
+    font-weight: 700;
 }

@@ -20,6 +20,7 @@
                 { "label": "Premium", "title": "Premium", "value": 3 },
                 { "label": "Premium plus", "title": "Premium Plus", "value": 4 }
             ];
+
             model.showOfferDetails = function(Amt) {
                 if (Amt !== undefined && Amt !== '') {
                     var num = Amt * app.PaymentDays;
