@@ -22,5 +22,7 @@
   width: 270px; }
 #assignsettingsid .smalldropdown {
   width: 270px; }
+#assignsettingsid .colorforcontrols button {
+  background-color: #f0f0cc !important; }
 
 /*# sourceMappingURL=style.css.map */

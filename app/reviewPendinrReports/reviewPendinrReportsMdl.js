@@ -58,9 +58,10 @@
 
             model.populateGridDropdownsreview = function(arr) {
                 _.each(arr, function(item) {
-                    model['ddlReviewedEmpID' + item.Row] = item.ReviewedEmpID ? item.ReviewedEmpID : 0;
+                    model['ddlReviewedEmpID' + item.Row] = item.ReviewedEmpID && _.where(model.ProfileOwnerarraysingle, { value: parseInt(item.ReviewedEmpID) }).length > 0 ? item.ReviewedEmpID : 0;
                 });
             };
+
             model.ProfileIdTemplateDUrl = function(row) {
                 // model['ddlReviewedEmpID' + row.Row] = (row.ReviewedEmpID) !== undefined && row.ReviewedEmpID !== null ? row.ReviewedEmpID : 0;
                 var paidstatusclass = row.IsPaidMember === 1 ? 'paidclass' : 'unpaid';
@@ -138,7 +139,6 @@
                     PageTo: to
                 };
                 reviewPendinrReportsService.submitreviewpending(mobj).then(function(response) {
-                    console.log(response.data);
                     model.reviewpendingarray = [];
                     if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
                         if (from === 1) {

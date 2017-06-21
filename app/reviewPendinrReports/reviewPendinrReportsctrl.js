@@ -12,6 +12,8 @@
              model.MyProfilePageLoad();
              model.scope = scope;
              model.reviewpendingarray = [];
+             model.mpObj.rdnGender = "";
+             model.mpObj.rdntypeofprofile = "";
          };
          vm.init();
      }

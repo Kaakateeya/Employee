@@ -29,10 +29,15 @@
             };
             model.populateGridDropdowns = function(arr) {
                 _.each(arr, function(item) {
-                    model['ddlProfileowner' + item.SNO] = item.ProfileOwner ? item.ProfileOwner : 0;
-                    model['ddlmarketingowner' + item.SNO] = item.MarketedOwner ? item.MarketedOwner : 0;
-                    model['ddlreviweedowner' + item.SNO] = item.ReviewOwner ? item.ReviewOwner : 0;
+                    model['ddlProfileowner' + item.SNO] = model.checkPopulateval(item.ProfileOwner);
+                    model['ddlmarketingowner' + item.SNO] = model.checkPopulateval(item.MarketedOwner);
+                    model['ddlreviweedowner' + item.SNO] = model.checkPopulateval(item.ReviewOwner);
                 });
+            };
+
+
+            model.checkPopulateval = function(val) {
+                return (val && _.where(model.ProfileOwnerarray, { value: parseInt(val) }).length > 0) ? val : 0;
             };
             model.ViewProfile = function(row) {
                 window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
@@ -104,7 +109,12 @@
                                 break;
                         }
                     });
-                    console.log(model.ProfileOwnerarray);
+                    model.mpObj.ddlApplicationStatus = [54];
+                    model.mpObj.ddlCaste = [402];
+                    model.mpObj.ddlBranch = [];
+                    _.each(model.Brancharray, function(item) {
+                        model.mpObj.ddlBranch.push(item.value);
+                    });
 
                 });
             };
@@ -132,10 +142,9 @@
                     PageNumber: pagenumber,
                     intlowerBound: from,
                     intUpperBound: to,
-                    PaymentStatus: obj.rdnPayments !== "" ? obj.rdnPayments : null
+                    PaymentStatus: obj.rdnPayments && obj.rdnPayments !== "0" ? obj.rdnPayments : null
                 };
                 assignSettingsService.submitassignsettings(mobj).then(function(response) {
-                    console.log(response.data);
                     if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
                         if (from === 1) {
                             model.TotalRows = response.data[0][0].TotalRows;

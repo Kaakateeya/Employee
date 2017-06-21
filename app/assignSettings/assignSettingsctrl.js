@@ -12,6 +12,8 @@
              model.MyProfilePageLoad();
              model.scope = scope;
              model.assignsettingsdata = [];
+             model.mpObj.rdnGender = "";
+             model.mpObj.rdnPayments = "0";
          };
          vm.init();
      }
