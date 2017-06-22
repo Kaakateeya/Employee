@@ -22,16 +22,20 @@
                 minDate: null,
                 maxDate: null
             };
+            model.removeSelect = function(Arr) {
+                if (Arr !== undefined && Arr.length > 0 && angular.lowercase(Arr[0].title) === '--select--') {
+                    Arr.splice(0, 1);
+                }
+                return Arr;
+            };
             model.MyProfilePageLoad = function() {
                 reviewPendinrReportsService.getMyprofilebind(1, 2, '').then(function(response) {
                     model.mpObj.ddlProfileOwner = model.empid;
                     model.applicationStatusarray = [];
                     model.Castearray = [];
-                    // model.ProfileOwnerarray = [];
                     model.Brancharray = [];
-                    // model.ProfileOwnerarraysingle = [];
-                    // model.ProfileOwnerarraysingle = [{ "label": '--Select--', "title": '--Select--', "value": 0 }];
                     model.mpObj.ddlProfileOwner = [parseInt(model.empid)];
+                    model.mpObj.rdnregion = "";
                     _.each(response.data, function(item) {
                         switch (item.CountryCode) {
                             case "Application Status":
@@ -40,10 +44,6 @@
                             case "Caste":
                                 model.Castearray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                 break;
-                                //  case "Profile Owner":
-                                //   model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                                //  model.ProfileOwnerarraysingle.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                                // break;
                             case "Branch":
                                 model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                 break;

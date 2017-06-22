@@ -27,7 +27,7 @@
                         <label for="Gender" class="control-label col-lg-4">Reviewing pending</label>
                         <div class="col-lg-7">
                             <md-radio-group name="rdnreviewpending" layout="row" ng-model="page.model.mpObj.rdnreviewpending" class="md-block" flex-gt-sm>
-                                <md-radio-button value="1"> New registration</md-radio-button>
+                                <md-radio-button value="1" class="md-primary"> New registration</md-radio-button>
                                 <md-radio-button value="2"> Edit profile</md-radio-button>
                                 </md-radio-button>
                             </md-radio-group>
@@ -38,6 +38,25 @@
                         <div class="col-lg-7" ng-class="page.model.mpObj.ddlCaste===undefined || page.model.mpObj.ddlCaste===null || page.model.mpObj.ddlCaste.length===0 ?'':'colorforcontrols'">
                             <select multiselectdropdown multiple class="smalldropdown" ng-model="page.model.mpObj.ddlCaste" ng-options="item.value as item.label for item in page.model.Castearray">   
                                  </select>
+                        </div>
+                    </div>
+                    <!--<div class="clearfix form-group">
+                        <label for="Gender" class="control-label col-lg-4">Region</label>
+                        <div class="col-lg-7" ng-class="page.model.mpObj.ddlregion===undefined || page.model.mpObj.ddlregion===null || page.model.mpObj.ddlregion.length===0 ?'':'colorforcontrols'">
+                            <select multiselectdropdown multiple class="smalldropdown" ng-model="page.model.mpObj.ddlregion" ng-options="item.value as item.label for item in page.model.regionarray">   
+                                 </select>
+                        </div>
+                    </div>-->
+                    <div class="clearfix form-group">
+                        <label for="rdnregion" class="control-label col-lg-4">Region</label>
+                        <div class="col-lg-7">
+                            <md-radio-group name="rdnregions" layout="row" ng-model="page.model.mpObj.rdnregion" class="md-block" flex-gt-sm>
+                                <md-radio-button value="" class="md-primary"> All</md-radio-button>
+                                <md-radio-button value="408"> AP</md-radio-button>
+                                <md-radio-button value="409"> TN</md-radio-button>
+                                <md-radio-button value="410"> KT</md-radio-button>
+                                </md-radio-button>
+                            </md-radio-group>
                         </div>
                     </div>
                     <div class="clearfix form-group" ng-if="false">
@@ -66,7 +85,7 @@
                         <label for="Gender" class="control-label col-lg-4">Type of profile</label>
                         <div class="col-lg-7">
                             <md-radio-group name="rdntypeofprofile" layout="row" ng-model="page.model.mpObj.rdntypeofprofile" class="md-block" flex-gt-sm>
-                                <md-radio-button value=""> Both</md-radio-button>
+                                <md-radio-button value="" class="md-primary"> Both</md-radio-button>
                                 <md-radio-button value="372"> Paid</md-radio-button>
                                 <md-radio-button value="373" class="md-primary">Un-paid
                                 </md-radio-button>

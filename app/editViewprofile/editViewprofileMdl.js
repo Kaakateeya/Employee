@@ -278,18 +278,6 @@
             };
             model.exportexcel = function(array, columns) {
                 model.ViewAllsubmit(model.obj, 1, model.TotalRows, "export");
-                // var cloumsarr = [];
-                // var selectarray = [];
-                // _.each(_.filter(columns, function(item) { return item.key !== "" && item.key !== undefined; }), function(inneritem) {
-                //     cloumsarr.push({ columnid: inneritem.key, title: inneritem.text });
-                // });
-                // var options = {
-                //     headers: true,
-                //     columns: cloumsarr
-                // };
-                // var join = _.map(cloumsarr, 'columnid').join(',');
-                // var select = 'SELECT ' + join + ' INTO  XLSX("john.xlsx",?) FROM ?';
-                // alasql(select, [options, array]);
             };
 
             model.slideshowedit = function() {
