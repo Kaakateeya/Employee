@@ -335,8 +335,8 @@
 
             };
             model.grid.pagechange = function(val) {
-                var to = val * 10;
-                var from = val === 1 ? 1 : to - 9;
+                var to = val * 100;
+                var from = val === 1 ? 1 : to - 99;
                 model.MyprofileResult(model.mpObj, from, to, 'grid', 1);
             };
             model.grid.exportexcel = function(topage) {

@@ -9,7 +9,7 @@
                     <div class="clearfix form-group">
                         <label for="Gender" class="control-label col-lg-4">Profile ID</label>
                         <div class="col-lg-7">
-                            <input onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-class="(page.model.mpObj.txtProfilerevieID).trim()!=='' && page.model.mpObj.txtProfilerevieID!==undefined && page.model.mpObj.txtProfilerevieID!==null?'bacg':''" type="text" class="form-control"
+                            <input onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-class="(page.model.mpObj.txtProfilerevieID).trim()!=='' && page.model.mpObj.txtProfilerevieID!==undefined && page.model.mpObj.txtProfilerevieID!==null?'bacg':''" type="text" class="form-control reviewclass"
                                 placeholder="Profile ID" ng-model="page.model.mpObj.txtProfilerevieID">
                         </div>
                     </div>
@@ -40,14 +40,14 @@
                                  </select>
                         </div>
                     </div>
-                    <div class="clearfix form-group">
+                    <div class="clearfix form-group" ng-if="false">
                         <label for="Gender" class="control-label col-lg-4">Profile review owner</label>
                         <div class="col-lg-7" ng-class="page.model.mpObj.ddlProfileowner===undefined || page.model.mpObj.ddlProfileowner===null || page.model.mpObj.ddlProfileowner.length===0 ?'':'colorforcontrols'">
                             <select multiselectdropdown multiple class="smalldropdown" ng-model="page.model.mpObj.ddlProfileowner" ng-options="item.value as item.label for item in page.model.ProfileOwnerarray">   
                                  </select>
                         </div>
                     </div>
-                    <div class="clearfix form-group">
+                    <div class="clearfix form-group" ng-if="false">
                         <label for="Gender" class="control-label col-lg-4">Assigned from</label>
                         <div class="col-lg-7">
                             <custom-datepicker ng-class="(page.model.mpObj.txtAssignedFromDate).trim()!=='' && page.model.mpObj.txtAssignedFromDate!==undefined &&  page.model.mpObj.txtAssignedFromDate!==null?'datepicker4':''" ng-model="page.model.mpObj.txtAssignedFromDate" date-options="page.model.dateOptions"></custom-datepicker>
@@ -87,7 +87,7 @@
                               </select>
                         </div>
                     </div>
-                    <div class="clearfix form-group">
+                    <div class="clearfix form-group" ng-if="false">
                         <label for="Gender" class="control-label col-lg-4">Assigned to</label>
                         <div class="col-lg-7">
                             <custom-datepicker ng-class="(page.model.mpObj.txtAssignedtoDate).trim()!=='' && page.model.mpObj.txtAssignedtoDate!==undefined &&  page.model.mpObj.txtAssignedtoDate!==null?'datepicker4':''" ng-model="page.model.mpObj.txtAssignedtoDate" date-options="page.model.dateOptions"></custom-datepicker>

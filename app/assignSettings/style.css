@@ -18,7 +18,7 @@
   width: 250px; }
 #assignsettingsid .smalldropdowngrid {
   width: 201px; }
-#assignsettingsid input {
+#assignsettingsid .reviewclass {
   width: 270px; }
 #assignsettingsid .smalldropdown {
   width: 270px; }
@@ -28,5 +28,7 @@
   background-color: #f0f0cc !important; }
 #assignsettingsid .headerStyles {
   font-size: 14px; }
+#assignsettingsid .hasDatepicker {
+  width: 270px; }
 
 /*# sourceMappingURL=style.css.map */

@@ -31,7 +31,7 @@ th.ReviewedEmpID.headerStyles {
   width: 270px; }
 #rreviewpendings .hasDatepicker {
   width: 270px; }
-#rreviewpendings input {
+#rreviewpendings .reviewclass {
   width: 270px; }
 #rreviewpendings .headerStyles {
   font-size: 14px; }

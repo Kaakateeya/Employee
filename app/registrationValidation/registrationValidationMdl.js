@@ -93,8 +93,8 @@
                 model.getSearchData(1, model.grid.topage, "export", model.ddlApplicationStatus);
             };
             model.grid.pagechange = function(val) {
-                var to = val * 10;
-                var from = val === 1 ? 1 : to - 9;
+                var to = val * 100;
+                var from = val === 1 ? 1 : to - 99;
                 model.getSearchData(from, to, 'grid', model.ddlApplicationStatus);
             };
             model.getSearchData = function(from, to, typeofbind, ApplicationStatus) {
