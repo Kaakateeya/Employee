@@ -64,12 +64,12 @@
 
             model.ProfileIdTemplateDUrl = function(row) {
                 // model['ddlReviewedEmpID' + row.Row] = (row.ReviewedEmpID) !== undefined && row.ReviewedEmpID !== null ? row.ReviewedEmpID : 0;
-                var paidstatusclass = row.IsPaidMember === 1 ? 'paidclass' : 'unpaid';
+                var paidstatusclass = row.IsPaidMember === 372 ? 'paidclass' : 'unpaid';
                 var paid = row.ProfileID !== undefined ? "<a class='" + paidstatusclass + "'>" + row.ProfileID + "</a>" : "";
                 return paid;
             };
             model.ViewProfile = function(row) {
-                window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
+                window.open('/Education/' + row.CustID, '_blank');
             };
             model.assignaction = function(row) {
                 var owner = '<a>Escalate</a>';
@@ -113,11 +113,11 @@
                 { text: 'NAME', key: 'NAME', type: 'label' },
                 { text: 'DOR', key: 'DOR', type: 'label' },
                 { text: 'Owner of the profile', key: 'OwnerOftheProfile', type: 'label' },
-                { text: 'Reviewed by', key: 'ReviewedBy', type: 'label' },
-                { text: 'Assigned Date', key: 'AssignedDate', type: 'label' },
-                { text: 'Assigned for Review', key: 'ReviewedEmpID', type: 'dropdownlink', model: 'ddlReviewedEmpID' },
-                { text: '', key: '', type: 'customlink', templateUrl: model.reassignlink, method: model.Reassign },
-                { text: 'Actions', key: 'NAME', type: 'customlink', templateUrl: model.assignaction, method: model.reassignmethod }
+                //{ text: 'Reviewed by', key: 'ReviewedBy', type: 'label' },
+                //{ text: 'Assigned Date', key: 'AssignedDate', type: 'label' },
+                // { text: 'Assigned for Review', key: 'ReviewedEmpID', type: 'dropdownlink', model: 'ddlReviewedEmpID' },
+                //{ text: '', key: '', type: 'customlink', templateUrl: model.reassignlink, method: model.Reassign },
+                // { text: 'Actions', key: 'NAME', type: 'customlink', templateUrl: model.assignaction, method: model.reassignmethod }
             ];
             model.reviewpendingsubmit = function(obj, from, to, type) {
                 model.opendiv = false;
@@ -139,14 +139,14 @@
                     PageTo: to
                 };
                 reviewPendinrReportsService.submitreviewpending(mobj).then(function(response) {
-                    model.reviewpendingarray = [];
+
                     if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
                         if (from === 1) {
                             model.TotalRows = response.data[0][0].TotalRows;
                         }
-                        // _.each(response.data[0], function(item) {
+
                         model.reviewpendingarray = response.data[0];
-                        // });
+
                         if (type === 'grid') {
                             model.data = model.reviewpendingarray;
                         } else {
@@ -189,8 +189,8 @@
 
             };
             model.pagechange = function(val) {
-                var to = val * 10;
-                var from = val === 1 ? 1 : to - 9;
+                var to = val * 100;
+                var from = val === 1 ? 1 : to - 99;
                 var valuechange = val === 1 ? 1 : val;
                 model.reviewpendingsubmit(model.mpObj, from, to, 'grid');
             };

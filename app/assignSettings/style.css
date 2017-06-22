@@ -24,5 +24,9 @@
   width: 270px; }
 #assignsettingsid .colorforcontrols button {
   background-color: #f0f0cc !important; }
+#assignsettingsid .bacg {
+  background-color: #f0f0cc !important; }
+#assignsettingsid .headerStyles {
+  font-size: 14px; }
 
 /*# sourceMappingURL=style.css.map */

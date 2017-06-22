@@ -1,7 +1,6 @@
 (function(angular) {
     'use strict';
 
-
     function factory(editOfcePurposeService, authSvc, alertss, commonFactory, uibModal, stateParams) {
         var model = {};
         model.scope = {};

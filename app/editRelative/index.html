@@ -1,9 +1,6 @@
 <div ng-class="'EditViewClass'" class="right_col" style="padding-top: 6%;padding-left: 1%;">
-
     <div ng-include="'templates/sideMenu.html'">
     </div>
-
-
     <div class="edit_pages_content_main clearfix">
         <page-review dispaly-name="'Relatives details'" sectionid="'27,28,32,33'" custid="page.model.CustID"></page-review>
         <div class="edit_page_item">
@@ -20,91 +17,64 @@
                         <div>
                             <div>
                                 <div id="upFatherBrother" class="edit_page_details_item_desc clearfix">
-
                                     <h6>
                                         <span id="FBName" style="font-weight:bold;">FB Name</span></h6>
                                     <h5>
                                         <span id="lblFBName">{{item.FatherbrotherName+"("+item.FatherBrotherElderyounger+")"}}</span></h5>
                                 </div>
                                 <div ng-if="page.model.FBArr.length>0" class="edit_page_item_ui clearfix">
-
                                     <a href="javascript:void(0);" ng-click="page.model.relativePopulatePopulate('FB',item);" class="edit_page_edit_button" href="javascript:void(0);">Edit</a>
                                     <a href="javascript:void(0);" class="edit_page_del_button" ng-click="page.model.DeletePopup('father brother',item.FatherbrotherCustfamilyID);">Delete</a>
                                 </div>
-
                             </div>
-                            <div id="UpdatePanelFBProfession" class="edit_page_details_item_desc clearfix">
-
+                            <div class="edit_page_details_item_desc clearfix">
                                 <div>
-
                                     <h6>
                                         <span id="FBEducation" style="font-weight:bold;">Education</span></h6>
                                     <h5>
                                         <span id="lblFBEducation">{{item.FatherBrotherEducationDetails}}</span></h5>
                                 </div>
                             </div>
-                            <div id="UpdatePanelFBProfessionDetails" class="edit_page_details_item_desc clearfix">
-
+                            <div class="edit_page_details_item_desc clearfix">
                                 <div>
-
                                     <h6>
                                         <span id="FBProfessionDetails" style="font-weight:bold;">Profession</span></h6>
                                     <h5>
                                         <span id="lblProfessionDetails">{{item.FatherbrotherProfessionDetails }}</span></h5>
-
                                 </div>
-
                             </div>
-
-                            <div id="UpdatePanelFBCurrentLocation" class="edit_page_details_item_desc clearfix">
-
+                            <div class="edit_page_details_item_desc clearfix">
                                 <div>
-
                                     <h6>
                                         <span id="FBCurrentLocation" style="font-weight:bold;">Current Location</span></h6>
                                     <h5>
                                         <span id="lblCurrentLocation">{{item.FatherbrotherCurrentLocation }}</span></h5>
-
                                 </div>
-
                             </div>
                             <div id="update0">
-
                                 <div id="ownerdiv0">
                                     <div id="UpdatePanelFBcontacts" class="edit_page_details_item_desc clearfix">
-
                                         <div>
-
                                             <h6>
                                                 <span id="FBcontacts" style="font-weight:bold;">FB contacts</span></h6>
                                             <h5>
                                                 <span id="lblFBcontacts">{{(item.FatherbrotherMobileNumberWithCode!=null?item.FatherbrotherMobileNumberWithCode:'')+" "
                                         +(item.FatherbrotherLandnumberwithcode!=null&&item.FatherbrotherLandnumberwithcode.ToString()!=""?"&"+
                                         item.FatherbrotherLandnumberwithcode:" ") }}</span></h5>
-
                                         </div>
-
                                     </div>
                                     <div id="UpdatePanelFBEmail" class="edit_page_details_item_desc clearfix">
-
                                         <div>
-
                                             <h6>
                                                 <span id="FBEmail" style="font-weight:bold;">FB Email</span></h6>
                                             <h5>
                                                 <span id="lblFBEmail">{{item.FatherbrotherEmail }}</span></h5>
-
                                         </div>
-
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

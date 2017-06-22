@@ -4,7 +4,6 @@
     function factory(editPartnerpreferenceService, authSvc, alertss, commonFactory, uibModal, stateParams) {
         var model = {};
         model.scope = {};
-
         //start declaration block
         model.partnerPrefArr = [];
         model.partnerObj = {};
@@ -17,16 +16,12 @@
         var custID = model.CustID = stateParams.CustID;
         //  model.CustID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
         model.partnerDescription = '';
-
         //end declaration block
-
         model.init = function() {
             custID = model.CustID = stateParams.CustID;
             model.pageload();
-
             return model;
         };
-
         model.pageload = function() {
             editPartnerpreferenceService.getPartnerPreferenceData(custID).then(function(response) {
                 model.partnerPrefArr = response.data;
@@ -38,7 +33,6 @@
             if (data[0] !== undefined && angular.lowercase(data[0].title) === '--select--') {
                 data.splice(0, 1);
             }
-
             return data;
         };
         model.SplitstringintoArray = function(string) {
@@ -53,12 +47,10 @@
         model.partnerprefPopulate = function(item) {
             isSubmit = true;
             model.partnerObj = {};
-
             model.popupdata = model.partnerPreference;
             model.popupHeader = 'Partnerprefernece details';
             if (item !== undefined) {
                 model.eventType = 'edit';
-
                 model.intCusID = item.intCusID;
                 model.genderId = item.Gender === 'Female' ? 2 : 1;
                 model.fromAgeId = item.Agemin;
@@ -84,14 +76,11 @@
                 model.starPreferenceId = item.TypeOfStar;
                 model.lstPreferredStars = model.SplitstringintoArray(item.PreferredStars);
                 model.Domicile = item.Domicel === 'India' ? 0 : (item.Domicel === 'abroad' ? 1 : (item.Domicel === 'All' ? 2 : ''));
-
             }
             commonFactory.open('partnerPrefContent.html', model.scope, uibModal);
         };
-
         model.partnerdescPopulate = function(item) {
             isSubmit = true;
-
             model.popupdata = model.aboutPartnerDescription;
             model.popupHeader = 'Partner Description';
             if (item !== undefined) {
@@ -99,18 +88,13 @@
                 model.partnerDescriptionId = item.PartnerDescripition;
             }
             commonFactory.open('partnerDescContent.html', model.scope, uibModal);
-
         };
         model.cancel = function() {
             commonFactory.closepopup();
         };
-
-
         model.partnerDescriptionSubmit = function(obj) {
-
             if (isSubmit) {
                 isSubmit = false;
-
             }
         };
         model.updateData = function(inObj, type) {
@@ -141,13 +125,10 @@
                                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Partner Description Updation failed', 4500);
                             }
                         });
-
                         break;
-                };
+                }
             }
-
         };
-
         model.partnerPreference = [
             { lblname: 'Gender', controlType: 'radio', ngmodel: 'genderId', arrbind: 'gender', parameterValue: 'GenderID' },
             { lblname: 'Age Gap', controlType: 'doublemultiselect', ngmodelSelect1: 'fromAgeId', ngmodelSelect2: 'toAgeId', typeofdata: 'ageBind', required: true, parameterValue1: 'AgeGapFrom', parameterValue2: 'AgeGapTo' },
@@ -172,20 +153,14 @@
             { lblname: 'Star Preference', controlType: 'radio', ngmodel: 'starPreferenceId', arrbind: 'StarPreference', parameterValue: 'TypeofStar' },
             { lblname: '', controlType: 'Changemultiselect', ngmodel: 'lstPreferredStars', parentName: 'star', parameterValue: 'PrefredStars' },
             { lblname: '', controlType: 'break' }
-
         ];
-
         model.aboutPartnerDescription = [
             { lblname: '', controlType: 'about', required: true, ngmodel: 'partnerDescriptionId', parameterValue: 'AboutYourself' },
         ];
-
         return model.init();
     }
-
     angular
         .module('Kaakateeya')
         .factory('editPartnerpreferenceModel', factory);
-
     factory.$inject = ['editPartnerpreferenceService', 'authSvc', 'alert', 'commonFactory', '$uibModal', '$stateParams'];
-
 })(angular);

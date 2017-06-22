@@ -1,106 +1,77 @@
 <div ng-class="'EditViewClass'" class="right_col" style="padding-top: 6%;padding-left: 1%;">
-
     <div ng-include="'templates/sideMenu.html'">
     </div>
-
-
     <div class="edit_pages_content_main clearfix">
-
         <div class="edit_page_item">
             <div class="edit_page_item_head clearfix">
                 <h4>Profile Settings
                 </h4>
-
             </div>
             <div ng-if="page.model.profileSettingArr" class="edit_page_details_item" ng-repeat="item in page.model.profileSettingArr">
                 <div id="fullupdatefatherbrother">
                     <div>
-                        <div id="UpdatePanelFBProfession" class="edit_page_details_item_desc clearfix">
-
+                        <div class="edit_page_details_item_desc clearfix">
                             <div>
                                 <h6>
-                                    <span id="lblprofilecurrentstatus" font-bold="true">Application Status</span>
+                                    <span font-bold="true">Application Status</span>
                                 </h6>
                                 <h5>
-                                    <span id="lblprofcurrentstatus">{{item.ProfileStatus}}</span>
+                                    <span>{{item.ProfileStatus}}</span>
                                 </h5>
                             </div>
-
                         </div>
-                        <div id="UpdatePanellnkFatherSister" class="edit_page_item_ui clearfix">
-
+                        <div class="edit_page_item_ui clearfix">
                             <a href="javascript:void(0);" class="edit_page_edit_button" ng-click="page.model.showprofilepopup('profileSetting',item);">Edit</a>
-
                         </div>
-
-                        <div id="UpApplicationStatusmodifybydiv">
-
-                            <div id="ApplicationStatusmodifybydiv" class="edit_page_details_item_desc clearfix" visible={{item.EmployeeName !="" && Eval( "EmployeeName")!=null?true:false }}>
-
+                        <div>
+                            <div class="edit_page_details_item_desc clearfix" visible={{item.EmployeeName !="" && Eval( "EmployeeName")!=null?true:false }}>
                                 <h6>
-                                    <span id="ApplicationStatusmodifyby" font-bold="true">Application Status ModifiedBy</span>
+                                    <span font-bold="true">Application Status ModifiedBy</span>
                                 </h6>
                                 <h5>
-                                    <span id="lblApplicationStatusmodifyby" class="red">{{item.EmployeeName}}</span>
+                                    <span class="red">{{item.EmployeeName}}</span>
                                 </h5>
                             </div>
-
                         </div>
                         <div id="inactivediv" ng-show="item.ProfileStatusID==='55' || item.ProfileStatusID===55">
-
                             <div id="divtotalinactive">
-                                <div id="UpdatePanel9" class="edit_page_details_item_desc clearfix">
-
+                                <div class="edit_page_details_item_desc clearfix">
                                     <div>
-
                                         <h6>
-                                            <span id="span1" font-bold="true">No of Days to be inactivated </span>
+                                            <span font-bold="true">No of Days to be inactivated </span>
                                         </h6>
                                         <h5>
-                                            <span id="lblNoofDaysinactivated">{{item.NoofDaysinactivated}}
+                                            <span>{{item.NoofDaysinactivated}}
                                     </span>
                                         </h5>
-
                                     </div>
-
                                 </div>
-                                <div id="UpdatePanel12" class="edit_page_details_item_desc clearfix">
-
+                                <div class="edit_page_details_item_desc clearfix">
                                     <div>
-
                                         <h6>
-                                            <span id="span6" font-bold="true">Reason for InActive</span>
+                                            <span font-bold="true">Reason for InActive</span>
                                         </h6>
                                         <h5>
                                             <span id="lblReason4InActive">{{item.Reason4InActive}}
                                     </span>
                                         </h5>
-
                                     </div>
-
                                 </div>
-                                <div id="UpdatePanel13" class="edit_page_details_item_desc clearfix">
-
+                                <div class="edit_page_details_item_desc clearfix">
                                     <div>
-
                                         <h6>
-                                            <span id="span8" font-bold="true">Requested By</span>
+                                            <span font-bold="true">Requested By</span>
                                         </h6>
                                         <h5>
                                             <span id="lblRequestedBy">{{item.RequestedBy}}
                                     </span>
                                         </h5>
-
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
-                        <div id="UpdatePanelFBProfessionDetails">
-
+                        <div>
                             <div class="edit_page_details_item_desc clearfix">
-
                                 <h6>
                                     <span id="profilegrade" font-bold="true">Profile Grade</span>
                                 </h6>
@@ -108,12 +79,9 @@
                                     <span id="lblprofilegrade">{{item.ProfileGrade}}</span>
                                 </h5>
                             </div>
-
                         </div>
                         <div id="Updatelblprofilegrademodifyby">
-
                             <div class="edit_page_details_item_desc clearfix" ng-show="item.ProfileGradeModifiedByEmp !=='' && item.ProfileGradeModifiedByEmp!=null">
-
                                 <h6>
                                     <span id="lblprofilegrademodifyby" font-bold="true">Profile Grade ModifiedBy</span>
                                 </h6>
@@ -121,9 +89,7 @@
                                     <span id="ProfileGradeModifiedByEmp">{{item.ProfileGradeModifiedByEmp}}</span>
                                 </h5>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -132,45 +98,33 @@
             <div class="edit_page_item_head clearfix">
                 <h4>Confidential status
                 </h4>
-
             </div>
             <div ng-if="page.model.ConfidentialArr" class="edit_page_details_item" ng-repeat="item in page.model.ConfidentialArr">
-                <div id="UpdatePanel2">
+                <div>
                     <div>
-                        <div id="UpdatePanelFBCurrentLocation" class="edit_page_details_item_desc clearfix">
-
+                        <div class="edit_page_details_item_desc clearfix">
                             <div>
-
                                 <h6>
-                                    <span id="isConfidential" font-bold="true">isConfidential</span>
+                                    <span font-bold="true">isConfidential</span>
                                 </h6>
                                 <h5>
-                                    <span id="lblisConfidential">{{item.ConfindentialStatus}}</span>
+                                    <span>{{item.ConfindentialStatus}}</span>
                                 </h5>
-
                             </div>
-
                         </div>
-                        <div id="UpdatePanel1" class="edit_page_item_ui clearfix">
-
+                        <div class="edit_page_item_ui clearfix">
                             <a href="javascript:void(0);" class="edit_page_edit_button" ng-click="page.model.showprofilepopup('confidential',item);">Edit</a>
-
                         </div>
-                        <div id="UpdatePanel6" class="edit_page_details_item_desc clearfix">
-
+                        <div class="edit_page_details_item_desc clearfix">
                             <div>
-
                                 <h6>
-                                    <span id="span5" font-bold="true">Very High Confidential</span>
+                                    <span font-bold="true">Very High Confidential</span>
                                 </h6>
                                 <h5>
-                                    <span id="lblvryconfidential">{{item.HighConfidentialStatus}}</span>
+                                    <span>{{item.HighConfidentialStatus}}</span>
                                 </h5>
                             </div>
-
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -179,32 +133,26 @@
             <div class="edit_page_item_head clearfix">
                 <h4>Profile Display Settings
                 </h4>
-
             </div>
             <div class="edit_page_details_item" ng-if="page.model.profileDisplayArr" ng-repeat="item in page.model.profileDisplayArr">
-                <div id="UpdatePanel4">
+                <div>
                     <div>
-
-                        <div id="UpdatePanel3" class="edit_page_item_ui clearfix">
-
+                        <div class="edit_page_item_ui clearfix">
                             <a href="javascript:void(0);" class="edit_page_edit_button" ng-click="page.model.showprofilepopup('profileDisplay',item);">Edit</a>
-
                         </div>
-                        <div id="UpdatePanel7" class="edit_page_details_item_desc clearfix">
-
+                        <div class="edit_page_details_item_desc clearfix">
                             <div>
                                 <h6>
-                                    <span id="span3" font-bold="true">Display In</span>
+                                    <span font-bold="true">Display In</span>
                                 </h6>
                                 <h5>
-                                    <span id="lblProfileDisplayName">{{item.ProfileDisplayName}}</span>
+                                    <span>{{item.ProfileDisplayName}}</span>
                                 </h5>
 
                             </div>
 
                         </div>
-                        <div id="UpdatePanel8" class="edit_page_details_item_desc clearfix">
-
+                        <div class="edit_page_details_item_desc clearfix">
                             <div>
                                 <h6>
                                     <span id="lblprofileloginstatus" font-bold="true">Profile Current Login Status Is</span>
@@ -213,11 +161,9 @@
                                     <span id="lblprofileloginstatusis">{{item.LoginStatusName}}</span>
                                 </h5>
                             </div>
-
                         </div>
                         <div id="divBlockdisplay" visible={{item.Blockflag=="1" ? true: false }}>
                             <div id="uplblcreateblockeddate" class="edit_page_details_item_desc clearfix">
-
                                 <div>
                                     <h6>
                                         <span id="lblcreatedate">{{item.LoginStatusName == "Blocked" ? "Blocked Date": "Allowed Date" }}</span>
@@ -229,7 +175,6 @@
 
                             </div>
                             <div id="uplblblockedempname" class="edit_page_details_item_desc clearfix">
-
                                 <div>
                                     <h6>
                                         <span id="lblblockedempname">{{item.LoginStatusName == "Blocked" ? "Blocked By": "Allowed By" }}</span>
@@ -238,11 +183,8 @@
                                         <span id="span2" class="red">{{item.BlockEmapName}}</span>
                                     </h5>
                                 </div>
-
                             </div>
-
                             <div id="upblockedreason" class="edit_page_details_item_desc clearfix">
-
                                 <div>
                                     <h6>
                                         <span id="lblreason">{{item.LoginStatusName == "Blocked" ? "Reason For Blocked": "Reason For Allowed" }}</span>
@@ -250,21 +192,17 @@
                                             <span id="lblBlockedReason">{{item.ProfileBlockReason}}</span>
                                         </h5>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="edit_page_item">
             <div class="edit_page_item_head clearfix">
                 <h4>Grade Selections
                 </h4>
                 <div id="updatecontenGrade">
-
                     <div id="divAddGrade" visible="false">
                         <div class="edit_page_item_ui clearfix">
                             <div ng-if="page.model.gradeSelectionArr.length===0">
@@ -272,20 +210,15 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div class="edit_page_details_item" ng-if="page.model.gradeSelectionArr" ng-repeat="item in page.model.gradeSelectionArr">
                 <div id="UpdatePanel14">
                     <div>
-
                         <div id="UpdatePanelGrade" class="edit_page_item_ui clearfix">
-
                             <a href="javascript:void(0);" class="edit_page_edit_button" ng-click="page.model.showprofilepopup('grading',item);">Edit</a>
-
                         </div>
                         <div id="UpdatepanelEdu" class="edit_page_details_item_desc clearfix">
-
                             <div>
                                 <h6>
                                     <span id="lblEducationGradeText" font-bold="true">Education</span>
@@ -294,10 +227,8 @@
                                     <span id="lblEducationGrade">{{item.EducationGrade}}</span>
                                 </h5>
                             </div>
-
                         </div>
                         <div id="UpdatePanelProfession" class="edit_page_details_item_desc clearfix">
-
                             <div>
                                 <h6>
                                     <span id="lblprofessionGradeText" font-bold="true">Profession</span>
@@ -306,11 +237,8 @@
                                     <span id="lblprofessionGrade">{{item.ProfileGrade}}</span>
                                 </h5>
                             </div>
-
                         </div>
-
                         <div id="updateproperty" class="edit_page_details_item_desc clearfix">
-
                             <div>
                                 <h6>
                                     <span id="lblpropertyGradeText">Property</span>
@@ -319,10 +247,8 @@
                                     <span id="lblpropertyGrade">{{item.PropertyGrade}}</span>
                                 </h5>
                             </div>
-
                         </div>
                         <div id="updatefamily" class="edit_page_details_item_desc clearfix">
-
                             <div>
                                 <h6>
                                     <span id="lblfamilyGradeText">Family</span>
@@ -331,11 +257,8 @@
                                     <span id="lblfamilyGrade">{{item.FamilyGrade}}</span>
                                 </h5>
                             </div>
-
                         </div>
-
                         <div id="updatePhoto" class="edit_page_details_item_desc clearfix">
-
                             <div>
                                 <h6>
                                     <span id="lblPhotoGradeText">Photo</span>
@@ -344,11 +267,8 @@
                                     <span id="lblPhotoGrade">{{item.PhotoGrade}}</span>
                                 </h5>
                             </div>
-
                         </div>
-
                         <div id="UpdatePaneCreatedBYEmp" class="edit_page_details_item_desc clearfix">
-
                             <div>
                                 <h6>
                                     <span id="lblCreatedBYEmp">Created By</span> </h6>
@@ -356,11 +276,8 @@
                                     <span id="lblCreatedBYEmpGrade" class="red">{{item.CreatedBYEmp}}</span>
                                 </h5>
                             </div>
-
                         </div>
-
                         <div id="UpdateCreatedDateGrade" class="edit_page_details_item_desc clearfix">
-
                             <div>
                                 <h6>
                                     <span id="lblCreatedDateGrade">CreatedDate</span> </h6>
@@ -368,19 +285,15 @@
                                     <span id="lblCreatedDatedisplay" class="red">{{item.CreatedDate}}</span>
                                 </h5>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-
     <script type="text/ng-template" id="commonProfileSettingpopup.html">
         <slide-popup model="page.model" eventtype="page.model.eventType">
         </slide-popup>
     </script>
-
 </div>
 <script src="build/js/custom.js" type="text/javascript"></script>

@@ -4,7 +4,6 @@
 
     function factory($http, authSvc, editEducationService, commonFactory, uibModal, filter, alertss, stateParams, SelectBindService, arrayConstantsEdit, SelectBindServiceApp) {
         var model = {};
-
         model.scope = {};
         var loginEmpid = authSvc.LoginEmpid();
         var AdminID = model.Admin = authSvc.isAdmin();
@@ -21,7 +20,6 @@
         model.ProfdistrictArr = [];
         model.ProfcityeArr = [];
         model.profObj = {};
-
         model.aboutObj = {};
         model.custObj = {};
         var isSubmit = true;
@@ -32,7 +30,6 @@
         //end declaration block
         model.ProfileGrade = '';
         var CustID = stateParams.CustID;
-
         model.init = function() {
             model.ProfileGrade = '';
             model.ProfileGradestatus = '';
@@ -44,14 +41,12 @@
             model.getdata();
             return model;
         };
-
         model.getdata = function() {
             model.eduPageload();
             model.ProfPageload();
             model.aboutPageload();
             model.custdatapageload();
         };
-
         model.eduPageload = function() {
             editEducationService.getEducationData(CustID).then(function(response) {
                 if (commonFactory.checkvals(response.data)) {
@@ -59,7 +54,6 @@
                     model.eduEmpLastModificationDate = model.educationSelectArray.length > 0 ? model.educationSelectArray[0].EmpLastModificationDate : '';
                     model.ProfileGrade = model.educationSelectArray.length > 0 ? model.educationSelectArray[0].ProfileGrade : '';
                     model.chkGrade = model.ProfileGrade === 216 ? true : false;
-
                     model.ProfileGradestatus = model.educationSelectArray.length > 0 ? model.educationSelectArray[0].ProfileGradestatus : '';
                 }
             });
@@ -95,7 +89,6 @@
                     model.popupdata = model.Education;
                     model.popupHeader = 'Education Details';
                     model.EducationID = null;
-
                     if (item !== undefined) {
                         model.eventType = 'edit';
                         model.eduGroupArr = commonFactory.checkvals(item.EducationCategoryID) ? commonFactory.educationGroupBind(item.EducationCategoryID) : [];
@@ -107,9 +100,7 @@
                         model.universityId = item.EduUniversity;
                         model.collegeId = item.EduCollege;
                         model.passOfyear = commonFactory.checkvals(item.EduPassOfYear) ? parseInt(item.EduPassOfYear) : null;
-
                         model.countryId = item.CountryID;
-
                         model.stateId = item.StateID;
                         model.districtId = item.DistrictID;
                         model.cityId = item.CityID;
@@ -118,14 +109,11 @@
                         model.intCusID = item.intCusID;
                         model.EducationID = item.EducationID;
                     }
-
                     break;
-
                 case 'showProfModal':
                     model.popupdata = model.profession;
                     model.popupHeader = 'Profession details';
                     model.Cust_Profession_ID = null;
-
                     if (item !== undefined) {
                         model.eventType = 'edit';
                         model.intCusID = item.intCusID;
@@ -140,7 +128,6 @@
                         model.profDistrictId = item.DistrictID;
                         model.profCityId = item.CityID;
                         // model.profTxtcity = item.CityWorkingIn;
-
                         model.WorkingForm = commonFactory.convertDateFormat(item.WorkingFromDate, 'DD-MM-YYYY');
                         model.visaStatus = item.VisaTypeID;
                         model.sinceDate = commonFactory.convertDateFormat(item.ResidingSince, 'DD-MM-YYYY');
@@ -149,9 +136,7 @@
                         model.occupationDetails = item.OccupationDetails;
                         model.Cust_Profession_ID = item.Cust_Profession_ID;
                     }
-
                     break;
-
                 case 'showAboutModal':
                     model.popupdata = model.aboutUrSelf;
                     model.popupHeader = 'About your self';
@@ -160,14 +145,10 @@
                         model.txtAboutUS = item;
                     }
                     break;
-
                 case 'custData':
-
                     model.popupdata = model.Custdata;
                     model.popupHeader = 'Customer details';
-
                     if (item !== undefined) {
-
                         model.eventType = 'edit';
                         model.genderId = item.GenderID;
                         model.surName = item.LastName;
@@ -182,20 +163,15 @@
                         model.subcasteId = item.SubCasteID;
                         model.bornCitizenShipId = item.CitizenshipID;
                         model.physicalStausId = item.PhysicalStatusID;
-
                     }
                     break;
             }
-
             commonFactory.open('commonEduCatiobpopup.html', model.scope, uibModal);
         };
-
         model.cancel = function() {
             commonFactory.closepopup();
         };
-
         model.updateData = function(inObj, type) {
-
             if (isSubmit) {
                 isSubmit = false;
                 switch (type) {
@@ -205,7 +181,6 @@
                         inObj.customerEducation.Cust_Education_ID = model.EducationID;
                         inObj.customerEducation.intEduID = model.EducationID;
                         inObj.customerEducation.CustID = model.CustID;
-
                         model.submitPromise = editEducationService.submitEducationData(inObj).then(function(response) {
                             commonFactory.closepopup();
                             if (response.data === 1) {
@@ -221,7 +196,6 @@
                         });
                         break;
                     case 'Profession details':
-
                         inObj.customerProfession = {};
                         inObj.customerProfession = inObj.GetDetails;
                         inObj.customerProfession.profGridID = model.Cust_Profession_ID;
@@ -236,10 +210,8 @@
                                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Professional Details  Updation failed', 4500);
                             }
                         });
-
                         break;
                     case 'Customer details':
-
                         inObj.GetDetails.CustID = CustID;
                         inObj.GetDetails.DateofBirth = inObj.GetDetails.DateofBirth !== '' && inObj.GetDetails.DateofBirth !== 'Invalid date' ? filter('date')(inObj.GetDetails.DateofBirth, 'MM/dd/yyyy hh:mm:ss a') : null,
                             editEducationService.submitCustomerData(inObj).then(function(response) {
@@ -254,7 +226,6 @@
                         break;
 
                     case 'About your self':
-
                         model.submitPromise = editEducationService.submitAboutUrData({ CustID: CustID, AboutYourself: inObj.GetDetails.txtAboutUS === null ? '' : inObj.GetDetails.txtAboutUS, flag: 1 }).then(function(response) {
                             commonFactory.closepopup();
                             if (response.data === '1') {
@@ -268,13 +239,10 @@
                 }
             }
         };
-
-
         model.DeleteEduPopup = function(id) {
             model.educationID = id;
             commonFactory.open('deleteEduContent.html', model.scope, uibModal, 'sm');
         };
-
         model.deleteEduSubmit = function() {
             SelectBindService.DeleteSection({ sectioname: 'Education', CustID: CustID, identityid: model.educationID }).then(function(response) {
                 model.eduPageload();
@@ -291,7 +259,6 @@
             }
             return true;
         };
-
         model.hideIFnotworking = function(item) {
             if (parseInt(model.EmployedInId) === 5 || parseInt(model.EmployedInId) === 7 || parseInt(model.EmployedInId) === 9) {
                 model.ProfessionGroupId = '';
@@ -303,11 +270,6 @@
             }
             return true;
         };
-
-
-
-
-
         //performance code
         model.Education = [
             { lblname: 'Is Highest Degree', controlType: 'radio', ngmodel: 'IsHighestDegreeId', required: true, arrbind: 'boolType', parameterValue: 'Highestdegree' },
@@ -374,7 +336,6 @@
             { lblname: 'Occupation Details', controlType: 'textarea', ngmodel: 'occupationDetails', parameterValue: 'OccupationDetails' }
 
         ];
-
         model.Custdata = [
             { lblname: 'Gender', controlType: 'radio', ngmodel: 'genderId', arrbind: 'gender', parameterValue: 'Gender' },
             { lblname: 'SurName', controlType: 'textbox', ngmodel: 'surName', required: true, parameterValue: 'LastName' },
@@ -390,27 +351,22 @@
             { lblname: 'Born Citizenship', controlType: 'select', ngmodel: 'bornCitizenShipId', required: true, typeofdata: 'Country', parameterValue: 'CitizenshipID' },
             { lblname: 'Physical Status', controlType: 'radio', ngmodel: 'physicalStausId', required: true, arrbind: 'PhysicalStatus', parameterValue: 'PhysicallyChallenged' }
         ];
-
         model.aboutUrSelf = [
             { lblname: '', controlType: 'about', maxlength: '1000', ngmodel: 'txtAboutUS', displayTxt: "(Please don't write phone numbers/emails/any junk characters)*", parameterValue: 'txtAboutUS' }
         ];
-
         model.setEduGrade = function(val) {
             var gradeval = val === true ? 216 : '';
-
             if (model.ProfileGradestatus === 1) {
                 SelectBindServiceApp.getRelationName(8, model.CustID, gradeval).then(function(response) {
                     alertss.timeoutoldalerts(model.scope, 'alert-success', val === true ? 'Grade A updated successfully' : 'Grade removed successfully', 4500);
                 });
             } else {
                 model.Mobj = {};
-
                 model.Mobj = {
                     GEducation: gradeval,
                     CustID: model.CustID,
                     EmpID: loginEmpid
                 };
-
                 editEducationService.submitGradeData(model.Mobj).then(function(response) {
                     commonFactory.closepopup();
                     if (response.data === 1) {
@@ -422,10 +378,8 @@
                 });
             }
         };
-
         return model.init();
     }
-
     angular
         .module('Kaakateeya')
         .factory('editEducationModel', factory);
