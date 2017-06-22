@@ -7,6 +7,7 @@
          vm.init = function() {
              vm.model = model = EmployeePaymentmodel();
              model.scope = scope;
+             model.data = [];
              model.txtProfileID = "";
              model.freshLink = false;
              model.CustName = '';

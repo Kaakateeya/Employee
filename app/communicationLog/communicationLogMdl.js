@@ -22,6 +22,7 @@
             model.gridtable2.type = 'grid2';
             model.gridtable3.type = 'grid3';
             model.gridtable4.type = 'grid4';
+            model.showplus = false;
             model.rowStyle = function(row) {
                 var test = [
                     { StatusID: 57, classes: 'settled' },

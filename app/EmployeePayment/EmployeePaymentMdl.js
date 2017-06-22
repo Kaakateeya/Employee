@@ -14,7 +14,7 @@
             model.singlegrid.myprofileexcel = false;
             model.singlegrid.normalexcel = false;
             model.singlegrid.gridTableshow = false;
-
+            model.showplus = false;
             model.init = function() {
                 model.Admin = authSvc.isAdmin();
                 model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";

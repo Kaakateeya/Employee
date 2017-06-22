@@ -28,6 +28,7 @@
                 minDate: null,
                 maxDate: null
             };
+            model.showplus = false;
             model.displayArrayprofile = function(arr, topage) {
                 model.headervisileble = true;
                 if (topage === parseInt(10)) {

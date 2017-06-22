@@ -14,6 +14,7 @@
             model.myprofileexcel = true;
             model.normalexcel = true;
             model.gridTableshow = false;
+            model.showplus = false;
             model.dateOptions = {
                 changeMonth: true,
                 changeYear: true,
@@ -44,14 +45,11 @@
                 var owner = '<a>Assign</a>';
                 return owner;
             };
-            model.PaymentTcktID = function(row) {
-                return row.PaymentTcktID !== undefined && row.PaymentTcktID !== null && row.PaymentTcktID !== "" ? row.PaymentTcktID : "--";
+            model.Marketingticketid = function(row) {
+                return row.Marketingticketid !== undefined && row.Marketingticketid !== null && row.Marketingticketid !== "" ? row.Marketingticketid : "--";
             };
-            model.ReviewTcktID = function(row) {
-                return row.ReviewTcktID !== undefined && row.ReviewTcktID !== null && row.ReviewTcktID !== "" ? row.ReviewTcktID : "--";
-            };
-            model.PhotoTcktID = function(row) {
-                return row.PhotoTcktID !== undefined && row.PhotoTcktID !== null && row.PhotoTcktID !== "" ? row.PhotoTcktID : "--";
+            model.EnteredBytext = function(row) {
+                return row.EnteredBy !== undefined && row.EnteredBy !== null && row.EnteredBy !== "" ? row.EnteredBy : "--";
             };
             model.assignsettingsubmit = function(row) {
                 var obj = {
@@ -74,12 +72,12 @@
                 { text: 'Sno', key: 'SNO', type: 'label' },
                 { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
                 { text: 'Profile owner', key: 'ProfileOwner', type: 'dropdown', model: 'ddlProfileowner' },
-                //{ text: 'Marketed by', key: 'MarketedOwner', type: 'dropdown', model: 'ddlmarketingowner' },
-                // { text: 'Reviewed by', key: 'ReviewOwner', type: 'dropdown', model: 'ddlreviweedowner' },
                 { text: 'Actions', key: 'cust_id', type: 'customlink', templateUrl: model.assignaction, method: model.assignsettingsubmit },
-                { text: 'Payment ticket', key: 'PaymentTcktID', type: 'customlink', templateUrl: model.PaymentTcktID },
-                { text: 'Review ticket', key: 'ReviewTcktID', type: 'customlink', templateUrl: model.ReviewTcktID },
-                { text: 'Photo ticket', key: 'PhotoTcktID', type: 'customlink', templateUrl: model.PhotoTcktID }
+                { text: 'Marketing Ticket', key: 'Marketingticketid', type: 'customlink', templateUrl: model.Marketingticketid },
+                { text: 'Branch', key: 'BranchName', type: 'label' },
+                { text: 'DOR', key: 'DOR', type: 'label' },
+                { text: 'Caste', key: 'Caste', type: 'label' },
+                { text: 'EnteredBy', key: 'EnteredBy', type: 'customlink', templateUrl: model.EnteredBytext }
             ];
             model.MyProfilePageLoad = function() {
                 assignSettingsService.getMyprofilebind(1, 2, '').then(function(response) {
@@ -140,10 +138,10 @@
                             model.TotalRows = response.data[0][0].TotalRows;
                         }
                         if (type === 'grid') {
-                            model.setData(response.data[1]);
+                            model.setData(response.data[0]);
                         } else {
                             model.exportarray = [];
-                            model.exportarray = response.data[1];
+                            model.exportarray = response.data[0];
                             var options = {
                                 headers: true,
                                 columns: [{
@@ -166,7 +164,7 @@
                         }
                     }
                     model.opendiv = false;
-                    model.populateGridDropdowns(response.data[1]);
+                    model.populateGridDropdowns(response.data[0]);
                 });
             };
             model.pagechange = function(val) {

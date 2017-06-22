@@ -22,6 +22,7 @@
                 minDate: null,
                 maxDate: null
             };
+            model.showplus = false;
             model.removeSelect = function(Arr) {
                 if (Arr !== undefined && Arr.length > 0 && angular.lowercase(Arr[0].title) === '--select--') {
                     Arr.splice(0, 1);

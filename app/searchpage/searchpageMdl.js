@@ -41,6 +41,7 @@
                 format: "MM/DD/YYYY"
 
             };
+            model.showplus = false;
             model.photogradearray = [{ value: 216, name: 'A' },
                 { value: 217, name: 'B' },
                 { value: 218, name: 'C' },

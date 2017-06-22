@@ -56,8 +56,19 @@ span.multiselect-selected-text {
     border: 1px solid;
     border-color: orange;
     border-radius: 20px;
-    width: 88%;
+    width: 87%;
     text-align: left;
+    margin-left: 26px;
+}
+
+.ticketHistryClsleft {
+    border: 1px solid;
+    border-color: orange;
+    border-radius: 20px;
+    width: 87%;
+    text-align: left;
+    right: -5px;
+    // margin-left: 26px;
 }
 
 #matchfollowupdiv {
@@ -192,4 +203,8 @@ textarea {
 
 .carousel-indicators li {
     display: none;
+}
+
+.carousel-control {
+    width: 4%;
 }

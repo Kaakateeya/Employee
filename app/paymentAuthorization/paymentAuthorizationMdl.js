@@ -26,7 +26,7 @@
                 yearRange: "-40:+5",
                 dateFormat: 'dd-mm-yy'
             };
-
+            model.showplus = false;
             model.init = function() {
                 empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 AdminID = authSvc.isAdmin();

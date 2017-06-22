@@ -15,6 +15,7 @@
         model.gridTableshow = false;
         model.receivedprofiles = 1;
         model.sentprofile = 1;
+        model.showplus = false;
         model.editurl = function(row) {
             var paid = row.Cust_ID !== undefined ? "<a>Edit</a>" : "";
             return paid;
