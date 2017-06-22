@@ -35,7 +35,7 @@ th.ReviewedEmpID.headerStyles {
 }
 
 .btn.smalldropdowngrid {
-    width: 150px !important;
+    width: 125px !important;
 }
 
 #rreviewpendings {
@@ -47,5 +47,11 @@ th.ReviewedEmpID.headerStyles {
     }
     input {
         width: 270px;
+    }
+    .headerStyles {
+        font-size: 14px;
+    }
+    .DOR {
+        width: 110px;
     }
 }

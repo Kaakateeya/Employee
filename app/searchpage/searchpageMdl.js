@@ -140,8 +140,8 @@
                 { text: 'Mothernative', key: 'MFNative', type: 'label' }
             ];
             model.pagechange = function(val) {
-                var to = val * 10;
-                var from = val === 1 ? 1 : to - 9;
+                var to = val * 100;
+                var from = val === 1 ? 1 : to - 99;
                 switch (model.tablename) {
                     case "general":
                         model.submitgeneral(from, to);
@@ -240,7 +240,7 @@
                 paramters.Showinprofile = model.GetPhotoandHoroscopevalues("photo", model.Showinprofile);
                 paramters.HoroScopeStatus = model.GetPhotoandHoroscopevalues("horo", model.Showinprofile);
                 paramters.CustID = model.Cust_ID;
-                model.topage = topage;
+                model.topage = model.typrofsearch === "1" && parseInt(frompage) === 1 ? 100 : topage;
                 if (parseInt(frompage) === 1) {
                     model.progressbar = [];
                     model.slides = [];
@@ -323,7 +323,8 @@
                 paramters.HoroScopeStatus = model.GetPhotoandHoroscopevalues("horo", model.Showinprofile);
                 paramters.CustID = model.Cust_ID;
                 paramters.OnlyConfidential = model.OnlyConfidential === true ? 1 : 0;
-                model.topage = topage;
+                //model.topage = topage;
+                model.topage = model.typrofsearch === "1" && parseInt(frompage) === 1 ? 100 : topage;
                 if (parseInt(frompage) === 1) {
                     model.progressbar = [];
                     model.slides = [];

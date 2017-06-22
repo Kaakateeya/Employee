@@ -6,7 +6,7 @@
         <h6> <span style="font-weight: bold;">{{slidedata.label}}</span></h6>
         <h5>
             <div style="color:Black;"> <span>{{slidedata.value}}</span> </div>
-            <span ng-if="slidedata.label=='ProfileID'">&nbsp;<a ng-click="viewfullprofile(slidedata.ProfileID)" href="javascript:void(0);" ng-class="slidedata.paid==='1'?'paidCls':'unpaidCls'" >{{slidedata.ProfileID}}</a> {{slidedata.KMPLID}} {{(slidedata.IsConfidential===1) ||(slidedata.IsConfidential==='1')?'C':''}}  
+            <span ng-if="slidedata.label=='ProfileID'">&nbsp;<a ng-click="viewfullprofile(slidedata.ProfileID)" href="javascript:void(0);" ng-class="slidedata.paid==='1' || slidedata.paid===1?'paidCls':'unpaidCls'" >{{slidedata.ProfileID}}</a> {{slidedata.KMPLID}} {{(slidedata.IsConfidential===1) ||(slidedata.IsConfidential==='1')?'C':''}}  
               {{(slidedata.SuperConfidentila==='1') ||(slidedata.SuperConfidentila===1)?'SC':''}}  
                 <input ng-click="horoscopeimage(slidedata.HoroscopeImage,'horo')" ng-show="slidedata.HoroscopeStatus===1" src='src/images/ico_horoscope.jpg' style='height:20px;width:25px;' type='image'>
                   </span>

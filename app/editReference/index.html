@@ -1,35 +1,26 @@
 <div ng-class="'EditViewClass'" class="right_col" style="padding-top: 6%;padding-left: 1%;">
-
     <div ng-include="'templates/sideMenu.html'">
     </div>
-
     <div class="edit_pages_content_main clearfix">
-
         <page-review dispaly-name="'Reference details'" sectionid="'29'" custid="page.model.CustID"></page-review>
         <div class="edit_page_item">
             <div class="edit_page_item_head clearfix">
                 <h4>Reference Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #08CFD2" ng-show="page.model.referencemodifiedby!=null && page.model.referencemodifiedby!=='' && page.model.referencemodifiedby!==undefined">ModifiedBy :{{page.model.referencemodifiedby}}</span></h4>
-
-
                 <div class="edit_page_item_ui clearfix">
                     <a class="edit_page_add_button" href="javascript:void(0)" ng-click="page.model.referencePopulate();">Add</a>
                 </div>
             </div>
-
-
             <div class="edit_page_details_item">
                 <div id="fullupdate">
                     <div ng-class="item.reviewstatus===false?'edit_page_details_item_desc clearfix reviewCls':'edit_page_details_item_desc clearfix'" ng-if="page.model.ReferenceArr" ng-repeat="item in page.model.ReferenceArr">
                         <div>
                             <div id="uplRelationShipType">
-
                                 <div class="edit_page_details_item_desc clearfix">
                                     <h6>
                                         <span id="RelationShipType" style="font-weight:bold;">RelationShip Type</span></h6>
                                     <h5>
                                         <span id="lblRelationShipType">{{item.Relatioshiptype }}</span></h5>
                                 </div>
-
                             </div>
                             <div ng-if="page.model.ReferenceArr.length>0" class="edit_page_item_ui clearfix">
                                 <a class="edit_page_edit_button" href="javascript:void(0);" ng-click="page.model.referencePopulate(item);">Edit</a>
@@ -37,17 +28,14 @@
                             </div>
                         </div>
                         <div class="edit_page_details_item_desc clearfix">
-
                             <h6>
                                 <span id="Name" style="font-weight:bold;">Name</span></h6>
                             <h5>
                                 <span id="lblName">{{item.RefrenceName }}</span></h5>
-
                         </div>
                         <div id="uplEducationRef">
                         </div>
                         <div id="uplProfessionDetails">
-
                             <div class="edit_page_details_item_desc clearfix">
                                 <h6>
                                     <span id="ProfessionDetails" style="font-weight:bold;">Profession</span></h6>
@@ -55,75 +43,56 @@
                                     <span id="lblProfessionDetails">{{item.RefrenceProfessionDetails }}</span>
                                 </h5>
                             </div>
-
                         </div>
                         <div id="uplNativePlace">
-
                             <div class="edit_page_details_item_desc clearfix">
                                 <h6>
                                     <span id="NativePlace" style="font-weight:bold;">Native Place</span></h6>
                                 <h5>
                                     <span id="lblNativePlace">{{item.RefrenceNativePlace }}</span></h5>
                             </div>
-
                         </div>
                         <div id="uplCurrentLocation">
-
                             <div class="edit_page_details_item_desc clearfix">
-
                                 <h6>
                                     <span id="CurrentLocation" style="font-weight:bold;">Current Location</span></h6>
                                 <h5>
                                     <span id="lblCurrentLocation">{{item.RefenceCurrentLocation }}</span></h5>
-
                             </div>
-
                         </div>
                         <div id="update0">
-
                             <div id="ownerdiv0">
-
                                 <div id="uplContacts">
-
                                     <div class="edit_page_details_item_desc clearfix">
                                         <h6>
                                             <span id="Contacts" style="font-weight:bold;">Contacts</span></h6>
                                         <h5>
                                             <span id="lblContacts">{{item.RefrenceMobileNumberWithcode+(item.RefrenceLandNumberwithCode!=null&&item.RefrenceLandNumberwithCode!=""?"&"+item.RefrenceLandNumberwithCode:"") }}</span></h5>
                                     </div>
-
                                 </div>
                                 <div id="uplEmail">
-
                                     <div class="edit_page_details_item_desc clearfix">
                                         <h6>
                                             <span id="Email" style="font-weight:bold;">Email</span></h6>
                                         <h5>
                                             <span id="lblEmail">{{item.RefrenceEmail }}</span></h5>
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                         <div id="uplNarration">
-
                             <div class="edit_page_details_item_desc clearfix">
                                 <h6>
                                     <span id="Narration" style="font-weight:bold;">Narration</span></h6>
                                 <h5>
                                     <span id="lblNarration">{{item.RefrenceNarration }}</span></h5>
                             </div>
-
                         </div>
                         <hr>
-
                     </div>
-
                 </div>
             </div>
         </div>
-
         <script type="text/ng-template" id="referenceContent.html">
             <slide-popup model="page.model" eventtype="page.model.eventType">
             </slide-popup>

@@ -22,7 +22,7 @@
             model.normalexcel = false;
             model.slide.templateUrl = "templates/myprofileSlide.html";
             model.slide.headettemp = "myprofileheader.html";
-
+            model.gridArray = [];
             model.init = function() {
                 modelinactive = {};
                 return model;
@@ -216,6 +216,7 @@
                             }
                         } else {
                             model.setData(response.data);
+                            model.gridArray = response.data;
                         }
                     } else {
                         if (from === parseInt(1)) {
@@ -247,13 +248,13 @@
             };
 
             model.chkChange = function() {
-                model.ViewAllsubmit(model.obj, 1, 10);
+                model.ViewAllsubmit(model.obj, 1, 100);
             };
 
             model.genderChange = function(val) {
                 if (model.gridArray.length > 0 && val !== undefined && val !== '' && val !== null) {
                     var arr = val === 3 || val === '3' ? model.gridArray : _.where(model.gridArray, { GenderID: parseInt(val) });
-                    model.scope.$broadcast('submittable', arr, 1);
+                    model.data = arr;
                 }
             };
 
@@ -271,8 +272,8 @@
                     { text: 'Dob', key: 'Age', type: 'label', width: '150px' },
                     { text: 'Gender', key: 'GenderID', type: 'custom', templateUrl: model.GenderStr },
                 ];
-                var to = val * 10;
-                var from = val === 1 ? 1 : to - 9;
+                var to = val * 100;
+                var from = val === 1 ? 1 : to - 99;
                 model.ViewAllsubmit(model.obj, from, to);
             };
             model.exportexcel = function(array, columns) {
