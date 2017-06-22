@@ -83,6 +83,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     commonpage.closepopup();
                 };
                 scope.plus = function(data) {
+
                     data.isDetail = true;
                     data.detailcolumns = [
                         { text: 'Profile Id', key: 'Profileid', type: 'link', method: scope.ViewProfile },
@@ -101,7 +102,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                         { text: 'Sa', key: '', type: 'morelinks', templateUrl: scope.viewSa },
                         { text: 'Horo', key: '', type: 'morelinks', templateUrl: scope.ViewHoro },
                         { text: 'Tickets', key: '', type: 'morelinks', templateUrl: scope.ViewTicket },
-                        { text: 'Owner', key: 'OWNER', type: 'label' },
+                        { text: 'Owner', key: 'OWNER', type: 'label' }
                     ];
                     SelectBindServiceApp.playbtnProfileData(data.ProfileID).then(function(response) {
                         data.detaildata = response.data;
@@ -137,6 +138,12 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 scope.Reassign = function(obj) {
                     scope.model.Reassign(obj);
                 };
+
+
+
+
+
+
                 scope.init();
             }
         };

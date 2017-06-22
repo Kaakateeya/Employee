@@ -3,7 +3,7 @@
 
      angular
          .module('Kaakateeya')
-         .controller('paymentAuthorizationCtrl', controller)
+         .controller('paymentAuthorizationCtrl', controller);
 
      controller.$inject = ['paymentAuthorizationModel', '$scope'];
 

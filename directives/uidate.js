@@ -10,11 +10,15 @@ angular.module('ui.date', [])
     return {
         require: '?ngModel',
         link: function(scope, element, attrs, controller) {
-            // scope.$watch('attrs.ngModel', function(value) {
-            //     if (!value) {
-            //         initDateWidget();
-            //     }
+
+            // scope.$watch(function() {
+            //     return scope.$eval(attrs.ngModel);
+            // }, function(value) {
+            //     alert(value);
+
             // });
+
+
             var getOptions = function() {
                 return angular.extend({}, uiDateConfig, scope.$eval(attrs.uiDate));
             };

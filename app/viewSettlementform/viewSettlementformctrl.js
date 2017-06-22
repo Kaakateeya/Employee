@@ -11,6 +11,7 @@
              vm.model = model = viewsettlementmodel;
              model.settlementimage = "";
              model.scope = scope;
+             model.viewsettlementprofileid = '';
          };
          vm.init();
      }

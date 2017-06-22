@@ -34,11 +34,6 @@
                 model.paymentAuthSelect();
                 return model;
             };
-
-            model.branchDependency = function(val) {
-                model.branchArr = Commondependency.branch(val);
-            };
-
             model.paymentAuthSelect = function() {
                 var inObj = {
                     BranchID: model.branch ? model.branch : '',
