@@ -14,16 +14,10 @@ angular.module('ui.date', [])
             // scope.$watch(function() {
             //     return scope.$eval(attrs.ngModel);
             // }, function(value) {
-            //     debugger;
-            //     if (!value) {
+            //     alert(value);
 
-            //         element.value = '';
-            //         // initDateWidget();
-            //         controller.$setPristine();
-            //         controller.$render();
-
-            //     }
             // });
+
 
             var getOptions = function() {
                 return angular.extend({}, uiDateConfig, scope.$eval(attrs.uiDate));
@@ -78,7 +72,6 @@ angular.module('ui.date', [])
                 // Create the new datepicker widget
                 element.datepicker(opts);
                 if (controller) {
-                    debugger;
                     // Force a render to override whatever is in the input text box
                     controller.$render();
                 }
