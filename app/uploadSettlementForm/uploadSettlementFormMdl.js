@@ -24,7 +24,7 @@
                     var extension = model.upFile ? (obj.name.split('.'))[1] : null;
                     extension = angular.lowercase(extension);
                     var empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-                    var curdate = moment().format('DD-MM-YYYY');
+                    var curdate = moment().format('MM/DD/YYYY');
                     var strCustDtryName = model.txtProfileID + "_settlementImages";
                     var keyname = "Images/SettlementImages/" + strCustDtryName + "/" + model.txtProfileID + "_settlementImages." + extension;
                     var Imgpath = "~\\Images\\SettlementImages\\" + strCustDtryName + "/" + model.txtProfileID + "_settlementImages." + extension;
@@ -46,9 +46,11 @@
                             svc.submitUpload(inObj).then(function(response) {
                                 if (response.data && parseInt(response.data) === 1) {
                                     model.reset();
-                                    model.scope.uploadSettleForm.$setPristine();
+
                                     alertss.timeoutoldalerts(model.scope, 'alert-success', 'uploaded successfully', 4500);
                                 } else {
+                                    model.reset();
+
                                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'uploading Failed', 4500);
                                 }
                             });
@@ -75,10 +77,12 @@
                     });
                 }
             };
+
             model.reset = function() {
                 model.typeOfReference = '';
                 model.rdnSignIn = '';
                 model.txtProfileID = '';
+                model.scope.uploadSettleForm.$setPristine();
             };
             return model;
         };

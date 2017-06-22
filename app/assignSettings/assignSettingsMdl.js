@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function factory(assignSettingsService, configgrid, filter, helpService, alerts) {
+    function factory(assignSettingsService, configgrid, filter, helpService, alerts, timeout) {
         return function() {
             var model = {};
             model = configgrid;
@@ -87,6 +87,7 @@
 
 
             model.MyProfilePageLoad = function() {
+                debugger;
                 assignSettingsService.getMyprofilebind(1, 2, '').then(function(response) {
                     model.applicationStatusarray = [];
                     model.Castearray = [];
@@ -103,6 +104,7 @@
                                 break;
                             case "Profile Owner":
                                 model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                                // model.ProfileOwnerarray = [];
                                 break;
                             case "Branch":
                                 model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
@@ -189,6 +191,32 @@
             model.exportexcel = function(topage) {
                 model.assignsettingssubmit(model.mpObj, 1, topage, 'excel', 10000, 10);
             };
+
+            model.reset = function() {
+                model.assignsettingsdata = [];
+                model.mpObj.rdnGender = "";
+                model.mpObj.rdnPayments = "0";
+                model.mpObj.txtProfileID =
+                    // model.mpObj.txtRegFromDate =
+                    model.mpObj.chkconfidential = '';
+                // model.mpObj.txtRegtoDate = '';
+                model.mpObj.ddlApplicationStatus = [54];
+                model.mpObj.ddlCaste = [402];
+                _.each(model.Brancharray, function(item) {
+                    model.mpObj.ddlBranch.push(item.value);
+                });
+                model.mpObj.txtRegFromDate = '';
+                model.mpObj.txtRegtoDate = '';
+                // timeout(function() {
+                //     scope.$apply(function() {
+
+                //     });
+                // }, 1000);
+
+
+
+            };
+
             return model;
         };
     }
@@ -196,5 +224,5 @@
         .module('Kaakateeya')
         .factory('assignSettingsModel', factory);
 
-    factory.$inject = ['assignSettingsService', 'complex-grid-config', '$filter', 'helperservice', 'alert'];
+    factory.$inject = ['assignSettingsService', 'complex-grid-config', '$filter', 'helperservice', 'alert', '$timeout'];
 })(angular);
