@@ -401,6 +401,7 @@
             model.close = function() {
                 commonpage.closepopuppoptopopup();
             };
+
             model.changeProfileidstatus = function(profielid) {
                 dashboardServices.changeProfileidstatus(profielid).then(function(response) {
                     if (response !== undefined && response.data === parseInt(1)) {
@@ -427,7 +428,6 @@
                 model.calltypearray = model.replytype('calltype');
                 model.replaytypearray = arrayConstants.childStayingWith;
                 model.categoryarray = arrayConstants.catgory;
-
             };
             model.reminderSubmit = function(obj) {
                 var Mobj = {

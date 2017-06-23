@@ -52,6 +52,7 @@
                     });
                 });
             };
+
             model.returnnullvalue = function(value) {
                 var obj = helpService.checkstringvalue(value) && (value.toString()) !== "0" && (value.toString()) !== 0 ? (value.toString()) : null;
                 return obj;
@@ -136,6 +137,7 @@
                     Casteid: obj.ddlCaste !== "" ? model.returnnullvalue(obj.ddlCaste) : null,
                     Branchid: obj.ddlBranch !== "" ? model.returnnullvalue(obj.ddlBranch) : null,
                     ProfileReviewedEmpID: obj.ddlProfileowner !== "" ? model.returnnullvalue(obj.ddlProfileowner) : null,
+                    region: obj.rdnregion,
                     PageFrom: from,
                     PageTo: to
                 };

@@ -23,20 +23,27 @@
                 <br />
                 <label id="lblmrktOpened" class="ticketpopuplabel">{{model.marInfo[0].TicketOpenedOn}}</label>
             </div>
-            <div class="col-lg-2">
+            <!--<div class="col-lg-2">
                 <b class="dashboardticketpopup">Catgory</b>
                 <br />
                 <label id="lblNoofdays" class="ticketpopuplabel">{{model.marInfo[0].Prirority}}</label>
-            </div>
+            </div>-->
             <div class="col-lg-2">
                 <b class="dashboardticketpopup">Assigned to</b>
                 <br />
                 <label id="lblmrktAssigned" class="ticketpopuplabel">{{model.marInfo[0].EmpName}}</label>
             </div>
-            <div class="col-lg-2">
+            <!--<div class="col-lg-2">
                 <b class="dashboardticketpopup">No of days</b>
                 <br />
                 <label id="lblNoofdays" class="ticketpopuplabel">{{model.marInfo[0].NoofDays}}</label>
+            </div>-->
+
+
+            <div class="col-lg-2">
+                <b class="dashboardticketpopup">Reminder</b>
+                <br />
+                <a href="javascript:void(0);" ng-click="model.changereminder(model.marInfo[0]);">remnder</a>
             </div>
         </div>
     </div>
@@ -332,42 +339,17 @@
 
                 </div>
             </md-tab>
-            <!--<md-tab label="Assign/Reassign Ticket" ng-hide="true">
+
+
+            <!--<md-tab label="Reminder" ng-show="showreminder" ng-click="clickme();">
                 <div class="tab">
                     <br>
-                    <div>
-                        <form name="assignform" novalidate role="form" ng-submit="assignform.$valid && model.assignSubmit(model.MAobj);">
-                            <ul>
-                                <div class="col-lg-12">
-                                    <li class="col-lg-6">
-                                        <label class="pop_label_left">Assign To Staff </label>
-                                        <div class="pop_controls_right select-box-my">
-                                            <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktAssignEmp" multiselectdropdown typeofdata="'EmpNames'">   
-                                                     </select>
-                                        </div>
-                                    </li>
-                                </div>
 
-                                <div class="col-lg-12">
-                                    <br>
-                                    <li class="col-lg-12">
-                                        <div class="col-lg-offset-3 col-lg-3">
-                                            <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="button" value="Submit" class="button_custom pull-right" onclick="return submitCloseTicket();">Assign Ticket</button>
-                                        </div>
-                                        <div class="col-lg-1">
-                                            <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset pull-right" ng-click="model.close();">Cancel</button>&nbsp;
-                                        </div>
-                                    </li>
-                                </div>
-                            </ul>
-                        </form>
-                        <div class="clearfix">
-                        </div>
-                        <md-divider></md-divider>
-                    </div>
                 </div>
             </md-tab>-->
+
         </md-tabs>
+
     </md-content>
 
 </div>
@@ -426,6 +408,10 @@
     
     .requireClss {
         color: red;
+    }
+    
+    md-tabs-canvas {
+        width: 75%;
     }
     /*# sourceMappingURL=style.css.map */
 </style>

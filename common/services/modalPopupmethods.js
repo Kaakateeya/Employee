@@ -1,6 +1,6 @@
 app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$timeout', 'authSvc', '$http',
     function(uibModal, SelectBindServiceApp, timeout, authSvc, http) {
-        var modalinstance, modalpopupopen, modalpopupopenphoto;
+        var modalinstance, modalpopupopen, modalpopupopenphoto, modalpopupopenthird;
         var obj = {};
         var $table = $('#GridTable');
         obj.gotoSlide = function(e) {
@@ -83,11 +83,30 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                         // keyboard: false
                 });
             },
+
+            thirdshowPopup: function(url, scope, size, classp) {
+                modalpopupopenthird = uibModal.open({
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: url,
+                    scope: scope,
+                    size: size,
+                    backdrop: 'static',
+                    windowClass: classp
+                        // keyboard: false
+                });
+            },
+
+
+
             closepopup: function() {
                 modalpopupopen.close();
             },
             closepopuppoptopopup: function() {
                 modalpopupopenphoto.close();
+            },
+            thirdClosepopup: function() {
+                modalpopupopenthird.close();
             },
             pausePalyslide: function(type, id) {
                 if (type === 'play') {
@@ -208,6 +227,19 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                     arr.push({ "label": "p" + i, "title": "p" + i, "value": i });
                 }
                 return arr;
+            },
+            getnumberbind: function(fromval, Toval, str, incrementval) {
+                var options = [];
+                options.push({ label: str, title: str, value: "" });
+                for (var i = fromval; i <= Toval; i += incrementval) {
+                    if (i < 10) {
+                        options.push({ label: "0" + i + " " + str, title: "0" + i + " " + str, value: (parseInt(i) + 1) });
+                    } else {
+
+                        options.push({ label: i + " " + str, title: i + " " + str, value: (parseInt(i) + 1) });
+                    }
+                }
+                return options;
             }
         };
     }

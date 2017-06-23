@@ -74,8 +74,7 @@
                 { text: 'Profile owner', key: 'ProfileOwner', type: 'dropdown', model: 'ddlProfileowner' },
                 { text: 'Actions', key: 'cust_id', type: 'customlink', templateUrl: model.assignaction, method: model.assignsettingsubmit },
                 { text: 'Marketing Ticket', key: 'Marketingticketid', type: 'customlink', templateUrl: model.Marketingticketid },
-                { text: 'Branch', key: 'BranchName', type: 'label' },
-                { text: 'DOR', key: 'DOR', type: 'label' },
+                { text: 'Branch-Dor', key: 'BranchName', type: 'label' },
                 { text: 'Caste', key: 'Caste', type: 'label' },
                 { text: 'EnteredBy', key: 'EnteredBy', type: 'customlink', templateUrl: model.EnteredBytext }
             ];

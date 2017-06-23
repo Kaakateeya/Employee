@@ -3,20 +3,27 @@
 
     angular
         .module('Kaakateeya')
-        .factory('marketticketHistrymdl', factory)
-    factory.$inject = ['SelectBindServiceApp', 'authSvc', 'marketingTicketHistryservice', 'alert', 'modelpopupopenmethod', 'arrayConstants', '$timeout'];
+        .factory('marketticketHistrymdl', factory);
+    factory.$inject = ['SelectBindServiceApp', 'authSvc', 'marketingTicketHistryservice', 'alert', 'modelpopupopenmethod', 'arrayConstants', '$timeout', '$filter', 'SelectBindServiceApp'];
 
-    function factory(bindservice, authSvc, marketsvc, alertss, commonpage, arrayConstants, timeout) {
+    function factory(bindservice, authSvc, marketsvc, alertss, commonpage, arrayConstants, timeout, $filter, SelectBindServiceApp) {
         var model = {};
         model.MAobj = {};
-        model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+
         model.ticketid = '';
         model.marReplyArr = [];
         model.marInfo = [];
         model.marHistry = [];
         model.ProfileID = '';
         model.scope = {};
+        model.dateOptions = {
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-40:+5",
+            dateFormat: 'dd-mm-yy'
+        };
         model.init = function() {
+            model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             timeout(function() {
                 model.marketReplytype();
             }, 500);
@@ -166,7 +173,86 @@
         model.close = function() {
             commonpage.closepopuppoptopopup();
         };
+        model.closerem = function() {
+            commonpage.thirdClosepopup();
+        };
+        model.replytype = function(type) {
+            var options = [];
+            options.push({ label: '--select--', title: '--select--', value: "" });
+            if (type === 'calltype') {
+                var calltypeArray = [{ value: 377, text: 'INCOMING' }, { value: 378, text: 'OUT GOING' }, { value: 379, text: 'INTERNAL MEMO' }];
+                for (var i = 0; i < calltypeArray.length; i++) {
+                    options.push({ label: calltypeArray[i].text, title: calltypeArray[i].text, value: calltypeArray[i].value });
+                }
+            }
+            return options;
+        };
+        model.changereminder = function(slidearray) {
+            // model.reminderslidearray = {};
+            // model.reminderslidearray = slidearray;
+            model.txtprofileidreminder = slidearray.ProfileID;
+            model.reminderticketid = slidearray.TicketID;
+            model.ddlHrs = "";
+            model.ddlmins = "";
+            model.ddlcontactperson = "";
 
+            model.ddlremCaltype = "";
+            commonpage.thirdshowPopup('templates/reminderPopup.html', model.scope, 'md', "modalclassdashboardremainder");
+            model.Hoursarray = commonpage.getnumberbind(0, 23, 'Hrs', 1);
+            model.miniutearray = commonpage.getnumberbind(0, 59, 'Mins', 1);
+            model.calltypearray = model.replytype('calltype');
+            model.replaytypearray = arrayConstants.childStayingWith;
+            model.categoryarray = arrayConstants.catgory;
+            model.ddlremCatgory = 462;
+
+            model.ticketIDRem = slidearray.Emp_Ticket_ID;
+            model.RemID = slidearray.ReminderID;
+
+            if (slidearray.ReminderID) {
+
+                model.txtreminderDate = moment(slidearray.ReminderDate).format('MM-DD-YYYY');
+                model.ddlremCaltype = parseInt(slidearray.TicketTypeID);
+                model.ddlcontactperson = slidearray.ReminderRelationID;
+                model.contactpersonname = slidearray.ReminderRelationName;
+                model.ddlremCatgory = parseInt(slidearray.Category);
+                model.remembertickets = slidearray.Reminderbody;
+                if (slidearray.ReminderTime) {
+                    var remindertimeArr = slidearray.ReminderTime.split(':');
+                    model.ddlHrs = parseInt(remindertimeArr[0]) + 1;
+                    model.ddlmins = parseInt(remindertimeArr[1]) + 1;
+                }
+            }
+        };
+        model.reminderSubmit = function() {
+            var Mobj = {
+                ProfileID: model.txtprofileidreminder,
+                // ReminderID: model.reminderslidearray.EmpReminderID,
+                EmpID: model.empid,
+                //TicketID: model.reminderslidearray.Emp_Ticket_Id,
+                DateOfReminder: $filter('date')(model.txtreminderDate, 'MM-dd-yyyy'),
+                ReminderType1: model.ddlremCaltype,
+                Body: model.remembertickets,
+                RelationID: model.ddlcontactperson,
+                Name: model.contactpersonname,
+                Category: model.ddlremCatgory,
+                IsFollowup: 0
+            };
+            commonpage.closepopuppoptopopup();
+            bindservice.upadateremainderdate(Mobj).then(function(response) {
+                if (response !== undefined && response.data === parseInt(1)) {
+                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Reminder date  Updated Successfully', 3000);
+                } else {
+                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Reminder date Updated Failed', 3000);
+                }
+            });
+        };
+        model.RelationshipChange = function(RelationshipID) {
+            SelectBindServiceApp.getRelationName(3, model.txtprofileidreminder, RelationshipID).then(function(response) {
+                if (_.isArray(response.data[0]) && response.data[0].length > 0) {
+                    model.contactpersonname = response.data[0][0].NAME;
+                }
+            });
+        };
         return model.init();
     }
 })();

@@ -27,12 +27,11 @@
             model.SettleArray = [{
                     div: [
                         { name: 'Settled profile ID', controlType: 'numbertextbox', ngModel: 'ProfileID', method: 'checkProfileID', param: 'from', required: true },
-                        { name: 'Settled with profile', controlType: 'textbox', ngModel: 'settledWithProfileID', method: 'checkProfileID', param: 'to', required: true },
+                        { name: 'Settled with profile', controlType: 'numbertextbox', ngModel: 'settledWithProfileID', method: 'checkProfileID', param: 'to', required: true },
                         { name: 'Engagement date ', controlType: 'date', ngModel: 'engagementDate' },
                         { name: 'Marriage date', controlType: 'date', ngModel: 'marriageDate', required: true },
                         { name: 'Relationship name', controlType: 'select', ngModel: 'relationshipName' },
                         { name: 'Do You Want Send Mail', controlType: 'radio', ngModel: 'issendMail', Arrbind: 'sendmailArr' }
-
                     ]
                 },
                 {
@@ -45,7 +44,6 @@
                     ]
                 }
             ];
-
 
             model.DeleteArray = [{
                     div: [
@@ -205,12 +203,10 @@
                 });
             };
 
-
             model.convertToDate = function(val) {
                 if (val)
                     return moment(val).format('MM/DD/YYYY HH:MM:SS');
             };
-
 
             model.settleSubmit = function() {
 

@@ -64,16 +64,17 @@
                     <div class="clearfix">
                     </div>
                     <div class="col-lg-offset-1">
-                        <div ng-class="slide.FromTicket!==null && slide.FromTicket!==''?'col-lg-5 col-lg-offset-1':'col-lg-3'">
+                        <div ng-class="slide.FromTicket!==null && slide.FromTicket!==''?'col-lg-5 col-lg-offset-1':'col-lg-4'">
                             <button type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" class="btn btn-success-outline" ng-click="config.openActionPopup(slide.FromTicket,slide.FromProfileid,slide.FromMobileNumber,slide.fromcust_id, slide.tocustid, slide.FromticketStatusIDb, slide.Toprofileid);">{{slide.fromticketid}}</button>
                             <button type="button" ng-if="slide.FromTicket===null || slide.FromTicket===''" class="btn btn-success-outline" ng-click="config.Resendmail(slide.fromcust_id,slide.tocustid,slide.FromProfileid,slide.Toprofileid,slide.FromOfflineExpiryDate,slide.FromOnlineMembershipExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
                             <br>
                             <label>{{slide.FromName}}</label>
                         </div>
-                        <div ng-class="slide.FromTicket!==null && slide.FromTicket!==''?'col-lg-6':'col-lg-9'">
+                        <div ng-class="slide.FromTicket!==null && slide.FromTicket!==''?'col-lg-6':'col-lg-8'">
                             <div ng-if="slide.FromTicket===null || slide.FromTicket===''" style="color:maroon">
-                                {{slide.FromofflineDetails}}
-                                <br> {{slide.FromonlineDetails}}
+                                {{slide.FromExpiryDate?'Expires on '+slide.FromExpiryDate:''}}
+                                <br>Paid Status : {{slide.FromPaidStatus===1?'Paid':'Unpaid'}}
+
                             </div>
                             <button type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" popover-is-open="model.frompopoverIsOpen" ng-click="config.histryPopover(slide.FromTicket,'H','from');" popover-trigger="outsideClick" uib-popover-template="'fromPopoverTemplate.html'"
                                 class="btn btn-success-outline">Ticket history</button>
@@ -134,16 +135,16 @@
                     </div>
                     <br>
                     <div class="text-left">
-                        <div ng-class="slide.ToTicket!==null && slide.ToTicket!==''?'col-lg-6':'col-lg-3'">
+                        <div ng-class="slide.ToTicket!==null && slide.ToTicket!==''?'col-lg-6':'col-lg-4'">
                             <button type="button" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" class="btn btn-success-outline" ng-click="config.openActionPopup(slide.ToTicket,slide.Toprofileid,slide.ToMobileNumber, slide.tocustid, slide.fromcust_id,slide.ToticketStatusIDb, slide.FromProfileid);">{{slide.Toticketid}}</button>
                             <button type="button" ng-if="slide.ToTicket===null || slide.ToTicket===''" class="btn btn-success-outline" ng-click="config.Resendmail(slide.tocustid,slide.fromcust_id,slide.Toprofileid,slide.FromProfileid,slide.ToOfflineExpiryDate,slide.ToonlineExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
                             <br>
                             <label>{{slide.ToName}}</label>
                         </div>
-                        <div ng-class="slide.ToTicket!==null && slide.ToTicket!==''?'col-lg-6':'col-lg-9'">
+                        <div ng-class="slide.ToTicket!==null && slide.ToTicket!==''?'col-lg-6':'col-lg-8'">
                             <div ng-if="slide.ToTicket===null || slide.ToTicket===''" style="color:maroon">
-                                {{slide.TofflineDetails}}
-                                <br> {{slide.ToonlineDetails}}
+                                {{slide.ToExpiryDate?'Expires on '+slide.ToExpiryDate:''}}
+                                <br>Paid Status : {{slide.ToPaidStatus===1?'Paid':'Unpaid'}}
                             </div>
                             <button type="button" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" popover-is-open="model.topopoverIsOpen" ng-click="config.histryPopover(slide.ToTicket,'H','to');" popover-trigger="outsideClick" uib-popover-template="'ToPopoverTemplate.html'"
                                 class="btn btn-success-outline">Ticket history</button>

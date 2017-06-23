@@ -12,7 +12,8 @@
             link: link,
             restrict: 'EA',
             scope: {
-                ticketid: '='
+                ticketid: '=',
+                showreminder: '='
             },
             templateUrl: 'directives/marketing-slide/index.html'
         };

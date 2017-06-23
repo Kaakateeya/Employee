@@ -616,8 +616,8 @@
                 if (slidearray.ReminderID) {
 
                     model.txtreminderDate = moment(slidearray.ReminderDate).format('MM-DD-YYYY');
-                    model.ddlHrs = slidearray.ReminderID;
-                    model.ddlmins = slidearray.ReminderID;
+                    // model.ddlHrs = slidearray.ReminderID;
+                    // model.ddlmins = slidearray.ReminderID;
                     model.ddlremCaltype = parseInt(slidearray.TicketTypeID);
                     model.ddlcontactperson = slidearray.ReminderRelationID;
                     model.contactpersonname = slidearray.ReminderRelationName;

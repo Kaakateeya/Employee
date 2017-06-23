@@ -180,8 +180,10 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
                     RelationShipID: ''
                 }
             });
+        },
+        upadateremainderdate: function(obj) {
+            return http.post(app.apiroot + 'EmployeeReportPage/createReminderInsert', obj);
         }
-
 
     };
 }]);
