@@ -34,6 +34,7 @@
   "devDependencies": {
     "angular-loading-bar": "^0.9.0",
     "angular-auto-validate": "^1.19.6",
-    "angular-promise-buttons": "^0.1.19"
+    "angular-promise-buttons": "^0.1.19",
+    "angu-fixed-header-table": "^1.2.0"
   }
 }
