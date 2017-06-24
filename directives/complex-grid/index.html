@@ -19,7 +19,7 @@
     </div>
     <div class="clearfix"></div>
     <div style="height:400px;" class="table-responsive" ng-if="!inneritem.isDetail && config.showplus">
-        <table class="scroll Datatable table table-fixed table-hover table-bordered mainTableCls">
+        <table class="scroll Datatable table table-fixed table-hover table-bordered showplus mainTableCls">
             <thead>
                 <tr>
                     <th ng-if="!inneritem.isDetail && config.showplus" class="headerStyles plusiconshow"></th>
@@ -86,7 +86,7 @@
         </table>
     </div>
     <div class="table-responsive" ng-if="((inneritem.isDetail === undefined || inneritem.isDetail) && (config.showplus===undefined || config.showplus===false))">
-        <table table-height="500px" class="scroll Datatable table table-fixed table-hover table-bordered mainTableCls" fixed-header>
+        <table table-height="500px" class="scroll Datatable table table-fixed table-hover table-bordered mainTableCls normal" fixed-header>
             <thead>
                 <tr>
                     <th ng-if="!inneritem.isDetail && config.showplus" class="headerStyles"></th>
@@ -193,9 +193,15 @@
         min-width: 169px !important;
     }
     
-    .table {
+    .normal {
         overflow: auto;
         width: 1400px;
+        white-space: nowrap;
+    }
+    
+    .showplus {
+        overflow: auto;
+        width: 100%;
         white-space: nowrap;
     }
     

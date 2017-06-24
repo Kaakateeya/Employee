@@ -38,12 +38,10 @@
                 <br />
                 <label id="lblNoofdays" class="ticketpopuplabel">{{model.marInfo[0].NoofDays}}</label>
             </div>-->
-
-
-            <div class="col-lg-2">
+            <div class="col-lg-4">
                 <b class="dashboardticketpopup">Reminder</b>
                 <br />
-                <a href="javascript:void(0);" ng-click="model.changereminder(model.marInfo[0]);">remnder</a>
+                <a href="javascript:void(0);" style="font-weight: bold;" class="fa fa-pencil-square-o" ng-click="model.changereminder(model.marInfo[0]);">{{model.marInfo[0].ReminderID?((model.marInfo[0].ReminderDate)|date:'dd-MM-yyyy'):'Create Reminder'}} </a>
             </div>
         </div>
     </div>
