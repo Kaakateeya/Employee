@@ -15,11 +15,12 @@
                 });
             },
             SettleDeleteInactive: function(custID, typeOfData) {
-                return http.get(app.apiroot + 'CustomerPersonal/getViewAllCustomersSettledeleteinfo', { params: { CustID: custID, typeofdata: typeOfData } });
-            },
-            getMyprofileSlide: function(obj) {
-                return http.post(app.apiroot + 'EmployeeReportPage/MyprofileAllslides', obj);
-            }
+                    return http.get(app.apiroot + 'CustomerPersonal/getViewAllCustomersSettledeleteinfo', { params: { CustID: custID, typeofdata: typeOfData } });
+                }
+                // ,
+                // getMyprofileSlide: function(obj) {
+                //     return http.post(app.apiroot + 'EmployeeReportPage/MyprofileAllslides', obj);
+                // }
         };
     }
     angular

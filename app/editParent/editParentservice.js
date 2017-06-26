@@ -10,7 +10,7 @@
                 return http.get(app.apipathold + 'CustomerPersonal/getParents_AboutMyFamily', { params: { CustID: obj, AboutYourself: '', flag: 0 } });
             },
             submitParentData: function(obj1) {
-                return http.post(app.apipathold + 'CustomerPersonalUpdate/CustomerParentUpdatedetails', JSON.stringify(obj1));
+                return http.post(app.apiroot + 'CustomerPersonalUpdate/CustomerParentUpdatedetails', JSON.stringify(obj1));
             },
             submitAddressData: function(obj1) {
                 return http.post(app.apipathold + 'CustomerPersonalUpdate/CustomerContactAddressUpdatedetails', JSON.stringify(obj1));

@@ -187,7 +187,8 @@
                     profileStatus: inpuobj.chkProfileIDsts !== undefined ? model.returnnullvalue(inpuobj.chkProfileIDsts) : "",
                     intStartIndex: from,
                     intEndIndex: to,
-                    intEmpID: model.empid
+                    intEmpID: model.empid,
+                    isSlide: typeofbind === "slideshow" ? 1 : 0
                 };
                 ViewAllCustomerService.getViewCustomerData(obj).then(function(response) {
                     if (_.isArray(response.data) && response.data.length > 0) {
@@ -285,7 +286,7 @@
 
             model.slide.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
-                    model.slideshowBind((model.topage) + 1, (model.topage) + 10);
+                    model.ViewAllsubmit(model.obj, (model.topage) + 1, (model.topage) + 10, "slideshow");
                 }
             };
 
@@ -293,33 +294,33 @@
                 modelpopupopenmethod.closepopup();
             };
 
-            model.slideshowBind = function(from, to) {
-                model.topage = to;
-                var inputobj = {
-                    Empid: 2,
-                    Kmpl: model.obj.KmlProfileID ? model.obj.KmlProfileID : null,
-                    Profileid: model.obj.ProfileIDsearch ? model.obj.ProfileIDsearch : null,
-                    Surname: model.obj.surname,
-                    FirstName: model.obj.Name,
-                    pagefrom: from,
-                    pageto: to,
-                    intTableType: 0,
-                    ApplicationstatusID: model.obj.chkProfileIDsts !== undefined ? model.returnnullvalue(model.obj.chkProfileIDsts) : ""
-                };
+            // model.slideshowBind = function(from, to) {
+            //     model.topage = to;
+            //     var inputobj = {
+            //         Empid: 2,
+            //         Kmpl: model.obj.KmlProfileID ? model.obj.KmlProfileID : null,
+            //         Profileid: model.obj.ProfileIDsearch ? model.obj.ProfileIDsearch : null,
+            //         Surname: model.obj.surname,
+            //         FirstName: model.obj.Name,
+            //         pagefrom: from,
+            //         pageto: to,
+            //         intTableType: 0,
+            //         ApplicationstatusID: model.obj.chkProfileIDsts !== undefined ? model.returnnullvalue(model.obj.chkProfileIDsts) : ""
+            //     };
 
-                ViewAllCustomerService.getMyprofileSlide(inputobj).then(function(response) {
-                    if (response.data) {
+            //     ViewAllCustomerService.getMyprofileSlide(inputobj).then(function(response) {
+            //         if (response.data) {
 
-                        model.slide.totalRecords = response.data[0].TotalRows;
-                        if (parseInt(from) === 1) {
-                            model.slide.setSlides(response.data, model.topage, "myprofile");
-                            modelpopupopenmethod.showPopup('slideshoweditd.html', model.scope, 'lg', "myprofileslide");
-                        } else {
-                            model.slide.addSlides(response.data, model.slides, parseInt(to), "myprofile");
-                        }
-                    }
-                });
-            };
+            //             model.slide.totalRecords = response.data[0].TotalRows;
+            //             if (parseInt(from) === 1) {
+            //                 model.slide.setSlides(response.data, model.topage, "myprofile");
+            //                 modelpopupopenmethod.showPopup('slideshoweditd.html', model.scope, 'lg', "myprofileslide");
+            //             } else {
+            //                 model.slide.addSlides(response.data, model.slides, parseInt(to), "myprofile");
+            //             }
+            //         }
+            //     });
+            // };
 
             return model.init();
         };

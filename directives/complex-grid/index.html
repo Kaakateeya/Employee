@@ -85,6 +85,7 @@
             </tbody>
         </table>
     </div>
+
     <div class="table-responsive" ng-if="((inneritem.isDetail === undefined || inneritem.isDetail) && (config.showplus===undefined || config.showplus===false))">
         <table table-height="500px" class="scroll Datatable table table-fixed table-hover table-bordered mainTableCls normal" fixed-header>
             <thead>
@@ -103,6 +104,32 @@
                         <span ng-if="colitem.type==='custom'" ng-bind-html="colitem.templateUrl(inneritem)"></span>
                         <span ng-if="colitem.type==='customlink'" ng-bind-html="colitem.templateUrl(inneritem)" ng-click="colitem.method(inneritem)"></span>
                         <span ng-if="colitem.type==='morelinks'" compile="colitem.templateUrl(inneritem)"></span>
+                        <span ng-if="colitem.type==='dropdown'" class="dropdownclass">
+                        <select multiselectdropdown class="smalldropdowngrid" ng-model="model[colitem.model+inneritem.SNO]" ng-options="itemss.value as itemss.label for itemss in model.ProfileOwnerarray"></select>
+                        <!--ng-options="itemss.value as itemss.label for itemss in model.ProfileOwnerarray"-->
+                        </span>
+                        <span ng-if="colitem.type==='dropdownlink'" class="dropdownclass">
+                        <select multiselectdropdown class="smalldropdowngrid" ng-model="model[colitem.model+inneritem.Row]" ng-options="itemss.value as itemss.label for itemss in model.ProfileOwnerarray" ></select>
+                        </span>
+                        <span ng-if="colitem.type==='autocomplete'">
+                        <md-autocomplete
+                            ng-disabled="false"
+                            md-no-cache="true"
+                            md-selected-item="inneritem.ddlowner"
+                             md-search-text="inneritem.ddlowner"
+                            md-items="item in FilterSerch(inneritem.ddlowner)"
+                            md-item-text="item.display"
+                            md-min-length="0"
+                            placeholder="Type to select Option?">
+                    <md-item-template>
+                    <span md-highlight-text="model.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            No states matching "{{model.searchText}}" were found.
+                            <!--<a ng-click="model.newState(model.searchText)">Create a new one!</a>-->
+                        </md-not-found>
+                        </md-autocomplete>
+                        </span>
                         <span ng-if="colitem.type==='play'"><a class="detail-icon" ng-click="colitem.method(inneritem)" href="javascript:void(0);"><i class="glyphicon glyphicon-play icon-play"></i></a></span>
                     </td>
                 </tr>

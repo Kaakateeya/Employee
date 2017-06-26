@@ -85,7 +85,7 @@
                     model.Castearray = [];
                     model.ProfileOwnerarray = [];
                     model.Brancharray = [];
-                    model.ProfileOwnerarray = [{ "label": '--Select--', "title": '--Select--', "value": 0 }];
+                    model.ProfileOwnerarray = [{ "label": '--Select--', "title": '--Select--', "value": 0, "display": '--Select--' }];
                     _.each(response.data, function(item) {
                         switch (item.CountryCode) {
                             case "Application Status":
@@ -95,7 +95,7 @@
                                 model.Castearray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                 break;
                             case "Profile Owner":
-                                model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                                model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID, "display": item.Name });
                                 // model.ProfileOwnerarray = [];
                                 break;
                             case "Branch":

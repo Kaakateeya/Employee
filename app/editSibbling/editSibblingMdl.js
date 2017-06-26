@@ -38,16 +38,17 @@
         model.sibPageload = function() {
 
             editSibblingService.getSibblingeData(custID).then(function(response) {
-                model.sibblingCountArr = JSON.parse(response.data[0]);
-                model.BrotherArr = JSON.parse(response.data[1]);
-                model.sisterArr = JSON.parse(response.data[2]);
-                model.BroCount = model.sibblingCountArr[0].NoOfBrothers;
-                model.SisCount = model.sibblingCountArr[0].NoOfSisters;
+                if (response.data) {
+                    model.sibblingCountArr = JSON.parse(response.data[0]);
+                    model.BrotherArr = JSON.parse(response.data[1]);
+                    model.sisterArr = JSON.parse(response.data[2]);
+                    model.BroCount = model.sibblingCountArr[0] ? model.sibblingCountArr[0].NoOfBrothers : 0;
+                    model.SisCount = model.sibblingCountArr[0] ? model.sibblingCountArr[0].NoOfSisters : 0;
 
-                model.broModifiedby = (model.BrotherArr.length > 0 && model.BrotherArr[0].EmpLastModificationDate !== undefined && model.BrotherArr[0].EmpLastModificationDate !== null) ? model.BrotherArr[0].EmpLastModificationDate : '';
-                model.sisModifiedby = (model.sisterArr.length > 0 && model.sisterArr[0].EmpLastModificationDate !== undefined && model.sisterArr[0].EmpLastModificationDate !== null) ? model.sisterArr[0].EmpLastModificationDate : '';
+                    model.broModifiedby = (model.BrotherArr.length > 0 && model.BrotherArr[0].EmpLastModificationDate !== undefined && model.BrotherArr[0].EmpLastModificationDate !== null) ? model.BrotherArr[0].EmpLastModificationDate : '';
+                    model.sisModifiedby = (model.sisterArr.length > 0 && model.sisterArr[0].EmpLastModificationDate !== undefined && model.sisterArr[0].EmpLastModificationDate !== null) ? model.sisterArr[0].EmpLastModificationDate : '';
 
-
+                }
             });
         };
 
