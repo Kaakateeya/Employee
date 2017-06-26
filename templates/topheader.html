@@ -4,19 +4,19 @@
             <nav class="row">
                 <ul class="nav navbar-nav pull-right col-lg-3">
                     <li class="col-lg-9">
-                        <div style="color:#fff;"><strong style="font-size: 19px;"> Welcome  {{head.name}}</strong>
+                        <div style="color:#fff;"><strong style="font-size: 19px;"> Welcome  {{head.model.name}}</strong>
                         </div>
                     </li>
                     <li>
                         <a href="javascript:void(0)" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            <img ng-src="{{head.empphoto}}" alt="">
+                            <img ng-src="{{head.model.empphoto}}" alt="">
                             <span class="fa fa-angle-down" id="spandownheader"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-usermenu pull-right" style="background-color: #A00201;">
-                            <li><a style="color: white;" href="javascript:void(0)" ng-click="head.logout()"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                            <li><a style="color: white;" href="javascript:void(0)" ng-click="head.model.logout()"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                             <md-divider></md-divider>
                             <li>
-                                <a style="color: white;" data-toggle="tooltip" data-placement="top" title="Lock" href="javascript:void(0)" ng-click="head.lockscreen()">
+                                <a style="color: white;" data-toggle="tooltip" data-placement="top" title="Lock" href="javascript:void(0)" ng-click="head.model.lockscreen()">
                                     <span class="glyphicon glyphicon-eye-close pull-right" aria-hidden="true"></span>Lock
                                 </a>
                             </li>
@@ -122,19 +122,19 @@
                                     <span class="textlogo"><span class="title">Kaakateeya Marraiages</span> </span>
                                 </div>
                             </div>
-                            <form name="loginForm" novalidate ng-submit="loginForm.$valid?head.loginsubmit(head):''">
+                            <form name="loginForm" novalidate ng-submit="loginForm.$valid?head.model.loginsubmit(head):''">
                                 <div class="login-inside">
                                     <div class="login-data" ng-hide="!page.model.lockscreendiv">
                                         <div class="row clear">
                                             <label for="user">
                                                User Name:</label>
-                                            <input ng-readonly="true" type="text" class="text" ng-model="head.usernameemployeeid" name="usernameemployee" required>
+                                            <input ng-readonly="true" type="text" class="text" ng-model="head.model.usernameemployeeid" name="usernameemployee" required>
                                         </div>
                                         <div class="row clear">
                                             <label for="password">
                                            Password:
                                           </label>
-                                            <input ng-focus="true" type="Password" class="text" ng-model="head.passwordemployee" name="passwordemployee" required>
+                                            <input ng-focus="true" type="Password" class="text" ng-model="head.model.passwordemployee" name="passwordemployee" required>
                                             <div ng-if="loginForm.passwordemployee.$dirty && loginForm.passwordemployee.$error.required" ng-message="true">Required</div>
                                         </div>
                                         <button type="submit" class="button">Login</button>
@@ -142,7 +142,7 @@
                                     <div class="login-data" ng-hide="page.model.lockscreendiv">
                                         <div class="row clear">
                                             <div class="row">
-                                                {{head.name}} Is Locked
+                                                {{head.model.name}} Is Locked
                                             </div>
                                             <div class="clearfix">
                                             </div>
@@ -150,21 +150,21 @@
                                             <button ng-click="page.model.lockscreendiv=true" class="button">Unlock</button>
                                         </div>
                                     </div>
-                                    <div class="pull-right"> {{head.CurrentDate | date:'dd MMMM yyyy hh.mm.ss'}},{{head.CurrentDate |date:'EEEE'}}</div>
+                                    <div class="pull-right"> {{head.model.CurrentDate | date:'dd MMMM yyyy hh.mm.ss'}},{{head.model.CurrentDate |date:'EEEE'}}</div>
                                 </div>
                                 <div class="login-footer">
                                     <div class="row">
                                         <div class="col-lg-3  col-lg-offset-1">
                                             <label style="color:#ffffff;font-size: 14px;">AP:</label>
-                                            <label style="color:#ffffff;font-size: 14px;">{{head.logincounts[0].LoggedCount!==undefind?head.logincounts[0].LoggedCount:0}}-{{head.logincounts[0].EmpCount!==undefined?head.logincounts[0].EmpCount:0}}</label>
+                                            <label style="color:#ffffff;font-size: 14px;">{{head.model.logincounts[0].LoggedCount!==undefind?head.model.logincounts[0].LoggedCount:0}}-{{head.model.logincounts[0].EmpCount!==undefined?head.model.logincounts[0].EmpCount:0}}</label>
                                         </div>
                                         <div class="col-lg-3">
                                             <label style="color:#ffffff;font-size: 14px;">TN:</label>
-                                            <label style="color:#ffffff;font-size: 14px;">{{head.logincounts[1].LoggedCount!==undefined?head.logincounts[1].LoggedCount:0}}-{{head.logincounts[1].EmpCount!==undefined?head.logincounts[1].EmpCount:0}}</label>
+                                            <label style="color:#ffffff;font-size: 14px;">{{head.model.logincounts[1].LoggedCount!==undefined?head.model.logincounts[1].LoggedCount:0}}-{{head.model.logincounts[1].EmpCount!==undefined?head.model.logincounts[1].EmpCount:0}}</label>
                                         </div>
                                         <div class="col-lg-3">
                                             <label style="color:#ffffff;font-size: 14px;">KA:</label>
-                                            <label style="color:#ffffff;font-size: 14px;">{{head.logincounts[2].LoggedCount!==undefined?head.logincounts[2].LoggedCount:0}}-{{head.logincounts[2].EmpCount!==undefined?head.logincounts[2].EmpCount:0}}</label>
+                                            <label style="color:#ffffff;font-size: 14px;">{{head.model.logincounts[2].LoggedCount!==undefined?head.model.logincounts[2].LoggedCount:0}}-{{head.model.logincounts[2].EmpCount!==undefined?head.model.logincounts[2].EmpCount:0}}</label>
                                         </div>
                                     </div>
                                 </div>

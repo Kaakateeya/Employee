@@ -21,6 +21,7 @@
             model.categoryarray = [];
             model.templateUrl = "templates/dashBoardslide.html";
             model.headettemp = "dashboardheader.html";
+            model.todaydate = new Date();
             model.exportData = function(id) {
                 var options = {
                     headers: true,
@@ -326,8 +327,10 @@
                         PrimaryContact: item.PrimaryContact,
                         PriWithoutCode: item.PriWithoutCode,
                         EmpReminderID: item.EmpReminderID,
-                        ReminderCreatedDate: item.ReminderCreatedDate,
-                        ReminderCreatedDatepopup: $filter('date')(item.ReminderCreatedDate, 'dd-MM-yyyy')
+                        // ReminderCreatedDate: item.ReminderCreatedDate,
+                        //ReminderCreatedDatepopup: $filter('date')(item.ReminderCreatedDate, 'dd-MM-yyyy')
+                        ReminderCreatedDate: model.todaydate,
+                        ReminderCreatedDatepopup: $filter('date')(model.todaydate, 'dd-MM-yyyy')
                     });
                 });
                 return array;
@@ -412,6 +415,8 @@
                 });
             };
             model.changereminder = function(slidearray) {
+                console.log(slidearray);
+
                 model.reminderslidearray = {};
                 model.reminderslidearray = slidearray;
                 model.txtprofileidreminder = slidearray.ProfileID;
@@ -430,12 +435,14 @@
                 model.categoryarray = arrayConstants.catgory;
             };
             model.reminderSubmit = function(obj) {
+                debugger;
+                console.log(obj);
                 var Mobj = {
                     ProfileID: obj.txtprofileidreminder,
                     ReminderID: model.reminderslidearray.EmpReminderID,
                     EmpID: model.empid,
-                    TicketID: model.reminderslidearray.Emp_Ticket_Id,
-                    DateOfReminder: $filter('date')(obj.txtreminderDate, 'dd-MM-yyyy'),
+                    TicketID: model.reminderslidearray.TicketID,
+                    DateOfReminder: $filter('date')(obj.txtreminderDate, 'yyyy-MM-dd'),
                     ReminderType1: obj.ddlremCaltype,
                     Body: obj.remembertickets,
                     RelationID: obj.ddlcontactperson,

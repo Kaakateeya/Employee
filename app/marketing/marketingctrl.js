@@ -1,18 +1,18 @@
  (function() {
      'use strict';
-
-     function controller(marketingModel, scope) {
-         var vm = this,
-             model;
-         vm.init = function() {
-             vm.model = model = marketingModel();
-             model.scope = scope;
-         };
-
-         vm.init();
-     }
      angular
          .module('Kaakateeya')
-         .controller('marketingCtrl', controller)
-     controller.$inject = ['marketingModel', '$scope'];
+         .controller('marketingCtrl', ['$scope', 'marketingModel', function(scope, marketingModel) {
+             var vm = this,
+                 model;
+             vm.init = function() {
+                 vm.model = model = marketingModel.init();
+                 model.scope = scope;
+                 scope.$on("$destroy", vm.destroy);
+             };
+             vm.destroy = function() {
+                 model.destroy();
+             };
+             vm.init();
+         }]);
  })(angular);
