@@ -69,7 +69,6 @@
                             if (_.isArray(response.data) && response.data.length > 0) {
                                 model.CustName = (response.data)[0].CustName;
                                 model.ProfileOwner = (response.data)[0].ProfileOwner;
-
                                 model.balancepaymentID = (response.data)[0].PaymentID;
                                 model.balancemembershiptype = (response.data)[0].membershiptype;
                                 model.RenewalStatus = (response.data)[0].RenewalStatus;

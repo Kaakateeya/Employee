@@ -13,10 +13,10 @@
                 return http.post(app.apiroot + 'CustomerPersonalUpdate/CustomerSibSisterUpdatedetails', JSON.stringify(obj1));
             },
             submitSibCountsData: function(obj1) {
-                return http.post(app.apipathold + 'CustomerPersonalUpdate/UpdateSibblingCounts', JSON.stringify(obj1));
+                return http.post(app.apiroot + 'CustomerPersonalUpdate/UpdateSibblingCounts', JSON.stringify(obj1));
             },
             allowblockWebusers: function(custid) {
-                return http.get(app.apipathold + 'StaticPages/getRegisteredBranchStatus', { params: { StrCustID: custid } });
+                return http.get(app.apiroot + 'StaticPages/getRegisteredBranchStatus', { params: { StrCustID: custid } });
             }
         };
     }
