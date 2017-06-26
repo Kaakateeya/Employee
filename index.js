@@ -121,11 +121,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                 },
                 {
                     name: 'commonjs',
-                    files: ['common/services/modalPopupmethods.js',
+                    files: [
+                        'common/services/modalPopupmethods.js',
                         'common/services/errorInterceptor.js',
-                        'common/controllers/LoaderCtrl.js',
                         'common/services/authSvc.js',
-                        'common/controllers/topheaderctrl.js',
                         'common/services/serviceBind.js',
                         'common/services/dependencyservices.js',
                         'common/services/getArray.js',
@@ -135,7 +134,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'common/services/selectBindServices.js',
                         'common/services/selectBindServicesEdit.js',
                         'constants/arrayBindConstatnsEdit.js',
-                        'common/services/fileuploadservice.js'
+                        'common/services/fileuploadservice.js',
+                        'common/models/headermodel.js',
+                        'common/controllers/topheaderctrl.js',
+                        'common/controllers/LoaderCtrl.js'
+
                     ]
                 },
                 {

@@ -2,7 +2,7 @@
     <div class="search_page_main" ng-show="page.model.divcontrolls">
         <div class="sample" layout="column">
             <md-content class="md-padding">
-                <md-tabs md-selected="page.model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
+                <md-tabs ng-if="page.model.loadContent" md-selected="page.model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
                     <md-tab ng-repeat="tab in page.model.tabsselected" label="{{tab.tabname}}" ng-click="page.onTabSelected(page.model.selectedIndex)">
                         <div class="tab">
                             <form name="{{tab.formame}}" role="form">
@@ -14,11 +14,12 @@
                                                     <div class="md-toolbar-tools">
                                                         <h4 class="md-flex  col-lg-12" style="font-size: 15px;"> {{parentitem.headerName}}
                                                         </h4>
-                                                        <i class="fa fa-plus-square pull-right" style="cursor:pointer;" aria-hidden="true" data-toggle="collapse" href="#{{parentitem.collapseid}}"></i>
+                                                        <a ng-click="page.model.showplusminusicon(parentitem.collapseid)" href="javascript:void(0)"> <i ng-class="page.model.domheader_{{parentitem.collapseid}}===true?'fa fa-plus-square pull-right':'fa fa-minus-square pull-right'" style="cursor:pointer;" aria-hidden="true"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </md-toolbar>
-                                            <div id="{{parentitem.collapseid}}" class="panel-collapse collapse in">
+                                            <div ng-hide="page.model.domheader_{{parentitem.collapseid}}">
                                                 <div ng-repeat="item in parentitem.controlList">
                                                     <div class="row" ng-if="item.controlType==='gender'">
                                                         <div class="col-lg-5">
@@ -271,6 +272,7 @@
                <div class="col-lg-3">
                  <md-switch  class="md-secondary col-lg-5" style="margin-top:-1px;"  ng-model="page.model.activatedmobile">  </md-switch>  
                 <span class="col-lg-7" style="color:rgba(35, 30, 30, 0.83);margin-top: 4px;">Issuggestable</span>
+                <span style="display:none;">{{page.model.loadContent = true}}<span>
                </div>
               </div>
            <div class="clearfix"></div>
