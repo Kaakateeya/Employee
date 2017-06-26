@@ -63,7 +63,7 @@
                         text: 'Status',
                         key: 'Status',
                         type: 'label'
-                    }, { text: 'Authorized by', key: 'StatusBy', type: 'label' }, { text: 'Description', key: 'Description', type: 'morelinks', templateUrl: model.descriptionTemplate }, { text: 'Tax', key: 'TaxPaid_Status', type: 'label' });
+                    }, { text: 'Authorized by', key: 'StatusBy', type: 'label' }, { text: 'Description', key: 'Description', type: 'morelinks', templateUrl: model.descriptionTemplate });
                     EmployeePaymentservice.getEmployeePayment(model.txtProfileID).then(
                         function(response) {
                             if (_.isArray(response.data) && response.data.length > 0) {

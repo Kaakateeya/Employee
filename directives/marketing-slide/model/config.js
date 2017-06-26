@@ -188,8 +188,9 @@
             return options;
         };
         model.changereminder = function(slidearray) {
-            // model.reminderslidearray = {};
-            // model.reminderslidearray = slidearray;
+
+            model.reminderslidearray = {};
+            model.reminderslidearray = slidearray;
             model.txtprofileidreminder = slidearray.ProfileID;
             model.reminderticketid = slidearray.TicketID;
             model.ddlHrs = "";
@@ -216,19 +217,34 @@
                 model.contactpersonname = slidearray.ReminderRelationName;
                 model.ddlremCatgory = parseInt(slidearray.Category);
                 model.remembertickets = slidearray.Reminderbody;
-                if (slidearray.ReminderTime) {
-                    var remindertimeArr = slidearray.ReminderTime.split(':');
+                if (slidearray.ReminderDate) {
+                    var remindertime = slidearray.ReminderDate.split(' ');
+                    var remindertimeArr = (remindertime[1]).split(':');
                     model.ddlHrs = parseInt(remindertimeArr[0]) + 1;
                     model.ddlmins = parseInt(remindertimeArr[1]) + 1;
                 }
+            } else {
+                model.remReset();
             }
         };
+
+        model.remReset = function() {
+            model.txtreminderDate = '';
+            model.ddlremCaltype = '';
+            model.ddlcontactperson = '';
+            model.contactpersonname = '';
+            model.ddlremCatgory = '';
+            model.remembertickets = '';
+            model.ddlHrs = '';
+            model.ddlmins = '';
+        };
+
         model.reminderSubmit = function() {
             var Mobj = {
                 ProfileID: model.txtprofileidreminder,
-                // ReminderID: model.reminderslidearray.EmpReminderID,
+                ReminderID: model.reminderslidearray.ReminderID,
                 EmpID: model.empid,
-                //TicketID: model.reminderslidearray.Emp_Ticket_Id,
+                TicketID: model.reminderslidearray.Emp_Ticket_ID,
                 DateOfReminder: $filter('date')(model.txtreminderDate, 'MM-dd-yyyy'),
                 ReminderType1: model.ddlremCaltype,
                 Body: model.remembertickets,
