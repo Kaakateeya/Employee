@@ -15,7 +15,7 @@
                 model.proceed.config = {};
                 model.BranchName = [];
                 model.templateUrl = "templates/matchFollowupSlide.html";
-                model.headettemp = "templates/matchFollowupHeader.html";
+                model.config.headettemp = "templates/matchFollowupHeader.html";
                 model.proceed.typeofPage = 'popup';
                 model.typeofPage = 'page';
                 model.headervisileble = true;
@@ -213,7 +213,7 @@
                     model.proceed.headervisileble = true;
                     model.custid = custid;
                     model.proceed.templateUrl = "templates/matchFollowupSlide.html";
-                    model.proceed.headettemp = "templates/matchFollowupHeader.html";
+                    model.proceed.config.headettemp = "templates/matchFollowupHeader.html";
                     model.proceed.frompage = 1;
                     model.proceed.topage = 10;
                     model.matchFollowupSelect(undefined, custid, 'proceedpopup');
