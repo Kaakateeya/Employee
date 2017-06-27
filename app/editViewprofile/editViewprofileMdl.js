@@ -7,7 +7,8 @@
             var model = {};
             var modelinactive = {};
             model = config;
-            model.slide = configslide;
+            model.slide = {};
+            model.slide.config = configslide;
             model.showplus = true;
             model.tablearray = [];
             model.obj = {};
@@ -45,6 +46,7 @@
                         HoroscopeStatus: item.HoroscopeStatus,
                         HoroscopeImage: item.HoroScopeImage
                     });
+                    //Emp_Ticket_ID
                     model.datas.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
                     model.datas.push({ label: 'Caste', value: item.MotherTongueName + "-" + item.CasteName });
                     model.datas.push({ label: 'Dor', value: item.RegistrationDate });
@@ -88,7 +90,7 @@
                         ActionType: item.ActionType,
                         ReadStatus: item.ReadStatus,
                         Tickets: item.Tickets,
-                        TicketID: item.TicketID,
+                        TicketID: item.Emp_Ticket_ID,
                         onlinepaidcls: item.onlinepaidcls,
                         onlinepaid: item.onlinepaid,
                         offlinepaidcls: item.offlinepaidcls,
@@ -209,10 +211,10 @@
                         } else if (typeofbind === "slideshow") {
                             model.slide.totalRecords = response.data[0].TotalRows;
                             if (parseInt(from) === 1) {
-                                model.slide.setSlides((model.displayArrayeidt(response.data, to)), to, "normal");
+                                configslide.setSlides((model.displayArrayeidt(response.data, to)), to, "normal");
                                 modelpopupopenmethod.showPopup('slideshoweditd.html', model.scope, 'lg', "myprofileslide");
                             } else {
-                                model.slide.addSlides((model.displayArrayeidt(response.data, to)), response.data, parseInt(to), "normal");
+                                configslide.addSlides((model.displayArrayeidt(response.data, to)), response.data, parseInt(to), "normal");
                             }
                         } else {
                             model.setData(response.data);
@@ -284,7 +286,7 @@
                 model.ViewAllsubmit(model.obj, 1, 10, "slideshow");
             };
 
-            model.slide.slidebind = function(old, news, array) {
+            configslide.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
                     model.ViewAllsubmit(model.obj, (model.topage) + 1, (model.topage) + 10, "slideshow");
                 }
@@ -293,34 +295,10 @@
             model.slide.closemainpopup = function() {
                 modelpopupopenmethod.closepopup();
             };
-
-            // model.slideshowBind = function(from, to) {
-            //     model.topage = to;
-            //     var inputobj = {
-            //         Empid: 2,
-            //         Kmpl: model.obj.KmlProfileID ? model.obj.KmlProfileID : null,
-            //         Profileid: model.obj.ProfileIDsearch ? model.obj.ProfileIDsearch : null,
-            //         Surname: model.obj.surname,
-            //         FirstName: model.obj.Name,
-            //         pagefrom: from,
-            //         pageto: to,
-            //         intTableType: 0,
-            //         ApplicationstatusID: model.obj.chkProfileIDsts !== undefined ? model.returnnullvalue(model.obj.chkProfileIDsts) : ""
-            //     };
-
-            //     ViewAllCustomerService.getMyprofileSlide(inputobj).then(function(response) {
-            //         if (response.data) {
-
-            //             model.slide.totalRecords = response.data[0].TotalRows;
-            //             if (parseInt(from) === 1) {
-            //                 model.slide.setSlides(response.data, model.topage, "myprofile");
-            //                 modelpopupopenmethod.showPopup('slideshoweditd.html', model.scope, 'lg', "myprofileslide");
-            //             } else {
-            //                 model.slide.addSlides(response.data, model.slides, parseInt(to), "myprofile");
-            //             }
-            //         }
-            //     });
-            // };
+            model.tickethistorypopup = function(TicketID) {
+                model.marketingTicketid = TicketID;
+                modelpopupopenmethod.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
+            };
             model.destroy = function() {
                 configslide.reset();
             };
