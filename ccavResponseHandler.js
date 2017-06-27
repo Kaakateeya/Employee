@@ -28,9 +28,7 @@ exports.postRes = function(request, response) {
         for (var i = 0; i < 4; i++) {
             strdata = strdata === '' ? splitdata[i] : strdata + ',' + splitdata[i];
         }
-
         var encryprRes = ccav.encrypt(strdata, workingKey);
-        console.log(encryprRes);
         response.redirect('/ccavResponseHand/' + encryprRes);
     });
 

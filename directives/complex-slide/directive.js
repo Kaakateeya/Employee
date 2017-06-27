@@ -23,6 +23,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.uploadfromsubmit = false;
                 $scope.txtGotoVal = "";
                 $scope.emailpattaren = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/i;
+
                 $scope.pauseResume = function(action) {
                     if (action === 'play') {
                         $scope.myInterval = 5000;
@@ -111,12 +112,11 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     window.open("EmployeePayments" + "?idsss=" + ProfileID, "_blank");
                 };
                 $scope.tickethistoryupdate = function(matkteingticket) {
-                    debugger;
                     $scope.model.marketingTicket = matkteingticket;
                     modelpopupopenmethod.showPopupphotopoup('marketpopup.html', $scope, 'md', "modalclassdashboardphotopopup");
                 };
-                $scope.photorequest = function(ProfileID, empid) {
-                    helperservice.PhotoRequest(ProfileID, empid).then(function(response) {
+                $scope.photorequest = function(ProfileID, empid, ticketid) {
+                    helperservice.PhotoRequest(ProfileID, empid, ticketid).then(function(response) {
                         if (response !== undefined && response !== null && response !== "" && response.data !== undefined) {
                             if (response.data === 1) {
                                 alerts.timeoutoldalerts($scope, 'alert-success', 'PhotoRequest send successfully', 4000);

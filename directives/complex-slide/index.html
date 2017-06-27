@@ -1,12 +1,12 @@
-<div ng-show="config.headervisileble">
+<div ng-show="model.headervisileble">
     <div ng-include="model.headettemp">
     </div>
     <div uib-carousel active="activeslide" interval="myInterval" no-wrap="noWrapSlides" carousel-controls>
-        <div uib-slide ng-repeat="slide in model.slides track by $index" index="$index">
-            <div ng-include="config.templateUrl"> </div>
+        <div uib-slide ng-repeat="slide in config.slides track by $index" index="$index">
+            <div ng-include="model.templateUrl"> </div>
         </div>
     </div>
-    <div ng-show="model.slides.length>0" id="carouselButtons" class="col-lg-offset-5">
+    <div ng-show="config.slides.length>0" id="carouselButtons" class="col-lg-offset-5">
         <button ng-hide="playbutton" ng-click="pauseResume('play');" class="btn btn-default btn-xs pauseBtns" title="Play">
        <i class="fa fa-play"></i>
          </button>
@@ -20,7 +20,7 @@
 <script type="text/ng-template" id="dynamicphotopopup.html">
     <div class="modal-content">
         <div class="modal-header">
-            <button class="close" ng-click="config.close()">×</button>
+            <button class="close" ng-click="model.close()">×</button>
             <h4 class="modal-title">{{photoalbum}}</h4>
         </div>
         <div class="modal-body">

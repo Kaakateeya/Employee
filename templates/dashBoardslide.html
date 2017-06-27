@@ -72,7 +72,7 @@
         <img ng-click="slidepopup(slide.Custid)" ng-src="{{slide.custPhoto}}" class="image" style="cursor: pointer;" />
         <br>
         <div ng-if="slide.PhotoCount!==0" class="col-lg-8 col-lg-offset-3"><a href="javascript:void(0)"><span style="color:Black;font-size:9pt;">No of Photos {{slide.PhotoCount}}</span></a></div>
-        <div ng-if="slide.PhotoCount===0" class="col-lg-8 col-lg-offset-3"><a href="javascript:void(0)" ng-click="photorequest(slide.ProfileID)"><span style="color:#3030d8;font-size:10pt;">Photo Request</span></a></div>
+        <div ng-if="slide.PhotoCount===0" class="col-lg-8 col-lg-offset-3"><a href="javascript:void(0)" ng-click="photorequest(slide.ProfileID,model.empid,slide.TicketID)"><span style="color:#3030d8;font-size:10pt;">Photo Request</span></a></div>
     </div>
 </div>
 <div class="clearfix">

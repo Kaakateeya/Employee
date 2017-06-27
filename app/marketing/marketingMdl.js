@@ -3,10 +3,9 @@
 
     function factory(marketingservice, config, authSvc, helperservice, commonFactory, uibModal, alertss, modelpopupopenmethod,
         SelectBindServiceApp, timeout, $filter, arrayConstants, marketsvc) {
-        //return function() {
         var model = {};
+        model.config = config;
         model.scope = {};
-        model = config;
         model.headervisileble = true;
         model.templateUrl = "templates/marketingSlide.html";
         model.headettemp = "templates/marketingSlideHeader.html";
@@ -76,7 +75,7 @@
             { id: 11, text: " Dear Member, lots of new matches are added on kaakateeya.com everyday. Don't miss, Login now and connect with them" },
             { id: 12, text: 'We are trying to contact you for verification but not responding.So your profile will be deactivated , please contact us' },
         ];
-        model.slidebind = function(old, news, array, type) {
+        config.slidebind = function(old, news, array, type) {
             if (parseInt(model.topage) - parseInt(news) === 4) {
                 model.MarketingSlideShowBind(parseInt(model.topage) + 1, parseInt(model.topage) + 10);
             }
@@ -856,7 +855,6 @@
             config.reset();
         };
         return model;
-        // };
     }
     angular
         .module('Kaakateeya')

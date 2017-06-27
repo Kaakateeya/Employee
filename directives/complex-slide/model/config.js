@@ -15,6 +15,7 @@
         };
         model.setSlides = function(data, topage, typeofpage) {
             model.slides = [];
+            debugger;
             if (typeofpage === 'normal') {
                 model.slides = data;
             } else if (typeofpage === 'myprofile') {
@@ -39,6 +40,7 @@
         };
         model.displayArray = function(arr, topage, typebind) {
             model.headervisileble = true;
+            debugger;
             if (topage === parseInt(10)) {
                 model.slides = [];
             }
@@ -64,13 +66,12 @@
                         itmArr: model.data,
                         custPhoto: item.Photo,
                         Custid: item.Cust_ID,
-                        // lastlogin: item.LastLoginDate,
-                        // logincount: item.LoginCount,
+
                         matkteingticket: item.TicketID,
                         matchmarktingcount: item.MatchMeetingCount,
                         ownername: item.ProfileOwnername,
                         branch: item.KMPLID,
-                        // reg: item.RegistrationDate,
+
                         SAForm: item.SAForm,
                         primarynumber: item.Primarynumber,
                         primaryemail: item.Primaryemail,
@@ -91,13 +92,7 @@
                         HeightInCentimeters: item.HeightInCentimeters,
                         MaritalStatusID: item.MaritalStatusID,
                         CasteID: item.CasteID,
-                        // serviceDate: item.serviceDate,
-                        // bouncedEmailID: item.EmailID,
-                        // bouncedemailentryid: item.Cust_EmailBounceEntryId,
-                        // Cust_NotificationID: item.Cust_NotificationID,
-                        // CategoryID: item.CategoryID,
-                        // ActionType: item.ActionType,
-                        // ReadStatus: item.ReadStatus,
+
                         Tickets: item.Tickets,
                         TicketID: item.TicketID,
                         onlinepaidcls: item.onlinepaidcls,
