@@ -9,7 +9,6 @@
                  model;
              vm.init = function() {
                  vm.model = model = myProfileModel;
-                 // model.MyProfilePageLoad();
                  model.gridArray = [];
                  model.mpObj.rdnprofileType = '';
                  model.mpObj.rdnGender = '';
@@ -27,8 +26,11 @@
                  model.myprofileid = model.searchObjectquery[meKey];
                  if (model.myprofileid !== "" && model.myprofileid !== null && model.myprofileid !== undefined && model.myprofileid !== "undefined") {
                      model.mpObj.txtProfileID = model.myprofileid;
-                     // model.MyprofileResult(model.mpObj, 1, 10, 'grid', 1);
                  }
+                 scope.$on("$destroy", vm.destroy);
+             };
+             vm.destroy = function() {
+                 model.destroy();
              };
 
              vm.init();

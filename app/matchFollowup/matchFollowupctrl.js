@@ -16,6 +16,10 @@
                  model.templateUrl = "templates/matchFollowupSlide.html";
                  model.headettemp = "templates/matchFollowupHeader.html";
                  //  $rootScope.colorurl = 'matchColor';
+                 scope.$on("$destroy", vm.destroy);
+             };
+             vm.destroy = function() {
+                 model.destroy();
              };
 
              vm.init();

@@ -23,6 +23,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.uploadfromsubmit = false;
                 $scope.txtGotoVal = "";
                 $scope.emailpattaren = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/i;
+
                 $scope.pauseResume = function(action) {
                     if (action === 'play') {
                         $scope.myInterval = 5000;
@@ -48,7 +49,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.$watch('activeslide', function(news, old) {
                     if (news !== undefined && news !== "" && news !== null) {
                         $scope.Viwedslide = news > $scope.Viwedslide ? news : $scope.Viwedslide;
-                        $scope.model.slidebind(old, news, $scope.model.slides, $scope.model.typeofPage);
+                        $scope.config.slidebind(old, news, $scope.model.slides, $scope.model.typeofPage);
                     } else {
                         $scope.Viwedslide = 0;
                     }

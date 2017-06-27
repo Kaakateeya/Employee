@@ -398,7 +398,7 @@
                         }
                     });
                 };
-                model.slidebind = function(old, news, array) {
+                config.slidebind = function(old, news, array) {
                     if (parseInt(model.topage) - parseInt(news) === 4) {
                         model.slideshowfunction(true, model.empid, model.empBranchID, (model.topage) + 1, (model.topage) + 10, model.headerhtml, 'slideshow', model.slidearray, 1);
                     }

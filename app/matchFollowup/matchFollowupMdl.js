@@ -10,8 +10,9 @@
                 authSvc, Commondependency, modelpopupopenmethod, alertss, arrayConstants, SelectBindServiceApp) {
                 //return function() {
                 var model = {};
-                // model = config;
+                model.config = config;
                 model.proceed = {};
+                model.proceed.config = {};
                 model.BranchName = [];
                 model.templateUrl = "templates/matchFollowupSlide.html";
                 model.headettemp = "templates/matchFollowupHeader.html";
@@ -119,24 +120,24 @@
                                 item.ToOfflineExpiryDate = moment(currentdate).isAfter(moment(item.ToOfflineExpiryDate).format("YYYY-MM-DD")) || item.TofflineDetails == "Offline : Unpaid" ? "Unpaidcust" : "";
                                 item.ToonlineExpiryDate = moment(currentdate).isAfter(moment(item.ToonlineExpiryDate).format("YYYY-MM-DD")) || item.ToonlineDetails == "Online : Unpaid" ? "Unpaidcust" : "";
                             });
-
+                            debugger;
                             if (typeofpopup === 'proceedpopup') {
 
                                 if (parseInt(model.proceed.frompage) === 1) {
-                                    model.proceed.slides = [];
-                                    model.proceed.slides = response.data;
+                                    model.proceed.config.slides = [];
+                                    model.proceed.config.slides = response.data;
                                     model.proceed.totalRecords = response.data[0].TotalRows;
                                 } else {
-                                    model.proceed.slides = $.merge(model.proceed.slides, response.data);
+                                    model.proceed.config.slides = $.merge(model.proceed.slides, response.data);
                                 }
                             } else {
 
                                 if (parseInt(model.frompage) === 1) {
                                     model.totalRecords = response.data[0].TotalRows;
-                                    config.slides = [];
-                                    config.setSlides(response.data, 10, 'normal');
+                                    model.config.slides = [];
+                                    model.config.slides = response.data;
                                 } else {
-                                    config.addSlides(response.data, config.slides, parseInt(model.topage), 'normal');
+                                    model.config.addSlides(response.data, config.slides, parseInt(model.topage), 'normal');
                                 }
                             }
                         } else {
@@ -149,24 +150,28 @@
                     });
                 };
 
-                model.slidebind = function(old, news, array, type) {
-                    if (type === 'popup') {
-                        model.proceed.frompopoverIsOpen = false;
-                        model.proceed.topopoverIsOpen = false;
-                        if (parseInt(model.proceed.topage) - parseInt(news) === 4) {
-                            model.proceed.frompage = parseInt(model.proceed.topage) + 1;
-                            model.proceed.topage = parseInt(model.proceed.topage) + 10;
-                            model.matchFollowupSelect(undefined, model.custid, 'proceedpopup');
-                        }
-                    } else {
-                        model.frompopoverIsOpen = false;
-                        model.topopoverIsOpen = false;
-                        if (parseInt(model.topage) - parseInt(news) === 4) {
-                            model.frompage = parseInt(model.topage) + 1;
-                            model.topage = parseInt(model.topage) + 10;
-                            model.matchFollowupSelect();
-                        }
+                config.slidebind = function(old, news, array, type) {
+
+                    model.frompopoverIsOpen = false;
+                    model.topopoverIsOpen = false;
+                    if (parseInt(model.topage) - parseInt(news) === 4) {
+                        model.frompage = parseInt(model.topage) + 1;
+                        model.topage = parseInt(model.topage) + 10;
+                        model.matchFollowupSelect();
                     }
+                };
+
+
+                model.proceed.config.slidebind = function(old, news, array, type) {
+
+                    model.proceed.frompopoverIsOpen = false;
+                    model.proceed.topopoverIsOpen = false;
+                    if (parseInt(model.proceed.topage) - parseInt(news) === 4) {
+                        model.proceed.frompage = parseInt(model.proceed.topage) + 1;
+                        model.proceed.topage = parseInt(model.proceed.topage) + 10;
+                        model.matchFollowupSelect(undefined, model.custid, 'proceedpopup');
+                    }
+
                 };
 
                 model.CondtionButtonClick = function(activeType, flag, flagClose, flagEmpwaiting) {
@@ -205,6 +210,7 @@
                     return (parseInt(serviceCount) > 1 && loginName.trim() === splitEmpName[0].trim()) ? true : false;
                 };
                 model.serviceCountProfiles = function(custid) {
+                    model.proceed.headervisileble = true;
                     model.custid = custid;
                     model.proceed.templateUrl = "templates/matchFollowupSlide.html";
                     model.proceed.headettemp = "templates/matchFollowupHeader.html";
@@ -336,7 +342,7 @@
                 model.closeAction = function() {
                     modelpopupopenmethod.closepopup();
                 };
-                model.closeprocced = function() {
+                model.proceed.closeprocced = function() {
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
                 model.redirectContactPage = function(custid) {
@@ -573,6 +579,9 @@
                     } else {
                         model.actobj.txtMemmemocalldiscussion = _.where(model.notInrstarray, { id: parseInt(val) })[0].text;
                     }
+                };
+                model.destroy = function() {
+                    config.reset();
                 };
                 return model;
                 // };
