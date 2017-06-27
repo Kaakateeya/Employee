@@ -46,7 +46,6 @@
 
             model.SubmitPaymentOffer = function() {
 
-
                 var obj = {
                     ProfileID: model.ProfileID,
                     MembershipID: model.memberShipType,
@@ -70,9 +69,7 @@
                     } else {
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Membership insertion failed ', 4500);
                     }
-
                 });
-
             };
 
             model.casteDependency = function(val1, val2) {

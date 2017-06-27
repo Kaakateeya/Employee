@@ -158,7 +158,6 @@
                             msg = model.pType === 'Authorize' ? 'Error in authorizing the payment' : 'Error in declining the payment';
                         }
                         alertss.timeoutoldalerts(model.scope, parseInt(response.data) === 1 ? 'alert-success' : 'alert-danger', msg, 4500);
-
                     }
                 });
             };
