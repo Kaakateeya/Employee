@@ -15,7 +15,7 @@
                 model.proceed.config = {};
                 model.BranchName = [];
                 model.templateUrl = "templates/matchFollowupSlide.html";
-                model.config.headettemp = "templates/matchFollowupHeader.html";
+                model.headettemp = "templates/matchFollowupHeader.html";
                 model.proceed.typeofPage = 'popup';
                 model.typeofPage = 'page';
                 model.headervisileble = true;
@@ -25,7 +25,6 @@
                 model.spflag = 0;
                 model.closeflag = false;
                 model.Empwaitingflag = false;
-
                 model.dynamicPopover = {};
                 model.ReplyArr = [];
                 model.typeofmailSms = '';
@@ -200,7 +199,7 @@
                     model.proceed.headervisileble = true;
                     model.custid = custid;
                     model.proceed.templateUrl = "templates/matchFollowupSlide.html";
-                    model.proceed.config.headettemp = "templates/matchFollowupHeader.html";
+                    model.proceed.headettemp = "templates/matchFollowupHeader.html";
                     model.proceed.frompage = 1;
                     model.proceed.topage = 10;
                     model.matchFollowupSelect(undefined, custid, 'proceedpopup');
