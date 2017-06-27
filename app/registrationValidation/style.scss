@@ -102,10 +102,9 @@
     padding-right: 1% !important;
 }
 
-.modalclassdashboardphotopopup {
-    z-index: 999999 !important;
-}
-
+// .modalclassdashboardphotopopup {
+//     z-index: 999999 !important;
+// }
 .myprofilepopupdesign {
     margin-left: 60px;
     margin-right: 60px;
@@ -139,4 +138,10 @@
     .DOR {
         width: 98px;
     }
+}
+
+.modalclassdashboardphotopopup {
+    z-index: 9999999999 !important;
+    top: 0%;
+    left: 0%;
 }

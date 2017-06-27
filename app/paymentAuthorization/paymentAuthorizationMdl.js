@@ -1,17 +1,10 @@
 (function() {
     'use strict';
-
     angular
         .module('Kaakateeya')
-        .factory('paymentAuthorizationModel', factory);
-
-    factory.$inject = ['paymentAuthorizationService', 'Commondependency', 'complex-grid-config', 'modelpopupopenmethod', 'authSvc', 'alert'];
-
-    function factory(paymentAuthorizationService, Commondependency, config, modelpopupopenmethod, authSvc, alertss) {
-        return function() {
+        .factory('paymentAuthorizationModel', ['paymentAuthorizationService', 'Commondependency', 'complex-grid-config', 'modelpopupopenmethod', 'authSvc', 'alert', function(paymentAuthorizationService, Commondependency, config, modelpopupopenmethod, authSvc, alertss) {
             var model = {};
             var empid;
-            model = config;
             model.scope = {};
             model.showsearchrows = true;
             model.showsearch = true;
@@ -49,7 +42,6 @@
                     { text: 'Valid Months', key: 'ValidMonths', type: 'label' },
                     { text: 'Payment Date', key: 'PaymentDate', type: 'label' },
                     { text: 'Expiry On', key: 'ExpiryOn', type: 'label' },
-                    // { text: 'Payment ID', key: 'PaymentID', type: 'label' },
                     { text: 'SA Form', key: 'SAForm', type: 'morelinks', templateUrl: model.SaFormTemplate },
                     { text: '', key: 'Description', type: 'morelinks', templateUrl: model.linktemplate }
                 ];
@@ -61,7 +53,7 @@
                             model.mainArray = response.data[0];
                             model.BranchmenuArr = response.data[1];
                             model.gridTableshow = true;
-                            model.setData((response.data[0]));
+                            model.data = (response.data[0]);
                         } else {
                             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 4500);
                         }
@@ -94,9 +86,7 @@
                 model.data = _.where(model.mainArray, { BranchID: parseInt(val) });
                 model.TotalRows = (model.data).length;
             };
-
             model.authorize = function(row, type) {
-
                 model.pPaymentID = row.PaymentID;
                 model.pProfileID = row.ProfileID;
                 model.pTicketID = '';
@@ -107,16 +97,13 @@
                 model.pServiceTax = row.ServiceTax;
                 model.pNoofOnlinePoints = row.OnlinePoints;
                 model.pOfflinePts = row.OfflinePoints;
-
                 model.CustomerID = row.CustomerID;
                 model.MembershipID = row.MembershipID;
                 model.PaymentStatus = row.PaymentStatus;
                 model.ExpiryDate = row.ExpiryOn;
                 model.CustMembershipID = row.CustMembershipID;
                 model.MembershipDiscountID = row.MembershipDiscountID;
-
                 model.pType = type;
-
                 modelpopupopenmethod.showPopup('authorizePopup.html', model.scope, 'lg', "paymentAuthorizeCls");
             };
             model.close = function() {
@@ -164,9 +151,6 @@
                 return (_.where(model.mainArray, { BranchID: parseInt(val) })).length;
                 // return 1;
             };
-
-
-            return model.init();
-        };
-    }
+            return model;
+        }]);
 })();

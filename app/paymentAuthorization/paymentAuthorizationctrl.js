@@ -1,22 +1,16 @@
  (function() {
      'use strict';
-
      angular
          .module('Kaakateeya')
-         .controller('paymentAuthorizationCtrl', controller);
-
-     controller.$inject = ['paymentAuthorizationModel', '$scope'];
-
-     function controller(paymentAuthorizationModel, scope) {
-         /* jshint validthis:true */
-         var vm = this;
-
-         vm.init = function() {
-             vm.model = paymentAuthorizationModel();
-             vm.model.scope = scope;
-         };
-
-         vm.init();
-
-     }
+         .controller('paymentAuthorizationCtrl', ['paymentAuthorizationModel', '$scope', function(paymentAuthorizationModel, scope) {
+             /* jshint validthis:true */
+             var vm = this,
+                 model;
+             vm.init = function() {
+                 vm.model = model = paymentAuthorizationModel;
+                 vm.model.scope = scope;
+                 model.init();
+             };
+             vm.init();
+         }]);
  })();
