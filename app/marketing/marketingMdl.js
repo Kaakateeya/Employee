@@ -6,7 +6,6 @@
         //return function() {
         var model = {};
         model.scope = {};
-        model = config;
         model.headervisileble = true;
         model.templateUrl = "templates/marketingSlide.html";
         model.headettemp = "templates/marketingSlideHeader.html";

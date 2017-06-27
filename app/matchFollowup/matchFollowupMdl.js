@@ -10,7 +10,7 @@
                 authSvc, Commondependency, modelpopupopenmethod, alertss, arrayConstants, SelectBindServiceApp) {
                 //return function() {
                 var model = {};
-                model = config;
+                // model = config;
                 model.proceed = {};
                 model.BranchName = [];
                 model.templateUrl = "templates/matchFollowupSlide.html";
@@ -90,7 +90,6 @@
 
 
                 model.matchFollowupSelect = function(empid, custID, typeofpopup) {
-                    debugger;
                     var inputobj = {
                         empid: model.empid,
                         strProfileOwner: empid !== undefined ? empid : ((model.Managementid) === 'true' ? (_.isArray(model.lstEmpnames) ? (model.lstEmpnames).join(',') : '') : model.empid),
@@ -134,17 +133,17 @@
 
                                 if (parseInt(model.frompage) === 1) {
                                     model.totalRecords = response.data[0].TotalRows;
-                                    model.slides = [];
-                                    model.setSlides(response.data, 10, 'normal');
+                                    config.slides = [];
+                                    config.setSlides(response.data, 10, 'normal');
                                 } else {
-                                    model.addSlides(response.data, model.slides, parseInt(model.topage), 'normal');
+                                    config.addSlides(response.data, config.slides, parseInt(model.topage), 'normal');
                                 }
                             }
                         } else {
 
                             if (parseInt(model.frompage) === 1) {
                                 model.totalRecords = 0;
-                                model.slides = [];
+                                config.slides = [];
                             }
                         }
                     });
@@ -171,7 +170,7 @@
                 };
 
                 model.CondtionButtonClick = function(activeType, flag, flagClose, flagEmpwaiting) {
-                    model.slides = [];
+                    config.slides = [];
                     model.activebutton = activeType;
                     model.spflag = flag;
                     model.closeflag = flagClose;
@@ -476,7 +475,7 @@
                             if (obj.RelationID !== undefined) {
                                 relation = (_.where(arrayConstants.childStayingWith, { value: parseInt(obj.RelationID) }))[0].label;
                             }
-                            _.each(model.slides, function(item) {
+                            _.each(config.slides, function(item) {
                                 if (model.ActionTicket === item.FromTicket && replyTypedisplay !== 'Close') {
                                     item.FromTicketHisoryType = replyTypedisplay;
                                     item.FromTicketInfo = replyTypedisplay + ' done on ' + curdate + '(0 days ago)';

@@ -79,7 +79,6 @@
                 { text: 'EnteredBy', key: 'EnteredBy', type: 'customlink', templateUrl: model.EnteredBytext }
             ];
             model.MyProfilePageLoad = function() {
-                debugger;
                 assignSettingsService.getMyprofilebind(1, 2, '').then(function(response) {
                     model.applicationStatusarray = [];
                     model.Castearray = [];

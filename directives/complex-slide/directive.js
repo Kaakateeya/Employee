@@ -48,7 +48,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.$watch('activeslide', function(news, old) {
                     if (news !== undefined && news !== "" && news !== null) {
                         $scope.Viwedslide = news > $scope.Viwedslide ? news : $scope.Viwedslide;
-                        $scope.config.slidebind(old, news, $scope.model.slides, $scope.model.typeofPage);
+                        $scope.model.slidebind(old, news, $scope.model.slides, $scope.model.typeofPage);
                     } else {
                         $scope.Viwedslide = 0;
                     }
@@ -111,12 +111,11 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     window.open("EmployeePayments" + "?idsss=" + ProfileID, "_blank");
                 };
                 $scope.tickethistoryupdate = function(matkteingticket) {
-                    debugger;
                     $scope.model.marketingTicket = matkteingticket;
                     modelpopupopenmethod.showPopupphotopoup('marketpopup.html', $scope, 'md', "modalclassdashboardphotopopup");
                 };
-                $scope.photorequest = function(ProfileID, empid) {
-                    helperservice.PhotoRequest(ProfileID, empid).then(function(response) {
+                $scope.photorequest = function(ProfileID, empid, ticketid) {
+                    helperservice.PhotoRequest(ProfileID, empid, ticketid).then(function(response) {
                         if (response !== undefined && response !== null && response !== "" && response.data !== undefined) {
                             if (response.data === 1) {
                                 alerts.timeoutoldalerts($scope, 'alert-success', 'PhotoRequest send successfully', 4000);

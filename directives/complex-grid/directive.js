@@ -58,12 +58,10 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     return paid;
                 };
                 scope.tickethistoryupdate = function(matkteingticket) {
-                    debugger;
                     scope.marketingTicket = matkteingticket;
                     commonpage.showPopupphotopoup('marketgrid.html', scope, 'md', "modalclassdashboardphotopopup");
                 };
                 scope.ViewTicket = function(row) {
-                    debugger;
                     var paid = "<a style='cursor:pointer;' ng-click='tickethistoryupdate(135731)'  href='javascript:void(0);'>View</a>";
                     return paid;
                 };

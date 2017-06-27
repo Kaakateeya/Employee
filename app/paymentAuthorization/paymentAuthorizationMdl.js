@@ -56,8 +56,6 @@
 
                 paymentAuthorizationService.CustomerUnauthorizedPayments(inObj).then(function(response) {
                     if (response.data) {
-                        console.log(response.data[1]);
-                        console.log(response.data[0]);
                         if ((response.data[0]).length) {
                             model.TotalRows = (response.data[0]).length;
                             model.mainArray = response.data[0];
