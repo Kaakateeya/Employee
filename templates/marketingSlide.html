@@ -7,8 +7,8 @@
                         <img ng-src="{{slide.EmpPhoto}}" height="57px" width="57px">
                     </div>{{slide.EmpName}}<br><br>
                     <div ng-show="model.guestticketFlag!==1 && slide.CustID">
-                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag!==1" ng-click="config.openSmsMail('sms',slide.CustomerName,slide.ProfileID,slide.PrimaryEmail,slide.PrimaryContactNumber,slide.PrimaryContactNumberCountyCode,slide.Emp_Ticket_ID,slide.EmpName);">Send SMS</a>
-                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag!==1" ng-click="config.openSmsMail('mail',slide.CustomerName,slide.ProfileID,slide.PrimaryEmail,slide.PrimaryContactNumber,slide.PrimaryContactNumberCountyCode,slide.Emp_Ticket_ID);">Send Mail</a>
+                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag!==1" ng-click="model.openSmsMail('sms',slide.CustomerName,slide.ProfileID,slide.PrimaryEmail,slide.PrimaryContactNumber,slide.PrimaryContactNumberCountyCode,slide.Emp_Ticket_ID,slide.EmpName);">Send SMS</a>
+                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag!==1" ng-click="model.openSmsMail('mail',slide.CustomerName,slide.ProfileID,slide.PrimaryEmail,slide.PrimaryContactNumber,slide.PrimaryContactNumberCountyCode,slide.Emp_Ticket_ID);">Send Mail</a>
                         <a href="javascript:void(0);" style="display:none;" class="btn btn-success-outline">Missing Fields</a>
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="slide.Photo.indexOf('noimage') !== -1 && slide.Photo.indexOf('_Rev') === -1 && model.siblingsFlag!==1" ng-click="model.PhotoRequest(slide);">Photo Request</a>
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="!slide.Lastlogin  && model.siblingsFlag!==1" ng-click="model.forgetpassword(slide.ProfileID);">Forgot Password</a>
