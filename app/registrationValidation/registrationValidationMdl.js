@@ -6,7 +6,8 @@
         .factory('registrationValidationModel', ['registrationValidationservice', 'authSvc', 'complex-grid-config', 'alert', 'complex-slide-config', 'modelpopupopenmethod', 'single-grid-config', function(svc, authSvc, gridConfig, alertss, slideConfig, modelpopupopenmethod, sinlegrid) {
             var model = {},
                 empid = '';
-            model.slide = slideConfig;
+            model.slide = {};
+            model.slide.config = slideConfig;
             model.SingleGrid = sinlegrid;
             model.scope = {};
             model.grid = {};
@@ -146,12 +147,13 @@
 
                             } else if (typeofbind === 'slide') {
                                 model.topage = to;
+                                model.slide.headervisileble = true;
                                 model.slide.totalRecords = response.data[0].TotalRows;
                                 if (parseInt(from) === 1) {
-                                    model.slide.setSlides(response.data, model.topage, "regvali");
+                                    slideConfig.setSlides(response.data, model.topage, "regvali");
                                     modelpopupopenmethod.showPopup('myprofileSlide.html', model.scope, 'lg', "myregvaliprofile");
                                 } else {
-                                    model.slide.addSlides(response.data, model.slides, parseInt(to), "regvali");
+                                    slideConfig.addSlides(response.data, model.slides, parseInt(to), "regvali");
                                 }
 
                             } else {
@@ -178,7 +180,7 @@
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter atleast one field', 4500);
                 }
             };
-            model.slide.slidebind = function(old, news, array) {
+            slideConfig.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
                     model.getSearchData((model.topage) + 1, (model.topage) + 10, 'slide', model.ddlApplicationStatus);
                 }
@@ -203,6 +205,11 @@
                 model.grid.TotalRows = '';
                 model.opendiv = false;
             };
+
+            model.destroy = function() {
+                slideConfig.reset();
+            };
+
             return model.init();
 
         }]);

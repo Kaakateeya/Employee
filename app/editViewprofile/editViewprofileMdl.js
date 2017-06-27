@@ -321,7 +321,9 @@
             //         }
             //     });
             // };
-
+            model.destroy = function() {
+                configslide.reset();
+            };
             return model.init();
         };
     }

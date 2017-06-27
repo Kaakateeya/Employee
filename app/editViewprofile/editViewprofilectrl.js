@@ -22,6 +22,10 @@
             vm.model.showplus = true;
             model.slide.templateUrl = "templates/myprofileSlide.html";
             model.slide.headettemp = "myprofileheader.html";
+            scope.$on("$destroy", vm.destroy);
+        };
+        vm.destroy = function() {
+            model.destroy();
         };
 
         vm.init();
