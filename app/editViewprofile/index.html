@@ -226,6 +226,12 @@
         <br>
     </script>
     <script type="text/ng-template" id="slideshoweditd.html">
-        <complex-slide config="page.model.slide" model="page.model.slide"></complex-grid>
+        <complex-slide config="page.model.slide.config" model="page.model.slide"></complex-grid>
     </script>
 </div>
+
+<script type="text/ng-template" id="market.html">
+    <div class="modal-body">
+        <market-tickethistory ticketid="page.model.marketingTicketid"></market-tickethistory>
+    </div>
+</script>
