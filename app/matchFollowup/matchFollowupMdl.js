@@ -88,8 +88,6 @@
                     { id: 6, text: 'There is financial incompatibility' },
                     { id: 7, text: 'Is not satisfied with the photos provided' }
                 ];
-
-
                 model.matchFollowupSelect = function(empid, custID, typeofpopup) {
                     var inputobj = {
                         empid: model.empid,
@@ -120,9 +118,7 @@
                                 item.ToOfflineExpiryDate = moment(currentdate).isAfter(moment(item.ToOfflineExpiryDate).format("YYYY-MM-DD")) || item.TofflineDetails == "Offline : Unpaid" ? "Unpaidcust" : "";
                                 item.ToonlineExpiryDate = moment(currentdate).isAfter(moment(item.ToonlineExpiryDate).format("YYYY-MM-DD")) || item.ToonlineDetails == "Online : Unpaid" ? "Unpaidcust" : "";
                             });
-                            debugger;
                             if (typeofpopup === 'proceedpopup') {
-
                                 if (parseInt(model.proceed.frompage) === 1) {
                                     model.proceed.config.slides = [];
                                     model.proceed.config.slides = response.data;
@@ -131,7 +127,6 @@
                                     model.proceed.config.slides = $.merge(model.proceed.slides, response.data);
                                 }
                             } else {
-
                                 if (parseInt(model.frompage) === 1) {
                                     model.totalRecords = response.data[0].TotalRows;
                                     model.config.slides = [];
@@ -141,7 +136,6 @@
                                 }
                             }
                         } else {
-
                             if (parseInt(model.frompage) === 1) {
                                 model.totalRecords = 0;
                                 config.slides = [];
@@ -151,7 +145,6 @@
                 };
 
                 config.slidebind = function(old, news, array, type) {
-
                     model.frompopoverIsOpen = false;
                     model.topopoverIsOpen = false;
                     if (parseInt(model.topage) - parseInt(news) === 4) {
@@ -160,10 +153,7 @@
                         model.matchFollowupSelect();
                     }
                 };
-
-
                 model.proceed.config.slidebind = function(old, news, array, type) {
-
                     model.proceed.frompopoverIsOpen = false;
                     model.proceed.topopoverIsOpen = false;
                     if (parseInt(model.proceed.topage) - parseInt(news) === 4) {
@@ -171,9 +161,7 @@
                         model.proceed.topage = parseInt(model.proceed.topage) + 10;
                         model.matchFollowupSelect(undefined, model.custid, 'proceedpopup');
                     }
-
                 };
-
                 model.CondtionButtonClick = function(activeType, flag, flagClose, flagEmpwaiting) {
                     config.slides = [];
                     model.activebutton = activeType;
@@ -185,7 +173,6 @@
                     model.matchFollowupSelect();
                     model.activeslide = 0;
                 };
-
                 model.regionChange = function(parent) {
                     model.BranchName = [];
                     model.BranchName = Commondependency.BranchNamebind((parent !== undefined && parent !== null && parent !== "") ? (parent).toString() : "");

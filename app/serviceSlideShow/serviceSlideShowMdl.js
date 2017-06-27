@@ -1,10 +1,10 @@
 (function() {
     'use strict';
-
-    function factory($http, serviceSlideShowService, slideconfig, helpService, alerts, modelpopupopenmethod) {
-        return function() {
+    angular
+        .module('Kaakateeya')
+        .factory('serviceSlideShowModel', ['$http', 'serviceSlideShowService', 'complex-slide-config', 'helperservice', 'alert', 'modelpopupopenmethod', function($http, serviceSlideShowService, slideconfig, helpService, alerts, modelpopupopenmethod) {
             var model = {};
-            model = slideconfig;
+            model.config = slideconfig;
             model.opendiv = false;
             model.getstatus = function(val) {
                 var oppositestatus = "";
@@ -127,7 +127,7 @@
             };
             model.serviceslideshowsubmit = function(profileid, frompage, topage) {
                 if (parseInt(frompage) === 1) {
-                    model.slides = [];
+                    slideconfig.slides = [];
                 }
                 model.Intetestflag(model.typeofbind);
                 model.topage = topage;
@@ -147,19 +147,19 @@
                         });
                         if (parseInt(frompage) === 1) {
                             model.datapersonal = true;
-                            model.slides = [];
+                            slideconfig.slides = [];
                             model.servicepersonalarray = response.data[1].BothsideInterest;
                         }
                         if (parseInt(frompage) === 1) {
                             model.totalRecords = parseInt(frompage) === 1 && response !== undefined && response.data !== undefined && model.serviceslideshowarray.length > 0 ? model.serviceslideshowarray[0].TotalRows : 0;
-                            model.setSlides(model.displayArrayprofile(model.serviceslideshowarray, 10), 10, 'normal');
+                            slideconfig.setSlides(model.displayArrayprofile(model.serviceslideshowarray, 10), 10, 'normal');
                         } else {
-                            model.addSlides(model.displayArrayprofile(model.serviceslideshowarray, 11), model.serviceslideshowarray, 11, 'normal');
+                            slideconfig.addSlides(model.displayArrayprofile(model.serviceslideshowarray, 11), model.serviceslideshowarray, 11, 'normal');
                         }
                     }
                 });
             };
-            model.slidebind = function(old, news, array) {
+            slideconfig.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
                     model.serviceslideshowsubmit(model.viewsettlementprofileid, (model.topage) + 1, (model.topage) + 10);
                 }
@@ -224,12 +224,10 @@
                 model.TicketStatusID = TicketStatusID;
                 modelpopupopenmethod.showPopupphotopoup('matchfollowup.html', model.scope, 'md', "modalclassdashboardphotopopup");
             };
-            return model;
-        };
-    }
-    angular
-        .module('Kaakateeya')
-        .factory('serviceSlideShowModel', factory);
+            model.close = function() {
+                modelpopupopenmethod.closepopuppoptopopup();
+            };
 
-    factory.$inject = ['$http', 'serviceSlideShowService', 'complex-slide-config', 'helperservice', 'alert', 'modelpopupopenmethod'];
+            return model;
+        }]);
 })();

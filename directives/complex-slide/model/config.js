@@ -15,7 +15,6 @@
         };
         model.setSlides = function(data, topage, typeofpage) {
             model.slides = [];
-            debugger;
             if (typeofpage === 'normal') {
                 model.slides = data;
             } else if (typeofpage === 'myprofile') {
@@ -40,7 +39,6 @@
         };
         model.displayArray = function(arr, topage, typebind) {
             model.headervisileble = true;
-            debugger;
             if (topage === parseInt(10)) {
                 model.slides = [];
             }
@@ -205,8 +203,6 @@
                         model.data.push({ label: 'ServiceDate', value: item.serviceDate, style: 'color:red;' });
                     if (item.Intercaste == "True")
                         model.data.push({ label: 'Intercaste', value: (item.fathercaste + "/" + item.mothercaste) });
-                    // if (item.ProfileGrade !== 0)
-                    //     model.data.push({ label: 'ProfileGrade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
                     model.slides.push({
                         itmArr: model.data,
                         custPhoto: item.CustomerFullPhoto || item.Photo,

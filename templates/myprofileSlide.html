@@ -66,7 +66,7 @@
 </div>
 <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="margin-top: -4px;">
     <div class="row">
-        <img ng-click="slidepopup(slide.Custid)" ng-src="{{slide.custPhoto}}" class="image" style="cursor: pointer;" />
+        <img ng-click="slidepopup(slide.Custid)" ng-src="{{slide.custPhoto}}" class="image" style="cursor: pointer;width:250px;height:250px;" />
         <br>
         <div ng-if="slide.PhotoCount!==0" class="col-lg-8 col-lg-offset-3"><a href="javascript:void(0)"><span style="color:Black;font-size:9pt;">No of Photos {{slide.PhotoCount}}</span></a></div>
         <div ng-if="slide.PhotoCount===0" class="col-lg-8 col-lg-offset-3"><a href="javascript:void(0)" ng-click="photorequest(slide.ProfileID,model.empid)"><span style="color:#3030d8;font-size:10pt;">Photo Request</span></a></div>
@@ -121,7 +121,7 @@
         </div>
     </div>
     <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-        <div style="" class="edit_page_details_item_descsearch clearfix">
+        <div class="edit_page_details_item_descsearch clearfix">
             <h6> <span style="font-weight: bold;"> Primary Mobile
            </span></h6>
             <h5>

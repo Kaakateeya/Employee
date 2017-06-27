@@ -3,19 +3,13 @@
 
     angular
         .module('Kaakateeya')
-        .factory('registrationValidationModel', factory)
-
-    factory.$inject = ['registrationValidationservice', 'authSvc', 'complex-grid-config', 'alert', 'complex-slide-config', 'modelpopupopenmethod', 'single-grid-config'];
-
-    function factory(svc, authSvc, gridConfig, alertss, slideConfig, modelpopupopenmethod, sinlegrid) {
-        return function() {
+        .factory('registrationValidationModel', ['registrationValidationservice', 'authSvc', 'complex-grid-config', 'alert', 'complex-slide-config', 'modelpopupopenmethod', 'single-grid-config', function(svc, authSvc, gridConfig, alertss, slideConfig, modelpopupopenmethod, sinlegrid) {
             var model = {},
                 empid = '';
-            model.grid = gridConfig;
             model.slide = slideConfig;
             model.SingleGrid = sinlegrid;
             model.scope = {};
-
+            model.grid = {};
             //grid
             model.opendiv = true;
             model.grid.gridTableshow = true;
@@ -25,12 +19,9 @@
             model.grid.myprofileexcel = true;
             model.grid.normalexcel = true;
             model.grid.showplus = true;
-
             //slide
-
             model.slide.templateUrl = "templates/myprofileSlide.html";
             model.slide.headettemp = "templates/myprofileheader.html";
-
             model.applicationstatusArr = [
                 { "label": "-- Select All --", "title": "-- Select All --", "value": '' },
                 { "label": "Active", "title": "Active", "value": 54 },
@@ -39,11 +30,9 @@
                 { "label": "Settled/WaitingforSetldAuth", "title": "Settled/WaitingforSetldAuth", "value": 57 },
                 { "label": "MMSerious", "title": "MMSerious", "value": 395 }
             ];
-
             model.close = function() {
                 modelpopupopenmethod.closepopuppoptopopup();
             };
-
             model.slide.close = function() {
                 modelpopupopenmethod.closepopuppoptopopup();
             };
@@ -51,11 +40,9 @@
                 modelpopupopenmethod.closepopup();
             };
             model.init = function() {
-
                 empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 model.grid.columns = [
                     { text: 'Profile ID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
-                    // { text: '', key: '', type: 'play', method: model.playFunction },
                     { text: 'FirstName', key: 'FirstName', type: 'label' },
                     { text: 'LastName', key: 'LastName', type: 'label' },
                     { text: 'Caste', key: 'Caste', type: 'label' },
@@ -98,11 +85,9 @@
                 model.getSearchData(from, to, 'grid', model.ddlApplicationStatus);
             };
             model.getSearchData = function(from, to, typeofbind, ApplicationStatus) {
-
                 if (model.checkTxt(model.txtFFMFNATIVE) !== '' || model.checkTxt(model.txtFatherName) !== '' || model.checkTxt(model.txtMotherName) !== '' || model.checkTxt(model.txtFFName) !== '' || model.checkTxt(model.txtMFName) !== '' ||
                     model.checkTxt(model.txtMFSurName) !== '' || model.checkTxt(model.txtCFFFSurName) !== '' || model.checkTxt(model.txtCName) !== '' || model.checkTxt(model.ddlCaste) !== '' ||
                     model.checkTxt(model.txtAllPhones) !== '' || model.checkTxt(model.txtAllEmails) !== '' || model.checkTxt(model.ddlApplicationStatus) || model.checkTxt(model.rbtGender) !== '') {
-
                     var input = {
                         strMFFNativePlace: model.checkTxt(model.txtFFMFNATIVE),
                         strFatherName: model.checkTxt(model.txtFatherName),
@@ -123,7 +108,6 @@
                     };
                     svc.getRegSearchProfile(input).then(function(response) {
                         if (_.isArray(response.data) && response.data.length > 0) {
-
                             if (typeofbind === "export") {
                                 model.grid.exportarray = [];
                                 model.grid.exportarray = response.data;
@@ -183,7 +167,7 @@
                                 model.inactiveCount = response.data[0].InActiveCount;
                                 model.mmserisCount = response.data[0].MMSerious;
                                 model.grid.TotalRows = response.data[0].TotalRows;
-                                model.grid.setData(response.data);
+                                model.grid.data = (response.data);
                             }
                         } else {
                             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 4500);
@@ -194,13 +178,11 @@
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter atleast one field', 4500);
                 }
             };
-
             model.slide.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
                     model.getSearchData((model.topage) + 1, (model.topage) + 10, 'slide', model.ddlApplicationStatus);
                 }
             };
-
             model.reset = function() {
                 model.txtFFMFNATIVE =
                     model.txtFatherName =
@@ -219,9 +201,10 @@
             model.backtosearch = function() {
                 model.grid.data = [];
                 model.grid.TotalRows = '';
-                model.opendiv = false;;
+                model.opendiv = false;
             };
             return model.init();
-        }
-    }
+
+        }]);
+
 })();

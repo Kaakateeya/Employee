@@ -27,85 +27,23 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="row">
-                    <div class="col-lg-1">
-                        <label class="row">Profileid</label>
-                    </div>
-                    <div class="col-lg-2">
-                        <input focus-me="true" ng-keyup="$event.keyCode == 13 && page.model.serviceslideshowsubmit(page.model.viewsettlementprofileid,1,10)" maxlength="11" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" class="form-control" type="text" ng-model="page.model.viewsettlementprofileid"></input>
-                    </div>
-                    <div class="col-lg-1">
-                        <button class="btn btn-danger" ng-click="page.model.serviceslideshowsubmit(page.model.viewsettlementprofileid,1,10)">Submit</button>
-                    </div>
-                    <div class="col-lg-6" style="margin-top: -10px;" ng-show="page.model.datapersonal">
-                        <div class="col-lg-2">
-                            <img style="height: 54px; width: 64px;" ng-src="{{page.model.servicepersonalarray[0].ApplicationPhoto}}"></img>
-                        </div>
-                        <div class="col-lg-7"><label style="color: #504848;">{{page.model.servicepersonalarray[0].FromName}}</label> </div>
-                        <br>
-                        <div class="col-lg-4"><a href="javascript:void(0);" ng-click="page.model.ViewProfilewithvalueredirect(page.model.servicepersonalarray[0].FromProfileid)"> View Full Profile </a></div>
-                    </div>
-                </div>-->
+
         </div>
     </div>
-
-    <!--<div class="modal-header" style="border-bottom: 1px solid #ffffff;">
-        <div class="row" style="display: block; border: 1px solid rgb(210, 201, 199); border-radius: 12px; padding: 5px;">
-            <div class="form-group" style="width: 185px; margin-top: -15px; margin-left: 5px; background: white;">
-                <a href="javascript:void(0);" ng-click="page.model.showcontrolsdiv=!page.model.showcontrolsdiv">
-                    <h4 class="" style="margin-left: 10px; color: rgb(160, 2, 1);font-size: 16px;">Search Slide Show<span ng-class="{'indicator glyphicon glyphicon-chevron-up':page.model.showcontrolsdiv,'indicator glyphicon glyphicon-chevron-down':!page.model.showcontrolsdiv}" style="margin-left: 7px; margin-right: 5px;"></span></h4>
-                </a>
-            </div>
-            <br>
-            <div class="row" ng-show="page.model.showcontrolsdiv">
-                <div class="col-lg-6">
-                    <md-radio-group layout="row" ng-change="page.model.serviceslideshowsubmit(page.model.viewsettlementprofileid,1,10)" ng-model="page.model.typeofbind" class="md-block" flex-gt-sm>
-                        <md-radio-button value="0"> All</md-radio-button>
-                        <md-radio-button value="1"> Proceed </md-radio-button>
-                        <md-radio-button value="2"> DProceed </md-radio-button>
-                        <md-radio-button value="3"> View </md-radio-button>
-                        <md-radio-button value="4"> Notview </md-radio-button>
-                        <md-radio-button value="5"> BI </md-radio-button>
-                        <md-radio-button value="6"> OPPI</md-radio-button>
-                    </md-radio-group>
-                    <br>
-                    <div class="col-lg-2">
-                        <label class="row">Profileid</label>
-                    </div>
-                    <div class="col-lg-4">
-                        <input focus-me="true" ng-keyup="$event.keyCode == 13 && page.model.serviceslideshowsubmit(page.model.viewsettlementprofileid,1,10)" maxlength="11" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" class="form-control" type="text" ng-model="page.model.viewsettlementprofileid"></input>
-                    </div>
-                    <div class="col-lg-1">
-                        <button class="btn btn-danger" ng-click="page.model.serviceslideshowsubmit(page.model.viewsettlementprofileid,1,10)">Submit</button>
-                    </div>
-                </div>
-                <div class="col-lg-5" ng-show="page.model.datapersonal">
-                    <div class="col-lg-3">
-                        <img style="height: 74px; width: 74px;" ng-src="{{page.model.servicepersonalarray[0].ApplicationPhoto}}"></img>
-                    </div>
-                    <div class="col-lg-7"><label style="color: #504848;">{{page.model.servicepersonalarray[0].FromName}}</label> </div>
-                    <br>
-                    <br>
-                    <div class="col-lg-4"><a href="javascript:void(0);" ng-click="page.model.ViewProfilewithvalueredirect(page.model.servicepersonalarray[0].FromProfileid)"> View Full Profile </a></div>
-                </div>
-            </div>
-        </div>
-    </div>-->
-
     <div class="row">
-        <complex-slide model="page.model" config="page.model"></complex-slide>
+        <complex-slide model="page.model" config="page.model.config"></complex-slide>
     </div>
 </div>
 <script type="text/ng-template" id="seviceslideshowheader.html">
     <div class="row">
         <div class="col-lg-12">
             <div class="col-lg-6">
-                <div class="col-lg-7 col-md-7 col-xs-7 col-sm-7" ng-show="model.slides.length>0">
+                <div class="col-lg-7 col-md-7 col-xs-7 col-sm-7" ng-show="config.slides.length>0">
                     <label id="lbltotalrecords">Total Records :</label>
                     <label id="lblcurrentprofile">{{(activeslide)+1}}</label> &nbsp;of&nbsp;
                     <label id="lblcurSlide">{{model.totalRecords}}</label>
                 </div>
-                <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5" ng-show="model.slides.length>0">
+                <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5" ng-show="config.slides.length>0">
                     <div class="col-lg-10 col-md-10 col-xs-10 col-sm-10">
                         <label>Viewed</label>&nbsp;<label data-ng-bind="slidNum" style="color: blue;">{{(Viwedslide)+1}}</label>&nbsp;<label>Profiles</label>
                     </div>

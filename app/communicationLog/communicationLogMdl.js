@@ -1,8 +1,8 @@
 (function(angular) {
     'use strict';
-
-    function factory($http, communicationLogService, gridconfig, modelpopupopenmethod, alerts) {
-        return function() {
+    angular
+        .module('Kaakateeya')
+        .factory('communicationLogModel', ['$http', 'communicationLogService', 'complex-grid-config', 'modelpopupopenmethod', 'alert', function($http, communicationLogService, gridconfig, modelpopupopenmethod, alerts) {
             var model = {};
             model.gridtable1 = {};
             model.gridtable2 = {};
@@ -278,13 +278,6 @@
                         break;
                 }
             };
-
             return model;
-        };
-    }
-    angular
-        .module('Kaakateeya')
-        .factory('communicationLogModel', factory);
-
-    factory.$inject = ['$http', 'communicationLogService', 'complex-grid-config', 'modelpopupopenmethod', 'alert'];
+        }]);
 })(angular);

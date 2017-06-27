@@ -1,10 +1,9 @@
 (function(angular) {
     'use strict';
-
-    function factory(assignSettingsService, configgrid, filter, helpService, alerts, timeout) {
-        return function() {
+    angular
+        .module('Kaakateeya')
+        .factory('assignSettingsModel', ['assignSettingsService', 'complex-grid-config', '$filter', 'helperservice', 'alert', '$timeout', function(assignSettingsService, configgrid, filter, helpService, alerts, timeout) {
             var model = {};
-            model = configgrid;
             model.mpObj = {};
             model.opendiv = true;
             model.showsearchrows = true;
@@ -31,8 +30,6 @@
             model.populateGridDropdowns = function(arr) {
                 _.each(arr, function(item) {
                     model['ddlProfileowner' + item.SNO] = model.checkPopulateval(item.ProfileOwner);
-                    // model['ddlmarketingowner' + item.SNO] = model.checkPopulateval(item.MarketedOwner);
-                    // model['ddlreviweedowner' + item.SNO] = model.checkPopulateval(item.ReviewOwner);
                 });
             };
             model.checkPopulateval = function(val) {
@@ -95,7 +92,6 @@
                                 break;
                             case "Profile Owner":
                                 model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID, "display": item.Name });
-                                // model.ProfileOwnerarray = [];
                                 break;
                             case "Branch":
                                 model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
@@ -133,12 +129,13 @@
                     PaymentStatus: obj.rdnPayments && obj.rdnPayments !== "0" ? obj.rdnPayments : null
                 };
                 assignSettingsService.submitassignsettings(mobj).then(function(response) {
+                    model.opendiv = false;
                     if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
                         if (from === 1) {
                             model.TotalRows = response.data[0][0].TotalRows;
                         }
                         if (type === 'grid') {
-                            model.setData(response.data[0]);
+                            model.data = response.data[0];
                         } else {
                             model.exportarray = [];
                             model.exportarray = response.data[0];
@@ -163,7 +160,6 @@
                             alasql('SELECT ProfileID,GenderID as Gender,PaymentTcktID,ReviewTcktID,PhotoTcktID INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
                         }
                     }
-                    model.opendiv = false;
                     model.populateGridDropdowns(response.data[0]);
                 });
             };
@@ -176,15 +172,12 @@
             model.exportexcel = function(topage) {
                 model.assignsettingssubmit(model.mpObj, 1, topage, 'excel', 10000, 10);
             };
-
             model.reset = function() {
                 model.assignsettingsdata = [];
                 model.mpObj.rdnGender = "";
                 model.mpObj.rdnPayments = "0";
                 model.mpObj.txtProfileID =
-                    // model.mpObj.txtRegFromDate =
                     model.mpObj.chkconfidential = '';
-                // model.mpObj.txtRegtoDate = '';
                 model.mpObj.ddlApplicationStatus = [54];
                 model.mpObj.ddlCaste = [402];
                 _.each(model.Brancharray, function(item) {
@@ -192,22 +185,7 @@
                 });
                 model.mpObj.txtRegFromDate = '';
                 model.mpObj.txtRegtoDate = '';
-                // timeout(function() {
-                //     scope.$apply(function() {
-
-                //     });
-                // }, 1000);
-
-
-
             };
-
             return model;
-        };
-    }
-    angular
-        .module('Kaakateeya')
-        .factory('assignSettingsModel', factory);
-
-    factory.$inject = ['assignSettingsService', 'complex-grid-config', '$filter', 'helperservice', 'alert', '$timeout'];
+        }]);
 })(angular);

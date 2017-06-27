@@ -3,8 +3,7 @@
 
     angular
         .module('Kaakateeya')
-        .factory('registrationValidationservice', factory)
-
+        .factory('registrationValidationservice', factory);
     factory.$inject = ['$http'];
 
     function factory(http) {
