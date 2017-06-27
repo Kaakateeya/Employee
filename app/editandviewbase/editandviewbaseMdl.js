@@ -35,7 +35,7 @@
                         }
                     ]
                 };
-                alasql('SELECT Sno,Profileid,Name,Date INTO  XLSX("john.xlsx",?) FROM ?', [options, model.exportDataarray]);
+                alasql('SELECT Sno,Profileid,Name,Date INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportDataarray]);
             };
             model.tabledata = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
                 dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {

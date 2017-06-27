@@ -43,7 +43,7 @@
                             }
                         ]
                     };
-                    alasql('SELECT Sno,Profileid,Name,Date INTO  XLSX("john.xlsx",?) FROM ?', [options, model.exportDataarray]);
+                    alasql('SELECT Sno,Profileid,Name,Date INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportDataarray]);
                 };
                 model.dateOptions = {
                     changeMonth: true,

@@ -318,7 +318,7 @@
                                 var options = {
                                     headers: true
                                 };
-                                alasql('SELECT ProfileID,FirstName,LastName as SurName,Caste,MaritalStatus,DOB(Age),Gender,Height,EducationGroup,Profession,joblocation,countrylivingin,Fathernative,Mothernative INTO  XLSX("john.xlsx",?) FROM ?', [options, model.exportarray]);
+                                alasql('SELECT ProfileID,FirstName,LastName as SurName,Caste,MaritalStatus,DOB(Age),Gender,Height,EducationGroup,Profession,joblocation,countrylivingin,Fathernative,Mothernative INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
                             } else {
                                 _.each(response.data, function(item) {
                                     model.slideshowarray.push(item);
@@ -408,7 +408,7 @@
                                 var options = {
                                     headers: true
                                 };
-                                alasql('SELECT ProfileID,FirstName,LastName as SurName,Caste,MaritalStatus,DOB(Age),Gender,Height,EducationGroup,Profession,joblocation,countrylivingin,Fathernative,Mothernative INTO  XLSX("john.xlsx",?) FROM ?', [options, model.exportarray]);
+                                alasql('SELECT ProfileID,FirstName,LastName as SurName,Caste,MaritalStatus,DOB(Age),Gender,Height,EducationGroup,Profession,joblocation,countrylivingin,Fathernative,Mothernative INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
                             } else {
                                 _.each(response.data, function(item) {
                                     model.slideshowarray.push(item);
