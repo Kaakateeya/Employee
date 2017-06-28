@@ -271,7 +271,7 @@
                     modelpopupopenmethod.closepopup();
                 };
 
-                model.slide.slidebind = function(old, news, array) {
+                configslide.slidebind = function(old, news, array) {
                     if (parseInt(model.topage) - parseInt(news) === 4) {
                         model.MyprofileResult(model.mpObj, (model.topage) + 1, (model.topage) + 10, 'slide', 0);
                     }
@@ -291,6 +291,10 @@
                 };
                 model.destroy = function() {
                     configslide.reset();
+                };
+                model.slide.tickethistorypopup = function(TicketID) {
+                    model.marketingTicketid = TicketID;
+                    commonpage.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
                 };
                 return model.MyProfilePageLoad();
             }

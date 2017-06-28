@@ -92,7 +92,7 @@
                         CasteID: item.CasteID,
 
                         Tickets: item.Tickets,
-                        TicketID: item.TicketID,
+                        TicketID: item.Emp_Ticket_ID,
                         onlinepaidcls: item.onlinepaidcls,
                         onlinepaid: item.onlinepaid,
                         offlinepaidcls: item.offlinepaidcls,
