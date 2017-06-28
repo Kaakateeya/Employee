@@ -50,11 +50,11 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                         alertss.timeoutoldalerts(scope, 'alert-danger', 'Allowed only for Admin or Management or profleOwners', 4500);
                 };
                 scope.viewSa = function(row) {
-                    var paid = row.Settle === null ? "view" : "<a style='cursor:pointer;' ng-click='showSAmethod(" + JSON.stringify(row.Settle) + ");' href='javascript:void(0);'>View</a>";
+                    var paid = row.Settle === null ? "NO" : "<a style='cursor:pointer;' ng-click='showSAmethod(" + JSON.stringify(row.Settle) + ");' href='javascript:void(0);'>View</a>";
                     return paid;
                 };
                 scope.ViewHoro = function(row) {
-                    var paid = (row.HoroPhotoName).indexOf('Horo_no') !== -1 ? "View" : "<a  href='javascript:void(0);' ng-click='showHoromethod(" + JSON.stringify(row.HoroPhotoName) + ");'>View</a>";
+                    var paid = (row.HoroPhotoName).indexOf('Horo_no') !== -1 ? "NO" : "<a  href='javascript:void(0);' ng-click='showHoromethod(" + JSON.stringify(row.HoroPhotoName) + ");'>View</a>";
                     return paid;
                 };
                 scope.tickethistoryupdate = function(matkteingticket) {

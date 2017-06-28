@@ -16,7 +16,7 @@
                  model.serviceslideshowarray = [];
                  model.servicepersonalarray = [];
                  model.templateUrl = "templates/serviceSlideshowSlide.html";
-                 model.headettemp = "seviceslideshowheader.html";
+                 model.config.headettemp = "seviceslideshowheader.html";
                  model.typeofbind = 0;
                  model.fromIntetestflag = null;
                  model.toIntetestflag = null;

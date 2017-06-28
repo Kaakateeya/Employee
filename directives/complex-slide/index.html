@@ -1,5 +1,5 @@
 <div ng-show="model.headervisileble">
-    <div ng-include="model.headettemp">
+    <div ng-include="config.headettemp">
     </div>
     <div uib-carousel active="activeslide" interval="myInterval" no-wrap="noWrapSlides" carousel-controls>
         <div uib-slide ng-repeat="slide in config.slides track by $index" index="$index">

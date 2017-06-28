@@ -21,7 +21,6 @@
                     model.logincounts = JSON.parse(response.data);
                 });
                 model.usernameemployeeid = sessionStorage.getItem("usernameemployeeid");
-                return model;
             };
 
 
@@ -95,7 +94,7 @@
             model.searchredirect = function(statename, id, Profileid) {
 
             };
-            return model.init();
+            return model;
         }]);
 
 })(angular);

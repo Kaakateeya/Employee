@@ -14,7 +14,7 @@
                 model.scope = {};
                 model.headervisileble = true;
                 model.templateUrl = "templates/marketingSlide.html";
-                model.headettemp = "templates/marketingSlideHeader.html";
+                model.config.headettemp = "templates/marketingSlideHeader.html";
                 model.EmpNamesArr = [];
                 model.ReplyArr = [];
                 model.topage = 1;
@@ -81,7 +81,7 @@
                     { id: 11, text: " Dear Member, lots of new matches are added on kaakateeya.com everyday. Don't miss, Login now and connect with them" },
                     { id: 12, text: 'We are trying to contact you for verification but not responding.So your profile will be deactivated , please contact us' },
                 ];
-                config.slidebind = function(old, news, array, type) {
+                model.slidebind = function(old, news, array, type) {
                     if (parseInt(model.topage) - parseInt(news) === 4) {
                         model.MarketingSlideShowBind(parseInt(model.topage) + 1, parseInt(model.topage) + 10);
                     }

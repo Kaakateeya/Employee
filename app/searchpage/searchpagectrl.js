@@ -9,7 +9,7 @@
              vm.init = function() {
                  vm.model = model = {};
                  vm.model = model = searchpageModel.pageload(scope);
-
+                 model.agedobcontrol = '2';
                  scope.$on("$destroy", vm.destroy);
              };
              vm.destroy = function() {

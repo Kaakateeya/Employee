@@ -6,7 +6,6 @@
 
             var model = {};
             var modelinactive = {};
-            model = config;
             model.slide = {};
             model.slide.config = configslide;
             model.showplus = true;
@@ -22,7 +21,7 @@
             model.myprofileexcel = false;
             model.normalexcel = false;
             model.slide.templateUrl = "templates/myprofileSlide.html";
-            model.slide.headettemp = "myprofileheader.html";
+            model.slide.config.headettemp = "myprofileheader.html";
             model.gridArray = [];
             model.init = function() {
                 modelinactive = {};
@@ -48,7 +47,7 @@
                     });
                     //Emp_Ticket_ID
                     model.datas.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
-                    model.datas.push({ label: 'Caste', value: item.MotherTongueName + "-" + item.CasteName });
+                    model.datas.push({ label: 'Caste', value: item.mothertongue + "-" + item.Caste });
                     model.datas.push({ label: 'Dor', value: item.RegistrationDate });
                     model.datas.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
                     model.slides.push({
@@ -59,12 +58,12 @@
                         logincount: item.LoginCount,
                         matkteingticket: item.TicketID,
                         matchmarktingcount: item.MatchMeetingCount,
-                        ownername: item.ProfileOwner,
+                        ownername: item.ProfileOwnername,
                         branch: item.KMPLID,
                         reg: item.RegistrationDate,
                         SAForm: item.SAForm,
                         primarynumber: item.Primarynumber,
-                        primaryemail: item.Email,
+                        primaryemail: item.Primaryemail,
                         CreatedDate: item.CreatedDate,
                         SRCount: item.SRCount,
                         PaidAmount: item.PaidAmount,
@@ -76,7 +75,7 @@
                         Reason4InActive: item.Reason4InActive,
                         ProfileID: item.ProfileID,
                         CountryCodeID: item.CountryCodeID,
-                        Cust_Family_ID: item.FamilyID,
+                        Cust_Family_ID: item.Cust_Family_ID,
                         PhotoCount: item.PhotoCount,
                         Age: item.Age,
                         HeightInCentimeters: item.HeightInCentimeters,
@@ -105,7 +104,6 @@
                         Profession: item.Profession,
                         PlaceOfBirth: item.PlaceOfBirth,
                         MFNative: item.MFNative
-
                     });
                 });
                 return model.slides;
@@ -217,7 +215,7 @@
                                 configslide.addSlides((model.displayArrayeidt(response.data, to)), response.data, parseInt(to), "normal");
                             }
                         } else {
-                            model.setData(response.data);
+                            model.data = (response.data);
                             model.gridArray = response.data;
                         }
                     } else {
@@ -286,7 +284,7 @@
                 model.ViewAllsubmit(model.obj, 1, 10, "slideshow");
             };
 
-            configslide.slidebind = function(old, news, array) {
+            model.slide.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
                     model.ViewAllsubmit(model.obj, (model.topage) + 1, (model.topage) + 10, "slideshow");
                 }

@@ -53,4 +53,9 @@ md-sidemenu-button > a {
   color: #16713d;
   font-weight: 700; }
 
+.modalclassdashboardremainder {
+  z-index: 9999999 !important;
+  top: 0%;
+  left: 0%; }
+
 /*# sourceMappingURL=style.css.map */

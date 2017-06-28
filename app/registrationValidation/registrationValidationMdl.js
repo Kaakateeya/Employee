@@ -22,7 +22,7 @@
             model.grid.showplus = true;
             //slide
             model.slide.templateUrl = "templates/myprofileSlide.html";
-            model.slide.headettemp = "templates/myprofileheader.html";
+            model.slide.config.headettemp = "templates/myprofileheader.html";
             model.applicationstatusArr = [
                 { "label": "-- Select All --", "title": "-- Select All --", "value": '' },
                 { "label": "Active", "title": "Active", "value": 54 },
@@ -180,7 +180,7 @@
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter atleast one field', 4500);
                 }
             };
-            slideConfig.slidebind = function(old, news, array) {
+            model.slide.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
                     model.getSearchData((model.topage) + 1, (model.topage) + 10, 'slide', model.ddlApplicationStatus);
                 }

@@ -15,7 +15,7 @@
             model.tabsshowhidecontrols = true;
             model.landingItems = [];
             model.templateUrl = "templates/dashBoardslide.html";
-            model.headettemp = "dashboardheader.html";
+            model.config.headettemp = "dashboardheader.html";
             model.exportData = function(id) {
                 var options = {
                     headers: true,
