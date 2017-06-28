@@ -125,7 +125,7 @@
                     window.open("EmployeePayments" + "?profileid=" + profileid, "_blank");
                 };
                 model.horoTemplate = function(row) {
-                    var paid = row.HoroscopeStatus === 1 ? "<img  src='src/images/ico_horoscope.jpg' class='horoImgcls'>" : "";
+                    var paid = row.HoroscopeStatus === 1 ? row.Row + "<img  src='src/images/ico_horoscope.jpg' class='horoImgcls'>" : row.Row + "";
                     return paid;
                 };
                 model.editviewRedirect = function(row) {
@@ -150,43 +150,29 @@
                         Empid: model.empid,
                         Kmpl: obj.txtKMPLID,
                         Profileid: obj.txtProfileID,
-                        //  model.chkVal(obj.txtProfileID),
                         HighConfidential: obj.chkHighConfidential,
                         Confidential: obj.chkIsConfidential,
                         Renewal: obj.chkRenewal,
                         GenderID: obj.rdnGender,
-                        // Gender: gettextradiobuttons(),
                         Surname: obj.txtSurName,
                         Chksurname: obj.chkSurName,
                         FirstName: obj.txtFirstname,
                         chkfirstname: obj.chkFirstname,
                         TypeofprofileID: obj.rdnprofileType,
-                        // TypeofProfile: getTexttypeofprofile(),
                         ApplicationstatusID: model.arrayToString(obj.ddlApplicationStatus),
-                        // Applicationstatus: getvaluestext('#lstapplicationstatus'),
                         MarketingownerID: model.arrayToString(obj.ddlMarketingOwner),
-                        // Marketingowner: getvaluestext('#ddlMarketingowner'),
                         BranchID: model.arrayToString(obj.ddlBranch),
-                        // Branch: getvaluestext('#lstbranch'),
                         CasteID: model.arrayToString(obj.ddlCaste),
-                        // Caste: getvaluestext('#ddlcaste'),
                         OwneroftheprofileID: model.arrayToString(obj.ddlProfileOwner),
-                        // Owneroftheprofile: getvaluestext('#OwneroftheProfile'),
                         HavingprofilesID: model.arrayToString(obj.ddlHavingProfiles),
-                        // Havingprofiles: gethavingprofiletext('#lsthavingprofiles'),
                         Assigneddatefromdate: obj.txtAssignFromdate !== '' && obj.txtAssignFromdate !== undefined ? filter('date')(obj.txtAssignFromdate, 'yyyy/MM/dd') : '',
-
                         Assigneddatetodate: obj.txtToAssignedDate !== '' && obj.txtToAssignedDate !== undefined ? filter('date')(obj.txtToAssignedDate, 'yyyy/MM/dd') : '',
                         DORFromdate: obj.txtRegFromDate !== '' && obj.txtRegFromDate !== undefined ? filter('date')(obj.txtRegFromDate, 'yyyy/MM/dd') : '',
-                        // helpService.checkstringvalue(model[item.ngModelFrom]) ? filter('date')(model[item.ngModelFrom], 'MM/dd/yyyy') : null;
                         DORTodate: obj.txtRegToDate !== '' && obj.txtRegToDate !== undefined ? filter('date')(obj.txtRegToDate, 'yyyy/MM/dd') : '',
                         FatherName: obj.txtFatherName,
                         MotherName: obj.txtMotherName,
                         LogoutId: obj.rdnWebsiteLogin,
-                        // Logout: gettextweblogin(),
                         chkKmplexperiry: obj.chkkmplExpiry,
-                        // previousownerID: getvalues('#lstpreviousowner'),
-                        // previousowner: getvaluestext('#lstpreviousowner'),
                         verfiedcontacts: obj.rdncontactsVerified,
                         WebsiteBlocked: obj.rdnWebsiteBlocked,
                         pagefrom: from,
