@@ -419,7 +419,7 @@
                         }
                     });
                 };
-                model.changereminder = function(slidearray) {
+                model.changereminders = function(slidearray) {
                     model.reminderslidearray = {};
                     model.reminderslidearray = slidearray;
                     model.txtprofileidreminder = slidearray.ProfileID;

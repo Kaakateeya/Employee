@@ -151,7 +151,7 @@
                     </span>
                     <span ng-show="model.typeofslidedate==='Reminder Date'">
                         {{slide.ReminderCreatedDate | date: "dd-MM-yyyy"}}
-                     <a class="alllinkscolor" href="javascript:void(0)" ng-click="model.changereminder(slide)" ng-if="slide.ReminderCreatedDate!==null && slide.ReminderCreatedDate!=='' && slide.ReminderCreatedDate!==undefined">Change Reminder</a>
+                     <a class="alllinkscolor" href="javascript:void(0)" ng-click="model.changereminders(slide)" ng-if="slide.ReminderCreatedDate!==null && slide.ReminderCreatedDate!=='' && slide.ReminderCreatedDate!==undefined">Change Reminder</a>
                     </span>
                     <span ng-show="model.typeofslidedate==='Ticket Last Updated'">{{slide.LastModifiedDate}}</span>
                 </div>

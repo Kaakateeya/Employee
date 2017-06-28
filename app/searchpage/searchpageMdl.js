@@ -301,7 +301,7 @@
                     };
                     searchpageServices.generalsearchsubmit(model.CgetDetails).then(function(response) {
 
-                        model.config.isshortlistprogressbar = true;
+                        model.isshortlistprogressbar = true;
                         model.tablename = "general";
                         model.slideshowarray = [];
                         model.exportarray = [];
@@ -392,7 +392,7 @@
                         }
                     };
                     searchpageServices.advancedsearchsubmit(model.CgetDetails).then(function(response) {
-                        model.config.isshortlistprogressbar = true;
+                        model.isshortlistprogressbar = true;
                         model.tablename = "advanced";
                         model.slideshowarray = [];
                         model.exportarray = [];
@@ -856,6 +856,22 @@
                 };
                 model.destroy = function() {
                     config.reset();
+                };
+                model.config.ngclassprogress = function() {
+                    model.progressbar = angular.copy(_.where(model.config.slides, { isShortlisted: true }));
+                    var classslide = "";
+                    var slidelength = angular.copy(_.where(model.config.slides, { isShortlisted: true }));
+                    model.config.width = slidelength.length + "%";
+                    if (slidelength.length <= 10) {
+                        classslide = "progress-bar progress-bar-striped progress-bar-danger active";
+                    } else if (slidelength.length > 10 && slidelength.length <= 30) {
+                        classslide = "progress-bar progress-bar-striped progress-bar-warning active";
+                    } else if (slidelength.length > 30 && slidelength.length <= 50) {
+                        classslide = "progress-bar progress-bar-striped progress-bar-info active";
+                    } else {
+                        classslide = "progress-bar progress-bar-striped progress-bar-success active";
+                    }
+                    return classslide;
                 };
                 return model;
             }
