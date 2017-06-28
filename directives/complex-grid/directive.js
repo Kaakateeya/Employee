@@ -74,9 +74,12 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     scope.page.model.image = Settle;
                     commonpage.showPopup('templates/bindImagePopup.html', scope, 'md', '');
                 };
+                scope.paymentpageredirect = function(profileid) {
+                    window.open("EmployeePayments" + "?idsss=" + profileid, "_blank");
+                };
                 scope.sendtopayment = function(row) {
                     var pay = row.paidamount === '0/0' ? 'unpaid' : row.paidamount;
-                    var paymant = "<a style='cursor:pointer;' href='javascript:void(0);'>" + pay + "</a>";
+                    var paymant = "<a style='cursor:pointer;' ng-click='paymentpageredirect(" + JSON.stringify(row.Profileid) + ")' href='javascript:void(0);'>" + pay + "</a>";
                     return paymant;
                 };
                 scope.page.model.close = function() {
@@ -88,7 +91,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     data.detailcolumns = [
                         { text: 'Profile Id', key: 'Profileid', type: 'link', method: scope.ViewProfile },
                         { text: 'Branch-Dor', key: 'RegistrationDate', type: 'label' },
-                        { text: 'Paid', key: '', type: 'custom', templateUrl: scope.sendtopayment },
+                        { text: 'Paid', key: '', type: 'morelinks', templateUrl: scope.sendtopayment },
                         { text: 'Paid Date', key: 'paiddate', type: 'label' },
                         { text: 'S/R', key: 'sentreceivecount', type: 'link', method: scope.sendreceive },
                         { text: 'PC', key: 'photocount', type: 'label' },

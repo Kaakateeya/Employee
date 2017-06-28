@@ -40,6 +40,15 @@
             model.slide.closemainpopup = function() {
                 modelpopupopenmethod.closepopup();
             };
+            model.tickethistorypopup = function(row) {
+                debugger;
+                model.marketingTicketid = row.Emp_Ticket_ID;
+                modelpopupopenmethod.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
+            };
+            model.ViewTicketmain = function(row) {
+                var paid = "<a style='cursor:pointer;' href='javascript:void(0);'>" + row.TicketHistoryID + "</a>";
+                return paid;
+            };
             model.init = function() {
                 empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 model.grid.columns = [
@@ -49,7 +58,7 @@
                     { text: 'Caste', key: 'Caste', type: 'label' },
                     { text: 'DOR', key: 'DOR', type: 'label' },
                     { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' },
-                    { text: 'Ticket', key: 'TicketHistoryID', type: 'link' }
+                    { text: 'Ticket', key: 'ProfileID', type: 'customlink', templateUrl: model.ViewTicketmain, method: model.tickethistorypopup }
                 ];
                 return model;
             };
@@ -206,6 +215,7 @@
                 model.opendiv = false;
             };
             model.slide.tickethistorypopup = function(TicketID) {
+                debugger;
                 model.marketingTicketid = TicketID;
                 modelpopupopenmethod.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
             };
