@@ -54,7 +54,7 @@
                     model.slides.push({
                         itmArr: model.datas,
                         custPhoto: item.Photo,
-                        Custid: item.CustID,
+                        Custid: item.Cust_ID,
                         lastlogin: item.LastLoginDate,
                         logincount: item.LoginCount,
                         matkteingticket: item.TicketID,
@@ -295,7 +295,7 @@
             model.slide.closemainpopup = function() {
                 modelpopupopenmethod.closepopup();
             };
-            model.tickethistorypopup = function(TicketID) {
+            model.slide.tickethistorypopup = function(TicketID) {
                 model.marketingTicketid = TicketID;
                 modelpopupopenmethod.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
             };

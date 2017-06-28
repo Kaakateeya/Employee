@@ -154,9 +154,6 @@ body {
   font-weight: 400;
   line-height: 20px; }
 
-.modalclassdashboardphotopopup {
-  z-index: 999999 !important; }
-
 .myprofilepopupdesign {
   margin-left: 60px;
   margin-right: 60px;
@@ -176,5 +173,19 @@ body {
 
 #editandviewprofile .headerStyles {
   font-size: 14px; }
+
+.modalclassdashboardphotopopup {
+  z-index: 999999 !important;
+  top: 0%;
+  left: 0%; }
+
+.modalclassdashboardphotopopup .modal-dialog.modal-md {
+  width: 70%; }
+
+.modalclassdashboardphotopopup .md-tab {
+  padding: 14px 15px; }
+
+.modalclassdashboardphotopopup .pop_label_left {
+  width: 40%; }
 
 /*# sourceMappingURL=style.css.map */

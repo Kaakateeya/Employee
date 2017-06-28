@@ -205,7 +205,10 @@
                 model.grid.TotalRows = '';
                 model.opendiv = false;
             };
-
+            model.slide.tickethistorypopup = function(TicketID) {
+                model.marketingTicketid = TicketID;
+                modelpopupopenmethod.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
+            };
             model.destroy = function() {
                 slideConfig.reset();
             };

@@ -112,7 +112,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     window.open("EmployeePayments" + "?idsss=" + ProfileID, "_blank");
                 };
                 $scope.tickethistoryupdate = function(matkteingticket) {
-                    debugger;
                     $scope.model.marketingTicket = matkteingticket;
                     modelpopupopenmethod.showPopupphotopoup('marketpopup.html', $scope, 'md', "modalclassdashboardphotopopup");
                 };
