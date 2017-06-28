@@ -152,6 +152,7 @@
                         model.matchFollowupSelect();
                     }
                 };
+
                 model.proceed.config.slidebind = function(old, news, array, type) {
                     model.proceed.frompopoverIsOpen = false;
                     model.proceed.topopoverIsOpen = false;
@@ -211,7 +212,6 @@
                 };
                 model.close = function() {
                     modelpopupopenmethod.closepopuppoptopopup();
-
                 };
                 model.dynamicPopover = {
                     templateUrl: 'myPopoverTemplate.html',

@@ -83,69 +83,39 @@
 
             model.branchbind = function(val, type) {
                 model.type = type;
-                model.data = _.where(model.mainArray, { BranchID: parseInt(val) });
+                model.data = _.where(model.mainArray, { Branch_ID: parseInt(val) });
                 model.TotalRows = (model.data).length;
             };
             model.authorize = function(row, type) {
-                model.pPaymentID = row.PaymentID;
-                model.pProfileID = row.ProfileID;
-                model.pTicketID = '';
-                model.pMarketedBy = '';
-                model.pAgreementAmt = row.AgreedAmount1;
-                model.pPaidAmt = row.PaidAmount ? parseInt(row.PaidAmount) : '';
-                model.pSettlementAmt = row.SettlementAmount;
-                model.pServiceTax = row.ServiceTax;
-                model.pNoofOnlinePoints = row.OnlinePoints;
-                model.pOfflinePts = row.OfflinePoints;
-                model.CustomerID = row.CustomerID;
-                model.MembershipID = row.MembershipID;
-                model.PaymentStatus = row.PaymentStatus;
-                model.ExpiryDate = row.ExpiryOn;
-                model.CustMembershipID = row.CustMembershipID;
-                model.MembershipDiscountID = row.MembershipDiscountID;
-                model.pType = type;
-                modelpopupopenmethod.showPopup('authorizePopup.html', model.scope, 'lg', "paymentAuthorizeCls");
-            };
-            model.close = function() {
-                modelpopupopenmethod.closepopup();
-            };
-            model.SubmitAuthorization = function() {
-                var inObj = {};
-                inObj = {
-                    PaymentID: model.pPaymentID,
-                    ProfileID: model.pProfileID,
-                    TicketID: model.pTicketID,
-                    MarketedByID: model.pMarketedBy,
-                    CustomerID: model.CustomerID,
-                    MembershipID: model.MembershipID,
-                    MembershipDiscountID: model.MembershipDiscountID,
-                    AgreedAmount: model.pAgreementAmt,
-                    PaidAmount: model.pPaidAmt,
-                    SettlementAmount: model.pSettlementAmt,
-                    ServiceTax: model.pServiceTax,
-                    OnlinePoints: model.pNoofOnlinePoints,
-                    OfflinePoints: model.pOfflinePts,
-                    AutherizationDesc: model.pAuthorizationDescription,
-                    ExpiryDate: model.ExpiryDate,
-                    PaymentStatus: model.pType === 'Authorize' ? 1 : 0,
-                    EmployeeID: empid,
-                    CustMembershipID: model.CustMembershipID
+
+                var inputobj = {
+                    PaymentID: row.PaymentID,
+                    PaymentHisID: row.PaymentHist_ID,
+                    ProfileID: row.ProfileID,
+                    CustID: row.CustomerID,
+                    AutherizationDesc: '',
+                    ExpiryDate: row.ExpiryOn,
+                    PaymentStatus: type === 'Authorize' ? 1 : 0,
+                    EmployeeID: empid
                 };
 
-                paymentAuthorizationService.submitAuthorization(inObj).then(function(response) {
+                paymentAuthorizationService.submitAuthorization(inputobj).then(function(response) {
                     if (response.data) {
                         var msg = '';
                         var cls = '';
-                        model.close();
                         if (parseInt(response.data) === 1) {
-                            msg = model.pType === 'Authorize' ? 'Payment has been authorized successfully' : 'Payment has been declined successfully';
+                            msg = type === 'Authorize' ? 'Payment has been authorized successfully' : 'Payment has been declined successfully';
                         } else {
-                            msg = model.pType === 'Authorize' ? 'Error in authorizing the payment' : 'Error in declining the payment';
+                            msg = type === 'Authorize' ? 'Error in authorizing the payment' : 'Error in declining the payment';
                         }
                         alertss.timeoutoldalerts(model.scope, parseInt(response.data) === 1 ? 'alert-success' : 'alert-danger', msg, 4500);
                     }
                 });
             };
+            model.close = function() {
+                modelpopupopenmethod.closepopup();
+            };
+
 
             model.returnCount = function(val) {
                 return (_.where(model.mainArray, { BranchID: parseInt(val) })).length;
