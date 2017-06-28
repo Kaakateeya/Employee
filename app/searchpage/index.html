@@ -22,10 +22,16 @@
                                             <div ng-hide="page.model.domheader_{{parentitem.collapseid}}">
                                                 <div ng-repeat="item in parentitem.controlList">
                                                     <div class="row" ng-if="item.controlType==='gender'">
-                                                        <div class="col-lg-5">
+                                                        <div class="col-lg-4">
                                                             <md-radio-group layout="row" ng-model="page.model[item.ngModel]" class="md-block" flex-gt-sm>
                                                                 <md-radio-button value="2" class="md-primary"> Bride</md-radio-button>
                                                                 <md-radio-button value="1"> Groom </md-radio-button>
+                                                            </md-radio-group>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <md-radio-group layout="row" ng-model="page.model.agedobcontrol" class="md-block" flex-gt-sm>
+                                                                <md-radio-button value="2" class="md-primary"> Age</md-radio-button>
+                                                                <md-radio-button value="1"> DOB </md-radio-button>
                                                             </md-radio-group>
                                                         </div>
                                                         <div class="col-lg-3" ng-if="tab.arrayname===2">
@@ -88,7 +94,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-3" ng-if="item.controlType==='dobirth'">
+                                                    <div class="col-lg-3" ng-if="item.controlType==='dobirth' && page.model.agedobcontrol==='1'">
                                                         <p>{{item.labelName}}</p>
                                                         <div class="controls clearfix row">
                                                             <div class="col-lg-6 datepicker" style="width: 125px;padding: 6px;">
@@ -108,6 +114,19 @@
                                                             </div>
                                                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6  generalane" style="margin-left: -20px;" ng-class="page.model[item.ngModelTo]===undefined || page.model[item.ngModelTo]===null || page.model[item.ngModelTo].length===0 || page.model[item.ngModelTo]===0?'':'ddlcolor'">
                                                                 <select class="smalldropdown" ng-model="page.model[item.ngModelTo]" multiselectdropdown ng-options="caste.value as caste.label for caste in page.model[item.dataSource]">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3" ng-if="item.controlType==='dualDropdownage' && page.model.agedobcontrol==='2'">
+                                                        <p>{{item.labelName}}</p>
+                                                        <div class="controls clearfix row">
+                                                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6  generalane" ng-class="page.model[item.ngModelFrom]===undefined || page.model[item.ngModelFrom]===null || page.model[item.ngModelFrom].length===0 || page.model[item.ngModelFrom]==='0'?'':'ddlcolor'">
+                                                                <select ng-model="page.model[item.ngModelFrom]" ng-options="caste.value as caste.label for caste in page.model.agearray" multiselectdropdown class="smalldropdown">   
+                                                                 </select>
+                                                            </div>
+                                                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6  generalane" style="margin-left: -20px;" ng-class="page.model[item.ngModelTo]===undefined || page.model[item.ngModelTo]===null || page.model[item.ngModelTo].length===0 || page.model[item.ngModelTo]==='0'?'':'ddlcolor'">
+                                                                <select class="smalldropdown" ng-options="caste.value as caste.label for caste in page.model.agearray" ng-model="page.model[item.ngModelTo]" multiselectdropdown>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -205,7 +224,7 @@
         </div>
     </div>
     <div>
-        <complex-slide model="page.model" config="page.model"></complex-slide>
+        <complex-slide model="page.model" config="page.model.config"></complex-slide>
     </div>
     <div class="search_page_main" ng-show="page.model.gridTableshow">
         <div class="col-lg-12">
@@ -360,7 +379,7 @@
 </script>
 <script type="text/ng-template" id="mainShortListProfiles.html">
          <div class="modal-body">
-          <complex-slide config="page.model" model="page.model.shortlistmodel" ></complex-slide>
+          <complex-slide config="page.model.config.shortlistmodel"  model="page.model" ></complex-slide>
            <div class="clearfix"></div>
        </div>
     </script>

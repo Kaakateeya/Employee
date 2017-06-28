@@ -198,7 +198,7 @@
                 <br />
                 <label id="lblmrktTicketID" style="color: rgb(0, 0, 0);">{{page.model.infnArr.Ticket}}</label>
             </div>
-            <div class="col-lg-1">
+            <div class="col-lg-2">
                 <b style="color: maroon; font-size: 17px;">Status</b>
                 <br />
                 <label id="lblmrktStatus" style="color: rgb(0, 0, 0);">{{page.model.infnArr.TicketStatus}}</label>
@@ -455,7 +455,7 @@
 </script>
 <script type="text/ng-template" id="sendsmsMail.html">
     <div class="modal-header">
-        <a href="javascript:void(0);" class="pull-right" ng-click="page.model.proceed.closepopup();">
+        <a href="javascript:void(0);" class="pull-right" ng-click="page.model.closepopup();">
             <span class="fa fa-close red"></span>
         </a>
     </div>
@@ -506,7 +506,7 @@
         </div>
     </div>
     <div class="modal-footer" style="font-weight:normal;">
-        <button class="button_custom button_custom_reset" ng-click="page.model.proceed.closepopup();">close</button>
+        <button class="button_custom button_custom_reset" ng-click="page.model.closepopup();">close</button>
         <button class="button_custom pull-right" ng-click="page.model.smsMailSubmit(page.model.typeofmailSms);">send {{page.model.typeofmailSms}}</button>
     </div>
 </script>

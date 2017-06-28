@@ -1,4 +1,4 @@
-<uib-accordion close-others="oneAtATime" ng-if="model.typeofPage==='page'">
+<uib-accordion close-others="oneAtATime" ng-if="config.typeofPage==='page'">
     <div uib-accordion-group style="margin-top: -12px;" class="panel-default" is-open="model.isopenFlag">
         <uib-accordion-heading>
             My Match Followup Tickets &nbsp;&nbsp;<i class="glyphicon" ng-class="{'glyphicon-chevron-down': model.isopenFlag, 'glyphicon-chevron-right': !model.isopenFlag}"></i>
@@ -51,9 +51,9 @@
     <div class="col-lg-2">
         <label style="color:#585050">Total Records :</label>
         <label style="color:blue"> {{(activeslide)+1}}</label>
-        <label style="color:#585050"> of {{model.totalRecords}}</label>
+        <label style="color:#585050"> of {{config.totalRecords}}</label>
     </div>
-    <div class="col-lg-7" ng-if="model.typeofPage==='page'">
+    <div class="col-lg-7" ng-if="config.typeofPage==='page'">
         <button ng-class="model.activebutton==='bothside'?'btn btn-success':'btn btn-default'" ng-click="model.CondtionButtonClick('bothside',0,false,false);">Bothside Intrst</button>&nbsp;
         <button ng-class="model.activebutton==='oneside'?'btn btn-success':'btn btn-default'" ng-click="model.CondtionButtonClick('oneside',1,false,false);">Oneside Intrst</button>&nbsp;
         <button ng-class="model.activebutton==='closed'?'btn btn-success':'btn btn-default'" ng-click="model.CondtionButtonClick('closed',0,true,false);">Close Tckt</button>&nbsp;
@@ -61,7 +61,7 @@
         <button ng-class="model.activebutton==='all'?'btn btn-success':'btn btn-default'" ng-click="model.CondtionButtonClick('all',3,false,false);">All</button>&nbsp;
         <button ng-class="model.activebutton==='waiting'?'btn btn-success':'btn btn-default'" ng-click="model.CondtionButtonClick('waiting',0,false,true);">Waiting For Reply</button>
     </div>
-    <div class="col-lg-3" ng-if="model.typeofPage==='page'">
+    <div class="col-lg-3" ng-if="config.typeofPage==='page'">
         <div class="col-lg-8">
             Viewed &nbsp;&nbsp;<label id="lnkLastSlide" style="color: blue;">{{(Viwedslide)+1}}&nbsp;&nbsp;</label><label>Profiles</label>
         </div>
@@ -69,7 +69,7 @@
             <input type="text" ng-model="txtGotoVal" ng-blur="gotoSlide(txtGotoVal)" class="form-control" style="width: 66px; height: 24px; margin-left: -20px;" />
         </div>
     </div>
-    <div class="pull-right" ng-if="model.typeofPage!=='page'">
+    <div class="pull-right" ng-if="config.typeofPage!=='page'">
         <a href="javascript:void(0);" ng-click="model.closeprocced();">
             <ng-md-icon icon='close' style='fill:#c73e5f' class='pull-right' size='25'></ng-md-icon>
         </a>

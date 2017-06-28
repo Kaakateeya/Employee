@@ -18,7 +18,7 @@
             vm.model.showtaotalrows = true;
             vm.model.showplus = true;
             model.slide.templateUrl = "templates/myprofileSlide.html";
-            model.slide.headettemp = "myprofileheader.html";
+            model.slide.config.headettemp = "myprofileheader.html";
             scope.$on("$destroy", vm.destroy);
         };
         vm.destroy = function() {

@@ -22,7 +22,7 @@
                 model.replaytypearray = [];
                 model.categoryarray = [];
                 model.templateUrl = "templates/dashBoardslide.html";
-                model.headettemp = "dashboardheader.html";
+                model.config.headettemp = "dashboardheader.html";
                 model.todaydate = new Date();
                 model.exportData = function(id) {
                     var options = {
@@ -398,7 +398,7 @@
                         }
                     });
                 };
-                config.slidebind = function(old, news, array) {
+                model.slidebind = function(old, news, array) {
                     if (parseInt(model.topage) - parseInt(news) === 4) {
                         model.slideshowfunction(true, model.empid, model.empBranchID, (model.topage) + 1, (model.topage) + 10, model.headerhtml, 'slideshow', model.slidearray, 1);
                     }

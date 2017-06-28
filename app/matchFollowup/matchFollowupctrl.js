@@ -14,7 +14,7 @@
                  model.slides = [];
                  model.scope = scope;
                  model.templateUrl = "templates/matchFollowupSlide.html";
-                 model.headettemp = "templates/matchFollowupHeader.html";
+                 model.config.headettemp = "templates/matchFollowupHeader.html";
                  //  $rootScope.colorurl = 'matchColor';
                  scope.$on("$destroy", vm.destroy);
              };

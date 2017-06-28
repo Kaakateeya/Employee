@@ -10,8 +10,9 @@
                 helpService, authSvc, alerts, Commondependency, filter, modelpopupopenmethod, config,
                 expressInterestModel, configgrid, $stateParams) {
                 var model = {};
+                model.config = config;
                 model.gridtable = configgrid;
-                model.shortlistmodel = {};
+                model.config.shortlistmodel = {};
                 model.pageload = function(scope) {
                     model.scope = scope;
                     model.searchpopuptext = "General Search";
@@ -34,7 +35,6 @@
                     model.dynamicFunction = '';
                     model.slidephotos = [];
                     model.divmismatchData = [];
-                    model.shortlistmodel = {};
                     model.opendiv = true;
                     model.showsearchrows = true;
                     model.showsearch = true;
@@ -42,7 +42,7 @@
                     model.myprofileexcel = true;
                     model.normalexcel = true;
                     model.gridTableshow = false;
-                    model.shortlistmodelinner = [];
+                    model.config.shortlistmodel.shortlistmodelinner = [];
                     model.ProfileIDpopup = "";
                     model.divcontrollsbind = 0;
                     model.divcontrolls = true;
@@ -51,7 +51,7 @@
                     model.sidebarnavshow = true;
                     model.activatedmobile = true;
                     model.templateUrl = "templates/angularSlide.html";
-                    model.headettemp = "templates/angularHeader.html";
+                    model.config.headettemp = "templates/angularHeader.html";
                     model.tabsshowhidecontrols = true;
                     if (parseInt($stateParams.Profileid) !== 0) {
                         model.ProfileIDpopup = $stateParams.Profileid;
@@ -91,6 +91,7 @@
                     return string !== null && string !== "" && string !== undefined ? (string.split(',')).map(Number) : null;
                 };
                 model.profileidupdate = function(obj) {
+                    model.intilize();
                     model.init();
                     model.progressbar = [];
                     model.sidebarnavshow = false;
@@ -99,8 +100,8 @@
                             var data = model.getpageloadobject = response.data;
                             model.Cust_ID = data.Cust_ID;
                             model.GenderID = data.GenderID;
-                            model.AgeFromID = data.AgeMin;
-                            model.AgeToID = data.AgeMax;
+                            model.AgeFromID = parseInt(data.AgeMin);
+                            model.AgeToID = parseInt(data.AgeMax);
                             model.DOBfrom = data.MaxDob;
                             model.DOBTo = data.MinDob;
                             model.MaritalstatusID = model.arrayToString(data.maritalstatusid);
@@ -229,6 +230,11 @@
                             });
                         });
                     }
+                    model.agearray = [];
+                    model.agearray.push({ label: "--select--", title: "--select--", value: "0" });
+                    for (var i = 18; i < 78; i++) {
+                        model.agearray.push({ "label": i + ' years', "title": i + ' years', "value": i });
+                    }
                     model.Showinprofile = model.arrayToString("1");
                     model.ApplicationstatusID = model.arrayToString("54");
                     model.MothertongueID = model.arrayToString("1");
@@ -255,6 +261,7 @@
                     return str !== null && str !== undefined && str !== "" && str.length > 0 ? str : null;
                 };
                 model.submitgeneral = function(frompage, topage, typeofexcel) {
+                    model.config.shortlistmodel.shortlistmodelinner = [];
                     var paramters = {};
                     _.each(model.domDatageneral, function(parentItem) {
                         _.each(_.filter(parentItem.controlList, function(seconditem) { return seconditem !== undefined; }), function(item) {
@@ -280,7 +287,7 @@
                     model.topage = model.typrofsearch === "1" && parseInt(frompage) === 1 ? 100 : topage;
                     if (parseInt(frompage) === 1) {
                         model.progressbar = [];
-                        model.slides = [];
+                        model.config.slides = [];
                     }
                     model.CgetDetails = {
                         GetDetails: paramters,
@@ -293,7 +300,8 @@
                         }
                     };
                     searchpageServices.generalsearchsubmit(model.CgetDetails).then(function(response) {
-                        model.isshortlistprogressbar = true;
+
+                        model.config.isshortlistprogressbar = true;
                         model.tablename = "general";
                         model.slideshowarray = [];
                         model.exportarray = [];
@@ -304,10 +312,10 @@
                             model.headervisileble = true;
                             if (parseInt(frompage) === 1) {
                                 model.divcontrolls = false;
-                                config.setSlides(model.slideshowarray, parseInt(topage));
+                                model.config.setSlides(model.slideshowarray, parseInt(topage));
                                 model.totalRecords = parseInt(frompage) === 1 && response !== undefined && response.data !== undefined && model.slideshowarray.length > 0 ? model.slideshowarray[0].TotalRows : 0;
                             } else {
-                                config.addSlides(model.slideshowarray, model.slides, parseInt(topage));
+                                model.config.addSlides(model.slideshowarray, model.config.slides, parseInt(topage));
                             }
                         } else {
                             model.headervisileble = false;
@@ -345,6 +353,7 @@
                     model.sidebarnavshow = true;
                 };
                 model.submitadvancedsearch = function(frompage, topage, typeofexcel) {
+                    model.config.shortlistmodel.shortlistmodelinner = [];
                     var paramters = {};
                     _.each(model.domDataadvanced, function(parentItem) {
                         _.each(_.filter(parentItem.controlList, function(seconditem) { return seconditem !== undefined; }), function(item) {
@@ -370,7 +379,7 @@
                     model.topage = model.typrofsearch === "1" && parseInt(frompage) === 1 ? 100 : topage;
                     if (parseInt(frompage) === 1) {
                         model.progressbar = [];
-                        model.slides = [];
+                        model.config.slides = [];
                     }
                     model.CgetDetails = {
                         GetDetails: paramters,
@@ -383,7 +392,7 @@
                         }
                     };
                     searchpageServices.advancedsearchsubmit(model.CgetDetails).then(function(response) {
-                        model.isshortlistprogressbar = true;
+                        model.config.isshortlistprogressbar = true;
                         model.tablename = "advanced";
                         model.slideshowarray = [];
                         model.exportarray = [];
@@ -397,7 +406,7 @@
                                 model.totalRecords = parseInt(frompage) === 1 && response !== undefined && response.data !== undefined && model.slideshowarray.length > 0 ? model.slideshowarray[0].TotalRows : 0;
                                 config.setSlides(model.slideshowarray, parseInt(topage));
                             } else {
-                                config.addSlides(model.slideshowarray, model.slides, parseInt(topage));
+                                config.addSlides(model.slideshowarray, model.config.slides, parseInt(topage));
                             }
                         } else {
                             model.headervisileble = false;
@@ -493,7 +502,8 @@
                         }
                     }
                 };
-                model.checkServicetoShortlist = function(slide) {
+                model.config.checkServicetoShortlist = function(slide) {
+                    debugger;
                     model.slide = slide;
                     if (slide.isShortlisted) {
                         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'This profile already shortlisted', 2000);
@@ -514,39 +524,41 @@
                         model.close();
                     }
                     slide.isShortlisted = true;
-                    if (!model.shortlistmodel.slides) {
-                        model.shortlistmodel.slides = angular.copy(_.where(model.slides, { isShortlisted: true }));
+                    if (!model.config.shortlistmodel.slides) {
+                        model.config.shortlistmodel.slides = angular.copy(_.where(model.config.slides, { isShortlisted: true }));
                     } else {
-                        model.shortlistmodel.slides = model.shortlistmodel.slides.concat(angular.copy(_.where(model.slides, { isShortlisted: true })) || []);
+                        model.config.shortlistmodel.slides = model.config.shortlistmodel.slides.concat(angular.copy(_.where(model.config.slides, { isShortlisted: true })) || []);
                     }
-                    model.progressbar = model.shortlistmodel.slides = angular.copy(_.where(model.slides, { isShortlisted: true }));
+                    model.progressbar = model.config.shortlistmodel.slides = angular.copy(_.where(model.config.slides, { isShortlisted: true }));
                     alerts.timeoutoldalerts(model.scope, 'alert-success', 'profile has been shortlisted successfully', 2000);
                 };
-                model.shortlistmodel.checkServicetoShortlist = function(slide) {
+
+                model.config.shortlistmodel.checkServicetoShortlist = function(slide) {
+                    debugger;
                     model.slide = slide;
                     if (slide.isshortlistaedgain) {
                         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'You have already Shortlisted this Profile ID', 4000);
                     } else {
                         slide.isshortlistaedgain = true;
-                        model.shortlistmodelinner = angular.copy(_.where(model.shortlistmodel.slides, { isshortlistaedgain: true }));
-                        _.map(model.slides, function(item) {
+                        model.config.shortlistmodel.shortlistmodelinner = angular.copy(_.where(model.config.shortlistmodel.slides, { isshortlistaedgain: true }));
+                        _.map(model.config.slides, function(item) {
                             item.isShortlisted = false;
                         });
                         alerts.timeoutoldalerts(model.scope, 'alert-success', 'profile has been shortlisted successfully', 4000);
                     }
                 };
                 model.mainShortListProfile = function() {
-                    model.shortlistmodel.headettemp = "templates/SearchpopupHeader.html";
-                    model.shortlistmodel.slides = model.shortlistmodelinner.concat(_.where(model.slides, { isShortlisted: true }));
+                    model.config.shortlistmodel.headettemp = "templates/SearchpopupHeader.html";
+                    model.config.shortlistmodel.slides = model.config.shortlistmodel.shortlistmodelinner.concat(_.where(model.config.slides, { isShortlisted: true }));
                     modelpopupopenmethod.showPopupphotopoup('mainShortListProfiles.html', model.scope, 'lg', "modalclassdashboardphotopopupinner");
                 };
                 model.shortListPopup = function() {
                     var arrayshortListPopup = [];
-                    arrayshortListPopup = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true });
+                    arrayshortListPopup = _.where(model.config.shortlistmodel.slides, { isshortlistaedgain: true });
                     if (arrayshortListPopup.length > 0) {
-                        model.shortlistmodel.slides = _.where(model.shortlistmodel.slides, { isshortlistaedgain: true });
+                        model.config.shortlistmodel.slides = _.where(model.config.shortlistmodel.slides, { isshortlistaedgain: true });
                     } else {
-                        model.shortlistmodel.slides = (model.shortlistmodel.slides);
+                        model.config.shortlistmodel.slides = (model.config.shortlistmodel.slides);
                     }
                 };
                 model.slidebind = function(old, news, array) {
@@ -597,8 +609,8 @@
                     model.close();
                     model.cloumsarr = [];
                     model.Toprofileids = [];
-                    var finalArray = model.shortlistmodel.slides;
-                    _.each((finalArray.length > 0 ? finalArray : model.shortlistmodel.slides), function(item) {
+                    var finalArray = model.config.shortlistmodel.slides;
+                    _.each((finalArray.length > 0 ? finalArray : model.config.shortlistmodel.slides), function(item) {
                         model.cloumsarr.push(item.Custid);
                     });
                     var custids = model.cloumsarr.length > 0 ? (model.cloumsarr).toString() : null;
@@ -621,7 +633,7 @@
                 };
                 model.bookmark = function() {
                     var strToCustIDs = [];
-                    _.each(model.shortlistmodel.slides, function(item) {
+                    _.each(model.config.shortlistmodel.slides, function(item) {
                         strToCustIDs.push(item.Custid);
                     });
                     var custids = strToCustIDs.length > 0 ? (strToCustIDs).toString() : null;
@@ -676,7 +688,7 @@
                                     { ngModel: 'FirstName', labelName: 'First Name', controlType: 'textBox', isShow: true, validation: true },
                                     { ngModel: 'LastName', labelName: 'Last Name', controlType: 'textBox', isShow: true, validation: true },
                                     { ngModelFrom: 'DOBfrom', ngModelTo: 'DOBTo', labelName: 'Date Of Birth', controlType: 'dobirth', isShow: true, validation: true },
-                                    // { typeofdata: 'Ageselect', ngModelFrom: 'AgeFromID', ngModelTo: 'AgeToID', labelName: 'Age', controlType: 'dualDropdown', isShow: true, validation: true },
+                                    { typeofdata: 'Ageselect', ngModelFrom: 'AgeFromID', ngModelTo: 'AgeToID', labelName: 'Age', controlType: 'dualDropdownage', isShow: true, validation: true },
                                     { ngModelFrom: 'HeightFromID', ngModelTo: 'HeightToID', labelName: 'Height', controlType: 'dualDropdown', isShow: true, dataBind: 'heightreSearch', dataSource: 'heightregistrationarray', validation: true },
                                     { divClear: true, ngModel: 'MaritalstatusID', labelName: 'Marital status', controlType: 'dropdown', isShow: true, dataBind: 'MaritalStatus', dataSource: 'maritalstatusg', validation: true },
                                     { type: 'caste', ngModel: 'ReligionID', labelName: 'Religion', controlType: 'dropdown', isShow: true, dataBind: 'Religion', dataSource: 'religiong', validation: true },
@@ -754,7 +766,7 @@
                                 controlList: [
                                     { ngModel: 'GenderID', controlType: 'gender', isShow: true, validation: true },
                                     { ngModelFrom: 'DOBfrom', ngModelTo: 'DOBTo', labelName: 'Date Of Birth', controlType: 'dobirth', isShow: true, validation: true },
-                                    // { typeofdata: 'Ageselect', ngModelFrom: 'AgeFromID', ngModelTo: 'AgeToID', labelName: 'Age', controlType: 'dualDropdown', isShow: true, validation: true },
+                                    { typeofdata: 'Ageselect', ngModelFrom: 'AgeFromID', ngModelTo: 'AgeToID', labelName: 'Age', controlType: 'dualDropdownage', isShow: true, validation: true },
                                     // { typeofdata: 'heightreSearch', ngModelFrom: 'HeightFromID', ngModelTo: 'HeightToID', labelName: 'Height', controlType: 'dualDropdown', isShow: true, dataBind: 'MaritalStatus', dataSource: 'maritalstatusg', validation: true },
                                     { ngModelFrom: 'HeightFromID', ngModelTo: 'HeightToID', labelName: 'Height', controlType: 'dualDropdown', isShow: true, dataBind: 'heightreSearch', dataSource: 'heightregistrationarray', validation: true },
                                     { ngModel: 'MaritalstatusID', labelName: 'Marital status', controlType: 'dropdown', isShow: true, dataBind: 'MaritalStatus', dataSource: 'maritalstatusg', validation: true },

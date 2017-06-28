@@ -50,6 +50,6 @@
 <div class="row" style="margin-left: 1px;" ng-if="config.isshortlistprogressbar">
     <div class="progress">
         <!--ng-class='ngclassprogress(model.shortlistmodel.slides)'-->
-        <div ng-class='ngclassprogress(model.progressbar.length)' ng-show="model.progressbar.length>0" ng-style="{'width' : width}"><span> {{model.progressbar.length}}  Shortlisted</span></div>
+        <div ng-class='ngclassprogress(model.slides.length)' ng-show="model.progressbar.length>0" ng-style="{'width' : width}"><span> {{model.progressbar.length}}  Shortlisted</span></div>
     </div>
 </div>

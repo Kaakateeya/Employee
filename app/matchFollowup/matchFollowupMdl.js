@@ -11,13 +11,13 @@
                 //return function() {
                 var model = {};
                 model.config = config;
-                model.proceed = {};
-                model.proceed.config = {};
+                // model.proceed = {};
+                model.config.proceed = {};
                 model.BranchName = [];
                 model.templateUrl = "templates/matchFollowupSlide.html";
-                model.headettemp = "templates/matchFollowupHeader.html";
-                model.proceed.typeofPage = 'popup';
-                model.typeofPage = 'page';
+                model.config.headettemp = "templates/matchFollowupHeader.html";
+                model.config.proceed.typeofPage = 'popup';
+                model.config.typeofPage = 'page';
                 model.headervisileble = true;
                 model.EmpNamesArr = [];
                 model.opendiv = true;
@@ -42,8 +42,8 @@
                     model.spflag = 0;
                     model.frompage = 1;
                     model.topage = 10;
-                    model.proceed.frompage = 1;
-                    model.proceed.topage = 10;
+                    model.config.proceed.frompage = 1;
+                    model.config.proceed.topage = 10;
                     model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                     model.loginempName = authSvc.LoginEmpName() !== undefined && authSvc.LoginEmpName() !== null && authSvc.LoginEmpName() !== "" ? authSvc.LoginEmpName() : "";
                     model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
@@ -101,8 +101,8 @@
                         Empwaiting: model.Empwaitingflag
                     };
                     if (typeofpopup === 'proceedpopup') {
-                        inputobj.pagefrom = model.proceed.frompage;
-                        inputobj.pageto = model.proceed.topage;
+                        inputobj.pagefrom = model.config.proceed.frompage;
+                        inputobj.pageto = model.config.proceed.topage;
                     } else {
                         inputobj.pagefrom = model.frompage;
                         inputobj.pageto = model.topage;
@@ -118,16 +118,16 @@
                                 item.ToonlineExpiryDate = moment(currentdate).isAfter(moment(item.ToonlineExpiryDate).format("YYYY-MM-DD")) || item.ToonlineDetails == "Online : Unpaid" ? "Unpaidcust" : "";
                             });
                             if (typeofpopup === 'proceedpopup') {
-                                if (parseInt(model.proceed.frompage) === 1) {
-                                    model.proceed.config.slides = [];
-                                    model.proceed.config.slides = response.data;
-                                    model.proceed.totalRecords = response.data[0].TotalRows;
+                                if (parseInt(model.config.proceed.frompage) === 1) {
+                                    model.config.proceed.slides = [];
+                                    model.config.proceed.slides = response.data;
+                                    model.config.proceed.totalRecords = response.data[0].TotalRows;
                                 } else {
-                                    model.proceed.config.slides = $.merge(model.proceed.slides, response.data);
+                                    model.config.proceed.slides = $.merge(model.config.proceed.slides, response.data);
                                 }
                             } else {
                                 if (parseInt(model.frompage) === 1) {
-                                    model.totalRecords = response.data[0].TotalRows;
+                                    model.config.totalRecords = response.data[0].TotalRows;
                                     model.config.slides = [];
                                     model.config.slides = response.data;
                                 } else {
@@ -136,31 +136,34 @@
                             }
                         } else {
                             if (parseInt(model.frompage) === 1) {
-                                model.totalRecords = 0;
+                                model.config.totalRecords = 0;
                                 config.slides = [];
                             }
                         }
                     });
                 };
 
-                config.slidebind = function(old, news, array, type) {
-                    model.frompopoverIsOpen = false;
-                    model.topopoverIsOpen = false;
-                    if (parseInt(model.topage) - parseInt(news) === 4) {
-                        model.frompage = parseInt(model.topage) + 1;
-                        model.topage = parseInt(model.topage) + 10;
-                        model.matchFollowupSelect();
+
+                model.slidebind = function(old, news, array, type) {
+                    if (type === 'popup') {
+                        model.frompopoverIsOpen = false;
+                        model.topopoverIsOpen = false;
+                        if (parseInt(model.config.proceed.topage) - parseInt(news) === 4) {
+                            model.config.proceed.frompage = parseInt(model.config.proceed.topage) + 1;
+                            model.config.proceed.topage = parseInt(model.config.proceed.topage) + 10;
+                            model.matchFollowupSelect(undefined, model.custid, 'proceedpopup');
+                        }
+                    } else {
+                        model.frompopoverIsOpen = false;
+                        model.topopoverIsOpen = false;
+                        if (parseInt(model.topage) - parseInt(news) === 4) {
+                            model.frompage = parseInt(model.topage) + 1;
+                            model.topage = parseInt(model.topage) + 10;
+                            model.matchFollowupSelect();
+                        }
                     }
                 };
-                model.proceed.config.slidebind = function(old, news, array, type) {
-                    model.proceed.frompopoverIsOpen = false;
-                    model.proceed.topopoverIsOpen = false;
-                    if (parseInt(model.proceed.topage) - parseInt(news) === 4) {
-                        model.proceed.frompage = parseInt(model.proceed.topage) + 1;
-                        model.proceed.topage = parseInt(model.proceed.topage) + 10;
-                        model.matchFollowupSelect(undefined, model.custid, 'proceedpopup');
-                    }
-                };
+
                 model.CondtionButtonClick = function(activeType, flag, flagClose, flagEmpwaiting) {
                     config.slides = [];
                     model.activebutton = activeType;
@@ -177,7 +180,7 @@
                     model.BranchName = Commondependency.BranchNamebind((parent !== undefined && parent !== null && parent !== "") ? (parent).toString() : "");
                 };
 
-                model.proceed.proceedImage = model.proceedImage = function(status) {
+                model.proceedImage = function(status) {
                     var src = '';
                     if (status.trim() === "I") {
                         src = 'src/images/heartgrren.gif';
@@ -196,17 +199,17 @@
                     return (parseInt(serviceCount) > 1 && loginName.trim() === splitEmpName[0].trim()) ? true : false;
                 };
                 model.serviceCountProfiles = function(custid) {
-                    model.proceed.headervisileble = true;
+                    model.headervisileble = true;
                     model.custid = custid;
-                    model.proceed.templateUrl = "templates/matchFollowupSlide.html";
-                    model.proceed.headettemp = "templates/matchFollowupHeader.html";
-                    model.proceed.frompage = 1;
-                    model.proceed.topage = 10;
+                    model.templateUrl = "templates/matchFollowupSlide.html";
+                    model.config.proceed.headettemp = "templates/matchFollowupHeader.html";
+                    model.config.proceed.frompage = 1;
+                    model.config.proceed.topage = 10;
                     model.matchFollowupSelect(undefined, custid, 'proceedpopup');
                     modelpopupopenmethod.showPopupphotopoup('Proceedslide.html', model.scope, 'lg', "proceedcls");
                 };
 
-                model.proceed.closepopup = function() {
+                model.closepopup = function() {
                     modelpopupopenmethod.closepopup();
                 };
                 model.close = function() {
@@ -306,7 +309,7 @@
                         model.smsInput.strbody = model.txtsmsmail;
                         matchFollowupServices.sendSms(model.smsInput).then(function(response) {
                             if (parseInt(response.data) === 1) {
-                                model.proceed.closepopup();
+                                model.closepopup();
                                 alertss.timeoutoldalerts(model.scope, 'alert-success', 'sms sent successfully', 9500);
                             }
                         });
@@ -314,7 +317,7 @@
                         model.mailInput.Notes = model.txtsmsmail;
                         matchFollowupServices.sendMail(model.mailInput).then(function(response) {
                             if (parseInt(response.data) === 1) {
-                                model.proceed.closepopup();
+                                model.closepopup();
                                 alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent successfully', 9500);
                             }
                         });
@@ -328,7 +331,7 @@
                 model.closeAction = function() {
                     modelpopupopenmethod.closepopup();
                 };
-                model.proceed.closeprocced = function() {
+                model.closeprocced = function() {
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
                 model.redirectContactPage = function(custid) {

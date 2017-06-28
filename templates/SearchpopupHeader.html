@@ -4,23 +4,23 @@
             <label class="control-label">
                  FromProfileID:
       </label>
-            <label class="control-label">{{config.getpageloadobject.ProfileID}}</label>
+            <label class="control-label">{{model.getpageloadobject.ProfileID}}</label>
         </li>
         <li class="col-lg-2">
-            <a href="javascript:void(0);" ng-click="config.sendtoServices();" style="Font-Size: 18px;">
+            <a href="javascript:void(0);" ng-click="model.sendtoServices();" style="Font-Size: 18px;">
                 <span class="fa fa-reply">Send to Service</span>
             </a>
         </li>
         <li class="col-lg-2">
-            <a href="javascript:void(0);" ng-click="config.shortListPopup();" style="Font-Size: 18px;">
+            <a href="javascript:void(0);" ng-click="model.shortListPopup();" style="Font-Size: 18px;">
                 <span class="glyphicon glyphicon-star">ShowShortList</span> </a>
         </li>
         <li class="col-lg-2">
-            <a href="javascript:void(0);" style="Font-Size: 18px;" ng-click="config.bookmark();">
+            <a href="javascript:void(0);" style="Font-Size: 18px;" ng-click="model.bookmark();">
                 <span class="fa fa-bookmark">BookMark All</span> </a>
         </li>
         <li class="col-lg-2">
-            <a class="pull-right" ng-click="config.close()" href="javascript:void(0);" style="font-size: 21px; color: Red;">×</a>
+            <a class="pull-right" ng-click="model.close()" href="javascript:void(0);" style="font-size: 21px; color: Red;">×</a>
 
         </li>
         <br>
@@ -29,6 +29,6 @@
 <ul class="row">
     <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3" style="left: 1%;">
         <label>Total Records :</label>
-        <label>{{(activeslide)+1}} &nbsp;of&nbsp;{{model.slides.length}}</label>
+        <label>{{(activeslide)+1}} &nbsp;of&nbsp;{{config.slides.length}}</label>
     </div>
 </ul>

@@ -49,7 +49,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.$watch('activeslide', function(news, old) {
                     if (news !== undefined && news !== "" && news !== null) {
                         $scope.Viwedslide = news > $scope.Viwedslide ? news : $scope.Viwedslide;
-                        $scope.config.slidebind(old, news, $scope.model.slides, $scope.model.typeofPage);
+                        $scope.model.slidebind(old, news, $scope.model.slides, $scope.model.typeofPage);
                     } else {
                         $scope.Viwedslide = 0;
                     }

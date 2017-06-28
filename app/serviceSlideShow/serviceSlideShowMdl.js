@@ -159,7 +159,7 @@
                     }
                 });
             };
-            slideconfig.slidebind = function(old, news, array) {
+            model.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
                     model.serviceslideshowsubmit(model.viewsettlementprofileid, (model.topage) + 1, (model.topage) + 10);
                 }
