@@ -41,7 +41,7 @@
                 <div class="edit_pages_sidebar_menu clearfix">
                     <ul>
                         <li ng-repeat="item in page.model.BranchmenuArr">
-                            <a href="javascript:void(0);" ng-class="{'btnbgColor':page.model.type===item.BranchesName}" ng-click="page.model.branchbind(item.Branch_ID,item.BranchesName);">{{item.BranchesName}}({{page.model.returnCount(item.Branch_ID)}})</a>
+                            <a href="javascript:void(0);" ng-class="{'btnbgColor':page.model.type===item.BranchesName}" ng-click="page.model.branchbind(item.Branch_ID,item.BranchesName);">{{item.BranchesName}}({{item.ProfileCount}})</a>
                         </li>
                     </ul>
                 </div>

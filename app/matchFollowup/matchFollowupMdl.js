@@ -214,7 +214,6 @@
                 };
                 model.close = function() {
                     modelpopupopenmethod.closepopuppoptopopup();
-
                 };
                 model.dynamicPopover = {
                     templateUrl: 'myPopoverTemplate.html',
