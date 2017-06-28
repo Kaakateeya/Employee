@@ -1,8 +1,8 @@
 (function(angular) {
     'use strict';
-
-    function factory($http, ViewAllCustomerService, state, helpService, config, alerts, modelpopupopenmethod, authSvc, configslide) {
-        return function() {
+    angular
+        .module('Kaakateeya')
+        .factory('editViewprofileModel', ['$http', 'editViewprofileservice', '$state', 'helperservice', 'complex-grid-config', 'alert', 'modelpopupopenmethod', 'authSvc', 'complex-slide-config', function($http, ViewAllCustomerService, state, helpService, config, alerts, modelpopupopenmethod, authSvc, configslide) {
 
             var model = {};
             var modelinactive = {};
@@ -303,10 +303,6 @@
                 configslide.reset();
             };
             return model.init();
-        };
-    }
-    angular
-        .module('Kaakateeya')
-        .factory('editViewprofileModel', factory);
-    factory.$inject = ['$http', 'editViewprofileservice', '$state', 'helperservice', 'complex-grid-config', 'alert', 'modelpopupopenmethod', 'authSvc', 'complex-slide-config'];
+        }]);
+
 })(angular);
