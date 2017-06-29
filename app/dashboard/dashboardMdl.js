@@ -374,7 +374,7 @@
                                     model.typeofslidedate = "Bounced On";
                                     break;
                                 case "SA Form status for Paid Users":
-                                    model.typeofslidedate = "Upload Date";
+                                    model.typeofslidedate = "Last Service Date";
                                     break;
                                 case "Present In India":
                                     model.typeofslidedate = "ArrivalDate at";
