@@ -125,8 +125,8 @@
 
             model.ProfileIdTemplateDUrl = function(row) {
                 // var paidstatusclass = row.PaidSatus === 1 ? 'paidclass' : 'unpaid';
-                // class=" + paidstatusclass + ">"
-                var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "'  + row.ProfileID + row.Confidential + " < /a>";
+                // class=" + paidstatusclass + "
+                var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "' >" + row.ProfileID + row.Confidential + "</a>";
                 return paid;
             };
 
