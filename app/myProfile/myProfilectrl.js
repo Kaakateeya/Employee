@@ -31,6 +31,8 @@
                  if (model.myprofileid !== "" && model.myprofileid !== null && model.myprofileid !== undefined && model.myprofileid !== "undefined") {
                      model.mpObj.txtProfileID = model.myprofileid;
                  }
+                 model.slide.templateUrl = "templates/myprofileSlide.html";
+                 model.slide.config.headettemp = "templates/myprofileheader.html";
                  scope.$on("$destroy", vm.destroy);
              };
              vm.destroy = function() {

@@ -503,7 +503,6 @@
                     }
                 };
                 model.config.checkServicetoShortlist = function(slide) {
-                    debugger;
                     model.slide = slide;
                     if (slide.isShortlisted) {
                         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'This profile already shortlisted', 2000);
@@ -534,7 +533,6 @@
                 };
 
                 model.config.shortlistmodel.checkServicetoShortlist = function(slide) {
-                    debugger;
                     model.slide = slide;
                     if (slide.isshortlistaedgain) {
                         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'You have already Shortlisted this Profile ID', 4000);

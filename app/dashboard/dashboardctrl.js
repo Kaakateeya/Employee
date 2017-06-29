@@ -6,6 +6,9 @@
          vm.init = function() {
              vm.model = model = dashboardModel;
              model.scope = scope;
+             model.templateUrl = "templates/dashBoardslide.html";
+             model.config.headettemp = "dashboardheader.html";
+             model.init();
              scope.$on("$destroy", vm.destroy);
          };
          vm.destroy = function() {

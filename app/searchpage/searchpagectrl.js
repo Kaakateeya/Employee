@@ -10,6 +10,8 @@
                  vm.model = model = {};
                  vm.model = model = searchpageModel.pageload(scope);
                  model.agedobcontrol = '2';
+                 model.templateUrl = "templates/angularSlide.html";
+                 model.config.headettemp = "templates/angularHeader.html";
                  scope.$on("$destroy", vm.destroy);
              };
              vm.destroy = function() {

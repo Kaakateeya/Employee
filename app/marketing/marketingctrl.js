@@ -8,6 +8,8 @@
              vm.init = function() {
                  vm.model = model = marketingModel.init();
                  model.scope = scope;
+                 model.templateUrl = "templates/marketingSlide.html";
+                 model.config.headettemp = "templates/marketingSlideHeader.html";
                  scope.$on("$destroy", vm.destroy);
              };
              vm.destroy = function() {

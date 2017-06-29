@@ -144,7 +144,7 @@
                         primaryemail: item.Primaryemail,
                         CreatedDate: item.CreatedDate,
                         SRCount: item.SRCount,
-                        PaidAmount: item.PaidAmount,
+                        PaidAmount: item.PaidAmount !== null ? item.PaidAmount : "Not Paid",
                         ExpiryDate: item.ExpiryDate,
                         Points: item.Points,
                         mobilestatus: item.CNumberVerStatus,

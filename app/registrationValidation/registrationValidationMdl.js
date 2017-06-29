@@ -41,7 +41,6 @@
                 modelpopupopenmethod.closepopup();
             };
             model.tickethistorypopup = function(row) {
-                debugger;
                 model.marketingTicketid = row.Emp_Ticket_ID;
                 modelpopupopenmethod.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
             };
@@ -95,6 +94,7 @@
                 model.getSearchData(from, to, 'grid', model.ddlApplicationStatus);
             };
             model.getSearchData = function(from, to, typeofbind, ApplicationStatus) {
+                model.frompage = from;
                 if (model.checkTxt(model.txtFFMFNATIVE) !== '' || model.checkTxt(model.txtFatherName) !== '' || model.checkTxt(model.txtMotherName) !== '' || model.checkTxt(model.txtFFName) !== '' || model.checkTxt(model.txtMFName) !== '' ||
                     model.checkTxt(model.txtMFSurName) !== '' || model.checkTxt(model.txtCFFFSurName) !== '' || model.checkTxt(model.txtCName) !== '' || model.checkTxt(model.ddlCaste) !== '' ||
                     model.checkTxt(model.txtAllPhones) !== '' || model.checkTxt(model.txtAllEmails) !== '' || model.checkTxt(model.ddlApplicationStatus) || model.checkTxt(model.rbtGender) !== '') {
@@ -215,7 +215,6 @@
                 model.opendiv = false;
             };
             model.slide.tickethistorypopup = function(TicketID) {
-                debugger;
                 model.marketingTicketid = TicketID;
                 modelpopupopenmethod.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
             };

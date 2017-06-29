@@ -45,7 +45,7 @@
             </div>
         </h5>
     </div>
-    <div style="margin-left:60px;" class="edit_page_details_item_descsearch clearfix">
+    <div style="margin-left:60px;" class="edit_page_details_item_descsearch clearfix" ng-if="slide.PaidAmount!=='Not Paid'">
         <h6> <span style="font-weight: bold;">Expiry Date</span></h6>
         <h5>
             <div style="color:Black;">
@@ -277,7 +277,7 @@
         <span> | </span>
         <a href='javascript:void(0);' ng-click="pagesredirect('myprofile',0,slide.ProfileID)" class="dashboardfooterlinks">My Profile</a>
         <span> | </span>
-        <a href='javascript:void(0);' ng-click="pagesredirect('nopage',1)" class="dashboardfooterlinks">Marketing Slide Show</a>
+        <a href='javascript:void(0);' ng-click="pagesredirect('marketing',1)" class="dashboardfooterlinks">Marketing Slide Show</a>
         <span> | </span>
         <a href='javascript:void(0);' ng-click="pagesredirect('matchfollowup',0)" class="dashboardfooterlinks">Match Followup Slide Show</a>
         <span> | </span>
