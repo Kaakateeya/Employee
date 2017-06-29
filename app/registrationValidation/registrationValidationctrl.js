@@ -12,8 +12,10 @@
                      model.ddlApplicationStatus = '';
                      model.scope = scope;
                      model.grid.TotalRows = '';
-                     scope.$on("$destroy", vm.destroy);
+                     model.slide.templateUrl = "templates/myprofileSlide.html";
+                     model.slide.config.headettemp = "templates/myprofileheader.html";
                      model.opendiv = true;
+                     scope.$on("$destroy", vm.destroy);
                  };
                  vm.destroy = function() {
                      model.destroy();

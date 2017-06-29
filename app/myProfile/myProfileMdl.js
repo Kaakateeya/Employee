@@ -9,15 +9,14 @@
             function(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss,
                 SelectBindServiceApp, uibModal, timeout, configslide, commonpage, filter, arrayConstants) {
                 var model = {};
-                model.grid = config;
+                // model.grid = config;
                 model.slide = {};
+                model.grid = {};
                 model.slide.config = configslide;
                 model.mpObj = {};
                 model.empid = model.slide.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 model.opendiv = true;
                 model.scope = {};
-                model.slide.templateUrl = "templates/myprofileSlide.html";
-                model.slide.config.headettemp = "templates/myprofileheader.html";
                 model.grid.showsearchrows = true;
                 model.grid.showsearch = true;
                 model.grid.showpaging = true;
@@ -101,10 +100,6 @@
                     var stronlineliteclass = row.onlinepaidcls == "light" ? row.onlinepaidcls + ' Linkdisabled' : row.onlinepaidcls;
                     var strofflineliteclass = row.offlinepaidcls == "light" ? row.offlinepaidcls + ' Linkdisabled' : row.offlinepaidcls;
                     var photodisbled = row.PhotoshopCount === 0 ? 'Linkdisabled' : "";
-                    // var paid = "<a style='cursor:pointer;'>Factsheet</a>&nbsp;&nbsp;&nbsp;<a style='' >Tickets</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' >Servicelog</a>" +
-                    //     "&nbsp;&nbsp;&nbsp;<a ng-click='model.showphoto(" + row.Cust_ID + ");' class='" + photodisbled + "'>" + row.UploadedPhotoscount + " / " + row.PhotoshopCount + "</a>" +
-                    //     "&nbsp;&nbsp;&nbsp;<a class='oukuCls " + stronlineliteclass + "' ng-click='model.RedirectPayment(" + row.ProfileID + ");'>" + row.onlinepaid + "</a>/<a class='oukuCls " + strofflineliteclass + "' ng-click='model.RedirectPayment(" + row.ProfileID + ");' >" + row.offlinepaid + "</a>&nbsp;&nbsp;&nbsp;" +
-                    //     "<label class='fontweight'>" + row.OwnerName + "</label>";
                     var paidstatus = row.paid === true ? "Paid" : "UnPaid";
                     var paid = "<a style='cursor:pointer;'>Factsheet</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);'  ng-click='model.tickethistorypopup(" + row.Emp_Ticket_ID + ");'>Tickets</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' >Servicelog</a>" +
                         "&nbsp;&nbsp;&nbsp;<a ng-click='model.showphoto(" + row.Cust_ID + ");' class='" + photodisbled + "'>" + row.UploadedPhotoscount + " / " + row.PhotoshopCount + "</a>" +
@@ -125,7 +120,9 @@
                     window.open("EmployeePayments" + "?profileid=" + profileid, "_blank");
                 };
                 model.horoTemplate = function(row) {
-                    var paid = row.HoroscopeStatus === 1 ? row.Row + "<img  src='src/images/ico_horoscope.jpg' class='horoImgcls'>" : row.Row + "";
+                    // var rowww = model.frompage === 1 ? 0 : model.frompage;
+                    //  model.frompage = rowww + 1;
+                    var paid = row.HoroscopeStatus === 1 ? row.SNo + "<img  src='src/images/ico_horoscope.jpg' class='horoImgcls'>" : row.SNo + "";
                     return paid;
                 };
                 model.editviewRedirect = function(row) {
@@ -144,7 +141,20 @@
                 model.chkVal = function(val) {
                     return val !== undefined && val !== '' ? val : null;
                 };
+
+                model.addingserialnumber = function(array) {
+                    _.map(array, function(item) {
+                        item.SNo = model.SNum;
+                        model.SNum++;
+                    });
+                    return array;
+                };
+
+
                 model.MyprofileResult = function(obj, from, to, type, flagtype) {
+                    if (from === 1) {
+                        model.SNum = 1;
+                    }
                     model.topage = to;
                     var inputobj = {
                         Empid: model.empid,
@@ -196,7 +206,7 @@
                             if (type === 'grid') {
                                 model.opendiv = false;
                                 model.grid.TotalRows = response.data[0].TotalRows;
-                                model.grid.setData(response.data);
+                                model.grid.data = model.addingserialnumber(response.data);
                                 model.gridArray = response.data;
                             } else if (type === 'excel') {
                                 model.grid.exportarray = [];

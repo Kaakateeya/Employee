@@ -23,6 +23,8 @@
              model.norecordstable = false;
              model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
              model.empBranchID = authSvc.empBranchID() !== undefined && authSvc.empBranchID() !== null && authSvc.empBranchID() !== "" ? authSvc.empBranchID() : "";
+             model.templateUrl = "templates/dashBoardslide.html";
+             model.config.headettemp = "dashboardheader.html";
              model.init();
          };
          vm.init();
