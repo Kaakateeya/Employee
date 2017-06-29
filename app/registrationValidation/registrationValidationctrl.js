@@ -2,8 +2,8 @@
      'use strict';
      angular
          .module('Kaakateeya')
-         .controller('registrationValidationCtrl', ['registrationValidationModel', '$scope',
-             function(registrationValidationModel, scope) {
+         .controller('registrationValidationCtrl', ['registrationValidationModel', '$scope', 'authSvc',
+             function(registrationValidationModel, scope, authSvc) {
                  /* jshint validthis:true */
                  var vm = this,
                      model;
@@ -15,6 +15,7 @@
                      model.slide.templateUrl = "templates/myprofileSlide.html";
                      model.slide.config.headettemp = "templates/myprofileheader.html";
                      model.opendiv = true;
+                     model.slide.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                      scope.$on("$destroy", vm.destroy);
                  };
                  vm.destroy = function() {

@@ -13,7 +13,7 @@
             model.obj = {};
             model.obj.rdnGender = '3';
             model.opendiv = true;
-            model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+            model.slide.empid = model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             model.totalrowsshow = false;
             model.showsearchrows = false;
             model.showsearch = true;

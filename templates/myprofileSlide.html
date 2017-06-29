@@ -15,8 +15,8 @@
         <h6> <span style="font-weight: bold;">Last Login</span></h6>
         <h5>
             <div style="color:Black;">
-                <span ng-if='(slide.lastlogin !== null) && (slide.lastlogin !=="") && (slide.lastlogin !== undefined)'>{{slide.lastlogin}}<span ng-if="slide.logincount!==null">({{slide.logincount}})</span></span>
-                <a class="alllinkscolor" ng-if='(slide.lastlogin === null)|| (slide.lastlogin ==="") || (slide.lastlogin === undefined)' href='javascript:void(0)' ng-click='forgetpassword(slide.ProfileID)'>forgot password</a>
+                <span ng-if='(slide.lastlogin !== null) && (slide.lastlogin !=="") && (slide.lastlogin !== undefined) && (slide.lastlogin !== "--")'>{{slide.lastlogin}}<span ng-if="slide.logincount!==null">({{slide.logincount}})</span></span>
+                <a class="alllinkscolor" ng-if='(slide.lastlogin === null)|| (slide.lastlogin ==="") || (slide.lastlogin === undefined) || (slide.lastlogin === "--")' href='javascript:void(0)' ng-click='forgetpassword(slide.ProfileID)'>forgot password</a>
             </div>
             <div class="clearfix">
             </div>
@@ -69,7 +69,7 @@
         <img ng-click="slidepopup(slide.Custid)" ng-src="{{slide.custPhoto}}" class="image" style="cursor: pointer;width:250px;height:250px;" />
         <br>
         <div ng-if="slide.PhotoCount!==0" class="col-lg-8 col-lg-offset-3"><a href="javascript:void(0)"><span style="color:Black;font-size:9pt;">No of Photos {{slide.PhotoCount}}</span></a></div>
-        <div ng-if="slide.PhotoCount===0" class="col-lg-8 col-lg-offset-3"><a href="javascript:void(0)" ng-click="photorequest(slide.ProfileID,model.empid)"><span style="color:#3030d8;font-size:10pt;">Photo Request</span></a></div>
+        <div ng-if="slide.PhotoCount===0" class="col-lg-8 col-lg-offset-3"><a href="javascript:void(0)" ng-click="photorequest(slide.ProfileID,model.empid,'')"><span style="color:#3030d8;font-size:10pt;">Photo Request</span></a></div>
     </div>
 </div>
 <div class="clearfix">
@@ -108,11 +108,11 @@
 <div class="row">
     <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
         <div style="margin-left:69px;" class="edit_page_details_item_descsearch clearfix">
-            <h6> <span style="font-weight: bold;">{{slide.SAForm!==null ? "View SA Form":"SA Form"}}
+            <h6> <span style="font-weight: bold;">{{slide.SAForm!==null && slide.SAForm!=='--' && (slide.SAForm).trim()!=='' ? "View SA Form":"SA Form"}}
             </span></h6>
             <h5>
                 <div style="color:Black;">
-                    <a class="alllinkscolor" ng-show="slide.SAForm!==null && slide.SAForm==='--' && (slide.SAForm).trim()===''" href="javascript:void(0)" ng-click="horoscopeimage(slide.SAForm,'SA')">View SA Form </a>
+                    <a class="alllinkscolor" ng-show="slide.SAForm!==null && slide.SAForm!=='--' && (slide.SAForm).trim()!==''" href="javascript:void(0)" ng-click="horoscopeimage(slide.SAForm,'SA')">View SA Form </a>
                     <a href="javascript:void(0)" ng-click="saformupload(slide.ProfileID)" class="alllinkscolor" ng-show="slide.SAForm===null || slide.SAForm==='--' || (slide.SAForm).trim()===''">Upload SA Form</a>
                 </div>
                 <div class="clearfix">

@@ -62,7 +62,8 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     commonpage.showPopupphotopoup('marketgrid.html', scope, 'md', "modalclassdashboardphotopopup");
                 };
                 scope.ViewTicket = function(row) {
-                    var paid = "<a style='cursor:pointer;' ng-click='tickethistoryupdate(135731)'  href='javascript:void(0);'>View</a>";
+                    console.log(row);
+                    var paid = "<a style='cursor:pointer;' ng-click='tickethistoryupdate(" + row.TicketID + ")'  href='javascript:void(0);'>View</a>";
                     return paid;
                 };
                 scope.showHoromethod = function(HoroPhotoName) {

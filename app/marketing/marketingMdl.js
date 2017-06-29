@@ -460,7 +460,7 @@
 
                     SelectBindServiceApp.sendMobileCodeBasedOnContactID(inputOBj).then(function(response) {
                         model.mobileVerificationCode = response.data;
-                        modelpopupopenmethod.showPopup('verifyMobileContentmar.html', model.scope, 'md', '');
+                        modelpopupopenmethod.showPopup('verifyMobileContentmar.html', model.scope, 'md', 'modalclassdashboardphotopopup');
                     });
                 };
 
@@ -468,25 +468,59 @@
                     if (val === "") {
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter Mobile verify Code', 4500);
                     } else {
-                        SelectBindServiceApp.verifyMobileBasedOnContactID(val, model.ID).then(function(response) {
-                            if (response.data && parseInt(response.data) === 1) {
-                                alertss.timeoutoldalerts(model.scope, 'alert-success', 'Verified Successfully', 4500);
-                            } else {
-                                alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Verification failed', 4500);
-                            }
-                        });
+                        if (val === model.mobileVerificationCode) {
+                            SelectBindServiceApp.verifyMobileBasedOnContactID(val, model.ID).then(function(response) {
+                                if (response.data && parseInt(response.data) === 1) {
+                                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Verified Successfully', 4500);
+                                } else {
+                                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Verification failed', 4500);
+                                }
+                            });
+                        } else {
+                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter valid Code', 4500);
+                        }
                     }
                 };
+                // model.sendMobileCode = function(CountryID, CCode, MobileNumber, CustContactNumbersID) {
+                //     model.popupMobilenumber = MobileNumber;
+                //     model.ID = CustContactNumbersID;
+                //     var inputOBj = {
+                //         iCountryID: CountryID,
+                //         iCCode: CCode,
+                //         MobileNumber: MobileNumber,
+                //         CustFamilyID: CustContactNumbersID
+                //     };
+                //     SelectBindServiceApp.sendMobileCode(inputOBj).then(function(response) {
+                //         model.mobileVerificationCode = response.data;
+                //         modelpopupopenmethod.showPopupphotopoup('verifyMobileContentmar.html', model.scope, '', "modalclassdashboardphotopopup");
+                //     });
+                // };
+                // model.verifyMobCode = function(val) {
+                //     if (val === "") {
+                //         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter Mobile verify Code', 4500);
+                //     } else if (model.mobileVerificationCode === val) {
+                //         SelectBindServiceApp.verifyMobile(model.mobileVerificationCode, model.ID).then(function(response) {
+                //             if (response.data && parseInt(response.data) === 1) {
+                //                 modelpopupopenmethod.closepopuppoptopopup();
+                //                 alertss.timeoutoldalerts(model.scope, 'alert-success', 'Verified Successfully', 4500);
+                //             } else {
+                //                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Verification failed', 4500);
+                //             }
+                //         });
+                //     } else {
+                //         alert('Please Enter Valid Verification code');
+                //     }
+                // };
                 model.cancel = function() {
                     modelpopupopenmethod.closepopup();
                 };
 
                 model.updateREGFee = function(row, txtval) {
                     if (row.editval === 'Edit') {
-                        row.editval = 'update Fee'
+                        row.editval = 'update Fee';
                         row.txtFeeValue = row.Feedetails;
                     } else if (row.editval === 'update Fee' || row.editval === 'Save') {
-                        row.editval = 'Edit'
+                        row.editval = 'Edit';
 
                         var datainobj = {
                             EmpTicketID: row.Emp_Ticket_ID,

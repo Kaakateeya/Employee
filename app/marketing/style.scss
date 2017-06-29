@@ -60,8 +60,13 @@ span.multiselect-selected-text {
         text-align: left;
         width: 28% !important;
     }
-    .pop_controls_right>input,
     .pop_controls_right>.btn-group {
+        width: 73% !important;
+    }
+    button.multiselect.dropdown-toggle.btn.ng-pristine.ng-untouched.ng-valid.ng-isolate-scope {
+        width: 100%;
+    }
+    .pop_controls_right>input {
         width: 73% !important;
     }
     .ticketpopuppopupheader {
@@ -179,6 +184,12 @@ span.multiselect-selected-text {
 // @include lineHeight();
 .modalclassdashboardremainder {
     z-index: 9999999 !important;
+    top: 0%;
+    left: 0%;
+}
+
+.modalclassdashboardphotopopup {
+    z-index: 999999 !important;
     top: 0%;
     left: 0%;
 }

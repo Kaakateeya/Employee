@@ -63,6 +63,7 @@
     </div>
     <div class="clearfix"></div>
     <div class="row">
-        <div><a href="javascript:void(0)"><span class="Photoscount">No of Photos {{slide.PhotoCount}}</span></a></div>
+        <div ng-if="slide.PhotoCount!==0"><a href="javascript:void(0)"><span class="Photoscount">No of Photos {{slide.PhotoCount}}</span></a></div>
+        <div ng-if="slide.PhotoCount===0"><a href="javascript:void(0)" ng-click="photorequest(slide.ProfileID,model.empid,'')"><span style="color:#3030d8;font-size:10pt;">Photo Request</span></a></div>
     </div>
 </div>

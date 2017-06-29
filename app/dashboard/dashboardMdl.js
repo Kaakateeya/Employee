@@ -385,7 +385,7 @@
                                 case "Customer Notification Status":
                                     model.typeofslidedate = "Notification Date";
                                     break;
-                                case "NoData Service Profiles":
+                                case "No Data Profiles":
                                     model.typeofslidedate = "Registered Date";
                                     break;
                             }

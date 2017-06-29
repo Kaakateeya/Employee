@@ -45,8 +45,11 @@ span.multiselect-selected-text {
   #marketingdivid .pop_label_left {
     text-align: left;
     width: 28% !important; }
-  #marketingdivid .pop_controls_right > input,
   #marketingdivid .pop_controls_right > .btn-group {
+    width: 73% !important; }
+  #marketingdivid button.multiselect.dropdown-toggle.btn.ng-pristine.ng-untouched.ng-valid.ng-isolate-scope {
+    width: 100%; }
+  #marketingdivid .pop_controls_right > input {
     width: 73% !important; }
   #marketingdivid .ticketpopuppopupheader {
     margin-top: -10px;
@@ -123,6 +126,11 @@ span.multiselect-selected-text {
 
 .modalclassdashboardremainder {
   z-index: 9999999 !important;
+  top: 0%;
+  left: 0%; }
+
+.modalclassdashboardphotopopup {
+  z-index: 999999 !important;
   top: 0%;
   left: 0%; }
 
