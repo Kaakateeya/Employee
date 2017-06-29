@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function controller(editViewprofileModel, scope, state) {
+    function controller(editViewprofileModel, scope, state, authSvc) {
         /* jshint validthis:true */
         var vm = this,
             model;
@@ -17,8 +17,10 @@
             vm.model.TotalRows = "";
             vm.model.showtaotalrows = true;
             vm.model.showplus = true;
+            model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             model.slide.templateUrl = "templates/myprofileSlide.html";
             model.slide.config.headettemp = "myprofileheader.html";
+            model.obj.rdnGender = '';
             scope.$on("$destroy", vm.destroy);
         };
         vm.destroy = function() {
@@ -28,5 +30,5 @@
         vm.init();
     }
 
-    angular.module('Kaakateeya').controller('editViewprofileCtrl', ['editViewprofileModel', '$scope', '$state', controller]);
+    angular.module('Kaakateeya').controller('editViewprofileCtrl', ['editViewprofileModel', '$scope', '$state', 'authSvc', controller]);
 })();

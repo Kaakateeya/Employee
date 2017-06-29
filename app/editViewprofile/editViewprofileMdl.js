@@ -11,7 +11,6 @@
             model.showplus = true;
             model.tablearray = [];
             model.obj = {};
-            model.obj.rdnGender = '';
             model.opendiv = true;
             model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             model.totalrowsshow = false;
@@ -125,8 +124,9 @@
             };
 
             model.ProfileIdTemplateDUrl = function(row) {
-                var paidstatusclass = row.PaidSatus === 1 ? 'paidclass' : 'unpaid';
-                var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "' class=" + paidstatusclass + ">" + row.ProfileID + row.Confidential + "</a>";
+                // var paidstatusclass = row.PaidSatus === 1 ? 'paidclass' : 'unpaid';
+                // class=" + paidstatusclass + ">"
+                var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "'  + row.ProfileID + row.Confidential + " < /a>";
                 return paid;
             };
 
