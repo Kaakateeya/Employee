@@ -5,8 +5,8 @@
                 <div class="panel-heading">
                     <h4 class="col-lg-4" style="color: #A00201;font-size: 17px;">Search Kaakateeya Customers</h4>
                     <div class="col-lg-3" style="color: black;font-size: 13px;">
-                        <md-radio-group name="IsHighestDegree" ng-change="page.model.genderChange(page.model.obj.rdnGender);" layout="row" ng-model="page.model.obj.rdnGender" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                            <md-radio-button value="3" class="md-primary">Both</md-radio-button>
+                        <md-radio-group name="IsHighestDegree" layout="row" ng-model="page.model.obj.rdnGender" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                            <md-radio-button value="" class="md-primary">Both</md-radio-button>
                             <md-radio-button value="1"> Male </md-radio-button>
                             <md-radio-button value="2"> Female </md-radio-button>
                         </md-radio-group>
@@ -16,7 +16,6 @@
                         <md-checkbox data-checklist-change="page.model.chkChange();"  data-checklist-model="page.model.obj.chkProfileIDsts" data-checklist-value="role.value"> {{role.name}}&nbsp;
                           </md-checkbox>
                        </label>
-
                     </div>
                 </div>
                 <div class="row maindiv panel-body">

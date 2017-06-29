@@ -4,12 +4,16 @@
 
      angular
          .module('Kaakateeya')
-         .controller('myProfileCtrl', ['myProfileModel', '$scope', '$location', function(myProfileModel, scope, $location) {
+         .controller('myProfileCtrl', ['myProfileModel', '$scope', '$location', 'authSvc', function(myProfileModel, scope, $location, authSvc) {
              var vm = this,
                  model;
              vm.init = function() {
                  vm.model = model = myProfileModel;
                  model.gridArray = [];
+                 model.empid = model.slide.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+
+                 model.mpObj.ddlProfileOwner = [parseInt(model.empid)];
+
                  model.mpObj.rdnprofileType = '';
                  model.mpObj.rdnGender = '';
                  model.mpObj.rdnWebsiteLogin = '';

@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .directive('contactDirective', directive);
 
-    directive.$inject = ['SelectBindService', 'commonFactory', '$mdDialog'];
+    directive.$inject = ['SelectBindService', 'commonFactory', '$mdDialog', 'authSvc'];
 
-    function directive(SelectBindService, commonFactory, mdDialog) {
+    function directive(SelectBindService, commonFactory, mdDialog, authSvc) {
 
         var directive = {
             link: link,
@@ -28,6 +28,10 @@
         return directive;
 
         function link(scope, element, attrs) {
+
+            scope.AdminID = authSvc.isAdmin();
+            scope.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+
             scope.amob = (scope.stralternative !== null && scope.stralternative !== '' && scope.stralternative !== undefined) ? true : false;
             scope.land = (scope.strareacode !== null && scope.strareacode !== '' && scope.strareacode !== undefined) ? true : false;
             scope.mail = (scope.strmail !== null && scope.strmail !== '' && scope.strmail !== undefined && scope.emailhide === true) ? true : false;

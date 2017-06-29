@@ -261,6 +261,7 @@
                 }
             });
         };
+
         model.RelationshipChange = function(RelationshipID) {
             model.txtprofileidreminder = (model.marInfo)[0].ProfileID;
             SelectBindServiceApp.getRelationName(3, model.txtprofileidreminder, RelationshipID).then(function(response) {

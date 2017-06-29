@@ -11,7 +11,6 @@
             model.showplus = true;
             model.tablearray = [];
             model.obj = {};
-            model.obj.rdnGender = '3';
             model.opendiv = true;
             model.slide.empid = model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             model.totalrowsshow = false;
@@ -125,7 +124,9 @@
             };
 
             model.ProfileIdTemplateDUrl = function(row) {
-                var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "'>" + row.ProfileID + row.Confidential + "</a>";
+                // var paidstatusclass = row.PaidSatus === 1 ? 'paidclass' : 'unpaid';
+                // class=" + paidstatusclass + "
+                var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "' >" + row.ProfileID + row.Confidential + "</a>";
                 return paid;
             };
 
@@ -179,7 +180,9 @@
                     { text: 'Dob', key: 'Age', type: 'label', width: '150px' },
                     { text: 'Gender', key: 'GenderID', type: 'custom', templateUrl: model.GenderStr },
                 ];
+                debugger;
                 var obj = {
+                    genderID: model.obj.rdnGender,
                     strFName: inpuobj.Name !== undefined ? inpuobj.Name : "",
                     strSurName: inpuobj.surname !== undefined ? inpuobj.surname : "",
                     strProfileID: inpuobj.ProfileIDsearch !== undefined ? inpuobj.ProfileIDsearch : "",
@@ -251,12 +254,12 @@
                 model.ViewAllsubmit(model.obj, 1, 100);
             };
 
-            model.genderChange = function(val) {
-                if (model.gridArray.length > 0 && val !== undefined && val !== '' && val !== null) {
-                    var arr = val === 3 || val === '3' ? model.gridArray : _.where(model.gridArray, { GenderID: parseInt(val) });
-                    model.data = arr;
-                }
-            };
+            // model.genderChange = function(val) {
+            //     if (model.gridArray.length > 0 && val !== undefined && val !== '' && val !== null) {
+            //         var arr = val === 3 || val === '3' ? model.gridArray : _.where(model.gridArray, { GenderID: parseInt(val) });
+            //         model.data = arr;
+            //     }
+            // };
 
             model.pagechange = function(val) {
                 model.columns = [
