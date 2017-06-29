@@ -32,6 +32,7 @@
                     maxDate: null
                 };
                 model.showplus = false;
+
                 model.MyProfilePageLoad = function() {
                     myProfileservice.getMyprofilebind(1, 2, '').then(function(response) {
                         model.mpObj.ddlProfileOwner = model.empid;

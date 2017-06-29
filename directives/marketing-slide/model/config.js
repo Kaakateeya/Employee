@@ -262,8 +262,8 @@
                 }
             });
         };
-        model.RelationshipChange = function(RelationshipID) {
-            SelectBindServiceApp.getRelationName(3, model.txtprofileidreminder, RelationshipID).then(function(response) {
+        model.RelationshipChangerem = function(RelationshipID) {
+            SelectBindServiceApp.getRelationName(3, model.ProfileID, RelationshipID).then(function(response) {
                 if (_.isArray(response.data[0]) && response.data[0].length > 0) {
                     model.contactpersonname = response.data[0][0].NAME;
                 }

@@ -50,7 +50,6 @@
                                     alertss.timeoutoldalerts(model.scope, 'alert-success', 'uploaded successfully', 4500);
                                 } else {
                                     model.reset();
-
                                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'uploading Failed', 4500);
                                 }
                             });
