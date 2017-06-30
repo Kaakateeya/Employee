@@ -17,7 +17,7 @@
             vm.model.TotalRows = "";
             vm.model.showtaotalrows = true;
             vm.model.showplus = true;
-            model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+            model.slide.empid = model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             model.slide.templateUrl = "templates/myprofileSlide.html";
             model.slide.config.headettemp = "myprofileheader.html";
             model.obj.rdnGender = '';

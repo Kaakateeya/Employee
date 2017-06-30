@@ -180,7 +180,7 @@
                     { text: 'Dob', key: 'Age', type: 'label', width: '150px' },
                     { text: 'Gender', key: 'GenderID', type: 'custom', templateUrl: model.GenderStr },
                 ];
-                debugger;
+
                 var obj = {
                     genderID: model.obj.rdnGender,
                     strFName: inpuobj.Name !== undefined ? inpuobj.Name : "",

@@ -22,6 +22,14 @@
                         ProfileIDs: custids
                     }
                 });
+            },
+            getServiceInfo: function(FromProfileID, ToProfileID) {
+                return http.get(app.apiroot + 'ExpressInterest/getServiceInfo', {
+                    params: {
+                        FromProfileID: FromProfileID,
+                        ToProfileID: ToProfileID
+                    }
+                });
             }
         };
     }
