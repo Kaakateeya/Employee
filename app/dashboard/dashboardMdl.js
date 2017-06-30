@@ -373,7 +373,7 @@
                                 case "Email Bounce Info":
                                     model.typeofslidedate = "Bounced On";
                                     break;
-                                case "SA Form status for Paid Users":
+                                case "No Sa Form For Paid Profiles":
                                     model.typeofslidedate = "Last Service Date";
                                     break;
                                 case "Present In India":

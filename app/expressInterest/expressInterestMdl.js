@@ -21,6 +21,7 @@
                         if (response.data[0].length > 0) {
                             model.ProfileStatusID = response.data[0][0].ProfileStatusID;
                         }
+
                         if (_.isArray(response.data[1]) && response.data[1].length > 0) {
                             model.fromcustid = response.data[1][0].Cust_ID;
                             model.FromAgeMax = response.data[1][0].AgeMax;
@@ -113,12 +114,15 @@
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'ProfileID has been already added to the list', 9500);
                 } else {
                     if (ID !== 0) {
-                        if (model.exiObj.txtFromprofileID !== null && model.exiObj.txtFromprofileID.length != 0) {
+                        if (model.exiObj.txtFromprofileID !== null && model.exiObj.txtFromprofileID.length !== 0) {
                             model.mismatch = [];
+                            expressInterestService.getServiceInfo(model.exiObj.txtFromprofileID, model.exiObj.txtToprofileID).then(function(res) {
+                                console.log(res.data);
+                                model.servicedatealert = parseInt(res.data);
+                            });
                             expressInterestService.getEIprofileID(6, ID, '').then(function(response) {
                                 console.log(response.data);
                                 if (_.isArray(response.data) && response.data.length > 0) {
-
                                     if (_.isArray(response.data[0]) && response.data[0].length > 0) {
                                         model.ToProfileStatusID = response.data[0][0].ProfileStatusID;
                                     }
@@ -132,6 +136,10 @@
                                         model.ToGenderID = response.data[1][0].GenderID;
                                         model.Tocasteid = response.data[1][0].casteid;
                                         model.Tosurname = response.data[1][0].CSName;
+
+                                        if (model.servicedatealert === 1) {
+                                            model.mismatch.push(" Already Service Done");
+                                        }
                                         if ((model.FromAgeMax) < (model.FromAgeMin) && model.ToAgeMax > (model.ToAgeMin)) {
                                             model.mismatch.push(" Age not Matched to this profileid");
                                         }

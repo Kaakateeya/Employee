@@ -26,7 +26,8 @@
         <h6> <span style="font-weight: bold;">Send/Recv</span></h6>
         <h5>
             <div style="color:Black;">
-                <a class="alllinkscolor" href='javascript:void(0)' ng-click="communicationlogredirect(slide.ProfileID)">{{slide.SRCount}}</a>
+                <p style="color: red;" ng-show="slide.SRCount==='No Service'">{{slide.SRCount}}</p>
+                <a ng-show="slide.SRCount!=='No Service'" class="alllinkscolor" href='javascript:void(0)' ng-click="communicationlogredirect(slide.ProfileID)">{{slide.SRCount}}</a>
             </div>
             <div class="clearfix">
             </div>

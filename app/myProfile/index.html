@@ -193,7 +193,7 @@
                             </md-checkbox>
                             <md-checkbox ng-model="page.model.mpObj.chkIsConfidential">IsConfidential
                             </md-checkbox>
-                            <md-checkbox ng-model="page.model.mpObj.chkHighConfidential">Is HighConfidential
+                            <md-checkbox ng-show="page.model.isAdmin===1 || page.model.isAdmin==='1'" ng-model="page.model.mpObj.chkHighConfidential">Is HighConfidential
                             </md-checkbox>
                         </div>
                         <div class="clearfix form-group">
