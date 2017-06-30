@@ -30,8 +30,8 @@
                         PD:<a href="javascript:void(0);">{{slide.PD}}</a> , DPD:<a href="javascript:void(0);">{{slide.DPD}}</a> , View:<a href="javascript:void(0);">{{slide.ViewCount}}</a> , NView:<a href="javascript:void(0);">{{slide.NView}}</a> , BI:
                         <a href="javascript:void(0);">{{slide.BI}}</a> , OppI :<a href="javascript:void(0);">{{slide.OppI}}</a>
                     </div>
-                    <div class="vertical-text" ng-show="model.siblingsFlag===1" style="background-color: rgb(160, 2, 1);">{{slide.ProfileStatusID===56 || slide.ProfileStatusID===394?'DELETED':(slide.ProfileStatusID===57 || slide.ProfileStatusID===393?'SETTLED':'')}}</div>
-                    <img style="width:252px;height:252px;" ng-click='slidepopup(slide.CustID)' ng-src='{{slide.Photo}}' class="imgCls">
+                    <div class="vertical-text" ng-show="model.siblingsFlag===1" ng-style="{'background-color':slide.ProfileStatusID===56 || slide.ProfileStatusID===394? 'rgb(160, 2, 1)': 'green'} ">{{slide.ProfileStatusID===56 || slide.ProfileStatusID===394?'DELETED':(slide.ProfileStatusID===57 || slide.ProfileStatusID===393?'SETTLED':'')}}</div>
+                    <img style="width:252px;height:252px;" ng-click='slidepopup(slide.CustID)' ng-src='{{slide.Photo}}' class="img-thumbnail imgCls">
                     <div style="line-height: 22px;"><br><b>{{slide.CustomerName}} (<b><a href="javascript:void(0)" ng-click="model.ViewProfile(slide.ProfileID);">{{slide.ProfileID}}</a> - {{slide.registeredBranch}})</b></b><br>
                         <div ng-show="model.guestticketFlag!==1 && slide.CustID">
                             <div>

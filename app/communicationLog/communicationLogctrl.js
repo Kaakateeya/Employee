@@ -13,6 +13,11 @@
                  model.searchObjectquery = $location.search();
                  var meKey = Object.getOwnPropertyNames(model.searchObjectquery)[0];
                  model.Profileidcommunication = model.searchObjectquery[meKey];
+                 model.Nameofcandidate = "";
+                 model.sendarray = [];
+                 model.sendarray2 = [];
+                 model.sendarray3 = [];
+                 model.sendarray4 = [];
                  if (model.Profileidcommunication !== "" && model.Profileidcommunication !== null && model.Profileidcommunication !== undefined && model.Profileidcommunication !== "undefined") {
                      model.communicationlogsubmit(model.Profileidcommunication);
                  }

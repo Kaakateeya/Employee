@@ -273,7 +273,7 @@
                             value: '',
                             ProfileID: item.ProfileID,
                             KMPLID: item.KMPLID,
-                            paid: item.paid,
+                            paid: item.paid === true || item.paid === 1 ? 1 : 0,
                             IsConfidential: item.IsConfidential,
                             SuperConfidentila: item.SuperConfidentila,
                             HoroscopeStatus: item.HoroscopeStatus,

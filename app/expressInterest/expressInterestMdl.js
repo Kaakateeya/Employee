@@ -116,6 +116,7 @@
                         if (model.exiObj.txtFromprofileID !== null && model.exiObj.txtFromprofileID.length != 0) {
                             model.mismatch = [];
                             expressInterestService.getEIprofileID(6, ID, '').then(function(response) {
+                                console.log(response.data);
                                 if (_.isArray(response.data) && response.data.length > 0) {
 
                                     if (_.isArray(response.data[0]) && response.data[0].length > 0) {
