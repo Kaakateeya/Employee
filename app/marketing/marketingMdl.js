@@ -138,8 +138,8 @@
                                 item.ddlmrktAssignmemo = parseInt(empid);
                                 item.txtmrktCalltelephonenumberIn = item.txtmrktCalltelephonenumberout = item.PrimaryContactNumber;
 
-                                item.ddlmrktReplyTypeIn = item.ddlmrktreplytypeout = item.ddlmrktReplyMemo = 7;
-                                item.txtmrktcalldiscussionMemo = item.txtmrktCalldiscussionin = item.txtmrktCalldiscussionout = model.mailchange(7);
+                                item.ddlmrktReplyTypeIn = item.ddlmrktreplytypeout = item.ddlmrktReplyMemo = '';
+                                item.txtmrktcalldiscussionMemo = item.txtmrktCalldiscussionin = item.txtmrktCalldiscussionout = '';
 
                                 item.histryObj = _.where(response.data.MarketingslideHistory, { Emp_Ticket_ID: item.Emp_Ticket_ID.toString() });
                                 _.map(item.histryObj, function(iiitm) {
@@ -805,6 +805,7 @@
                         var msg = parseInt(response.data) === 1 ? (obj.CallType === 1 ? 'Incoming Call Created successfully' : 'Outgoing Call Created successfully') :
                             ((obj.CallType === 1 ? 'Incoming Call updation failed' : 'Outgoing Call updation failed'));
                         var msgClass = parseInt(response.data) === 1 ? 'alert-success' : 'alert-danger';
+                        model.resetInOutSlide(obj.Emp_Ticket_ID);
                         alertss.timeoutoldalerts(model.scope, msgClass, msg, 9500);
                     });
 
@@ -870,6 +871,7 @@
                         } else {
                             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Memo updation failed', 9500);
                         }
+                        model.resetInOutSlide(obj.Emp_Ticket_ID);
                     });
                 };
 
@@ -885,7 +887,9 @@
                         } else {
                             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Ticket closing failed', 9500);
                         }
+                        model.resetInOutSlide(obj.Emp_Ticket_ID);
                     });
+
                 };
 
                 model.assignSubmit = function(Emp_Ticket_ID) {
@@ -894,6 +898,30 @@
                 model.destroy = function() {
                     config.reset();
                 };
+
+                model.resetInOutSlide = function(ticketid) {
+                    _.map(model.Marketingslideticket, function(item) {
+                        if (parseInt(item.Emp_Ticket_ID) === parseInt(ticketid)) {
+                            item.ddlmrktCallresultIn = item.ddlmrktcallresultout = "417";
+                            item.ddlmrktreceivedIn = item.ddlmrktreceivedout = "39";
+                            item.rbtnmarketDisplayIn = item.rbtndisplayOut = "2";
+                            item.ddlmrktreplytypeout =
+                                item.ddlmrktReplyMemo =
+                                item.ddlmrktreplyClose =
+                                item.ddlmrktReplyTypeIn = "";
+                            item.txtmrktRelationnameout = item.txtmrktRelationnameIn = item.FatherName;
+                            item.selectedIndex = 0;
+                            item.ddlmrktAssignmemo = parseInt(empid);
+                            item.txtmrktCalltelephonenumberIn = item.txtmrktCalltelephonenumberout = item.PrimaryContactNumber;
+                            item.txtmrktcloseReasn = '';
+                            item.ddlmrktReplyTypeIn = item.ddlmrktreplytypeout = item.ddlmrktReplyMemo = '';
+                            item.txtmrktcalldiscussionMemo = item.txtmrktCalldiscussionin = item.txtmrktCalldiscussionout = '';
+                        }
+                    });
+
+                };
+
+
                 return model;
             }
         ]);

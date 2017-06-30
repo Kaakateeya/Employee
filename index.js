@@ -18,11 +18,18 @@ app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.apipathold = 'http://183.82.0.58:8010/Api/';
 
 app.env = "dev";
+app.kammaPayfixedAmt = 1000;
+app.kammaPaypoints = 12;
+app.kammaPayDays = 42;
+app.kammaPaymentDays = parseInt(app.kammaPayDays) / parseInt(app.kammaPayfixedAmt);
+app.kammaPaymentPoints = parseInt(app.kammaPaypoints) / parseInt(app.kammaPayfixedAmt);
+
 app.payfixedAmt = 1000;
-app.paypoints = 12;
+app.paypoints = 22;
 app.payDays = 42;
 app.PaymentDays = parseInt(app.payDays) / parseInt(app.payfixedAmt);
 app.paymentPoints = parseInt(app.paypoints) / parseInt(app.payfixedAmt);
+
 app.ServiceTaxPercent = 14 / 100;
 app.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
 app.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';

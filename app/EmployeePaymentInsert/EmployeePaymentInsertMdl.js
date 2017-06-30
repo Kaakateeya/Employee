@@ -10,6 +10,7 @@
             model.custobj = {};
             model.PiObj = {};
             model.paymentpoints = app.paymentPoints;
+            model.paymentDays = app.PaymentDays;
             model.ExpiryDate = '';
             model.ExpiryDaterev = '';
             model.parseInt = parseInt;
@@ -79,20 +80,24 @@
                         arraymodify = _.where(JSON.parse(response.data[0]), { Payment_ID: parseInt(stateParams.paymentID === '0' || stateParams.paymentID === 0 ? '' : stateParams.paymentID) });
                         if (arraymodify.length === 0) {
                             model.custobj = JSON.parse(response.data[0])[0];
+                            model.paymentpoints = parseInt(model.custobj.CasteID) === 402 ? app.kammaPaymentPoints : app.paymentPoints;
+                            model.paymentDays = parseInt(model.custobj.CasteID) === 402 ? app.kammaPaymentDays : app.PaymentDays;
                         } else {
                             model.custobj = arraymodify[0];
+
+                            model.paymentpoints = parseInt(model.custobj.CasteID) === 402 ? app.kammaPaymentPoints : app.paymentPoints;
+                            model.paymentDays = parseInt(model.custobj.CasteID) === 402 ? app.kammaPaymentDays : app.PaymentDays;
+
                             model.showOfferDetails(model.custobj.Price, 'pageload');
                             model.PiObj.txtAgreedAmt = model.custobj.AgreedAmount;
                             model.PiObj.txtAmountPaid = model.custobj.Price;
                             model.PiObj.rdnServicetax = model.custobj.ServiceTax !== null ? 1 : 0;
                             model.PiObj.txtpayDescription = model.custobj.MemberShipDescription;
                             model.PiObj.txtSettlementAmount = model.custobj.SettlementAmount ? model.custobj.SettlementAmount : '';
-
                             if (parseInt(stateParams.paymentID) === 0) {
                                 // model.PiObj.txtAgreedAmt = '';
                                 model.PiObj.txtAmountPaid = '';
                             }
-
                         }
                     }
                 });
@@ -110,7 +115,7 @@
                     if (parseInt(paidAmt) !== agreeAmt) {
                         model.showOfferDetails(paidAmt);
                     }
-                    var num = paidAmt * app.PaymentDays;
+                    var num = paidAmt * model.paymentDays;
                     model.ExpiryDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
                     model.ExpiryDaterev = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
 
@@ -119,7 +124,7 @@
             };
             model.showOfferDetails = function(Amt, type) {
                 if (Amt !== undefined && Amt !== '') {
-                    var num = Amt * app.PaymentDays;
+                    var num = Amt * model.paymentDays;
                     model.strAmt = Amt;
                     model.strDate = parseInt(stateParams.paymentID) === 0 ? moment().add(7, 'days').format('DD-MM-YYYY') : moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
                     model.strPoints = parseInt(Amt * model.paymentpoints);

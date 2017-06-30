@@ -220,10 +220,10 @@
                                             <br>
                                             <li>
                                                 <div class="col-lg-4">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktsubmitIncoming" class="button_custom pull-right" ng-click="inform.$valid && model.incallSubmit(slide);slide.selectedIndex=0;">Incoming Call</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktsubmitIncoming" class="button_custom pull-right" ng-click="inform.$valid && model.incallSubmit(slide);inform.$setPristine();slide.selectedIndex=0;">Incoming Call</button>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIncomeAssignme" class="button_custom" ng-click="inform.$valid && model.incallSubmit(slide,'assign');slide.selectedIndex=0;">Incomg Call & Assign me</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIncomeAssignme" class="button_custom" ng-click="inform.$valid && model.incallSubmit(slide,'assign');inform.$setPristine();slide.selectedIndex=0;">Incomg Call & Assign me</button>
                                                 </div>
                                             </li>
                                         </ul>
@@ -297,10 +297,10 @@
                                             <br>
                                             <li class="col-lg-12">
                                                 <div class="col-lg-4">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktoutgng" class="button_custom pull-right" ng-click="outform.$valid && model.outcallSubmit(slide);slide.selectedIndex=0;">Outgoing Call</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktoutgng" class="button_custom pull-right" ng-click="outform.$valid && model.outcallSubmit(slide);outform.$setPristine();slide.selectedIndex=0;">Outgoing Call</button>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <button type="submit" style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" id="btnOutgngAssignme" value="Submit" class="button_custom" ng-click="outform.$valid && model.outcallSubmit(slide,'assign');slide.selectedIndex=0;">Outgoing Call & Assign me</button>
+                                                    <button type="submit" style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" id="btnOutgngAssignme" value="Submit" class="button_custom" ng-click="outform.$valid && model.outcallSubmit(slide,'assign');outform.$setPristine();slide.selectedIndex=0;">Outgoing Call & Assign me</button>
                                                 </div>
                                             </li>
                                         </ul>
@@ -340,10 +340,10 @@
                                             <br>
                                             <li class="col-lg-12">
                                                 <div class="col-lg-4">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" class="button_custom pull-right" ng-click="memoform.$valid && model.memoSubmit(slide);slide.selectedIndex=0;">Internal Memo</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" class="button_custom pull-right" ng-click="memoform.$valid && model.memoSubmit(slide);memoform.$setPristine();slide.selectedIndex=0;">Internal Memo</button>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIMAssignme" value="Submit" class="button_custom" ng-click="memoform.$valid && model.memoSubmit(slide,'assign');slide.selectedIndex=0;">Internal Memo & Assign me</button>;
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIMAssignme" value="Submit" class="button_custom" ng-click="memoform.$valid && model.memoSubmit(slide,'assign');memoform.$setPristine();slide.selectedIndex=0;">Internal Memo & Assign me</button>;
                                                 </div>
                                             </li>
                                         </ul>
@@ -358,7 +358,7 @@
                             <div class="tab">
                                 <br>
                                 <div>
-                                    <form ng-if="slide.closeTab" name="closeform" novalidate role="form" ng-submit="closeform.$valid && model.closeSubmit(slide);slide.selectedIndex=0;">
+                                    <form ng-if="slide.closeTab" name="closeform" novalidate role="form" ng-submit="closeform.$valid && model.closeSubmit(slide);closeform.$setPristine();slide.selectedIndex=0;">
                                         <ul>
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Reply Type </label>
