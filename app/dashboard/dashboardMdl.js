@@ -148,7 +148,7 @@
                     if (model.empid !== null && model.empid !== "" && model.empBranchID !== null && model.empBranchID !== "") {
                         model.tabledata(model.empid, model.empBranchID, 1, 5, '', 'pageload', undefined, 0);
                     }
-                    // return model;
+                    return model;
                 };
                 model.viewfullprofile = function(profileid) {
                     window.open("Viewfullprofile/" + profileid + "/0", "_blank");
@@ -463,7 +463,7 @@
                 model.destroy = function() {
                     config.reset();
                 };
-                return model;
+                return model.init();
             }
         ]);
 })(angular);

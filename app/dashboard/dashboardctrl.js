@@ -4,11 +4,14 @@
          var vm = this,
              model;
          vm.init = function() {
-             vm.model = model = dashboardModel;
+             if (authSvc.LoginEmpid() !== dashboardModel.empid) {
+                 vm.model = model = dashboardModel.init();
+             } else {
+                 vm.model = model = dashboardModel;
+             }
              model.scope = scope;
              model.templateUrl = "templates/dashBoardslide.html";
              model.config.headettemp = "dashboardheader.html";
-             model.init();
              scope.$on("$destroy", vm.destroy);
          };
          vm.destroy = function() {
