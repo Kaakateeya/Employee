@@ -7,7 +7,7 @@
             var empid;
             model.scope = {};
             model.showsearchrows = true;
-            model.showsearch = true;
+            model.showsearch = false;
             model.showpaging = false;
             model.showClientpaging = false;
             model.myprofileexcel = false;
@@ -37,12 +37,12 @@
 
                 model.columns = [{ text: 'Profile ID', key: 'ProfileID', type: 'label' },
                     { text: 'Status', key: 'PaymentStatus', type: 'label' },
-                    { text: 'Agreed Amount', key: 'AgreedAmount', type: 'label' },
-                    { text: 'Paid Amount', key: 'PaidAmount', type: 'label' },
-                    { text: 'Valid Months', key: 'ValidMonths', type: 'label' },
-                    { text: 'Payment Date', key: 'PaymentDate', type: 'label' },
+                    { text: 'Agreed', key: 'AgreedAmount', type: 'label' },
+                    { text: 'Paid', key: 'PaidAmount', type: 'label' },
+                    { text: 'Duration', key: 'ValidMonths', type: 'label' },
+                    { text: 'Date', key: 'PaymentDate', type: 'label' },
                     { text: 'Expiry On', key: 'ExpiryOn', type: 'label' },
-                    { text: 'SA Form', key: 'SAForm', type: 'morelinks', templateUrl: model.SaFormTemplate },
+                    { text: 'SA', key: 'SAForm', type: 'morelinks', templateUrl: model.SaFormTemplate },
                     { text: '', key: 'Description', type: 'morelinks', templateUrl: model.linktemplate }
                 ];
 

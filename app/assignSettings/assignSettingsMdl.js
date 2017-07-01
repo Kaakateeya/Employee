@@ -68,7 +68,7 @@
             model.columns = [
                 { text: 'Sno', key: 'SNO', type: 'label' },
                 { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
-                { text: 'Profile owner', key: 'ProfileOwner', type: 'dropdown', model: 'ddlProfileowner' },
+                { text: 'Profile owner', key: 'ProfileOwner', type: 'autocomplete', model: 'ddlProfileowner' },
                 { text: 'Actions', key: 'cust_id', type: 'customlink', templateUrl: model.assignaction, method: model.assignsettingsubmit },
                 { text: 'Marketing Ticket', key: 'Marketingticketid', type: 'customlink', templateUrl: model.Marketingticketid },
                 { text: 'Branch-Dor', key: 'BranchName', type: 'label' },

@@ -34,6 +34,10 @@
         </div>
 
     </div>
+
+    <label ng-show="page.model.TotalRows" for="noofRecords" class="control-label leftmargin">Total Records : {{page.model.TotalRows}}</label>
+    <input ng-show="page.model.TotalRows" type="image" src="src\images\EXCEL.jpg" ng-click="page.model.exportexcel(page.model.data, page.model.columns)" style="" class="css-class autorizeExcel"></input>
+
     <br>
     <div class="bodycls">
         <div class="row">
@@ -192,5 +196,11 @@
 <style>
     .datepicker3 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+    }
+    
+    .autorizeExcel {
+        margin-left: 6%;
+        height: 20px;
+        width: 20px;
     }
 </style>

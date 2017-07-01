@@ -284,6 +284,12 @@
                     paramters.Showinprofile = model.GetPhotoandHoroscopevalues("photo", model.Showinprofile);
                     paramters.HoroScopeStatus = model.GetPhotoandHoroscopevalues("horo", model.Showinprofile);
                     paramters.CustID = model.Cust_ID;
+
+                    paramters.AgeFromID = parseInt(model.agedobcontrol) === 2 ? paramters.AgeFromID : undefined;
+                    paramters.AgeToID = parseInt(model.agedobcontrol) === 2 ? paramters.AgeToID : undefined;
+                    paramters.DOBfrom = parseInt(model.agedobcontrol) === 1 ? paramters.DOBfrom : undefined;
+                    paramters.DOBTo = parseInt(model.agedobcontrol) === 1 ? paramters.DOBTo : undefined;
+
                     model.topage = model.typrofsearch === "1" && parseInt(frompage) === 1 ? 100 : topage;
                     if (parseInt(frompage) === 1) {
                         model.progressbar = [];
