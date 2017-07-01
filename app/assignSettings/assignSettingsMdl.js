@@ -49,13 +49,18 @@
                 return row.EnteredBy !== undefined && row.EnteredBy !== null && row.EnteredBy !== "" ? row.EnteredBy : "--";
             };
             model.assignsettingsubmit = function(row) {
+                debugger;
+                var ProfileownerID = row ? (_.where(model.ProfileOwnerarray, { label: row.ddlowner }))[0].value : null;
                 var obj = {
                     ProfileID: row.ProfileID !== "" ? row.ProfileID : null,
                     CustID: row.cust_id !== "" ? row.cust_id : null,
                     ModifiedEMPID: parseInt(model.empid),
-                    ProfileOwner: model['ddlProfileowner' + row.SNO] !== "" ? model.returnnullvalue(model['ddlProfileowner' + row.SNO]) : null,
-                    MarketingOwner: model['ddlProfileowner' + row.SNO] !== "" ? model.returnnullvalue(model['ddlProfileowner' + row.SNO]) : null,
-                    ReviewOwner: model['ddlProfileowner' + row.SNO] !== "" ? model.returnnullvalue(model['ddlProfileowner' + row.SNO]) : null
+                    ProfileOwner: ProfileownerID,
+                    //model['ddlProfileowner' + row.SNO] !== "" ? model.returnnullvalue(model['ddlProfileowner' + row.SNO]) : null,
+                    MarketingOwner: ProfileownerID,
+                    // model['ddlProfileowner' + row.SNO] !== "" ? model.returnnullvalue(model['ddlProfileowner' + row.SNO]) : null,
+                    ReviewOwner: ProfileownerID,
+                    // model['ddlProfileowner' + row.SNO] !== "" ? model.returnnullvalue(model['ddlProfileowner' + row.SNO]) : null
                 };
                 assignSettingsService.assignsubmit(obj).then(function(response) {
                     if (parseInt(response.data) === 1) {
