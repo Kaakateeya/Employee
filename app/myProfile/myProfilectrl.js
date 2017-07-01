@@ -12,7 +12,7 @@
                      vm.model = model = myProfileModel;
                      model.gridArray = [];
 
-                     if (authSvc.LoginEmpid() !== model.empid) {
+                     if (!model.applicationStatusarray) {
                          model.empid = model.slide.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                          model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
                          model.mpObj.ddlProfileOwner = [parseInt(model.empid)];
