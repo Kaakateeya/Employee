@@ -1,5 +1,6 @@
-angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '$timeout', 'SelectBindServiceApp', 'authSvc', 'alert', '$q',
-    function(commonpage, timeout, SelectBindServiceApp, authSvc, alertss, $q) {
+angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '$timeout', 'SelectBindServiceApp', 'authSvc', 'alert', '$filter',
+
+    function(commonpage, timeout, SelectBindServiceApp, authSvc, alertss, filter) {
         return {
             restrict: "E",
             scope: {
@@ -146,12 +147,13 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
 
                 scope.useme = function(searchText) {
                     if (searchText)
-                        return _.where(scope.model.ProfileOwnerarray, { display: searchText });
+                        return filter('filter')(scope.model.ProfileOwnerarray, searchText);
                     else
                         return scope.model.ProfileOwnerarray;
                 };
 
                 scope.FilterSerch = function(query) {
+                    debugger;
                     var results = query ? scope.useme(query) : scope.model.ProfileOwnerarray;
                     console.log(results);
                     return results;

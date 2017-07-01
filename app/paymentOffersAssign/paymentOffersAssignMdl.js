@@ -49,9 +49,9 @@
                 var obj = {
                     ProfileID: model.ProfileID,
                     MembershipID: model.memberShipType,
-                    CasteID: model.Caste,
+                    CasteID: model.ProfileID ? undefined : model.Caste,
                     MembershipAmt: model.AgreedAmt,
-                    ServiceTaxAmt: model.tax,
+                    // ServiceTaxAmt: model.tax,
                     AllocatedPts: model.strPoints,
                     MemberShipDuration: model.noofDays,
                     StartTime: moment().format('DD-MM-YYYY'),
@@ -63,7 +63,7 @@
                         model.reset();
                         model.ProfileID = '';
                         model.AgreedAmt = '';
-                        model.tax = '';
+                        // model.tax = '';
                         model.scope.offerForm.$setPristine();
                         alertss.timeoutoldalerts(model.scope, 'alert-success', 'Membership inserted successfully', 4500);
                     } else {

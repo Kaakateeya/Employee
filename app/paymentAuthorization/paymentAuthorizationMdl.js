@@ -27,7 +27,7 @@
                 model.paymentAuthSelect();
                 return model;
             };
-            model.paymentAuthSelect = function() {
+            model.paymentAuthSelect = function(type) {
                 var inObj = {
                     BranchID: model.branch ? model.branch : '',
                     StartDate: model.startDate ? model.startDate : '',
@@ -49,11 +49,22 @@
                 paymentAuthorizationService.CustomerUnauthorizedPayments(inObj).then(function(response) {
                     if (response.data) {
                         if ((response.data[0]).length) {
-                            model.TotalRows = (response.data[0]).length;
-                            model.mainArray = response.data[0];
-                            model.BranchmenuArr = response.data[1];
-                            model.gridTableshow = true;
-                            model.data = (response.data[0]);
+                            if (type === 'export') {
+
+                                model.exportarray = [];
+                                model.exportarray = (response.data[0]);
+                                var options = {
+                                    headers: true,
+                                };
+                                alasql('SELECT ProfileID as ProfileID,PaymentStatus as Status,AgreedAmount as Agreed,PaidAmount as Paid,ValidMonths as Duration,PaymentDate as Date,ExpiryOn as ExpiryOn,SAForm as SA,Description  INTO  XLSX("EditReports.xlsx",?) FROM ?', [options, model.exportarray]);
+                            } else {
+                                model.TotalRows = (response.data[0]).length;
+                                model.mainArray = response.data[0];
+                                model.BranchmenuArr = response.data[1];
+                                model.gridTableshow = true;
+                                model.data = (response.data[0]);
+                            }
+
                         } else {
                             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 4500);
                         }
@@ -121,6 +132,14 @@
                 return (_.where(model.mainArray, { BranchID: parseInt(val) })).length;
                 // return 1;
             };
+
+
+            model.exportexcel = function(array, columns) {
+                model.paymentAuthSelect("export");
+            };
+
+
+
             return model;
         }]);
 })();

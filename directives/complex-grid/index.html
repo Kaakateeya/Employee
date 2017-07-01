@@ -85,7 +85,7 @@
             </tbody>
         </table>
     </div>
-
+    <!--table with fixed header-->
     <div class="table-responsive" ng-if="((inneritem.isDetail === undefined || inneritem.isDetail) && (config.showplus===undefined || config.showplus===false))">
         <table table-height="500px" class="scroll Datatable table table-fixed table-hover table-bordered mainTableCls normal" fixed-header>
             <thead>
@@ -103,6 +103,7 @@
                         <a href="#" ng-if="colitem.type==='link'" ng-click="colitem.method(inneritem)">{{inneritem[colitem.key]}}</a>
                         <span ng-if="colitem.type==='custom'" ng-bind-html="colitem.templateUrl(inneritem)"></span>
                         <span ng-if="colitem.type==='customlink'" ng-bind-html="colitem.templateUrl(inneritem)" ng-click="colitem.method(inneritem)"></span>
+                        <span ng-if="colitem.type==='customlinkValidation'" ng-disabled="!inneritem[colitem.dependColumn]" ng-class="!inneritem[colitem.dependColumn]?'disablelinkcls':''" ng-bind-html="colitem.templateUrl(inneritem)" ng-click="colitem.method(inneritem)"></span>
                         <span ng-if="colitem.type==='morelinks'" compile="colitem.templateUrl(inneritem)"></span>
                         <span ng-if="colitem.type==='dropdown'" class="dropdownclass">
                         <select multiselectdropdown class="smalldropdowngrid" ng-model="model[colitem.model+inneritem.SNO]" ng-options="itemss.value as itemss.label for itemss in model.ProfileOwnerarray"></select>
@@ -113,15 +114,16 @@
                         <select multiselectdropdown class="smalldropdowngrid" ng-model="model[colitem.model+inneritem.Row]" ng-options="itemss.value as itemss.label for itemss in model.ProfileOwnerarray" ></select>
                         </span>
                         <span ng-if="colitem.type==='autocomplete'">
+                         
                         <md-autocomplete
                             ng-disabled="false"
                             md-no-cache="false"
                             md-selected-item="inneritem.ddlowner"
-                            md-search-text="inneritem.ddlowner"
-                        md-items="item in FilterSerch(inneritem.ddlowner)"
+                            md-search-text="inneritem.ddlowner1"
+                            md-items="item in FilterSerch(inneritem.ddlowner1)"
                             md-item-text="item.display"
                             md-min-length="0"
-                            placeholder="Type to select Option?">
+                            placeholder="Select Employee">
                     <md-item-template>
                     <span md-highlight-text="model.searchText" md-highlight-flags="^i">{{item.display}}</span>
                         </md-item-template>
@@ -255,5 +257,14 @@
         height: auto !important;
         max-height: 350px;
         overflow-y: auto;
+    }
+    
+    .disablelinkcls {
+        pointer-events: none;
+        cursor: default;
+    }
+    
+    .disablelinkcls>a {
+        color: gray;
     }
 </style>

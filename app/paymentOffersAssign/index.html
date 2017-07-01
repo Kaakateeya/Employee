@@ -26,12 +26,12 @@
                                 <input type="number" class="form-control" ng-model="page.model.AgreedAmt" required ng-blur="page.model.showOfferDetails(page.model.AgreedAmt);"></input>
                             </div>
                         </div>
-                        <div class="row form-group">
+                        <!--<div class="row form-group">
                             <label for="" class="control-label col-lg-4">Tax</label>
                             <div class="col-lg-6">
                                 <input type="text" class="form-control" ng-model="page.model.tax" required></input>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="row form-group">
                             <label class="control-label col-lg-4">Membership Type </label>
                             <div class="col-lg-6">
@@ -43,7 +43,7 @@
 
                     </div>
                     <div class="col-lg-6">
-                        <div class="row form-group input-control">
+                        <div class="row form-group input-control" ng-if="page.model.ProfileID==='' || !(page.model.ProfileID)">
                             <label for="Caste" class="control-label col-lg-3">Religion</label>
                             <div class="col-lg-6">
                                 <div class="input-group">
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row form-group input-control">
+                        <div class="row form-group input-control" ng-if="page.model.ProfileID==='' || !(page.model.ProfileID)">
                             <label for="Caste" class="control-label col-lg-3">Mothertongue</label>
                             <div class="col-lg-6">
                                 <div class="input-group">
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row form-group input-control">
+                        <div class="row form-group input-control" ng-if="page.model.ProfileID==='' || !(page.model.ProfileID)">
                             <label for="Caste" class="control-label col-lg-3">Caste</label>
                             <div class="col-lg-6">
                                 <div class="input-group">

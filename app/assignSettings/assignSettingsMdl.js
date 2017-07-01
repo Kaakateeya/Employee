@@ -27,11 +27,13 @@
                 var paid = row.ProfileID !== undefined ? "<a class='" + paidstatusclass + "'>" + row.ProfileID + "</a>" : "";
                 return paid;
             };
-            model.populateGridDropdowns = function(arr) {
-                _.each(arr, function(item) {
-                    model['ddlProfileowner' + item.SNO] = model.checkPopulateval(item.ProfileOwner);
+
+            function dataMapper(arr) {
+                _.map(arr, function(item) {
+                    item.ddlowner = _.where(model.ProfileOwnerarray, { value: parseInt(item.ProfileOwner) })[0];
                 });
-            };
+                return arr;
+            }
             model.checkPopulateval = function(val) {
                 return (val && _.where(model.ProfileOwnerarray, { value: parseInt(val) }).length > 0) ? val : 0;
             };
@@ -48,19 +50,15 @@
             model.EnteredBytext = function(row) {
                 return row.EnteredBy !== undefined && row.EnteredBy !== null && row.EnteredBy !== "" ? row.EnteredBy : "--";
             };
+
             model.assignsettingsubmit = function(row) {
-                debugger;
-                var ProfileownerID = row ? (_.where(model.ProfileOwnerarray, { label: row.ddlowner }))[0].value : null;
                 var obj = {
                     ProfileID: row.ProfileID !== "" ? row.ProfileID : null,
                     CustID: row.cust_id !== "" ? row.cust_id : null,
                     ModifiedEMPID: parseInt(model.empid),
-                    ProfileOwner: ProfileownerID,
-                    //model['ddlProfileowner' + row.SNO] !== "" ? model.returnnullvalue(model['ddlProfileowner' + row.SNO]) : null,
-                    MarketingOwner: ProfileownerID,
-                    // model['ddlProfileowner' + row.SNO] !== "" ? model.returnnullvalue(model['ddlProfileowner' + row.SNO]) : null,
-                    ReviewOwner: ProfileownerID,
-                    // model['ddlProfileowner' + row.SNO] !== "" ? model.returnnullvalue(model['ddlProfileowner' + row.SNO]) : null
+                    ProfileOwner: row.ddlowner.value,
+                    MarketingOwner: row.ddlowner.value,
+                    ReviewOwner: row.ddlowner.value
                 };
                 assignSettingsService.assignsubmit(obj).then(function(response) {
                     if (parseInt(response.data) === 1) {
@@ -70,11 +68,12 @@
                     }
                 });
             };
+
             model.columns = [
                 { text: 'Sno', key: 'SNO', type: 'label' },
                 { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
                 { text: 'Profile owner', key: 'ProfileOwner', type: 'autocomplete', model: 'ddlProfileowner' },
-                { text: 'Actions', key: 'cust_id', type: 'customlink', templateUrl: model.assignaction, method: model.assignsettingsubmit },
+                { text: 'Actions', key: 'cust_id', type: 'customlinkValidation', templateUrl: model.assignaction, method: model.assignsettingsubmit, dependColumn: 'ddlowner' },
                 { text: 'Marketing Ticket', key: 'Marketingticketid', type: 'customlink', templateUrl: model.Marketingticketid },
                 { text: 'Branch-Dor', key: 'BranchName', type: 'label' },
                 { text: 'Caste', key: 'Caste', type: 'label' },
@@ -86,7 +85,7 @@
                     model.Castearray = [];
                     model.ProfileOwnerarray = [];
                     model.Brancharray = [];
-                    model.ProfileOwnerarray = [{ "label": '--Select--', "title": '--Select--', "value": 0, "display": '--Select--' }];
+                    // model.ProfileOwnerarray = [{ "label": '--Select--', "title": '--Select--', "value": 0, "display": '--Select--' }];
                     _.each(response.data, function(item) {
                         switch (item.CountryCode) {
                             case "Application Status":
@@ -140,7 +139,7 @@
                             model.TotalRows = response.data[0][0].TotalRows;
                         }
                         if (type === 'grid') {
-                            model.data = response.data[0];
+                            model.data = dataMapper(response.data[0]);
                         } else {
                             model.exportarray = [];
                             model.exportarray = response.data[0];
@@ -165,7 +164,7 @@
                             alasql('SELECT ProfileID,GenderID as Gender,PaymentTcktID,ReviewTcktID,PhotoTcktID INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
                         }
                     }
-                    model.populateGridDropdowns(response.data[0]);
+                    // model.populateGridDropdowns(response.data[0]);
                 });
             };
             model.pagechange = function(val) {

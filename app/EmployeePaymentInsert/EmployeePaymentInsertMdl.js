@@ -113,7 +113,7 @@
                     alert('Please enter paid amount less than Agreed amount');
                 } else {
                     if (parseInt(paidAmt) !== agreeAmt) {
-                        model.showOfferDetails(paidAmt);
+                        model.showOfferDetails(paidAmt, 'Paid');
                     }
                     var num = paidAmt * model.paymentDays;
                     model.ExpiryDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
@@ -126,10 +126,11 @@
                 if (Amt !== undefined && Amt !== '') {
                     var num = Amt * model.paymentDays;
                     model.strAmt = Amt;
-                    model.strDate = parseInt(stateParams.paymentID) === 0 ? moment().add(7, 'days').format('DD-MM-YYYY') : moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
+                    model.strDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
                     model.strPoints = parseInt(Amt * model.paymentpoints);
                     var infm = 'Agreed Amount : ' + Amt + '    \n     No of Points : ' + model.strPoints + '    \n Expiry Date : ' + model.strDate;
-                    if (type === undefined) {
+                    if (type === 'Agreed' || type === 'Paid') {
+                        model.typeTxt = type;
                         modelpopupopenmethod.showPopup('alert.html', model.scope, 'sm', '');
                     }
                 }

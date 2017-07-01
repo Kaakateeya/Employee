@@ -61,7 +61,7 @@
                                 <label for="" class="control-label pull-right">Agreed amount</label>
                             </div>
                             <div class="col-lg-4">
-                                <input type="number" ng-readonly="page.model.typeofprofile!==0" ng-focus="true" ng-value="page.model.typeofprofile!==0?page.model.custobj.AgreedAmount:''" ng-model="page.model.PiObj.txtAgreedAmt" class="form-control" required ng-blur="page.model.showOfferDetails(page.model.PiObj.txtAgreedAmt);">
+                                <input type="number" ng-readonly="page.model.typeofprofile!==0" ng-focus="true" ng-value="page.model.typeofprofile!==0?page.model.custobj.AgreedAmount:''" ng-model="page.model.PiObj.txtAgreedAmt" class="form-control" required ng-blur="page.model.showOfferDetails(page.model.PiObj.txtAgreedAmt,'Agreed');">
                             </div>
                         </div>
                         <!--<div class="form-group col-lg-5">
@@ -218,13 +218,13 @@
         </div>
         <div class="modal-body" style="line-height:20px;">
             <div class='row'>
-                <span class="paymentOfr col-lg-5"> Amount </span>&nbsp;&nbsp; {{page.model.strAmt}}
+                <span class="paymentOfr col-lg-6">{{page.model.typeTxt}} Amount </span>&nbsp;&nbsp; {{page.model.strAmt}}
             </div>
             <div class='row'>
-                <span class="paymentOfr col-lg-5">No of Points </span>&nbsp; &nbsp; {{page.model.strPoints}}
+                <span class="paymentOfr col-lg-6">No of Points </span>&nbsp; &nbsp; {{page.model.strPoints}}
             </div>
             <div class='row'>
-                <span class="paymentOfr col-lg-5">Expiry Date </span>&nbsp; &nbsp;{{page.model.strDate }}
+                <span class="paymentOfr col-lg-6">Expiry Date </span>&nbsp; &nbsp;{{page.model.strDate }}
             </div>
         </div>
     </script>
