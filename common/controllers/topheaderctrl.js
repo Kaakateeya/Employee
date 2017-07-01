@@ -3,13 +3,16 @@
     /** @ngInject */
     angular
         .module('Kaakateeya')
-        .controller('headerctrl', ['$scope', 'topheadermodel',
-            function(scope, topheadermodel) {
+        .controller('headerctrl', ['$scope', 'topheadermodel', 'authSvc',
+            function(scope, topheadermodel, authSvc) {
                 var vm = this,
                     model = {};
                 vm.initheader = function() {
-                    vm.model = model = topheadermodel;
-                    topheadermodel.init();
+                    if (authSvc.LoginEmpid() !== topheadermodel.empid) {
+                        vm.model = model = topheadermodel.init();
+                    } else {
+                        vm.model = model = topheadermodel;
+                    }
                 };
                 vm.initheader();
             }

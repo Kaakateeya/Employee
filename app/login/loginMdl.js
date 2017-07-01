@@ -1,8 +1,11 @@
 (function() {
     'use strict';
 
-    function factory($http, uibModal, loginservice, authSvc, $state, helperservice) {
-        return function() {
+
+    angular
+        .module('Kaakateeya')
+        .factory('loginModel', ['$http', '$uibModal', 'loginservice', 'authSvc', '$state', 'helperservice', function($http, uibModal, loginservice, authSvc, $state, helperservice) {
+            //    return function() {
             var model = {},
                 modalpopupopen;
             model.loginsubmit = {};
@@ -15,14 +18,16 @@
             //     });
             // };
             model.init = function() {
+                model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 authSvc.getmacaddress();
                 authSvc.getClientIp();
-
                 loginservice.getEmployeeLoginCoutDetails().then(function(response) {
                     var login = JSON.parse(response.data);
                     model.logincounts = login;
                 });
+                return model;
             };
+
             model.loginsubmit = function(form, formempvalid, formpasswordvalid, formvalid) {
                 if (formempvalid.required === true) {
                     model.usernameemployee = true;
@@ -87,13 +92,10 @@
 
             };
 
-            return model;
-        }
-    }
-    angular
-        .module('Kaakateeya')
-        .factory('loginModel', factory);
+            return model.init();
+            // }
+        }]);
 
-    factory.$inject = ['$http', '$uibModal', 'loginservice', 'authSvc', '$state', 'helperservice'];
+
 
 })();

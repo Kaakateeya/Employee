@@ -1,5 +1,5 @@
-angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '$timeout', 'SelectBindServiceApp', 'authSvc', 'alert',
-    function(commonpage, timeout, SelectBindServiceApp, authSvc, alertss) {
+angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '$timeout', 'SelectBindServiceApp', 'authSvc', 'alert', '$q',
+    function(commonpage, timeout, SelectBindServiceApp, authSvc, alertss, $q) {
         return {
             restrict: "E",
             scope: {
@@ -157,7 +157,19 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     return results;
 
                 };
+                // scope.querySearch = querySearch;
 
+                // function querySearch(query) {
+                //     var results = query ? self.states.filter(createFilterFor(query)) : self.states,
+                //         deferred;
+                //     if (self.simulateQuery) {
+                //         deferred = $q.defer();
+                //         $timeout(function() { deferred.resolve(results); }, Math.random() * 1000, false);
+                //         return deferred.promise;
+                //     } else {
+                //         return results;
+                //     }
+                // }
 
 
                 scope.init();

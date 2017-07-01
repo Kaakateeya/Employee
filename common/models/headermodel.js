@@ -14,6 +14,7 @@
             model.usernameemployeepasswordpop = false;
             model.lockscreendiv = true;
             model.init = function() {
+                model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 //pageload Callings
                 model.name = authSvc.LoginEmpName();
                 model.empphoto = authSvc.empphoto();
@@ -21,14 +22,15 @@
                     model.logincounts = JSON.parse(response.data);
                 });
                 model.usernameemployeeid = sessionStorage.getItem("usernameemployeeid");
+                return model;
             };
-
 
             model.logout = function() {
                 model.name = "";
                 authSvc.logout();
                 $state.go("base.login", {});
             };
+
             model.lockscreen = function() {
                 model.lock = true;
                 model.passwordemployee = "";
@@ -37,7 +39,6 @@
             model.close = function(type) {
                 modelpopupopenmethod.closepopuppoptopopup();
             };
-
 
             model.loginsubmit = function(form) {
                 modelpopupopenmethod.getloginpage(form).then(function(response) {
@@ -94,7 +95,7 @@
             model.searchredirect = function(statename, id, Profileid) {
 
             };
-            return model;
+            return model.init();
         }]);
 
 })(angular);
