@@ -460,15 +460,17 @@
 
                     SelectBindServiceApp.sendMobileCodeBasedOnContactID(inputOBj).then(function(response) {
                         model.mobileVerificationCode = response.data;
-                        modelpopupopenmethod.showPopup('verifyMobileContentmar.html', model.scope, 'md', 'modalclassdashboardphotopopup');
+                        modelpopupopenmethod.showPopup('verifyMobileContentmar.html', model.scope, 'md', '');
                     });
                 };
 
                 model.verifyMobCode = function(val) {
+                    debugger;
                     if (val === "") {
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter Mobile verify Code', 4500);
                     } else {
                         if (val === model.mobileVerificationCode) {
+                            model.cancel();
                             SelectBindServiceApp.verifyMobileBasedOnContactID(val, model.ID).then(function(response) {
                                 if (response.data && parseInt(response.data) === 1) {
                                     alertss.timeoutoldalerts(model.scope, 'alert-success', 'Verified Successfully', 4500);

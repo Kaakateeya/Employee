@@ -375,3 +375,9 @@ body .container.body .right_col {
 .reminderCls .doublesmalldropdown {
     margin-left: -25px !important;
 }
+
+.disablelinkclsnoservice {
+    color: black;
+    pointer-events: none;
+    cursor: default;
+}
