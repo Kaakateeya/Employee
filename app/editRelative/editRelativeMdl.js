@@ -2,7 +2,7 @@
     'use strict';
 
 
-    function factory(editRelativeService, authSvc, alertss, commonFactory, uibModal, SelectBindService, stateParams, modelpopupopenmethod) {
+    function factory(editRelativeService, authSvc, alertss, commonFactory, uibModal, SelectBindService, stateParams, modelpopupopenmethod, baseModel) {
         var model = {};
         model.scope = {};
 
@@ -16,8 +16,13 @@
         model.identityID = 0;
         model.ddlFSHCountryID = 1;
         var custid = model.CustID = stateParams.CustID;
-        var loginEmpid = authSvc.LoginEmpid();
-        var AdminID = authSvc.isAdmin();
+
+        model.AdminID = authSvc.isAdmin();
+        model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+        model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+        model.isprofileOwner = baseModel.ProfileOwner ? parseInt(baseModel.ProfileOwner) === parseInt(model.empid) : false;
+
+
         //end declaration block
         model.init = function() {
             custid = model.CustID = stateParams.CustID;
@@ -480,6 +485,6 @@
         .module('Kaakateeya')
         .factory('editRelativeModel', factory);
 
-    factory.$inject = ['editRelativeService', 'authSvc', 'alert', 'commonFactory', '$uibModal', 'SelectBindService', '$stateParams', 'modelpopupopenmethod'];
+    factory.$inject = ['editRelativeService', 'authSvc', 'alert', 'commonFactory', '$uibModal', 'SelectBindService', '$stateParams', 'modelpopupopenmethod', 'baseModel'];
 
 })(angular);

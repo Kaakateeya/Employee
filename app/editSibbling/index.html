@@ -216,7 +216,7 @@
 
                                 <div id="update0">
 
-                                    <div id="ownerdiv0">
+                                    <div id="ownerdiv0" ng-show="page.model.AdminID===1 || page.model.Managementid === 'true' || page.model.isprofileOwner">
                                         <div id="uplConactNoeb" class="edit_page_details_item_desc clearfix">
 
                                             <div>
@@ -236,19 +236,13 @@
                                         </div>
 
                                         <div id="brotheremail" class="edit_page_details_item_desc clearfix">
-
-                                            <div>
-
-                                                <h6>
-                                                    <label id="brotheremail" font-bold="true">Email</label></h6>
-                                                <h5>
-                                                    <span id="lblbrotheremail">
+                                            <h6>
+                                                <label id="brotheremail" font-bold="true">Email</label></h6>
+                                            <h5>
+                                                <span id="lblbrotheremail">
                                                     {{ item.SibilingEmail }}
                                             </span>
-                                                </h5>
-
-                                            </div>
-
+                                            </h5>
 
                                         </div>
                                     </div>
@@ -330,7 +324,7 @@
                                         </div>
                                         <div id="update1">
 
-                                            <div id="ownerdiv1">
+                                            <div id="ownerdiv1" ng-show="page.model.AdminID===1 || page.model.Managementid === 'true' || page.model.isprofileOwner">
                                                 <div id="wifenumbers" class="edit_page_details_item_desc clearfix">
 
                                                     <div id="divspousecontactnumbers">
@@ -370,29 +364,31 @@
                                             </h5>
                                         </div>
 
-                                        <div class="edit_page_details_item_desc clearfix">
-                                            <h6>
-                                                <label font-bold="true">Spouse Father's Contact</label></h6>
-                                            <h5>
-                                                <span>
+
+                                        <div ng-show="page.model.AdminID===1 || page.model.Managementid === 'true' || page.model.isprofileOwner">
+                                            <div class="edit_page_details_item_desc clearfix">
+                                                <h6>
+                                                    <label font-bold="true">Spouse Father's Contact</label></h6>
+                                                <h5>
+                                                    <span>
                                                  {{  (item.SpouseFatherMobileNo? (item.SpouseFatherMobileCountryCode+'-'+item.SpouseFatherMobileNo):'')+
                                                  (item.SpouseFatherLandAreaCode?(','+item.SpouseFatherLandCountryCode+'-'+item.SpouseFatherLandAreaCode+'-'+item.SpouseFatherLandNo):
                                                  (item.SpouseFatherLandNo?','+item.SpouseFatherLandCountryCode+'-'+item.SpouseFatherLandNo:''))
                                                  }}
                                             </span>
-                                            </h5>
-                                        </div>
+                                                </h5>
+                                            </div>
 
-                                        <div class="edit_page_details_item_desc clearfix">
-                                            <h6>
-                                                <label font-bold="true">Spouse Father's Email</label></h6>
-                                            <h5>
-                                                <span>
+                                            <div class="edit_page_details_item_desc clearfix">
+                                                <h6>
+                                                    <label font-bold="true">Spouse Father's Email</label></h6>
+                                                <h5>
+                                                    <span>
                                                    {{ item.SpouseFatherEmailID }}
                                             </span>
-                                            </h5>
+                                                </h5>
+                                            </div>
                                         </div>
-
 
 
                                         <div id="brotherspusefathercaste" class="edit_page_details_item_desc clearfix">
@@ -542,38 +538,28 @@
                                 </div>
                                 <div id="update2">
 
-                                    <div id="ownerdiv2">
+                                    <div id="ownerdiv2" ng-show="page.model.AdminID===1 || page.model.Managementid === 'true' || page.model.isprofileOwner">
 
                                         <div id="uplsisnumbers" class="edit_page_details_item_desc clearfix">
-
-                                            <div>
-
-                                                <h6>
-                                                    <label id="sisnumbers" font-bold="true">Contact Nos</label></h6>
-                                                <h5>
-                                                    <span id="lblsisnumbers">
+                                            <h6>
+                                                <label id="sisnumbers" font-bold="true">Contact Nos</label></h6>
+                                            <h5>
+                                                <span id="lblsisnumbers">
                                                     {{ (item.SibilingMobileNumberWithCode!==null?item.SibilingMobileNumberWithCode:'')+
                                                 ((item.SibilngLandnumberwithcode.ToString()!="" && item.SibilngLandnumberwithcode!=null)?","+item.SibilngLandnumberwithcode:"")}}
                                             </span>
-                                                </h5>
-                                            </div>
+                                            </h5>
 
                                         </div>
                                         <div id="sisterwifeemail" class="edit_page_details_item_desc clearfix">
 
-                                            <div>
-
-                                                <h6>
-                                                    <label id="sisteremail" font-bold="true">Email</label></h6>
-                                                <h5>
-                                                    <span id="lblsisteremail">
+                                            <h6>
+                                                <label id="sisteremail" font-bold="true">Email</label></h6>
+                                            <h5>
+                                                <span id="lblsisteremail">
                                                     {{ item.SibilingEmail }}
                                             </span>
-                                                </h5>
-
-                                            </div>
-
-
+                                            </h5>
                                         </div>
                                     </div>
 
@@ -651,7 +637,7 @@
                                         </div>
                                         <div id="update3">
 
-                                            <div id="ownerdiv3">
+                                            <div id="ownerdiv3" ng-show="page.model.AdminID===1 || page.model.Managementid === 'true' || page.model.isprofileOwner">
                                                 <div id="husbandnumbers" class="edit_page_details_item_desc clearfix">
 
                                                     <div id="divmobilesisterhus">
@@ -686,27 +672,32 @@
                                             </h5>
                                         </div>
 
-                                        <div class="edit_page_details_item_desc clearfix">
-                                            <h6>
-                                                <label id="husfathernames" font-bold="true">Husband Father's contact</label></h6>
-                                            <h5>
-                                                <span id="lblhusfathername">
+                                        <div ng-show="page.model.AdminID===1 || page.model.Managementid === 'true' || page.model.isprofileOwner">
+                                            <div class="edit_page_details_item_desc clearfix">
+                                                <h6>
+                                                    <label id="husfathernames" font-bold="true">Husband Father's contact</label></h6>
+                                                <h5>
+                                                    <span id="lblhusfathername">
                                                      {{  (item.SpouseFatherMobileNo? (item.SpouseFatherMobileCountryCode+'-'+item.SpouseFatherMobileNo):'')+
                                                 (item.SpouseFatherLandAreaCode?(','+item.SpouseFatherLandCountryCode+'-'+item.SpouseFatherLandAreaCode+'-'+item.SpouseFatherLandNo):
                                                  (item.SpouseFatherLandNo?','+item.SpouseFatherLandCountryCode+'-'+item.SpouseFatherLandNo:''))
                                                  }}
                                             </span>
-                                            </h5>
-                                        </div>
-                                        <div class="edit_page_details_item_desc clearfix">
-                                            <h6>
-                                                <label font-bold="true">Spouse Father's Email</label></h6>
-                                            <h5>
-                                                <span>
+                                                </h5>
+                                            </div>
+                                            <div class="edit_page_details_item_desc clearfix">
+                                                <h6>
+                                                    <label font-bold="true">Spouse Father's Email</label></h6>
+                                                <h5>
+                                                    <span>
                                                    {{ item.SpouseFatherEmailID }}
                                             </span>
-                                            </h5>
+                                                </h5>
+                                            </div>
                                         </div>
+
+
+
                                         <div class="edit_page_details_item_desc clearfix">
                                             <h6>
                                                 <label id="sisterhusbandfathercaste" font-bold="true">Husband Father Caste</label></h6>

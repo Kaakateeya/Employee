@@ -93,9 +93,11 @@
                 model.profileidupdate = function(obj) {
                     model.intilize();
                     model.init();
+                    debugger;
                     model.progressbar = [];
                     model.sidebarnavshow = false;
                     searchpageServices.getPrimaryCustomerDataResponse(obj.ProfileIDpopup, model.empid).then(function(response) {
+
                         if (response !== null && response.data !== undefined && response.data !== null && response.data !== "") {
                             var data = model.getpageloadobject = response.data;
                             model.Cust_ID = data.Cust_ID;
@@ -148,6 +150,7 @@
                         }
                         alerts.dynamicpopupclose();
                     });
+                    return false;
                 };
                 model.ProfileIdTemplateDUrl = function(row) {
                     var paidstatusclass = row.paid === 1 ? 'paidclass' : 'unpaid';
@@ -205,11 +208,31 @@
                     }
                     return Arr;
                 };
+
+                model.clearSelection = function(Arr) {
+                    model.getpageloadobject = {};
+                    _.each(Arr, function(parentItem) {
+                        _.each(parentItem.controlList, function(item) {
+                            if (model[item.ngModel] !== undefined) {
+                                model[item.ngModel] = undefined;
+                            }
+                            if (model[item.ngModelFrom] !== undefined) {
+                                model[item.ngModelFrom] = undefined;
+                            }
+                            if (model[item.ngModelTo] !== undefined) {
+                                model[item.ngModelTo] = undefined;
+                            }
+                        });
+                    });
+                };
+
+
                 model.init = function() {
                     model.getpageloadobject = {};
                     model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                     model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
                     if (model.selectedIndex === 1) {
+                        model.clearSelection(model.domDataadvanced);
                         _.each(model.domDataadvanced, function(parentItem) {
                             _.each(parentItem.controlList, function(item) {
                                 if (item.dataBind) {
@@ -220,6 +243,7 @@
                             });
                         });
                     } else {
+                        model.clearSelection(model.domDatageneral);
                         _.each(model.domDatageneral, function(parentItem) {
                             _.each(parentItem.controlList, function(item) {
                                 if (item.dataBind) {
@@ -348,6 +372,7 @@
                     });
                 };
                 model.closepopup = function() {
+                    debugger;
                     alerts.dynamicpopupclose();
                     model.intilize();
                     model.init();

@@ -9,11 +9,14 @@
         model.scope = {};
         model.init = function() {
             CustID = stateParams.CustID;
+            model.ProfileOwner = '';
             model.menuItem();
             baseService.personalDetails(CustID).then(function(response) {
                 model.PersonalObj = response.data;
+
                 // model.imgsrc = authSvc.getprofilepic();
                 if (model.PersonalObj !== null && model.PersonalObj !== undefined) {
+                    model.ProfileOwner = model.PersonalObj.ProfileOwner;
                     baseService.nodatastatus(model.PersonalObj.ProfileID).then(function(res) {
                         model.rev = res.data;
                     });
@@ -105,7 +108,6 @@
                 baseService.PhotoRequest(model.PersonalObj.ProfileID, '2').then(function(response) {
                     if (response.data !== undefined && response.data.length > 0) {}
                 });
-
             } else {
                 baseService.getPhotoInfn(CustID).then(function(response) {
                     if (response.data !== undefined && response.data.length > 0) {

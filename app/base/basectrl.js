@@ -1,7 +1,7 @@
  (function(angular) {
      'use strict';
 
-     function controller(baseModel, scope, $state, stateParams) {
+     function controller(baseModel, scope, $state, stateParams, authSvc) {
          /* jshint validthis:true */
          var vm = this,
              model;
@@ -9,6 +9,12 @@
              scope.model = model = baseModel;
              model.scope = scope;
              scope.model.init();
+
+             scope.AdminID = authSvc.isAdmin();
+             scope.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+             scope.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+             scope.isprofileOwner = model.ProfileOwner ? parseInt(model.ProfileOwner) === parseInt(scope.empid) : false;
+
          };
          scope.redirect = function(type) {
              $state.go('base.' + type, { CustID: stateParams.CustID });
@@ -39,5 +45,5 @@
          .module('Kaakateeya')
          .controller('baseCtrl', controller);
 
-     controller.$inject = ['baseModel', '$scope', '$state', '$stateParams'];
+     controller.$inject = ['baseModel', '$scope', '$state', '$stateParams', 'authSvc'];
  })(angular);

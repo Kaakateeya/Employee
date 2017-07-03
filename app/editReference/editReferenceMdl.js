@@ -2,7 +2,7 @@
     'use strict';
 
 
-    function factory(editReferenceService, authSvc, alertss, commonFactory, uibModal, SelectBindService, stateParams) {
+    function factory(editReferenceService, authSvc, alertss, commonFactory, uibModal, SelectBindService, stateParams, baseModel) {
         var model = {};
         model.scope = {};
 
@@ -15,9 +15,14 @@
         model.deleteDisplayTxt = 'reference';
         var isSubmit = true;
         model.identityID = 0;
-        // var logincustid = authSvc.getCustId();
+
         var custID = model.CustID = stateParams.CustID;
-        //  model.CustID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+
+
+        model.AdminID = authSvc.isAdmin();
+        model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+        model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+        model.isprofileOwner = baseModel.ProfileOwner ? parseInt(baseModel.ProfileOwner) === parseInt(model.empid) : false;
 
         //end declaration block
         model.init = function() {
@@ -168,6 +173,6 @@
         .module('Kaakateeya')
         .factory('editReferenceModel', factory);
 
-    factory.$inject = ['editReferenceService', 'authSvc', 'alert', 'commonFactory', '$uibModal', 'SelectBindService', '$stateParams'];
+    factory.$inject = ['editReferenceService', 'authSvc', 'alert', 'commonFactory', '$uibModal', 'SelectBindService', '$stateParams', 'baseModel'];
 
 })(angular);

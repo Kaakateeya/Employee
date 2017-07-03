@@ -89,11 +89,9 @@
                         }
                     }
                 });
-
-
             };
-            model.searchredirect = function(statename, id, Profileid) {
-
+            model.searchredirect = function(id, Profileid) {
+                $state.go("base.searchpage", { id: id, Profileid: Profileid }, { reload: true });
             };
             return model.init();
         }]);

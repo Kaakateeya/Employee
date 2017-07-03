@@ -2,7 +2,7 @@
     'use strict';
 
 
-    function factory(editSibblingService, authSvc, alertss, commonFactory, uibModal, SelectBindService, stateParams, modelpopupopenmethod) {
+    function factory(editSibblingService, authSvc, alertss, commonFactory, uibModal, SelectBindService, stateParams, modelpopupopenmethod, baseModel) {
         var model = {};
         model.scope = {};
         //start declaration block
@@ -18,12 +18,19 @@
         model.SisCount = null;
         model.CountryVal = '1';
         model.identityID = 0;
-        var loginEmpid = authSvc.LoginEmpid();
-        var AdminID = authSvc.isAdmin();
+
         var isSubmit = true;
         var custID = model.CustID = stateParams.CustID;
         model.broPrintArr = [];
         model.sisPrintArr = [];
+
+        model.AdminID = authSvc.isAdmin();
+        model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+        model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+        model.isprofileOwner = baseModel.ProfileOwner ? parseInt(baseModel.ProfileOwner) === parseInt(model.empid) : false;
+
+
+
         //end declaration block
 
         model.init = function() {
@@ -644,6 +651,6 @@
         .module('Kaakateeya')
         .factory('editSibblingModel', factory);
 
-    factory.$inject = ['editSibblingService', 'authSvc', 'alert', 'commonFactory', '$uibModal', 'SelectBindService', '$stateParams', 'modelpopupopenmethod'];
+    factory.$inject = ['editSibblingService', 'authSvc', 'alert', 'commonFactory', '$uibModal', 'SelectBindService', '$stateParams', 'modelpopupopenmethod', 'baseModel'];
 
 })(angular);

@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                             <div id="update0">
-                                <div id="ownerdiv0">
+                                <div id="ownerdiv0" ng-show="page.model.AdminID===1 || page.model.Managementid === 'true' || page.model.isprofileOwner">
                                     <div id="UpdatePanelFBcontacts" class="edit_page_details_item_desc clearfix">
                                         <div>
                                             <h6>
@@ -114,7 +114,6 @@
                                         <span id="FshName" style="font-weight:bold;">Fsh Name</span></h6>
                                     <h5>
                                         <span id="lblFshName">{{item.FatherSisterSpouseName }}</span></h5>
-
                                 </div>
 
                             </div>
@@ -169,7 +168,7 @@
                             </div>
                             <div id="update1">
 
-                                <div id="ownerdiv1">
+                                <div id="ownerdiv1" ng-show="page.model.AdminID===1 || page.model.Managementid === 'true' || page.model.isprofileOwner">
                                     <div id="UpdatePanelFShcontactnos" class="edit_page_details_item_desc clearfix">
 
                                         <div>
@@ -268,29 +267,21 @@
                                 </div>
                                 <div id="update2">
 
-                                    <div id="ownerdiv2">
+                                    <div id="ownerdiv2" ng-show="page.model.AdminID===1 || page.model.Managementid === 'true' || page.model.isprofileOwner">
                                         <div id="UpdatePanelMBcontacts" class="edit_page_details_item_desc clearfix">
 
-                                            <div>
-
-                                                <h6>
-                                                    <span id="MBcontacts" style="font-weight:bold;">MB contacts</span></h6>
-                                                <h5>
-                                                    <span id="lblMBcontacts">{{(item.MotherBrotherMobileNumberWithCode!=null?item.MotherBrotherMobileNumberWithCode:'')+" "+(item.MotherBrotherLandnumberwithcode!=null&& 
+                                            <h6>
+                                                <span id="MBcontacts" style="font-weight:bold;">MB contacts</span></h6>
+                                            <h5>
+                                                <span id="lblMBcontacts">{{(item.MotherBrotherMobileNumberWithCode!=null?item.MotherBrotherMobileNumberWithCode:'')+" "+(item.MotherBrotherLandnumberwithcode!=null&& 
                                                     item.MotherBrotherLandnumberwithcode.ToString()!=""?"&"+item.MotherBrotherLandnumberwithcode:"") }}</span></h5>
-                                            </div>
 
                                         </div>
                                         <div id="UpdatePanelMBEmail" class="edit_page_details_item_desc clearfix">
-
-                                            <div>
-
-                                                <h6>
-                                                    <span id="MBEmail" style="font-weight:bold;">MB Email</span></h6>
-                                                <h5>
-                                                    <span id="lblMBEmail">{{item.MotherBrotherEmail }}</span></h5>
-
-                                            </div>
+                                            <h6>
+                                                <span id="MBEmail" style="font-weight:bold;">MB Email</span></h6>
+                                            <h5>
+                                                <span id="lblMBEmail">{{item.MotherBrotherEmail }}</span></h5>
 
                                         </div>
                                     </div>
@@ -384,31 +375,21 @@
                         </div>
                         <div id="update3">
 
-                            <div id="ownerdiv3">
+                            <div id="ownerdiv3" ng-show="page.model.AdminID===1 || page.model.Managementid === 'true' || page.model.isprofileOwner">
                                 <div id="UpdatePanelMshcontactnos" class="edit_page_details_item_desc clearfix">
 
-                                    <div>
-
-                                        <h6>
-                                            <span id="Mshcontactnos" style="font-weight:bold;">Msh contact nos</span></h6>
-                                        <h5>
-                                            <span id="lblMshcontactnos">{{(item.MotherSisterspouseMobileNumberWithCode!=null?item.MotherSisterspouseMobileNumberWithCode:'')+" "+(item.MotherSisterspouseLandnumberwithcode!=null 
+                                    <h6>
+                                        <span id="Mshcontactnos" style="font-weight:bold;">Msh contact nos</span></h6>
+                                    <h5>
+                                        <span id="lblMshcontactnos">{{(item.MotherSisterspouseMobileNumberWithCode!=null?item.MotherSisterspouseMobileNumberWithCode:'')+" "+(item.MotherSisterspouseLandnumberwithcode!=null 
                                             && item.MotherSisterspouseLandnumberwithcode.ToString()!="" ?
                                             "&"+item.MotherSisterspouseLandnumberwithcode:"") }}</span></h5>
-                                    </div>
-
                                 </div>
                                 <div id="UpdatePanelMsHEmail" class="edit_page_details_item_desc clearfix">
-
-                                    <div>
-
-                                        <h6>
-                                            <span id="MsHEmail" style="font-weight:bold;">Msh Email</span></h6>
-                                        <h5>
-                                            <span id="lblMsHEmail">{{item.MotherSisterspouseEmail }}</span></h5>
-
-                                    </div>
-
+                                    <h6>
+                                        <span id="MsHEmail" style="font-weight:bold;">Msh Email</span></h6>
+                                    <h5>
+                                        <span id="lblMsHEmail">{{item.MotherSisterspouseEmail }}</span></h5>
                                 </div>
                             </div>
 

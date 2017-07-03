@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function factory(editParentService, authSvc, alertss, commonFactory, uibModal, stateParams) {
+    function factory(editParentService, authSvc, alertss, commonFactory, uibModal, stateParams, baseModel) {
         var model = {};
         model.model = {};
         //start declarion block
@@ -15,13 +15,20 @@
         model.AboutFamilyReviewStatus = null;
         model.eventType = 'add';
         var isSubmit = true;
-        var loginEmpid = authSvc.LoginEmpid();
-        var AdminID = authSvc.isAdmin();
+
+        model.AdminID = authSvc.isAdmin();
+        model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+        model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+        model.isprofileOwner = baseModel.ProfileOwner ? parseInt(baseModel.ProfileOwner) === parseInt(model.empid) : false;
+
+
         //end declarion block
 
         // var logincustid = authSvc.getCustId();
         var custID = model.CustID = stateParams.CustID;
         //  model.CustID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+
+
 
         model.init = function() {
             custID = model.CustID = stateParams.CustID;
@@ -499,6 +506,6 @@
         .module('Kaakateeya')
         .factory('editParentModel', factory);
 
-    factory.$inject = ['editParentService', 'authSvc', 'alert', 'commonFactory', '$uibModal', '$stateParams'];
+    factory.$inject = ['editParentService', 'authSvc', 'alert', 'commonFactory', '$uibModal', '$stateParams', 'baseModel'];
 
 })(angular);

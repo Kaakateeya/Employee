@@ -57,45 +57,17 @@
                          break;
                  }
              };
-             vm.clearSelection = function(Arr) {
-                 model.getpageloadobject = {};
-                 timeout(function() {
-                     _.each(Arr, function(parentItem) {
-                         _.each(parentItem.controlList, function(item) {
-                             if (model[item.ngModel] !== undefined) {
-                                 model[item.ngModel] = undefined;
-                             }
-                             if (model[item.ngModelFrom] !== undefined) {
-                                 model[item.ngModelFrom] = undefined;
-                             }
-                             if (model[item.ngModelTo] !== undefined) {
-                                 model[item.ngModelTo] = undefined;
-                             }
-                         });
 
-                     });
-                     model.getpageloadobject = {};
-                     model.HeightFromID = 0;
-                     model.HeightToID = 0;
-                     model.AgeFromID = "0";
-                     model.AgeToID = "0";
-                     model.AnnualincomeID = "";
-                     model.DOBfrom = "";
-                     model.DOBTo = "";
 
-                 }, 10);
-             };
              vm.onTabSelected = function(value) {
                  if (value === 1) {
                      alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
-                     vm.clearSelection(model.domDataadvanced);
                      model.searchpopuptext = "Advanced Search";
                      model.ProfileIDpopup = '';
                      model.domsearches();
 
                  } else {
                      alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
-                     vm.clearSelection(model.domDatageneral);
                      model.searchpopuptext = "General Search";
                      model.ProfileIDpopup = '';
                      model.domsearches();
