@@ -20,7 +20,7 @@ app.apipathold = 'http://183.82.0.58:8010/Api/';
 app.env = "dev";
 app.kammaPayfixedAmt = 1000;
 app.kammaPaypoints = 12;
-app.kammaPayDays = 42;
+app.kammaPayDays = 30;
 app.kammaPaymentDays = parseInt(app.kammaPayDays) / parseInt(app.kammaPayfixedAmt);
 app.kammaPaymentPoints = parseInt(app.kammaPaypoints) / parseInt(app.kammaPayfixedAmt);
 
@@ -351,6 +351,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
 ]);
 app.run(function($rootScope, $state, $stateParams) {
 
+    $rootScope.ProfileOwner = '';
     $rootScope.$on('$stateChangeStart', function(e, to) {
         if (to && to.name !== 'base.login') {
             if (sessionStorage.getItem('logintime') && (sessionStorage.getItem('logintime')) === moment().format('MM/DD/YYYY')) {

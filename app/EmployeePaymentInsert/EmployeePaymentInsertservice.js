@@ -15,6 +15,6 @@
     }
     angular
         .module('Kaakateeya')
-        .factory('EmployeePaymentinsertservice', factory)
+        .factory('EmployeePaymentinsertservice', factory);
     factory.$inject = ['$http'];
 })(angular);

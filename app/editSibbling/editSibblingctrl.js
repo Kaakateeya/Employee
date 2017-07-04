@@ -1,7 +1,7 @@
  (function(angular) {
      'use strict';
 
-     function controller(editSibblingModel, scope, window) {
+     function controller(editSibblingModel, scope, window, $rootScope) {
          /* jshint validthis:true */
          var vm = this;
          vm.init = function() {
@@ -9,7 +9,9 @@
              vm.model = editSibblingModel.init();
              vm.model.scope = scope;
          };
-
+         $rootScope.$watch('ProfileOwner', function(newval, old) {
+             model.isprofileOwner = newval ? parseInt(newval) === parseInt(model.empid) : false;
+         });
          vm.init();
 
      }
@@ -17,5 +19,5 @@
          .module('Kaakateeya')
          .controller('editSibblingCtrl', controller);
 
-     controller.$inject = ['editSibblingModel', '$scope', '$window'];
+     controller.$inject = ['editSibblingModel', '$scope', '$window', '$rootScope'];
  })(angular);

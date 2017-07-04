@@ -1,7 +1,7 @@
  (function(angular) {
      'use strict';
 
-     function controller(baseModel, scope, $state, stateParams, authSvc) {
+     function controller(baseModel, scope, $state, stateParams, authSvc, $rootScope) {
          /* jshint validthis:true */
          var vm = this,
              model;
@@ -9,7 +9,6 @@
              scope.model = model = baseModel;
              model.scope = scope;
              scope.model.init();
-
          };
          scope.redirect = function(type) {
              $state.go('base.' + type, { CustID: stateParams.CustID });
@@ -34,11 +33,14 @@
              }
              return color;
          };
+
+
+
          vm.init();
      }
      angular
          .module('Kaakateeya')
          .controller('baseCtrl', controller);
 
-     controller.$inject = ['baseModel', '$scope', '$state', '$stateParams', 'authSvc'];
+     controller.$inject = ['baseModel', '$scope', '$state', '$stateParams', 'authSvc', '$rootScope'];
  })(angular);

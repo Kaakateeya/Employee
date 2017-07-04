@@ -1,17 +1,16 @@
 (function(angular) {
     'use strict';
 
-    function factory(baseService, authSvc, uibModal, commonFactory, stateParams, filter) {
+    function factory(baseService, authSvc, uibModal, commonFactory, stateParams, filter, $rootScope) {
         var model = {};
         var CustID = stateParams.CustID;
         model.lnkeducationandprofReview = false;
         model.scope = {};
         model.init = function() {
-
+            debugger;
             model.AdminID = authSvc.isAdmin();
             model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
             model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-
             CustID = stateParams.CustID;
             model.ProfileOwner = '';
             model.menuItem();
@@ -19,7 +18,7 @@
                 model.PersonalObj = response.data;
 
                 if (model.PersonalObj !== null && model.PersonalObj !== undefined) {
-                    model.ProfileOwner = model.PersonalObj.ProfileOwner;
+                    $rootScope.ProfileOwner = model.ProfileOwner = model.PersonalObj.ProfileOwner;
                     model.isprofileOwner = model.ProfileOwner ? parseInt(model.ProfileOwner) === parseInt(model.empid) : false;
                     baseService.nodatastatus(model.PersonalObj.ProfileID).then(function(res) {
                         model.rev = res.data;
@@ -134,6 +133,6 @@
     angular
         .module('Kaakateeya')
         .factory('baseModel', factory);
-    factory.$inject = ['baseService', 'authSvc', '$uibModal', 'commonFactory', '$stateParams', '$filter'];
+    factory.$inject = ['baseService', 'authSvc', '$uibModal', 'commonFactory', '$stateParams', '$filter', '$rootScope'];
 
 })(angular);

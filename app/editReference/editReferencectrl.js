@@ -1,7 +1,7 @@
  (function(angular) {
      'use strict';
 
-     function controller(editReferenceModel, scope, window) {
+     function controller(editReferenceModel, scope, window, $rootScope) {
          /* jshint validthis:true */
          var vm = this;
          vm.init = function() {
@@ -9,12 +9,14 @@
              vm.model = editReferenceModel.init();
              vm.model.scope = scope;
          };
-
+         $rootScope.$watch('ProfileOwner', function(newval, old) {
+             model.isprofileOwner = newval ? parseInt(newval) === parseInt(model.empid) : false;
+         });
          vm.init();
      }
      angular
          .module('Kaakateeya')
          .controller('editReferenceCtrl', controller);
 
-     controller.$inject = ['editReferenceModel', '$scope', '$window'];
+     controller.$inject = ['editReferenceModel', '$scope', '$window', '$rootScope'];
  })(angular);

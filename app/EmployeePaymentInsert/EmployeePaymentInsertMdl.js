@@ -28,7 +28,6 @@
                 if (model.ExpiryDaterev === '') {
                     model.PaidAmtChange(inobj.txtAmountPaid, inobj.txtAgreedAmt);
                 }
-
                 var obj = {
                     ProfileID: model.custobj.ProfileID,
                     Cust_id: model.custobj.Cust_ID,
@@ -54,7 +53,8 @@
                     EmpID: model.empid,
                     AccessFeatureID: 0,
                     PaysmsID: inobj.rbtnmail,
-                    MembershipDuration: parseInt(model.noofDays)
+                    MembershipDuration: parseInt(model.noofDays),
+                    PaymentHist_ID: model.custobj.PaymentHist_ID
                 };
                 model.PiObj = {};
                 model.PiObj.rbtnmail = 1;
@@ -118,7 +118,6 @@
                     var num = paidAmt * model.paymentDays;
                     model.ExpiryDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
                     model.ExpiryDaterev = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
-
                     model.noofDays = num;
                 }
             };
