@@ -54,6 +54,7 @@
                 model.tabledata = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
                     dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                         if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
+                            debugger;
                             if (type === 'pageload') {
 
                                 model.landingItems = response.data;
@@ -64,6 +65,8 @@
                                 _.each(response.data[0], function(inneritem) {
                                     array.push(inneritem);
                                 });
+                                debugger;
+                                // array = array.concat(response.data[0]);
                             } else if (type === 'export') {
                                 model.exportDataarray = [];
                                 model.exportDataarray = response.data[0];
@@ -325,6 +328,7 @@
                             TicketID: item.Emp_Ticket_Id || item.Emp_Ticket_ID,
                             NoDataFound: model.nodataarray(item.NoDataFound, item.Cust_ID),
                             LastModifiedDate: item.LastModifiedDate,
+                            TicketHisUpdatedDate: item.TicketHisUpdatedDate,
                             To_Profile_ID: item.To_Profile_ID,
                             TicketOwner: item.TicketOwner,
                             Ticketuserid: item.Ticketuserid,
@@ -335,16 +339,22 @@
                             // ReminderCreatedDate: item.ReminderCreatedDate,
                             //ReminderCreatedDatepopup: $filter('date')(item.ReminderCreatedDate, 'dd-MM-yyyy')
                             ReminderCreatedDate: model.todaydate,
-                            ReminderCreatedDatepopup: $filter('date')(model.todaydate, 'dd-MM-yyyy')
+                            ReminderCreatedDatepopup: $filter('date')(model.todaydate, 'dd-MM-yyyy'),
+                            EmpAssignedDate: moment(item.EmpAssignedDate).format('DD-MMM-YYYY'),
+                            TicketAssignedDate: moment(item.TicketAssignedDate).format('DD-MMM-YYYY'),
+                            NotificationDate: moment(item.NotificationDate).format('DD-MMM-YYYY')
                         });
                     });
+                    debugger;
                     return array;
                 };
 
                 model.slideshowfunction = function(flag, empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
                     model.topage = topage;
+                    debugger;
                     dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                         if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0 && response.data[0].length > 0) {
+                            debugger;
                             model.slidearray = response.data[0];
                             model.totalRecords = model.slidearray[0].TotalRows;
                             model.headerhtml = tablename;
@@ -366,8 +376,14 @@
                                 case "Yesterday Proceeding Profiles":
                                     model.typeofslidedate = "proceeding Date";
                                     break;
-                                case "Tickets Assigned from Last 10 Days":
+                                    // case "Tickets Assigned from Last 10 Days":
+                                case 'Assigned Tickets from Last 10 Days':
+                                    model.typeOfAssign = 'Tickets';
+                                    model.typeofslidedate = "Assigned Date";
+                                    break;
+
                                 case 'Assigned Profiles from Last 10 Days':
+                                    model.typeOfAssign = 'Profiles';
                                     model.typeofslidedate = "Assigned Date";
                                     break;
                                 case "Email Bounce Info":
@@ -383,6 +399,7 @@
                                     model.typeofslidedate = "Ticket Last Updated";
                                     break;
                                 case "Customer Notification Status":
+                                    model.typeOfAssign = 'notification';
                                     model.typeofslidedate = "Notification Date";
                                     break;
                                 case "No Data Profiles":

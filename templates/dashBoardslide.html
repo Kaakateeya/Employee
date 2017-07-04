@@ -147,13 +147,19 @@
             </span></h6>
             <h5>
                 <div style="color:Black;">
-                    <span ng-show="model.typeofslidedate!=='Ticket Last Updated' && model.typeofslidedate!=='Reminder Date'">{{slide.CreatedDate}}
-                    </span>
+                    <!--<span ng-show="model.typeofslidedate!=='Ticket Last Updated' && model.typeofslidedate!=='Reminder Date'">{{slide.EmpAssignedDate}}
+                    </span>-->
                     <span ng-show="model.typeofslidedate==='Reminder Date'">
                         {{slide.ReminderCreatedDate | date: "dd-MM-yyyy"}}
                      <a class="alllinkscolor" href="javascript:void(0)" ng-click="model.changereminders(slide)" ng-if="slide.ReminderCreatedDate!==null && slide.ReminderCreatedDate!=='' && slide.ReminderCreatedDate!==undefined">Change Reminder</a>
                     </span>
-                    <span ng-show="model.typeofslidedate==='Ticket Last Updated'">{{slide.LastModifiedDate}}</span>
+                    <span ng-show="model.typeofslidedate==='Ticket Last Updated'">{{slide.TicketHisUpdatedDate}}</span>
+
+                    <span ng-show="model.typeOfAssign==='Tickets'">{{slide.TicketAssignedDate}}</span>
+                    <span ng-show="model.typeOfAssign==='Profiles'">{{slide.EmpAssignedDate}}</span>
+                    <span ng-show="model.typeOfAssign==='notification'">{{slide.NotificationDate}}</span>
+
+
                 </div>
                 <div class="clearfix">
                 </div>
@@ -223,7 +229,6 @@
             <h5>
                 <div style="color:Red;">
                     <span>{{slide.ActionType}}
-                     
                  </span>
                 </div>
                 <div class="clearfix">

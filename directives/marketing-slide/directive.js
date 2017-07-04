@@ -20,6 +20,7 @@
         return directive;
 
         function link(scope, element, attrs) {
+
             scope.model = marketticketHistrymdl;
             scope.model.ticketid = scope.ticketid;
             scope.model.scope = scope;
@@ -30,8 +31,10 @@
             scope.model.MAobj.ddlmrktreplytypeout =
                 scope.model.MAobj.ddlmrktReplyMemo =
                 scope.model.MAobj.ddlmrktreplyClose =
-                scope.model.MAobj.ddlmrktReplyTypeIn = "";
-
+                scope.model.MAobj.ddlmrktReplyTypeIn =
+                scope.model.MAobj.txtmrktCalldiscussionin =
+                scope.model.MAobj.txtmrktCalldiscussionout =
+                scope.model.MAobj.txtmrktcalldiscussionMemo = "";
         }
     }
 
