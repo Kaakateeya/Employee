@@ -10,11 +10,6 @@
              model.scope = scope;
              scope.model.init();
 
-             scope.AdminID = authSvc.isAdmin();
-             scope.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
-             scope.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-             scope.isprofileOwner = model.ProfileOwner ? parseInt(model.ProfileOwner) === parseInt(scope.empid) : false;
-
          };
          scope.redirect = function(type) {
              $state.go('base.' + type, { CustID: stateParams.CustID });

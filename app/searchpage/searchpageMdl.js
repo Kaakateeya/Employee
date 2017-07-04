@@ -75,7 +75,13 @@
                     changeYear: true,
                     yearRange: "-40:+5",
                     format: "MM/DD/YYYY"
-
+                };
+                model.dateOptionsDOB = {
+                    reverseYearRange: true,
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: "-81:-19",
+                    format: "MM/DD/YYYY"
                 };
                 model.showplus = false;
                 model.photogradearray = [{ value: 216, name: 'A' },
