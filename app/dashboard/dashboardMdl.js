@@ -54,7 +54,7 @@
                 model.tabledata = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
                     dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                         if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
-                            debugger;
+
                             if (type === 'pageload') {
 
                                 model.landingItems = response.data;
@@ -65,7 +65,7 @@
                                 _.each(response.data[0], function(inneritem) {
                                     array.push(inneritem);
                                 });
-                                debugger;
+
                                 // array = array.concat(response.data[0]);
                             } else if (type === 'export') {
                                 model.exportDataarray = [];
@@ -345,16 +345,16 @@
                             NotificationDate: moment(item.NotificationDate).format('DD-MMM-YYYY')
                         });
                     });
-                    debugger;
+
                     return array;
                 };
 
                 model.slideshowfunction = function(flag, empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
                     model.topage = topage;
-                    debugger;
+
                     dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                         if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0 && response.data[0].length > 0) {
-                            debugger;
+
                             model.slidearray = response.data[0];
                             model.totalRecords = model.slidearray[0].TotalRows;
                             model.headerhtml = tablename;

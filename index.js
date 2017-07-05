@@ -175,8 +175,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/datePickerDirectiveEdit.js',
                         'directives/divPrint.js',
                         'directives/editFooter.js',
-                        'directives/fixedHeader.js'
-                        // 'directives/requireDirective.js'
+                        'directives/fixedHeader.js',
+                        'directives/allowOnlyNumbers.js'
                     ]
                 },
                 {
@@ -352,6 +352,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
 app.run(function($rootScope, $state, $stateParams) {
 
     $rootScope.ProfileOwner = '';
+    $rootScope.EditProfilePaidStatus = '';
+
     $rootScope.$on('$stateChangeStart', function(e, to) {
         if (to && to.name !== 'base.login') {
             if (sessionStorage.getItem('logintime') && (sessionStorage.getItem('logintime')) === moment().format('MM/DD/YYYY')) {

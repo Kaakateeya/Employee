@@ -16,7 +16,6 @@
         model.eventType = 'add';
         var isSubmit = true;
         model.scope = {};
-        debugger;
 
         model.AdminID = authSvc.isAdmin();
         model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";

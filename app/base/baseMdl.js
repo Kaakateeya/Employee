@@ -7,7 +7,6 @@
         model.lnkeducationandprofReview = false;
         model.scope = {};
         model.init = function() {
-            debugger;
             model.AdminID = authSvc.isAdmin();
             model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
             model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
@@ -19,7 +18,10 @@
 
                 if (model.PersonalObj !== null && model.PersonalObj !== undefined) {
                     $rootScope.ProfileOwner = model.ProfileOwner = model.PersonalObj.ProfileOwner;
-                    model.isprofileOwner = model.ProfileOwner ? parseInt(model.ProfileOwner) === parseInt(model.empid) : false;
+                    $rootScope.EditProfilePaidStatus = model.PersonalObj.PaidStatus;
+                    debugger;
+
+                    model.isprofileOwner = (model.ProfileOwner ? parseInt(model.ProfileOwner) === parseInt(model.empid) : false) || (model.PersonalObj.PaidStatus !== undefined && model.PersonalObj.PaidStatus !== null ? parseInt(model.PersonalObj.PaidStatus) !== 1 : false);
                     baseService.nodatastatus(model.PersonalObj.ProfileID).then(function(res) {
                         model.rev = res.data;
                     });

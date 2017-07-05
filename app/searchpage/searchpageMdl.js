@@ -99,7 +99,6 @@
                 model.profileidupdate = function(obj) {
                     model.intilize();
                     model.init();
-                    debugger;
                     model.progressbar = [];
                     model.sidebarnavshow = false;
                     searchpageServices.getPrimaryCustomerDataResponse(obj.ProfileIDpopup, model.empid).then(function(response) {
@@ -378,7 +377,6 @@
                     });
                 };
                 model.closepopup = function() {
-                    debugger;
                     alerts.dynamicpopupclose();
                     model.intilize();
                     model.init();
@@ -588,13 +586,19 @@
                     modelpopupopenmethod.showPopupphotopoup('mainShortListProfiles.html', model.scope, 'lg', "modalclassdashboardphotopopupinner");
                 };
                 model.shortListPopup = function() {
-                    var arrayshortListPopup = [];
-                    arrayshortListPopup = _.where(model.config.shortlistmodel.slides, { isshortlistaedgain: true });
-                    if (arrayshortListPopup.length > 0) {
-                        model.config.shortlistmodel.slides = _.where(model.config.shortlistmodel.slides, { isshortlistaedgain: true });
-                    } else {
-                        model.config.shortlistmodel.slides = (model.config.shortlistmodel.slides);
-                    }
+                    // var arrayshortListPopup = [];
+                    // arrayshortListPopup = _.where(model.config.shortlistmodel.slides, { isshortlistaedgain: true });
+                    // if (arrayshortListPopup.length > 0) {
+                    //     model.config.shortlistmodel.slides = _.where(model.config.shortlistmodel.slides, { isshortlistaedgain: true });
+                    // } else {
+                    //     model.config.shortlistmodel.slides = (model.config.shortlistmodel.slides);
+                    // }
+
+                    model.config.shortlistmodel.headettemp = "templates/SearchpopupHeader.html";
+                    model.config.shortlistmodel.slides = model.config.shortlistmodel.shortlistmodelinner.concat(_.where(model.config.slides, { isShortlisted: true }));
+
+
+
                 };
                 model.slidebind = function(old, news, array) {
                     if (parseInt(model.topage) - parseInt(news) === 4) {

@@ -1,7 +1,7 @@
 <div class="clearfix">
 </div>
 <br>
-<div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+<div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" ng-style="{'margin-top':slide.PhotoCount===0?'14px':''}">
     <div style="margin-left:60px;" class="edit_page_details_item_descsearch clearfix" ng-repeat="slidedata in slide.itmArr" ng-if="slidedata.label!=='backendFields'">
         <h6> <span style="font-weight: bold;">{{slidedata.label}}</span></h6>
         <h5>
@@ -154,12 +154,9 @@
                      <a class="alllinkscolor" href="javascript:void(0)" ng-click="model.changereminders(slide)" ng-if="slide.ReminderCreatedDate!==null && slide.ReminderCreatedDate!=='' && slide.ReminderCreatedDate!==undefined">Change Reminder</a>
                     </span>
                     <span ng-show="model.typeofslidedate==='Ticket Last Updated'">{{slide.TicketHisUpdatedDate}}</span>
-
                     <span ng-show="model.typeOfAssign==='Tickets'">{{slide.TicketAssignedDate}}</span>
                     <span ng-show="model.typeOfAssign==='Profiles'">{{slide.EmpAssignedDate}}</span>
                     <span ng-show="model.typeOfAssign==='notification'">{{slide.NotificationDate}}</span>
-
-
                 </div>
                 <div class="clearfix">
                 </div>

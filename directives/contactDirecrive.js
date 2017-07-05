@@ -28,11 +28,10 @@
         return directive;
 
         function link(scope, element, attrs) {
-            debugger;
             scope.AdminID = authSvc.isAdmin();
             scope.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
             scope.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-            scope.isprofileOwner = baseModel.ProfileOwner ? parseInt(baseModel.ProfileOwner) === parseInt(scope.empid) : false;
+            scope.isprofileOwner = baseModel.isprofileOwner;
 
             scope.amob = (scope.stralternative !== null && scope.stralternative !== '' && scope.stralternative !== undefined) ? true : false;
             scope.land = (scope.strareacode !== null && scope.strareacode !== '' && scope.strareacode !== undefined) ? true : false;

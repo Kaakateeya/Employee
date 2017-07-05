@@ -153,7 +153,6 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 };
 
                 scope.FilterSerch = function(query) {
-                    debugger;
                     var results = query ? scope.useme(query) : scope.model.ProfileOwnerarray;
                     console.log(results);
                     return results;

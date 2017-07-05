@@ -8,6 +8,7 @@
                  var vm = this,
                      model;
                  vm.init = function() {
+                     model = {};
                      vm.model = model = registrationValidationModel;
                      model.ddlApplicationStatus = '';
                      model.scope = scope;
@@ -17,6 +18,19 @@
                      model.opendiv = true;
                      model.slide.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                      scope.$on("$destroy", vm.destroy);
+
+                     model.txtAllPhones = '';
+                     model.txtAllEmails = '';
+                     model.ddlApplicationStatus = '';
+                     model.txtFFMFNATIVE = '';
+                     model.txtFatherName = '';
+                     model.txtMotherName = '';
+                     model.txtFFName = '';
+                     model.txtMFSurName = '';
+                     model.txtMFName = '';
+                     model.txtCFFFSurName = '';
+                     model.txtCName = '';
+                     model.ddlCaste = '';
                  };
                  vm.destroy = function() {
                      model.destroy();

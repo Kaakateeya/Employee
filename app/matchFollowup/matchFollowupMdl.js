@@ -394,7 +394,7 @@
                         model.actobj.ddlcloseReplyType = '';
                     model.ActionTicket = ticketID;
                     //model.actobj.ddlMemAssign = parseInt(model.empid);
-                    model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = '0';
+                    model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = '1';
                     model.actobj.txtInCalltelephonenumber = model.actobj.txtOutCalltelephonenumber = number;
                     matchFollowupServices.ticketHistry(ticketID, 'I').then(function(response) {
                         if (_.isArray(response.data) && response.data.length > 0) {
@@ -422,7 +422,8 @@
 
 
                 model.ActionSubmit = function(obj, str, intrstType) {
-                    obj.CallDiscussion = intrstType ? (parseInt(intrstType) === 1 ? 'Interested in your match' : obj.CallDiscussion) : obj.CallDiscussion;
+                    obj.CallDiscussion = obj.CallDiscussion;
+                    //intrstType ? (parseInt(intrstType) === 1 ? 'Interested in your match' : obj.CallDiscussion) : obj.CallDiscussion;
                     var alertmsg = '',
                         replyTypedisplay = '';
                     var inputObj = {
@@ -551,21 +552,48 @@
                 };
 
                 model.NotIntrstChnge = function(val, type) {
+                    model.rbtnnotIntrst = '';
                     model.typeOFCall = type;
-                    if (val === '0' || val === '2') {
-                        modelpopupopenmethod.showPopupphotopoup('notIntrstPopup.html', model.scope, 'md', 'notintrstCls');
+                    model.typeOfCtrl = val;
+                    if (val === '1') {
+                        model.txtAllcallDiscusion = 'intrsted';
+                        model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
+                    } else if (val === '2') {
+                        model.txtAllcallDiscusion = 'pending';
+                        model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
+                    } else {
+                        model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = '';
                     }
+                    modelpopupopenmethod.showPopupphotopoup('notIntrstPopup.html', model.scope, 'md', 'notintrstCls');
                 };
 
                 model.notIntrstchangeBind = function(val) {
-                    if (model.typeOFCall === 'In') {
-                        model.actobj.txtInCalldiscussion = _.where(model.notInrstarray, { id: parseInt(val) })[0].text;
-                    } else if (model.typeOFCall === 'Out') {
-                        model.actobj.txtOutCalldiscussion = _.where(model.notInrstarray, { id: parseInt(val) })[0].text;
-                    } else if (model.typeOFCall === 'mail') {
-                        model.txtsmsmail = _.where(model.notInrstarray, { id: parseInt(val) })[0].text;
+                    if (model.typeOfCtrl === '0') {
+                        var txt = val.length > 0 ? val.join(' , ') : val;
+                        if (model.typeOFCall === 'In') {
+                            model.actobj.txtInCalldiscussion = txt;
+                        } else if (model.typeOFCall === 'Out') {
+                            model.actobj.txtOutCalldiscussion = txt;
+                        } else if (model.typeOFCall === 'mail') {
+                            model.txtsmsmail = txt;
+                        } else if (model.typeOFCall === 'close') {
+                            model.actobj.txtcloseReason = txt;
+                        } else {
+                            model.actobj.txtMemmemocalldiscussion = txt;
+                        }
                     } else {
-                        model.actobj.txtMemmemocalldiscussion = _.where(model.notInrstarray, { id: parseInt(val) })[0].text;
+                        if (model.typeOFCall === 'In') {
+                            model.actobj.txtInCalldiscussion = val;
+                        } else if (model.typeOFCall === 'Out') {
+                            model.actobj.txtOutCalldiscussion = val;
+                        } else if (model.typeOFCall === 'mail') {
+                            model.txtsmsmail = val;
+                        } else if (model.typeOFCall === 'close') {
+                            model.actobj.txtcloseReason = val;
+                        } else {
+                            model.actobj.txtMemmemocalldiscussion = val;
+                        }
+
                     }
                 };
                 model.destroy = function() {

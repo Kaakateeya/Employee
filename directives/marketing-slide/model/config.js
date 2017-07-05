@@ -263,7 +263,6 @@
         };
 
         model.RelationshipChangerem = function(RelationshipID) {
-            debugger;
             model.txtprofileidreminder = model.ProfileID;
             SelectBindServiceApp.getRelationName(3, model.txtprofileidreminder, RelationshipID).then(function(response) {
                 if (_.isArray(response.data[0]) && response.data[0].length > 0) {
