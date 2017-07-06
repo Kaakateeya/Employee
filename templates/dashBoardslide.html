@@ -142,7 +142,7 @@
 </div>
 <div class="row">
     <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-        <div style="margin-left:69px;" class="edit_page_details_item_descsearch clearfix">
+        <div style="margin-left:69px;" class="edit_page_details_item_descsearch clearfix" ng-if="model.typeofslidedate">
             <h6> <span style="font-weight: bold;">{{model.typeofslidedate}}
             </span></h6>
             <h5>
@@ -157,6 +157,9 @@
                     <span ng-show="model.typeOfAssign==='Tickets'">{{slide.TicketAssignedDate}}</span>
                     <span ng-show="model.typeOfAssign==='Profiles'">{{slide.EmpAssignedDate}}</span>
                     <span ng-show="model.typeOfAssign==='notification'">{{slide.NotificationDate}}</span>
+                    <span ng-show="model.typeOfAssign==='noserviceDate' || model.typeOfAssign==='proceeding'">{{slide.CreatedDate}}</span>
+                    <span ng-show="model.typeofslidedate==='Registration Date'">{{slide.reg}}</span>
+                    <span ng-show="model.typeofslidedate==='Inactive Date'">{{slide.inActiveDate}}</span>
                 </div>
                 <div class="clearfix">
                 </div>

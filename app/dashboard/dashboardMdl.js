@@ -342,7 +342,8 @@
                             ReminderCreatedDatepopup: $filter('date')(model.todaydate, 'dd-MM-yyyy'),
                             EmpAssignedDate: moment(item.EmpAssignedDate).format('DD-MMM-YYYY'),
                             TicketAssignedDate: moment(item.TicketAssignedDate).format('DD-MMM-YYYY'),
-                            NotificationDate: moment(item.NotificationDate).format('DD-MMM-YYYY')
+                            NotificationDate: moment(item.NotificationDate).format('DD-MMM-YYYY'),
+                            inActiveDate: moment(item.InActiveToDate).format('DD-MMM-YYYY')
                         });
                     });
 
@@ -354,18 +355,28 @@
 
                     dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                         if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0 && response.data[0].length > 0) {
-
+                            debugger;
                             model.slidearray = response.data[0];
                             model.totalRecords = model.slidearray[0].TotalRows;
                             model.headerhtml = tablename;
+                            model.typeOfAssign = '';
+                            model.typeofslidedate = '';
                             switch (tablename) {
-                                case "No-Service From Last 1 Month":
+                                case "No-Service List Since a Month":
+                                    model.typeOfAssign = 'noserviceDate';
                                     model.typeofslidedate = "Service Date";
                                     break;
-                                case "Near by offline Expiry":
-                                case "Offline Expired Customers":
-                                case "Un-Paid Customers":
+                                case "Latest Expressed Interest Profiles":
+                                    model.typeOfAssign = 'proceeding';
+                                    model.typeofslidedate = "proceeding Date ";
+                                    break;
+
+                                    // case "Near by offline Expiry":
+                                case "Near by expiry profiles":
                                     model.typeofslidedate = "Expired Date";
+                                    break;
+                                case "Un-Paid Customers":
+                                    model.typeofslidedate = "Registration Date";
                                     break;
                                 case "Inactive Customers":
                                     model.typeofslidedate = "Inactive Date";
@@ -377,12 +388,12 @@
                                     model.typeofslidedate = "proceeding Date";
                                     break;
                                     // case "Tickets Assigned from Last 10 Days":
-                                case 'Assigned Tickets from Last 10 Days':
+                                case 'Marketing Tickets Assigned Since 10 Days':
                                     model.typeOfAssign = 'Tickets';
                                     model.typeofslidedate = "Assigned Date";
                                     break;
 
-                                case 'Assigned Profiles from Last 10 Days':
+                                case 'Profiles Assigned Since 10 Days':
                                     model.typeOfAssign = 'Profiles';
                                     model.typeofslidedate = "Assigned Date";
                                     break;
@@ -392,7 +403,7 @@
                                 case "No Sa Form For Paid Profiles":
                                     model.typeofslidedate = "Last Service Date";
                                     break;
-                                case "Present In India":
+                                case "Presently In India":
                                     model.typeofslidedate = "ArrivalDate at";
                                     break;
                                 case "Marketing Ticket Expiry With in Two days":

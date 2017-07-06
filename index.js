@@ -12,10 +12,10 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ui.date', 'ng-clipboard', 'anguFixedHeaderTable'
 ]);
 
-// app.apiroot = 'http://52.66.131.254:8025/Api/';
+app.apiroot = 'http://52.66.131.254:8025/Api/';
 // app.apipathold = 'http://52.66.131.254:8010/Api/';
-app.apiroot = 'http://183.82.0.58:8025/Api/';
-app.apipathold = 'http://183.82.0.58:8010/Api/';
+// app.apiroot = 'http://183.82.0.58:8025/Api/';
+// app.apipathold = 'http://183.82.0.58:8010/Api/';
 
 app.env = "dev";
 app.kammaPayfixedAmt = 1000;
@@ -184,6 +184,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     files: ['constants/arrayConstants.js', 'constants/arrayBindConstatns.js']
                 },
                 {
+                    name: 'properties',
+                    files: ['common/properties/paymentProperty.js']
+                },
+                {
                     name: 'modules',
                     files: [
                         'node_modules/bootstrap-multiselect/dist/js/bootstrap-multiselect.js',
@@ -261,6 +265,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     $ocLazyLoad.load('EditSideMenu-base');
                     $ocLazyLoad.load('EditSlide-popup');
                     $ocLazyLoad.load('single-grid');
+                    $ocLazyLoad.load('properties');
                 }]
             }
         });
@@ -292,6 +297,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     $ocLazyLoad.load('matchfollowup-ticket');
                     $ocLazyLoad.load('EditSideMenu-base');
                     $ocLazyLoad.load('EditSlide-popup');
+                    $ocLazyLoad.load('properties');
                 }]
             }
         });

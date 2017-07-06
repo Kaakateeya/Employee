@@ -3,8 +3,8 @@
     angular
         .module('Kaakateeya')
         .factory('EmployeePaymentmodel', ['$http', 'EmployeePaymentservice',
-            '$state', 'complex-grid-config', 'authSvc', 'single-grid-config', 'modelpopupopenmethod', 'alert',
-            function(http, EmployeePaymentservice, state, config, authSvc, singlegrid, modelpopupopenmethod, alerts) {
+            '$state', 'complex-grid-config', 'authSvc', 'single-grid-config', 'modelpopupopenmethod', 'alert', 'paymentProperty',
+            function(http, EmployeePaymentservice, state, config, authSvc, singlegrid, modelpopupopenmethod, alerts, paymentProperty) {
                 var model = {};
                 model.singlegrid = {};
                 model.singlegrid.showsearchrows = true;
@@ -16,10 +16,14 @@
                 model.singlegrid.gridTableshow = false;
                 model.showplus = false;
                 model.init = function() {
-                    model.Admin = authSvc.isAdmin();
-                    model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+                    model.refreshAdmin();
                     return model;
                 };
+                model.refreshAdmin = function() {
+                    model.Admin = authSvc.isAdmin();
+                    model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+                };
+
                 model.obj = {};
                 model.CustName = '';
                 model.ProfileOwner = '';
@@ -30,7 +34,9 @@
                 model.myprofileexcel = false;
                 model.normalexcel = false;
                 model.paymentProfileID = function(row) {
+                    model.refreshAdmin();
                     var status = row.membershiptype === 'Registration' ? 0 : 1;
+                    paymentProperty.setData(row.PaymentHist_ID);
                     var paid = parseInt(model.Admin) === 1 || model.Managementid === 'true' ? "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.ProfileID + "/" + status + "/" + row.PaymentID + "'>Edit</a>" : '';
                     return paid;
                 };
@@ -50,7 +56,7 @@
                 };
 
                 model.EmployeePayment = function(txtval) {
-
+                    paymentProperty.setData(0);
                     if (model.txtProfileID !== undefined && model.txtProfileID !== '' && model.txtProfileID !== null && model.txtProfileID !== "undefined") {
                         model.paymentArr = [];
                         model.columns = [];
@@ -165,7 +171,6 @@
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
                 return model.init();
-
             }
         ]);
 })(angular);
