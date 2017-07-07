@@ -21,7 +21,9 @@
     <div id="printThisElementnew">
         <div id="viewProfileIdnew">
             <div ng-hide="page.model.fullprofileshow" class="printCls">
-                <div><img src="src/images/watsupprofileTelugu002.jpg" height="100" width="1000"></div>
+                <div ng-class="divclassmask(LoginPhotoIsActive)">
+                    <center> <img name="iProfilePic" ng-click="page.model.showPhotoPopup()" ng-src="src/images/Viewfullheaderpic.jpg" style="height:150px;width:700px;cursor:pointer;" /></center>
+                </div>
                 <div>
                     <div class="profile_full_header_in">
                         <h6 style="font-size: 18px;">
