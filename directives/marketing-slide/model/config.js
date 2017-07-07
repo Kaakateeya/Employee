@@ -216,6 +216,7 @@
                 model.contactpersonname = slidearray.ReminderRelationName;
                 model.ddlremCatgory = parseInt(slidearray.Category);
                 model.remembertickets = slidearray.Reminderbody;
+
                 if (slidearray.ReminderDate) {
                     var remindertime = slidearray.ReminderDate.split(' ');
                     var remindertimeArr = (remindertime[1]).split(':');

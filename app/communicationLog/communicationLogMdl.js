@@ -65,35 +65,40 @@
                     model.gridtable2.mainArray = [];
                     model.gridtable3.mainArray = [];
                     model.gridtable4.mainArray = [];
-                    _.each(response.data[0].log, function(item) {
-                        model.sendarray.push(item);
-                    });
-                    _.each(response.data[1].log, function(item) {
-                        model.sendarray2.push(item);
-                    });
-                    _.each(response.data[2].log, function(item) {
-                        model.sendarray3.push(item);
-                    });
-                    _.each(response.data[3].log, function(item) {
-                        model.sendarray4.push(item);
-                    });
-                    model.gridtable1.mainArray = model.sendarray.length > 0 ? model.addingserialnumber(model.sendarray) : [];
-                    model.gridtable1.TotalRows = model.sendarray.length > 0 ? model.sendarray[0].TotalRows : 0;
-                    model.gridtable1.data = model.gridtable1.mainArray;
-                    model.gridTableshow = true;
-                    model.Nameofcandidate = model.sendarray.length > 0 ? model.sendarray[0].FromName : "";
-                    //2
-                    model.gridtable2.mainArray = model.sendarray2.length > 0 ? model.addingserialnumber(model.sendarray2) : [];
-                    model.gridtable2.TotalRows = model.sendarray2.length > 0 ? model.sendarray2[0].TotalRows : 0;
-                    model.gridtable2.data = model.gridtable2.mainArray;
-                    //3
-                    model.gridtable3.mainArray = model.sendarray3.length > 0 ? model.addingserialnumber(model.sendarray3) : [];
-                    model.gridtable3.TotalRows = model.sendarray3.length > 0 ? model.sendarray3[0].TotalRows : 0;
-                    model.gridtable3.data = model.gridtable3.mainArray;
-                    //4
-                    model.gridtable4.mainArray = model.sendarray4.length > 0 ? model.addingserialnumber(model.sendarray4) : [];
-                    model.gridtable4.TotalRows = model.sendarray4.length > 0 ? model.sendarray4[0].TotalRows : 0;
-                    model.gridtable4.data = model.gridtable4.mainArray;
+
+                    if ((response.data[0].log).length !== 0 || (response.data[1].log).length !== 0 || (response.data[2].log).length !== 0 || (response.data[3].log).length !== 0) {
+                        _.each(response.data[0].log, function(item) {
+                            model.sendarray.push(item);
+                        });
+                        _.each(response.data[1].log, function(item) {
+                            model.sendarray2.push(item);
+                        });
+                        _.each(response.data[2].log, function(item) {
+                            model.sendarray3.push(item);
+                        });
+                        _.each(response.data[3].log, function(item) {
+                            model.sendarray4.push(item);
+                        });
+                        model.gridtable1.mainArray = model.sendarray.length > 0 ? model.addingserialnumber(model.sendarray) : [];
+                        model.gridtable1.TotalRows = model.sendarray.length > 0 ? model.sendarray[0].TotalRows : 0;
+                        model.gridtable1.data = model.gridtable1.mainArray;
+                        model.gridTableshow = true;
+                        model.Nameofcandidate = model.sendarray.length > 0 ? model.sendarray[0].FromName : "";
+                        //2
+                        model.gridtable2.mainArray = model.sendarray2.length > 0 ? model.addingserialnumber(model.sendarray2) : [];
+                        model.gridtable2.TotalRows = model.sendarray2.length > 0 ? model.sendarray2[0].TotalRows : 0;
+                        model.gridtable2.data = model.gridtable2.mainArray;
+                        //3
+                        model.gridtable3.mainArray = model.sendarray3.length > 0 ? model.addingserialnumber(model.sendarray3) : [];
+                        model.gridtable3.TotalRows = model.sendarray3.length > 0 ? model.sendarray3[0].TotalRows : 0;
+                        model.gridtable3.data = model.gridtable3.mainArray;
+                        //4
+                        model.gridtable4.mainArray = model.sendarray4.length > 0 ? model.addingserialnumber(model.sendarray4) : [];
+                        model.gridtable4.TotalRows = model.sendarray4.length > 0 ? model.sendarray4[0].TotalRows : 0;
+                        model.gridtable4.data = model.gridtable4.mainArray;
+                    }
+
+
                 });
             };
             model.ProfileIdTemplateDUrl = function(row) {
@@ -117,6 +122,7 @@
                 ticketid = ticket !== "--" ? "<a>" + ticket + "</a>" + img : "";
                 return ticketid;
             };
+
             model.clickticketupdate = function(row) {
                 model.marketingTicket = row.Emp_FollowupTicket_ID;
                 model.TicketStatusID = row.TicketStatusID;

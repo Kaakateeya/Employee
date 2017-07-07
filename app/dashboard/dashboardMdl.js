@@ -376,7 +376,7 @@
                                     model.typeofslidedate = "Expired Date";
                                     break;
                                 case "Un-Paid Customers":
-                                    model.typeofslidedate = "Registration Date";
+                                    model.typeofslidedate = "Ticket Last Updated";
                                     break;
                                 case "Inactive Customers":
                                     model.typeofslidedate = "Inactive Date";
@@ -456,7 +456,6 @@
                     model.ddlHrs = "";
                     model.ddlmins = "";
                     model.ddlcontactperson = "";
-                    model.ddlremCatgory = 0;
                     model.ddlremCaltype = "";
                     commonpage.showPopupphotopoup('Reminderticket.html', model.scope, 'md', "modalclassdashboardremainder");
                     model.Hoursarray = model.getnumberbind(0, 23, 'Hrs', 1);
@@ -464,6 +463,29 @@
                     model.calltypearray = model.replytype('calltype');
                     model.replaytypearray = arrayConstants.childStayingWith;
                     model.categoryarray = arrayConstants.catgory;
+                    model.ddlremCatgory = 462;
+
+                    slidearray.ReminderCreatedDate = moment(slidearray.ReminderCreatedDate).format('MM-DD-YYYY hh:mm:ss');
+                    if (slidearray.EmpReminderID) {
+
+                        model.txtreminderDate = moment(slidearray.ReminderDate).format('MM-DD-YYYY');
+                        // model.ddlremCaltype = parseInt(slidearray.TicketTypeID);
+                        //model.ddlcontactperson = slidearray.ReminderRelationID;
+                        //model.contactpersonname = slidearray.ReminderRelationName;
+                        // model.ddlremCatgory = parseInt(slidearray.Category);
+                        //model.remembertickets = slidearray.Reminderbody;
+
+                        if (slidearray.ReminderDate) {
+                            var remindertime = slidearray.ReminderDate.split(' ');
+                            var remindertimeArr = (remindertime[1]).split(':');
+                            model.ddlHrs = parseInt(remindertimeArr[0]) + 1;
+                            model.ddlmins = parseInt(remindertimeArr[1]) + 1;
+                        }
+                    }
+                    // } else {
+                    //     model.remReset();
+                    // }
+
                 };
                 model.reminderSubmit = function(obj) {
                     var Mobj = {
@@ -491,6 +513,11 @@
                 model.destroy = function() {
                     config.reset();
                 };
+
+                model.communicationlogredirect = function(profileid) {
+                    window.open("communicationLogs?Profileid=" + profileid, "_blank");
+                };
+
                 return model.init();
             }
         ]);

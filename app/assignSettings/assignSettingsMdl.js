@@ -42,7 +42,9 @@
                     window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
                 };
                 model.assignaction = function(row) {
-                    var owner = '<a>Assign</a>';
+                    var checkOwner = _.where(model.ProfileOwnerarray, { value: parseInt(row.ProfileOwner) })[0];
+                    var str = checkOwner ? 'Reassign' : 'Assign';
+                    var owner = '<a> ' + str + '</a>';
                     return owner;
                 };
                 model.Marketingticketid = function(row) {
@@ -79,11 +81,11 @@
                     { text: 'Sno', key: 'SNO', type: 'label' },
                     { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
                     { text: 'Profile owner', key: 'ProfileOwner', type: 'autocomplete', model: 'ddlProfileowner' },
-                    { text: 'Actions', key: 'cust_id', type: 'customlinkValidation', templateUrl: model.assignaction, method: model.assignsettingsubmit, dependColumn: 'ddlowner' },
-                    { text: 'Marketing Ticket', key: 'Marketingticketid', type: 'customlink', templateUrl: model.Marketingticketid, method: model.tickethistorypopup },
+                    { text: 'Action', key: 'cust_id', type: 'customlinkValidation', templateUrl: model.assignaction, method: model.assignsettingsubmit, dependColumn: 'ddlowner' },
+                    { text: 'EnteredBy', key: 'EnteredBy', type: 'customlink', templateUrl: model.EnteredBytext },
                     { text: 'Branch-Dor', key: 'BranchName', type: 'label' },
                     { text: 'Caste', key: 'Caste', type: 'label' },
-                    { text: 'EnteredBy', key: 'EnteredBy', type: 'customlink', templateUrl: model.EnteredBytext }
+                    { text: 'Marketing Ticket', key: 'Marketingticketid', type: 'customlink', templateUrl: model.Marketingticketid, method: model.tickethistorypopup },
                 ];
                 model.MyProfilePageLoad = function() {
                     assignSettingsService.getMyprofilebind(1, 2, '').then(function(response) {

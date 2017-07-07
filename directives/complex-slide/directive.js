@@ -111,7 +111,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.paymentpage = function(ProfileID) {
                     window.open("EmployeePayments" + "?idsss=" + ProfileID, "_blank");
                 };
-                $scope.tickethistoryupdate = function(matkteingticket) {
+                $scope.tickethistoryupdate = function(matkteingticket, type) {
                     $scope.model.marketingTicket = matkteingticket;
                     modelpopupopenmethod.showPopupphotopoup('marketpopup.html', $scope, 'md', "modalclassdashboardphotopopup");
                 };
@@ -277,8 +277,9 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         }
                     });
                 };
-                $scope.communicationlogredirect = function(profileid) {
-                    window.open("communicationLogs?Profileid=" + profileid, "_blank");
+
+                $scope.communicationlogredirect = function(Profileid) {
+                    window.open('/communicationLogs?Profileid=' + Profileid, '_blank');
                 };
             }
         };
