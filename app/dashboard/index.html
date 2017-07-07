@@ -179,7 +179,8 @@
                         <div class="pop_controls_right">
                             <div class="row">
                                 <div class="col-lg-5">
-                                    <select name="ddlcontactpersonrember" required="" ng-model="page.model.ddlcontactperson" ng-options="person.value as person.label for person in page.model.replaytypearray" multiselectdropdown class="smalldropdownperson">
+                                    <select name="ddlcontactpersonrember" required="" ng-change="model.RelationshipChangerem(page.model.ddlcontactperson);" ng-model="page.model.ddlcontactperson" ng-options="person.value as person.label for person in page.model.replaytypearray" multiselectdropdown
+                                        class="smalldropdownperson">
                              </select>
                                 </div>
                                 <div class="col-lg-5">

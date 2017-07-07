@@ -36,5 +36,11 @@ textarea {
     width: 100%;
 }
 
+.disablelinkcls {
+    pointer-events: none;
+    cursor: default;
+    color: black;
+}
+
 
 /*# sourceMappingURL=common.css.map */

@@ -216,9 +216,10 @@
                 model.contactpersonname = slidearray.ReminderRelationName;
                 model.ddlremCatgory = parseInt(slidearray.Category);
                 model.remembertickets = slidearray.Reminderbody;
+
                 if (slidearray.ReminderDate) {
-                    var remindertime = slidearray.ReminderDate.split(' ');
-                    var remindertimeArr = (remindertime[1]).split(':');
+                    var remindertime = moment(slidearray.ReminderDate).format('HH:mm');
+                    var remindertimeArr = remindertime.split(':');
                     model.ddlHrs = parseInt(remindertimeArr[0]) + 1;
                     model.ddlmins = parseInt(remindertimeArr[1]) + 1;
                 }

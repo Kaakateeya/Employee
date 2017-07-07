@@ -74,8 +74,12 @@
             },
             CountryWithCode: function() {
                 return http.get(app.apiroot + 'Dependency/getCountryDependencyCountryCode', { params: { dependencyName: "", dependencyValue: "" } });
+            },
+            memoSubmit: function(msg, tktID, empid, assignEmpid) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getInsertInternalMemo', {
+                    params: { Message: msg, TicketID: tktID, EmpID: empid, AssignedEmpID: assignEmpid }
+                });
             }
-
         };
     }
 })();

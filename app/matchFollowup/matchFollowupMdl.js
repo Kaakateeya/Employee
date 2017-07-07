@@ -443,12 +443,9 @@
                         if (parseInt(response.data) === 1) {
                             model.closeAction();
                             model.mailInput.Notes = obj.CallDiscussion;
-                            if (str === 'Incoming' || str === 'Out going' || str === 'Internal Memo') {
+                            if (str === 'Incoming' || str === 'Out going') {
                                 matchFollowupServices.sendMail(model.mailInput).then(function(response) {
-                                    if (parseInt(response.data) === 1) {
-                                        // model.proceed.closepopup();
-                                        // alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent successfully', 9500);
-                                    }
+                                    if (parseInt(response.data) === 1) {}
                                 });
                             }
 

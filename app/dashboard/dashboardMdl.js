@@ -3,9 +3,9 @@
     angular
         .module('Kaakateeya')
         .factory('dashboardModel', ['$http', 'dashboardServices', '$uibModal', 'authSvc', 'helperservice', '$window',
-            'modelpopupopenmethod', '$filter', 'fileUpload', 'alert', 'complex-slide-config', 'arrayConstants',
+            'modelpopupopenmethod', '$filter', 'fileUpload', 'alert', 'complex-slide-config', 'arrayConstants', 'SelectBindServiceApp',
             function($http, dashboardServices, uibModal, authSvc, helperservice, window,
-                commonpage, $filter, fileUpload, alerts, config, arrayConstants) {
+                commonpage, $filter, fileUpload, alerts, config, arrayConstants, SelectBindServiceApp) {
                 var model = {};
                 model.config = config;
                 var flag = 0;
@@ -336,6 +336,12 @@
                             PrimaryContact: item.PrimaryContact,
                             PriWithoutCode: item.PriWithoutCode,
                             EmpReminderID: item.EmpReminderID,
+
+                            RemCallType: item.RemCallType,
+                            RemReminderRefID: item.RemReminderRefID,
+                            RemRelationName: item.RemRelationName,
+                            Category: item.Category,
+                            RemainderBody: item.RemainderBody,
                             // ReminderCreatedDate: item.ReminderCreatedDate,
                             //ReminderCreatedDatepopup: $filter('date')(item.ReminderCreatedDate, 'dd-MM-yyyy')
                             ReminderCreatedDate: model.todaydate,
@@ -376,7 +382,7 @@
                                     model.typeofslidedate = "Expired Date";
                                     break;
                                 case "Un-Paid Customers":
-                                    model.typeofslidedate = "Registration Date";
+                                    model.typeofslidedate = "Ticket Last Updated";
                                     break;
                                 case "Inactive Customers":
                                     model.typeofslidedate = "Inactive Date";
@@ -456,7 +462,6 @@
                     model.ddlHrs = "";
                     model.ddlmins = "";
                     model.ddlcontactperson = "";
-                    model.ddlremCatgory = 0;
                     model.ddlremCaltype = "";
                     commonpage.showPopupphotopoup('Reminderticket.html', model.scope, 'md', "modalclassdashboardremainder");
                     model.Hoursarray = model.getnumberbind(0, 23, 'Hrs', 1);
@@ -464,6 +469,24 @@
                     model.calltypearray = model.replytype('calltype');
                     model.replaytypearray = arrayConstants.childStayingWith;
                     model.categoryarray = arrayConstants.catgory;
+                    model.ddlremCatgory = 462;
+                    debugger;
+                    // slidearray.ReminderCreatedDate = moment(slidearray.ReminderCreatedDate).format('MM-DD-YYYY hh:mm:ss');
+                    if (slidearray.EmpReminderID) {
+                        model.ddlremCaltype = parseInt(slidearray.RemCallType);
+                        model.ddlcontactperson = slidearray.RemReminderRefID;
+                        model.contactpersonname = slidearray.RemRelationName;
+                        model.ddlremCatgory = parseInt(slidearray.Category);
+                        model.remembertickets = slidearray.RemainderBody;
+
+                        if (slidearray.ReminderCreatedDate) {
+                            var remindertime = moment(slidearray.ReminderCreatedDate).format('HH:mm');
+                            var remindertimeArr = remindertime.split(':');
+                            model.ddlHrs = parseInt(remindertimeArr[0]) + 1;
+                            model.ddlmins = parseInt(remindertimeArr[1]) + 1;
+                        }
+                    }
+
                 };
                 model.reminderSubmit = function(obj) {
                     var Mobj = {
@@ -491,6 +514,18 @@
                 model.destroy = function() {
                     config.reset();
                 };
+
+                model.communicationlogredirect = function(profileid) {
+                    window.open("communicationLogs?Profileid=" + profileid, "_blank");
+                };
+                // model.RelationshipChangerem = function(RelationshipID) {
+                //     model.txtprofileidreminder = model.ProfileID;
+                //     SelectBindServiceApp.getRelationName(3, model.txtprofileidreminder, RelationshipID).then(function(response) {
+                //         if (_.isArray(response.data[0]) && response.data[0].length > 0) {
+                //             model.contactpersonname = response.data[0][0].NAME;
+                //         }
+                //     });
+                // };
                 return model.init();
             }
         ]);
