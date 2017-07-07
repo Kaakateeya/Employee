@@ -85,7 +85,24 @@
         <matchfollowup-tickethistory ticketid="page.model.marketingTicket" ticketstatus="page.model.TicketStatusID" showsendemail="'1'"></matchfollowup-tickethistory>
     </div>
 </script>
+<script type="text/ng-template" id="noServiceData.html">
+    <div class="modal-header">
+        <a href="javascript:void(0);" class="pull-right" ng-click="page.model.close();">
+            <span class="fa fa-close red"></span>
+        </a>
+    </div>
+    <div class="modal-body">
+        <center>
+            <span style="font-size: 21px;">No Service for this profile</span>
+            <br> Want to create service for this profile ID
+            <a href="search/0/0">General & Advance Search</a>
+            <br><br>
+            <input type="button" value="close" class="btn btn-default" ng-click="page.model.close();">
+        </center>
 
+    </div>
+
+</script>
 <style>
     tbody {
         height: auto;

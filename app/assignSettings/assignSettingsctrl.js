@@ -15,6 +15,7 @@
                  model.assignsettingsdata = [];
                  model.mpObj.rdnGender = "";
                  model.mpObj.rdnPayments = "0";
+                 model.opendiv = true;
              };
              vm.init();
          }]);

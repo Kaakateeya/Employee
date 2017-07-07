@@ -2,8 +2,8 @@
     'use strict';
     angular
         .module('Kaakateeya')
-        .factory('assignSettingsModel', ['assignSettingsService', 'complex-grid-config', '$filter', 'helperservice', 'alert', '$timeout', 'modelpopupopenmethod',
-            function(assignSettingsService, configgrid, filter, helpService, alerts, timeout, modelpopupopenmethod) {
+        .factory('assignSettingsModel', ['assignSettingsService', 'complex-grid-config', '$filter', 'helperservice', 'alert', '$timeout', 'modelpopupopenmethod', 'SelectBindServicereg', 'authSvc',
+            function(assignSettingsService, configgrid, filter, helpService, alerts, timeout, modelpopupopenmethod, SelectBindServicereg, authSvc) {
                 var model = {};
                 model.mpObj = {};
                 model.opendiv = true;
@@ -55,6 +55,14 @@
                 };
 
                 model.assignsettingsubmit = function(row) {
+                    debugger;
+
+                    var PreviousOwner;
+                    var checkOwner = row.ProfileOwner ? _.where(model.ProfileOwnerarray, { value: parseInt(row.ProfileOwner) })[0] : undefined;
+                    if (checkOwner) {
+                        PreviousOwner = checkOwner.label;
+                    }
+
                     var obj = {
                         ProfileID: row.ProfileID !== "" ? row.ProfileID : null,
                         CustID: row.cust_id !== "" ? row.cust_id : null,
@@ -65,6 +73,14 @@
                     };
                     assignSettingsService.assignsubmit(obj).then(function(response) {
                         if (parseInt(response.data) === 1) {
+
+                            // msg, tktID, empid, assignEmpid
+                            SelectBindServicereg.memoSubmit((PreviousOwner ? PreviousOwner + ' profile ' : 'This profile ') + 'assigned to ' + row.ddlowner1 + ' and  Assigned by ' + authSvc.LoginEmpName(), row.TicketID, model.empid, row.ddlowner.value).then(function(response) {
+                                if (parseInt(response.data) === 1) {
+
+                                }
+                            });
+
                             alerts.timeoutoldalerts(model.scope, 'alert-success', 'Profile Assigned Successfully', 3000);
                         } else {
                             alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Profile Assigned Fail', 3000);
