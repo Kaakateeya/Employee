@@ -1,5 +1,8 @@
 app.factory('SelectBindServiceApp', ["$http", function(http) {
+
+    console.log("XXXXXXXX");
     return {
+
         countrySelect: function() {
 
             return http.get(app.apiroot + 'Dependency/getCountryDependency', { params: { dependencyName: "", dependencyValue: "" } });
@@ -183,7 +186,13 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
         },
         upadateremainderdate: function(obj) {
             return http.post(app.apiroot + 'EmployeeReportPage/createReminderInsert', obj);
+        },
+
+        RegistrationValidation: function(obj) {
+            console.log("YYYYYYY");
+            return http.post(app.apiroot + 'StaticPages/InsertTicketInfo', obj);
         }
+
 
     };
 }]);
