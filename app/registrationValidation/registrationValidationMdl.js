@@ -181,7 +181,8 @@
                                 model.grid.data = (response.data);
                             }
                         } else {
-                            alertss.RegistrationValidationalerts(model.scope, 'alert-danger', 'No records found', 4500, 1, input.strAllPhones);
+                            // alertss.RegistrationValidationalerts(model.scope, 'alert-danger', 'No records found', 4500, 1, input.strAllPhones);
+                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 4500);
                         }
                     });
 
