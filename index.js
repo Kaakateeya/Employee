@@ -12,22 +12,9 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ui.date', 'ng-clipboard', 'anguFixedHeaderTable'
 ]);
 
-// app.apiroot = 'http://52.66.131.254:8025/Api/';
-// app.apipathold = 'http://52.66.131.254:8010/Api/';
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-// app.apiroot = 'http://183.82.0.58:8025/Api/';
-// app.apipathold = 'http://183.82.0.58:8010/Api/';
-=======
 app.apiroot = 'http://52.66.131.254:8025/Api/';
-//app.apiroot = 'http://localhost:8025/Api/';
+ app.apipathold = 'http://52.66.131.254:8010/Api/';
 
-app.apipathold = 'http://52.66.131.254:8010/Api/';
->>>>>>> Stashed changes
-=======
-app.apiroot = 'http://183.82.0.58:8025/Api/';
-app.apipathold = 'http://183.82.0.58:8010/Api/';
->>>>>>> 1a13841871146869587ff6ed5c76d18107db2305
 
 app.env = "dev";
 app.kammaPayfixedAmt = 1000;

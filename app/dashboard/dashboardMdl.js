@@ -454,6 +454,7 @@
                     });
                 };
                 model.changereminders = function(slidearray) {
+                    debugger;
                     model.reminderslidearray = {};
                     model.reminderslidearray = slidearray;
                     model.txtprofileidreminder = slidearray.ProfileID;
@@ -518,14 +519,15 @@
                 model.communicationlogredirect = function(profileid) {
                     window.open("communicationLogs?Profileid=" + profileid, "_blank");
                 };
-                // model.RelationshipChangerem = function(RelationshipID) {
-                //     model.txtprofileidreminder = model.ProfileID;
-                //     SelectBindServiceApp.getRelationName(3, model.txtprofileidreminder, RelationshipID).then(function(response) {
-                //         if (_.isArray(response.data[0]) && response.data[0].length > 0) {
-                //             model.contactpersonname = response.data[0][0].NAME;
-                //         }
-                //     });
-                // };
+                model.RelationshipChangerem = function(RelationshipID) {
+                    debugger;
+
+                    SelectBindServiceApp.getRelationName(3, model.reminderslidearray.ProfileID, RelationshipID).then(function(response) {
+                        if (_.isArray(response.data[0]) && response.data[0].length > 0) {
+                            model.contactpersonname = response.data[0][0].NAME;
+                        }
+                    });
+                };
                 return model.init();
             }
         ]);

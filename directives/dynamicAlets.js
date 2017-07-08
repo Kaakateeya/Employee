@@ -27,7 +27,7 @@ app.factory('alert', ['$uibModal', '$timeout', 'SelectBindServiceApp', function(
                 scope: scope,
                 windowClass: "modalclassdashboardphotopopup"
             });
-            if (msg === "upgrade" || validate == 1) {
+            if (msg === "upgrade") {
 
             } else {
                 timeout(function() {
@@ -37,9 +37,6 @@ app.factory('alert', ['$uibModal', '$timeout', 'SelectBindServiceApp', function(
             scope.closealerts = function() {
                 modalinstancealerts.close();
             };
-
-
-
         },
 
         dynamicpopupopenwithtemp: function(url, scope, size, classs) {
