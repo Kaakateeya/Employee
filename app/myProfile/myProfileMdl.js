@@ -98,13 +98,14 @@
                     };
                 };
                 model.allLinksTemplateDUrl = function(row) {
+                    debugger;
                     var stronlineliteclass = row.onlinepaidcls == "light" ? row.onlinepaidcls + ' Linkdisabled' : row.onlinepaidcls;
                     var strofflineliteclass = row.offlinepaidcls == "light" ? row.offlinepaidcls + ' Linkdisabled' : row.offlinepaidcls;
                     var photodisbled = row.PhotoshopCount === 0 ? 'Linkdisabled' : "";
                     var paidstatus = row.paid === true ? "Paid" : "UnPaid";
                     var paid = "<a style='cursor:pointer;'>Factsheet</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);'  ng-click='model.tickethistorypopup(" + row.Emp_Ticket_ID + ");'>Tickets</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' >Servicelog</a>" +
                         "&nbsp;&nbsp;&nbsp;<a ng-click='model.showphoto(" + row.Cust_ID + ");' class='" + photodisbled + "'>" + row.UploadedPhotoscount + " / " + row.PhotoshopCount + "</a>" +
-                        "&nbsp;&nbsp;&nbsp;<a ng-class='model.paidstatusclass(" + row.paid + ")' ng-click='model.RedirectPayment(" + row.ProfileID + ");'>" + paidstatus + "</a>&nbsp;&nbsp;&nbsp;" +
+                        "&nbsp;&nbsp;&nbsp;<a ng-class='model.paidstatusclass(" + row.paid + ")' ng-click='model.RedirectPayment(" + JSON.stringify(row.ProfileID) + ");'>" + paidstatus + "</a>&nbsp;&nbsp;&nbsp;" +
                         "<label class='fontweight'>" + row.OwnerName + "</label>";
                     return paid;
                 };
