@@ -54,7 +54,8 @@
                 AccessFeatureID: 0,
                 PaysmsID: inobj.rbtnmail,
                 MembershipDuration: parseInt(model.noofDays),
-                PaymentHist_ID: model.custobj.PaymentHist_ID
+                PaymentHist_ID: 0
+                    // model.custobj.PaymentHist_ID
             };
             model.PiObj = {};
             model.PiObj.rbtnmail = 1;
@@ -78,6 +79,7 @@
             EmployeePaymentInsertservice.getEmployeePaymentdata(profileID, (paymentProperty.getData()).paymentHistryID).then(function(response) {
                 if (response.data[0] !== undefined && response.data[0].length > 0 && JSON.parse(response.data[0]).length > 0) {
                     var arraymodify = [];
+                    debugger;
                     arraymodify = _.where(JSON.parse(response.data[0]), { Payment_ID: parseInt(stateParams.paymentID === '0' || stateParams.paymentID === 0 ? '' : stateParams.paymentID) });
                     if (arraymodify.length === 0) {
                         model.custobj = JSON.parse(response.data[0])[0];
@@ -88,7 +90,7 @@
                         model.paymentpoints = parseInt(model.custobj.CasteID) === 402 ? app.kammaPaymentPoints : app.paymentPoints;
                         model.paymentDays = parseInt(model.custobj.CasteID) === 402 ? app.kammaPaymentDays : app.PaymentDays;
 
-                        model.showOfferDetails(model.custobj.Price, 'pageload');
+                        model.showOfferDetails(model.custobj.Price, 'pageload', model.custobj.EndDate);
                         model.PiObj.txtAgreedAmt = model.custobj.AgreedAmount;
                         model.PiObj.txtAmountPaid = model.custobj.Price;
                         model.PiObj.rdnServicetax = model.custobj.ServiceTax !== null ? 1 : 0;
@@ -113,19 +115,34 @@
                 alert('Please enter paid amount less than Agreed amount');
             } else {
                 if (parseInt(paidAmt) !== agreeAmt) {
-                    model.showOfferDetails(paidAmt, 'Paid');
+                    model.showOfferDetails(paidAmt, 'Paid', model.custobj.EndDate);
                 }
                 var num = paidAmt * model.paymentDays;
                 model.ExpiryDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
-                model.ExpiryDaterev = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
+
+                if (model.custobj.EndDate) {
+                    model.ExpiryDaterev = moment(model.custobj.EndDate).add(parseInt(num), 'days').format('MM-DD-YYYY');
+
+                } else {
+                    model.ExpiryDaterev = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
+                }
+
                 model.noofDays = num;
             }
         };
-        model.showOfferDetails = function(Amt, type) {
+        model.showOfferDetails = function(Amt, type, expiryDate) {
             if (Amt !== undefined && Amt !== '') {
                 var num = Amt * model.paymentDays;
                 model.strAmt = Amt;
-                model.strDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
+
+                if (expiryDate && type === 'pageload') {
+                    model.strDate = moment(expiryDate).format('DD-MM-YYYY');
+                } else if (expiryDate && type !== 'pageload') {
+                    model.strDate = moment(expiryDate).add(parseInt(num), 'days').format('DD-MM-YYYY');
+                } else {
+                    model.strDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
+                }
+
                 model.strPoints = parseInt(Amt * model.paymentpoints);
                 var infm = 'Agreed Amount : ' + Amt + '    \n     No of Points : ' + model.strPoints + '    \n Expiry Date : ' + model.strDate;
                 if (type === 'Agreed' || type === 'Paid') {
