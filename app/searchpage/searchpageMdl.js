@@ -208,6 +208,7 @@
                     }
                 };
                 model.removeSelect = function(Arr) {
+                    debugger;
                     if (Arr !== undefined && Arr.length > 0 && angular.lowercase(Arr[0].title) === '--select--') {
                         Arr.splice(0, 1);
                     }
@@ -231,11 +232,8 @@
                     });
                 };
 
+                model.loadControl = function() {
 
-                model.init = function() {
-                    model.getpageloadobject = {};
-                    model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-                    model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
                     if (model.selectedIndex === 1) {
                         model.clearSelection(model.domDataadvanced);
                         _.each(model.domDataadvanced, function(parentItem) {
@@ -259,6 +257,15 @@
                             });
                         });
                     }
+
+                };
+
+
+                model.init = function() {
+                    model.getpageloadobject = {};
+                    model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+                    model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
+                    model.loadControl();
                     model.agearray = [];
                     model.agearray.push({ label: "--select--", title: "--select--", value: "0" });
                     for (var i = 18; i < 78; i++) {
@@ -851,6 +858,7 @@
                     model.gridTableshow = false;
                 };
                 model.showplusminusicon = function(DIVid) {
+                    debugger;
                     var array = model.selectedIndex === 1 ? model.domDataadvanced : model.domDatageneral;
                     _.map(_.where(array, { collapseid: DIVid }), function(item) {
                         switch (item.collapseid) {
@@ -872,7 +880,7 @@
                                 model.domheader_6 = model.domheader_6 === true ? false : true;
                                 break;
                             case 7:
-                                item.controlList = [{ divClear: true, type: 'Country', ngModel: 'PreferedCountryID', labelName: 'Preferred Country', controlType: 'dropdown', isShow: true, dataApi: 'Country', dataSource: 'Country', validation: true }, { type: 'district', ngModel: 'PreferedStateID', labelName: 'Preferred State', controlType: 'dropdown', isShow: true, dataSource: 'State', validation: true }, { type: 'city', ngModel: 'preferedDistrictID', labelName: 'Preferred District', controlType: 'dropdown', isShow: true, dataSource: 'DistrictBind', validation: true }, { ngModel: 'preferedCityID', labelName: 'Preferred City (Nearest)', controlType: 'textBox', isShow: true, validation: true }];
+                                item.controlList = [{ divClear: true, type: 'partnerstate', ngModel: 'PreferedCountryID', labelName: 'Preferred Country', controlType: 'dropdown', isShow: true, dataApi: 'Country', dataSource: 'Country', validation: true }, { type: 'partnerdistrict', ngModel: 'PreferedStateID', labelName: 'Preferred State', controlType: 'dropdown', isShow: true, dataSource: 'partnerstate', validation: true }, { type: 'city', ngModel: 'preferedDistrictID', labelName: 'Preferred District', controlType: 'dropdown', isShow: true, dataSource: 'partnerdistrict', validation: true }, { ngModel: 'preferedCityID', labelName: 'Preferred City (Nearest)', controlType: 'textBox', isShow: true, validation: true }];
                                 model.domheader_7 = model.domheader_7 === true ? false : true;
                                 break;
                             case 8:
@@ -888,6 +896,7 @@
                                 model.domheader_10 = model.domheader_10 === true ? false : true;
                                 break;
                         }
+                        model.loadControl();
                     });
                 };
                 model.destroy = function() {

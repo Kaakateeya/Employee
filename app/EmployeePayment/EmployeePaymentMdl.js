@@ -36,8 +36,8 @@
                 model.paymentProfileID = function(row) {
                     model.refreshAdmin();
                     var status = row.membershiptype === 'Registration' ? 0 : 1;
-                    paymentProperty.setData(row.PaymentHist_ID);
-                    var paid = parseInt(model.Admin) === 1 || model.Managementid === 'true' ? "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.ProfileID + "/" + status + "/" + row.PaymentID + "'>Edit</a>" : '';
+                    // paymentProperty.setData(row.PaymentHist_ID);
+                    var paid = parseInt(model.Admin) === 1 || model.Managementid === 'true' ? "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.ProfileID + "/" + status + "/" + row.PaymentID + "/" + row.PaymentHist_ID + "'>Edit</a>" : '';
                     return paid;
                 };
                 model.expirydate = function(row) {
@@ -76,7 +76,7 @@
                                     model.balancepaymentID = (response.data)[0].PaymentID;
                                     model.balancemembershiptype = (response.data)[0].membershiptype;
                                     model.RenewalStatus = (response.data)[0].RenewalStatus;
-
+                                    model.PaymentHist_ID = (response.data)[0].PaymentHist_ID;
                                     model.freshLink = true;
                                     model.opendiv = false;
                                     model.hidesearch = true;
@@ -84,7 +84,7 @@
                                     model.ProfileID = (response.data)[0].ProfileID;
                                     model.data = (response.data);
                                 } else {
-                                    state.go('base.EmployeePaymentInsert', { ProfileID: model.txtProfileID, status: 0, paymentID: 0 });
+                                    state.go('base.EmployeePaymentInsert', { ProfileID: model.txtProfileID, status: 0, paymentID: 0, histryid: 0 });
                                 }
                             }
                         );
@@ -94,10 +94,10 @@
                 };
                 model.paymentInsertLink = function(id, type) {
                     if (type === 'renewal')
-                        state.go('base.EmployeePaymentInsert', { ProfileID: id, status: 1, paymentID: 0 });
+                        state.go('base.EmployeePaymentInsert', { ProfileID: id, status: 1, paymentID: 0, histryid: 0 });
                     else {
                         var Status = model.balancemembershiptype === 'Registration' ? 0 : 1;
-                        state.go('base.EmployeePaymentInsert', { ProfileID: id, status: Status, paymentID: model.balancepaymentID });
+                        state.go('base.EmployeePaymentInsert', { ProfileID: id, status: Status, paymentID: model.balancepaymentID, histryid: model.PaymentHist_ID });
                     }
 
                 };

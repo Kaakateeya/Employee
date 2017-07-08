@@ -493,5 +493,10 @@ app.constant('arrayConstants', {
         { "label": "B", "title": "B", "value": 217 },
         { "label": "C", "title": "C", "value": 218 },
         { "label": "D", "title": "D", "value": 219 }
+    ],
+    'Diet': [
+        { "label": "Veg", "title": "Veg", "value": 27 },
+        { "label": "Non Veg", "title": "Non Veg", "value": 28 },
+        { "label": "Both", "title": "Both", "value": 29 }
     ]
 });

@@ -50,7 +50,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'searchpage', name: 'base.searchpage', url: '/search/:id/:Profileid', isloginrequired: true, reload: true },
             { routeName: 'editViewprofile', name: 'base.editViewprofile', url: '/editViewprofileurl', isloginrequired: true },
             { routeName: 'EmployeePayment', name: 'base.EmployeePayment', url: '/EmployeePayments', isloginrequired: true },
-            { routeName: 'EmployeePaymentInsert', name: 'base.EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID/:status/:paymentID', isloginrequired: true },
+            { routeName: 'EmployeePaymentInsert', name: 'base.EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID/:status/:paymentID/:histryid', isloginrequired: true },
             { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofile', url: '/Viewfullprofile/:ProfileID/:contacts', isloginrequired: true },
             { routeName: 'expressInterest', name: 'base.expressInterest', url: '/expressInterestpage', isloginrequired: true },
             { routeName: 'myProfile', name: 'base.myProfile', url: '/myProfilepage', isloginrequired: true },
