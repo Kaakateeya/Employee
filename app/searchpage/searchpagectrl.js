@@ -24,9 +24,17 @@
                              model.State = [];
                              model.State = Commondependency.StateBind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                              break;
+                         case 'partnerstate':
+                             model.partnerstate = [];
+                             model.partnerstate = Commondependency.StateBind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
+                             break;
                          case 'district':
                              model.DistrictBind = [];
                              model.DistrictBind = Commondependency.districtBind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
+                             break;
+                         case 'partnerdistrict':
+                             model.partnerdistrict = [];
+                             model.partnerdistrict = Commondependency.districtBind((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                              break;
                          case 'city':
                              model.cityBind = [];

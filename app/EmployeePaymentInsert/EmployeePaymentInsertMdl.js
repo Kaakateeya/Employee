@@ -63,7 +63,7 @@
                 model.scope.paymentForm.$setPristine();
                 model.scope.paymentForm.$setUntouched();
                 alertss.timeoutoldalerts(model.scope, 'alert-success', 'Payment Entered Successfully ', 4500);
-
+                window.open("EmployeePayments" + "?idsss=" + model.custobj.ProfileID, "_blank");
                 // if (response.data === 1 || response.data === '1') {
                 //     alert('submited successfully');
                 //     model.PiObj = {};
@@ -76,11 +76,11 @@
 
             model.custobj = {};
             model.PiObj.rdnServicetax = '1';
-            EmployeePaymentInsertservice.getEmployeePaymentdata(profileID, (paymentProperty.getData()).paymentHistryID).then(function(response) {
+            EmployeePaymentInsertservice.getEmployeePaymentdata(profileID, 0).then(function(response) {
                 if (response.data[0] !== undefined && response.data[0].length > 0 && JSON.parse(response.data[0]).length > 0) {
                     var arraymodify = [];
                     debugger;
-                    arraymodify = _.where(JSON.parse(response.data[0]), { Payment_ID: parseInt(stateParams.paymentID === '0' || stateParams.paymentID === 0 ? '' : stateParams.paymentID) });
+                    arraymodify = _.where(JSON.parse(response.data[0]), { PaymentHist_ID: parseInt(stateParams.histryid === '0' || stateParams.histryid === 0 ? '' : stateParams.histryid) });
                     if (arraymodify.length === 0) {
                         model.custobj = JSON.parse(response.data[0])[0];
                         model.paymentpoints = parseInt(model.custobj.CasteID) === 402 ? app.kammaPaymentPoints : app.paymentPoints;
@@ -90,7 +90,7 @@
                         model.paymentpoints = parseInt(model.custobj.CasteID) === 402 ? app.kammaPaymentPoints : app.paymentPoints;
                         model.paymentDays = parseInt(model.custobj.CasteID) === 402 ? app.kammaPaymentDays : app.PaymentDays;
 
-                        model.showOfferDetails(model.custobj.Price, 'pageload', model.custobj.EndDate);
+                        model.showOfferDetails(model.custobj.Price, 'pageload', model.custobj.Expirydate);
                         model.PiObj.txtAgreedAmt = model.custobj.AgreedAmount;
                         model.PiObj.txtAmountPaid = model.custobj.Price;
                         model.PiObj.rdnServicetax = model.custobj.ServiceTax !== null ? 1 : 0;
@@ -115,13 +115,13 @@
                 alert('Please enter paid amount less than Agreed amount');
             } else {
                 if (parseInt(paidAmt) !== agreeAmt) {
-                    model.showOfferDetails(paidAmt, 'Paid', model.custobj.EndDate);
+                    model.showOfferDetails(paidAmt, 'Paid', model.custobj.Expirydate);
                 }
                 var num = paidAmt * model.paymentDays;
                 model.ExpiryDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
 
-                if (model.custobj.EndDate) {
-                    model.ExpiryDaterev = moment(model.custobj.EndDate).add(parseInt(num), 'days').format('MM-DD-YYYY');
+                if (model.custobj.Expirydate) {
+                    model.ExpiryDaterev = moment(model.custobj.Expirydate).add(parseInt(num), 'days').format('MM-DD-YYYY');
 
                 } else {
                     model.ExpiryDaterev = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
