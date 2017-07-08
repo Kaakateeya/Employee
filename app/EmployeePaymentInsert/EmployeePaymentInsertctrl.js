@@ -7,17 +7,18 @@
 
          vm.reset = function() {
              debugger;
+             model.PiObj = {};
              model.custobj = {};
              model.txtAmountPaid =
-                 vm.model.txtAgreedAmt =
-                 vm.model.txtSettlementAmount =
-                 vm.model.rdnServicetax =
-                 vm.model.txtbillno =
-                 vm.model.txttransactionid =
-                 vm.model.txtcheckno =
-                 vm.model.txtbranch =
-                 vm.model.txtbankname =
-                 vm.model.txtplace = '';
+                 vm.model.PiObj.txtAgreedAmt =
+                 vm.model.PiObj.txtSettlementAmount =
+                 vm.model.PiObj.rdnServicetax =
+                 vm.model.PiObj.txtbillno =
+                 vm.model.PiObj.txttransactionid =
+                 vm.model.PiObj.txtcheckno =
+                 vm.model.PiObj.txtbranch =
+                 vm.model.PiObj.txtbankname =
+                 vm.model.PiObj.txtplace = '';
              model.txtpayDescription = '';
              model.rbtnPaymode = '';
              model.rbtnmail = '';
