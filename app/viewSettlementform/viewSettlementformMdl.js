@@ -35,6 +35,7 @@
         };
         return model;
     }
+
     angular
         .module('Kaakateeya')
         .factory('viewSettlementformModel', factory);

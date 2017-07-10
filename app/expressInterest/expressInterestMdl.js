@@ -32,6 +32,7 @@
                             model.FromGenderID = response.data[1][0].GenderID;
                             model.Fromcasteid = response.data[1][0].casteid;
                             model.Fromsurname = response.data[1][0].CSName;
+                            model.FromGothram = response.data[1][0].Gotram;
                         }
                     }
                     if (model.ProfileStatusID == 54) {
@@ -136,7 +137,7 @@
                                         model.ToGenderID = response.data[1][0].GenderID;
                                         model.Tocasteid = response.data[1][0].casteid;
                                         model.Tosurname = response.data[1][0].CSName;
-
+                                        model.ToGothram = response.data[1][0].Gotram;
                                         if (model.servicedatealert === 1) {
                                             model.mismatch.push(" Already Service Done");
                                         }
@@ -150,7 +151,10 @@
                                             model.mismatch.push("  MaritalStatus not Matched to this profileid");
                                         }
                                         if (model.ToGenderID == model.FromGenderID) {
-                                            model.mismatch.push(" Gender not Matched to this profileid");
+                                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Gender not Matched to this profileid', 3000);
+                                            //  model.mismatch.push(" Gender not Matched to this profileid");
+                                            model.mismatch = [];
+                                            model.exiObj.txtToprofileID = "";
                                         }
                                         if (model.Tocasteid != model.Fromcasteid) {
                                             model.mismatch.push("  Caste not Matched to this profileid");
@@ -158,30 +162,39 @@
                                         if (angular.lowercase(model.Fromsurname) === angular.lowercase(model.Tosurname)) {
                                             model.mismatch.push(" Surname is Matched to this profileid");
                                         }
+                                        if (angular.lowercase(model.FromGothram) === angular.lowercase(model.ToGothram)) {
+                                            model.mismatch.push(" Gothram is Matched to this profileid");
+                                        }
+
                                     }
 
                                     if (model.ToProfileStatusID === 54) {
                                         if (model.mismatch.length > 0) {
-                                            modelpopupopenmethod.showPopup('Conflict.html', model.scope, 'md', 'mismatch');
+                                            if (model.ToGenderID !== model.FromGenderID) {
+                                                modelpopupopenmethod.showPopup('Conflict.html', model.scope, 'md', 'mismatch');
+                                            }
 
                                         } else {
                                             model.pushToProfileIDs();
                                         }
 
                                     } else if ((model.ToProfileStatusID === 57) || (model.ToProfileStatusID === 393)) {
-                                        // alert("Settled or WaitingforSettled Authorization Profile");
-                                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Settled or WaitingforSettled Authorization Profile', 9500);
-                                        model.exiObj.txtToprofileID = '';
+                                        if (model.ToGenderID !== model.FromGenderID) {
+                                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Settled or WaitingforSettled Authorization Profile', 9500);
+                                            model.exiObj.txtToprofileID = '';
+                                        }
                                         return false;
                                     } else if ((model.ToProfileStatusID === 56) || (model.ToProfileStatusID === 394)) {
-                                        // alert("Deleted or WaitingforDeltd authorization Profile");
-                                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Deleted or WaitingforDeltd authorization Profile', 9500);
-                                        model.exiObj.txtToprofileID = '';
+                                        if (model.ToGenderID !== model.FromGenderID) {
+                                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Deleted or WaitingforDeltd authorization Profile', 9500);
+                                            model.exiObj.txtToprofileID = '';
+                                        }
                                         return false;
                                     } else {
-                                        // alert('Not Active Profile');
-                                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Not Active Profile', 9500);
-                                        model.exiObj.txtToprofileID = '';
+                                        if (model.ToGenderID !== model.FromGenderID) {
+                                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Not Active Profile', 9500);
+                                            model.exiObj.txtToprofileID = '';
+                                        }
                                         return false;
                                     }
                                 }
@@ -189,7 +202,6 @@
 
                         } else {
                             model.exiObj.txtToprofileID = '';
-                            // alert("Please Enter The FromProfileID");
                             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please Enter The FromProfileID', 9500);
                         }
                     }
@@ -272,7 +284,7 @@
             model.exiObj.rbtnBasic = 358;
             model.exiObj.rbtnTypeofService = 366;
             // model.disableinput = false;
-
+            model.emailselectedArr = [];
             model.exiObj.txtFromprofileID = '';
             model.exiObj.chkrvrsend = true;
             model.showHide = 0;
@@ -280,8 +292,8 @@
             model.OfflineMembershipExpiryDate = '';
             model.Max_Offline_Allowed = '';
             model.Offline_Used_Count = '';
-
         };
+
         model.getImages = function(profileid) {
             var imgArr = [],
                 strimgs = '',

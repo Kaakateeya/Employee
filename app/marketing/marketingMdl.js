@@ -29,7 +29,17 @@
                 };
                 model.opendiv = false;
                 var empid, AdminID, TicketId, custId, isSibbling;
+
+                model.reset = function() {
+                    model.opendiv = false;
+                    model.TicketId = model.Email = model.PhoneNumber = model.ProfileID = model.fromremainderdate =
+                        model.toremainderdate = model.regions = model.Branchs =
+                        model.ProfileOwner = model.fromticketcreateddate = model.toticketcreateddate = undefined;
+                    model.Expiryin = '';
+                };
+
                 model.init = function() {
+                    model.reset();
                     empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                     model.loginempName = authSvc.LoginEmpName() !== undefined && authSvc.LoginEmpName() !== null && authSvc.LoginEmpName() !== "" ? authSvc.LoginEmpName() : "";
                     AdminID = model.Admin = authSvc.isAdmin();
@@ -249,6 +259,7 @@
                     TicketId = ticketid;
                     custId = custid;
                     isSibbling = isSibbling;
+                    model.txtnotIntToPay = '';
                     model.popupdata = [
                         { lblname: '', controlType: 'about', ngmodel: 'txtnotIntToPay', parameterValue: 'txtsibblingval' }
                     ];
@@ -308,11 +319,11 @@
                         };
 
                     } else {
+
                         model.custName = name + '(' + profileid + ')';
                         model.custemail = email;
                         model.bindreplytype();
-                        model.ddlmail = 5;
-
+                        model.ddlmail = '';
                         model.mailInput = {
                             Notes: model.txtsmsmail,
                             EMPID: empid,
@@ -380,7 +391,8 @@
                 };
 
                 model.forgetpassword = function(row) {
-                    SelectBindServiceApp.forgotpasswordemail(ProfileID).then(function(response) {
+
+                    SelectBindServiceApp.forgotpasswordemail(row.ProfileID).then(function(response) {
                         if (response.data === 1) {
 
                             row.histryObj.splice(0, 0, model.pushTicketHistry('InternalMemo',

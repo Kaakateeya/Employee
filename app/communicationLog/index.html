@@ -14,7 +14,7 @@
         </div>
         <div class="clearfix"></div>
         <br>
-        <div ng-show="page.model.gridTableshow">
+        <div ng-show="page.model.gridTableshow && page.model.gridtable4.data">
             <div class="col-lg-12" ng-if="page.model.sendarray4.length>0">
                 <p class="col-lg-offset-4">Match Meeting Data
                 </p>
@@ -23,9 +23,9 @@
                 <p class="col-lg-offset-4">No Match Meeting Data
                 </p>
             </div>
-            <complex-grid model="page.model.gridtable4" config="page.model" pagesizecommunication="999"></complex-grid>
+            <complex-grid ng-show="page.model.gridtable4.data" model="page.model.gridtable4" config="page.model" pagesizecommunication="999"></complex-grid>
         </div>
-        <div ng-show="page.model.gridTableshow">
+        <div ng-show="page.model.gridTableshow && page.model.gridtable1.data">
             <div class="col-lg-12" ng-if="page.model.sendarray.length>0">
                 <p class="col-lg-offset-4">List of members to whom your profile was sent <img style="width: 43px;height: 29px;" src="src/images/hndreverse.gif"></img>
                 </p>
@@ -43,9 +43,9 @@
                     </md-radio-button>
                 </md-radio-group>
             </div>
-            <complex-grid model="page.model.gridtable1" config="page.model" pagesizecommunication="999"></complex-grid>
+            <complex-grid ng-show="page.model.gridtable1.data" model="page.model.gridtable1" config="page.model" pagesizecommunication="999"></complex-grid>
         </div>
-        <div ng-show="page.model.gridTableshow">
+        <div ng-show="page.model.gridTableshow && page.model.gridtable2.data">
             <div class="col-lg-12" ng-if="page.model.sendarray2.length>0">
                 <p class="col-lg-offset-4"> <img style="width: 43px;height: 29px;" src="src/images/hnd.gif"></img>List of members to who you contacted
                 </p>
@@ -69,14 +69,14 @@
                     <label class="control-label col-lg-4">Points:{{page.model.sendarray2[0].ServicePoints}}</label>
                 </div>
             </div>
-            <complex-grid model="page.model.gridtable2" config="page.model" pagesizecommunication="999"></complex-grid>
+            <complex-grid ng-show="page.model.gridtable2.data" model="page.model.gridtable2" config="page.model" pagesizecommunication="999"></complex-grid>
         </div>
-        <div ng-show="page.model.gridTableshow">
+        <div ng-show="page.model.gridTableshow && page.model.gridtable3.data">
             <div class="col-lg-12" ng-if="page.model.sendarray3.length>0">
                 <p class="col-lg-offset-4">List of profile to whom mails has resent
                 </p>
             </div>
-            <complex-grid model="page.model.gridtable3" config="page.model" pagesizecommunication="999"></complex-grid>
+            <complex-grid ng-show="page.model.gridtable3.data" model="page.model.gridtable3" config="page.model" pagesizecommunication="999"></complex-grid>
         </div>
     </div>
 </div>
@@ -86,22 +86,30 @@
     </div>
 </script>
 <script type="text/ng-template" id="noServiceData.html">
-    <div class="modal-header">
-        <a href="javascript:void(0);" class="pull-right" ng-click="page.model.close();">
-            <span class="fa fa-close red"></span>
-        </a>
+    <div class="alert-danger">
+        <div class="modal-header">
+            <a href="javascript:void(0);" class="pull-right" ng-click="page.model.close();">
+                <span class="fa fa-close red"></span>
+            </a>
+            <h4 class="modal-title">
+                <center>No Service for this profile</center>
+            </h4>
+        </div>
     </div>
     <div class="modal-body">
         <center>
-            <span style="font-size: 21px;">No Service for this profile</span>
-            <br> Want to create service for this profile ID
-            <a href="search/0/0">General & Advance Search</a>
-            <br><br>
-            <input type="button" value="close" class="btn btn-default" ng-click="page.model.close();">
+            <p style="line-height: 1.8;"> Want to give service for this profile ID, click below</p>
+
+            <a style="font-size: 14px;
+    font-weight: 600;line-height: 1.8;" href="search/0/0">General search</a>
+            <br>
+            <a style="font-size: 14px;
+    font-weight: 600;line-height: 1.8;" href="search/1/0">Advance Search</a>
         </center>
-
     </div>
-
+    <div class="modal-footer">
+        <input type="button" value="close" class="btn btn-default" ng-click="page.model.close();">
+    </div>
 </script>
 <style>
     tbody {

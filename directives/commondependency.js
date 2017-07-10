@@ -3,7 +3,7 @@
 
     angular
         .module('Kaakateeya')
-        .factory('Commondependency', factory)
+        .factory('Commondependency', factory);
 
     factory.$inject = ['SelectBindServicereg'];
 

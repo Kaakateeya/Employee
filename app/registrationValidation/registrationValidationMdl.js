@@ -107,7 +107,7 @@
                         strMFSurName: model.checkTxt(model.txtMFSurName),
                         strCustSurName: model.checkTxt(model.txtCFFFSurName),
                         strCustName: model.checkTxt(model.txtCName),
-                        strCaste: model.checkTxt(model.ddlCaste),
+                        strCaste: angular.isArray(model.ddlCaste) && model.ddlCaste.length > 0 ? (model.ddlCaste).join(',') : '',
                         strAllPhones: model.checkTxt(model.txtAllPhones),
                         strAllEmailIds: model.checkTxt(model.txtAllEmails),
                         intAppicationStatusID: model.checkTxt(ApplicationStatus),
@@ -181,6 +181,9 @@
                                 model.grid.data = (response.data);
                             }
                         } else {
+                            if (from === 1)
+                                model.grid.data = undefined;
+
                             // alertss.RegistrationValidationalerts(model.scope, 'alert-danger', 'No records found', 4500, 1, input.strAllPhones);
                             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 4500);
                         }

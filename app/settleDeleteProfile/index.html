@@ -37,12 +37,11 @@
                             <div class="col-lg-7" ng-show="inItm.controlType==='textbox'">
                                 <input type="text" class="form-control" ng-readonly="inItm.readonly" ng-required="inItm.required" ng-model="page.model[inItm.ngModel]" ng-blur="page.model[inItm.method](inItm.param)">
                             </div>
-
                             <div class="col-lg-7" ng-show="inItm.controlType==='numbertextbox'">
-                                <input type="text" allow-only-numbers maxlength="9" minlength="9" class="form-control" ng-readonly="inItm.readonly" ng-required="inItm.required" ng-model="page.model[inItm.ngModel]" ng-blur="page.model[inItm.method](inItm.param)">
+                                <input type="text" focus-me="inItm.focus" ng-maxlength="inItm.lengthe" ng-minlength="inItm.lengthe" class="form-control" ng-readonly="inItm.readonly" ng-required="inItm.required" ng-model="page.model[inItm.ngModel]" ng-blur="page.model[inItm.method](inItm.param)">
                             </div>
 
-                            <div class="col-lg-7" ng-if="inItm.controlType==='date'">
+                            <div class="col-lg-7" ng-show="inItm.controlType==='date'">
                                 <custom-datepicker class="datepicker3 input-group" ng-required="inItm.required" ng-model="page.model[inItm.ngModel]" date-options="page.model.dateOptions"></custom-datepicker>
                             </div>
                             <div class="col-lg-7" ng-if="inItm.controlType==='select'">

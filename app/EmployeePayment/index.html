@@ -14,7 +14,7 @@
                 <div class="col-lg-1">
                     <button class="btn btn-danger" ng-click="page.model.EmployeePayment(page.model.txtProfileID)">Go</button>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-2" ng-show="page.model.freshLink">
                     <a href="javascript:void(0)" ng-click="page.model.oldtablepayment(page.model.txtProfileID)">
                      old Payment
                    </a>
@@ -27,7 +27,7 @@
                 <md-button class="md-primary pull-right" ng-show="page.model.freshLink" ng-click="page.model.paymentInsertLink(page.model.txtProfileID,page.model.RenewalStatus===1?'Balance':'renewal');"> {{ page.model.RenewalStatus===1?'Balance':'Renewal'}} </md-button>
             </div>
             <div>
-                <complex-grid ng-if="page.model.columns" model="page.model" config="page.model" hidesearch="true" hidepaging="true"></complex-grid>
+                <complex-grid ng-if="page.model.data" model="page.model" config="page.model" hidesearch="true" hidepaging="true"></complex-grid>
             </div>
         </div>
     </div>
