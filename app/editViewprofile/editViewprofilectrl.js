@@ -21,6 +21,7 @@
             model.slide.templateUrl = "templates/myprofileSlide.html";
             model.slide.config.headettemp = "myprofileheader.html";
             model.obj.rdnGender = '';
+            model.obj.chkProfileIDsts = model.arrayToString('54');
             scope.$on("$destroy", vm.destroy);
         };
         vm.destroy = function() {

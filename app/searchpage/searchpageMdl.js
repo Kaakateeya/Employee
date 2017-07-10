@@ -209,7 +209,6 @@
                     }
                 };
                 model.removeSelect = function(Arr) {
-                    debugger;
                     if (Arr !== undefined && Arr.length > 0 && angular.lowercase(Arr[0].title) === '--select--') {
                         Arr.splice(0, 1);
                     }
@@ -420,6 +419,13 @@
                     paramters.CustID = model.Cust_ID;
                     paramters.OnlyConfidential = model.OnlyConfidential === true ? 1 : 0;
                     //model.topage = topage;
+
+                    paramters.AgeFromID = parseInt(model.agedobcontrol) === 2 ? paramters.AgeFromID : undefined;
+                    paramters.AgeToID = parseInt(model.agedobcontrol) === 2 ? paramters.AgeToID : undefined;
+                    paramters.DOBfrom = parseInt(model.agedobcontrol) === 1 ? paramters.DOBfrom : undefined;
+                    paramters.DOBTo = parseInt(model.agedobcontrol) === 1 ? paramters.DOBTo : undefined;
+
+
                     model.topage = model.typrofsearch === "1" && parseInt(frompage) === 1 ? 100 : topage;
                     if (parseInt(frompage) === 1) {
                         model.progressbar = [];

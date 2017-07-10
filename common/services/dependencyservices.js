@@ -155,12 +155,11 @@ app.factory('Commondependency', ['SelectBindServiceApp', function(SelectBindServ
                 .cancel(cancelTxt)
                 .ok(okTxt);
             return confirm;
-
         },
         checkvals: function(val) {
             return (val !== undefined && val !== null && val !== '') ? true : false;
         },
-        BranchNamebind: function(parentval1) {
+        BranchNamebindval: function(parentval1) {
             var branchArr = [];
             SelectBindService.BranchNamebind(parentval1).then(function(response) {
                 _.each(response.data, function(item) {
@@ -169,7 +168,6 @@ app.factory('Commondependency', ['SelectBindServiceApp', function(SelectBindServ
             });
             return branchArr;
         }
-
     };
 
 }]);

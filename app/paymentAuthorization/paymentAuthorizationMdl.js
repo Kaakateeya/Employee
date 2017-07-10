@@ -24,6 +24,7 @@
                 empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 AdminID = authSvc.isAdmin();
                 Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+                model.rdnRegion = '';
                 model.paymentAuthSelect();
                 return model;
             };
