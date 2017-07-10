@@ -128,12 +128,16 @@
                         if (response.data === 1) {
                             if (model.txtProfileID !== "" && model.txtProfileID !== undefined && model.txtProfileID !== null) {
                                 EmployeePaymentservice.getoldpaymentdata(model.txtProfileID, "").then(function(response) {
-                                    model.gridTableshow = true;
-                                    _.each(response.data[0], function(item) {
-                                        model.tablearray.push(item);
-                                    });
-                                    model.singlegrid.sdata = model.tablearray;
-                                    modelpopupopenmethod.showPopupphotopoup('oldtablepayment.html', model.scope, 'lg', "modalclassdashboardphotopopup");
+                                    if (_.isArray(response.data) && response.data.length > 0 && (response.data)[0].length > 0) {
+                                        model.gridTableshow = true;
+                                        _.each(response.data[0], function(item) {
+                                            model.tablearray.push(item);
+                                        });
+                                        model.singlegrid.sdata = model.tablearray;
+                                        modelpopupopenmethod.showPopupphotopoup('oldtablepayment.html', model.scope, 'lg', "modalclassdashboardphotopopup");
+                                    } else {
+                                        alerts.timeoutoldalerts(model.scope, 'alert-danger', 'No Data Found', 2000);
+                                    }
                                 });
                             }
 
