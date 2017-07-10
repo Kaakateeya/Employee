@@ -64,7 +64,7 @@
                     <a href="javascript:void(0);" ng-hide="model.PersonalObj.MaritalStatusID===43 || model.PersonalObj.MaritalStatusID==='43'" ng-click="redirect('editSpouse');">Spouse Details
                             </a>
                 </li>
-                <li ng-show="AdminID===1 || Managementid === 'true' || isprofileOwner">
+                <li ng-show="model.AdminID==='1' || model.Managementid === 'true' || model.isprofileOwner">
                     <a href="javascript:void(0);" ng-click="redirect('editContact');">Contact Details
                             </a>
                 </li>

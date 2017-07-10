@@ -1,7 +1,7 @@
 <div class="clearfix">
 </div>
 <br>
-<div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+<div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" ng-style="{'margin-top':slide.PhotoCount===0?'14px':''}">
     <div style="margin-left:60px;" class="edit_page_details_item_descsearch clearfix" ng-repeat="slidedata in slide.itmArr" ng-if="slidedata.label!=='backendFields'">
         <h6> <span style="font-weight: bold;">{{slidedata.label}}</span></h6>
         <h5>
@@ -39,7 +39,7 @@
         <h6> <span style="font-weight: bold;">Payment</span></h6>
         <h5>
             <div style="color:Black;">
-                <a class="alllinkscolor" href='javascript:void(0)' ng-click='paymentpage(slide.ProfileID)'>{{slide.PaidAmount}}</a>
+                <a class="alllinkscolor" href='javascript:void(0)' ng-class="{'disablelinkcls':slide.PaidAmount==='Not Paid'}" ng-click='paymentpage(slide.ProfileID)'>{{slide.PaidAmount}}</a>
             </div>
             <div class="clearfix">
             </div>
@@ -56,10 +56,10 @@
         </h5>
     </div>
     <div style="margin-left:60px;" class="edit_page_details_item_descsearch clearfix">
-        <h6> <span style="font-weight: bold;">Marketing Ticket</span></h6>
+        <h6> <span style="font-weight: bold;">{{model.typeOfAssign==='proceeding'?'MF Ticket':'Marketing Ticket'}}     </span></h6>
         <h5>
             <div style="color:Black;">
-                <a ng-click="tickethistoryupdate(slide.TicketID)" class="alllinkscolor" href='javascript:void(0)'>{{slide.matkteingticket}}</a>
+                <a ng-click="tickethistoryupdate(slide.TicketID,(model.typeOfAssign==='proceeding'?'match':'market'))" class="alllinkscolor" href='javascript:void(0)'>{{slide.matkteingticket}}</a>
                 <span>({{slide.TicketOwner}}-{{slide.Ticketuserid}})</span>
             </div>
             <div class="clearfix">
@@ -84,7 +84,7 @@
                                            </span></h6>
             <h5>
                 <div style="color:Black;">
-                    <a class="alllinkscolor" href="javascript:void(0)"> {{slide.matchmarktingcount}}</a>
+                    <a class="alllinkscolor" ng-click="communicationlogredirect(slide.ProfileID)" href="javascript:void(0)" ng-class="{'disablelinkcls':slide.matchmarktingcount==='0' || slide.matchmarktingcount===0}"> {{slide.matchmarktingcount}}</a>
                 </div>
                 <div class="clearfix">
                 </div>
@@ -142,18 +142,24 @@
 </div>
 <div class="row">
     <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-        <div style="margin-left:69px;" class="edit_page_details_item_descsearch clearfix">
+        <div style="margin-left:69px;" class="edit_page_details_item_descsearch clearfix" ng-if="model.typeofslidedate">
             <h6> <span style="font-weight: bold;">{{model.typeofslidedate}}
             </span></h6>
             <h5>
                 <div style="color:Black;">
-                    <span ng-show="model.typeofslidedate!=='Ticket Last Updated' && model.typeofslidedate!=='Reminder Date'">{{slide.CreatedDate}}
-                    </span>
+                    <!--<span ng-show="model.typeofslidedate!=='Ticket Last Updated' && model.typeofslidedate!=='Reminder Date'">{{slide.EmpAssignedDate}}
+                    </span>-->
                     <span ng-show="model.typeofslidedate==='Reminder Date'">
                         {{slide.ReminderCreatedDate | date: "dd-MM-yyyy"}}
                      <a class="alllinkscolor" href="javascript:void(0)" ng-click="model.changereminders(slide)" ng-if="slide.ReminderCreatedDate!==null && slide.ReminderCreatedDate!=='' && slide.ReminderCreatedDate!==undefined">Change Reminder</a>
                     </span>
-                    <span ng-show="model.typeofslidedate==='Ticket Last Updated'">{{slide.LastModifiedDate}}</span>
+                    <span ng-show="model.typeofslidedate==='Ticket Last Updated'">{{slide.TicketHisUpdatedDate}}</span>
+                    <span ng-show="model.typeOfAssign==='Tickets'">{{slide.TicketAssignedDate}}</span>
+                    <span ng-show="model.typeOfAssign==='Profiles'">{{slide.EmpAssignedDate}}</span>
+                    <span ng-show="model.typeOfAssign==='notification'">{{slide.NotificationDate}}</span>
+                    <span ng-show="model.typeOfAssign==='noserviceDate' || model.typeOfAssign==='proceeding'">{{slide.CreatedDate}}</span>
+                    <span ng-show="model.typeofslidedate==='Registration Date'">{{slide.reg}}</span>
+                    <span ng-show="model.typeofslidedate==='Inactive Date'">{{slide.inActiveDate}}</span>
                 </div>
                 <div class="clearfix">
                 </div>
@@ -223,7 +229,6 @@
             <h5>
                 <div style="color:Red;">
                     <span>{{slide.ActionType}}
-                     
                  </span>
                 </div>
                 <div class="clearfix">
@@ -232,15 +237,15 @@
         </div>
 
         <div class="edit_page_details_item_descsearch clearfix">
-            <h6> <span style="font-weight: bold;color:Red;">Read Notification
+            <!--<h6> <span style="font-weight: bold;color:Red;">Read Notification
              </span></h6>
-            <h5>
-                <div>
-                    <a href="javascript:void(0)" ng-click="notificationread(slide,$parent.$index,$parent.$parent.$index)">Click Here To Read</a>
-                </div>
-                <div class="clearfix">
-                </div>
-            </h5>
+            <h5>-->
+            <div>
+                <a href="javascript:void(0)" ng-click="notificationread(slide,$parent.$index,$parent.$parent.$index)">Close The Notification</a>
+            </div>
+            <div class="clearfix">
+            </div>
+            <!--</h5>-->
         </div>
 
     </div>
@@ -290,5 +295,10 @@
 <script type="text/ng-template" id="marketpopup.html">
     <div class="modal-body">
         <market-tickethistory ticketid="model.marketingTicket" showreminder="true"></market-tickethistory>
+    </div>
+</script>
+<script type="text/ng-template" id="matchfollowup.html">
+    <div class="modal-body">
+        <matchfollowup-tickethistory ticketid="model.matchTicket" ticketstatus="model.TicketStatusID" showsendemail="'1'"></matchfollowup-tickethistory>
     </div>
 </script>

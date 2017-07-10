@@ -12,15 +12,15 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ui.date', 'ng-clipboard', 'anguFixedHeaderTable'
 ]);
 
-// app.apiroot = 'http://52.66.131.254:8025/Api/';
+app.apiroot = 'http://52.66.131.254:8025/Api/';
 // app.apipathold = 'http://52.66.131.254:8010/Api/';
-app.apiroot = 'http://183.82.0.58:8025/Api/';
-app.apipathold = 'http://183.82.0.58:8010/Api/';
+// app.apiroot = 'http://183.82.0.58:8025/Api/';
+// app.apipathold = 'http://183.82.0.58:8010/Api/';
 
 app.env = "dev";
 app.kammaPayfixedAmt = 1000;
 app.kammaPaypoints = 12;
-app.kammaPayDays = 42;
+app.kammaPayDays = 30;
 app.kammaPaymentDays = parseInt(app.kammaPayDays) / parseInt(app.kammaPayfixedAmt);
 app.kammaPaymentPoints = parseInt(app.kammaPaypoints) / parseInt(app.kammaPayfixedAmt);
 
@@ -50,7 +50,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'searchpage', name: 'base.searchpage', url: '/search/:id/:Profileid', isloginrequired: true, reload: true },
             { routeName: 'editViewprofile', name: 'base.editViewprofile', url: '/editViewprofileurl', isloginrequired: true },
             { routeName: 'EmployeePayment', name: 'base.EmployeePayment', url: '/EmployeePayments', isloginrequired: true },
-            { routeName: 'EmployeePaymentInsert', name: 'base.EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID/:status/:paymentID', isloginrequired: true },
+            { routeName: 'EmployeePaymentInsert', name: 'base.EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID/:status/:paymentID/:histryid', isloginrequired: true },
             { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofile', url: '/Viewfullprofile/:ProfileID/:contacts', isloginrequired: true },
             { routeName: 'expressInterest', name: 'base.expressInterest', url: '/expressInterestpage', isloginrequired: true },
             { routeName: 'myProfile', name: 'base.myProfile', url: '/myProfilepage', isloginrequired: true },
@@ -175,13 +175,17 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/datePickerDirectiveEdit.js',
                         'directives/divPrint.js',
                         'directives/editFooter.js',
-                        'directives/fixedHeader.js'
-                        // 'directives/requireDirective.js'
+                        'directives/fixedHeader.js',
+                        'directives/allowOnlyNumbers.js'
                     ]
                 },
                 {
                     name: 'constants',
                     files: ['constants/arrayConstants.js', 'constants/arrayBindConstatns.js']
+                },
+                {
+                    name: 'properties',
+                    files: ['common/properties/paymentProperty.js']
                 },
                 {
                     name: 'modules',
@@ -261,6 +265,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     $ocLazyLoad.load('EditSideMenu-base');
                     $ocLazyLoad.load('EditSlide-popup');
                     $ocLazyLoad.load('single-grid');
+                    $ocLazyLoad.load('properties');
                 }]
             }
         });
@@ -292,6 +297,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     $ocLazyLoad.load('matchfollowup-ticket');
                     $ocLazyLoad.load('EditSideMenu-base');
                     $ocLazyLoad.load('EditSlide-popup');
+                    $ocLazyLoad.load('properties');
                 }]
             }
         });
@@ -350,6 +356,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
     }
 ]);
 app.run(function($rootScope, $state, $stateParams) {
+
+    $rootScope.ProfileOwner = '';
+    $rootScope.EditProfilePaidStatus = '';
 
     $rootScope.$on('$stateChangeStart', function(e, to) {
         if (to && to.name !== 'base.login') {

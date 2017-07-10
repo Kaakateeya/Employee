@@ -15,11 +15,11 @@
         model.AboutFamilyReviewStatus = null;
         model.eventType = 'add';
         var isSubmit = true;
+        model.scope = {};
 
         model.AdminID = authSvc.isAdmin();
         model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-        model.isprofileOwner = baseModel.ProfileOwner ? parseInt(baseModel.ProfileOwner) === parseInt(model.empid) : false;
 
 
         //end declarion block

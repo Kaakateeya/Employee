@@ -4,10 +4,20 @@
      function Controller(EmployeePaymentInsertModel, stateParams, scope) {
          var vm = this,
              model;
+
+         vm.reset = function() {
+             model.custobj = {};
+             vm.model.PiObj = {};
+             model.txtpayDescription = '';
+             model.rbtnPaymode = '';
+             model.rbtnmail = '';
+         };
+
          vm.init = function() {
              vm.model = model = {};
-             vm.model = model = EmployeePaymentInsertModel();
+             vm.model = model = EmployeePaymentInsertModel;
              model.scope = scope;
+             vm.reset();
              vm.model.getpaymentProfile(stateParams.ProfileID);
              vm.model.PiObj.rbtnmail = 1;
          };

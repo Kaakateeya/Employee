@@ -3,9 +3,9 @@
     angular
         .module('Kaakateeya')
         .factory('dashboardModel', ['$http', 'dashboardServices', '$uibModal', 'authSvc', 'helperservice', '$window',
-            'modelpopupopenmethod', '$filter', 'fileUpload', 'alert', 'complex-slide-config', 'arrayConstants',
+            'modelpopupopenmethod', '$filter', 'fileUpload', 'alert', 'complex-slide-config', 'arrayConstants', 'SelectBindServiceApp',
             function($http, dashboardServices, uibModal, authSvc, helperservice, window,
-                commonpage, $filter, fileUpload, alerts, config, arrayConstants) {
+                commonpage, $filter, fileUpload, alerts, config, arrayConstants, SelectBindServiceApp) {
                 var model = {};
                 model.config = config;
                 var flag = 0;
@@ -54,6 +54,7 @@
                 model.tabledata = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
                     dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                         if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
+
                             if (type === 'pageload') {
 
                                 model.landingItems = response.data;
@@ -64,6 +65,8 @@
                                 _.each(response.data[0], function(inneritem) {
                                     array.push(inneritem);
                                 });
+
+                                // array = array.concat(response.data[0]);
                             } else if (type === 'export') {
                                 model.exportDataarray = [];
                                 model.exportDataarray = response.data[0];
@@ -325,6 +328,7 @@
                             TicketID: item.Emp_Ticket_Id || item.Emp_Ticket_ID,
                             NoDataFound: model.nodataarray(item.NoDataFound, item.Cust_ID),
                             LastModifiedDate: item.LastModifiedDate,
+                            TicketHisUpdatedDate: item.TicketHisUpdatedDate,
                             To_Profile_ID: item.To_Profile_ID,
                             TicketOwner: item.TicketOwner,
                             Ticketuserid: item.Ticketuserid,
@@ -332,30 +336,53 @@
                             PrimaryContact: item.PrimaryContact,
                             PriWithoutCode: item.PriWithoutCode,
                             EmpReminderID: item.EmpReminderID,
+
+                            RemCallType: item.RemCallType,
+                            RemReminderRefID: item.RemReminderRefID,
+                            RemRelationName: item.RemRelationName,
+                            Category: item.Category,
+                            RemainderBody: item.RemainderBody,
                             // ReminderCreatedDate: item.ReminderCreatedDate,
                             //ReminderCreatedDatepopup: $filter('date')(item.ReminderCreatedDate, 'dd-MM-yyyy')
                             ReminderCreatedDate: model.todaydate,
-                            ReminderCreatedDatepopup: $filter('date')(model.todaydate, 'dd-MM-yyyy')
+                            ReminderCreatedDatepopup: $filter('date')(model.todaydate, 'dd-MM-yyyy'),
+                            EmpAssignedDate: moment(item.EmpAssignedDate).format('DD-MMM-YYYY'),
+                            TicketAssignedDate: moment(item.TicketAssignedDate).format('DD-MMM-YYYY'),
+                            NotificationDate: moment(item.NotificationDate).format('DD-MMM-YYYY'),
+                            inActiveDate: moment(item.InActiveToDate).format('DD-MMM-YYYY')
                         });
                     });
+
                     return array;
                 };
 
                 model.slideshowfunction = function(flag, empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
                     model.topage = topage;
+
                     dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                         if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0 && response.data[0].length > 0) {
+                            debugger;
                             model.slidearray = response.data[0];
                             model.totalRecords = model.slidearray[0].TotalRows;
                             model.headerhtml = tablename;
+                            model.typeOfAssign = '';
+                            model.typeofslidedate = '';
                             switch (tablename) {
-                                case "No-Service From Last 1 Month":
+                                case "No-Service List Since a Month":
+                                    model.typeOfAssign = 'noserviceDate';
                                     model.typeofslidedate = "Service Date";
                                     break;
-                                case "Near by offline Expiry":
-                                case "Offline Expired Customers":
-                                case "Un-Paid Customers":
+                                case "Latest Expressed Interest Profiles":
+                                    model.typeOfAssign = 'proceeding';
+                                    model.typeofslidedate = "proceeding Date ";
+                                    break;
+
+                                    // case "Near by offline Expiry":
+                                case "Near by expiry profiles":
                                     model.typeofslidedate = "Expired Date";
+                                    break;
+                                case "Un-Paid Customers":
+                                    model.typeofslidedate = "Ticket Last Updated";
                                     break;
                                 case "Inactive Customers":
                                     model.typeofslidedate = "Inactive Date";
@@ -366,8 +393,14 @@
                                 case "Yesterday Proceeding Profiles":
                                     model.typeofslidedate = "proceeding Date";
                                     break;
-                                case "Tickets Assigned from Last 10 Days":
-                                case 'Assigned Profiles from Last 10 Days':
+                                    // case "Tickets Assigned from Last 10 Days":
+                                case 'Marketing Tickets Assigned Since 10 Days':
+                                    model.typeOfAssign = 'Tickets';
+                                    model.typeofslidedate = "Assigned Date";
+                                    break;
+
+                                case 'Profiles Assigned Since 10 Days':
+                                    model.typeOfAssign = 'Profiles';
                                     model.typeofslidedate = "Assigned Date";
                                     break;
                                 case "Email Bounce Info":
@@ -376,13 +409,14 @@
                                 case "No Sa Form For Paid Profiles":
                                     model.typeofslidedate = "Last Service Date";
                                     break;
-                                case "Present In India":
+                                case "Presently In India":
                                     model.typeofslidedate = "ArrivalDate at";
                                     break;
                                 case "Marketing Ticket Expiry With in Two days":
                                     model.typeofslidedate = "Ticket Last Updated";
                                     break;
                                 case "Customer Notification Status":
+                                    model.typeOfAssign = 'notification';
                                     model.typeofslidedate = "Notification Date";
                                     break;
                                 case "No Data Profiles":
@@ -420,6 +454,7 @@
                     });
                 };
                 model.changereminders = function(slidearray) {
+                    debugger;
                     model.reminderslidearray = {};
                     model.reminderslidearray = slidearray;
                     model.txtprofileidreminder = slidearray.ProfileID;
@@ -428,7 +463,6 @@
                     model.ddlHrs = "";
                     model.ddlmins = "";
                     model.ddlcontactperson = "";
-                    model.ddlremCatgory = 0;
                     model.ddlremCaltype = "";
                     commonpage.showPopupphotopoup('Reminderticket.html', model.scope, 'md', "modalclassdashboardremainder");
                     model.Hoursarray = model.getnumberbind(0, 23, 'Hrs', 1);
@@ -436,6 +470,24 @@
                     model.calltypearray = model.replytype('calltype');
                     model.replaytypearray = arrayConstants.childStayingWith;
                     model.categoryarray = arrayConstants.catgory;
+                    model.ddlremCatgory = 462;
+                    debugger;
+                    // slidearray.ReminderCreatedDate = moment(slidearray.ReminderCreatedDate).format('MM-DD-YYYY hh:mm:ss');
+                    if (slidearray.EmpReminderID) {
+                        model.ddlremCaltype = parseInt(slidearray.RemCallType);
+                        model.ddlcontactperson = slidearray.RemReminderRefID;
+                        model.contactpersonname = slidearray.RemRelationName;
+                        model.ddlremCatgory = parseInt(slidearray.Category);
+                        model.remembertickets = slidearray.RemainderBody;
+
+                        if (slidearray.ReminderCreatedDate) {
+                            var remindertime = moment(slidearray.ReminderCreatedDate).format('HH:mm');
+                            var remindertimeArr = remindertime.split(':');
+                            model.ddlHrs = parseInt(remindertimeArr[0]) + 1;
+                            model.ddlmins = parseInt(remindertimeArr[1]) + 1;
+                        }
+                    }
+
                 };
                 model.reminderSubmit = function(obj) {
                     var Mobj = {
@@ -462,6 +514,19 @@
                 };
                 model.destroy = function() {
                     config.reset();
+                };
+
+                model.communicationlogredirect = function(profileid) {
+                    window.open("communicationLogs?Profileid=" + profileid, "_blank");
+                };
+                model.RelationshipChangerem = function(RelationshipID) {
+                    debugger;
+
+                    SelectBindServiceApp.getRelationName(3, model.reminderslidearray.ProfileID, RelationshipID).then(function(response) {
+                        if (_.isArray(response.data[0]) && response.data[0].length > 0) {
+                            model.contactpersonname = response.data[0][0].NAME;
+                        }
+                    });
                 };
                 return model.init();
             }

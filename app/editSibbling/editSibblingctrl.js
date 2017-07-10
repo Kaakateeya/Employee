@@ -1,7 +1,7 @@
  (function(angular) {
      'use strict';
 
-     function controller(editSibblingModel, scope, window) {
+     function controller(editSibblingModel, scope, window, $rootScope) {
          /* jshint validthis:true */
          var vm = this;
          vm.init = function() {
@@ -10,6 +10,11 @@
              vm.model.scope = scope;
          };
 
+         $rootScope.$watchGroup(['ProfileOwner', 'EditProfilePaidStatus'], function(newval, old) {
+             if (newval)
+                 vm.model.isprofileOwner = (newval[0] ? (parseInt(newval[0]) === parseInt(vm.model.empid)) : false) || (newval[1] !== undefined && newval[1] !== null ? parseInt(newval[1]) !== 1 : false);
+         });
+
          vm.init();
 
      }
@@ -17,5 +22,5 @@
          .module('Kaakateeya')
          .controller('editSibblingCtrl', controller);
 
-     controller.$inject = ['editSibblingModel', '$scope', '$window'];
+     controller.$inject = ['editSibblingModel', '$scope', '$window', '$rootScope'];
  })(angular);

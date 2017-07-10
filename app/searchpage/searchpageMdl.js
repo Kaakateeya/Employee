@@ -75,7 +75,13 @@
                     changeYear: true,
                     yearRange: "-40:+5",
                     format: "MM/DD/YYYY"
-
+                };
+                model.dateOptionsDOB = {
+                    reverseYearRange: true,
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: "-81:-19",
+                    format: "MM/DD/YYYY"
                 };
                 model.showplus = false;
                 model.photogradearray = [{ value: 216, name: 'A' },
@@ -93,7 +99,6 @@
                 model.profileidupdate = function(obj) {
                     model.intilize();
                     model.init();
-                    debugger;
                     model.progressbar = [];
                     model.sidebarnavshow = false;
                     searchpageServices.getPrimaryCustomerDataResponse(obj.ProfileIDpopup, model.empid).then(function(response) {
@@ -203,6 +208,7 @@
                     }
                 };
                 model.removeSelect = function(Arr) {
+                    debugger;
                     if (Arr !== undefined && Arr.length > 0 && angular.lowercase(Arr[0].title) === '--select--') {
                         Arr.splice(0, 1);
                     }
@@ -226,11 +232,8 @@
                     });
                 };
 
+                model.loadControl = function() {
 
-                model.init = function() {
-                    model.getpageloadobject = {};
-                    model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-                    model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
                     if (model.selectedIndex === 1) {
                         model.clearSelection(model.domDataadvanced);
                         _.each(model.domDataadvanced, function(parentItem) {
@@ -254,6 +257,15 @@
                             });
                         });
                     }
+
+                };
+
+
+                model.init = function() {
+                    model.getpageloadobject = {};
+                    model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+                    model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
+                    model.loadControl();
                     model.agearray = [];
                     model.agearray.push({ label: "--select--", title: "--select--", value: "0" });
                     for (var i = 18; i < 78; i++) {
@@ -285,7 +297,8 @@
                     return str !== null && str !== undefined && str !== "" && str.length > 0 ? str : null;
                 };
                 model.submitgeneral = function(frompage, topage, typeofexcel) {
-                    model.config.shortlistmodel.shortlistmodelinner = [];
+
+                    model.config.shortlistmodel.shortlistmodelinner = frompage === 1 ? [] : model.config.shortlistmodel.shortlistmodelinner;
                     var paramters = {};
                     _.each(model.domDatageneral, function(parentItem) {
                         _.each(_.filter(parentItem.controlList, function(seconditem) { return seconditem !== undefined; }), function(item) {
@@ -372,7 +385,6 @@
                     });
                 };
                 model.closepopup = function() {
-                    debugger;
                     alerts.dynamicpopupclose();
                     model.intilize();
                     model.init();
@@ -384,7 +396,7 @@
                     model.sidebarnavshow = true;
                 };
                 model.submitadvancedsearch = function(frompage, topage, typeofexcel) {
-                    model.config.shortlistmodel.shortlistmodelinner = [];
+                    model.config.shortlistmodel.shortlistmodelinner = frompage === 1 ? [] : model.config.shortlistmodel.shortlistmodelinner;
                     var paramters = {};
                     _.each(model.domDataadvanced, function(parentItem) {
                         _.each(_.filter(parentItem.controlList, function(seconditem) { return seconditem !== undefined; }), function(item) {
@@ -535,7 +547,7 @@
                 };
                 model.config.checkServicetoShortlist = function(slide) {
                     model.slide = slide;
-                    if (slide.isShortlisted) {
+                    if (slide.isShortlistedalert) {
                         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'This profile already shortlisted', 2000);
                     } else {
                         if (slide.serviceDate !== '') {
@@ -554,12 +566,8 @@
                         model.close();
                     }
                     slide.isShortlisted = true;
-                    if (!model.config.shortlistmodel.slides) {
-                        model.config.shortlistmodel.slides = angular.copy(_.where(model.config.slides, { isShortlisted: true }));
-                    } else {
-                        model.config.shortlistmodel.slides = model.config.shortlistmodel.slides.concat(angular.copy(_.where(model.config.slides, { isShortlisted: true })) || []);
-                    }
-                    model.progressbar = model.config.shortlistmodel.slides = angular.copy(_.where(model.config.slides, { isShortlisted: true }));
+                    slide.isShortlistedalert = true;
+                    model.config.shortlistmodel.slides = angular.copy(_.where(model.config.slides, { isShortlisted: true }));
                     alerts.timeoutoldalerts(model.scope, 'alert-success', 'profile has been shortlisted successfully', 2000);
                 };
 
@@ -569,7 +577,9 @@
                         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'You have already Shortlisted this Profile ID', 4000);
                     } else {
                         slide.isshortlistaedgain = true;
-                        model.config.shortlistmodel.shortlistmodelinner = angular.copy(_.where(model.config.shortlistmodel.slides, { isshortlistaedgain: true }));
+                        if (model.config.shortlistmodel.slides.length > 0)
+                            model.config.shortlistmodel.shortlistmodelinner = angular.copy(_.where(model.config.shortlistmodel.slides, { isshortlistaedgain: true }));
+
                         _.map(model.config.slides, function(item) {
                             item.isShortlisted = false;
                         });
@@ -578,17 +588,21 @@
                 };
                 model.mainShortListProfile = function() {
                     model.config.shortlistmodel.headettemp = "templates/SearchpopupHeader.html";
-                    model.config.shortlistmodel.slides = model.config.shortlistmodel.shortlistmodelinner.concat(_.where(model.config.slides, { isShortlisted: true }));
+                    model.getOriginalShortlistedProfiles();
                     modelpopupopenmethod.showPopupphotopoup('mainShortListProfiles.html', model.scope, 'lg', "modalclassdashboardphotopopupinner");
                 };
-                model.shortListPopup = function() {
-                    var arrayshortListPopup = [];
-                    arrayshortListPopup = _.where(model.config.shortlistmodel.slides, { isshortlistaedgain: true });
-                    if (arrayshortListPopup.length > 0) {
-                        model.config.shortlistmodel.slides = _.where(model.config.shortlistmodel.slides, { isshortlistaedgain: true });
-                    } else {
-                        model.config.shortlistmodel.slides = (model.config.shortlistmodel.slides);
+
+                model.getOriginalShortlistedProfiles = function() {
+                    if (model.config.shortlistmodel.shortlistmodelinner.length > 0) {
+                        model.config.shortlistmodel.slides = angular.copy(model.config.shortlistmodel.shortlistmodelinner.concat(_.where(model.config.slides, { isShortlisted: true })));
                     }
+                };
+
+
+
+                model.shortListPopup = function() {
+                    model.config.shortlistmodel.headettemp = "templates/SearchpopupHeader.html";
+                    model.getOriginalShortlistedProfiles();
                 };
                 model.slidebind = function(old, news, array) {
                     if (parseInt(model.topage) - parseInt(news) === 4) {
@@ -638,8 +652,8 @@
                     model.close();
                     model.cloumsarr = [];
                     model.Toprofileids = [];
-                    var finalArray = model.config.shortlistmodel.slides;
-                    _.each((finalArray.length > 0 ? finalArray : model.config.shortlistmodel.slides), function(item) {
+
+                    _.each(model.config.shortlistmodel.slides, function(item) {
                         model.cloumsarr.push(item.Custid);
                     });
                     var custids = model.cloumsarr.length > 0 ? (model.cloumsarr).toString() : null;
@@ -844,6 +858,7 @@
                     model.gridTableshow = false;
                 };
                 model.showplusminusicon = function(DIVid) {
+                    debugger;
                     var array = model.selectedIndex === 1 ? model.domDataadvanced : model.domDatageneral;
                     _.map(_.where(array, { collapseid: DIVid }), function(item) {
                         switch (item.collapseid) {
@@ -865,7 +880,7 @@
                                 model.domheader_6 = model.domheader_6 === true ? false : true;
                                 break;
                             case 7:
-                                item.controlList = [{ divClear: true, type: 'Country', ngModel: 'PreferedCountryID', labelName: 'Preferred Country', controlType: 'dropdown', isShow: true, dataApi: 'Country', dataSource: 'Country', validation: true }, { type: 'district', ngModel: 'PreferedStateID', labelName: 'Preferred State', controlType: 'dropdown', isShow: true, dataSource: 'State', validation: true }, { type: 'city', ngModel: 'preferedDistrictID', labelName: 'Preferred District', controlType: 'dropdown', isShow: true, dataSource: 'DistrictBind', validation: true }, { ngModel: 'preferedCityID', labelName: 'Preferred City (Nearest)', controlType: 'textBox', isShow: true, validation: true }];
+                                item.controlList = [{ divClear: true, type: 'partnerstate', ngModel: 'PreferedCountryID', labelName: 'Preferred Country', controlType: 'dropdown', isShow: true, dataApi: 'Country', dataSource: 'Country', validation: true }, { type: 'partnerdistrict', ngModel: 'PreferedStateID', labelName: 'Preferred State', controlType: 'dropdown', isShow: true, dataSource: 'partnerstate', validation: true }, { type: 'city', ngModel: 'preferedDistrictID', labelName: 'Preferred District', controlType: 'dropdown', isShow: true, dataSource: 'partnerdistrict', validation: true }, { ngModel: 'preferedCityID', labelName: 'Preferred City (Nearest)', controlType: 'textBox', isShow: true, validation: true }];
                                 model.domheader_7 = model.domheader_7 === true ? false : true;
                                 break;
                             case 8:
@@ -881,6 +896,7 @@
                                 model.domheader_10 = model.domheader_10 === true ? false : true;
                                 break;
                         }
+                        model.loadControl();
                     });
                 };
                 model.destroy = function() {
@@ -902,6 +918,7 @@
                     }
                     return classslide;
                 };
+
                 return model;
             }
         ]);

@@ -465,7 +465,6 @@
                 };
 
                 model.verifyMobCode = function(val) {
-                    debugger;
                     if (val === "") {
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter Mobile verify Code', 4500);
                     } else {

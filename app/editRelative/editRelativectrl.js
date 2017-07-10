@@ -1,7 +1,7 @@
  (function(angular) {
      'use strict';
 
-     function controller(editRelativeModel, scope, window) {
+     function controller(editRelativeModel, scope, window, $rootScope) {
          /* jshint validthis:true */
          var vm = this;
          vm.init = function() {
@@ -9,6 +9,16 @@
              vm.model = editRelativeModel.init();
              vm.model.scope = scope;
          };
+         //  $rootScope.$watch('ProfileOwner', function(newval, old) {
+         //      model.isprofileOwner = newval ? parseInt(newval) === parseInt(model.empid) : false;
+         //  });
+
+
+         $rootScope.$watchGroup(['ProfileOwner', 'EditProfilePaidStatus'], function(newval, old) {
+             if (newval)
+                 vm.model.isprofileOwner = (newval[0] ? (parseInt(newval[0]) === parseInt(vm.model.empid)) : false) || (newval[1] !== undefined && newval[1] !== null ? parseInt(newval[1]) !== 1 : false);
+         });
+
 
          vm.init();
      }
@@ -16,5 +26,5 @@
          .module('Kaakateeya')
          .controller('editRelativeCtrl', controller);
 
-     controller.$inject = ['editRelativeModel', '$scope', '$window'];
+     controller.$inject = ['editRelativeModel', '$scope', '$window', '$rootScope'];
  })(angular);

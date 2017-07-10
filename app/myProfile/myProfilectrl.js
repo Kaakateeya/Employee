@@ -8,31 +8,38 @@
              function(myProfileModel, scope, $location, authSvc, timeout) {
                  var vm = this,
                      model;
+
+                 vm.pageload = function() {
+                     model.mpObj = {};
+                     model.empid = model.slide.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+                     model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
+                     model.mpObj.ddlProfileOwner = [parseInt(model.empid)];
+                     model.mpObj.rdnprofileType = '';
+                     model.mpObj.rdnGender = '';
+                     model.mpObj.rdnWebsiteLogin = '';
+                     model.mpObj.rdncontactsVerified = '';
+                     model.mpObj.rdnWebsiteBlocked = '';
+                     model.mpObj.ddlApplicationStatus = [54];
+                     model.mpObj.ddlCaste = [402];
+                     model.mpObj.rdndocmacile = "";
+                     model.opendiv = true;
+                     model.scope = scope;
+                     model.grid.showplus = false;
+                     model.searchObjectquery = $location.search();
+                     var meKey = Object.getOwnPropertyNames(model.searchObjectquery)[0];
+                     model.myprofileid = model.searchObjectquery[meKey];
+                     if (model.myprofileid !== "" && model.myprofileid !== null && model.myprofileid !== undefined && model.myprofileid !== "undefined") {
+                         model.mpObj.txtProfileID = model.myprofileid;
+                     }
+                 };
+
+
                  vm.init = function() {
                      vm.model = model = myProfileModel;
                      model.gridArray = [];
 
                      if (!model.applicationStatusarray) {
-                         model.empid = model.slide.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-                         model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
-                         model.mpObj.ddlProfileOwner = [parseInt(model.empid)];
-                         model.mpObj.rdnprofileType = '';
-                         model.mpObj.rdnGender = '';
-                         model.mpObj.rdnWebsiteLogin = '';
-                         model.mpObj.rdncontactsVerified = '';
-                         model.mpObj.rdnWebsiteBlocked = '';
-                         model.mpObj.ddlApplicationStatus = [54];
-                         model.mpObj.ddlCaste = [402];
-                         model.mpObj.rdndocmacile = "";
-                         model.opendiv = true;
-                         model.scope = scope;
-                         model.grid.showplus = false;
-                         model.searchObjectquery = $location.search();
-                         var meKey = Object.getOwnPropertyNames(model.searchObjectquery)[0];
-                         model.myprofileid = model.searchObjectquery[meKey];
-                         if (model.myprofileid !== "" && model.myprofileid !== null && model.myprofileid !== undefined && model.myprofileid !== "undefined") {
-                             model.mpObj.txtProfileID = model.myprofileid;
-                         }
+                         vm.pageload();
                          model.slide.templateUrl = "templates/myprofileSlide.html";
                          model.slide.config.headettemp = "templates/myprofileheader.html";
                      } else {
@@ -55,6 +62,7 @@
                              model.ProfileOwnerarray = model.copyOfProfileOwnerarray;
                              model.maritalstatusarray = model.copyOfmaritalstatusarray;
                              model.Castearray = model.copyOfCastearray;
+                             vm.pageload();
                          }, 500);
 
                          //clear dom array in model
@@ -65,7 +73,6 @@
                  vm.destroy = function() {
                      model.destroy();
                  };
-
                  vm.init();
              }
          ]);

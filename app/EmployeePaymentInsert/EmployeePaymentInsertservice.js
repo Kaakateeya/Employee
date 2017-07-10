@@ -3,9 +3,9 @@
 
     function factory(http) {
         return {
-            getEmployeePaymentdata: function(ProfileID) {
+            getEmployeePaymentdata: function(ProfileID, PaymentHistID) {
                 return http.get(app.apiroot + 'Payment/getProfilePaymentDetails_NewDesigns', {
-                    params: { intProfileID: ProfileID }
+                    params: { intProfileID: ProfileID, intPaymentHistID: PaymentHistID }
                 });
             },
             paymentInsert: function(obj) {
@@ -15,6 +15,6 @@
     }
     angular
         .module('Kaakateeya')
-        .factory('EmployeePaymentinsertservice', factory)
+        .factory('EmployeePaymentinsertservice', factory);
     factory.$inject = ['$http'];
 })(angular);

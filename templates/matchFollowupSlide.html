@@ -280,7 +280,6 @@
                                 <div class="pop_controls_right pop_radios_list">
                                     <md-radio-group ng-required="true" name="rbtnPaymode" layout="row" ng-model="page.model.actobj.rbtnInDisplay" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                         <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
-                                        <md-radio-button value="0"> No</md-radio-button>
                                     </md-radio-group>
                                 </div>
                             </li>
@@ -345,11 +344,11 @@
                                         <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
                                         <md-radio-button value="0"> Not Interested</md-radio-button>
                                         <md-radio-button value="2">Pending</md-radio-button>
-
                                     </md-radio-group>
+
                                 </div>
                             </li>
-                            <li class="clearfix form-group" ng-if="page.model.actobj.rbtnReplyTypeout==='0'">
+                            <li class="clearfix form-group">
                                 <label class="pop_label_left">Call discussion </label>
                                 <div class="pop_controls_right">
                                     <textarea type=text ng-model="page.model.actobj.txtOutCalldiscussion" class="form-control" required></textarea>
@@ -360,7 +359,6 @@
                                 <div class="pop_controls_right pop_radios_list">
                                     <md-radio-group ng-required="true" name="rbtnOutDisplay" layout="row" ng-model="page.model.actobj.rbtnOutDisplay" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                         <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
-                                        <md-radio-button value="0"> No</md-radio-button>
                                     </md-radio-group>
                                 </div>
                             </li>
@@ -425,9 +423,16 @@
                             <li class="clearfix form-group">
                                 <label class="pop_label_left">Reply Type </label>
                                 <div class="pop_controls_right input-group">
-                                    <select class="smalldropdown" ng-model="page.model.actobj.ddlcloseReplyType" multiselectdropdown ng-change="page.model.actobj.txtcloseReason=page.model.mailchange(page.model.actobj.ddlcloseReplyType);" ng-options="item.value as item.label for item in page.model.ReplyArr"
+                                    <!--<select class="smalldropdown" ng-model="page.model.actobj.ddlcloseReplyType" multiselectdropdown ng-change="page.model.actobj.txtcloseReason=page.model.mailchange(page.model.actobj.ddlcloseReplyType);" ng-options="item.value as item.label for item in page.model.ReplyArr"
                                         required>   
-                                     </select>
+                                     </select>-->
+
+                                    <md-radio-group ng-required="true" name="rbtnReplyTypeClose" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyTypeClose,'close');" layout="row" ng-model="page.model.actobj.rbtnReplyTypeClose" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                        <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
+                                        <md-radio-button value="0"> Not Interested</md-radio-button>
+                                        <md-radio-button value="2">Pending</md-radio-button>
+                                    </md-radio-group>
+
                                 </div>
                             </li>
                             <li class="clearfix form-group">
@@ -522,9 +527,14 @@
     <div class="modal-body">
         <div class="row">
             <div class="col-lg-offset-1">
-                <md-radio-group ng-required="true" name="rbtnnotIntrst" ng-change="page.model.notIntrstchangeBind(page.model.rbtnnotIntrst);" ng-model="page.model.rbtnnotIntrst" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                    <md-radio-button ng-repeat="item in page.model.notInrstarray" ng-value="item.id" class="md-primary">{{item.text}}</md-radio-button>
-                </md-radio-group>
+
+                <label ng-show="page.model.typeOfCtrl==='0'" ng-repeat="item in page.model.notInrstarray" class="centWidth">
+                <md-checkbox data-checklist-model="page.model.rbtnnotIntrst" data-checklist-change="page.model.notIntrstchangeBind(page.model.rbtnnotIntrst);" data-checklist-value="item.text">{{item.text}}s
+                </md-checkbox>
+                    </label>
+
+                <textarea name="" ng-model="page.model.txtAllcallDiscusion" ng-blur="page.model.notIntrstchangeBind(page.model.txtAllcallDiscusion)" ng-show="page.model.typeOfCtrl==='1' || page.model.typeOfCtrl==='2'" id="" cols="70" rows="5"></textarea>
+
             </div>
         </div>
     </div>

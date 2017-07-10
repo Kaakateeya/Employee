@@ -3,8 +3,8 @@
     angular
         .module('Kaakateeya')
         .factory('EmployeePaymentmodel', ['$http', 'EmployeePaymentservice',
-            '$state', 'complex-grid-config', 'authSvc', 'single-grid-config', 'modelpopupopenmethod', 'alert',
-            function(http, EmployeePaymentservice, state, config, authSvc, singlegrid, modelpopupopenmethod, alerts) {
+            '$state', 'complex-grid-config', 'authSvc', 'single-grid-config', 'modelpopupopenmethod', 'alert', 'paymentProperty',
+            function(http, EmployeePaymentservice, state, config, authSvc, singlegrid, modelpopupopenmethod, alerts, paymentProperty) {
                 var model = {};
                 model.singlegrid = {};
                 model.singlegrid.showsearchrows = true;
@@ -16,10 +16,14 @@
                 model.singlegrid.gridTableshow = false;
                 model.showplus = false;
                 model.init = function() {
-                    model.Admin = authSvc.isAdmin();
-                    model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+                    model.refreshAdmin();
                     return model;
                 };
+                model.refreshAdmin = function() {
+                    model.Admin = authSvc.isAdmin();
+                    model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+                };
+
                 model.obj = {};
                 model.CustName = '';
                 model.ProfileOwner = '';
@@ -30,8 +34,10 @@
                 model.myprofileexcel = false;
                 model.normalexcel = false;
                 model.paymentProfileID = function(row) {
+                    model.refreshAdmin();
                     var status = row.membershiptype === 'Registration' ? 0 : 1;
-                    var paid = parseInt(model.Admin) === 1 || model.Managementid === 'true' ? "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.ProfileID + "/" + status + "/" + row.PaymentID + "'>Edit</a>" : '';
+                    // paymentProperty.setData(row.PaymentHist_ID);
+                    var paid = parseInt(model.Admin) === 1 || model.Managementid === 'true' ? "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.ProfileID + "/" + status + "/" + row.PaymentID + "/" + row.PaymentHist_ID + "'>Edit</a>" : '';
                     return paid;
                 };
                 model.expirydate = function(row) {
@@ -50,7 +56,7 @@
                 };
 
                 model.EmployeePayment = function(txtval) {
-
+                    paymentProperty.setData(0);
                     if (model.txtProfileID !== undefined && model.txtProfileID !== '' && model.txtProfileID !== null && model.txtProfileID !== "undefined") {
                         model.paymentArr = [];
                         model.columns = [];
@@ -70,7 +76,7 @@
                                     model.balancepaymentID = (response.data)[0].PaymentID;
                                     model.balancemembershiptype = (response.data)[0].membershiptype;
                                     model.RenewalStatus = (response.data)[0].RenewalStatus;
-
+                                    model.PaymentHist_ID = (response.data)[0].PaymentHist_ID;
                                     model.freshLink = true;
                                     model.opendiv = false;
                                     model.hidesearch = true;
@@ -78,7 +84,7 @@
                                     model.ProfileID = (response.data)[0].ProfileID;
                                     model.data = (response.data);
                                 } else {
-                                    state.go('base.EmployeePaymentInsert', { ProfileID: model.txtProfileID, status: 0, paymentID: 0 });
+                                    state.go('base.EmployeePaymentInsert', { ProfileID: model.txtProfileID, status: 0, paymentID: 0, histryid: 0 });
                                 }
                             }
                         );
@@ -88,10 +94,10 @@
                 };
                 model.paymentInsertLink = function(id, type) {
                     if (type === 'renewal')
-                        state.go('base.EmployeePaymentInsert', { ProfileID: id, status: 1, paymentID: 0 });
+                        state.go('base.EmployeePaymentInsert', { ProfileID: id, status: 1, paymentID: 0, histryid: 0 });
                     else {
                         var Status = model.balancemembershiptype === 'Registration' ? 0 : 1;
-                        state.go('base.EmployeePaymentInsert', { ProfileID: id, status: Status, paymentID: model.balancepaymentID });
+                        state.go('base.EmployeePaymentInsert', { ProfileID: id, status: Status, paymentID: model.balancepaymentID, histryid: model.PaymentHist_ID });
                     }
 
                 };
@@ -165,7 +171,6 @@
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
                 return model.init();
-
             }
         ]);
 })(angular);
