@@ -272,7 +272,7 @@
             model.exiObj.rbtnBasic = 358;
             model.exiObj.rbtnTypeofService = 366;
             // model.disableinput = false;
-
+            model.emailselectedArr = [];
             model.exiObj.txtFromprofileID = '';
             model.exiObj.chkrvrsend = true;
             model.showHide = 0;
@@ -280,8 +280,8 @@
             model.OfflineMembershipExpiryDate = '';
             model.Max_Offline_Allowed = '';
             model.Offline_Used_Count = '';
-
         };
+
         model.getImages = function(profileid) {
             var imgArr = [],
                 strimgs = '',

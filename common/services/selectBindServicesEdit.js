@@ -75,8 +75,10 @@
             },
             DeleteSection: function(obj) {
                 return http.get(app.apiroot + 'CustomerPersonalUpdate/getCustomerSectionsDeletions', { params: { sectioname: obj.sectioname, CustID: obj.CustID, identityid: obj.identityid } });
+            },
+            checkProfileID: function(profileid) {
+                return http.get(app.apiroot + 'StaticPages/getCheckprofileIDSelect', { params: { Profileid: profileid } });
             }
-
         };
     }
 })();

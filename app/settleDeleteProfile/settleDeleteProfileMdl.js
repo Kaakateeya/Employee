@@ -26,7 +26,7 @@
 
             model.SettleArray = [{
                     div: [
-                        { name: 'Settled profile ID', controlType: 'numbertextbox', ngModel: 'ProfileID', method: 'checkProfileID', param: 'from', required: true },
+                        { name: 'Settled profile ID', controlType: 'numbertextbox', ngModel: 'ProfileID', method: 'checkProfileID', param: 'from', required: true, focus: true },
                         { name: 'Settled with profile', controlType: 'numbertextbox', ngModel: 'settledWithProfileID', method: 'checkProfileID', param: 'to', required: true },
                         { name: 'Engagement date ', controlType: 'date', ngModel: 'engagementDate' },
                         { name: 'Marriage date', controlType: 'date', ngModel: 'marriageDate', required: true },
@@ -47,7 +47,7 @@
 
             model.DeleteArray = [{
                     div: [
-                        { name: 'Deleted profile ID', controlType: 'numbertextbox', ngModel: 'ProfileID', method: 'checkProfileID', param: 'from', required: true },
+                        { name: 'Deleted profile ID', controlType: 'numbertextbox', ngModel: 'ProfileID', method: 'checkProfileID', param: 'from', required: true, focus: true },
                         { name: 'Engagement date', controlType: 'date', ngModel: 'engagementDate' },
                         { name: 'Marriage date', controlType: 'date', ngModel: 'marriageDate' },
                         { name: 'Surname', controlType: 'textbox', ngModel: 'surname' },
