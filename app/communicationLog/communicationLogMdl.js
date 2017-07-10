@@ -70,9 +70,7 @@
                                 model.gridtable2.mainArray = [];
                                 model.gridtable3.mainArray = [];
                                 model.gridtable4.mainArray = [];
-
                                 if ((response.data[0].log).length !== 0 || (response.data[1].log).length !== 0 || (response.data[2].log).length !== 0 || (response.data[3].log).length !== 0) {
-
                                     _.each(response.data[0].log, function(item) {
                                         model.sendarray.push(item);
                                     });
@@ -103,6 +101,14 @@
                                     model.gridtable4.TotalRows = model.sendarray4.length > 0 ? model.sendarray4[0].TotalRows : 0;
                                     model.gridtable4.data = model.gridtable4.mainArray;
                                 } else {
+                                    model.sendarray = [];
+                                    model.sendarray2 = [];
+                                    model.sendarray3 = [];
+                                    model.sendarray4 = [];
+                                    model.gridtable1.mainArray = [];
+                                    model.gridtable2.mainArray = [];
+                                    model.gridtable3.mainArray = [];
+                                    model.gridtable4.mainArray = [];
                                     modelpopupopenmethod.showPopupphotopoup('noServiceData.html', model.scope, 'md', "");
                                 }
 
