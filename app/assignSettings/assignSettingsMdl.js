@@ -139,8 +139,8 @@
                         PaymentStatus: obj.rdnPayments && obj.rdnPayments !== "0" ? obj.rdnPayments : null
                     };
                     assignSettingsService.submitassignsettings(mobj).then(function(response) {
-                        model.opendiv = false;
-                        if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
+                        if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data[0] !== undefined && response.data[0] !== null && response.data[0].length > 0) {
+                            model.opendiv = false;
                             if (from === 1) {
                                 model.TotalRows = response.data[0][0].TotalRows;
                             }
@@ -168,6 +168,12 @@
                                     ]
                                 };
                                 alasql('SELECT ProfileID,GenderID as Gender,PaymentTcktID,ReviewTcktID,PhotoTcktID INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
+                            }
+                        } else {
+                            if (from === 1) {
+                                model.data = [];
+                                model.TotalRows = "";
+                                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Sorry,No Records Found', 3000);
                             }
                         }
                         // model.populateGridDropdowns(response.data[0]);
