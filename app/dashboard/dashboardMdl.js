@@ -320,7 +320,7 @@
                             serviceDate: item.serviceDate,
                             bouncedEmailID: item.EmailID,
                             bouncedemailentryid: item.Cust_EmailBounceEntryId,
-                            Cust_NotificationID: item.Cust_NotificationID,
+                            Cust_NotificationID: item.Cust_NotificationID || item.NotificationID,
                             CategoryID: item.CategoryID,
                             ActionType: item.ActionType,
                             ReadStatus: item.ReadStatus,
@@ -374,7 +374,7 @@
                                     break;
                                 case "Latest Expressed Interest Profiles":
                                     model.typeOfAssign = 'proceeding';
-                                    model.typeofslidedate = "proceeding Date ";
+                                    model.typeofslidedate = "proceeding Date";
                                     break;
 
                                     // case "Near by offline Expiry":
