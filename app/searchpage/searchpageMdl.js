@@ -104,6 +104,7 @@
                     searchpageServices.getPrimaryCustomerDataResponse(obj.ProfileIDpopup, model.empid).then(function(response) {
 
                         if (response !== null && response.data !== undefined && response.data !== null && response.data !== "") {
+
                             var data = model.getpageloadobject = response.data;
                             model.Cust_ID = data.Cust_ID;
                             model.GenderID = data.GenderID;
@@ -534,6 +535,14 @@
                         }
                         if (parseInt(slide.CasteID) != parseInt(model.getpageloadobject.casteid)) {
                             strmismatch += "  Caste not Matched to this profileid";
+                            model.divmismatchData.push({ profileIDlocal: slide.ProfileID, mismath: strmismatch });
+                        }
+                        if (angular.lowercase(slide.FirstName) === angular.lowercase(model.getpageloadobject.Surname)) {
+                            strmismatch += "  Surname is Matched to this profileid";
+                            model.divmismatchData.push({ profileIDlocal: slide.ProfileID, mismath: strmismatch });
+                        }
+                        if (angular.lowercase(slide.Gothram) === angular.lowercase(model.getpageloadobject.Gotram)) {
+                            strmismatch += "  Gothram is Matched to this profileid";
                             model.divmismatchData.push({ profileIDlocal: slide.ProfileID, mismath: strmismatch });
                         }
                         if (model.divmismatchData.length > 0) {
