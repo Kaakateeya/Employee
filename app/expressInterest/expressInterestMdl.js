@@ -150,7 +150,10 @@
                                             model.mismatch.push("  MaritalStatus not Matched to this profileid");
                                         }
                                         if (model.ToGenderID == model.FromGenderID) {
-                                            model.mismatch.push(" Gender not Matched to this profileid");
+                                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Gender not Matched to this profileid', 3000);
+                                            //  model.mismatch.push(" Gender not Matched to this profileid");
+                                            model.mismatch = [];
+                                            model.exiObj.txtToprofileID = "";
                                         }
                                         if (model.Tocasteid != model.Fromcasteid) {
                                             model.mismatch.push("  Caste not Matched to this profileid");
@@ -162,26 +165,31 @@
 
                                     if (model.ToProfileStatusID === 54) {
                                         if (model.mismatch.length > 0) {
-                                            modelpopupopenmethod.showPopup('Conflict.html', model.scope, 'md', 'mismatch');
+                                            if (model.ToGenderID !== model.FromGenderID) {
+                                                modelpopupopenmethod.showPopup('Conflict.html', model.scope, 'md', 'mismatch');
+                                            }
 
                                         } else {
                                             model.pushToProfileIDs();
                                         }
 
                                     } else if ((model.ToProfileStatusID === 57) || (model.ToProfileStatusID === 393)) {
-                                        // alert("Settled or WaitingforSettled Authorization Profile");
-                                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Settled or WaitingforSettled Authorization Profile', 9500);
-                                        model.exiObj.txtToprofileID = '';
+                                        if (model.ToGenderID !== model.FromGenderID) {
+                                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Settled or WaitingforSettled Authorization Profile', 9500);
+                                            model.exiObj.txtToprofileID = '';
+                                        }
                                         return false;
                                     } else if ((model.ToProfileStatusID === 56) || (model.ToProfileStatusID === 394)) {
-                                        // alert("Deleted or WaitingforDeltd authorization Profile");
-                                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Deleted or WaitingforDeltd authorization Profile', 9500);
-                                        model.exiObj.txtToprofileID = '';
+                                        if (model.ToGenderID !== model.FromGenderID) {
+                                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Deleted or WaitingforDeltd authorization Profile', 9500);
+                                            model.exiObj.txtToprofileID = '';
+                                        }
                                         return false;
                                     } else {
-                                        // alert('Not Active Profile');
-                                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Not Active Profile', 9500);
-                                        model.exiObj.txtToprofileID = '';
+                                        if (model.ToGenderID !== model.FromGenderID) {
+                                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Not Active Profile', 9500);
+                                            model.exiObj.txtToprofileID = '';
+                                        }
                                         return false;
                                     }
                                 }
@@ -189,7 +197,6 @@
 
                         } else {
                             model.exiObj.txtToprofileID = '';
-                            // alert("Please Enter The FromProfileID");
                             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please Enter The FromProfileID', 9500);
                         }
                     }
