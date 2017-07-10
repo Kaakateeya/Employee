@@ -58,9 +58,13 @@
                 };
 
                 model.communicationlogsubmit = function(profileid) {
-
-                    SelectBindService.checkProfileID(profileid).then(function(response) {
-                        if (response.data && parseInt(response.data) === 1) {
+                    model.gridtable1.data = undefined;
+                    model.gridtable2.data = undefined;
+                    model.gridtable3.data = undefined;
+                    model.gridtable4.data = undefined;
+                    model.Nameofcandidate = '';
+                    SelectBindService.checkProfileID(profileid).then(function(respo) {
+                        if (respo.data && parseInt(respo.data) === 1) {
                             communicationLogService.Submitcommunicationlog(profileid, model.empid).then(function(response) {
                                 model.sendarray = [];
                                 model.sendarray2 = [];
@@ -115,6 +119,7 @@
                             });
 
                         } else {
+                            model.Profileidcommunication = '';
                             alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter valid profileID', 30000);
                         }
                     });
@@ -122,8 +127,6 @@
                 model.close = function() {
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
-
-
 
 
                 model.ProfileIdTemplateDUrl = function(row) {

@@ -39,6 +39,7 @@
                     dateFormat: 'mm/dd/yy'
                 };
                 model.init = function() {
+                    model.isopenFlag = false;
                     model.spflag = 0;
                     model.frompage = 1;
                     model.topage = 10;
@@ -60,6 +61,7 @@
                     }
                     model.lstEmpnames = [parseInt(model.empid)];
                     model.activebutton = 'bothside';
+                    model.txtFromProceedDate = model.txtToProceedDate = '';
                     model.matchFollowupSelect(model.empid);
                     return model;
                 };
@@ -177,7 +179,7 @@
                 };
                 model.regionChange = function(parent) {
                     model.BranchName = [];
-                    model.BranchName = Commondependency.BranchNamebind((parent !== undefined && parent !== null && parent !== "") ? (parent).toString() : "");
+                    model.BranchName = Commondependency.BranchNamebindval((parent !== undefined && parent !== null && parent !== "") ? (parent).toString() : "");
                 };
 
                 model.proceedImage = function(status) {

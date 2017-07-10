@@ -3,8 +3,8 @@
     angular
         .module('Kaakateeya')
         .factory('EmployeePaymentmodel', ['$http', 'EmployeePaymentservice',
-            '$state', 'complex-grid-config', 'authSvc', 'single-grid-config', 'modelpopupopenmethod', 'alert', 'paymentProperty',
-            function(http, EmployeePaymentservice, state, config, authSvc, singlegrid, modelpopupopenmethod, alerts, paymentProperty) {
+            '$state', 'complex-grid-config', 'authSvc', 'single-grid-config', 'modelpopupopenmethod', 'alert', 'paymentProperty', 'SelectBindService',
+            function(http, EmployeePaymentservice, state, config, authSvc, singlegrid, modelpopupopenmethod, alerts, paymentProperty, SelectBindService) {
                 var model = {};
                 model.singlegrid = {};
                 model.singlegrid.showsearchrows = true;
@@ -56,40 +56,49 @@
                 };
 
                 model.EmployeePayment = function(txtval) {
-                    paymentProperty.setData(0);
+                    model.data = [];
                     if (model.txtProfileID !== undefined && model.txtProfileID !== '' && model.txtProfileID !== null && model.txtProfileID !== "undefined") {
-                        model.paymentArr = [];
-                        model.columns = [];
-                        if (model.isManagement === "true" && model.isAdmin === "1") {
-                            model.columns.push({ text: '', key: 'ProfileID', type: 'custom', templateUrl: model.paymentProfileID });
-                        }
-                        model.columns.push({ text: 'Pay Mode', key: 'Type', type: 'label' }, { text: 'Membership', key: 'membershiptype', type: 'label' }, { text: 'Agreed', key: 'AgreedAmount', type: 'label' }, { text: 'Paid', key: 'PaidAmount', type: 'label' }, { text: 'Paid Date', key: 'PaymentDate', type: 'label' }, { text: 'Expiry Date', key: 'ExpiryDate', type: 'label' }, { text: 'Allowed', key: 'Allowed', type: 'label' }, { text: 'Used', key: 'Used', type: 'label' }, { text: 'Entered', key: 'CreatedByEmpID', type: 'label', width: '150px' }, {
-                            text: 'Status',
-                            key: 'Status',
-                            type: 'label'
-                        }, { text: 'Authorized by', key: 'StatusBy', type: 'label' }, { text: 'Description', key: 'Description', type: 'morelinks', templateUrl: model.descriptionTemplate });
-                        EmployeePaymentservice.getEmployeePayment(model.txtProfileID).then(
-                            function(response) {
-                                if (_.isArray(response.data) && response.data.length > 0) {
-                                    model.CustName = (response.data)[0].CustName;
-                                    model.ProfileOwner = (response.data)[0].ProfileOwner;
-                                    model.balancepaymentID = (response.data)[0].PaymentID;
-                                    model.balancemembershiptype = (response.data)[0].membershiptype;
-                                    model.RenewalStatus = (response.data)[0].RenewalStatus;
-                                    model.PaymentHist_ID = (response.data)[0].PaymentHist_ID;
-                                    model.freshLink = true;
-                                    model.opendiv = false;
-                                    model.hidesearch = true;
-                                    model.hidepaging = true;
-                                    model.ProfileID = (response.data)[0].ProfileID;
-                                    model.data = (response.data);
-                                } else {
-                                    state.go('base.EmployeePaymentInsert', { ProfileID: model.txtProfileID, status: 0, paymentID: 0, histryid: 0 });
+
+                        SelectBindService.checkProfileID(model.txtProfileID).then(function(respo) {
+                            if (respo.data && parseInt(respo.data) === 1) {
+                                model.paymentArr = [];
+                                model.columns = [];
+                                if (model.isManagement === "true" && model.isAdmin === "1") {
+                                    model.columns.push({ text: '', key: 'ProfileID', type: 'custom', templateUrl: model.paymentProfileID });
                                 }
+                                model.columns.push({ text: 'Pay Mode', key: 'Type', type: 'label' }, { text: 'Membership', key: 'membershiptype', type: 'label' }, { text: 'Agreed', key: 'AgreedAmount', type: 'label' }, { text: 'Paid', key: 'PaidAmount', type: 'label' }, { text: 'Paid Date', key: 'PaymentDate', type: 'label' }, { text: 'Expiry Date', key: 'ExpiryDate', type: 'label' }, { text: 'Allowed', key: 'Allowed', type: 'label' }, { text: 'Used', key: 'Used', type: 'label' }, { text: 'Entered', key: 'CreatedByEmpID', type: 'label', width: '150px' }, {
+                                    text: 'Status',
+                                    key: 'Status',
+                                    type: 'label'
+                                }, { text: 'Authorized by', key: 'StatusBy', type: 'label' }, { text: 'Description', key: 'Description', type: 'morelinks', templateUrl: model.descriptionTemplate });
+                                EmployeePaymentservice.getEmployeePayment(model.txtProfileID).then(
+                                    function(response) {
+                                        if (_.isArray(response.data) && response.data.length > 0) {
+                                            model.CustName = (response.data)[0].CustName;
+                                            model.ProfileOwner = (response.data)[0].ProfileOwner;
+                                            model.balancepaymentID = (response.data)[0].PaymentID;
+                                            model.balancemembershiptype = (response.data)[0].membershiptype;
+                                            model.RenewalStatus = (response.data)[0].RenewalStatus;
+                                            model.PaymentHist_ID = (response.data)[0].PaymentHist_ID;
+                                            model.freshLink = true;
+                                            model.opendiv = false;
+                                            model.hidesearch = true;
+                                            model.hidepaging = true;
+                                            model.ProfileID = (response.data)[0].ProfileID;
+                                            model.data = (response.data);
+                                        } else {
+                                            state.go('base.EmployeePaymentInsert', { ProfileID: model.txtProfileID, status: 0, paymentID: 0, histryid: 0 });
+                                        }
+                                    }
+                                );
+                            } else {
+                                model.CustName = model.ProfileOwner = '';
+                                model.freshLink = false;
+                                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter valid profileID', 10000);
                             }
-                        );
+                        });
                     } else {
-                        alert('please enter profileid');
+                        alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter profileid', 10000);
                     }
                 };
                 model.paymentInsertLink = function(id, type) {

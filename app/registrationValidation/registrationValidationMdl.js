@@ -181,6 +181,9 @@
                                 model.grid.data = (response.data);
                             }
                         } else {
+                            if (from === 1)
+                                model.grid.data = undefined;
+
                             // alertss.RegistrationValidationalerts(model.scope, 'alert-danger', 'No records found', 4500, 1, input.strAllPhones);
                             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 4500);
                         }

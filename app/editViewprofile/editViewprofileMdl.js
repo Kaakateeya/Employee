@@ -166,6 +166,15 @@
             };
 
             model.ViewAllsubmit = function(inpuobj, from, to, typeofbind) {
+
+                if (from === 1) {
+                    if (typeofbind === "slideshow") {
+                        model.slide.totalRecords = undefined;
+                    } else if (!typeofbind) {
+                        model.TotalRows = undefined;
+                    }
+                }
+
                 model.topage = to;
                 model.columns = [
                     { text: 'Profile ID', key: 'ProfileID', type: 'custom', templateUrl: model.ProfileIdTemplateDUrl, rowtype: "success" },
