@@ -32,6 +32,7 @@
                             model.FromGenderID = response.data[1][0].GenderID;
                             model.Fromcasteid = response.data[1][0].casteid;
                             model.Fromsurname = response.data[1][0].CSName;
+                            model.FromGothram = response.data[1][0].Gotram;
                         }
                     }
                     if (model.ProfileStatusID == 54) {
@@ -136,7 +137,7 @@
                                         model.ToGenderID = response.data[1][0].GenderID;
                                         model.Tocasteid = response.data[1][0].casteid;
                                         model.Tosurname = response.data[1][0].CSName;
-
+                                        model.ToGothram = response.data[1][0].Gotram;
                                         if (model.servicedatealert === 1) {
                                             model.mismatch.push(" Already Service Done");
                                         }
@@ -161,6 +162,10 @@
                                         if (angular.lowercase(model.Fromsurname) === angular.lowercase(model.Tosurname)) {
                                             model.mismatch.push(" Surname is Matched to this profileid");
                                         }
+                                        if (angular.lowercase(model.FromGothram) === angular.lowercase(model.ToGothram)) {
+                                            model.mismatch.push(" Gothram is Matched to this profileid");
+                                        }
+
                                     }
 
                                     if (model.ToProfileStatusID === 54) {
