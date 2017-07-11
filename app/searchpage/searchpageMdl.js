@@ -286,6 +286,7 @@
                     // model.Caste = Commondependency.casteDepedency((model.ReligionID !== undefined && model.ReligionID !== null && model.ReligionID.length > 0 ? (model.ReligionID).toString() : ""), ((model.MothertongueID !== undefined && model.MothertongueID !== null && model.MothertongueID !== "" && model.MothertongueID.length > 0) ? (model.MothertongueID).toString() : []));
                 };
                 model.GetPhotoandHoroscopevalues = function(strType, str) {
+                    console.log(str);
                     if (str !== null && str !== undefined && str !== "" && str.length > 0) {
                         str = str.toString();
                         if (strType == "horo") {
@@ -318,7 +319,7 @@
                         });
                     });
                     paramters.OnlyConfidential = model.OnlyConfidential === true ? 1 : 0;
-                    paramters.Showinprofile = model.GetPhotoandHoroscopevalues("photo", model.Showinprofile);
+                    paramters.ShowinprofileID = model.GetPhotoandHoroscopevalues("photo", model.Showinprofile);
                     paramters.HoroScopeStatus = model.GetPhotoandHoroscopevalues("horo", model.Showinprofile);
                     paramters.CustID = model.Cust_ID;
 
@@ -414,7 +415,7 @@
                             }
                         });
                     });
-                    paramters.Showinprofile = model.GetPhotoandHoroscopevalues("photo", model.Showinprofile);
+                    paramters.ShowinprofileID = model.GetPhotoandHoroscopevalues("photo", model.Showinprofile);
                     paramters.HoroScopeStatus = model.GetPhotoandHoroscopevalues("horo", model.Showinprofile);
                     paramters.CustID = model.Cust_ID;
                     paramters.OnlyConfidential = model.OnlyConfidential === true ? 1 : 0;
