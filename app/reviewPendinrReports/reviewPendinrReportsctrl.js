@@ -15,6 +15,10 @@
                  model.reviewpendingarray = [];
                  model.mpObj.rdnGender = "";
                  model.mpObj.rdntypeofprofile = "";
+                 model.opendiv = true;
+                 model.mpObj.txtProfilerevieID = model.mpObj.chkconfidential =
+                     model.mpObj.rdnreviewpending = model.mpObj.ddlCaste = model.mpObj.ddlBranch =
+                     model.mpObj.ddlApplicationStatus = '';
              };
              vm.init();
          }]);

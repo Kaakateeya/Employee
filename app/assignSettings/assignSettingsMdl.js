@@ -23,6 +23,7 @@
                     minDate: null,
                     maxDate: null
                 };
+
                 model.ProfileIdTemplateDUrl = function(row) {
                     var paidstatusclass = row.IsPaidMember === 372 ? 'paidclass' : 'unpaid';
                     var paid = row.ProfileID !== undefined ? "<a class='" + paidstatusclass + "'>" + row.ProfileID + "</a>" : "";
@@ -55,14 +56,11 @@
                 };
 
                 model.assignsettingsubmit = function(row) {
-                    debugger;
-
                     var PreviousOwner;
                     var checkOwner = row.ProfileOwner ? _.where(model.ProfileOwnerarray, { value: parseInt(row.ProfileOwner) })[0] : undefined;
                     if (checkOwner) {
                         PreviousOwner = checkOwner.label;
                     }
-
                     var obj = {
                         ProfileID: row.ProfileID !== "" ? row.ProfileID : null,
                         CustID: row.cust_id !== "" ? row.cust_id : null,
@@ -129,9 +127,15 @@
                         model.mpObj.ddlApplicationStatus = [54];
                         model.mpObj.ddlCaste = [402];
                         model.mpObj.ddlBranch = [];
+                        // var vals = [];
                         _.each(model.Brancharray, function(item) {
                             model.mpObj.ddlBranch.push(item.value);
                         });
+
+                        // timeout(function() {
+                        //     debugger;
+                        //     model.mpObj.ddlBranch = vals;
+                        // }, 500);
 
                     });
                 };

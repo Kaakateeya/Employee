@@ -16,6 +16,7 @@
                  model.mpObj.rdnGender = "";
                  model.mpObj.rdnPayments = "0";
                  model.opendiv = true;
+                 model.mpObj.chkconfidential = model.mpObj.txtRegFromDate = model.mpObj.txtRegtoDate = model.mpObj.txtProfileID = '';
              };
              vm.init();
          }]);

@@ -24,7 +24,9 @@
                 empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 AdminID = authSvc.isAdmin();
                 Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
-                model.rdnRegion = '';
+                model.rdnRegion = '0';
+                model.startDate = model.endDate = '';
+                model.type = '';
                 model.paymentAuthSelect();
                 return model;
             };
@@ -35,8 +37,15 @@
                     EndDate: model.endDate ? model.endDate : '',
                     Region: model.rdnRegion ? model.rdnRegion : ''
                 };
-
-                model.columns = [{ text: 'Profile ID', key: 'ProfileID', type: 'label' },
+                model.ProfileIdTemplateDUrl = function(row) {
+                    var paidstatusclass = row.PaidStatus === 1 ? 'paidclass' : 'unpaid';
+                    var paid = row.ProfileID !== undefined ? "<a class='" + paidstatusclass + "'>" + row.ProfileID + "</a>" : "";
+                    return paid;
+                };
+                model.ViewProfile = function(row) {
+                    window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
+                };
+                model.columns = [{ text: 'Profile ID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
                     { text: 'Status', key: 'PaymentStatus', type: 'label' },
                     { text: 'Agreed', key: 'AgreedAmount', type: 'label' },
                     { text: 'Paid', key: 'PaidAmount', type: 'label' },
@@ -138,9 +147,6 @@
             model.exportexcel = function(array, columns) {
                 model.paymentAuthSelect("export");
             };
-
-
-
             return model;
         }]);
 })();
