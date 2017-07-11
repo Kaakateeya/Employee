@@ -1,3 +1,0 @@
-Imagesnew/ProfilePics/KMPL_109473_Images/Img2.jpg
--------------------
-Successfully deleted myBucket/myKey
