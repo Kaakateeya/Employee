@@ -1,0 +1,39 @@
+<div class="modal-header alert alert-warning">
+    <h2 class="text-center" style="font-size:18px;">Alert</h2>
+</div>
+<form name="norecordsform" novalidate role="form" ng-submit="norecordsform.$valid  && model.nodatafoundrecords();">
+    <div class="modal-body" style="padding:3px;">
+        <div class="row" style="font-size:16px;color:#d43535;"><label class="col-lg-7">No Records Found</label></div>
+        <div class="row" style="font-size:16px;color:#d43535;"><label class="col-lg-7">Create Guest Ticket</label></div>
+
+        <div class="row" style="font-size:14px;"><label class="col-lg-3">Mobile </label>
+            <label class="col-lg-5">{{model.Allvalues.txtAllPhones}}</label></div>
+
+        <div class="row"><label class="col-lg-3">Customer Name</label>
+            <label class="col-lg-5">
+                <input required="" name="txtcustomernames" type="text" class="form-control" ng-model="model.Customername"></input>
+
+                   <div ng-messages="norecordsform.txtcustomernames.$invalid">
+               <div style="color: red;font-size: 12px;" ng-if="norecordsform.txtcustomernames.$invalid && (norecordsform.$submitted)">*Required.</div>
+               </div>
+                </div>
+      <div class="row"><label class="col-lg-3">Narration </label>
+            <label class="col-lg-8">
+            <textarea name="customernarration" required="" type="text" class="form-control"  rows="3" ng-model="model.customernarration"></textarea>
+              <div ng-messages="norecordsform.customernarration.$invalid">
+               <div style="color: red;font-size: 12px;" ng-if="norecordsform.customernarration.$invalid && (norecordsform.$submitted)">*Required.</div>
+               </div>
+    
+    
+      </div>
+         <div class="clearfix"></div>
+    </div>
+    </div>
+    <div class="modal-footer">
+        <div>
+             <button type="submit" class="button_custom pull-right">Submit</button>
+            <!--<md-button class='md-raised md-warn md-hue-2' ng-click="model.nodatafoundrecords()">Submit</md-button>-->
+            <md-button class='md-raised md-hue-1' ng-click='model.close()'>Cancel</md-button>
+        </div>
+    </div>
+    </form>

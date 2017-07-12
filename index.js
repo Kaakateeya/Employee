@@ -248,6 +248,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/singel-grid/config.js',
                         'directives/singel-grid/directive.js'
                     ]
+                },
+                {
+                    name: 'norecordsalert-popup',
+                    files: [
+                        'directives/norecordsalert-popup/css/style.css',
+                        'directives/norecordsalert-popup/model/config.js',
+                        'directives/norecordsalert-popup/service/svc.js',
+                        'directives/norecordsalert-popup/directive.js'
+                    ]
                 }
             ]
         });
@@ -269,6 +278,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     $ocLazyLoad.load('EditSlide-popup');
                     $ocLazyLoad.load('single-grid');
                     $ocLazyLoad.load('properties');
+                    $ocLazyLoad.load('norecordsalert-popup');
                 }]
             }
         });
@@ -301,6 +311,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     $ocLazyLoad.load('EditSideMenu-base');
                     $ocLazyLoad.load('EditSlide-popup');
                     $ocLazyLoad.load('properties');
+                    $ocLazyLoad.load('norecordsalert-popup');
                 }]
             }
         });
