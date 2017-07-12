@@ -16,6 +16,11 @@
                 return http.get(app.apiroot + 'CustomerPersonal/getCustomerPersonaloffice_purpose', {
                     params: { flag: '7', ID: custid, AboutProfile: empid, IsConfidential: confidential, HighConfendential: Hconfidential }
                 });
+            },
+            submitCustLoginEmp: function(Empid, profileid, narration) {
+                return http.get(app.apiroot + 'Registration/getUpdateEmplogintoCustomersite', {
+                    params: { empid: Empid, ProfileID: profileid, Narration: narration }
+                });
             }
         };
     }
