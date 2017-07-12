@@ -182,10 +182,13 @@
                             }
                         } else {
                             if (from === 1)
-                                model.grid.data = undefined;
-
-                            // alertss.RegistrationValidationalerts(model.scope, 'alert-danger', 'No records found', 4500, 1, input.strAllPhones);
-                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 4500);
+                                model.grid.data = [];
+                            if (model.checkTxt(model.txtAllPhones) !== '') {
+                                modelpopupopenmethod.showPopupphotopoup('nodatafoundrecords.html', model.scope, 'md', "modalclassnorecordss");
+                            } else {
+                                // alertss.RegistrationValidationalerts(model.scope, 'alert-danger', 'No records found', 4500, 1, input.strAllPhones);
+                                alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 4500);
+                            }
                         }
                     });
 

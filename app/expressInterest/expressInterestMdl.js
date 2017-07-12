@@ -30,7 +30,8 @@
                             model.FromMinHeight = response.data[1][0].MinHeight;
                             model.Frommaritalstatusid = response.data[1][0].maritalstatusid;
                             model.FromGenderID = response.data[1][0].GenderID;
-                            model.Fromcasteid = response.data[1][0].casteid;
+                            // model.Fromcasteid = response.data[1][0].casteid;
+                            model.Fromcasteid = response.data[1][0].SelfCaste;
                             model.Fromsurname = response.data[1][0].CSName;
                             model.FromGothram = response.data[1][0].Gotram;
                         }
@@ -136,7 +137,8 @@
                                         model.ToMinHeight = response.data[1][0].MinHeight;
                                         model.Tomaritalstatusid = response.data[1][0].maritalstatusid;
                                         model.ToGenderID = response.data[1][0].GenderID;
-                                        model.Tocasteid = response.data[1][0].casteid;
+                                        //model.Tocasteid = response.data[1][0].casteid;
+                                        model.Tocasteid = response.data[1][0].SelfCaste;
                                         model.Tosurname = response.data[1][0].CSName;
                                         model.ToGothram = response.data[1][0].Gotram;
                                         if (model.servicedatealert === 1) {
