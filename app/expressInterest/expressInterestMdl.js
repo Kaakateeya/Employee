@@ -119,7 +119,8 @@
                             model.mismatch = [];
                             expressInterestService.getServiceInfo(model.exiObj.txtFromprofileID, model.exiObj.txtToprofileID).then(function(res) {
                                 console.log(res.data);
-                                model.servicedatealert = parseInt(res.data);
+                                model.servicedatealert = parseInt(res.data.Status);
+                                model.servicedateprofile = res.data.Servicedate;
                             });
                             expressInterestService.getEIprofileID(6, ID, '').then(function(response) {
                                 console.log(response.data);
@@ -139,7 +140,7 @@
                                         model.Tosurname = response.data[1][0].CSName;
                                         model.ToGothram = response.data[1][0].Gotram;
                                         if (model.servicedatealert === 1) {
-                                            model.mismatch.push(" Already Service Done");
+                                            model.mismatch.push(" Already Service Done on " + model.servicedateprofile);
                                         }
                                         if ((model.FromAgeMax) < (model.FromAgeMin) && model.ToAgeMax > (model.ToAgeMin)) {
                                             model.mismatch.push(" Age not Matched to this profileid");
