@@ -116,6 +116,7 @@
                     { text: 'Owner of the profile', key: 'OwnerOftheProfile', type: 'label' },
                 ];
                 model.reviewpendingsubmit = function(obj, from, to, type) {
+
                     model.opendiv = false;
                     var mobj = {
                         EmpID: parseInt(model.empid),
@@ -138,6 +139,7 @@
                     reviewPendinrReportsService.submitreviewpending(mobj).then(function(response) {
                         if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
                             if (from === 1) {
+                                model.data = [];
                                 model.TotalRows = response.data[0][0].TotalRows;
                             }
                             model.reviewpendingarray = response.data[0];
@@ -175,6 +177,9 @@
                                 alasql('SELECT ProfileID,NAME,DOR,ReviewTcktID,OwnerOftheProfile as OwnerOftheProfile,ReviewedBy as ReviewedBy,AssignedDate as AssignedDate INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
                             }
                             model.populateGridDropdownsreview(model.reviewpendingarray);
+                        } else {
+                            model.data = [];
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'No profiles found', 3000);
                         }
                     });
                 };

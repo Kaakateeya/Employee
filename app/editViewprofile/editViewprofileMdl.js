@@ -124,9 +124,9 @@
             };
 
             model.ProfileIdTemplateDUrl = function(row) {
-                // var paidstatusclass = row.PaidSatus === 1 ? 'paidclass' : 'unpaid';
+                var paidstatusclass = row.PaidSatus === 1 ? 'paidclass' : 'unpaid';
                 // class=" + paidstatusclass + "
-                var paid = "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "' >" + row.ProfileID + row.Confidential + "</a>";
+                var paid = "<a style='cursor:pointer;' class=" + paidstatusclass + "  href='/Education/" + row.CustID + "' >" + row.ProfileID + row.Confidential + "</a>";
                 return paid;
             };
 

@@ -2,7 +2,7 @@
     'use strict';
 
 
-    function factory(editProfileSettingService, authSvc, alertss, commonFactory, uibModal, stateParams) {
+    function factory(editProfileSettingService, authSvc, alertss, commonFactory, uibModal, stateParams, SelectBindServiceApp) {
         var model = {};
         model.scope = {};
         // var logincustid = authSvc.getCustId();
@@ -17,6 +17,7 @@
         model.psdObj = {};
         model.gradeObj = {};
         model.init = function() {
+            model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             custID = stateParams.CustID;
             model.pageload();
             return model;
@@ -27,7 +28,19 @@
                     model.profileSettingArr = response.data[0].length > 0 ? JSON.parse(response.data[0]) : [];
                     model.ConfidentialArr = response.data[1].length > 0 ? JSON.parse(response.data[1]) : [];
                     model.profileDisplayArr = response.data[2].length > 0 ? JSON.parse(response.data[2]) : [];
-                    model.gradeSelectionArr = response.data[3] !== undefined && response.data[3].length > 0 ? JSON.parse(response.data[3]) : [];
+                    if (response.data[3] !== undefined && response.data[3].length > 0) {
+                        debugger;
+
+                        var arr = response.data[3] ? JSON.parse(response.data[3]) : [];
+                        if (arr[0].TableName === 'ProfileGrades') {
+                            model.gradeSelectionArr = response.data[3] !== undefined && response.data[3].length > 0 ? JSON.parse(response.data[3]) : [];
+                            model.CustLoginArr = response.data[4] !== undefined && response.data[4].length > 0 ? JSON.parse(response.data[4]) : [];
+                        } else {
+                            model.CustLoginArr = response.data[3] !== undefined && response.data[3].length > 0 ? JSON.parse(response.data[3]) : [];
+                        }
+                        console.log('ddddddd');
+                        console.log(model.CustLoginArr);
+                    }
                 }
             });
         };
@@ -88,7 +101,7 @@
             IRequestedBy) {
             model.Mobj = {
                 intCusID: custID,
-                EmpID: '2',
+                EmpID: model.empid,
                 currentprofilestatusid: Icurrentprofilestatusid,
                 profilegrade: Iprofilegrade,
                 NoofDaysinactivated: INoofDaysinactivated,
@@ -203,12 +216,18 @@
             { "label": "B", "title": "B", "value": 2 },
             { "label": "C", "title": "C", "value": 3 }
         ];
+
+        model.CustLogin = function(profileID) {
+            SelectBindServiceApp.getRelationName(9, profileID, model.empid).then(function(res) {});
+            window.open('http://183.82.0.58:8030/empLogintoCustomer/' + profileID, '_blank');
+        };
+
         return model.init();
     }
     angular
         .module('Kaakateeya')
         .factory('editProfileSettingModel', factory);
 
-    factory.$inject = ['editProfileSettingService', 'authSvc', 'alert', 'commonFactory', '$uibModal', '$stateParams'];
+    factory.$inject = ['editProfileSettingService', 'authSvc', 'alert', 'commonFactory', '$uibModal', '$stateParams', 'SelectBindServiceApp'];
 
 })(angular);

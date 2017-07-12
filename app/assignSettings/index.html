@@ -39,7 +39,7 @@
                     <div class="clearfix form-group">
                         <label for="branch" class="control-label col-lg-4">Branch</label>
                         <div class="col-lg-7" ng-class="page.model.mpObj.ddlBranch===undefined || page.model.mpObj.ddlBranch===null || page.model.mpObj.ddlBranch.length===0 ?'':'colorforcontrols'">
-                            <select multiselectdropdown multiple class="smalldropdown" ng-model="page.model.mpObj.ddlBranch" ng-options="item.value as item.label for item in page.model.Brancharray">   
+                            <select multiselectdropdown pagetype="'search'" multiple class="smalldropdown" ng-model="page.model.mpObj.ddlBranch" ng-options="item.value as item.label for item in page.model.Brancharray">   
                                  </select>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                     <div class="clearfix form-group">
                         <label for="applicationstatus" class="control-label col-lg-4">Application Status</label>
                         <div class="col-lg-7" ng-class="page.model.mpObj.ddlApplicationStatus===undefined || page.model.mpObj.ddlApplicationStatus===null || page.model.mpObj.ddlApplicationStatus.length===0 ?'':'colorforcontrols'">
-                            <select multiselectdropdown multiple id="Applicationsts" class="smalldropdown" ng-model="page.model.mpObj.ddlApplicationStatus" ng-options="item.value as item.label for item in page.model.applicationStatusarray">   
+                            <select multiselectdropdown pagetype="'search'" multiple id="Applicationsts" class="smalldropdown" ng-model="page.model.mpObj.ddlApplicationStatus" ng-options="item.value as item.label for item in page.model.applicationStatusarray">   
                               </select>
                         </div>
                     </div>

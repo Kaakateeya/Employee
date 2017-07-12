@@ -290,6 +290,73 @@
                 </div>
             </div>
         </div>
+        <br>
+        <div class="edit_page_item">
+            <div class="edit_page_item_head clearfix">
+                <h4> Customer login
+                </h4>
+            </div>
+            <div ng-if="page.model.CustLoginArr" class="edit_page_details_item" ng-repeat="item in page.model.CustLoginArr">
+                <div>
+                    <h6>
+                        <span font-bold="normal">click here to <a href="javascript:void(0);" ng-click="page.model.CustLogin(item.ProfileID);">Customer site login</a></span>
+                    </h6>
+                </div>
+                <br>
+                <div ng-if="item.SeenbyEmp">
+                    <h6>
+                        <!--<span font-bold="normal">This profile last seen by <span style="color:red;">{{item.SeenbyEmp}}</span> on {{item.SeenbyEmpdate|date:'dd MMM yyyy'}}</span>-->
+
+                        <!--<div class="row">
+                            <div class="col-lg-6">
+                                <center><u>Previous logins</u>
+
+                                    <br>
+                                    <div class="col-lg-6">
+                                        Date
+                                        <div>
+                                            <label for="">{{item.SeenbyEmpdate|date:'dd MMM yyyy'}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        User
+                                        <div>
+                                            <label for="">{{item.SeenbyEmp}}</label>
+                                        </div>
+                                    </div>
+
+
+                                </center>
+
+                            </div>
+                        </div>-->
+                        <div class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <span id="lblEducationGradeText" font-bold="true">Date</span>
+                            </h6>
+                            <h5>
+                                <span class="red">{{item.SeenbyEmpdate|date:'dd MMM yyyy'}}</span>
+                            </h5>
+
+                        </div>
+                        <div class="edit_page_details_item_desc clearfix">
+
+                            <h6>
+                                <span id="lblprofessionGradeText" font-bold="true">Previous login Employee</span>
+                            </h6>
+                            <h5>
+                                <span class="red">{{item.SeenbyEmp}}</span>
+                            </h5>
+
+                        </div>
+
+                    </h6>
+                </div>
+
+            </div>
+        </div>
+
     </div>
     <script type="text/ng-template" id="commonProfileSettingpopup.html">
         <slide-popup model="page.model" eventtype="page.model.eventType">
