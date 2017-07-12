@@ -1,7 +1,7 @@
 <div class="right_col" id="offferAssign">
     <div>
         <h3 class="hdrsettleCls" ng-style="{position: page.model.AgreedAmt?'absolute':''}"> Payment Offers Assign</h3>
-        <div ng-if="page.model.AgreedAmt" class="text-center"><span>
+        <!--<div ng-if="page.model.AgreedAmt" class="text-center"><span>
               
              <span class="infn">Agreed Amount </span>- {{page.model.AgreedAmt}}
             </span>
@@ -9,7 +9,7 @@
             </span>&nbsp;&nbsp;
             <span class="infn">Expiry Date </span>- {{page.model.strDate}}
             </span>&nbsp;&nbsp;
-        </div>
+        </div>-->
         <div class="maincls">
             <form name="offerForm" novalidate role="form" ng-submit="offerForm.$valid && page.model.SubmitPaymentOffer();">
                 <div class="row">
@@ -23,7 +23,7 @@
                         <div class="row form-group">
                             <label for="Agreementvalue" class="control-label col-lg-4">Agreed amount</label>
                             <div class="col-lg-6">
-                                <input type="number" class="form-control" ng-model="page.model.AgreedAmt" required ng-blur="page.model.showOfferDetails(page.model.AgreedAmt);"></input>
+                                <input type="number" class="form-control" ng-model="page.model.AgreedAmt" ng-blur="page.model.showOfferDetails(page.model.AgreedAmt);"></input>
                             </div>
                         </div>
                         <!--<div class="row form-group">
@@ -36,7 +36,7 @@
                             <label class="control-label col-lg-4">Membership Type </label>
                             <div class="col-lg-6">
                                 <div class="input-group">
-                                    <select multiselectdropdown name="memberShipType" ng-model="page.model.memberShipType" required ng-options="item.value as item.label for item in page.model.membershipTypeArr"></select>
+                                    <select multiselectdropdown name="memberShipType" ng-model="page.model.memberShipType" ng-options="item.value as item.label for item in page.model.membershipTypeArr"></select>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                             <label for="Caste" class="control-label col-lg-3">Religion</label>
                             <div class="col-lg-6">
                                 <div class="input-group">
-                                    <select multiselectdropdown ng-model="page.model.religion" ng-required="page.model.ProfileID?false:true" typeofdata="'Religion'" ng-change="page.model.casteDependency(page.model.religion,page.model.mothertongue);"></select>
+                                    <select multiselectdropdown ng-model="page.model.religion" typeofdata="'Religion'" ng-change="page.model.casteDependency(page.model.religion,page.model.mothertongue);"></select>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                             <label for="Caste" class="control-label col-lg-3">Mothertongue</label>
                             <div class="col-lg-6">
                                 <div class="input-group">
-                                    <select class="" multiselectdropdown ng-model="page.model.mothertongue" ng-required="page.model.ProfileID?false:true" typeofdata="'Mothertongueselect'" ng-change="page.model.casteDependency(page.model.religion,page.model.mothertongue);"></select>
+                                    <select class="" multiselectdropdown ng-model="page.model.mothertongue" typeofdata="'Mothertongueselect'" ng-change="page.model.casteDependency(page.model.religion,page.model.mothertongue);"></select>
                                 </div>
                             </div>
                         </div>

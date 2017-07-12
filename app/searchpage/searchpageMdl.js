@@ -892,35 +892,33 @@
                                 model.domheader_4 = model.domheader_4 === true ? false : true;
                                 break;
                             case 5:
-                                model.bindPlusCtrlFlag = 'jobCountryID';
-                                item.controlList = [{ divClear: true, type: 'state', ngModel: 'jobCountryID', labelName: 'Country Living In', controlType: 'dropdown', isShow: true, dataApi: 'Country', dataSource: 'Country', validation: true }, { type: 'district', ngModel: 'StateID', labelName: 'State Living In', controlType: 'dropdown', isShow: true, dataSource: 'State', validation: true }, { type: 'city', ngModel: 'DistrictID', labelName: 'District Living In', controlType: 'dropdown', isShow: true, dataSource: 'DistrictBind', validation: true }, { ngModel: 'CityID', labelName: 'City Living In', controlType: 'dropdown', isShow: true, dataSource: 'cityBind', validation: true }, { divClear: true, ngModel: 'VisaStatusID', labelName: 'Visa Status', controlType: 'dropdown', isShow: true, dataSource: 'visastatus', dataBind: 'visastatus', validation: true }, { ngModelFrom: 'Residingsincefrom', ngModelTo: 'ResidingsinceTo', labelName: 'Residing Since', controlType: 'datePicker', isShow: true, validation: true }, { ngModelFrom: 'Arrivaldatefrom', ngModelTo: 'Arrivaldateto', labelName: 'Arriving Date', controlType: 'datePicker', isShow: true, validation: true }, { divClear: true, ngModelFrom: 'Departuredatefrom', ngModelTo: 'DeparturedateTo', labelName: 'Departure Date', controlType: 'datePicker', isShow: true, validation: true }];
+                                item.bindPlusCtrlFlag = 'joblocation';
+                                item.controlList = [{ bindPlusCtrlFlagin: 'joblocation', divClear: true, type: 'state', ngModel: 'jobCountryID', labelName: 'Country Living In', controlType: 'dropdown', isShow: true, dataApi: 'Country', dataSource: 'Country', validation: true }, { bindPlusCtrlFlagin: 'joblocation', type: 'district', ngModel: 'StateID', labelName: 'State Living In', controlType: 'dropdown', isShow: true, dataSource: 'State', validation: true }, { bindPlusCtrlFlagin: 'joblocation', type: 'city', ngModel: 'DistrictID', labelName: 'District Living In', controlType: 'dropdown', isShow: true, dataSource: 'DistrictBind', validation: true }, { bindPlusCtrlFlagin: 'joblocation', ngModel: 'CityID', labelName: 'City Living In', controlType: 'dropdown', isShow: true, dataSource: 'cityBind', validation: true }, { bindPlusCtrlFlagin: 'joblocation', divClear: true, ngModel: 'VisaStatusID', labelName: 'Visa Status', controlType: 'dropdown', isShow: true, dataSource: 'visastatus', dataBind: 'visastatus', validation: true }, { bindPlusCtrlFlagin: 'joblocation', ngModelFrom: 'Residingsincefrom', ngModelTo: 'ResidingsinceTo', labelName: 'Residing Since', controlType: 'datePicker', isShow: true, validation: true }, { bindPlusCtrlFlagin: 'joblocation', ngModelFrom: 'Arrivaldatefrom', ngModelTo: 'Arrivaldateto', labelName: 'Arriving Date', controlType: 'datePicker', isShow: true, validation: true }, { bindPlusCtrlFlagin: 'joblocation', divClear: true, ngModelFrom: 'Departuredatefrom', ngModelTo: 'DeparturedateTo', labelName: 'Departure Date', controlType: 'datePicker', isShow: true, validation: true }];
                                 model.domheader_5 = model.domheader_5 === true ? false : true;
                                 break;
                             case 6:
-                                model.bindPlusCtrlFlag = 'StarLanguageID';
-                                item.controlList = [{ divClear: true, type: 'star', ngModel: 'StarLanguageID', labelName: 'Star Language', controlType: 'dropdown', isShow: true, dataApi: 'starLanguage', dataSource: 'starLanguage', validation: true }, { ngModel: 'StarsID', labelName: 'Star', controlType: 'dropdown', isShow: true, dataSource: 'stars', dataBind: 'stars', validation: true }, { ngModel: 'KojadoshamID', labelName: 'Manglik/Kuja Dosham', controlType: 'radiomalagik', isShow: true, validation: true }];
+                                item.bindPlusCtrlFlag = 'AstroDetails';
+                                item.controlList = [{ bindPlusCtrlFlagin: 'AstroDetails', divClear: true, type: 'star', ngModel: 'StarLanguageID', labelName: 'Star Language', controlType: 'dropdown', isShow: true, dataApi: 'starLanguage', dataSource: 'starLanguage', validation: true }, { bindPlusCtrlFlagin: 'AstroDetails', ngModel: 'StarsID', labelName: 'Star', controlType: 'dropdown', isShow: true, dataSource: 'stars', dataBind: 'stars', validation: true }, { bindPlusCtrlFlagin: 'AstroDetails', ngModel: 'KojadoshamID', labelName: 'Manglik/Kuja Dosham', controlType: 'radiomalagik', isShow: true, validation: true }];
                                 model.domheader_6 = model.domheader_6 === true ? false : true;
                                 break;
                             case 7:
-                                model.bindPlusCtrlFlag = 'PreferedCountryID';
-                                item.controlList = [{ divClear: true, type: 'partnerstate', ngModel: 'PreferedCountryID', labelName: 'Preferred Country', controlType: 'dropdown', isShow: true, dataApi: 'Country', dataSource: 'Country', validation: true }, { type: 'partnerdistrict', ngModel: 'PreferedStateID', labelName: 'Preferred State', controlType: 'dropdown', isShow: true, dataSource: 'partnerstate', validation: true }, { type: 'city', ngModel: 'preferedDistrictID', labelName: 'Preferred District', controlType: 'dropdown', isShow: true, dataSource: 'partnerdistrict', validation: true }, { ngModel: 'preferedCityID', labelName: 'Preferred City (Nearest)', controlType: 'textBox', isShow: true, validation: true }];
+                                item.bindPlusCtrlFlag = 'partnernativeLocation';
+                                item.controlList = [{ bindPlusCtrlFlagin: 'partnernativeLocation', divClear: true, type: 'partnerstate', ngModel: 'PreferedCountryID', labelName: 'Preferred Country', controlType: 'dropdown', isShow: true, dataApi: 'Country', dataSource: 'Country', validation: true }, { bindPlusCtrlFlagin: 'partnernativeLocation', type: 'partnerdistrict', ngModel: 'PreferedStateID', labelName: 'Preferred State', controlType: 'dropdown', isShow: true, dataSource: 'partnerstate', validation: true }, { bindPlusCtrlFlagin: 'partnernativeLocation', type: 'city', ngModel: 'preferedDistrictID', labelName: 'Preferred District', controlType: 'dropdown', isShow: true, dataSource: 'partnerdistrict', validation: true }, { bindPlusCtrlFlagin: 'partnernativeLocation', ngModel: 'preferedCityID', labelName: 'Preferred City (Nearest)', controlType: 'textBox', isShow: true, validation: true }];
                                 model.domheader_7 = model.domheader_7 === true ? false : true;
                                 break;
                             case 8:
-                                model.bindPlusCtrlFlag = 'RegionID';
-
-                                item.controlList = [{ divClear: true, type: 'BranchName', ngModel: 'RegionID', labelName: 'Region Of Branches', controlType: 'dropdown', isShow: true, dataBind: 'Regionofbranches', dataSource: 'Regionofbranches', validation: true }, { ngModel: 'BranchID', labelName: 'Branch', controlType: 'dropdown', isShow: true, dataSource: 'BranchName', validation: true, dataApi: 'BranchName' }, { ngModelFrom: 'Dateofregfrom', ngModelTo: 'Dateofregto', labelName: 'Date Of Reg', controlType: 'datePicker', isShow: true, validation: true }, { divClear: true, ngModelFrom: 'LastestLoginsfrom', ngModelTo: 'LastestLoginsto', labelName: 'Lastest Logins', controlType: 'datePicker', isShow: true, validation: true }, { ngModel: 'ProfileID', labelName: 'Profile ID', controlType: 'profileid', isShow: true, validation: true }, { ngModel: 'MembershipTypeID', labelName: 'Membership type', controlType: 'dropdown', isShow: true, dataSource: 'Membershiptype', validation: true, dataBind: 'Membershiptype' }, { divClear: true, ngModel: 'EmpIds', labelName: 'Ower of Profile', controlType: 'empbranches', isShow: true, dataSource: 'Empnamesarray', validation: true, dataApi: 'EmployeeNameswithbranches' }];
+                                item.bindPlusCtrlFlag = 'ProfileSettings';
+                                item.controlList = [{ bindPlusCtrlFlagin: 'ProfileSettings', divClear: true, type: 'BranchName', ngModel: 'RegionID', labelName: 'Region Of Branches', controlType: 'dropdown', isShow: true, dataBind: 'Regionofbranches', dataSource: 'Regionofbranches', validation: true }, { bindPlusCtrlFlagin: 'ProfileSettings', ngModel: 'BranchID', labelName: 'Branch', controlType: 'dropdown', isShow: true, dataSource: 'BranchName', validation: true, dataApi: 'BranchName' }, { bindPlusCtrlFlagin: 'ProfileSettings', ngModelFrom: 'Dateofregfrom', ngModelTo: 'Dateofregto', labelName: 'Date Of Reg', controlType: 'datePicker', isShow: true, validation: true }, { bindPlusCtrlFlagin: 'ProfileSettings', divClear: true, ngModelFrom: 'LastestLoginsfrom', ngModelTo: 'LastestLoginsto', labelName: 'Lastest Logins', controlType: 'datePicker', isShow: true, validation: true }, { bindPlusCtrlFlagin: 'ProfileSettings', ngModel: 'ProfileID', labelName: 'Profile ID', controlType: 'profileid', isShow: true, validation: true }, { bindPlusCtrlFlagin: 'ProfileSettings', ngModel: 'MembershipTypeID', labelName: 'Membership type', controlType: 'dropdown', isShow: true, dataSource: 'Membershiptype', validation: true, dataBind: 'Membershiptype' }, { bindPlusCtrlFlagin: 'ProfileSettings', divClear: true, ngModel: 'EmpIds', labelName: 'Ower of Profile', controlType: 'empbranches', isShow: true, dataSource: 'Empnamesarray', validation: true, dataApi: 'EmployeeNameswithbranches' }];
                                 model.domheader_8 = model.domheader_8 === true ? false : true;
                                 break;
                             case 9:
-                                model.bindPlusCtrlFlag = 'DrinkID';
-
-                                item.controlList = [{ divClear: true, ngModel: 'DrinkID', labelName: 'Drink', controlType: 'dropdown', isShow: true, dataApi: 'Smoke', dataSource: 'Smoke', validation: true }, { ngModel: 'SmokeID', labelName: 'Smoke', controlType: 'dropdown', isShow: true, dataApi: 'Smoke', dataSource: 'Smoke', validation: true }, { ngModel: 'DietID', labelName: 'Diet', controlType: 'dropdown', isShow: true, dataBind: 'Diet', dataSource: 'Diet', validation: true }, { ngModel: 'bodytypeID', labelName: 'BodyType', controlType: 'dropdown', isShow: true, dataBind: 'bodyType', dataSource: 'bodyType', validation: true }, { divClear: true, ngModel: 'physicalStatusID', labelName: 'Physical Status', controlType: 'dropdown', isShow: true, dataBind: 'PhysicalStatus', dataSource: 'PhysicalStatus', validation: true }];
+                                item.bindPlusCtrlFlag = 'Habits';
+                                item.controlList = [{ bindPlusCtrlFlagin: 'Habits', divClear: true, ngModel: 'DrinkID', labelName: 'Drink', controlType: 'dropdown', isShow: true, dataApi: 'Smoke', dataSource: 'Smoke', validation: true }, { bindPlusCtrlFlagin: 'Habits', ngModel: 'SmokeID', labelName: 'Smoke', controlType: 'dropdown', isShow: true, dataApi: 'Smoke', dataSource: 'Smoke', validation: true }, { bindPlusCtrlFlagin: 'Habits', ngModel: 'DietID', labelName: 'Diet', controlType: 'dropdown', isShow: true, dataBind: 'Diet', dataSource: 'Diet', validation: true }, { bindPlusCtrlFlagin: 'Habits', ngModel: 'bodytypeID', labelName: 'BodyType', controlType: 'dropdown', isShow: true, dataBind: 'bodyType', dataSource: 'bodyType', validation: true }, { bindPlusCtrlFlagin: 'Habits', divClear: true, ngModel: 'physicalStatusID', labelName: 'Physical Status', controlType: 'dropdown', isShow: true, dataBind: 'PhysicalStatus', dataSource: 'PhysicalStatus', validation: true }];
                                 model.domheader_9 = model.domheader_9 === true ? false : true;
                                 break;
                             case 10:
-                                model.bindPlusCtrlFlag = 'Status_Photo';
-                                item.controlList = [{ divClear: true, ngModel: 'Status_Photo', labelName: 'Photo', controlType: 'checkBoxList', dataSource: 'photogradearray', isShow: true, validation: true }, { ngModel: 'Status_Education', labelName: 'Education', controlType: 'checkBoxList', dataSource: 'photogradearray', isShow: true, validation: true }, { ngModel: 'Status_Property', labelName: 'Property', controlType: 'checkBoxList', dataSource: 'photogradearray', isShow: true, validation: true }, { ngModel: 'Status_Family', labelName: 'Family', controlType: 'checkBoxList', dataSource: 'photogradearray', isShow: true, validation: true }, { ngModel: 'Status_Profession', labelName: 'Profession', controlType: 'checkBoxList', dataSource: 'photogradearray', isShow: true, validation: true }];
+                                item.bindPlusCtrlFlag = 'gradeSelection';
+                                item.controlList = [{ bindPlusCtrlFlagin: 'gradeSelection', divClear: true, ngModel: 'Status_Photo', labelName: 'Photo', controlType: 'checkBoxList', dataSource: 'photogradearray', isShow: true, validation: true }, { bindPlusCtrlFlagin: 'gradeSelection', ngModel: 'Status_Education', labelName: 'Education', controlType: 'checkBoxList', dataSource: 'photogradearray', isShow: true, validation: true }, { bindPlusCtrlFlagin: 'gradeSelection', ngModel: 'Status_Property', labelName: 'Property', controlType: 'checkBoxList', dataSource: 'photogradearray', isShow: true, validation: true }, { bindPlusCtrlFlagin: 'gradeSelection', ngModel: 'Status_Family', labelName: 'Family', controlType: 'checkBoxList', dataSource: 'photogradearray', isShow: true, validation: true }, { bindPlusCtrlFlagin: 'gradeSelection', ngModel: 'Status_Profession', labelName: 'Profession', controlType: 'checkBoxList', dataSource: 'photogradearray', isShow: true, validation: true }];
                                 model.domheader_10 = model.domheader_10 === true ? false : true;
                                 break;
                         }
@@ -930,34 +928,32 @@
 
                 model.loadControlDivWise = function() {
                     if (model.selectedIndex === 1) {
-                        model.clearSelection(model.domDataadvanced);
                         _.each(model.domDataadvanced, function(parentItem) {
                             _.each(parentItem.controlList, function(item) {
-
-                                if (item.dataBind) {
-                                    model[item.dataSource] = item.dataBind === "heightreSearch" ? arrayConstants[item.dataBind] : model.removeSelect(arrayConstants[item.dataBind]);
-                                } else if (item.dataApi) {
-                                    model[item.dataSource] = getArray.GArray(item.dataApi);
-                                }
-                            });
-                        });
-                    } else {
-                        model.clearSelection(model.domDatageneral);
-                        _.each(model.domDatageneral, function(parentItem) {
-                            _.each(parentItem.controlList, function(item) {
-                                if (item.dataBind) {
-                                    model[item.dataSource] = item.dataBind === "heightreSearch" ? arrayConstants[item.dataBind] : model.removeSelect(arrayConstants[item.dataBind]);
-                                } else if (item.dataApi) {
-                                    model[item.dataSource] = getArray.GArray(item.dataApi);
+                                if (parentItem.bindPlusCtrlFlag === item.bindPlusCtrlFlagin) {
+                                    if (item.dataBind) {
+                                        model[item.dataSource] = item.dataBind === "heightreSearch" ? arrayConstants[item.dataBind] : model.removeSelect(arrayConstants[item.dataBind]);
+                                    } else if (item.dataApi) {
+                                        model[item.dataSource] = getArray.GArray(item.dataApi);
+                                    }
+                                    // model[item.ngModel] = undefined;
                                 }
                             });
                         });
                     }
+                    // else {
+                    //     model.clearSelection(model.domDatageneral);
+                    //     _.each(model.domDatageneral, function(parentItem) {
+                    //         _.each(parentItem.controlList, function(item) {
+                    //             if (item.dataBind) {
+                    //                 model[item.dataSource] = item.dataBind === "heightreSearch" ? arrayConstants[item.dataBind] : model.removeSelect(arrayConstants[item.dataBind]);
+                    //             } else if (item.dataApi) {
+                    //                 model[item.dataSource] = getArray.GArray(item.dataApi);
+                    //             }
+                    //         });
+                    //     });
+                    // }
                 };
-
-
-
-
 
                 model.destroy = function() {
                     config.reset();

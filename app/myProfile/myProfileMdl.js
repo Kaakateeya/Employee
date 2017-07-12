@@ -98,12 +98,11 @@
                     };
                 };
                 model.allLinksTemplateDUrl = function(row) {
-                    debugger;
                     var stronlineliteclass = row.onlinepaidcls == "light" ? row.onlinepaidcls + ' Linkdisabled' : row.onlinepaidcls;
                     var strofflineliteclass = row.offlinepaidcls == "light" ? row.offlinepaidcls + ' Linkdisabled' : row.offlinepaidcls;
                     var photodisbled = row.PhotoshopCount === 0 ? 'Linkdisabled' : "";
                     var paidstatus = row.paid === true ? "Paid" : "UnPaid";
-                    var paid = "<a style='cursor:pointer;'>Factsheet</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);'  ng-click='model.tickethistorypopup(" + row.Emp_Ticket_ID + ");'>Tickets</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' >Servicelog</a>" +
+                    var paid = "<a style='cursor:pointer;' ng-click='model.factSheetRedirect();'>Factsheet</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);'  ng-click='model.tickethistorypopup(" + row.Emp_Ticket_ID + ");'>Tickets</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' ng-click='model.communicationlogredirect(" + JSON.stringify(row.ProfileID) + ");'>Servicelog</a>" +
                         "&nbsp;&nbsp;&nbsp;<a ng-click='model.showphoto(" + row.Cust_ID + ");' class='" + photodisbled + "'>" + row.UploadedPhotoscount + " / " + row.PhotoshopCount + "</a>" +
                         "&nbsp;&nbsp;&nbsp;<a ng-class='model.paidstatusclass(" + row.paid + ")' ng-click='model.RedirectPayment(" + JSON.stringify(row.ProfileID) + ");'>" + paidstatus + "</a>&nbsp;&nbsp;&nbsp;" +
                         "<label class='fontweight'>" + row.OwnerName + "</label>";
@@ -112,10 +111,19 @@
                 model.grid.tickethistorypopup = function(TicketID) {
                     if (TicketID) {
                         model.marketingTicketid = TicketID;
-                        commonpage.showPopupphotopoup('marketpopup.html', model.scope, 'md', "modalclassdashboardphotopopup");
+                        commonpage.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
                     }
                 };
-                model.showphoto = function(custid) {
+
+                model.grid.communicationlogredirect = function(Profileid) {
+                    window.open('/communicationLogs?Profileid=' + Profileid, '_blank');
+                };
+
+                model.grid.factSheetRedirect = function() {
+                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'comming Soon page', 4500);
+                };
+
+                model.grid.showphoto = function(custid) {
                     modelpopupopenmethod.ShowPhotoPopup(custid, model.scope);
                 };
                 model.grid.RedirectPayment = function(profileid) {

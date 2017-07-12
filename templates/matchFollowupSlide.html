@@ -85,7 +85,7 @@
                     <div>
                         <div class="row">
                             <div class="col-lg-7 col-lg-push-1">
-                                <div style="padding-bottom: 5px;"> <br><a ng-show="model.ProceededProfiles(slide.ToSerivceCount,slide.toempname);" href="javascript:void(0);" onclick="return serviceCountProfiles(slide.tocustid);"> Proceed Other Profiles</a> </div>
+                                <div style="padding-bottom: 5px;"> <br><a ng-show="model.ProceededProfiles(slide.ToSerivceCount,slide.toempname);" href="javascript:void(0);" ng-click="model.serviceCountProfiles(slide.tocustid);"> Proceed Other Profiles</a> </div>
                                 <img id="tocustimg" ng-click="slidepopup(slide.tocustid)" style="min-width:250px;min-height:250px;" ng-src="{{slide.ToApplicationPhoto}}" alt="" class="center-block img-thumbnail" style="border: 1px solid gray;">
                                 <div class="text-center"> <br>
                                     <div class="row">
