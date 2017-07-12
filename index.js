@@ -18,8 +18,6 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
 app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.apipathold = 'http://183.82.0.58:8010/Api/';
 
-
-
 app.env = "dev";
 app.kammaPayfixedAmt = 1000;
 app.kammaPaypoints = 12;

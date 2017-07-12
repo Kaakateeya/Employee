@@ -9,7 +9,7 @@
     <div class="modal-body">
         <ul class="modal-body pop_content_my clearfix">
             <li ng-if="item.parentDependecy===undefined?true:model[item.parentDependecy](item)" class="clearfix form-group" ng-repeat="item in model.popupdata">
-                <label ng-if="item.controlType!=='country' && item.controlType!=='contact'  && item.controlType!=='bindHtml' && item.controlType!=='about'" for="item.lblname" ng-class="{'radiocls':item.controlType==='radio'}" class="pop_label_left">{{item.lblname}}<span ng-if="item.required" style="color: red; margin-left: 3px;">*</span></label>
+                <label ng-if="item.controlType!=='country' && item.controlType!=='contact' && item.controlType!=='bindHtml' && item.controlType!=='about'" for="item.lblname" ng-class="{'radiocls':item.controlType==='radio'}" class="pop_label_left">{{item.lblname}}<span ng-if="item.required" style="color: red; margin-left: 3px;">*</span></label>
                 <label class="col-lg-12" ng-class="item.classname" ng-if="item.controlType==='bindHtml'">
                <span ng-bind-html="item.html"></span>
                 </label>
@@ -22,7 +22,6 @@
                 <div ng-if="item.controlType==='Changeselect'" class="pop_controls_right select-box-my input-group">
                     <select multiselectdropdown ng-model="model[item.ngmodel]" ng-required="item.required" ng-options="itm.value as itm.label for itm in item.dataSource" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi)"></select>
                 </div>
-
                 <div ng-if="item.controlType==='textbox'" class="pop_controls_right">
                     <input type="text" ng-model="model[item.ngmodel]" ng-change="model[item.method]();" maxlength="150" class="form-control" ng-required="item.required" />
                 </div>
@@ -92,7 +91,7 @@
                 </div>
 
                 <div ng-if="item.controlType==='about'" class="form-group">
-                    <label class="control-label" style="color: #9b2828; font-size: 13px;">{{item.displayTxt}} </label>
+                    <label class="control-label" ng-if="item.displayTxt" style="color: #9b2828; font-size: 13px;">{{item.displayTxt}} </label>
                     <textarea ng-model="model[item.ngmodel]" ng-maxlength="item.maxlength" rows="4" cols="20" ng-required="item.required" style="max-width:515px;width:100%;"></textarea>
                     <label id="Label1" style="color: red; font-size: 13px;" class="pull-right" ng-if="item.maxlength!=undefined">(max {{item.maxlength}} characters)</label>
                 </div>

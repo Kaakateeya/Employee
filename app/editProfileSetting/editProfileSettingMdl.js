@@ -90,6 +90,10 @@
                         model.ddlpropertyGrade = model.populategrade(item.PropertyGrade);
                     }
                     break;
+                case 'empCustlogin':
+                    model.popupdata = model.reason;
+                    model.popupHeader = 'Reason for Customer login';
+                    break;
             }
 
             commonFactory.open('commonProfileSettingpopup.html', model.scope, uibModal);
@@ -136,6 +140,7 @@
                 case 'Profile Display Settings':
                     model.profileSettingAndDispalySubmit(inObj.GetDetails.rdldisplayin, inObj.GetDetails.rdlpwdblock, inObj.GetDetails.txtblockedreason, 'DisplaySettings');
                     break;
+
                 case 'Confidential Settings':
                     editProfileSettingService.confidentialSubmit(custID, model.getChkVals(inObj.GetDetails.chkisconfidential), model.getChkVals(inObj.GetDetails.chkvryhighconfidential), '2').then(function(response) {
                         commonFactory.closepopup();
@@ -160,6 +165,15 @@
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Grade Selections Submitted Succesfully', 4500);
                         } else {
                             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Grade Selections Updation failed', 4500);
+                        }
+                    });
+                    break;
+                case 'Reason for Customer login':
+
+                    editProfileSettingService.submitCustLoginEmp(inObj.customerpersonaldetails.EmpID, model.CustLoginArr[0].ProfileID, inObj.GetDetails.txtReasn).then(function(response) {
+                        if (response.data && (response.data) === 1) {
+                            commonFactory.closepopup();
+                            window.open('http://www.kaakateeya.com/empLogintoCustomer/' + model.CustLoginArr[0].ProfileID, '_blank');
                         }
                     });
                     break;
@@ -198,6 +212,12 @@
             { lblname: 'Photo', controlType: 'select', ngmodel: 'ddlphotoGrade', typeofdata: 'gradeSelection', parameterValue: 'GPhotos' },
             { lblname: '', controlType: 'break' }
         ];
+
+
+        model.reason = [
+            { lblname: '', controlType: 'about', required: true, ngmodel: 'txtReasn', parameterValue: 'txtReasn' }
+        ];
+
         model.profileDisplayIn = [
             { "label": "Only Online", "title": "Only Online", "value": 279 },
             { "label": "Onlly Offline", "title": "Onlly Offline", "value": 280 },
@@ -216,11 +236,6 @@
             { "label": "B", "title": "B", "value": 2 },
             { "label": "C", "title": "C", "value": 3 }
         ];
-
-        model.CustLogin = function(profileID) {
-            SelectBindServiceApp.getRelationName(9, profileID, model.empid).then(function(res) {});
-            window.open('http://183.82.0.58:8030/empLogintoCustomer/' + profileID, '_blank');
-        };
 
         return model.init();
     }
