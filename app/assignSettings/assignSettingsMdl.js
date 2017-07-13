@@ -15,6 +15,20 @@
                 model.normalexcel = true;
                 model.gridTableshow = false;
                 model.showplus = false;
+
+
+                model.singlegrid1 = {};
+                model.singlegrid2 = {};
+                model.singlegrid3 = {};
+                model.showsearchrows = true;
+                model.showsearch = true;
+                model.showpaging = false;
+                model.showClientpaging = false;
+                model.myprofileexcel = false;
+                model.normalexcel = false;
+                model.gridTableshow = false;
+
+
                 model.dateOptions = {
                     changeMonth: true,
                     changeYear: true,
@@ -26,7 +40,7 @@
 
                 model.ProfileIdTemplateDUrl = function(row) {
                     var paidstatusclass = row.IsPaidMember === 372 ? 'paidclass' : 'unpaid';
-                    var paid = row.ProfileID !== undefined ? "<a class='" + paidstatusclass + "'>" + row.ProfileID + "</a>" : "";
+                    var paid = row.ProfileID !== undefined ? "<a href='javascript:void(0);' ng-click='model.ViewProfile(" + JSON.stringify(row.ProfileID) + ")' class='" + paidstatusclass + "'>" + row.ProfileID + "</a><br><a href='javascript:void(0);' ng-click='model.getDuplicate(" + JSON.stringify(row.ProfileID) + ");'>Duplicate profiles</a>" : "";
                     return paid;
                 };
 
@@ -36,11 +50,12 @@
                     });
                     return arr;
                 }
+
                 model.checkPopulateval = function(val) {
                     return (val && _.where(model.ProfileOwnerarray, { value: parseInt(val) }).length > 0) ? val : 0;
                 };
-                model.ViewProfile = function(row) {
-                    window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
+                model.ViewProfile = function(ProfileID) {
+                    window.open('/Viewfullprofile/' + ProfileID + '/0', '_blank');
                 };
                 model.assignaction = function(row) {
                     var checkOwner = _.where(model.ProfileOwnerarray, { value: parseInt(row.ProfileOwner) })[0];
@@ -93,7 +108,7 @@
 
                 model.columns = [
                     { text: 'Sno', key: 'SNO', type: 'label' },
-                    { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
+                    { text: 'ProfileID', key: 'ProfileID', type: 'morelinks', templateUrl: model.ProfileIdTemplateDUrl },
                     { text: 'Profile owner', key: 'ProfileOwner', type: 'autocomplete', model: 'ddlProfileowner' },
                     { text: 'Action', key: 'cust_id', type: 'customlinkValidation', templateUrl: model.assignaction, method: model.assignsettingsubmit, dependColumn: 'ddlowner' },
                     { text: 'EnteredBy', key: 'EnteredBy', type: 'customlink', templateUrl: model.EnteredBytext },
@@ -101,6 +116,7 @@
                     { text: 'Caste', key: 'Caste', type: 'label' },
                     { text: 'Marketing Ticket', key: 'Marketingticketid', type: 'customlink', templateUrl: model.Marketingticketid, method: model.tickethistorypopup },
                 ];
+
                 model.MyProfilePageLoad = function() {
                     assignSettingsService.getMyprofilebind(1, 2, '').then(function(response) {
                         model.applicationStatusarray = [];
@@ -223,6 +239,31 @@
                     });
                     model.mpObj.txtRegFromDate = '';
                     model.mpObj.txtRegtoDate = '';
+                };
+
+                model.singlegrid1.columns = [
+                    { text: 'ProfileID', key: 'ProfileID', type: 'label' },
+                    { text: 'Name', key: 'Name', type: 'label' },
+                    { text: 'DOR-Branch', key: 'DOR', type: 'label' },
+                    { text: 'Profile owner', key: 'EmpName', type: 'label' }
+                ];
+                model.singlegrid3.columns = model.singlegrid2.columns = model.singlegrid1.columns;
+                model.getDuplicate = function(profileID) {
+                    model.singlegrid1.sdata = [];
+                    model.singlegrid2.sdata = [];
+                    model.singlegrid3.sdata = [];
+                    model.dupTotalRecords = 0;
+                    modelpopupopenmethod.showPopupphotopoup('duplicataProfilesPopup.html', model.scope, 'lg', "modalclassdashboardphotopopupassign");
+                    assignSettingsService.getDuplicatProfiles(profileID).then(function(response) {
+                        console.log(response.data);
+                        model.singlegrid1.sdata = response.data[0];
+                        model.singlegrid2.sdata = response.data[1];
+                        model.singlegrid3.sdata = response.data[2];
+                        model.dupTotalRecords = response.data[0].length > 0 ? (response.data[0])[0].SimilarCount : (response.data[1].length > 0 ? (response.data[1])[0].SimilarCount : (response.data[2].length > 0 ? (response.data[2])[0].SimilarCount : 0));
+                    });
+                };
+                model.closeAssign = function() {
+                    modelpopupopenmethod.closepopuppoptopopup();
                 };
                 return model;
             }

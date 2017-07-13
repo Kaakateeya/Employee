@@ -108,6 +108,7 @@
                         "<label class='fontweight'>" + row.OwnerName + "</label>";
                     return paid;
                 };
+
                 model.grid.tickethistorypopup = function(TicketID) {
                     if (TicketID) {
                         model.marketingTicketid = TicketID;

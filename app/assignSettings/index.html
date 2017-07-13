@@ -82,12 +82,40 @@
         </div>
     </uib-accordion>
     <complex-grid config="page.model" model="page.model"></complex-grid>
-
 </div>
 
 <script type="text/ng-template" id="market.html">
     <div class="modal-body">
         <market-tickethistory ticketid="page.model.marketingTicketid"></market-tickethistory>
+    </div>
+</script>
+
+<script type="text/ng-template" id="duplicataProfilesPopup.html">
+    <div class="modal-header"><span class="duplicatehdr">    Total records : {{page.model.dupTotalRecords}}</span>
+        <div class="pull-right">
+            <a href="javascript:void(0);" ng-click="page.model.closeAssign()" style="padding:7px;"> <i class="fa fa-times" aria-hidden="true" style="fill:#c73e5f;font-size: 16pt;"></i></a>
+        </div>
+    </div>
+
+    <div ng-if="page.model.singlegrid1.sdata.length>0">
+        <center>
+            <h2 class="hdrcolor">Duplicate profiles based on Name</h2>
+        </center>
+        <single-grid model="page.model.singlegrid1" config="page.model"></single-grid>
+    </div>
+    <br>
+    <div>
+        <center ng-if="page.model.singlegrid2.sdata.length>0">
+            <h2 class="hdrcolor">Duplicate profiles based on Email</h2>
+        </center>
+        <single-grid model="page.model.singlegrid2" config="page.model"></single-grid>
+    </div>
+    <br>
+    <div ng-if="page.model.singlegrid3.sdata.length>0">
+        <center>
+            <h2 class="hdrcolor">Duplicate profiles based on mobile Number</h2>
+        </center>
+        <single-grid model="page.model.singlegrid3" config="page.model"></single-grid>
     </div>
 </script>
 <style>
@@ -98,5 +126,18 @@
     .datepicker4 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
         background-color: #f0f0cc !important;
+    }
+    
+    .hdrcolor {
+        color: #a31f2b;
+    }
+    
+    md-progress-circular {
+        display: none;
+    }
+    
+    .duplicatehdr {
+        font-size: 17px;
+        font-weight: bold;
     }
 </style>
