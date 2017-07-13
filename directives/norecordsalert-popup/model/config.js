@@ -29,14 +29,14 @@
                 Name: model.Customername,
                 Email: "phoneno@gmail.com",
                 subject: "Marketing",
-                Category: 404,
+                Category: 462,
                 Message: model.customernarration,
                 Priority: 70,
                 Image: null,
                 CountryCode: null,
                 AreaCode: null,
                 PhoneNum: model.Allvalues.txtAllPhones !== "" && model.Allvalues.txtAllPhones !== null && model.Allvalues.txtAllPhones !== undefined ? model.Allvalues.txtAllPhones : "",
-                EmpID: 0
+                EmpID: authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : ""
             };
             norecordsfoundservice.RegistrationValidation(obj).then(function(response) {
                 console.log(response);

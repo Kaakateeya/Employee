@@ -296,9 +296,25 @@
                         } else {
                             str = ((str.indexOf("0") != -1) && (str.indexOf("1") != -1) ? null : (str.indexOf("1") != -1) ? "1" : (str.indexOf("0") != -1) ? "0" : null);
                         }
+                    } else {
+                        str = null;
                     }
-                    return str !== null && str !== undefined && str !== "" && str.length > 0 ? str : null;
+                    return str;
                 };
+
+                //  model.GetPhotoandHoroscopevalues = function(strType, str) {
+                //     console.log(str);
+                //     var strtt;
+                //     if (str !== null && str !== undefined && str !== "" && str.length > 0) {
+                //         strtt = str.toString();
+                //         if (strType == "horo") {
+                //             strtt = ((str === '2,3') ? null : (str === '2') ? "1" : (str === '3') ? "0" : null);
+                //         } else {
+                //             strtt = ((str === "1,0") ? null : (str === '1') ? "1" : (str === '0') ? "0" : null);
+                //         }
+                //     }
+                //     return strtt;
+                // };
                 model.submitgeneral = function(frompage, topage, typeofexcel) {
 
                     model.config.shortlistmodel.shortlistmodelinner = frompage === 1 ? [] : model.config.shortlistmodel.shortlistmodelinner;
@@ -321,7 +337,8 @@
                         });
                     });
                     paramters.OnlyConfidential = model.OnlyConfidential === true ? 1 : 0;
-                    paramters.ShowinprofileID = model.GetPhotoandHoroscopevalues("photo", model.Showinprofile);
+                    // paramters.ShowinprofileID = model.GetPhotoandHoroscopevalues("photo", model.Showinprofile);
+                    paramters.Showinprofile = model.GetPhotoandHoroscopevalues("photo", model.Showinprofile);
                     paramters.HoroScopeStatus = model.GetPhotoandHoroscopevalues("horo", model.Showinprofile);
                     paramters.CustID = model.Cust_ID;
 
@@ -418,6 +435,7 @@
                         });
                     });
                     paramters.ShowinprofileID = model.GetPhotoandHoroscopevalues("photo", model.Showinprofile);
+                    paramters.Showinprofile = model.GetPhotoandHoroscopevalues("photo", model.Showinprofile);
                     paramters.HoroScopeStatus = model.GetPhotoandHoroscopevalues("horo", model.Showinprofile);
                     paramters.CustID = model.Cust_ID;
                     paramters.OnlyConfidential = model.OnlyConfidential === true ? 1 : 0;
@@ -905,7 +923,7 @@
                                 break;
                             case 7:
                                 item.bindPlusCtrlFlag = 'partnernativeLocation';
-                                item.controlList = [{ bindPlusCtrlFlagin: 'partnernativeLocation', divClear: true, type: 'partnerstate', ngModel: 'PreferedCountryID', labelName: 'Preferred Country', controlType: 'dropdown', isShow: true, dataApi: 'Country', dataSource: 'Country', validation: true }, { bindPlusCtrlFlagin: 'partnernativeLocation', type: 'partnerdistrict', ngModel: 'PreferedStateID', labelName: 'Preferred State', controlType: 'dropdown', isShow: true, dataSource: 'partnerstate', validation: true }, { bindPlusCtrlFlagin: 'partnernativeLocation', type: 'city', ngModel: 'preferedDistrictID', labelName: 'Preferred District', controlType: 'dropdown', isShow: true, dataSource: 'partnerdistrict', validation: true }, { bindPlusCtrlFlagin: 'partnernativeLocation', ngModel: 'preferedCityID', labelName: 'Preferred City (Nearest)', controlType: 'textBox', isShow: true, validation: true }];
+                                item.controlList = [{ bindPlusCtrlFlagin: 'partnernativeLocation', divClear: true, type: 'partnerstate', ngModel: 'PreferedCountryID', labelName: 'Preferred Country', controlType: 'dropdown', isShow: true, dataApi: 'Country', dataSource: 'Countrypartner', validation: true }, { bindPlusCtrlFlagin: 'partnernativeLocation', type: 'partnerdistrict', ngModel: 'PreferedStateID', labelName: 'Preferred State', controlType: 'dropdown', isShow: true, dataSource: 'partnerstate', validation: true }, { bindPlusCtrlFlagin: 'partnernativeLocation', type: 'city', ngModel: 'preferedDistrictID', labelName: 'Preferred District', controlType: 'dropdown', isShow: true, dataSource: 'partnerdistrict', validation: true }, { bindPlusCtrlFlagin: 'partnernativeLocation', ngModel: 'preferedCityID', labelName: 'Preferred City (Nearest)', controlType: 'textBox', isShow: true, validation: true }];
                                 model.domheader_7 = model.domheader_7 === true ? false : true;
                                 model.loadControlDivWise(item.controlList);
                                 break;

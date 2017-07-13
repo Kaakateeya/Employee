@@ -67,8 +67,11 @@
             };
 
             model.ProfileIdTemplateDUrl = function(row) {
-                var paid = "<a style='cursor:pointer;'>" + row.ProfileID + '(' + row.BranchCode + ")</a>";
+                var paidstatusclass = row.paid === 1 ? 'paidclass' : 'unpaid';
+                var paid = row.ProfileID !== undefined ? "<a class='" + paidstatusclass + "'>" + row.ProfileID + '(' + row.BranchCode + ") </a>" : "";
                 return paid;
+                // var paid = "<a style='cursor:pointer;'>" + row.ProfileID + '(' + row.BranchCode + ")</a>";
+                // return paid;
             };
             model.ViewProfile = function(row) {
                 window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
@@ -83,7 +86,7 @@
                     { StatusID: 258, classes: 'closed' }
                 ];
 
-                return _.where(test, { StatusID: parseInt(row.ProfileStatusID) }).length > 0 ? _.where(test, { StatusID: parseInt(row.ProfileStatusID) })[0].classes : ''
+                return _.where(test, { StatusID: parseInt(row.ProfileStatusID) }).length > 0 ? _.where(test, { StatusID: parseInt(row.ProfileStatusID) })[0].classes : '';
             };
             model.grid.exportexcel = function(array, columns) {
                 model.getSearchData(1, model.grid.topage, "export", model.ddlApplicationStatus);
