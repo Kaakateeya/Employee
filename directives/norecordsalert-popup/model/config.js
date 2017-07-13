@@ -36,7 +36,7 @@
                 CountryCode: null,
                 AreaCode: null,
                 PhoneNum: model.Allvalues.txtAllPhones !== "" && model.Allvalues.txtAllPhones !== null && model.Allvalues.txtAllPhones !== undefined ? model.Allvalues.txtAllPhones : "",
-                EmpID: 0
+                EmpID: authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : ""
             };
             norecordsfoundservice.RegistrationValidation(obj).then(function(response) {
                 console.log(response);

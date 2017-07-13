@@ -434,7 +434,7 @@
                             }
                         });
                     });
-                    // paramters.ShowinprofileID = model.GetPhotoandHoroscopevalues("photo", model.Showinprofile);
+                    paramters.ShowinprofileID = model.GetPhotoandHoroscopevalues("photo", model.Showinprofile);
                     paramters.Showinprofile = model.GetPhotoandHoroscopevalues("photo", model.Showinprofile);
                     paramters.HoroScopeStatus = model.GetPhotoandHoroscopevalues("horo", model.Showinprofile);
                     paramters.CustID = model.Cust_ID;
