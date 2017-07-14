@@ -111,7 +111,7 @@
                 { value: 54, name: 'Active' },
                 { value: 57, name: 'Settled' },
                 { value: 56, name: 'Deleted' },
-                { value: 55, name: 'Inactive' }
+                { value: 55, name: 'Inactive' },
                 // { value: 395, name: 'MMSerious' }
             ];
             model.arrayToString = function(string) {
@@ -132,7 +132,6 @@
             };
 
             model.ProfileOwnerImg = function(row) {
-
                 var img = row.ProfileStatusID === 57 || row.ProfileStatusID === 393 ? 'src/images/settleimage_new.png' : (row.ProfileStatusID === 56 || row.ProfileStatusID === 394 ? 'src/images/deleteimage.png' : (row.ProfileStatusID === 55 ? 'src/images/imgInActive.png' : ''));
                 var dd = img !== '' ? img : '';
                 var paid = row.ProfileOwner !== null && row.ProfileOwner !== '' ? "<span class='red'>" + row.ProfileOwner + "</span> " + (img !== "" ? "<img class='profileImage'  src=" + img + "></img>" : '') : "<span class='red linkdisabled'>--</span>";

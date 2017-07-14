@@ -86,7 +86,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'paymentAuthorization', name: 'base.paymentAuthorization', url: '/paymentAuthorizationpage' },
             { routeName: 'oldPaymenttable', name: 'base.oldPaymenttable', url: '/oldPaymenttables' },
             { routeName: 'reviewPendinrReports', name: 'base.reviewPendinrReports', url: '/reviewPendinrReport' },
-            { routeName: 'ticketCreation', name: 'base.ticketCreation', url: '/ticketCreationpage' }
+            { routeName: 'ticketCreation', name: 'base.ticketCreation', url: '/ticketCreationpage' },
+            { routeName: 'updateMacAdress', name: 'base.updateMacAdress', url: '/updateMacAdresspage' }
 
 
         ];
