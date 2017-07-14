@@ -258,11 +258,6 @@
                     }
                 };
 
-
-
-
-
-
                 model.init = function() {
                     model.getpageloadobject = {};
                     model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
@@ -630,16 +625,17 @@
 
                 model.getOriginalShortlistedProfiles = function() {
                     if (model.config.shortlistmodel.shortlistmodelinner.length > 0) {
+                        model.config.shortlistmodel.slides = [];
                         model.config.shortlistmodel.slides = angular.copy(model.config.shortlistmodel.shortlistmodelinner.concat(_.where(model.config.slides, { isShortlisted: true })));
                     }
                 };
 
-
-
                 model.shortListPopup = function() {
                     model.config.shortlistmodel.headettemp = "templates/SearchpopupHeader.html";
                     model.getOriginalShortlistedProfiles();
+                    model.movetoFirstSlide();
                 };
+
                 model.slidebind = function(old, news, array) {
                     if (parseInt(model.topage) - parseInt(news) === 4) {
                         switch (model.tablename) {
@@ -652,6 +648,7 @@
                         }
                     }
                 };
+
                 model.statusbind = function(status) {
                     if (status === "I") {
                         status = "Proceed";
@@ -953,26 +950,29 @@
 
                 model.loadControlDivWise = function(controlList) {
                     if (model.selectedIndex === 1) {
+                        debugger;
                         _.each(controlList, function(item) {
                             if (item.dataBind) {
                                 model[item.dataSource] = item.dataBind === "heightreSearch" ? arrayConstants[item.dataBind] : model.removeSelect(arrayConstants[item.dataBind]);
                             } else if (item.dataApi) {
                                 model[item.dataSource] = getArray.GArray(item.dataApi);
                             }
+                            debugger;
+                            if ('Cust_ID' in model.getpageloadobject) {
+
+                            } else {
+                                if (model[item.ngModel] !== undefined) {
+                                    model[item.ngModel] = undefined;
+                                }
+                                if (model[item.ngModelFrom] !== undefined) {
+                                    model[item.ngModelFrom] = undefined;
+                                }
+                                if (model[item.ngModelTo] !== undefined) {
+                                    model[item.ngModelTo] = undefined;
+                                }
+                            }
                         });
                     }
-                    // else {
-                    //     model.clearSelection(model.domDatageneral);
-                    //     _.each(model.domDatageneral, function(parentItem) {
-                    //         _.each(parentItem.controlList, function(item) {
-                    //             if (item.dataBind) {
-                    //                 model[item.dataSource] = item.dataBind === "heightreSearch" ? arrayConstants[item.dataBind] : model.removeSelect(arrayConstants[item.dataBind]);
-                    //             } else if (item.dataApi) {
-                    //                 model[item.dataSource] = getArray.GArray(item.dataApi);
-                    //             }
-                    //         });
-                    //     });
-                    // }
                 };
 
                 model.destroy = function() {

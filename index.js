@@ -13,10 +13,10 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
 ]);
 
 
-//app.apiroot = 'http://52.66.131.254:8025/Api/';
-//app.apipathold = 'http://52.66.131.254:8010/Api/';
-app.apiroot = 'http://183.82.0.58:8025/Api/';
-app.apipathold = 'http://183.82.0.58:8010/Api/';
+app.apiroot = 'http://52.66.131.254:8025/Api/';
+app.apipathold = 'http://52.66.131.254:8010/Api/';
+// app.apiroot = 'http://183.82.0.58:8025/Api/';
+// app.apipathold = 'http://183.82.0.58:8010/Api/';
 
 app.env = "dev";
 app.kammaPayfixedAmt = 1000;
@@ -40,7 +40,7 @@ app.Mnoimage = app.GlobalImgPath + "Images/customernoimages/Mnoimage.jpg";
 app.Fnoimage = app.GlobalImgPath + "Images/customernoimages/Fnoimage.jpg";
 app.accesspathdots = app.GlobalImgPathforimage + app.prefixPath;
 app.BucketName = 'kaakateeyaprod';
-app.S3PhotoPath = app.GlobalImgPath + 'Images/ProfilePics/';
+app.S3PhotoPath = app.GlobalImgPathforimage + 'Images/ProfilePics/';
 app.accesspathdotsImg = app.S3PhotoPath;
 app.prefixPathImg = 'Images/ProfilePics/';
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider',
@@ -86,7 +86,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'paymentAuthorization', name: 'base.paymentAuthorization', url: '/paymentAuthorizationpage' },
             { routeName: 'oldPaymenttable', name: 'base.oldPaymenttable', url: '/oldPaymenttables' },
             { routeName: 'reviewPendinrReports', name: 'base.reviewPendinrReports', url: '/reviewPendinrReport' },
-            { routeName: 'ticketCreation', name: 'base.ticketCreation', url: '/ticketCreationpage' }
+            { routeName: 'ticketCreation', name: 'base.ticketCreation', url: '/ticketCreationpage' },
+            { routeName: 'updateMacAdress', name: 'base.updateMacAdress', url: '/updateMacAdresspage' }
 
 
         ];
@@ -178,7 +179,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/divPrint.js',
                         'directives/editFooter.js',
                         'directives/fixedHeader.js',
-                        'directives/allowOnlyNumbers.js'
+                        'directives/allowOnlyNumbers.js',
+                        'directives/allowAdminManagement.js'
                     ]
                 },
                 {

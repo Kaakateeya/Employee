@@ -1,12 +1,21 @@
 .modalclassnorecordss {
-  z-index: 9999999999 !important;
-  top: 0%;
-  left: 0%; }
+    z-index: 9999999999 !important;
+    top: 0%;
+    left: 0%;
+}
 
 .modalclassnorecordss .modal-dialog.modal-md {
-  width: 50%; }
+    width: 50%;
+}
 
 .modalclassnorecordss .pop_label_left {
-  width: 40%; }
+    width: 40%;
+}
+
+.newReg {
+    margin-right: 25%;
+    font-weight: bold;
+}
+
 
 /*# sourceMappingURL=style.css.map */

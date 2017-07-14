@@ -33,6 +33,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         $scope.playbutton = false;
                     }
                 };
+
                 $scope.gotoSlide = function(slideIndex) {
                     if (slideIndex !== undefined && slideIndex !== "" && slideIndex !== null && slideIndex !== 0 &&
                         slideIndex !== "0") {
@@ -46,6 +47,12 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         //$scope.apply();
                     }
                 };
+
+                $scope.model.movetoFirstSlide = function() {
+                    $scope.gotoSlide(1);
+                };
+
+
                 $scope.$watch('activeslide', function(news, old) {
                     if (news !== undefined && news !== "" && news !== null) {
                         $scope.Viwedslide = news > $scope.Viwedslide ? news : $scope.Viwedslide;
@@ -54,6 +61,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         $scope.Viwedslide = 0;
                     }
                 });
+
                 $scope.slidepopup = function(custid) {
                     $scope.photoalbum = "Photo Album";
                     $scope.slidephotos = [];
