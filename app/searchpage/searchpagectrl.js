@@ -69,6 +69,7 @@
 
 
                  vm.onTabSelected = function(value) {
+                     model.getpageloadobject = {};
                      if (value === 1) {
                          alerts.dynamicpopup("profileidpopupsubmit.html", scope, 'md', "modalclass");
                          model.searchpopuptext = "Advanced Search";

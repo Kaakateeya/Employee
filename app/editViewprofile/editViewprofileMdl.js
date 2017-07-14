@@ -112,6 +112,7 @@
                 { value: 57, name: 'Settled' },
                 { value: 56, name: 'Deleted' },
                 { value: 55, name: 'Inactive' }
+                // { value: 395, name: 'MMSerious' }
             ];
             model.arrayToString = function(string) {
                 return string !== null ? (string.split(',')).map(Number) : null;

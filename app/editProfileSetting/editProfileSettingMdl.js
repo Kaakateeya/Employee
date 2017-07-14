@@ -29,6 +29,8 @@
         model.init = function() {
             model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             custID = stateParams.CustID;
+            model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+            model.Admin = authSvc.isAdmin();
             model.pageload();
             return model;
         };
@@ -193,7 +195,8 @@
                     editProfileSettingService.submitCustLoginEmp(inObj.customerpersonaldetails.EmpID, model.CustLoginArr[0].ProfileID, inObj.GetDetails.txtReasn).then(function(response) {
                         if (response.data && (response.data) === 1) {
                             commonFactory.closepopup();
-                            window.open('http://www.kaakateeya.com/empLogintoCustomer/' + model.CustLoginArr[0].ProfileID, '_blank');
+                            window.open('http://183.82.0.58:8030/empLogintoCustomer/' + model.CustLoginArr[0].ProfileID, '_blank');
+                            // window.open('http://www.kaakateeya.com/empLogintoCustomer/' + model.CustLoginArr[0].ProfileID, '_blank');
                         }
                     });
                     break;
