@@ -85,7 +85,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'employeeViewfullprofilePrintchk', name: 'base.employeeViewfullprofilePrintchk', url: '/employeeViewfullprofileschk/:ProfileID/:contacts', subname: ['directives/divPrint.js'] },
             { routeName: 'paymentAuthorization', name: 'base.paymentAuthorization', url: '/paymentAuthorizationpage' },
             { routeName: 'oldPaymenttable', name: 'base.oldPaymenttable', url: '/oldPaymenttables' },
-            { routeName: 'reviewPendinrReports', name: 'base.reviewPendinrReports', url: '/reviewPendinrReport' }
+            { routeName: 'reviewPendinrReports', name: 'base.reviewPendinrReports', url: '/reviewPendinrReport' },
+            { routeName: 'ticketCreation', name: 'base.ticketCreation', url: '/ticketCreationpage' }
 
 
         ];
