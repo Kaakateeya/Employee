@@ -1507,6 +1507,18 @@ ul.top_profiles li:nth-child(odd) {
     background: #A00201;
     color: #fff;
     text-decoration: none;
+    padding: .4em 1.2em;
+    font-size: 90%;
+    position: relative;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.navtop>.has-sub>ul>li>a {
+    display: block;
+    background: #A00201;
+    color: #fff;
+    text-decoration: none;
     padding: .8em 1.8em;
     font-size: 90%;
     position: relative;
