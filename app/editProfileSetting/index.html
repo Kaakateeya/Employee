@@ -296,60 +296,37 @@
                 <h4> Customer login
                 </h4>
             </div>
-            <div ng-if="page.model.CustLoginArr" class="edit_page_details_item" ng-repeat="item in page.model.CustLoginArr">
+            <div class="edit_page_details_item">
                 <div>
                     <h6>
                         <span font-bold="normal">click here to <a href="javascript:void(0);"  ng-click="page.model.showprofilepopup('empCustlogin');">Customer site login</a></span>
-                        <!--ng-click="page.model.CustLogin(item.ProfileID);"-->
                     </h6>
                 </div>
                 <br>
-                <div ng-if="item.SeenbyEmp">
-                    <h6>
 
-                        <div class="edit_page_details_item_desc clearfix">
-
-                            <h6>
-                                <span id="lblEducationGradeText" font-bold="true">Date</span>
-                            </h6>
-                            <h5>
-                                <span class="red">{{item.SeenbyEmpdate|date:'dd MMM yyyy'}}</span>
-                            </h5>
-
-                        </div>
-                        <div class="edit_page_details_item_desc clearfix">
-
-                            <h6>
-                                <span id="lblprofessionGradeText" font-bold="true">Previous login Employee</span>
-                            </h6>
-                            <h5>
-                                <span class="red">{{item.SeenbyEmp}}</span>
-                            </h5>
-
-                        </div>
-                        <div class="edit_page_details_item_desc clearfix">
-
-                            <h6>
-                                <span id="lblprofessionGradeText" font-bold="true">reason for login</span>
-                            </h6>
-                            <h5>
-                                <span class="red">{{item.EmpNarration}}</span>
-                            </h5>
-
-                        </div>
-
-                    </h6>
+                <div ng-if="page.model.CustLoginArr[0].SeenbyEmp!==null">
+                    <div><label class="col-lg-4">Total Records : {{page.model.sdata.length}}</label>Previous logged Employees</div>
+                    <!--<complex-grid model="page.model" config="page.model"></complex-grid>-->
+                    <single-grid model="page.model" config="page.model"></single-grid>
                 </div>
-
             </div>
         </div>
-
     </div>
     <script type="text/ng-template" id="commonProfileSettingpopup.html">
         <slide-popup model="page.model" eventtype="page.model.eventType">
         </slide-popup>
     </script>
-
-
 </div>
+
+<style>
+    th.SeenbyEmp.headerStyles {
+        width: 172px;
+    }
+    
+    th.SeenbyEmpdate.headerStyles {
+        width: 227px;
+    }
+</style>
+
+
 <script src="build/js/custom.js" type="text/javascript"></script>

@@ -16,6 +16,11 @@
             },
             assignsubmit: function(obj) {
                 return http.post(app.apiroot + 'EmployeeReportPage/Assignprofiles', obj);
+            },
+            getDuplicatProfiles: function(profileid) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getDuplicateProfiles', {
+                    params: { profileID: profileid }
+                });
             }
         };
     }

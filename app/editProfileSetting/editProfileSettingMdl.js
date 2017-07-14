@@ -2,8 +2,9 @@
     'use strict';
 
 
-    function factory(editProfileSettingService, authSvc, alertss, commonFactory, uibModal, stateParams, SelectBindServiceApp) {
+    function factory(editProfileSettingService, authSvc, alertss, commonFactory, uibModal, stateParams, SelectBindServiceApp, gridConfig) {
         var model = {};
+        model = gridConfig;
         model.scope = {};
         // var logincustid = authSvc.getCustId();
         var custID = stateParams.CustID;
@@ -16,6 +17,15 @@
         model.csObj = {};
         model.psdObj = {};
         model.gradeObj = {};
+
+        model.showsearchrows = true;
+        model.showsearch = false;
+        model.showpaging = false;
+        model.showClientpaging = false;
+        model.myprofileexcel = false;
+        model.normalexcel = false;
+        model.gridTableshow = false;
+
         model.init = function() {
             model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             custID = stateParams.CustID;
@@ -29,17 +39,26 @@
                     model.ConfidentialArr = response.data[1].length > 0 ? JSON.parse(response.data[1]) : [];
                     model.profileDisplayArr = response.data[2].length > 0 ? JSON.parse(response.data[2]) : [];
                     if (response.data[3] !== undefined && response.data[3].length > 0) {
-                        debugger;
+                        model.gridTableshow = true;
+                        model.columns = [
+                            { text: 'Employee name', key: 'SeenbyEmp', type: 'label' },
+                            { text: 'Date', key: 'SeenbyEmpdate', type: 'label' },
+                            { text: 'reason for login', key: 'EmpNarration', type: 'label' }
+                        ];
 
                         var arr = response.data[3] ? JSON.parse(response.data[3]) : [];
                         if (arr[0].TableName === 'ProfileGrades') {
                             model.gradeSelectionArr = response.data[3] !== undefined && response.data[3].length > 0 ? JSON.parse(response.data[3]) : [];
                             model.CustLoginArr = response.data[4] !== undefined && response.data[4].length > 0 ? JSON.parse(response.data[4]) : [];
+                            model.sdata = response.data[4] !== undefined && response.data[4].length > 0 ? JSON.parse(response.data[4]) : [];
                         } else {
-                            model.CustLoginArr = response.data[3] !== undefined && response.data[3].length > 0 ? JSON.parse(response.data[3]) : [];
+                            model.sdata = model.CustLoginArr = response.data[3] !== undefined && response.data[3].length > 0 ? JSON.parse(response.data[3]) : [];
                         }
-                        console.log('ddddddd');
-                        console.log(model.CustLoginArr);
+                        if (model.sdata.length > 0) {
+                            _.map(model.sdata, function(item) {
+                                item.SeenbyEmpdate = moment(item.SeenbyEmpdate).format('DD-MM-YYYY hh:mm:ss');
+                            });
+                        }
                     }
                 }
             });
@@ -91,6 +110,7 @@
                     }
                     break;
                 case 'empCustlogin':
+                    model.txtReasn = '';
                     model.popupdata = model.reason;
                     model.popupHeader = 'Reason for Customer login';
                     break;
@@ -243,6 +263,6 @@
         .module('Kaakateeya')
         .factory('editProfileSettingModel', factory);
 
-    factory.$inject = ['editProfileSettingService', 'authSvc', 'alert', 'commonFactory', '$uibModal', '$stateParams', 'SelectBindServiceApp'];
+    factory.$inject = ['editProfileSettingService', 'authSvc', 'alert', 'commonFactory', '$uibModal', '$stateParams', 'SelectBindServiceApp', 'single-grid-config'];
 
 })(angular);
