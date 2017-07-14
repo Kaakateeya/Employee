@@ -2,11 +2,14 @@
     'use strict';
     angular
         .module('Kaakateeya')
-        .factory('ticketCreationService', ['$http', function factory(http) {
+        .factory('ticketCreationService', ['$http', function(http) {
             return {
-                test: function() {
-                    return http.get(app.apiroot + 'test', { params: '' });
-                }
+                ticketcreation: function(obj) {
+                    return http.post(app.apiroot + 'StaticPages/InsertTicketInfo', obj);
+                },
+                getticketinformation: function(obj) {
+                    return http.post(app.apiroot + 'EmployeeReportPage/Guestticketcreation', obj);
+                },
             };
         }]);
 })();

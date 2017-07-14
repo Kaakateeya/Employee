@@ -6,12 +6,12 @@
                     <h4 class="panel-title"> Ticket creation
                     </h4>
                 </div>
-                <form accessible-form name="ticketcreationform" novalidate role="form" ng-submit="ticketcreationform.$valid  && model.tcicketcreationsubmit();">
+                <form accessible-form name="ticketcreationform" novalidate role="form" ng-submit="ticketcreationform.$valid  && page.model.ticketcreationsubmit();">
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-4 form-group">
-                                <md-radio-group name="rbtnBasic" layout="row" ng-model="page.model.rbtntype" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                    <md-radio-button value="1" class="md-primary">Profile ID </md-radio-button>
+                                <md-radio-group ng-change="page.model.changetypeofticket()" name="rbtnBasic" layout="row" ng-model="page.model.rbtntype" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="1" class="md-primary">Profile ID</md-radio-button>
                                     <md-radio-button value="2"> Guess Ticket</md-radio-button>
                                 </md-radio-group>
                             </div>
@@ -19,21 +19,29 @@
                         <br>
                         <div class="row">
                             <div class="col-lg-4" ng-show="page.model.rbtntype!=='2' && page.model.rbtntype!=='0'">
-                                <label for="All Profileid" class="control-label">Profile ID</label>
+                                <label for="All Profileid" class="control-label">Profile ID<span style="color: red; margin-left: 3px;">*</span></label>
                                 <div>
-                                    <input name="txtprofileidcheck" ng-required="page.model.rbtntype==='1'?true:false" type="text" class="form-control" maxlength="10" allow-only-numbers ng-model="page.model.txtProfileidticket">
+
+                                    <input name="txtprofileidcheck" ng-required="page.model.rbtntype==='1'?true:false" type="text" class="form-control" maxlength="10" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.txtProfileidticket" ng-keyup="$event.keyCode===13 && page.model.onchangeofcreateticket('profileid')"
+                                        ng-blur="page.model.onchangeofcreateticket('profileid')">
                                 </div>
                                 <div ng-messages="ticketcreationform.txtprofileidcheck.$invalid">
                                     <div style="color: red;font-size: 12px;" ng-if="ticketcreationform.txtprofileidcheck.$invalid && (ticketcreationform.$submitted)">*Required.</div>
                                 </div>
                             </div>
-                            <div class="col-lg-4" ng-show="page.model.rbtntype!=='1'  && page.model.rbtntype!=='0'">
-                                <p>Phone Number</p>
+                            <div class="col-lg-4" ng-show="page.model.rbtntype!=='2' && page.model.rbtntype!=='0'">
+                                <div ng-show="page.model.rbtntype!=='2' && page.model.personalname && page.model.objcustomername!==null && page.model.objcustomername!==''">
+                                    <label><b>Name:</b>{{page.model.objcustomername}} ,<b>Owner:</b>{{page.model.objProfileOwner}} ,<b>Ticket:</b><a  href="javascript:void(0)" style="font-size: 14px;font-weight: bold;" ng-click="page.model.ticketpopup()">{{page.model.objMarketTicketID}}</a></label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4" ng-show="page.model.rbtntype!=='1' && page.model.rbtntype!=='0'">
+                                <p>Phone Number<span style="color: red; margin-left: 3px;">*</span></p>
                                 <div class="controls clearfix">
                                     <div layout-gt-sm="row" class="generalane">
                                         <select name="ddlcountrycode" ng-required="page.model.rbtntype==='2'?true:false" class="smalldropdown" typeofdata="'countryCode'" ng-model="page.model.countrycode" multiselectdropdown>   
                                       </select>
-                                        <input name="txtphonenumber" ng-required="page.model.rbtntype==='2'?true:false" class="form-control" ng-model="page.model.txtphonenumber" maxlength="10" style="width: 188px  !important;margin-left:10px;margin-right:10px;">
+                                        <input ng-keyup="$event.keyCode===13 && page.model.onchangeofcreateticket('phonenumber')" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-blur="page.model.onchangeofcreateticket('phonenumber')" name="txtphonenumber" ng-required="page.model.rbtntype==='2'?true:false"
+                                            class="form-control" ng-model="page.model.txtphonenumber" maxlength="10" style="width: 188px  !important;margin-left:10px;margin-right:10px;">
                                     </div>
                                     <div layout-gt-sm="row" class="generalane">
                                         <div ng-messages="ticketcreationform.ddlcountrycode.$invalid" class="col-lg-4">
@@ -47,7 +55,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4" ng-show="page.model.rbtntype!=='1'  && page.model.rbtntype!=='0'">
-                                <label for="Customername" class="control-label">Customer Name</label>
+                                <label for="Customername" class="control-label">Customer Name<span style="color: red; margin-left: 3px;">*</span></label>
                                 <div>
                                     <input name="txtcustomername" ng-required="page.model.rbtntype==='2'?true:false" type="text" class="form-control" ng-model="page.model.txtcustomername">
                                 </div>
@@ -58,13 +66,16 @@
                                 </div>
                             </div>
                             <div class="col-lg-4" ng-show="page.model.rbtntype!=='1' && page.model.rbtntype!=='0'">
-                                <label for="customeremail" class="control-label">Customer Email</label>
+                                <label for="customeremail" class="control-label">Customer Email<span style="color: red; margin-left: 3px;">*</span></label>
                                 <div>
-                                    <input name="txtcustomeremail" ng-required="page.model.rbtntype==='2'?true:false" type="text" class="form-control" ng-model="page.model.txtcustomermail">
+                                    <input ng-pattern="page.model.emailpattaren" ng-keyup="$event.keyCode===13 && page.model.onchangeofcreateticket('email')" ng-blur="page.model.onchangeofcreateticket('email')" name="txtcustomeremail" ng-required="page.model.rbtntype==='2'?true:false" type="text"
+                                        class="form-control" ng-model="page.model.txtcustomermail">
                                 </div>
                                 <div layout-gt-sm="row" class="generalane">
                                     <div ng-messages="ticketcreationform.txtcustomeremail.$invalid">
-                                        <div style="color: red;font-size: 12px;" ng-if="ticketcreationform.txtcustomeremail.$invalid && (ticketcreationform.$submitted)">*Required.</div>
+
+                                        <div style="color: red;font-size: 12px;" ng-if="ticketcreationform.txtcustomeremail.$invalid && (ticketcreationform.$submitted)">*This is required and enter valid e-mail address.</div>
+
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +83,7 @@
                         <br>
                         <div class="row" ng-show="page.model.rbtntype==='1'|| page.model.rbtntype==='2'">
                             <div class="col-lg-6">
-                                <label for="Message" class="control-label">Message</label>
+                                <label for="Message" class="control-label">Message<span style="color: red; margin-left: 3px;">*</span></label>
                                 <div>
                                     <textarea name="txtmessages" required="" type="text" rows="4" class="form-control" ng-model="page.model.txtMessage"></textarea>
                                 </div>
@@ -84,10 +95,9 @@
                             </div>
                         </div>
                         <br>
-                        <br>
                         <div class="form-group text-center" style="border-top: 1px solid #ddd;padding-top: 1%;">
                             <button type="submit" class="button_custom" style="display:initial;">Submit</button>
-                            <input type="reset" class="button_custom button_custom_reset resetCls" value="Reset" ng-click="page.model.reset();">
+                            <input type="reset" class="button_custom button_custom_reset resetCls" value="Reset" ng-click="page.model.clearallcontrols();">
                         </div>
                         <br>
                     </div>
@@ -96,3 +106,28 @@
         </div>
     </div>
 </div>
+<script type="text/ng-template" id="tiketinforamtion.html">
+    <div class="modal-message modal-danger">
+        <div class="modal-header">
+            <i class="glyphicon glyphicon-fire"></i>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <b style="color:red;">Marketing TicketId already Exist</b>
+            </div>
+            <div class="row">
+                <div ng-show="page.model.objcustomername!==null && page.model.objcustomername!==''?true:false" class="col-lg-12"><label>Name :{{page.model.objcustomername}}</label></div>
+                <div ng-show="page.model.objProfileOwner!==null && page.model.objProfileOwner!==''?true:false" class="col-lg-12"><label>Owner :{{page.model.objProfileOwner}}</label></div>
+                <div class="col-lg-12"><label>Ticket ID :</label><a style="font-size: 14px;font-weight: bold;" href="javascript:void(0)" ng-click="page.model.ticketpopup()">{{page.model.objMarketTicketID}}</a></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-default" ng-click="page.model.close()">Close</button>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="market.html">
+    <div class="modal-body">
+        <market-tickethistory ticketid="page.model.objTicketID"></market-tickethistory>
+    </div>
+</script>
