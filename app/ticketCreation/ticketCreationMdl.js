@@ -7,6 +7,10 @@
                 var model = {};
                 model.emailpattaren = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/i;
                 model.onchangeofcreateticket = function(type) {
+                    if (model.ticketpopupflag === 1) {
+                        modelpopupopenmethod.closepopuppoptopopup();
+                        model.ticketpopupflag = 0;
+                    }
                     model.personalname = false;
                     var obj;
                     if (type === 'profileid') {
@@ -56,6 +60,7 @@
                                 } else if (model.objProfileStatusID === 54 && model.objMarketTicketID !== null) {
                                     //show popup here
                                     model.personalname = true;
+                                    model.ticketpopupflag = 1;
                                     modelpopupopenmethod.showPopupphotopoup('tiketinforamtion.html', model.scope, 'md', "modalclassdashboardphotopopup123");
                                 } else {
                                     alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Profileid Does Not Exist', 4000);

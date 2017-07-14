@@ -79,8 +79,8 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                     scope: scope,
                     size: size,
                     backdrop: 'static',
-                    windowClass: classp
-                        // keyboard: false
+                    windowClass: classp,
+                    keyboard: classp === 'modalclassdashboardphotopopup123' ? false : true
                 });
             },
 
