@@ -23,17 +23,15 @@
               <div ng-messages="norecordsform.customernarration.$invalid">
                <div style="color: red;font-size: 12px;" ng-if="norecordsform.customernarration.$invalid && (norecordsform.$submitted)">*Required.</div>
                </div>
-    
-    
       </div>
          <div class="clearfix"></div>
     </div>
     </div>
     <div class="modal-footer">
         <div>
-             <button type="submit" class="button_custom pull-right">Submit</button>
-            <!--<md-button class='md-raised md-warn md-hue-2' ng-click="model.nodatafoundrecords()">Submit</md-button>-->
+         <a href="Registration" class="newReg">Customer New Registration</a>    
             <md-button class='md-raised md-hue-1' ng-click='model.close()'>Cancel</md-button>
+             <button type="submit" class="button_custom pull-right">Submit</button>
         </div>
     </div>
     </form>

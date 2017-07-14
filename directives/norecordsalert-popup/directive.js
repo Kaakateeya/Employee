@@ -18,6 +18,9 @@
             scope.model.Allvalues = {};
             scope.model.Allvalues = scope.models;
             scope.model.scope = scope;
+            scope.model.Customername = '';
+            scope.model.customernarration = '';
+
 
 
         }

@@ -40,7 +40,8 @@
 
                 model.ProfileIdTemplateDUrl = function(row) {
                     var paidstatusclass = row.IsPaidMember === 372 ? 'paidclass' : 'unpaid';
-                    var paid = row.ProfileID !== undefined ? "<a href='javascript:void(0);' ng-click='model.ViewProfile(" + JSON.stringify(row.ProfileID) + ")' class='" + paidstatusclass + "'>" + row.ProfileID + "</a><br><a href='javascript:void(0);' ng-click='model.getDuplicate(" + JSON.stringify(row.ProfileID) + ");'>Duplicate profiles</a>" : "";
+                    // <br><a href='javascript:void(0);' ng-click='model.getDuplicate(" + JSON.stringify(row.ProfileID) + ");'>Duplicate profiles</a>
+                    var paid = row.ProfileID !== undefined ? "<a href='javascript:void(0);' ng-click='model.ViewProfile(" + JSON.stringify(row.ProfileID) + ")' class='" + paidstatusclass + "'>" + row.ProfileID + "</a>" : "";
                     return paid;
                 };
 
