@@ -112,7 +112,7 @@
                 { value: 57, name: 'Settled' },
                 { value: 56, name: 'Deleted' },
                 { value: 55, name: 'Inactive' },
-                // { value: 395, name: 'MMSerious' }
+                { value: 395, name: 'MMSerious' }
             ];
             model.arrayToString = function(string) {
                 return string !== null ? (string.split(',')).map(Number) : null;
@@ -139,11 +139,17 @@
             };
 
             model.profileownerMethod = function(row) {
-                var type = row.ProfileStatusID === 57 || row.ProfileStatusID === 393 ? 'S' : (row.ProfileStatusID === 56 || row.ProfileStatusID === 394 ? 'D' : (row.ProfileStatusID === 55 ? 'I' : ''));
-                ViewAllCustomerService.SettleDeleteInactive(row.CustID, type).then(function(response) {
-                    model.settleArr = JSON.parse(response.data[0])[0];
-                    model.typeOfProfile = type;
-                });
+                var type = row.ProfileStatusID === 57 || row.ProfileStatusID === 393 ? 'S' : (row.ProfileStatusID === 56 || row.ProfileStatusID === 394 ? 'D' : (row.ProfileStatusID === 55 ? 'I' : (row.ProfileStatusID === 395 ? 'M' : '')));
+                model.typeOfProfile = type;
+                if (type === 'M') {
+                    ViewAllCustomerService.geMMseriesData(row.ProfileID, model.empid).then(function(response) {
+                        model.MMsettleArr = (response.data[0]);
+                    });
+                } else {
+                    ViewAllCustomerService.SettleDeleteInactive(row.CustID, type).then(function(response) {
+                        model.settleArr = JSON.parse(response.data[0])[0];
+                    });
+                }
                 modelpopupopenmethod.showPopup('settlePopup.html', model.scope, 'lg', 'SettleDelete');
             };
             model.closepopup = function() {
@@ -312,6 +318,15 @@
             model.destroy = function() {
                 configslide.reset();
             };
+
+            model.getMatchMeetmgData = function(profileID) {
+
+
+            };
+
+
+
+
             return model.init();
         }]);
 

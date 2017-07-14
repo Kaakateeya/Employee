@@ -16,6 +16,9 @@
             },
             SettleDeleteInactive: function(custID, typeOfData) {
                 return http.get(app.apiroot + 'CustomerPersonal/getViewAllCustomersSettledeleteinfo', { params: { CustID: custID, typeofdata: typeOfData } });
+            },
+            geMMseriesData: function(PrfileID, Empid) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getmmSeriesData', { params: { profileID: PrfileID, empid: Empid } });
             }
         };
     }

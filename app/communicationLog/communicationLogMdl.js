@@ -266,8 +266,8 @@
                     { text: 'LastName', key: 'LastName', type: 'label' },
                     { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' },
                     { text: 'MeetingDate', key: 'MeetingDate', type: 'label' }
-
                 ];
+
                 model.receivedarraybind = function(type) {
                     switch (type) {
                         case "V":
