@@ -34,7 +34,7 @@
             model.lockscreen = function() {
                 model.lock = true;
                 model.passwordemployee = "";
-                modelpopupopenmethod.showPopupphotopoup('loginContent.html', scope, 'md', "modalclassdashboardphotopopuplogin");
+                modelpopupopenmethod.showPopupphotopoup('loginContent.html', model.scope, 'md', "modalclassdashboardphotopopuplogin");
             };
             model.close = function(type) {
                 modelpopupopenmethod.closepopuppoptopopup();
