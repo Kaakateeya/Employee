@@ -206,7 +206,7 @@
                                         <div class="row clear">
                                             <label for="user">
                                               Current Password:</label>
-                                            <input type="Password" class="text" ng-model="head.model.currentpassword" name="currentpassword" required/>
+                                            <input ng-keyup="$event.keyCode===13 && head.model.chkpassword(head.model.currentpassword)" ng-blur="head.model.chkpassword(head.model.currentpassword)" type="Password" class="text" ng-model="head.model.currentpassword" name="currentpassword" required/>
                                             <div ng-messages="changepasswordform.currentpassword.$invalid">
                                                 <div style="color: red;font-size: 12px;" ng-if="changepasswordform.currentpassword.$invalid && (changepasswordform.$submitted)">*Required.</div>
                                             </div>
@@ -230,9 +230,11 @@
                                                 <div style="color: red;font-size: 12px;" ng-if="changepasswordform.confirmpassword.$invalid && (changepasswordform.$submitted)">*Required.</div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="button">Change Password</button>
+                                        <div class="row">
+                                            <button type="submit" class="button col-lg-5">Change Password</button>
+                                            <button class="button col-lg-4" ng-click="head.model.close()">Cancel</button>
+                                        </div>
                                     </div>
-
                                 </div>
                                 <div class="login-footer">
                                     <div class="row">
@@ -267,5 +269,9 @@
         .modal-open .modal {
             overflow-x: hidden;
             overflow-y: hidden;
+        }
+        
+        .modalclassdashboardphotopopup {
+            z-index: 9999999999 !important;
         }
     </style>
