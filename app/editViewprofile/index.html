@@ -192,6 +192,40 @@
                     </tbody>
                 </table>
             </div>
+
+
+            <div class="SetlemainCls" id="mmSeries" ng-if="page.model.typeOfProfile==='M'">
+                <table class="table">
+                    <thead style="background-color: #fdca52;">
+                        <tr>
+                            <th>ProfileID</th>
+                            <th>Name</th>
+                            <th>LastName</th>
+                            <th>ProfileOwner</th>
+                            <th>MeetingDate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in page.model.MMsettleArr">
+                            <td>{{item.ProfileID}}</td>
+                            <td>{{item.FirstName}}</td>
+                            <td>{{item.LastName}}</td>
+                            <td>{{item.EmpName}}</td>
+                            <td>{{item.MeetingDate}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+
+
+
+
+
         </div>
     </script>
     <script type="text/ng-template" id="myprofileheader.html">
