@@ -263,9 +263,11 @@
                         model.dupTotalRecords = response.data[0].length > 0 ? (response.data[0])[0].SimilarCount : (response.data[1].length > 0 ? (response.data[1])[0].SimilarCount : (response.data[2].length > 0 ? (response.data[2])[0].SimilarCount : 0));
                     });
                 };
+
                 model.closeAssign = function() {
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
+
                 return model;
             }
         ]);

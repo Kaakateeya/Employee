@@ -89,7 +89,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'ticketCreation', name: 'base.ticketCreation', url: '/ticketCreationpage' },
             { routeName: 'updateMacAdress', name: 'base.updateMacAdress', url: '/updateMacAdresspage' }
 
-
         ];
         $ocLazyLoadProvider.config({
             debug: true
