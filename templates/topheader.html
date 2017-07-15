@@ -20,6 +20,12 @@
                                     <span class="glyphicon glyphicon-eye-close pull-right" aria-hidden="true"></span>Lock
                                 </a>
                             </li>
+                            <md-divider></md-divider>
+                            <li>
+                                <a style="color: white;" data-toggle="tooltip" data-placement="top" title="Lock" href="javascript:void(0)" ng-click="head.model.changepasswordpopup()">
+                                  Change Password
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -63,8 +69,6 @@
                     </li>
                     <li class="has-sub"><a href="javascript:void(0)"> Search </a>
                         <ul>
-                            <!--<li><a href="search/0/0">General Search</a></li>-->
-                            <!--<li><a href="search/1/0">Advanced search</a></li>-->
                             <li><a href="javascript:void(0);" ng-click="head.model.searchredirect(0,0);">General Search</a></li>
                             <li><a href="javascript:void(0);" ng-click="head.model.searchredirect(1,0);">Advanced search</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">Keyword Search</a></li>
@@ -157,6 +161,76 @@
                                             <button ng-click="page.model.lockscreendiv=true" class="button">Unlock</button>
                                         </div>
                                     </div>
+                                    <div class="pull-right"> {{head.model.CurrentDate | date:'dd MMMM yyyy hh.mm.ss'}},{{head.model.CurrentDate |date:'EEEE'}}</div>
+                                </div>
+                                <div class="login-footer">
+                                    <div class="row">
+                                        <div class="col-lg-3  col-lg-offset-1">
+                                            <label style="color:#ffffff;font-size: 14px;">AP:</label>
+                                            <label style="color:#ffffff;font-size: 14px;">{{head.model.logincounts[0].LoggedCount!==undefind?head.model.logincounts[0].LoggedCount:0}}-{{head.model.logincounts[0].EmpCount!==undefined?head.model.logincounts[0].EmpCount:0}}</label>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label style="color:#ffffff;font-size: 14px;">TN:</label>
+                                            <label style="color:#ffffff;font-size: 14px;">{{head.model.logincounts[1].LoggedCount!==undefined?head.model.logincounts[1].LoggedCount:0}}-{{head.model.logincounts[1].EmpCount!==undefined?head.model.logincounts[1].EmpCount:0}}</label>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label style="color:#ffffff;font-size: 14px;">KA:</label>
+                                            <label style="color:#ffffff;font-size: 14px;">{{head.model.logincounts[2].LoggedCount!==undefined?head.model.logincounts[2].LoggedCount:0}}-{{head.model.logincounts[2].EmpCount!==undefined?head.model.logincounts[2].EmpCount:0}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </script>
+
+    <script type="text/ng-template" id="changepassword.html">
+        <div id="loginnewidcchangepassword" style='z-index: 99999'>
+            <div class="login">
+                <div class="login-box">
+                    <div class="login-border">
+                        <div class="login-style">
+                            <div class="login-header">
+                                <div class="logo clear">
+                                    <img src="src/images/1234 yellow01.png" style="width: 90px;height: 76px;" alt="" class="picture" />
+                                    <span class="textlogo"><span class="title">Kaakateeya Marraiages</span> </span>
+                                </div>
+                            </div>
+                            <form name="changepasswordform" novalidate role="form" ng-submit="changepasswordform.$valid  && head.model.changepassword(head);">
+                                <div class="login-inside">
+                                    <div class="login-data">
+                                        <div class="row clear">
+                                            <label for="user">
+                                              Current Password:</label>
+                                            <input type="Password" class="text" ng-model="head.model.currentpassword" name="currentpassword" required/>
+                                            <div ng-messages="changepasswordform.currentpassword.$invalid">
+                                                <div style="color: red;font-size: 12px;" ng-if="changepasswordform.currentpassword.$invalid && (changepasswordform.$submitted)">*Required.</div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row clear">
+                                            <label for="password">
+                                         New Password:
+                                          </label>
+                                            <input ng-focus="true" type="Password" class="text" ng-model="head.model.newpassword" name="newpassword" required>
+                                            <div ng-messages="changepasswordform.newpassword.$invalid">
+                                                <div style="color: red;font-size: 12px;" ng-if="changepasswordform.newpassword.$invalid && (changepasswordform.$submitted)">*Required.</div>
+                                            </div>
+                                        </div>
+                                        <div class="row clear">
+                                            <label for="password">
+                                         Confirm Password:
+                                          </label>
+                                            <input compare-to="head.model.newpassword" ng-focus="true" type="Password" class="text" ng-model="head.model.confirmpassword" name="confirmpassword" required>
+                                            <div ng-messages="changepasswordform.confirmpassword.$invalid">
+                                                <div style="color: red;font-size: 12px;" ng-if="changepasswordform.confirmpassword.$invalid && (changepasswordform.$submitted)">*Required.</div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="button">Change Password</button>
+                                    </div>
+
                                     <div class="pull-right"> {{head.model.CurrentDate | date:'dd MMMM yyyy hh.mm.ss'}},{{head.model.CurrentDate |date:'EEEE'}}</div>
                                 </div>
                                 <div class="login-footer">

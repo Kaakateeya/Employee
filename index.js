@@ -180,7 +180,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/editFooter.js',
                         'directives/fixedHeader.js',
                         'directives/allowOnlyNumbers.js',
-                        'directives/allowAdminManagement.js'
+                        'directives/allowAdminManagement.js',
+                        'directives/comparePassword.js'
                     ]
                 },
                 {

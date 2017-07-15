@@ -14,6 +14,7 @@
                      model.scope = scope;
                      model.personalname = false;
                      model.clearallcontrols();
+
                  };
                  vm.init();
              }

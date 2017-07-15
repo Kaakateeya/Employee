@@ -93,6 +93,12 @@
             model.searchredirect = function(id, Profileid) {
                 $state.go("base.searchpage", { id: id, Profileid: Profileid }, { reload: true });
             };
+            model.changepassword = function(form) {
+
+            };
+            model.changepasswordpopup = function() {
+                modelpopupopenmethod.showPopupphotopoup('changepassword.html', model.scope, 'md', "modalclassdashboardphotopopuplogin");
+            };
             return model.init();
         }]);
 

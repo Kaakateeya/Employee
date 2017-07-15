@@ -551,4 +551,333 @@ select:focus:invalid:focus {
 .close {
   opacity: .9; }
 
+#loginnewidcchangepassword .login {
+  background: none;
+  background: url("images/header.png") top left repeat-x;
+  padding-top: 16px; }
+#loginnewidcchangepassword .clear:after {
+  content: ".";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+  visibility: hidden; }
+#loginnewidcchangepassword .clean-margin {
+  margin: 0px !important; }
+#loginnewidcchangepassword .clean-padding {
+  padding: 0px !important; }
+#loginnewidcchangepassword ul.standard.clean-padding {
+  padding: 0 0 0 16px !important; }
+#loginnewidcchangepassword ol.standard.clean-padding {
+  padding: 0 0 0 22px !important; }
+#loginnewidcchangepassword .hidden {
+  display: none; }
+#loginnewidcchangepassword .display {
+  display: block; }
+#loginnewidcchangepassword .half {
+  width: 48% !important; }
+#loginnewidcchangepassword .trio {
+  width: 31% !important; }
+#loginnewidcchangepassword .quad {
+  width: 23% !important; }
+#loginnewidcchangepassword .full {
+  width: 100%; }
+#loginnewidcchangepassword .size-80 {
+  width: 80px; }
+#loginnewidcchangepassword .size-120 {
+  width: 120px; }
+#loginnewidcchangepassword .size-150 {
+  width: 150px; }
+#loginnewidcchangepassword .size-170 {
+  width: 170px; }
+#loginnewidcchangepassword .size-200 {
+  width: 200px; }
+#loginnewidcchangepassword .fl {
+  float: left; }
+#loginnewidcchangepassword .fr {
+  float: right; }
+#loginnewidcchangepassword .fl-space {
+  float: left;
+  margin-right: 5px; }
+#loginnewidcchangepassword .fr-space {
+  float: right;
+  margin-left: 5px; }
+#loginnewidcchangepassword .fl-space2 {
+  float: left;
+  margin-right: 10px; }
+#loginnewidcchangepassword .fr-space2 {
+  float: right;
+  margin-left: 10px; }
+#loginnewidcchangepassword .bt-space0 {
+  margin-bottom: 0px !important; }
+#loginnewidcchangepassword .bt-space5 {
+  margin-bottom: 5px !important; }
+#loginnewidcchangepassword .bt-space10 {
+  margin-bottom: 10px !important; }
+#loginnewidcchangepassword .bt-space15 {
+  margin-bottom: 0px !important; }
+#loginnewidcchangepassword .bt-space20 {
+  margin-bottom: 20px !important; }
+#loginnewidcchangepassword .bt-space30 {
+  margin-bottom: 30px !important; }
+#loginnewidcchangepassword .bt-space40 {
+  margin-bottom: 40px !important; }
+#loginnewidcchangepassword .ln-normal {
+  line-height: normal !important; }
+#loginnewidcchangepassword .ln-22 {
+  line-height: 22px !important; }
+#loginnewidcchangepassword .left {
+  text-align: left !important; }
+#loginnewidcchangepassword .center {
+  text-align: center !important;
+  margin: auto !important; }
+#loginnewidcchangepassword .right {
+  text-align: right !important; }
+#loginnewidcchangepassword .block {
+  text-align: justify; }
+#loginnewidcchangepassword img.block {
+  display: block; }
+#loginnewidcchangepassword a {
+  color: #00A5C4;
+  text-decoration: none; }
+#loginnewidcchangepassword a:hover {
+  color: #00A5C4;
+  text-decoration: underline; }
+#loginnewidcchangepassword .button {
+  display: inline-block;
+  line-height: 16px;
+  border-width: 0px;
+  font-size: 11px;
+  font-family: arial;
+  color: #FFFFFF;
+  font-weight: bold;
+  cursor: pointer;
+  background: url("images/button_glas1.png") center center repeat-x #333333;
+  padding: 3px 13px 3px 13px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  border-radius: 3px 3px 3px 3px;
+  text-align: center; }
+#loginnewidcchangepassword input.button {
+  display: inline-block;
+  line-height: 13px;
+  /* IE8 hack */
+  line-height: 16px\0;
+  border-width: 0px;
+  font-size: 11px;
+  font-family: arial;
+  color: #FFFFFF;
+  font-weight: bold;
+  cursor: pointer;
+  background: url("images/button_glas1.png") center center repeat-x #333333;
+  padding: 3px 10px 3px 10px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  border-radius: 3px 3px 3px 3px; }
+#loginnewidcchangepassword .button:hover {
+  color: #FFFFFF;
+  text-decoration: none; }
+#loginnewidcchangepassword .button.green {
+  background-color: #4DB800; }
+#loginnewidcchangepassword .button.red {
+  background-color: #D80017; }
+#loginnewidcchangepassword .button.blue {
+  background-color: #00A5C4; }
+#loginnewidcchangepassword .button.grey {
+  background-color: #BBBBBB; }
+#loginnewidcchangepassword small {
+  font-size: 11px;
+  line-height: 14px;
+  display: block; }
+#loginnewidcchangepassword code {
+  font-family: "Courier New", Courier, monospace, sans-serif; }
+#loginnewidcchangepassword q {
+  background: url("images/quote.png") no-repeat 7px 8px #FFFFFF;
+  display: block;
+  font-family: "Times New Roman", arial;
+  font-size: 14px;
+  line-height: 18px;
+  font-style: normal;
+  min-height: 42px;
+  padding: 10px 10px 10px 32px;
+  quotes: "" "";
+  font-style: italic;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  border-radius: 3px 3px 3px 3px; }
+#loginnewidcchangepassword q cite {
+  color: #959595;
+  display: block;
+  font-size: 12px;
+  padding-top: 5px;
+  font-family: arial; }
+#loginnewidcchangepassword del {
+  color: #FF001C;
+  text-decoration: line-through; }
+#loginnewidcchangepassword .rule {
+  padding-top: 2px;
+  padding-bottom: 20px;
+  background: url("images/rule.gif") 0px 0px repeat-x; }
+#loginnewidcchangepassword .rule2 {
+  padding-top: 4px;
+  padding-bottom: 20px;
+  background: url("images/rule2.gif") 0px 0px repeat-x; }
+#loginnewidcchangepassword .sidebar .rule {
+  padding-bottom: 15px; }
+#loginnewidcchangepassword .cr-help {
+  cursor: help; }
+#loginnewidcchangepassword .login-box {
+  width: 550px;
+  margin: 0px auto;
+  margin-bottom: 30px;
+  background: url("images/bck_white_10.png");
+  border: 1px solid #666666;
+  text-align: left;
+  padding: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; }
+#loginnewidcchangepassword .login-border {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; }
+#loginnewidcchangepassword .login-style {
+  border: 2px solid #FFFFFF;
+  background: url("images/login.jpg") center center no-repeat;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; }
+#loginnewidcchangepassword .login-header {
+  height: 71px;
+  background: url("images/login_header.png") left bottom no-repeat;
+  padding: 15px 15px 0px 15px;
+  -moz-border-radius: 3px 3px 0px 0px;
+  -webkit-border-radius: 3px 3px 0px 0px;
+  border-radius: 3px 3px 0px 0px; }
+#loginnewidcchangepassword .login-header .logo {
+  width: auto;
+  margin: 0px;
+  padding-top: 0px; }
+#loginnewidcchangepassword .login-header .logo .text {
+  color: #333333; }
+#loginnewidcchangepassword .login-inside {
+  height: 240px;
+  padding-top: 35px;
+  border-bottom: 1px solid #bbbbbb;
+  background: url("images/gear.png") 325px bottom no-repeat; }
+#loginnewidcchangepassword .login-inside p {
+  text-align: center;
+  padding-bottom: 10px; }
+#loginnewidcchangepassword .login-data {
+  width: 362px;
+  padding: 22px 9px 17px 58px;
+  background: url("images/bck_white_50.png");
+  margin: 0px auto;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  border-radius: 3px 3px 3px 3px;
+  margin-bottom: 20px; }
+#loginnewidcchangepassword .login-data label {
+  display: block;
+  width: 130px;
+  float: left;
+  line-height: 22px;
+  text-align: right;
+  margin-right: 10px; }
+#loginnewidcchangepassword .login-data input.text {
+  width: 140px; }
+#loginnewidcchangepassword .login-data .row {
+  padding-bottom: 10px; }
+#loginnewidcchangepassword .login-data .button {
+  margin-left: 80px; }
+#loginnewidcchangepassword .login-footer {
+  border-top: 1px solid #FFFFFF;
+  background: url("images/bck_black_70.png");
+  height: 22px;
+  padding: 9px 15px 23px 16px;
+  -moz-border-radius: 0px 0px 3px 3px;
+  -webkit-border-radius: 0px 0px 3px 3px;
+  border-radius: 0px 0px 3px 3px; }
+#loginnewidcchangepassword .login-footer .remember {
+  color: #FFFFFF;
+  line-height: 22px;
+  display: block;
+  float: left;
+  font-weight: bold; }
+#loginnewidcchangepassword .login-footer .remember label {
+  margin-left: 3px; }
+#loginnewidcchangepassword .login-links {
+  color: #bbbbbb;
+  font-size: 12px;
+  margin-left: 31%; }
+#loginnewidcchangepassword .login-links strong {
+  font-weight: normal;
+  color: #FFFFFF; }
+#loginnewidcchangepassword .login-links a {
+  color: #FFFFFF;
+  text-decoration: none; }
+#loginnewidcchangepassword .login-links a:hover {
+  color: #FFFFFF;
+  text-decoration: underline; }
+#loginnewidcchangepassword .pagesize {
+  width: 1000px;
+  margin: 0px auto;
+  text-align: left; }
+#loginnewidcchangepassword .pagetop {
+  width: 100%;
+  min-width: 1000px;
+  background: url("images/header.png") top center repeat-x #333333;
+  border-bottom: 4px solid #55CC00;
+  position: relative;
+  z-index: 100; }
+#loginnewidcchangepassword .head {
+  padding: 0px 0px 0px 0px;
+  background: url("images/gear.png") 500px bottom no-repeat; }
+#loginnewidcchangepassword .head_top {
+  position: relative;
+  min-height: 114px; }
+#loginnewidcchangepassword .main-wrap {
+  width: 100%;
+  padding-top: 10px; }
+#loginnewidcchangepassword .page {
+  padding-bottom: 50px; }
+#loginnewidcchangepassword .logo {
+  padding-top: 20px; }
+#loginnewidcchangepassword .logo a {
+  text-decoration: none; }
+#loginnewidcchangepassword .logo .picture {
+  float: left;
+  margin-right: 10px; }
+#loginnewidcchangepassword .logo .textlogo {
+  float: left; }
+#loginnewidcchangepassword .logo .title {
+  display: block;
+  font-family: arial;
+  font-size: 31px;
+  color: #bf2b2b;
+  font-weight: bold;
+  margin-top: 5px;
+  letter-spacing: -0.02em; }
+#loginnewidcchangepassword .logo .text {
+  display: block;
+  font-weight: bold;
+  color: #BBBBBB;
+  position: relative;
+  top: -2px; }
+#loginnewidcchangepassword .breadcrumb {
+  width: 100%;
+  height: 29px;
+  background: url("images/breadcrumb.png") top left repeat-x; }
+#loginnewidcchangepassword .breadcrumb .bread-links {
+  line-height: 26px;
+  font-size: 11px; }
+#loginnewidcchangepassword .breadcrumb li {
+  float: left;
+  margin-right: 5px; }
+#loginnewidcchangepassword .breadcrumb li.first {
+  padding-left: 16px;
+  background: url("images/ball_yellow_13.png") 0px 7px no-repeat; }
+#loginnewidcchangepassword .breadcrumb li span {
+  padding-left: 5px; }
+
 /*# sourceMappingURL=mainstyles.css.map */

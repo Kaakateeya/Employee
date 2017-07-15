@@ -54,22 +54,29 @@
                             model.objMarketTicketID = response.data[0][0].MarketTicketID;
                             model.objcustomermail = response.data[0][0].Email;
                             if (type === 'profileid') {
-                                if (model.objProfileStatusID === 54 && model.objMarketTicketID === null) {
+                                if (model.objMarketTicketID === null) {
                                     model.personalname = true;
                                     //ticket information show here
-                                } else if (model.objProfileStatusID === 54 && model.objMarketTicketID !== null) {
+                                } else if (model.objMarketTicketID !== null) {
                                     //show popup here
-                                    model.personalname = true;
+                                    model.personalname = false;
                                     model.ticketpopupflag = 1;
+                                    model.txtProfileidticket = "";
                                     modelpopupopenmethod.showPopupphotopoup('tiketinforamtion.html', model.scope, 'md', "modalclassdashboardphotopopup123");
                                 } else {
                                     alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Profileid Does Not Exist', 4000);
                                 }
                             } else {
-                                if (model.objProfileStatusID === 54 && model.objMarketTicketID === null) {
+                                if (model.objMarketTicketID === null) {
                                     //ticket information show here
-                                } else if (model.objProfileStatusID === 54 && model.objMarketTicketID !== null) {
+                                } else if (model.objMarketTicketID !== null) {
                                     //show popup here
+                                    if (type === "email") {
+                                        model.txtcustomermail = "";
+                                    } else {
+                                        model.txtphonenumber = "";
+                                        model.countrycode = "1";
+                                    }
                                     modelpopupopenmethod.showPopupphotopoup('tiketinforamtion.html', model.scope, 'md', "modalclassdashboardphotopopup123");
 
                                 } else {}
@@ -90,7 +97,7 @@
                 };
                 model.clearallcontrols = function() {
                     model.txtProfileidticket = "";
-                    model.countrycode = "";
+                    model.countrycode = "1";
                     model.txtphonenumber = "";
                     model.txtcustomername = "";
                     model.txtcustomermail = "";
