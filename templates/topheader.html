@@ -133,7 +133,7 @@
                                     <span class="textlogo"><span class="title">Kaakateeya Marraiages</span> </span>
                                 </div>
                             </div>
-                            <form name="loginForm" novalidate ng-submit="loginForm.$valid?head.model.loginsubmit(head):''">
+                            <form name="loginForm" role="form" novalidate ng-submit="loginForm.$valid && head.model.loginsubmit(head)">
                                 <div class="login-inside">
                                     <div class="login-data" ng-hide="!page.model.lockscreendiv">
                                         <div class="row clear">
@@ -146,7 +146,9 @@
                                            Password:
                                           </label>
                                             <input ng-focus="true" type="Password" class="text" ng-model="head.model.passwordemployee" name="passwordemployee" required>
-                                            <div ng-if="loginForm.passwordemployee.$dirty && loginForm.passwordemployee.$error.required" ng-message="true">Required</div>
+                                            <div ng-messages="loginForm.passwordemployee.$invalid">
+                                                <div style="color: red;font-size: 12px;" ng-if="loginForm.passwordemployee.$invalid && (loginForm.$submitted)">*Required.</div>
+                                            </div>
                                         </div>
                                         <button type="submit" class="button">Login</button>
                                     </div>
@@ -231,7 +233,6 @@
                                         <button type="submit" class="button">Change Password</button>
                                     </div>
 
-                                    <div class="pull-right"> {{head.model.CurrentDate | date:'dd MMMM yyyy hh.mm.ss'}},{{head.model.CurrentDate |date:'EEEE'}}</div>
                                 </div>
                                 <div class="login-footer">
                                     <div class="row">

@@ -157,8 +157,13 @@
                         };
                     }
                     ticketCreationService.ticketcreation(obj).then(function(response) {
-                        console.log(response);
-                        alerts.timeoutoldalerts(model.scope, 'alert-success', 'Ticket Created succesfully', 4000);
+                        console.log(response.data);
+                        if (response !== null && response !== undefined && response.data !== undefined && response.data !== null && response.data !== "" &&
+                            response.data.length > 0) {
+                            alerts.timeoutoldalerts(model.scope, 'alert-success', 'Ticket Created succesfully', 4000);
+                        } else {
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Ticket Created Failed', 4000);
+                        }
                         model.clearallcontrols();
                         model.scope.ticketcreationform.$setPristine();
                         model.scope.ticketcreationform.$setUntouched();

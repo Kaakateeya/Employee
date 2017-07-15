@@ -19,7 +19,8 @@
                 model.name = authSvc.LoginEmpName();
                 model.empphoto = authSvc.empphoto();
                 modelpopupopenmethod.getEmployeeLoginCoutDetails().then(function(response) {
-                    model.logincounts = JSON.parse(response.data);
+                    debugger;
+                    model.logincounts = JSON.parse(response.data[0]);
                 });
                 model.usernameemployeeid = sessionStorage.getItem("usernameemployeeid");
                 return model;

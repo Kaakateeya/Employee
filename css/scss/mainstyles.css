@@ -761,7 +761,7 @@ select:focus:invalid:focus {
 #loginnewidcchangepassword .login-header .logo .text {
   color: #333333; }
 #loginnewidcchangepassword .login-inside {
-  height: 240px;
+  height: 276px;
   padding-top: 35px;
   border-bottom: 1px solid #bbbbbb;
   background: url("images/gear.png") 325px bottom no-repeat; }
@@ -776,7 +776,7 @@ select:focus:invalid:focus {
   -moz-border-radius: 3px 3px 3px 3px;
   -webkit-border-radius: 3px 3px 3px 3px;
   border-radius: 3px 3px 3px 3px;
-  margin-bottom: 20px; }
+  margin-bottom: 2px; }
 #loginnewidcchangepassword .login-data label {
   display: block;
   width: 130px;
