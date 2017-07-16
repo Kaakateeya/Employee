@@ -12,7 +12,7 @@
          var vm = this;
 
          vm.init = function() {
-             vm.model = updateMacAdressModel();
+             vm.model = updateMacAdressModel;
          };
 
          vm.init();

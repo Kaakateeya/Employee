@@ -21,7 +21,7 @@
         function link(scope, element, attrs) {
             scope.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
             scope.Admin = authSvc.isAdmin();
-            debugger;
+
             if (scope.Managementid === 'true' || scope.Admin === '1') {
                 element.css('display', 'block');
             } else {

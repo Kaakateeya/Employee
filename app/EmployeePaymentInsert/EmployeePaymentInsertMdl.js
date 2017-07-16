@@ -19,7 +19,7 @@
         model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
         model.ServiceTaxPercent = app.ServiceTaxPercent;
 
-        model.typeofprofile = parseInt(stateParams.paymentID);
+
 
         model.EmployeePaymentInsert = function(inobj, type) {
             var monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
@@ -40,7 +40,9 @@
                 ServiceTax: inobj.rdnServicetax,
                 ServiceTaxAmt: inobj.rdnServicetax === '1' ? parseInt(inobj.txtAmountPaid * model.ServiceTaxPercent) : 0,
                 AmountPaid: inobj.txtAmountPaid,
-                EndDate: moment(model.custobj.EndDate).format('DD/MM/YYYY') === 'Invalid date' ? '' : moment(model.custobj.EndDate).format('DD/MM/YYYY'),
+                StartDate: model.StartDateparam,
+                EndDate: model.endDateparam,
+                // moment(model.custobj.EndDate).format('DD/MM/YYYY') === 'Invalid date' ? '' : moment(model.custobj.EndDate).format('DD/MM/YYYY'),
                 //  model.custobj.EndDate !== '' && model.custobj.EndDate !== null ? filter('date')(model.custobj.EndDate, 'MM/dd/yyyy') : null,
                 ReceiptNumber: inobj.txtbillno,
                 TransactionID: inobj.txttransactionid,
@@ -79,7 +81,7 @@
             EmployeePaymentInsertservice.getEmployeePaymentdata(profileID, 0).then(function(response) {
                 if (response.data[0] !== undefined && response.data[0].length > 0 && JSON.parse(response.data[0]).length > 0) {
                     var arraymodify = [];
-                    debugger;
+
                     arraymodify = _.where(JSON.parse(response.data[0]), { PaymentHist_ID: parseInt(stateParams.histryid === '0' || stateParams.histryid === 0 ? '' : stateParams.histryid) });
                     if (arraymodify.length === 0) {
                         model.custobj = JSON.parse(response.data[0])[0];
@@ -106,6 +108,7 @@
         };
 
         model.PaidAmtChange = function(paidAmt, agreeAmt) {
+            debugger;
             if (agreeAmt === '' || agreeAmt === undefined) {
                 model.PiObj.txtAmountPaid = '';
                 alert('Please enter  Agreed amount');
@@ -118,12 +121,26 @@
                     model.showOfferDetails(paidAmt, 'Paid', model.custobj.Expirydate);
                 }
                 var num = paidAmt * model.paymentDays;
-                model.ExpiryDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
+                model.ExpiryDate = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
+                var olddate = moment(model.custobj.Expirydate).format('MM-DD-YYYY');
+                var curdate = moment().format('MM-DD-YYYY');
 
-                if (model.custobj.Expirydate) {
-                    model.ExpiryDaterev = moment(model.custobj.Expirydate).add(parseInt(num), 'days').format('MM-DD-YYYY');
+                if (model.custobj.Expirydate && stateParams.paymentID !== 0) {
+                    var datebool = moment(curdate).isSame(olddate);
+                    if (datebool || (moment(curdate).isBefore(olddate))) {
+                        model.StartDateparam = curdate;
+                        model.endDateparam = moment(curdate).add(7, 'days').format('MM-DD-YYYY');
+                        model.ExpiryDaterev = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
+                    } else {
+                        model.StartDateparam = olddate;
+                        model.endDateparam = moment(olddate).add(7, 'days').format('MM-DD-YYYY');
+                        model.ExpiryDaterev = moment(model.custobj.Expirydate).add(parseInt(num), 'days').format('MM-DD-YYYY');
+                    }
 
                 } else {
+                    debugger;
+                    model.StartDateparam = curdate;
+                    model.endDateparam = moment().add(7, 'days').format('MM-DD-YYYY');
                     model.ExpiryDaterev = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
                 }
 

@@ -361,7 +361,7 @@
 
                     dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                         if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0 && response.data[0].length > 0) {
-                            debugger;
+
                             model.slidearray = response.data[0];
                             model.totalRecords = model.slidearray[0].TotalRows;
                             model.headerhtml = tablename;
@@ -454,7 +454,7 @@
                     });
                 };
                 model.changereminders = function(slidearray) {
-                    debugger;
+
                     model.reminderslidearray = {};
                     model.reminderslidearray = slidearray;
                     model.txtprofileidreminder = slidearray.ProfileID;
@@ -471,7 +471,7 @@
                     model.replaytypearray = arrayConstants.childStayingWith;
                     model.categoryarray = arrayConstants.catgory;
                     model.ddlremCatgory = 462;
-                    debugger;
+
                     // slidearray.ReminderCreatedDate = moment(slidearray.ReminderCreatedDate).format('MM-DD-YYYY hh:mm:ss');
                     if (slidearray.EmpReminderID) {
                         model.ddlremCaltype = parseInt(slidearray.RemCallType);
@@ -520,7 +520,7 @@
                     window.open("communicationLogs?Profileid=" + profileid, "_blank");
                 };
                 model.RelationshipChangerem = function(RelationshipID) {
-                    debugger;
+
 
                     SelectBindServiceApp.getRelationName(3, model.reminderslidearray.ProfileID, RelationshipID).then(function(response) {
                         if (_.isArray(response.data[0]) && response.data[0].length > 0) {

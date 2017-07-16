@@ -18,7 +18,7 @@
 
              model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
              model.Admin = authSvc.isAdmin();
-             debugger;
+
 
              if (parseInt(model.stateprofileid) !== 0) {
                  model.textboxshowhide = true;

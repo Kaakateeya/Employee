@@ -14,7 +14,7 @@
              model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
              if (parseInt(model.stateprofileid) !== 0) {
                  model.textboxshowhide = true;
-                 debugger;
+
                  model.EmpViewfullProfile(model.stateprofileid);
              } else {
                  model.textboxshowhide = false;
