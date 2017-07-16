@@ -6,6 +6,11 @@
                     <li class="col-lg-9">
                         <div style="color:#fff;"><strong style="font-size: 19px;"> Welcome  {{head.model.name}}</strong>
                         </div>
+
+                        <div style="cursor:pointer" href="javascript:void(0)" ng-click="head.model.hideshowunpaid()">
+                            unpaid Members
+                        </div>
+
                     </li>
                     <li>
                         <div style="cursor:pointer" href="javascript:void(0)" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -121,6 +126,24 @@
             </nav>
         </div>
     </div>
+    <ul class="dropdown-menus" ng-show="head.model.unpaidmember">
+        <div class="col-lg-6" style="background: rgb(228, 223, 144);background-color: rgb(228, 223, 144); display: block; z-index: 9999; max-height: 600px; overflow-y: auto; overflow-x: hidden; position: fixed; top: 60px;right:0;">
+            <table class="pull-right" id="table0">
+                <tbody>
+                    <tr class="alert alert-danger fade in" style="height: 45px;">
+                        <td style="width: 6%;"><a class="close" onclick="return closealert(table0);" style="font-size: 23px;">×&nbsp;&nbsp;</a></td>
+                        <td width="4%"></td>
+                        <td width="25%"><a style="font-size: 14px;color: rgb(0, 84, 255);" href="../Employee_new/AdminViewProfileInput.aspx?ProfileID=211185022&amp;Print=1" target="_blank">211185022<span style="color:black;">(12:32:07:433)</span>-</a> </td>
+                        <td width="20%">
+                            <a class="aClass" href="javascript:void(0);" style="font-size: 14px;color: rgb(0, 84, 255);"> KakCE175657</a> </td>
+                        <td width="55%">
+                            <h>(Open)-</h>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </ul>
     <script type="text/ng-template" id="loginContent.html">
         <div id="loginnewidcc" style='z-index: 99999'>
             <div class="login">
@@ -226,8 +249,12 @@
                                          Confirm Password:
                                           </label>
                                             <input compare-to="head.model.newpassword" ng-focus="true" type="Password" class="text" ng-model="head.model.confirmpassword" name="confirmpassword" required>
-                                            <div ng-messages="changepasswordform.confirmpassword.$invalid">
+                                            <!--<div ng-messages="changepasswordform.confirmpassword.$invalid">
                                                 <div style="color: red;font-size: 12px;" ng-if="changepasswordform.confirmpassword.$invalid && (changepasswordform.$submitted)">*Required.</div>
+                                            </div>-->
+                                            <div ng-messages="changepasswordform.confirmpassword.$error">
+                                                <div ng-if="changepasswordform.confirmpassword.$error.required && (changepasswordform.$submitted)" style="color: red;font-size: 12px;" ng-message="required">*Required</div>
+                                                <div style="color: red;font-size: 12px;" ng-message="compareTo">Must match the previous entry</div>
                                             </div>
                                         </div>
                                         <div class="row">

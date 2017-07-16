@@ -458,12 +458,26 @@ a:visited {
     width: 100%
 }
 
+.top_nav .dropdown-menus li {
+    width: 100%
+}
+
 .top_nav .dropdown-menu li a {
     width: 100%;
     padding: 12px 20px
 }
 
+.top_nav .dropdown-menus li a {
+    width: 100%;
+    padding: 12px 20px
+}
+
 .top_nav .dropdown-menu li a:hover {
+    color: orange !important;
+    background-color: #A00201 !important;
+}
+
+.top_nav .dropdown-menus li a:hover {
     color: orange !important;
     background-color: #A00201 !important;
 }
@@ -1047,12 +1061,29 @@ ul.msg_list li a .message {
     /*border: 1px solid #D9DEE4;*/
     -webkit-box-shadow: none;
     right: 0;
-    left: auto;
+    /*left: auto;*/
     width: 140px;
     margin-top: 22px;
 }
 
+.navbar-nav .open .dropdown-menus {
+    position: absolute;
+    background-color: rgb(228, 223, 144);
+    /*margin-top: 0;*/
+    /*border: 1px solid #D9DEE4;*/
+    -webkit-box-shadow: none;
+    right: 0;
+    /*left: auto;*/
+    margin-left: -200px;
+    width: 512px;
+    margin-top: 22px;
+}
+
 .navbar-nav .open .dropdown-menu.msg_list {
+    width: 300px
+}
+
+.navbar-nav .open .dropdown-menus.msg_list {
     width: 300px
 }
 

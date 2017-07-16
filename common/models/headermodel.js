@@ -124,6 +124,10 @@
             model.changepasswordpopup = function() {
                 modelpopupopenmethod.showPopupphotopoup('changepassword.html', model.scope, 'md', "modalclassdashboardphotopopuplogin");
             };
+
+            model.hideshowunpaid = function() {
+                model.unpaidmember = !model.unpaidmember;
+            };
             return model.init();
         }]);
 
