@@ -18,7 +18,6 @@
                 model.EmpNamesArr = [];
                 model.ReplyArr = [];
                 model.topage = 1;
-
                 model.empNamesInOutArr = [];
                 var curdate = moment().format('DD-MMM-YYYY hh:mm:ss');
                 model.dateOptions = {
@@ -56,7 +55,7 @@
                     model.siblingsFlag = 0;
                     model.guestticketFlag = 0;
                     model.onlineexprdFlag = 0;
-                    model.offlineexprdFlag = 0;
+                    // model.offlineexprdFlag = 0;
                     model.Excelflag = 2;
                     model.notinpay = null;
                     model.EmpNamesArr = [];
@@ -116,7 +115,7 @@
                         v_siblingflag: model.siblingsFlag,
                         v_guestticketflag: model.guestticketFlag,
                         v_OnlineExprd: model.onlineexprdFlag,
-                        v_OfflineExprd: model.offlineexprdFlag,
+                        // v_OfflineExprd: model.offlineexprdFlag,
                         i_TicketId: model.TicketId,
                         i_EmailId: model.Email,
                         i_PhoneNumber: model.PhoneNumber,
@@ -203,13 +202,13 @@
                     });
                 };
 
-                model.MarketingTicket = function(ActiveButton, marketFlag, siblingsFlag, guestticketFlag, onlineexprdFlag, offlineexprdFlag, Excelflag, notinpay) {
+                model.MarketingTicket = function(ActiveButton, marketFlag, siblingsFlag, guestticketFlag, onlineexprdFlag, Excelflag, notinpay) {
                     model.ActiveButton = ActiveButton;
                     model.marketFlag = marketFlag;
                     model.siblingsFlag = siblingsFlag;
                     model.guestticketFlag = guestticketFlag;
                     model.onlineexprdFlag = onlineexprdFlag;
-                    model.offlineexprdFlag = offlineexprdFlag;
+                    // model.offlineexprdFlag = offlineexprdFlag;
                     model.Excelflag = Excelflag;
                     model.notinpay = notinpay;
                     config.slides = [];
@@ -426,7 +425,6 @@
 
 
                 model.Resendmail = function(custID, Profileid) {
-
                     var resendInputObj = {
                         EMPID: model.empid,
                         LFromCustID: custID,
@@ -434,8 +432,7 @@
                         FromProfileID: Profileid,
                         Notes: 'Missing fields',
                         TicketStatusID: "Accept"
-                    }
-
+                    };
                     marketingservice.ResendMail(resendInputObj).then(function(response) {
                         if (parseInt(response.data) === 1) {
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent successfully', 9500);
@@ -444,11 +441,9 @@
                         }
                     });
                 };
-
                 model.editRedirect = function(custid, type) {
                     window.open('/' + type + '/' + custid, '_blank');
                 };
-
                 model.verifymail = function(custID) {
                     SelectBindServiceApp.verifyEmail(custID).then(function(response) {
                         if (response.data !== undefined) {
@@ -458,8 +453,6 @@
                         }
                     });
                 };
-
-
                 model.sendMobileCode = function(CountryID, CCode, MobileNumber, CustContactNumbersID) {
                     model.popupMobilenumber = MobileNumber;
                     model.ID = CustContactNumbersID;
@@ -469,13 +462,11 @@
                         MobileNumber: MobileNumber,
                         CustContactNumbersID: CustContactNumbersID
                     };
-
                     SelectBindServiceApp.sendMobileCodeBasedOnContactID(inputOBj).then(function(response) {
                         model.mobileVerificationCode = response.data;
                         modelpopupopenmethod.showPopup('verifyMobileContentmar.html', model.scope, 'md', '');
                     });
                 };
-
                 model.verifyMobCode = function(val) {
                     if (val === "") {
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter Mobile verify Code', 4500);
@@ -527,14 +518,12 @@
                 model.cancel = function() {
                     modelpopupopenmethod.closepopup();
                 };
-
                 model.updateREGFee = function(row, txtval) {
                     if (row.editval === 'Edit') {
                         row.editval = 'update Fee';
                         row.txtFeeValue = row.Feedetails;
                     } else if (row.editval === 'update Fee' || row.editval === 'Save') {
                         row.editval = 'Edit';
-
                         var datainobj = {
                             EmpTicketID: row.Emp_Ticket_ID,
                             EmpID: empid,
@@ -543,7 +532,7 @@
                             feevalue: txtval,
                             CustID: row.CustID,
                             SettlementValue: null
-                        }
+                        };
                         marketingservice.feeUpdate(datainobj).then(function(response) {
                             if (response.data && parseInt(response.data) === 1) {
                                 row.Feedetails = txtval;
@@ -559,26 +548,22 @@
                                     RelationShip: ''
                                 };
                                 row.histryObj.push(Appendobj);
-
                                 _.map(row.histryObj, function(item) {
                                     item.ReplyDatenew = moment(item.ReplyDatenew).format('YYYY/MM/DD h:mm a')
                                 });
                                 row.histryObj = _.sortBy(row.histryObj, 'ReplyDatenew').reverse();
-
                             }
                         });
                     }
                 };
-
                 model.updateSAFee = function(row, txtval) {
                     if (row.editSAval === 'Edit') {
                         {
-                            row.editSAval = 'update Fee'
+                            row.editSAval = 'update Fee';
                             row.txtSAFeeValue = row.SettlementValue;
                         }
                     } else if (row.editSAval === 'update Fee' || row.editSAval === 'Save') {
-                        row.editSAval = 'Edit'
-
+                        row.editSAval = 'Edit';
                         var datainobj = {
                             EmpTicketID: row.Emp_Ticket_ID,
                             EmpID: empid,
@@ -587,7 +572,7 @@
                             feevalue: null,
                             CustID: row.CustID,
                             SettlementValue: txtval
-                        }
+                        };
                         marketingservice.feeUpdate(datainobj).then(function(response) {
                             if (response.data && parseInt(response.data) === 1) {
                                 row.SettlementValue = txtval;
@@ -603,7 +588,6 @@
                                     RelationShip: ''
                                 };
                                 row.histryObj.push(Appendobj);
-
                                 _.map(row.histryObj, function(item) {
                                     item.ReplyDatenew = moment(item.ReplyDatenew).format('YYYY/MM/DD h:mm a')
                                 });
@@ -612,10 +596,6 @@
                         });
                     }
                 };
-
-
-
-
                 model.getnumberbind = function(fromval, Toval, str, incrementval) {
                     var options = [];
                     options.push({ label: str, title: str, value: "" });
@@ -629,8 +609,6 @@
                     }
                     return options;
                 };
-
-
                 model.replytype = function(type) {
                     var options = [];
                     options.push({ label: '--select--', title: '--select--', value: "" });
@@ -642,9 +620,7 @@
                     }
                     return options;
                 };
-
                 model.changereminder = function(slidearray) {
-
                     model.reminderslidearray = {};
                     model.reminderslidearray = slidearray;
                     model.txtprofileidreminder = slidearray.ProfileID;
@@ -652,7 +628,6 @@
                     model.ddlHrs = "";
                     model.ddlmins = "";
                     model.ddlcontactperson = "";
-
                     model.ddlremCaltype = "";
                     modelpopupopenmethod.showPopup('Reminderticket.html', model.scope, 'md', "reminderCls");
                     model.Hoursarray = model.getnumberbind(0, 23, 'Hrs', 1);
@@ -661,12 +636,9 @@
                     model.replaytypearray = arrayConstants.childStayingWith;
                     model.categoryarray = arrayConstants.catgory;
                     model.ddlremCatgory = 462;
-
                     model.ticketIDRem = slidearray.Emp_Ticket_ID;
                     model.RemID = slidearray.ReminderID;
-
                     if (slidearray.ReminderID) {
-
                         model.txtreminderDate = moment(slidearray.ReminderDate).format('MM-DD-YYYY');
                         // model.ddlHrs = slidearray.ReminderID;
                         // model.ddlmins = slidearray.ReminderID;
@@ -777,7 +749,6 @@
                 };
 
                 model.pushTicketHistry = function(TicketType, CallStatus, CallReceivedBy, ReplyDesc, NoOfDays, RelationShip) {
-
                     var relation;
                     if (RelationShip) {
                         relation = (_.where(arrayConstants.childStayingWith, { value: parseInt(RelationShip) }))[0].label;
@@ -795,10 +766,7 @@
                     };
                     return Appendobj;
                 };
-
-
                 model.inOutSubmit = function(obj) {
-
                     //22-Apr-2017 18:32:39'
                     var inputObj = {
                         CallType: obj.CallType,
@@ -813,7 +781,6 @@
                         ticketid: obj.Emp_Ticket_ID,
                         EmpID: empid
                     };
-
                     marketsvc.InOutSubmit(inputObj).then(function(response) {
                         var msg = parseInt(response.data) === 1 ? (obj.CallType === 1 ? 'Incoming Call Created successfully' : 'Outgoing Call Created successfully') :
                             ((obj.CallType === 1 ? 'Incoming Call updation failed' : 'Outgoing Call updation failed'));
@@ -821,11 +788,8 @@
                         model.resetInOutSlide(obj.Emp_Ticket_ID);
                         alertss.timeoutoldalerts(model.scope, msgClass, msg, 9500);
                     });
-
                 };
-
                 model.incallSubmit = function(obj, type) {
-
                     var inobj = {
                         CallType: 1,
                         RelationID: obj.ddlmrktreceivedIn,
@@ -845,7 +809,6 @@
                         obj.txtmrktRelationnameIn, obj.txtmrktCalldiscussionin, '', obj.ddlmrktreceivedIn
                     ));
                 };
-
                 model.outcallSubmit = function(obj, type) {
                     var inobj = {
                         CallType: 2,
@@ -868,9 +831,7 @@
                 };
 
                 model.memoSubmit = function(obj, type) {
-
                     marketsvc.memoSubmit(obj.txtmrktcalldiscussionMemo, obj.Emp_Ticket_ID, empid, obj.ddlmrktAssignmemo).then(function(response) {
-
                         if (parseInt(response.data) === 1) {
                             if (type === 'assign') {
                                 model.assignSubmit(obj.Emp_Ticket_ID);
@@ -902,7 +863,6 @@
                         }
                         model.resetInOutSlide(obj.Emp_Ticket_ID);
                     });
-
                 };
 
                 model.assignSubmit = function(Emp_Ticket_ID) {
@@ -911,7 +871,6 @@
                 model.destroy = function() {
                     config.reset();
                 };
-
                 model.resetInOutSlide = function(ticketid) {
                     _.map(model.Marketingslideticket, function(item) {
                         if (parseInt(item.Emp_Ticket_ID) === parseInt(ticketid)) {
@@ -933,7 +892,6 @@
                     });
 
                 };
-
 
                 return model;
             }

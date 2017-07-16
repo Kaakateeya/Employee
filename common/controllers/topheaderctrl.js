@@ -12,9 +12,13 @@
                     if (authSvc.LoginEmpid() !== topheadermodel.empid) {
                         vm.model = model = topheadermodel.init();
                         model.scope = scope;
+                        model.usernameemployeeid = sessionStorage.getItem("usernameemployeeid");
+                        model.unpaidmember = false;
                     } else {
                         vm.model = model = topheadermodel;
                         model.scope = scope;
+                        model.usernameemployeeid = sessionStorage.getItem("usernameemployeeid");
+                        model.unpaidmember = false;
                     }
                 };
                 vm.initheader();

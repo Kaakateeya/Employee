@@ -789,7 +789,7 @@ select:focus:invalid:focus {
 #loginnewidcchangepassword .login-data .row {
   padding-bottom: 10px; }
 #loginnewidcchangepassword .login-data .button {
-  margin-left: 80px; }
+  margin-left: 8px; }
 #loginnewidcchangepassword .login-footer {
   border-top: 1px solid #FFFFFF;
   background: url("images/bck_black_70.png");

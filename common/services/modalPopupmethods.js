@@ -240,6 +240,21 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                     }
                 }
                 return options;
+            },
+            getChangeEmployeePassword: function(EmpID, EmpoldPassword, EmpNewPassword) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getChangeEmployeePassword', {
+                    params: { EmpID: EmpID, EmpoldPassword: EmpoldPassword, EmpNewPassword: EmpNewPassword }
+                });
+            },
+            getCheckemployeePassord: function(EmpID, Emppassword) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getCheckemployeePassord', {
+                    params: { EmpID: EmpID, Emppassword: Emppassword }
+                });
+            },
+            getpresentunpaidmembers: function(Empid) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getpresentunpaidmembers', {
+                    params: { EmpID: Empid }
+                });
             }
         };
     }
