@@ -104,6 +104,7 @@
                         model.currentpassword = "";
                         model.newpassword = "";
                         model.confirmpassword = "";
+                        model.logout();
                     } else {
                         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Password Changed Fail', 3000);
                     }
