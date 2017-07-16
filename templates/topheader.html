@@ -6,11 +6,9 @@
                     <li class="col-lg-9">
                         <div style="color:#fff;"><strong style="font-size: 19px;"> Welcome  {{head.model.name}}</strong>
                         </div>
-
-                        <div style="cursor:pointer" href="javascript:void(0)" ng-click="head.model.hideshowunpaid()">
-                            unpaid Members
+                        <div style="cursor:pointer;color: #ffffff;font-weight: bold;text-decoration: underline;" href="javascript:void(0)" ng-click="head.model.hideshowunpaid()">
+                            Unpaid Members
                         </div>
-
                     </li>
                     <li>
                         <div style="cursor:pointer" href="javascript:void(0)" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -126,18 +124,21 @@
             </nav>
         </div>
     </div>
-    <ul class="dropdown-menus" ng-show="head.model.unpaidmember">
-        <div class="col-lg-6" style="background: rgb(228, 223, 144);background-color: rgb(228, 223, 144); display: block; z-index: 9999; max-height: 600px; overflow-y: auto; overflow-x: hidden; position: fixed; top: 60px;right:0;">
-            <table class="pull-right" id="table0">
+    <ul class="dropdown-menus col-lg-5" ng-show="head.model.unpaidmember">
+        <div class="col-lg-6" style="width:557px;background: rgb(228, 223, 144);background-color: rgb(228, 223, 144); display: block; z-index: 9999; max-height: 600px; overflow-y: auto; overflow-x: hidden; position: fixed; top: 60px;right:0;">
+            <table style="width:512px;" class="pull-right" ng-repeat="presentunpaid in head.model.presentunpaidmembersarray">
                 <tbody>
-                    <tr class="alert alert-danger fade in" style="height: 45px;">
-                        <td style="width: 6%;"><a class="close" onclick="return closealert(table0);" style="font-size: 23px;">×&nbsp;&nbsp;</a></td>
-                        <td width="4%"></td>
-                        <td width="25%"><a style="font-size: 14px;color: rgb(0, 84, 255);" href="../Employee_new/AdminViewProfileInput.aspx?ProfileID=211185022&amp;Print=1" target="_blank">211185022<span style="color:black;">(12:32:07:433)</span>-</a> </td>
-                        <td width="20%">
-                            <a class="aClass" href="javascript:void(0);" style="font-size: 14px;color: rgb(0, 84, 255);"> KakCE175657</a> </td>
+                    <tr ng-class="presentunpaid.MINUTE<10?'alert alert-warning fade in':'alert alert-danger fade in'" style="height: 45px;">
+                        <td style="width: 6%;"><a class="close" ng-click="head.model.closealert($index)" style="font-size: 23px;">×&nbsp;&nbsp;</a></td>
+                        <td width="4%">
+                            <p style="font-size: 14px;font-weight: bold;color:#8623a5;">{{presentunpaid.EmpGroupName}}-
+                            </p>
+                        </td>
+                        <td width="25%"><a style="font-size: 14px;color: rgb(0, 84, 255);" href="Viewfullprofile/{{presentunpaid.ProfileID}}/0" target="_blank">{{presentunpaid.ProfileID}}<span style="color:black;">({{presentunpaid.LastLoginDate}})</span>-</a>
+                        </td>
+                        <td width="20%"><a class="aClass" href="javascript:void(0);" ng-click="head.model.ticketpopupunpaid(presentunpaid.Ticket)" style="font-size: 14px;color: rgb(0, 84, 255);">{{presentunpaid.TicketID}}</a> </td>
                         <td width="55%">
-                            <h>(Open)-</h>
+                            <h>({{presentunpaid.TicketStatus}})-{{presentunpaid.EmpName}}</h>
                         </td>
                     </tr>
                 </tbody>
@@ -285,6 +286,12 @@
                 </div>
             </div>
     </script>
+    <script type="text/ng-template" id="unpaidmarket.html">
+        <div class="modal-body">
+            <market-tickethistory ticketid="head.model.unpaidticket"></market-tickethistory>
+        </div>
+    </script>
+
     </div>
     <style type="text/css">
         .modalclassdashboardphotopopuplogin {
@@ -300,5 +307,23 @@
         
         .modalclassdashboardphotopopup {
             z-index: 9999999999 !important;
+        }
+        
+        .modalclassdashboardphotopopup {
+            z-index: 999999999 !important;
+            top: 0%;
+            left: 0%;
+        }
+        
+        .modalclassdashboardphotopopup .modal-dialog.modal-md {
+            width: 70%;
+        }
+        
+        .modalclassdashboardphotopopup .md-tab {
+            padding: 14px 15px;
+        }
+        
+        .modalclassdashboardphotopopup .pop_label_left {
+            width: 40%;
         }
     </style>

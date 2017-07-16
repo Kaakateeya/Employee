@@ -127,6 +127,28 @@
 
             model.hideshowunpaid = function() {
                 model.unpaidmember = !model.unpaidmember;
+                if (model.unpaidmember)
+                    model.getpresentunpaidmembers();
+            };
+            model.getpresentunpaidmembers = function() {
+                modelpopupopenmethod.getpresentunpaidmembers(model.empid).then(function(response) {
+                    console.log(response.data);
+                    if (response.data !== undefined && response.data !== "" && response.data !== null && response.data[0] !== undefined && response.data[0].length > 0) {
+                        model.presentunpaidmembersarray = [];
+                        model.presentunpaidmembersarray = response.data[0];
+                        console.log(response.data[0]);
+                    } else {
+                        model.presentunpaidmembersarray = [];
+                        model.presentunpaidmembersarray.push("No data Found");
+                    }
+                });
+            };
+            model.closealert = function(index) {
+                model.presentunpaidmembersarray.splice(index, 1);
+            };
+            model.ticketpopupunpaid = function(ticketid) {
+                model.unpaidticket = ticketid;
+                modelpopupopenmethod.showPopupphotopoup('unpaidmarket.html', model.scope, 'md', "modalclassdashboardphotopopup");
             };
             return model.init();
         }]);

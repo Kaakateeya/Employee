@@ -89,13 +89,14 @@
         </div>
     </div>
     <div class="col-lg-8" style="margin-left: -40px;">
-        <input type="submit" ng-class="model.ActiveButton==='unpaid'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('unpaid',0, 0, 0, 0, 0, 2);" value="UnPaid Tkts" />
-        <input type="submit" ng-class="model.ActiveButton==='reminder'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('reminder',1, 0,0, 0,0, 3);" value="Reminder Tkts" />
-        <input type="submit" ng-class="model.ActiveButton==='setDel'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('setDel',2,1, 0,0, 0, 4);" value="Set/Del Siblings" />
-        <input type="submit" ng-class="model.ActiveButton==='guest'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('guest',2,0,1, 0, 0, 5);" value="Guest Tkts" />
-        <input type="submit" ng-class="model.ActiveButton==='online'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('online',2,0, 0,1,0, 6);" value="Online Exprd" />
-        <input type="submit" ng-class="model.ActiveButton==='offline'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('offline',2, 0, 0, 0, 1,7);" value="Offline Exprd" />
-        <input type="submit" ng-class="model.ActiveButton==='notinpay'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('notinpay',2,0, 0, 0, 0, 4, 'P');" value="NotInPay" />
+        <input type="submit" ng-class="model.ActiveButton==='unpaid'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('unpaid',0, 0, 0, 0, 2);" value="UnPaid Tkts" />
+        <input type="submit" ng-class="model.ActiveButton==='reminder'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('reminder',1, 0,0, 0, 3);" value="Reminder Tkts" />
+        <input type="submit" ng-class="model.ActiveButton==='setDel'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('setDel',2,1, 0,0, 4);" value="Set/Del Siblings" />
+        <input type="submit" ng-class="model.ActiveButton==='guest'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('guest',2,0,1, 0, 5);" value="Guest Tkts" />
+        <!--<input type="submit" ng-class="model.ActiveButton==='online'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('online',2,0, 0,1,0, 6);" value="Online Exprd" />
+        <input type="submit" ng-class="model.ActiveButton==='offline'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('offline',2, 0, 0, 0, 1,7);" value="Offline Exprd" />-->
+        <input type="submit" ng-class="model.ActiveButton==='expired'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('expired',2, 0, 0, 1,7);" value="Exprd Profiles" />
+        <input type="submit" ng-class="model.ActiveButton==='notinpay'?'btn btn-success':'btn btn-default'" ng-click="model.MarketingTicket('notinpay',2,0, 0, 0, 4, 'P');" value="NotInPay" />
     </div>
 </div>
 <br>
