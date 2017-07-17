@@ -87,9 +87,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'oldPaymenttable', name: 'base.oldPaymenttable', url: '/oldPaymenttables' },
             { routeName: 'reviewPendinrReports', name: 'base.reviewPendinrReports', url: '/reviewPendinrReport' },
             { routeName: 'ticketCreation', name: 'base.ticketCreation', url: '/ticketCreationpage' },
-            { routeName: 'updateMacAdress', name: 'base.updateMacAdress', url: '/updateMacAdresspage' }
-
-
+            { routeName: 'updateMacAdress', name: 'base.updateMacAdress', url: '/updateMacAdresspage' },
+            { routeName: 'customerMessagesverification', name: 'base.customerMessagesverification', url: '/customerMessagesverificationpage' }
         ];
         $ocLazyLoadProvider.config({
             debug: true

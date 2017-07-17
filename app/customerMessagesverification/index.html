@@ -1,4 +1,53 @@
-<div class="right_col">
-
-
+<div class="right_col myprofile" role="main" id="customermessagesid">
+    <div class="panel-group">
+        <div class="panel-collapse collapse in">
+            <div class="panel-default regValheader" is-open="page.model.opendiv">
+                <div class="panel-heading" style=" color: rgb(160, 2, 1);">
+                    <h4 class="panel-title"> Employee verify customer messages Report
+                    </h4>
+                </div>
+                <div>
+                    <br>
+                    <div class="row">
+                        <label class="col-lg-6 control-label" for="noofRecords">Total Records : {{page.model.TotalRows}}
+                   </label>
+                    </div>
+                    <br>
+                    <div>
+                        <complex-grid model="page.model" config="page.model" pagesizecommunication="999"></complex-grid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<script type="text/ng-template" id="messgeseditpopup.html">
+    <div class="modal-header">
+        <h4 class="col-lg-11 text-center"> Customer </h4>
+        <a href="javascript:void(0);" class="pull-right" ng-click="page.model.close();">
+            <span class="fa fa-close red"></span>
+        </a>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <label class="col-lg-3">Message</label>
+            <textarea type="text" rows="4" style="width:400px" class="form-control col-lg-7" ng-model="page.model.txtcustomermessages"></textarea>
+        </div>
+        <br>
+        <div class="row">
+            <label class="col-lg-3">Message status</label>
+            <div class="col-lg-4">
+                <md-radio-group name="rbtntypeaccept" layout="row" ng-model="page.model.rbtntypeaccept" class="md-block" flex-gt-sm>
+                    <md-radio-button value="1" class="md-primary">Accept</md-radio-button>
+                    <md-radio-button value="0"> Reject</md-radio-button>
+                </md-radio-group>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <button type="button" class="button_custom col-lg-offset-5" style="display:initial;" ng-click="page.model.updatecustomermessages(page.model.txtcustomermessages,page.model.messgeid,1)">Update</button>
+        </div>
+        <br>
+    </div>
+
+</script>

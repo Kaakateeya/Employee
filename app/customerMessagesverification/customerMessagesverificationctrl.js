@@ -3,14 +3,15 @@
 
      angular
          .module('Kaakateeya')
-         .controller('customerMessagesverificationCtrl', ['customerMessagesverificationModel', function(customerMessagesverificationModel) {
+         .controller('customerMessagesverificationCtrl', ['customerMessagesverificationModel', '$scope', function(customerMessagesverificationModel, scope) {
              /* jshint validthis:true */
-             var vm = this;
-
+             var vm = this,
+                 model;
              vm.init = function() {
-                 vm.model = customerMessagesverificationModel;
+                 vm.model = model = customerMessagesverificationModel;
+                 model.scope = scope;
+                 model.customermeassgeverification();
              };
-
              vm.init();
 
          }]);
