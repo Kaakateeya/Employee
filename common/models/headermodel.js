@@ -96,9 +96,9 @@
                 $state.go("base.searchpage", { id: id, Profileid: Profileid }, { reload: true });
             };
             model.changepassword = function(form) {
-                console.log(form);
+
                 modelpopupopenmethod.getChangeEmployeePassword(model.empid, form.model.currentpassword, form.model.confirmpassword).then(function(response) {
-                    console.log(response);
+
                     if (parseInt(response.data) === 1) {
                         alerts.timeoutoldalerts(model.scope, 'alert-success', 'Password Changed Successfully', 3000);
                         modelpopupopenmethod.closepopuppoptopopup();
@@ -113,7 +113,7 @@
             };
             model.chkpassword = function(password) {
                 modelpopupopenmethod.getCheckemployeePassord(model.empid, password).then(function(response) {
-                    console.log(response);
+
                     if (parseInt(response.data) === 1) {
 
                     } else {
@@ -133,11 +133,11 @@
             };
             model.getpresentunpaidmembers = function() {
                 modelpopupopenmethod.getpresentunpaidmembers(model.empid).then(function(response) {
-                    console.log(response.data);
+
                     if (response.data !== undefined && response.data !== "" && response.data !== null && response.data[0] !== undefined && response.data[0].length > 0) {
                         model.presentunpaidmembersarray = [];
                         model.presentunpaidmembersarray = response.data[0];
-                        console.log(response.data[0]);
+
                     } else {
                         model.presentunpaidmembersarray = [];
                         model.presentunpaidmembersarray.push("No data Found");

@@ -113,8 +113,6 @@
                 model.PiObj.txtAmountPaid = '';
                 alert('Please enter paid amount less than Agreed amount');
             } else {
-
-                debugger;
                 if (parseInt(paidAmt) !== agreeAmt) {
                     model.showOfferDetails(paidAmt, 'Paid', model.custobj.Expirydate);
                 }

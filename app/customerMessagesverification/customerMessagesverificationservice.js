@@ -4,8 +4,11 @@
         .module('Kaakateeya')
         .factory('customerMessagesverificationService', ['$http', function(http) {
             return {
-                test: function() {
-                    return http.get(app.apiroot + 'test', { params: '' });
+                customermeassgeverification: function(obj) {
+                    return http.post(app.apiroot + 'EmployeeReportPage/customermeassgeverification', obj);
+                },
+                updatecustomermessages: function(obj) {
+                    return http.post(app.apiroot + 'EmployeeReportPage/updatecustomermessages', obj);
                 }
             };
         }]);

@@ -21,7 +21,6 @@
              vm.model = model = EmployeePaymentInsertModel;
              model.scope = scope;
              vm.reset();
-             debugger;
              vm.model.typeofprofile = parseInt(stateParams.paymentID);
              vm.model.getpaymentProfile(stateParams.ProfileID);
              vm.model.PiObj.rbtnmail = 1;
