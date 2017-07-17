@@ -149,7 +149,7 @@
                         });
 
                         // timeout(function() {
-                        //     debugger;
+
                         //     model.mpObj.ddlBranch = vals;
                         // }, 500);
 
@@ -255,7 +255,6 @@
                     model.dupTotalRecords = 0;
 
                     assignSettingsService.getDuplicatProfiles(profileID).then(function(response) {
-                        console.log(response.data);
                         model.singlegrid1.sdata = response.data[0];
                         model.singlegrid2.sdata = response.data[1];
                         model.singlegrid3.sdata = response.data[2];

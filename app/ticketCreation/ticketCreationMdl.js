@@ -38,7 +38,6 @@
                         };
                     }
                     ticketCreationService.getticketinformation(obj).then(function(response) {
-                        console.log(response.data);
                         if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" &&
                             response.data[0] !== undefined && response.data[0] !== null && response.data[0].length > 0) {
                             model.ticketinforamationarray = [];
@@ -140,7 +139,6 @@
                         };
                         if (model.txtphonenumber.length === 10) {
                             ticketCreationService.ticketcreation(obj).then(function(response) {
-                                console.log(response.data);
                                 if (response !== null && response !== undefined && response.data !== undefined && response.data !== null && response.data !== "" &&
                                     response.data.length > 0) {
                                     alerts.timeoutoldalerts(model.scope, 'alert-success', 'Ticket Created succesfully', 4000);
@@ -173,7 +171,6 @@
                         };
                         if (model.chkprofileid(model.txtProfileidticket)) {
                             ticketCreationService.ticketcreation(obj).then(function(response) {
-                                console.log(response.data);
                                 if (response !== null && response !== undefined && response.data !== undefined && response.data !== null && response.data !== "" &&
                                     response.data.length > 0) {
                                     alerts.timeoutoldalerts(model.scope, 'alert-success', 'Ticket Created succesfully', 4000);
@@ -194,7 +191,6 @@
                 };
                 model.chkprofileid = function(profileid) {
                     ticketCreationService.getprofileidexistornot(profileid).then(function(response) {
-                        console.log(response.data);
                         if (response !== null && response !== undefined && response.data !== undefined && response.data !== null && response.data !== "") {
                             return true;
                         } else {

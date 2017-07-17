@@ -31,7 +31,6 @@
                  flag: ''
              };
              updateMacAdressService.getmacIps(inObj).then(function(response) {
-                 console.log(response);
                  model.data = response.data[0];
                  _.map(model.data, function(item, index) {
                      item.sno = index + 1;

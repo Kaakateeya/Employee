@@ -27,7 +27,8 @@
                     window.open('/Viewfullprofile/' + row.FromProfileID + '/0', '_blank');
                 };
                 model.ProfileIdsendTemplateDUrl = function(row) {
-                    var paid = row.ToProfileID !== undefined ? "<a class=''>" + row.ToProfileID + "</a>" : "";
+                    var paidstatusclass = row.IsPaidMember === 372 ? 'paidclass' : 'unpaid';
+                    var paid = row.ToProfileID !== undefined ? "<a class='" + paidstatusclass + "'>" + row.ToProfileID + "</a>" : "";
                     return paid;
                 };
                 model.sendViewProfile = function(row) {
@@ -61,7 +62,6 @@
                         EmpID: null
                     };
                     customerMessagesverificationService.customermeassgeverification(obj).then(function(response) {
-                        console.log(response);
                         if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" &&
                             response.data[0] !== undefined && response.data[0] !== null && response.data[0].length > 0) {
                             model.customermessages = [];
@@ -85,9 +85,10 @@
                         MessageLinkId: null
                     };
                     customerMessagesverificationService.updatecustomermessages(obj).then(function(response) {
-                        console.log(response);
                         if (parseInt(response.data) === 1) {
-                            model.close();
+                            if (message !== null) {
+                                model.close();
+                            }
                             alerts.timeoutoldalerts(model.scope, 'alert-success', 'Updated succesfully', 4000);
                             model.customermeassgeverification();
                         } else {
