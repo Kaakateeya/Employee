@@ -112,15 +112,14 @@
                 });
             };
             model.chkpassword = function(password) {
-                modelpopupopenmethod.getCheckemployeePassord(model.empid, password).then(function(response) {
-
-                    if (parseInt(response.data) === 1) {
-
-                    } else {
-                        model.currentpassword = "";
-                        alerts.timeoutoldalerts(model.scope, 'alert-danger', 'please Enter valid Password', 3000);
-                    }
-                });
+                if (password !== "" && password !== null && password !== undefined) {
+                    modelpopupopenmethod.getCheckemployeePassord(model.empid, password).then(function(response) {
+                        if (parseInt(response.data) === 1) {} else {
+                            model.currentpassword = "";
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'please Enter valid Password', 3000);
+                        }
+                    });
+                }
             };
             model.changepasswordpopup = function() {
                 modelpopupopenmethod.showPopupphotopoup('changepassword.html', model.scope, 'md', "modalclassdashboardphotopopuplogin");
