@@ -248,6 +248,8 @@
                     { text: 'Profile owner', key: 'EmpName', type: 'label' }
                 ];
                 model.singlegrid3.columns = model.singlegrid2.columns = model.singlegrid1.columns;
+
+
                 model.getDuplicate = function(profileID) {
                     model.singlegrid1.sdata = [];
                     model.singlegrid2.sdata = [];
