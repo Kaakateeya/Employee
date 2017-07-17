@@ -97,25 +97,27 @@
         </div>
     </div>
 
+    <div ng-if="page.model.singlegrid2.sdata.length>0">
+        <center>
+            <h2 class="hdrcolor">Duplicate profiles based on mobile Number</h2>
+        </center>
+        <single-grid model="page.model.singlegrid2" config="page.model"></single-grid>
+        <br>
+    </div>
+
+    <div ng-if="page.model.singlegrid3.sdata.length>0">
+        <center>
+            <h2 class="hdrcolor">Duplicate profiles based on Email </h2>
+        </center>
+        <single-grid model="page.model.singlegrid3" config="page.model"></single-grid>
+        <br>
+    </div>
+
     <div ng-if="page.model.singlegrid1.sdata.length>0">
         <center>
             <h2 class="hdrcolor">Duplicate profiles based on Name</h2>
         </center>
         <single-grid model="page.model.singlegrid1" config="page.model"></single-grid>
-    </div>
-    <br>
-    <div>
-        <center ng-if="page.model.singlegrid2.sdata.length>0">
-            <h2 class="hdrcolor">Duplicate profiles based on Email</h2>
-        </center>
-        <single-grid model="page.model.singlegrid2" config="page.model"></single-grid>
-    </div>
-    <br>
-    <div ng-if="page.model.singlegrid3.sdata.length>0">
-        <center>
-            <h2 class="hdrcolor">Duplicate profiles based on mobile Number</h2>
-        </center>
-        <single-grid model="page.model.singlegrid3" config="page.model"></single-grid>
     </div>
 </script>
 <style>

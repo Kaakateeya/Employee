@@ -14,7 +14,7 @@
          //  });
 
          $rootScope.$watchGroup(['ProfileOwner', 'EditProfilePaidStatus'], function(newval, old) {
-             debugger;
+
              if (newval)
                  vm.model.isprofileOwner = (newval[0] ? (parseInt(newval[0]) === parseInt(vm.model.empid)) : false) || (newval[1] !== undefined && newval[1] !== null ? parseInt(newval[1]) !== 1 : false);
          });

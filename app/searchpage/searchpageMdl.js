@@ -893,7 +893,7 @@
                 model.bindPlusCtrlFlag = '';
 
                 model.showplusminusicon = function(DIVid) {
-                    debugger;
+
                     var array = model.selectedIndex === 1 ? model.domDataadvanced : model.domDatageneral;
                     _.map(_.where(array, { collapseid: DIVid }), function(item) {
                         switch (item.collapseid) {
@@ -950,14 +950,14 @@
 
                 model.loadControlDivWise = function(controlList) {
                     if (model.selectedIndex === 1) {
-                        debugger;
+
                         _.each(controlList, function(item) {
                             if (item.dataBind) {
                                 model[item.dataSource] = item.dataBind === "heightreSearch" ? arrayConstants[item.dataBind] : model.removeSelect(arrayConstants[item.dataBind]);
                             } else if (item.dataApi) {
                                 model[item.dataSource] = getArray.GArray(item.dataApi);
                             }
-                            debugger;
+
                             if ('Cust_ID' in model.getpageloadobject) {
 
                             } else {

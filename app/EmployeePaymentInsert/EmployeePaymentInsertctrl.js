@@ -11,19 +11,23 @@
              model.txtpayDescription = '';
              model.rbtnPaymode = '';
              model.rbtnmail = '';
+             model.StartDateparam = '';
+             model.endDateparam = '';
          };
 
          vm.init = function() {
+
              vm.model = model = {};
              vm.model = model = EmployeePaymentInsertModel;
              model.scope = scope;
              vm.reset();
+             debugger;
+             vm.model.typeofprofile = parseInt(stateParams.paymentID);
              vm.model.getpaymentProfile(stateParams.ProfileID);
              vm.model.PiObj.rbtnmail = 1;
          };
          vm.Number = Number;
          vm.init();
-
      }
      angular
          .module('Kaakateeya')
