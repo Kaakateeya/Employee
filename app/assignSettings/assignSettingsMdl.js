@@ -40,8 +40,7 @@
 
                 model.ProfileIdTemplateDUrl = function(row) {
                     var paidstatusclass = row.IsPaidMember === 372 ? 'paidclass' : 'unpaid';
-                    // 
-                    var paid = row.ProfileID !== undefined ? "<a href='javascript:void(0);' ng-click='model.ViewProfile(" + JSON.stringify(row.ProfileID) + ")' class='" + paidstatusclass + "'>" + row.ProfileID + "</a><br><a href='javascript:void(0);' ng-click='model.getDuplicate(" + JSON.stringify(row.ProfileID) + ");'>Duplicate profiles</a>" : "";
+                    var paid = row.ProfileID !== undefined ? "<a href='javascript:void(0);' ng-click='model.ViewProfile(" + JSON.stringify(row.ProfileID) + ")' class='" + paidstatusclass + "'>" + row.ProfileID + "</a><br><a href='javascript:void(0);' ng-click='model.getDuplicate(" + JSON.stringify(row.ProfileID) + ");'>Find duplicate</a>" : "";
                     return paid;
                 };
 
@@ -254,13 +253,14 @@
                     model.singlegrid2.sdata = [];
                     model.singlegrid3.sdata = [];
                     model.dupTotalRecords = 0;
-                    modelpopupopenmethod.showPopupphotopoup('duplicataProfilesPopup.html', model.scope, 'lg', "modalclassdashboardphotopopupassign");
+
                     assignSettingsService.getDuplicatProfiles(profileID).then(function(response) {
                         console.log(response.data);
                         model.singlegrid1.sdata = response.data[0];
                         model.singlegrid2.sdata = response.data[1];
                         model.singlegrid3.sdata = response.data[2];
                         model.dupTotalRecords = response.data[0].length > 0 ? (response.data[0])[0].SimilarCount : (response.data[1].length > 0 ? (response.data[1])[0].SimilarCount : (response.data[2].length > 0 ? (response.data[2])[0].SimilarCount : 0));
+                        modelpopupopenmethod.showPopupphotopoup('duplicataProfilesPopup.html', model.scope, 'lg', "modalclassdashboardphotopopupassign");
                     });
                 };
                 model.closeAssign = function() {

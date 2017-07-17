@@ -21,14 +21,13 @@
              vm.model = model = EmployeePaymentInsertModel;
              model.scope = scope;
              vm.reset();
-
-             model.typeofprofile = parseInt(stateParams.paymentID);
+             debugger;
+             vm.model.typeofprofile = parseInt(stateParams.paymentID);
              vm.model.getpaymentProfile(stateParams.ProfileID);
              vm.model.PiObj.rbtnmail = 1;
          };
          vm.Number = Number;
          vm.init();
-
      }
      angular
          .module('Kaakateeya')

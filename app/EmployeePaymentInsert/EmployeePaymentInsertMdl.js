@@ -19,8 +19,6 @@
         model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
         model.ServiceTaxPercent = app.ServiceTaxPercent;
 
-
-
         model.EmployeePaymentInsert = function(inobj, type) {
             var monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                 DateArr, dateformatt = '';
@@ -28,6 +26,7 @@
             if (model.ExpiryDaterev === '') {
                 model.PaidAmtChange(inobj.txtAmountPaid, inobj.txtAgreedAmt);
             }
+
             var obj = {
                 ProfileID: model.custobj.ProfileID,
                 Cust_id: model.custobj.Cust_ID,
@@ -38,12 +37,10 @@
                 SettlementAmount: inobj.txtSettlementAmount,
                 DateDuration: model.ExpiryDaterev,
                 ServiceTax: inobj.rdnServicetax,
-                ServiceTaxAmt: inobj.rdnServicetax === '1' ? parseInt(inobj.txtAmountPaid * model.ServiceTaxPercent) : 0,
+                // ServiceTaxAmt: inobj.rdnServicetax === '1' ? parseInt(inobj.txtAmountPaid * model.ServiceTaxPercent) : 0,
                 AmountPaid: inobj.txtAmountPaid,
                 StartDate: model.StartDateparam,
                 EndDate: model.endDateparam,
-                // moment(model.custobj.EndDate).format('DD/MM/YYYY') === 'Invalid date' ? '' : moment(model.custobj.EndDate).format('DD/MM/YYYY'),
-                //  model.custobj.EndDate !== '' && model.custobj.EndDate !== null ? filter('date')(model.custobj.EndDate, 'MM/dd/yyyy') : null,
                 ReceiptNumber: inobj.txtbillno,
                 TransactionID: inobj.txttransactionid,
                 ChequeNoOrDDNo: inobj.txtcheckno,
@@ -108,7 +105,6 @@
         };
 
         model.PaidAmtChange = function(paidAmt, agreeAmt) {
-            debugger;
             if (agreeAmt === '' || agreeAmt === undefined) {
                 model.PiObj.txtAmountPaid = '';
                 alert('Please enter  Agreed amount');
@@ -117,6 +113,8 @@
                 model.PiObj.txtAmountPaid = '';
                 alert('Please enter paid amount less than Agreed amount');
             } else {
+
+                debugger;
                 if (parseInt(paidAmt) !== agreeAmt) {
                     model.showOfferDetails(paidAmt, 'Paid', model.custobj.Expirydate);
                 }
@@ -127,7 +125,7 @@
 
                 if (model.custobj.Expirydate && stateParams.paymentID !== 0) {
                     var datebool = moment(curdate).isSame(olddate);
-                    if (datebool || (moment(curdate).isBefore(olddate))) {
+                    if (datebool || (moment(olddate).isBefore(curdate))) {
                         model.StartDateparam = curdate;
                         model.endDateparam = moment(curdate).add(7, 'days').format('MM-DD-YYYY');
                         model.ExpiryDaterev = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
@@ -136,9 +134,7 @@
                         model.endDateparam = moment(olddate).add(7, 'days').format('MM-DD-YYYY');
                         model.ExpiryDaterev = moment(model.custobj.Expirydate).add(parseInt(num), 'days').format('MM-DD-YYYY');
                     }
-
                 } else {
-                    debugger;
                     model.StartDateparam = curdate;
                     model.endDateparam = moment().add(7, 'days').format('MM-DD-YYYY');
                     model.ExpiryDaterev = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
