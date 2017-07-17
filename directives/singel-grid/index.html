@@ -21,6 +21,7 @@
                 </td>
                 <td ng-repeat="colitem in model.columns">
                     <span ng-if="colitem.type==='label'"> {{inneritem[colitem.key]}}</span>
+                    <input ng-if="colitem.type==='textbox'" type="text" class="form-control" ng-readonly="inneritem.optionType==='label'" ng-model="model[colitem.model+inneritem.sno]">
                     <a href="#" ng-if="colitem.type==='link'" ng-click="colitem.method(inneritem)">{{inneritem[colitem.key]}}</a>
                     <span ng-if="colitem.type==='custom'" ng-bind-html="colitem.templateUrl(inneritem)"></span>
                     <span ng-if="colitem.type==='customlink'" ng-bind-html="colitem.templateUrl(inneritem)" ng-click="colitem.method(inneritem)"></span>
