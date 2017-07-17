@@ -81,12 +81,13 @@
                         EmpId: authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "",
                         ReadFlag: 0,
                         MessageHistoryId: messageid,
-                        Accepted: acceptrejectflag,
+                        Accepted: parseInt(acceptrejectflag),
                         MessageLinkId: null
                     };
                     customerMessagesverificationService.updatecustomermessages(obj).then(function(response) {
                         console.log(response);
                         if (parseInt(response.data) === 1) {
+                            model.close();
                             alerts.timeoutoldalerts(model.scope, 'alert-success', 'Updated succesfully', 4000);
                             model.customermeassgeverification();
                         } else {
