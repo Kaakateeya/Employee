@@ -15,6 +15,7 @@
                  model.ProfileOwner = '';
                  model.ProfileID = '';
                  model.searchObjectquery = $location.search();
+                 model.updatepaymentllink = false;
                  var meKey = Object.getOwnPropertyNames(model.searchObjectquery)[0];
                  model.txtProfileID = model.searchObjectquery[meKey];
                  model.isManagement = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";

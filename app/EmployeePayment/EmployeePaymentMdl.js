@@ -65,6 +65,7 @@
                 };
 
                 model.EmployeePayment = function(txtval) {
+                    model.updatepaymentllink = false;
                     model.data = [];
                     if (model.txtProfileID !== undefined && model.txtProfileID !== '' && model.txtProfileID !== null && model.txtProfileID !== "undefined") {
 
@@ -83,12 +84,17 @@
                                 EmployeePaymentservice.getEmployeePayment(model.txtProfileID).then(
                                     function(response) {
                                         if (_.isArray(response.data) && response.data.length > 0) {
+                                            console.log(response.data);
+                                            model.updatepaymentllink = true;
                                             model.CustName = (response.data)[0].CustName;
                                             model.ProfileOwner = (response.data)[0].ProfileOwner;
                                             model.balancepaymentID = (response.data)[0].PaymentID;
                                             model.balancemembershiptype = (response.data)[0].membershiptype;
                                             model.RenewalStatus = (response.data)[0].RenewalStatus;
                                             model.PaymentHist_ID = (response.data)[0].PaymentHist_ID;
+                                            model.CustId = (response.data)[0].CustId;
+                                            model.ExpiryDate = (response.data)[0].ExpiryDate;
+                                            model.pointsallowed = (response.data)[0].Used + "/" + (response.data)[0].Allowed;
                                             model.freshLink = true;
                                             model.opendiv = false;
                                             model.hidesearch = true;
@@ -103,6 +109,7 @@
                             } else {
                                 model.CustName = model.ProfileOwner = '';
                                 model.freshLink = false;
+                                model.updatepaymentllink = false;
                                 alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter valid profileID', 10000);
                             }
                         });
@@ -196,10 +203,20 @@
 
 
                 model.EditPaymentSubmit = function() {
-                    alert(11111111);
+
 
                 };
 
+                model.paymenteditpointsdate = function(obj) {
+                    debugger;
+
+                    model.paymentchangedobj = {};
+                    model.paymentchangedobj.ProfileID = obj.txtProfileID;
+                    model.paymentchangedobj.Custid = model.CustId;
+                    model.paymentchangedobj.ExpiryDate = model.ExpiryDate;
+                    model.paymentchangedobj.Points = model.pointsallowed;
+                    modelpopupopenmethod.showPopupphotopoup('editpopuppayment.html', model.scope, 'md', "modalclassofedit");
+                };
                 return model.init();
             }
         ]);

@@ -26,6 +26,11 @@
             <div>
                 <md-button class="md-primary pull-right" ng-show="page.model.freshLink" ng-click="page.model.paymentInsertLink(page.model.txtProfileID,page.model.RenewalStatus===1?'Balance':'renewal');"> {{ page.model.RenewalStatus===1?'Balance':'Renewal'}} </md-button>
             </div>
+            <div class="row" ng-show="page.model.updatepaymentllink">
+                <div class="col-lg-5">
+                    <a href="javascript:void(0)" ng-click="page.model.paymenteditpointsdate(page.model)">update Payment</a>
+                </div>
+            </div>
             <div>
                 <complex-grid ng-if="page.model.data" model="page.model" config="page.model" hidesearch="true" hidepaging="true"></complex-grid>
             </div>
@@ -76,6 +81,12 @@
     </form>
 </script>
 
+<script type="text/ng-template" id="editpopuppayment.html">
+    <div class="modal-body">
+        <payment-editpoints models="page.model.paymentchangedobj"></payment-editpoints>
+    </div>
+</script>
+</div>
 <style>
     .fixed-table-container thead th .sortable,
     .detail {

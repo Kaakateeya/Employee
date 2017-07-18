@@ -87,7 +87,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'reviewPendinrReports', name: 'base.reviewPendinrReports', url: '/reviewPendinrReport' },
             { routeName: 'ticketCreation', name: 'base.ticketCreation', url: '/ticketCreationpage' },
             { routeName: 'updateMacAdress', name: 'base.updateMacAdress', url: '/updateMacAdresspage' },
-            { routeName: 'customerMessagesverification', name: 'base.customerMessagesverification', url: '/customerMessagesverificationpage' }
+            { routeName: 'customerMessagesverification', name: 'base.customerMessagesverification', url: '/customerMessagesverificationpage' },
+            { routeName: 'marketingticketverification', name: 'base.marketingticketverification', url: '/marketingticketverificationpage' }
         ];
         $ocLazyLoadProvider.config({
             debug: true
@@ -257,6 +258,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/norecordsalert-popup/service/svc.js',
                         'directives/norecordsalert-popup/directive.js'
                     ]
+                },
+                {
+                    name: 'payment-editpointsdate',
+                    files: [
+                        'directives/payment-editpointsdate/css/style.css',
+                        'directives/payment-editpointsdate/model/config.js',
+                        'directives/payment-editpointsdate/service/svc.js',
+                        'directives/payment-editpointsdate/directive.js'
+                    ]
                 }
             ]
         });
@@ -279,6 +289,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     $ocLazyLoad.load('single-grid');
                     $ocLazyLoad.load('properties');
                     $ocLazyLoad.load('norecordsalert-popup');
+                    $ocLazyLoad.load('payment-editpointsdate');
                 }]
             }
         });
@@ -312,6 +323,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     $ocLazyLoad.load('EditSlide-popup');
                     $ocLazyLoad.load('properties');
                     $ocLazyLoad.load('norecordsalert-popup');
+                    $ocLazyLoad.load('payment-editpointsdate');
                 }]
             }
         });

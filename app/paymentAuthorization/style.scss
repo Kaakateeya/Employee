@@ -78,3 +78,54 @@ md-sidemenu-button>a {
     top: 0%;
     left: 0%;
 }
+
+.modalclassofedit {
+    z-index: 9999999999 !important;
+    top: 0%;
+    left: 0%;
+}
+
+.modalclassofedit .modal-dialog.modal-md {
+    width: 50%;
+}
+
+.modalclassofedit {
+    .md-tab {
+        padding: 14px 15px;
+    }
+}
+
+.modalclassofedit {
+    .pop_label_left {
+        width: 40%;
+    }
+}
+
+#paymentAuthorization {}
+
+#formpaymentverify {
+    // button.multiselect.dropdown-toggle.btn.ng-pristine.ng-untouched.ng-valid.ng-isolate-scope {
+    //  width: 43% !important;
+    //}
+    .smalldropdown {
+        width: 274px !important;
+        height: 33px;
+        cursor: pointer;
+        text-rendering: auto;
+        letter-spacing: normal;
+        word-spacing: normal;
+        text-indent: 0px;
+        text-shadow: none;
+        text-align: start;
+        text-overflow: ellipsis;
+        margin-right: 26px;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-top: 1px;
+    }
+    .multiselect-container {
+        width: 274px !important;
+        margin-left: 156px;
+    }
+}
