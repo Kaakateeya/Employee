@@ -96,8 +96,9 @@
                         model.PiObj.txtpayDescription = model.custobj.MemberShipDescription;
                         model.PiObj.txtSettlementAmount = model.custobj.SettlementAmount ? model.custobj.SettlementAmount : '';
                         if (parseInt(stateParams.paymentID) === 0) {
-                            // model.PiObj.txtAgreedAmt = '';
+                            model.PiObj.txtAgreedAmt = '';
                             model.PiObj.txtAmountPaid = '';
+                            model.PiObj.txtpayDescription = '';
                         }
                     }
                 }
@@ -105,6 +106,7 @@
         };
 
         model.PaidAmtChange = function(paidAmt, agreeAmt) {
+            debugger;
             if (agreeAmt === '' || agreeAmt === undefined) {
                 model.PiObj.txtAmountPaid = '';
                 alert('Please enter  Agreed amount');
@@ -117,11 +119,12 @@
                     model.showOfferDetails(paidAmt, 'Paid', model.custobj.Expirydate);
                 }
                 var num = paidAmt * model.paymentDays;
+                num = num <= 7 ? 7 : num;
                 model.ExpiryDate = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
                 var olddate = moment(model.custobj.Expirydate).format('MM-DD-YYYY');
                 var curdate = moment().format('MM-DD-YYYY');
 
-                if (model.custobj.Expirydate && stateParams.paymentID !== 0) {
+                if (model.custobj.Expirydate) {
                     var datebool = moment(curdate).isSame(olddate);
                     if (datebool || (moment(olddate).isBefore(curdate))) {
                         model.StartDateparam = curdate;
@@ -144,13 +147,21 @@
         model.showOfferDetails = function(Amt, type, expiryDate) {
             if (Amt !== undefined && Amt !== '') {
                 var num = Amt * model.paymentDays;
+                num = num <= 7 ? 7 : num;
                 model.strAmt = Amt;
-
-                if (expiryDate && type === 'pageload') {
+                if (expiryDate && type === 'pageload' && parseInt(stateParams.paymentID) !== 0) {
                     model.strDate = moment(expiryDate).format('DD-MM-YYYY');
                 } else if (expiryDate && type !== 'pageload') {
-                    model.strDate = moment(expiryDate).add(parseInt(num), 'days').format('DD-MM-YYYY');
-                } else {
+                    var olddate = moment(expiryDate).format('MM-DD-YYYY');
+                    var curdate = moment().format('MM-DD-YYYY');
+                    var datebool = moment(curdate).isSame(olddate);
+                    if (datebool || (moment(olddate).isBefore(curdate))) {
+                        model.strDate = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
+                    } else {
+                        model.strDate = moment(expiryDate).add(parseInt(num), 'days').format('MM-DD-YYYY');
+                    }
+                    model.strDate = moment(model.strDate).format('DD-MM-YYYY');
+                } else if (parseInt(stateParams.paymentID) !== 0) {
                     model.strDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
                 }
 
