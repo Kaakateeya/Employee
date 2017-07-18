@@ -103,7 +103,7 @@
                 };
                 model.paymentInsertLink = function(id, type) {
                     if (type === 'renewal')
-                        state.go('base.EmployeePaymentInsert', { ProfileID: id, status: 1, paymentID: 0, histryid: 0 });
+                        state.go('base.EmployeePaymentInsert', { ProfileID: id, status: 1, paymentID: 0, histryid: model.PaymentHist_ID });
                     else {
                         var Status = model.balancemembershiptype === 'Registration' ? 0 : 1;
                         state.go('base.EmployeePaymentInsert', { ProfileID: id, status: Status, paymentID: model.balancepaymentID, histryid: model.PaymentHist_ID });
