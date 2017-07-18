@@ -1,7 +1,16 @@
 <div class="right_col">
+    <div class="row">
+        <h3 class="hdrsettleCls col-lg-4">Update MAC IP</h3>
+        <md-radio-group class="col-lg-8" name="regions" layout="row" ng-model="page.model.region" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+            <md-radio-button value="1"> All </md-radio-button>
+            <md-radio-button value="408"> AP </md-radio-button>
+            <md-radio-button value="409"> TN </md-radio-button>
+            <md-radio-button value="410"> KT </md-radio-button>
+            <md-radio-button value="">Other </md-radio-button>
+        </md-radio-group>
+    </div>
 
-    <h3 class="hdrsettleCls">Upload settlement</h3>
     <div class="maincls">
-
+        <complex-grid config="page.model" model="page.model"></complex-grid>
     </div>
 </div>

@@ -96,20 +96,31 @@
         </table>
     </div>
     <!--table with fixed header-->
-    <div class="table-responsive" ng-if="((inneritem.isDetail === undefined || inneritem.isDetail) && (config.showplus===undefined || config.showplus===false))">
-        <table style="min-width: 1284px;" class="fixed scroll Datatable table table-fixed table-hover table-bordered mainTableCls normal fixed-header">
+    <div ng-style="{'margin-right': scrollBarWidth}" ng-if="((inneritem.isDetail === undefined || inneritem.isDetail) && (config.showplus===undefined || config.showplus===false))">
+        <table class="table  table-hover table-bordered">
             <!--fixed-header-->
             <thead>
                 <tr>
-                    <th ng-if="!inneritem.isDetail && config.showplus" class="headerStyles"></th>
-                    <th style="min-width:75px;" ng-click="sort(item.key)" class="{{item.key}} headerStyles" ng-repeat="item in model.columns">{{item.text}}
-                        <span class="glyphicon sort-icon" ng-show="sortKey==item.key" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    <th ng-click="sort(item.key)" class="{{item.key}} headerStyles" ng-repeat="item in model.columns">{{item.text}}
+                        <span ng-style="{'width': -tableSizes.width}" class="glyphicon sort-icon" ng-show="sortKey==item.key" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="fixedHeadBody">
+        <table ng-style="{'margin-top': -(rowSize.height+24)}" class="table  table-hover table-bordered">
+            <!--fixed-header-->
+            <thead>
+                <tr el-size="rowSize">
+                    <th ng-click="sort(item.key)" class="{{item.key}} headerStyles" ng-repeat="item in model.columns">{{item.text}}
+                        <span class="glyphicon sort-icon" el-size="tableSizes" ng-show="sortKey==item.key" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-class="inneritem.rowtype" ng-repeat="inneritem in model.data |orderBy:sortKey:reverse | filter: searchKeyword |startFrom:currentPage*pageSize | limitTo:pageSize">
-                    <td style="min-width:75px;" ng-repeat="colitem in model.columns">
+                    <td ng-repeat="colitem in model.columns">
                         <span ng-if="colitem.type==='label'"> {{inneritem[colitem.key]}}</span>
                         <a href="#" ng-if="colitem.type==='link'" ng-click="colitem.method(inneritem)">{{inneritem[colitem.key]}}</a>
                         <span ng-if="colitem.type==='custom'" ng-bind-html="colitem.templateUrl(inneritem)"></span>
@@ -177,7 +188,6 @@
     }
     
     .headerStyles {
-        width: auto;
         background-color: #fdca52;
     }
     
@@ -238,11 +248,45 @@
         directi
         on: ltr;
     }*/
-    
-    tbody {
+    /*tbody {
         max-height: 100px;
         overflow-y: auto;
         overflow-x: hidden;
+    }*/
+    
+    .fixedHeadBody {
+        height: 450px;
+    }
+    
+    .fixedHeadBody>table {
+        display: flex;
+        flex-flow: column;
+        height: 100%;
+        width: 100%;
+    }
+    
+    .fixedHeadBody>table thead {
+        /* head takes the height it requires, 
+    and it's not scaled when table is resized */
+        flex: 0 0 auto;
+        width: calc(100% - 0.9em);
+    }
+    
+    .fixedHeadBody>table tbody {
+        /* body takes all the remaining available space */
+        flex: 1 1 auto;
+        display: block;
+        overflow-y: scroll;
+    }
+    
+    .fixedHeadBody>table tbody tr {
+        width: 100%;
+    }
+    
+    .fixedHeadBody>table thead,
+    table tbody tr {
+        display: table;
+        table-layout: fixed;
     }
     
     .disablelinkcls {

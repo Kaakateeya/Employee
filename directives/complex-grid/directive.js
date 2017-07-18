@@ -24,12 +24,26 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                             scope.model.exportColumns[item.key] = item.text;
                     });
                     scope.detailView = false;
+                    scope.scrollBarWidth = "5px";
+                    scope.tableSizes = [];
+                    scope.setScrollBarWidth = function() {
+                        timeout(function() {
+                            var divWidth = $(".fixedHeadBody").width();
+                            var tableWidth = $(".fixedHeadBody table").width();
+                            var diff = divWidth - tableWidth;
+                            if (diff > 0) scope.scrollBarWidth = diff + "px";
+                        }, 300);
+                    }
                 };
                 scope.page = {};
                 scope.page.model = {};
                 scope.$watch(scope.model, function() {
                     scope.init();
                 });
+                scope.$watch(scope.model.data, function() {
+                    scope.setScrollBarWidth();
+                });
+
                 scope.ProfileIdTemplateDUrl = function(row) {
                     return "<a style='cursor:pointer;'  href='/Education/" + row.CustID + "'>" + row.Profileid + "</a>";
                 };
@@ -180,7 +194,20 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
 ]);
 angular.module('Kaakateeya').filter('startFrom', function() {
     return function(input, start) {
-        start = +start; //parse to int
-        return input.slice(start);
+        if (input) {
+            start = +start; //parse to int
+            return input.slice(start);
+        }
     };
 });
+angular.module('Kaakateeya').directive('elSize', ['$parse', '$timeout', function($parse, $timeout) {
+    return function(scope, elem, attrs) {
+        var fn = $parse(attrs.elSize);
+        console.log(elem.innerWidth());
+        scope.$watch(function() {
+            return { width: elem.innerWidth(), height: elem.innerHeight() };
+        }, function(size) {
+            $parse(attrs.elSize).assign(scope, size);
+        }, true);
+    }
+}]);
