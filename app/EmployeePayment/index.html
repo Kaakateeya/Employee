@@ -39,17 +39,42 @@
     </script>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
+<script type="text/ng-template" id="paymentEditPopup.html">
+    <form name="payEditForm" role="form" ng-submit="payEditForm.$valid && page.model.EditPaymentSubmit();">
+        <div class="modal-header">
+            <h3 class="modal-title text-center">Edit Payment details
+                <a href="javascript:void(0);" ng-click="page.model.close();">
+                    <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="25"></ng-md-icon>
+                </a>
+            </h3>
+        </div>
+        <div class="modal-body form-group">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row form-group">
+                        <div class="col-lg-6">Agreed Amount</div>
+                        <div class="col-lg-6"><input type="text" class="form-control" ng-model="page.model.editAgreedAmt" required></div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6">Paid Amount</div>
+                        <div class="col-lg-6"><input type="text" class="form-control" ng-model="page.model.editPaidAmt" required></div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-3">Pay description</div>
+                <div class="col-lg-9"><textarea name="" id="" cols="30" rows="5" class="form-control" ng-model="page.model.editDescriptionAmt" required></textarea></div>
+            </div>
+        </div>
+        <div class="modal-footer row">
+            <div class="col-lg-5"><input type="submit" value="submit" class="btn btn-danger pull-right"></div>
+            <div class="col-lg-2"><input type="button" value="cancel" class="btn btn-default pull-left" ng-click="page.model.close();"></div>
+        </div>
+    </form>
+</script>
 
 <style>
     .fixed-table-container thead th .sortable,

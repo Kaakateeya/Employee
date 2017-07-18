@@ -207,7 +207,7 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in page.model.MMsettleArr">
-                            <td>{{item.ProfileID}}</td>
+                            <td><a href="javascript:void(0);" ng-click="page.model.ViewProfile(item.ProfileID);">{{item.ProfileID}}</a></td>
                             <td>{{item.FirstName}}</td>
                             <td>{{item.LastName}}</td>
                             <td>{{item.EmpName}}</td>
@@ -216,15 +216,6 @@
                     </tbody>
                 </table>
             </div>
-
-
-
-
-
-
-
-
-
 
         </div>
     </script>

@@ -33,8 +33,8 @@
             model.paymentAuthSelect = function(type) {
                 var inObj = {
                     BranchID: model.branch ? model.branch : '',
-                    StartDate: model.startDate ? model.startDate : '',
-                    EndDate: model.endDate ? model.endDate : '',
+                    StartDate: model.startDate ? moment(model.startDate).format('MM/DD/YYYY') : '',
+                    EndDate: model.endDate ? moment(model.endDate).format('MM/DD/YYYY') : '',
                     Region: model.rdnRegion ? model.rdnRegion : ''
                 };
                 model.ProfileIdTemplateDUrl = function(row) {

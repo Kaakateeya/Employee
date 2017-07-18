@@ -36,10 +36,19 @@
                 model.paymentProfileID = function(row) {
                     model.refreshAdmin();
                     var status = row.membershiptype === 'Registration' ? 0 : 1;
-                    // paymentProperty.setData(row.PaymentHist_ID);
-                    var paid = parseInt(model.Admin) === 1 || model.Managementid === 'true' ? "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.ProfileID + "/" + status + "/" + row.PaymentID + "/" + row.PaymentHist_ID + "'>Edit</a>" : '';
+                    // var paid = parseInt(model.Admin) === 1 || model.Managementid === 'true' ? "<a style='cursor:pointer;'  href='/EmployeePaymentInserts/" + row.ProfileID + "/" + status + "/" + row.PaymentID + "/" + row.PaymentHist_ID + "'>Edit</a>" : '';
+                    var paid = parseInt(model.Admin) === 1 || model.Managementid === 'true' ? "<a href='javascript:void(0);' ng-click='model.showPAymentEdit(" + JSON.stringify(row) + ");'>Edit</a>" : '';
                     return paid;
                 };
+
+                model.showPAymentEdit = function(row) {
+                    model.editAgreedAmt = row.AgreedAmount;
+                    model.editPaidAmt = row.PaidAmount;
+                    model.editDescriptionAmt = row.Description;
+
+                    // modelpopupopenmethod.showPopupphotopoup('paymentEditPopup.html', model.scope, 'md', "");
+                };
+
                 model.expirydate = function(row) {
                     var status = row.ExpiryDate !== undefined && row.ExpiryDate !== null && row.ExpiryDate !== "null" ? "/" + row.ExpiryDate : "";
                     var paiddate = "<span>" + row.PaymentDate + status + "</span>";
@@ -64,7 +73,7 @@
                                 model.paymentArr = [];
                                 model.columns = [];
                                 if (model.isManagement === "true" && model.isAdmin === "1") {
-                                    model.columns.push({ text: '', key: 'ProfileID', type: 'custom', templateUrl: model.paymentProfileID });
+                                    model.columns.push({ text: '', key: 'ProfileID', type: 'morelinks', templateUrl: model.paymentProfileID });
                                 }
                                 model.columns.push({ text: 'Pay Mode', key: 'Type', type: 'label' }, { text: 'Membership', key: 'membershiptype', type: 'label' }, { text: 'Agreed', key: 'AgreedAmount', type: 'label' }, { text: 'Paid', key: 'PaidAmount', type: 'label' }, { text: 'Paid Date', key: 'PaymentDate', type: 'label' }, { text: 'Expiry Date', key: 'ExpiryDate', type: 'label' }, { text: 'Allowed', key: 'Allowed', type: 'label' }, { text: 'Used', key: 'Used', type: 'label' }, { text: 'Entered', key: 'CreatedByEmpID', type: 'label', width: '150px' }, {
                                     text: 'Status',
@@ -183,6 +192,14 @@
                 model.close = function() {
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
+
+
+
+                model.EditPaymentSubmit = function() {
+                    alert(11111111);
+
+                };
+
                 return model.init();
             }
         ]);

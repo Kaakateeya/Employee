@@ -39,8 +39,15 @@
                 };
 
                 model.ProfileIdTemplateDUrl = function(row) {
+
                     var paidstatusclass = row.IsPaidMember === 372 ? 'paidclass' : 'unpaid';
                     var paid = row.ProfileID !== undefined ? "<a href='javascript:void(0);' ng-click='model.ViewProfile(" + JSON.stringify(row.ProfileID) + ")' class='" + paidstatusclass + "'>" + row.ProfileID + "</a><br><a href='javascript:void(0);' ng-click='model.getDuplicate(" + JSON.stringify(row.ProfileID) + ");'>Find duplicate</a>" : "";
+                    return paid;
+                };
+
+                model.dupProfile = function(row) {
+                    var paidstatusclass = row.IsPaidMember === 372 ? 'paidclass' : 'unpaid';
+                    var paid = row.ProfileID !== undefined ? "<a href='javascript:void(0);' ng-click='model.ViewProfile(" + JSON.stringify(row.ProfileID) + ")' class='" + paidstatusclass + "'>" + row.ProfileID + "</a>" : "";
                     return paid;
                 };
 
@@ -54,7 +61,7 @@
                 model.checkPopulateval = function(val) {
                     return (val && _.where(model.ProfileOwnerarray, { value: parseInt(val) }).length > 0) ? val : 0;
                 };
-                model.ViewProfile = function(ProfileID) {
+                model.singlegrid1.ViewProfile = model.singlegrid2.ViewProfile = model.singlegrid3.ViewProfile = model.ViewProfile = function(ProfileID) {
                     window.open('/Viewfullprofile/' + ProfileID + '/0', '_blank');
                 };
                 model.assignaction = function(row) {
@@ -242,14 +249,32 @@
                 };
 
                 model.singlegrid1.columns = [
-                    { text: 'ProfileID', key: 'ProfileID', type: 'label' },
+                    { text: 'ProfileID', key: 'ProfileID', type: 'morelinks', templateUrl: model.dupProfile },
                     { text: 'Name', key: 'Name', type: 'label' },
                     { text: 'DOR-Branch', key: 'DOR', type: 'label' },
                     { text: 'Profile owner', key: 'EmpName', type: 'label' }
                 ];
                 model.singlegrid3.columns = model.singlegrid2.columns = model.singlegrid1.columns;
 
+                model.addRowType = function(array) {
+                    if (array && array.length > 0) {
+                        _.map(array, function(item) {
+                            item.rowtype = model.rowStyle(item);
+                        });
+                    }
+                };
+                model.rowStyle = function(row) {
+                    var test = [
+                        { StatusID: 57, classes: 'settled' },
+                        { StatusID: 393, classes: 'settled' },
+                        { StatusID: 56, classes: 'Deleted' },
+                        { StatusID: 394, classes: 'Deleted' },
+                        { StatusID: 258, classes: 'closed' }
+                    ];
 
+                    return _.where(test, { StatusID: parseInt(row.ProfileStatusID) }).length >= 1 ? _.where(test, { StatusID: parseInt(row.ProfileStatusID) })[0].classes : '';
+
+                };
                 model.getDuplicate = function(profileID) {
                     model.singlegrid1.sdata = [];
                     model.singlegrid2.sdata = [];
@@ -260,7 +285,11 @@
                         model.singlegrid1.sdata = response.data[0];
                         model.singlegrid2.sdata = response.data[1];
                         model.singlegrid3.sdata = response.data[2];
-                        model.dupTotalRecords = response.data[0].length > 0 ? (response.data[0])[0].SimilarCount : (response.data[1].length > 0 ? (response.data[1])[0].SimilarCount : (response.data[2].length > 0 ? (response.data[2])[0].SimilarCount : 0));
+                        model.dupTotalRecords = response.data && response.data[0].length > 0 ? (response.data[0])[0].SimilarCount : (response.data && response.data[1].length > 0 ? (response.data[1])[0].SimilarCount : (response.data && response.data[2].length > 0 ? (response.data[2])[0].SimilarCount : 0));
+
+                        model.addRowType(model.singlegrid1.sdata);
+                        model.addRowType(model.singlegrid2.sdata);
+                        model.addRowType(model.singlegrid3.sdata);
                         modelpopupopenmethod.showPopupphotopoup('duplicataProfilesPopup.html', model.scope, 'lg', "modalclassdashboardphotopopupassign");
                     });
                 };
