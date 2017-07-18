@@ -520,13 +520,16 @@
                     window.open("communicationLogs?Profileid=" + profileid, "_blank");
                 };
                 model.RelationshipChangerem = function(RelationshipID) {
-
-
                     SelectBindServiceApp.getRelationName(3, model.reminderslidearray.ProfileID, RelationshipID).then(function(response) {
                         if (_.isArray(response.data[0]) && response.data[0].length > 0) {
                             model.contactpersonname = response.data[0][0].NAME;
                         }
                     });
+                };
+                model.paymenteditpointsdate = function(obj) {
+                    debugger;
+                    model.paymentchangedobj = obj;
+                    commonpage.showPopupphotopoup('editpopuppayment.html', model.scope, 'md', "modalclassofedit");
                 };
                 return model.init();
             }

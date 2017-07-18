@@ -88,10 +88,28 @@
             model.linktemplate = function(row) {
                 var auth = 'Authorize';
                 var Decline = 'Decline';
-                var links = (AdminID && parseInt(AdminID) === 1) || Managementid === 'true' || row.SAForm ? "<a href='javascript:void(0);' ng-click='model.authorize(" + JSON.stringify(row) + "," + JSON.stringify(auth) + ");'>Authorize</a>&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.authorize(" + JSON.stringify(row) + "," + JSON.stringify(Decline) + ");'>Decline</a>" : '';
+                // var links = (AdminID && parseInt(AdminID) === 1) || Managementid === 'true' || row.SAForm ? "<a href='javascript:void(0);' ng-click='model.authorize(" + JSON.stringify(row) + "," + JSON.stringify(auth) + ");'>Authorize</a>&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.authorize(" + JSON.stringify(row) + "," + JSON.stringify(Decline) + ");'>Decline</a>" : '';
+                var links = (AdminID && parseInt(AdminID) === 1) || Managementid === 'true' || row.SAForm ? "<a href='javascript:void(0);' ng-click='model.authorizepopup(" + JSON.stringify(row) + "," + JSON.stringify(auth) + ");'>Authorize</a>&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.authorize(" + JSON.stringify(row) + "," + JSON.stringify(Decline) + ");'>Decline</a>" : '';
                 return links;
             };
+            model.authorizepopup = function(row, type) {
+                model.paymentverificationobj = row;
+                debugger;
+                modelpopupopenmethod.showPopupphotopoup('authorizePopupticket.html', model.scope, 'md', "modalclassofedit");
 
+            };
+            // model.employeesbind = function() {
+            //     paymentAuthorizationService.getMyprofilebind(1, 2, '').then(function(response) {
+            //         model.ProfileOwnerarray = [];
+            //         _.each(response.data, function(item) {
+            //             switch (item.CountryCode) {
+            //                 case "Profile Owner":
+            //                     model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID, "display": item.Name });
+            //                     break;
+            //             }
+            //         });
+            //     });
+            // };
             model.SaFormTemplate = function(row) {
                 var sa = row.SAForm !== "" && row.SAForm !== null && row.SAForm !== undefined ? "<a href='javascript:void(0);' ng-click='model.showSAmethod(" + JSON.stringify(row.SAForm) + ");'>SA Form</a>" : "<p class='unpaid'>NoSAForm</p>";
                 return sa;
@@ -137,7 +155,9 @@
                 modelpopupopenmethod.closepopup();
             };
 
-
+            model.closepopup = function() {
+                modelpopupopenmethod.closepopuppoptopopup();
+            };
             model.returnCount = function(val) {
                 return (_.where(model.mainArray, { BranchID: parseInt(val) })).length;
                 // return 1;
