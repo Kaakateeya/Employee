@@ -33,8 +33,8 @@
             model.paymentAuthSelect = function(type) {
                 var inObj = {
                     BranchID: model.branch ? model.branch : '',
-                    StartDate: model.startDate ? model.startDate : '',
-                    EndDate: model.endDate ? model.endDate : '',
+                    StartDate: model.startDate ? moment(model.startDate).format('MM/DD/YYYY') : '',
+                    EndDate: model.endDate ? moment(model.endDate).format('MM/DD/YYYY') : '',
                     Region: model.rdnRegion ? model.rdnRegion : ''
                 };
                 model.ProfileIdTemplateDUrl = function(row) {
@@ -88,8 +88,8 @@
             model.linktemplate = function(row) {
                 var auth = 'Authorize';
                 var Decline = 'Decline';
-                var links = (AdminID && parseInt(AdminID) === 1) || Managementid === 'true' || row.SAForm ? "<a href='javascript:void(0);' ng-click='model.authorize(" + JSON.stringify(row) + "," + JSON.stringify(auth) + ");'>Authorize</a>&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.authorize(" + JSON.stringify(row) + "," + JSON.stringify(Decline) + ");'>Decline</a>" : '';
-                //var links = (AdminID && parseInt(AdminID) === 1) || Managementid === 'true' || row.SAForm ? "<a href='javascript:void(0);' ng-click='model.authorizepopup(" + JSON.stringify(row) + "," + JSON.stringify(auth) + ");'>Authorize</a>&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.authorize(" + JSON.stringify(row) + "," + JSON.stringify(Decline) + ");'>Decline</a>" : '';
+                //var links = (AdminID && parseInt(AdminID) === 1) || Managementid === 'true' || row.SAForm ? "<a href='javascript:void(0);' ng-click='model.authorize(" + JSON.stringify(row) + "," + JSON.stringify(auth) + ");'>Authorize</a>&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.authorize(" + JSON.stringify(row) + "," + JSON.stringify(Decline) + ");'>Decline</a>" : '';
+                var links = (AdminID && parseInt(AdminID) === 1) || Managementid === 'true' || row.SAForm ? "<a href='javascript:void(0);' ng-click='model.authorizepopup(" + JSON.stringify(row) + "," + JSON.stringify(auth) + ");'>Authorize</a>&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.authorizepopup(" + JSON.stringify(row) + "," + JSON.stringify(Decline) + ");'>Decline</a>" : '';
                 return links;
             };
             model.authorizepopup = function(row, type) {

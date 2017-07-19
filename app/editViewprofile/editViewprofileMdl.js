@@ -319,12 +319,9 @@
                 configslide.reset();
             };
 
-            model.getMatchMeetmgData = function(profileID) {
-
-
+            model.ViewProfile = function(ProfileID) {
+                window.open('/Viewfullprofile/' + ProfileID + '/0', '_blank');
             };
-
-
 
 
             return model.init();

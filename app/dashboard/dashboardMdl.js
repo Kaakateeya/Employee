@@ -349,7 +349,8 @@
                             EmpAssignedDate: moment(item.EmpAssignedDate).format('DD-MMM-YYYY'),
                             TicketAssignedDate: moment(item.TicketAssignedDate).format('DD-MMM-YYYY'),
                             NotificationDate: moment(item.NotificationDate).format('DD-MMM-YYYY'),
-                            inActiveDate: moment(item.InActiveToDate).format('DD-MMM-YYYY')
+                            inActiveDate: moment(item.InActiveToDate).format('DD-MMM-YYYY'),
+                            paidclass: item.paid === true || item.paid === 1 ? 1 : 0,
                         });
                     });
 
@@ -528,7 +529,11 @@
                 };
                 model.paymenteditpointsdate = function(obj) {
                     model.paymentchangedobj = obj;
-                    commonpage.showPopupphotopoup('editpopuppayment.html', model.scope, 'md', "modalclassofedit");
+                    if (obj.SAForm !== null && obj.SAForm !== '--' && $.trim(obj.SAForm) !== '') {
+                        commonpage.showPopupphotopoup('editpopuppayment.html', model.scope, 'md', "modalclassofedit");
+                    } else {
+                        alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please Get SA Form', 3000);
+                    }
                 };
                 return model.init();
             }
