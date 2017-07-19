@@ -21,7 +21,6 @@
                         if (response.data[0].length > 0) {
                             model.ProfileStatusID = response.data[0][0].ProfileStatusID;
                         }
-
                         if (_.isArray(response.data[1]) && response.data[1].length > 0) {
                             model.fromcustid = response.data[1][0].Cust_ID;
                             model.FromAgeMax = response.data[1][0].AgeMax;
@@ -53,9 +52,9 @@
                                 }
                                 if (_.isArray(response.data) && response.data[1].length > 0) {
                                     model.NAME = response.data[1][0].NAME;
-                                    model.Max_Offline_Allowed = response.data[1][0].Max_Offline_Allowed;
-                                    model.OfflineMembershipExpiryDate = response.data[1][0].OfflineMembershipExpiryDate;
-                                    model.Offline_Used_Count = response.data[1][0].Offline_Used_Count;
+                                    model.Max_Offline_Allowed = response.data[1][0].Max_Allowed_Points;
+                                    model.OfflineMembershipExpiryDate = response.data[1][0].MembershipExpiryDate;
+                                    model.Offline_Used_Count = response.data[1][0].Used_Count;
                                 }
 
                                 if (_.isArray(response.data) && response.data.length > 2) {

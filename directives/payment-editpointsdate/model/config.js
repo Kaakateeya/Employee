@@ -29,7 +29,6 @@
                 Allowed_Days: mobj.rbtndaysallowed !== null && mobj.rbtndaysallowed !== '' && mobj.rbtndaysallowed !== undefined ? mobj.rbtndaysallowed : null,
                 Old_ExpiryDate: mobj.Allvalues.ExpiryDate !== "" && mobj.Allvalues.ExpiryDate !== null && mobj.Allvalues.ExpiryDate !== undefined ? mobj.Allvalues.ExpiryDate : null
             };
-            debugger;
             paymenteditpointsservice.paymenteditsubmit(obj).then(function(response) {
                 console.log(response);
                 if (parseInt(response.data) === 1) {

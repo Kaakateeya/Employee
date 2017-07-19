@@ -106,7 +106,6 @@
         };
 
         model.PaidAmtChange = function(paidAmt, agreeAmt) {
-            debugger;
             if (agreeAmt === '' || agreeAmt === undefined) {
                 model.PiObj.txtAmountPaid = '';
                 alert('Please enter  Agreed amount');

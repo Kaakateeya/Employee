@@ -527,7 +527,6 @@
                     });
                 };
                 model.paymenteditpointsdate = function(obj) {
-                    debugger;
                     model.paymentchangedobj = obj;
                     commonpage.showPopupphotopoup('editpopuppayment.html', model.scope, 'md', "modalclassofedit");
                 };

@@ -3,18 +3,22 @@
 
      angular
          .module('Kaakateeya')
-         .controller('marketingticketverificationCtrl', ['marketingticketverificationModel', function(marketingticketverificationModel) {
-             /* jshint validthis:true */
-             var vm = this,
-                 model;
+         .controller('marketingticketverificationCtrl', ['marketingticketverificationModel', 'authSvc', '$scope',
+             function(marketingticketverificationModel, authSvc, scope) {
+                 /* jshint validthis:true */
+                 var vm = this,
+                     model;
+                 vm.init = function() {
+                     vm.model = model = marketingticketverificationModel;
+                     model.scope = scope;
+                     model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+                     model.resetmarketverification();
+                 };
 
-             vm.init = function() {
-                 vm.model = model = marketingticketverificationModel;
-             };
+                 vm.init();
 
-             vm.init();
-
-         }]);
+             }
+         ]);
 
 
  })();

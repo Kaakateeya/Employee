@@ -340,7 +340,7 @@
                     paramters.DOBfrom = parseInt(model.agedobcontrol) === 1 ? paramters.DOBfrom : undefined;
                     paramters.DOBTo = parseInt(model.agedobcontrol) === 1 ? paramters.DOBTo : undefined;
 
-                    model.topage = model.typrofsearch === "1" && parseInt(frompage) === 1 ? 100 : topage;
+                    model.topage = topage = model.typrofsearch === "1" && parseInt(frompage) === 1 ? 100 : topage;
                     if (parseInt(frompage) === 1) {
                         model.progressbar = [];
                         model.config.slides = [];
@@ -440,7 +440,7 @@
                     paramters.DOBTo = parseInt(model.agedobcontrol) === 1 ? paramters.DOBTo : undefined;
 
 
-                    model.topage = model.typrofsearch === "1" && parseInt(frompage) === 1 ? 100 : topage;
+                    model.topage = topage = model.typrofsearch === "1" && parseInt(frompage) === 1 ? 100 : topage;
                     if (parseInt(frompage) === 1) {
                         model.progressbar = [];
                         model.config.slides = [];

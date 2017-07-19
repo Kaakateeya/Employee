@@ -4,8 +4,8 @@
         .module('Kaakateeya')
         .factory('marketingticketverificationService', ['$http', function(http) {
             return {
-                test: function() {
-                    return http.get(app.apiroot + 'test', { params: '' });
+                marketingverificationticketsubmit: function(obj) {
+                    return http.post(app.apiroot + 'EmployeeReportPage/marktingverificationticketsreport', obj);
                 }
             };
         }]);

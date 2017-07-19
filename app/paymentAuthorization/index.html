@@ -193,64 +193,58 @@
 
 </script>
 <script type="text/ng-template " id="authorizePopupticket.html">
-    <div class="modal-body">
-        <div class="modal-header">
-            <h4 class="col-lg-11 text-center">Payment Authorization</h4>
-            <a href="javascript:void(0);" class="pull-right" ng-click="page.model.closepopup();">
-                <span class="fa fa-close red" style="color: red;font-size: 17px;"></span>
-            </a>
-        </div>
-        <form id="formpaymentverify" name="ticketverifyform" novalidate role="form" ng-submit="ticketverifyform.$valid  && page.model.verifyticketupdate(page.model);">
-            <div class="modal-body" style="padding:3px;">
-                <div class="row" style="font-size:14px;"><label class="col-lg-3">Profile ID </label>
-                    <p class="col-lg-5">{{page.model.paymentverificationobj.ProfileID}}</p>
-                </div>
-                <br>
-                <div class="row" style="font-size:14px;"><label class="col-lg-3">Expiry Date</label>
-                    <p class="col-lg-5">{{page.model.paymentverificationobj.ExpiryOn}}</p>
-                </div>
-                <br>
-                <div class="clearfix"></div>
-                <div class="row" style="font-size:14px;"><label class="col-lg-3">Ticket Id </label>
-                    <input style="width: 268px;" class="col-lg-5 form-control" type="text" ng-model="page.model.paymentverificationobj.ticketidmarketing">
-                </div>
-                <br>
-                <div class="row" style="font-size:14px;"><label class="col-lg-3">Ticket Owner </label>
-                    <select name="ticketowner" ng-required="page.model.ticketid" class="smalldropdown col-lg-5" typeofdata="'EmpNames'" ng-model="page.model.ticketownermarketing" multiselectdropdown>   
+
+    <div class="modal-header" style="background-color: #fedc01;color: #880b0b;padding: 10px;font-size: 17px;">
+        <h4 class="col-lg-11 text-center">Payment Authorization</h4>
+        <a href="javascript:void(0);" class="pull-right" ng-click="page.model.closepopup();">
+            <span class="fa fa-close red" style="color: red;font-size: 17px;"></span>
+        </a>
+    </div>
+    <form id="formpaymentverify" name="ticketverifyform" novalidate role="form" ng-submit="ticketverifyform.$valid  && page.model.verifyticketupdate(page.model);">
+        <div class="modal-body" style="padding:3px;">
+            <div class="row" style="font-size:14px;"><label class="col-lg-3">Profile ID </label>
+                <p class="col-lg-3">{{page.model.paymentverificationobj.ProfileID}}</p>
+                <label class="col-lg-3">Expiry Date</label>
+                <p class="col-lg-3">{{page.model.paymentverificationobj.ExpiryOn}}</p>
+            </div>
+            <br>
+
+            <div class="row" style="font-size:14px;"><label class="col-lg-3">Ticket Id </label>
+                <input style="width:150px;" class="col-lg-3 form-control" type="text" ng-model="page.model.paymentverificationobj.ticketidmarketing">
+                <label class="col-lg-3">Ticket Owner </label>
+                <select name="ticketowner" ng-required="page.model.ticketid" class="smalldropdown col-lg-3" typeofdata="'EmpNames'" ng-model="page.model.ticketownermarketing" multiselectdropdown>   
                    </select>
+            </div>
+            <br>
+            <div class="clearfix"></div>
+            <div class="row">
+                <label class="col-lg-3">Mkt Ticket Verified</label>
+                <div class="col-lg-3">
+                    <md-radio-group name="maketingticketverified" layout="row" ng-model="page.model.maketingticketverified" class="md-block" flex-gt-sm>
+                        <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                        <md-radio-button value="0" class="md-primary"> No</md-radio-button>
+                    </md-radio-group>
                 </div>
-                <br>
-                <div class="clearfix"></div>
-                <div class="row">
-                    <label class="col-lg-3">Mkt Ticket Verified</label>
-                    <div class="col-lg-4">
-                        <md-radio-group name="maketingticketverified" layout="row" ng-model="page.model.maketingticketverified" class="md-block" flex-gt-sm>
-                            <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
-                            <md-radio-button value="0" class="md-primary"> No</md-radio-button>
-                        </md-radio-group>
+                <label class="col-lg-3">Marketed</label>
+                <div class="col-lg-3">
+                    <md-radio-group ng-required="true" name="rbtnmarketingtkted" layout="row" ng-model="page.model.rbtnmarketingtkted" class="md-block" flex-gt-sm>
+                        <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                        <md-radio-button value="0" class="md-primary"> No</md-radio-button>
+                    </md-radio-group>
+                    <div ng-messages="ticketverifyform.rbtnmarketingtkted.$invalid">
+                        <div style="color: red;font-size: 14px;" ng-if="ticketverifyform.rbtnmarketingtkted.$invalid && (ticketverifyform.$submitted)">This is required.</div>
                     </div>
-                </div>
-                <br>
-                <div class="row">
-                    <label class="col-lg-3">Marketed</label>
-                    <div class="col-lg-4">
-                        <md-radio-group ng-required="true" name="rbtnmarketingtkted" layout="row" ng-model="page.model.rbtnmarketingtkted" class="md-block" flex-gt-sm>
-                            <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
-                            <md-radio-button value="0" class="md-primary"> No</md-radio-button>
-                        </md-radio-group>
-                        <div ng-messages="ticketverifyform.rbtnmarketingtkted.$invalid">
-                            <div style="color: red;font-size: 14px;" ng-if="ticketverifyform.rbtnmarketingtkted.$invalid && (ticketverifyform.$submitted)">This is required.</div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <button type="submit" class="button_custom col-lg-2  col-lg-offset-4">Autorize</button>
-                    <md-button class='md-raised md-hue-1 col-lg-2' ng-click='page.model.closepopup()'>Cancel</md-button>
                 </div>
             </div>
-        </form>
-    </div>
+
+            <br>
+            <div class="row">
+                <button type="submit" class="button_custom col-lg-2  col-lg-offset-4">Autorize</button>
+                <md-button class='md-raised md-hue-1 col-lg-2' ng-click='page.model.closepopup()'>Cancel</md-button>
+            </div>
+        </div>
+    </form>
+
 </script>
 <style>
     .datepicker3 {

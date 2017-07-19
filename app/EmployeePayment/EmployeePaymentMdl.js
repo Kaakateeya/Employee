@@ -191,8 +191,6 @@
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
                 model.paymenteditpointsdate = function(obj) {
-                    debugger;
-
                     model.paymentchangedobj = {};
                     model.paymentchangedobj.ProfileID = obj.txtProfileID;
                     model.paymentchangedobj.Custid = model.CustId;
