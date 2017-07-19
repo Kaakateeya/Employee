@@ -7,7 +7,7 @@
 <form name="paymenteditupdate" novalidate role="form" ng-submit="paymenteditupdate.$valid  && model.editpaymentpoints(model);">
     <div class="modal-body" style="padding:3px;">
         <div class="row" style="font-size:14px;"><label class="col-lg-3">Profile ID </label>
-            <a ng-class="model.slide.paidclass===1?'paidclass':'unpaid'" target="_blank" href="Viewfullprofile/{{model.Allvalues.ProfileID}}/0" class="col-lg-5">{{model.Allvalues.ProfileID}}</a>
+            <a ng-class="model.Allvalues.paidclass===1?'paidclass':'unpaid'" target="_blank" href="Viewfullprofile/{{model.Allvalues.ProfileID}}/0" class="col-lg-5">{{model.Allvalues.ProfileID}}</a>
         </div>
         <br>
         <div class="clearfix"></div>
