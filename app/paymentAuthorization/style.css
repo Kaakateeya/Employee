@@ -59,7 +59,7 @@ md-sidemenu-button > a {
   left: 0%; }
 
 .modalclassofedit {
-  z-index: 9999999999 !important;
+  z-index: 9999999 !important;
   top: 0%;
   left: 0%; }
 

@@ -23,7 +23,7 @@
                                 <div>
 
                                     <input name="txtprofileidcheck" ng-required="page.model.rbtntype==='1'?true:false" type="text" class="form-control" maxlength="9" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.txtProfileidticket" ng-keydown="$event.keyCode===13 && page.model.onchangeofcreateticket('profileid')"
-                                        ng-blur="page.model.onchangeofcreateticket('profileid')">
+                                        ng-blur="page.model.onchangeofcreateticket('profileid');page.model.chkprofileid(page.model.txtProfileidticket)">
                                 </div>
                                 <div ng-messages="ticketcreationform.txtprofileidcheck.$invalid">
                                     <div style="color: red;font-size: 12px;width:112px;" ng-if="ticketcreationform.txtprofileidcheck.$invalid && (ticketcreationform.$submitted)">*Required.</div>

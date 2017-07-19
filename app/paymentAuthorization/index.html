@@ -203,16 +203,16 @@
     <form id="formpaymentverify" name="ticketverifyform" novalidate role="form" ng-submit="ticketverifyform.$valid  && page.model.verifyticketupdate(page.model);">
         <div class="modal-body" style="padding:3px;">
             <div class="row" style="font-size:14px;"><label class="col-lg-3">Profile ID </label>
-                <p class="col-lg-3">{{page.model.paymentverificationobj.ProfileID}}</p>
+                <a ng-class="page.model.paymentverificationobj.PaidStatus===1?'paidclass':'unpaid'" target="_blank" href="Viewfullprofile/{{model.Allvalues.ProfileID}}/0" class="col-lg-3">{{page.model.paymentverificationobj.ProfileID}}</a>
                 <label class="col-lg-3">Expiry Date</label>
                 <p class="col-lg-3">{{page.model.paymentverificationobj.ExpiryOn}}</p>
             </div>
             <br>
 
             <div class="row" style="font-size:14px;"><label class="col-lg-3">Ticket Id </label>
-                <input style="width:150px;" class="col-lg-3 form-control" type="text" ng-model="page.model.paymentverificationobj.ticketidmarketing">
+                <input style="width:150px;" class="col-lg-3 form-control" type="text" ng-model="page.model.ticketidmarketing">
                 <label class="col-lg-3">Ticket Owner </label>
-                <select name="ticketowner" ng-required="page.model.ticketid" class="smalldropdown col-lg-3" typeofdata="'EmpNames'" ng-model="page.model.ticketownermarketing" multiselectdropdown>   
+                <select name="ticketowner" class="smalldropdown col-lg-3" ng-options="item.value as item.label for item in page.model.employeenamearray" ng-model="page.model.ticketownermarketing" multiselectdropdown>   
                    </select>
             </div>
             <br>
@@ -238,10 +238,17 @@
             </div>
 
             <br>
+
+            <div class="row" style="font-size:14px;"><label class="col-lg-3">Amount </label>
+                <input style="width:150px;" class="col-lg-3 form-control" type="text" ng-model="page.model.ticketamountforcustomer">
+            </div>
+
+            <br>
             <div class="row">
                 <button type="submit" class="button_custom col-lg-2  col-lg-offset-4">Autorize</button>
                 <md-button class='md-raised md-hue-1 col-lg-2' ng-click='page.model.closepopup()'>Cancel</md-button>
             </div>
+            <br>
         </div>
     </form>
 

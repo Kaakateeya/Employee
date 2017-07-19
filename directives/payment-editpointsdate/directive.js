@@ -18,6 +18,8 @@
             scope.model.Allvalues = {};
             scope.model.Allvalues = scope.models;
             scope.model.scope = scope;
+            scope.model.rbtndaysallowed = '';
+            scope.model.rbtnchangedpoints = '';
         }
     }
     angular

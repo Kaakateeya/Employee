@@ -222,7 +222,7 @@
                 model.sendphotosurl = function(row) {
                     var dd = "";
                     if (row.ProfileStatusID === 54 && row.PhotoCount !== 0 && row.PhotoCount !== undefined && row.PhotoCount !== null) {
-                        dd = "<a href='javascript:void(0)' ng-click='model.photossent(" + (row.iFromCustID) + "," + JSON.stringify(row.FromEmail) + ");'>Photos</a>";
+                        dd = "<a href='javascript:void(0)' ng-click='model.photossent(" + (row.iToCustID) + "," + JSON.stringify(row.FromEmail) + ");'>Photos</a>";
                     }
                     return row.Sno !== undefined ? (row.Sno + "</br>" + dd) : "";
                 };

@@ -139,8 +139,8 @@
                         };
                         if (model.txtphonenumber.length === 10) {
                             ticketCreationService.ticketcreation(obj).then(function(response) {
-                                if (response !== null && response !== undefined && response.data !== undefined && response.data !== null && response.data !== "" &&
-                                    response.data.length > 0) {
+                                console.log(response);
+                                if (response !== null && response !== undefined && response.data !== undefined && response.data !== null && response.data !== "") {
                                     alerts.timeoutoldalerts(model.scope, 'alert-success', 'Ticket Created succesfully', 4000);
                                 } else {
                                     alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Ticket Created Failed', 4000);
@@ -169,10 +169,11 @@
                             PhoneNum: model.objphonenumber !== "" && model.objphonenumber !== null && model.objphonenumber !== undefined ? model.objphonenumber : "",
                             EmpID: authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : ""
                         };
-                        if (model.chkprofileid(model.txtProfileidticket)) {
+
+                        //if (model.chkprofileid(model.txtProfileidticket)) {
+                        if (model.txtProfileidticket.length === 9) {
                             ticketCreationService.ticketcreation(obj).then(function(response) {
-                                if (response !== null && response !== undefined && response.data !== undefined && response.data !== null && response.data !== "" &&
-                                    response.data.length > 0) {
+                                if (response !== null && response !== undefined && response.data !== undefined && response.data !== null && response.data !== "") {
                                     alerts.timeoutoldalerts(model.scope, 'alert-success', 'Ticket Created succesfully', 4000);
                                 } else {
                                     alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Ticket Created Failed', 4000);
@@ -182,6 +183,7 @@
                                 model.scope.ticketcreationform.$setUntouched();
                             });
                         }
+                        //}
                     }
                 };
                 model.changetypeofticket = function() {
@@ -190,7 +192,9 @@
                     model.scope.ticketcreationform.$setUntouched();
                 };
                 model.chkprofileid = function(profileid) {
+
                     ticketCreationService.getprofileidexistornot(profileid).then(function(response) {
+                        console.log(response);
                         if (response !== null && response !== undefined && response.data !== undefined && response.data !== null && response.data !== "") {
                             return true;
                         } else {
