@@ -5,7 +5,7 @@
         .factory('marketingticketverificationService', ['$http', function(http) {
             return {
                 marketingverificationticketsubmit: function(obj) {
-                    return http.post(app.apiroot + 'EmployeeReportPage/marktingverificationticketsreport', obj);
+                    return http.post(app.apiroot + 'EmployeeReportPage/authorizationpaymentamoutReport', obj);
                 }
             };
         }]);

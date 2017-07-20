@@ -3,8 +3,10 @@
     angular
         .module('Kaakateeya')
         .factory('EmployeePaymentmodel', ['$http', 'EmployeePaymentservice',
-            '$state', 'complex-grid-config', 'authSvc', 'single-grid-config', 'modelpopupopenmethod', 'alert', 'paymentProperty', 'SelectBindService',
-            function(http, EmployeePaymentservice, state, config, authSvc, singlegrid, modelpopupopenmethod, alerts, paymentProperty, SelectBindService) {
+            '$state', 'complex-grid-config', 'authSvc', 'single-grid-config', 'modelpopupopenmethod', 'alert',
+            'paymentProperty', 'SelectBindService', '$filter',
+            function(http, EmployeePaymentservice, state, config, authSvc, singlegrid, modelpopupopenmethod, alerts,
+                paymentProperty, SelectBindService, filter) {
                 var model = {};
                 model.singlegrid = {};
                 model.singlegrid.showsearchrows = true;
@@ -14,6 +16,7 @@
                 model.singlegrid.myprofileexcel = false;
                 model.singlegrid.normalexcel = false;
                 model.singlegrid.gridTableshow = false;
+                model.extensiondata = {};
                 model.showplus = false;
                 model.init = function() {
                     model.refreshAdmin();
@@ -46,7 +49,7 @@
                     model.editPaidAmt = row.PaidAmount;
                     model.editDescriptionAmt = row.Description;
 
-                    // modelpopupopenmethod.showPopupphotopoup('paymentEditPopup.html', model.scope, 'md', "");
+                    modelpopupopenmethod.showPopupphotopoup('paymentEditPopup.html', model.scope, 'md', "");
                 };
 
                 model.expirydate = function(row) {
@@ -106,6 +109,16 @@
                                         }
                                     }
                                 );
+
+                                //extension grid
+                                EmployeePaymentservice.getEmployeePaymentextensiontable(model.txtProfileID).then(
+                                    function(res) {
+                                        if (_.isArray(res.data) && res.data.length > 0 && _.isArray(res.data[0]) && res.data[0].length > 0) {
+                                            console.log(res.data[0]);
+                                            model.extensiondata.data = (res.data[0]);
+                                        }
+                                    }
+                                );
                             } else {
                                 model.CustName = model.ProfileOwner = '';
                                 model.freshLink = false;
@@ -133,6 +146,17 @@
                     var paid = row.Cust_ID !== undefined ? "<a>Edit</a>" : "";
                     return paid;
                 };
+                model.datemodified = function(row) {
+                    var enterdate;
+                    enterdate = filter('date')(row.EnteredDate, 'dd-MM-yyyy hh:mm:ss');
+                    return enterdate;
+                };
+                model.extensiondata.columns = [
+                    { text: 'Increased By', key: 'IncreasedBy', type: 'label' },
+                    { text: 'Date', key: 'EnteredDate', type: 'customlink', templateUrl: model.datemodified },
+                    { text: 'Points', key: 'Allowed_Points', type: 'label' },
+                    { text: 'Days', key: 'Allowed_NoOfDays', type: 'label' }
+                ];
                 model.singlegrid.columns = [
                     { text: 'Edit', key: 'Cust_ID', type: 'customlink', templateUrl: model.editurl },
                     { text: 'Pay Mode', key: 'Type', type: 'label' },
@@ -199,12 +223,17 @@
                 model.close = function() {
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
-
-
-
                 model.EditPaymentSubmit = function() {
+                    var obj = {
+                        Empid: model.empid,
+                        aggredamount: model.editAgreedAmt !== "" && model.editAgreedAmt !== null && model.editAgreedAmt !== undefined ? model.editAgreedAmt : null,
+                        paidamount: model.editPaidAmt !== "" && model.editPaidAmt !== null && model.editPaidAmt !== undefined ? model.editPaidAmt : null,
+                        paymentdescription: model.editDescriptionAmt !== "" && model.editDescriptionAmt !== null && model.editDescriptionAmt !== undefined ? model.editDescriptionAmt : null
+                    };
 
-
+                    EmployeePaymentservice.geteditpayment(obj).then(function(response) {
+                        console.log(response);
+                    });
                 };
 
                 model.paymenteditpointsdate = function(obj) {

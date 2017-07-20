@@ -34,6 +34,15 @@
             <div>
                 <complex-grid ng-if="page.model.data" model="page.model" config="page.model" hidesearch="true" hidepaging="true"></complex-grid>
             </div>
+            <br>
+            <br>
+            <div class="row" ng-if="page.model.extensiondata.data.length>0">
+                <h4 class="col-lg-8">Payment ExtensionTable</h4>
+            </div>
+            <br>
+            <div>
+                <complex-grid model="page.model.extensiondata" config="page.model.extensiondata" hidesearch="true" hidepaging="true"></complex-grid>
+            </div>
         </div>
     </div>
     <script type="text/ng-template" id="oldtablepayment.html">
@@ -49,7 +58,7 @@
 </script>
 <script type="text/ng-template" id="paymentEditPopup.html">
     <form name="payEditForm" role="form" ng-submit="payEditForm.$valid && page.model.EditPaymentSubmit();">
-        <div class="modal-header">
+        <div class="modal-header" style="background-color: #fedc01;color: #880b0b;padding: 10px;font-size: 17px;">
             <h3 class="modal-title text-center">Edit Payment details
                 <a href="javascript:void(0);" ng-click="page.model.close();">
                     <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="25"></ng-md-icon>

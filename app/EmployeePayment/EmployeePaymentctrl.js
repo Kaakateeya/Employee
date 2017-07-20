@@ -20,6 +20,7 @@
                  model.txtProfileID = model.searchObjectquery[meKey];
                  model.isManagement = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
                  model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
+                 model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                  if (model.txtProfileID !== "" && model.txtProfileID !== null && model.txtProfileID !== undefined && model.txtProfileID !== "undefined") {
                      model.EmployeePayment(model.txtProfileID);
                  }

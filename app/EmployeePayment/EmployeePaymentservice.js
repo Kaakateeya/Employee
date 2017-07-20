@@ -16,6 +16,16 @@
             },
             getoldpaymentdata: function(ProfileID, BranchID) {
                 return http.get(app.apiroot + 'StaticPages/getCustomerParofileIDbasePayment', { params: { ProfileID: ProfileID, BranchID: BranchID } });
+            },
+            getEmployeePaymentextensiontable: function(ProfileID) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getPaymentexentionpointsdays', {
+                    params: {
+                        Profileid: ProfileID
+                    }
+                });
+            },
+            geteditpayment: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/Editpayment', obj);
             }
         };
     }
