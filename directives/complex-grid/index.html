@@ -177,7 +177,7 @@
         <market-tickethistory ticketid="marketingTicket"></market-tickethistory>
     </div>
 </script>
-<style>
+<!-- <style>
     .subtable {
         display: block;
         overflow-x: auto;
@@ -297,4 +297,27 @@
     .disablelinkcls>a {
         color: gray;
     }
-</style>
+</style> -->
+
+
+<div class="container">
+    <h1>Table Style</h1>
+    <p>Use <code>height</code>, <code>classes</code>, <code>striped</code>, <code>rowStyle</code> options and <code>class</code>, <code>width</code>, <code>cellStyle</code> column options to set the styles of bootstrap table.</p>
+    <table data-toggle="table" data-url="data1.json" data-height="400" data-row-style="rowStyle">
+        <thead>
+            <tr>
+                <th data-field="id" class="col-md-2">Item ID</th>
+                <th data-field="name" class="col-md-6">
+                    <i class="glyphicon glyphicon-star"></i> Item Name
+                </th>
+                <th data-field="price" class="col-md-4">
+                    <i class="glyphicon glyphicon-heart"></i> Item Price
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap-table/bootstrap-table.css">
+<script src="src/js/bootstrap-table.js"></script>
