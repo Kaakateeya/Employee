@@ -1,60 +1,91 @@
-<div class="right_col" role="main" id="emailbounceentryform">
+<div class="right_col" role="main" id="emailbounceentryformid">
     <div class="panel-group">
         <div class="panel-collapse collapse in">
             <div class="panel-default regValheader" is-open="page.model.opendiv">
-                <div class="panel-heading" style=" color: rgb(160, 2, 1);">
-                    <h4 class="panel-title"> Email bounce entry form
-                    </h4>
-                </div>
                 <form accessible-form name="emailbounceentryform" novalidate role="form" ng-submit="page.model.submitemailbouncesubmitform();">
+                    <div class="panel-heading" style="color: rgb(160, 2, 1);">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <h4 class="panel-title col-lg-12"> Email Bounce Entry Form
+                                </h4>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="All Profileid" class="classlabelverify col-lg-5">Profile ID<span style="color:red;">*</span> </label>
+                                <div class="col-lg-6">
+                                    <input ng-required="true" maxlength="9" name="txtemailbounceprofileid" type="text" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" class="form-control" style="width:170px" ng-model="page.model.txtemailbounceprofileid"></input>
+                                    <div style="color: red;" ng-messages="emailbounceentryform.txtemailbounceprofileid.$error">
+                                        <div ng-if="emailbounceentryform.txtemailbounceprofileid.$invalid && (emailbounceentryform.$submitted)" ng-message="required">This is required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="All Profileid" class="classlabelverify col-lg-3">Email<span style="color:red;">*</span> </label>
+                                <div class="col-lg-8">
+                                    <input ng-required="true" name="txtemailbounceemailid" ng-pattern="page.model.emailpattaren" type="text" class="form-control" style="width:180px" ng-model="page.model.txtemailbounceemailid"></input>
+                                    <div style="color: red;width:305px;" class="row" ng-if="((emailbounceentryform.txtemailbounceemailid.$invalid) && (emailbounceentryform.$submitted))" ng-messages="emailbounceentryform.txtemailbounceemailid.$error" role="alert">
+                                        <div ng-message-exp="['required', 'pattern']">
+                                            *Required and enter valid e-mail address.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="All Profileid" class="classlabelverify col-lg-3">Category<span style="color:red;">*</span> </label>
+                                <div class="col-lg-7">
+                                    <select ng-required="true" name="ddlcategory" class="smalldropdown col-lg-5" typeofdata="'catgory'" ng-model="page.model.ddlcategoryid" multiselectdropdown>   
+                                    </select>
+                                    <div style="color: red;" ng-messages="emailbounceentryform.ddlcategory.$error">
+                                        <div ng-if="emailbounceentryform.ddlcategory.$invalid && (emailbounceentryform.$submitted)" ng-message="required">This is required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="panel-body">
+                        <div class="clearfix">
+                        </div>
                         <div class="row">
                             <div class="col-lg-3">
-                                <label for="All Profileid" class="classlabelverify">Profile ID</label>
+                                <label for="All Profileid" class="classlabelverify">Email bounce date<span style="color:red;">*</span> </label>
                                 <div>
-                                    <input type="text" class="form-control" style="width:150px" ng-model="page.model.txtemailbounceprofileid"></input>
+                                    <custom-datepicker ng-required="true" name="txtemailbouncedate" ng-class="page.model.txtemailbouncedate.trim()!=='' && model.txtemailbouncedate!==undefined &&  page.model.txtemailbouncedate!==null?'datepicker4':''" ng-model="page.model.txtemailbouncedate"
+                                        date-options="page.model.dateOptions"></custom-datepicker>
+                                </div>
+                                <div style="color: red;" ng-messages="emailbounceentryform.txtemailbouncedate.$error">
+                                    <div ng-if="emailbounceentryform.txtemailbouncedate.$invalid && (emailbounceentryform.$submitted)" ng-message="required">This is required.</div>
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                <label for="All Profileid" class="classlabelverify">Email</label>
+                                <label for="All Profileid" class="classlabelverify">Email sent date<span style="color:red;">*</span> </label>
                                 <div>
-                                    <input type="text" class="form-control" style="width:150px" ng-model="page.model.txtemailbounceemailid"></input>
+                                    <custom-datepicker ng-required="true" name="txtemailbouncesentdate" ng-class="page.model.txtemailbouncesentdate.trim()!=='' && model.txtemailbouncesentdate!==undefined &&  page.model.txtemailbouncesentdate!==null?'datepicker4':''" ng-model="page.model.txtemailbouncesentdate"
+                                        date-options="page.model.dateOptions"></custom-datepicker>
                                 </div>
-
-                            </div>
-                            <div class="col-lg-3">
-                                <label for="All Profileid" class="classlabelverify">Category</label>
-                                <div>
-                                    <select name="ddlcategory" class="smalldropdown col-lg-5" typeofdata="'Category'" ng-model="page.model.ddlcategoryid" multiselectdropdown>   
-                               </select>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-3">
-                                <label for="All Profileid" class="classlabelverify">Email bounce date</label>
-                                <div>
-                                    <input type="text" class="form-control" style="width:150px" ng-model="page.model.txtemailbouncedate"></input>
+                                <div style="color: red;" ng-messages="emailbounceentryform.txtemailbouncesentdate.$error">
+                                    <div ng-if="emailbounceentryform.txtemailbouncesentdate.$invalid && (emailbounceentryform.$submitted)" ng-message="required">This is required.</div>
                                 </div>
                             </div>
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-lg-3">
-                                <label for="All Profileid" class="classlabelverify">Email sent date</label>
+                            <div class="col-lg-6">
+                                <label for="All Profileid" class="classlabelverify">Narration<span style="color:red;">*</span> </label>
                                 <div>
-                                    <input type="text" class="form-control" style="width:150px" ng-model="page.model.txtemailbouncesentdate"></input>
+                                    <textarea ng-required="true" name="txtemailbouncenarration" type="text" rows="3" class="form-control" style="width:520px" ng-model="page.model.txtemailbouncenarration"></textarea>
+                                </div>
+                                <div style="color: red;" ng-messages="emailbounceentryform.txtemailbouncenarration.$error">
+                                    <div ng-if="emailbounceentryform.txtemailbouncenarration.$invalid && (emailbounceentryform.$submitted)" ng-message="required">This is required.</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group text-center" style="">
+                                    <button type="submit" class="button_custom" style="display:initial;">Submit</button>
+                                    <input type="reset" class="button_custom button_custom_reset resetCls" value="Reset" ng-click="page.model.resetemailbounce()">
                                 </div>
                             </div>
                         </div>
-                        <br>
-                        <div class="form-group text-center" style="border-top: 1px solid #ddd;padding-top: 1%;">
-                            <button type="submit" class="button_custom" style="display:initial;">Submit</button>
-                            <input type="reset" class="button_custom button_custom_reset resetCls" value="Reset" ng-click="page.model.resetmarketverification();">
-                        </div>
-                        <br>
                     </div>
                 </form>
-
                 <br>
                 <div>
                     <complex-grid ng-show="page.model.data.length>0" model="page.model" config="page.model"></complex-grid>
@@ -62,5 +93,18 @@
             </div>
         </div>
     </div>
-
 </div>
+<style>
+    .datepicker3 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+    }
+    
+    .datepicker4 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+        background-color: #f0f0cc !important;
+    }
+    
+    div#ui-datepicker-div {
+        z-index: 9999999;
+    }
+</style>
