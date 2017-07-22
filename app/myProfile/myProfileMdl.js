@@ -97,6 +97,7 @@
                         maxDate: null
                     };
                 };
+
                 model.allLinksTemplateDUrl = function(row) {
                     var stronlineliteclass = row.onlinepaidcls == "light" ? row.onlinepaidcls + ' Linkdisabled' : row.onlinepaidcls;
                     var strofflineliteclass = row.offlinepaidcls == "light" ? row.offlinepaidcls + ' Linkdisabled' : row.offlinepaidcls;
