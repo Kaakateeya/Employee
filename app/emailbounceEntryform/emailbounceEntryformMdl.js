@@ -29,6 +29,13 @@
                     };
                     emailbounceEntryformService.InsertEmailBouceEntry(obj).then(function(response) {
                         console.log(response);
+                        if (parseInt(response.data) === 1) {
+                            alerts.timeoutoldalerts(model.scope, 'alert-success', 'Email bounce entry details saved successfully', 3000);
+                        } else if (parseInt(response.data) === -2) {
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Already this email exists with ' + model.txtemailbounceprofileid + '', 3000);
+                        } else {
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Failed please contact admin', 3000);
+                        }
                     });
                 };
 
