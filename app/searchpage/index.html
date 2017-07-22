@@ -151,6 +151,16 @@
                                                             </md-radio-group>
                                                         </div>
                                                     </div>
+                                                    <div class="col-lg-4" ng-if="item.controlType==='intercaste'">
+                                                        <p>{{item.labelName}}</p>
+                                                        <div class="controls clearfix">
+                                                            <md-radio-group layout="row" class="md-block" flex-gt-sm ng-model="page.model[item.ngModel]">
+                                                                <md-radio-button value="1" class="md-primary"> Yes</md-radio-button>
+                                                                <md-radio-button value="0"> No </md-radio-button>
+                                                                </md-radio-button>
+                                                            </md-radio-group>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-lg-3" ng-if="item.controlType==='textproperty'">
                                                         <p>{{item.labelName}}</p>
                                                         <div class="controls clearfix">

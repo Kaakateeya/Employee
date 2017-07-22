@@ -88,7 +88,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'ticketCreation', name: 'base.ticketCreation', url: '/ticketCreationpage', isloginrequired: true },
             { routeName: 'updateMacAdress', name: 'base.updateMacAdress', url: '/updateMacAdresspage', isloginrequired: true },
             { routeName: 'customerMessagesverification', name: 'base.customerMessagesverification', url: '/customerMessagesverificationpage', isloginrequired: true },
-            { routeName: 'marketingticketverification', name: 'base.marketingticketverification', url: '/marketingticketverificationpage', isloginrequired: true }
+            { routeName: 'marketingticketverification', name: 'base.marketingticketverification', url: '/marketingticketverificationpage', isloginrequired: true },
+            { routeName: 'emailbounceEntryform', name: 'base.emailbounceEntryform', url: '/emailbounceEntryformpage', isloginrequired: true }
         ];
         $ocLazyLoadProvider.config({
             debug: true

@@ -12,6 +12,7 @@
                  model.init();
                  model.employeenamesbind();
                  model.ticketownermarketing = "";
+                 model.ticketiddisable = true;
              };
              vm.init();
          }]);

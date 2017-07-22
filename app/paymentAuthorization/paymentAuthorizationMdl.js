@@ -49,8 +49,17 @@
                     model.ViewProfile = function(row) {
                         window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
                     };
+                    model.Ticketpopupupdate = function(row) {
+                        var links = row.TicketName !== null ? "<a href='javascript:void(0);' ng-click='model.ticketpopupupdateshow(" + JSON.stringify(row) + ");'>" + row.TicketName + "</a>" : "--";
+                        return links;
+                    };
+                    model.ticketpopupupdateshow = function(row) {
+                        model.marketingTicketid = row.Emp_Ticket_ID;
+                        modelpopupopenmethod.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
+                    };
                     model.columns = [{ text: 'Profile ID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
-                        { text: 'Status', key: 'PaymentStatus', type: 'label' },
+                        // { text: 'Status', key: 'PaymentStatus', type: 'label' },
+                        { text: 'Ticket ID', key: 'Emp_Ticket_ID', type: 'morelinks', templateUrl: model.Ticketpopupupdate },
                         { text: 'Agreed', key: 'AgreedAmount', type: 'label' },
                         { text: 'Paid', key: 'PaidAmount', type: 'label' },
                         { text: 'Duration', key: 'ValidMonths', type: 'label' },
@@ -64,7 +73,6 @@
                         if (response.data) {
                             if ((response.data[0]).length) {
                                 if (type === 'export') {
-
                                     model.exportarray = [];
                                     model.exportarray = (response.data[0]);
                                     var options = {
@@ -101,9 +109,10 @@
                     model.typeauthorize = type;
                     model.maketingticketverified = null;
                     model.rbtnmarketingtkted = null;
-                    model.ticketamountforcustomer = "";
+                    model.ticketamountforcustomer = row.WithTax;
                     model.ticketownermarketing = row.AssignedToEmpID !== "" && row.AssignedToEmpID !== null ? parseInt(row.AssignedToEmpID) : "";
                     model.ticketidmarketing = row.TicketName;
+                    model.ticketiddisable = true;
                     modelpopupopenmethod.showPopupphotopoup('authorizePopupticket.html', model.scope, 'md', "modalclassofedit");
                 };
 

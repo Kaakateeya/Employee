@@ -1,0 +1,66 @@
+<div class="right_col" role="main" id="emailbounceentryform">
+    <div class="panel-group">
+        <div class="panel-collapse collapse in">
+            <div class="panel-default regValheader" is-open="page.model.opendiv">
+                <div class="panel-heading" style=" color: rgb(160, 2, 1);">
+                    <h4 class="panel-title"> Email bounce entry form
+                    </h4>
+                </div>
+                <form accessible-form name="emailbounceentryform" novalidate role="form" ng-submit="page.model.submitemailbouncesubmitform();">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label for="All Profileid" class="classlabelverify">Profile ID</label>
+                                <div>
+                                    <input type="text" class="form-control" style="width:150px" ng-model="page.model.txtemailbounceprofileid"></input>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="All Profileid" class="classlabelverify">Email</label>
+                                <div>
+                                    <input type="text" class="form-control" style="width:150px" ng-model="page.model.txtemailbounceemailid"></input>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="All Profileid" class="classlabelverify">Category</label>
+                                <div>
+                                    <select name="ddlcategory" class="smalldropdown col-lg-5" typeofdata="'Category'" ng-model="page.model.ddlcategoryid" multiselectdropdown>   
+                               </select>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="All Profileid" class="classlabelverify">Email bounce date</label>
+                                <div>
+                                    <input type="text" class="form-control" style="width:150px" ng-model="page.model.txtemailbouncedate"></input>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label for="All Profileid" class="classlabelverify">Email sent date</label>
+                                <div>
+                                    <input type="text" class="form-control" style="width:150px" ng-model="page.model.txtemailbouncesentdate"></input>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group text-center" style="border-top: 1px solid #ddd;padding-top: 1%;">
+                            <button type="submit" class="button_custom" style="display:initial;">Submit</button>
+                            <input type="reset" class="button_custom button_custom_reset resetCls" value="Reset" ng-click="page.model.resetmarketverification();">
+                        </div>
+                        <br>
+                    </div>
+                </form>
+
+                <br>
+                <div>
+                    <complex-grid ng-show="page.model.data.length>0" model="page.model" config="page.model"></complex-grid>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

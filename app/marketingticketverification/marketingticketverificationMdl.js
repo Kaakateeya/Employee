@@ -13,6 +13,14 @@
             model.normalexcel = true;
             model.gridTableshow = false;
             model.showplus = false;
+            model.dateOptions = {
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-40:+5",
+                dateFormat: 'dd/mm/yy',
+                minDate: null,
+                maxDate: null
+            };
             model.ProfileIdTemplateDUrl = function(row) {
                 var paidstatusclass = row.IsPaidMember === 372 ? 'paidclass' : 'unpaid';
                 var paid = row.ProfileID !== undefined ? "<a href='javascript:void(0);' class='paidclass'>" + row.ProfileID + "</a><br>" : "";

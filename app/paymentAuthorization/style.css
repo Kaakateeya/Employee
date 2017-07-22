@@ -91,4 +91,28 @@ md-sidemenu-button > a {
   width: 150px !important;
   margin-left: 469px; }
 
+th.Emp_Ticket_ID.headerStyles {
+  width: 120px !important; }
+
+th.ProfileID.headerStyles {
+  width: 100px !important; }
+
+th.PaymentDate.headerStyles {
+  width: 110px !important; }
+
+th.ExpiryOn.headerStyles {
+  width: 110px !important; }
+
+th.SAForm.headerStyles {
+  width: 100px !important; }
+
+th.AgreedAmount.headerStyles {
+  width: 90px !important; }
+
+th.PaidAmount.headerStyles {
+  width: 90px !important; }
+
+th.ValidMonths.headerStyles {
+  width: 85px !important; }
+
 /*# sourceMappingURL=style.css.map */
