@@ -32,8 +32,6 @@
                          model.mpObj.txtProfileID = model.myprofileid;
                      }
                  };
-
-
                  vm.init = function() {
                      vm.model = model = myProfileModel;
                      model.gridArray = [];

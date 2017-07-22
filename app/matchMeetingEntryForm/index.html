@@ -1,4 +1,73 @@
-<div class="right_col">
+<div class="right_col" id="mmEntryID">
+    <h3 class="hdrCls">Match meeting entry form</h3>
 
+    <div class="bodycls">
+        <form name="MMEntryForm" novalidate role="form">
+            <div class="row ">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6"><label for="" class="control-label">Bride profileID</label></div>
+                        <div class="col-lg-6"><input type="text" class="form-control"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6"><label for="" class="control-label">Meeting date/time</label></div>
 
+                        <custom-datepicker class="datepicker3 col-lg-2" date-options="model.dateOptions"></custom-datepicker>
+
+                        <div class="col-lg-2">
+                            <select multiselectdropdown ng-model="page.test"></select>
+                        </div>
+                        <div class="col-lg-2">
+                            <select multiselectdropdown ng-model="page.test1"></select>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-lg-6"><label for="" class="control-label">Meeting date/time</label></div>
+                        <div class="col-lg-4">
+                            <custom-datepicker class="datepicker3" date-options="model.dateOptions"></custom-datepicker>
+                        </div>
+                        <div class="col-lg-1">
+                            <select multiselectdropdown ng-model="page.test"></select>
+                        </div>
+                        <div class="col-lg-1">
+                            <select multiselectdropdown ng-model="page.test1"></select>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-lg-6"><label for="" class="control-label">Members joining the meeting (Bride) </label></div>
+                        <div class="col-lg-6"><input type="text" class="form-control"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6"><label for="" class="control-label">Meeting arranged by emp</label></div>
+                        <div class="col-lg-6"><input type="text" class="form-control"></div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6"><label for="" class="control-label">Groom profileID</label></div>
+                        <div class="col-lg-6"><input type="text" class="form-control"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6"><label for="" class="control-label">Place</label></div>
+                        <div class="col-lg-6"><input type="text" class="form-control"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6"><label for="" class="control-label">Members joining the meeting (Groom)</label></div>
+                        <div class="col-lg-6"><input type="text" class="form-control"></div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3"><label for="" class="control-label">Notes for meeting</label></div>
+                <div class="col-lg-9"><textarea name="" id="" cols="115" rows="3" class="form-control"></textarea></div>
+            </div>
+        </form>
+    </div>
 </div>
+
+<style>
+    .datepicker3 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+    }
+</style>
