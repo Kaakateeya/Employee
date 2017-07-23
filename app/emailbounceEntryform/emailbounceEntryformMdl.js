@@ -22,7 +22,7 @@
                         CategoryID: model.ddlcategoryid !== "" && model.ddlcategoryid !== null && model.ddlcategoryid !== undefined && model.ddlcategoryid !== 0 ? parseInt(model.ddlcategoryid) : null,
                         Bounce_From_date: model.txtemailbouncedate !== "" && model.txtemailbouncedate !== null && model.txtemailbouncedate !== undefined ? filter('date')(model.txtemailbouncedate, 'yyyy-mm-dd hh:mm:ss') : null,
                         Email_Sent_From_Date: model.txtemailbouncesentdate !== "" && model.txtemailbouncesentdate !== null && model.txtemailbouncesentdate !== undefined ? filter('date')(model.txtemailbouncesentdate, 'yyyy-mm-dd hh:mm:ss') : null,
-                        Narration_Date: filter('date')(CurrentDate, 'yyyy-mm-dd hh:mm:ss'),
+                        Narration_Date: CurrentDate,
                         Narration: model.txtemailbouncenarration !== "" && model.txtemailbouncenarration !== null && model.txtemailbouncenarration !== undefined ? model.txtemailbouncenarration : null,
                         EnteredbyEmpID: model.empid,
                         status: null
@@ -47,6 +47,7 @@
 
                             } else if (parseInt(response.data) === 3) {
                                 alerts.timeoutoldalerts(model.scope, 'alert-danger', 'ProfileID does Not Exists', 3000);
+                                model.txtemailbounceprofileid = "";
                             }
                         });
                     }
