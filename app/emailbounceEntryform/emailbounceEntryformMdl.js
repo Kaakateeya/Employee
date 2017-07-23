@@ -20,9 +20,9 @@
                         profileID: model.txtemailbounceprofileid !== "" && model.txtemailbounceprofileid !== null && model.txtemailbounceprofileid !== undefined ? model.txtemailbounceprofileid : null,
                         EmailID: model.txtemailbounceemailid !== "" && model.txtemailbounceemailid !== null && model.txtemailbounceemailid !== undefined ? model.txtemailbounceemailid : null,
                         CategoryID: model.ddlcategoryid !== "" && model.ddlcategoryid !== null && model.ddlcategoryid !== undefined && model.ddlcategoryid !== 0 ? parseInt(model.ddlcategoryid) : null,
-                        Bounce_From_date: model.txtemailbouncedate !== "" && model.txtemailbouncedate !== null && model.txtemailbouncedate !== undefined ? filter('date')(model.txtemailbouncedate, 'yyyy-mm-dd hh:mm:ss') : null,
-                        Email_Sent_From_Date: model.txtemailbouncesentdate !== "" && model.txtemailbouncesentdate !== null && model.txtemailbouncesentdate !== undefined ? filter('date')(model.txtemailbouncesentdate, 'yyyy-mm-dd hh:mm:ss') : null,
-                        Narration_Date: CurrentDate,
+                        Bounce_From_date: model.txtemailbouncedate !== "" && model.txtemailbouncedate !== null && model.txtemailbouncedate !== undefined ? filter('date')(model.txtemailbouncedate, 'yyyy-MM-dd HH:mm:ss') : null,
+                        Email_Sent_From_Date: model.txtemailbouncesentdate !== "" && model.txtemailbouncesentdate !== null && model.txtemailbouncesentdate !== undefined ? filter('date')(model.txtemailbouncesentdate, 'yyyy-MM-dd HH:mm:ss') : null,
+                        Narration_Date: filter('date')(CurrentDate, 'yyyy-MM-dd HH:mm:ss'),
                         Narration: model.txtemailbouncenarration !== "" && model.txtemailbouncenarration !== null && model.txtemailbouncenarration !== undefined ? model.txtemailbouncenarration : null,
                         EnteredbyEmpID: model.empid,
                         status: null
@@ -65,6 +65,7 @@
                     model.txtemailbouncesentdate = "";
                     model.txtemailbouncenarration = "";
                 };
+
                 return model;
             }
         ]);
