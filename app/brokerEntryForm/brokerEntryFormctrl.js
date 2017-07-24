@@ -3,16 +3,16 @@
 
      angular
          .module('Kaakateeya')
-         .controller('parametervalueCtrl', controller)
+         .controller('brokerEntryFormCtrl', controller)
 
-     controller.$inject = ['parametervalueModel'];
+     controller.$inject = ['brokerEntryFormModel'];
 
-     function controller(parametervalueModel) {
+     function controller(brokerEntryFormModel) {
          /* jshint validthis:true */
          var vm = this;
 
          vm.init = function() {
-             vm.model = parametervalueModel;
+             vm.model = brokerEntryFormModel;
          };
 
          vm.init();
