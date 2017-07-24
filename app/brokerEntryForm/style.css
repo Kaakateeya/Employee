@@ -1,10 +1,6 @@
-#mmEntryID .bodycls {
-  line-height: 41px; }
-#mmEntryID .bodycls {
-  padding-left: 1%; }
-#mmEntryID .col-lg-5 {
-  padding-right: 0px; }
-#mmEntryID .input-group {
-  display: inline-block; }
+#brokerEntryID .bodycls {
+  line-height: 42px; }
+#brokerEntryID .btnposition {
+  margin-left: 2%; }
 
 /*# sourceMappingURL=style.css.map */

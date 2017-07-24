@@ -1,17 +1,48 @@
 <div class="right_col" id="brokerEntryID">
     <h3 class="hdrCls">Broker Entry Form</h3>
     <div class="bodycls">
-        <form name="brokerForm" novalidate role="form">
+        <form name="brokerForm" novalidate role="form" ng-submit="brokerForm.$valid && page.model.submitBrokerForm();">
             <div class="row">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <label for="" class="col-lg-2">Name</label>
+                        <div class="col-lg-6 form-group">
+                            <input type="text" name="name" class="form-control" ng-model="page.model.Name" ng-required="true">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="" class="col-lg-2">Email</label>
+                        <div class="col-lg-6">
+                            <input type="text" name="email" ng-pattern="page.model.emailpattaren" ng-model="page.model.Email" class="form-control" required>
+                        </div>
+                    </div>
+                    <div style="color:#a94442;" class="row clearfix" ng-if="((brokerForm.email.$invalid) && (brokerForm.$submitted))" ng-messages="brokerForm.email.$error" role="alert">
+                        <div ng-message-exp="['required','pattern']" style="margin-left: 19%;"> Required and enter valid e-mail address.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <label for="" class="col-lg-3">Native place</label>
+                        <div class="col-lg-6 form-group">
+                            <input type="text" ng-model="page.model.Native" class="form-control" required>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <label for="" class="col-lg-3">Number</label>
+                        <div class="col-lg-6 form-group">
+                            <input type="text" ng-model="page.model.Number" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
             </div>
-
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-2 btnposition">
                     <input type="submit" value="Submit" class="button_custom pull-right">
                 </div>
                 <div class="col-lg-6">
-                    <input type="reset" value="Reset" class="button_custom button_custom_reset resetCls" ng-click="page.model.reset();">
+                    <input type="reset" value="Reset" class="button_custom button_custom_reset">
                 </div>
             </div>
         </form>

@@ -22,7 +22,6 @@
                         <div class="col-lg-2">
                             <select name="mins" multiselectdropdown ng-model="page.model.ddlMins" ng-required="true" ng-options="item.value as item.label for item in page.model.minbindArr"></select>
                         </div>
-
                     </div>
                     <div style="color:#a94442;" class="row clearfix" ng-if="(((MMEntryForm.date.$invalid) ||  (MMEntryForm.hrs.$invalid) || (MMEntryForm.mins.$invalid)) && (MMEntryForm.$submitted))" ng-messages="MMEntryForm.date.$error || MMEntryForm.hrs.$error || MMEntryForm.mins.$error"
                         role="alert">
