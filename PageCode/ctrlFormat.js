@@ -12,7 +12,7 @@
          var vm = this;
 
          vm.init = function() {
-             vm.model = parametervalueModel();
+             vm.model = parametervalueModel;
          };
 
          vm.init();

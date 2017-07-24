@@ -12,10 +12,10 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ui.date', 'ng-clipboard', 'anguFixedHeaderTable'
 ]);
 
-app.apiroot = 'http://52.66.131.254:8025/Api/';
-app.apipathold = 'http://52.66.131.254:8010/Api/';
-//app.apiroot = 'http://183.82.0.58:8025/Api/';
-//app.apipathold = 'http://183.82.0.58:8010/Api/';
+// app.apiroot = 'http://52.66.131.254:8025/Api/';
+// app.apipathold = 'http://52.66.131.254:8010/Api/';
+app.apiroot = 'http://183.82.0.58:8025/Api/';
+app.apipathold = 'http://183.82.0.58:8010/Api/';
 
 app.env = "dev";
 app.kammaPayfixedAmt = 1000;
@@ -89,8 +89,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'updateMacAdress', name: 'base.updateMacAdress', url: '/updateMacAdresspage', isloginrequired: true },
             { routeName: 'customerMessagesverification', name: 'base.customerMessagesverification', url: '/customerMessagesverificationpage', isloginrequired: true },
             { routeName: 'marketingticketverification', name: 'base.marketingticketverification', url: '/marketingticketverificationpage', isloginrequired: true },
-            { routeName: 'emailbounceEntryform', name: 'base.emailbounceEntryform', url: '/emailbounceEntryformpage', isloginrequired: true }
-            // { routeName: 'matchMeetingEntryForm', name: 'base.matchMeetingEntryForm', url: '/matchMeetingEntryFormPage', isloginrequired: true }
+            { routeName: 'emailbounceEntryform', name: 'base.emailbounceEntryform', url: '/emailbounceEntryformpage', isloginrequired: true },
+            { routeName: 'matchMeetingEntryForm', name: 'base.matchMeetingEntryForm', url: '/matchMeetingEntryFormPage', isloginrequired: true }
         ];
         $ocLazyLoadProvider.config({
             debug: true
