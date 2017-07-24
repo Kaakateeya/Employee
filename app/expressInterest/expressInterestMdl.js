@@ -107,6 +107,7 @@
             });
         };
         model.ToprofileIDChange = function(ID) {
+            debugger;
             model.mismatchflag = 0;
             if (ID !== '' && ID !== null && ID !== undefined) {
                 var chkProfileID = _.where(model.SelectProfilelst, { label: model.exiObj.txtToprofileID });
@@ -179,7 +180,6 @@
                                                     modelpopupopenmethod.showPopup('Conflict.html', model.scope, 'md', 'mismatch');
                                                 }
                                             }
-
                                         } else {
                                             model.pushToProfileIDs();
                                         }

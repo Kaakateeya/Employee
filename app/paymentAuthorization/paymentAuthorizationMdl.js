@@ -194,8 +194,8 @@
                         TicketID: model.paymentverificationobj.Emp_Ticket_ID,
                         TicketName: model.paymentverificationobj.TicketName,
                         TicketOwnerID: model.ticketownermarketing !== "" && model.ticketownermarketing !== '0' && model.ticketownermarketing !== 0 && model.ticketownermarketing !== undefined ? model.ticketownermarketing : null,
-                        MrkTicketVerified: model.maketingticketverified !== "" && model.maketingticketverified !== undefined && model.maketingticketverified !== null ? model.maketingticketverified : null,
-                        Markedted: model.rbtnmarketingtkted !== "" && model.rbtnmarketingtkted !== undefined && model.rbtnmarketingtkted !== null ? model.rbtnmarketingtkted : null,
+                        MrkTicketVerified: model.maketingticketverified ? (parseInt(model.rbtnmarketingtkted) === 1 ? 1 : model.maketingticketverified) : null,
+                        Markedted: model.rbtnmarketingtkted ? model.rbtnmarketingtkted : null,
                         TotalAmount_Ticket: model.ticketamountforcustomer !== "" && model.ticketamountforcustomer !== null ? model.ticketamountforcustomer : null
                     };
                     paymentAuthorizationService.submitAuthorization(model.inputobj).then(function(response) {
