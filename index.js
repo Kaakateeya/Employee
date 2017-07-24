@@ -89,21 +89,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'updateMacAdress', name: 'base.updateMacAdress', url: '/updateMacAdresspage', isloginrequired: true },
             { routeName: 'customerMessagesverification', name: 'base.customerMessagesverification', url: '/customerMessagesverificationpage', isloginrequired: true },
             { routeName: 'marketingticketverification', name: 'base.marketingticketverification', url: '/marketingticketverificationpage', isloginrequired: true },
-            { routeName: 'emailbounceEntryform', name: 'base.emailbounceEntryform', url: '/emailbounceEntryformpage', isloginrequired: true }, <<
-            <<
-            <<
-            <
-            HEAD { routeName: 'matchMeetingEntryForm', name: 'base.matchMeetingEntryForm', url: '/matchMeetingEntryFormPage', isloginrequired: true } ===
-            ===
-            =
-            // { routeName: 'matchMeetingEntryForm', name: 'base.matchMeetingEntryForm', url: '/matchMeetingEntryFormPage', isloginrequired: true }
+            { routeName: 'emailbounceEntryform', name: 'base.emailbounceEntryform', url: '/emailbounceEntryformpage', isloginrequired: true },
+            { routeName: 'matchMeetingEntryForm', name: 'base.matchMeetingEntryForm', url: '/matchMeetingEntryFormPage', isloginrequired: true },
             { routeName: 'paymentdetailsReport', name: 'base.paymentdetailsReport', url: '/paymentdetailsReportpage', isloginrequired: true }
-
-
-            >>>
-            >>>
-            >
-            622e9 fe79ca58031b5db91053610238f9f3da0c8
         ];
         $ocLazyLoadProvider.config({
             debug: true
