@@ -37,16 +37,24 @@
                 });
                 return array;
             };
-            model.submitmarktingreports = function() {
+            model.submitmarktingreports = function(type) {
                 model.panelbodyhide = false;
+                // model.columns = [
+                //     { text: 'Sno', key: 'Sno', type: 'label' },
+                //     { text: 'Profileid', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
+                //     { text: 'Marketing Ticket', key: 'TicketName', type: 'label' },
+                //     { text: 'Marked By', key: 'TicketOwner', type: 'label' },
+                //     { text: 'Agreed Amount', key: 'AgreedAmount', type: 'label' },
+                //     { text: 'Paid Amount', key: 'TotalAmount', type: 'label' },
+                //     { text: 'Commision Amount', key: 'CommisionAmt', type: 'label' }
+                // ];
                 model.columns = [
                     { text: 'Sno', key: 'Sno', type: 'label' },
-                    { text: 'Profileid', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
-                    { text: 'Marketing Ticket', key: 'TicketName', type: 'label' },
-                    { text: 'Marked By', key: 'TicketOwner', type: 'label' },
+                    { text: 'TicketOwner', key: 'TicketOwner', type: 'label' },
+                    { text: 'Month', key: 'Month', type: 'label' },
                     { text: 'Agreed Amount', key: 'AgreedAmount', type: 'label' },
                     { text: 'Paid Amount', key: 'TotalAmount', type: 'label' },
-                    { text: 'Commision Amount', key: 'CommisionAmt', type: 'label' }
+                    { text: 'Commision Amount', key: 'TotalCommisionAmt', type: 'label' }
                 ];
                 var obj = {
                     intRegional: model.rbtnregional !== "" && model.rbtnregional !== null ? parseInt(model.rbtnregional) : null,
@@ -61,8 +69,40 @@
                     console.log(response);
                     if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" &&
                         response.data[0] !== undefined && response.data[0] !== null && response.data[0].length > 0) {
-                        model.TotalRows = response.data[0].length;
-                        model.data = model.addingserialnumber(response.data[0]);
+                        if (type === 'grid') {
+                            model.TotalRows = response.data[0].length;
+                            model.data = model.addingserialnumber(response.data[0]);
+                        } else {
+                            model.exportarray = [];
+                            model.exportarray = response.data[0];
+                            var options = {
+                                headers: true,
+                                columns: [{
+                                        columnid: 'Sno',
+                                        title: 'Sno'
+                                    }, {
+                                        columnid: 'TicketOwner',
+                                        title: 'TicketOwner'
+                                    }, {
+                                        columnid: 'Month',
+                                        title: 'Month'
+                                    },
+                                    {
+                                        columnid: 'AgreedAmount',
+                                        title: 'AgreedAmount'
+                                    },
+                                    {
+                                        columnid: 'TotalAmount',
+                                        title: 'TotalAmount'
+                                    },
+                                    {
+                                        columnid: 'TotalCommisionAmt',
+                                        title: 'TotalCommisionAmt'
+                                    }
+                                ]
+                            };
+                            alasql('SELECT TicketOwner as TicketOwner,Month as Month,AgreedAmount as AgreedAmount,TotalAmount as PaidAmount,TotalCommisionAmt  INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
+                        }
                     }
                 });
             };
@@ -85,6 +125,12 @@
                         }
                     });
                 });
+            };
+            model.pagechange = function(val) {
+                model.submitmarktingreports('grid');
+            };
+            model.exportexcel = function(topage) {
+                model.submitmarktingreports('excel');
             };
             return model;
 
