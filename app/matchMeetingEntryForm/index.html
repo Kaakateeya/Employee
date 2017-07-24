@@ -16,10 +16,10 @@
                     <div class="row">
                         <div class="col-lg-5 clearfix"><label for="" class="control-label">Meeting date/time</label></div>
                         <custom-datepicker name="date" style="padding-right: 0px;" ng-model="page.model.txtmeetingDate" ng-required="true" class="datepicker3 col-lg-2" date-options="page.model.dateOptions"></custom-datepicker>
-                        <div class="col-lg-2 clearfix">
+                        <div class="col-lg-2">
                             <select name="hrs" multiselectdropdown ng-model="page.model.ddlhrs" ng-required="true" ng-options="item.value as item.label for item in page.model.hrsbindArr"></select>
                         </div>
-                        <div class="col-lg-2 clearfix">
+                        <div class="col-lg-2">
                             <select name="mins" multiselectdropdown ng-model="page.model.ddlMins" ng-required="true" ng-options="item.value as item.label for item in page.model.minbindArr"></select>
                         </div>
 
