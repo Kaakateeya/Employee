@@ -2,7 +2,7 @@
     <div class="panel-group">
         <div class="panel-collapse collapse in">
             <div class="panel-default regValheader" is-open="page.model.opendiv">
-                <form accessible-form name="emailbounceentryform" novalidate role="form" ng-submit="page.model.submitemailbouncesubmitform();">
+                <form accessible-form name="emailbounceentryform" novalidate role="form" ng-submit="emailbounceentryform.$valid  && page.model.submitemailbouncesubmitform();">
                     <div class="panel-heading" style="color: rgb(160, 2, 1);">
                         <div class="row">
                             <div class="col-lg-3">
@@ -19,10 +19,17 @@
                                     </div>
                                 </div>
                             </div>
+
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="clearfix">
+                        </div>
+                        <div class="row">
                             <div class="col-lg-3">
-                                <label for="All Profileid" class="classlabelverify col-lg-3">Email<span style="color:red;">*</span> </label>
-                                <div class="col-lg-8">
-                                    <input ng-required="true" name="txtemailbounceemailid" ng-pattern="page.model.emailpattaren" type="text" class="form-control" style="width:180px" ng-model="page.model.txtemailbounceemailid"></input>
+                                <label for="All Profileid" class="classlabelverify">Email<span style="color:red;">*</span> </label>
+                                <div>
+                                    <input ng-required="true" name="txtemailbounceemailid" ng-pattern="page.model.emailpattaren" type="text" class="form-control" style="width:220px" ng-model="page.model.txtemailbounceemailid"></input>
                                     <div style="color: red;width:305px;" class="row" ng-if="((emailbounceentryform.txtemailbounceemailid.$invalid) && (emailbounceentryform.$submitted))" ng-messages="emailbounceentryform.txtemailbounceemailid.$error" role="alert">
                                         <div ng-message-exp="['required', 'pattern']">
                                             *Required and enter valid e-mail address.
@@ -31,21 +38,17 @@
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                <label for="All Profileid" class="classlabelverify col-lg-4">Category<span style="color:red;">*</span> </label>
-                                <div class="col-lg-6">
+                                <label for="All Profileid" class="classlabelverify">Category<span style="color:red;">*</span> </label>
+                                <div>
                                     <select ng-required="true" name="ddlcategory" class="smalldropdown col-lg-5" typeofdata="'catgory'" ng-model="page.model.ddlcategoryid" multiselectdropdown>   
                                     </select>
-                                    <div style="color: red;" ng-messages="emailbounceentryform.ddlcategory.$error">
-                                        <div ng-if="emailbounceentryform.ddlcategory.$invalid && (emailbounceentryform.$submitted)" ng-message="required">This is required.</div>
-                                    </div>
+
+                                </div>
+                                <div class="clearfix"></div>
+                                <div style="color: red;" ng-messages="emailbounceentryform.ddlcategory.$error">
+                                    <div ng-if="emailbounceentryform.ddlcategory.$invalid && (emailbounceentryform.$submitted)" ng-message="required">This is required.</div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="clearfix">
-                        </div>
-                        <div class="row">
                             <div class="col-lg-3">
                                 <label for="All Profileid" class="classlabelverify">Email bounce date<span style="color:red;">*</span> </label>
                                 <div>
@@ -78,13 +81,15 @@
                                     <div ng-if="emailbounceentryform.txtemailbouncenarration.$invalid && (emailbounceentryform.$submitted)" ng-message="required">This is required.</div>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
-                                <div class="form-group text-center" style="">
-                                    <button type="submit" class="button_custom" style="display:initial;">Submit</button>
-                                    <input type="reset" class="button_custom button_custom_reset resetCls" value="Reset" ng-click="page.model.resetemailbounce()">
-                                </div>
-                            </div>
+
                         </div>
+                        <br>
+
+                        <div class="form-group text-center" style="border-top: 1px solid #ddd;padding-top: 1%;">
+                            <button type="submit" class="button_custom" style="display:initial;">Submit</button>
+                            <input type="reset" class="button_custom button_custom_reset resetCls" value="Reset" ng-click="page.model.resetemailbounce()">
+                        </div>
+
                     </div>
                 </form>
                 <br>

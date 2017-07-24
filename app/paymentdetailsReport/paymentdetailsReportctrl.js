@@ -13,6 +13,7 @@
                      model.scope = scope;
                      model.opendiv = true;
                      model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+                     model.panelbodyhide = true;
                      model.resetcontrols();
                      model.pageloadbindings();
                  };

@@ -15,6 +15,7 @@
                     maxDate: null
                 };
                 model.submitemailbouncesubmitform = function() {
+                    model.opendiv = false;
                     var CurrentDate = new Date();
                     var obj = {
                         profileID: model.txtemailbounceprofileid !== "" && model.txtemailbounceprofileid !== null && model.txtemailbounceprofileid !== undefined ? model.txtemailbounceprofileid : null,

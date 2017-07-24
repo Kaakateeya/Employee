@@ -107,6 +107,7 @@
             });
         };
         model.ToprofileIDChange = function(ID) {
+            model.mismatchflag = 0;
             if (ID !== '' && ID !== null && ID !== undefined) {
                 var chkProfileID = _.where(model.SelectProfilelst, { label: model.exiObj.txtToprofileID });
                 if (chkProfileID.length > 0) {
@@ -173,7 +174,10 @@
                                     if (model.ToProfileStatusID === 54) {
                                         if (model.mismatch.length > 0) {
                                             if (model.ToGenderID !== model.FromGenderID) {
-                                                modelpopupopenmethod.showPopup('Conflict.html', model.scope, 'md', 'mismatch');
+                                                if (model.mismatchflag !== 1) {
+                                                    model.mismatchflag = 1;
+                                                    modelpopupopenmethod.showPopup('Conflict.html', model.scope, 'md', 'mismatch');
+                                                }
                                             }
 
                                         } else {

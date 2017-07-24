@@ -188,7 +188,7 @@
 }
 
 .modalclassdashboardremainder {
-    z-index: 9999999999999 !important;
+    z-index: 99999999999999 !important;
     top: 0%;
     left: 0%;
 }
@@ -197,4 +197,13 @@
     font-weight: bold !important;
     /* background-color: white; */
     color: #6b6b64;
+}
+
+.panel-default {
+    .panel-heading {
+        color: #333;
+        background-color: #f5f5f5;
+        border-color: #ddd;
+        border-bottom: 1px solid #ccc;
+    }
 }
