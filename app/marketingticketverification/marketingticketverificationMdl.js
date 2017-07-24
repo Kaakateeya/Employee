@@ -38,7 +38,7 @@
                 return array;
             };
             model.submitmarktingreports = function() {
-                model.opendiv = true;
+                model.panelbodyhide = false;
                 model.columns = [
                     { text: 'Sno', key: 'Sno', type: 'label' },
                     { text: 'Profileid', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
@@ -51,6 +51,8 @@
                 var obj = {
                     intRegional: model.rbtnregional !== "" && model.rbtnregional !== null ? parseInt(model.rbtnregional) : null,
                     intBranch: model.tmarketingbranch !== "" && model.tmarketingbranch !== null && model.tmarketingbranch !== undefined ? (model.tmarketingbranch).toString() : null,
+                    dtStartDate: model.dateemployeeverifyfrom !== "" && model.dateemployeeverifyfrom !== null && model.dateemployeeverifyfrom !== undefined ? (model.dateemployeeverifyfrom) : "",
+                    dtEndDate: model.dateemployeeverifyto !== "" && model.dateemployeeverifyto !== null && model.dateemployeeverifyto !== undefined ? (model.dateemployeeverifyto) : "",
                     intEmpID: model.ticketmarketowner !== "" && model.ticketmarketowner !== null && model.ticketmarketowner !== undefined ? (model.ticketmarketowner).toString() : null,
                     intTicketVerified: model.mkttktverified !== "" && model.mkttktverified !== null && model.mkttktverified !== undefined ? parseInt(model.mkttktverified) : null,
                     intMarked: model.marktedvalue !== "" && model.marktedvalue !== null && model.marktedvalue !== undefined ? parseInt(model.marktedvalue) : null,

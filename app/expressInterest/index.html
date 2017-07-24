@@ -63,7 +63,7 @@
                                 <label for="" class="control-label pull-right requiredStar">To profile ID</label>
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" style="width:111%;" ng-model="page.model.exiObj.txtToprofileID" class="form-control" ng-blur="page.model.ToprofileIDChange(page.model.exiObj.txtToprofileID);">
+                                <input type="text" style="width:111%;" ng-model="page.model.exiObj.txtToprofileID" class="form-control" ng-keyup="$event.keyCode===13 && page.model.ToprofileIDChange(page.model.exiObj.txtToprofileID);" ng-blur="page.model.ToprofileIDChange(page.model.exiObj.txtToprofileID);">
                             </div>
                         </div>
                     </div>

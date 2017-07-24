@@ -68,7 +68,7 @@
                     window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
                 };
                 model.paymentreports = function(from, to) {
-                    model.opendiv = false;
+                    model.panelbodyhide = false;
                     model.data = [];
                     model.columns = [
                         { text: 'Sno', key: 'SNO', type: 'label' },

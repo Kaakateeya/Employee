@@ -218,7 +218,7 @@
                 <div class="col-lg-6">
                     <label class="col-lg-5">Ticket Id </label>
                     <input style="width:150px;" class="col-lg-6 form-control" ng-disabled="page.model.ticketiddisable" type="text" ng-model="page.model.ticketidmarketing">
-                    <a href="javascript:void(0);" ng-click="page.model.ticketiddisable=!page.model.ticketiddisable" style="float: right;">Edit ticket</a>
+                    <a href="javascript:void(0);" ng-click="page.model.ticketiddisable=!page.model.ticketiddisable" style="float: right;">{{page.model.ticketiddisable===true?'Edit ticket':'Update Ticket'}}</a>
                 </div>
                 <div class="col-lg-6">
                     <label class="col-lg-5">Ticket Owner </label>
@@ -241,7 +241,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6" ng-show="page.model.rbtnmarketingtkted==='0'">
                     <label class="col-lg-7">Mkt Ticket Verified</label>
                     <div class="col-lg-5" style="margin-left: -20px;">
                         <md-radio-group name="maketingticketverified" layout="row" ng-model="page.model.maketingticketverified" class="md-block" flex-gt-sm>

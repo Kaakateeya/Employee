@@ -146,6 +146,7 @@
                     model.Custidbounce = null;
                     model.landingItems = [];
                     model.norecordstable = false;
+                    //model.empid = 8;
                     model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                     model.empBranchID = authSvc.empBranchID() !== undefined && authSvc.empBranchID() !== null && authSvc.empBranchID() !== "" ? authSvc.empBranchID() : "";
                     if (model.empid !== null && model.empid !== "" && model.empBranchID !== null && model.empBranchID !== "") {
