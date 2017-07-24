@@ -1,11 +1,12 @@
 (function() {
     'use strict';
+
     angular
         .module('Kaakateeya')
-        .factory('marketingticketverificationService', ['$http', function(http) {
+        .factory('paymentdetailsReportService', ['$http', function(http) {
             return {
-                marketingverificationticketsubmit: function(obj) {
-                    return http.post(app.apiroot + 'EmployeeReportPage/authorizationpaymentamoutReport', obj);
+                EmplyeepaymentReportspayment: function(obj) {
+                    return http.post(app.apiroot + 'EmployeeReportPage/EmplyeepaymentReportspayment', obj);
                 },
                 getMyprofilebind: function(flag, ID) {
                     return http.get(app.apiroot + 'EmployeeReportPage/getMyProfileBindings', {

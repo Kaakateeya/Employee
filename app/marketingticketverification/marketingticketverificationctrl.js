@@ -12,9 +12,10 @@
                      vm.model = model = marketingticketverificationModel;
                      model.scope = scope;
                      model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+                     model.opendiv = true;
+                     model.pageloadbindings();
                      model.resetmarketverification();
                  };
-
                  vm.init();
 
              }

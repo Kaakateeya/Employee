@@ -1,18 +1,20 @@
  (function() {
      'use strict';
+
      angular
          .module('Kaakateeya')
-         .controller('emailbounceEntryformCtrl', ['emailbounceEntryformModel', '$scope', 'authSvc',
-             function(emailbounceEntryformModel, scope, authSvc) {
+         .controller('paymentdetailsReportCtrl', ['paymentdetailsReportModel', '$scope', 'authSvc',
+             function(paymentdetailsReportModel, scope, authSvc) {
                  /* jshint validthis:true */
                  var vm = this,
                      model;
                  vm.init = function() {
-                     vm.model = model = emailbounceEntryformModel;
+                     vm.model = model = paymentdetailsReportModel;
                      model.scope = scope;
+                     model.opendiv = true;
                      model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-                     model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
-                     model.clearcontrols();
+                     model.resetcontrols();
+                     model.pageloadbindings();
                  };
                  vm.init();
              }

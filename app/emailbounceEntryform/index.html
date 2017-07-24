@@ -12,7 +12,8 @@
                             <div class="col-lg-3">
                                 <label for="All Profileid" class="classlabelverify col-lg-5">Profile ID<span style="color:red;">*</span> </label>
                                 <div class="col-lg-6">
-                                    <input ng-required="true" maxlength="9" name="txtemailbounceprofileid" type="text" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" class="form-control" style="width:170px" ng-model="page.model.txtemailbounceprofileid"></input>
+                                    <input ng-required="true" maxlength="9" name="txtemailbounceprofileid" type="text" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" class="form-control" style="width:170px" ng-model="page.model.txtemailbounceprofileid" ng-keyup="$event.keyCode===13 && page.model.chkprofileidstatus();"
+                                        ng-blur="page.model.chkprofileidstatus()"></input>
                                     <div style="color: red;" ng-messages="emailbounceentryform.txtemailbounceprofileid.$error">
                                         <div ng-if="emailbounceentryform.txtemailbounceprofileid.$invalid && (emailbounceentryform.$submitted)" ng-message="required">This is required.</div>
                                     </div>
@@ -30,8 +31,8 @@
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                <label for="All Profileid" class="classlabelverify col-lg-3">Category<span style="color:red;">*</span> </label>
-                                <div class="col-lg-7">
+                                <label for="All Profileid" class="classlabelverify col-lg-4">Category<span style="color:red;">*</span> </label>
+                                <div class="col-lg-6">
                                     <select ng-required="true" name="ddlcategory" class="smalldropdown col-lg-5" typeofdata="'catgory'" ng-model="page.model.ddlcategoryid" multiselectdropdown>   
                                     </select>
                                     <div style="color: red;" ng-messages="emailbounceentryform.ddlcategory.$error">
@@ -71,7 +72,7 @@
                             <div class="col-lg-6">
                                 <label for="All Profileid" class="classlabelverify">Narration<span style="color:red;">*</span> </label>
                                 <div>
-                                    <textarea ng-required="true" name="txtemailbouncenarration" type="text" rows="3" class="form-control" style="width:520px" ng-model="page.model.txtemailbouncenarration"></textarea>
+                                    <textarea ng-required="true" name="txtemailbouncenarration" type="text" rows="3" class="form-control" style="width:540px" ng-model="page.model.txtemailbouncenarration"></textarea>
                                 </div>
                                 <div style="color: red;" ng-messages="emailbounceentryform.txtemailbouncenarration.$error">
                                     <div ng-if="emailbounceentryform.txtemailbouncenarration.$invalid && (emailbounceentryform.$submitted)" ng-message="required">This is required.</div>
@@ -97,11 +98,13 @@
 <style>
     .datepicker3 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+        width: 220px !important;
     }
     
     .datepicker4 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
         background-color: #f0f0cc !important;
+        width: 220px !important;
     }
     
     div#ui-datepicker-div {
