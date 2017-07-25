@@ -683,7 +683,7 @@
                     model.close();
                     model.cloumsarr = [];
                     model.Toprofileids = [];
-
+                    model.getOriginalShortlistedProfiles();
                     _.each(model.config.shortlistmodel.slides, function(item) {
                         model.cloumsarr.push(item.Custid);
                     });

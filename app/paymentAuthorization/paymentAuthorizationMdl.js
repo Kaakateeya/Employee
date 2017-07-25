@@ -85,6 +85,12 @@
                                     model.BranchmenuArr = response.data[1];
                                     model.gridTableshow = true;
                                     model.data = (response.data[0]);
+                                    _.map(model.data, function(item, index) {
+                                        item.rowIndex = index;
+                                    });
+                                    _.map(model.mainArray, function(item, index) {
+                                        item.rowIndex = index;
+                                    });
                                 }
 
                             } else {
@@ -101,10 +107,10 @@
                     var auth = 'Authorize';
                     var Decline = 'Decline';
                     //var links = (AdminID && parseInt(AdminID) === 1) || Managementid === 'true' || row.SAForm ? "<a href='javascript:void(0);' ng-click='model.authorize(" + JSON.stringify(row) + "," + JSON.stringify(auth) + ");'>Authorize</a>&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.authorize(" + JSON.stringify(row) + "," + JSON.stringify(Decline) + ");'>Decline</a>" : '';
-                    var links = (AdminID && parseInt(AdminID) === 1) || Managementid === 'true' || row.SAForm ? "<a href='javascript:void(0);' ng-click='model.authorizepopup(" + JSON.stringify(row) + "," + JSON.stringify(auth) + ");'>Authorize</a>&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.authorizepopup(" + JSON.stringify(row) + "," + JSON.stringify(Decline) + ");'>Decline</a>" : '';
+                    var links = (AdminID && parseInt(AdminID) === 1) || Managementid === 'true' || row.SAForm ? "<a href='javascript:void(0);' ng-click='model.authorizepopup(" + JSON.stringify(row) + "," + JSON.stringify(auth) + ",$index);'>Authorize</a>&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.authorizepopup(" + JSON.stringify(row) + "," + JSON.stringify(Decline) + ");'>Decline</a>" : '';
                     return links;
                 };
-                model.authorizepopup = function(row, type) {
+                model.authorizepopup = function(row, type, index) {
                     model.paymentverificationobj = row;
                     model.typeauthorize = type;
                     model.maketingticketverified = null;
@@ -112,6 +118,8 @@
                     model.ticketamountforcustomer = row.WithTax;
                     model.ticketownermarketing = row.AssignedToEmpID !== "" && row.AssignedToEmpID !== null ? parseInt(row.AssignedToEmpID) : "";
                     model.ticketidmarketing = row.TicketName;
+                    model.oldticketidmarketing = row.TicketName;
+                    model.index = row.rowIndex;
                     model.ticketiddisable = true;
                     modelpopupopenmethod.showPopupphotopoup('authorizePopupticket.html', model.scope, 'md', "modalclassofedit");
                 };
@@ -130,6 +138,10 @@
                     model.type = type;
                     model.data = _.where(model.mainArray, { Branch_ID: parseInt(val) });
                     model.TotalRows = (model.data).length;
+                    _.map(model.data, function(item, index) {
+                        item.rowIndex = index;
+                    });
+
                 };
                 model.authorize = function(row, type) {
 
@@ -198,6 +210,7 @@
                         Markedted: model.rbtnmarketingtkted ? model.rbtnmarketingtkted : null,
                         TotalAmount_Ticket: model.ticketamountforcustomer !== "" && model.ticketamountforcustomer !== null ? model.ticketamountforcustomer : null
                     };
+
                     paymentAuthorizationService.submitAuthorization(model.inputobj).then(function(response) {
                         if (response.data) {
                             var msg = '';
@@ -206,6 +219,8 @@
                                 model.closepopup();
                                 msg = model.typeauthorize === 'Authorize' ? 'Payment has been authorized successfully' : 'Payment has been declined successfully';
                                 alertss.timeoutoldalerts(model.scope, parseInt(response.data) === 1 ? 'alert-success' : 'alert-danger', msg, 2000);
+                                model.mainArray = _.difference(model.mainArray, _.where(model.data, { Emp_Ticket_ID: model.paymentverificationobj.Emp_Ticket_ID }));
+                                (model.data).splice(model.index, 1);
                             } else {
                                 msg = model.typeauthorize === 'Authorize' ? 'Error in authorizing the payment' : 'Error in declining the payment';
                                 alertss.timeoutoldalerts(model.scope, parseInt(response.data) === 1 ? 'alert-success' : 'alert-danger', msg, 2000);
@@ -213,6 +228,16 @@
                         }
                     });
                 };
+
+                model.checkticket = function(ticketID) {
+                    paymentAuthorizationService.checkmarketingTicket(ticketID).then(function(respo) {
+                        if (parseInt(respo.data) === 0) {
+                            model.ticketidmarketing = model.oldticketidmarketing;
+                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter correct TicketID', 4500);
+                        }
+                    });
+                };
+
                 return model;
             }
         ]);

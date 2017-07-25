@@ -25,6 +25,14 @@
                     maxDate: null
                 };
 
+                model.modeofPaymentArr = [
+                    { "label": "All", "title": "All", "value": 0 },
+                    { "label": "Cash", "title": "Cash", "value": 345 },
+                    { "label": "Credit card", "title": "Credit card", "value": 346 },
+                    { "label": "cardCheque", "title": "cardCheque", "value": 347 },
+                    { "label": "Bank online", "title": "Bank online", "value": 348 }
+                ];
+
                 model.ProfileIdTemplateDUrl = function(row) {
                     var paidstatusclass = row.IsPaidMember === 372 ? 'paidclass' : 'unpaid';
                     var paid = row.ProfileID !== undefined ? "<a href='javascript:void(0);' class='paidclass'>" + row.ProfileID + "</a><br>" : "";
@@ -41,7 +49,7 @@
                     model.toamount = "";
                     model.txtpaymentfrom = "";
                     model.txtpaymentto = "";
-                    model.rbtnModeOfPayment = "0";
+                    model.rbtnModeOfPayment = 0;
                     _.each(model.Brancharray, function(item) {
                         model.branchids.push(item.value);
                     });

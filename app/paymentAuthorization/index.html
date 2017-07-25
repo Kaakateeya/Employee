@@ -217,7 +217,7 @@
             <div class="row" style="font-size:14px;">
                 <div class="col-lg-6">
                     <label class="col-lg-5">Ticket Id </label>
-                    <input style="width:150px;" class="col-lg-6 form-control" ng-disabled="page.model.ticketiddisable" type="text" ng-model="page.model.ticketidmarketing">
+                    <input style="width:150px;" class="col-lg-6 form-control" ng-blur="page.model.checkticket(page.model.ticketidmarketing);" ng-disabled="page.model.ticketiddisable" type="text" ng-model="page.model.ticketidmarketing">
                     <a href="javascript:void(0);" ng-click="page.model.ticketiddisable=!page.model.ticketiddisable" style="float: right;">{{page.model.ticketiddisable===true?'Edit ticket':'Update Ticket'}}</a>
                 </div>
                 <div class="col-lg-6">
