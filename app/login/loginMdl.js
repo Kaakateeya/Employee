@@ -21,10 +21,10 @@
                 model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 authSvc.getmacaddress();
                 authSvc.getClientIp();
-                loginservice.getEmployeeLoginCoutDetails().then(function(response) {
-                    var login = JSON.parse(response.data);
-                    model.logincounts = login;
-                });
+                // loginservice.getEmployeeLoginCoutDetails().then(function(response) {
+                //     var login = JSON.parse(response.data);
+                //     model.logincounts = login;
+                // });
                 return model;
             };
 
@@ -92,7 +92,7 @@
 
             };
 
-            return model.init();
+            return model;
             // }
         }]);
 

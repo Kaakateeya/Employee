@@ -152,7 +152,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'common/models/headermodel.js',
                         'common/controllers/topheaderctrl.js',
                         'common/controllers/LoaderCtrl.js'
-
+                        // 'common/models/countryArrayModel.js',
+                        // 'common/models/eduprofArrayModel.js',
+                        // 'common/models/otherArrayModel.js'
                     ]
                 },
                 {

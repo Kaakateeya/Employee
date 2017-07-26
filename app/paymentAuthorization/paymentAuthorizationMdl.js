@@ -16,6 +16,7 @@
                 model.showClientpaging = false;
                 model.myprofileexcel = false;
                 model.normalexcel = false;
+                model.employeenamearray = [];
                 var AdminID, Managementid;
                 model.dateOptions = {
                     changeMonth: true,
@@ -111,6 +112,7 @@
                     return links;
                 };
                 model.authorizepopup = function(row, type, index) {
+                    model.employeenamesbind();
                     model.paymentverificationobj = row;
                     model.typeauthorize = type;
                     model.maketingticketverified = null;
@@ -173,15 +175,16 @@
                     modelpopupopenmethod.closepopup();
                 };
                 model.employeenamesbind = function() {
-                    service.EmpBinding(1, 2, '').then(function(response) {
-                        model.employeenamearray = [];
-                        model.employeenamearray.push({ "label": "--Select--", "title": "--Select--", "value": "" });
-                        _.each(response.data, function(item) {
-                            if (item.CountryCode === 'Profile Owner') {
-                                model.employeenamearray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                            }
+                    if ((model.employeenamearray).length === 0) {
+                        service.EmpBinding(1, 2, '').then(function(response) {
+                            model.employeenamearray.push({ "label": "--Select--", "title": "--Select--", "value": "" });
+                            _.each(response.data, function(item) {
+                                if (item.CountryCode === 'Profile Owner') {
+                                    model.employeenamearray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                                }
+                            });
                         });
-                    });
+                    }
                 };
                 model.closepopup = function() {
                     modelpopupopenmethod.closepopuppoptopopup();
