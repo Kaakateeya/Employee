@@ -4,7 +4,7 @@
 
     angular
         .module('Kaakateeya')
-        .factory('loginModel', ['$http', '$uibModal', 'loginservice', 'authSvc', '$state', 'helperservice', function($http, uibModal, loginservice, authSvc, $state, helperservice) {
+        .factory('loginModel', ['$http', '$uibModal', 'loginservice', 'authSvc', '$state', function($http, uibModal, loginservice, authSvc, $state) {
             //    return function() {
             var model = {},
                 modalpopupopen;

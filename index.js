@@ -12,10 +12,10 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ui.date', 'ng-clipboard', 'anguFixedHeaderTable'
 ]);
 
-app.apiroot = 'http://52.66.131.254:8025/Api/';
-app.apipathold = 'http://52.66.131.254:8010/Api/';
-// app.apiroot = 'http://183.82.0.58:8025/Api/';
-// app.apipathold = 'http://183.82.0.58:8010/Api/';
+// app.apiroot = 'http://52.66.131.254:8025/Api/';
+// app.apipathold = 'http://52.66.131.254:8010/Api/';
+app.apiroot = 'http://183.82.0.58:8025/Api/';
+app.apipathold = 'http://183.82.0.58:8010/Api/';
 
 app.env = "dev";
 app.kammaPayfixedAmt = 1000;
@@ -138,11 +138,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     files: [
                         'common/services/modalPopupmethods.js',
                         'common/services/errorInterceptor.js',
-                        'common/services/authSvc.js',
                         'common/services/serviceBind.js',
                         'common/services/dependencyservices.js',
                         'common/services/getArray.js',
-                        'common/services/helpService.js',
                         'common/services/route.js',
                         'common/services/getArrayService.js',
                         'common/services/selectBindServices.js',
@@ -274,6 +272,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/payment-editpointsdate/service/svc.js',
                         'directives/payment-editpointsdate/directive.js'
                     ]
+                },
+                {
+                    name: 'auth',
+                    files: [
+                        'common/services/authSvc.js',
+                        'common/services/helpService.js',
+                    ]
                 }
             ]
         });
@@ -281,22 +286,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
         $stateProvider.state('base', {
             abstract: true,
             resolve: {
-                loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    $ocLazyLoad.load('constants');
-                    $ocLazyLoad.load('commonjs');
-                    $ocLazyLoad.load('directives');
-                    $ocLazyLoad.load('modules');
-                    $ocLazyLoad.load('complex-grid');
-                    $ocLazyLoad.load('complex-slide');
-                    $ocLazyLoad.load('Expressintrst');
-                    $ocLazyLoad.load('marketing-slide');
-                    $ocLazyLoad.load('matchfollowup-ticket');
-                    $ocLazyLoad.load('EditSideMenu-base');
-                    $ocLazyLoad.load('EditSlide-popup');
-                    $ocLazyLoad.load('single-grid');
-                    $ocLazyLoad.load('properties');
-                    $ocLazyLoad.load('norecordsalert-popup');
-                    $ocLazyLoad.load('payment-editpointsdate');
+                loadMyCtrl: ['$ocLazyLoad', '$timeout', function($ocLazyLoad, timeout) {
+                    $ocLazyLoad.load('auth');
+                    timeout(function() {
+                        loadmodules($ocLazyLoad);
+                    }, 1500);
                 }]
             }
         });
@@ -317,20 +311,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             views: innerView,
             resolve: {
                 loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    $ocLazyLoad.load('commonjs');
-                    $ocLazyLoad.load('directives');
-                    $ocLazyLoad.load('constants');
-                    $ocLazyLoad.load('modules');
-                    $ocLazyLoad.load('complex-grid');
-                    $ocLazyLoad.load('complex-slide');
-                    $ocLazyLoad.load('Expressintrst');
-                    $ocLazyLoad.load('marketing-slide');
-                    $ocLazyLoad.load('matchfollowup-ticket');
-                    $ocLazyLoad.load('EditSideMenu-base');
-                    $ocLazyLoad.load('EditSlide-popup');
-                    $ocLazyLoad.load('properties');
-                    $ocLazyLoad.load('norecordsalert-popup');
-                    $ocLazyLoad.load('payment-editpointsdate');
+                    loadmodules($ocLazyLoad);
                 }]
             }
         });
@@ -365,10 +346,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     // Any property in resolve should return a promise and is executed before the view is loaded
                     loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                         // you can lazy load files for an existing module
+
                         if (app.env === "dev") {
                             if (item.module !== undefined) {
                                 $ocLazyLoad.load(item.module);
                             }
+                            if (item.routeName !== 'login') {
+                                loadmodules($ocLazyLoad);
+                            }
+
                             return $ocLazyLoad.load([
                                 'app/' + item.routeName + '/style.css',
                                 'app/' + item.routeName + '/' + item.routeName + 'ctrl.js',
@@ -411,3 +397,22 @@ app.run(function($rootScope, $state, $stateParams) {
         }
     });
 });
+
+
+function loadmodules($ocLazyLoad) {
+    $ocLazyLoad.load('constants');
+    $ocLazyLoad.load('commonjs');
+    $ocLazyLoad.load('directives');
+    $ocLazyLoad.load('modules');
+    $ocLazyLoad.load('complex-grid');
+    $ocLazyLoad.load('complex-slide');
+    $ocLazyLoad.load('Expressintrst');
+    $ocLazyLoad.load('marketing-slide');
+    $ocLazyLoad.load('matchfollowup-ticket');
+    $ocLazyLoad.load('EditSideMenu-base');
+    $ocLazyLoad.load('EditSlide-popup');
+    $ocLazyLoad.load('single-grid');
+    $ocLazyLoad.load('properties');
+    $ocLazyLoad.load('norecordsalert-popup');
+    $ocLazyLoad.load('payment-editpointsdate');
+}

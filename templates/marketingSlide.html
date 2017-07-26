@@ -166,7 +166,7 @@
                                 <br>
                                 <div>
                                     <form ng-if="slide.incomeTab" name="inform" novalidate role="form" ng-submit="">
-                                        <ul>
+                                        <ul ng-init="model.marketReplytype();">
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Call received from </label>
                                                 <div class="pop_controls_right  input-group">
@@ -242,7 +242,7 @@
                                 <br>
                                 <div>
                                     <form ng-if="slide.outgoingTab" name="outform" novalidate role="form" ng-submit="">
-                                        <ul>
+                                        <ul ng-init="model.marketReplytype();">
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Call received by </label>
                                                 <div class="pop_controls_right select-box-my input-group">
@@ -319,7 +319,7 @@
                                 <br>
                                 <div>
                                     <form ng-if="slide.internalMemoTab" name="memoform" novalidate role="form" ng-submit="">
-                                        <ul>
+                                        <ul ng-init="model.getEmpnamesinout();model.marketReplytype();">
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Assign/Re-assign </label>
                                                 <div class="pop_controls_right select-box-my   input-group">
@@ -363,7 +363,7 @@
                                 <br>
                                 <div>
                                     <form ng-if="slide.closeTab" name="closeform" novalidate role="form" ng-submit="closeform.$valid && model.closeSubmit(slide);closeform.$setPristine();slide.selectedIndex=0;">
-                                        <ul>
+                                        <ul ng-init="model.marketReplytype();">
                                             <li class="clearfix form-group">
                                                 <label class="pop_label_left">Reply Type </label>
                                                 <div class="pop_controls_right select-box-my input-group">

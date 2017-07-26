@@ -37,7 +37,7 @@
                                     <label><b>Name:</b>{{page.model.objcustomername}} ,<b>Owner:</b>{{page.model.objProfileOwner}} ,<b>Ticket:</b><a  href="javascript:void(0)" style="font-size: 14px;font-weight: bold;" ng-click="page.model.ticketpopup()">{{page.model.objMarketTicketID}}</a></label>
                                 </div>
                             </div>
-                            <div class="col-lg-4" ng-show="page.model.rbtntype!=='1' && page.model.rbtntype!=='0'">
+                            <div class="col-lg-4" ng-if="page.model.rbtntype!=='1' && page.model.rbtntype!=='0'">
                                 <p>Phone Number<span style="color: red; margin-left: 3px;">*</span></p>
                                 <div class="controls clearfix">
                                     <div layout-gt-sm="row" class="generalane">

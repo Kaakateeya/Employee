@@ -49,8 +49,22 @@
                     model.loginempName = authSvc.LoginEmpName() !== undefined && authSvc.LoginEmpName() !== null && authSvc.LoginEmpName() !== "" ? authSvc.LoginEmpName() : "";
                     model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
 
-                    if ((model.Managementid) === 'true') {
-                        model.bindEmpnames();
+
+                    model.lstEmpnames = [parseInt(model.empid)];
+                    model.activebutton = 'bothside';
+                    model.txtFromProceedDate = model.txtToProceedDate = '';
+                    model.matchFollowupSelect(model.empid);
+                    return model;
+                };
+                model.bindEmpnames = function() {
+
+                    if ((model.Managementid) === 'true' && model.EmpNamesArr.length === 0) {
+                        SelectBindServiceApp.EmpwithBranch('ProfileBranch', '').then(function(response) {
+                            var empBranchData = response.data;
+                            _.each(empBranchData, function(item) {
+                                model.EmpNamesArr.push({ "label": item.Name, "title": item.Name, "value": item.ID, ParentName: item.BranchesName });
+                            });
+                        });
                         model.BranchName = getArray.GArray('BranchName');
                         model.RegionArr = getArray.GArray('Regionofbranches');
                         model.lstregions = '';
@@ -59,19 +73,7 @@
                         model.RegionArr = [];
                         model.EmpNamesArr = [];
                     }
-                    model.lstEmpnames = [parseInt(model.empid)];
-                    model.activebutton = 'bothside';
-                    model.txtFromProceedDate = model.txtToProceedDate = '';
-                    model.matchFollowupSelect(model.empid);
-                    return model;
-                };
-                model.bindEmpnames = function() {
-                    SelectBindServiceApp.EmpwithBranch('ProfileBranch', '').then(function(response) {
-                        var empBranchData = response.data;
-                        _.each(empBranchData, function(item) {
-                            model.EmpNamesArr.push({ "label": item.Name, "title": item.Name, "value": item.ID, ParentName: item.BranchesName });
-                        });
-                    });
+
                 };
                 model.smsarray = [
                     { id: 1, text: 'We missed to reach you on 91-XXXXX. please call back' },

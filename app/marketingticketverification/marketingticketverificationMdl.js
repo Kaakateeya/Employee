@@ -113,19 +113,19 @@
                 model.mkttktverified = "";
                 model.marktedvalue = "0";
             };
-            model.pageloadbindings = function() {
-                marketingticketverificationService.getMyprofilebind(1, 2, '').then(function(response) {
-                    model.Brancharray = [];
-                    model.Brancharray.push({ "label": "--select--", "title": "--select--", "value": "" });
-                    _.each(response.data, function(item) {
-                        switch (item.CountryCode) {
-                            case "Branch":
-                                model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                                break;
-                        }
-                    });
-                });
-            };
+            //  model.pageloadbindings = function() {
+            // marketingticketverificationService.getMyprofilebind(1, 2, '').then(function(response) {
+            //     model.Brancharray = [];
+            //     model.Brancharray.push({ "label": "--select--", "title": "--select--", "value": "" });
+            //     _.each(response.data, function(item) {
+            //         switch (item.CountryCode) {
+            //             case "Branch":
+            //                 model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+            //                 break;
+            //         }
+            //     });
+            // });
+            // };
             model.pagechange = function(val) {
                 model.submitmarktingreports('grid');
             };

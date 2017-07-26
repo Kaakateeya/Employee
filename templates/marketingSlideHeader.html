@@ -1,9 +1,10 @@
 <uib-accordion close-others="oneAtATime">
     <div uib-accordion-group style="margin-top: -12px;" class="panel-default" is-open="model.opendiv">
         <uib-accordion-heading>
-            Marketing Tickets<i class="glyphicon" ng-class="{'glyphicon-chevron-down': model.opendiv, 'glyphicon-chevron-right': !model.opendiv}"></i>
+            <span ng-click="model.getEmpnamesinout();model.bindEmpnames();"> Marketing Tickets<i class="glyphicon"  ng-class="{'glyphicon-chevron-down': model.opendiv, 'glyphicon-chevron-right': !model.opendiv}"></i></span>
         </uib-accordion-heading>
         <div class="row">
+
             <div class="clearfix">
                 <div class="col-lg-2">
                     <input type="text" class="form-control" placeholder="Search Ticket" ng-model="model.TicketId">
