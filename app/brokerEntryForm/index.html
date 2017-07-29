@@ -36,13 +36,13 @@
                     <div class="row">
                         <label for="" class="col-lg-3">Watsapp Number</label>
                         <div class="col-lg-6 form-group">
-                            <input type="text" ng-model="page.model.WatsappNumber" ng-blur="page.model.valueExists('watsapp',1,page.model.WatsappNumber);" class="form-control" required>
+                            <input type="text" ng-model="page.model.WatsappNumber" maxlength="10" ng-blur="page.model.valueExists('watsapp',1,page.model.WatsappNumber);" class="form-control" required>
                         </div>
                     </div>
                     <div class="row">
                         <label for="" class="col-lg-3">Mobile Number</label>
                         <div class="col-lg-6 form-group">
-                            <input type="text" ng-model="page.model.Number" class="form-control" required>
+                            <input type="text" ng-model="page.model.Number" maxlength="10" class="form-control" required>
                         </div>
                     </div>
                 </div>

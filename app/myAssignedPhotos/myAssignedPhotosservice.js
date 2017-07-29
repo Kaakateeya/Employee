@@ -14,6 +14,9 @@
             },
             submitPhotos: function(obj) {
                 return http.post(app.apiroot + 'smallPages/myAssignedPhotosSubmit', obj);
+            },
+            downloadPhotos: function(obj) {
+                return http.post(app.apiroot + 'smallPages/downloadImages', obj);
             }
         };
     }

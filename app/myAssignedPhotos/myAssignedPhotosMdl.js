@@ -5,15 +5,15 @@
         .module('Kaakateeya')
         .factory('myAssignedPhotosModel', factory);
 
-    factory.$inject = ['myAssignedPhotosService', 'authSvc', 'complex-grid-config', '$http', 'modelpopupopenmethod', 'fileUpload'];
+    factory.$inject = ['myAssignedPhotosService', 'authSvc', 'complex-grid-config', '$http', 'modelpopupopenmethod', 'fileUpload', 'alert'];
 
-    function factory(myAssignedPhotosService, authSvc, gridConfig, $http, modelpopupopenmethod, fileUpload) {
+    function factory(myAssignedPhotosService, authSvc, gridConfig, $http, modelpopupopenmethod, fileUpload, alertss) {
 
         var model = {};
         model = gridConfig;
         model.scope = {};
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-
+        model.downloadimagesArr = [];
         model.dateOptions = {
             changeMonth: true,
             changeYear: true,
@@ -38,44 +38,43 @@
 
         model.downloadTemplateurl = function(row) {
 
-            var link = "<a style='cursor:pointer;' ng-click='model.downloadImg();'>Download</a>";
+            var link = "<a style='cursor:pointer;' ng-click='model.downloadImg(" + JSON.stringify(row.Cust_ID) + "," + JSON.stringify(row.ProfileID) + "," + JSON.stringify(row.PhotoName) + ");'>Download</a>";
             return link;
         };
 
-        model.downloadImg = function() {
-            var strCustDirName1 = "KMPL_91022_Images";
-            model.deleteKey = strCustDirName1 + "/img1.jpg";
-            var keynameq = app.prefixPathImg + model.deleteKey;
-            debugger;
-            $http.post('/photoDownload', JSON.stringify({ keyname: 'Images/ProfilePics/KMPL_116843_Images/Img1.jpg' })).then(function(data) {
-                debugger;
-                console.log('local  ...');
-                console.log(data);
+        model.downloadImg = function(custid, profileid, photoname) {
 
-            });
-            // var s3 = new AWS.S3();
+            // var inobj = [];
 
+            // if (custid !== undefined && photoname !== undefined) {
+            //     inobj.push({ custid: custid, profileid: profileid, photoname: photoname });
+            // } else {
+            //     inobj = model.downloadimagesArr;
+            // }
+            // myAssignedPhotosService.downloadPhotos(inobj).then(function(response) {
+            //     if (response.data && response.data.length > 0) {
 
-            $http.get('https://kaakateeyaprod.s3.ap-south-1.amazonaws.com/Images/ProfilePics/KMPL_116843_Images/Img1.jpg', {
+            //     }
+            // });
+            var imageName = photoname.split('.');
+            var imgnum = imageName[0].substr(imageName[0].length - 1);
+
+            photoname = photoname.replace('i', 'I');
+            $http.get('https://kaakateeyaprod.s3.ap-south-1.amazonaws.com/Images/ProfilePics/KMPL_' + custid + '_Images/' + photoname, {
                     responseType: "arraybuffer"
                 })
                 .success(function(data) {
-                    alert(1);
                     var anchor = angular.element('<a/>');
                     var blob = new Blob([data]);
                     anchor.attr({
                         href: window.URL.createObjectURL(blob),
                         target: '_blank',
-                        download: 'fileName.png'
+                        download: profileid + '_' + imgnum
                     })[0].click();
                 })
-
-            .error(function(err) {
-                debugger;
-                alert(err.err);
-            });
-
-
+                .error(function(err) {
+                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Photo not present in amazon s3', 6500);
+                });
         };
 
         model.uploadTemplateurl = function(row) {
@@ -87,6 +86,7 @@
             return link;
         };
         model.getMyassignedProfiles = function() {
+            model.downloadimagesArr = [];
             model.columns = [
                 { text: 'ProfileID', key: 'ProfileID', type: 'morelinks', templateUrl: model.ProfileIdTemplateDUrl, rowtype: "success" },
                 { text: 'FirstName', key: 'FirstName', type: 'label' },
@@ -111,59 +111,79 @@
                 if (response.data && response.data.length > 0) {
                     model.totalRecords = response.data[0].TotalRows;
                     model.data = response.data;
+                    _.each(model.data, function(item) {
+                        model.downloadimagesArr.push({ custid: item.Cust_ID, profileid: item.ProfileID, photoname: item.PhotoName });
+                    });
                 }
             });
 
         };
 
         model.showUpload = function(row) {
-            model.imgName = row.PhotoName;
+            model.imgName = row.PhotoName ? row.PhotoName.split('.')[0] : '';
             model.Cust_ID = row.Cust_ID;
             model.profileid = row.ProfileID;
             model.photoID = row.Cust_Photos_ID;
             model.displayImg = 'http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_' + row.Cust_ID + '_Images/Img1.jpg';
-
-
             modelpopupopenmethod.showPopup('threeuploadpopup.html', model.scope, 'md', '');
         };
+
         model.close = function() {
             modelpopupopenmethod.closepopup();
         };
 
         model.submitPhotos = function() {
-            model.CheckUploads();
-            alert(11111111111111);
-            var inobj = {
-                EmpID: model.empid,
-                StrThumbNail: "~\\Images\\ProfilePics\\KMPL_" + model.Cust_ID + "_Images\\" + (model.imgName.replace("i", "I")) + "_Images\\" + model.profileid + "_ThumbNail.jpg",
-                StrFullPhoto: "~\\Images\\ProfilePics\\KMPL_" + model.Cust_ID + "_Images\\" + (model.imgName.replace("i", "I")) + "_Images\\" + model.profileid + "_FullPhoto.jpg",
-                StrApplicationPhoto: "~\\Images\\ProfilePics\\KMPL_" + model.Cust_ID + "_Images\\" + (model.imgName.replace("i", "I")) + "_Images\\" + model.profileid + "_ApplicationPhoto.jpg",
-                PhotoID: model.photoID
-            };
 
+            if (model.CheckUploads()) {
 
-            var keyname = app.prefixPathImg + 'KMPL_' + CustID + '_Images/Img' + model.photorowID + '.' + extension;
-            fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
+                var uploadArray = [{ photoobj: model.AppPhoto, type: 'app' },
+                    { photoobj: model.thumbPhoto, type: 'thumb' },
+                    { photoobj: model.fullPhoto, type: 'full' }
+                ];
 
-            });
+                _.each(uploadArray, function(item) {
+                    var strextType = '';
+                    if (item.type === 'app') {
+                        strextType = '_ApplicationPhoto.jpg';
+                    } else if (item.type === 'thumb') {
+                        strextType = '_ThumbNail.jpg';
+                    } else if (item.type === 'full') {
+                        strextType = '_FullPhoto.jpg';
+                    }
 
-            // myAssignedPhotosService.submitPhotos(inobj).then(function(response) {
-            //     if (response.data && response.data.length > 0) {
+                    var keyname = app.prefixPathImg + 'KMPL_' + model.Cust_ID + '_Images/' + (model.imgName.replace("i", "I")) + "_Images/" + model.profileid + strextType;
+                    fileUpload.uploadFileToUrl(item.photoobj, '/photoUplad', keyname).then(function(res) {
 
-            //     }
-            // });
+                    });
+                });
 
+                var inobj = {
+                    EmpID: model.empid,
+                    StrThumbNail: "~\\Images\\ProfilePics\\KMPL_" + model.Cust_ID + "_Images\\" + (model.imgName.replace("i", "I")) + "_Images\\" + model.profileid + "_ThumbNail.jpg",
+                    StrFullPhoto: "~\\Images\\ProfilePics\\KMPL_" + model.Cust_ID + "_Images\\" + (model.imgName.replace("i", "I")) + "_Images\\" + model.profileid + "_FullPhoto.jpg",
+                    StrApplicationPhoto: "~\\Images\\ProfilePics\\KMPL_" + model.Cust_ID + "_Images\\" + (model.imgName.replace("i", "I")) + "_Images\\" + model.profileid + "_ApplicationPhoto.jpg",
+                    PhotoID: model.photoID
+                };
+                myAssignedPhotosService.submitPhotos(inobj).then(function(response) {
+                    model.close();
+                    if (response.data && parseInt(response.data) === 1) {
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Uploaded successfully', 4500);
+                    } else {
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Uploading failed', 4500);
+                    }
+                });
+            }
         };
 
 
         model.CheckUploads = function() {
 
-            var Thumb = model.thumbPhoto;
-            var FullPhoto = model.fullPhoto;
-            var AppPhoto = model.AppPhoto;
-            if (Thumb || FullPhoto || AppPhoto)
+            if (model.thumbPhoto && model.fullPhoto && model.AppPhoto) {
 
-            {
+                var Thumb = (model.thumbPhoto).name;
+                var FullPhoto = (model.fullPhoto).name;
+                var AppPhoto = (model.AppPhoto).name;
+
                 var imgnane = model.imgName.split('.');
                 var imgnum = imgnane[0].substr(imgnane[0].length - 1);
 
@@ -253,22 +273,12 @@
                 }
             } else {
                 alert('Please enter three photos');
+                return false;
             }
+            return true;
         };
 
-        model.fileSelected = function(files, events, val) {
 
-            debugger;
-            alert(11);
-            if (files.length) {
-                b.uploadMode = true;
-                alert(true);
-            } else {
-                b.uploadMode = false;
-                alert(true);
-            }
-
-        };
 
 
 
