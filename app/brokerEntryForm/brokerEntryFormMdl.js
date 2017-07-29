@@ -47,8 +47,9 @@
         model.valueExists = function(type, flag, val) {
             if (val !== undefined) {
                 brokerEntryFormService.emailExists({ iflagEmailmobile: flag, EmailMobile: val }).then(function(response) {
-                    if (response.data === 0) {
+                    if (response.data === 1) {
                         if (type === 'email') {
+
                             model.Email = '';
                             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Email Already Exists', 9500);
                         } else if (type === 'watsapp') {

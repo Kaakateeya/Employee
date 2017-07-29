@@ -13,7 +13,7 @@
                     <div class="row">
                         <label for="" class="col-lg-3">Email</label>
                         <div class="col-lg-6">
-                            <input type="text" ng-blur="page.model.valueExists('email',0,page.model.emailpattaren);" name="email" ng-pattern="page.model.emailpattaren" ng-model="page.model.Email" class="form-control" required>
+                            <input type="text" ng-blur="page.model.valueExists('email',0,page.model.Email);" name="email" ng-pattern="page.model.emailpattaren" ng-model="page.model.Email" class="form-control" required>
                         </div>
                     </div>
                     <div style="color:#a94442;" class="row clearfix" ng-if="((brokerForm.email.$invalid) && (brokerForm.$submitted))" ng-messages="brokerForm.email.$error" role="alert">

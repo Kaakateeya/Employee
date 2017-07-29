@@ -82,6 +82,10 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
         BranchName: function() {
             return http.get(app.apiroot + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'BranchName', dependencyValue: '', dependencyflagID: '' } });
         },
+        MediatorBranchName: function(Mediator) {
+            return http.get(app.apiroot + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: Mediator, dependencyValue: '', dependencyflagID: '' } });
+        },
+
         BranchNamebind: function(parentval1) {
             return http.get(app.apiroot + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Region', dependencyValue: parentval1, dependencyflagID: '' } });
         },

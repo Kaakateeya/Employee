@@ -187,6 +187,17 @@ app.factory('getArraysearch', ['arrayConstants', 'SelectBindServiceApp', functio
                         option = option;
                     });
                     break;
+                case 'MediatorBranchName':
+                    service.MediatorBranchName('Mediator').then(function(response) {
+                        _.each(response.data, function(item) {
+                            option.push({ "label": item.Name, "title": item.Name, "value": item.ID, ParentName: item.BranchesName });
+                        });
+                        option = option;
+                    });
+                    break;
+
+
+
             }
             return option;
         }

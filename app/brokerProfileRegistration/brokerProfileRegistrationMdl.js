@@ -22,7 +22,7 @@
                 model.religion = getArray.GArray('Religion');
                 model.Mothertongue = getArray.GArray('Mothertongue');
                 model.Caste = getArray.GArray('Caste');
-                model.branchArr = getArraysearch.GArray('BranchName');
+                model.branchArr = getArraysearch.GArray('MediatorBranchName');
             }, 1000);
             timeout(function() {
                 var Country = [],
@@ -122,14 +122,14 @@
         model.valueExists = function(type, flag, val) {
 
             if (val !== undefined) {
-                SelectBindServicereg.emailExists({ iflagEmailmobile: flag, EmailMobile: val }).then(function(response) {
-                    if (response.data === 1) {
+                brokerProfileRegistrationService.emailExists({ iflagEmailmobile: flag, EmailMobile: val }).then(function(response) {
+                    if (response.data === 0) {
                         if (type === 'email') {
                             model.reg.txtEmail = '';
-                            dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Email Already Exists', 9500);
+                            dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Mediator Email not Exists', 9500);
                         } else {
                             model.reg.txtMobileNo = '';
-                            dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Mobile number Already Exists', 9500);
+                            dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', ' Mediator Mobile number or WhatsappNumber not Exists', 9500);
                         }
                     }
                 });
