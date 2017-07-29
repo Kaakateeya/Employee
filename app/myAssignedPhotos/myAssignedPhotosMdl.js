@@ -60,21 +60,19 @@
             var imgnum = imageName[0].substr(imageName[0].length - 1);
 
             photoname = photoname.replace('i', 'I');
-            $http.get('https://kaakateeyaprod.s3.ap-south-1.amazonaws.com/Images/ProfilePics/KMPL_' + custid + '_Images/' + photoname, {
-                    responseType: "arraybuffer"
-                })
-                .success(function(data) {
-                    var anchor = angular.element('<a/>');
-                    var blob = new Blob([data]);
-                    anchor.attr({
-                        href: window.URL.createObjectURL(blob),
-                        target: '_blank',
-                        download: profileid + '_' + imgnum
-                    })[0].click();
-                })
-                .error(function(err) {
-                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Photo not present in amazon s3', 6500);
-                });
+            if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                var name = 'download';
+                name = type === 'PDF' ? name + '.pdf' : name + '.xls';
+                window.navigator.msSaveBlob(blob, name);
+            } else {
+                var dlnk = document.getElementById('dwnldLnk');
+                dlnk.download = 'download';
+                dlnk.download = dlnk.download + '.jpg';
+                /* jshint ignore:start */
+                dlnk.href = 'https://kaakateeyaprod.s3.ap-south-1.amazonaws.com/Images/ProfilePics/KMPL_' + custid + '_Images/' + photoname;
+                /* jshint ignore:end */
+                dlnk.click();
+            }
         };
 
         model.uploadTemplateurl = function(row) {

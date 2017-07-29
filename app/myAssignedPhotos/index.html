@@ -45,6 +45,7 @@
         </form>
         <br>
         <complex-grid ng-if="page.model.columns" config="page.model" model="page.model"></complex-grid>
+        <a id='dwnldLnk' style="display:none;" />
     </div>
 </div>
 
@@ -87,6 +88,7 @@
         <input type="button" class="btn btn-success" value="Submit" ng-click="page.model.submitPhotos();">
         <input type="reset" value="Close" class="btn btn-default" ng-click="page.model.close();">
     </div>
+
 </script>
 
 <style>
