@@ -66,8 +66,7 @@
                 window.navigator.msSaveBlob(blob, name);
             } else {
                 var dlnk = document.getElementById('dwnldLnk');
-                dlnk.download = 'download';
-                dlnk.download = dlnk.download + '.jpg';
+                dlnk.download = profileid + '_' + imgnum + '.jpg';
                 /* jshint ignore:start */
                 dlnk.href = 'https://kaakateeyaprod.s3.ap-south-1.amazonaws.com/Images/ProfilePics/KMPL_' + custid + '_Images/' + photoname;
                 /* jshint ignore:end */

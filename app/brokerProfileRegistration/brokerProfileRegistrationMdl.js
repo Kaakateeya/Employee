@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .factory('brokerProfileRegistrationModel', factory);
 
-    factory.$inject = ['brokerProfileRegistrationService', 'SelectBindServicereg', 'authSvc', '$timeout', 'getArray', 'Commondependency', '$filter', 'getArraysearch', 'alert'];
+    factory.$inject = ['brokerProfileRegistrationService', 'SelectBindServicereg', 'authSvc', '$timeout', 'getArray', 'Commondependency', '$filter', 'getArraysearch', 'alert', '$state'];
 
-    function factory(brokerProfileRegistrationService, SelectBindServicereg, authSvc, timeout, getArray, commondependency, filter, getArraysearch, dynamicalert) {
+    function factory(brokerProfileRegistrationService, SelectBindServicereg, authSvc, timeout, getArray, commondependency, filter, getArraysearch, dynamicalert, $state) {
 
         var model = {};
         model.scope = {};
