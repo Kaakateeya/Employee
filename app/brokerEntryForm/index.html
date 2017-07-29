@@ -1,36 +1,46 @@
 <div class="right_col" id="brokerEntryID">
-    <h3 class="hdrCls">Broker Entry Form</h3>
+    <h3 class="hdrCls">Mediater Entry Form</h3>
     <div class="bodycls">
         <form name="brokerForm" novalidate role="form" ng-submit="brokerForm.$valid && page.model.submitBrokerForm();">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="row">
-                        <label for="" class="col-lg-2">Name</label>
+                        <label for="" class="col-lg-3">Name</label>
                         <div class="col-lg-6 form-group">
                             <input type="text" name="name" class="form-control" ng-model="page.model.Name" ng-required="true">
                         </div>
                     </div>
                     <div class="row">
-                        <label for="" class="col-lg-2">Email</label>
+                        <label for="" class="col-lg-3">Email</label>
                         <div class="col-lg-6">
-                            <input type="text" name="email" ng-pattern="page.model.emailpattaren" ng-model="page.model.Email" class="form-control" required>
+                            <input type="text" ng-blur="page.model.valueExists('email',0,page.model.emailpattaren);" name="email" ng-pattern="page.model.emailpattaren" ng-model="page.model.Email" class="form-control" required>
                         </div>
                     </div>
                     <div style="color:#a94442;" class="row clearfix" ng-if="((brokerForm.email.$invalid) && (brokerForm.$submitted))" ng-messages="brokerForm.email.$error" role="alert">
-                        <div ng-message-exp="['required','pattern']" style="margin-left: 19%;"> Required and enter valid e-mail address.
+                        <div ng-message-exp="['required','pattern']" style="margin-left: 28%;"> Required and enter valid e-mail address.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="" class="col-lg-3">Branch</label>
+                        <div class="col-lg-6">
+                            <select name="branchid" multiselectdropdown class="smalldropdown" ng-required="true" ng-model="page.model.branchId" typeofdata="'Branch'">   
+                              </select>
+                        </div>
+                    </div>
+                    <div style="color:#a94442;" class="row clearfix" ng-if="((brokerForm.branchid.$invalid) && (brokerForm.$submitted))" ng-messages="brokerForm.branchid.$error" role="alert">
+                        <div ng-message-exp="['required']" style="margin-left: 28%;">This field is required.
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="row">
-                        <label for="" class="col-lg-3">Native place</label>
+                        <label for="" class="col-lg-3">Watsapp Number</label>
                         <div class="col-lg-6 form-group">
-                            <input type="text" ng-model="page.model.Native" class="form-control" required>
+                            <input type="text" ng-model="page.model.WatsappNumber" ng-blur="page.model.valueExists('watsapp',1,page.model.WatsappNumber);" class="form-control" required>
                         </div>
                     </div>
-
                     <div class="row">
-                        <label for="" class="col-lg-3">Number</label>
+                        <label for="" class="col-lg-3">Mobile Number</label>
                         <div class="col-lg-6 form-group">
                             <input type="text" ng-model="page.model.Number" class="form-control" required>
                         </div>
@@ -38,11 +48,18 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-2 btnposition">
+                <label for="" class="col-lg-2">Contact Address</label>
+                <div class="col-lg-6 form-group">
+                    <textarea style="margin-left:-8%;width: 152%;" class="form-control" name="" id="" cols="120" rows="2" ng-model="page.model.Native" required></textarea>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-3 btnposition">
                     <input type="submit" value="Submit" class="button_custom pull-right">
                 </div>
                 <div class="col-lg-6">
-                    <input type="reset" value="Reset" class="button_custom button_custom_reset">
+                    <input type="reset" value="Reset" class="button_custom button_custom_reset" ng-click="page.model.reset();">
                 </div>
             </div>
         </form>

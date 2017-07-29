@@ -1,0 +1,102 @@
+<div class="right_col" id="myassignedPhotosID">
+    <h3 class="hdrCls">My assigned Photos
+
+        <span style="color:black;" class="spancls">Total records : {{page.model.totalRecords}}</span>
+        <span><a href="javascript:void(0);" class="spancls">Download all</a></span>
+
+    </h3>
+    <div class="bodycls">
+        <form name="myassignForm" novalidate role="form" ng-submit="page.model.getMyassignedProfiles();">
+            <div class="row">
+
+                <div class="col-lg-3">
+                    <div class="col-lg-4">
+                        <label for="" class="pull-right control-label">Profile ID</label>
+                    </div>
+                    <div class="col-lg-8"><input type="text" ng-model="page.model.profileID" class="form-control"></div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="col-lg-6">
+                        <label for="" class="pull-right control-label">Assign from date</label>
+                    </div>
+                    <div class="col-lg-6">
+                        <custom-datepicker class="datepicker3" ng-model="page.model.assignFromData" date-options="page.model.dateOptions"></custom-datepicker>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="col-lg-6">
+                        <label for="" class="pull-right control-label">Assign to date</label>
+                    </div>
+                    <div class="col-lg-6">
+                        <custom-datepicker class="datepicker3" ng-model="page.model.assignToData" date-options="page.model.dateOptions"></custom-datepicker>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="submit" value="Submit" class="btn btn-danger pull-right">
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="reset" value="Reset" class="btn btn-default" ng-click="page.model.reset();">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <br>
+        <complex-grid ng-if="page.model.columns" config="page.model" model="page.model"></complex-grid>
+    </div>
+</div>
+
+<script type="text/ng-template" id="threeuploadpopup.html">
+    <div class="modal-header alert-danger">
+        <center> <b> Upload Photos</b></center>
+    </div>
+    <div class="modal-body">
+        <img ng-src="{{page.model.displayImg}}" alt="sss" style="height: 50px; width: 50px;">
+        <div>Image Name Like (12121212_th1) Or (12121212_fp1) Or (12121212_ap1)</div>
+        <br>
+        <div class="row">
+            <div class="col-lg-6">
+                <label for="" class="control-label pull-right">Upload application photo</label>
+            </div>
+            <div class="col-lg-6">
+                <input type="file" ngf-select file-model="page.model.AppPhoto" ngf-change="page.model.fileSelected($files, $event, page.model.AppPhoto)" />
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-6">
+                <label for="" class="control-label pull-right">Upload thumb nail</label>
+            </div>
+            <div class="col-lg-6">
+                <input type="file" file-model="page.model.thumbPhoto" ngf-change="fileSelected($files, $event, page.model.thumbPhoto)" />
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-6">
+                <label for="" class="control-label pull-right">Upload full photo</label>
+            </div>
+            <div class="col-lg-6">
+                <input type="file" file-model="page.model.fullPhoto" />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="button" class="btn btn-success" value="Submit" ng-click="page.model.submitPhotos();">
+        <input type="reset" value="Close" class="btn btn-default" ng-click="page.model.close();">
+    </div>
+</script>
+
+<style>
+    .datepicker3 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+    }
+    
+    .autorizeExcel {
+        margin-left: 6%;
+        height: 20px;
+        width: 20px;
+    }
+</style>

@@ -509,6 +509,7 @@
                     modelpopupopenmethod.closepopup();
                 };
                 model.updateREGFee = function(row, txtval) {
+                    curdate = moment().format('DD-MMM-YYYY hh:mm:ss');
                     if (row.editval === 'Edit') {
                         row.editval = 'update Fee';
                         row.txtFeeValue = row.Feedetails;
@@ -547,6 +548,7 @@
                     }
                 };
                 model.updateSAFee = function(row, txtval) {
+                    curdate = moment().format('DD-MMM-YYYY hh:mm:ss');
                     if (row.editSAval === 'Edit') {
                         {
                             row.editSAval = 'update Fee';
@@ -743,6 +745,7 @@
 
                 model.pushTicketHistry = function(TicketType, CallStatus, CallReceivedBy, ReplyDesc, NoOfDays, RelationShip) {
                     var relation;
+                    curdate = moment().format('DD-MMM-YYYY hh:mm:ss');
                     if (RelationShip) {
                         relation = (_.where(arrayConstants.childStayingWith, { value: parseInt(RelationShip) }))[0].label;
                     }
@@ -760,7 +763,7 @@
                     return Appendobj;
                 };
                 model.inOutSubmit = function(obj) {
-                    //22-Apr-2017 18:32:39'
+                    curdate = moment().format('DD-MMM-YYYY hh:mm:ss');
                     var inputObj = {
                         CallType: obj.CallType,
                         Calledon: curdate,

@@ -5,11 +5,12 @@
         .module('Kaakateeya')
         .factory('brokerProfileRegistrationModel', factory);
 
-    factory.$inject = ['brokerProfileRegistrationService', 'SelectBindServicereg', 'authSvc', '$timeout', 'getArray', 'Commondependency', '$filter'];
+    factory.$inject = ['brokerProfileRegistrationService', 'SelectBindServicereg', 'authSvc', '$timeout', 'getArray', 'Commondependency', '$filter', 'getArraysearch', 'alert'];
 
-    function factory(brokerProfileRegistrationService, SelectBindServicereg, authSvc, timeout, getArray, commondependency, filter) {
+    function factory(brokerProfileRegistrationService, SelectBindServicereg, authSvc, timeout, getArray, commondependency, filter, getArraysearch, dynamicalert) {
 
         var model = {};
+        model.scope = {};
         var monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         model.pageload = function() {
             model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
@@ -21,6 +22,7 @@
                 model.religion = getArray.GArray('Religion');
                 model.Mothertongue = getArray.GArray('Mothertongue');
                 model.Caste = getArray.GArray('Caste');
+                model.branchArr = getArraysearch.GArray('BranchName');
             }, 1000);
             timeout(function() {
                 var Country = [],
@@ -94,7 +96,8 @@
                 intProfileRegisteredBy: null,
                 intEmpID: model.empid === "" ? "2" : model.empid,
                 intCustPostedBY: obj.ddlpostedby,
-                intSubCasteID: obj.ddlsubcaste !== undefined && obj.ddlsubcaste !== null && obj.ddlsubcaste !== "" && obj.ddlsubcaste !== "undefined" ? obj.ddlsubcaste : null
+                intSubCasteID: obj.ddlsubcaste !== undefined && obj.ddlsubcaste !== null && obj.ddlsubcaste !== "" && obj.ddlsubcaste !== "undefined" ? obj.ddlsubcaste : null,
+                BrokerNameID: obj.branchID
             };
 
             brokerProfileRegistrationService.submitBasicRegistrationBroker(inputObj).then(function(res) {
@@ -115,6 +118,32 @@
                 model.casteArr = commondependency.casteDepedency(commondependency.listSelectedVal(parentval), commondependency.listSelectedVal(parentval2));
             }
         };
+
+        model.valueExists = function(type, flag, val) {
+
+            if (val !== undefined) {
+                SelectBindServicereg.emailExists({ iflagEmailmobile: flag, EmailMobile: val }).then(function(response) {
+                    if (response.data === 1) {
+                        if (type === 'email') {
+                            model.reg.txtEmail = '';
+                            dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Email Already Exists', 9500);
+                        } else {
+                            model.reg.txtMobileNo = '';
+                            dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Mobile number Already Exists', 9500);
+                        }
+                    }
+                });
+            }
+        };
+        model.redirectprivacy = function(type) {
+            window.open('registration/privacyPolicy', '_blank');
+        };
+        model.residingChange = function(val) {
+            model.reg.ddllandcountry = model.reg.ddlmobilecountry = val;
+        };
+
+
+
 
         return model.pageload();
 

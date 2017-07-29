@@ -9,13 +9,13 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ngAnimate', 'ngIdle', 'ngMaterial',
     'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate',
     'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons',
-    'ui.date', 'ng-clipboard', 'anguFixedHeaderTable'
+    'ui.date', 'ng-clipboard', 'anguFixedHeaderTable', 'ngFileUpload'
 ]);
 
-app.apiroot = 'http://52.66.131.254:8025/Api/';
-app.apipathold = 'http://52.66.131.254:8010/Api/';
-// app.apiroot = 'http://183.82.0.58:8025/Api/';
-// app.apipathold = 'http://183.82.0.58:8010/Api/';
+// app.apiroot = 'http://52.66.131.254:8025/Api/';
+// app.apipathold = 'http://52.66.131.254:8010/Api/';
+app.apiroot = 'http://183.82.0.58:8025/Api/';
+app.apipathold = 'http://183.82.0.58:8010/Api/';
 
 app.env = "dev";
 app.kammaPayfixedAmt = 1000;
@@ -93,7 +93,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'matchMeetingEntryForm', name: 'base.matchMeetingEntryForm', url: '/matchMeetingEntryFormPage', isloginrequired: true },
             { routeName: 'paymentdetailsReport', name: 'base.paymentdetailsReport', url: '/paymentdetailsReportpage', isloginrequired: true },
             { routeName: 'brokerEntryForm', name: 'base.brokerEntryForm', url: '/brokerEntryFormpage', isloginrequired: true },
-            { routeName: 'brokerProfileRegistration', name: 'base.brokerProfileRegistration', url: '/brokerProfileRegistrationpage', isloginrequired: true }
+            { routeName: 'brokerProfileRegistration', name: 'base.brokerProfileRegistration', url: '/brokerProfileRegistrationpage', isloginrequired: true },
+            { routeName: 'myAssignedPhotos', name: 'base.myAssignedPhotos', url: '/myAssignedPhotosPage', isloginrequired: true }
         ];
         $ocLazyLoadProvider.config({
             debug: true

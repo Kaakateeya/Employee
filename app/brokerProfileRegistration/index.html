@@ -7,7 +7,7 @@
                     <form accessible-formreg name="regForm" novalidate role="form" ng-submit="regForm.$valid && page.model.regSubmit(page.model.reg);">
                         <div class="reg_fields_entry clearfix">
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-3">
                                     <div class="radio-group-my">
                                         <md-input-container>
                                             <md-radio-group ng-required="true" name="rbtngender" layout="row" ng-model="page.model.reg.rbtngender" class="md-block" flex-gt-sm ng-disabled="manageakerts">
@@ -20,7 +20,7 @@
                                         </md-input-container>
                                     </div>
                                 </div>
-                                <br />
+                                <br/>
                             </div>
                             <div class="row">
                                 <md-input-container class="col-lg-3">
@@ -31,7 +31,7 @@
                                     </div>
                                 </md-input-container>
                                 <md-input-container class="col-lg-3">
-                                    <label>Last Name</label>
+                                    <label>Surname Name</label>
                                     <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="50" required="" md-asterisk="" name="txtlastname" ng-model="page.model.reg.txtlastname">
                                     <div ng-messages="regForm.txtlastname.$error">
                                         <div ng-if="regForm.txtlastname.$invalid && (regForm.$submitted)" ng-message="required">This is required.</div>
@@ -189,20 +189,30 @@
                             </div>
                             <div class="clear"></div>
                             <div class="row">
-                                <div class="col-lg-10">
-                                    <md-input-container>
-                                        <md-checkbox ng-model="page.model.reg.Chkprivacy" name="Chkprivacy" ng-required="true" md-asterisk="">
-                                            I agree to the
-                                            <a ng-model="page.model.reg.lnkprivacyPolicy" Font-Size="12px" ng-click="redirectprivacy()">Privacy Policy and T&C.</a>
-                                        </md-checkbox>
-                                        <div ng-messages="regForm.Chkprivacy.$invalid">
-                                            <div ng-if="regForm.Chkprivacy.$invalid && (regForm.$submitted)">This is required.</div>
-                                        </div>
-                                    </md-input-container>
-                                </div>
-                                <div class="col-lg-2">
-                                    <md-button type="submit" class="md-raised md-warn md-hue-2" TabIndex="18">SUBMIT</md-button>
-                                </div>
+
+
+                                <md-input-container class="col-lg-3">
+                                    <label class="droplabel">Branch</label>
+                                    <md-select name="branchID" md-asterisk="" ng-model="page.model.reg.branchID" required="">
+                                        <md-option ng-value="h.value" ng-repeat="h in page.model.branchArr">{{h.label}} </md-option>
+                                    </md-select>
+                                    <div class="errors" ng-messages="regForm.branchID.$error">
+                                        <div ng-if="regForm.branchID.$invalid && (regForm.$submitted)" ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container class="col-lg-7">
+                                    <md-checkbox ng-model="page.model.reg.Chkprivacy" name="Chkprivacy" ng-required="true" md-asterisk="">
+                                        I agree to the
+                                        <a ng-model="page.model.reg.lnkprivacyPolicy" Font-Size="12px" ng-click="redirectprivacy()">Privacy Policy and T&C.</a>
+                                    </md-checkbox>
+                                    <div ng-messages="regForm.Chkprivacy.$invalid">
+                                        <div ng-if="regForm.Chkprivacy.$invalid && (regForm.$submitted)">This is required.</div>
+                                    </div>
+                                </md-input-container>
+
+
+                                <md-button type="submit" class="md-raised md-warn md-hue-2 col-lg-1" TabIndex="18">SUBMIT</md-button>
+
                             </div>
                             <label ID="lblResult" Font-Bold="true" />
                         </div>
