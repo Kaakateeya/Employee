@@ -9,7 +9,7 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ngAnimate', 'ngIdle', 'ngMaterial',
     'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate',
     'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons',
-    'ui.date', 'ng-clipboard', 'anguFixedHeaderTable','bsTable'
+    'ui.date', 'ng-clipboard', 'anguFixedHeaderTable', 'bsTable'
 ]);
 
 
@@ -105,11 +105,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                 {
                     name: 'complex-grid',
                     files: [
-                        'directives/complex-grid/directive.js',
-                        'directives/complex-grid/model/config.js',
+                        'directives/complex-grid-new/directive.js',
+                        'directives/complex-grid-new/model/config.js',
                         'src/js/alasql.js',
                         'src/js/xlsx.js',
-                        'directives/complex-grid/css/style.css',
+                        'directives/complex-grid-new/css/style.css',
                         'directives/complex-grid-new/directive.js'
                     ]
                 },

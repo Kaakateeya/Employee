@@ -210,7 +210,12 @@
                         { text: 'SurName', key: 'FirstName', type: 'link', method: model.editviewRedirect },
                         { text: 'Caste', key: 'Caste', type: 'label' },
                         { text: 'RegistrationDate', key: 'RegistrationDate', type: 'label' },
-                        { text: 'AllLinks', key: '', type: 'morelinks', templateUrl: model.allLinksTemplateDUrl },
+                        { text: 'RegistrationDate', key: 'RegistrationDate', type: 'label' },
+                        { text: 'RegistrationDate', key: 'RegistrationDate', type: 'label' },
+                        { text: 'RegistrationDate', key: 'RegistrationDate', type: 'label' },
+                        { text: 'RegistrationDate', key: 'RegistrationDate', type: 'label' },
+                        { text: 'RegistrationDate', key: 'RegistrationDate', type: 'label' },
+                        // { text: 'AllLinks', key: 'ProfileID', type: 'label' },
                     ];
                     myProfileservice.getMyprofileSlide(inputobj).then(function(response) {
                         if (_.isArray(response.data) && response.data.length > 0) {
