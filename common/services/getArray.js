@@ -195,9 +195,6 @@ app.factory('getArraysearch', ['arrayConstants', 'SelectBindServiceApp', functio
                         option = option;
                     });
                     break;
-
-
-
             }
             return option;
         }
