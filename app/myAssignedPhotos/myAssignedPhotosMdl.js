@@ -44,10 +44,7 @@
 
         model.downloadImg = function(custid, profileid, photoname) {
 
-            var imageName = photoname.split('.');
-            var imgnum = imageName[0].substr(imageName[0].length - 1);
 
-            photoname = photoname.replace('i', 'I');
             // if (window.navigator && window.navigator.msSaveOrOpenBlob) {
             //     var name = 'download';
             //     name = type === 'PDF' ? name + '.pdf' : name + '.xls';
@@ -63,24 +60,77 @@
 
             var inobj = [];
             if (custid !== undefined && photoname !== undefined) {
-                inobj.push({ custid: JSON.stringify(custid), profileid: profileid, photoname: photoname });
+                var imageName = photoname.split('.');
+                var imgnum = imageName[0].substr(imageName[0].length - 1);
+
+                photoname = photoname.replace('i', 'I');
+                // inobj.push({ custid: JSON.stringify(custid), profileid: profileid, photoname: photoname });
+                inobj.push({ custid: '100000', profileid: '011000002', photoname: 'img2.jpg' });
             } else {
                 inobj = model.downloadimagesArr;
             }
             myAssignedPhotosService.downloadPhotos(inobj).then(function(response) {
                 if (response.data) {
-                    $http({
-                        url: '/downloadimage',
-                        data: { imagename: response.data },
-                        method: "POST",
-                        responseType: 'blob'
-                    }).success(function(data, status, headers, config) {
-                        var blob = new Blob([data], { type: 'image/jpeg' });
-                        var fileName = profileid + '_' + imgnum; //headers('content-disposition');
-                        saveAs(blob, fileName);
-                    }).error(function(data, status, headers, config) {
-                        console.log('Unable to download the file');
-                    });
+                    if (custid !== undefined && photoname !== undefined) {
+                        $http({
+                            url: '/downloadimage',
+                            data: { imagename: response.data },
+                            method: "POST",
+                            responseType: 'blob'
+                        }).success(function(data, status, headers, config) {
+                            var blob = new Blob([data], { type: 'image/jpeg' });
+                            var fileName = profileid + '_' + imgnum; //headers('content-disposition');
+                            saveAs(blob, fileName);
+                        }).error(function(data, status, headers, config) {
+                            alert('file not found');
+                        });
+                    } else {
+
+                        // $http({
+                        //     url: '/downloadimageAll',
+                        //     data: { imagename: response.data },
+                        //     method: "POST",
+                        //     responseType: 'blob'
+                        // }).success(function(data, status, headers, config) {
+                        //     debugger;
+                        //     var zip = new JSZip();
+                        //     for (var i = 0; i < 3; i++) {
+                        //         zip.file("Hello.txt" + i, "Hello World\n");
+                        //     }
+                        //     zip.generateAsync({ type: "blob" })
+                        //         .then(function(content) {
+                        //             saveAs(content, "example.zip");
+                        //         });
+                        // }).error(function(data, status, headers, config) {
+                        //     alert('file not found');
+                        // });
+
+
+
+
+
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 }
             });
         };

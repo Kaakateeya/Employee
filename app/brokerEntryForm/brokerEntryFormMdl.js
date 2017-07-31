@@ -21,7 +21,10 @@
                 whatsappNumber: model.WatsappNumber,
                 brokerId: null,
                 flag: 1,
-                BranchID: model.branchId
+                BranchID: model.branchId,
+                CountyCode: model.countryCode,
+                AreaCode: model.areacode,
+                LandNumber: model.landNumber
             };
 
             brokerEntryFormService.submitEntryForm(inobj).then(function(response) {
