@@ -44,10 +44,6 @@
 
         model.downloadImg = function(custid, profileid, photoname) {
 
-
-
-
-
             var imageName = photoname.split('.');
             var imgnum = imageName[0].substr(imageName[0].length - 1);
 
@@ -67,8 +63,7 @@
 
             var inobj = [];
             if (custid !== undefined && photoname !== undefined) {
-                // inobj.push({ custid: JSON.stringify(custid), profileid: profileid, photoname: photoname });
-                inobj.push({ custid: '100000', profileid: '011000002', photoname: 'img1.jpg' });
+                inobj.push({ custid: JSON.stringify(custid), profileid: profileid, photoname: photoname });
             } else {
                 inobj = model.downloadimagesArr;
             }
@@ -81,7 +76,7 @@
                         responseType: 'blob'
                     }).success(function(data, status, headers, config) {
                         var blob = new Blob([data], { type: 'image/jpeg' });
-                        var fileName = 'profileid' + 1; //headers('content-disposition');
+                        var fileName = profileid + '_' + imgnum; //headers('content-disposition');
                         saveAs(blob, fileName);
                     }).error(function(data, status, headers, config) {
                         console.log('Unable to download the file');
