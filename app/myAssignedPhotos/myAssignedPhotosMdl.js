@@ -64,8 +64,8 @@
                 var imgnum = imageName[0].substr(imageName[0].length - 1);
 
                 photoname = photoname.replace('i', 'I');
-                // inobj.push({ custid: JSON.stringify(custid), profileid: profileid, photoname: photoname });
-                inobj.push({ custid: '100000', profileid: '011000002', photoname: 'img2.jpg' });
+                inobj.push({ custid: JSON.stringify(custid), profileid: profileid, photoname: photoname });
+                //inobj.push({ custid: '100000', profileid: '011000002', photoname: 'img2.jpg' });
             } else {
                 inobj = model.downloadimagesArr;
             }
