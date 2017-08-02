@@ -50,7 +50,7 @@
                         value: '',
                         ProfileID: item.ProfileID,
                         KMPLID: item.KMPLID,
-                        paid: item.paid,
+                        paid: item.paid === false || item.paid === 0 || item.paid === '0' ? '0' : '1',
                         IsConfidential: item.IsConfidential,
                         SuperConfidentila: item.SuperConfidentila,
                         HoroscopeStatus: item.HoroscopeStatus,
@@ -64,12 +64,10 @@
                         itmArr: model.data,
                         custPhoto: item.Photo,
                         Custid: item.Cust_ID,
-
                         matkteingticket: item.TicketID,
                         matchmarktingcount: item.MatchMeetingCount,
                         ownername: item.ProfileOwnername,
                         branch: item.KMPLID,
-
                         SAForm: item.SAForm,
                         primarynumber: item.Primarynumber,
                         primaryemail: item.Primaryemail,
@@ -90,7 +88,6 @@
                         HeightInCentimeters: item.HeightInCentimeters,
                         MaritalStatusID: item.MaritalStatusID,
                         CasteID: item.CasteID,
-
                         Tickets: item.Tickets,
                         TicketID: item.Emp_Ticket_ID,
                         onlinepaidcls: item.onlinepaidcls,

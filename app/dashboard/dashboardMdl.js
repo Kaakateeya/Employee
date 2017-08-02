@@ -353,6 +353,7 @@
                             NotificationDate: moment(item.NotificationDate).format('DD-MMM-YYYY'),
                             inActiveDate: moment(item.InActiveToDate).format('DD-MMM-YYYY'),
                             paidclass: item.paid === true || item.paid === 1 ? 1 : 0,
+                            Date: moment(item.Date).format('DD-MMM-YYYY')
                         });
                     });
 
@@ -427,7 +428,10 @@
                                     break;
                             }
                             if (topage === parseInt(10)) {
-                                commonpage.showPopup('dashboardslide.html', model.scope, 'lg', "modalclassdashboard");
+                                if (model.slideshowopenflag !== 1) {
+                                    model.slideshowopenflag = 1;
+                                    commonpage.showPopup('dashboardslide.html', model.scope, 'lg', "modalclassdashboard");
+                                }
                                 config.setSlides(model.displayArrayprofile(model.slidearray, 10), 10, 'normal');
                             } else {
                                 config.addSlides(model.displayArrayprofile(model.slidearray, 11), model.slidearray, 11, 'normal');
@@ -441,6 +445,7 @@
                     }
                 };
                 model.closesashboard = function() {
+                    model.slideshowopenflag = 0;
                     commonpage.closepopup();
                 };
                 model.close = function() {

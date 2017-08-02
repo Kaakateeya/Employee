@@ -2,7 +2,6 @@
     'use strict';
 
     function factory(EmployeePaymentInsertservice, stateParams, filter, authSvc, modelpopupopenmethod, alertss, paymentProperty) {
-
         var model = {};
         model.obj = {};
         model.array = [];
@@ -22,11 +21,9 @@
         model.EmployeePaymentInsert = function(inobj, type) {
             var monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                 DateArr, dateformatt = '';
-
             if (model.ExpiryDaterev === '') {
                 model.PaidAmtChange(inobj.txtAmountPaid, inobj.txtAgreedAmt);
             }
-
             var obj = {
                 ProfileID: model.custobj.ProfileID,
                 Cust_id: model.custobj.Cust_ID,
@@ -72,7 +69,6 @@
             });
         };
         model.getpaymentProfile = function(profileID) {
-
             model.custobj = {};
             model.PiObj.rdnServicetax = '1';
             EmployeePaymentInsertservice.getEmployeePaymentdata(profileID, 0).then(function(response) {
@@ -88,7 +84,6 @@
                         model.custobj = arraymodify[0];
                         model.paymentpoints = parseInt(model.custobj.CasteID) === 402 ? app.kammaPaymentPoints : app.paymentPoints;
                         model.paymentDays = parseInt(model.custobj.CasteID) === 402 ? app.kammaPaymentDays : app.PaymentDays;
-
                         model.showOfferDetails(model.custobj.Price, 'pageload', model.custobj.Expirydate);
                         model.PiObj.txtAgreedAmt = model.custobj.AgreedAmount;
                         model.PiObj.txtAmountPaid = model.custobj.Price;
@@ -104,7 +99,6 @@
                 }
             });
         };
-
         model.PaidAmtChange = function(paidAmt, agreeAmt) {
             if (agreeAmt === '' || agreeAmt === undefined) {
                 model.PiObj.txtAmountPaid = '';
@@ -139,7 +133,6 @@
                     model.endDateparam = moment().add(7, 'days').format('MM-DD-YYYY');
                     model.ExpiryDaterev = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
                 }
-
                 model.noofDays = num;
             }
         };
@@ -194,7 +187,6 @@
             model.scope.paymentForm.$setUntouched();
         };
         return model;
-
     }
     angular
         .module('Kaakateeya')
