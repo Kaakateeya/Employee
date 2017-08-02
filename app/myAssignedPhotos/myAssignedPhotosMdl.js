@@ -37,112 +37,62 @@
         };
 
         model.downloadTemplateurl = function(row) {
-
-            var link = "<a style='cursor:pointer;' ng-click='model.downloadImg(" + JSON.stringify(row.Cust_ID) + "," + JSON.stringify(row.ProfileID) + "," + JSON.stringify(row.PhotoName) + ");'>Download</a>";
+            var link = "<a style='cursor:pointer;' id='down" + row.index + "' ng-click='model.downloadImg(" + JSON.stringify(row.Cust_ID) + "," + JSON.stringify(row.ProfileID) + "," + JSON.stringify(row.PhotoName) + "," + row.index + ");'>Download</a>";
             return link;
         };
 
-        model.downloadImg = function(custid, profileid, photoname) {
+        model.downloadImg = function(custid, profileid, photoname, index) {
+            $('#down' + index).attr('style', 'color:red;');
+            $http({
+                url: '/deletePhotoFolder',
+                data: { imagename: '' },
+                method: "POST",
+                responseType: 'blob'
+            }).success(function(data, status, headers, config) {
+                var inobj = [];
+                if (custid !== undefined && photoname !== undefined) {
+                    var imageName = photoname.split('.');
+                    var imgnum = imageName[0].substr(imageName[0].length - 1);
 
-
-            // if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-            //     var name = 'download';
-            //     name = type === 'PDF' ? name + '.pdf' : name + '.xls';
-            //     window.navigator.msSaveBlob(blob, name);
-            // } else {
-            //     var dlnk = document.getElementById('dwnldLnk');
-            //     dlnk.download = profileid + '_' + imgnum + '.jpg';
-            //     /* jshint ignore:start */
-            //     dlnk.href = 'https://kaakateeyaprod.s3.ap-south-1.amazonaws.com/Images/ProfilePics/KMPL_' + custid + '_Images/' + photoname;
-            //     /* jshint ignore:end */
-            //     dlnk.click();
-            // }
-
-            var inobj = [];
-            if (custid !== undefined && photoname !== undefined) {
-                var imageName = photoname.split('.');
-                var imgnum = imageName[0].substr(imageName[0].length - 1);
-
-                photoname = photoname.replace('i', 'I');
-                // inobj.push({ custid: JSON.stringify(custid), profileid: profileid, photoname: photoname });
-                inobj.push({ custid: '100000', profileid: '011000002', photoname: 'img2.jpg' });
-            } else {
-                inobj = model.downloadimagesArr;
-            }
-            myAssignedPhotosService.downloadPhotos(inobj).then(function(response) {
-                if (response.data) {
-                    if (custid !== undefined && photoname !== undefined) {
-                        $http({
-                            url: '/downloadimage',
-                            data: { imagename: response.data },
-                            method: "POST",
-                            responseType: 'blob'
-                        }).success(function(data, status, headers, config) {
-                            var blob = new Blob([data], { type: 'image/jpeg' });
-                            var fileName = profileid + '_' + imgnum; //headers('content-disposition');
-                            saveAs(blob, fileName);
-                        }).error(function(data, status, headers, config) {
-                            alert('file not found');
-                        });
-                    } else {
-
-                        // $http({
-                        //     url: '/downloadimageAll',
-                        //     data: { imagename: response.data },
-                        //     method: "POST",
-                        //     responseType: 'blob'
-                        // }).success(function(data, status, headers, config) {
-                        //     debugger;
-                        //     var zip = new JSZip();
-                        //     for (var i = 0; i < 3; i++) {
-                        //         zip.file("Hello.txt" + i, "Hello World\n");
-                        //     }
-                        //     zip.generateAsync({ type: "blob" })
-                        //         .then(function(content) {
-                        //             saveAs(content, "example.zip");
-                        //         });
-                        // }).error(function(data, status, headers, config) {
-                        //     alert('file not found');
-                        // });
-
-
-
-
-
-                    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    photoname = photoname.replace('i', 'I');
+                    inobj.push({ custid: JSON.stringify(custid), profileid: profileid, photoname: photoname });
+                    // inobj.push({ custid: '100000', profileid: '011000002', photoname: 'img2.jpg' });
+                } else {
+                    inobj = model.downloadimagesArr;
                 }
+                myAssignedPhotosService.downloadPhotos(inobj).then(function(response) {
+                    if (response.data) {
+                        if (custid !== undefined && photoname !== undefined) {
+                            $http({
+                                url: '/downloadimage',
+                                data: { imagename: response.data },
+                                method: "POST",
+                                responseType: 'blob'
+                            }).success(function(data, status, headers, config) {
+                                var blob = new Blob([data], { type: 'image/jpeg' });
+                                var fileName = profileid + '_' + imgnum;
+                                saveAs(blob, fileName);
+                            }).error(function(data, status, headers, config) {
+                                alert('file not found');
+                            });
+                        }
+                    }
+                });
+            }).error(function(data, status, headers, config) {
+
             });
         };
 
         model.uploadTemplateurl = function(row) {
-            var link = "<a href='javascript:void(0);' ng-click='model.showUpload(" + JSON.stringify(row) + ");'>Upload</a>";
+            var link = "<a href='javascript:void(0);' id='up" + row.index + "'  ng-click='model.showUpload(" + JSON.stringify(row) + ",this);'>Upload</a>";
             return link;
         };
+
         model.photoNametemplate = function(row) {
             var link = '<span>' + row.ProfileID + '_' + row.PhotoName + '</span>';
             return link;
         };
+
         model.getMyassignedProfiles = function() {
             model.downloadimagesArr = [];
             model.columns = [
@@ -169,7 +119,8 @@
                 if (response.data && response.data.length > 0) {
                     model.totalRecords = response.data[0].TotalRows;
                     model.data = response.data;
-                    _.each(model.data, function(item) {
+                    _.map(model.data, function(item, index) {
+                        item.index = index;
                         model.downloadimagesArr.push({ custid: item.Cust_ID, profileid: item.ProfileID, photoname: item.PhotoName });
                     });
                 }
@@ -177,7 +128,9 @@
 
         };
 
-        model.showUpload = function(row) {
+        model.showUpload = function(row, e) {
+
+            $('#up' + row.index).attr('style', 'color:red;');
             model.imgName = row.PhotoName ? row.PhotoName.split('.')[0] : '';
             model.Cust_ID = row.Cust_ID;
             model.profileid = row.ProfileID;
