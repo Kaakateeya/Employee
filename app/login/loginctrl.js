@@ -6,12 +6,12 @@
          var vm = this,
              model;
          vm.init = function() {
-             //  if (authSvc.LoginEmpid() !== loginModel.empid) {
-             //      vm.model = model = loginModel.init();
-             //  } else {
-             //      vm.model = model = loginModel;
-             //  }
-             vm.model = model = loginModel;
+             if (authSvc.LoginEmpid() !== loginModel.empid) {
+                 vm.model = model = loginModel.init();
+             } else {
+                 vm.model = model = loginModel;
+             }
+             // vm.model = model = loginModel;
          };
          vm.init();
 
