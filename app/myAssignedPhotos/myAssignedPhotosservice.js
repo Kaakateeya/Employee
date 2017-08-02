@@ -17,6 +17,9 @@
             },
             downloadPhotos: function(obj) {
                 return http.post(app.apiroot + 'smallPages/downloadImages', obj);
+            },
+            linqSubmits: function(Custid, iflag) {
+                return http.get(app.apiroot + 'CustomerPersonalUpdate/getPhotoPassword', { params: { CustID: Custid, ipassword: iflag } });
             }
         };
     }
