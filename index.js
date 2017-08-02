@@ -186,7 +186,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/fixedHeader.js',
                         'directives/allowOnlyNumbers.js',
                         'directives/allowAdminManagement.js',
-                        'directives/comparePassword.js'
+                        'directives/comparePassword.js',
+                        'directives/avoidFormsubmit.js'
                     ]
                 },
                 {
@@ -289,9 +290,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             resolve: {
                 loadMyCtrl: ['$ocLazyLoad', '$timeout', function($ocLazyLoad, timeout) {
                     $ocLazyLoad.load('auth');
-                    timeout(function() {
-                        loadmodules($ocLazyLoad);
-                    }, 1500);
+                    //  timeout(function() {
+                    loadmodules($ocLazyLoad);
+                    // }, 1500);
                 }]
             }
         });

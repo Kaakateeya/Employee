@@ -1,12 +1,12 @@
 <div class="right_col" role="main" id="paymentdetailsreports">
-
     <div class="panel-group">
         <div class="panel-collapse collapse in">
             <div class="panel-default regValheader" style="margin-top: -12px;box-shadow: 2px 2px 6px #ccc;" is-open="page.model.opendiv">
                 <div class="panel-heading" style="color: rgb(160, 2, 1);border: 1px solid #ccc">
                     <div class="row">
                         <div class="col-lg-2" style="font-size: 14px;font-weight: 700;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
-                            Payment Details Report <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+                            <h4 style="width:200px;"> Payment Details Report <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+                            </h4>
                         </div>
                         <div class="col-lg-4" ng-hide="true">
                             <label for="All Profileid" style="font-size: 15px;" class="classlabelverify col-lg-4">Profile ID</label>
@@ -15,8 +15,8 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <label for="All Profileid" style="font-size: 15px;" class="classlabelverify col-lg-3">Gender </label>
-                            <div class="col-lg-9 rdnoptions">
+                            <label for="All Profileid" style="font-size: 14px;" class="classlabelverify col-lg-3">Gender </label>
+                            <div class="col-lg-8 rdnoptions">
                                 <md-radio-group ng-required="true" name="rbtngender" layout="row" ng-model="page.model.rbtngender" class="md-block" flex-gt-sm>
                                     <md-radio-button value="0" class="md-primary">Both</md-radio-button>
                                     <md-radio-button value="1"> Male</md-radio-button>
@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <label for="All Profileid" style="font-size: 15px;" class="classlabelverify col-lg-4">Payment type</label>
+                            <label for="All Profileid" style="font-size: 14px;" class="classlabelverify col-lg-4">Payment type</label>
                             <div class="col-lg-8 rdnoptions">
                                 <md-radio-group ng-required="true" name="rbtnpaymentstatus" layout="row" ng-model="page.model.rbtnpaymentstatus" class="md-block" flex-gt-sm>
                                     <md-radio-button value="0" class="md-primary">Both</md-radio-button>
@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <label for="All Profileid" style="font-size: 15px;" class="classlabelverify col-lg-3">Region</label>
+                            <label for="All Profileid" style="font-size: 14px;" class="classlabelverify col-lg-3">Region</label>
                             <div class="col-lg-9 rdnoptions">
                                 <md-radio-group ng-required="true" name="rbtnregion" layout="row" ng-model="page.model.rbtnregion" class="md-block" flex-gt-sm>
                                     <md-radio-button value="0" class="md-primary">All</md-radio-button>
@@ -68,13 +68,9 @@
                                     <select name="branchids" multiple class="smalldropdown col-lg-5" ng-options="item.value as item.label for item in page.model.Brancharray" ng-model="page.model.branchids" multiselectdropdown></select>
                                 </div>
                             </div>
-
-
-
                         </div>
                         <br>
                         <div class="row">
-
                             <div class="col-lg-4">
                                 <label for="All Profileid" class="classlabelverify">ModeOfPayment</label>
                                 <div style="color:black;">
@@ -95,11 +91,9 @@
                                            </select>
                                 </div>
                             </div>
-
                         </div>
                         <br>
                         <div class="row">
-
                             <div class="col-lg-4">
                                 <label for="All Profileid" class="classlabelverify">Paid amount from</label>
                                 <div style="color:black;">
@@ -112,7 +106,6 @@
                                     <input name="toamount" type="text" class="form-control" style="width:240px" ng-model="page.model.toamount"></input>
                                 </div>
                             </div>
-
                             <div class="col-lg-3">
                                 <label for="All Profileid" class="classlabelverify"></label>
                                 <div style="color:black;">
@@ -132,13 +125,12 @@
                         </div>
                         <br>
                         <div class="row">
-
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="form-group text-center" style="border-top: 1px solid #ddd;padding-top: 1%;">
-                            <button class="button_custom" style="display:initial;" ng-click="page.model.paymentreports(1,10);">Submit</button>
+                            <button class="button_custom" style="display:initial;" ng-click="page.model.paymentreports(1,10,'grid');">Submit</button>
                             <input type="reset" class="button_custom button_custom_reset resetCls" value="Reset" ng-click="page.model.resetemailbounce()">
                         </div>
                     </div>
@@ -166,5 +158,9 @@
     
     div#ui-datepicker-div {
         z-index: 9999999;
+    }
+    
+    md-radio-group.layout-row md-radio-button {
+        margin: 0 4px 0 0!important;
     }
 </style>

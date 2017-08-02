@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function factory(http, expressInterestService, modelpopupopenmethod, authSvc, timeout, alertss) {
+    function factory(http, expressInterestService, modelpopupopenmethod, authSvc, timeout, alertss, uibModal) {
         //  return function() {
         var model = {};
         model.scope = {};
@@ -108,7 +108,6 @@
         };
         model.ToprofileIDChange = function(ID) {
             debugger;
-            model.mismatchflag = 0;
             if (ID !== '' && ID !== null && ID !== undefined) {
                 var chkProfileID = _.where(model.SelectProfilelst, { label: model.exiObj.txtToprofileID });
                 if (chkProfileID.length > 0) {
@@ -117,7 +116,7 @@
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'ProfileID has been already added to the list', 9500);
                 } else {
                     if (ID !== 0) {
-                        if (model.exiObj.txtFromprofileID !== null && model.exiObj.txtFromprofileID.length !== 0) {
+                        if (model.exiObj.txtFromprofileID !== "" && model.exiObj.txtFromprofileID !== undefined && model.exiObj.txtFromprofileID !== null && model.exiObj.txtFromprofileID.length !== 0) {
                             model.mismatch = [];
                             expressInterestService.getServiceInfo(model.exiObj.txtFromprofileID, model.exiObj.txtToprofileID).then(function(res) {
                                 console.log(res.data);
@@ -173,8 +172,19 @@
                                     }
 
                                     if (model.ToProfileStatusID === 54) {
-                                        if (model.mismatch.length > 0) {
+                                        debugger;
+                                        if (model.exiObj.txtToprofileID !== "" && model.exiObj.txtToprofileID !== null && model.exiObj.txtToprofileID !== undefined && model.mismatch !== undefined && model.mismatch !== null && model.mismatch !== "" && model.mismatch.length > 0) {
                                             if (model.ToGenderID !== model.FromGenderID) {
+                                                // model.modalmismatchpopupopen = uibModal.open({
+                                                //     ariaLabelledBy: 'modal-title',
+                                                //     ariaDescribedBy: 'modal-body',
+                                                //     templateUrl: 'Conflict.html',
+                                                //     scope: model.scope,
+                                                //     size: 'md',
+                                                //     backdrop: 'static',
+                                                //     windowClass: 'mismatch'
+                                                //         // keyboard: false
+                                                // });
                                                 if (model.mismatchflag !== 1) {
                                                     model.mismatchflag = 1;
                                                     modelpopupopenmethod.showPopup('Conflict.html', model.scope, 'md', 'mismatch');
@@ -215,17 +225,25 @@
             }
         };
 
+
+        model.closepopupmismatch = function() {
+            model.modalmismatchpopupopen.close();
+        };
         model.closepopup = function() {
+            model.mismatchflag = 0;
             model.exiObj.txtToprofileID = '';
             modelpopupopenmethod.closepopup();
         };
         model.pushToProfileIDs = function(type) {
             if (type === 'conflict')
                 modelpopupopenmethod.closepopup();
+            model.mismatchflag = 0;
             model.getImages(model.exiObj.txtToprofileID);
             model.exiObj.txtToprofileID = '';
         };
+
         model.Submit = function(obj) {
+            debugger;
             var ExpressArray = [];
             var inputObj = {};
             var strMails = '';
@@ -363,5 +381,5 @@
     angular
         .module('Kaakateeya')
         .factory('expressInterestModel', factory);
-    factory.$inject = ['$http', 'expressInterestService', 'modelpopupopenmethod', 'authSvc', '$timeout', 'alert'];
+    factory.$inject = ['$http', 'expressInterestService', 'modelpopupopenmethod', 'authSvc', '$timeout', 'alert', '$uibModal'];
 })(angular);

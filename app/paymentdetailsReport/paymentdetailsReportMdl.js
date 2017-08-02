@@ -1,17 +1,14 @@
 (function() {
     'use strict';
-
     angular
         .module('Kaakateeya')
         .factory('paymentdetailsReportModel', ['paymentdetailsReportService',
-            'complex-grid-config', 'arrayConstants',
-
-            function(paymentdetailsReportService, configgrid, arrayConstants) {
+            'complex-grid-config', 'arrayConstants', 'alert',
+            function(paymentdetailsReportService, configgrid, arrayConstants, alerts) {
                 var model = {};
                 model.showsearchrows = true;
                 model.showsearch = true;
                 model.showpaging = true;
-                model.showClientpaging = false;
                 model.myprofileexcel = true;
                 model.normalexcel = true;
                 model.gridTableshow = false;
@@ -24,7 +21,6 @@
                     minDate: null,
                     maxDate: null
                 };
-
                 model.modeofPaymentArr = [
                     { "label": "All", "title": "All", "value": 0 },
                     { "label": "Cash", "title": "Cash", "value": 345 },
@@ -32,7 +28,6 @@
                     { "label": "cardCheque", "title": "cardCheque", "value": 347 },
                     { "label": "Bank online", "title": "Bank online", "value": 348 }
                 ];
-
                 model.ProfileIdTemplateDUrl = function(row) {
                     var paidstatusclass = row.IsPaidMember === 372 ? 'paidclass' : 'unpaid';
                     var paid = row.ProfileID !== undefined ? "<a href='javascript:void(0);' class='paidclass'>" + row.ProfileID + "</a><br>" : "";
@@ -75,8 +70,8 @@
                 model.ViewProfile = function(row) {
                     window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
                 };
-                model.paymentreports = function(from, to) {
-                    model.panelbodyhide = false;
+                model.paymentreports = function(from, to, type) {
+
                     model.data = [];
                     model.columns = [
                         { text: 'Sno', key: 'SNO', type: 'label' },
@@ -89,15 +84,12 @@
                         { text: 'Payment type', key: 'PaymentType', type: 'label' },
                         { text: 'Payment mode', key: 'PaymentCashmode', type: 'label' },
                         { text: 'Paid entered by', key: 'paidenteredby', type: 'label' },
-
                         { text: 'Paid branch', key: 'paidbranch', type: 'label' },
                         { text: 'PaymentDate', key: 'paymnetdate', type: 'label' },
                         { text: 'Agreed amount', key: 'AgreedAmount', type: 'label' },
-
                         { text: 'Paid amount', key: 'PaidAmount', type: 'label' },
                         { text: 'Balance amount', key: 'BalanceAmount', type: 'label' },
                         { text: 'Marktd by', key: 'marktby', type: 'label' },
-
                         { text: 'Pay for', key: 'PayFor', type: 'label' },
                         { text: 'Owner of the profile', key: 'ProfileOwner', type: 'label' },
                         { text: 'Send message', key: 'marktby', type: 'label' },
@@ -133,10 +125,104 @@
                         console.log(response);
                         if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" &&
                             response.data[0] !== undefined && response.data[0] !== null && response.data[0].length > 0) {
-                            model.TotalRows = response.data[0].length;
-                            model.data = response.data[0];
+                            model.panelbodyhide = false;
+                            if (type === 'grid') {
+                                model.TotalRows = response.data[0].length;
+                                model.data = response.data[0];
+                            } else {
+                                model.exportarray = [];
+                                model.exportarray = response.data[0];
+                                var options = {
+                                    headers: true,
+                                    columns: [{
+                                            columnid: 'Sno',
+                                            title: 'Sno'
+                                        }, {
+                                            columnid: 'ProfileID',
+                                            title: 'ProfileID'
+                                        }, {
+                                            columnid: 'NAME',
+                                            title: 'NAME'
+                                        },
+                                        {
+                                            columnid: 'SurName',
+                                            title: 'SurName'
+                                        },
+                                        {
+                                            columnid: 'GENDERID',
+                                            title: 'GENDERID'
+                                        },
+                                        {
+                                            columnid: 'Caste',
+                                            title: 'Caste'
+                                        },
+                                        {
+                                            columnid: 'DOR',
+                                            title: 'DOR'
+                                        },
+
+                                        {
+                                            columnid: 'PaymentType',
+                                            title: 'PaymentType'
+                                        },
+
+                                        {
+                                            columnid: 'PaymentCashmode',
+                                            title: 'PaymentCashmode'
+                                        },
+                                        {
+                                            columnid: 'paidenteredby',
+                                            title: 'paidenteredby'
+                                        },
+                                        {
+                                            columnid: 'paidbranch',
+                                            title: 'Paidbranch'
+                                        },
+                                        {
+                                            columnid: 'paymnetdate',
+                                            title: 'paymnetdate'
+                                        },
+                                        {
+                                            columnid: 'AgreedAmount',
+                                            title: 'AgreedAmount'
+                                        },
+                                        {
+                                            columnid: 'PaidAmount',
+                                            title: 'PaidAmount'
+                                        },
+                                        {
+                                            columnid: 'BalanceAmount',
+                                            title: 'BalanceAmount'
+                                        },
+                                        {
+                                            columnid: 'marktby',
+                                            title: 'marktby'
+                                        },
+                                        {
+                                            columnid: 'PayFor',
+                                            title: 'PayFor'
+                                        },
+                                        {
+                                            columnid: 'ProfileOwner',
+                                            title: 'ProfileOwner'
+                                        }
+                                    ]
+                                };
+                                alasql('SELECT ProfileID,GenderID as Gender,FirstName,LastName as SurName,Caste,RegistrationDate INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
+                            }
+                        } else {
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 4000);
                         }
                     });
+                };
+
+                model.pagechange = function(val) {
+                    var to = val * 100;
+                    var from = val === 1 ? 1 : to - 99;
+                    model.paymentreports(from, to, 'grid');
+                };
+                model.exportexcel = function(topage) {
+                    model.paymentreports(1, to, 'excel');
                 };
                 return model;
             }
