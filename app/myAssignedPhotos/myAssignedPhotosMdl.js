@@ -42,45 +42,51 @@
         };
 
         model.downloadImg = function(custid, profileid, photoname, index) {
-            $('#down' + index).attr('style', 'color:red;');
-            $http({
-                url: '/deletePhotoFolder',
-                data: { imagename: '' },
-                method: "POST",
-                responseType: 'blob'
-            }).success(function(data, status, headers, config) {
-                var inobj = [];
-                if (custid !== undefined && photoname !== undefined) {
-                    var imageName = photoname.split('.');
-                    var imgnum = imageName[0].substr(imageName[0].length - 1);
+            $('#down' + index).attr('style', 'color:red;cursor:pointer;');
+            // $http({
+            //     url: '/deletePhotoFolder',
+            //     data: { imagename: '' },
+            //     method: "POST",
+            //     responseType: 'blob'
+            // }).success(function(data, status, headers, config) {
 
-                    photoname = photoname.replace('i', 'I');
-                    inobj.push({ custid: JSON.stringify(custid), profileid: profileid, photoname: photoname });
-                    // inobj.push({ custid: '100000', profileid: '011000002', photoname: 'img2.jpg' });
-                } else {
-                    inobj = model.downloadimagesArr;
-                }
-                myAssignedPhotosService.downloadPhotos(inobj).then(function(response) {
-                    if (response.data) {
-                        if (custid !== undefined && photoname !== undefined) {
-                            $http({
-                                url: '/downloadimage',
-                                data: { imagename: response.data },
-                                method: "POST",
-                                responseType: 'blob'
-                            }).success(function(data, status, headers, config) {
-                                var blob = new Blob([data], { type: 'image/jpeg' });
-                                var fileName = profileid + '_' + imgnum;
-                                saveAs(blob, fileName);
-                            }).error(function(data, status, headers, config) {
-                                alert('file not found');
-                            });
-                        }
+
+
+            var inobj = [];
+            if (custid !== undefined && photoname !== undefined) {
+                var imageName = photoname.split('.');
+                var imgnum = imageName[0].substr(imageName[0].length - 1);
+
+                photoname = photoname.replace('i', 'I');
+                inobj.push({ custid: JSON.stringify(custid), profileid: profileid, photoname: photoname });
+                // inobj.push({ custid: '100000', profileid: '011000002', photoname: 'img2.jpg' });
+            } else {
+                inobj = model.downloadimagesArr;
+            }
+            myAssignedPhotosService.downloadPhotos(inobj).then(function(response) {
+                if (response.data) {
+                    if (custid !== undefined && photoname !== undefined) {
+                        $http({
+                            url: '/downloadimage',
+                            data: { imagename: response.data },
+                            method: "POST",
+                            responseType: 'blob'
+                        }).success(function(data, status, headers, config) {
+                            var blob = new Blob([data], { type: 'image/jpeg' });
+                            var fileName = profileid + '_' + imgnum;
+                            saveAs(blob, fileName);
+                        }).error(function(data, status, headers, config) {
+                            alert('file not found');
+                        });
                     }
-                });
-            }).error(function(data, status, headers, config) {
-
+                }
             });
+
+
+
+            // }).error(function(data, status, headers, config) {
+
+            // });
         };
 
         model.uploadTemplateurl = function(row) {
@@ -130,7 +136,7 @@
 
         model.showUpload = function(row, e) {
 
-            $('#up' + row.index).attr('style', 'color:red;');
+            $('#up' + row.index).attr('style', 'color:red;cursor:pointer;');
             model.imgName = row.PhotoName ? row.PhotoName.split('.')[0] : '';
             model.Cust_ID = row.Cust_ID;
             model.profileid = row.ProfileID;
