@@ -37,26 +37,18 @@
         };
 
         model.downloadTemplateurl = function(row) {
-
-            var link = "<a style='cursor:pointer;' ng-click='model.downloadImg(" + JSON.stringify(row.Cust_ID) + "," + JSON.stringify(row.ProfileID) + "," + JSON.stringify(row.PhotoName) + ");'>Download</a>";
+            var link = "<a style='cursor:pointer;' id='down" + row.index + "' ng-click='model.downloadImg(" + JSON.stringify(row.Cust_ID) + "," + JSON.stringify(row.ProfileID) + "," + JSON.stringify(row.PhotoName) + "," + row.index + ");'>Download</a>";
             return link;
         };
 
-        model.downloadImg = function(custid, profileid, photoname) {
-
-
-            // if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-            //     var name = 'download';
-            //     name = type === 'PDF' ? name + '.pdf' : name + '.xls';
-            //     window.navigator.msSaveBlob(blob, name);
-            // } else {
-            //     var dlnk = document.getElementById('dwnldLnk');
-            //     dlnk.download = profileid + '_' + imgnum + '.jpg';
-            //     /* jshint ignore:start */
-            //     dlnk.href = 'https://kaakateeyaprod.s3.ap-south-1.amazonaws.com/Images/ProfilePics/KMPL_' + custid + '_Images/' + photoname;
-            //     /* jshint ignore:end */
-            //     dlnk.click();
-            // }
+        model.downloadImg = function(custid, profileid, photoname, index) {
+            $('#down' + index).attr('style', 'color:red;cursor:pointer;');
+            // $http({
+            //     url: '/deletePhotoFolder',
+            //     data: { imagename: '' },
+            //     method: "POST",
+            //     responseType: 'blob'
+            // }).success(function(data, status, headers, config) {
 
             var inobj = [];
             if (custid !== undefined && photoname !== undefined) {
@@ -65,7 +57,7 @@
 
                 photoname = photoname.replace('i', 'I');
                 inobj.push({ custid: JSON.stringify(custid), profileid: profileid, photoname: photoname });
-                //inobj.push({ custid: '100000', profileid: '011000002', photoname: 'img2.jpg' });
+                // inobj.push({ custid: '100000', profileid: '011000002', photoname: 'img2.jpg' });
             } else {
                 inobj = model.downloadimagesArr;
             }
@@ -79,71 +71,58 @@
                             responseType: 'blob'
                         }).success(function(data, status, headers, config) {
                             var blob = new Blob([data], { type: 'image/jpeg' });
-                            var fileName = profileid + '_' + imgnum; //headers('content-disposition');
+                            var fileName = profileid + '_' + imgnum;
                             saveAs(blob, fileName);
                         }).error(function(data, status, headers, config) {
                             alert('file not found');
                         });
-                    } else {
-
-                        // $http({
-                        //     url: '/downloadimageAll',
-                        //     data: { imagename: response.data },
-                        //     method: "POST",
-                        //     responseType: 'blob'
-                        // }).success(function(data, status, headers, config) {
-                        //     debugger;
-                        //     var zip = new JSZip();
-                        //     for (var i = 0; i < 3; i++) {
-                        //         zip.file("Hello.txt" + i, "Hello World\n");
-                        //     }
-                        //     zip.generateAsync({ type: "blob" })
-                        //         .then(function(content) {
-                        //             saveAs(content, "example.zip");
-                        //         });
-                        // }).error(function(data, status, headers, config) {
-                        //     alert('file not found');
-                        // });
-
-
-
-
-
                     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 }
             });
+
+            // }).error(function(data, status, headers, config) {
+
+            // });
         };
 
         model.uploadTemplateurl = function(row) {
-            var link = "<a href='javascript:void(0);' ng-click='model.showUpload(" + JSON.stringify(row) + ");'>Upload</a>";
+            var link = "<a href='javascript:void(0);' id='up" + row.index + "'  ng-click='model.showUpload(" + JSON.stringify(row) + ",this);'>Upload</a>";
             return link;
         };
+
         model.photoNametemplate = function(row) {
             var link = '<span>' + row.ProfileID + '_' + row.PhotoName + '</span>';
             return link;
         };
+        model.deleterow = {};
+        model.deletePhotoTemplateUrl = function(row) {
+            var strdel = "<a href='javascript:void(0)' ng-click='model.DeleteImage(" + JSON.stringify(row) + ");'>Delete</a>";
+            return strdel;
+        };
+        model.deletePhoto = function() {
+            var row = model.deleterow;
+            var strCustDirName1 = "KMPL_" + row.Cust_ID + "_Images";
+            var path = strCustDirName1 + "/" + row.PhotoName;
+            var keynameq = app.prefixPathImg + path;
+            $http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {
+
+            });
+            myAssignedPhotosService.linqSubmits(row.Cust_Photos_ID, 3).then(function(response) {
+                if (response.data === 1) {
+                    model.close();
+                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Photo deleted successfully', 4500);
+                }
+            });
+        };
+
+        model.DeleteImage = function(row) {
+            model.deleterow = {};
+            model.deleterow = row;
+            modelpopupopenmethod.showPopup('deleteimagePopup.html', model.scope, 'sm', '');
+        };
+
         model.getMyassignedProfiles = function() {
+
             model.downloadimagesArr = [];
             model.columns = [
                 { text: 'ProfileID', key: 'ProfileID', type: 'morelinks', templateUrl: model.ProfileIdTemplateDUrl, rowtype: "success" },
@@ -154,7 +133,9 @@
                 { text: 'Upload', key: '', type: 'morelinks', templateUrl: model.uploadTemplateurl },
                 { text: 'UploadedDate', key: 'UploadedDate', type: 'label' },
                 { text: 'Uploaded_by', key: 'Uploaded_by', type: 'label' },
-                { text: 'Uploaded_branch', key: 'Uploaded_branch', type: 'label' }
+                { text: 'Uploaded_branch', key: 'Uploaded_branch', type: 'label' },
+                { text: '', key: '', type: 'morelinks', templateUrl: model.deletePhotoTemplateUrl }
+
             ];
 
             var inobj = {
@@ -169,20 +150,25 @@
                 if (response.data && response.data.length > 0) {
                     model.totalRecords = response.data[0].TotalRows;
                     model.data = response.data;
-                    _.each(model.data, function(item) {
+                    _.map(model.data, function(item, index) {
+                        item.index = index;
                         model.downloadimagesArr.push({ custid: item.Cust_ID, profileid: item.ProfileID, photoname: item.PhotoName });
                     });
+                } else {
+                    model.data = [];
                 }
             });
 
         };
 
-        model.showUpload = function(row) {
+        model.showUpload = function(row, e) {
+
+            $('#up' + row.index).attr('style', 'color:red;cursor:pointer;');
             model.imgName = row.PhotoName ? row.PhotoName.split('.')[0] : '';
             model.Cust_ID = row.Cust_ID;
             model.profileid = row.ProfileID;
             model.photoID = row.Cust_Photos_ID;
-            model.displayImg = 'http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_' + row.Cust_ID + '_Images/Img1.jpg';
+            model.displayImg = 'http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_' + row.Cust_ID + '_Images/' + row.PhotoName;
             modelpopupopenmethod.showPopup('threeuploadpopup.html', model.scope, 'md', '');
         };
 

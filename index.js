@@ -353,9 +353,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                             if (item.module !== undefined) {
                                 $ocLazyLoad.load(item.module);
                             }
-                            if (item.routeName !== 'login') {
-                                loadmodules($ocLazyLoad);
-                            }
+                            // if (item.routeName !== 'login') {
+                            //     loadmodules($ocLazyLoad);
+                            // }
 
                             return $ocLazyLoad.load([
                                 'app/' + item.routeName + '/style.css',

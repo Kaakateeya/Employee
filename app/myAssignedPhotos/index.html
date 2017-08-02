@@ -13,7 +13,7 @@
                     <div class="col-lg-4">
                         <label for="" class="pull-right control-label">Profile ID</label>
                     </div>
-                    <div class="col-lg-8"><input type="text" ng-model="page.model.profileID" class="form-control"></div>
+                    <div class="col-lg-8"><input type="text" ng-model="page.model.profileID" class="form-control" ng-keyup="$event.keyCode == 13 && page.model.getMyassignedProfiles();"></div>
                 </div>
                 <div class="col-lg-3">
                     <div class="col-lg-6">
@@ -102,3 +102,18 @@
         width: 20px;
     }
 </style>
+
+<script type="text/ng-template" id="deleteimagePopup.html">
+    <form class="EditViewClass" name="uploadForm" novalidate role="form" ng-submit="page.model.deletePhoto();">
+        <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-title">Delete Photo </h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <div class="text-center">Are you sure to delete photo?</div>
+        </div>
+        <div class="modal-footer">
+            <input value="Close" class="button_custom button_custom_reset" ng-click="page.model.close();" type="button">
+            <input value="Delete" class="button_custom" type="submit">
+        </div>
+    </form>
+</script>
