@@ -180,7 +180,6 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
 ]);
 angular.module('Kaakateeya').filter('startFrom', function() {
     return function(input, start) {
-        debugger;
         start = +start; //parse to int
         return input !== undefined ? input.slice(start) : null;
     };

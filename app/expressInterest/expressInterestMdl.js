@@ -107,7 +107,6 @@
             });
         };
         model.ToprofileIDChange = function(ID) {
-            debugger;
             if (ID !== '' && ID !== null && ID !== undefined) {
                 var chkProfileID = _.where(model.SelectProfilelst, { label: model.exiObj.txtToprofileID });
                 if (chkProfileID.length > 0) {
@@ -172,7 +171,6 @@
                                     }
 
                                     if (model.ToProfileStatusID === 54) {
-                                        debugger;
                                         if (model.exiObj.txtToprofileID !== "" && model.exiObj.txtToprofileID !== null && model.exiObj.txtToprofileID !== undefined && model.mismatch !== undefined && model.mismatch !== null && model.mismatch !== "" && model.mismatch.length > 0) {
                                             if (model.ToGenderID !== model.FromGenderID) {
                                                 // model.modalmismatchpopupopen = uibModal.open({
@@ -243,7 +241,6 @@
         };
 
         model.Submit = function(obj) {
-            debugger;
             var ExpressArray = [];
             var inputObj = {};
             var strMails = '';

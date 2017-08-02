@@ -78,7 +78,6 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     });
                 };
                 $scope.config.close = function() {
-                    debugger;
                     $scope.photopopupflag = 0;
                     modelpopupopenmethod.closepopuppoptopopup();
                 };

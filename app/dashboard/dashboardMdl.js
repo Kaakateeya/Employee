@@ -268,7 +268,6 @@
                 };
 
                 model.displayArrayprofile = function(arr, topage) {
-                    debugger;
                     model.headervisileble = true;
                     var array = [];
                     _.each(arr, function(item) {
