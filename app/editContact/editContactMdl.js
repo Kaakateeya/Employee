@@ -323,12 +323,7 @@
                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please Enter Valid Verification code', 4500);
             }
         };
-
-
-
-
-
-        return model.init();
+        return model;
     }
     angular
         .module('Kaakateeya')

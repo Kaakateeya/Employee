@@ -194,7 +194,7 @@
             { "label": "Father Side", "title": "Father Side", "value": 1 },
             { "label": "Mother Side", "title": "Mother Side", "value": 2 }
         ];
-        return model.init();
+        return model;
     }
 
     angular

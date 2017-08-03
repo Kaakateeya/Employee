@@ -91,7 +91,7 @@
             }
 
         ];
-        return model.init();
+        return model;
     }
 
     angular

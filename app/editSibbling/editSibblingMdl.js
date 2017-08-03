@@ -644,7 +644,7 @@
             { "label": "Younger", "title": "Younger", "value": 321 }
         ];
 
-        return model.init();
+        return model;
     }
 
     angular

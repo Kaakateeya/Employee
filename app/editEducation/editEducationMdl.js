@@ -378,7 +378,7 @@
                 });
             }
         };
-        return model.init();
+        return model;
     }
     angular
         .module('Kaakateeya')
