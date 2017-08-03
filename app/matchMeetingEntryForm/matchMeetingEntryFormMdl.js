@@ -1,14 +1,11 @@
 (function() {
     'use strict';
-
     angular
         .module('Kaakateeya')
         .factory('matchMeetingEntryFormModel', factory);
-
     factory.$inject = ['matchMeetingEntryFormService', 'commonFactory', 'authSvc', 'alert', '$timeout', 'modelpopupopenmethod'];
 
     function factory(matchMeetingEntryFormService, commonFactory, authSvc, alertss, timeout, modelpopupopenmethod) {
-
         var model = {};
         model.scope = {};
         model.dateOptions = {
@@ -17,16 +14,13 @@
             yearRange: "-40:+5",
             dateFormat: 'dd-mm-yy'
         };
-
         model.init = function() {
             model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             model.hrsbindArr = commonFactory.numberBindWithZeros('Hours', 0, 23);
             model.minbindArr = commonFactory.numberBindWithZeros('Minutes', 0, 59);
             return model;
         };
-
         model.matchMeetingSubmit = function() {
-
             var date = moment(model.txtmeetingDate).format('YYYY-MM-DD') + ' ' + model.ddlhrs + ':' + model.ddlMins + ':00';
             var inObj = {
                 BrideprofileID: model.brideCustID,
@@ -45,7 +39,6 @@
                 GLand: model.gLandline,
                 GMobile: model.gnumber
             };
-
             matchMeetingEntryFormService.MMFormSubmit(inObj).then(function(response) {
                 if (response.data) {
                     model.reset();
@@ -216,7 +209,6 @@
                 modelpopupopenmethod.closepopup();
             }
         };
-
         return model.init();
 
     }
