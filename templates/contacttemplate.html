@@ -50,7 +50,7 @@
     <li class="clearfix form-group" ng-show="mail">
         <label for="lblEmail" class="pop_label_left">Email  </label>
         <div class="pop_controls_right">
-            <input type=text ng-model="strmail" class="form-control" placeholder="Enter Email" text=" " tabindex="16" />
+            <input type=text ng-model="strmail" class="form-control" placeholder="Enter Email" text=" " tabindex="16" ng-model-onblur ng-change="EmailValidation();" />
         </div>
     </li>
 
