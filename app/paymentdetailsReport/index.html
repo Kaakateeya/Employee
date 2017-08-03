@@ -15,36 +15,49 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <label for="All Profileid" style="font-size: 14px;" class="classlabelverify col-lg-3">Gender </label>
-                            <div class="col-lg-8 rdnoptions">
+                            <!-- <label for="All Profileid" style="font-size: 14px;" class="classlabelverify col-lg-3">Gender </label> -->
+                            <div class="col-lg-10 rdnoptions">
                                 <md-radio-group ng-required="true" name="rbtngender" layout="row" ng-model="page.model.rbtngender" class="md-block" flex-gt-sm>
                                     <md-radio-button value="0" class="md-primary">Both</md-radio-button>
                                     <md-radio-button value="1"> Male</md-radio-button>
                                     <md-radio-button value="2"> FeMale</md-radio-button>
                                 </md-radio-group>
                             </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <label for="All Profileid" style="font-size: 14px;" class="classlabelverify col-lg-4">Payment type</label>
-                            <div class="col-lg-8 rdnoptions">
-                                <md-radio-group ng-required="true" name="rbtnpaymentstatus" layout="row" ng-model="page.model.rbtnpaymentstatus" class="md-block" flex-gt-sm>
-                                    <md-radio-button value="0" class="md-primary">Both</md-radio-button>
-                                    <md-radio-button value="236"> Registration</md-radio-button>
-                                    <md-radio-button value="237"> Renewal</md-radio-button>
-                                </md-radio-group>
+                            <div class="col-lg-1">
+                                <img src="src\images\straightline.png" style="height: 33px;
+    margin: -5px;
+    color: maroon;"></img>
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <label for="All Profileid" style="font-size: 14px;" class="classlabelverify col-lg-3">Region</label>
-                            <div class="col-lg-9 rdnoptions">
+                            <!-- <label for="All Profileid" style="font-size: 14px;" class="classlabelverify col-lg-3">Region</label> -->
+                            <div class="col-lg-10 rdnoptions">
                                 <md-radio-group ng-required="true" name="rbtnregion" layout="row" ng-model="page.model.rbtnregion" class="md-block" flex-gt-sm>
                                     <md-radio-button value="0" class="md-primary">All</md-radio-button>
                                     <md-radio-button value="408"> AP </md-radio-button>
                                     <md-radio-button value="409"> TN</md-radio-button>
                                     <md-radio-button value="410"> KT</md-radio-button>
                                 </md-radio-group>
+
+                            </div>
+                            <div class="col-lg-1"> <img src="src\images\straightline.png" style="height: 33px;
+    margin: -5px;
+    color: maroon;"></img>
                             </div>
                         </div>
+                        <div class="col-lg-4">
+                            <!-- <label for="All Profileid" style="font-size: 14px;" class="classlabelverify col-lg-4">Payment type</label> -->
+                            <div class="col-lg-10 rdnoptions">
+                                <md-radio-group ng-required="true" name="rbtnpaymentstatus" layout="row" ng-model="page.model.rbtnpaymentstatus" class="md-block" flex-gt-sm>
+                                    <md-radio-button value="0" class="md-primary">Both</md-radio-button>
+                                    <md-radio-button value="236"> Registration</md-radio-button>
+                                    <md-radio-button value="237"> Renewal</md-radio-button>
+                                </md-radio-group>
+                            </div>
+
+                        </div>
+
+
                     </div>
                 </div>
                 <div class="panel-body" ng-show="page.model.panelbodyhide" ng-show="page.model.panelbodyhide">
