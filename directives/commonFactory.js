@@ -132,7 +132,7 @@
             numberBindWithZeros: function(str, from, to) {
                 var numArr = [];
                 var y;
-                numArr.push({ "label": str, "title": str, "value": "" });
+                numArr.push({ "label": str, "title": str, "value": '' });
                 for (var x = from; x <= to; x++) {
                     if (x < 10)
                         y = ("0" + x);
