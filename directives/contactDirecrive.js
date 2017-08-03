@@ -87,14 +87,14 @@
             };
 
             scope.EmailValidation = function() {
-                // if (scope.emailvalidation === true) {
-                //     SelectBindServicereg.emailExists({ iflagEmailmobile: 0, EmailMobile: scope.strmail }).then(function(response) {
-                //         if (response.data === 1) {
-                //             scope.strmail = '';
-                //             alertss.timeoutoldalerts(scope, 'alert-danger', 'Email Already Exists', 9500);
-                //         }
-                //     });
-                // }
+                if (scope.emailvalidation === true) {
+                    SelectBindServicereg.emailExists({ iflagEmailmobile: 0, EmailMobile: scope.strmail }).then(function(response) {
+                        if (response.data === 1) {
+                            scope.strmail = '';
+                            alertss.timeoutoldalerts(scope, 'alert-danger', 'Email Already Exists', 9500);
+                        }
+                    });
+                }
             };
         }
     }

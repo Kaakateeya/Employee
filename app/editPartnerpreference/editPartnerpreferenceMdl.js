@@ -157,7 +157,7 @@
         model.aboutPartnerDescription = [
             { lblname: '', controlType: 'about', required: true, ngmodel: 'partnerDescriptionId', parameterValue: 'AboutYourself' },
         ];
-        return model.init();
+        return model;
     }
     angular
         .module('Kaakateeya')

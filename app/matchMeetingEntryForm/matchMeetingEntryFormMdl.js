@@ -14,12 +14,14 @@
             yearRange: "-40:+5",
             dateFormat: 'dd-mm-yy'
         };
+
         model.init = function() {
             model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             model.hrsbindArr = commonFactory.numberBindWithZeros('Hours', 0, 23);
             model.minbindArr = commonFactory.numberBindWithZeros('Minutes', 0, 59);
             return model;
         };
+
         model.matchMeetingSubmit = function() {
             var date = moment(model.txtmeetingDate).format('YYYY-MM-DD') + ' ' + model.ddlhrs + ':' + model.ddlMins + ':00';
             var inObj = {
@@ -44,7 +46,7 @@
                     model.reset();
                     model.scope.MMEntryForm.$setPristine();
                     if ((response.data.m_Item1) === 1) {
-                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Match meeting created..!   sms , email sent successfully ', 4500);
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Match meeting created successfully ', 4500);
                     } else {
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Failed please contact admin', 4500);
                     }
@@ -199,7 +201,6 @@
             }
         };
 
-
         model.no_method = function(type) {
             if (type === 'yes') {
                 modelpopupopenmethod.closepopup();
@@ -209,7 +210,7 @@
                 modelpopupopenmethod.closepopup();
             }
         };
-        return model.init();
 
+        return model.init();
     }
 })();

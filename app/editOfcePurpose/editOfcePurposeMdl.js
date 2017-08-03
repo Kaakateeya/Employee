@@ -47,7 +47,7 @@
         model.popupdata = [
             { lblname: '', controlType: 'about', required: true, maxlength: '1000', displayTxt: '(You can write anything about this profile)*', ngmodel: 'txtAboutprofile', parameterValue: 'txtAboutprofile' }
         ];
-        return model.init();
+        return model;
     }
     angular
         .module('Kaakateeya')

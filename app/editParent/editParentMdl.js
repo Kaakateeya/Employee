@@ -499,7 +499,7 @@
             { lblname: '', controlType: 'about', displayTxt: '(Do Not Mention Any Contact Information Phone Numbers, Email Id’s or your Profile May be Rejected.)', ngmodel: 'aboutFamilyId', parameterValue: 'AboutYourself' },
         ];
 
-        return model.init();
+        return model;
     }
 
     angular

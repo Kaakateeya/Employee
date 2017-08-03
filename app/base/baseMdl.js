@@ -130,7 +130,7 @@
         model.cancel = function() {
             commonFactory.closepopup();
         };
-        return model.init();
+        return model;
     }
     angular
         .module('Kaakateeya')
