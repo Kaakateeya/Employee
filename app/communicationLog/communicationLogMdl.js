@@ -24,7 +24,6 @@
                 model.gridtable3.type = 'grid3';
                 model.gridtable4.type = 'grid4';
                 model.showplus = false;
-
                 model.rowStyle = function(row) {
                     var test = [
                         { StatusID: 57, classes: 'settled' },
@@ -66,6 +65,7 @@
                     SelectBindService.checkProfileID(profileid).then(function(respo) {
                         if (respo.data && parseInt(respo.data) === 1) {
                             communicationLogService.Submitcommunicationlog(profileid, model.empid).then(function(response) {
+                                console.log(response);
                                 model.sendarray = [];
                                 model.sendarray2 = [];
                                 model.sendarray3 = [];
@@ -74,17 +74,49 @@
                                 model.gridtable2.mainArray = [];
                                 model.gridtable3.mainArray = [];
                                 model.gridtable4.mainArray = [];
-                                if ((response.data[0].log).length !== 0 || (response.data[1].log).length !== 0 || (response.data[2].log).length !== 0 || (response.data[3].log).length !== 0) {
-                                    _.each(response.data[0].log, function(item) {
+                                // if ((response.data[0].log).length !== 0 || (response.data[1].log).length !== 0 || (response.data[2].log).length !== 0 || (response.data[3].log).length !== 0) {
+                                //     _.each(response.data[0].log, function(item) {
+                                //         model.sendarray.push(item);
+                                //     });
+                                //     _.each(response.data[1].log, function(item) {
+                                //         model.sendarray2.push(item);
+                                //     });
+                                //     _.each(response.data[2].log, function(item) {
+                                //         model.sendarray3.push(item);
+                                //     });
+                                //     _.each(response.data[3].log, function(item) {
+                                //         model.sendarray4.push(item);
+                                //     });
+                                //     model.gridtable1.mainArray = model.sendarray.length > 0 ? model.addingserialnumber(model.sendarray) : [];
+                                //     model.gridtable1.TotalRows = model.sendarray.length > 0 ? model.sendarray[0].TotalRows : 0;
+                                //     model.gridtable1.data = model.gridtable1.mainArray;
+                                //     model.gridTableshow = true;
+                                //     model.Nameofcandidate = model.sendarray.length > 0 ? model.sendarray[0].FromName : "";
+                                //     //2
+                                //     model.gridtable2.mainArray = model.sendarray2.length > 0 ? model.addingserialnumber(model.sendarray2) : [];
+                                //     model.gridtable2.TotalRows = model.sendarray2.length > 0 ? model.sendarray2[0].TotalRows : 0;
+                                //     model.gridtable2.data = model.gridtable2.mainArray;
+                                //     //3
+                                //     model.gridtable3.mainArray = model.sendarray3.length > 0 ? model.addingserialnumber(model.sendarray3) : [];
+                                //     model.gridtable3.TotalRows = model.sendarray3.length > 0 ? model.sendarray3[0].TotalRows : 0;
+                                //     model.gridtable3.data = model.gridtable3.mainArray;
+                                //     //4
+                                //     model.gridtable4.mainArray = model.sendarray4.length > 0 ? model.addingserialnumber(model.sendarray4) : [];
+                                //     model.gridtable4.TotalRows = model.sendarray4.length > 0 ? model.sendarray4[0].TotalRows : 0;
+                                //     model.gridtable4.data = model.gridtable4.mainArray;
+                                // }
+
+                                if ((response.data[0]).length !== 0 || (response.data[1]).length !== 0 || (response.data[2]).length !== 0 || (response.data[3]).length !== 0) {
+                                    _.each(response.data[0], function(item) {
                                         model.sendarray.push(item);
                                     });
-                                    _.each(response.data[1].log, function(item) {
+                                    _.each(response.data[1], function(item) {
                                         model.sendarray2.push(item);
                                     });
-                                    _.each(response.data[2].log, function(item) {
+                                    _.each(response.data[2], function(item) {
                                         model.sendarray3.push(item);
                                     });
-                                    _.each(response.data[3].log, function(item) {
+                                    _.each(response.data[3], function(item) {
                                         model.sendarray4.push(item);
                                     });
                                     model.gridtable1.mainArray = model.sendarray.length > 0 ? model.addingserialnumber(model.sendarray) : [];
@@ -130,7 +162,7 @@
 
 
                 model.ProfileIdTemplateDUrl = function(row) {
-                    var paidstatusclass = row.paid === 1 ? 'paidclass' : 'unpaid';
+                    var paidstatusclass = row.Paid === 1 ? 'paidclass' : 'unpaid';
                     var paid = row.ProfileID !== undefined ? "<a class='" + paidstatusclass + "'>" + row.ProfileID + "</a>" : "";
                     return paid;
                 };
@@ -138,7 +170,7 @@
                     window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
                 };
                 model.servicedone = function(row) {
-                    var servicedone = row.Branch !== undefined ? "<p>" + row.Branch + "-->(" + row.EmpName + ")</p>" : "";
+                    var servicedone = row.BranchName !== undefined ? "<p>" + row.BranchName + "-->(" + row.EmpName + ")</p>" : "";
                     return servicedone;
                 };
 
@@ -186,6 +218,11 @@
                                         model.sendarray3.push(item);
                                     });
                                     model.gridtable3.TotalRows = model.sendarray3.length > 0 ? model.sendarray3[0].TotalRows : 0;
+                                    var SNum = 1;
+                                    _.map(model.sendarray3, function(item) {
+                                        item.Sno = SNum;
+                                        SNum++;
+                                    });
                                     model.gridtable3.data = model.sendarray3;
                                     alerts.timeoutoldalerts(model.scope, 'alert-success', 'Resend successfully', 4000);
                                 } else {
@@ -205,8 +242,8 @@
                 model.ResendTempurl = function(row) {
                     var dd = "";
                     if (row.ProfileStatusID === 54) {
-                        var lnkRvr = row.ISRvrSend == 1 ? "" : "<br/><a href='javascript:void(0)' ng-click='model.Resendemail(1," + row.iFromCustID + "," + row.iToCustID + "," + row.ProfileID + "," + row.ExpressInterestID + "," + row.LogID + ")'>Rvrsend</a>";
-                        dd = "<a href='javascript:void(0)' ng-click='model.Resendemail(2," + row.iFromCustID + "," + row.iToCustID + "," + row.ProfileID + "," + row.ExpressInterestID + "," + row.LogID + ")'>Resend</a>" + lnkRvr;
+                        var lnkRvr = row.ISRvrSend == 1 ? "" : "<br/><a href='javascript:void(0)' ng-click='model.Resendemail(1," + row.FromCustID + "," + row.ToCustID + "," + row.ProfileID + "," + row.ExpressInterestID + "," + row.LogID + ")'>Rvrsend</a>";
+                        dd = "<a href='javascript:void(0)' ng-click='model.Resendemail(2," + row.FromCustID + "," + row.ToCustID + "," + row.ProfileID + "," + row.ExpressInterestID + "," + row.LogID + ")'>Resend</a>" + lnkRvr;
                     }
                     return dd;
                 };
@@ -222,17 +259,17 @@
                 model.sendphotosurl = function(row) {
                     var dd = "";
                     if (row.ProfileStatusID === 54 && row.PhotoCount !== 0 && row.PhotoCount !== undefined && row.PhotoCount !== null) {
-                        dd = "<a href='javascript:void(0)' ng-click='model.photossent(" + (row.iToCustID) + "," + JSON.stringify(row.FromEmail) + ");'>Photos</a>";
+                        dd = "<a href='javascript:void(0)' ng-click='model.photossent(" + (row.ToCustID) + "," + JSON.stringify(row.FromEmail) + ");'>Photos</a>";
                     }
                     return row.Sno !== undefined ? (row.Sno + "</br>" + dd) : "";
                 };
                 model.gridtable1.columns = [
                     { text: 'Sno', key: 'Sno', type: 'label' },
                     { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
-                    { text: 'Name', key: 'Name', type: 'label' },
+                    { text: 'Name', key: 'NAME', type: 'label' },
                     { text: 'ServiceDate', key: 'ServiceDate', type: 'label' },
                     { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' },
-                    { text: 'Service Done', key: 'Branch', type: 'customlink', templateUrl: model.servicedone },
+                    { text: 'Service Done', key: 'BranchName', type: 'customlink', templateUrl: model.servicedone },
                     { text: 'Viewed/Proceed Date', key: 'MFPStatusDate', type: 'customlink', templateUrl: model.viewdproceeddate },
                     { text: 'TicketID', key: 'TicketID', type: 'customlink', templateUrl: model.Tickidwithtype, method: model.clickticketupdate },
                     { text: 'PhotoCount', key: 'PhotoCount', type: 'customlink', templateUrl: model.photocount }
@@ -240,10 +277,10 @@
                 model.gridtable2.columns = [
                     { text: 'Sno', key: 'Sno', type: 'morelinks', templateUrl: model.sendphotosurl },
                     { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
-                    { text: 'Name', key: 'Name', type: 'label' },
+                    { text: 'Name', key: 'NAME', type: 'label' },
                     { text: 'ServiceDate', key: 'ServiceDate', type: 'label' },
                     { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' },
-                    { text: 'Service Done', key: 'Branch', type: 'customlink', templateUrl: model.servicedone },
+                    { text: 'Service Done', key: 'BranchName', type: 'customlink', templateUrl: model.servicedone },
                     { text: 'Viewed/Proceed Date', key: 'MFPStatusDate', type: 'customlink', templateUrl: model.viewdproceeddate },
                     { text: 'TicketID', key: 'TicketID', type: 'customlink', templateUrl: model.Tickidwithtype, method: model.clickticketupdate },
                     { text: 'Options', key: '', type: 'morelinks', templateUrl: model.ResendTempurl },
@@ -252,9 +289,9 @@
                 model.gridtable3.columns = [
                     { text: 'Sno', key: 'Sno', type: 'label' },
                     { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
-                    { text: 'Name', key: 'Name', type: 'label' },
+                    { text: 'Name', key: 'NAME', type: 'label' },
                     { text: 'ServiceDate', key: 'ServiceDate', type: 'label' },
-                    { text: 'Service Done', key: 'Branch', type: 'customlink', templateUrl: model.servicedone },
+                    { text: 'Service Done', key: 'BranchName', type: 'customlink', templateUrl: model.servicedone },
                     { text: 'ResendDate', key: 'ResendDate', type: 'label' },
                     { text: 'PhotoCount', key: 'PhotoCount', type: 'customlink', templateUrl: model.photocount }
 
@@ -262,9 +299,9 @@
                 model.gridtable4.columns = [
                     { text: 'Sno', key: 'Sno', type: 'label' },
                     { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
-                    { text: 'Name', key: 'Name', type: 'label' },
+                    { text: 'Name', key: 'FirstName', type: 'label' },
                     { text: 'LastName', key: 'LastName', type: 'label' },
-                    { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' },
+                    { text: 'ProfileOwner', key: 'EmpName', type: 'label' },
                     { text: 'MeetingDate', key: 'MeetingDate', type: 'label' }
                 ];
 
