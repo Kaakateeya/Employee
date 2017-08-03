@@ -20,6 +20,7 @@
             scope.model.scope = scope;
             scope.model.rbtndaysallowed = '';
             scope.model.rbtnchangedpoints = '';
+            scope.model.insertopenflag = 0;
         }
     }
     angular

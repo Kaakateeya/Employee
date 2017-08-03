@@ -29,16 +29,20 @@
                 Allowed_Days: mobj.rbtndaysallowed !== null && mobj.rbtndaysallowed !== '' && mobj.rbtndaysallowed !== undefined ? mobj.rbtndaysallowed : null,
                 Old_ExpiryDate: mobj.Allvalues.ExpiryDate !== "" && mobj.Allvalues.ExpiryDate !== null && mobj.Allvalues.ExpiryDate !== undefined ? mobj.Allvalues.ExpiryDate : null
             };
-            paymenteditpointsservice.paymenteditsubmit(obj).then(function(response) {
-                console.log(response);
-                if (parseInt(response.data) === 1) {
-                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Payment Modified succesfully', 4000);
-                    model.close();
-                } else {
-                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Payment Modified Failed', 4000);
-                }
-            });
+            if (model.insertopenflag !== 1) {
+                model.insertopenflag = 1;
+                paymenteditpointsservice.paymenteditsubmit(obj).then(function(response) {
+                    console.log(response);
+                    if (parseInt(response.data) === 1) {
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Payment Modified succesfully', 4000);
+                        model.close();
+                    } else {
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Payment Modified Failed', 4000);
+                    }
+                });
+            }
         };
+
         return model;
     }
 })();

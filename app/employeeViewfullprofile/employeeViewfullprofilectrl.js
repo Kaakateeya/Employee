@@ -12,13 +12,14 @@
              model.personalinfo = {};
              model.basicinfo = [];
              model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+             model.photopopupopenflag = 0;
              if (parseInt(model.stateprofileid) !== 0) {
                  model.textboxshowhide = true;
-
                  model.EmpViewfullProfile(model.stateprofileid);
              } else {
                  model.textboxshowhide = false;
              }
+
          };
          vm.divInfo = {
              printDivId: 'printThisElement',

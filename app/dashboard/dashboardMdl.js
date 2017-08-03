@@ -534,6 +534,7 @@
                     });
                 };
                 model.paymenteditpointsdate = function(obj) {
+                    model.insertopenflag = 0;
                     model.paymentchangedobj = obj;
                     if (obj.SAForm !== null && obj.SAForm !== '--' && $.trim(obj.SAForm) !== '') {
                         commonpage.showPopupphotopoup('editpopuppayment.html', model.scope, 'md', "modalclassofedit");
