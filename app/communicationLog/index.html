@@ -23,7 +23,7 @@
                 <p class="col-lg-offset-4">No Match Meeting Data
                 </p>
             </div>
-            <complex-grid ng-show="page.model.gridtable4.data" model="page.model.gridtable4" config="page.model" pagesizecommunication="999"></complex-grid>
+            <complex-grid ng-show="page.model.gridtable4.data.length>0" model="page.model.gridtable4" config="page.model" pagesizecommunication="999"></complex-grid>
         </div>
         <div ng-show="page.model.gridTableshow && page.model.gridtable1.data">
             <div class="col-lg-12" ng-if="page.model.sendarray.length>0">
@@ -35,10 +35,10 @@
                 <md-radio-group layout="row" ng-change="page.model.receivedarraybind(page.model.receivedprofiles);" ng-model="page.model.receivedprofiles" class="md-block" flex-gt-sm>
                     <md-radio-button value="1" class="md-primary"> <span>&nbsp;<span class="glyphicon glyphicon-home"></span><b>&nbsp;({{page.model.sendarray[0].TotalRows}})</b></span>
                     </md-radio-button>
-                    <md-radio-button value="V"> <span>&nbsp;<img src="src/images/Viewed.jpg" ><b >&nbsp;({{page.model.sendarray[0].Viewed}})</b></span> </md-radio-button>
-                    <md-radio-button value="NV"> <span>&nbsp;<img src="src/images/notviewed.jpg" ><b >&nbsp;({{page.model.sendarray[0].NViewed}})</b></span> </md-radio-button>
-                    <md-radio-button value="I"> <span>&nbsp;<img src="src/images/heartgrren.gif" style="width: 28px;"><b >&nbsp;({{page.model.sendarray[0].PD}})</b></span> </md-radio-button>
-                    <md-radio-button value="NI"> <span>&nbsp;<img src="src/images/brkhrtgreen.gif" style="width: 28px;"><b>&nbsp;({{page.model.sendarray[0].DPD}})</b>
+                    <md-radio-button value="V"> <span>&nbsp;<img src="src/images/Viewed.jpg" ><b >&nbsp;({{page.model.sendarray[0].V}})</b></span> </md-radio-button>
+                    <md-radio-button value="NV"> <span>&nbsp;<img src="src/images/notviewed.jpg" ><b >&nbsp;({{page.model.sendarray[0].NV}})</b></span> </md-radio-button>
+                    <md-radio-button value="I"> <span>&nbsp;<img src="src/images/heartgrren.gif" style="width: 28px;"><b >&nbsp;({{page.model.sendarray[0].I}})</b></span> </md-radio-button>
+                    <md-radio-button value="NI"> <span>&nbsp;<img src="src/images/brkhrtgreen.gif" style="width: 28px;"><b>&nbsp;({{page.model.sendarray[0].NI}})</b>
                      </span>
                     </md-radio-button>
                 </md-radio-group>
@@ -56,10 +56,10 @@
                     <md-radio-group layout="row" ng-change="page.model.sentarraybind(page.model.sentprofile);" ng-model="page.model.sentprofile" class="md-block" flex-gt-sm>
                         <md-radio-button value="1" class="md-primary"> <span>&nbsp;<span class="glyphicon glyphicon-home"></span><b>&nbsp;({{page.model.sendarray2[0].TotalRows}})</b></span>
                         </md-radio-button>
-                        <md-radio-button value="V"> <span>&nbsp;<img src="src/images/Viewed.jpg" ><b >&nbsp;({{page.model.sendarray2[0].Viewed}})</b></span> </md-radio-button>
-                        <md-radio-button value="NV"> <span>&nbsp;<img src="src/images/notviewed.jpg" ><b >&nbsp;({{page.model.sendarray2[0].NViewed}})</b></span> </md-radio-button>
-                        <md-radio-button value="I"> <span>&nbsp;<img src="src/images/heartgrren.gif" style="width: 28px;"><b >&nbsp;({{page.model.sendarray2[0].PD}})</b></span> </md-radio-button>
-                        <md-radio-button value="NI"> <span>&nbsp;<img src="src/images/brkhrtgreen.gif" style="width: 28px;"><b>&nbsp;({{page.model.sendarray2[0].DPD}})</b>
+                        <md-radio-button value="V"> <span>&nbsp;<img src="src/images/Viewed.jpg" ><b >&nbsp;({{page.model.sendarray2[0].V}})</b></span> </md-radio-button>
+                        <md-radio-button value="NV"> <span>&nbsp;<img src="src/images/notviewed.jpg" ><b >&nbsp;({{page.model.sendarray2[0].NV}})</b></span> </md-radio-button>
+                        <md-radio-button value="I"> <span>&nbsp;<img src="src/images/heartgrren.gif" style="width: 28px;"><b >&nbsp;({{page.model.sendarray2[0].I}})</b></span> </md-radio-button>
+                        <md-radio-button value="NI"> <span>&nbsp;<img src="src/images/brkhrtgreen.gif" style="width: 28px;"><b>&nbsp;({{page.model.sendarray2[0].NI}})</b>
                      </span>
                         </md-radio-button>
                     </md-radio-group>
