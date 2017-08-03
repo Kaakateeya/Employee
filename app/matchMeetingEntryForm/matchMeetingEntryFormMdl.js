@@ -171,7 +171,6 @@
                         if (res.data) {
                             switch (res.data.m_Item2) {
                                 case 1:
-                                    debugger;
                                     model.matchmeetingStatusArr = res.data.m_Item1[0];
                                     model.matchmeeting = true;
                                     model.casteFlag = false;

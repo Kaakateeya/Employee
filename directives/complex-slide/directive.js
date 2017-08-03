@@ -71,10 +71,14 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         _.each(response.data, function(item) {
                             $scope.slidephotos.push(item);
                         });
-                        modelpopupopenmethod.showPopupphotopoup('dynamicphotopopup.html', $scope, '', "modalclassdashboardphotopopup");
+                        if ($scope.photopopupflag !== 1) {
+                            $scope.photopopupflag = 1;
+                            modelpopupopenmethod.showPopupphotopoup('dynamicphotopopup.html', $scope, '', "modalclassdashboardphotopopup");
+                        }
                     });
                 };
                 $scope.config.close = function() {
+                    $scope.photopopupflag = 0;
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
                 $scope.horoscopeimage = function(image, type) {

@@ -242,6 +242,7 @@
                     model.paymentchangedobj.Custid = model.CustId;
                     model.paymentchangedobj.ExpiryDate = model.ExpiryDate;
                     model.paymentchangedobj.Points = model.pointsallowed;
+                    model.insertopenflag = 0;
                     modelpopupopenmethod.showPopupphotopoup('editpopuppayment.html', model.scope, 'md', "modalclassofedit");
                 };
                 return model.init();

@@ -228,7 +228,10 @@
                             model.slide.totalRecords = response.data[0].TotalRows;
                             if (parseInt(from) === 1) {
                                 configslide.setSlides((model.displayArrayeidt(response.data, to)), to, "normal");
-                                modelpopupopenmethod.showPopup('slideshoweditd.html', model.scope, 'lg', "myprofileslide");
+                                if (model.slideshowopenflag !== 1) {
+                                    model.slideshowopenflag = 1;
+                                    modelpopupopenmethod.showPopup('slideshoweditd.html', model.scope, 'lg', "myprofileslide");
+                                }
                             } else {
                                 configslide.addSlides((model.displayArrayeidt(response.data, to)), response.data, parseInt(to), "normal");
                             }
@@ -309,6 +312,7 @@
             };
 
             model.slide.closemainpopup = function() {
+                model.slideshowopenflag = 0;
                 modelpopupopenmethod.closepopup();
             };
             model.slide.tickethistorypopup = function(TicketID) {

@@ -22,6 +22,7 @@
             model.slide.config.headettemp = "myprofileheader.html";
             model.obj.rdnGender = '';
             model.obj.chkProfileIDsts = model.arrayToString('54');
+            model.slideshowopenflag = 0;
             scope.$on("$destroy", vm.destroy);
         };
         vm.destroy = function() {

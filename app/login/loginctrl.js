@@ -11,6 +11,7 @@
              } else {
                  vm.model = model = loginModel;
              }
+             // vm.model = model = loginModel;
          };
          vm.init();
 

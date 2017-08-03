@@ -256,7 +256,10 @@
                                 model.slide.headervisileble = true;
                                 if (parseInt(from) === 1) {
                                     configslide.setSlides(response.data, model.topage, "myprofile");
-                                    modelpopupopenmethod.showPopup('myprofileSlide.html', model.scope, 'lg', "myprofileslide");
+                                    if (model.myprofileslideshowopenflag !== 1) {
+                                        model.myprofileslideshowopenflag = 1;
+                                        modelpopupopenmethod.showPopup('myprofileSlide.html', model.scope, 'lg', "myprofileslide");
+                                    }
                                 } else {
                                     configslide.addSlides(response.data, configslide.slides, parseInt(to), "myprofile");
                                 }
@@ -295,6 +298,7 @@
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
                 model.slide.closemainpopup = function() {
+                    model.myprofileslideshowopenflag = 0;
                     modelpopupopenmethod.closepopup();
                 };
                 model.destroy = function() {

@@ -8,7 +8,6 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
         setSession("empRegionID", value.RegionID);
         setSession("empphoto", value.EmpPhotoPath);
         setSession("logintime", moment().format('MM/DD/YYYY'));
-
     }
 
     function getSession(key) {
@@ -102,6 +101,7 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
             });
         },
         getClientIp: function() {
+            // var responsedata = "183.82.98.109";
             helperservice.getipAddressReturn().then(function(response) {
                 var responsedata;
                 if ((response.data).indexOf("::1") !== -1 || (response.data).indexOf("127.0.0.1") !== -1) {
@@ -113,6 +113,7 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
                 }
                 return responsedata;
             });
+            //return responsedata;
         },
         getpaidstatus: function() {
             return getSession('cust.paidstatus');

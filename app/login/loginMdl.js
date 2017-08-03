@@ -1,33 +1,20 @@
 (function() {
     'use strict';
-
-
     angular
         .module('Kaakateeya')
         .factory('loginModel', ['$http', '$uibModal', 'loginservice', 'authSvc', '$state', function($http, uibModal, loginservice, authSvc, $state) {
-            //    return function() {
             var model = {},
                 modalpopupopen;
             model.loginsubmit = {};
             model.CurrentDate = new Date();
             model.usernameemployee = false;
             model.usernameemployeepassword = false;
-
-            // model.getip = function() {
-            //     helperservice.getipAddressReturn().then(function(response) {
-            //     });
-            // };
             model.init = function() {
                 model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-                authSvc.getmacaddress();
+                // authSvc.getmacaddress();
                 authSvc.getClientIp();
-                // loginservice.getEmployeeLoginCoutDetails().then(function(response) {
-                //     var login = JSON.parse(response.data);
-                //     model.logincounts = login;
-                // });
                 return model;
             };
-
             model.loginsubmit = function(form, formempvalid, formpasswordvalid, formvalid) {
                 if (formempvalid.required === true) {
                     model.usernameemployee = true;
@@ -89,13 +76,7 @@
                         }
                     });
                 }
-
             };
-
             return model;
-            // }
         }]);
-
-
-
 })();

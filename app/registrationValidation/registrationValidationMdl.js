@@ -38,6 +38,7 @@
                 modelpopupopenmethod.closepopuppoptopopup();
             };
             model.slide.closemainpopup = function() {
+                model.slideshowopenedflag = 0;
                 modelpopupopenmethod.closepopup();
             };
             model.tickethistorypopup = function(row) {
@@ -163,7 +164,10 @@
                                 model.slide.totalRecords = response.data[0].TotalRows;
                                 if (parseInt(from) === 1) {
                                     slideConfig.setSlides(response.data, model.topage, "regvali");
-                                    modelpopupopenmethod.showPopup('myprofileSlide.html', model.scope, 'lg', "myregvaliprofile");
+                                    if (model.slideshowopenedflag !== 1) {
+                                        model.slideshowopenedflag = 1;
+                                        modelpopupopenmethod.showPopup('myprofileSlide.html', model.scope, 'lg', "myregvaliprofile");
+                                    }
                                 } else {
                                     slideConfig.addSlides(response.data, model.slides, parseInt(to), "regvali");
                                 }
