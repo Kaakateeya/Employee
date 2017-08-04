@@ -12,7 +12,7 @@
         var model = {};
         model = gridConfig;
         model.scope = {};
-        model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+
         model.downloadimagesArr = [];
         model.dateOptions = {
             changeMonth: true,

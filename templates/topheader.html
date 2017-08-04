@@ -87,12 +87,16 @@
                             <li><a href="matchMeetingEntryFormPage">Match Meeting Entry Form</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">My Assigned Photos</a></li>
                             <li><a href="ticketCreationpage">Ticket Creation</a></li>
-                            <!-- <li><a href="myAssignedPhotosPage">My Assigned Photos</a></li> -->
+                            <li><a href="myAssignedPhotosPage">My Assigned Photos</a></li>
                         </ul>
                     </li>
                     <li class="has-sub"><a href="javascript:void(0)">Maintance Work  </a>
                         <ul>
-                            <li><a ng-hide="true" href="javascript:void(0)">Unassigned Profiles</a></li>
+                            <li class="has-sub"><a href="#">Unassigned Info</a>
+                                <ul>
+                                    <li><a href="unAssignedPhotosPage">Photos</a></li>
+                                </ul>
+                            </li>
                             <li><a href="assignSetting">Assign Settings</a></li>
                             <li><a href="emailbounceEntryformpage">Email Bounce</a></li>
                             <li><a href="customerMessagesverificationpage">Customer Message Verification</a></li>
