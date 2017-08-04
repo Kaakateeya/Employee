@@ -94,7 +94,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'paymentdetailsReport', name: 'base.paymentdetailsReport', url: '/paymentdetailsReportpage', isloginrequired: true },
             { routeName: 'brokerEntryForm', name: 'base.brokerEntryForm', url: '/brokerEntryFormpage', isloginrequired: true },
             { routeName: 'brokerProfileRegistration', name: 'base.brokerProfileRegistration', url: '/brokerProfileRegistrationpage', isloginrequired: true },
-            { routeName: 'myAssignedPhotos', name: 'base.myAssignedPhotos', url: '/myAssignedPhotosPage', isloginrequired: true }
+            { routeName: 'myAssignedPhotos', name: 'base.myAssignedPhotos', url: '/myAssignedPhotosPage', isloginrequired: true },
+            { routeName: 'paymentOffersAssignnew', name: 'base.paymentOffersAssignnew', url: '/paymentOffersAssignnewpage', isloginrequired: true },
+
         ];
         $ocLazyLoadProvider.config({
             debug: true

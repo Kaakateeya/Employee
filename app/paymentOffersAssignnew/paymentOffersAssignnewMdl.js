@@ -3,7 +3,7 @@
 
     angular
         .module('Kaakateeya')
-        .factory('paymentOffersAssignModel', ['paymentOffersAssignService', 'modelpopupopenmethod', 'getArraysearch', 'Commondependency', 'alert', function(paymentOffersAssignService, modelpopupopenmethod, getArray, Commondependency, alertss) {
+        .factory('paymentOffersAssignnewModel', ['paymentOffersAssignnewService', 'modelpopupopenmethod', 'getArraysearch', 'Commondependency', 'alert', function(paymentOffersAssignnewService, modelpopupopenmethod, getArray, Commondependency, alertss) {
             var model = {};
             model.scope = {};
             model.paymentpoints = app.paymentPoints;
@@ -69,8 +69,18 @@
             model.casteDependency = function(val1, val2) {
                 model.casteArr = Commondependency.casteDepedency(val1, val2);
             };
-
+            model.changetypeofticket = function() {
+                model.reset();
+                model.ProfileID = "";
+                model.AgreedAmt = "";
+                model.scope.offerForm.$setPristine();
+                model.scope.offerForm.$setUntouched();
+            };
             return model;
 
         }]);
+
+
+
+
 })();

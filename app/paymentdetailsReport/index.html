@@ -143,7 +143,7 @@
                     <br>
                     <div class="row">
                         <div class="form-group text-center" style="border-top: 1px solid #ddd;padding-top: 1%;">
-                            <button class="button_custom" style="display:initial;" ng-click="page.model.paymentreports(1,10,'grid');">Submit</button>
+                            <button class="button_custom" style="display:initial;" ng-click="page.model.paymentreports(1,100,'grid');">Submit</button>
                             <input type="reset" class="button_custom button_custom_reset resetCls" value="Reset" ng-click="page.model.resetemailbounce()">
                         </div>
                     </div>
@@ -157,6 +157,52 @@
         <complex-grid ng-show="page.model.data.length>0" model="page.model" config="page.model"></complex-grid>
     </div>
 </div>
+<script type="text/ng-template" id="sendmessages.html">
+
+    <div class="modal-header" style="background-color: #fedc01;color: #880b0b;padding: 10px;font-size: 17px;">
+        <h4 class="col-lg-11 text-center">Send message</h4>
+        <a href="javascript:void(0);" class="pull-right" ng-click="page.model.closepopup();">
+            <span class="fa fa-close red" style="color: red;font-size: 17px;"></span>
+        </a>
+    </div>
+    <form id="formpaymentverify" name="formmessages" novalidate role="form" ng-submit="formmessages.$valid  && page.model.sentsmss(page.model);">
+        <div class="modal-body" style="padding:3px;">
+            <br>
+            <div class="row">
+                <div class="col-lg-3">
+                    <label>Category <span style="color: red; margin-left: 3px;">*</span></label>
+                </div>
+                <div class="col-lg-4">
+                    <select required="true" name="ddlcategory" class="smalldropdown col-lg-5" ng-options="item.value as item.label for item in page.model.categoryarray" ng-model="page.model.categoryid" multiselectdropdown>   
+                       </select>
+                    <div ng-messages="formmessages.ddlcategory.$invalid">
+                        <div style="color: red;font-size: 12px;" ng-if="formmessages.ddlcategory.$invalid && (formmessages.$submitted)">*This is required.</div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-3">
+                    <label>Message text <span style="color: red; margin-left: 3px;">*</span></label>
+                </div>
+                <div class="col-lg-4">
+                    <textarea class="form-control" style="width:350px;" required="true" name="txtmeassagestext" ng-model="page.model.txtmeassagestext" rows="3">   
+                     </textarea>
+                    <div ng-messages="formmessages.txtmeassagestext.$invalid">
+                        <div style="color: red;font-size: 12px;" ng-if="formmessages.txtmeassagestext.$invalid && (formmessages.$submitted)">*This is required.</div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <button type="submit" class="button_custom col-lg-3  col-lg-offset-3">Send Msg</button>
+                <md-button class='md-raised md-hue-1 col-lg-2' ng-click='page.model.closepopup()'>Cancel</md-button>
+            </div>
+            <br>
+        </div>
+    </form>
+
+</script>
 <style>
     .datepicker3 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
