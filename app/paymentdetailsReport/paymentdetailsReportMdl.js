@@ -3,8 +3,8 @@
     angular
         .module('Kaakateeya')
         .factory('paymentdetailsReportModel', ['paymentdetailsReportService',
-            'complex-grid-config', 'arrayConstants', 'alert',
-            function(paymentdetailsReportService, configgrid, arrayConstants, alerts) {
+            'complex-grid-config', 'arrayConstants', 'alert', 'modelpopupopenmethod',
+            function(paymentdetailsReportService, configgrid, arrayConstants, alerts, modelpopupopenmethod) {
                 var model = {};
                 model.showsearchrows = true;
                 model.showsearch = true;
@@ -52,6 +52,8 @@
                 model.pageloadbindings = function() {
                     model.Applicationstatus = [];
                     model.Applicationstatus = arrayConstants.Applicationstatus;
+                    model.categoryarray = [];
+                    model.categoryarray = arrayConstants.catgory;
                     paymentdetailsReportService.getMyprofilebind(1, 2, '').then(function(response) {
                         model.Brancharray = [];
                         _.each(response.data, function(item) {
@@ -70,9 +72,57 @@
                 model.ViewProfile = function(row) {
                     window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
                 };
-                model.paymentreports = function(from, to, type) {
+                model.sendmessages = function(row) {
+                    var sa = "<a href='javascript:void(0);' ng-click='model.sendmessagesPOPUP(" + JSON.stringify(row.ProfileOwnerID) + "," + JSON.stringify(row.Cust_Id) + ");'>SendMessage</a>";
+                    return sa;
+                };
+                model.sendemails = function(row) {
+                    var sa = "<a href='javascript:void(0);' ng-click='model.sendmailscustomer(" + JSON.stringify(row.Cust_Id) + ");'>SendMail</a>";
+                    return sa;
+                };
+                model.sendmessagesPOPUP = function(ProfileOwnerID, Cust_Id) {
+                    //POPUP
+                    model.toProfileOwnerID = ProfileOwnerID;
+                    model.tocustid = Cust_Id;
+                    model.categoryid = 0;
+                    model.txtmeassagestext = "";
+                    modelpopupopenmethod.showPopup('sendmessages.html', model.scope, 'md', '');
 
-                    model.data = [];
+                };
+                model.closepopup = function() {
+                    modelpopupopenmethod.closepopup();
+                };
+                model.sentsmss = function(mobj) {
+                    console.log(model.sendmsgobj);
+                    var obj = {
+                        CategoryID: model.categoryid !== "" && model.categoryid !== null && model.categoryid !== undefined && model.categoryid !== "0" && model.categoryid !== 0 ? model.categoryid : null,
+                        MessageText: model.txtmeassagestext !== "" && model.txtmeassagestext !== undefined && model.txtmeassagestext !== null ? model.txtmeassagestext : null,
+                        FromEmpID: model.empid,
+                        ToEmpID: model.toProfileOwnerID,
+                        CustID: model.tocustid
+                    };
+                    paymentdetailsReportService.sendsms(obj).then(function(response) {
+                        console.log(response);
+                        if (parseInt(response.data) === 1) {
+                            model.closepopup();
+                            alerts.timeoutoldalerts(model.scope, 'alert-success', "Message sent successfully", 4000);
+
+                        } else {
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', "Message Sending Failed", 4000);
+                        }
+                    });
+                };
+                model.sendmailscustomer = function(CustID) {
+                    paymentdetailsReportService.sendmail(CustID).then(function(response) {
+                        console.log(response);
+                        if (parseInt(response.data) === 1) {
+                            alerts.timeoutoldalerts(model.scope, 'alert-success', "Mail sent successfully", 4000);
+                        } else {
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', "Mail Sending Failed", 4000);
+                        }
+                    });
+                };
+                model.paymentreports = function(from, to, type) {
                     model.columns = [
                         { text: 'Sno', key: 'SNO', type: 'label' },
                         { text: 'Profileid', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
@@ -89,18 +139,18 @@
                         { text: 'Agreed amount', key: 'AgreedAmount', type: 'label' },
                         { text: 'Paid amount', key: 'PaidAmount', type: 'label' },
                         { text: 'Balance amount', key: 'BalanceAmount', type: 'label' },
-                        { text: 'Marktd by', key: 'marktby', type: 'label' },
-                        { text: 'Pay for', key: 'PayFor', type: 'label' },
+                        { text: 'Marktd by', key: 'AssignMarktedname', type: 'label' },
+                        // { text: 'Pay for', key: 'PayFor', type: 'label' },
                         { text: 'Owner of the profile', key: 'ProfileOwner', type: 'label' },
-                        { text: 'Send message', key: 'marktby', type: 'label' },
-                        { text: 'Send email', key: 'marktby', type: 'label' }
+                        { text: 'Send message', key: 'marktby', type: 'morelinks', templateUrl: model.sendmessages },
+                        { text: 'Send email', key: 'marktby', type: 'morelinks', templateUrl: model.sendemails }
                     ];
                     var obj = {
                         StrProfileID: model.txtprofileidpaymentreport !== null && model.txtprofileidpaymentreport !== undefined && model.txtprofileidpaymentreport !== "" ? model.txtprofileidpaymentreport : null,
                         IsAdmin: model.empid,
                         Gender: model.rbtngender !== null && model.rbtngender !== undefined && model.rbtngender !== "" && model.rbtngender !== "0" ? model.rbtngender : null,
                         PayFor: null,
-                        PaymenytStatus: model.rbtnpaymentstatus !== null && model.rbtnpaymentstatus !== "" && model.rbtnpaymentstatus !== undefined && model.rbtnpaymentstatus !== "0" ? model.rbtnpaymentstatus : null,
+                        PaymenytStatus: model.rbtnpaymentstatus !== null && model.rbtnpaymentstatus !== "" && model.rbtnpaymentstatus !== undefined && model.rbtnpaymentstatus !== "0" && model.rbtnpaymentstatus !== 0 ? model.rbtnpaymentstatus : null,
                         Region: model.rbtnregion !== null && model.rbtnregion !== "" && model.rbtnregion !== undefined && model.rbtnregion !== "0" ? model.rbtnregion : null,
                         Confidential: model.isconfidential === true ? 1 : 0,
                         IsServiceTaxPaid: null,
@@ -116,10 +166,8 @@
                         EndDate: model.txtpaymentto !== "" && model.txtpaymentto !== null && model.txtpaymentto !== undefined ? model.txtpaymentto : null,
                         From: from,
                         To: to,
-                        PageNumber: 1,
-                        PageSize: 100,
                         flag: 0,
-                        ModeOfPaymentID: model.rbtnModeOfPayment !== null && model.rbtnModeOfPayment !== "" && model.rbtnModeOfPayment !== undefined && model.rbtnModeOfPayment !== "0" ? model.rbtnModeOfPayment : null
+                        ModeOfPaymentID: model.rbtnModeOfPayment !== null && model.rbtnModeOfPayment !== "" && model.rbtnModeOfPayment !== undefined && model.rbtnModeOfPayment !== "0" && model.rbtnModeOfPayment !== 0 ? model.rbtnModeOfPayment : null
                     };
                     paymentdetailsReportService.EmplyeepaymentReportspayment(obj).then(function(response) {
                         console.log(response);
@@ -127,7 +175,8 @@
                             response.data[0] !== undefined && response.data[0] !== null && response.data[0].length > 0) {
                             model.panelbodyhide = false;
                             if (type === 'grid') {
-                                model.TotalRows = response.data[0].length;
+                                model.data = [];
+                                model.TotalRows = response.data[0][0].TotalRows;
                                 model.data = response.data[0];
                             } else {
                                 model.exportarray = [];
@@ -222,7 +271,7 @@
                     model.paymentreports(from, to, 'grid');
                 };
                 model.exportexcel = function(topage) {
-                    model.paymentreports(1, to, 'excel');
+                    model.paymentreports(1, topage, 'excel');
                 };
                 return model;
             }
