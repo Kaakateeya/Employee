@@ -19,6 +19,9 @@
                         casteid: casteid
                     }
                 });
+            },
+            Editdeletepaymentoffers: function(mobj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/Editanddeleteupdateoffers', mobj);
             }
         };
     }

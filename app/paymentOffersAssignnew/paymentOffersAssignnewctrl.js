@@ -17,6 +17,7 @@
              vm.model.scope = model.scope = scope;
              model.rbtntype = '0';
              model.showOfferDetailsflag = 0;
+             model.btntextSubmit = 'Submit';
              model.reset();
          };
 

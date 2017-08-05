@@ -65,7 +65,7 @@
                         <p class="control-label">Membership Type <span style="color: red; margin-left: 3px;">*</span></p>
                         <div class="controls clearfix">
                             <div class="input-group">
-                                <select multiselectdropdown required="true" name="memberShipType" ng-model="page.model.memberShipType" ng-options="item.value as item.label for item in page.model.membershipTypeArr"></select>
+                                <select multiselectdropdown ng-change="page.model.membershipchange()" required="true" name="memberShipType" ng-model="page.model.memberShipType" ng-options="item.value as item.label for item in page.model.membershipTypeArr"></select>
                             </div>
                             <div ng-messages="offerForm.memberShipType.$invalid">
                                 <div style="color: red;font-size: 12px;" ng-if="offerForm.memberShipType.$invalid && (offerForm.$submitted)">*Required.</div>
@@ -79,7 +79,7 @@
                 <br />
                 <div class="row">
                     <div class="form-group text-center" style="border-top: 1px solid #ddd;padding-top: 1%;">
-                        <input class="button_custom" type="submit" value="Submit">
+                        <input class="button_custom" type="submit" ng-value="page.model.btntextSubmit">
                         <input type="reset" class="button_custom button_custom_reset" value="Reset" ng-click="page.model.reset();">
                     </div>
                 </div>

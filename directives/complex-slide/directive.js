@@ -293,6 +293,28 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.communicationlogredirect = function(Profileid) {
                     window.open('/communicationLogs?Profileid=' + Profileid, '_blank');
                 };
+                $scope.keypress = function($event) {
+                    var keyCode = $event.which || $event.keyCode;
+                    // var keyCode = e.keyCode || e.which;
+                    var arrow = { left: 37, up: 38, right: 39, down: 40, space: 32 };
+                    switch (keyCode) {
+                        case arrow.left:
+                            $scope.activeslide = parseInt($scope.activeslide) - 1;
+                            break;
+                        case arrow.up:
+                            $scope.activeslide = parseInt($scope.activeslide) + 1;
+                            break;
+                        case arrow.right:
+                            $scope.activeslide = parseInt($scope.activeslide) + 1;
+                            break;
+                        case arrow.down:
+                            $scope.activeslide = parseInt($scope.activeslide) - 1;
+                            break;
+                        case arrow.space:
+                            $scope.pauseResume($scope.myInterval === 0 ? 'play' : 'pause');
+                            break;
+                    }
+                };
             }
         };
     }

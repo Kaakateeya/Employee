@@ -1,10 +1,10 @@
 (function() {
     'use strict';
-
     angular
         .module('Kaakateeya')
-        .factory('paymentOffersAssignnewModel', ['paymentOffersAssignnewService', 'modelpopupopenmethod', 'getArraysearch', 'Commondependency', 'alert', 'complex-grid-config',
-            function(paymentOffersAssignService, modelpopupopenmethod, getArray, Commondependency, alertss, configgrid) {
+        .factory('paymentOffersAssignnewModel', ['paymentOffersAssignnewService', 'modelpopupopenmethod', 'getArraysearch',
+            'Commondependency', 'alert', 'complex-grid-config', '$timeout',
+            function(paymentOffersAssignService, modelpopupopenmethod, getArray, Commondependency, alertss, configgrid, timeout) {
                 var model = {};
                 model.scope = {};
                 model.paymentpoints = app.paymentPoints;
@@ -37,41 +37,65 @@
                 };
 
                 model.reset = function() {
-                    model.memberShipType = '';
-                    model.Caste = '';
-                    model.religion = '';
-                    model.mothertongue = '';
                     model.data = [];
-
+                    model.btntextSubmit = 'Submit';
+                    model.ProfileID = "";
+                    model.AgreedAmt = "";
+                    timeout(function() {
+                        model.memberShipType = '';
+                        model.Caste = '';
+                        model.religion = '';
+                        model.mothertongue = 0;
+                    }, 500);
+                };
+                model.SubmitPaymentOffer = function() {
+                    if (model.btntextSubmit === 'Submit') {
+                        var obj = {
+                            ProfileID: model.rbtntype === '1' ? model.ProfileID : null,
+                            MembershipID: model.memberShipType,
+                            CasteID: model.rbtntype === '2' ? model.Caste : null,
+                            MembershipAmt: model.AgreedAmt
+                                // AllocatedPts: model.strPoints,
+                                // MemberShipDuration: model.noofDays,
+                                // StartTime: moment().format('DD-MM-YYYY'),
+                                // EndDate: model.strDate
+                        };
+                        paymentOffersAssignService.submitPaymentOffer(obj).then(function(response) {
+                            if (response.data && parseInt(response.data) === 1) {
+                                model.reset();
+                                model.ProfileID = '';
+                                model.AgreedAmt = '';
+                                model.scope.offerForm.$setPristine();
+                                alertss.timeoutoldalerts(model.scope, 'alert-success', 'Membership inserted successfully', 4500);
+                            } else {
+                                alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Membership insertion failed ', 4500);
+                            }
+                        });
+                    } else {
+                        var mobj = {
+                            strProfileID: model.rbtntype === '1' ? model.ProfileID : null,
+                            intPaymentID: model.membershipid,
+                            intMemberShipTypeID: model.memberShipType,
+                            floatAgreedAmt: model.AgreedAmt,
+                            intCasteID: model.rbtntype === '2' ? parseInt(model.Caste) : null,
+                            intFlagID: 1
+                        };
+                        model.deleteeditoaymentoffers(mobj);
+                    }
                 };
 
-                model.SubmitPaymentOffer = function() {
-                    var obj = {
-                        ProfileID: model.ProfileID,
-                        MembershipID: model.memberShipType,
-                        CasteID: model.ProfileID ? undefined : model.Caste,
-                        MembershipAmt: model.AgreedAmt,
-                        // ServiceTaxAmt: model.tax,
-                        AllocatedPts: model.strPoints,
-                        MemberShipDuration: model.noofDays,
-                        StartTime: moment().format('DD-MM-YYYY'),
-                        EndDate: model.strDate
-                    };
-
-                    paymentOffersAssignService.submitPaymentOffer(obj).then(function(response) {
+                model.deleteeditoaymentoffers = function(obj) {
+                    paymentOffersAssignService.Editdeletepaymentoffers(obj).then(function(response) {
                         if (response.data && parseInt(response.data) === 1) {
-                            model.reset();
-                            model.ProfileID = '';
-                            model.AgreedAmt = '';
-                            // model.tax = '';
-                            model.scope.offerForm.$setPristine();
-                            alertss.timeoutoldalerts(model.scope, 'alert-success', 'Membership inserted successfully', 4500);
+                            var msg = obj.intFlagID === 1 ? 'Membership updated successfully' : 'Membership Deleted successfully';
+                            alertss.timeoutoldalerts(model.scope, 'alert-success', msg, 4500);
+                            model.getPaymentdetails(model.rbtntype === '1' ? 'profileid' : 'caste');
                         } else {
-                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Membership insertion failed ', 4500);
+                            var msgs = obj.intFlagID === 1 ? 'Membership updated failed' : 'Membership Deleted failed';
+                            alertss.timeoutoldalerts(model.scope, 'alert-danger', msgs, 4500);
                         }
                     });
                 };
-
                 model.casteDependency = function(val1, val2) {
                     model.casteArr = Commondependency.casteDepedency(val1, val2);
                 };
@@ -91,23 +115,41 @@
                     window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
                 };
                 model.editpayment = function(row) {
-                    var editpayment = "<a href='javascript:void(0);' ng-click='model.editpaymentcontrols(" + JSON.stringify(row.MemberShipAmount) + "," + JSON.stringify(row.MemberShipTypeID) + "," + row.MembershipType + ");'>Edit</a>";
+                    var editpayment = "<a href='javascript:void(0);' ng-click='model.editpaymentcontrols(" + JSON.stringify(row.MemberShipAmount) + "," + JSON.stringify(row.MemberShipTypeID) + "," + row.MembershipType + "," + row.CasteID + ");'>Edit</a>";
                     return editpayment;
                 };
                 model.deletepayment = function(row) {
-                    var deletepayment = "<a href='javascript:void(0);' ng-click='model.deletepaymentoffers(" + JSON.stringify(row.MemberShipAmount) + "," + JSON.stringify(row.MemberShipTypeID) + "," + row.MembershipType + ");'>Delete</a>";
+                    var deletepayment = "<a href='javascript:void(0);' ng-click='model.deletepaymentoffers(" + JSON.stringify(row.MemberShipAmount) + "," + JSON.stringify(row.MemberShipTypeID) + "," + row.MembershipType + "," + row.CasteID + ");'>Delete</a>";
                     return deletepayment;
                 };
-                model.editpaymentcontrols = function(amount, membershipid, typeid) {
-                    model.memberShipType = typeid;
+                model.editpaymentcontrols = function(amount, membershipid, typeid, casteid) {
+                    model.btntextSubmit = 'Edit';
+                    model.memberShipType = typeid !== null ? parseInt(typeid) : '';
                     model.AgreedAmt = parseInt(amount);
                     model.membershipid = membershipid;
                 };
-                model.deletepaymentoffers = function(amount, membershipid, typeid) {
-                    //model.memberShipType = typeid;
-                    //model.AgreedAmt = parseInt(amount);
-                    model.membershipid = membershipid;
+                model.deletepaymentoffers = function(amount, membershipid, typeid, casteid) {
+                    model.btntextSubmit = 'Submit';
+                    var mobj = {
+                        strProfileID: model.rbtntype === '1' ? model.ProfileID : null,
+                        intPaymentID: membershipid,
+                        intMemberShipTypeID: null,
+                        floatAgreedAmt: null,
+                        intCasteID: model.rbtntype === '2' ? casteid : null,
+                        intFlagID: 0
+                    };
+                    model.deleteeditoaymentoffers(mobj);
+                };
 
+                model.membershipchange = function() {
+                    if (model.btntextSubmit === 'Submit') {
+                        var test = [];
+                        test = _.where(model.data, { MembershipType: parseInt(model.memberShipType) });
+                        if (test.length > 0) {
+                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Membership Already there ', 4500);
+                            model.memberShipType = '';
+                        } else {}
+                    }
                 };
                 model.getPaymentdetails = function(type) {
                     model.data = [];
