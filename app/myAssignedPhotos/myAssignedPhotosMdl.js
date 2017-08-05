@@ -12,7 +12,7 @@
         var model = {};
         model = gridConfig;
         model.scope = {};
-        model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+
         model.downloadimagesArr = [];
         model.dateOptions = {
             changeMonth: true,
@@ -43,57 +43,59 @@
 
         model.downloadImg = function(custid, profileid, photoname, index) {
 
+            // $http({
+            //     url: '/downloadimageAll',
+            //     data: { imagename: '' },
+            //     method: "POST",
+            //     responseType: 'blob'
+            // }).success(function(data, status, headers, config) {
+
+            // }).error(function(data, status, headers, config) {
+
+            // });
+
+
+
+            $('#down' + index).attr('style', 'color:red;cursor:pointer;');
             $http({
-                url: '/downloadimageAll',
+                url: '/deletePhotoFolder',
                 data: { imagename: '' },
                 method: "POST",
                 responseType: 'blob'
             }).success(function(data, status, headers, config) {
 
+                var inobj = [];
+                if (custid !== undefined && photoname !== undefined) {
+                    var imageName = photoname.split('.');
+                    var imgnum = imageName[0].substr(imageName[0].length - 1);
+
+                    photoname = photoname.replace('i', 'I');
+                    inobj.push({ custid: JSON.stringify(custid), profileid: profileid, photoname: photoname });
+                } else {
+                    inobj = model.downloadimagesArr;
+                }
+                myAssignedPhotosService.downloadPhotos(inobj).then(function(response) {
+                    if (response.data) {
+                        if (custid !== undefined && photoname !== undefined) {
+                            $http({
+                                url: '/downloadimage',
+                                data: { imagename: response.data },
+                                method: "POST",
+                                responseType: 'blob'
+                            }).success(function(data, status, headers, config) {
+                                var blob = new Blob([data], { type: 'image/jpeg' });
+                                var fileName = profileid + '_' + imgnum;
+                                saveAs(blob, fileName);
+                            }).error(function(data, status, headers, config) {
+                                alert('file not found');
+                            });
+                        }
+                    }
+                });
+
             }).error(function(data, status, headers, config) {
 
             });
-            // $('#down' + index).attr('style', 'color:red;cursor:pointer;');
-            // // $http({
-            // //     url: '/deletePhotoFolder',
-            // //     data: { imagename: '' },
-            // //     method: "POST",
-            // //     responseType: 'blob'
-            // // }).success(function(data, status, headers, config) {
-
-            // var inobj = [];
-            // if (custid !== undefined && photoname !== undefined) {
-            //     var imageName = photoname.split('.');
-            //     var imgnum = imageName[0].substr(imageName[0].length - 1);
-
-            //     photoname = photoname.replace('i', 'I');
-            //     inobj.push({ custid: JSON.stringify(custid), profileid: profileid, photoname: photoname });
-            //     // inobj.push({ custid: '100000', profileid: '011000002', photoname: 'img2.jpg' });
-            // } else {
-            //     inobj = model.downloadimagesArr;
-            // }
-            // myAssignedPhotosService.downloadPhotos(inobj).then(function(response) {
-            //     if (response.data) {
-            //         if (custid !== undefined && photoname !== undefined) {
-            //             $http({
-            //                 url: '/downloadimage',
-            //                 data: { imagename: response.data },
-            //                 method: "POST",
-            //                 responseType: 'blob'
-            //             }).success(function(data, status, headers, config) {
-            //                 var blob = new Blob([data], { type: 'image/jpeg' });
-            //                 var fileName = profileid + '_' + imgnum;
-            //                 saveAs(blob, fileName);
-            //             }).error(function(data, status, headers, config) {
-            //                 alert('file not found');
-            //             });
-            //         }
-            //     }
-            // });
-
-            // // }).error(function(data, status, headers, config) {
-
-            // // });
         };
 
         model.uploadTemplateurl = function(row) {
