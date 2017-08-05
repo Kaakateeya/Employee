@@ -122,6 +122,16 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     ]
                 },
                 {
+                    name: 'complex-grid-new',
+                    files: [
+                        'directives/complex-grid-new/directive.js',
+                        'directives/complex-grid-new/model/config.js',
+                        'src/js/alasql.js',
+                        'src/js/xlsx.js',
+                        'directives/complex-grid-new/css/style.css'
+                    ]
+                },
+                {
                     name: 'complex-slide',
                     files: [
                         'directives/complex-slide/directive.js',
@@ -410,6 +420,7 @@ function loadmodules($ocLazyLoad) {
     $ocLazyLoad.load('directives');
     $ocLazyLoad.load('modules');
     $ocLazyLoad.load('complex-grid');
+    $ocLazyLoad.load('complex-grid-new');
     $ocLazyLoad.load('complex-slide');
     $ocLazyLoad.load('Expressintrst');
     $ocLazyLoad.load('marketing-slide');

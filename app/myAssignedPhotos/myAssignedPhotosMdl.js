@@ -59,7 +59,7 @@
             $('#down' + index).attr('style', 'color:red;cursor:pointer;');
             $http({
                 url: '/deletePhotoFolder',
-                data: { imagename: '' },
+                data: {},
                 method: "POST",
                 responseType: 'blob'
             }).success(function(data, status, headers, config) {
@@ -231,7 +231,6 @@
                 });
             }
         };
-
 
         model.CheckUploads = function() {
 
