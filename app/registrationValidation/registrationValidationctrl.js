@@ -31,6 +31,16 @@
                      model.txtCFFFSurName = '';
                      model.txtCName = '';
                      model.ddlCaste = '';
+
+
+                     model.txtCName = 'kumar';
+
+
+
+
+
+
+
                  };
                  vm.destroy = function() {
                      model.destroy();

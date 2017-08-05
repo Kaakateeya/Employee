@@ -57,6 +57,13 @@
                     { text: 'Caste', key: 'Caste', type: 'label' },
                     { text: 'DOR', key: 'DOR', type: 'label' },
                     { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' },
+                    { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' },
+                    { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' },
+                    { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' },
+                    { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' },
+                    { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' },
+                    { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' },
+                    { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' },
                     { text: 'Ticket', key: 'ProfileID', type: 'customlink', templateUrl: model.ViewTicketmain, method: model.tickethistorypopup }
                 ];
                 return model;

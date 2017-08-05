@@ -159,6 +159,18 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
                     return results;
 
                 };
+
+                $('#static .pane-hScroll').scroll(function() {
+                    debugger;
+                    $('#static .pane-vScroll').width($('#static .pane-hScroll').width() + $('#static .pane-hScroll').scrollLeft());
+                });
+
+                $('#dynamic .pane-hScroll').scroll(function() {
+                    debugger;
+                    $('#dynamic .pane-vScroll').width($('#dynamic .pane-hScroll').width() + $('#dynamic .pane-hScroll').scrollLeft());
+                });
+
+
                 scope.init();
             }
         };
