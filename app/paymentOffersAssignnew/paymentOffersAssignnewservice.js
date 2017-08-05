@@ -11,6 +11,14 @@
         return {
             submitPaymentOffer: function(obj) {
                 return http.post(app.apiroot + 'StaticPages/CustomerPaymentOffersAssign', obj);
+            },
+            selectbasedoncasteprofileid: function(profileid, casteid) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getPaymentoffersbasedonselect', {
+                    params: {
+                        Profileid: profileid,
+                        casteid: casteid
+                    }
+                });
             }
         };
     }
