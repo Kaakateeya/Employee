@@ -13,6 +13,7 @@
              }
              // vm.model = model = loginModel;
          };
+            
          vm.init();
 
      }

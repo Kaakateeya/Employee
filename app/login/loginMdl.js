@@ -2,7 +2,7 @@
     'use strict';
     angular
         .module('Kaakateeya')
-        .factory('loginModel', ['$http', '$uibModal', 'loginservice', 'authSvc', '$state', function($http, uibModal, loginservice, authSvc, $state) {
+        .factory('loginModel', ['$http', '$uibModal', 'loginservice', 'authSvc', '$state' ,function($http, uibModal, loginservice, authSvc, $state) {
             var model = {},
                 modalpopupopen;
             model.loginsubmit = {};
@@ -15,6 +15,33 @@
                 authSvc.getClientIp();
                 return model;
             };
+            model.download = function() {
+                    $http.get('src/images/1234 yellow.png', {
+                        responseType: "arraybuffer"
+                        })
+                        .success(function(data) {
+                        var anchor = angular.element('<a/>');
+                        var blob = new Blob([data]);
+                        anchor.attr({
+                            href: window.URL.createObjectURL(blob),
+                            target: '_blank',
+                            download: 'fileName.png'
+                        })[0].click();
+                        });
+                    }
+            model.zipdownload=function(){
+                            $http({
+                            url: '/zipme',
+                            method: "get"
+                        }).success(function(responseData){
+                           var zip = new JSZip();
+                            zip.file("photos.zip", responseData, {base64: true});
+                            zip.generateAsync({type:"blob"})
+                            .then(function(content) {
+                                saveAs(content, "kaa");
+                            });
+                        });                      
+                 }
             model.loginsubmit = function(form, formempvalid, formpasswordvalid, formvalid) {
                 if (formempvalid.required === true) {
                     model.usernameemployee = true;
