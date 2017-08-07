@@ -172,7 +172,6 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
 
                 timeout(function() {
                     $('#static .pane-hScroll').scroll(function() {
-
                         $('#static .pane-vScroll').width($('#static .pane-hScroll').width() + $('#static .pane-hScroll').scrollLeft());
                     });
 

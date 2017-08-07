@@ -1,6 +1,4 @@
 <div ng-show="model.data.length!==0">
-
-
     <div class="row" ng-show="config.showsearchrows">
         <div class="col-lg-5 totalrecordCls" ng-if="config.showsearch">
             <label class="col-lg-6 control-label arrow" for="noofRecords">Total Records : {{model.TotalRows}} <span ng-show="config.myprofileexcel">
@@ -21,6 +19,7 @@
     </div>
     <div class="clearfix"></div>
     <!-- id="{{gid?gid:'dynamic'}}" -->
+
     <div id="{{gid?gid:'dynamic'}}" class="pane pane--table1">
         <div class="pane-hScroll">
             <table class="headerTbl">
@@ -30,7 +29,6 @@
                     </th>
                 </thead>
             </table>
-
             <div class="pane-vScroll">
                 <table>
                     <tbody>

@@ -1,0 +1,27 @@
+#empCreationID {
+    .bodycls {
+        padding-left: 0px;
+        min-height: 500px;
+    }
+    .md-padding {
+        padding: 10px;
+        padding-top: 0%;
+    }
+    .lblcls {
+        padding-left: 4px;
+        font-weight: normal;
+    }
+    .md-toolbar-tools {
+        height: 38px;
+        max-height: 38px;
+        background-color: #EFEFEF;
+        color: maroon;
+    }
+    .required::after {
+        content: '*';
+        color: red;
+    }
+    .tab {
+        min-height: 500px;
+    }
+}
