@@ -103,8 +103,8 @@
                         { text: 'Display', key: 'display', type: 'morelinks', templateUrl: model.displaystatus },
                         { text: 'AllowedPoints', key: 'allowed', type: 'label' },
                         { text: 'UsedCountPoints', key: 'usedcount', type: 'label' },
-                        { text: 'Expirydate', key: 'expirydate', type: 'label' },
-                        { text: '', key: '', type: 'morelinks', templateUrl: model.editprofile }
+                        { text: 'Expirydate', key: 'expirydate', type: 'label' }
+                        // { text: '', key: '', type: 'morelinks', templateUrl: model.editprofile }
                     ];
                     model.gridtable5.columns = [
                         { text: 'ProfileOwnerEmp', key: 'ProfileOwnerEmpID', type: 'label' },

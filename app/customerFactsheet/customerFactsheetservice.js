@@ -10,6 +10,16 @@
                 },
                 CustomerFactsheetDetails: function(profileid) {
                     return http.get(app.apiroot + 'EmployeeReportPage/getCustomerFactsheetDetails', { params: { Profileid: profileid } });
+                },
+
+                custmorfactsheetsendMail: function(profileid) {
+                    return http.get(app.apiroot + 'EmployeeReportPage/getcustmorfactsheetsendMail', { params: { profileid: profileid } });
+                },
+                sendEmail_factResetPassword: function(profileid) {
+                    return http.get(app.apiroot + 'EmployeeReportPage/getsendEmail_factResetPassword', { params: { profileid: profileid } });
+                },
+                getsendEmail_ResetPassword: function(profileid) {
+                    return http.get(app.apiroot + 'EmployeeReportPage/getsendEmail_ResetPassword', { params: { profileid: profileid } });
                 }
             };
         }]);
