@@ -114,12 +114,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                 {
                     name: 'complex-grid',
                     files: [
-                        'directives/complex-grid-new/directive.js',
-                        'directives/complex-grid-new/model/config.js',
+                        'directives/complex-grid/directive.js',
+                        'directives/complex-grid/model/config.js',
                         'src/js/alasql.js',
                         'src/js/xlsx.js',
-                        'directives/complex-grid-new/css/style.css',
-                        'directives/complex-grid-new/directive.js'
+                        'directives/complex-grid/css/style.css',
+                        'directives/complex-grid/directive.js'
                     ]
                 },
                 {
