@@ -1,0 +1,48 @@
+<div class="modal-header" style="background-color: #fedc01;color: #880b0b;padding: 10px;font-size: 17px;">
+    <h4 class="col-lg-11 text-center">Update Payment</h4>
+    <a href="javascript:void(0);" class="pull-right" ng-click="model.close();">
+        <span class="fa fa-close red" style="color: red;font-size: 17px;"></span>
+    </a>
+</div>
+<form name="paymenteditupdate" novalidate role="form" ng-submit="paymenteditupdate.$valid  && model.editpaymentpoints(model);">
+    <div class="modal-body" style="padding:3px;">
+        <div class="row" style="font-size:14px;"><label class="col-lg-3">Profile ID </label>
+            <a ng-class="model.Allvalues.paidclass===1?'paidclass':'unpaid'" target="_blank" href="Viewfullprofile/{{model.Allvalues.ProfileID}}/0" class="col-lg-5">{{model.Allvalues.ProfileID}}</a>
+        </div>
+        <br>
+        <div class="clearfix"></div>
+        <div class="row" style="font-size:14px;"><label class="col-lg-3">Expiry Date </label>
+            <p class="col-lg-5">{{model.Allvalues.ExpiryDate}}({{model.Allvalues.Points}})</p>
+        </div>
+        <br>
+        <div class="clearfix"></div>
+        <div class="row">
+            <label class="col-lg-3">Change Days</label>
+            <div class="col-lg-7">
+                <md-radio-group name="rbtnchangeddays" layout="row" ng-model="model.rbtndaysallowed" class="md-block" flex-gt-sm>
+                    <md-radio-button value="20" class="md-primary">20 -days</md-radio-button>
+                    <md-radio-button value="30" class="md-primary"> 30 -days</md-radio-button>
+                    <md-radio-button value="45" class="md-primary">45 -days</md-radio-button>
+                </md-radio-group>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <label class="col-lg-3">Change Points</label>
+            <div class="col-lg-9">
+                <md-radio-group name="rbtnchangedpoints" layout="row" ng-model="model.rbtnchangedpoints" class="md-block" flex-gt-sm>
+                    <md-radio-button value="5" class="md-primary">5-points</md-radio-button>
+                    <md-radio-button value="10" class="md-primary"> 10-points</md-radio-button>
+                    <md-radio-button value="15" class="md-primary">15-points</md-radio-button>
+                    <md-radio-button value="20" class="md-primary">20-points</md-radio-button>
+                </md-radio-group>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <button type="submit" class="button_custom col-lg-2  col-lg-offset-4">Submit</button>
+            <md-button class='md-raised md-hue-1 col-lg-2' ng-click='model.close()'>Cancel</md-button>
+        </div>
+        <br>
+    </div>
+</form>

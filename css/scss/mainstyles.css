@@ -645,7 +645,7 @@ select:focus:invalid:focus {
   text-decoration: underline; }
 #loginnewidcchangepassword .button {
   display: inline-block;
-  line-height: 16px;
+  line-height: 22px;
   border-width: 0px;
   font-size: 11px;
   font-family: arial;
@@ -779,7 +779,7 @@ select:focus:invalid:focus {
   margin-bottom: 2px; }
 #loginnewidcchangepassword .login-data label {
   display: block;
-  width: 130px;
+  width: 140px;
   float: left;
   line-height: 22px;
   text-align: right;
@@ -789,7 +789,7 @@ select:focus:invalid:focus {
 #loginnewidcchangepassword .login-data .row {
   padding-bottom: 10px; }
 #loginnewidcchangepassword .login-data .button {
-  margin-left: 80px; }
+  margin-left: 8px; }
 #loginnewidcchangepassword .login-footer {
   border-top: 1px solid #FFFFFF;
   background: url("images/bck_black_70.png");

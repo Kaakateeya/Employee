@@ -9,8 +9,10 @@
              vm.init = function() {
                  vm.model = model = paymentAuthorizationModel;
                  vm.model.scope = scope;
-
                  model.init();
+
+                 model.ticketownermarketing = "";
+                 model.ticketiddisable = true;
              };
              vm.init();
          }]);

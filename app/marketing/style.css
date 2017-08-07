@@ -110,11 +110,15 @@ span.multiselect-selected-text {
   font-size: 16px;
   line-height: 28px; }
 
-.reminderCls .pop_controls_right > input,
-.reminderCls .selectCls {
-  width: 73% !important; }
-.reminderCls .doublesmalldropdown {
-  margin-left: -25px !important; }
+.reminderCls {
+  z-index: 9999999 !important;
+  top: 0%;
+  left: 0%; }
+  .reminderCls .pop_controls_right > input,
+  .reminderCls .selectCls {
+    width: 73% !important; }
+  .reminderCls .doublesmalldropdown {
+    margin-left: -25px !important; }
 
 .vertical-text {
   transform: rotate(-15deg);
@@ -125,7 +129,7 @@ span.multiselect-selected-text {
   color: white; }
 
 .modalclassdashboardremainder {
-  z-index: 9999999 !important;
+  z-index: 99999999999999 !important;
   top: 0%;
   left: 0%; }
 

@@ -67,8 +67,8 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                     scope: scope,
                     size: size,
                     backdrop: 'static',
-                    windowClass: classp
-                        // keyboard: false
+                    windowClass: classp,
+                    keyboard: false
                 });
             },
             showPopupphotopoup: function(url, scope, size, classp) {
@@ -80,7 +80,7 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                     size: size,
                     backdrop: 'static',
                     windowClass: classp,
-                    keyboard: classp === 'modalclassdashboardphotopopup123' ? false : true
+                    keyboard: classp === 'modalclassdashboardphotopopup123' ? false : false
                 });
             },
 
@@ -165,7 +165,7 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                         templateUrl: 'templates/dynamicPhotoPopup.html',
                         scope: scope,
                         backdrop: 'static',
-                        keyboard: false
+                        keyboard: true
                     });
                 }, 500);
 
@@ -174,7 +174,6 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                 return arrayyy = setcolumnsCommon(test);
             },
             bindfunction: function(carousalID) {
-
                 $('#' + carousalID).bind('slide.bs.carousel', function() {
                     var currentslide = 1;
                     var totalItems1 = $('#' + carousalID).find('.item').length;
@@ -183,12 +182,9 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                         if (parseInt(totalItems1) - parseInt(currentIndex1) === 4) {
                             scope.$emit('slideshowsubmit', totalItems1 + 1, totalItems1 + 10);
                         }
-
                     }
                 });
-
             },
-
             showAndBindPopup: function(val) {
                 modalpopupopen = uibModal.open({
                     ariaLabelledBy: 'modal-title',
@@ -204,7 +200,6 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                         "        <img src='" + val + "'  Style='height: 500px; width: 500px;'>                                                                                        " +
                         "    </div>                                                                                                       "
                 });
-
             },
             getloginpage: function(form) {
                 return http.get(app.apiroot + 'DB/getValidateLoginNew', {
@@ -240,6 +235,21 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                     }
                 }
                 return options;
+            },
+            getChangeEmployeePassword: function(EmpID, EmpoldPassword, EmpNewPassword) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getChangeEmployeePassword', {
+                    params: { EmpID: EmpID, EmpoldPassword: EmpoldPassword, EmpNewPassword: EmpNewPassword }
+                });
+            },
+            getCheckemployeePassord: function(EmpID, Emppassword) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getCheckemployeePassord', {
+                    params: { EmpID: EmpID, Emppassword: Emppassword }
+                });
+            },
+            getpresentunpaidmembers: function(Empid) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getpresentunpaidmembers', {
+                    params: { EmpID: Empid }
+                });
             }
         };
     }

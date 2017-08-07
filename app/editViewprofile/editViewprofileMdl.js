@@ -134,7 +134,7 @@
             model.ProfileOwnerImg = function(row) {
                 var img = row.ProfileStatusID === 57 || row.ProfileStatusID === 393 ? 'src/images/settleimage_new.png' : (row.ProfileStatusID === 56 || row.ProfileStatusID === 394 ? 'src/images/deleteimage.png' : (row.ProfileStatusID === 55 ? 'src/images/imgInActive.png' : ''));
                 var dd = img !== '' ? img : '';
-                var paid = row.ProfileOwner !== null && row.ProfileOwner !== '' ? "<span class='red'>" + row.ProfileOwner + "</span> " + (img !== "" ? "<img class='profileImage'  src=" + img + "></img>" : '') : "<span class='red linkdisabled'>--</span>";
+                var paid = row.ProfileOwner !== null && row.ProfileOwner !== '' ? "<span class='red'>" + row.ProfileOwner + "</span> " + (img !== "" ? "<img class='profileImage'  src=" + img + "></img>" : (row.ProfileStatusID === 395 ? 'M?' : '')) : "<span class='red linkdisabled'>--</span>";
                 return paid;
             };
 
@@ -228,7 +228,10 @@
                             model.slide.totalRecords = response.data[0].TotalRows;
                             if (parseInt(from) === 1) {
                                 configslide.setSlides((model.displayArrayeidt(response.data, to)), to, "normal");
-                                modelpopupopenmethod.showPopup('slideshoweditd.html', model.scope, 'lg', "myprofileslide");
+                                if (model.slideshowopenflag !== 1) {
+                                    model.slideshowopenflag = 1;
+                                    modelpopupopenmethod.showPopup('slideshoweditd.html', model.scope, 'lg', "myprofileslide");
+                                }
                             } else {
                                 configslide.addSlides((model.displayArrayeidt(response.data, to)), response.data, parseInt(to), "normal");
                             }
@@ -309,6 +312,7 @@
             };
 
             model.slide.closemainpopup = function() {
+                model.slideshowopenflag = 0;
                 modelpopupopenmethod.closepopup();
             };
             model.slide.tickethistorypopup = function(TicketID) {
@@ -319,12 +323,9 @@
                 configslide.reset();
             };
 
-            model.getMatchMeetmgData = function(profileID) {
-
-
+            model.ViewProfile = function(ProfileID) {
+                window.open('/Viewfullprofile/' + ProfileID + '/0', '_blank');
             };
-
-
 
 
             return model.init();

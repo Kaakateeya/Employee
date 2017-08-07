@@ -283,7 +283,6 @@
                     // model.Caste = Commondependency.casteDepedency((model.ReligionID !== undefined && model.ReligionID !== null && model.ReligionID.length > 0 ? (model.ReligionID).toString() : ""), ((model.MothertongueID !== undefined && model.MothertongueID !== null && model.MothertongueID !== "" && model.MothertongueID.length > 0) ? (model.MothertongueID).toString() : []));
                 };
                 model.GetPhotoandHoroscopevalues = function(strType, str) {
-                    console.log(str);
                     if (str !== null && str !== undefined && str !== "" && str.length > 0) {
                         str = str.toString();
                         if (strType == "horo") {
@@ -298,7 +297,6 @@
                 };
 
                 //  model.GetPhotoandHoroscopevalues = function(strType, str) {
-                //     console.log(str);
                 //     var strtt;
                 //     if (str !== null && str !== undefined && str !== "" && str.length > 0) {
                 //         strtt = str.toString();
@@ -342,7 +340,7 @@
                     paramters.DOBfrom = parseInt(model.agedobcontrol) === 1 ? paramters.DOBfrom : undefined;
                     paramters.DOBTo = parseInt(model.agedobcontrol) === 1 ? paramters.DOBTo : undefined;
 
-                    model.topage = model.typrofsearch === "1" && parseInt(frompage) === 1 ? 100 : topage;
+                    model.topage = topage = model.typrofsearch === "1" && parseInt(frompage) === 1 ? 100 : topage;
                     if (parseInt(frompage) === 1) {
                         model.progressbar = [];
                         model.config.slides = [];
@@ -442,7 +440,7 @@
                     paramters.DOBTo = parseInt(model.agedobcontrol) === 1 ? paramters.DOBTo : undefined;
 
 
-                    model.topage = model.typrofsearch === "1" && parseInt(frompage) === 1 ? 100 : topage;
+                    model.topage = topage = model.typrofsearch === "1" && parseInt(frompage) === 1 ? 100 : topage;
                     if (parseInt(frompage) === 1) {
                         model.progressbar = [];
                         model.config.slides = [];
@@ -685,7 +683,7 @@
                     model.close();
                     model.cloumsarr = [];
                     model.Toprofileids = [];
-
+                    model.getOriginalShortlistedProfiles();
                     _.each(model.config.shortlistmodel.slides, function(item) {
                         model.cloumsarr.push(item.Custid);
                     });
@@ -868,6 +866,7 @@
                                     { ngModelFrom: 'AnnualIncomefrom', ngModel: 'AnnualincomeID', ngModelTo: 'AnnualIncometo', labelName: 'Monthly income', controlType: 'triblecontrols', isShow: true, dataSource: 'Currencyarray', validation: true, dataApi: 'currencyselect' },
                                     { ngModel: 'OnlyConfidential', controlType: 'singlechkbox', isShow: true, validation: true },
                                     { divClear: true, ngModel: 'EmpIds', labelName: 'Ower of Profile', controlType: 'empbranches', isShow: true, dataSource: 'Empnamesarray', validation: true, dataApi: 'EmployeeNameswithbranches' }
+                                    // { ngModel: 'ParentInterCaste', labelName: 'Parents Intercaste', controlType: 'intercaste', isShow: true, validation: true }
                                 ]
                             }
 
@@ -893,7 +892,7 @@
                 model.bindPlusCtrlFlag = '';
 
                 model.showplusminusicon = function(DIVid) {
-                    debugger;
+
                     var array = model.selectedIndex === 1 ? model.domDataadvanced : model.domDatageneral;
                     _.map(_.where(array, { collapseid: DIVid }), function(item) {
                         switch (item.collapseid) {
@@ -926,7 +925,9 @@
                                 break;
                             case 8:
                                 item.bindPlusCtrlFlag = 'ProfileSettings';
-                                item.controlList = [{ bindPlusCtrlFlagin: 'ProfileSettings', divClear: true, type: 'BranchName', ngModel: 'RegionID', labelName: 'Region Of Branches', controlType: 'dropdown', isShow: true, dataBind: 'Regionofbranches', dataSource: 'Regionofbranches', validation: true }, { bindPlusCtrlFlagin: 'ProfileSettings', ngModel: 'BranchID', labelName: 'Branch', controlType: 'dropdown', isShow: true, dataSource: 'BranchName', validation: true, dataApi: 'BranchName' }, { bindPlusCtrlFlagin: 'ProfileSettings', ngModelFrom: 'Dateofregfrom', ngModelTo: 'Dateofregto', labelName: 'Date Of Reg', controlType: 'datePicker', isShow: true, validation: true }, { bindPlusCtrlFlagin: 'ProfileSettings', divClear: true, ngModelFrom: 'LastestLoginsfrom', ngModelTo: 'LastestLoginsto', labelName: 'Lastest Logins', controlType: 'datePicker', isShow: true, validation: true }, { bindPlusCtrlFlagin: 'ProfileSettings', ngModel: 'ProfileID', labelName: 'Profile ID', controlType: 'profileid', isShow: true, validation: true }, { bindPlusCtrlFlagin: 'ProfileSettings', ngModel: 'MembershipTypeID', labelName: 'Membership type', controlType: 'dropdown', isShow: true, dataSource: 'Membershiptype', validation: true, dataBind: 'Membershiptype' }, { bindPlusCtrlFlagin: 'ProfileSettings', divClear: true, ngModel: 'EmpIds', labelName: 'Ower of Profile', controlType: 'empbranches', isShow: true, dataSource: 'Empnamesarray', validation: true, dataApi: 'EmployeeNameswithbranches' }];
+                                item.controlList = [{ bindPlusCtrlFlagin: 'ProfileSettings', divClear: true, type: 'BranchName', ngModel: 'RegionID', labelName: 'Region Of Branches', controlType: 'dropdown', isShow: true, dataBind: 'Regionofbranches', dataSource: 'Regionofbranches', validation: true }, { bindPlusCtrlFlagin: 'ProfileSettings', ngModel: 'BranchID', labelName: 'Branch', controlType: 'dropdown', isShow: true, dataSource: 'BranchName', validation: true, dataApi: 'BranchName' }, { bindPlusCtrlFlagin: 'ProfileSettings', ngModelFrom: 'Dateofregfrom', ngModelTo: 'Dateofregto', labelName: 'Date Of Reg', controlType: 'datePicker', isShow: true, validation: true }, { bindPlusCtrlFlagin: 'ProfileSettings', divClear: true, ngModelFrom: 'LastestLoginsfrom', ngModelTo: 'LastestLoginsto', labelName: 'Lastest Logins', controlType: 'datePicker', isShow: true, validation: true }, { bindPlusCtrlFlagin: 'ProfileSettings', ngModel: 'ProfileID', labelName: 'Profile ID', controlType: 'profileid', isShow: true, validation: true }, { bindPlusCtrlFlagin: 'ProfileSettings', ngModel: 'MembershipTypeID', labelName: 'Membership type', controlType: 'dropdown', isShow: true, dataSource: 'Membershiptype', validation: true, dataBind: 'Membershiptype' }, { bindPlusCtrlFlagin: 'ProfileSettings', divClear: true, ngModel: 'EmpIds', labelName: 'Ower of Profile', controlType: 'empbranches', isShow: true, dataSource: 'Empnamesarray', validation: true, dataApi: 'EmployeeNameswithbranches' }
+                                    //  { ngModel: 'ParentInterCaste', labelName: 'Parents Intercaste', controlType: 'intercaste', isShow: true, validation: true }
+                                ];
                                 model.domheader_8 = model.domheader_8 === true ? false : true;
                                 model.loadControlDivWise(item.controlList);
                                 break;
@@ -950,14 +951,14 @@
 
                 model.loadControlDivWise = function(controlList) {
                     if (model.selectedIndex === 1) {
-                        debugger;
+
                         _.each(controlList, function(item) {
                             if (item.dataBind) {
                                 model[item.dataSource] = item.dataBind === "heightreSearch" ? arrayConstants[item.dataBind] : model.removeSelect(arrayConstants[item.dataBind]);
                             } else if (item.dataApi) {
                                 model[item.dataSource] = getArray.GArray(item.dataApi);
                             }
-                            debugger;
+
                             if ('Cust_ID' in model.getpageloadobject) {
 
                             } else {

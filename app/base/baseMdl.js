@@ -19,7 +19,7 @@
                 if (model.PersonalObj !== null && model.PersonalObj !== undefined) {
                     $rootScope.ProfileOwner = model.ProfileOwner = model.PersonalObj.ProfileOwner;
                     $rootScope.EditProfilePaidStatus = model.PersonalObj.PaidStatus;
-                    debugger;
+
 
                     model.isprofileOwner = (model.ProfileOwner ? parseInt(model.ProfileOwner) === parseInt(model.empid) : false) || (model.PersonalObj.PaidStatus !== undefined && model.PersonalObj.PaidStatus !== null ? parseInt(model.PersonalObj.PaidStatus) !== 1 : false);
                     baseService.nodatastatus(model.PersonalObj.ProfileID).then(function(res) {
@@ -130,7 +130,7 @@
         model.cancel = function() {
             commonFactory.closepopup();
         };
-        return model.init();
+        return model;
     }
     angular
         .module('Kaakateeya')

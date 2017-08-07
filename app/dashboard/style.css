@@ -48,7 +48,7 @@ body {
   left: 0%; }
 
 .modalclassdashboardremainder {
-  z-index: 9999999 !important;
+  z-index: 99999999999999 !important;
   top: 0%;
   left: 0%; }
 
@@ -278,5 +278,19 @@ body .container.body .right_col {
   color: black;
   pointer-events: none;
   cursor: default; }
+
+.modalclassofedit {
+  z-index: 9999999 !important;
+  top: 0%;
+  left: 0%; }
+
+.modalclassofedit .modal-dialog.modal-md {
+  width: 50%; }
+
+.modalclassofedit .md-tab {
+  padding: 14px 15px; }
+
+.modalclassofedit .pop_label_left {
+  width: 40%; }
 
 /*# sourceMappingURL=style.css.map */

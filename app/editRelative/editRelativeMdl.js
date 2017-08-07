@@ -478,7 +478,7 @@
             { "label": "Elder", "title": "Elder", "value": 324 },
             { "label": "Younger", "title": "Younger", "value": 323 }
         ];
-        return model.init();
+        return model;
     }
 
     angular

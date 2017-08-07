@@ -8,10 +8,10 @@
     factory.$inject = ['parametervalueService'];
 
     function factory(parametervalueService) {
-        return function() {
-            var model = {};
 
-            return model;
-        };
+        var model = {};
+
+        return model;
+
     }
 })();

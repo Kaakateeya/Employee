@@ -1,16 +1,17 @@
 <div class="right_col">
     <div class="row">
-        <h3 class="hdrsettleCls col-lg-4">Update MAC IP</h3>
-        <md-radio-group class="col-lg-8" name="regions" layout="row" ng-model="page.model.region" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-            <md-radio-button value="1"> All </md-radio-button>
+        <h3 class="hdrsettleCls col-lg-4">Update Branch Ip</h3>
+        <md-radio-group class="col-lg-8" name="regions" layout="row" ng-change="page.model.radioOnchange(page.model.region)" ng-model="page.model.region" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+            <md-radio-button value=""> All </md-radio-button>
             <md-radio-button value="408"> AP </md-radio-button>
             <md-radio-button value="409"> TN </md-radio-button>
             <md-radio-button value="410"> KT </md-radio-button>
-            <md-radio-button value="">Other </md-radio-button>
+            <md-radio-button value="1">Other </md-radio-button>
         </md-radio-group>
     </div>
 
     <div class="maincls">
-        <complex-grid config="page.model" model="page.model"></complex-grid>
+        <!-- <complex-grid config="page.model" model="page.model"></complex-grid> -->
+        <single-grid model="page.model" config="page.model"></single-grid>
     </div>
 </div>

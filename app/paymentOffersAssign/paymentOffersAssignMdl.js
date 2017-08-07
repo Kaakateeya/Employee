@@ -3,12 +3,7 @@
 
     angular
         .module('Kaakateeya')
-        .factory('paymentOffersAssignModel', factory);
-
-    factory.$inject = ['paymentOffersAssignService', 'modelpopupopenmethod', 'getArraysearch', 'Commondependency', 'alert'];
-
-    function factory(paymentOffersAssignService, modelpopupopenmethod, getArray, Commondependency, alertss) {
-        return function() {
+        .factory('paymentOffersAssignModel', ['paymentOffersAssignService', 'modelpopupopenmethod', 'getArraysearch', 'Commondependency', 'alert', function(paymentOffersAssignService, modelpopupopenmethod, getArray, Commondependency, alertss) {
             var model = {};
             model.scope = {};
             model.paymentpoints = app.paymentPoints;
@@ -45,7 +40,6 @@
             };
 
             model.SubmitPaymentOffer = function() {
-
                 var obj = {
                     ProfileID: model.ProfileID,
                     MembershipID: model.memberShipType,
@@ -77,6 +71,6 @@
             };
 
             return model;
-        };
-    }
+
+        }]);
 })();

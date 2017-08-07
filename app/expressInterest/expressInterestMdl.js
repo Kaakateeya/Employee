@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function factory(http, expressInterestService, modelpopupopenmethod, authSvc, timeout, alertss) {
+    function factory(http, expressInterestService, modelpopupopenmethod, authSvc, timeout, alertss, uibModal) {
         //  return function() {
         var model = {};
         model.scope = {};
@@ -21,7 +21,6 @@
                         if (response.data[0].length > 0) {
                             model.ProfileStatusID = response.data[0][0].ProfileStatusID;
                         }
-
                         if (_.isArray(response.data[1]) && response.data[1].length > 0) {
                             model.fromcustid = response.data[1][0].Cust_ID;
                             model.FromAgeMax = response.data[1][0].AgeMax;
@@ -53,9 +52,9 @@
                                 }
                                 if (_.isArray(response.data) && response.data[1].length > 0) {
                                     model.NAME = response.data[1][0].NAME;
-                                    model.Max_Offline_Allowed = response.data[1][0].Max_Offline_Allowed;
-                                    model.OfflineMembershipExpiryDate = response.data[1][0].OfflineMembershipExpiryDate;
-                                    model.Offline_Used_Count = response.data[1][0].Offline_Used_Count;
+                                    model.Max_Offline_Allowed = response.data[1][0].Max_Allowed_Points;
+                                    model.OfflineMembershipExpiryDate = response.data[1][0].MembershipExpiryDate;
+                                    model.Offline_Used_Count = response.data[1][0].Used_Count;
                                 }
 
                                 if (_.isArray(response.data) && response.data.length > 2) {
@@ -116,7 +115,7 @@
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'ProfileID has been already added to the list', 9500);
                 } else {
                     if (ID !== 0) {
-                        if (model.exiObj.txtFromprofileID !== null && model.exiObj.txtFromprofileID.length !== 0) {
+                        if (model.exiObj.txtFromprofileID !== "" && model.exiObj.txtFromprofileID !== undefined && model.exiObj.txtFromprofileID !== null && model.exiObj.txtFromprofileID.length !== 0) {
                             model.mismatch = [];
                             expressInterestService.getServiceInfo(model.exiObj.txtFromprofileID, model.exiObj.txtToprofileID).then(function(res) {
                                 console.log(res.data);
@@ -172,11 +171,23 @@
                                     }
 
                                     if (model.ToProfileStatusID === 54) {
-                                        if (model.mismatch.length > 0) {
+                                        if (model.exiObj.txtToprofileID !== "" && model.exiObj.txtToprofileID !== null && model.exiObj.txtToprofileID !== undefined && model.mismatch !== undefined && model.mismatch !== null && model.mismatch !== "" && model.mismatch.length > 0) {
                                             if (model.ToGenderID !== model.FromGenderID) {
-                                                modelpopupopenmethod.showPopup('Conflict.html', model.scope, 'md', 'mismatch');
+                                                // model.modalmismatchpopupopen = uibModal.open({
+                                                //     ariaLabelledBy: 'modal-title',
+                                                //     ariaDescribedBy: 'modal-body',
+                                                //     templateUrl: 'Conflict.html',
+                                                //     scope: model.scope,
+                                                //     size: 'md',
+                                                //     backdrop: 'static',
+                                                //     windowClass: 'mismatch'
+                                                //         // keyboard: false
+                                                // });
+                                                if (model.mismatchflag !== 1) {
+                                                    model.mismatchflag = 1;
+                                                    modelpopupopenmethod.showPopup('Conflict.html', model.scope, 'md', 'mismatch');
+                                                }
                                             }
-
                                         } else {
                                             model.pushToProfileIDs();
                                         }
@@ -212,16 +223,23 @@
             }
         };
 
+
+        model.closepopupmismatch = function() {
+            model.modalmismatchpopupopen.close();
+        };
         model.closepopup = function() {
+            model.mismatchflag = 0;
             model.exiObj.txtToprofileID = '';
             modelpopupopenmethod.closepopup();
         };
         model.pushToProfileIDs = function(type) {
             if (type === 'conflict')
                 modelpopupopenmethod.closepopup();
+            model.mismatchflag = 0;
             model.getImages(model.exiObj.txtToprofileID);
             model.exiObj.txtToprofileID = '';
         };
+
         model.Submit = function(obj) {
             var ExpressArray = [];
             var inputObj = {};
@@ -360,5 +378,5 @@
     angular
         .module('Kaakateeya')
         .factory('expressInterestModel', factory);
-    factory.$inject = ['$http', 'expressInterestService', 'modelpopupopenmethod', 'authSvc', '$timeout', 'alert'];
+    factory.$inject = ['$http', 'expressInterestService', 'modelpopupopenmethod', 'authSvc', '$timeout', 'alert', '$uibModal'];
 })(angular);

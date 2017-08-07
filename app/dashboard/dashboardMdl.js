@@ -146,6 +146,7 @@
                     model.Custidbounce = null;
                     model.landingItems = [];
                     model.norecordstable = false;
+                    //model.empid = 8;
                     model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                     model.empBranchID = authSvc.empBranchID() !== undefined && authSvc.empBranchID() !== null && authSvc.empBranchID() !== "" ? authSvc.empBranchID() : "";
                     if (model.empid !== null && model.empid !== "" && model.empBranchID !== null && model.empBranchID !== "") {
@@ -349,7 +350,9 @@
                             EmpAssignedDate: moment(item.EmpAssignedDate).format('DD-MMM-YYYY'),
                             TicketAssignedDate: moment(item.TicketAssignedDate).format('DD-MMM-YYYY'),
                             NotificationDate: moment(item.NotificationDate).format('DD-MMM-YYYY'),
-                            inActiveDate: moment(item.InActiveToDate).format('DD-MMM-YYYY')
+                            inActiveDate: moment(item.InActiveToDate).format('DD-MMM-YYYY'),
+                            paidclass: item.paid === true || item.paid === 1 ? 1 : 0,
+                            Date: moment(item.Date).format('DD-MMM-YYYY')
                         });
                     });
 
@@ -361,7 +364,7 @@
 
                     dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                         if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0 && response.data[0].length > 0) {
-                            debugger;
+
                             model.slidearray = response.data[0];
                             model.totalRecords = model.slidearray[0].TotalRows;
                             model.headerhtml = tablename;
@@ -424,7 +427,10 @@
                                     break;
                             }
                             if (topage === parseInt(10)) {
-                                commonpage.showPopup('dashboardslide.html', model.scope, 'lg', "modalclassdashboard");
+                                if (model.slideshowopenflag !== 1) {
+                                    model.slideshowopenflag = 1;
+                                    commonpage.showPopup('dashboardslide.html', model.scope, 'lg', "modalclassdashboard");
+                                }
                                 config.setSlides(model.displayArrayprofile(model.slidearray, 10), 10, 'normal');
                             } else {
                                 config.addSlides(model.displayArrayprofile(model.slidearray, 11), model.slidearray, 11, 'normal');
@@ -438,6 +444,7 @@
                     }
                 };
                 model.closesashboard = function() {
+                    model.slideshowopenflag = 0;
                     commonpage.closepopup();
                 };
                 model.close = function() {
@@ -454,7 +461,7 @@
                     });
                 };
                 model.changereminders = function(slidearray) {
-                    debugger;
+
                     model.reminderslidearray = {};
                     model.reminderslidearray = slidearray;
                     model.txtprofileidreminder = slidearray.ProfileID;
@@ -471,7 +478,7 @@
                     model.replaytypearray = arrayConstants.childStayingWith;
                     model.categoryarray = arrayConstants.catgory;
                     model.ddlremCatgory = 462;
-                    debugger;
+
                     // slidearray.ReminderCreatedDate = moment(slidearray.ReminderCreatedDate).format('MM-DD-YYYY hh:mm:ss');
                     if (slidearray.EmpReminderID) {
                         model.ddlremCaltype = parseInt(slidearray.RemCallType);
@@ -520,13 +527,20 @@
                     window.open("communicationLogs?Profileid=" + profileid, "_blank");
                 };
                 model.RelationshipChangerem = function(RelationshipID) {
-                    debugger;
-
                     SelectBindServiceApp.getRelationName(3, model.reminderslidearray.ProfileID, RelationshipID).then(function(response) {
                         if (_.isArray(response.data[0]) && response.data[0].length > 0) {
                             model.contactpersonname = response.data[0][0].NAME;
                         }
                     });
+                };
+                model.paymenteditpointsdate = function(obj) {
+                    model.insertopenflag = 0;
+                    model.paymentchangedobj = obj;
+                    if (obj.SAForm !== null && obj.SAForm !== '--' && $.trim(obj.SAForm) !== '') {
+                        commonpage.showPopupphotopoup('editpopuppayment.html', model.scope, 'md', "modalclassofedit");
+                    } else {
+                        alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please Get SA Form', 3000);
+                    }
                 };
                 return model.init();
             }

@@ -17,8 +17,7 @@
                      model.slide.config.headettemp = "templates/myprofileheader.html";
                      model.opendiv = true;
                      model.slide.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-                     scope.$on("$destroy", vm.destroy);
-
+                     model.slideshowopenedflag = 0;
                      model.txtAllPhones = '';
                      model.txtAllEmails = '';
                      model.ddlApplicationStatus = '';
@@ -31,15 +30,7 @@
                      model.txtCFFFSurName = '';
                      model.txtCName = '';
                      model.ddlCaste = '';
-
-
-                     model.txtCName = 'kumar';
-
-
-
-
-
-
+                     scope.$on("$destroy", vm.destroy);
 
                  };
                  vm.destroy = function() {

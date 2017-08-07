@@ -6,12 +6,15 @@
                     <li class="col-lg-9">
                         <div style="color:#fff;"><strong style="font-size: 19px;"> Welcome  {{head.model.name}}</strong>
                         </div>
+                        <div style="cursor:pointer;color: #ffffff;font-style: italic;text-decoration: underline;" href="javascript:void(0)" ng-click="head.model.hideshowunpaid()">
+                            Unpaid Members
+                        </div>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <div style="cursor:pointer" href="javascript:void(0)" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             <img ng-src="{{head.model.empphoto}}" alt="">
                             <span class="fa fa-angle-down" id="spandownheader"></span>
-                        </a>
+                        </div>
                         <ul class="dropdown-menu dropdown-usermenu pull-right" style="background-color: #A00201;">
                             <li><a style="color: white;" href="javascript:void(0)" ng-click="head.model.logout()"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                             <md-divider></md-divider>
@@ -37,6 +40,7 @@
                         <a href="javascript:void(0)">Registration</a>
                         <ul>
                             <li><a href="Registration">Customer New Registration</a></li>
+                            <li ng-hide="true"><a href="brokerProfileRegistrationpage">Broker Profile Registration</a></li>
                             <li><a href="editViewprofileurl">Edit/View Profile</a></li>
                             <li><a href="registrationValidations">RegistrationprofileValidation</a></li>
                             <li class="has-sub"><a href="#">services</a>
@@ -64,7 +68,7 @@
                             </li>
 
                             <li><a href="employeeViewfullprofiles/0/1">Customer New Admin Profile</a></li>
-                            <li><a href="employeeViewfullprofileschk/0/1">Customer New Admin Profile Print</a></li>
+                            <li ng-hide="true"><a href="employeeViewfullprofileschk/0/1">Customer New Admin Profile Print</a></li>
                         </ul>
                     </li>
                     <li class="has-sub"><a href="javascript:void(0)"> Search </a>
@@ -80,24 +84,36 @@
                             <li><a href="myProfilepage">My Profile</a></li>
                             <li><a href="marketingpage">Marketing Slide Show</a></li>
                             <li><a href="matchFollowuppage">Match Followup Slide Show</a></li>
+                            <li><a href="matchMeetingEntryFormPage">Match Meeting Entry Form</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">My Assigned Photos</a></li>
+                            <li><a href="ticketCreationpage">Ticket Creation</a></li>
+                            <li><a href="myAssignedPhotosPage">My Assigned Photos</a></li>
                         </ul>
                     </li>
                     <li class="has-sub"><a href="javascript:void(0)">Maintance Work  </a>
                         <ul>
-                            <li><a ng-hide="true" href="javascript:void(0)">Unassigned Profiles</a></li>
+                            <li class="has-sub"><a href="#">Unassigned Info</a>
+                                <ul>
+                                    <li><a href="unAssignedPhotosPage">Photos</a></li>
+                                </ul>
+                            </li>
                             <li><a href="assignSetting">Assign Settings</a></li>
+                            <li><a href="emailbounceEntryformpage">Email Bounce</a></li>
+                            <li><a href="customerMessagesverificationpage">Customer Message Verification</a></li>
+                            <li><a href="marketingticketverificationpage">Maketing Ticket verification</a></li>
+                            <li><a ng-hide="true" href="brokerEntryFormpage">Mediater Entry Form</a></li>
+
                             <li><a ng-hide="true" href="javascript:void(0)">Match Meeting Report</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">Upload Success Stories</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">View Success Stories</a></li>
-                            <li><a ng-hide="true" href="javascript:void(0)">Customer Message Verification</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">Re Assign Employee</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">Book Marks</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">Customer/Employee Config</a></li>
                         </ul>
                     </li>
                     <li class="has-sub"><a href="javascript:void(0)">Admin Forms  </a>
-                        <ul ng-hide="true">
+                        <ul>
+                            <li><a href="updateMacAdresspage">Update Branch IP</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">Branch Creation</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">List Branches</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">Add/Edit Faqs</a></li>
@@ -105,14 +121,16 @@
                     </li>
                     <li class="has-sub"><a href="javascript:void(0)"> Reports </a>
                         <ul>
-                            <li class="has-sub"><a href="#">Profile Reports</a>
+                            <!-- <li class="has-sub"><a href="#">Profile Reports</a>
                                 <ul>
                                     <li><a href="reviewPendinrReport">Review Pending Profiles</a></li>
                                 </ul>
-                            </li>
+                            </li> -->
+                            <li><a href="reviewPendinrReport">Review Pending Profiles</a></li>
+                            <li><a href="paymentdetailsReportpage">Payment Reports</a></li>
                         </ul>
                     </li>
-                    <li class="has-sub"><a href="javascript:void(0)"> help </a>
+                    <li class="has-sub" ng-hide="true"><a href="javascript:void(0)"> help </a>
                         <ul>
                             <li><a href="ticketCreationpage">Ticket Creation</a></li>
                         </ul>
@@ -121,6 +139,31 @@
             </nav>
         </div>
     </div>
+    <ul class="dropdown-menus col-lg-5" ng-show="head.model.unpaidmember">
+        <div class="col-lg-6" style="width:557px;background: rgb(228, 223, 144);background-color: rgb(228, 223, 144); display: block; z-index: 9999; max-height: 600px; overflow-y: auto; overflow-x: hidden; position: fixed; top: 60px;right:0;">
+            <div class="pull-left"><a href="javascript:void(0)" ng-click="head.model.unpaidmember=false"><span class="fa fa-times-circle-o fa-2x fa-fw"></span></a>
+            </div>
+            <div class="pull-right"><a href="javascript:void(0)" ng-click="head.model.getpresentunpaidmembers()"><span class="fa fa-refresh fa-2x fa-fw"></span></a>
+            </div>
+            <table style="width:512px;" class="pull-right" ng-repeat="presentunpaid in head.model.presentunpaidmembersarray">
+                <tbody>
+                    <tr ng-class="presentunpaid.MINUTE<10?'alert alert-warning fade in':'alert alert-danger fade in'" style="height: 45px;">
+                        <td style="width: 6%;"><a class="close" ng-click="head.model.closealert($index)" style="font-size: 23px;">×&nbsp;&nbsp;</a></td>
+                        <td width="4%">
+                            <p style="font-size: 14px;font-weight: bold;color:#8623a5;">{{presentunpaid.EmpGroupName}}-
+                            </p>
+                        </td>
+                        <td width="25%"><a style="font-size: 14px;color: rgb(0, 84, 255);" href="Viewfullprofile/{{presentunpaid.ProfileID}}/0" target="_blank">{{presentunpaid.ProfileID}}<span style="color:black;">({{presentunpaid.LastLoginDate}})</span>-</a>
+                        </td>
+                        <td width="20%"><a class="aClass" href="javascript:void(0);" ng-click="head.model.ticketpopupunpaid(presentunpaid.Ticket)" style="font-size: 14px;color: rgb(0, 84, 255);">{{presentunpaid.TicketID}}</a> </td>
+                        <td width="55%">
+                            <h>({{presentunpaid.TicketStatus}})-{{presentunpaid.EmpName}}</h>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </ul>
     <script type="text/ng-template" id="loginContent.html">
         <div id="loginnewidcc" style='z-index: 99999'>
             <div class="login">
@@ -165,7 +208,7 @@
                                     </div>
                                     <div class="pull-right"> {{head.model.CurrentDate | date:'dd MMMM yyyy hh.mm.ss'}},{{head.model.CurrentDate |date:'EEEE'}}</div>
                                 </div>
-                                <div class="login-footer">
+                                <div class="login-footer" ng-if="false">
                                     <div class="row">
                                         <div class="col-lg-3  col-lg-offset-1">
                                             <label style="color:#ffffff;font-size: 14px;">AP:</label>
@@ -206,7 +249,7 @@
                                         <div class="row clear">
                                             <label for="user">
                                               Current Password:</label>
-                                            <input type="Password" class="text" ng-model="head.model.currentpassword" name="currentpassword" required/>
+                                            <input ng-keyup="$event.keyCode===13 && head.model.chkpassword(head.model.currentpassword)" ng-blur="head.model.chkpassword(head.model.currentpassword)" type="Password" class="text" ng-model="head.model.currentpassword" name="currentpassword" required/>
                                             <div ng-messages="changepasswordform.currentpassword.$invalid">
                                                 <div style="color: red;font-size: 12px;" ng-if="changepasswordform.currentpassword.$invalid && (changepasswordform.$submitted)">*Required.</div>
                                             </div>
@@ -226,13 +269,19 @@
                                          Confirm Password:
                                           </label>
                                             <input compare-to="head.model.newpassword" ng-focus="true" type="Password" class="text" ng-model="head.model.confirmpassword" name="confirmpassword" required>
-                                            <div ng-messages="changepasswordform.confirmpassword.$invalid">
+                                            <!--<div ng-messages="changepasswordform.confirmpassword.$invalid">
                                                 <div style="color: red;font-size: 12px;" ng-if="changepasswordform.confirmpassword.$invalid && (changepasswordform.$submitted)">*Required.</div>
+                                            </div>-->
+                                            <div ng-messages="changepasswordform.confirmpassword.$error">
+                                                <div ng-if="changepasswordform.confirmpassword.$error.required && (changepasswordform.$submitted)" style="color: red;font-size: 12px;" ng-message="required">*Required</div>
+                                                <div style="color: red;font-size: 12px;" ng-message="compareTo">Must match the previous entry</div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="button">Change Password</button>
+                                        <div class="row">
+                                            <button type="submit" class="button col-lg-5">Change Password</button>
+                                            <button class="button col-lg-4" ng-click="head.model.close()">Cancel</button>
+                                        </div>
                                     </div>
-
                                 </div>
                                 <div class="login-footer">
                                     <div class="row">
@@ -256,6 +305,12 @@
                 </div>
             </div>
     </script>
+    <script type="text/ng-template" id="unpaidmarket.html">
+        <div class="modal-body">
+            <market-tickethistory ticketid="head.model.unpaidticket"></market-tickethistory>
+        </div>
+    </script>
+
     </div>
     <style type="text/css">
         .modalclassdashboardphotopopuplogin {
@@ -267,5 +322,27 @@
         .modal-open .modal {
             overflow-x: hidden;
             overflow-y: hidden;
+        }
+        
+        .modalclassdashboardphotopopup {
+            z-index: 9999999999 !important;
+        }
+        
+        .modalclassdashboardphotopopup {
+            z-index: 999999999 !important;
+            top: 0%;
+            left: 0%;
+        }
+        
+        .modalclassdashboardphotopopup .modal-dialog.modal-md {
+            width: 70%;
+        }
+        
+        .modalclassdashboardphotopopup .md-tab {
+            padding: 14px 15px;
+        }
+        
+        .modalclassdashboardphotopopup .pop_label_left {
+            width: 40%;
         }
     </style>

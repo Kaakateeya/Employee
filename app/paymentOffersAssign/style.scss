@@ -40,7 +40,15 @@
 }
 
 .modalclassdashboardremainder {
-    z-index: 9999999 !important;
+    z-index: 99999999999999 !important;
     top: 0%;
     left: 0%;
+}
+
+.smalldropdown {
+    width: 250px;
+}
+
+button.multiselect.dropdown-toggle.btn.ng-pristine.ng-untouched.ng-valid.ng-isolate-scope {
+    width: 100%;
 }

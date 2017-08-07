@@ -3,14 +3,17 @@
 
     angular
         .module('Kaakateeya')
-        .factory('updateMacAdressService', factory)
+        .factory('updateMacAdressService', factory);
 
     factory.$inject = ['$http'];
 
     function factory(http) {
         return {
-            test: function() {
-                return http.get(app.apiroot + 'test', { params: '' });
+            getmacIps: function(obj) {
+                return http.post(app.apiroot + 'smallPages/MacIpValues', obj);
+            },
+            UpdatemacIps: function(ipAdrr, branchid) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getUpadteMacAddess', { params: { strProfileID: ipAdrr, BranchID: branchid } });
             }
         };
     }

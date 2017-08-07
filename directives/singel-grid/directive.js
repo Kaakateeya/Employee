@@ -12,7 +12,7 @@ angular.module('Kaakateeya').directive("singleGrid", ['modelpopupopenmethod', '$
                 scope.init = function() {
                     // scope.model.sdata = [];
                     scope.currentPage = 0;
-                    scope.pageSize = 10;
+                    scope.pageSize = 100;
                     scope.model.exportColumns = {};
                     _.each(scope.model.columns, function(item) {
                         if (item.text !== '')
@@ -25,7 +25,6 @@ angular.module('Kaakateeya').directive("singleGrid", ['modelpopupopenmethod', '$
                 scope.$watch(scope.model, function() {
                     scope.init();
                 });
-
 
                 scope.sort = function(keyname) {
                     scope.sortKey = keyname; //set the sortKey to the param passed

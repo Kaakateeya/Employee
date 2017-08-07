@@ -1,0 +1,375 @@
+<div role="main" class="right_col">
+    <div class="register_page_main">
+        <h4>Broker Profile Registration</h4>
+        <div class="regmain">
+            <div layout="column" ng-cloak="" class="inputdemoErrors">
+                <md-content layout-padding="" md-dynamic-height>
+                    <form accessible-formreg name="regForm" novalidate role="form" ng-submit="regForm.$valid && page.model.regSubmit(page.model.reg);">
+                        <div class="reg_fields_entry clearfix">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="radio-group-my">
+                                        <md-input-container>
+                                            <md-radio-group ng-required="true" name="rbtngender" layout="row" ng-model="page.model.reg.rbtngender" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                                <md-radio-button value="1" class="md-primary">Male</md-radio-button>
+                                                <md-radio-button value="2"> Female </md-radio-button>
+                                            </md-radio-group>
+                                            <div ng-messages="regForm.rbtngender.$invalid">
+                                                <div ng-if="regForm.rbtngender.$invalid && (regForm.$submitted)">This is required.</div>
+                                            </div>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                            <div class="row">
+                                <md-input-container class="col-lg-3">
+                                    <label> First Name</label>
+                                    <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" focus-me="true" ng-focus="true" autofocus maxlength="100" required="" md-asterisk="" name="txtfirstname" ng-model="page.model.reg.txtfirstname">
+                                    <div ng-messages="regForm.txtfirstname.$error">
+                                        <div ng-if="regForm.txtfirstname.$invalid && (regForm.$submitted)" ng-message="required">This is required.</div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container class="col-lg-3">
+                                    <label>Surname Name</label>
+                                    <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="50" required="" md-asterisk="" name="txtlastname" ng-model="page.model.reg.txtlastname">
+                                    <div ng-messages="regForm.txtlastname.$error">
+                                        <div ng-if="regForm.txtlastname.$invalid && (regForm.$submitted)" ng-message="required">This is required.</div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container class="col-lg-3">
+                                    <label>Email<span style="color:red;">*</span></label>
+                                    <input ng-keydown="page.model.emailvalidation(regForm.txtEmail.$invalid)" ng-change="page.model.mobilemailvalidation()" ng-required="page.model.emailrequired" maxlength="50" md-no-asterisk="" name="txtEmail" ng-model="page.model.reg.txtEmail" ng-pattern="page.model.emailpattaren"
+                                        ng-blur="page.model.valueExists('email',0,page.model.reg.txtEmail);" onkeypress="return (event.keyCode != 32 && event.which!=32)">
+                                    <div ng-if="page.model.emailmeessages || ((regForm.txtEmail.$invalid) && (regForm.$submitted))" ng-messages="regForm.txtEmail.$error" role="alert">
+                                        <div ng-message-exp="['required', 'pattern']">
+                                            This is required and enter valid e-mail address.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container class="col-lg-3">
+                                    <label class="droplabel">Posted by</label>
+                                    <md-select name="ddlpostedby" md-asterisk="" ng-model="page.model.reg.ddlpostedby" required="">
+                                        <md-option ng-value="h.value" ng-repeat="h in page.model.postedby">{{h.label}} </md-option>
+                                    </md-select>
+                                    <div class="errors" ng-messages="regForm.ddlpostedby.$error">
+                                        <div ng-if="regForm.ddlpostedby.$invalid && (regForm.$submitted)" ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <md-input-container class="col-lg-4" style="width:33%;">
+                                        <label>Date</label>
+                                        <md-select name="ddlDD" md-asterisk="" ng-model="page.model.reg.ddlDD" required="" ng-change="page.model.dayChange(page.model.reg,'day');">
+                                            <md-option ng-value="h.value" ng-repeat="h in page.model.dateArr">{{h.label}} </md-option>
+                                        </md-select>
+                                        <div class="errors" ng-messages="regForm.ddlDD.$error">
+                                            <div ng-if="regForm.ddlDD.$invalid && (regForm.$submitted)" ng-message="required">Required</div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container class="col-lg-4" style="width:33%;">
+                                        <label>Month</label>
+                                        <md-select name="ddlMM" md-asterisk="" ng-model="page.model.reg.ddlMM" required="" ng-change="page.model.dayChange(page.model.reg,'month');">
+                                            <md-option ng-value="h.value" ng-repeat="h in page.model.monthArr">{{h.label}} </md-option>
+                                        </md-select>
+                                        <div class="errors" ng-messages="regForm.ddlMM.$error">
+                                            <div ng-if="regForm.ddlMM.$invalid && (regForm.$submitted)" ng-message="required">Required</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container class="col-lg-4" style="width:34%;">
+                                        <label>Year</label>
+                                        <md-select md-asterisk="" name="ddlYear" ng-model="page.model.reg.ddlYear" required="">
+                                            <md-option ng-value="h.value" ng-repeat="h in page.model.yearArr">{{h.label}} </md-option>
+                                        </md-select>
+                                        <div class="errors" ng-messages="regForm.ddlYear.$error">
+                                            <div ng-if="regForm.ddlYear.$invalid && (regForm.$submitted)" ng-message="required">Required</div>
+                                        </div>
+                                    </md-input-container>
+
+                                </div>
+                                <md-input-container class="col-lg-3">
+                                    <label>Religion</label>
+                                    <md-select md-asterisk="" name="ddlreligion" ng-model="page.model.reg.ddlreligion" required="" ng-change="page.model.changeBind(page.model.reg.ddlreligion,page.model.reg.ddlmothertongue);">
+                                        <md-option ng-value="h.value" ng-repeat="h in page.model.religion">{{h.label}} </md-option>
+                                    </md-select>
+                                    <div class="errors" ng-messages="regForm.ddlreligion.$error">
+                                        <div ng-if="regForm.ddlreligion.$invalid && (regForm.$submitted)" ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container class="col-lg-3">
+                                    <label>Mother Tongue</label>
+                                    <md-select md-asterisk="" name="ddlmothertongue" ng-model="page.model.reg.ddlmothertongue" required="" ng-change="page.model.changeBind(page.model.reg.ddlreligion,page.model.reg.ddlmothertongue);">
+                                        <md-option ng-value="h.value" ng-repeat="h in page.model.Mothertongue">{{h.label}} </md-option>
+                                    </md-select>
+                                    <div class="errors" ng-messages="regForm.ddlmothertongue.$error">
+                                        <div ng-if="regForm.ddlmothertongue.$invalid && (regForm.$submitted)" ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container class="col-lg-3">
+                                    <label>Caste</label>
+                                    <md-select md-asterisk="" name="ddlcaste" ng-model="page.model.reg.ddlcaste" required="" ng-change="page.model.subcastechange(page.model.reg.ddlcaste);">
+                                        <md-option ng-value="h.value" ng-repeat="h in page.model.casteArr">{{h.label}} </md-option>
+                                    </md-select>
+                                    <div class="errors" ng-messages="regForm.ddlcaste.$error">
+                                        <div ng-if="regForm.ddlcaste.$invalid && (regForm.$submitted)" ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <br>
+                            <div class="clearfix"></div>
+                            <div class="row">
+                                <md-input-container class="col-lg-3">
+                                    <label>SubCaste</label>
+                                    <md-select name="ddlsubcaste" ng-model="page.model.reg.ddlsubcaste">
+                                        <md-option ng-value="h.value" ng-repeat="h in page.model.subCastearr">{{h.label}} </md-option>
+                                    </md-select>
+                                </md-input-container>
+                                <md-input-container class="col-lg-3">
+                                    <label>Residing At</label>
+                                    <md-select md-asterisk="" name="ddlcountry" ng-model="page.model.reg.ddlcountry" required="" ng-change="page.model.residingChange(page.model.reg.ddlcountry);">
+                                        <md-option ng-value="h.value" ng-repeat="h in page.model.Country">{{h.label}} </md-option>
+                                    </md-select>
+                                    <div class="errors" ng-messages="regForm.ddlcountry.$error">
+                                        <div ng-if="regForm.ddlcountry.$invalid && (regForm.$submitted)" ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+                                <div class="col-lg-3">
+                                    <md-input-container class="col-lg-4" style="width: 50%;">
+                                        <label>Country code</label>
+                                        <md-select md-asterisk="" name="ddlmobilecountry" ng-model="page.model.reg.ddlmobilecountry" ng-required="mobilecountrycoderequired">
+                                            <md-option ng-value="h.value" ng-repeat="h in page.model.countryCode">{{h.label}} </md-option>
+                                        </md-select>
+                                        <div class="errors" ng-messages="regForm.ddlmobilecountry.$error">
+                                            <div ng-if="regForm.ddlmobilecountry.$invalid && (regForm.$submitted)" ng-message="required">Required</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block col-lg-4" style="width:50%;">
+                                        <label>Mobile number<span style="color:red;">*</span></label>
+                                        <input ng-keydown="page.model.mobilecondition(regForm.txtMobileNo.$invalid)" ng-change="page.model.mobilemailvalidation()" onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" md-asterisk="" maxlength="10" ng-minlength="10" ng-required="page.model.mobilenumberrequired"
+                                            md-no-asterisk="" ng-pattern="/^[0-9]+$/" name="txtMobileNo" ng-model="page.model.reg.txtMobileNo" ng-blur="page.model.valueExists('number',1,page.model.reg.txtMobileNo);">
+                                        <div ng-if="page.model.mobilemessages || ((regForm.txtMobileNo.$invalid) && (regForm.$submitted))" ng-messages="regForm.txtMobileNo.$error">
+                                            <div ng-message-exp="['required', 'pattern','minlength']">
+                                                This is required and enter only numbers(10 digits).
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <md-input-container class="col-lg-4" style="width:33%;">
+                                        <label>Land code</label>
+                                        <md-select name="ddllandcountry" ng-model="page.model.reg.ddllandcountry">
+                                            <md-option ng-value="h.value" ng-repeat="h in page.model.countryCode">{{h.label}} </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                    <md-input-container class="md-block col-lg-4" style="width:33%;">
+                                        <label>Area code</label>
+                                        <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="8" name="txtArea" ng-model="page.model.reg.txtArea" ng-pattern="/^[0-9]+$/">
+                                        <div ng-messages="regForm.txtArea.$error">
+                                            <div ng-message="pattern">
+                                                Enter only numbers.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container class="md-block col-lg-4" style="width:34%;">
+                                        <label>Landline number</label>
+                                        <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="8" name="txtlandNum" ng-model="page.model.reg.txtlandNum" ng-pattern="/^[0-9]+$/">
+                                        <div ng-messages="regForm.txtlandNum.$error">
+                                            <div ng-message="pattern">
+                                                Enter only numbers.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="row">
+
+
+                                <md-input-container class="col-lg-3">
+                                    <label class="droplabel">Branch</label>
+                                    <md-select name="branchID" md-asterisk="" ng-model="page.model.reg.branchID" required="">
+                                        <md-option ng-value="h.value" ng-repeat="h in page.model.branchArr">{{h.label}} </md-option>
+                                    </md-select>
+                                    <div class="errors" ng-messages="regForm.branchID.$error">
+                                        <div ng-if="regForm.branchID.$invalid && (regForm.$submitted)" ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container class="col-lg-7">
+                                    <md-checkbox ng-model="page.model.reg.Chkprivacy" name="Chkprivacy" ng-required="true" md-asterisk="">
+                                        I agree to the
+                                        <a ng-model="page.model.reg.lnkprivacyPolicy" Font-Size="12px" ng-click="redirectprivacy()">Privacy Policy and T&C.</a>
+                                    </md-checkbox>
+                                    <div ng-messages="regForm.Chkprivacy.$invalid">
+                                        <div ng-if="regForm.Chkprivacy.$invalid && (regForm.$submitted)">This is required.</div>
+                                    </div>
+                                </md-input-container>
+
+
+                                <md-button type="submit" class="md-raised md-warn md-hue-2 col-lg-1" TabIndex="18">SUBMIT</md-button>
+
+                            </div>
+                            <label ID="lblResult" Font-Bold="true" />
+                        </div>
+                    </form>
+                </md-content>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .btn-group {
+        width: 98%;
+        text-align: left;
+    }
+    
+    .register_page_main input[type="email"],
+    .register_page_main input[type="password"],
+    .register_page_main input[type="text"] {
+        box-shadow: none;
+        border-radius: 3px !important;
+        height: 30px;
+        width: 98%;
+        line-height: 28px;
+        padding: 4px 2%;
+        margin: 0;
+    }
+    
+    .input-group {
+        width: 98%;
+        text-align: left;
+    }
+    
+    input[type="email"],
+    input[type="password"],
+    input[type="text"] {
+        border: 0 !important;
+        border-bottom: 1px solid red !important;
+        outline: 0 !important;
+        border-style: solid !important;
+        border-color: rgba(0, 0, 0, 0.12) !important;
+    }
+    
+    md-input-container.md-input-invalid .md-input {
+        border-color: rgb(221, 44, 0) !important;
+    }
+    
+    md-input-focused {
+        color: rgba(0, 0, 0, 0.87);
+        border-color: rgba(0, 0, 0, 0.12);
+    }
+    
+    md-input-container.md-default-theme .md-input,
+    md-input-container .md-input {
+        color: rgba(0, 0, 0, 0.87);
+        border-color: rgba(31, 25, 25, 0.38);
+    }
+    
+    .md-input-has-value label {
+        font-size: 17px !important;
+        color: rgba(48, 45, 45, 0.98) !important;
+        font-weight: 700 !important;
+    }
+    
+    md-input-container.md-input-focused:not(.md-input-invalid) label input[type="password"],
+    md-input-container.md-input-focused:not(.md-input-invalid) .md-input {
+        border-color: rgb(63, 81, 181) !important;
+    }
+    
+    [class*="span"] {
+        margin-left: 0px;
+        color: red;
+    }
+    
+    .span4 {
+        padding-right: 3%;
+    }
+    
+    .regmain {
+        border: solid 1px #ccc;
+        border-radius: 5px;
+        padding: 7px;
+    }
+    
+    .reg_fields_entry .span4 {
+        margin: 0;
+        min-height: 70px;
+    }
+    
+    .register_page_main_steps ul li a:after {
+        display: block;
+        content: "";
+        background: #ccc;
+        width: 100%;
+        height: 5px;
+        border-radius: 5px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+    
+    md-content {
+        display: block;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    md-select {
+        border-bottom: 1px solid #110404;
+        border-color: rgba(31, 25, 25, 0.45);
+    }
+    
+    md-select.md-default-theme .md-select-value.md-select-placeholder,
+    md-select .md-select-value.md-select-placeholder {
+        color: rgba(0, 0, 0, 0.65);
+    }
+    
+    .register_page_main h4 {
+        color: #b10c0c;
+        font-size: 21px;
+    }
+    
+    .md-input-focused>md-select.ng-invalid.ng-touched .md-select-value {
+        color: rgb(221, 44, 0)!important;
+        border-bottom-color: rgb(221, 44, 0)!important;
+        font-size: 18px;
+    }
+    
+    md-input-container.md-input-focused:not(.md-input-has-value) md-select.md-default-theme .md-select-value,
+    md-input-container.md-input-focused:not(.md-input-has-value) md-select .md-select-value,
+    md-input-container.md-input-focused:not(.md-input-has-value) md-select.md-default-theme .md-select-value.md-select-placeholder,
+    md-input-container.md-input-focused:not(.md-input-has-value) md-select .md-select-value.md-select-placeholder {
+        color: rgb(63, 81, 181);
+        font-size: 18px;
+    }
+    
+    md-select-menu.md-default-theme md-content md-option,
+    md-select-menu md-content md-option {
+        color: rgba(33, 33, 33, 0.87);
+        font-size: 13px;
+    }
+    
+    .md-select-value>span:not(.md-select-icon) {
+        max-width: 100%;
+        -webkit-box-flex: 1;
+        flex: 1 1 auto;
+        text-overflow: inherit;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    
+    md-input-container:not(.md-input-focused):not(.md-input-invalid) md-select.md-default-theme .md-select-value span:first-child:after,
+    md-input-container:not(.md-input-focused):not(.md-input-invalid) md-select .md-select-value span:first-child:after {
+        color: red;
+    }
+    
+    md-input-container.md-default-theme:not(.md-input-focused):not(.md-input-invalid) label.md-required:after,
+    md-input-container:not(.md-input-focused):not(.md-input-invalid) label.md-required:after {
+        color: red;
+    }
+</style>

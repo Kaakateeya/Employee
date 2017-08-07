@@ -52,9 +52,13 @@
 
 
             model.showPhotoPopup = function() {
-                commonpage.ShowPhotoPopup(model.custid, model.scope);
+                if (model.photopopupopenflag !== 1) {
+                    model.photopopupopenflag = 1;
+                    commonpage.ShowPhotoPopup(model.custid, model.scope);
+                }
             };
             model.close = function() {
+                model.photopopupopenflag = 0;
                 commonpage.closepopup();
             };
 

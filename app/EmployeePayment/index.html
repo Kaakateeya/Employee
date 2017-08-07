@@ -1,7 +1,7 @@
 <div class="right_col" role="main">
     <div class="search_page_main">
         <h4 style="font-size: 18px;
-    color: #b10c0c;">Search Membership Package</h4>
+    color: #b10c0c;">Payment Details</h4>
         <br>
         <div class="regmain">
             <div class="row">
@@ -26,8 +26,22 @@
             <div>
                 <md-button class="md-primary pull-right" ng-show="page.model.freshLink" ng-click="page.model.paymentInsertLink(page.model.txtProfileID,page.model.RenewalStatus===1?'Balance':'renewal');"> {{ page.model.RenewalStatus===1?'Balance':'Renewal'}} </md-button>
             </div>
+            <div class="row" ng-show="page.model.updatepaymentllink" ng-if="page.model.isManagement === 'true' && page.model.isAdmin ==='1'">
+                <div class="col-lg-5">
+                    <a href="javascript:void(0)" ng-click="page.model.paymenteditpointsdate(page.model)">Update Points & Expiry Date</a>
+                </div>
+            </div>
             <div>
                 <complex-grid-new ng-if="page.model.data" model="page.model" config="page.model" hidesearch="true" hidepaging="true"></complex-grid-new>
+            </div>
+            <br>
+            <br>
+            <div class="row" ng-if="page.model.extensiondata.data.length>0">
+                <h4 class="col-lg-8">Points & Expirydate Extension Log</h4>
+            </div>
+            <br>
+            <div>
+                <complex-grid model="page.model.extensiondata" config="page.model.extensiondata" hidesearch="true" hidepaging="true"></complex-grid>
             </div>
         </div>
     </div>
@@ -39,18 +53,48 @@
     </script>
 </div>
 
+<script type="text/ng-template" id="editpopuppayment.html">
+    <payment-editpoints models="page.model.paymentchangedobj"></payment-editpoints>
+</script>
+<script type="text/ng-template" id="paymentEditPopup.html">
+    <form name="payEditForm" role="form" ng-submit="payEditForm.$valid && page.model.EditPaymentSubmit();">
+        <div class="modal-header" style="background-color: #fedc01;color: #880b0b;padding: 10px;font-size: 17px;">
+            <h3 class="modal-title text-center">Edit Payment details
+                <a href="javascript:void(0);" ng-click="page.model.close();">
+                    <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="25"></ng-md-icon>
+                </a>
+            </h3>
+        </div>
+        <div class="modal-body form-group">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row form-group">
+                        <div class="col-lg-6">Agreed Amount</div>
+                        <div class="col-lg-6"><input type="text" class="form-control" ng-model="page.model.editAgreedAmt" required></div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6">Paid Amount</div>
+                        <div class="col-lg-6"><input type="text" class="form-control" ng-model="page.model.editPaidAmt" required></div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-3">Pay description</div>
+                <div class="col-lg-9"><textarea name="" id="" cols="30" rows="5" class="form-control" ng-model="page.model.editDescriptionAmt" required></textarea></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="col-lg-5 col-lg-offset-1"><input type="submit" value="submit" class="btn btn-danger"></div>
+            <div class="col-lg-2"><input type="button" value="cancel" class="btn btn-default pull-left" ng-click="page.model.close();"></div>
+        </div>
+    </form>
+</script>
 
 
-
-
-
-
-
-
-
-
-
-
+</div>
 <style>
     .fixed-table-container thead th .sortable,
     .detail {

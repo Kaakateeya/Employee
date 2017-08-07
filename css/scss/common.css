@@ -42,5 +42,13 @@ textarea {
     color: black;
 }
 
+.panel-title {
+    color: #b10c0c;
+}
+
+.bodyclsnew {
+    line-height: 39px;
+}
+
 
 /*# sourceMappingURL=common.css.map */

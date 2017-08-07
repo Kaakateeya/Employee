@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .directive('contactDirective', directive);
 
-    directive.$inject = ['SelectBindService', 'commonFactory', '$mdDialog', 'authSvc', 'baseModel'];
+    directive.$inject = ['SelectBindService', 'commonFactory', '$mdDialog', 'authSvc', 'baseModel', 'SelectBindServicereg', 'alert'];
 
-    function directive(SelectBindService, commonFactory, mdDialog, authSvc, baseModel) {
+    function directive(SelectBindService, commonFactory, mdDialog, authSvc, baseModel, SelectBindServicereg, alertss) {
 
         var directive = {
             link: link,
@@ -21,7 +21,8 @@
                 strareacode: '=',
                 strland: '=',
                 strmail: '=',
-                emailhide: '='
+                emailhide: '=',
+                emailvalidation: '='
             },
             templateUrl: 'templates/contacttemplate.html'
         };
@@ -84,6 +85,36 @@
                     scope.clear(type);
                 }, function() {});
             };
+
+            scope.EmailValidation = function() {
+                if (scope.emailvalidation === true) {
+                    SelectBindServicereg.emailExists({ iflagEmailmobile: 0, EmailMobile: scope.strmail }).then(function(response) {
+                        if (response.data === 1) {
+                            scope.strmail = '';
+                            alertss.timeoutoldalerts(scope, 'alert-danger', 'Email Already Exists', 9500);
+                        }
+                    });
+                }
+            };
         }
     }
 })();
+
+
+angular.module('Kaakateeya').directive('ngModelOnblur', function() {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        priority: 1, // needed for angular 1.2.x
+        link: function(scope, elm, attr, ngModelCtrl) {
+            if (attr.type === 'radio' || attr.type === 'checkbox') return;
+
+            elm.unbind('input').unbind('keydown').unbind('change');
+            elm.bind('blur', function() {
+                scope.$apply(function() {
+                    ngModelCtrl.$setViewValue(elm.val());
+                });
+            });
+        }
+    };
+});

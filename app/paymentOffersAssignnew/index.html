@@ -1,0 +1,118 @@
+<div class="right_col" id="offferAssign">
+    <div>
+        <h3 class="hdrsettleCls" ng-style="{position: page.model.AgreedAmt?'absolute':''}"> Payment Offers Assign</h3>
+
+        <div class="maincls">
+            <form name="offerForm" novalidate role="form" ng-submit="offerForm.$valid && page.model.SubmitPaymentOffer();">
+                <div class="row">
+                    <div class="col-lg-4 form-group">
+                        <md-radio-group ng-change="page.model.changetypeofticket()" name="rbtnBasic" layout="row" ng-model="page.model.rbtntype" class="md-block" flex-gt-sm>
+                            <md-radio-button value="1" class="md-primary">Profile ID</md-radio-button>
+                            <md-radio-button value="2">Caste</md-radio-button>
+                        </md-radio-group>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3" ng-show="page.model.rbtntype==='2'">
+                        <p class="control-label">Religion</p>
+                        <div class="controls clearfix">
+                            <div class="input-group">
+                                <select multiselectdropdown ng-model="page.model.religion" typeofdata="'Religion'" ng-change="page.model.casteDependency(page.model.religion,page.model.mothertongue);"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3" ng-show="page.model.rbtntype==='2'">
+                        <p class="control-label">Mothertongue</p>
+                        <div class="controls clearfix">
+                            <div class="input-group">
+                                <select class="" multiselectdropdown ng-model="page.model.mothertongue" typeofdata="'Mothertongueselect'" ng-change="page.model.casteDependency(page.model.religion,page.model.mothertongue);"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3" ng-show="page.model.rbtntype==='2'">
+                        <p class="control-label">Caste<span style="color: red; margin-left: 3px;">*</span></p>
+                        <div class="controls clearfix">
+                            <div class="input-group">
+                                <select name="ddlcasteid" class="" ng-change="page.model.getPaymentdetails('caste')" multiselectdropdown ng-model="page.model.Caste" ng-required="page.model.rbtntype==='2'?true:false" ng-options="item.value as item.label for item in page.model.casteArr"></select>
+                            </div>
+                            <div ng-messages="offerForm.ddlcasteid.$invalid">
+                                <div style="color: red;font-size: 12px;" ng-if="offerForm.ddlcasteid.$invalid && (offerForm.$submitted)">*Required.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3" ng-show="page.model.rbtntype==='1'">
+                        <p class="control-label">ProfileID<span style="color: red; margin-left: 3px;">*</span></p>
+                        <div class="controls clearfix">
+                            <input name="txtprofileidoffer" ng-blur="page.model.getPaymentdetails('profileid')" type="text" focus-me="true" ng-maxlength="'9'" class="form-control" ng-model="page.model.ProfileID" ng-required="page.model.rbtntype==='1'?true:false"></input>
+                        </div>
+                        <div ng-messages="offerForm.txtprofileidoffer.$invalid">
+                            <div style="color: red;font-size: 12px;" ng-if="offerForm.txtprofileidoffer.$invalid && (offerForm.$submitted)">*Required.</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3" ng-show="page.model.rbtntype==='1' || page.model.rbtntype==='2'">
+                        <p class="control-label">Agreed amount<span style="color: red; margin-left: 3px;">*</span></p>
+                        <div class="controls clearfix">
+                            <input name="txtagreedamount" required="true" type="number" class="form-control" ng-model="page.model.AgreedAmt" ng-blur="page.model.showOfferDetails(page.model.AgreedAmt);"></input>
+                        </div>
+                        <div ng-messages="offerForm.txtagreedamount.$invalid">
+                            <div style="color: red;font-size: 12px;" ng-if="offerForm.txtagreedamount.$invalid && (offerForm.$submitted)">*Required.</div>
+                        </div>
+                    </div>
+                    <br ng-show="page.model.rbtntype==='2'" />
+                    <div class="col-lg-3" ng-show="page.model.rbtntype==='1' || page.model.rbtntype==='2'">
+                        <p class="control-label">Membership Type <span style="color: red; margin-left: 3px;">*</span></p>
+                        <div class="controls clearfix">
+                            <div class="input-group">
+                                <select multiselectdropdown ng-change="page.model.membershipchange()" required="true" name="memberShipType" ng-model="page.model.memberShipType" ng-options="item.value as item.label for item in page.model.membershipTypeArr"></select>
+                            </div>
+                            <div ng-messages="offerForm.memberShipType.$invalid">
+                                <div style="color: red;font-size: 12px;" ng-if="offerForm.memberShipType.$invalid && (offerForm.$submitted)">*Required.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="controls clearfix">
+                </div>
+                <br />
+                <div class="row">
+                    <div class="form-group text-center" style="border-top: 1px solid #ddd;padding-top: 1%;">
+                        <input class="button_custom" type="submit" ng-value="page.model.btntextSubmit">
+                        <input type="reset" class="button_custom button_custom_reset" value="Reset" ng-click="page.model.reset();">
+                    </div>
+                </div>
+
+            </form>
+            <br>
+            <div>
+                <complex-grid ng-show="page.model.data.length>0" model="page.model" config="page.model"></complex-grid>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="alert.html">
+    <div class="modal-header  alert-info">
+        <button type="button" class="close" ng-click="page.model.closepopup();">×</button>
+        <h4 class="modal-title">Payment offer</h4>
+    </div>
+    <div class="modal-body" style="line-height:20px;">
+        <div class='row'>
+            <span class="paymentOfr col-lg-5"> Amount </span>&nbsp;&nbsp; {{page.model.strAmt}}
+        </div>
+        <div class='row'>
+            <span class="paymentOfr col-lg-5">No of Points </span>&nbsp; &nbsp; {{page.model.strPoints}}
+        </div>
+        <div class='row'>
+            <span class="paymentOfr col-lg-5">Expiry Date </span>&nbsp; &nbsp;{{page.model.strDate }}
+        </div>
+    </div>
+</script>
+
+<style type="text/css">
+    button.multiselect.dropdown-toggle.btn.ng-pristine.ng-untouched.ng-valid.ng-isolate-scope {
+        width: 100%;
+    }
+</style>

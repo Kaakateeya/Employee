@@ -140,7 +140,7 @@ a {
 }
 
 .HoroScopeImage {
-    width: 50px;
+    width: 93px;
 }
 
 .myprofilepopupdesign {
@@ -187,11 +187,15 @@ a {
 }
 
 .modalclassdashboardremainder {
-    z-index: 9999999 !important;
+    z-index: 99999999999999 !important;
     top: 0%;
     left: 0%;
 }
 
 .fa-check-circle {
     color: green;
+}
+
+th.headerStyles {
+    font-size: 16px;
 }

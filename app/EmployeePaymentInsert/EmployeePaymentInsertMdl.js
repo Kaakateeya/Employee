@@ -2,7 +2,6 @@
     'use strict';
 
     function factory(EmployeePaymentInsertservice, stateParams, filter, authSvc, modelpopupopenmethod, alertss, paymentProperty) {
-
         var model = {};
         model.obj = {};
         model.array = [];
@@ -19,12 +18,9 @@
         model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
         model.ServiceTaxPercent = app.ServiceTaxPercent;
 
-        model.typeofprofile = parseInt(stateParams.paymentID);
-
         model.EmployeePaymentInsert = function(inobj, type) {
             var monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                 DateArr, dateformatt = '';
-
             if (model.ExpiryDaterev === '') {
                 model.PaidAmtChange(inobj.txtAmountPaid, inobj.txtAgreedAmt);
             }
@@ -38,10 +34,10 @@
                 SettlementAmount: inobj.txtSettlementAmount,
                 DateDuration: model.ExpiryDaterev,
                 ServiceTax: inobj.rdnServicetax,
-                ServiceTaxAmt: inobj.rdnServicetax === '1' ? parseInt(inobj.txtAmountPaid * model.ServiceTaxPercent) : 0,
+                // ServiceTaxAmt: inobj.rdnServicetax === '1' ? parseInt(inobj.txtAmountPaid * model.ServiceTaxPercent) : 0,
                 AmountPaid: inobj.txtAmountPaid,
-                EndDate: moment(model.custobj.EndDate).format('DD/MM/YYYY') === 'Invalid date' ? '' : moment(model.custobj.EndDate).format('DD/MM/YYYY'),
-                //  model.custobj.EndDate !== '' && model.custobj.EndDate !== null ? filter('date')(model.custobj.EndDate, 'MM/dd/yyyy') : null,
+                StartDate: model.StartDateparam,
+                EndDate: model.endDateparam,
                 ReceiptNumber: inobj.txtbillno,
                 TransactionID: inobj.txttransactionid,
                 ChequeNoOrDDNo: inobj.txtcheckno,
@@ -73,13 +69,12 @@
             });
         };
         model.getpaymentProfile = function(profileID) {
-
             model.custobj = {};
             model.PiObj.rdnServicetax = '1';
             EmployeePaymentInsertservice.getEmployeePaymentdata(profileID, 0).then(function(response) {
                 if (response.data[0] !== undefined && response.data[0].length > 0 && JSON.parse(response.data[0]).length > 0) {
                     var arraymodify = [];
-                    debugger;
+
                     arraymodify = _.where(JSON.parse(response.data[0]), { PaymentHist_ID: parseInt(stateParams.histryid === '0' || stateParams.histryid === 0 ? '' : stateParams.histryid) });
                     if (arraymodify.length === 0) {
                         model.custobj = JSON.parse(response.data[0])[0];
@@ -89,7 +84,6 @@
                         model.custobj = arraymodify[0];
                         model.paymentpoints = parseInt(model.custobj.CasteID) === 402 ? app.kammaPaymentPoints : app.paymentPoints;
                         model.paymentDays = parseInt(model.custobj.CasteID) === 402 ? app.kammaPaymentDays : app.PaymentDays;
-
                         model.showOfferDetails(model.custobj.Price, 'pageload', model.custobj.Expirydate);
                         model.PiObj.txtAgreedAmt = model.custobj.AgreedAmount;
                         model.PiObj.txtAmountPaid = model.custobj.Price;
@@ -97,14 +91,14 @@
                         model.PiObj.txtpayDescription = model.custobj.MemberShipDescription;
                         model.PiObj.txtSettlementAmount = model.custobj.SettlementAmount ? model.custobj.SettlementAmount : '';
                         if (parseInt(stateParams.paymentID) === 0) {
-                            // model.PiObj.txtAgreedAmt = '';
+                            model.PiObj.txtAgreedAmt = '';
                             model.PiObj.txtAmountPaid = '';
+                            model.PiObj.txtpayDescription = '';
                         }
                     }
                 }
             });
         };
-
         model.PaidAmtChange = function(paidAmt, agreeAmt) {
             if (agreeAmt === '' || agreeAmt === undefined) {
                 model.PiObj.txtAmountPaid = '';
@@ -118,28 +112,48 @@
                     model.showOfferDetails(paidAmt, 'Paid', model.custobj.Expirydate);
                 }
                 var num = paidAmt * model.paymentDays;
-                model.ExpiryDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
+                num = num <= 7 ? 7 : num;
+                model.ExpiryDate = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
+                var olddate = moment(model.custobj.Expirydate).format('MM-DD-YYYY');
+                var curdate = moment().format('MM-DD-YYYY');
 
                 if (model.custobj.Expirydate) {
-                    model.ExpiryDaterev = moment(model.custobj.Expirydate).add(parseInt(num), 'days').format('MM-DD-YYYY');
-
+                    var datebool = moment(curdate).isSame(olddate);
+                    if (datebool || (moment(olddate).isBefore(curdate))) {
+                        model.StartDateparam = curdate;
+                        model.endDateparam = moment(curdate).add(7, 'days').format('MM-DD-YYYY');
+                        model.ExpiryDaterev = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
+                    } else {
+                        model.StartDateparam = olddate;
+                        model.endDateparam = moment(olddate).add(7, 'days').format('MM-DD-YYYY');
+                        model.ExpiryDaterev = moment(model.custobj.Expirydate).add(parseInt(num), 'days').format('MM-DD-YYYY');
+                    }
                 } else {
+                    model.StartDateparam = curdate;
+                    model.endDateparam = moment().add(7, 'days').format('MM-DD-YYYY');
                     model.ExpiryDaterev = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
                 }
-
                 model.noofDays = num;
             }
         };
         model.showOfferDetails = function(Amt, type, expiryDate) {
             if (Amt !== undefined && Amt !== '') {
                 var num = Amt * model.paymentDays;
+                num = num <= 7 ? 7 : num;
                 model.strAmt = Amt;
-
-                if (expiryDate && type === 'pageload') {
+                if (expiryDate && type === 'pageload' && parseInt(stateParams.paymentID) !== 0) {
                     model.strDate = moment(expiryDate).format('DD-MM-YYYY');
                 } else if (expiryDate && type !== 'pageload') {
-                    model.strDate = moment(expiryDate).add(parseInt(num), 'days').format('DD-MM-YYYY');
-                } else {
+                    var olddate = moment(expiryDate).format('MM-DD-YYYY');
+                    var curdate = moment().format('MM-DD-YYYY');
+                    var datebool = moment(curdate).isSame(olddate);
+                    if (datebool || (moment(olddate).isBefore(curdate))) {
+                        model.strDate = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
+                    } else {
+                        model.strDate = moment(expiryDate).add(parseInt(num), 'days').format('MM-DD-YYYY');
+                    }
+                    model.strDate = moment(model.strDate).format('DD-MM-YYYY');
+                } else if (parseInt(stateParams.paymentID) !== 0) {
                     model.strDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
                 }
 
@@ -173,7 +187,6 @@
             model.scope.paymentForm.$setUntouched();
         };
         return model;
-
     }
     angular
         .module('Kaakateeya')

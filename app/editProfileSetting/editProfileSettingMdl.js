@@ -260,7 +260,7 @@
             { "label": "C", "title": "C", "value": 3 }
         ];
 
-        return model.init();
+        return model;
     }
     angular
         .module('Kaakateeya')

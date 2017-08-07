@@ -4,8 +4,8 @@
 
     angular
         .module('Kaakateeya')
-        .factory('topheadermodel', ['$http', 'authSvc', 'modelpopupopenmethod', '$state', function(http, authSvc,
-            modelpopupopenmethod, $state) {
+        .factory('topheadermodel', ['$http', 'authSvc', 'modelpopupopenmethod', '$state', 'alert', function(http, authSvc,
+            modelpopupopenmethod, $state, alerts) {
             var model = {};
             model.lock = false;
             model.CurrentDate = new Date();
@@ -18,10 +18,9 @@
                 //pageload Callings
                 model.name = authSvc.LoginEmpName();
                 model.empphoto = authSvc.empphoto();
-                modelpopupopenmethod.getEmployeeLoginCoutDetails().then(function(response) {
-                    debugger;
-                    model.logincounts = JSON.parse(response.data[0]);
-                });
+                // modelpopupopenmethod.getEmployeeLoginCoutDetails().then(function(response) {
+                //     model.logincounts = JSON.parse(response.data[0]);
+                // });
                 model.usernameemployeeid = sessionStorage.getItem("usernameemployeeid");
                 return model;
             };
@@ -49,6 +48,7 @@
                                 model.loginarray = response.data.m_Item1;
                                 model.empphoto = response.data.m_Item1.EmpPhotoPath;
                                 authSvc.user(response.data.m_Item1);
+                                //sessionStorage.setItem("usernameemployeeid", model.loginsubmit.usernameemployee);
                                 modelpopupopenmethod.closepopuppoptopopup();
                                 break;
                             case 0:
@@ -96,9 +96,58 @@
             };
             model.changepassword = function(form) {
 
+                modelpopupopenmethod.getChangeEmployeePassword(model.empid, form.model.currentpassword, form.model.confirmpassword).then(function(response) {
+
+                    if (parseInt(response.data) === 1) {
+                        alerts.timeoutoldalerts(model.scope, 'alert-success', 'Password Changed Successfully', 3000);
+                        modelpopupopenmethod.closepopuppoptopopup();
+                        model.currentpassword = "";
+                        model.newpassword = "";
+                        model.confirmpassword = "";
+                        model.logout();
+                    } else {
+                        alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Password Changed Fail', 3000);
+                    }
+                });
+            };
+            model.chkpassword = function(password) {
+                if (password !== "" && password !== null && password !== undefined) {
+                    modelpopupopenmethod.getCheckemployeePassord(model.empid, password).then(function(response) {
+                        if (parseInt(response.data) === 1) {} else {
+                            model.currentpassword = "";
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'please Enter valid Password', 3000);
+                        }
+                    });
+                }
             };
             model.changepasswordpopup = function() {
                 modelpopupopenmethod.showPopupphotopoup('changepassword.html', model.scope, 'md', "modalclassdashboardphotopopuplogin");
+            };
+
+            model.hideshowunpaid = function() {
+                model.unpaidmember = !model.unpaidmember;
+                if (model.unpaidmember)
+                    model.getpresentunpaidmembers();
+            };
+            model.getpresentunpaidmembers = function() {
+                modelpopupopenmethod.getpresentunpaidmembers(model.empid).then(function(response) {
+
+                    if (response.data !== undefined && response.data !== "" && response.data !== null && response.data[0] !== undefined && response.data[0].length > 0) {
+                        model.presentunpaidmembersarray = [];
+                        model.presentunpaidmembersarray = response.data[0];
+
+                    } else {
+                        model.presentunpaidmembersarray = [];
+                        model.presentunpaidmembersarray.push("No data Found");
+                    }
+                });
+            };
+            model.closealert = function(index) {
+                model.presentunpaidmembersarray.splice(index, 1);
+            };
+            model.ticketpopupunpaid = function(ticketid) {
+                model.unpaidticket = ticketid;
+                modelpopupopenmethod.showPopupphotopoup('unpaidmarket.html', model.scope, 'md', "modalclassdashboardphotopopup");
             };
             return model.init();
         }]);

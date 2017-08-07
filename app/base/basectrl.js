@@ -34,8 +34,6 @@
              return color;
          };
 
-
-
          vm.init();
      }
      angular

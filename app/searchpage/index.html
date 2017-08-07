@@ -151,6 +151,16 @@
                                                             </md-radio-group>
                                                         </div>
                                                     </div>
+                                                    <div class="col-lg-4" ng-if="item.controlType==='intercaste'">
+                                                        <p>{{item.labelName}}</p>
+                                                        <div class="controls clearfix">
+                                                            <md-radio-group layout="row" class="md-block" flex-gt-sm ng-model="page.model[item.ngModel]">
+                                                                <md-radio-button value="1" class="md-primary"> Yes</md-radio-button>
+                                                                <md-radio-button value="0"> No </md-radio-button>
+                                                                </md-radio-button>
+                                                            </md-radio-group>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-lg-3" ng-if="item.controlType==='textproperty'">
                                                         <p>{{item.labelName}}</p>
                                                         <div class="controls clearfix">
@@ -347,6 +357,7 @@
 <script type="text/ng-template" id="shortlistpopup.html">
    <div class="modal-header alert alert-warning">
       <h2>Shortlist Conflict</h2>
+      </div>
        <input type="hidden" ng-model="page.model.shortlistprofileids" />
             <div class="modal-body">
                 <div>                 
@@ -362,7 +373,7 @@
              <md-button  class='md-raised md-hue-1' ng-click='page.model.close()'>Cancel</md-button>
               </div>
            </div>
-        </div>
+        
 </script>
 <script type="text/ng-template" id="TabClosePopup.html">
     <div class="modal-message modal-danger">
@@ -379,7 +390,7 @@
 </script>
 <script type="text/ng-template" id="mainShortListProfiles.html">
          <div class="modal-body">
-          <complex-slide config="page.model.config.shortlistmodel"  model="page.model" ></complex-slide>
+          <complex-slide config="page.model.config.shortlistmodel"  model="page.model"></complex-slide>
            <div class="clearfix"></div>
        </div>
     </script>

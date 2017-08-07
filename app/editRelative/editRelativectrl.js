@@ -9,10 +9,6 @@
              vm.model = editRelativeModel.init();
              vm.model.scope = scope;
          };
-         //  $rootScope.$watch('ProfileOwner', function(newval, old) {
-         //      model.isprofileOwner = newval ? parseInt(newval) === parseInt(model.empid) : false;
-         //  });
-
 
          $rootScope.$watchGroup(['ProfileOwner', 'EditProfilePaidStatus'], function(newval, old) {
              if (newval)

@@ -20,13 +20,13 @@
                 <div class="col-lg-4 form-group">
                     <label for="All Phones" class="control-label">All Phones</label>
                     <div>
-                        <input type="text" class="form-control" maxlength="10" allow-only-numbers focus-me="true" ng-model="page.model.txtAllPhones">
+                        <input type="text" class="form-control" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)" maxlength="10" allow-only-numbers focus-me="true" ng-model="page.model.txtAllPhones">
                     </div>
                 </div>
                 <div class="col-lg-4 form-group">
                     <label for="All Emails" class="control-label">All Emails</label>
                     <div>
-                        <input type="text" class="form-control" ng-model="page.model.txtAllEmails">
+                        <input type="text" class="form-control" ng-model="page.model.txtAllEmails" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
                     </div>
                 </div>
                 <div class="col-lg-4 form-group">
@@ -42,19 +42,19 @@
                 <div class="col-lg-4 form-group">
                     <label for="FF/MF NATIVE" class="control-label">FF/MF NATIVE</label>
                     <div>
-                        <input type="text" class="form-control col-lg-4" ng-model="page.model.txtFFMFNATIVE">
+                        <input type="text" class="form-control col-lg-4" ng-model="page.model.txtFFMFNATIVE" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
                     </div>
                 </div>
                 <div class="col-lg-4 form-group">
                     <label for="FatherName" class="control-label">Father Name</label>
                     <div>
-                        <input type="text" class="form-control" ng-model="page.model.txtFatherName">
+                        <input type="text" class="form-control" ng-model="page.model.txtFatherName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
                     </div>
                 </div>
                 <div class="col-lg-4 form-group">
                     <label for="MotherName" class="control-label">Mother Name</label>
                     <div>
-                        <input type="text" class="form-control" ng-model="page.model.txtMotherName">
+                        <input type="text" class="form-control" ng-model="page.model.txtMotherName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
                     </div>
                 </div>
             </div>
@@ -63,19 +63,19 @@
                 <div class="col-lg-4 form-group">
                     <label for="FF Name" class="control-label">FF Name</label>
                     <div>
-                        <input type="text" class="form-control" ng-model="page.model.txtFFName">
+                        <input type="text" class="form-control" ng-model="page.model.txtFFName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
                     </div>
                 </div>
                 <div class="col-lg-4 form-group">
                     <label for="MF SurName" class="control-label">MF SurName</label>
                     <div>
-                        <input type="text" class="form-control" ng-model="page.model.txtMFSurName">
+                        <input type="text" class="form-control" ng-model="page.model.txtMFSurName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
                     </div>
                 </div>
                 <div class="col-lg-4 form-group">
                     <label for="MF Name" class="control-label">MF Name</label>
                     <div>
-                        <input type="text" class="form-control" ng-model="page.model.txtMFName">
+                        <input type="text" class="form-control" ng-model="page.model.txtMFName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
                     </div>
                 </div>
 
@@ -85,13 +85,13 @@
                 <div class="col-lg-4 form-group">
                     <label for="C/F/FF SurName" class="control-label">C/F/FF SurName</label>
                     <div>
-                        <input type="text" class="form-control" ng-model="page.model.txtCFFFSurName">
+                        <input type="text" class="form-control" ng-model="page.model.txtCFFFSurName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
                     </div>
                 </div>
                 <div class="col-lg-4 form-group">
                     <label for="C Name" class="control-label">C Name</label>
                     <div>
-                        <input type="text" class="form-control" ng-model="page.model.txtCName">
+                        <input type="text" class="form-control" ng-model="page.model.txtCName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
                     </div>
                 </div>
                 <div class="col-lg-4 form-group">

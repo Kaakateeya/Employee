@@ -8,7 +8,7 @@
         </div>
         <br />
         <div class="regmain register_page_main">
-            <form name="ExpressintrstForm" novalidate role="form" ng-submit="ExpressintrstForm.$valid && page.model.Submit(page.model.exiObj);">
+            <form name="ExpressintrstForm" role="form" ng-submit="ExpressintrstForm.$valid && page.model.Submit(page.model.exiObj);">
                 <div class="maindivCls">
                     <div ng-if="page.model.showHide==1">
 
@@ -52,7 +52,7 @@
                                 <label for="" class="control-label pull-right requiredStar">From profile ID</label>
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" name="txtFromprofileID" ng-disabled="page.model.disableinput" style="width:111%;" focus-me="true" ng-model="page.model.exiObj.txtFromprofileID" class="form-control" ng-keyup="$event.keyCode===13 && page.model.FromProfileID(page.model.exiObj.txtFromprofileID);"
+                                <input type="text" name="txtFromprofileID" enter-directive ng-disabled="page.model.disableinput" style="width:111%;" focus-me="true" ng-model="page.model.exiObj.txtFromprofileID" class="form-control" ng-keyup="$event.keyCode===13 && page.model.FromProfileID(page.model.exiObj.txtFromprofileID);"
                                     ng-blur="page.model.FromProfileID(page.model.exiObj.txtFromprofileID);" required/>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                                 <label for="" class="control-label pull-right requiredStar">To profile ID</label>
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" style="width:111%;" ng-model="page.model.exiObj.txtToprofileID" class="form-control" ng-blur="page.model.ToprofileIDChange(page.model.exiObj.txtToprofileID);">
+                                <input type="text" style="width:111%;" name="txttoexprofileID" enter-directive ng-model="page.model.exiObj.txtToprofileID" class="form-control" ng-keyup="$event.keyCode===13 && page.model.ToprofileIDChange(page.model.exiObj.txtToprofileID);" ng-blur="page.model.ToprofileIDChange(page.model.exiObj.txtToprofileID);">
                             </div>
                         </div>
                     </div>

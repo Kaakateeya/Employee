@@ -12,7 +12,6 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ui.date', 'ng-clipboard', 'anguFixedHeaderTable', 'bsTable'
 ]);
 
-
 // app.apiroot = 'http://52.66.131.254:8025/Api/';
 // app.apipathold = 'http://52.66.131.254:8010/Api/';
 app.apiroot = 'http://183.82.0.58:8025/Api/';
@@ -50,7 +49,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'dashboard', name: 'base.dashboard', url: '/dashboardpage', isloginrequired: true, module: 'dashboard' },
             { routeName: 'searchpage', name: 'base.searchpage', url: '/search/:id/:Profileid', isloginrequired: true, reload: true },
             { routeName: 'editViewprofile', name: 'base.editViewprofile', url: '/editViewprofileurl', isloginrequired: true },
-            { routeName: 'EmployeePayment', name: 'base.EmployeePayment', url: '/EmployeePayments', isloginrequired: true },
+            { routeName: 'EmployeePayment', name: 'base.EmployeePayment', url: '/EmployeePayments' },
             { routeName: 'EmployeePaymentInsert', name: 'base.EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID/:status/:paymentID/:histryid', isloginrequired: true },
             { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofile', url: '/Viewfullprofile/:ProfileID/:contacts', isloginrequired: true },
             { routeName: 'expressInterest', name: 'base.expressInterest', url: '/expressInterestpage', isloginrequired: true },
@@ -61,33 +60,43 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'secondaryRegistration', name: 'base.secondaryRegistration', url: '/secondaryReg/:CustID/:ProfileID/:fn/:ln/:countryID/:genderID', isloginrequired: true },
             { routeName: 'regManagePhoto', name: 'base.regManagePhoto', url: '/ManagePhoto/:CustID/:ProfileID/:genderID', isloginrequired: true },
             { routeName: 'editEducation', name: 'base.editEducation', url: '/Education/:CustID', isloginrequired: true },
-            { routeName: 'editManagePhoto', name: 'base.editManagePhoto', url: '/ManagePhoto/:CustID' },
-            { routeName: 'editParent', name: 'base.editParent', url: '/Parent/:CustID' },
-            { routeName: 'editPartnerpreference', name: 'base.editPartnerpreference', url: '/Partnerpreference/:CustID' },
-            { routeName: 'editSibbling', name: 'base.editSibbling', url: '/Sibbling/:CustID' },
+            { routeName: 'editManagePhoto', name: 'base.editManagePhoto', url: '/ManagePhoto/:CustID', isloginrequired: true },
+            { routeName: 'editParent', name: 'base.editParent', url: '/Parent/:CustID', isloginrequired: true },
+            { routeName: 'editPartnerpreference', name: 'base.editPartnerpreference', url: '/Partnerpreference/:CustID', isloginrequired: true },
+            { routeName: 'editSibbling', name: 'base.editSibbling', url: '/Sibbling/:CustID', isloginrequired: true },
             { routeName: 'editAstro', name: 'base.editAstro', url: '/Astro/:CustID', subname: ['common/services/fileUploadSevice.js', 'common/directives/fileUploadDirective.js'] },
-            { routeName: 'editProperty', name: 'base.editProperty', url: '/Property/:CustID' },
-            { routeName: 'editRelative', name: 'base.editRelative', url: '/Relative/:CustID' },
-            { routeName: 'editReference', name: 'base.editReference', url: '/Reference/:CustID' },
-            { routeName: 'editSpouse', name: 'base.editSpouse', url: '/Spouse/:CustID', subname: ['common/directives/datePickerDirective.js'] },
-            { routeName: 'editContact', name: 'base.editContact', url: '/Contact/:CustID' },
-            { routeName: 'editOfcePurpose', name: 'base.editOfcePurpose', url: '/OfcePurpose/:CustID' },
-            { routeName: 'editProfileSetting', name: 'base.editProfileSetting', url: '/ProfileSetting/:CustID' },
-            { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID/:contacts', subname: ['directives/divPrint.js'] },
-            { routeName: 'registrationValidation', name: 'base.registrationValidation', url: '/registrationValidations' },
+            { routeName: 'editProperty', name: 'base.editProperty', url: '/Property/:CustID', isloginrequired: true },
+            { routeName: 'editRelative', name: 'base.editRelative', url: '/Relative/:CustID', isloginrequired: true },
+            { routeName: 'editReference', name: 'base.editReference', url: '/Reference/:CustID', isloginrequired: true },
+            { routeName: 'editSpouse', name: 'base.editSpouse', url: '/Spouse/:CustID', isloginrequired: true, subname: ['common/directives/datePickerDirective.js'] },
+            { routeName: 'editContact', name: 'base.editContact', url: '/Contact/:CustID', isloginrequired: true },
+            { routeName: 'editOfcePurpose', name: 'base.editOfcePurpose', url: '/OfcePurpose/:CustID', isloginrequired: true },
+            { routeName: 'editProfileSetting', name: 'base.editProfileSetting', url: '/ProfileSetting/:CustID', isloginrequired: true },
+            { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID/:contacts', isloginrequired: true, subname: ['directives/divPrint.js'] },
+            { routeName: 'registrationValidation', name: 'base.registrationValidation', url: '/registrationValidations', isloginrequired: true },
             { routeName: 'communicationLog', name: 'base.communicationLog', url: '/communicationLogs', isloginrequired: true },
             { routeName: 'uploadSettlementForm', name: 'base.uploadSettlementForm', url: '/uploadSettlementFormPage', isloginrequired: true },
             { routeName: 'viewSettlementform', name: 'base.viewSettlementform', url: '/viewSettlementforms', isloginrequired: true },
             { routeName: 'serviceSlideShow', name: 'base.serviceSlideShow', url: '/serviceSlideShows', isloginrequired: true },
             { routeName: 'settleDeleteProfile', name: 'base.settleDeleteProfile', url: '/settleDeleteProfilePage', isloginrequired: true },
-            { routeName: 'paymentOffersAssign', name: 'base.paymentOffersAssign', url: '/paymentOffersAssignPage', isloginrequired: true },
+            // { routeName: 'paymentOffersAssign', name: 'base.paymentOffersAssign', url: '/paymentOffersAssignPage', isloginrequired: true },
             { routeName: 'assignSettings', name: 'base.assignSettings', url: '/assignSetting', isloginrequired: true },
-            { routeName: 'employeeViewfullprofilePrintchk', name: 'base.employeeViewfullprofilePrintchk', url: '/employeeViewfullprofileschk/:ProfileID/:contacts', subname: ['directives/divPrint.js'] },
-            { routeName: 'paymentAuthorization', name: 'base.paymentAuthorization', url: '/paymentAuthorizationpage' },
-            { routeName: 'oldPaymenttable', name: 'base.oldPaymenttable', url: '/oldPaymenttables' },
-            { routeName: 'reviewPendinrReports', name: 'base.reviewPendinrReports', url: '/reviewPendinrReport' },
-            { routeName: 'ticketCreation', name: 'base.ticketCreation', url: '/ticketCreationpage' },
-            { routeName: 'updateMacAdress', name: 'base.updateMacAdress', url: '/updateMacAdresspage' }
+            { routeName: 'employeeViewfullprofilePrintchk', name: 'base.employeeViewfullprofilePrintchk', isloginrequired: true, url: '/employeeViewfullprofileschk/:ProfileID/:contacts', subname: ['directives/divPrint.js'] },
+            { routeName: 'paymentAuthorization', name: 'base.paymentAuthorization', url: '/paymentAuthorizationpage', isloginrequired: true },
+            { routeName: 'oldPaymenttable', name: 'base.oldPaymenttable', url: '/oldPaymenttables', isloginrequired: true },
+            { routeName: 'reviewPendinrReports', name: 'base.reviewPendinrReports', url: '/reviewPendinrReport', isloginrequired: true },
+            { routeName: 'ticketCreation', name: 'base.ticketCreation', url: '/ticketCreationpage', isloginrequired: true },
+            { routeName: 'updateMacAdress', name: 'base.updateMacAdress', url: '/updateMacAdresspage', isloginrequired: true },
+            { routeName: 'customerMessagesverification', name: 'base.customerMessagesverification', url: '/customerMessagesverificationpage', isloginrequired: true },
+            { routeName: 'marketingticketverification', name: 'base.marketingticketverification', url: '/marketingticketverificationpage', isloginrequired: true },
+            { routeName: 'emailbounceEntryform', name: 'base.emailbounceEntryform', url: '/emailbounceEntryformpage', isloginrequired: true },
+            { routeName: 'matchMeetingEntryForm', name: 'base.matchMeetingEntryForm', url: '/matchMeetingEntryFormPage', isloginrequired: true },
+            { routeName: 'paymentdetailsReport', name: 'base.paymentdetailsReport', url: '/paymentdetailsReportpage', isloginrequired: true },
+            { routeName: 'brokerEntryForm', name: 'base.brokerEntryForm', url: '/brokerEntryFormpage', isloginrequired: true },
+            { routeName: 'brokerProfileRegistration', name: 'base.brokerProfileRegistration', url: '/brokerProfileRegistrationpage', isloginrequired: true },
+            { routeName: 'myAssignedPhotos', name: 'base.myAssignedPhotos', url: '/myAssignedPhotosPage', isloginrequired: true },
+            { routeName: 'unAssignedPhotos', name: 'base.unAssignedPhotos', url: '/unAssignedPhotosPage', isloginrequired: true },
+            { routeName: 'paymentOffersAssignnew', name: 'base.paymentOffersAssignnew', url: '/paymentOffersAssignPage', isloginrequired: true }
 
         ];
         $ocLazyLoadProvider.config({
@@ -114,6 +123,16 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     ]
                 },
                 {
+                    name: 'complex-grid-new',
+                    files: [
+                        'directives/complex-grid-new/directive.js',
+                        'directives/complex-grid-new/model/config.js',
+                        'src/js/alasql.js',
+                        'src/js/xlsx.js',
+                        'directives/complex-grid-new/css/style.css'
+                    ]
+                },
+                {
                     name: 'complex-slide',
                     files: [
                         'directives/complex-slide/directive.js',
@@ -134,11 +153,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     files: [
                         'common/services/modalPopupmethods.js',
                         'common/services/errorInterceptor.js',
-                        'common/services/authSvc.js',
                         'common/services/serviceBind.js',
                         'common/services/dependencyservices.js',
                         'common/services/getArray.js',
-                        'common/services/helpService.js',
                         'common/services/route.js',
                         'common/services/getArrayService.js',
                         'common/services/selectBindServices.js',
@@ -148,7 +165,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'common/models/headermodel.js',
                         'common/controllers/topheaderctrl.js',
                         'common/controllers/LoaderCtrl.js'
-
+                        // 'common/models/countryArrayModel.js',
+                        // 'common/models/eduprofArrayModel.js',
+                        // 'common/models/otherArrayModel.js'
                     ]
                 },
                 {
@@ -181,7 +200,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/fixedHeader.js',
                         'directives/allowOnlyNumbers.js',
                         'directives/allowAdminManagement.js',
-                        'directives/comparePassword.js'
+                        'directives/comparePassword.js',
+                        'directives/avoidFormsubmit.js'
                     ]
                 },
                 {
@@ -259,6 +279,22 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/norecordsalert-popup/service/svc.js',
                         'directives/norecordsalert-popup/directive.js'
                     ]
+                },
+                {
+                    name: 'payment-editpointsdate',
+                    files: [
+                        'directives/payment-editpointsdate/css/style.css',
+                        'directives/payment-editpointsdate/model/config.js',
+                        'directives/payment-editpointsdate/service/svc.js',
+                        'directives/payment-editpointsdate/directive.js'
+                    ]
+                },
+                {
+                    name: 'auth',
+                    files: [
+                        'common/services/authSvc.js',
+                        'common/services/helpService.js',
+                    ]
                 }
             ]
         });
@@ -266,21 +302,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
         $stateProvider.state('base', {
             abstract: true,
             resolve: {
-                loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    $ocLazyLoad.load('constants');
-                    $ocLazyLoad.load('commonjs');
-                    $ocLazyLoad.load('directives');
-                    $ocLazyLoad.load('modules');
-                    $ocLazyLoad.load('complex-grid');
-                    $ocLazyLoad.load('complex-slide');
-                    $ocLazyLoad.load('Expressintrst');
-                    $ocLazyLoad.load('marketing-slide');
-                    $ocLazyLoad.load('matchfollowup-ticket');
-                    $ocLazyLoad.load('EditSideMenu-base');
-                    $ocLazyLoad.load('EditSlide-popup');
-                    $ocLazyLoad.load('single-grid');
-                    $ocLazyLoad.load('properties');
-                    $ocLazyLoad.load('norecordsalert-popup');
+                loadMyCtrl: ['$ocLazyLoad', '$timeout', function($ocLazyLoad, timeout) {
+                    $ocLazyLoad.load('auth');
+                    //  timeout(function() {
+                    loadmodules($ocLazyLoad);
+                    // }, 1500);
                 }]
             }
         });
@@ -301,19 +327,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             views: innerView,
             resolve: {
                 loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    $ocLazyLoad.load('commonjs');
-                    $ocLazyLoad.load('directives');
-                    $ocLazyLoad.load('constants');
-                    $ocLazyLoad.load('modules');
-                    $ocLazyLoad.load('complex-grid');
-                    $ocLazyLoad.load('complex-slide');
-                    $ocLazyLoad.load('Expressintrst');
-                    $ocLazyLoad.load('marketing-slide');
-                    $ocLazyLoad.load('matchfollowup-ticket');
-                    $ocLazyLoad.load('EditSideMenu-base');
-                    $ocLazyLoad.load('EditSlide-popup');
-                    $ocLazyLoad.load('properties');
-                    $ocLazyLoad.load('norecordsalert-popup');
+                    loadmodules($ocLazyLoad);
                 }]
             }
         });
@@ -348,10 +362,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     // Any property in resolve should return a promise and is executed before the view is loaded
                     loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                         // you can lazy load files for an existing module
+
                         if (app.env === "dev") {
                             if (item.module !== undefined) {
                                 $ocLazyLoad.load(item.module);
                             }
+                            // if (item.routeName !== 'login') {
+                            //     loadmodules($ocLazyLoad);
+                            // }
+
                             return $ocLazyLoad.load([
                                 'app/' + item.routeName + '/style.css',
                                 'app/' + item.routeName + '/' + item.routeName + 'ctrl.js',
@@ -394,3 +413,23 @@ app.run(function($rootScope, $state, $stateParams) {
         }
     });
 });
+
+
+function loadmodules($ocLazyLoad) {
+    $ocLazyLoad.load('constants');
+    $ocLazyLoad.load('commonjs');
+    $ocLazyLoad.load('directives');
+    $ocLazyLoad.load('modules');
+    $ocLazyLoad.load('complex-grid');
+    $ocLazyLoad.load('complex-grid-new');
+    $ocLazyLoad.load('complex-slide');
+    $ocLazyLoad.load('Expressintrst');
+    $ocLazyLoad.load('marketing-slide');
+    $ocLazyLoad.load('matchfollowup-ticket');
+    $ocLazyLoad.load('EditSideMenu-base');
+    $ocLazyLoad.load('EditSlide-popup');
+    $ocLazyLoad.load('single-grid');
+    $ocLazyLoad.load('properties');
+    $ocLazyLoad.load('norecordsalert-popup');
+    $ocLazyLoad.load('payment-editpointsdate');
+}

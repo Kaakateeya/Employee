@@ -2,7 +2,7 @@
     'use strict';
 
 
-    function factory(editContactService, authSvc, alertss, commonFactory, uibModal, stateParams) {
+    function factory(editContactService, authSvc, alertss, commonFactory, uibModal, stateParams, SelectBindServicereg) {
         var model = {};
         model.scope = {};
 
@@ -323,11 +323,11 @@
                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please Enter Valid Verification code', 4500);
             }
         };
-        return model.init();
+        return model;
     }
     angular
         .module('Kaakateeya')
         .factory('editContactModel', factory);
 
-    factory.$inject = ['editContactService', 'authSvc', 'alert', 'commonFactory', '$uibModal', '$stateParams'];
+    factory.$inject = ['editContactService', 'authSvc', 'alert', 'commonFactory', '$uibModal', '$stateParams', 'SelectBindServicereg'];
 })(angular);

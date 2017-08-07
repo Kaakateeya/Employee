@@ -1,4 +1,4 @@
-<div ng-show="model.headervisileble">
+<div ng-keydown="keypress($event)" ng-show="model.headervisileble">
     <div ng-include="config.headettemp">
     </div>
     <div uib-carousel active="activeslide" interval="myInterval" no-wrap="noWrapSlides" carousel-controls>
@@ -17,6 +17,7 @@
     <div class="clearfix"></div>
     <br>
 </div>
+
 <script type="text/ng-template" id="dynamicphotopopup.html">
     <div class="modal-content">
         <div class="modal-header">

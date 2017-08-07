@@ -1,13 +1,16 @@
-  .hdrsettleCls {
-      font-size: 18px;
-      color: #a00201;
-  }
-  
-  .maincls {
-      border: 1px solid #cecece;
-      padding: 1%;
-      border-radius: 12px;
-      box-shadow: 2px 2px 6px #ccc;
-      line-height: 40px;
-      padding-left: 4%;
-  }
+.hdrsettleCls {
+    font-size: 18px;
+    color: #a00201;
+}
+
+.maincls {
+    border: 1px solid #cecece;
+    padding: 1%;
+    border-radius: 12px;
+    box-shadow: 2px 2px 6px #ccc;
+    line-height: 40px;
+    padding-left: 4%;
+}
+
+
+/*# sourceMappingURL=style.css.map */

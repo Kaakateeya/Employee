@@ -16,6 +16,11 @@
             },
             submitAuthorization: function(obj) {
                 return http.post(app.apiroot + 'Payment/setPaymentAuthorization', obj);
+            },
+            checkmarketingTicket: function(ticetID) {
+                return http.get(app.apiroot + 'smallPages/GetcheckMarketingTicket', {
+                    params: { ticketID: ticetID }
+                });
             }
         };
     }

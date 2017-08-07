@@ -71,10 +71,14 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         _.each(response.data, function(item) {
                             $scope.slidephotos.push(item);
                         });
-                        modelpopupopenmethod.showPopupphotopoup('dynamicphotopopup.html', $scope, '', "modalclassdashboardphotopopup");
+                        if ($scope.photopopupflag !== 1) {
+                            $scope.photopopupflag = 1;
+                            modelpopupopenmethod.showPopupphotopoup('dynamicphotopopup.html', $scope, '', "modalclassdashboardphotopopup");
+                        }
                     });
                 };
                 $scope.config.close = function() {
+                    $scope.photopopupflag = 0;
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
                 $scope.horoscopeimage = function(image, type) {
@@ -288,6 +292,28 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
 
                 $scope.communicationlogredirect = function(Profileid) {
                     window.open('/communicationLogs?Profileid=' + Profileid, '_blank');
+                };
+                $scope.keypress = function($event) {
+                    var keyCode = $event.which || $event.keyCode;
+                    // var keyCode = e.keyCode || e.which;
+                    var arrow = { left: 37, up: 38, right: 39, down: 40, space: 32 };
+                    switch (keyCode) {
+                        case arrow.left:
+                            $scope.activeslide = parseInt($scope.activeslide) - 1;
+                            break;
+                        case arrow.up:
+                            $scope.activeslide = parseInt($scope.activeslide) + 1;
+                            break;
+                        case arrow.right:
+                            $scope.activeslide = parseInt($scope.activeslide) + 1;
+                            break;
+                        case arrow.down:
+                            $scope.activeslide = parseInt($scope.activeslide) - 1;
+                            break;
+                        case arrow.space:
+                            $scope.pauseResume($scope.myInterval === 0 ? 'play' : 'pause');
+                            break;
+                    }
                 };
             }
         };

@@ -10,7 +10,9 @@
                          <span><img src="src/images/ico_horoscope.jpg" alt=""></span>--Horo &nbsp;
                     <!--<span class="red">OU</span>--Online-Unpaid &nbsp;
                     <span class="red">KU</span>--Kmpl-Unpaid &nbsp; -->
-                    <span class="greentext">OP</span>--Online-Paid &nbsp; <span class="greentext">KP</span>--Kmpl-Paid &nbsp; <span class="greentext">OR</span>--Online-Renew &nbsp; <span class="greentext">KR</span>-- Kmpl-Renew
+                    <!-- <span class="greentext">OP</span>--Online-Paid &nbsp; <span class="greentext">KP</span>--Kmpl-Paid &nbsp; <span class="greentext">OR</span>--Online-Renew &nbsp; <span class="greentext">KR</span>-- Kmpl-Renew -->
+                    <span class="red" style="height: 4px;width: 11px;background-color: red;">&nbsp;&nbsp;&nbsp;&nbsp;</span>--Unpaid &nbsp;
+                    <span class="green" style="height: 4px;width: 11px;background-color: green;">&nbsp;&nbsp;&nbsp;&nbsp;</span>--Paid &nbsp;
                     </span>
                 </uib-accordion-heading>
                 <div class="row">
@@ -283,13 +285,11 @@
         background-color: #f0f0cc !important;
     }
     
-    .HoroScopeImage {
-        width: 100px !important;
+    .headerStyles {
+        font-size: 16px;
+    }
+    
+    .AllLinks {
+        width: 400px !important;
     }
 </style>
-<script>
-    $('.pane-hScroll').scroll(function() {
-        debugger;
-        $('.pane-vScroll').width($('.pane-hScroll').width() + $('.pane-hScroll').scrollLeft());
-    });
-</script>

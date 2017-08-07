@@ -97,6 +97,7 @@
                         maxDate: null
                     };
                 };
+
                 model.allLinksTemplateDUrl = function(row) {
                     var stronlineliteclass = row.onlinepaidcls == "light" ? row.onlinepaidcls + ' Linkdisabled' : row.onlinepaidcls;
                     var strofflineliteclass = row.offlinepaidcls == "light" ? row.offlinepaidcls + ' Linkdisabled' : row.offlinepaidcls;
@@ -210,12 +211,7 @@
                         { text: 'SurName', key: 'FirstName', type: 'link', method: model.editviewRedirect },
                         { text: 'Caste', key: 'Caste', type: 'label' },
                         { text: 'RegistrationDate', key: 'RegistrationDate', type: 'label' },
-                        { text: 'RegistrationDate', key: 'RegistrationDate', type: 'label' },
-                        { text: 'RegistrationDate', key: 'RegistrationDate', type: 'label' },
-                        { text: 'RegistrationDate', key: 'RegistrationDate', type: 'label' },
-                        { text: 'RegistrationDate', key: 'RegistrationDate', type: 'label' },
-                        { text: 'RegistrationDate', key: 'RegistrationDate', type: 'label' },
-                        // { text: 'AllLinks', key: 'ProfileID', type: 'label' },
+                        { text: 'AllLinks', key: 'AllLinks', type: 'morelinks', templateUrl: model.allLinksTemplateDUrl },
                     ];
                     myProfileservice.getMyprofileSlide(inputobj).then(function(response) {
                         if (_.isArray(response.data) && response.data.length > 0) {
@@ -260,7 +256,10 @@
                                 model.slide.headervisileble = true;
                                 if (parseInt(from) === 1) {
                                     configslide.setSlides(response.data, model.topage, "myprofile");
-                                    modelpopupopenmethod.showPopup('myprofileSlide.html', model.scope, 'lg', "myprofileslide");
+                                    if (model.myprofileslideshowopenflag !== 1) {
+                                        model.myprofileslideshowopenflag = 1;
+                                        modelpopupopenmethod.showPopup('myprofileSlide.html', model.scope, 'lg', "myprofileslide");
+                                    }
                                 } else {
                                     configslide.addSlides(response.data, configslide.slides, parseInt(to), "myprofile");
                                 }
@@ -299,6 +298,7 @@
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
                 model.slide.closemainpopup = function() {
+                    model.myprofileslideshowopenflag = 0;
                     modelpopupopenmethod.closepopup();
                 };
                 model.destroy = function() {

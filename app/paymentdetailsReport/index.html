@@ -1,0 +1,225 @@
+<div class="right_col" role="main" id="paymentdetailsreports">
+    <div class="panel-group">
+        <div class="panel-collapse collapse in">
+            <div class="panel-default regValheader" style="margin-top: -12px;box-shadow: 2px 2px 6px #ccc;" is-open="page.model.opendiv">
+                <div class="panel-heading" style="color: rgb(160, 2, 1);border: 1px solid #ccc">
+                    <div class="row">
+                        <div class="col-lg-2" style="font-size: 14px;font-weight: 700;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
+                            <h4 style="width:200px;"> Payment Details Report <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+                            </h4>
+                        </div>
+                        <div class="col-lg-4" ng-hide="true">
+                            <label for="All Profileid" style="font-size: 15px;" class="classlabelverify col-lg-4">Profile ID</label>
+                            <div class="col-lg-6">
+                                <input maxlength="9" name="txtprofileidpaymentreport" type="text" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" class="form-control" style="width:180px" ng-model="page.model.txtprofileidpaymentreport"></input>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <!-- <label for="All Profileid" style="font-size: 14px;" class="classlabelverify col-lg-3">Gender </label> -->
+                            <div class="col-lg-10 rdnoptions">
+                                <md-radio-group ng-required="true" name="rbtngender" layout="row" ng-model="page.model.rbtngender" class="md-block" flex-gt-sm>
+                                    <md-radio-button value="0" class="md-primary">Both</md-radio-button>
+                                    <md-radio-button value="1"> Male</md-radio-button>
+                                    <md-radio-button value="2"> FeMale</md-radio-button>
+                                </md-radio-group>
+                            </div>
+                            <div class="col-lg-1">
+                                <img src="src\images\straightline.png" style="height: 33px;
+    margin: -5px;
+    color: maroon;"></img>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <!-- <label for="All Profileid" style="font-size: 14px;" class="classlabelverify col-lg-3">Region</label> -->
+                            <div class="col-lg-10 rdnoptions">
+                                <md-radio-group ng-required="true" name="rbtnregion" layout="row" ng-model="page.model.rbtnregion" class="md-block" flex-gt-sm>
+                                    <md-radio-button value="0" class="md-primary">All</md-radio-button>
+                                    <md-radio-button value="408"> AP </md-radio-button>
+                                    <md-radio-button value="409"> TN</md-radio-button>
+                                    <md-radio-button value="410"> KT</md-radio-button>
+                                </md-radio-group>
+
+                            </div>
+                            <div class="col-lg-1"> <img src="src\images\straightline.png" style="height: 33px;
+    margin: -5px;
+    color: maroon;"></img>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <!-- <label for="All Profileid" style="font-size: 14px;" class="classlabelverify col-lg-4">Payment type</label> -->
+                            <div class="col-lg-10 rdnoptions">
+                                <md-radio-group ng-required="true" name="rbtnpaymentstatus" layout="row" ng-model="page.model.rbtnpaymentstatus" class="md-block" flex-gt-sm>
+                                    <md-radio-button value="0" class="md-primary">Both</md-radio-button>
+                                    <md-radio-button value="236"> Registration</md-radio-button>
+                                    <md-radio-button value="237"> Renewal</md-radio-button>
+                                </md-radio-group>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="panel-body" ng-show="page.model.panelbodyhide" ng-show="page.model.panelbodyhide">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="All Profileid" class="classlabelverify">Payment from</label>
+                                <div style="color:black;">
+                                    <custom-datepicker style="width:240px" name="txtpaymentfrom" ng-class="page.model.txtpaymentfrom.trim()!=='' && model.txtpaymentto!==undefined &&  page.model.txtpaymentfrom!==null?'datepicker4':''" ng-model="page.model.txtpaymentfrom" date-options="page.model.dateOptions"></custom-datepicker>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="All Profileid" class="classlabelverify">Payment to</label>
+                                <div style="color:black;">
+                                    <custom-datepicker style="width:240px" name="txtpaymentto" ng-class="page.model.txtpaymentto.trim()!=='' && model.txtpaymentto!==undefined &&  page.model.txtpaymentto!==null?'datepicker4':''" ng-model="page.model.txtpaymentto" date-options="page.model.dateOptions"></custom-datepicker>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="All Profileid" class="classlabelverify">Branch</label>
+                                <div style="color:black;">
+                                    <select name="branchids" multiple class="smalldropdown col-lg-5" ng-options="item.value as item.label for item in page.model.Brancharray" ng-model="page.model.branchids" multiselectdropdown></select>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="All Profileid" class="classlabelverify">ModeOfPayment</label>
+                                <div style="color:black;">
+                                    <select name="rbtnModeOfPayment" class="smalldropdown col-lg-5" ng-options="item.value as item.label for item in page.model.modeofPaymentArr" ng-model="page.model.rbtnModeOfPayment" multiselectdropdown></select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="All Profileid" class="classlabelverify">Caste</label>
+                                <div style="color:black;">
+                                    <select name="casteids" class="smalldropdown col-lg-5" multiple typeofdata="'Caste'" ng-model="page.model.casteids" multiselectdropdown>   
+                                           </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="All Profileid" class="classlabelverify">Application status</label>
+                                <div style="color:black;">
+                                    <select name="ticketowner" class="smalldropdown col-lg-5" multiple ng-options="item.value as item.label for item in page.model.Applicationstatus" ng-model="page.model.ApplicationStatusid" multiselectdropdown>   
+                                           </select>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="All Profileid" class="classlabelverify">Paid amount from</label>
+                                <div style="color:black;">
+                                    <input name="fromamount" type="text" class="form-control" style="width:240px" ng-model="page.model.fromamount"></input>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="All Profileid" class="classlabelverify">Paid amount to</label>
+                                <div style="color:black;">
+                                    <input name="toamount" type="text" class="form-control" style="width:240px" ng-model="page.model.toamount"></input>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="All Profileid" class="classlabelverify"></label>
+                                <div style="color:black;">
+                                    <md-checkbox ng-model="page.model.isbalamount">
+                                        Is balance amount there?
+                                    </md-checkbox>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <label for="All Profileid" class="classlabelverify"></label>
+                                <div style="color:black;">
+                                    <md-checkbox ng-model="page.model.isconfidential">
+                                        Is confidential
+                                    </md-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="form-group text-center" style="border-top: 1px solid #ddd;padding-top: 1%;">
+                            <button class="button_custom" style="display:initial;" ng-click="page.model.paymentreports(1,100,'grid');">Submit</button>
+                            <input type="reset" class="button_custom button_custom_reset resetCls" value="Reset" ng-click="page.model.resetemailbounce()">
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div>
+        <complex-grid ng-show="page.model.data.length>0" model="page.model" config="page.model"></complex-grid>
+    </div>
+</div>
+<script type="text/ng-template" id="sendmessages.html">
+
+    <div class="modal-header" style="background-color: #fedc01;color: #880b0b;padding: 10px;font-size: 17px;">
+        <h4 class="col-lg-11 text-center">Send message</h4>
+        <a href="javascript:void(0);" class="pull-right" ng-click="page.model.closepopup();">
+            <span class="fa fa-close red" style="color: red;font-size: 17px;"></span>
+        </a>
+    </div>
+    <form id="formpaymentverify" name="formmessages" novalidate role="form" ng-submit="formmessages.$valid  && page.model.sentsmss(page.model);">
+        <div class="modal-body" style="padding:3px;">
+            <br>
+            <div class="row">
+                <div class="col-lg-3">
+                    <label>Category <span style="color: red; margin-left: 3px;">*</span></label>
+                </div>
+                <div class="col-lg-4">
+                    <select required="true" name="ddlcategory" class="smalldropdown col-lg-5" ng-options="item.value as item.label for item in page.model.categoryarray" ng-model="page.model.categoryid" multiselectdropdown>   
+                       </select>
+                    <div ng-messages="formmessages.ddlcategory.$invalid">
+                        <div style="color: red;font-size: 12px;" ng-if="formmessages.ddlcategory.$invalid && (formmessages.$submitted)">*This is required.</div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-3">
+                    <label>Message text <span style="color: red; margin-left: 3px;">*</span></label>
+                </div>
+                <div class="col-lg-4">
+                    <textarea class="form-control" style="width:350px;" required="true" name="txtmeassagestext" ng-model="page.model.txtmeassagestext" rows="3">   
+                     </textarea>
+                    <div ng-messages="formmessages.txtmeassagestext.$invalid">
+                        <div style="color: red;font-size: 12px;" ng-if="formmessages.txtmeassagestext.$invalid && (formmessages.$submitted)">*This is required.</div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <button type="submit" class="button_custom col-lg-3  col-lg-offset-3">Send Msg</button>
+                <md-button class='md-raised md-hue-1 col-lg-2' ng-click='page.model.closepopup()'>Cancel</md-button>
+            </div>
+            <br>
+        </div>
+    </form>
+
+</script>
+<style>
+    .datepicker3 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+        width: 240px !important;
+    }
+    
+    .datepicker4 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+        background-color: #f0f0cc !important;
+        width: 240px !important;
+    }
+    
+    div#ui-datepicker-div {
+        z-index: 9999999;
+    }
+    
+    md-radio-group.layout-row md-radio-button {
+        margin: 0 4px 0 0!important;
+    }
+</style>

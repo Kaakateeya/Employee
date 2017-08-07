@@ -79,7 +79,11 @@
                 return http.get(app.apiroot + 'EmployeeReportPage/getInsertInternalMemo', {
                     params: { Message: msg, TicketID: tktID, EmpID: empid, AssignedEmpID: assignEmpid }
                 });
+            },
+            emailExists: function(obj) {
+                return http.get(app.apiroot + 'StaticPages/getEmailMobilenumberexists', { params: obj });
             }
+
         };
     }
 })();
