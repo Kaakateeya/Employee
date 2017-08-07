@@ -12,7 +12,7 @@
                 model.showsearchrows = true;
                 model.showsearch = true;
                 model.showpaging = false;
-                model.showClientpaging = false;
+                model.showClientpaging = true;
                 model.myprofileexcel = false;
                 model.normalexcel = false;
                 model.gridTableshow = false;
@@ -75,18 +75,10 @@
                                 model.gridtable3.mainArray = [];
                                 model.gridtable4.mainArray = [];
                                 if ((response.data[0]).length !== 0 || (response.data[1]).length !== 0 || (response.data[2]).length !== 0 || (response.data[3]).length !== 0) {
-                                    _.each(response.data[0], function(item) {
-                                        model.sendarray.push(item);
-                                    });
-                                    _.each(response.data[1], function(item) {
-                                        model.sendarray2.push(item);
-                                    });
-                                    _.each(response.data[2], function(item) {
-                                        model.sendarray3.push(item);
-                                    });
-                                    _.each(response.data[3], function(item) {
-                                        model.sendarray4.push(item);
-                                    });
+                                    model.sendarray = response.data[0];
+                                    model.sendarray2 = response.data[1];
+                                    model.sendarray3 = response.data[2];
+                                    model.sendarray4 = response.data[3];
                                     model.gridtable1.mainArray = model.sendarray.length > 0 ? model.addingserialnumber(model.sendarray) : [];
                                     model.gridtable1.TotalRows = model.sendarray.length > 0 ? model.sendarray[0].TotalRows : 0;
                                     model.gridtable1.data = model.gridtable1.mainArray;
@@ -318,6 +310,23 @@
                             model.gridtable2.TotalRows = model.sendarray2.length > 0 ? model.sendarray2.length : 0;
                             break;
                     }
+                };
+                model.pagechange = function(val, type) {
+                    switch (type) {
+                        case "grid1":
+                            model.gridtable1.data = model.gridtable1.mainArray.slice((val - 1) * 10, model.gridtable1.TotalRows);
+                            break;
+                        case "grid2":
+                            model.gridtable2.data = model.gridtable2.mainArray.slice((val - 1) * 10, model.gridtable2.TotalRows);
+                            break;
+                        case "grid3":
+                            model.gridtable3.data = model.gridtable3.mainArray.slice((val - 1) * 10, model.gridtable3.TotalRows);
+                            break;
+                        case "grid4":
+                            model.gridtable4.data = model.gridtable4.mainArray.slice((val - 1) * 10, model.gridtable4.TotalRows);
+                            break;
+                    }
+
                 };
                 return model;
             }

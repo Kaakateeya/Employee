@@ -5,7 +5,8 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
             scope: {
                 model: '=',
                 config: '=',
-                pagesizecommunication: '='
+                pagesizecommunication: '=',
+                gid: '='
             },
             templateUrl: "directives/complex-grid-new/index.html",
             link: function(scope, element, attrs) {
@@ -175,8 +176,8 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
                         $('#static .pane-vScroll').width($('#static .pane-hScroll').width() + $('#static .pane-hScroll').scrollLeft());
                     });
 
-                    $('#dynamic .pane-hScroll').scroll(function() {
-                        $('#dynamic .pane-vScroll').width($('#dynamic .pane-hScroll').width() + $('#dynamic .pane-hScroll').scrollLeft());
+                    $('#' + scope.gid + '.pane-hScroll').scroll(function() {
+                        $('#' + scope.gid + '.pane-vScroll').width($('#' + scope.gid + '.pane-hScroll').width() + $('#' + scope.gid + ' .pane-hScroll').scrollLeft());
                     });
 
                 }, 1000);
