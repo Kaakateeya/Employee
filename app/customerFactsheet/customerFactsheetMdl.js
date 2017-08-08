@@ -3,8 +3,8 @@
 
     angular
         .module('Kaakateeya')
-        .factory('customerFactsheetModel', ['customerFactsheetService', 'complex-grid-config',
-            function(customerFactsheetService, configgrid) {
+        .factory('customerFactsheetModel', ['customerFactsheetService', 'complex-grid-config', 'alert',
+            function(customerFactsheetService, configgrid, alerts) {
                 var model = {};
                 model.gridtable1 = {};
                 model.gridtable2 = {};
@@ -103,8 +103,8 @@
                         { text: 'Display', key: 'display', type: 'morelinks', templateUrl: model.displaystatus },
                         { text: 'AllowedPoints', key: 'allowed', type: 'label' },
                         { text: 'UsedCountPoints', key: 'usedcount', type: 'label' },
-                        { text: 'Expirydate', key: 'expirydate', type: 'label' },
-                        { text: '', key: '', type: 'morelinks', templateUrl: model.editprofile }
+                        { text: 'Expirydate', key: 'expirydate', type: 'label' }
+                        // { text: '', key: '', type: 'morelinks', templateUrl: model.editprofile }
                     ];
                     model.gridtable5.columns = [
                         { text: 'ProfileOwnerEmp', key: 'ProfileOwnerEmpID', type: 'label' },
@@ -166,7 +166,35 @@
                                 }
 
                             });
+                        } else {
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'ProfileID does not exists', 30000);
                         }
+                    });
+                };
+
+                model.sendenailviewprofile = function() {
+                    customerFactsheetService.custmorfactsheetsendMail(model.txtprofileidfactsheet).then(function(respo) {
+                        if (respo.data && parseInt(respo.data) === 1) {
+                            customerFactsheetService.sendEmail_factResetPassword(model.txtprofileidfactsheet).then(function(response) {
+                                console.log(response);
+                                if (response.data && parseInt(response.data) === 1) {
+                                    alerts.timeoutoldalerts(model.scope, 'alert-success', 'ViewProfile details sent your Mail successfully', 3000);
+                                } else {
+                                    alerts.timeoutoldalerts(model.scope, 'alert-danger', 'ViewProfile details sent your Mail fail', 3000);
+                                }
+                            });
+                            customerFactsheetService.getsendEmail_ResetPassword(model.txtprofileidfactsheet).then(function(response1) {
+                                console.log(response1);
+                            });
+                        } else {
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'ProfileID not Reviewed', 3000);
+                        }
+                    });
+                };
+                model.sendforgetpassword = function() {
+                    customerFactsheetService.getsendEmail_ResetPassword(model.txtprofileidfactsheet).then(function(response) {
+                        console.log(response);
+                        alerts.timeoutoldalerts(model.scope, 'alert-success', 'EmailId send to the user MailID.', 3000);
                     });
                 };
                 return model;
