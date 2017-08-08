@@ -3,7 +3,209 @@
     <div class="bodycls">
         <md-content class="md-padding">
             <md-tabs md-selected="slide.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
+                <md-tab label="Create Employee">
+                    <div class="tab">
+                        <form name="empFormCreation" novalidate role="form" ng-submit="page.model.CreateEmployeeSubmit()" accessible-form>
 
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls required">First name</label>
+                                    <div class=""><input type="text" class="form-control" ng-model="page.model.fName"></div>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls required">Last name</label>
+                                    <div class=""><input type="text" class="form-control" ng-model="page.model.lName"></div>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls required">Official Email</label>
+                                    <div class=""><input type="text" class="form-control" ng-model="page.model.officeEmail"></div>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls required">Working branch</label>
+                                    <div class=""> <select multiselectdropdown ng-model="page.model.workingBranch" ng-change="page.model.getUserID(page.model.workingBranch);" typeofdata="'Branch'">   
+                              </select></div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls required">Office landline</label>
+                                    <div class=""><input type="text" class="form-control" ng-model="page.model.landline"></div>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls required">Office cell phone</label>
+                                    <div class=""><input type="text" class="form-control" ng-model="page.model.officePhone"></div>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls required">Designation</label>
+                                    <div class=""> <select multiselectdropdown ng-model="page.model.designation" ng-options="item.Id as item.value for item in page.model.DesignationArr">   
+                              </select></div>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls required">Login location</label>
+                                    <div class=""> <select multiselectdropdown ng-model="page.model.loginLocation" multiple typeofdata="'Branch'">   
+                              </select></div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls">Week-off </label>
+                                    <div class="">
+                                        <select multiselectdropdown ng-model="page.model.weakOff" ng-options="item.Id as item.value for item in page.model.WeekDaysArr"> </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls required">Date of joining</label>
+                                    <div class="">
+                                        <custom-datepicker name="date" ng-model="page.model.dateOfJoining" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls required">Office hours</label>
+                                    <div class="col-lg-3" style="padding-right:0px;">
+                                        <select multiselectdropdown ng-model="page.model.fromHrs" ng-options="item.value as item.label for item in page.model.hrsbindArr"></select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <select multiselectdropdown ng-model="page.model.fromMins" ng-options="item.value as item.label for item in page.model.minsArray"></select>
+                                    </div>
+                                    <div class="col-lg-3" style="padding-right:0px;">
+                                        <select multiselectdropdown ng-model="page.model.toHrs" ng-options="item.value as item.label for item in page.model.hrsbindArr"></select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <select multiselectdropdown ng-model="page.model.toMins" ng-options="item.value as item.label for item in page.model.minsArray"></select>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-2 form-group" ng-if="page.model.workingBranch">
+                                    <label for="" class="control-label col-lg-10 lblcls required">Login name</label>
+                                    <div class="">
+                                        <label for="" class="control-label col-lg-10 lblcls">{{page.model.newuserID}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row" ng-if="page.model.workingBranch">
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls required">Password</label>
+                                    <div class=""><input type="password" class="form-control" ng-model="page.model.password"></div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="md-toolbar-tools">
+                                    <h4 class="md-flex  col-lg-12" style="font-size: 15px;"> Personal Info
+                                    </h4>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls">Country</label>
+                                    <div class=""> <select multiselectdropdown ng-model="page.model.country" typeofdata="'Country'" ng-change="page.model.dependencyChange(page.model.country,'state');">   
+                              </select></div>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls">State</label>
+                                    <div class=""> <select multiselectdropdown ng-model="page.model.state" ng-options="item.value as item.label for item in page.model.stateArr" ng-change="page.model.dependencyChange(page.model.state,'district');">   
+                              </select></div>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls">District</label>
+                                    <div class=""> <select multiselectdropdown ng-model="page.model.district" ng-options="item.value as item.label for item in page.model.districtArr" ng-change="page.model.dependencyChange(page.model.district,'city');">   
+                              </select></div>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls">City</label>
+                                    <div class=""> <select multiselectdropdown ng-model="page.model.city" ng-options="item.value as item.label for item in page.model.cityArr">   
+                              </select></div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls">Address</label>
+                                    <div class="">
+                                        <textarea type="text" class="form-control" ng-model="page.model.address"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls required">Personal Email</label>
+                                    <div class=""><input type="text" class="form-control" ng-model="page.model.personalEmail"></div>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls required">Personal phone</label>
+                                    <div class=""><input type="text" class="form-control" ng-model="page.model.personalPhone"></div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="md-toolbar-tools">
+                                    <h4 class="md-flex  col-lg-12" style="font-size: 15px;"> Education details
+                                    </h4>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls">Education category</label>
+                                    <div class=""> <select multiselectdropdown ng-model="page.model.eduCatgory" typeofdata="'educationcategory'" ng-change="page.model.dependencyChange(page.model.eduCatgory,'edugroup');">   
+                              </select></div>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls">Education group</label>
+                                    <div class=""> <select multiselectdropdown ng-model="page.model.eduGroup" ng-options="item.value as item.label for item in page.model.edugroupArr" ng-change="page.model.dependencyChange(page.model.eduGroup,'eduSpecialisation');">   
+                              </select></div>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label for="" class="control-label col-lg-10 lblcls">Education specialization</label>
+                                    <div class=""> <select multiselectdropdown ng-model="page.model.eduSpecialisation" ng-options="item.value as item.label for item in page.model.eduSpecialisationArr">
+                              </select></div>
+                                </div>
+
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-7">
+
+                                    <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.emptype" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                        <md-radio-button value="1" class="md-primary">isAdmin</md-radio-button>
+                                        <md-radio-button value="2"> Senior Emp</md-radio-button>
+                                        <md-radio-button value="3"> Review Emp</md-radio-button>
+                                        <md-radio-button value="4"> isMarketing</md-radio-button>
+                                    </md-radio-group>
+                                </div>
+                                <div>
+                                    <md-checkbox ng-model="page.model.chkloginaAnyWhere">LoginAnywhere</md-checkbox>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="row" ng-if="page.model.workingBranch">
+                                <div class="md-toolbar-tools">
+                                    <h4 class="md-flex  col-lg-12" style="font-size: 15px;"> Upload Image
+                                    </h4>
+                                </div>
+                                <input type="file" class="form-control" style="width: 30%;" file-model="page.model.upImage">
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div style="border-top: 1px solid #ddd;padding-top: 1%;"></div>
+                                <div class="col-lg-6">
+                                    <input class="button_custom pull-right" type="submit" value="Submit" />
+                                </div>
+                                <div class="col-lg-1">
+                                    <input type="reset" class="button_custom button_custom_reset" value="Reset" ng-click="page.model.reset();">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <br><br><br>
+
+                </md-tab>
                 <md-tab md-on-select="slide.incomeTab=true" label="Employee list Search">
                     <div class="tab">
                         <br>
@@ -34,182 +236,7 @@
                         <complex-grid-new ng-if="page.model.columns" config="page.model" model="page.model"></complex-grid-new>
                     </div>
                 </md-tab>
-                <md-tab label="Create Employee">
-                    <div class="tab">
-                        <br>
-                        <div class="row">
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls required">First name</label>
-                                <div class=""><input type="text" class="form-control" ng-model="page.model.fName"></div>
-                            </div>
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls required">Last name</label>
-                                <div class=""><input type="text" class="form-control" ng-model="page.model.lName"></div>
-                            </div>
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls required">Official Email</label>
-                                <div class=""><input type="text" class="form-control" ng-model="page.model.officeEmail"></div>
-                            </div>
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls required">Working branch</label>
-                                <div class=""> <select multiselectdropdown ng-model="page.model.workingBranch" typeofdata="'Branch'">   
-                              </select></div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls required">Office landline</label>
-                                <div class=""><input type="text" class="form-control" ng-model="page.model.landline"></div>
-                            </div>
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls required">Office cell phone</label>
-                                <div class=""><input type="text" class="form-control" ng-model="page.model.officePhone"></div>
-                            </div>
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls required">Designation</label>
-                                <div class=""> <select multiselectdropdown ng-model="page.model.designation" ng-options="item.Id as item.value for item in page.model.DesignationArr">   
-                              </select></div>
-                            </div>
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls required">Login location</label>
-                                <div class=""> <select multiselectdropdown ng-model="page.model.loginLocation" multiple typeofdata="'Branch'">   
-                              </select></div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls">Week-off </label>
-                                <div class="">
-                                    <select multiselectdropdown ng-model="page.model.weakOff" ng-options="item.Id as item.value for item in page.model.WeekDaysArr"> </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls required">Date of joining</label>
-                                <div class="">
-                                    <custom-datepicker name="date" ng-model="page.model.dateOfJoining" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
-                                </div>
-                            </div>
-                            <div class="col-lg-5 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls required">Office hours</label>
-                                <div class="col-lg-3" style="padding-right:0px;">
-                                    <select multiselectdropdown ng-model="page.model.fromHrs" ng-options="item.value as item.label for item in page.model.hrsbindArr"></select>
-                                </div>
-                                <div class="col-lg-3">
-                                    <select multiselectdropdown ng-model="page.model.fromMins" ng-options="item.value as item.label for item in page.model.minsArray"></select>
-                                </div>
-                                <div class="col-lg-3" style="padding-right:0px;">
-                                    <select multiselectdropdown ng-model="page.model.toHrs" ng-options="item.value as item.label for item in page.model.hrsbindArr"></select>
-                                </div>
-                                <div class="col-lg-3">
-                                    <select multiselectdropdown ng-model="page.model.toMins" ng-options="item.value as item.label for item in page.model.minsArray"></select>
-                                </div>
 
-                            </div>
-
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="md-toolbar-tools">
-                                <h4 class="md-flex  col-lg-12" style="font-size: 15px;"> Personal Info
-                                </h4>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls">Country</label>
-                                <div class=""> <select multiselectdropdown ng-model="page.model.country" typeofdata="'Country'" ng-change="page.model.dependencyChange(page.model.country,'state');">   
-                              </select></div>
-                            </div>
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls">State</label>
-                                <div class=""> <select multiselectdropdown ng-model="page.model.state" ng-options="item.value as item.label for item in page.model.stateArr" ng-change="page.model.dependencyChange(page.model.state,'district');">   
-                              </select></div>
-                            </div>
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls">District</label>
-                                <div class=""> <select multiselectdropdown ng-model="page.model.district" ng-options="item.value as item.label for item in page.model.districtArr" ng-change="page.model.dependencyChange(page.model.district,'city');">   
-                              </select></div>
-                            </div>
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls">City</label>
-                                <div class=""> <select multiselectdropdown ng-model="page.model.city" ng-options="item.value as item.label for item in page.model.cityArr">   
-                              </select></div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls">Address</label>
-                                <div class="">
-                                    <textarea type="text" class="form-control" ng-model="page.model.address"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls required">Personal Email</label>
-                                <div class=""><input type="text" class="form-control" ng-model="page.model.personalEmail"></div>
-                            </div>
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls required">Personal phone</label>
-                                <div class=""><input type="text" class="form-control" ng-model="page.model.personalPhone"></div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="md-toolbar-tools">
-                                <h4 class="md-flex  col-lg-12" style="font-size: 15px;"> Education details
-                                </h4>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls">Education category</label>
-                                <div class=""> <select multiselectdropdown ng-model="page.model.eduCatgory" typeofdata="'educationcategory'" ng-change="page.model.dependencyChange(page.model.eduCatgory,'edugroup');">   
-                              </select></div>
-                            </div>
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls">Education group</label>
-                                <div class=""> <select multiselectdropdown ng-model="page.model.eduGroup" ng-options="item.value as item.label for item in page.model.edugroupArr" ng-change="page.model.dependencyChange(page.model.eduGroup,'eduSpecialisation');">   
-                              </select></div>
-                            </div>
-                            <div class="col-lg-3 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls">Education specialization</label>
-                                <div class=""> <select multiselectdropdown ng-model="page.model.eduSpecialisation" ng-options="item.value as item.label for item in page.model.eduSpecialisationArr">
-                              </select></div>
-                            </div>
-
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-lg-7">
-
-                                <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.emptype" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                    <md-radio-button value="1" class="md-primary">isAdmin</md-radio-button>
-                                    <md-radio-button value="2"> Senior Emp</md-radio-button>
-                                    <md-radio-button value="3"> Review Emp</md-radio-button>
-                                    <md-radio-button value="4"> isMarketing</md-radio-button>
-                                </md-radio-group>
-                            </div>
-                            <div>
-                                <md-checkbox ng-model="page.model.chkloginaAnyWhere">LoginAnywhere</md-checkbox>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div style="border-top: 1px solid #ddd;padding-top: 1%;"></div>
-                            <div class="col-lg-6">
-                                <button class="button_custom pull-right" type="submit">Submit</button>
-                            </div>
-                            <div class="col-lg-1">
-                                <input type="reset" class="button_custom button_custom_reset" value="Reset" ng-click="page.model.reset();">
-                            </div>
-                        </div>
-                    </div>
-                    <br><br><br>
-                </md-tab>
 
             </md-tabs>
         </md-content>

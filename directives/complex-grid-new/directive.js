@@ -164,6 +164,7 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
                 };
 
                 $('#static .pane-hScroll').scroll(function() {
+
                     $('#static .pane-vScroll').width($('#static .pane-hScroll').width() + $('#static .pane-hScroll').scrollLeft());
                 });
 
@@ -172,15 +173,17 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
                 });
 
                 timeout(function() {
-                    $('#static .pane-hScroll').scroll(function() {
-                        $('#static .pane-vScroll').width($('#static .pane-hScroll').width() + $('#static .pane-hScroll').scrollLeft());
-                    });
-
+                    // $('#static .pane-hScroll').scroll(function() {
+                    //     $('#static .pane-vScroll').width($('#static .pane-hScroll').width() + $('#static .pane-hScroll').scrollLeft());
+                    // });
+                    debugger;
                     $('#' + scope.gid + '.pane-hScroll').scroll(function() {
                         $('#' + scope.gid + '.pane-vScroll').width($('#' + scope.gid + '.pane-hScroll').width() + $('#' + scope.gid + ' .pane-hScroll').scrollLeft());
                     });
-
-                }, 1000);
+                    // $('#dynamic .pane-hScroll').scroll(function() {
+                    //     $('#dynamic .pane-vScroll').width($('#dynamic .pane-hScroll').width() + $('#dynamic .pane-hScroll').scrollLeft());
+                    // });
+                }, 2000);
 
 
                 scope.init();

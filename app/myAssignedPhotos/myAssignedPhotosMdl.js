@@ -79,71 +79,90 @@
 
         model.downloadImg = function(custid, profileid, photoname, index) {
 
+            var strCustDirName1 = "KMPL_" + custid + "_Images";
+            var path = strCustDirName1 + "/" + photoname;
+            var keynameq = app.prefixPathImg + path;
+
+            var imgnane = photoname.split('.');
+            var imgnum = imgnane[0].substr(imgnane[0].length - 1);
+
+            var imagename = profileid + '_' + imgnum + '.jpg';
+            //'Images/ProfilePics/KMPL_91022_Images/Img1.jpg'
 
 
 
-            // var strCustDirName1 = "KMPL_" + custid + "_Images";
-            // var path = strCustDirName1 + "/" + photoname;
-            // var keynameq = app.prefixPathImg + path;
-            // var filePath = "mg";
-            // var fileExtension = "png";
-            // var imagename = profileid + '_' + 1 + '.jpg';
+            $http({
+                    url: '/deleteDownloads3imageFolder',
+                    data: { keyname: '' },
+                    method: "delete",
+                    responseType: "arraybuffer"
+                })
+                .success(function(data) {
+
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             // $http({
-            //     url: '/downloads3Image',
-            //     data: { keyname: keynameq, image: imagename },
-            //     method: "post",
-            //     // responseType: 'blob'
-            // }).success(function(response, status, headers, config) {
-            //     // var base64 = bufferToBase64(data.Body.data);
-            //     // var fileName = profileid + '_' + 1 + '.jpg';
-            //     // model.base64ToUint8Array(base64, fileName);
+            //         url: '/downloads3Image',
+            //         data: { keyname: keynameq },
+            //         method: "post",
+            //         responseType: "arraybuffer"
+            //     })
+            //     .success(function(data) {
+            //         var anchor = angular.element('<a/>');
+            //         var blob = new Blob([data]);
+            //         anchor.attr({
+            //             href: window.URL.createObjectURL(blob),
+            //             target: '_blank',
+            //             download: imagename
+            //         })[0].click();
+            //     });
 
-            // }).error(function(data, status, headers, config) {
-            //     alert(data);
+
+            // $('#down' + index).attr('style', 'color:red;cursor:pointer;');
+            // var inobj = [];
+            // if (custid !== undefined && photoname !== undefined) {
+            //     var imageName = photoname.split('.');
+            //     var imgnum = imageName[0].substr(imageName[0].length - 1);
+
+            //     photoname = photoname.replace('i', 'I');
+            //     inobj.push({ custid: JSON.stringify(custid), profileid: profileid, photoname: photoname });
+            // } else {
+            //     inobj = model.downloadimagesArr;
+            // }
+            // myAssignedPhotosService.downloadPhotos(inobj).then(function(response) {
+            //     if (response.data) {
+            //         if (custid !== undefined && photoname !== undefined) {
+            //             $http({
+            //                 url: '/downloadimage',
+            //                 data: { imagename: response.data },
+            //                 method: "POST",
+            //                 responseType: 'blob'
+            //             }).success(function(data, status, headers, config) {
+            //                 var blob = new Blob([data], { type: 'image/jpeg' });
+            //                 var fileName = profileid + '_' + imgnum;
+            //                 saveAs(blob, fileName);
+            //             }).error(function(data, status, headers, config) {
+            //                 alert('file not found');
+            //             });
+
+            //         }
+            //     }
             // });
 
 
-            $('#down' + index).attr('style', 'color:red;cursor:pointer;');
-            // $http({
-            //     url: '/deletePhotoFolder',
-            //     data: {},
-            //     method: "POST",
-            //     responseType: 'blob'
-            // }).success(function(data, status, headers, config) {
-
-            var inobj = [];
-            if (custid !== undefined && photoname !== undefined) {
-                var imageName = photoname.split('.');
-                var imgnum = imageName[0].substr(imageName[0].length - 1);
-
-                photoname = photoname.replace('i', 'I');
-                inobj.push({ custid: JSON.stringify(custid), profileid: profileid, photoname: photoname });
-            } else {
-                inobj = model.downloadimagesArr;
-            }
-            myAssignedPhotosService.downloadPhotos(inobj).then(function(response) {
-                if (response.data) {
-                    if (custid !== undefined && photoname !== undefined) {
-                        $http({
-                            url: '/downloadimage',
-                            data: { imagename: response.data },
-                            method: "POST",
-                            responseType: 'blob'
-                        }).success(function(data, status, headers, config) {
-                            var blob = new Blob([data], { type: 'image/jpeg' });
-                            var fileName = profileid + '_' + imgnum;
-                            saveAs(blob, fileName);
-                        }).error(function(data, status, headers, config) {
-                            alert('file not found');
-                        });
-
-                    }
-                }
-            });
-
-            // }).error(function(data, status, headers, config) {
-
-            // });
         };
 
 
