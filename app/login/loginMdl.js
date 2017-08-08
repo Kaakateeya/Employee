@@ -2,7 +2,7 @@
     'use strict';
     angular
         .module('Kaakateeya')
-        .factory('loginModel', ['$http', '$uibModal', 'loginservice', 'authSvc', '$state' ,function($http, uibModal, loginservice, authSvc, $state) {
+        .factory('loginModel', ['$http', '$uibModal', 'loginservice', 'authSvc', '$state', function($http, uibModal, loginservice, authSvc, $state) {
             var model = {},
                 modalpopupopen;
             model.loginsubmit = {};
@@ -16,10 +16,13 @@
                 return model;
             };
             model.download = function() {
-                    $http.get('src/images/1234 yellow.png', {
+                $http({
+                        url: '/downloads3Image',
+                        data: { keyname: 'Images/ProfilePics/KMPL_91022_Images/Img1.jpg' },
+                        method: "post",
                         responseType: "arraybuffer"
-                        })
-                        .success(function(data) {
+                    })
+                    .success(function(data) {
                         var anchor = angular.element('<a/>');
                         var blob = new Blob([data]);
                         anchor.attr({
@@ -27,21 +30,33 @@
                             target: '_blank',
                             download: 'fileName.png'
                         })[0].click();
-                        });
-                    }
-            model.zipdownload=function(){
+                    });
+            };
+            model.zipdownload = function() {
+                $http.delete('/deleteDownloads3imageFolder').then(function(mg) {
+
+                    $http({
+                            url: '/downloadAlls3Images',
+                            data: { keyname: 'Images/ProfilePics/KMPL_91022_Images/Img1.jpg', filePath: 'Img1.jpg' },
+                            method: "post"
+                        })
+                        .success(function(data) {
                             $http({
-                            url: '/zipme',
-                            method: "get"
-                        }).success(function(responseData){
-                           var zip = new JSZip();
-                            zip.file("photos.zip", responseData, {base64: true});
-                            zip.generateAsync({type:"blob"})
-                            .then(function(content) {
-                                saveAs(content, "kaa");
+                                url: '/zipme',
+                                method: "get"
+                            }).success(function(responseData) {
+                                var zip = new JSZip();
+                                zip.file("DownloadPhotos.zip", responseData, { base64: true });
+                                zip.generateAsync({ type: "blob" })
+                                    .then(function(content) {
+                                        saveAs(content, "kaa");
+                                    });
                             });
-                        });                      
-                 }
+                        });
+
+                });
+
+            };
             model.loginsubmit = function(form, formempvalid, formpasswordvalid, formvalid) {
                 if (formempvalid.required === true) {
                     model.usernameemployee = true;
