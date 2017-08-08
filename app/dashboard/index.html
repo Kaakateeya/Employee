@@ -233,6 +233,37 @@
     <payment-editpoints models="page.model.paymentchangedobj"></payment-editpoints>
 </script>
 
+
+<script type="text/ng-template" id="nomatchespopup.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="page.model.closeupload()">×</button>
+        <h4 class="modal-title text-center">No Services Reason</h4>
+    </div>
+    <div class="modal-body reminderticket">
+        <div class="reminderCls">
+            <form name="nomatchesform" novalidate role="form" ng-submit="nomatchesform.$valid  && page.model.nomatchessubmit(page.model);">
+                <ul>
+                    <li class="clearfix">
+                        <label class="col-lg-3">Reason</label>
+                        <div class="col-lg-7">
+                            <textarea ng-model="page.model.txtreasonnomatches" name="txtreasonnomatches" class="form-control" rows="4">
+                                </textarea>
+                        </div>
+                    </li>
+                </ul>
+                <br>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <button type="submit" class="button_custom pull-right">Submit</button>
+                    </div>
+                    <div class="col-lg-4">
+                        <button type="button" class="button_custom button_custom_reset" ng-click="page.model.closeupload()">Close</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</script>
 <style>
     .datepicker3 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;

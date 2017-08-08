@@ -542,6 +542,9 @@
                         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please Get SA Form', 3000);
                     }
                 };
+                model.nomatcheslink = function(obj) {
+                    commonpage.showPopupphotopoup('nomatchespopup.html', model.scope, 'md', "modalclassdashboardremainder");
+                };
                 return model.init();
             }
         ]);

@@ -11,6 +11,7 @@
                  vm.model = model = customerFactsheetModel;
                  model.scope = scope;
                  model.panelbodyhide = true;
+                 model.resetfactsheet();
              };
              vm.init();
          }]);
