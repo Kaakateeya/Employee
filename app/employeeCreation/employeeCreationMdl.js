@@ -18,6 +18,7 @@
             { label: '00', value: 1 },
             { label: '30', value: 2 }
         ];
+
         model.dateOptions = {
             changeMonth: true,
             changeYear: true,
@@ -89,21 +90,36 @@
             model.eduSpecialisation = '';
             model.emptype = '';
             model.chkloginaAnyWhere = '';
+            model.newuserID = '';
         };
 
         model.actionTemplate = function(row) {
-            var actionstr = "<a href='javascript:void(0);'>Edit</a><br><a href='javascript:void(0);'>Delete</a><br><a href='javascript:void(0);'>Disable</a><br><a href='javascript:void(0);'>Assign</a>";
+            var actionstr = "<a href='javascript:void(0);' ng-click='model.editEmp(" + JSON.stringify(row) + ");'>Edit</a><br><a href='javascript:void(0);'>Delete</a><br><a href='javascript:void(0);'>Disable</a><br><a href='javascript:void(0);'>Assign</a>";
             return actionstr;
         };
         model.empDetailsTemplate = function(row) {
             var empstr = "<b>" + row.FirstName + ' ' + row.LastName + "</b><br><span>" + row.BranchesName + "</span><br><span>" + row.OfficialEmailID + "</span><br><span>" + row.OfficialContactNumber + "</span><br><span>" + row.UserID + "</span>";
             return empstr;
         };
-        model.getEmpList = function() {
+        model.EmpPhotoTemplateUrl = function(row) {
+            var src = row.EmpPhoto ? row.EmpPhoto : 'src/images/Manage_blankphoto.png';
+            return "<img class='img-circle' src=" + src + " style='width:150px;height:150px;'></img>";
+        };
 
+
+
+        model.editEmp = function(row) {
+
+            debugger;
+
+        };
+
+
+
+        model.getEmpList = function() {
             model.columns = [
                 { text: 'Action', key: '', type: 'morelinks', templateUrl: model.actionTemplate },
-                { text: 'EmpPhoto', key: 'EmpPhoto', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
+                { text: 'EmpPhoto', key: 'EmpPhoto', type: 'morelinks', templateUrl: model.EmpPhotoTemplateUrl },
                 { text: 'Emp_Details', key: '', type: 'morelinks', templateUrl: model.empDetailsTemplate },
                 { text: 'Created_Date', key: 'CreatedDate', type: 'label' },
                 { text: 'isLoginanywhere', key: 'isLoginanywhere', type: 'label' }
@@ -122,6 +138,68 @@
                 }
             });
 
+        };
+
+        model.CreateEmployeeSubmit = function() {
+            var Imgpath;
+            if (model.upImage) {
+                var strCustDtryName = model.newuserID + "_EmplyeeImage";
+                Imgpath = "~/Images/EmployeeImages/" + strCustDtryName + "/" + model.newuserID + "_EmplyeeImage." + ((model.upImage.name).split('.'))[1];
+            }
+
+            var inobj = {
+                FirstName: model.fName,
+                LastName: model.lName,
+                OfficialEmailID: model.officeEmail,
+                HomeBranchID: model.workingBranch,
+                WorkPhone: model.landline,
+                OfficialCellPhone: model.officePhone,
+                HomePhone: model.personalPhone,
+                PersonalEmailID: model.personalEmail,
+                LoginName: model.newuserID,
+                Password: model.password,
+                Designation: model.designation,
+                LoginLocation: model.loginLocation ? model.loginLocation.join(',') : null,
+                OfficeFromHrs: model.fromHrs + ':' + model.fromMins + ':00',
+                OfficeToHrs: model.toHrs + ':' + model.toMins + ':00',
+                DayOff: model.weakOff,
+                DateofJoining: model.dateOfJoining ? moment(model.dateOfJoining).format('MM-DD-YYYY') : null,
+                DateofReleaving: null,
+                ReportingMngrID: null,
+                AnnualIncome: null,
+                Country: model.country,
+                State: model.state,
+                District: model.district,
+                City: model.city,
+                CityOther: null,
+                Address: model.address,
+                EducationCategory: model.eduCatgory,
+                EducationGroup: model.eduGroup,
+                EducationSpecialization: model.eduSpecialisation,
+                EmployeeImgPath: Imgpath,
+                TypeOfEmployee: model.emptype,
+                EmployeeStatus: null,
+                isLoginAnywhere: model.chkloginaAnyWhere === true ? true : false,
+                CreatedEMPID: model.empid,
+                EMPID: null,
+                loginname: model.newuserID
+            };
+
+            employeeCreationService.employeeCreation(inobj).then(function(response) {
+                if (response.data && parseInt(response.data) === 1) {
+                    model.reset();
+                }
+            });
+        };
+
+        model.getUserID = function(branchID) {
+            if (branchID) {
+                employeeCreationService.getUserID(branchID).then(function(response) {
+                    if (response.data && response.data.length > 0) {
+                        model.newuserID = response.data;
+                    }
+                });
+            }
         };
 
         return model;
