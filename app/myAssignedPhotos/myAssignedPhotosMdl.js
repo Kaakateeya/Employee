@@ -71,12 +71,12 @@
                     });
             } else {
                 if (model.downloadimagesArr.length > 0) {
-                    $http.delete('/deleteDownloads3imageFolder').then(function(mg) {
+                    $http.post('/deleteDownloads3imageFolder').then(function(mg) {
                         _.each(model.downloadimagesArr, function(item, index) {
                             $http({
                                     url: '/downloadAlls3Images',
                                     data: { keyname: item.keyname, filePath: item.filePathnew },
-                                    method: "delete"
+                                    method: "post"
                                 })
                                 .success(function(data) {
 
