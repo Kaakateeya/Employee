@@ -42,144 +42,66 @@
         };
 
 
+        model.downloadImg = function(custid, profileid, photoname, index) {
 
+            if (custid !== undefined && photoname !== undefined) {
+                var strCustDirName1 = "KMPL_" + custid + "_Images";
+                var path = strCustDirName1 + "/" + photoname;
+                var keynameq = app.prefixPathImg + path;
+                var imgnane = photoname.split('.');
+                var imgnum = imgnane[0].substr(imgnane[0].length - 1);
+                var imagename = profileid + '_' + imgnum + '.jpg';
 
+                $('#down' + index).attr('style', 'color:red;cursor:pointer;');
+                photoname = photoname.replace('i', 'I');
+                $http({
+                        url: '/downloads3Image',
+                        data: { keyname: keynameq },
+                        method: "post",
+                        responseType: "arraybuffer"
+                    })
+                    .success(function(data) {
+                        var anchor = angular.element('<a/>');
+                        var blob = new Blob([data]);
+                        anchor.attr({
+                            href: window.URL.createObjectURL(blob),
+                            target: '_blank',
+                            download: imagename
+                        })[0].click();
+                    });
+            } else {
+                if (model.downloadimagesArr.length > 0) {
+                    $http.delete('/deleteDownloads3imageFolder').then(function(mg) {
+                        _.each(model.downloadimagesArr, function(item, index) {
+                            $http({
+                                    url: '/downloadAlls3Images',
+                                    data: { keyname: item.keyname, filePath: item.filePathnew },
+                                    method: "post"
+                                })
+                                .success(function(data) {
 
-
-
-
-        model.zipdownload = function() {
-            $http.delete('/deleteDownloads3imageFolder').then(function(mg) {
-                var keyNamesArray = [
-                    { keyname: 'Images/ProfilePics/KMPL_91022_Images/Img1.jpg', filePathnew: '91022Img1.jpg' },
-                    { keyname: 'Images/ProfilePics/KMPL_117424_Images/Img1.jpg', filePathnew: '117424Img1.jpg' },
-                    // { keyname: 'Images/ProfilePics/KMPL_116933_Images/Img1.jpg', filePathnew: '116933Img1.jpg' },
-                    // { keyname: 'Images/ProfilePics/KMPL_117383_Images/Img1.jpg', filePathnew: '117383Img1.jpg' },
-                    // { keyname: 'Images/ProfilePics/KMPL_100000_Images/Img1.jpg', filePathnew: '100000Img1.jpg' },
-                    // { keyname: 'Images/ProfilePics/KMPL_100000_Images/Img2.jpg', filePathnew: '100000Img2.jpg' },
-                    // { keyname: 'Images/ProfilePics/KMPL_100000_Images/Img3.jpg', filePathnew: '100000Img3.jpg' },
-                    // { keyname: 'Images/ProfilePics/KMPL_100001_Images/Img2.jpg', filePathnew: '100001Img2.jpg' },
-                    // { keyname: 'Images/ProfilePics/KMPL_100002_Images/Img1.jpg', filePathnew: '100002Img1.jpg' },
-                    // { keyname: 'Images/ProfilePics/KMPL_100010_Images/Img1.jpg', filePathnew: '100010Img1.jpg' },
-                    // { keyname: 'Images/ProfilePics/KMPL_100010_Images/Img2.jpg', filePathnew: '100010Img2.jpg' },
-                    // { keyname: 'Images/ProfilePics/KMPL_100010_Images/Img3.jpg', filePathnew: '100010Img3.jpg' }
-                ];
-                _.each(keyNamesArray, function(item, index) {
-                    $http({
-                            url: '/downloadAlls3Images',
-                            data: { keyname: item.keyname, filePath: item.filePathnew },
-                            //{ keyname: keyNamesArray },
-                            //{ keyname: 'Images/ProfilePics/KMPL_91022_Images/Img1.jpg', filePath: 'Img1.jpg' },
-                            method: "post"
-                        })
-                        .success(function(data) {
-
-                            if (keyNamesArray.length === parseInt(index) + 1) {
-                                timeout(function() {
-                                    $http({
-                                        url: '/zipme',
-                                        method: "get"
-                                    }).success(function(responseData) {
-                                        var zip = new JSZip();
-                                        zip.file("DownloadPhotos.zip", responseData, { base64: true });
-                                        zip.generateAsync({ type: "blob" })
-                                            .then(function(content) {
-                                                saveAs(content, "kaa");
+                                    if (model.downloadimagesArr.length === parseInt(index) + 1) {
+                                        timeout(function() {
+                                            $http({
+                                                url: '/zipme',
+                                                method: "get"
+                                            }).success(function(responseData) {
+                                                var zip = new JSZip();
+                                                zip.file("DownloadPhotos.zip", responseData, { base64: true });
+                                                zip.generateAsync({ type: "blob" })
+                                                    .then(function(content) {
+                                                        saveAs(content, "KaakateeyaPhotos");
+                                                    });
                                             });
-                                    });
-                                }, 2000);
-                            }
+                                        }, 1500);
+                                    }
 
+                                });
                         });
-                });
-
-
-
-            });
+                    });
+                }
+            }
         };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // model.downloadImg = function(custid, profileid, photoname, index) {
-
-        //     if (custid !== undefined && photoname !== undefined) {
-        //         var strCustDirName1 = "KMPL_" + custid + "_Images";
-        //         var path = strCustDirName1 + "/" + photoname;
-        //         var keynameq = app.prefixPathImg + path;
-        //         var imgnane = photoname.split('.');
-        //         var imgnum = imgnane[0].substr(imgnane[0].length - 1);
-        //         var imagename = profileid + '_' + imgnum + '.jpg';
-
-        //         $('#down' + index).attr('style', 'color:red;cursor:pointer;');
-        //         photoname = photoname.replace('i', 'I');
-        //         $http({
-        //                 url: '/downloads3Image',
-        //                 data: { keyname: keynameq },
-        //                 method: "post",
-        //                 responseType: "arraybuffer"
-        //             })
-        //             .success(function(data) {
-        //                 var anchor = angular.element('<a/>');
-        //                 var blob = new Blob([data]);
-        //                 anchor.attr({
-        //                     href: window.URL.createObjectURL(blob),
-        //                     target: '_blank',
-        //                     download: imagename
-        //                 })[0].click();
-        //             });
-        //     } else {
-        //         if (model.downloadimagesArr.length > 0) {
-        //             $http.delete('/deleteDownloads3imageFolder').then(function(mg) {
-        //                 _.each(model.downloadimagesArr, function(item, index) {
-        //                     $http({
-        //                             url: '/downloadAlls3Images',
-        //                             data: { keyname: item.keyname, filePath: item.filePathnew },
-        //                             method: "post"
-        //                         })
-        //                         .success(function(data) {
-
-        //                             if (model.downloadimagesArr.length === parseInt(index) + 1) {
-        //                                 timeout(function() {
-        //                                     $http({
-        //                                         url: '/zipme',
-        //                                         method: "get"
-        //                                     }).success(function(responseData) {
-        //                                         var zip = new JSZip();
-        //                                         zip.file("DownloadPhotos.zip", responseData, { base64: true });
-        //                                         zip.generateAsync({ type: "blob" })
-        //                                             .then(function(content) {
-        //                                                 saveAs(content, "kaa");
-        //                                             });
-        //                                     });
-        //                                 }, 2000);
-        //                             }
-
-        //                         });
-        //                 });
-        //             });
-        //         }
-        //     }
-        // };
 
         model.uploadTemplateurl = function(row) {
             var link = "<a href='javascript:void(0);' id='up" + row.index + "'  ng-click='model.showUpload(" + JSON.stringify(row) + ",this);'>Upload</a>";
@@ -255,7 +177,7 @@
                         var imgnane = item.PhotoName.split('.');
                         var imgnum = imgnane[0].substr(imgnane[0].length - 1);
                         var imagename = item.ProfileID + '_' + imgnum + '.jpg';
-                        model.downloadimagesArr.push({ keyname: keynameq, filePathnew: '100010Img3.jpg' });
+                        model.downloadimagesArr.push({ keyname: keynameq, filePathnew: imagename });
                     });
                 } else {
                     model.data = [];

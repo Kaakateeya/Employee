@@ -2,7 +2,7 @@
     <h3 class="hdrCls">My assigned Photos
 
         <span style="color:black;" class="spancls">Total records : {{page.model.totalRecords}}</span>
-        <span><a href="javascript:void(0);" class="spancls" ng-click="page.model.zipdownload();">Download all</a></span>
+        <span><a href="javascript:void(0);" class="spancls" ng-click="page.model.downloadImg();">Download all</a></span>
 
     </h3>
     <div class="bodycls">
@@ -117,3 +117,4 @@
         </div>
     </form>
 </script>
+<script src="node_modules/jszip/dist/jszip.js"></script>
