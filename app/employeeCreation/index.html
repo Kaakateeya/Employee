@@ -117,7 +117,7 @@
                                 </div>
                             </div>
                             <br>
-                            <div class="row" ng-if="page.model.workingBranch">
+                            <div class="row" ng-if="page.model.workingBranch && page.model.actionFlag !== 'edit'">
                                 <div class="col-lg-3 form-group">
                                     <label for="" class="control-label col-lg-10 lblcls required">Password</label>
                                     <div class=""><input type="password" class="form-control" ng-model="page.model.password"></div>

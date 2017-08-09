@@ -71,7 +71,7 @@
                     });
             } else {
                 if (model.downloadimagesArr.length > 0) {
-                    $http.delete('/deleteDownloads3imageFolder').then(function(mg) {
+                    $http.post('/deleteDownloads3imageFolder').then(function(mg) {
                         $http({
                                 url: '/downloadAlls3Images',
                                 data: { keynamelst: model.downloadimagesArr },

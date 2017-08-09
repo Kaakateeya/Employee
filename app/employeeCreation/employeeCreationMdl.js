@@ -96,7 +96,7 @@
         };
 
         model.actionTemplate = function(row) {
-            var actionstr = "<a href='javascript:void(0);' ng-click='model.editEmp(" + JSON.stringify(row) + ");'>Edit</a><br><a href='javascript:void(0);'>Delete</a><br><a href='javascript:void(0);'>Disable</a><br><a href='javascript:void(0);'>Assign</a>";
+            var actionstr = "<a href='javascript:void(0);' ng-click='model.editEmp(" + JSON.stringify(row) + ");'>Edit</a><br><a href='javascript:void(0);' ng-click='model.deleteEmp(" + JSON.stringify(row) + ");'>Delete</a><br><a href='javascript:void(0);' ng-click='model.disableEmp(" + JSON.stringify(row) + ");'>Disable</a><br><a href='javascript:void(0);' ng-click='model.assignEmpWork(" + JSON.stringify(row) + ");'>Assign</a>";
             return actionstr;
         };
         model.empDetailsTemplate = function(row) {
@@ -112,6 +112,21 @@
             model.actionFlag = 'edit';
             model.populatemodel(row);
             model.selectedIndex = 1;
+        };
+
+        model.deleteEmp = function(row) {
+            model.actionFlag = 'delete';
+            model.populatemodel(row);
+            model.CreateEmployeeSubmit();
+        };
+
+        model.disableEmp = function(row) {
+            model.actionFlag = 'disable';
+            model.populatemodel(row);
+            model.CreateEmployeeSubmit();
+        };
+        model.assignEmpWork = function(row) {
+
         };
 
         model.populatemodel = function(row) {
@@ -132,14 +147,16 @@
 
             model.dateOfJoining = row.Created_Date ? moment(row.Created_Date).format('DD-MM-YYY') : '';
 
-
-            var FromHrsArr = (row.WorkingStartTIme).split(' ');
-            var ToHrsArr = (row.WorkingEndTIme).split(' ');
-
-            model.fromHrs = parseInt((FromHrsArr[1]).split(':')[0]);
-            model.fromMins = parseInt((FromHrsArr[1]).split(':')[1]);
-            model.toHrs = parseInt((ToHrsArr[1]).split(':')[0]);
-            model.toMins = parseInt((ToHrsArr[1]).split(':')[1]);
+            if (row.WorkingStartTIme) {
+                var FromHrsArr = (row.WorkingStartTIme).split(' ');
+                model.fromHrs = parseInt((FromHrsArr[1]).split(':')[0]);
+                model.fromMins = parseInt((FromHrsArr[1]).split(':')[1]);
+            }
+            if (row.WorkingEndTIme) {
+                var ToHrsArr = (row.WorkingEndTIme).split(' ');
+                model.toHrs = parseInt((ToHrsArr[1]).split(':')[0]);
+                model.toMins = parseInt((ToHrsArr[1]).split(':')[1]);
+            }
 
             model.country = row.CountryID;
             model.state = row.StateID;
