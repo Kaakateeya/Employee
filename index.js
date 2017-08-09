@@ -99,7 +99,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'paymentOffersAssignnew', name: 'base.paymentOffersAssignnew', url: '/paymentOffersAssignPage', isloginrequired: true },
             { routeName: 'employeeCreation', name: 'base.employeeCreation', url: '/employeeCreationPage', isloginrequired: true },
             { routeName: 'keywordlikeSearch', name: 'base.keywordlikeSearch', url: '/keywordlikeSearchpage', isloginrequired: true },
-            { routeName: 'customerFactsheet', name: 'base.customerFactsheet', url: '/customerFactsheetpage', isloginrequired: true }
+            { routeName: 'customerFactsheet', name: 'base.customerFactsheet', url: '/customerFactsheetpage', isloginrequired: true },
+            { routeName: 'sucessStories', name: 'base.sucessStories', url: '/sucessStoriespage', isloginrequired: true }
 
         ];
         $ocLazyLoadProvider.config({

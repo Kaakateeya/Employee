@@ -23,7 +23,6 @@
                 model.gridTableshow = false;
                 model.receivedprofiles = 1;
                 model.sentprofile = 1;
-                model.Nameofcandidate = "";
                 model.gridtable1.type = 'grid1';
                 model.gridtable2.type = 'grid2';
                 model.gridtable3.type = 'grid3';
@@ -33,6 +32,46 @@
                 model.gridtable7.type = 'grid7';
                 model.gridtable8.type = 'grid8';
                 model.showplus = false;
+                model.sendexpressinterestservice = function(row) {
+
+                    var obj = {
+                        EncriptedText: null,
+                        EncriptedTextrvr: null,
+                        EncryptedRejectFlagText: null,
+                        EncryptedRejectFlagTextrvr: null,
+                        FromProfileID: model.gridtable8.data[0].ProfileId,
+                        IFromCustID: model.gridtable8.data[0].fromcustid,
+                        IToCustID: row.Cust_ID,
+                        Logid: null,
+                        MessageHistoryId: null,
+                        MessageLinkId: null,
+                        StrHtmlText: null,
+                        ToProfileID: row.ProfileID,
+                        TypeofInsert: "E"
+                    };
+                    customerFactsheetService.sendexpressinterest(obj).then(function(response) {
+                        if (response.data && parseInt(response.data) == 1) {
+                            alerts.timeoutoldalerts(model.scope, 'alert-success', 'EXpressInterest done SuccessFully', 3000);
+                        } else {
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'EXpressInterest Fail', 3000);
+                        }
+                    });
+                };
+                model.sendservicemailprofile = function(row) {
+                    var dd = "";
+                    dd = "<a href='javascript:void(0)' ng-click='model.sendexpressinterestservice(" + row.Cust_ID + "," + row.ProfileID + ")'>Send service</a>";
+                    return dd;
+                };
+                model.paymentstatus = function(row) {
+                    var dd = "";
+                    dd = "<p>" + row.Payment === 1 ? 'Paid' : 'Unpaid' + "</p>";
+                    return dd;
+                };
+                model.displaystatus = function(row) {
+                    var dd = "";
+                    dd = "<p>" + row.display === 0 || row.display === "0" ? 'False' : 'True' + "</p>";
+                    return dd;
+                };
                 model.factsheetdetails = function(from, to, type) {
                     model.gridtable1.data = undefined;
                     model.gridtable2.data = undefined;
@@ -42,7 +81,6 @@
                     model.gridtable6.data = undefined;
                     model.gridtable7.data = undefined;
                     model.gridtable8.data = undefined;
-                    model.Nameofcandidate = '';
                     model.sendarray1 = [];
                     model.sendarray2 = [];
                     model.sendarray3 = [];
@@ -59,22 +97,6 @@
                     model.gridtable6.mainArray = [];
                     model.gridtable7.mainArray = [];
                     model.gridtable8.mainArray = [];
-
-                    model.editprofile = function(row) {
-                        var dd = "";
-                        dd = "<a href='javascript:void(0)' ng-click='model.Resendemail(2," + row.FromCustID + "," + row.ToCustID + "," + row.ProfileID + "," + row.ExpressInterestID + "," + row.LogID + ")'>Edit</a>";
-                        return dd;
-                    };
-                    model.paymentstatus = function(row) {
-                        var dd = "";
-                        dd = "<p>" + row.Payment === 1 ? 'Paid' : 'Unpaid' + "</p>";
-                        return dd;
-                    };
-                    model.displaystatus = function(row) {
-                        var dd = "";
-                        dd = "<p>" + row.display === 0 || row.display === "0" ? 'False' : 'True' + "</p>";
-                        return dd;
-                    };
                     model.gridtable1.columns = [
                         { text: 'Photoname', key: 'Photoname', type: 'label' },
                         { text: 'Photostatus', key: 'Photostatus', type: 'label' },
@@ -88,8 +110,6 @@
                         { text: 'ModifiedBY', key: 'ModifiedBY', type: 'label' },
                         { text: 'ModifiedDate', key: 'ModifiedDate', type: 'label' }
                     ];
-
-
                     model.gridtable3.columns = [
                         { text: 'RegistrationDate', key: 'RegistrationDate', type: 'label' },
                         { text: 'LoginCount', key: 'LoginCount', type: 'label' },
@@ -104,7 +124,7 @@
                         { text: 'AllowedPoints', key: 'allowed', type: 'label' },
                         { text: 'UsedCountPoints', key: 'usedcount', type: 'label' },
                         { text: 'Expirydate', key: 'expirydate', type: 'label' }
-                        // { text: '', key: '', type: 'morelinks', templateUrl: model.editprofile }
+
                     ];
                     model.gridtable5.columns = [
                         { text: 'ProfileOwnerEmp', key: 'ProfileOwnerEmpID', type: 'label' },
@@ -121,7 +141,8 @@
                     model.gridtable7.columns = [
                         { text: 'ProfileID', key: 'ProfileID', type: 'label' },
                         { text: 'Name', key: 'NAME', type: 'label' },
-                        { text: 'CreatedDate', key: 'CreatedDate', type: 'label' }
+                        { text: 'CreatedDate', key: 'CreatedDate', type: 'label' },
+                        { text: 'Service', key: 'CreatedDate', type: 'customlink', templateUrl: model.sendservicemailprofile, method: model.sendexpressinterestservice }
                     ];
                     customerFactsheetService.getVerifyProfileid(model.txtprofileidfactsheet).then(function(respo) {
                         if (respo.data && parseInt(respo.data) === 1) {
@@ -192,11 +213,41 @@
                     });
                 };
                 model.sendforgetpassword = function() {
-                    customerFactsheetService.getsendEmail_ResetPassword(model.txtprofileidfactsheet).then(function(response) {
+                    customerFactsheetService.getsendEmail_ResetPassword(model.txtprofileidfactsheetmodel.txtprofileidfactsheet).then(function(response) {
                         console.log(response);
                         alerts.timeoutoldalerts(model.scope, 'alert-success', 'EmailId send to the user MailID.', 3000);
                     });
                 };
+                model.resetfactsheet = function() {
+                    model.txtprofileidfactsheet = "";
+                    model.gridtable1.data = undefined;
+                    model.gridtable2.data = undefined;
+                    model.gridtable3.data = undefined;
+                    model.gridtable4.data = undefined;
+                    model.gridtable5.data = undefined;
+                    model.gridtable6.data = undefined;
+                    model.gridtable7.data = undefined;
+                    model.gridtable8.data = undefined;
+                    model.sendarray1 = [];
+                    model.sendarray2 = [];
+                    model.sendarray3 = [];
+                    model.sendarray4 = [];
+                    model.sendarray5 = [];
+                    model.sendarray6 = [];
+                    model.sendarray7 = [];
+                    model.sendarray8 = [];
+                    model.gridtable1.mainArray = [];
+                    model.gridtable2.mainArray = [];
+                    model.gridtable3.mainArray = [];
+                    model.gridtable4.mainArray = [];
+                    model.gridtable5.mainArray = [];
+                    model.gridtable6.mainArray = [];
+                    model.gridtable7.mainArray = [];
+                    model.gridtable8.mainArray = [];
+                    model.gridTableshow = false;
+                };
+
+
                 return model;
             }
         ]);

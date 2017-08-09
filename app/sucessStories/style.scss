@@ -1,0 +1,228 @@
+.test {
+    height: 20px;
+}
+
+#successstoriesid {
+    .smalldropdown {
+        width: 240px !important;
+        height: 33px;
+        cursor: pointer;
+        text-rendering: auto;
+        letter-spacing: normal;
+        word-spacing: normal;
+        text-indent: 0px;
+        text-shadow: none;
+        text-align: start;
+        text-overflow: ellipsis;
+        margin-right: 26px;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-top: 1px;
+    }
+    .resetCls {
+        display: initial;
+        margin-left: 2%;
+    }
+    .regValheader {
+        margin-top: -12px;
+        box-shadow: 2px 2px 6px #ccc;
+        border: 1px solid #ccc;
+    }
+    .panel-title {
+        color: #b10c0c;
+    }
+    input[type="text"],
+    .multiselect {
+        color: #000 !important;
+        border: 1px solid #ADA2A2 !important;
+        max-width: 300px;
+        width: 100%;
+    }
+    label {
+        margin-bottom: 0px;
+    }
+    .panel-body {
+        padding: 1% 3% 0 3%;
+    }
+    .spanHdr {
+        padding-left: 4%;
+    }
+    .settled {
+        background-color: #17F067;
+    }
+    .Deleted {
+        background-color: #BCC3BE;
+    }
+    .closed {
+        background-color: #C8E6E6;
+    }
+    .input[type=image]::before {
+        content: "Read this -";
+    }
+    .backtoSearchCls {
+        color: #ffffff;
+        background-color: #28a4c9;
+        margin-left: 7%;
+    }
+    .linkdisabled {
+        pointer-events: none;
+        cursor: default;
+        opacity: 0.6;
+    }
+    .arrow::after {
+        content: '-->';
+        margin-left: 16%;
+        // content: url(../../src/images/arraowimages.png);
+    }
+}
+
+.myregvaliprofile {
+    .edit_page_details_item_descsearch {
+        padding: 4px 0;
+        background-size: 522px auto;
+        background-position: -29% center;
+        position: relative;
+    }
+    .edit_page_details_item_descsearch h6 {
+        float: left;
+        width: 30%;
+        position: relative;
+        color: #7a7a7a;
+        text-transform: capitalize;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: left;
+    }
+    .edit_page_details_item_descsearch h6:after {
+        content: ":";
+        position: absolute;
+        right: 10px;
+    }
+    .edit_page_details_item_descsearch h5 {
+        float: left;
+        color: #000;
+        text-transform: capitalize;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+    }
+}
+
+.myprofileheaderpopup {
+    background-color: rgba(197, 205, 50, 0.42);
+    margin-bottom: 10px;
+    margin-top: -10px;
+}
+
+.myregvaliPlay {}
+
+.closecls {
+    padding-right: 1% !important;
+}
+
+// .modalclassdashboardphotopopup {
+//     z-index: 999999 !important;
+// }
+.myprofilepopupdesign {
+    margin-left: 60px;
+    margin-right: 60px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #f6f3ea;
+}
+
+.myprofilefooterlinks {
+    font-size: 14px;
+    padding: 4px;
+    line-height: 2.1;
+}
+
+#successstoriesid {
+    .ProfileOwner {
+        width: 210px;
+    }
+    .TicketHistoryID {
+        width: 114px;
+    }
+    .headerStyles {
+        font-size: 14px;
+    }
+    .ProfileID {
+        width: 130px;
+    }
+    .plusiconshow {
+        width: 33px;
+    }
+    .DOR {
+        width: 98px;
+    }
+    .button_custom {
+        border: 0 none;
+        display: block;
+        text-transform: uppercase;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 20px;
+        background: #d42e02;
+        border-radius: 3px;
+        padding: 7px 11px;
+        transition: all 0.4s ease-in-out;
+    }
+}
+
+.modalclassdashboardphotopopup {
+    z-index: 999999999 !important;
+    top: 0%;
+    left: 0%;
+}
+
+.modalclassdashboardphotopopup .modal-dialog.modal-md {
+    width: 70%;
+}
+
+.modalclassdashboardphotopopup {
+    .md-tab {
+        padding: 14px 15px;
+    }
+}
+
+.modalclassdashboardphotopopup {
+    .pop_label_left {
+        width: 40%;
+    }
+}
+
+.myregvaliprofile {
+    z-index: 999999 !important;
+    top: 0%;
+    left: 0%;
+}
+
+.modalclassdashboardremainder {
+    z-index: 99999999999999 !important;
+    top: 0%;
+    left: 0%;
+}
+
+.classlabelverify {
+    font-weight: bold !important;
+    /* background-color: white; */
+    color: black;
+}
+
+.panel-default {
+    .panel-heading {
+        color: #333;
+        background-color: #f5f5f5;
+        border-color: #ddd;
+        border-bottom: 1px solid #ccc;
+    }
+}
+
+.rdnoptions {
+    color: black;
+    font-size: 14px;
+    // font-family: monospace;
+}
