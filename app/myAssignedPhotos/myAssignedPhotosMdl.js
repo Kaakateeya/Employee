@@ -76,7 +76,7 @@
                             $http({
                                     url: '/downloadAlls3Images',
                                     data: { keyname: item.keyname, filePath: item.filePathnew },
-                                    method: "post"
+                                    method: "delete"
                                 })
                                 .success(function(data) {
 
