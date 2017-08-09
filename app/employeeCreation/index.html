@@ -2,7 +2,38 @@
 
     <div class="bodycls">
         <md-content class="md-padding">
-            <md-tabs md-selected="slide.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
+            <md-tabs md-selected="page.model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
+
+                <md-tab md-on-select="slide.incomeTab=true" label="Employee list Search">
+                    <div class="tab">
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-2 form-group">
+                                <label for="" class="control-label col-lg-10 lblcls">branch</label>
+                                <div class=""> <select multiselectdropdown ng-model="page.model.searchbranch" typeofdata="'Branch'" ng-change="page.model.dependencyChange(page.model.country,'state');" multiple>   
+                              </select></div>
+                            </div>
+                            <div class="col-lg-2 form-group">
+                                <label for="" class="control-label col-lg-10 lblcls">Employee Status</label>
+                                <div class=""> <select multiselectdropdown ng-model="page.model.empStatus" ng-options="item.Id as item.value for item in page.model.empStatusArr">   
+                              </select></div>
+                            </div>
+                            <div class="col-lg-2 form-group">
+                                <label for="" class="control-label col-lg-10 lblcls">Employee Type</label>
+                                <div class=""> <select multiselectdropdown ng-model="page.model.empType" ng-options="item.Id as item.value for item in page.model.empTypeArr" multiple>   
+                              </select></div>
+                            </div>
+                            <div class="col-lg-2" style="margin-top:2%;">
+                                <md-checkbox ng-model="page.model.isLoginAnywhere">LoginAnywhere</md-checkbox>
+                            </div>
+                            <div class="col-lg-3" style="margin-top:2%;">
+                                <input type="submit" value="Search" class="btn btn-success" ng-click="page.model.getEmpList();">
+                            </div>
+                        </div>
+                        <br>
+                        <complex-grid-new ng-if="page.model.columns" config="page.model" model="page.model"></complex-grid-new>
+                    </div>
+                </md-tab>
                 <md-tab label="Create Employee">
                     <div class="tab">
                         <form name="empFormCreation" novalidate role="form" ng-submit="page.model.CreateEmployeeSubmit()" accessible-form>
@@ -206,37 +237,6 @@
                     <br><br><br>
 
                 </md-tab>
-                <md-tab md-on-select="slide.incomeTab=true" label="Employee list Search">
-                    <div class="tab">
-                        <br>
-                        <div class="row">
-                            <div class="col-lg-2 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls">branch</label>
-                                <div class=""> <select multiselectdropdown ng-model="page.model.searchbranch" typeofdata="'Branch'" ng-change="page.model.dependencyChange(page.model.country,'state');" multiple>   
-                              </select></div>
-                            </div>
-                            <div class="col-lg-2 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls">Employee Status</label>
-                                <div class=""> <select multiselectdropdown ng-model="page.model.empStatus" ng-options="item.Id as item.value for item in page.model.empStatusArr">   
-                              </select></div>
-                            </div>
-                            <div class="col-lg-2 form-group">
-                                <label for="" class="control-label col-lg-10 lblcls">Employee Type</label>
-                                <div class=""> <select multiselectdropdown ng-model="page.model.empType" ng-options="item.Id as item.value for item in page.model.empTypeArr" multiple>   
-                              </select></div>
-                            </div>
-                            <div class="col-lg-2" style="margin-top:2%;">
-                                <md-checkbox ng-model="page.model.isLoginAnywhere">LoginAnywhere</md-checkbox>
-                            </div>
-                            <div class="col-lg-3" style="margin-top:2%;">
-                                <input type="submit" value="Search" class="btn btn-success" ng-click="page.model.getEmpList();">
-                            </div>
-                        </div>
-                        <br>
-                        <complex-grid-new ng-if="page.model.columns" config="page.model" model="page.model"></complex-grid-new>
-                    </div>
-                </md-tab>
-
 
             </md-tabs>
         </md-content>

@@ -11,6 +11,7 @@
 
         var model = {};
         model = gridConfig;
+        model.actionFlag = '';
         model.hrsbindArr = commonFactory.numberBindWithZeros('Hours', 0, 23);
         model.minbindArr = commonFactory.numberBindWithZeros('Minutes', 0, 59);
         model.minsArray = [
@@ -91,6 +92,7 @@
             model.emptype = '';
             model.chkloginaAnyWhere = '';
             model.newuserID = '';
+            model.actionFlag = '';
         };
 
         model.actionTemplate = function(row) {
@@ -106,14 +108,52 @@
             return "<img class='img-circle' src=" + src + " style='width:150px;height:150px;'></img>";
         };
 
-
-
         model.editEmp = function(row) {
-
-            debugger;
-
+            model.actionFlag = 'edit';
+            model.populatemodel(row);
+            model.selectedIndex = 1;
         };
 
+        model.populatemodel = function(row) {
+            model.dependencyChange(row.CountryID, 'state');
+            model.dependencyChange(row.StateID, 'district');
+            model.dependencyChange(row.DistrictID, 'city');
+            model.dependencyChange(row.EducationCategoryID, 'edugroup');
+            model.dependencyChange(row.EducationGroupID, 'eduSpecialisation');
+            model.fName = row.FirstName;
+            model.lName = row.LastName;
+            model.officeEmail = row.OfficialEmailID;
+            model.workingBranch = row.BranchID;
+            model.landline = row.WorkPhone;
+            model.officePhone = row.OfficialContactNumber;
+            model.designation = row.DesignationID;
+            model.loginLocation = row.LoginLocation;
+            model.weakOff = row.DayOff;
+
+            model.dateOfJoining = row.Created_Date ? moment(row.Created_Date).format('DD-MM-YYY') : '';
+
+
+            var FromHrsArr = (row.WorkingStartTIme).split(' ');
+            var ToHrsArr = (row.WorkingEndTIme).split(' ');
+
+            model.fromHrs = parseInt((FromHrsArr[1]).split(':')[0]);
+            model.fromMins = parseInt((FromHrsArr[1]).split(':')[1]);
+            model.toHrs = parseInt((ToHrsArr[1]).split(':')[0]);
+            model.toMins = parseInt((ToHrsArr[1]).split(':')[1]);
+
+            model.country = row.CountryID;
+            model.state = row.StateID;
+            model.district = row.DistrictID;
+            model.city = row.CityID;
+            model.address = row.Address;
+            model.personalEmail = row.Email;
+            model.personalPhone = row.HomePhone;
+            model.eduCatgory = row.EducationCategoryID;
+            model.eduGroup = row.EducationGroupID;
+            model.eduSpecialisation = row.EducationSpecializaionID;
+            model.chkloginaAnyWhere = row.isLoginanywhere;
+            model.newuserID = row.UserID;
+        };
 
 
         model.getEmpList = function() {

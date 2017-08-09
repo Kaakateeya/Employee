@@ -71,36 +71,32 @@
                     });
             } else {
                 if (model.downloadimagesArr.length > 0) {
-                    $http.post('/deleteDownloads3imageFolder').then(function(mg) {
-                        _.each(model.downloadimagesArr, function(item, index) {
-                            $http({
-                                    url: '/downloadAlls3Images',
-                                    data: { keyname: item.keyname, filePath: item.filePathnew },
-                                    method: "post"
-                                })
-                                .success(function(data) {
-
-                                    if (model.downloadimagesArr.length === parseInt(index) + 1) {
-                                        timeout(function() {
-                                            $http({
-                                                url: '/zipme',
-                                                method: "get"
-                                            }).success(function(responseData) {
-                                                var zip = new JSZip();
-                                                zip.file("DownloadPhotos.zip", responseData, { base64: true });
-                                                zip.generateAsync({ type: "blob" })
-                                                    .then(function(content) {
-                                                        saveAs(content, "KaakateeyaPhotos");
-                                                    });
-                                            });
-                                        }, 1500);
-                                    }
-
-                                });
-                        });
+                    $http.delete('/deleteDownloads3imageFolder').then(function(mg) {
+                        $http({
+                                url: '/downloadAlls3Images',
+                                data: { keynamelst: model.downloadimagesArr },
+                                method: "post"
+                            })
+                            .success(function(data) {
+                                timeout(model.zipme, 2000);
+                            });
                     });
                 }
             }
+        };
+
+        model.zipme = function() {
+            $http({
+                url: '/zipme',
+                method: "get"
+            }).success(function(responseData) {
+                var zip = new JSZip();
+                zip.file("DownloadPhotos.zip", responseData, { base64: true });
+                zip.generateAsync({ type: "blob" })
+                    .then(function(content) {
+                        saveAs(content, "KaakateeyaPhotos");
+                    });
+            });
         };
 
         model.uploadTemplateurl = function(row) {
@@ -177,7 +173,7 @@
                         var imgnane = item.PhotoName.split('.');
                         var imgnum = imgnane[0].substr(imgnane[0].length - 1);
                         var imagename = item.ProfileID + '_' + imgnum + '.jpg';
-                        model.downloadimagesArr.push({ keyname: keynameq, filePathnew: imagename });
+                        model.downloadimagesArr.push({ keyname: keynameq, filePath: imagename });
                     });
                 } else {
                     model.data = [];
