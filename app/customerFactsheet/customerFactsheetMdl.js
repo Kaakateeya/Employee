@@ -86,7 +86,7 @@
                     return dd;
                 };
                 model.ProfileIdTemplateDUrl = function(row) {
-                    var paidstatusclass = row.Paid === 1 ? 'paidclass' : 'unpaid';
+                    var paidstatusclass = row.PaidStatus === 1 ? 'paidclass' : 'unpaid';
                     var paid = row.ProfileID !== undefined ? "<a class='" + paidstatusclass + "'>" + row.ProfileID + "</a>" : "";
                     return paid;
                 };

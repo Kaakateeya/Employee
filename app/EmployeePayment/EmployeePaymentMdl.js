@@ -84,6 +84,7 @@
                                     key: 'Status',
                                     type: 'label'
                                 }, { text: 'Authorized by', key: 'StatusBy', type: 'label' }, { text: 'Description', key: 'Description', type: 'morelinks', templateUrl: model.descriptionTemplate });
+                                var curdate = moment().format('MM-DD-YYYY');
                                 EmployeePaymentservice.getEmployeePayment(model.txtProfileID).then(
                                     function(response) {
                                         if (_.isArray(response.data) && response.data.length > 0) {
@@ -94,6 +95,7 @@
                                             model.balancepaymentID = (response.data)[0].PaymentID;
                                             model.balancemembershiptype = (response.data)[0].membershiptype;
                                             model.RenewalStatus = (response.data)[0].RenewalStatus;
+                                            model.renewalstatusid = (response.data)[0].RenewalStatus;
                                             model.PaymentHist_ID = (response.data)[0].PaymentHist_ID;
                                             model.CustId = (response.data)[0].CustId;
                                             model.ExpiryDate = (response.data)[0].ExpiryDate;
@@ -105,8 +107,8 @@
                                             model.ProfileID = (response.data)[0].ProfileID;
                                             model.data = (response.data);
                                         } else {
-                                            state.go('base.EmployeePaymentInsert', { ProfileID: model.txtProfileID, status: 0, paymentID: 0, histryid: 0 });
-                                            // state.go('base.EmployeePaymentInsertnew', { ProfileID: model.txtProfileID, status: 0, paymentID: 0, histryid: 0 });
+                                            // state.go('base.EmployeePaymentInsert', { ProfileID: model.txtProfileID, status: 0, paymentID: 0, histryid: 0 });
+                                            state.go('base.EmployeePaymentInsertnew', { ProfileID: model.txtProfileID, status: 0, paymentID: 0, histryid: 0 });
                                         }
                                     }
                                 );
@@ -133,12 +135,12 @@
                 };
                 model.paymentInsertLink = function(id, type) {
                     if (type === 'renewal')
-                        state.go('base.EmployeePaymentInsert', { ProfileID: id, status: 1, paymentID: 0, histryid: model.PaymentHist_ID });
-                    // state.go('base.EmployeePaymentInsertnew', { ProfileID: id, status: 1, paymentID: 0, histryid: model.PaymentHist_ID });
+                    // state.go('base.EmployeePaymentInsert', { ProfileID: id, status: 1, paymentID: 0, histryid: model.PaymentHist_ID });
+                        state.go('base.EmployeePaymentInsertnew', { ProfileID: id, status: 1, paymentID: 0, histryid: model.PaymentHist_ID });
                     else {
                         var Status = model.balancemembershiptype === 'Registration' ? 0 : 1;
-                        state.go('base.EmployeePaymentInsert', { ProfileID: id, status: Status, paymentID: model.balancepaymentID, histryid: model.PaymentHist_ID });
-                        //state.go('base.EmployeePaymentInsertnew', { ProfileID: id, status: Status, paymentID: model.balancepaymentID, histryid: model.PaymentHist_ID });
+                        //state.go('base.EmployeePaymentInsert', { ProfileID: id, status: Status, paymentID: model.balancepaymentID, histryid: model.PaymentHist_ID });
+                        state.go('base.EmployeePaymentInsertnew', { ProfileID: id, status: Status, paymentID: model.balancepaymentID, histryid: model.PaymentHist_ID });
                     }
 
                 };
