@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .factory('employeeCreationModel', factory);
 
-    factory.$inject = ['employeeCreationService', 'commonFactory', 'Commondependency', 'complex-grid-config', 'alert', 'modelpopupopenmethod', 'fileUpload'];
+    factory.$inject = ['employeeCreationService', 'commonFactory', 'Commondependency', 'complex-grid-config', 'alert', 'modelpopupopenmethod', 'fileUpload', '$timeout'];
 
-    function factory(employeeCreationService, commonFactory, Commondependency, gridConfig, alertss, modelpopupopenmethod, fileUpload) {
+    function factory(employeeCreationService, commonFactory, Commondependency, gridConfig, alertss, modelpopupopenmethod, fileUpload, timeout) {
 
         var model = {};
         model = gridConfig;
@@ -31,7 +31,7 @@
         model.DesignationArr = [{ value: '--select--', Id: '' }, { value: 'Match Followup', Id: 1 }, { value: 'Payment', Id: 2 }, { value: 'Review', Id: 3 }, { value: 'Other', Id: 4 }, { value: 'Marketing', Id: 5 }];
         model.WeekDaysArr = [{ value: '--select--', Id: '' }, { value: 'Monday', Id: '1' }, { value: 'Tuesday', Id: '2' }, { value: 'Wednesday', Id: '3' }, { value: 'Thursday', Id: '4' }, { value: 'Friday', Id: '5' }, { value: 'Saturday', Id: '6' }, { value: 'Sunday', Id: '7' }];
         model.empStatusArr = [
-            { "label": "All", "title": "All", "value": '' },
+            { "label": "All", "title": "All", "value": '0' },
             { "label": "IsActive", "title": "IsActive", "value": '423' },
             { "label": "Delete", "title": "Delete", "value": '424' },
             { "label": "Disable", "title": "Disable", "value": '425' },
@@ -43,7 +43,10 @@
             { "label": "Review Emp", "title": "Review Emp", "value": '3' },
             { "label": "Marketing Emp", "title": "Marketing Emp", "value": '4' },
         ];
-
+        model.init = function() {
+            model.branchArr = Commondependency.branch('');
+            return model;
+        };
         model.dependencyChange = function(parentval, type) {
 
             switch (type) {
@@ -61,6 +64,9 @@
                     break;
                 case 'eduSpecialisation':
                     model.eduSpecialisationArr = Commondependency.educationSpeciakisationBind(parentval);
+                    break;
+                case 'branch':
+                    model.branchArr = Commondependency.branch(parentval ? parentval.join(',') : '');
                     break;
             }
         };
@@ -94,23 +100,14 @@
             model.chkloginaAnyWhere = '';
             model.newuserID = '';
             model.actionFlag = 'create';
-            model.empStatus = '423';
+
+            timeout(function() {
+                model.empStatus = '423';
+            }, 1000);
+
         };
 
-        model.actionTemplate = function(row) {
-            var DeleteActiveStatus = row.IsActiveStatus == 'IsActive' ? 'Delete' : 'Active';
-            var actionstr = "<a href='javascript:void(0);' ng-click='model.editEmp(" + JSON.stringify(row) + ");'>Edit</a><br><a href='javascript:void(0);' ng-click='model.deleteEmp(" + JSON.stringify(row) + "," + JSON.stringify(DeleteActiveStatus) + ");'>" + DeleteActiveStatus + "</a><br><a href='javascript:void(0);' ng-click='model.disableEmp(" + JSON.stringify(row) + ");'>Disable</a><br><a href='javascript:void(0);' ng-click='model.assignEmpWork(" + JSON.stringify(row) + ");'>Assign</a>";
-            return actionstr;
-        };
-        model.empDetailsTemplate = function(row) {
-            var empstr = "<b>" + row.FirstName + ' ' + row.LastName + "</b><br><span>" + row.BranchesName + "</span><br><span>" + row.OfficialEmailID + "</span><br><span>" + row.OfficialContactNumber + "</span><br><span>" + row.UserID + "</span>";
-            return empstr;
-        };
-        model.EmpPhotoTemplateUrl = function(row) {
-            var src = row.EmpPhoto ? row.EmpPhoto : 'src/images/Manage_blankphoto.png';
-            var style = row.EmpPhoto !== null ? 'cursor:pointer;width:150px;height:150px;' : 'width:150px;height:150px;';
-            return "<img class='img-circle' style='" + style + "'  ng-click='model.EmpPhotopopup(" + JSON.stringify(row.EmpPhoto) + "," + JSON.stringify(row.UserID) + ")' src=" + src + "></img>";
-        };
+
 
         model.EmpPhotopopup = function(src, userid) {
             model.empPhoto = '';
@@ -136,6 +133,7 @@
         };
 
         model.disableEmp = function(row) {
+            debugger;
             model.inobjemp = {};
             model.actionFlag = 'disable';
             model.populatemodel(row);
@@ -162,6 +160,7 @@
         };
 
         model.populatemodel = function(row) {
+
             model.dependencyChange(row.CountryID, 'state');
             model.dependencyChange(row.StateID, 'district');
             model.dependencyChange(row.DistrictID, 'city');
@@ -175,7 +174,7 @@
             model.officePhone = row.OfficialContactNumber;
             model.designation = row.DesignationID;
             model.loginLocation = row.LoginLocation;
-            model.weakOff = row.DayOff;
+            debugger;
 
             model.dateOfJoining = row.Created_Date ? moment(row.Created_Date).format('MM-DD-YYYY') : '';
 
@@ -188,41 +187,46 @@
                 var ToHrsArr = (row.WorkingEndTIme).split(' ');
                 model.toHrs = parseInt((ToHrsArr[1]).split(':')[0]);
                 model.toMins = parseInt((ToHrsArr[1]).split(':')[1]);
+
             }
 
-            model.country = row.CountryID;
-            model.state = row.StateID;
-            model.district = row.DistrictID;
-            model.city = row.CityID;
+            timeout(function() {
+                model.weakOff = JSON.stringify(row.DayOff);
+                model.country = row.CountryID;
+                model.state = row.StateID;
+                model.district = row.DistrictID;
+                model.city = row.CityID;
+                model.eduGroup = row.EducationGroupID;
+                model.eduSpecialisation = row.EducationSpecializaionID;
+            }, 1000);
+
+
             model.address = row.Address;
             model.personalEmail = row.Email;
             model.personalPhone = row.HomePhone;
             model.eduCatgory = row.EducationCategoryID;
-            model.eduGroup = row.EducationGroupID;
-            model.eduSpecialisation = row.EducationSpecializaionID;
             model.chkloginaAnyWhere = row.isLoginanywhere;
             model.newuserID = row.UserID;
         };
 
         model.getEmpList = function() {
-            model.columns = [
-                { text: 'Action', key: '', type: 'morelinks', templateUrl: model.actionTemplate },
-                { text: 'EmpPhoto', key: 'EmpPhoto', type: 'morelinks', templateUrl: model.EmpPhotoTemplateUrl },
-                { text: 'Emp_Details', key: '', type: 'morelinks', templateUrl: model.empDetailsTemplate },
-                { text: 'Created_Date', key: 'CreatedDate', type: 'label' },
-                { text: 'isLoginanywhere', key: 'isLoginanywhere', type: 'label' }
-            ];
+
             var inObj = {
                 Empid: null,
                 // model.empid,
                 BranchIDs: model.searchbranch ? model.searchbranch.join(',') : null,
                 EmpStatus: model.empStatus,
                 EmpTypeIDs: model.empType,
-                isLoginanywhere: model.isLoginAnywhere
+                isLoginanywhere: model.isLoginAnywhere,
+                region: model.region ? model.region.join(',') : null
             };
             employeeCreationService.getEmpList(inObj).then(function(response) {
                 if (response.data && response.data.length > 0) {
                     model.data = response.data;
+                    _.each(model.data, function(item) {
+                        item.starttime = moment(item.WorkingStartTIme).format('hh:mm A');
+                        item.endTime = moment(item.WorkingEndTIme).format('hh:mm A');
+                    });
                 }
             });
         };
@@ -317,14 +321,12 @@
             debugger;
             employeeCreationService.employeeCreation(model.inobjemp).then(function(response) {
                 if (response.data && parseInt(response.data) === 1) {
-
+                    debugger;
                     switch (model.actionFlag) {
                         case 'create':
                             if (model.upImage) {
                                 var keyname = 'Images/EmployeeImages/' + model.newuserID + '_EmplyeeImage/' + model.newuserID + '_EmplyeeImage.jpg';
-                                fileUpload.uploadFileToUrl(model.upImage, '/employeeImgupload', keyname).then(function(res) {
-
-                                });
+                                fileUpload.uploadFileToUrl(model.upImage, '/employeeImgupload', keyname).then(function(res) {});
                             }
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Employee creation done successfully', 4500);
                             break;
@@ -342,9 +344,9 @@
                             break;
                     }
                     model.reset();
+                    model.scope.empFormCreation.$setPristine();
                 } else {
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'This transaction failed', 4500);
-
                 }
             });
         };
@@ -358,11 +360,22 @@
                 });
             }
         };
+
         model.close = function() {
             modelpopupopenmethod.closepopuppoptopopup();
         };
+        model.empImage = function(row) {
+            var strimg = '';
+            if (row.EmpPhoto !== null) {
+                strimg = "http://d16o2fcjgzj2wp.cloudfront.net/Images/EmployeeImages/" + row.UserID + "_EmplyeeImage/" + row.UserID + "_EmplyeeImage.jpg";
+            } else {
+                strimg = 'http://d16o2fcjgzj2wp.cloudfront.net/Images/customernoimages/Fnoimage.jpg';
+            }
+            return strimg;
 
-        return model;
+        };
+
+        return model.init();
 
     }
 })();

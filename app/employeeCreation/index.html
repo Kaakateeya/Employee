@@ -9,13 +9,18 @@
                         <br>
                         <div class="row">
                             <div class="col-lg-2 form-group">
+                                <label for="" class="control-label col-lg-10 lblcls">Region</label>
+                                <div class=""> <select multiselectdropdown ng-model="page.model.region" multiple typeofdata="'RegionofbranchesWithAll'" ng-change="page.model.dependencyChange(page.model.region,'branch');">   
+                              </select></div>
+                            </div>
+                            <div class="col-lg-2 form-group">
                                 <label for="" class="control-label col-lg-10 lblcls">branch</label>
-                                <div class=""> <select multiselectdropdown ng-model="page.model.searchbranch" typeofdata="'Branch'" ng-change="page.model.dependencyChange(page.model.country,'state');" multiple>   
+                                <div class=""> <select multiselectdropdown ng-model="page.model.searchbranch" multiple ng-options="item.value as item.label for item in page.model.branchArr">   
                               </select></div>
                             </div>
                             <div class="col-lg-2 form-group">
                                 <label for="" class="control-label col-lg-10 lblcls">Employee Status</label>
-                                <div class=""> <select pagetype="'search'" multiselectdropdown ng-model="page.model.empStatus" ng-options="item.value as item.label for item in page.model.empStatusArr">   
+                                <div class=""> <select multiselectdropdown pagetype="'search'" ng-model="page.model.empStatus" ng-options="item.value as item.label for item in page.model.empStatusArr">   
                               </select></div>
                             </div>
                             <div class="col-lg-2 form-group">
@@ -26,22 +31,54 @@
                             <div class="col-lg-2" style="margin-top:2%;">
                                 <md-checkbox ng-model="page.model.isLoginAnywhere">LoginAnywhere</md-checkbox>
                             </div>
-                            <div class="col-lg-3" style="margin-top:2%;">
+                            <div class="col-lg-2" style="margin-top:2%;">
                                 <input type="submit" value="Search" class="btn btn-success" ng-click="page.model.getEmpList();">
+                                <div ng-if="page.model.data.length>0">
+                                    Total Records : {{page.model.data.length}}
+                                </div>
                             </div>
+
                         </div>
                         <br>
-                        <complex-grid-new ng-if="page.model.columns" config="page.model" model="page.model"></complex-grid-new>
+
+                        <div class="mainDivCls">
+                            <div class="row scrollcls">
+                                <div class="col-lg-3" ng-repeat="item in page.model.data">
+                                    <div class="gridcls">
+                                        <div>
+                                            <img style="height: 195px; width: 195px;cursor:pointer;" ng-src="{{page.model.empImage(item);}}" ng-click="page.model.EmpPhotopopup(item.EmpPhoto,item.UserID);" />
+                                        </div>
+                                        <div class="row empdata">
+                                            <div style="color:#2d45c2;">{{item.FirstName+' '+item.LastName+' ('+item.UserID+')'}}</div>
+                                            <div> {{item.OfficialEmailID}}</div>
+                                            <div> {{item.OfficialContactNumber}}</div>
+                                            <div>{{item.starttime +' to '+ item.endTime}} </div>
+                                            <div>Login Anywhere : {{item.isLoginanywhere}}</div>
+                                        </div>
+                                        <div class="">
+                                            <div class="row actioncls">
+                                                <div class="col-lg-3"><a href="javascript:void(0);" ng-click="page.model.editEmp(item);">Edit</a></div>
+                                                <div class="col-lg-3"><a href="javascript:void(0);" ng-cloak ng-click="page.model.deleteEmp(item,item.IsActiveStatus==='IsActive' ? 'Delete' : 'Active');">{{item.IsActiveStatus === 'IsActive' ? 'Delete' : 'Active'}}</a></div>
+                                                <div class="col-lg-3"><a href="javascript:void(0);" ng-click="page.model.disableEmp(item);">Disable</a></div>
+                                                <div class="col-lg-3"><a href="javascript:void(0);" ng-click="page.model.assignEmpWork(item);">Assign</a></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </md-tab>
-                <md-tab label="Create Employee">
+                <md-tab label="Create Employee" ng-click="page.model.reset();empFormCreation.$setPristine();">
                     <div class="tab">
                         <form name="empFormCreation" novalidate role="form" ng-submit="page.model.CreateEmployeeSubmit()" accessible-form>
                             <br>
                             <div class="row">
                                 <div class="col-lg-3" style="color:black;">
                                     <label for="" class="control-label col-lg-10 lblcls required">First name</label>
-                                    <div class="form-group"><input type="text" class="form-control" ng-model="page.model.fName" required></div>
+                                    <div class="form-group"><input type="text" class="form-control" focus-me="true" ng-model="page.model.fName" required></div>
                                 </div>
                                 <div class="col-lg-3">
                                     <label for="" class="control-label col-lg-10 lblcls required">Last name</label>
@@ -74,7 +111,7 @@
                                     <div class="form-group row">
                                         <select multiselectdropdown name="designation" ng-model="page.model.designation" required ng-options="item.Id as item.value for item in page.model.DesignationArr"></select>
                                     </div>
-                                    <div class="row" style="color: #a94442;" ng-if="empFormCreation.designation.$invalid && (empFormCreation.$submitted)" ng-messages="empFormCreation.designation.$error">This field is required.</div>
+                                    <div class="row" style="color: #a94442;" ng-if="empFormCreation.designation.$invalid && (empFormCreation.$submitted)">This field is required.</div>
                                 </div>
                                 <div class="col-lg-3">
                                     <label for="" class="control-label col-lg-10 lblcls required">Login location</label>
@@ -260,6 +297,7 @@
             </md-tabs>
         </md-content>
     </div>
+
 </div>
 
 <script type="text/ng-template" id="assignWork.html">
@@ -300,8 +338,6 @@
         <input type="button" value="close" class="btn btn-default" ng-click="page.model.close();">
     </div>
 </script>
-
-
 <script type="text/ng-template" id="empPhotoPopup.html">
 
     <div class="modal-header">
@@ -314,7 +350,7 @@
     </div>
 
     <div class="modal-body" style="line-height: 38px;">
-        <img ng-src="{{page.model.empPhoto}}" alt="">
+        <img ng-src="{{page.model.empPhoto}}" alt="" style="max-width:560px;max-height:388px;">
     </div>
     <div class="modal-footer">
         <input type="button" value="close" class="btn btn-default" ng-click="page.model.close();">
@@ -324,5 +360,33 @@
 <style>
     .datepicker3 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+    }
+    
+    .gridcls {
+        border: 1px solid #ccc;
+        margin: 4%;
+    }
+    
+    .empdata {
+        line-height: 24px;
+        padding-left: 13%;
+        color: #514d4d;
+        font-weight: 600;
+    }
+    
+    .mainDivCls {
+        border: 1px solid #ccc;
+    }
+    
+    .actioncls {
+        margin-left: 0%;
+        margin-right: 0%;
+        padding-top: 4%;
+        background-color: #dbe2e5;
+    }
+    
+    .scrollcls {
+        height: 600px;
+        overflow-y: auto;
     }
 </style>

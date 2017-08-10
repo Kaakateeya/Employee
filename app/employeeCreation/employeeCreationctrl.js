@@ -17,6 +17,7 @@
              model.reset();
              model.scope = scope;
              model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+             model.empStatus = '423';
          };
 
          vm.init();

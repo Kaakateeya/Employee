@@ -61,6 +61,11 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                         case 'Regionofbranches':
                             scope.databind(cons.Regionofbranches);
                             break;
+                        case 'RegionofbranchesWithAll':
+                            cons.Regionofbranches.splice(0, 1);
+                            cons.Regionofbranches.splice(0, 0, { "label": "All", "title": "All", "value": '' });
+                            scope.databind(cons.Regionofbranches);
+                            break;
                         case 'bodyType':
                             scope.databind(cons.bodyType);
                             break;
