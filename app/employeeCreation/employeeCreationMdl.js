@@ -66,7 +66,7 @@
                     model.eduSpecialisationArr = Commondependency.educationSpeciakisationBind(parentval);
                     break;
                 case 'branch':
-                    model.branchArr = Commondependency.branch(parentval);
+                    model.branchArr = Commondependency.branch(parentval ? parentval.join(',') : '');
                     break;
             }
         };
@@ -217,7 +217,8 @@
                 BranchIDs: model.searchbranch ? model.searchbranch.join(',') : null,
                 EmpStatus: model.empStatus,
                 EmpTypeIDs: model.empType,
-                isLoginanywhere: model.isLoginAnywhere
+                isLoginanywhere: model.isLoginAnywhere,
+                region: model.region ? model.region.join(',') : null
             };
             employeeCreationService.getEmpList(inObj).then(function(response) {
                 if (response.data && response.data.length > 0) {
