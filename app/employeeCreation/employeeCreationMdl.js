@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .factory('employeeCreationModel', factory);
 
-    factory.$inject = ['employeeCreationService', 'commonFactory', 'Commondependency', 'complex-grid-config', 'alert', 'modelpopupopenmethod', 'fileUpload'];
+    factory.$inject = ['employeeCreationService', 'commonFactory', 'Commondependency', 'complex-grid-config', 'alert', 'modelpopupopenmethod', 'fileUpload', '$timeout'];
 
-    function factory(employeeCreationService, commonFactory, Commondependency, gridConfig, alertss, modelpopupopenmethod, fileUpload) {
+    function factory(employeeCreationService, commonFactory, Commondependency, gridConfig, alertss, modelpopupopenmethod, fileUpload, timeout) {
 
         var model = {};
         model = gridConfig;
@@ -31,7 +31,7 @@
         model.DesignationArr = [{ value: '--select--', Id: '' }, { value: 'Match Followup', Id: 1 }, { value: 'Payment', Id: 2 }, { value: 'Review', Id: 3 }, { value: 'Other', Id: 4 }, { value: 'Marketing', Id: 5 }];
         model.WeekDaysArr = [{ value: '--select--', Id: '' }, { value: 'Monday', Id: '1' }, { value: 'Tuesday', Id: '2' }, { value: 'Wednesday', Id: '3' }, { value: 'Thursday', Id: '4' }, { value: 'Friday', Id: '5' }, { value: 'Saturday', Id: '6' }, { value: 'Sunday', Id: '7' }];
         model.empStatusArr = [
-            { "label": "All", "title": "All", "value": '' },
+            { "label": "All", "title": "All", "value": '0' },
             { "label": "IsActive", "title": "IsActive", "value": '423' },
             { "label": "Delete", "title": "Delete", "value": '424' },
             { "label": "Disable", "title": "Disable", "value": '425' },
@@ -100,7 +100,11 @@
             model.chkloginaAnyWhere = '';
             model.newuserID = '';
             model.actionFlag = 'create';
-            model.empStatus = '423';
+
+            timeout(function() {
+                model.empStatus = '423';
+            }, 1000);
+
         };
 
 
@@ -156,6 +160,7 @@
         };
 
         model.populatemodel = function(row) {
+
             model.dependencyChange(row.CountryID, 'state');
             model.dependencyChange(row.StateID, 'district');
             model.dependencyChange(row.DistrictID, 'city');
@@ -169,10 +174,10 @@
             model.officePhone = row.OfficialContactNumber;
             model.designation = row.DesignationID;
             model.loginLocation = row.LoginLocation;
-            model.weakOff = row.DayOff;
+            debugger;
 
             model.dateOfJoining = row.Created_Date ? moment(row.Created_Date).format('MM-DD-YYYY') : '';
-            debugger;
+
             if (row.WorkingStartTIme) {
                 var FromHrsArr = (row.WorkingStartTIme).split(' ');
                 model.fromHrs = parseInt((FromHrsArr[1]).split(':')[0]);
@@ -182,18 +187,24 @@
                 var ToHrsArr = (row.WorkingEndTIme).split(' ');
                 model.toHrs = parseInt((ToHrsArr[1]).split(':')[0]);
                 model.toMins = parseInt((ToHrsArr[1]).split(':')[1]);
+
             }
 
-            model.country = row.CountryID;
-            model.state = row.StateID;
-            model.district = row.DistrictID;
-            model.city = row.CityID;
+            timeout(function() {
+                model.weakOff = JSON.stringify(row.DayOff);
+                model.country = row.CountryID;
+                model.state = row.StateID;
+                model.district = row.DistrictID;
+                model.city = row.CityID;
+                model.eduGroup = row.EducationGroupID;
+                model.eduSpecialisation = row.EducationSpecializaionID;
+            }, 1000);
+
+
             model.address = row.Address;
             model.personalEmail = row.Email;
             model.personalPhone = row.HomePhone;
             model.eduCatgory = row.EducationCategoryID;
-            model.eduGroup = row.EducationGroupID;
-            model.eduSpecialisation = row.EducationSpecializaionID;
             model.chkloginaAnyWhere = row.isLoginanywhere;
             model.newuserID = row.UserID;
         };
