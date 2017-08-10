@@ -43,7 +43,10 @@
             { "label": "Review Emp", "title": "Review Emp", "value": '3' },
             { "label": "Marketing Emp", "title": "Marketing Emp", "value": '4' },
         ];
-
+        model.init = function() {
+            model.branchArr = Commondependency.branch('');
+            return model;
+        };
         model.dependencyChange = function(parentval, type) {
 
             switch (type) {
@@ -61,6 +64,9 @@
                     break;
                 case 'eduSpecialisation':
                     model.eduSpecialisationArr = Commondependency.educationSpeciakisationBind(parentval);
+                    break;
+                case 'branch':
+                    model.branchArr = Commondependency.branch(parentval);
                     break;
             }
         };
@@ -97,20 +103,7 @@
             model.empStatus = '423';
         };
 
-        model.actionTemplate = function(row) {
-            var DeleteActiveStatus = row.IsActiveStatus == 'IsActive' ? 'Delete' : 'Active';
-            var actionstr = "<a href='javascript:void(0);' ng-click='model.editEmp(" + JSON.stringify(row) + ");'>Edit</a><br><a href='javascript:void(0);' ng-click='model.deleteEmp(" + JSON.stringify(row) + "," + JSON.stringify(DeleteActiveStatus) + ");'>" + DeleteActiveStatus + "</a><br><a href='javascript:void(0);' ng-click='model.disableEmp(" + JSON.stringify(row) + ");'>Disable</a><br><a href='javascript:void(0);' ng-click='model.assignEmpWork(" + JSON.stringify(row) + ");'>Assign</a>";
-            return actionstr;
-        };
-        model.empDetailsTemplate = function(row) {
-            var empstr = "<b>" + row.FirstName + ' ' + row.LastName + "</b><br><span>" + row.BranchesName + "</span><br><span>" + row.OfficialEmailID + "</span><br><span>" + row.OfficialContactNumber + "</span><br><span>" + row.UserID + "</span>";
-            return empstr;
-        };
-        model.EmpPhotoTemplateUrl = function(row) {
-            var src = row.EmpPhoto ? row.EmpPhoto : 'src/images/Manage_blankphoto.png';
-            var style = row.EmpPhoto !== null ? 'cursor:pointer;width:150px;height:150px;' : 'width:150px;height:150px;';
-            return "<img class='img-circle' style='" + style + "'  ng-click='model.EmpPhotopopup(" + JSON.stringify(row.EmpPhoto) + "," + JSON.stringify(row.UserID) + ")' src=" + src + "></img>";
-        };
+
 
         model.EmpPhotopopup = function(src, userid) {
             model.empPhoto = '';
@@ -136,6 +129,7 @@
         };
 
         model.disableEmp = function(row) {
+            debugger;
             model.inobjemp = {};
             model.actionFlag = 'disable';
             model.populatemodel(row);
@@ -178,7 +172,7 @@
             model.weakOff = row.DayOff;
 
             model.dateOfJoining = row.Created_Date ? moment(row.Created_Date).format('MM-DD-YYYY') : '';
-
+            debugger;
             if (row.WorkingStartTIme) {
                 var FromHrsArr = (row.WorkingStartTIme).split(' ');
                 model.fromHrs = parseInt((FromHrsArr[1]).split(':')[0]);
@@ -205,13 +199,7 @@
         };
 
         model.getEmpList = function() {
-            model.columns = [
-                { text: 'Action', key: '', type: 'morelinks', templateUrl: model.actionTemplate },
-                { text: 'EmpPhoto', key: 'EmpPhoto', type: 'morelinks', templateUrl: model.EmpPhotoTemplateUrl },
-                { text: 'Emp_Details', key: '', type: 'morelinks', templateUrl: model.empDetailsTemplate },
-                { text: 'Created_Date', key: 'CreatedDate', type: 'label' },
-                { text: 'isLoginanywhere', key: 'isLoginanywhere', type: 'label' }
-            ];
+
             var inObj = {
                 Empid: null,
                 // model.empid,
@@ -223,6 +211,10 @@
             employeeCreationService.getEmpList(inObj).then(function(response) {
                 if (response.data && response.data.length > 0) {
                     model.data = response.data;
+                    _.each(model.data, function(item) {
+                        item.starttime = moment(item.WorkingStartTIme).format('hh:mm A');
+                        item.endTime = moment(item.WorkingEndTIme).format('hh:mm A');
+                    });
                 }
             });
         };
@@ -317,14 +309,12 @@
             debugger;
             employeeCreationService.employeeCreation(model.inobjemp).then(function(response) {
                 if (response.data && parseInt(response.data) === 1) {
-
+                    debugger;
                     switch (model.actionFlag) {
                         case 'create':
                             if (model.upImage) {
                                 var keyname = 'Images/EmployeeImages/' + model.newuserID + '_EmplyeeImage/' + model.newuserID + '_EmplyeeImage.jpg';
-                                fileUpload.uploadFileToUrl(model.upImage, '/employeeImgupload', keyname).then(function(res) {
-
-                                });
+                                fileUpload.uploadFileToUrl(model.upImage, '/employeeImgupload', keyname).then(function(res) {});
                             }
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Employee creation done successfully', 4500);
                             break;
@@ -342,9 +332,9 @@
                             break;
                     }
                     model.reset();
+                    model.scope.empFormCreation.$setPristine();
                 } else {
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'This transaction failed', 4500);
-
                 }
             });
         };
@@ -358,11 +348,22 @@
                 });
             }
         };
+
         model.close = function() {
             modelpopupopenmethod.closepopuppoptopopup();
         };
+        model.empImage = function(row) {
+            var strimg = '';
+            if (row.EmpPhoto !== null) {
+                strimg = "http://d16o2fcjgzj2wp.cloudfront.net/Images/EmployeeImages/" + row.UserID + "_EmplyeeImage/" + row.UserID + "_EmplyeeImage.jpg";
+            } else {
+                strimg = 'http://d16o2fcjgzj2wp.cloudfront.net/Images/customernoimages/Fnoimage.jpg';
+            }
+            return strimg;
 
-        return model;
+        };
+
+        return model.init();
 
     }
 })();
