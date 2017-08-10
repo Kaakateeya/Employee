@@ -17,6 +17,12 @@
             },
             employeeCreation: function(obj) {
                 return http.post(app.apiroot + 'smallPages/employeeCreation', obj);
+            },
+            getEmpCounts: function(empid) {
+                return http.get(app.apiroot + 'smallPages/getEmpWorkAssignCounts', { params: { EmpID: empid } });
+            },
+            setEmpCounts: function(obj) {
+                return http.post(app.apiroot + 'smallPages/setEmpAssignCounts', obj);
             }
         };
     }
