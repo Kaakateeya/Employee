@@ -184,7 +184,7 @@
                                 var options = {
                                     headers: true,
                                     columns: [{
-                                            columnid: 'Sno',
+                                            columnid: 'SNO',
                                             title: 'Sno'
                                         }, {
                                             columnid: 'ProfileID',
@@ -198,38 +198,12 @@
                                             title: 'SurName'
                                         },
                                         {
-                                            columnid: 'GENDERID',
-                                            title: 'GENDERID'
-                                        },
-                                        {
-                                            columnid: 'Caste',
-                                            title: 'Caste'
-                                        },
-                                        {
-                                            columnid: 'DOR',
-                                            title: 'DOR'
-                                        },
-
-                                        {
-                                            columnid: 'PaymentType',
-                                            title: 'PaymentType'
-                                        },
-
-                                        {
-                                            columnid: 'PaymentCashmode',
-                                            title: 'PaymentCashmode'
-                                        },
-                                        {
-                                            columnid: 'paidenteredby',
-                                            title: 'paidenteredby'
-                                        },
-                                        {
-                                            columnid: 'paidbranch',
-                                            title: 'Paidbranch'
-                                        },
-                                        {
                                             columnid: 'paymnetdate',
                                             title: 'paymnetdate'
+                                        },
+                                        {
+                                            columnid: 'PaymentCashmode',
+                                            title: 'Paymentmode'
                                         },
                                         {
                                             columnid: 'AgreedAmount',
@@ -244,20 +218,49 @@
                                             title: 'BalanceAmount'
                                         },
                                         {
-                                            columnid: 'marktby',
-                                            title: 'marktby'
-                                        },
-                                        {
-                                            columnid: 'PayFor',
-                                            title: 'PayFor'
+                                            columnid: 'paidbranch',
+                                            title: 'Paidbranch'
                                         },
                                         {
                                             columnid: 'ProfileOwner',
                                             title: 'ProfileOwner'
-                                        }
+                                        },
+                                        {
+                                            columnid: 'GENDERID',
+                                            title: 'GENDERID'
+                                        },
+                                        {
+                                            columnid: 'Caste',
+                                            title: 'Caste'
+                                        },
+                                        {
+                                            columnid: 'PaymentType',
+                                            title: 'PaymentType'
+                                        },
+
+
+                                        {
+                                            columnid: 'DOR',
+                                            title: 'DOR'
+                                        },
+
+                                        {
+                                            columnid: 'marktby',
+                                            title: 'marktby'
+                                        },
+                                        {
+                                            columnid: 'Marktedname',
+                                            title: 'AssignMarktedID'
+
+                                        },
+                                        {
+                                            columnid: 'paidenteredby',
+                                            title: 'paidenteredby'
+                                        },
+
                                     ]
                                 };
-                                alasql('SELECT ProfileID,GenderID as Gender,FirstName,LastName as SurName,Caste,RegistrationDate INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
+                                alasql('SELECT SNO,ProfileID,NAME,SurName,paymnetdate,PaymentCashmode,AgreedAmount,PaidAmount,BalanceAmount,paidbranch,ProfileOwner,GENDERID,Caste,PaymentType,DOR,AssignMarktedname as marketedby,AssignMarktedID as Marktedname,paidenteredby INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
                             }
                         } else {
                             alerts.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 4000);

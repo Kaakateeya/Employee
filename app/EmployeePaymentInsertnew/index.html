@@ -1,0 +1,235 @@
+<div class="right_col" role="main" id="paymentinsert">
+    <div class="search_page_main">
+        <h4 style="font-size: 18px;
+    color: #b10c0c;">Pament details</h4>
+        <div ng-if="page.model.PiObj.txtAmountPaid!==undefined && page.model.PiObj.txtAmountPaid!==null && page.model.PiObj.txtAmountPaid!==''" class="text-center"><span>
+           <span class="infn">No of points  </span>- {{page.model.strPoints}}
+            </span>&nbsp;&nbsp;
+            <span class="infn">Expiry Date </span>- {{page.model.strDate}}
+            </span>&nbsp;&nbsp;
+            <span ng-if="page.model.PiObj.txtAmountPaid!==undefined && (page.model.PiObj.txtAgreedAmt|number)!==(page.model.PiObj.txtAmountPaid|number)">
+             <span class="infn">Balance Amount </span>- {{page.model.PiObj.txtAgreedAmt-(page.model.paymentID!==0?page.model.PiObj.balamountpaid:page.model.PiObj.txtAmountPaid)}}
+            </span>
+            </span>
+
+        </div>
+        <div class="regmain register_page_main">
+            <form name="paymentForm" novalidate role="form" ng-submit="paymentForm.$valid && page.model.EmployeePaymentInsert(page.model.PiObj);">
+                <div class="lblclass">
+                    <div class="row">
+                        <div class="form-group col-lg-7">
+                            <div class="col-lg-4">
+                                <label for="" class="control-label pull-right">Profile ID</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <label for="" class="">{{page.model.custobj.ProfileID}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-5">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right">Gender</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="" class="">{{page.model.custobj.Gender}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-7">
+                            <div class="col-lg-4">
+                                <label for="" class="control-label pull-right">Name</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <label for="" class="">{{page.model.custobj.FirstName+' '+page.model.custobj.LastName}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-5">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right">Caste</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="" class="">{{page.model.custobj.CasteName}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="txtclass">
+                    <div class="row">
+                        <div class="form-group col-lg-7">
+                            <div class="col-lg-4">
+                                <label for="" class="control-label pull-right">Agreed amount</label>
+                            </div>
+                            <div class="col-lg-4">
+                                <input type="text" allow-only-numbers ng-readonly="page.model.typeofprofile!==0" ng-focus="true" ng-value="page.model.typeofprofile!==0?page.model.custobj.AgreedAmount:''" ng-model="page.model.PiObj.txtAgreedAmt" class="form-control" required ng-blur="page.model.showOfferDetails(page.model.PiObj.txtAgreedAmt,'Agreed');">
+                            </div>
+                        </div>
+                        <!--<div class="form-group col-lg-5">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right"> ServiceTax </label>
+                            </div>
+                            <div class="col-lg-6">
+                                <md-radio-group ng-required="true" name="rdnServicetax" layout="row" ng-model="page.model.PiObj.rdnServicetax" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                    <md-radio-button value="0"> No</md-radio-button>
+                                </md-radio-group>
+                                <div ng-if="paymentForm.rdnServicetax.$invalid && (paymentForm.$submitted)" style="color: #a94442;">This field is required.</div>
+                            </div>
+                        </div>-->
+
+                        <div class="form-group col-lg-5">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right">Settlement amount </label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" allow-only-numbers ng-readonly="page.model.typeofprofile!==0 && page.model.custobj.SettlementAmount!==null &&  page.model.custobj.SettlementAmount!==undefined && page.model.custobj.SettlementAmount!==''" ng-model="page.model.PiObj.txtSettlementAmount"
+                                    class="form-control" ng-required="page.model.typeofprofile===0">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-7">
+                            <div class="col-lg-4">
+                                <label for="" class="control-label pull-right">Amount paid </label>
+                            </div>
+                            <div class="col-lg-4">
+                                <input type="text" allow-only-numbers ng-value="page.model.typeofprofile!==0?page.model.custobj.Price:''" ng-model="page.model.PiObj.txtAmountPaid" class="form-control" ng-blur="page.model.PaidAmtChange(page.model.PiObj.txtAmountPaid,page.model.PiObj.txtAgreedAmt);"
+                                    required>
+                            </div>
+                            <!--<div class="col-lg-4">
+                                <label for="" class="col-lg-8" ng-model="page.model.PiObj.lblServiceTaxAmt">+{{page.model.PiObj.rdnServicetax=='1'?((page.model.PiObj.txtAmountPaid*page.model.ServiceTaxPercent)|number:2):0}}(Tax)</label>
+                                <label for="" class="col-lg-4">={{(page.Number(page.model.PiObj.txtAmountPaid)+page.Number(page.model.PiObj.rdnServicetax=='1'?((page.model.PiObj.txtAmountPaid*page.model.ServiceTaxPercent)):0))|number}}</label>
+                            </div>-->
+
+                        </div>
+                        <div class="form-group col-lg-5">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right">Send sms\email</label>
+                            </div>
+                            <div class="col-lg-6">
+
+                                <md-radio-group ng-required="true" name="rbtnmail" layout="row" ng-model="page.model.PiObj.rbtnmail" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                    <md-radio-button value="0"> No</md-radio-button>
+                                </md-radio-group>
+
+                                <div ng-if="paymentForm.rbtnmail.$invalid && (paymentForm.$submitted)" style="color: #a94442;">This field is required.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group  col-lg-7">
+                            <div class="col-lg-4">
+                                <label for="" class="control-label pull-right">Pay mode </label>
+                            </div>
+                            <div class="col-lg-8">
+                                <md-radio-group ng-required="true" name="rbtnPaymode" layout="row" ng-model="page.model.PiObj.rbtnPaymode" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="345" class="md-primary">Cash</md-radio-button>
+                                    <md-radio-button value="346"> Credit card </md-radio-button>
+                                    <md-radio-button value="347"> Cheque </md-radio-button>
+                                    <md-radio-button value="348"> Bank online </md-radio-button>
+                                </md-radio-group>
+                                <div ng-if="paymentForm.rbtnPaymode.$invalid && (paymentForm.$submitted)" style="color: #a94442;">This field is required.</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-7" ng-if="page.model.PiObj.rbtnPaymode!=='' &&  page.model.PiObj.rbtnPaymode!==undefined && page.model.PiObj.rbtnPaymode!==null">
+                            <div class="col-lg-4">
+                                <label for="" class="control-label pull-right">Receipt/Bill Number</label>
+                            </div>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" ng-model="page.model.PiObj.txtbillno" required>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-5" ng-if="page.model.PiObj.rbtnPaymode==='346' || page.model.PiObj.rbtnPaymode==='348'">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right">Transaction ID	</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" ng-model="page.model.PiObj.txttransactionid" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="page.model.PiObj.rbtnPaymode==='347'">
+                        <div class="form-group col-lg-7">
+                            <div class="col-lg-4">
+                                <label for="" class="control-label pull-right">Cheque no/DD no	</label>
+                            </div>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" ng-model="page.model.PiObj.txtcheckno" required>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-5">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right">Bank Name	</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" ng-model="page.model.PiObj.txtbankname" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="page.model.PiObj.rbtnPaymode==='347'">
+                        <div class="form-group col-lg-7">
+                            <div class="col-lg-4">
+                                <label for="" class="control-label pull-right">Branch Name</label>
+                            </div>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" ng-model="page.model.PiObj.txtbranch" required>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-5">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label pull-right">Place</label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" ng-model="page.model.PiObj.txtplace" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-7">
+                            <div class="col-lg-4">
+                                <label for="" class="control-label pull-right">Pay description</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <textarea rows="3" ng-model="page.model.PiObj.txtpayDescription" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="form-group col-lg-11 col-lg-offset-4">
+                            <md-button class="md-raised md-warn md-hue-2" type="submit">Submit</md-button>
+                            <md-button class="md-raised md-hue-1" ng-click="page.model.resetemployeepaymetinsert()">Reset</md-button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/ng-template" id="alert.html">
+        <div class="modal-header  alert-info">
+            <button type="button" class="close" ng-click='page.model.closepopup();'>×</button>
+            <h4 class="modal-title">Payment offer</h4>
+        </div>
+        <div class="modal-body" style="line-height:20px;">
+            <div class='row'>
+                <span class="paymentOfr col-lg-6">{{page.model.typeTxt}} Amount </span>&nbsp;&nbsp; {{page.model.strAmt}}
+            </div>
+            <div class='row'>
+                <span class="paymentOfr col-lg-6">No of Points </span>&nbsp; &nbsp; {{page.model.strPoints}}
+            </div>
+            <div class='row'>
+                <span class="paymentOfr col-lg-6">Expiry Date </span>&nbsp; &nbsp;{{page.model.strDate }}
+            </div>
+        </div>
+    </script>
+
+
+
+
+</div>

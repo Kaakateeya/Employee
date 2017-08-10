@@ -1,0 +1,39 @@
+#paymentinsert .regmain {
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  padding: 7px;
+  font-family: 'Open Sans', sans-serif; }
+#paymentinsert label {
+  font-weight: normal;
+  font-family: 'Open Sans', sans-serif !important;
+  cursor: default;
+  display: block !important;
+  color: #000 !important;
+  font-size: 14px;
+  margin: 0; }
+#paymentinsert .txtclass {
+  line-height: 46px; }
+#paymentinsert input[type=text],
+#paymentinsert input[type=number],
+#paymentinsert textarea {
+  color: #000 !important;
+  border: 1px solid #ADA2A2 !important; }
+#paymentinsert .control-label {
+  color: #000 !important;
+  font-weight: bold;
+  font-size: 14px; }
+#paymentinsert .lblclass {
+  line-height: 31px; }
+#paymentinsert .help-block {
+  margin-top: 0px;
+  margin-bottom: 0px; }
+#paymentinsert .infn {
+  font-weight: 700 !important;
+  color: #9f1bb7; }
+#paymentinsert .paymentOfr {
+  color: red;
+  font-weight: 700; }
+#paymentinsert textarea {
+  width: 783px; }
+
+/*# sourceMappingURL=style.css.map */

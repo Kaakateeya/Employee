@@ -34,28 +34,29 @@
                 model.showplus = false;
                 model.sendexpressinterestservice = function(row) {
 
-                    var obj = {
-                        EncriptedText: null,
-                        EncriptedTextrvr: null,
-                        EncryptedRejectFlagText: null,
-                        EncryptedRejectFlagTextrvr: null,
-                        FromProfileID: model.gridtable8.data[0].ProfileId,
-                        IFromCustID: model.gridtable8.data[0].fromcustid,
-                        IToCustID: row.Cust_ID,
-                        Logid: null,
-                        MessageHistoryId: null,
-                        MessageLinkId: null,
-                        StrHtmlText: null,
-                        ToProfileID: row.ProfileID,
-                        TypeofInsert: "E"
-                    };
-                    customerFactsheetService.sendexpressinterest(obj).then(function(response) {
-                        if (response.data && parseInt(response.data) == 1) {
-                            alerts.timeoutoldalerts(model.scope, 'alert-success', 'EXpressInterest done SuccessFully', 3000);
-                        } else {
-                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'EXpressInterest Fail', 3000);
-                        }
-                    });
+                    // var obj = {
+                    //     EncriptedText: null,
+                    //     EncriptedTextrvr: null,
+                    //     EncryptedRejectFlagText: null,
+                    //     EncryptedRejectFlagTextrvr: null,
+                    //     FromProfileID: model.gridtable8.data[0].ProfileId,
+                    //     IFromCustID: model.gridtable8.data[0].fromcustid,
+                    //     IToCustID: row.Cust_ID,
+                    //     Logid: null,
+                    //     MessageHistoryId: null,
+                    //     MessageLinkId: null,
+                    //     StrHtmlText: null,
+                    //     ToProfileID: row.ProfileID,
+                    //     TypeofInsert: "E"
+                    // };
+                    // customerFactsheetService.sendexpressinterest(obj).then(function(response) {
+                    //     if (response.data && parseInt(response.data) == 1) {
+                    //         alerts.timeoutoldalerts(model.scope, 'alert-success', 'EXpressInterest done SuccessFully', 3000);
+                    //     } else {
+                    //         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'EXpressInterest Fail', 3000);
+                    //     }
+                    // });
+                    alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Comming Soon Feature', 4000);
                 };
                 model.sendservicemailprofile = function(row) {
                     var dd = "";
@@ -63,14 +64,34 @@
                     return dd;
                 };
                 model.paymentstatus = function(row) {
+                    debugger;
                     var dd = "";
-                    dd = "<p>" + row.Payment === 1 ? 'Paid' : 'Unpaid' + "</p>";
+                    var payment = row.Payment === 1 || row.Payment === '1' ? 'Paid' : 'Unpaid';
+                    dd = "<p>" + payment + "</p>";
                     return dd;
                 };
                 model.displaystatus = function(row) {
                     var dd = "";
                     dd = "<p>" + row.display === 0 || row.display === "0" ? 'False' : 'True' + "</p>";
                     return dd;
+                };
+                model.dispalylogindate = function(row) {
+                    var dd = "";
+                    dd = "<p>" + row.LastLoginDate + "(" + row.LoginCount + ")" + "</p>";
+                    return dd;
+                };
+                model.displaybranchname = function(row) {
+                    var dd = "";
+                    dd = "<p>" + row.BranchesName + "-(" + row.RegistrationDate + ")" + "</p>";
+                    return dd;
+                };
+                model.ProfileIdTemplateDUrl = function(row) {
+                    var paidstatusclass = row.Paid === 1 ? 'paidclass' : 'unpaid';
+                    var paid = row.ProfileID !== undefined ? "<a class='" + paidstatusclass + "'>" + row.ProfileID + "</a>" : "";
+                    return paid;
+                };
+                model.ViewProfile = function(row) {
+                    window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
                 };
                 model.factsheetdetails = function(from, to, type) {
                     model.gridtable1.data = undefined;
@@ -99,47 +120,53 @@
                     model.gridtable8.mainArray = [];
                     model.gridtable1.columns = [
                         { text: 'Photoname', key: 'Photoname', type: 'label' },
-                        { text: 'Photostatus', key: 'Photostatus', type: 'label' },
+                        // { text: 'Photostatus', key: 'Photostatus', type: 'label' },
+                        { text: 'uploadedBy', key: 'uploadempname', type: 'label' },
                         { text: 'uploadedDate', key: 'uploadedDate', type: 'label' },
+                        { text: 'ModifiedDate', key: 'ModifiedDate', type: 'label' },
                         { text: 'ModifiedByEmp', key: 'ModifiedByEmpID', type: 'label' }
                     ];
                     model.gridtable2.columns = [
                         { text: 'HoroscopeImageName', key: 'HoroscopeImageName', type: 'label' },
-                        { text: 'OriginalHoroscopeUploadedBy', key: 'HoroscopeImageName', type: 'label' },
+                        // { text: 'OriginalHoroscopeUploadedBy', key: 'HoroscopeImageName', type: 'label' },
+                        { text: 'uploadedBy', key: 'uploadedby', type: 'label' },
                         { text: 'uploadedDate', key: 'UploadDate', type: 'label' },
                         { text: 'ModifiedBY', key: 'ModifiedBY', type: 'label' },
                         { text: 'ModifiedDate', key: 'ModifiedDate', type: 'label' }
                     ];
                     model.gridtable3.columns = [
-                        { text: 'RegistrationDate', key: 'RegistrationDate', type: 'label' },
-                        { text: 'LoginCount', key: 'LoginCount', type: 'label' },
-                        { text: 'LastLoginDate', key: 'LastLoginDate', type: 'label' },
+                        { text: 'Br-Dor', key: 'RegistrationDate', type: 'morelinks', templateUrl: model.displaybranchname },
                         { text: 'ProfileStatus', key: 'ProfileStatusID', type: 'label' },
-                        { text: 'ProfileLastUpdateDate', key: 'DATE', type: 'label' }
+                        // { text: 'LoginCount', key: 'LoginCount', type: 'label' },
+                        //{ text: 'LastLoginDate', key: 'LastLoginDate', type: 'label' },
+                        // { text: 'ProfileLastUpdateDate', key: 'DATE', type: 'label' }
+                        { text: 'LastLoginDate', key: 'LastLoginDate', type: 'morelinks', templateUrl: model.dispalylogindate }
                     ];
                     model.gridtable4.columns = [
                         // { text: 'PaymentType', key: 'RegistrationDate', type: 'label' },
-                        { text: 'PaymentStatus', key: 'Payment', type: 'morelinks', templateUrl: model.paymentstatus },
-                        { text: 'Display', key: 'display', type: 'morelinks', templateUrl: model.displaystatus },
-                        { text: 'AllowedPoints', key: 'allowed', type: 'label' },
-                        { text: 'UsedCountPoints', key: 'usedcount', type: 'label' },
-                        { text: 'Expirydate', key: 'expirydate', type: 'label' }
+                        { text: 'Payment', key: 'Payment', type: 'morelinks', templateUrl: model.paymentstatus },
+                        // { text: 'Display', key: 'display', type: 'morelinks', templateUrl: model.displaystatus },
+                        { text: 'Allowed Points', key: 'allowed', type: 'label' },
+                        { text: 'Used Points', key: 'usedcount', type: 'label' },
+                        { text: 'Expiry Date', key: 'expirydate', type: 'label' }
 
                     ];
-                    model.gridtable5.columns = [
-                        { text: 'ProfileOwnerEmp', key: 'ProfileOwnerEmpID', type: 'label' },
-                        { text: 'ProfileReviewedEmp', key: 'ProfileReviewedEmpID', type: 'label' },
-                        { text: 'AssigMarkrtingEmp', key: 'AssigMarkrtingEmpID', type: 'label' },
-                        { text: 'RegisteredBranch', key: 'Regaddress', type: 'label' }
-                    ];
+                    // model.gridtable5.columns = [
+                    //     { text: 'ProfileOwnerEmp', key: 'ProfileOwnerEmpID', type: 'label' },
+                    //     { text: 'ProfileReviewedEmp', key: 'ProfileReviewedEmpID', type: 'label' },
+                    //     { text: 'AssigMarkrtingEmp', key: 'AssigMarkrtingEmpID', type: 'label' },
+                    //     { text: 'RegisteredBranch', key: 'Regaddress', type: 'label' }
+                    // ];
 
                     model.gridtable6.columns = [
-                        { text: 'ProfileID', key: 'ProfileID', type: 'label' },
+                        { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
                         { text: 'Name', key: 'NAME', type: 'label' },
-                        { text: 'CreatedDate', key: 'CreatedDate', type: 'label' }
+                        { text: 'CreatedDate', key: 'CreatedDate', type: 'label' },
+                        { text: 'Service', key: 'CreatedDate', type: 'customlink', templateUrl: model.sendservicemailprofile, method: model.sendexpressinterestservice }
+
                     ];
                     model.gridtable7.columns = [
-                        { text: 'ProfileID', key: 'ProfileID', type: 'label' },
+                        { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
                         { text: 'Name', key: 'NAME', type: 'label' },
                         { text: 'CreatedDate', key: 'CreatedDate', type: 'label' },
                         { text: 'Service', key: 'CreatedDate', type: 'customlink', templateUrl: model.sendservicemailprofile, method: model.sendexpressinterestservice }

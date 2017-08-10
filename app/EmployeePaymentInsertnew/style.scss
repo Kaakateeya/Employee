@@ -1,0 +1,49 @@
+#paymentinsert {
+    .regmain {
+        border: solid 1px #ccc;
+        border-radius: 5px;
+        padding: 7px;
+        font-family: 'Open Sans', sans-serif;
+    }
+    label {
+        font-weight: normal;
+        font-family: 'Open Sans', sans-serif !important;
+        cursor: default;
+        display: block !important;
+        color: #000 !important;
+        font-size: 14px;
+        margin: 0;
+    }
+    .txtclass {
+        line-height: 46px;
+    }
+    input[type=text],
+    input[type=number],
+    textarea {
+        color: #000 !important;
+        border: 1px solid #ADA2A2 !important;
+    }
+    .control-label {
+        color: #000 !important;
+        font-weight: bold;
+        font-size: 14px;
+    }
+    .lblclass {
+        line-height: 31px;
+    }
+    .help-block {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .infn {
+        font-weight: 700 !important;
+        color: #9f1bb7
+    }
+    .paymentOfr {
+        color: red;
+        font-weight: 700;
+    }
+    textarea {
+        width: 783px;
+    }
+}
