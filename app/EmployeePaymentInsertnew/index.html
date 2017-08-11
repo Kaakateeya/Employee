@@ -8,7 +8,8 @@
             <span class="infn">Expiry Date </span>- {{page.model.strDate}}
             </span>&nbsp;&nbsp;
             <span ng-if="page.model.PiObj.txtAmountPaid!==undefined && (page.model.PiObj.txtAgreedAmt|number)!==(page.model.PiObj.txtAmountPaid|number)">
-             <span class="infn">Balance Amount </span>- {{page.model.PiObj.txtAgreedAmt-(page.model.paymentID!==0?page.model.PiObj.balamountpaid:page.model.PiObj.txtAmountPaid)}}
+             <span class="infn">Balance Amount </span>- {{page.model.PiObj.balamountpaid}}
+            <!-- {{page.model.PiObj.txtAgreedAmt-(page.model.paymentID!==0?page.model.PiObj.balamountpaid:page.model.PiObj.txtAmountPaid)}} -->
             </span>
             </span>
 

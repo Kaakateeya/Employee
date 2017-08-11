@@ -22,7 +22,6 @@
          };
 
          vm.init = function() {
-
              vm.model = model = {};
              vm.model = model = EmployeePaymentInsertnewModel;
              model.scope = scope;
@@ -30,6 +29,15 @@
              vm.model.typeofprofile = parseInt(stateParams.paymentID);
              vm.model.getpaymentProfile(stateParams.ProfileID);
              vm.model.PiObj.rbtnmail = 1;
+             //  var expirydate = '08/25/2017';
+             //  debugger;
+             //  if (expirydate > moment().format('MM/DD/YYYY')) {
+
+             //  } else if (expirydate < moment().format('MM/DD/YYYY')) {
+
+             //  } else if (expirydate === moment().format('MM/DD/YYYY')) {
+
+             //  }
          };
          vm.Number = Number;
          vm.init();
