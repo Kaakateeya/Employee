@@ -59,11 +59,14 @@ angular.module('ui.date', [])
                     controller.$render = function() {
                         var date = controller.$viewValue;
                         if (date) {
+                            debugger;
                             var dateFormat = opts.format ? moment(date).format(opts.format) : moment(date).format("DD-MM-YYYY");
                             // if (angular.isDefined(date) && date !== null && !angular.isDate(date) && date !== "") {
                             //    throw new Error('ng-Model value must be a Date object - currently it is a ' + typeof date + ' - use ui-date-format to convert it from a string');
                             // }
-                            element.datepicker("setDate", dateFormat);
+                            var dateFormatss = new Date(date);
+
+                            element.datepicker("setDate", dateFormatss);
                         }
                     };
                 }
