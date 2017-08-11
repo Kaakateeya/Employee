@@ -93,7 +93,6 @@
                         model.paymentDays = parseInt(model.custobj.CasteID) === 402 ? app.kammaPaymentDays : app.PaymentDays;
                         model.showOfferDetails(model.custobj.Price, 'pageload', model.custobj.Expirydate);
                         model.PiObj.txtAgreedAmt = model.custobj.AgreedAmount;
-                        debugger;
                         model.PiObj.txtAmountPaid = parseInt(stateParams.paymentID) !== 0 ? model.custobj.AgreedAmount - model.custobj.Price : model.custobj.Price;
                         model.PiObj.balamountpaid = model.custobj.Price;
                         // model.PiObj.balamountpaidamount = model.custobj.Price;

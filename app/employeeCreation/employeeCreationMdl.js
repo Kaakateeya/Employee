@@ -139,7 +139,6 @@
         };
 
         model.disableEmp = function(row) {
-            debugger;
             model.inobjemp = {};
             model.actionFlag = 'disable';
             model.populatemodel(row);
@@ -152,7 +151,6 @@
             model.AssignEmpID = row.EmpID;
 
             employeeCreationService.getEmpCounts(row.EmpID).then(function(response) {
-                debugger;
                 if (response.data) {
                     model.serviceCount = response.data.servicegivencount ? response.data.servicegivencount : 0;
                     model.matchCount = response.data.matchfollowupcount ? response.data.matchfollowupcount : 0;
@@ -322,10 +320,18 @@
                     model.inobjemp.EmployeeStatus = 425;
                     break;
             }
-            debugger;
             employeeCreationService.employeeCreation(model.inobjemp).then(function(response) {
-                if (response.data && parseInt(response.data) === 1) {
-                    var keyname = "";
+                if (response.data && parseInt(response.data) === 1) { <<
+                    <<
+                    <<
+                    <
+                    HEAD
+                    var keyname = ""; ===
+                    ===
+                    = >>>
+                    >>>
+                    >
+                    a9b8739ed25d0cbab58d42eef6316bcfe7044765
                     switch (model.actionFlag) {
                         case 'create':
                             if (model.upImage) {

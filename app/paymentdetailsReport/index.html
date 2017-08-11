@@ -66,13 +66,13 @@
                             <div class="col-lg-4">
                                 <label for="All Profileid" class="classlabelverify">Payment from</label>
                                 <div style="color:black;">
-                                    <custom-datepicker style="width:240px" name="txtpaymentfrom" ng-class="page.model.txtpaymentfrom.trim()!=='' && model.txtpaymentto!==undefined &&  page.model.txtpaymentfrom!==null?'datepicker4':''" ng-model="page.model.txtpaymentfrom" date-options="page.model.dateOptions"></custom-datepicker>
+                                    <custom-datepicker name="txtpaymentfrom" ng-class="page.model.txtpaymentfrom.trim()!=='' && model.txtpaymentto!==undefined &&  page.model.txtpaymentfrom!==null?'datepicker4':''" ng-model="page.model.txtpaymentfrom" date-options="page.model.dateOptions"></custom-datepicker>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <label for="All Profileid" class="classlabelverify">Payment to</label>
                                 <div style="color:black;">
-                                    <custom-datepicker style="width:240px" name="txtpaymentto" ng-class="page.model.txtpaymentto.trim()!=='' && model.txtpaymentto!==undefined &&  page.model.txtpaymentto!==null?'datepicker4':''" ng-model="page.model.txtpaymentto" date-options="page.model.dateOptions"></custom-datepicker>
+                                    <custom-datepicker name="txtpaymentto" ng-class="page.model.txtpaymentto.trim()!=='' && model.txtpaymentto!==undefined &&  page.model.txtpaymentto!==null?'datepicker4':''" ng-model="page.model.txtpaymentto" date-options="page.model.dateOptions"></custom-datepicker>
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -154,7 +154,7 @@
     </div>
     <br>
     <div>
-        <complex-grid-new ng-show="page.model.data.length>0" model="page.model" config="page.model"></complex-grid-new>
+        <complex-grid ng-show="page.model.data.length>0" model="page.model" config="page.model"></complex-grid>
     </div>
 </div>
 <script type="text/ng-template" id="sendmessages.html">
