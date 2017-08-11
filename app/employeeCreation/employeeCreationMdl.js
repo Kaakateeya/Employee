@@ -212,7 +212,7 @@
         };
 
         model.getEmpList = function() {
-
+            debugger;
             var inObj = {
                 Empid: null,
                 // model.empid,
@@ -220,7 +220,7 @@
                 EmpStatus: model.empStatus,
                 EmpTypeIDs: model.empType,
                 isLoginanywhere: model.isLoginAnywhere,
-                region: model.region ? model.region.join(',') : null
+                region: model.region && model.region[0] !== '' ? model.region.join(',') : null
             };
             employeeCreationService.getEmpList(inObj).then(function(response) {
                 if (response.data && response.data.length > 0) {
@@ -321,17 +321,8 @@
                     break;
             }
             employeeCreationService.employeeCreation(model.inobjemp).then(function(response) {
-                if (response.data && parseInt(response.data) === 1) { <<
-                    <<
-                    <<
-                    <
-                    HEAD
-                    var keyname = ""; ===
-                    ===
-                    = >>>
-                    >>>
-                    >
-                    a9b8739ed25d0cbab58d42eef6316bcfe7044765
+                if (response.data && parseInt(response.data) === 1) {
+                    var keyname = "";
                     switch (model.actionFlag) {
                         case 'create':
                             if (model.upImage) {
