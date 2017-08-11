@@ -22,7 +22,8 @@
                         var num = Amt * app.PaymentDays;
                         model.strAmt = Amt;
                         model.strDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
-                        model.strPoints = parseInt(Amt * model.paymentpoints);
+                        model.strPoints = parseInt(model.casteofcandidate) === 402 ? (Amt * app.kammaPaymentPoints) : (Amt * model.paymentpoints);
+                        //parseInt(Amt * model.paymentpoints);
                         var infm = 'Agreed Amount : ' + Amt + '    \n     No of Points : ' + model.strPoints + '    \n Expiry Date : ' + model.strDate;
                         if (model.showOfferDetailsflag !== 1) {
                             model.showOfferDetailsflag = 1;
@@ -55,10 +56,6 @@
                             MembershipID: model.memberShipType,
                             CasteID: model.rbtntype === '2' ? model.Caste : null,
                             MembershipAmt: model.AgreedAmt
-                                // AllocatedPts: model.strPoints,
-                                // MemberShipDuration: model.noofDays,
-                                // StartTime: moment().format('DD-MM-YYYY'),
-                                // EndDate: model.strDate
                         };
                         paymentOffersAssignService.submitPaymentOffer(obj).then(function(response) {
                             if (response.data && parseInt(response.data) === 1) {
@@ -177,6 +174,7 @@
                             response.data[0] !== undefined && response.data[0] !== null && response.data[0].length > 0) {
                             model.data = [];
                             model.TotalRows = response.data[0][0].TotalRows;
+                            model.casteofcandidate = response.data[0][0].CasteID;
                             model.data = response.data[0];
                         }
                     });

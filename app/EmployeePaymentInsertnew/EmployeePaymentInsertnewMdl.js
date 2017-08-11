@@ -80,8 +80,8 @@
             model.PiObj.rdnServicetax = '1';
             EmployeePaymentInsertservice.getEmployeePaymentdata(profileID, 0).then(function(response) {
                 if (response.data[0] !== undefined && response.data[0].length > 0 && JSON.parse(response.data[0]).length > 0) {
+                    console.log(JSON.parse(response.data[0]));
                     var arraymodify = [];
-
                     arraymodify = _.where(JSON.parse(response.data[0]), { PaymentHist_ID: parseInt(stateParams.histryid === '0' || stateParams.histryid === 0 ? '' : stateParams.histryid) });
                     if (arraymodify.length === 0) {
                         model.custobj = JSON.parse(response.data[0])[0];
