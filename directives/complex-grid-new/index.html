@@ -1,4 +1,4 @@
-<div ng-show="model.data.length!==0">
+<div id="tableid" ng-show="model.data.length!==0">
     <div class="row" ng-show="config.showsearchrows">
         <div class="col-lg-5 totalrecordCls" ng-if="config.showsearch">
             <label class="col-lg-6 control-label arrow" for="noofRecords">Total Records : {{model.TotalRows}} <span ng-show="config.myprofileexcel">
@@ -106,7 +106,7 @@
         font: 14px/1 Arial, sans-serif;
     }
     
-    table {
+    #tableid table {
         border-collapse: collapse;
         background: white;
         table-layout: fixed;

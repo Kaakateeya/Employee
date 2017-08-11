@@ -46,14 +46,14 @@
                                 <div class="col-lg-3" ng-repeat="item in page.model.data">
                                     <div class="gridcls">
                                         <div>
-                                            <img style="height: 195px; width: 195px;cursor:pointer;" ng-src="{{page.model.empImage(item);}}" ng-click="page.model.EmpPhotopopup(item.EmpPhoto,item.UserID);" />
+                                            <img class="center-block" style="height: 195px; width: 195px;cursor:pointer;" ng-src="{{page.model.empImage(item);}}" ng-click="page.model.EmpPhotopopup(item.EmpPhoto,item.UserID,item.EmpID);" />
                                         </div>
                                         <div class="row empdata">
                                             <div style="color:#2d45c2;">{{item.FirstName+' '+item.LastName+' ('+item.UserID+')'}}</div>
                                             <div> {{item.OfficialEmailID}}</div>
                                             <div> {{item.OfficialContactNumber}}</div>
                                             <div>{{item.starttime +' to '+ item.endTime}} </div>
-                                            <div>Login Anywhere : {{item.isLoginanywhere}}</div>
+                                            <div>Login Anywhere : {{item.isLoginanywhere===true?'Yes':'No'}}</div>
                                         </div>
                                         <div class="">
                                             <div class="row actioncls">
@@ -63,7 +63,6 @@
                                                 <div class="col-lg-3"><a href="javascript:void(0);" ng-click="page.model.assignEmpWork(item);">Assign</a></div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -353,10 +352,26 @@
         <img ng-src="{{page.model.empPhoto}}" alt="" style="max-width:560px;max-height:388px;">
     </div>
     <div class="modal-footer">
-        <input type="button" value="close" class="btn btn-default" ng-click="page.model.close();">
+        <input type="button" value="Change Photo" class="btn btn-success" ng-click="page.model.addPhoto();">
+        <input type="button" value="close" class="btn btn-danger" ng-click="page.model.close();">
     </div>
 </script>
-
+<script type="text/ng-template" id="AddimagePopup.html">
+    <form class="EditViewClass" name="uploadForm" novalidate role="form" ng-submit="page.model.upload()">
+        <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-title">Upload Photo </h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <ul id="ulprofession">
+                <input type="file" file-model="page.model.myFile" />
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <input value="Cancel" class="button_custom button_custom_reset" ng-click="page.model.closepopup();" type="button">
+            <input value="Upload" class="button_custom" type="submit">
+        </div>
+    </form>
+</script>
 <style>
     .datepicker3 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
@@ -388,5 +403,9 @@
     .scrollcls {
         height: 600px;
         overflow-y: auto;
+    }
+    
+    .addImg {
+        z-index: 999999 !important;
     }
 </style>

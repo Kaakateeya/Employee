@@ -42,4 +42,9 @@ app.service('helperservice', ['$http', function(http) {
     this.ResendMail = function(obj) {
         return http.post(app.apiroot + 'EmployeeReportPage/MatchFollowupResendMail', obj);
     };
+
+    this.insertSingleValue = function(id, value, flag) {
+        return http.get(app.apiroot + 'smallPages/getinsertImagepath', { params: { whereId: id, strvalue: value, flag: flag } });
+    };
+
 }]);

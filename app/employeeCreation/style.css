@@ -17,5 +17,7 @@
   color: red; }
 #empCreationID .tab {
   min-height: 500px; }
+#empCreationID .addImg {
+  z-index: 999999; }
 
 /*# sourceMappingURL=style.css.map */

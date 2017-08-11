@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .factory('employeeCreationModel', factory);
 
-    factory.$inject = ['employeeCreationService', 'commonFactory', 'Commondependency', 'complex-grid-config', 'alert', 'modelpopupopenmethod', 'fileUpload', '$timeout'];
+    factory.$inject = ['employeeCreationService', 'commonFactory', 'Commondependency', 'complex-grid-config', 'alert', 'modelpopupopenmethod', 'fileUpload', '$timeout', 'helperservice'];
 
-    function factory(employeeCreationService, commonFactory, Commondependency, gridConfig, alertss, modelpopupopenmethod, fileUpload, timeout) {
+    function factory(employeeCreationService, commonFactory, Commondependency, gridConfig, alertss, modelpopupopenmethod, fileUpload, timeout, helperservice) {
 
         var model = {};
         model = gridConfig;
@@ -109,12 +109,18 @@
 
 
 
-        model.EmpPhotopopup = function(src, userid) {
+        model.EmpPhotopopup = function(src, userid, empid) {
+            model.uploadUserid = userid;
+            model.uploadempid = empid;
+
             model.empPhoto = '';
             if (src) {
                 model.empPhoto = app.GlobalImgPath + "Images/EmployeeImages/" + userid + "_EmplyeeImage/" + userid + "_EmplyeeImage.jpg";
+                modelpopupopenmethod.showPopupphotopoup('empPhotoPopup.html', model.scope, 'md', "");
+            } else {
+                model.addPhoto();
             }
-            modelpopupopenmethod.showPopupphotopoup('empPhotoPopup.html', model.scope, 'md', "");
+
         };
 
         model.editEmp = function(row) {
@@ -175,9 +181,7 @@
             model.designation = row.DesignationID;
             model.loginLocation = row.LoginLocation;
             debugger;
-
-            model.dateOfJoining = row.Created_Date ? moment(row.Created_Date).format('MM-DD-YYYY') : '';
-
+            model.dateOfJoining = row.Created_Date ? row.Created_Date : '';
             if (row.WorkingStartTIme) {
                 var FromHrsArr = (row.WorkingStartTIme).split(' ');
                 model.fromHrs = parseInt((FromHrsArr[1]).split(':')[0]);
@@ -321,16 +325,20 @@
             debugger;
             employeeCreationService.employeeCreation(model.inobjemp).then(function(response) {
                 if (response.data && parseInt(response.data) === 1) {
-                    debugger;
+                    var keyname = "";
                     switch (model.actionFlag) {
                         case 'create':
                             if (model.upImage) {
-                                var keyname = 'Images/EmployeeImages/' + model.newuserID + '_EmplyeeImage/' + model.newuserID + '_EmplyeeImage.jpg';
+                                keyname = 'Images/EmployeeImages/' + model.newuserID + '_EmplyeeImage/' + model.newuserID + '_EmplyeeImage.jpg';
                                 fileUpload.uploadFileToUrl(model.upImage, '/employeeImgupload', keyname).then(function(res) {});
                             }
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Employee creation done successfully', 4500);
                             break;
                         case 'edit':
+                            if (model.upImage) {
+                                keyname = 'Images/EmployeeImages/' + model.newuserID + '_EmplyeeImage/' + model.newuserID + '_EmplyeeImage.jpg';
+                                fileUpload.uploadFileToUrl(model.upImage, '/employeeImgupload', keyname).then(function(res) {});
+                            }
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Employee Updation done successfully', 4500);
                             break;
                         case 'Delete':
@@ -375,7 +383,37 @@
 
         };
 
-        return model.init();
+        model.upload = function() {
+            var Imgpath = '';
+            if (model.myFile) {
+                debugger;
+                var keyname = 'Images/EmployeeImages/' + model.uploadUserid + '_EmplyeeImage/' + model.uploadUserid + '_EmplyeeImage.jpg';
+                fileUpload.uploadFileToUrl(model.myFile, '/employeeImgupload', keyname).then(function(res) {
+                    if (res.status == 200) {
+                        var strCustDtryName = model.uploadUserid + "_EmplyeeImage";
+                        Imgpath = "~/Images/EmployeeImages/" + strCustDtryName + "/" + model.uploadUserid + "_EmplyeeImage." + ((model.myFile.name).split('.'))[1];
+                        helperservice.insertSingleValue(model.uploadempid, Imgpath, 'empphotoinsert').then(function(response) {
+                            model.reset();
+                            model.closepopup();
+                            if (response.data && parseInt(response.data) === 1)
+                                alertss.timeoutoldalerts(model.scope, 'alert-success', 'Photo uploaded successfully', 4500);
+                            else
+                                alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Photo uploading failed', 4500);
+                        });
+                    }
+                });
 
+            } else {
+                alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please Upload Photo', 4500);
+            }
+        };
+
+        model.addPhoto = function() {
+            modelpopupopenmethod.showPopup('AddimagePopup.html', model.scope, 'sm', "addImg");
+        };
+        model.closepopup = function() {
+            modelpopupopenmethod.closepopup();
+        };
+        return model.init();
     }
 })();
