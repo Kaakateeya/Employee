@@ -121,7 +121,7 @@
                     var mobj = {
                         EmpID: parseInt(model.empid),
                         genderId: obj.rdnGender !== "" ? obj.rdnGender : "1,2",
-                        isPaid: obj.rdntypeofprofile !== "" ? obj.rdntypeofprofile : "1,2",
+                        isPaid: obj.rdntypeofprofile !== "" ? obj.rdntypeofprofile : "372,373",
                         IsConfidential: obj.chkconfidential === true ? 1 : 0,
                         ReviewFromDate: obj.txtAssignedFromDate !== "" ? obj.txtAssignedFromDate : null,
                         ReviewToDate: obj.txtAssignedtoDate !== "" ? obj.txtAssignedtoDate : null,

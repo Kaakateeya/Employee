@@ -128,6 +128,17 @@
   border-radius: 3px;
   padding: 7px 11px;
   transition: all 0.4s ease-in-out; }
+#successstoriesid .button_reset {
+  border: 0 none;
+  display: block;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  border-radius: 3px;
+  padding: 7px 11px;
+  transition: all 0.4s ease-in-out; }
 
 .modalclassdashboardphotopopup {
   z-index: 999999999 !important;

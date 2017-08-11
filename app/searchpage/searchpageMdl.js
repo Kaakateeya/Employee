@@ -230,6 +230,7 @@
                             }
                         });
                     });
+                    model.OnlyConfidential = false;
                 };
 
                 model.loadControl = function() {
