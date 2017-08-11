@@ -4,12 +4,11 @@
             <div class="panel-default regValheader" style="margin-top: -12px;box-shadow: 2px 2px 6px #ccc;" is-open="page.model.opendiv">
                 <div class="panel-heading" style="color: rgb(160, 2, 1);border: 1px solid #ccc">
                     <div class="row">
-                        <div class="col-lg-2" style="font-size: 14px;font-weight: 700;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
-                            <h4 style="width:200px;">Customer Fact Sheet<i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+                        <div class="col-lg-2" style="font-size: 14px;font-weight: 700;">
+                            <h4 style="width:200px;">Customer Fact Sheet
                             </h4>
                         </div>
                         <div class="col-lg-2">
-                            <!-- <label for="All Profileid" style="font-size: 15px;" class="classlabelverify col-lg-4">Profile ID</label> -->
                             <div class="col-lg-6">
                                 <input placeholder="Profile ID" maxlength="9" ng-keyup="$event.keyCode == 13 && page.model.factsheetdetails(1,100,'grid')" name="txtprofileidfactsheet" type="text" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" class="form-control" style="width:180px"
                                     ng-model="page.model.txtprofileidfactsheet"></input>
@@ -24,112 +23,84 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel-body" ng-show="page.model.panelbodyhide">
+                <div class="panel-body">
                     <br>
-                    <div class="col-lg-4" ng-show="page.model.gridTableshow">
-                        Send Full Profile to the customer:
-                        <a href="javascript:void(0)" style="display:initial;" ng-click="page.model.sendenailviewprofile()">Click Here</a>
-                    </div>
-                    <div class="col-lg-4" ng-show="page.model.gridTableshow">
-                        Send Password to customer:
-                        <a href="javascript:void(0)" style="display:initial;" ng-click="page.model.sendforgetpassword()">Click Here</a>
+                    <div class="row">
+                        <div class="col-lg-5" ng-show="page.model.gridTableshow">
+                            <label class="col-lg-7"> Send Full Profile to the customer:</label>
+                            <a class="col-lg-3 pull-left" href="javascript:void(0)" style="display:initial;margin-left: -15px;" ng-click="page.model.sendenailviewprofile()">Click Here</a>
+                        </div>
+                        <div class="col-lg-5" ng-show="page.model.gridTableshow">
+                            <label class="col-lg-7">Send Password to customer:</label>
+                            <a class="col-lg-3 pull-left" href="javascript:void(0)" style="display:initial;margin-left: -49px;" ng-click="page.model.sendforgetpassword()">Click Here</a>
+                        </div>
                     </div>
                     <hr ng-show="page.model.gridTableshow">
-                    <!-- <div class="row" ng-show="page.model.gridTableshow">
-                        <button class="button_custom col-lg-offset-4" style="display:initial;" ng-click="page.model.sendenailviewprofile()">Send Email</button></div> -->
-                    <div ng-show="page.model.gridTableshow && page.model.gridtable3.data">
-                        <div class="col-lg-12" ng-if="page.model.sendarray3.length>0">
+                    <div ng-show="page.model.gridTableshow">
+                        <div class="col-lg-12">
                             <h1 style="font-size:17px;">Profile Statistics
                             </h1>
                         </div>
                         <complex-grid-new gid="'Profilestatistics'" ng-if="page.model.gridtable3.columns" config="page.model.gridtable3" model="page.model.gridtable3"></complex-grid-new>
                     </div>
-                    <br ng-show="page.model.gridTableshow && page.model.gridtable3.data">
-                    <div ng-show="page.model.gridTableshow && page.model.gridtable4.data">
-                        <div class="col-lg-12" ng-if="page.model.sendarray4.length>0">
+                    <br ng-show="page.model.gridTableshow">
+                    <div ng-show="page.model.gridTableshow">
+                        <div class="col-lg-12">
                             <h1 style="font-size:17px;">Profile Points
                             </h1>
                         </div>
                         <complex-grid-new gid="'Profilepoints'" ng-if="page.model.gridtable4.columns" config="page.model.gridtable4" model="page.model.gridtable4"></complex-grid-new>
                     </div>
-                    <br ng-show="page.model.gridTableshow && page.model.gridtable4.data">
-                    <div ng-show="page.model.gridTableshow && page.model.gridtable1.data">
-                        <div class="col-lg-12" ng-if="page.model.sendarray1.length>0">
+                    <br ng-show="page.model.gridTableshow">
+                    <div ng-show="page.model.gridTableshow">
+                        <div class="col-lg-12">
                             <h1 style="font-size:17px;">Photos Information
                             </h1>
                         </div>
                         <complex-grid-new gid="'photos'" ng-if="page.model.gridtable1.columns" config="page.model.gridtable1" model="page.model.gridtable1"></complex-grid-new>
                     </div>
-                    <br ng-show="page.model.gridTableshow && page.model.gridtable1.data">
-                    <div ng-show="page.model.gridTableshow && page.model.gridtable2.data">
-                        <div class="col-lg-12" ng-if="page.model.sendarray2.length>0">
+                    <br ng-show="page.model.gridTableshow">
+                    <div ng-show="page.model.gridTableshow">
+                        <div class="col-lg-12">
                             <h1 style="font-size:17px;">Horoscope Information
                             </h1>
                         </div>
                         <complex-grid-new gid="'horoscope'" ng-if="page.model.gridtable2.columns" config="page.model.gridtable2" model="page.model.gridtable2"></complex-grid-new>
                     </div>
-                    <br ng-show="page.model.gridTableshow && page.model.gridtable2.data">
+                    <br ng-show="page.model.gridTableshow">
 
-
-                    <!-- <div ng-show="page.model.gridTableshow && page.model.gridtable5.data">
-                        <div class="col-lg-12" ng-if="page.model.sendarray5.length>0">
-                            <h1 style="font-size:17px;">Profile Status
-                            </h1>
-                        </div>
-                        <complex-grid-new gid="'Profilestatus'" ng-if="page.model.gridtable5.columns" config="page.model.gridtable5" model="page.model.gridtable5"></complex-grid-new>
-                    </div>
-                    <br ng-show="page.model.gridTableshow && page.model.gridtable5.data"> -->
-                    <div ng-show="page.model.gridTableshow && page.model.gridtable6.data">
-                        <div class="col-lg-12" ng-if="page.model.sendarray6.length>0">
+                    <div ng-show="page.model.gridTableshow">
+                        <div class="col-lg-12">
                             <h1 style="font-size:17px;">who bookmarked me
                             </h1>
                         </div>
                         <complex-grid-new gid="'whobookmarkme'" ng-if="page.model.gridtable6.columns" config="page.model.gridtable6" model="page.model.gridtable6"></complex-grid-new>
                     </div>
-                    <br ng-show="page.model.gridTableshow && page.model.gridtable6.data">
-                    <div ng-show="page.model.gridTableshow && page.model.gridtable7.data">
-                        <div class="col-lg-12" ng-if="page.model.sendarray7.length>0">
+                    <br ng-show="page.model.gridTableshow">
+                    <div ng-show="page.model.gridTableshow">
+                        <div class="col-lg-12">
                             <h1 style="font-size:17px;">my bookmark list
                             </h1>
                         </div>
                         <complex-grid-new gid="'mybookmarklist'" ng-if="page.model.gridtable7.columns" config="page.model.gridtable7" model="page.model.gridtable7"></complex-grid-new>
                     </div>
-                    <br ng-show="page.model.gridTableshow && page.model.gridtable7.data">
-                    <!-- <div class="row" style="border: 1px solid #ccc;" ng-show="page.model.gridTableshow && page.model.gridtable8.data">
-                        <div class="modal-header" style="background: #fdca52">
-                            <h4 class="modal-title">
-                                Send Online Access
-                            </h4>
-                        </div>
-
-                        <div class="modal-body center">
-                            <div class="row">
-                                <div class="col-lg-3">ProfileID </div>
-                                <div class="col-lg-6">{{page.model.gridtable8.data[0].ProfileId}}</div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-lg-3">First Name </div>
-                                <div class="col-lg-6">{{page.model.gridtable8.data[0].Firstname}} </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-lg-3">Last Name </div>
-                                <div class="col-lg-6">{{page.model.gridtable8.data[0].Lastname}}</div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-lg-3">EMAIL </div>
-                                <div class="col-lg-6">{{page.model.gridtable8.data[0].Email}}</div>
-                            </div>
-                            <br>
-                            <div><button class="button_custom col-lg-offset-3" style="display:initial;" ng-click="page.model.sendforgetpassword()">Send Email</button></div>
-                        </div> -->
-
+                    <br ng-show="page.model.gridTableshow">
                 </div>
             </div>
         </div>
     </div>
 </div>
-<br>
-</div>
+<script type="text/ng-template" id="alertfactsheer.html">
+    <div class="modal-header  alert-info">
+        <button type="button" class="close" ng-click='page.model.closepopup();'>×</button>
+        <h4 class="modal-title">Alert</h4>
+    </div>
+    <div class="modal-body" style="line-height:20px;">
+        <div class='row'>
+            <span class="paymentOfr col-lg-12">{{page.model.alertsendemailtext}} </span>&nbsp;&nbsp;
+        </div>
+        <div class="text-center">
+            <button type="button" class="md-raised md-hue-1" ng-click='page.model.closepopup();'>Ok</button>
+        </div>
+    </div>
+</script>

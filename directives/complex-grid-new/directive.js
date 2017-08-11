@@ -176,7 +176,6 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
                     $('#static .pane-hScroll').scroll(function() {
                         $('#static .pane-vScroll').width($('#static .pane-hScroll').width() + $('#static .pane-hScroll').scrollLeft());
                     });
-                    debugger;
                     $('#' + scope.gid + '.pane-hScroll').scroll(function() {
                         $('#' + scope.gid + '.pane-vScroll').width($('#' + scope.gid + '.pane-hScroll').width() + $('#' + scope.gid + ' .pane-hScroll').scrollLeft());
                     });

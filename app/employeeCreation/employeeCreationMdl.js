@@ -133,7 +133,6 @@
         };
 
         model.disableEmp = function(row) {
-            debugger;
             model.inobjemp = {};
             model.actionFlag = 'disable';
             model.populatemodel(row);
@@ -146,7 +145,6 @@
             model.AssignEmpID = row.EmpID;
 
             employeeCreationService.getEmpCounts(row.EmpID).then(function(response) {
-                debugger;
                 if (response.data) {
                     model.serviceCount = response.data.servicegivencount ? response.data.servicegivencount : 0;
                     model.matchCount = response.data.matchfollowupcount ? response.data.matchfollowupcount : 0;
@@ -174,8 +172,6 @@
             model.officePhone = row.OfficialContactNumber;
             model.designation = row.DesignationID;
             model.loginLocation = row.LoginLocation;
-            debugger;
-
             model.dateOfJoining = row.Created_Date ? moment(row.Created_Date).format('MM-DD-YYYY') : '';
 
             if (row.WorkingStartTIme) {
@@ -318,10 +314,8 @@
                     model.inobjemp.EmployeeStatus = 425;
                     break;
             }
-            debugger;
             employeeCreationService.employeeCreation(model.inobjemp).then(function(response) {
                 if (response.data && parseInt(response.data) === 1) {
-                    debugger;
                     switch (model.actionFlag) {
                         case 'create':
                             if (model.upImage) {
