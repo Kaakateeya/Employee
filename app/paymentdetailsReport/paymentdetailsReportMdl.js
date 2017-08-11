@@ -162,13 +162,14 @@
                         ToAmount: model.toamount !== "" && model.toamount !== null && model.toamount !== undefined ? model.toamount : null,
                         Casteid: model.casteids !== "" && model.casteids !== null && model.casteids !== undefined ? model.casteids.toString() : null,
                         Branchid: model.branchids !== "" && model.branchids !== null && model.branchids !== undefined ? model.branchids.toString() : null,
-                        StartDate: model.txtpaymentfrom !== "" && model.txtpaymentfrom !== null && model.txtpaymentfrom !== undefined ? model.txtpaymentfrom : null,
-                        EndDate: model.txtpaymentto !== "" && model.txtpaymentto !== null && model.txtpaymentto !== undefined ? model.txtpaymentto : null,
+                        StartDate: model.txtpaymentfrom !== "" && model.txtpaymentfrom !== null && model.txtpaymentfrom !== undefined ? moment(model.txtpaymentfrom).format('YYYY-MM-DD HH:MM:SS') : null,
+                        EndDate: model.txtpaymentto !== "" && model.txtpaymentto !== null && model.txtpaymentto !== undefined ? moment(model.txtpaymentto).format('YYYY-MM-DD HH:MM:SS') : null,
                         From: from,
                         To: to,
                         flag: 0,
                         ModeOfPaymentID: model.rbtnModeOfPayment !== null && model.rbtnModeOfPayment !== "" && model.rbtnModeOfPayment !== undefined && model.rbtnModeOfPayment !== "0" && model.rbtnModeOfPayment !== 0 ? model.rbtnModeOfPayment : null
                     };
+                    debugger;
                     paymentdetailsReportService.EmplyeepaymentReportspayment(obj).then(function(response) {
                         console.log(response);
                         if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" &&
