@@ -162,30 +162,50 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
                     return results;
 
                 };
-
-                $('#static .pane-hScroll').scroll(function() {
-
-                    $('#static .pane-vScroll').width($('#static .pane-hScroll').width() + $('#static .pane-hScroll').scrollLeft());
-                });
-
                 $('#dynamic .pane-hScroll').scroll(function() {
                     $('#dynamic .pane-vScroll').width($('#dynamic .pane-hScroll').width() + $('#dynamic .pane-hScroll').scrollLeft());
                 });
+                $('#id1 .pane-hScroll').scroll(function() {
 
+                    $('#id1 .pane-vScroll').width($('#id1 .pane-hScroll').width() + $('#id1 .pane-hScroll').scrollLeft());
+                });
+
+                $('#id2 .pane-hScroll').scroll(function() {
+                    $('#id2 .pane-vScroll').width($('#id2 .pane-hScroll').width() + $('#id2 .pane-hScroll').scrollLeft());
+                });
+
+                $('#id3 .pane-hScroll').scroll(function() {
+                    $('#id3 .pane-vScroll').width($('#id3 .pane-hScroll').width() + $('#id3 .pane-hScroll').scrollLeft());
+                });
+
+                $('#id4 .pane-hScroll').scroll(function() {
+                    $('#id4 .pane-vScroll').width($('#id4 .pane-hScroll').width() + $('#id4 .pane-hScroll').scrollLeft());
+                });
                 timeout(function() {
-                    $('#static .pane-hScroll').scroll(function() {
-                        $('#static .pane-vScroll').width($('#static .pane-hScroll').width() + $('#static .pane-hScroll').scrollLeft());
-                    });
-                    debugger;
+
                     $('#' + scope.gid + '.pane-hScroll').scroll(function() {
                         $('#' + scope.gid + '.pane-vScroll').width($('#' + scope.gid + '.pane-hScroll').width() + $('#' + scope.gid + ' .pane-hScroll').scrollLeft());
                     });
+
                     $('#dynamic .pane-hScroll').scroll(function() {
                         $('#dynamic .pane-vScroll').width($('#dynamic .pane-hScroll').width() + $('#dynamic .pane-hScroll').scrollLeft());
                     });
+                    $('#id1 .pane-hScroll').scroll(function() {
+                        $('#id1 .pane-vScroll').width($('#id1 .pane-hScroll').width() + $('#id1 .pane-hScroll').scrollLeft());
+                    });
+
+                    $('#id2 .pane-hScroll').scroll(function() {
+                        $('#id2 .pane-vScroll').width($('#id2 .pane-hScroll').width() + $('#id2 .pane-hScroll').scrollLeft());
+                    });
+
+                    $('#id3 .pane-hScroll').scroll(function() {
+                        $('#id3 .pane-vScroll').width($('#id3 .pane-hScroll').width() + $('#id3 .pane-hScroll').scrollLeft());
+                    });
+
+                    $('#id4 .pane-hScroll').scroll(function() {
+                        $('#id4 .pane-vScroll').width($('#id4 .pane-hScroll').width() + $('#id4 .pane-hScroll').scrollLeft());
+                    });
                 }, 2000);
-
-
                 scope.init();
             }
         };
