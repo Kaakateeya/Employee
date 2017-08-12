@@ -4,152 +4,155 @@
 
     angular
         .module('Kaakateeya')
-        .factory('topheadermodel', ['$http', 'authSvc', 'modelpopupopenmethod', '$state', 'alert', function(http, authSvc,
-            modelpopupopenmethod, $state, alerts) {
-            var model = {};
-            model.lock = false;
-            model.CurrentDate = new Date();
-            model.logincounts = [];
-            model.usernameemployeepop = false;
-            model.usernameemployeepasswordpop = false;
-            model.lockscreendiv = true;
-            model.init = function() {
-                model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-                //pageload Callings
-                model.name = authSvc.LoginEmpName();
-                model.empphoto = authSvc.empphoto();
-                // modelpopupopenmethod.getEmployeeLoginCoutDetails().then(function(response) {
-                //     model.logincounts = JSON.parse(response.data[0]);
-                // });
-                model.usernameemployeeid = sessionStorage.getItem("usernameemployeeid");
-                return model;
-            };
+        .factory('topheadermodel', ['$http', 'authSvc', 'modelpopupopenmethod', '$state', 'alert', 'helperservice',
+            function(http, authSvc,
+                modelpopupopenmethod, $state, alerts, helperservice) {
+                var model = {};
+                model.lock = false;
+                model.CurrentDate = new Date();
+                model.logincounts = [];
+                model.usernameemployeepop = false;
+                model.usernameemployeepasswordpop = false;
+                model.lockscreendiv = true;
+                model.init = function() {
+                    model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+                    //pageload Callings
+                    model.name = authSvc.LoginEmpName();
+                    model.empphoto = authSvc.empphoto();
+                    // modelpopupopenmethod.getEmployeeLoginCoutDetails().then(function(response) {
+                    //     model.logincounts = JSON.parse(response.data[0]);
+                    // });
+                    model.usernameemployeeid = sessionStorage.getItem("usernameemployeeid");
+                    return model;
+                };
 
-            model.logout = function() {
-                model.name = "";
-                authSvc.logout();
-                $state.go("base.login", {});
-            };
+                model.logout = function() {
+                    model.name = "";
+                    authSvc.logout();
+                    helperservice.empLogout(model.empid);
+                    $state.go("base.login", {});
+                };
 
-            model.lockscreen = function() {
-                model.lock = true;
-                model.passwordemployee = "";
-                modelpopupopenmethod.showPopupphotopoup('loginContent.html', model.scope, 'md', "modalclassdashboardphotopopuplogin");
-            };
-            model.close = function(type) {
-                modelpopupopenmethod.closepopuppoptopopup();
-            };
+                model.lockscreen = function() {
+                    model.lock = true;
+                    model.passwordemployee = "";
+                    modelpopupopenmethod.showPopupphotopoup('loginContent.html', model.scope, 'md', "modalclassdashboardphotopopuplogin");
+                };
+                model.close = function(type) {
+                    modelpopupopenmethod.closepopuppoptopopup();
+                };
 
-            model.loginsubmit = function(form) {
-                modelpopupopenmethod.getloginpage(form).then(function(response) {
-                    if (response.data !== undefined && response.data !== "" && response.data !== null) {
-                        switch (response.data.m_Item5) {
-                            case 1:
-                                model.loginarray = response.data.m_Item1;
-                                model.empphoto = response.data.m_Item1.EmpPhotoPath;
-                                authSvc.user(response.data.m_Item1);
-                                //sessionStorage.setItem("usernameemployeeid", model.loginsubmit.usernameemployee);
-                                modelpopupopenmethod.closepopuppoptopopup();
-                                break;
-                            case 0:
-                                model.errormessage = "Invalid login credentials";
-                                alert("Invalid login credentials");
-                                break;
-                            case 2:
-                                model.errormessage = "Ur Account was Deleted,Contact Admin";
-                                alert("Ur Account was Deleted,Contact Admin");
-                                break;
-                            case 3:
-                                model.errormessage = "Ur Account was Temp.Disabled,Contact Admin";
-                                alert("Ur Account was Temp.Disabled,Contact Admin");
-                                break;
-                            case 8:
-                                model.errormessage = "Ur Cannot Login With Deactivate Branch-User Account ";
-                                alert("Ur Cannot Login With Deactivate Branch-User Account ");
-                                break;
-                            case 9:
-                                model.errormessage = "Ur Account was  not Allowed To login In these Timings ";
-                                alert("Ur Account was  not Allowed To login In these Timings");
-                                break;
-                            case 11:
-                                model.errormessage = "Please Enter Reason/Permission To Login With Your Userid";
-                                alert("Please Enter Reason/Permission To Login With Your Userid");
-                                break;
-                            case 12:
-                                model.errormessage = "Please Enter Reason/Permission To Login With Your Userid";
-                                alert("Please Enter Reason/Permission To Login With Your Userid");
-                                break;
-                            case 13:
-                                model.errormessage = "Please Contact Mr.CHIRANJEEVI sir to Login With Ur UserID";
-                                alert("Please Contact Mr.CHIRANJEEVI sir to Login With Ur UserID");
-                                break;
-                            case 14:
-                                model.errormessage = "Please Contact Mr.CHIRANJEEVI sir to Login With Ur UserID";
-                                alert("Please Contact Mr.CHIRANJEEVI sir to Login With Ur UserID");
-                                break;
-                        }
-                    }
-                });
-            };
-            model.searchredirect = function(id, Profileid) {
-                $state.go("base.searchpage", { id: id, Profileid: Profileid }, { reload: true });
-            };
-            model.changepassword = function(form) {
-
-                modelpopupopenmethod.getChangeEmployeePassword(model.empid, form.model.currentpassword, form.model.confirmpassword).then(function(response) {
-
-                    if (parseInt(response.data) === 1) {
-                        alerts.timeoutoldalerts(model.scope, 'alert-success', 'Password Changed Successfully', 3000);
-                        modelpopupopenmethod.closepopuppoptopopup();
-                        model.currentpassword = "";
-                        model.newpassword = "";
-                        model.confirmpassword = "";
-                        model.logout();
-                    } else {
-                        alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Password Changed Fail', 3000);
-                    }
-                });
-            };
-            model.chkpassword = function(password) {
-                if (password !== "" && password !== null && password !== undefined) {
-                    modelpopupopenmethod.getCheckemployeePassord(model.empid, password).then(function(response) {
-                        if (parseInt(response.data) === 1) {} else {
-                            model.currentpassword = "";
-                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'please Enter valid Password', 3000);
+                model.loginsubmit = function(form) {
+                    modelpopupopenmethod.getloginpage(form).then(function(response) {
+                        if (response.data !== undefined && response.data !== "" && response.data !== null) {
+                            switch (response.data.m_Item5) {
+                                case 1:
+                                    model.loginarray = response.data.m_Item1;
+                                    model.empphoto = response.data.m_Item1.EmpPhotoPath;
+                                    authSvc.user(response.data.m_Item1);
+                                    //sessionStorage.setItem("usernameemployeeid", model.loginsubmit.usernameemployee);
+                                    modelpopupopenmethod.closepopuppoptopopup();
+                                    break;
+                                case 0:
+                                    model.errormessage = "Invalid login credentials";
+                                    alert("Invalid login credentials");
+                                    break;
+                                case 2:
+                                    model.errormessage = "Ur Account was Deleted,Contact Admin";
+                                    alert("Ur Account was Deleted,Contact Admin");
+                                    break;
+                                case 3:
+                                    model.errormessage = "Ur Account was Temp.Disabled,Contact Admin";
+                                    alert("Ur Account was Temp.Disabled,Contact Admin");
+                                    break;
+                                case 8:
+                                    model.errormessage = "Ur Cannot Login With Deactivate Branch-User Account ";
+                                    alert("Ur Cannot Login With Deactivate Branch-User Account ");
+                                    break;
+                                case 9:
+                                    model.errormessage = "Ur Account was  not Allowed To login In these Timings ";
+                                    alert("Ur Account was  not Allowed To login In these Timings");
+                                    break;
+                                case 11:
+                                    model.errormessage = "Please Enter Reason/Permission To Login With Your Userid";
+                                    alert("Please Enter Reason/Permission To Login With Your Userid");
+                                    break;
+                                case 12:
+                                    model.errormessage = "Please Enter Reason/Permission To Login With Your Userid";
+                                    alert("Please Enter Reason/Permission To Login With Your Userid");
+                                    break;
+                                case 13:
+                                    model.errormessage = "Please Contact Mr.CHIRANJEEVI sir to Login With Ur UserID";
+                                    alert("Please Contact Mr.CHIRANJEEVI sir to Login With Ur UserID");
+                                    break;
+                                case 14:
+                                    model.errormessage = "Please Contact Mr.CHIRANJEEVI sir to Login With Ur UserID";
+                                    alert("Please Contact Mr.CHIRANJEEVI sir to Login With Ur UserID");
+                                    break;
+                            }
                         }
                     });
-                }
-            };
-            model.changepasswordpopup = function() {
-                modelpopupopenmethod.showPopupphotopoup('changepassword.html', model.scope, 'md', "modalclassdashboardphotopopuplogin");
-            };
+                };
+                model.searchredirect = function(id, Profileid) {
+                    $state.go("base.searchpage", { id: id, Profileid: Profileid }, { reload: true });
+                };
+                model.changepassword = function(form) {
 
-            model.hideshowunpaid = function() {
-                model.unpaidmember = !model.unpaidmember;
-                if (model.unpaidmember)
-                    model.getpresentunpaidmembers();
-            };
-            model.getpresentunpaidmembers = function() {
-                modelpopupopenmethod.getpresentunpaidmembers(model.empid).then(function(response) {
+                    modelpopupopenmethod.getChangeEmployeePassword(model.empid, form.model.currentpassword, form.model.confirmpassword).then(function(response) {
 
-                    if (response.data !== undefined && response.data !== "" && response.data !== null && response.data[0] !== undefined && response.data[0].length > 0) {
-                        model.presentunpaidmembersarray = [];
-                        model.presentunpaidmembersarray = response.data[0];
-
-                    } else {
-                        model.presentunpaidmembersarray = [];
-                        model.presentunpaidmembersarray.push("No data Found");
+                        if (parseInt(response.data) === 1) {
+                            alerts.timeoutoldalerts(model.scope, 'alert-success', 'Password Changed Successfully', 3000);
+                            modelpopupopenmethod.closepopuppoptopopup();
+                            model.currentpassword = "";
+                            model.newpassword = "";
+                            model.confirmpassword = "";
+                            model.logout();
+                        } else {
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Password Changed Fail', 3000);
+                        }
+                    });
+                };
+                model.chkpassword = function(password) {
+                    if (password !== "" && password !== null && password !== undefined) {
+                        modelpopupopenmethod.getCheckemployeePassord(model.empid, password).then(function(response) {
+                            if (parseInt(response.data) === 1) {} else {
+                                model.currentpassword = "";
+                                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'please Enter valid Password', 3000);
+                            }
+                        });
                     }
-                });
-            };
-            model.closealert = function(index) {
-                model.presentunpaidmembersarray.splice(index, 1);
-            };
-            model.ticketpopupunpaid = function(ticketid) {
-                model.unpaidticket = ticketid;
-                modelpopupopenmethod.showPopupphotopoup('unpaidmarket.html', model.scope, 'md', "modalclassdashboardphotopopup");
-            };
-            return model.init();
-        }]);
+                };
+                model.changepasswordpopup = function() {
+                    modelpopupopenmethod.showPopupphotopoup('changepassword.html', model.scope, 'md', "modalclassdashboardphotopopuplogin");
+                };
+
+                model.hideshowunpaid = function() {
+                    model.unpaidmember = !model.unpaidmember;
+                    if (model.unpaidmember)
+                        model.getpresentunpaidmembers();
+                };
+                model.getpresentunpaidmembers = function() {
+                    modelpopupopenmethod.getpresentunpaidmembers(model.empid).then(function(response) {
+
+                        if (response.data !== undefined && response.data !== "" && response.data !== null && response.data[0] !== undefined && response.data[0].length > 0) {
+                            model.presentunpaidmembersarray = [];
+                            model.presentunpaidmembersarray = response.data[0];
+
+                        } else {
+                            model.presentunpaidmembersarray = [];
+                            model.presentunpaidmembersarray.push("No data Found");
+                        }
+                    });
+                };
+                model.closealert = function(index) {
+                    model.presentunpaidmembersarray.splice(index, 1);
+                };
+                model.ticketpopupunpaid = function(ticketid) {
+                    model.unpaidticket = ticketid;
+                    modelpopupopenmethod.showPopupphotopoup('unpaidmarket.html', model.scope, 'md', "modalclassdashboardphotopopup");
+                };
+                return model.init();
+            }
+        ]);
 
 })(angular);

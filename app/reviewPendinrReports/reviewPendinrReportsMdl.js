@@ -109,7 +109,7 @@
                     return link;
                 };
                 model.columns = [
-                    { text: 'Sno', key: 'Row', type: 'label' },
+                    { text: 'Sno', key: 'Sno', type: 'label' },
                     { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
                     { text: 'NAME', key: 'NAME', type: 'label' },
                     { text: 'DOR', key: 'DOR', type: 'label' },
@@ -127,7 +127,7 @@
                         ReviewToDate: obj.txtAssignedtoDate !== "" ? obj.txtAssignedtoDate : null,
                         SectionID: 1,
                         ReviewStatusID: 1,
-                        ISRegistarion: obj.rdnreviewpending === 1 ? 1 : 0,
+                        ISRegistarion: obj.rdnreviewpending === '1' ? 1 : 0,
                         ProfileStatusID: obj.ddlApplicationStatus !== "" ? model.returnnullvalue(obj.ddlApplicationStatus) : null,
                         Casteid: obj.ddlCaste !== "" ? model.returnnullvalue(obj.ddlCaste) : null,
                         Branchid: obj.ddlBranch !== "" ? model.returnnullvalue(obj.ddlBranch) : null,

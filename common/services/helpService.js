@@ -46,5 +46,7 @@ app.service('helperservice', ['$http', function(http) {
     this.insertSingleValue = function(id, value, flag) {
         return http.get(app.apiroot + 'smallPages/getinsertImagepath', { params: { whereId: id, strvalue: value, flag: flag } });
     };
-
+    this.empLogout = function(empID) {
+        return http.get(app.apiroot + 'smallPages/getEmpLogout', { params: { empid: empID } });
+    };
 }]);
