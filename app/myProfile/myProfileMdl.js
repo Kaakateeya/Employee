@@ -250,7 +250,6 @@
                                     ]
                                 };
                                 alasql('SELECT ProfileID,GenderID as Gender,FirstName,LastName as SurName,Caste,RegistrationDate INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.grid.exportarray]);
-
                             } else {
                                 model.slide.totalRecords = response.data[0].TotalRows;
                                 model.slide.headervisileble = true;
