@@ -120,6 +120,7 @@
                             model.Educationgroup = [];
                             model.educationspeciallisation = [];
                             model.Caste = Commondependency.casteDepedency(model.ReligionID !== null && model.ReligionID.length > 0 ? model.ReligionID.toString() : "", (model.MothertongueID !== null && model.MothertongueID.length > 0) ? (model.MothertongueID).toString() : "");
+                            model.SubCaste = Commondependency.subCaste((data.casteid !== null && data.casteid !== "" && data.casteid !== undefined) ? (data.casteid).toString() : "");
                             model.CountryID = model.arrayToString(data.CountryID);
                             model.EducationID = model.arrayToString(data.EducationCategoryID);
                             model.RegionID = model.arrayToString(data.Regions);
@@ -150,6 +151,7 @@
                             timeout(function() {
                                 model.castID = model.arrayToString(data.casteid);
                                 model.casteID = model.arrayToString(data.casteid);
+                                model.SubCasteID = model.arrayToString(data.SubCasteID);
                                 model.EducationGroupID = model.arrayToString(data.EducationGroupID);
 
                             }, 100);
@@ -768,11 +770,12 @@
                                     { divClear: true, ngModel: 'MaritalstatusID', labelName: 'Marital status', controlType: 'dropdown', isShow: true, dataBind: 'MaritalStatus', dataSource: 'maritalstatusg', validation: true },
                                     { type: 'caste', ngModel: 'ReligionID', labelName: 'Religion', controlType: 'dropdown', isShow: true, dataBind: 'Religion', dataSource: 'religiong', validation: true },
                                     { type: 'caste', ngModel: 'MothertongueID', labelName: 'Mother tongue', controlType: 'dropdown', isShow: true, dataBind: 'Mothertongue', dataSource: 'Mothertongueg', validation: true },
-                                    { ngModel: 'casteID', labelName: 'Caste', controlType: 'dropdown', isShow: true, dataSource: 'Caste', validation: true },
-                                    { divClear: true, ngModel: 'ComplexionID', labelName: 'Complexion', controlType: 'dropdown', isShow: true, dataBind: 'Complexion', dataSource: 'Complexion', validation: true },
+                                    { ngModel: 'casteID', type: 'Subcaste', labelName: 'Caste', controlType: 'dropdown', isShow: true, dataSource: 'Caste', validation: true },
+                                    { divClear: true, ngModel: 'SubCasteID', labelName: 'Sub Caste', controlType: 'dropdown', isShow: true, dataSource: 'SubCaste', validation: true },
+                                    { ngModel: 'ComplexionID', labelName: 'Complexion', controlType: 'dropdown', isShow: true, dataBind: 'Complexion', dataSource: 'Complexion', validation: true },
                                     { ngModel: 'Showinprofile', labelName: 'Show Profile', controlType: 'dropdown', isShow: true, dataBind: 'Showprofile', dataSource: 'Showprofiles', validation: true },
                                     { ngModel: 'ApplicationstatusID', labelName: 'Application Status', controlType: 'dropdown', isShow: true, dataBind: 'Applicationstatus', dataSource: 'Applicationstatus', validation: true },
-                                    { ngModelFrom: 'PropertyValuefrom', ngModelTo: 'PropertyValueto', labelName: 'Property In Lakhs', controlType: 'textproperty', isShow: true, validation: true }
+                                    { divClear: true, ngModelFrom: 'PropertyValuefrom', ngModelTo: 'PropertyValueto', labelName: 'Property In Lakhs', controlType: 'textproperty', isShow: true, validation: true }
                                 ]
                             }, {
                                 headerName: 'Education and Profession',
@@ -847,13 +850,14 @@
                                     { ngModel: 'MaritalstatusID', labelName: 'Marital status', controlType: 'dropdown', isShow: true, dataBind: 'MaritalStatus', dataSource: 'maritalstatusg', validation: true },
                                     { type: 'caste', ngModel: 'ReligionID', labelName: 'Religion', controlType: 'dropdown', isShow: true, dataBind: 'Religion', dataSource: 'religiong', validation: true },
                                     { divClear: true, type: 'caste', ngModel: 'MothertongueID', labelName: 'Mother tongue', controlType: 'dropdown', isShow: true, dataBind: 'Mothertongue', dataSource: 'Mothertongueg', validation: true },
-                                    { ngModel: 'castID', labelName: 'Caste', controlType: 'dropdown', isShow: true, dataSource: 'Caste', validation: true },
+                                    { ngModel: 'castID', type: 'Subcaste', labelName: 'Caste', controlType: 'dropdown', isShow: true, dataSource: 'Caste', validation: true },
+                                    { ngModel: 'SubCasteID', labelName: 'Sub Caste', controlType: 'dropdown', isShow: true, dataSource: 'SubCaste', validation: true },
                                     { ngModel: 'CountryID', labelName: 'Country Living In', controlType: 'dropdown', isShow: true, dataApi: 'Country', dataSource: 'Country', validation: true },
-                                    { ngModel: 'EducationID', labelName: 'Education category', controlType: 'dropdown', isShow: true, dataBind: 'educationcategorywithoutselect', dataSource: 'educationcategory', validation: true },
-                                    { divClear: true, ngModel: 'ProfessionID', labelName: 'Profession', controlType: 'dropdown', isShow: true, dataBind: 'Professionsearch', dataSource: 'Professionsearch', validation: true },
+                                    { divClear: true, ngModel: 'EducationID', labelName: 'Education category', controlType: 'dropdown', isShow: true, dataBind: 'educationcategorywithoutselect', dataSource: 'educationcategory', validation: true },
+                                    { ngModel: 'ProfessionID', labelName: 'Profession', controlType: 'dropdown', isShow: true, dataBind: 'Professionsearch', dataSource: 'Professionsearch', validation: true },
                                     { ngModel: 'Showinprofile', labelName: 'Show Profile', controlType: 'dropdown', isShow: true, dataBind: 'Showprofile', dataSource: 'Showprofiles', validation: true },
                                     { ngModel: 'ApplicationstatusID', labelName: 'Application Status', controlType: 'dropdown', isShow: true, dataBind: 'Applicationstatus', dataSource: 'Applicationstatus', validation: true },
-                                    { type: 'BranchName', ngModel: 'RegionID', labelName: 'Region Of Branches', controlType: 'dropdown', isShow: true, dataBind: 'Regionofbranches', dataSource: 'Regionofbranches', validation: true }
+                                    { divClear: true, type: 'BranchName', ngModel: 'RegionID', labelName: 'Region Of Branches', controlType: 'dropdown', isShow: true, dataBind: 'Regionofbranches', dataSource: 'Regionofbranches', validation: true }
                                 ]
                             }, {
                                 headerName: 'Profile Settings',
@@ -891,9 +895,7 @@
                     model.gridTableshow = false;
                 };
                 model.bindPlusCtrlFlag = '';
-
                 model.showplusminusicon = function(DIVid) {
-
                     var array = model.selectedIndex === 1 ? model.domDataadvanced : model.domDatageneral;
                     _.map(_.where(array, { collapseid: DIVid }), function(item) {
                         switch (item.collapseid) {

@@ -3,8 +3,9 @@
     angular
         .module('Kaakateeya')
         .factory('paymentdetailsReportModel', ['paymentdetailsReportService',
-            'complex-grid-config', 'arrayConstants', 'alert', 'modelpopupopenmethod',
-            function(paymentdetailsReportService, configgrid, arrayConstants, alerts, modelpopupopenmethod) {
+            'complex-grid-config', 'arrayConstants', 'alert', 'modelpopupopenmethod', 'Commondependency',
+            function(paymentdetailsReportService, configgrid, arrayConstants, alerts,
+                modelpopupopenmethod, Commondependency) {
                 var model = {};
                 model.showsearchrows = true;
                 model.showsearch = true;
@@ -48,6 +49,7 @@
                     _.each(model.Brancharray, function(item) {
                         model.branchids.push(item.value);
                     });
+
                 };
                 model.pageloadbindings = function() {
                     model.Applicationstatus = [];
@@ -56,10 +58,12 @@
                     model.categoryarray = arrayConstants.catgory;
                     paymentdetailsReportService.getMyprofilebind(1, 2, '').then(function(response) {
                         model.Brancharray = [];
+                        model.Brancharraymain = [];
                         _.each(response.data, function(item) {
                             switch (item.CountryCode) {
                                 case "Branch":
                                     model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                                    model.Brancharraymain.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                     break;
                             }
                         });
@@ -139,11 +143,11 @@
                     { text: 'Agreed amount', key: 'AgreedAmount', type: 'label' },
                     { text: 'Paid amount', key: 'PaidAmount', type: 'label' },
                     { text: 'Balance amount', key: 'BalanceAmount', type: 'label' },
-                    { text: 'Marktd by', key: 'AssignMarktedname', type: 'label' },
+                    //  { text: 'Marktd by', key: 'AssignMarktedname', type: 'label' },
                     // { text: 'Pay for', key: 'PayFor', type: 'label' },
-                    { text: 'Owner of the profile', key: 'ProfileOwner', type: 'label' },
-                    { text: 'Send message', key: 'marktby', type: 'morelinks', templateUrl: model.sendmessages },
-                    { text: 'Send email', key: 'marktby', type: 'morelinks', templateUrl: model.sendemails }
+                    // { text: 'Owner of the profile', key: 'ProfileOwner', type: 'label' },
+                    // { text: 'Send message', key: 'marktby', type: 'morelinks', templateUrl: model.sendmessages },
+                    //{ text: 'Send email', key: 'marktby', type: 'morelinks', templateUrl: model.sendemails }
                 ];
                 model.paymentreports = function(from, to, type) {
                     if (type === 'grid') {
@@ -267,7 +271,7 @@
 
                                     ]
                                 };
-                                alasql('SELECT SNO,ProfileID,NAME,SurName,paymnetdate,PaymentCashmode,AgreedAmount,PaidAmount,BalanceAmount,paidbranch,ProfileOwner,GENDERID,Caste,PaymentType,DOR,AssignMarktedname as marketedby,AssignMarktedID as Marktedname,paidenteredby INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
+                                alasql('SELECT SNO,ProfileID,NAME,SurName,paymnetdate,PaymentCashmode,AgreedAmount,PaidAmount,BalanceAmount,paidbranch,GENDERID,Caste,PaymentType,DOR,paidenteredby INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
                             }
                         } else {
                             alerts.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 4000);
@@ -282,6 +286,11 @@
                 };
                 model.exportexcel = function(topage) {
                     model.paymentreports(1, topage, 'excel');
+                };
+
+                model.onchangebranch = function() {
+                    model.Brancharray = [];
+                    model.Brancharray = Commondependency.branch((model.rbtnregion !== undefined && model.rbtnregion !== null && model.rbtnregion !== "" && model.rbtnregion !== 0 && model.rbtnregion !== '0') ? (model.rbtnregion) : "");
                 };
                 return model;
             }
