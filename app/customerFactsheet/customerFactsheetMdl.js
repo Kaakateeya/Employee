@@ -14,6 +14,7 @@
                 model.gridtable6 = {};
                 model.gridtable7 = {};
                 model.gridtable8 = {};
+                model.gridtable9 = {};
                 model.showsearchrows = true;
                 model.showsearch = true;
                 model.showpaging = false;
@@ -31,6 +32,7 @@
                 model.gridtable6.type = 'grid6';
                 model.gridtable7.type = 'grid7';
                 model.gridtable8.type = 'grid8';
+                model.gridtable9.type = 'grid9';
                 model.showplus = false;
                 model.sendexpressinterestservice = function(row) {
 
@@ -82,7 +84,7 @@
                 };
                 model.displaybranchname = function(row) {
                     var dd = "";
-                    dd = "<p>" + row.BranchesName + "-(" + row.RegistrationDate + ")" + "</p>";
+                    dd = "<p>" + row.RegistrationDate + " - (" + row.BranchesName + ")" + "</p>";
                     return dd;
                 };
                 model.ProfileIdTemplateDUrl = function(row) {
@@ -98,6 +100,11 @@
                     dd = "<p>" + row.uploadedby !== undefined && row.uploadedby !== null && $.trim(row.uploadedby) !== '' ? row.uploadedby : 'Customer' + "</p>";
                     return dd;
                 };
+                model.enteredbyemployee = function(row) {
+                    var dd = "";
+                    dd = "<p>" + row.CreatedByEmpID + "</p>";
+                    return dd;
+                };
                 model.factsheetdetails = function(from, to, type) {
                     model.gridtable1.data = undefined;
                     model.gridtable2.data = undefined;
@@ -107,6 +114,7 @@
                     model.gridtable6.data = undefined;
                     model.gridtable7.data = undefined;
                     model.gridtable8.data = undefined;
+                    model.gridtable9.data = undefined;
                     model.sendarray1 = [];
                     model.sendarray2 = [];
                     model.sendarray3 = [];
@@ -115,6 +123,7 @@
                     model.sendarray6 = [];
                     model.sendarray7 = [];
                     model.sendarray8 = [];
+                    model.sendarray9 = [];
                     model.gridtable1.mainArray = [];
                     model.gridtable2.mainArray = [];
                     model.gridtable3.mainArray = [];
@@ -123,6 +132,7 @@
                     model.gridtable6.mainArray = [];
                     model.gridtable7.mainArray = [];
                     model.gridtable8.mainArray = [];
+                    model.gridtable9.mainArray = [];
                     model.gridtable1.columns = [
                         { text: 'Photoname', key: 'Photoname', type: 'label' },
                         { text: 'uploadedBy', key: 'uploadempname', type: 'morelinks', templateUrl: model.displayuploadedbyemployee },
@@ -138,7 +148,7 @@
                         { text: 'ModifiedDate', key: 'ModifiedDate', type: 'label' }
                     ];
                     model.gridtable3.columns = [
-                        { text: 'Br-Dor', key: 'RegistrationDate', type: 'morelinks', templateUrl: model.displaybranchname },
+                        { text: 'Dor-Br', key: 'RegistrationDate', type: 'morelinks', templateUrl: model.displaybranchname },
                         { text: 'ProfileStatus', key: 'ProfileStatusID', type: 'label' },
                         { text: 'LastLoginDate', key: 'LastLoginDate', type: 'morelinks', templateUrl: model.dispalylogindate }
                     ];
@@ -163,6 +173,20 @@
                         { text: 'CreatedDate', key: 'CreatedDate', type: 'label' },
                         { text: 'Service', key: 'CreatedDate', type: 'customlink', templateUrl: model.sendservicemailprofile, method: model.sendexpressinterestservice }
                     ];
+
+
+                    model.gridtable9.columns = [
+                        { text: 'Membership', key: 'membershiptype', type: 'label' },
+                        { text: 'Agreed', key: 'AgreedAmount', type: 'label' },
+                        { text: 'Paid', key: 'PaidAmount', type: 'label' },
+                        { text: 'Paid Date', key: 'PaymentDate', type: 'label' },
+                        { text: 'Expiry Date', key: 'ExpiryDate', type: 'label' },
+                        { text: 'Allowed', key: 'Allowed', type: 'label' },
+                        { text: 'Used', key: 'Used', type: 'label' },
+                        { text: 'Entered', key: 'CreatedByEmpID', type: 'label' }
+                        // { text: 'Enteredbyemp', key: 'CreatedByEmpID', type: 'morelinks', templateUrl: model.enteredbyemployee }
+                    ];
+
                     customerFactsheetService.getVerifyProfileid(model.txtprofileidfactsheet).then(function(respo) {
                         if (respo.data && parseInt(respo.data) === 1) {
                             customerFactsheetService.CustomerFactsheetDetails(model.txtprofileidfactsheet).then(function(response) {
@@ -205,6 +229,15 @@
                                     model.gridtable8.data = model.gridtable8.mainArray;
                                 }
 
+                            });
+
+                            customerFactsheetService.getEmployeePayment(model.txtprofileidfactsheet).then(function(responses) {
+                                if (_.isArray(responses.data) && responses.data.length > 0) {
+                                    console.log(responses.data);
+                                    model.sendarray9 = (responses.data);
+                                    model.gridtable9.mainArray = model.sendarray9.length > 0 ? (model.sendarray9) : [{ membershiptype: 'No Data Found' }];
+                                    model.gridtable9.data = model.gridtable9.mainArray;
+                                }
                             });
                         } else {
                             alerts.timeoutoldalerts(model.scope, 'alert-danger', 'ProfileID does not exists', 30000);
@@ -255,6 +288,7 @@
                     model.gridtable6.data = undefined;
                     model.gridtable7.data = undefined;
                     model.gridtable8.data = undefined;
+                    model.gridtable9.data = undefined;
                     model.sendarray1 = [];
                     model.sendarray2 = [];
                     model.sendarray3 = [];
@@ -263,6 +297,7 @@
                     model.sendarray6 = [];
                     model.sendarray7 = [];
                     model.sendarray8 = [];
+                    model.sendarray9 = [];
                     model.gridtable1.mainArray = [];
                     model.gridtable2.mainArray = [];
                     model.gridtable3.mainArray = [];
@@ -271,6 +306,7 @@
                     model.gridtable6.mainArray = [];
                     model.gridtable7.mainArray = [];
                     model.gridtable8.mainArray = [];
+                    model.gridtable9.mainArray = [];
                     model.gridTableshow = false;
                 };
                 model.closepopup = function() {

@@ -64,6 +64,10 @@
                              model.BranchName = [];
                              model.BranchName = Commondependency.branch((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                              break;
+                         case 'Subcaste':
+                             model.SubCaste = [];
+                             model.SubCaste = Commondependency.subCaste((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
+                             break;
                      }
                  };
 

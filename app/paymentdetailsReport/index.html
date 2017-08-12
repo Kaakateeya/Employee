@@ -15,24 +15,20 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <!-- <label for="All Profileid" style="font-size: 14px;" class="classlabelverify col-lg-3">Gender </label> -->
                             <div class="col-lg-10 rdnoptions">
-                                <md-radio-group ng-required="true" name="rbtngender" layout="row" ng-model="page.model.rbtngender" class="md-block" flex-gt-sm>
+                                <md-radio-group name="rbtngender" layout="row" ng-model="page.model.rbtngender" class="md-block" flex-gt-sm>
                                     <md-radio-button value="0" class="md-primary">Both</md-radio-button>
                                     <md-radio-button value="1"> Male</md-radio-button>
                                     <md-radio-button value="2"> FeMale</md-radio-button>
                                 </md-radio-group>
                             </div>
                             <div class="col-lg-1">
-                                <img src="src\images\straightline.png" style="height: 33px;
-    margin: -5px;
-    color: maroon;"></img>
+                                <img src="src\images\straightline.png" style="height:33px;margin: -5px;color: maroon;"></img>
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <!-- <label for="All Profileid" style="font-size: 14px;" class="classlabelverify col-lg-3">Region</label> -->
                             <div class="col-lg-10 rdnoptions">
-                                <md-radio-group ng-required="true" name="rbtnregion" layout="row" ng-model="page.model.rbtnregion" class="md-block" flex-gt-sm>
+                                <md-radio-group ng-change="page.model.onchangebranch()" name="rbtnregion" layout="row" ng-model="page.model.rbtnregion" class="md-block" flex-gt-sm>
                                     <md-radio-button value="0" class="md-primary">All</md-radio-button>
                                     <md-radio-button value="408"> AP </md-radio-button>
                                     <md-radio-button value="409"> TN</md-radio-button>
@@ -40,83 +36,62 @@
                                 </md-radio-group>
 
                             </div>
-                            <div class="col-lg-1"> <img src="src\images\straightline.png" style="height: 33px;
-    margin: -5px;
-    color: maroon;"></img>
+                            <div class="col-lg-1"> <img src="src\images\straightline.png" style="height:33px;margin:-5px;color: maroon;"></img>
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <!-- <label for="All Profileid" style="font-size: 14px;" class="classlabelverify col-lg-4">Payment type</label> -->
                             <div class="col-lg-10 rdnoptions">
-                                <md-radio-group ng-required="true" name="rbtnpaymentstatus" layout="row" ng-model="page.model.rbtnpaymentstatus" class="md-block" flex-gt-sm>
+                                <md-radio-group name="rbtnpaymentstatus" layout="row" ng-model="page.model.rbtnpaymentstatus" class="md-block" flex-gt-sm>
                                     <md-radio-button value="0" class="md-primary">Both</md-radio-button>
                                     <md-radio-button value="236"> Registration</md-radio-button>
                                     <md-radio-button value="237"> Renewal</md-radio-button>
                                 </md-radio-group>
                             </div>
-
                         </div>
-
-
                     </div>
                 </div>
                 <div class="panel-body" ng-show="page.model.panelbodyhide" ng-show="page.model.panelbodyhide">
                     <div class="row">
                         <div class="row">
-                            <div class="col-lg-4">
-                                <label for="All Profileid" class="classlabelverify">Payment from</label>
+                            <div class="col-lg-3">
+                                <label for="All Profileid" class="classlabelverify">From Date</label>
                                 <div style="color:black;">
                                     <custom-datepicker name="txtpaymentfrom" ng-class="page.model.txtpaymentfrom.trim()!=='' && model.txtpaymentto!==undefined &&  page.model.txtpaymentfrom!==null?'datepicker4':''" ng-model="page.model.txtpaymentfrom" date-options="page.model.dateOptions"></custom-datepicker>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <label for="All Profileid" class="classlabelverify">Payment to</label>
+                            <div class="col-lg-3">
+                                <label for="All Profileid" class="classlabelverify">To Date</label>
                                 <div style="color:black;">
                                     <custom-datepicker name="txtpaymentto" ng-class="page.model.txtpaymentto.trim()!=='' && model.txtpaymentto!==undefined &&  page.model.txtpaymentto!==null?'datepicker4':''" ng-model="page.model.txtpaymentto" date-options="page.model.dateOptions"></custom-datepicker>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <label for="All Profileid" class="classlabelverify">Branch</label>
                                 <div style="color:black;">
                                     <select name="branchids" multiple class="smalldropdown col-lg-5" ng-options="item.value as item.label for item in page.model.Brancharray" ng-model="page.model.branchids" multiselectdropdown></select>
                                 </div>
                             </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <label for="All Profileid" class="classlabelverify">ModeOfPayment</label>
                                 <div style="color:black;">
                                     <select name="rbtnModeOfPayment" class="smalldropdown col-lg-5" ng-options="item.value as item.label for item in page.model.modeofPaymentArr" ng-model="page.model.rbtnModeOfPayment" multiselectdropdown></select>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-3">
                                 <label for="All Profileid" class="classlabelverify">Caste</label>
                                 <div style="color:black;">
                                     <select name="casteids" class="smalldropdown col-lg-5" multiple typeofdata="'Caste'" ng-model="page.model.casteids" multiselectdropdown>   
                                            </select>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <label for="All Profileid" class="classlabelverify">Application status</label>
                                 <div style="color:black;">
                                     <select name="ticketowner" class="smalldropdown col-lg-5" multiple ng-options="item.value as item.label for item in page.model.Applicationstatus" ng-model="page.model.ApplicationStatusid" multiselectdropdown>   
                                            </select>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <label for="All Profileid" class="classlabelverify">Paid amount from</label>
-                                <div style="color:black;">
-                                    <input name="fromamount" type="text" class="form-control" style="width:240px" ng-model="page.model.fromamount"></input>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <label for="All Profileid" class="classlabelverify">Paid amount to</label>
-                                <div style="color:black;">
-                                    <input name="toamount" type="text" class="form-control" style="width:240px" ng-model="page.model.toamount"></input>
                                 </div>
                             </div>
                             <div class="col-lg-3">
@@ -135,6 +110,21 @@
                                     </md-checkbox>
                                 </div>
                             </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <!-- <div class="col-lg-4">
+                                <label for="All Profileid" class="classlabelverify">Paid amount from</label>
+                                <div style="color:black;">
+                                    <input name="fromamount" type="text" class="form-control" style="width:240px" ng-model="page.model.fromamount"></input>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="All Profileid" class="classlabelverify">Paid amount to</label>
+                                <div style="color:black;">
+                                    <input name="toamount" type="text" class="form-control" style="width:240px" ng-model="page.model.toamount"></input>
+                                </div>
+                            </div> -->
                         </div>
                         <br>
                         <div class="row">

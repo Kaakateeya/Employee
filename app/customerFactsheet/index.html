@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-lg-4" ng-show="page.model.gridTableshow">
                             <label><a target="_blank" href="Viewfullprofile/{{page.model.txtprofileidfactsheet}}/0">{{page.model.gridtable8.data[0].Firstname}} {{page.model.gridtable8.data[0].Lastname}}</a></label>
-                            <label>({{page.model.gridtable5.data[0].EmpBranch}})</label>
+                            <label ng-show="page.model.gridtable5.data[0].EmpBranch!==null && page.model.gridtable5.data[0].EmpBranch!==undefined && page.model.gridtable5.data[0].EmpBranch!==''">-{{page.model.gridtable5.data[0].EmpBranch}}</label>
                         </div>
                     </div>
                 </div>
@@ -31,11 +31,28 @@
                             <a class="col-lg-3 pull-left" href="javascript:void(0)" style="display:initial;margin-left: -15px;" ng-click="page.model.sendenailviewprofile()">Click Here</a>
                         </div>
                         <div class="col-lg-5" ng-show="page.model.gridTableshow">
-                            <label class="col-lg-7">Send Password to customer:</label>
+                            <label class="col-lg-5">Forgot Password:</label>
                             <a class="col-lg-3 pull-left" href="javascript:void(0)" style="display:initial;margin-left: -49px;" ng-click="page.model.sendforgetpassword()">Click Here</a>
                         </div>
                     </div>
                     <hr ng-show="page.model.gridTableshow">
+
+                    <!-- <div ng-show="page.model.gridTableshow">
+                        <div class="col-lg-12">
+                            <h1 style="font-size:17px;">Profile Points
+                            </h1>
+                        </div>
+                        <complex-grid-new gid="'Profilepoints'" ng-if="page.model.gridtable4.columns" config="page.model.gridtable4" model="page.model.gridtable4"></complex-grid-new>
+                    </div>
+                    <br ng-show="page.model.gridTableshow"> -->
+                    <div ng-show="page.model.gridTableshow">
+                        <div class="col-lg-12">
+                            <h1 style="font-size:17px;">Profile Payments
+                            </h1>
+                        </div>
+                        <complex-grid-new gid="'Profilepayment'" ng-if="page.model.gridtable9.columns" config="page.model.gridtable9" model="page.model.gridtable9"></complex-grid-new>
+                    </div>
+                    <br ng-show="page.model.gridTableshow">
                     <div ng-show="page.model.gridTableshow">
                         <div class="col-lg-12">
                             <h1 style="font-size:17px;">Profile Statistics
@@ -46,10 +63,18 @@
                     <br ng-show="page.model.gridTableshow">
                     <div ng-show="page.model.gridTableshow">
                         <div class="col-lg-12">
-                            <h1 style="font-size:17px;">Profile Points
+                            <h1 style="font-size:17px;">who bookmarked me
                             </h1>
                         </div>
-                        <complex-grid-new gid="'Profilepoints'" ng-if="page.model.gridtable4.columns" config="page.model.gridtable4" model="page.model.gridtable4"></complex-grid-new>
+                        <complex-grid-new gid="'whobookmarkme'" ng-if="page.model.gridtable6.columns" config="page.model.gridtable6" model="page.model.gridtable6"></complex-grid-new>
+                    </div>
+                    <br ng-show="page.model.gridTableshow">
+                    <div ng-show="page.model.gridTableshow">
+                        <div class="col-lg-12">
+                            <h1 style="font-size:17px;">my bookmark list
+                            </h1>
+                        </div>
+                        <complex-grid-new gid="'mybookmarklist'" ng-if="page.model.gridtable7.columns" config="page.model.gridtable7" model="page.model.gridtable7"></complex-grid-new>
                     </div>
                     <br ng-show="page.model.gridTableshow">
                     <div ng-show="page.model.gridTableshow">
@@ -67,23 +92,7 @@
                         </div>
                         <complex-grid-new gid="'horoscope'" ng-if="page.model.gridtable2.columns" config="page.model.gridtable2" model="page.model.gridtable2"></complex-grid-new>
                     </div>
-                    <br ng-show="page.model.gridTableshow">
 
-                    <div ng-show="page.model.gridTableshow">
-                        <div class="col-lg-12">
-                            <h1 style="font-size:17px;">who bookmarked me
-                            </h1>
-                        </div>
-                        <complex-grid-new gid="'whobookmarkme'" ng-if="page.model.gridtable6.columns" config="page.model.gridtable6" model="page.model.gridtable6"></complex-grid-new>
-                    </div>
-                    <br ng-show="page.model.gridTableshow">
-                    <div ng-show="page.model.gridTableshow">
-                        <div class="col-lg-12">
-                            <h1 style="font-size:17px;">my bookmark list
-                            </h1>
-                        </div>
-                        <complex-grid-new gid="'mybookmarklist'" ng-if="page.model.gridtable7.columns" config="page.model.gridtable7" model="page.model.gridtable7"></complex-grid-new>
-                    </div>
                     <br ng-show="page.model.gridTableshow">
                 </div>
             </div>
