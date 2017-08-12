@@ -37,17 +37,17 @@
                             <custom-datepicker name="date" ng-model="page.model.toDate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
                         </div>
                     </div>
-
-
                 </div>
                 <div class="row">
                     <div style="border-top: 1px solid #ddd;padding-top: 1%;"></div>
                     <div class="col-lg-5">
-                        <button class="button_custom pull-right" type="submit" ng-click="page.model.getEmpReport();">Search</button>
+                        <button class="button_custom pull-right" type="submit" ng-click="page.model.getEmpReport(1);">Search</button>
                     </div>
                     <div class="col-lg-4">
                         <input type="reset" class="button_custom button_custom_reset" value="Reset" ng-click="page.model.reset();">
-
+                    </div>
+                    <div class="col-lg-3" ng-show="page.model.TotalRows">
+                        Total Records : {{page.model.TotalRows}}
                     </div>
                 </div>
             </div>
@@ -57,6 +57,96 @@
     </uib-accordion>
 
 </div>
+<script type="text/ng-template" id="viewWrkedHrs.html">
+
+    <div class="modal-header">
+        <a href="javascript:void(0);" class="pull-right" ng-click="page.model.close();">
+            <span class="fa fa-close red"></span>
+        </a>
+        <h4 class="modal-title">
+            <!-- <center>Employee Work Sheet Report</center> Total Records : {{page.model.histrydataTotalRows}} -->
+
+            <div class="row">
+                <div class="col-lg-4">Total Records : {{page.model.histrydataTotalRows}}</div>
+                <div class="col-lg-6">Employee Work Sheet Report</div>
+            </div>
+        </h4>
+    </div>
+    <div style="max-height: 300px;overflow-y: auto;">
+        <table>
+            <thead class="headerStyles">
+                <tr>
+                    <td>Sno</td>
+                    <td>Emp Name</td>
+                    <td>IPAddress(Branch code)</td>
+                    <td>Login time</td>
+                    <td>Page name</td>
+                    <td>Event</td>
+                    <td>Event time</td>
+                    <td>Ideal time</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in page.model.histrydata">
+                    <td>{{item.SNO}}</td>
+                    <td>{{item.EmpName}}</td>
+                    <td>{{item.IPAddress}}</td>
+                    <td>{{item.Logintime}}</td>
+                    <td>{{item.Pagename}}</td>
+                    <td>{{item.Event}}</td>
+                    <td>{{item.Eventtime}}</td>
+                    <td>{{item.totaltime}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-8 col-lg-offset-3">
+        <ul uib-pagination class="row" total-items="(page.model.histrydataTotalRows)/10" ng-model="pagen" ng-change="page.model.pagechangepopup(pagen)" max-size="5" class="pagination-md" boundary-link-numbers="true" rotate="false"></ul>
+    </div>
+    <div class="modal-footer">
+        <input type="button" value="close" class="btn btn-danger" ng-click="page.model.close();">
+    </div>
+
+</script>
+
+<script type="text/ng-template" id="EmployeeDetailsPopup.html">
+
+    <div class="modal-header">
+        <a href="javascript:void(0);" class="pull-right" ng-click="page.model.close();">
+            <span class="fa fa-close red"></span>
+        </a>
+        <h4 class="modal-title">
+            <center>Employee Details of {{page.model.empnamedisplay}} ({{page.model.EmpUserID}})</center>
+        </h4>
+    </div>
+    <div style="max-height: 300px;overflow-y: auto;">
+        <table>
+            <thead class="headerStyles">
+                <tr>
+                    <td>Date</td>
+                    <td>In-Time</td>
+                    <td>Out-Time</td>
+                    <td>Worked Hours</td>
+                    <td>PWHours</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in page.model.empDtailsArray">
+                    <td>{{item.Date}}</td>
+                    <td>{{item.LoginTime}}</td>
+                    <td>{{item.LogoutTime}}</td>
+                    <td>{{item.WorkedHours}}</td>
+                    <td>{{item.PwHours}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <input type="button" value="close" class="btn btn-danger" ng-click="page.model.close();">
+    </div>
+
+</script>
+
 <style>
     .datepicker3 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;

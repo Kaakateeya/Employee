@@ -141,6 +141,7 @@ app.factory('getArraysearch', ['arrayConstants', 'SelectBindServiceApp', functio
                         });
                         option = option;
                     });
+
                     break;
                 case 'Applicationstatus':
                     service.Applicationstatus().then(function(response) {

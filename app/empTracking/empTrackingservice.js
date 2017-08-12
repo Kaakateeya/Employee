@@ -11,6 +11,9 @@
         return {
             getempReport: function(obj) {
                 return http.post(app.apiroot + 'smallPages/loginLogOutReport', obj);
+            },
+            getempWorksheet: function(obj) {
+                return http.post(app.apiroot + 'smallPages/empWorksheet', obj);
             }
         };
     }
