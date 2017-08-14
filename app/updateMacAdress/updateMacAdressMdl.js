@@ -17,7 +17,7 @@
                  { text: 'SNO', key: 'sno', type: 'label' },
                  { text: 'Branch', key: 'BranchName', type: 'label' },
                  { text: 'IP Adress', key: 'MacAddressName', type: 'textbox', templateUrl: model.ipaddr, model: 'txtMac' },
-                 { text: 'IP Adress2', key: 'MacAddressName_1', type: 'textbox', templateUrl: model.ipaddr1, model: 'txtMacnew' },
+                 //  { text: 'IP Adress2', key: 'MacAddressName_1', type: 'textbox', templateUrl: model.ipaddr1, model: 'txtMacnew' },
                  { text: '', key: '', type: 'customlink', templateUrl: model.optionTemplate, method: model.actionlink }
                  //  { text: '', key: '', type: 'customlink', templateUrl: model.optionTemplate1, method: model.actionlink }
              ];

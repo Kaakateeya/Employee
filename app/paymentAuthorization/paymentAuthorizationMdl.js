@@ -224,6 +224,12 @@
                                 alertss.timeoutoldalerts(model.scope, parseInt(response.data) === 1 ? 'alert-success' : 'alert-danger', msg, 2000);
                                 model.mainArray = _.difference(model.mainArray, _.where(model.data, { Emp_Ticket_ID: model.paymentverificationobj.Emp_Ticket_ID }));
                                 (model.data).splice(model.index, 1);
+                                // if (model.typeauthorize === 'Authorize') {
+                                //     var msggg = 'Thank Your for Your registration and Payment For the services In kaakateeya.com....verified by "looged Username';
+                                //     paymentAuthorizationService.memoSubmit(msggg, model.paymentverificationobj.Emp_Ticket_ID, model.empid, "").then(function(res) {
+                                //         console.log(res);
+                                //     });
+                                // }
                             } else {
                                 msg = model.typeauthorize === 'Authorize' ? 'Error in authorizing the payment' : 'Error in declining the payment';
                                 alertss.timeoutoldalerts(model.scope, parseInt(response.data) === 1 ? 'alert-success' : 'alert-danger', msg, 2000);

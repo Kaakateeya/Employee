@@ -1,0 +1,22 @@
+.dashboard_graph {
+  background: #fff;
+  padding: 7px 10px; }
+
+.dashboard_graph .col-md-9,
+.dashboard_graph .col-md-3 {
+  padding: 0; }
+
+.dashboard_graph .x_title {
+  padding: 5px 5px 7px; }
+
+.dashboard_graph .x_title h3 {
+  margin: 0;
+  font-weight: normal; }
+
+.dashboard_graph p {
+  margin: 0 0 4px; }
+
+.demo-placeholder {
+  height: 280px; }
+
+/*# sourceMappingURL=style.css.map */

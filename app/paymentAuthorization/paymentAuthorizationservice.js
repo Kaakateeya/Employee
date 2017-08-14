@@ -21,6 +21,11 @@
                 return http.get(app.apiroot + 'smallPages/GetcheckMarketingTicket', {
                     params: { ticketID: ticetID }
                 });
+            },
+            memoSubmit: function(msg, tktID, empid, assignEmpid) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getInsertInternalMemo', {
+                    params: { Message: msg, TicketID: tktID, EmpID: empid, AssignedEmpID: assignEmpid }
+                });
             }
         };
     }
