@@ -25,38 +25,37 @@
             return model;
         };
         model.wrkedHrsTemplate = function(row) {
-            return '<label>' + row.TotalWorkedHours + '</label>&nbsp;&nbsp;<a href="javascript:void(0);" ng-click="model.viewWrkHrs(' + JSON.stringify(row.EmployeeId) + ');">view</a>';
+            return '<label>' + row.TotalWorkedHours + '</label>';
         };
 
-        model.viewWrkHrs = function(empid) {
-            model.empWorksheet(1, empid);
-            model.empidbasedgridID = empid;
-            modelpopupopenmethod.showPopupphotopoup('viewWrkedHrs.html', model.scope, 'lg', "");
-        };
+        // model.viewWrkHrs = function(empid) {
+        //     model.empWorksheet(1, empid);
+        //     model.empidbasedgridID = empid;
+        //     modelpopupopenmethod.showPopupphotopoup('viewWrkedHrs.html', model.scope, 'lg', "");
+        // };
 
+        // model.empWorksheet = function(to, empid) {
 
-        model.empWorksheet = function(to, empid) {
-
-            var inobj = {
-                FromDate: model.fromdate,
-                toDate: model.toDate,
-                Employeename: empid,
-                Branch: model.branch ? model.branch.join(',') : null,
-                PageSize: 100,
-                PageNumber: to,
-                SerialnoFrom: null,
-                serialnoto: null,
-                flag: 0,
-                Pagename: null,
-                timings: 0
-            };
-            empTrackingService.getempWorksheet(inobj).then(function(response) {
-                if (response.data) {
-                    model.histrydata = response.data[1];
-                    model.histrydataTotalRows = response.data[0][0].TotalRows;
-                }
-            });
-        };
+        //     var inobj = {
+        //         FromDate: model.fromdate,
+        //         toDate: model.toDate,
+        //         Employeename: empid,
+        //         Branch: model.branch ? model.branch.join(',') : null,
+        //         PageSize: 100,
+        //         PageNumber: to,
+        //         SerialnoFrom: null,
+        //         serialnoto: null,
+        //         flag: 0,
+        //         Pagename: null,
+        //         timings: 0
+        //     };
+        //     empTrackingService.getempWorksheet(inobj).then(function(response) {
+        //         if (response.data) {
+        //             model.histrydata = response.data[1];
+        //             model.histrydataTotalRows = response.data[0][0].TotalRows;
+        //         }
+        //     });
+        // };
 
 
         model.close = function() {
@@ -71,7 +70,8 @@
             modelpopupopenmethod.showPopupphotopoup('EmployeeDetailsPopup.html', model.scope, 'md', "");
         };
 
-        model.getEmpReport = function(to, empid) {
+        model.getEmpReport = function(to, empid, type) {
+            debugger;
             model.columns = [
                 { text: 'Sno', key: 'Sno', type: 'label' },
                 { text: 'Employee name', key: 'Name', type: 'label' },
@@ -88,8 +88,8 @@
                 Branch: model.branch ? model.branch.join(',') : null,
                 EmployeeName: model.empNames ? model.empNames.join(',') : null,
                 WorkingHours: model.wrkngHrs,
-                StartDate: model.fromdate,
-                EndDate: model.toDate,
+                StartDate: model.fromdate ? moment(model.fromdate).format('YYYY-MM-DD 00:00:00') : null,
+                EndDate: model.toDate ? moment(model.toDate).format('YYYY-MM-DD 00:00:00') : null,
                 FromRange: null,
                 ToRange: null,
                 PageNumber: to,
@@ -107,29 +107,34 @@
                         model.empnamedisplay = response.data[0][0].Name;
                         model.EmpUserID = response.data[0][0].EmpUserID;
                     } else {
-                        model.showpaging = true;
-                        model.data = response.data[0];
-                        model.TotalRows = response.data[1][0].TotalRows;
+                        if (type === 'export') {
+                            model.exportarray = [];
+                            model.exportarray = response.data[0];
+                            var options = {
+                                headers: true,
+                            };
+                            alasql('SELECT Sno,Name as Employee_name,DateOfJoining as Date_of_Joining ,OfficialContactNumber as Official_contact,WorkPhone as  Work_phone ,EmailId as Email_Id,BranchId as Branch,TotalWorkedHours as Total_Worked_Hours INTO  XLSX("EditReports.xlsx",?) FROM ?', [options, model.exportarray]);
+                        } else {
+                            model.showpaging = true;
+                            model.data = response.data[0];
+                            model.TotalRows = response.data[1][0].TotalRows;
+                        }
                     }
                 }
             });
         };
+        model.excelVal = 1;
         model.pagechange = function(val) {
+            model.excelVal = val;
             var to = val * 100;
             var from = val === 1 ? 1 : to - 99;
             model.getEmpReport(val);
         };
 
-        // model.exportexcel = function(topage) {
-        //     model.getEmpReport(model.mpObj, 1, topage, 'excel', 1);
-        // };
-
-        model.pagechangepopup = function(val) {
-            model.empWorksheet(val, model.empidbasedgridID);
+        model.exportexcel = function() {
+            model.getEmpReport(model.excelVal, undefined, "export");
         };
 
-
         return model.init();
-
     }
 })();

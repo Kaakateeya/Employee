@@ -48,6 +48,7 @@
                     </div>
                     <div class="col-lg-3" ng-show="page.model.TotalRows">
                         Total Records : {{page.model.TotalRows}}
+                        <input ng-show="page.model.TotalRows" type="image" src="src\images\EXCEL.jpg" ng-click="page.model.exportexcel()" style="height: 20px;width: 20px;margin-left: 34px;" class="css-class leftmargin"></input>
                     </div>
                 </div>
             </div>
@@ -57,15 +58,14 @@
     </uib-accordion>
 
 </div>
-<script type="text/ng-template" id="viewWrkedHrs.html">
+
+<!-- <script type="text/ng-template" id="viewWrkedHrs.html">
 
     <div class="modal-header">
         <a href="javascript:void(0);" class="pull-right" ng-click="page.model.close();">
             <span class="fa fa-close red"></span>
         </a>
         <h4 class="modal-title">
-            <!-- <center>Employee Work Sheet Report</center> Total Records : {{page.model.histrydataTotalRows}} -->
-
             <div class="row">
                 <div class="col-lg-4">Total Records : {{page.model.histrydataTotalRows}}</div>
                 <div class="col-lg-6">Employee Work Sheet Report</div>
@@ -107,7 +107,7 @@
         <input type="button" value="close" class="btn btn-danger" ng-click="page.model.close();">
     </div>
 
-</script>
+</script> -->
 
 <script type="text/ng-template" id="EmployeeDetailsPopup.html">
 
