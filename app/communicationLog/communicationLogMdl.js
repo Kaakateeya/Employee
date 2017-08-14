@@ -75,18 +75,24 @@
                                 model.gridtable3.mainArray = [];
                                 model.gridtable4.mainArray = [];
                                 if ((response.data[0]).length !== 0 || (response.data[1]).length !== 0 || (response.data[2]).length !== 0 || (response.data[3]).length !== 0) {
-                                    _.each(response.data[0], function(item) {
-                                        model.sendarray.push(item);
-                                    });
-                                    _.each(response.data[1], function(item) {
-                                        model.sendarray2.push(item);
-                                    });
-                                    _.each(response.data[2], function(item) {
-                                        model.sendarray3.push(item);
-                                    });
-                                    _.each(response.data[3], function(item) {
-                                        model.sendarray4.push(item);
-                                    });
+                                    // _.each(response.data[0], function(item) {
+                                    //     model.sendarray.push(item);
+                                    // });
+                                    // _.each(response.data[1], function(item) {
+                                    //     model.sendarray2.push(item);
+                                    // });
+                                    // _.each(response.data[2], function(item) {
+                                    //     model.sendarray3.push(item);
+                                    // });
+                                    // _.each(response.data[3], function(item) {
+                                    //     model.sendarray4.push(item);
+                                    // });
+
+                                    model.sendarray = response.data[0];
+                                    model.sendarray2 = response.data[1];
+                                    model.sendarray3 = response.data[2];
+                                    model.sendarray4 = response.data[3];
+
                                     model.gridtable1.mainArray = model.sendarray.length > 0 ? model.addingserialnumber(model.sendarray) : [];
                                     model.gridtable1.TotalRows = model.sendarray.length > 0 ? model.sendarray[0].TotalRows : 0;
                                     model.gridtable1.data = model.gridtable1.mainArray;

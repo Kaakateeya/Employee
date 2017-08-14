@@ -231,6 +231,8 @@
                         item.starttime = moment(item.WorkingStartTIme).format('hh:mm A');
                         item.endTime = moment(item.WorkingEndTIme).format('hh:mm A');
                     });
+                } else {
+                    model.data = [];
                 }
             });
         };
