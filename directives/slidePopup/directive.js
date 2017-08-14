@@ -34,7 +34,7 @@
 
                     if (value2) {
 
-                        SelectBindService[apiPath](commonFactory.listSelectedVal(value), commonFactory.listSelectedVal(value2)).then(function(res) {
+                        SelectBindService[apiPath](commonFactory.listSelectedVal(value2), commonFactory.listSelectedVal(value)).then(function(res) {
                             _.map(_.where(scope.model.popupdata, { parentName: text }), function(item) {
                                 var depData = [];
                                 _.each(res.data, function(item) {

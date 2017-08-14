@@ -136,6 +136,5 @@
         };
 
         return model.init();
-
     }
 })();
