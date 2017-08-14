@@ -70,7 +70,8 @@
             modelpopupopenmethod.showPopupphotopoup('EmployeeDetailsPopup.html', model.scope, 'md', "");
         };
 
-        model.getEmpReport = function(to, empid) {
+        model.getEmpReport = function(to, empid, type) {
+            debugger;
             model.columns = [
                 { text: 'Sno', key: 'Sno', type: 'label' },
                 { text: 'Employee name', key: 'Name', type: 'label' },
@@ -106,27 +107,33 @@
                         model.empnamedisplay = response.data[0][0].Name;
                         model.EmpUserID = response.data[0][0].EmpUserID;
                     } else {
-                        model.showpaging = true;
-                        model.data = response.data[0];
-                        model.TotalRows = response.data[1][0].TotalRows;
+                        if (type === 'export') {
+                            model.exportarray = [];
+                            model.exportarray = response.data[0];
+                            var options = {
+                                headers: true,
+                            };
+                            alasql('SELECT Sno,Name as Employee_name,DateOfJoining as Date_of_Joining ,OfficialContactNumber as Official_contact,WorkPhone as  Work_phone ,EmailId as Email_Id,BranchId as Branch,TotalWorkedHours as Total_Worked_Hours INTO  XLSX("EditReports.xlsx",?) FROM ?', [options, model.exportarray]);
+                        } else {
+                            model.showpaging = true;
+                            model.data = response.data[0];
+                            model.TotalRows = response.data[1][0].TotalRows;
+                        }
                     }
                 }
             });
         };
+        model.excelVal = 1;
         model.pagechange = function(val) {
+            model.excelVal = val;
             var to = val * 100;
             var from = val === 1 ? 1 : to - 99;
             model.getEmpReport(val);
         };
 
-        // model.exportexcel = function(topage) {
-        //     model.getEmpReport(model.mpObj, 1, topage, 'excel', 1);
-        // };
-
-        // model.pagechangepopup = function(val) {
-        //     model.empWorksheet(val, model.empidbasedgridID);
-        // };
-
+        model.exportexcel = function() {
+            model.getEmpReport(model.excelVal, undefined, "export");
+        };
 
         return model.init();
 
