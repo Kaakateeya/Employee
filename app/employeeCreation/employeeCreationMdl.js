@@ -178,6 +178,8 @@
             model.officePhone = row.OfficialContactNumber;
             model.designation = row.DesignationID;
             model.loginLocation = row.LoginLocation;
+
+            model.modelEmpPhoto = row.EmpPhoto;
             debugger;
             model.dateOfJoining = row.Created_Date ? row.Created_Date : '';
             if (row.WorkingStartTIme) {
@@ -193,6 +195,7 @@
             }
 
             timeout(function() {
+                debugger;
                 model.weakOff = JSON.stringify(row.DayOff);
                 model.country = row.CountryID;
                 model.state = row.StateID;
@@ -200,8 +203,7 @@
                 model.city = row.CityID;
                 model.eduGroup = row.EducationGroupID;
                 model.eduSpecialisation = row.EducationSpecializaionID;
-            }, 1000);
-
+            }, 1500);
 
             model.address = row.Address;
             model.personalEmail = row.Email;
@@ -229,6 +231,8 @@
                         item.starttime = moment(item.WorkingStartTIme).format('hh:mm A');
                         item.endTime = moment(item.WorkingEndTIme).format('hh:mm A');
                     });
+                } else {
+                    model.data = [];
                 }
             });
         };
@@ -257,9 +261,12 @@
 
         model.CreateEmployeeSubmit = function(empid) {
             var Imgpath;
+            var strCustDtryName = model.newuserID + "_EmplyeeImage";
             if (model.upImage) {
-                var strCustDtryName = model.newuserID + "_EmplyeeImage";
+
                 Imgpath = "~/Images/EmployeeImages/" + strCustDtryName + "/" + model.newuserID + "_EmplyeeImage." + ((model.upImage.name).split('.'))[1];
+            } else if (model.modelEmpPhoto) {
+                Imgpath = "~/Images/EmployeeImages/" + strCustDtryName + "/" + model.newuserID + "_EmplyeeImage.jpg";
             }
 
             model.inobjemp = {
