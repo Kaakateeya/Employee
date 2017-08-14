@@ -122,20 +122,30 @@
                     <div class="col-lg-6">
                         <div class="row">
                             <div class="col-lg-4">
-                                <label for="">Deleted Details </label>
+                                <label for="">ProfileID </label>
                             </div>
                             <div class="col-lg-8">
                                 <p for="">{{page.model.settleArr.ProfileID}} </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" ng-hide="true">
                         <div class="row">
                             <div class="col-lg-4">
                                 <label for="">Deleted Profile Owner</label>
                             </div>
                             <div class="col-lg-8">
                                 <p for="">{{page.model.settleArr.Name}} </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="" class="">Deleted By </label>
+                            </div>
+                            <div class="col-lg-8">
+                                <p for="" class="">{{page.model.settleArr.DeleteBy!==null && page.model.settleArr.DeleteBy!==undefined && page.model.settleArr.DeleteBy!==''?page.model.settleArr.DeleteBy:'Customer'}}</p>
                             </div>
                         </div>
                     </div>
@@ -151,18 +161,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <label for="" class="">Entered By </label>
-                            </div>
-                            <div class="col-lg-8">
-                                <p for="" class="">{{page.model.settleArr.DeleteBy}}</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="row">
+                    <label class="col-lg-4" style="color:maroon;">Reason for Deletion :</label>
                     <div class="col-lg-11">{{page.model.settleArr.deletenotes}}</div>
                 </div>
                 <br>
@@ -185,7 +186,7 @@
                             <td>{{page.model.settleArr.InactivateFromdate}}</td>
                             <td>{{page.model.settleArr.inactivetodate}}</td>
                             <td>{{page.model.settleArr.Reason4InActive}}</td>
-                            <td>{{page.model.settleArr.inactivaterequestby}}</td>
+                            <td>{{page.model.settleArr.inactivaterequestby!==null && page.model.settleArr.inactivaterequestby!==undefined && page.model.settleArr.inactivaterequestby!==''?page.model.settleArr.inactivaterequestby:'Customer'}}</td>
                             <td>{{page.model.settleArr.ProfileOwnerEmpName}}</td>
                         </tr>
 

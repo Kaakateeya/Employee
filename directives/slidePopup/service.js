@@ -3,7 +3,7 @@
 
     angular
         .module('Kaakateeya')
-        .factory('popupSvc', factory)
+        .factory('popupSvc', factory);
 
     factory.$inject = ['$http'];
 
