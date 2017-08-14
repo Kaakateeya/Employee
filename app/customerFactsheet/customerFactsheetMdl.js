@@ -183,7 +183,7 @@
                         { text: 'Expiry Date', key: 'ExpiryDate', type: 'label' },
                         { text: 'Allowed', key: 'Allowed', type: 'label' },
                         { text: 'Used', key: 'Used', type: 'label' },
-                        { text: 'Entered', key: 'CreatedByEmpID', type: 'label' }
+                        { text: 'Entered', key: 'Used', type: 'morelinks', templateUrl: model.enteredbyemployee }
                         // { text: 'Enteredbyemp', key: 'CreatedByEmpID', type: 'morelinks', templateUrl: model.enteredbyemployee }
                     ];
 
