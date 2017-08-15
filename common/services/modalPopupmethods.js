@@ -97,8 +97,6 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                 });
             },
 
-
-
             closepopup: function() {
                 modalpopupopen.close();
             },
