@@ -5,12 +5,18 @@
         .module('Kaakateeya')
         .factory('brokerProfileRegistrationModel', factory);
 
-    factory.$inject = ['brokerProfileRegistrationService', 'SelectBindServicereg', 'authSvc', '$timeout', 'getArray', 'Commondependency', '$filter', 'getArraysearch', 'alert', '$state'];
+    factory.$inject = ['brokerProfileRegistrationService', 'SelectBindServicereg', 'authSvc', '$timeout',
+        'getArray', 'Commondependency', '$filter', 'getArraysearch', 'alert', '$state', 'SelectBindServiceApp',
+        'modelpopupopenmethod', 'complex-grid-config'
+    ];
 
-    function factory(brokerProfileRegistrationService, SelectBindServicereg, authSvc, timeout, getArray, commondependency, filter, getArraysearch, dynamicalert, $state) {
+    function factory(brokerProfileRegistrationService, SelectBindServicereg, authSvc, timeout, getArray,
+        commondependency, filter, getArraysearch, dynamicalert, $state, SelectBindServiceApp, modelpopupopenmethod, config) {
 
         var model = {};
+        model = config;
         model.scope = {};
+        model.reg = {};
         var monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         model.pageload = function() {
             model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
@@ -141,9 +147,58 @@
         model.residingChange = function(val) {
             model.reg.ddllandcountry = model.reg.ddlmobilecountry = val;
         };
+        model.branchChange = function(val) {
+            SelectBindServiceApp.getRelationName(9, val, '').then(function(response) {
+                if (response.data)
+                    model.mediaterData = response.data[0][0];
+                model.reg.txtEmail = model.mediaterData.Email;
+                model.reg.ddlmobilecountry = model.mediaterData.CountyCode;
+                model.mediaterID = model.mediaterData.MediatorSno;
 
+                model.reg.txtMobileNo = model.mediaterData.MobileNumber ? model.mediaterData.MobileNumber : model.mediaterData.whatsappNumber;
+            });
+        };
 
+        model.validateFields = function() {
+            if (model.reg.txtfirstname || model.reg.txtlastname) {
+                // var obj = {
+                //     i_MediaterID: 1,
+                //     v_FirstName: 'Kiran',
+                //     v_Surname: 'PULAVARI',
+                //     v_Email: null,
+                //     v_Mobilenumber: '99299999992',
+                //     v_CounttyCode: ''
+                // };
+                var obj = {
+                    i_MediaterID: model.mediaterID,
+                    v_FirstName: model.reg.txtfirstname,
+                    v_Surname: model.reg.txtlastname,
+                    v_Email: model.reg.txtEmail,
+                    v_Mobilenumber: model.reg.txtMobileNo,
+                    v_CounttyCode: model.reg.ddlmobilecountry
+                };
 
+                brokerProfileRegistrationService.validatefields(obj).then(function(res) {
+                    if (res.data[0].length > 0) {
+                        model.columns = [
+                            { text: 'ProfileID', key: 'ProfileID', type: 'label' },
+                            { text: 'FirstName', key: 'FirstName', type: 'label' },
+                            { text: 'LastName', key: 'LastName', type: 'label' },
+                            { text: 'Number', key: 'Number', type: 'label' },
+                            { text: 'Email', key: 'Email', type: 'label' }
+                        ];
+                        model.sdata = res.data[0];
+                        modelpopupopenmethod.showPopup('duplicateProfiles.html', model.scope, 'md', "");
+                        model.reg.txtfirstname = '';
+                        model.reg.txtlastname = '';
+                    }
+                });
+            }
+        };
+
+        model.close = function() {
+            modelpopupopenmethod.closepopup();
+        };
 
         return model.pageload();
 

@@ -220,7 +220,7 @@
                 // model.empid,
                 BranchIDs: model.searchbranch ? model.searchbranch.join(',') : null,
                 EmpStatus: model.empStatus,
-                EmpTypeIDs: model.empType,
+                EmpTypeIDs: model.empType ? model.empType.join(',') : null,
                 isLoginanywhere: model.isLoginAnywhere,
                 region: model.region && model.region[0] !== '' ? model.region.join(',') : null
             };

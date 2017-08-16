@@ -14,6 +14,9 @@
             },
             emailExists: function(obj) {
                 return http.get(app.apiroot + 'StaticPages/getbrokerEmailMobilenumberexists', { params: obj });
+            },
+            validatefields: function(obj) {
+                return http.post(app.apiroot + 'smallPages/mediaterRegValidation', obj);
             }
         };
     }

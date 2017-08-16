@@ -38,19 +38,15 @@
                 };
 
                 model.addingserialnumber = function(array) {
+
                     var SNum = 1;
                     _.map(array, function(item) {
                         if (item.MFPStatus !== null) {
                             item.MFPStatus = $.trim(item.MFPStatus);
                         }
-                    });
-                    _.map(array, function(item) {
                         item.Snos = SNum;
-                        SNum++;
-                    });
-
-                    _.map(array, function(item) {
                         item.rowtype = model.rowStyle(item);
+                        SNum++;
                     });
 
                     return array;
@@ -325,7 +321,6 @@
                             break;
                     }
                 };
-
 
                 return model;
             }
