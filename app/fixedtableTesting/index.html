@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="https://rawgit.com/alalonde/angular-scrollable-table/master/scrollable-table.css" />
+
+<div class="right_col">
+
+    <scrollable-table watch="page.model.visibleProjects">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th sortable-header ng-repeat="itemheader in page.model.arrayheader">{{itemheader}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="response in page.model.visibleProjects" row-id="{{response.facility}}" ng-class="{info: selected == response.facility}">
+                    <td>{{ response.facility }}</td>
+                    <td>{{ response.code }}</td>
+                    <td>{{ response.cost }}</td>
+                    <td class="cr">
+                        {{ response.conditionRating }}
+                    </td>
+                    <td>{{ response.extent }}</td>
+                    <td>{{ response.planYear }}</td>
+                    <td>{{ response.Plansss }}</td>
+                    <td>{{ response.Plansss }}</td>
+                    <td>{{ response.Plansss }}</td>
+                    <td>{{ response.Plansss }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </scrollable-table>
+
+</div>
+<style type="text/css">
+    .scrollArea table {
+        /* max-width: 1361px;
+        min-width: 1200px; */
+        width: 100%;
+        min-width: 1200px;
+    }
+</style>

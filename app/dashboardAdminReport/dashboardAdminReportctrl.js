@@ -366,6 +366,251 @@
                      model.changeWidth = function() {
                          model.width = 300;
                      };
+
+                     model.charts = {
+                         "caption": "Admin Reports",
+                         "subCaption": "Last week Vs This week",
+                         "xAxisName": "PROFILES",
+                         "yAxisName": "No. of Visitors",
+                         "theme": "fint",
+                         //Divisional line cosmetics
+                         "divLineColor": "#6699cc",
+                         "divLineAlpha": "60",
+                         "divLineDashed": "0",
+                         "labelDisplay": "auto",
+                         "slantLabels": "1"
+
+                     };
+                     model.categiries = [{
+                         "category": [{
+                             "label": "pwd"
+                         }, {
+                             "label": "hup"
+                         }, {
+                             "label": "reg"
+                         }, {
+                             "label": "top"
+                         }, {
+                             "label": "del"
+                         }, {
+                             "label": "sel"
+                         }, {
+                             "label": "inact"
+                         }, {
+                             "label": "WAI"
+                         }, {
+                             "label": "ALL"
+                         }]
+                     }];
+                     model.dataSourcesss = [{
+                         "chart": model.charts,
+                         "categories": model.categiries,
+                         "dataset": [{
+                             "seriesname": "7 days",
+                             "data": [{
+                                 "value": "130"
+                             }, {
+                                 "value": "200"
+                             }, {
+                                 "value": "100"
+                             }, {
+                                 "value": "150"
+                             }, {
+                                 "value": "155"
+                             }, {
+                                 "value": "170"
+                             }, {
+                                 "value": "195"
+                             }, {
+                                 "value": "186"
+                             }, {
+                                 "value": "189"
+                             }],
+
+                         }, {
+                             "seriesname": "15 Days",
+                             "data": [{
+                                 "value": "154"
+                             }, {
+                                 "value": "168"
+                             }, {
+                                 "value": "188"
+                             }, {
+                                 "value": "224"
+                             }, {
+                                 "value": "238"
+                             }, {
+                                 "value": "258"
+                             }, {
+                                 "value": "308"
+                             }, {
+                                 "value": "195"
+                             }, {
+                                 "value": "195"
+                             }]
+                         }, {
+                             "seriesname": "30 Days",
+                             "data": [{
+                                 "value": "154"
+                             }, {
+                                 "value": "168"
+                             }, {
+                                 "value": "188"
+                             }, {
+                                 "value": "224"
+                             }, {
+                                 "value": "238"
+                             }, {
+                                 "value": "258"
+                             }, {
+                                 "value": "308"
+                             }, {
+                                 "value": "195"
+                             }, {
+                                 "value": "195"
+                             }]
+                         }, {
+                             "seriesname": "45 Days",
+                             "data": [{
+                                 "value": "154"
+                             }, {
+                                 "value": "168"
+                             }, {
+                                 "value": "188"
+                             }, {
+                                 "value": "224"
+                             }, {
+                                 "value": "238"
+                             }, {
+                                 "value": "258"
+                             }, {
+                                 "value": "308"
+                             }, {
+                                 "value": "195"
+                             }, {
+                                 "value": "195"
+                             }]
+                         }]
+                     }, {
+                         "chart": {
+                             "caption": "Admin Reports",
+                             "subCaption": "Last week Vs This week",
+                             "xAxisName": "PROFILES",
+                             "yAxisName": "No. of Visitors",
+                             "theme": "fint",
+                             //Divisional line cosmetics
+                             "divLineColor": "#6699cc",
+                             "divLineAlpha": "60",
+                             "divLineDashed": "0"
+                         },
+                         "categories": [{
+                             "category": [{
+                                 "label": "pwd"
+                             }, {
+                                 "label": "hup"
+                             }, {
+                                 "label": "reg"
+                             }, {
+                                 "label": "top"
+                             }, {
+                                 "label": "del"
+                             }, {
+                                 "label": "sel"
+                             }, {
+                                 "label": "inact"
+                             }, {
+                                 "label": "WAI"
+                             }, {
+                                 "label": "ALL"
+                             }]
+                         }],
+                         "dataset": [{
+                             "seriesname": "7 days",
+                             "data": [{
+                                 "value": "130"
+                             }, {
+                                 "value": "145"
+                             }, {
+                                 "value": "135"
+                             }, {
+                                 "value": "150"
+                             }, {
+                                 "value": "155"
+                             }, {
+                                 "value": "176"
+                             }, {
+                                 "value": "195"
+                             }, {
+                                 "value": "195"
+                             }, {
+                                 "value": "195"
+                             }],
+
+                         }, {
+                             "seriesname": "15 Days",
+                             "data": [{
+                                 "value": "154"
+                             }, {
+                                 "value": "168"
+                             }, {
+                                 "value": "188"
+                             }, {
+                                 "value": "224"
+                             }, {
+                                 "value": "238"
+                             }, {
+                                 "value": "258"
+                             }, {
+                                 "value": "308"
+                             }, {
+                                 "value": "195"
+                             }, {
+                                 "value": "195"
+                             }]
+                         }, {
+                             "seriesname": "30 Days",
+                             "data": [{
+                                 "value": "154"
+                             }, {
+                                 "value": "168"
+                             }, {
+                                 "value": "188"
+                             }, {
+                                 "value": "224"
+                             }, {
+                                 "value": "238"
+                             }, {
+                                 "value": "258"
+                             }, {
+                                 "value": "308"
+                             }, {
+                                 "value": "195"
+                             }, {
+                                 "value": "195"
+                             }]
+                         }, {
+                             "seriesname": "45 Days",
+                             "data": [{
+                                 "value": "154"
+                             }, {
+                                 "value": "168"
+                             }, {
+                                 "value": "188"
+                             }, {
+                                 "value": "224"
+                             }, {
+                                 "value": "238"
+                             }, {
+                                 "value": "258"
+                             }, {
+                                 "value": "308"
+                             }, {
+                                 "value": "195"
+                             }, {
+                                 "value": "195"
+                             }]
+                         }]
+                     }];
                  };
                  vm.init();
              }
