@@ -32,14 +32,16 @@
                             <div class="row">
                                 <md-input-container class="col-lg-3">
                                     <label> First Name</label>
-                                    <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" focus-me="true" ng-focus="true" autofocus maxlength="100" required="" md-asterisk="" name="txtfirstname" ng-model="page.model.reg.txtfirstname">
+                                    <input ng-blur="page.model.chknamesurame(page.model.reg.txtfirstname,page.model.reg.txtlastname,page.model.reg.ddlDD,'Name')" onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" focus-me="true" ng-focus="true" autofocus maxlength="100"
+                                        required="" md-asterisk="" name="txtfirstname" ng-model="page.model.reg.txtfirstname">
                                     <div ng-messages="regForm.txtfirstname.$error">
                                         <div ng-if="regForm.txtfirstname.$invalid && (regForm.$submitted)" ng-message="required">This is required.</div>
                                     </div>
                                 </md-input-container>
                                 <md-input-container class="col-lg-3">
                                     <label>Last Name</label>
-                                    <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="50" required="" md-asterisk="" name="txtlastname" ng-model="page.model.reg.txtlastname">
+                                    <input ng-blur="page.model.chknamesurame(page.model.reg.txtfirstname,page.model.reg.txtlastname,page.model.reg.ddlDD,'SurName')" onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="50" required="" md-asterisk="" name="txtlastname"
+                                        ng-model="page.model.reg.txtlastname">
                                     <div ng-messages="regForm.txtlastname.$error">
                                         <div ng-if="regForm.txtlastname.$invalid && (regForm.$submitted)" ng-message="required">This is required.</div>
                                     </div>
@@ -88,7 +90,7 @@
 
                                     <md-input-container class="col-lg-4" style="width:34%;">
                                         <label>Year</label>
-                                        <md-select md-asterisk="" name="ddlYear" ng-model="page.model.reg.ddlYear" required="">
+                                        <md-select ng-change="page.model.chknamesurame(page.model.reg.txtfirstname,page.model.reg.txtlastname,page.model.reg.ddlDD,'dob')" md-asterisk="" name="ddlYear" ng-model="page.model.reg.ddlYear" required="">
                                             <md-option ng-value="h.value" ng-repeat="h in page.model.yearArr">{{h.label}} </md-option>
                                         </md-select>
                                         <div class="errors" ng-messages="regForm.ddlYear.$error">

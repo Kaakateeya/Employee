@@ -23,9 +23,15 @@
     <fusioncharts width="400" height="400" type="spline" datasource="{{page.model.dataSource5}}">
     </fusioncharts> -->
     <!-- <div id="chart-container">FusionCharts XT will load here!</div> -->
-    <div class="row">
+    <!-- <div class="row">
         <div ng-repeat="item in page.model.dataSourcesss" class="col-lg-12">
             <fusioncharts width="1200" dataFormat: 'json', height="400" type="mscolumn2d" datasource="{{item}}">
+            </fusioncharts>
+        </div>
+    </div> -->
+    <div class="row">
+        <div class="col-lg-6" ng-repeat="item in page.model.dataSourcesmulti">
+            <fusioncharts width="550" dataFormat: 'json', height="300" type="mscolumn2d" datasource="{{item}}">
             </fusioncharts>
         </div>
     </div>

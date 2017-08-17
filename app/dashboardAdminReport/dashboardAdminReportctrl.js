@@ -367,7 +367,7 @@
                          model.width = 300;
                      };
 
-                     model.charts = {
+                     model.chartss = {
                          "caption": "Admin Reports",
                          "subCaption": "Last week Vs This week",
                          "xAxisName": "PROFILES",
@@ -381,7 +381,7 @@
                          "slantLabels": "1"
 
                      };
-                     model.categiries = [{
+                     model.categiriess = [{
                          "category": [{
                              "label": "pwd"
                          }, {
@@ -402,9 +402,64 @@
                              "label": "ALL"
                          }]
                      }];
+                     model.charts = {
+                         "caption": "Comparison of Work Sheet",
+                         "xAxisname": "Type Of Profiles",
+                         "yAxisName": "No. of Profiles",
+                         //  "numberPrefix": "$",
+                         "plotFillAlpha": "80",
+                         //Cosmetics
+                         "paletteColors": "#0075c2,#1aaf5d,#e06c0d,#730caf,#d18ae2",
+                         "baseFontColor": "#333333",
+                         "baseFont": "Helvetica Neue,Arial",
+                         "captionFontSize": "14",
+                         "subcaptionFontSize": "14",
+                         "subcaptionFontBold": "0",
+                         "showBorder": "0",
+                         "bgColor": "#ffffff",
+                         "showShadow": "0",
+                         "canvasBgColor": "#ffffff",
+                         "canvasBorderAlpha": "0",
+                         "divlineAlpha": "100",
+                         "divlineColor": "#999999",
+                         "divlineThickness": "1",
+                         "divLineIsDashed": "1",
+                         "divLineDashLen": "1",
+                         "divLineGapLen": "1",
+                         "usePlotGradientColor": "0",
+                         "showplotborder": "0",
+                         "valueFontColor": "#ffffff",
+                         "placeValuesInside": "1",
+                         "showHoverEffect": "1",
+                         "rotateValues": "1",
+                         "showXAxisLine": "1",
+                         "xAxisLineThickness": "1",
+                         "xAxisLineColor": "#999999",
+                         "showAlternateHGridColor": "0",
+                         "legendBgAlpha": "0",
+                         "legendBorderAlpha": "0",
+                         "legendShadow": "0",
+                         "legendItemFontSize": "10",
+                         "legendItemFontColor": "#666666"
+                     };
+                     model.categiries = [{
+                         "category": [{
+                             "label": "AC"
+                         }, {
+                             "label": "IC"
+                         }, {
+                             "label": "PaidC"
+                         }, {
+                             "label": "UNPC"
+                         }, {
+                             "label": "Nophoto"
+                         }, {
+                             "label": "Nohoro"
+                         }]
+                     }];
                      model.dataSourcesss = [{
-                         "chart": model.charts,
-                         "categories": model.categiries,
+                         "chart": model.chartss,
+                         "categories": model.categiriess,
                          "dataset": [{
                              "seriesname": "7 days",
                              "data": [{
@@ -611,6 +666,237 @@
                              }]
                          }]
                      }];
+
+
+                     //  model.dataSourcesmulti = [{
+                     //      "chart": model.charts,
+                     //      "categories": model.categiries,
+                     //      "dataset": [{
+                     //              "seriesname": "7 days",
+                     //              "data": [{
+                     //                  "value": "130"
+                     //              }, {
+                     //                  "value": "200"
+                     //              }, {
+                     //                  "value": "100"
+                     //              }, {
+                     //                  "value": "150"
+                     //              }, {
+                     //                  "value": "155"
+                     //              }, {
+                     //                  "value": "170"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }, {
+                     //                  "value": "186"
+                     //              }, {
+                     //                  "value": "189"
+                     //              }],
+
+                     //          }, {
+                     //              "seriesname": "15 Days",
+                     //              "data": [{
+                     //                  "value": "154"
+                     //              }, {
+                     //                  "value": "168"
+                     //              }, {
+                     //                  "value": "188"
+                     //              }, {
+                     //                  "value": "224"
+                     //              }, {
+                     //                  "value": "238"
+                     //              }, {
+                     //                  "value": "258"
+                     //              }, {
+                     //                  "value": "308"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }]
+                     //          }, {
+                     //              "seriesname": "30 Days",
+                     //              "data": [{
+                     //                  "value": "154"
+                     //              }, {
+                     //                  "value": "168"
+                     //              }, {
+                     //                  "value": "188"
+                     //              }, {
+                     //                  "value": "224"
+                     //              }, {
+                     //                  "value": "238"
+                     //              }, {
+                     //                  "value": "258"
+                     //              }, {
+                     //                  "value": "308"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }]
+                     //          }, {
+                     //              "seriesname": "45 Days",
+                     //              "data": [{
+                     //                  "value": "154"
+                     //              }, {
+                     //                  "value": "168"
+                     //              }, {
+                     //                  "value": "188"
+                     //              }, {
+                     //                  "value": "224"
+                     //              }, {
+                     //                  "value": "238"
+                     //              }, {
+                     //                  "value": "258"
+                     //              }, {
+                     //                  "value": "308"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }]
+                     //          },
+                     //          {
+                     //              "seriesname": "60 Days",
+                     //              "data": [{
+                     //                  "value": "154"
+                     //              }, {
+                     //                  "value": "168"
+                     //              }, {
+                     //                  "value": "188"
+                     //              }, {
+                     //                  "value": "224"
+                     //              }, {
+                     //                  "value": "238"
+                     //              }, {
+                     //                  "value": "258"
+                     //              }, {
+                     //                  "value": "308"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }]
+                     //          }
+                     //      ]
+                     //  }, {
+                     //      "chart": model.charts,
+                     //      "categories": model.categiries,
+                     //      "dataset": [{
+                     //              "seriesname": "7 days",
+                     //              "data": [{
+                     //                  "value": "130"
+                     //              }, {
+                     //                  "value": "200"
+                     //              }, {
+                     //                  "value": "100"
+                     //              }, {
+                     //                  "value": "150"
+                     //              }, {
+                     //                  "value": "155"
+                     //              }, {
+                     //                  "value": "170"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }, {
+                     //                  "value": "186"
+                     //              }, {
+                     //                  "value": "189"
+                     //              }],
+
+                     //          }, {
+                     //              "seriesname": "15 Days",
+                     //              "data": [{
+                     //                  "value": "154"
+                     //              }, {
+                     //                  "value": "168"
+                     //              }, {
+                     //                  "value": "188"
+                     //              }, {
+                     //                  "value": "224"
+                     //              }, {
+                     //                  "value": "238"
+                     //              }, {
+                     //                  "value": "258"
+                     //              }, {
+                     //                  "value": "308"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }]
+                     //          }, {
+                     //              "seriesname": "30 Days",
+                     //              "data": [{
+                     //                  "value": "154"
+                     //              }, {
+                     //                  "value": "168"
+                     //              }, {
+                     //                  "value": "188"
+                     //              }, {
+                     //                  "value": "224"
+                     //              }, {
+                     //                  "value": "238"
+                     //              }, {
+                     //                  "value": "258"
+                     //              }, {
+                     //                  "value": "308"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }]
+                     //          }, {
+                     //              "seriesname": "45 Days",
+                     //              "data": [{
+                     //                  "value": "154"
+                     //              }, {
+                     //                  "value": "168"
+                     //              }, {
+                     //                  "value": "188"
+                     //              }, {
+                     //                  "value": "224"
+                     //              }, {
+                     //                  "value": "238"
+                     //              }, {
+                     //                  "value": "258"
+                     //              }, {
+                     //                  "value": "308"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }]
+                     //          },
+                     //          {
+                     //              "seriesname": "60 Days",
+                     //              "data": [{
+                     //                  "value": "154"
+                     //              }, {
+                     //                  "value": "168"
+                     //              }, {
+                     //                  "value": "188"
+                     //              }, {
+                     //                  "value": "224"
+                     //              }, {
+                     //                  "value": "238"
+                     //              }, {
+                     //                  "value": "258"
+                     //              }, {
+                     //                  "value": "308"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }, {
+                     //                  "value": "195"
+                     //              }]
+                     //          }
+                     //      ]
+                     //  }];
+
+                     model.reports();
+
+
                  };
                  vm.init();
              }

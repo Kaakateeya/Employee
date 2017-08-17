@@ -8,6 +8,15 @@
             },
             emailExists: function(obj) {
                 return http.get(app.apiroot + 'StaticPages/getEmailMobilenumberexists', { params: obj });
+            },
+            CheckSurNameNamedob: function(strSurName, StrName, dtDOB) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getCheckSurNameNamedob', {
+                    params: {
+                        strSurName: strSurName,
+                        StrName: StrName,
+                        dtDOB: dtDOB
+                    }
+                });
             }
         };
     }

@@ -214,6 +214,47 @@
                 return false;
             }
         };
+        model.chknamesurame = function(firstname, lastname, date, type) {
+            var valmm = model.reg.ddlMM !== undefined ? _.indexOf(monthArr, model.reg.ddlMM) : -1;
+            valmm = (valmm != -1 ? parseInt(valmm) + 1 : 0);
+            valmm = valmm >= 10 ? valmm : '0' + valmm;
+            var year = model.reg.ddlYear !== undefined ? model.reg.ddlYear : "";
+            var dates = year !== "" ? model.reg.ddlDD + '-' + valmm + '-' + year : "";
+            switch (type) {
+                case "Name":
+                case "SurName":
+                    if (firstname !== null && firstname !== "" && firstname !== undefined && lastname !== null && lastname !== "" && lastname !== undefined) {
+                        model.checknamesurname(firstname, lastname, dates !== "" ? dates : "", type);
+                    }
+                    break;
+                case "dob":
+                    if (model.reg.ddlMM !== null && model.reg.ddlMM !== "" && model.reg.ddlMM !== undefined && model.reg.ddlDD !== null && model.reg.ddlDD !== "" && model.reg.ddlDD !== undefined && model.reg.ddlYear !== null && model.reg.ddlYear !== undefined && model.reg.ddlYear !== "") {
+                        model.checknamesurname(firstname, lastname, dates, type);
+                    }
+                    break;
+            }
+        };
+        model.checknamesurname = function(firstname, lastname, date, type) {
+            basicRegistrationService.CheckSurNameNamedob(lastname, firstname, date).then(function(response) {
+                console.log(response);
+                if (response.data !== null && parseInt(response.data) === 1) {
+                    switch (type) {
+                        case "Name":
+                            dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Name and Surname Already exist', 4000);
+                            model.reg.txtfirstname = "";
+                            break;
+                        case "SurName":
+                            dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Name and Surname Already exist', 4000);
+                            model.reg.txtlastname = "";
+                            break;
+                        case "dob":
+                            dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Name and Surname Already exist', 4000);
+                            model.reg.ddlYear = "";
+                            break;
+                    }
+                }
+            });
+        };
         return model.init();
     }
     angular
