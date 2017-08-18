@@ -2272,7 +2272,7 @@ FusionCharts.register("module", ["private", "modules.renderer.js-lib", function(
             };
             a.prototype = {
                 chart: { events: {}, margin: [0, 0, 0, 0], backgroundColor: { FCcolor: { alpha: 0 } } },
-                credits: { href: S, text: "FusionCharts XT Trial", enabled: v },
+                credits: { href: S, text: "", enabled: v },
                 legend: { enabled: !1 },
                 title: { text: "", style: { fontFamily: "Verdana,sans", fontSize: "10px", color: "#666666" } },
                 plotOptions: { series: {} },
@@ -2938,7 +2938,7 @@ FusionCharts.register("module", ["private", "modules.renderer.js-lib", function(
         toPrecision: function(a, b) { var f = g(10, b); return k(a * f) / f },
         hasTouch: u,
         CREDIT_HREF: S,
-        CREDIT_STRING: "FusionCharts XT Trial",
+        CREDIT_STRING: "",
         getSentenceCase: function(a) {
             a = a ||
                 "";

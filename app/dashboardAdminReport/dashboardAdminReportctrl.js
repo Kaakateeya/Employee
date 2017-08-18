@@ -14,6 +14,7 @@
 
                      model.charts = {
                          //  "caption": "Comparison of Work Sheet",
+                         // "subCaption": "Last year Vs This year",
                          "xAxisname": "Type Of Profiles",
                          "yAxisName": "No. of Profiles",
                          //  "numberPrefix": "$",
