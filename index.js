@@ -9,7 +9,7 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ngAnimate', 'ngIdle', 'ngMaterial',
     'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate',
     'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons',
-    'ui.date', 'ng-clipboard', 'anguFixedHeaderTable', 'ng-fusioncharts'
+    'ui.date', 'ng-clipboard', 'anguFixedHeaderTable', 'ng-fusioncharts', 'angular-linq'
 ]);
 
 // app.apiroot = 'http://52.66.131.254:8025/Api/';

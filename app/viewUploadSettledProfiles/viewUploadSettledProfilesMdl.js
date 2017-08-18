@@ -46,7 +46,7 @@
                         viewUploadSettledProfilesService.submitUpload(inObj).then(function(response) {
                             if (response.data && parseInt(response.data) === 1) {
                                 model.reset();
-
+                                model.showHidediv = false;
                                 alertss.timeoutoldalerts(model.scope, 'alert-success', 'uploaded successfully', 4500);
                             } else {
                                 model.reset();
@@ -90,11 +90,16 @@
         };
 
         model.viewprofilesubmit = function(profileid) {
+            model.settlementimageID = '';
             if (profileid !== undefined && profileid !== "" && profileid !== null) {
                 viewUploadSettledProfilesService.getCheckprofileIDstatus(profileid).then(function(response) {
                     if (parseInt(response.data) === 1) {
                         viewUploadSettledProfilesService.getViewSettlementform(profileid).then(function(response) {
-                            model.settlementimage = response.data.m_Item1;
+                            var imgArr = response.data.m_Item1.split(';');
+
+                            model.settlementimage = imgArr[0];
+                            model.settlementimageID = imgArr[1];
+
                             model.status = response.data.m_Item2;
                             if (parseInt(model.status) == 1) {
                                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Inactive settlement form', 3000);
@@ -104,11 +109,9 @@
                                 // alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No settlement form', 3000);
                             } else if (parseInt(model.status) == 2) {
                                 if (model.settlementimage !== "" && model.settlementimage !== undefined && model.settlementimage !== null) {
-
-                                    modelpopupopenmethod.showPopupphotopoup('viewsettlementform.html', model.scope, '', "modalclassdashboardphotopopup");
+                                    modelpopupopenmethod.showPopupphotopoup('viewsettlementform.html', model.scope, '', "");
                                 }
                             } else {
-
                                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No settlement form', 3000);
                             }
                         });
@@ -131,11 +134,22 @@
         };
 
         model.deleteSettleemnt = function() {
-            var strCustDtryName = model.txtProfileID + "_settlementImages";
-            var keynameq = "Images/SettlementImages/" + strCustDtryName + "/" + model.txtProfileID + "_settlementImages.jpg";
-            $http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {
 
-            });
+            if (model.Managementid === 'true' || model.Admin === '1') {
+                viewUploadSettledProfilesService.deleteSettleForm(model.settlementimageID).then(function(response) {
+                    if (response.data && parseInt(response.data) === 1) {
+                        model.close();
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'settleform deleted successfully', 3000);
+                        var strCustDtryName = model.txtProfileID + "_settlementImages";
+                        var keynameq = "Images/SettlementImages/" + strCustDtryName + "/" + model.txtProfileID + "_settlementImages.jpg";
+                        $http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {
+
+                        });
+                    }
+                });
+            } else {
+                alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please contact Admin to delete Settlement Form', 4500);
+            }
         };
         return model;
 

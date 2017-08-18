@@ -161,22 +161,22 @@
 
         model.validateFields = function() {
             if (model.reg.txtfirstname || model.reg.txtlastname) {
-                // var obj = {
-                //     i_MediaterID: 1,
-                //     v_FirstName: 'Kiran',
-                //     v_Surname: 'PULAVARI',
-                //     v_Email: null,
-                //     v_Mobilenumber: '99299999992',
-                //     v_CounttyCode: ''
-                // };
                 var obj = {
-                    i_MediaterID: model.mediaterID,
-                    v_FirstName: model.reg.txtfirstname,
-                    v_Surname: model.reg.txtlastname,
-                    v_Email: model.reg.txtEmail,
-                    v_Mobilenumber: model.reg.txtMobileNo,
-                    v_CounttyCode: model.reg.ddlmobilecountry
+                    i_MediaterID: 1,
+                    v_FirstName: 'Kiran',
+                    v_Surname: 'PULAVARI',
+                    v_Email: null,
+                    v_Mobilenumber: '99299999992',
+                    v_CounttyCode: ''
                 };
+                // var obj = {
+                //     i_MediaterID: model.mediaterID,
+                //     v_FirstName: model.reg.txtfirstname,
+                //     v_Surname: model.reg.txtlastname,
+                //     v_Email: model.reg.txtEmail,
+                //     v_Mobilenumber: model.reg.txtMobileNo,
+                //     v_CounttyCode: model.reg.ddlmobilecountry
+                // };
 
                 brokerProfileRegistrationService.validatefields(obj).then(function(res) {
                     if (res.data[0].length > 0) {
@@ -185,12 +185,14 @@
                             { text: 'FirstName', key: 'FirstName', type: 'label' },
                             { text: 'LastName', key: 'LastName', type: 'label' },
                             { text: 'Number', key: 'Number', type: 'label' },
-                            { text: 'Email', key: 'Email', type: 'label' }
+                            { text: 'Email', key: 'Email', type: 'label' },
+                            { text: 'FatherName', key: 'FatherName', type: 'label' },
+                            { text: 'MotherName', key: 'MotherName', type: 'label' },
+                            { text: 'FatherFatherName', key: 'FatherFatherName', type: 'label' },
                         ];
                         model.sdata = res.data[0];
-                        modelpopupopenmethod.showPopup('duplicateProfiles.html', model.scope, 'md', "");
-                        model.reg.txtfirstname = '';
-                        model.reg.txtlastname = '';
+                        modelpopupopenmethod.showPopup('duplicateProfiles.html', model.scope, 'lg', "");
+
                     }
                 });
             }
@@ -199,6 +201,20 @@
         model.close = function() {
             modelpopupopenmethod.closepopup();
         };
+
+
+
+        model.ok = function() {
+            model.reg.txtfirstname = '';
+            model.reg.txtlastname = '';
+            model.close();
+        };
+
+
+
+
+
+
 
         return model.pageload();
 
