@@ -26,6 +26,11 @@
                 return http.get(app.apiroot + 'EmployeeReportPage/getInsertInternalMemo', {
                     params: { Message: msg, TicketID: tktID, EmpID: empid, AssignedEmpID: assignEmpid }
                 });
+            },
+            Marketingticketstatus: function(ticketid, empid) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getMarketingticketstatus', {
+                    params: { ticketid: ticketid, EmpID: empid }
+                });
             }
         };
     }

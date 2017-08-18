@@ -543,7 +543,27 @@
                     }
                 };
                 model.nomatcheslink = function(obj) {
+                    model.nomatchesobj = {};
+                    model.nomatchesobj = obj;
                     commonpage.showPopupphotopoup('nomatchespopup.html', model.scope, 'md', "modalclassdashboardremainder");
+                };
+                model.nomatchessubmit = function() {
+                    console.log(model.nomatchesobj);
+                    commonpage.closepopuppoptopopup();
+                    var Mobj = {
+                        intCust_ID: model.nomatchesobj.Custid,
+                        strProfileID: model.nomatchesobj.ProfileID,
+                        intTicketOwnerID: model.empid,
+                        strReason: model.txtreasonnomatches !== null && model.txtreasonnomatches !== "" && model.txtreasonnomatches !== undefined ? model.txtreasonnomatches : null,
+                        intEnteredBy: model.empid
+                    };
+                    dashboardServices.Nomatchesreasoninsert(Mobj).then(function(response) {
+                        if (response !== undefined && parseInt(response.data) === 1) {
+                            alerts.timeoutoldalerts(model.scope, 'alert-success', 'Reason Updated Successfully', 2000);
+                        } else {
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Reason Updated Failed', 2000);
+                        }
+                    });
                 };
                 return model.init();
             }

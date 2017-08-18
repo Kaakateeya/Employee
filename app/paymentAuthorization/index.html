@@ -221,8 +221,10 @@
                     <a href="javascript:void(0);" ng-click="page.model.ticketiddisable=!page.model.ticketiddisable" style="float: right;">{{page.model.ticketiddisable===true?'Edit ticket':'Update Ticket'}}</a>
                 </div>
                 <div class="col-lg-6">
-                    <label class="col-lg-5">Ticket Owner </label>
-                    <select name="ticketowner" class="smalldropdown col-lg-6" ng-options="item.value as item.label for item in page.model.employeenamearray" ng-model="page.model.ticketownermarketing" multiselectdropdown>   
+                    <label class="col-lg-5">Ticket Owner</label>
+                    <!-- <select name="ticketowner" class="smalldropdown col-lg-6" ng-options="item.value as item.label for item in page.model.employeenamearray" ng-model="page.model.ticketownermarketing" multiselectdropdown>   
+                   </select> -->
+                    <select name="ticketowner" ng-change="page.model.marketingticketchange()" multiple class="smalldropdown col-lg-6" ng-options="item.value as item.label for item in page.model.employeenamearray" ng-model="page.model.ticketownermarketing" multiselectdropdown>   
                    </select>
                 </div>
             </div>
@@ -252,10 +254,19 @@
                 </div>
             </div>
             <br>
-            <div class="row" style="font-size:14px;"><label class="col-lg-3"> Paid Amount </label>
+            <!-- <div class="row" style="font-size:14px;"><label class="col-lg-3"> Paid Amount </label>
                 <input style="width:150px;" class="col-lg-3 form-control" type="text" ng-model="page.model.ticketamountforcustomer">
+            </div> -->
+            <div class="row" style="font-size:14px;">
+                <div class="col-lg-6">
+                    <label class="col-lg-5"> Paid Amount </label>
+                    <input style="width:150px;" class="col-lg-6 form-control" type="text" ng-model="page.model.ticketamountforcustomer">
+                </div>
+                <div class="col-lg-6" ng-show="page.model.ticketownermarketing.length===2">
+                    <label class="col-lg-5" style="width:150px;"> Paid Amount2</label>
+                    <input style="width:135px;" class="col-lg-6 form-control" type="text" ng-model="page.model.ticketamountforcustomer2">
+                </div>
             </div>
-
             <br>
             <div class="row">
                 <button type="submit" class="button_custom col-lg-2  col-lg-offset-4">Autorize</button>

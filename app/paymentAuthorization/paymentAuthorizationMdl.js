@@ -4,9 +4,9 @@
         .module('Kaakateeya')
         .factory('paymentAuthorizationModel', ['paymentAuthorizationService',
             'Commondependency', 'complex-grid-config', 'modelpopupopenmethod',
-            'authSvc', 'alert', 'SelectBindServiceApp',
+            'authSvc', 'alert', 'SelectBindServiceApp', '$timeout',
             function(paymentAuthorizationService,
-                Commondependency, config, modelpopupopenmethod, authSvc, alertss, service) {
+                Commondependency, config, modelpopupopenmethod, authSvc, alertss, service, timeout) {
                 var model = {};
                 var empid;
                 model.scope = {};
@@ -111,6 +111,10 @@
                     var links = (AdminID && parseInt(AdminID) === 1) || Managementid === 'true' || row.SAForm ? "<a href='javascript:void(0);' ng-click='model.authorizepopup(" + JSON.stringify(row) + "," + JSON.stringify(auth) + ",$index);'>Authorize</a>&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.authorizepopup(" + JSON.stringify(row) + "," + JSON.stringify(Decline) + ");'>Decline</a>" : '';
                     return links;
                 };
+                model.arrayToString = function(string) {
+                    debugger;
+                    return string !== null && string !== "" && string !== undefined ? (string.split(',')).map(Number) : null;
+                };
                 model.authorizepopup = function(row, type, index) {
                     model.employeenamesbind();
                     model.paymentverificationobj = row;
@@ -118,7 +122,9 @@
                     model.maketingticketverified = null;
                     model.rbtnmarketingtkted = null;
                     model.ticketamountforcustomer = row.WithTax;
-                    model.ticketownermarketing = row.AssignedToEmpID !== "" && row.AssignedToEmpID !== null ? parseInt(row.AssignedToEmpID) : "";
+                    // model.ticketownermarketing = row.AssignedToEmpID !== "" && row.AssignedToEmpID !== null ? parseInt(row.AssignedToEmpID) : "";
+                    model.ticketownermarketing = row.AssignedToEmpID !== "" && row.AssignedToEmpID !== null ? model.arrayToString(row.AssignedToEmpID.toString()) : "";
+
                     model.ticketidmarketing = row.TicketName;
                     model.oldticketidmarketing = row.TicketName;
                     model.index = row.rowIndex;
@@ -177,7 +183,7 @@
                 model.employeenamesbind = function() {
                     if ((model.employeenamearray).length === 0) {
                         service.EmpBinding(1, 2, '').then(function(response) {
-                            model.employeenamearray.push({ "label": "--Select--", "title": "--Select--", "value": "" });
+                            // model.employeenamearray.push({ "label": "--Select--", "title": "--Select--", "value": "" });
                             _.each(response.data, function(item) {
                                 if (item.CountryCode === 'Profile Owner') {
                                     model.employeenamearray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
@@ -208,34 +214,43 @@
                         EmployeeID: empid,
                         TicketID: model.paymentverificationobj.Emp_Ticket_ID,
                         TicketName: model.paymentverificationobj.TicketName,
-                        TicketOwnerID: model.ticketownermarketing !== "" && model.ticketownermarketing !== '0' && model.ticketownermarketing !== 0 && model.ticketownermarketing !== undefined ? model.ticketownermarketing : null,
+                        TicketOwnerIDAmt_1: model.ticketownermarketing !== "" && model.ticketownermarketing !== '0' && model.ticketownermarketing !== 0 && model.ticketownermarketing !== undefined ? model.ticketownermarketing[0].toString() + "," + (model.ticketamountforcustomer !== "" && model.ticketamountforcustomer !== null ? model.ticketamountforcustomer : null) : null,
+                        TicketOwnerIDAmt_2: model.ticketownermarketing !== "" && model.ticketownermarketing !== '0' && model.ticketownermarketing !== 0 && model.ticketownermarketing !== undefined ? model.ticketownermarketing[1].toString() + "," + (model.ticketamountforcustomer2 !== "" && model.ticketamountforcustomer2 !== null ? model.ticketamountforcustomer2 : null) : null,
                         MrkTicketVerified: model.maketingticketverified ? (parseInt(model.rbtnmarketingtkted) === 1 ? 1 : model.maketingticketverified) : null,
                         Markedted: model.rbtnmarketingtkted ? model.rbtnmarketingtkted : null,
-                        TotalAmount_Ticket: model.ticketamountforcustomer !== "" && model.ticketamountforcustomer !== null ? model.ticketamountforcustomer : null
+                        // TotalAmount_Ticket: model.ticketamountforcustomer !== "" && model.ticketamountforcustomer !== null ? model.ticketamountforcustomer : null
                     };
-
-                    paymentAuthorizationService.submitAuthorization(model.inputobj).then(function(response) {
-                        if (response.data) {
-                            var msg = '';
-                            var cls = '';
-                            if (parseInt(response.data) === 1) {
-                                model.closepopup();
-                                msg = model.typeauthorize === 'Authorize' ? 'Payment has been authorized successfully' : 'Payment has been declined successfully';
-                                alertss.timeoutoldalerts(model.scope, parseInt(response.data) === 1 ? 'alert-success' : 'alert-danger', msg, 2000);
-                                model.mainArray = _.difference(model.mainArray, _.where(model.data, { Emp_Ticket_ID: model.paymentverificationobj.Emp_Ticket_ID }));
-                                (model.data).splice(model.index, 1);
-                                // if (model.typeauthorize === 'Authorize') {
-                                //     var msggg = 'Thank Your for Your registration and Payment For the services In kaakateeya.com....verified by "looged Username';
-                                //     paymentAuthorizationService.memoSubmit(msggg, model.paymentverificationobj.Emp_Ticket_ID, model.empid, "").then(function(res) {
-                                //         console.log(res);
-                                //     });
-                                // }
-                            } else {
-                                msg = model.typeauthorize === 'Authorize' ? 'Error in authorizing the payment' : 'Error in declining the payment';
-                                alertss.timeoutoldalerts(model.scope, parseInt(response.data) === 1 ? 'alert-success' : 'alert-danger', msg, 2000);
+                    if (model.ticketownermarketing.length <= 2) {
+                        paymentAuthorizationService.submitAuthorization(model.inputobj).then(function(response) {
+                            if (response.data) {
+                                var msg = '';
+                                var cls = '';
+                                if (parseInt(response.data) === 1) {
+                                    model.closepopup();
+                                    msg = model.typeauthorize === 'Authorize' ? 'Payment has been authorized successfully' : 'Payment has been declined successfully';
+                                    alertss.timeoutoldalerts(model.scope, parseInt(response.data) === 1 ? 'alert-success' : 'alert-danger', msg, 2000);
+                                    model.mainArray = _.difference(model.mainArray, _.where(model.data, { Emp_Ticket_ID: model.paymentverificationobj.Emp_Ticket_ID }));
+                                    (model.data).splice(model.index, 1);
+                                    if (model.typeauthorize === 'Authorize') {
+                                        var msggg = 'Thank Your for Your registration and Payment For the services In kaakateeya.com....verified by "looged Username';
+                                        paymentAuthorizationService.memoSubmit(msggg, model.paymentverificationobj.Emp_Ticket_ID, model.empid, "").then(function(res) {
+                                            console.log(res);
+                                            if (parseInt(res.data) === 1) {
+                                                paymentAuthorizationService.Marketingticketstatus(model.paymentverificationobj.Emp_Ticket_ID, model.empid).then(function(reponsepayment) {
+                                                    console.log(reponsepayment);
+                                                });
+                                            }
+                                        });
+                                    }
+                                } else {
+                                    msg = model.typeauthorize === 'Authorize' ? 'Error in authorizing the payment' : 'Error in declining the payment';
+                                    alertss.timeoutoldalerts(model.scope, parseInt(response.data) === 1 ? 'alert-success' : 'alert-danger', msg, 2000);
+                                }
                             }
-                        }
-                    });
+                        });
+                    } else {
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'We Can not Select More Than Two Employees', 4500);
+                    }
                 };
 
                 model.checkticket = function(ticketID) {
@@ -246,7 +261,14 @@
                         }
                     });
                 };
-
+                model.marketingticketchange = function() {
+                    if (model.ticketownermarketing.length > 2) {
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'We Can not Select More Than Two Employees', 4500);
+                        // timeout(function() {
+                        //     model.ticketownermarketing = [];
+                        // }, 100);
+                    }
+                };
                 return model;
             }
         ]);

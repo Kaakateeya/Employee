@@ -3,7 +3,7 @@
 
     angular
         .module('Kaakateeya')
-        .factory('dashboardAdminReportModel', factory)
+        .factory('dashboardAdminReportModel', factory);
 
     factory.$inject = ['dashboardAdminReportService'];
 
@@ -11,6 +11,46 @@
 
         var model = {};
 
+        model.reports = function() {
+            dashboardAdminReportService.getAdminReportsAllProfiles(2, "", "").then(function(response) {
+                console.log(response);
+                model.dataSourcesmulti = [];
+                model.dataset = [];
+                _.each(response.data, function(item) {
+                    console.log(item);
+                    model.dataset = [];
+                    _.each(item, function(inneritem) {
+                        model.dataset.push({
+                            "seriesname": inneritem.Tablename,
+                            // "initiallyHidden": inneritem.Tablename === '7days' ? '1' : '0',
+                            "data": [{
+                                "value": inneritem.activeCount
+                            }, {
+                                "value": inneritem.InactiveCount
+                            }, {
+                                "value": inneritem.PaidCount
+                            }, {
+                                "value": inneritem.UnPaidCount
+                            }, {
+                                "value": inneritem.NoPhotoCount
+                            }, {
+                                "value": inneritem.NoHoroCount
+                            }]
+                        });
+                        model.empname = inneritem.EmpName;
+                    });
+                    // model.charts.caption = model.empname;
+                    model.dataSourcesmulti.push({
+                        "chart": model.charts,
+                        "categories": model.categiries,
+                        "dataset": model.dataset,
+                        "EmpName": model.empname
+                    });
+                });
+
+                console.log(model.dataSourcesmulti);
+            });
+        };
         return model;
 
     }

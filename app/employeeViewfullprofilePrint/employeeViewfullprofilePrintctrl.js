@@ -5,7 +5,7 @@
          var vm = this,
              model;
          vm.init = function() {
-             vm.model = model = employeeViewfullprofileModel();
+             vm.model = model = employeeViewfullprofileModel;
              vm.model.scope = scope;
              vm.refForm = {};
              model.viewprofilearray = [];
@@ -15,11 +15,8 @@
              model.forinbitinfo = {};
              model.nodatasisplay = {};
              model.empid = parseInt(model.statecontacts) !== 0 ? (authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "") : "";
-
              model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
              model.Admin = authSvc.isAdmin();
-
-
              if (parseInt(model.stateprofileid) !== 0) {
                  model.textboxshowhide = true;
                  model.EmpViewfullProfile(model.stateprofileid);

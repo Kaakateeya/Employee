@@ -5,7 +5,7 @@
          var vm = this,
              model;
          vm.init = function() {
-             vm.model = model = employeeViewfullprofileModel();
+             vm.model = model = employeeViewfullprofileModel;
              vm.model.scope = scope;
              model.viewprofilearray = [];
              model.aboutmyself = {};

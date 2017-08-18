@@ -23,7 +23,7 @@
                     model.strDate = moment().add(parseInt(num), 'days').format('DD-MM-YYYY');
                     model.strPoints = parseInt(Amt * model.paymentpoints);
                     var infm = 'Agreed Amount : ' + Amt + '    \n     No of Points : ' + model.strPoints + '    \n Expiry Date : ' + model.strDate;
-                    modelpopupopenmethod.showPopup('alert.html', model.scope, 'sm', '');
+                    // modelpopupopenmethod.showPopup('alert.html', model.scope, 'sm', '');
                     model.noofDays = num;
                 }
             };

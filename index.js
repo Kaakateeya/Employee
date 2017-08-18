@@ -9,7 +9,7 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'ngAnimate', 'ngIdle', 'ngMaterial',
     'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate',
     'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons',
-    'ui.date', 'ng-clipboard', 'anguFixedHeaderTable', 'ng-fusioncharts', 'angular-linq'
+    'ui.date', 'ng-clipboard', 'anguFixedHeaderTable', 'ng-fusioncharts', 'scrollable-table', 'angular-linq'
 ]);
 
 // app.apiroot = 'http://52.66.131.254:8025/Api/';
@@ -51,7 +51,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'editViewprofile', name: 'base.editViewprofile', url: '/editViewprofileurl', isloginrequired: true },
             { routeName: 'EmployeePayment', name: 'base.EmployeePayment', url: '/EmployeePayments' },
             { routeName: 'EmployeePaymentInsert', name: 'base.EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID/:status/:paymentID/:histryid', isloginrequired: true },
-            { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofile', url: '/Viewfullprofile/:ProfileID/:contacts', isloginrequired: true },
+            { routeName: 'employeeViewfullprofile', name: 'base.employeeViewfullprofile', url: '/Viewfullprofile/:ProfileID/:contacts', isloginrequired: true },
             { routeName: 'expressInterest', name: 'base.expressInterest', url: '/expressInterestpage', isloginrequired: true },
             { routeName: 'myProfile', name: 'base.myProfile', url: '/myProfilepage', isloginrequired: true },
             { routeName: 'matchFollowup', name: 'base.matchFollowup', url: '/matchFollowuppage', isloginrequired: true },
@@ -104,7 +104,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'EmployeePaymentInsertnew', name: 'base.EmployeePaymentInsertnew', url: '/EmployeePaymentInsertsnew/:ProfileID/:status/:paymentID/:histryid', isloginrequired: true },
             { routeName: 'empTracking', name: 'base.empTracking', url: '/empTrackingPage', isloginrequired: true },
             { routeName: 'dashboardAdminReport', name: 'base.dashboardAdminReport', url: '/dashboardAdminReports', isloginrequired: true },
-            { routeName: 'viewUploadSettledProfiles', name: 'base.viewUploadSettledProfiles', url: '/viewUploadSettledProfilesPage', isloginrequired: true },
+            { routeName: 'fixedtableTesting', name: 'base.fixedtableTesting', url: '/fixedtableTestings', isloginrequired: true },
+
+            { routeName: 'viewUploadSettledProfiles', name: 'base.viewUploadSettledProfiles', url: '/viewUploadSettledProfilesPage', isloginrequired: true }
+
 
 
         ];
