@@ -403,7 +403,7 @@
                          }]
                      }];
                      model.charts = {
-                         "caption": "Comparison of Work Sheet",
+                         //  "caption": "Comparison of Work Sheet",
                          "xAxisname": "Type Of Profiles",
                          "yAxisName": "No. of Profiles",
                          //  "numberPrefix": "$",
@@ -436,11 +436,19 @@
                          "xAxisLineThickness": "1",
                          "xAxisLineColor": "#999999",
                          "showAlternateHGridColor": "0",
-                         "legendBgAlpha": "0",
-                         "legendBorderAlpha": "0",
-                         "legendShadow": "0",
+                         //  "legendBgAlpha": "0",
+                         //  "legendBorderAlpha": "0",
+                         //"legendShadow": "0",
                          "legendItemFontSize": "10",
-                         "legendItemFontColor": "#666666"
+                         "legendItemFontColor": "#666666",
+                         //
+
+                         "legendBgColor": "#CCCCCC",
+                         "legendBgAlpha": "20",
+                         "legendBorderColor": "#666666",
+                         "legendBorderThickness": "1",
+                         "legendBorderAlpha": "40",
+                         "legendShadow": "1"
                      };
                      model.categiries = [{
                          "category": [{
@@ -666,233 +674,6 @@
                              }]
                          }]
                      }];
-
-
-                     //  model.dataSourcesmulti = [{
-                     //      "chart": model.charts,
-                     //      "categories": model.categiries,
-                     //      "dataset": [{
-                     //              "seriesname": "7 days",
-                     //              "data": [{
-                     //                  "value": "130"
-                     //              }, {
-                     //                  "value": "200"
-                     //              }, {
-                     //                  "value": "100"
-                     //              }, {
-                     //                  "value": "150"
-                     //              }, {
-                     //                  "value": "155"
-                     //              }, {
-                     //                  "value": "170"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }, {
-                     //                  "value": "186"
-                     //              }, {
-                     //                  "value": "189"
-                     //              }],
-
-                     //          }, {
-                     //              "seriesname": "15 Days",
-                     //              "data": [{
-                     //                  "value": "154"
-                     //              }, {
-                     //                  "value": "168"
-                     //              }, {
-                     //                  "value": "188"
-                     //              }, {
-                     //                  "value": "224"
-                     //              }, {
-                     //                  "value": "238"
-                     //              }, {
-                     //                  "value": "258"
-                     //              }, {
-                     //                  "value": "308"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }]
-                     //          }, {
-                     //              "seriesname": "30 Days",
-                     //              "data": [{
-                     //                  "value": "154"
-                     //              }, {
-                     //                  "value": "168"
-                     //              }, {
-                     //                  "value": "188"
-                     //              }, {
-                     //                  "value": "224"
-                     //              }, {
-                     //                  "value": "238"
-                     //              }, {
-                     //                  "value": "258"
-                     //              }, {
-                     //                  "value": "308"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }]
-                     //          }, {
-                     //              "seriesname": "45 Days",
-                     //              "data": [{
-                     //                  "value": "154"
-                     //              }, {
-                     //                  "value": "168"
-                     //              }, {
-                     //                  "value": "188"
-                     //              }, {
-                     //                  "value": "224"
-                     //              }, {
-                     //                  "value": "238"
-                     //              }, {
-                     //                  "value": "258"
-                     //              }, {
-                     //                  "value": "308"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }]
-                     //          },
-                     //          {
-                     //              "seriesname": "60 Days",
-                     //              "data": [{
-                     //                  "value": "154"
-                     //              }, {
-                     //                  "value": "168"
-                     //              }, {
-                     //                  "value": "188"
-                     //              }, {
-                     //                  "value": "224"
-                     //              }, {
-                     //                  "value": "238"
-                     //              }, {
-                     //                  "value": "258"
-                     //              }, {
-                     //                  "value": "308"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }]
-                     //          }
-                     //      ]
-                     //  }, {
-                     //      "chart": model.charts,
-                     //      "categories": model.categiries,
-                     //      "dataset": [{
-                     //              "seriesname": "7 days",
-                     //              "data": [{
-                     //                  "value": "130"
-                     //              }, {
-                     //                  "value": "200"
-                     //              }, {
-                     //                  "value": "100"
-                     //              }, {
-                     //                  "value": "150"
-                     //              }, {
-                     //                  "value": "155"
-                     //              }, {
-                     //                  "value": "170"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }, {
-                     //                  "value": "186"
-                     //              }, {
-                     //                  "value": "189"
-                     //              }],
-
-                     //          }, {
-                     //              "seriesname": "15 Days",
-                     //              "data": [{
-                     //                  "value": "154"
-                     //              }, {
-                     //                  "value": "168"
-                     //              }, {
-                     //                  "value": "188"
-                     //              }, {
-                     //                  "value": "224"
-                     //              }, {
-                     //                  "value": "238"
-                     //              }, {
-                     //                  "value": "258"
-                     //              }, {
-                     //                  "value": "308"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }]
-                     //          }, {
-                     //              "seriesname": "30 Days",
-                     //              "data": [{
-                     //                  "value": "154"
-                     //              }, {
-                     //                  "value": "168"
-                     //              }, {
-                     //                  "value": "188"
-                     //              }, {
-                     //                  "value": "224"
-                     //              }, {
-                     //                  "value": "238"
-                     //              }, {
-                     //                  "value": "258"
-                     //              }, {
-                     //                  "value": "308"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }]
-                     //          }, {
-                     //              "seriesname": "45 Days",
-                     //              "data": [{
-                     //                  "value": "154"
-                     //              }, {
-                     //                  "value": "168"
-                     //              }, {
-                     //                  "value": "188"
-                     //              }, {
-                     //                  "value": "224"
-                     //              }, {
-                     //                  "value": "238"
-                     //              }, {
-                     //                  "value": "258"
-                     //              }, {
-                     //                  "value": "308"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }]
-                     //          },
-                     //          {
-                     //              "seriesname": "60 Days",
-                     //              "data": [{
-                     //                  "value": "154"
-                     //              }, {
-                     //                  "value": "168"
-                     //              }, {
-                     //                  "value": "188"
-                     //              }, {
-                     //                  "value": "224"
-                     //              }, {
-                     //                  "value": "238"
-                     //              }, {
-                     //                  "value": "258"
-                     //              }, {
-                     //                  "value": "308"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }, {
-                     //                  "value": "195"
-                     //              }]
-                     //          }
-                     //      ]
-                     //  }];
 
                      model.reports();
 
