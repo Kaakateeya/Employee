@@ -53,7 +53,6 @@
                          "legendItemFontSize": "10",
                          "legendItemFontColor": "#666666",
                          //
-
                          "legendBgColor": "#CCCCCC",
                          "legendBgAlpha": "20",
                          "legendBorderColor": "#666666",
