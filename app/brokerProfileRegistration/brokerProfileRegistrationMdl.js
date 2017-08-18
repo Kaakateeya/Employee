@@ -210,12 +210,6 @@
             model.close();
         };
 
-
-
-
-
-
-
         return model.pageload();
 
     }
