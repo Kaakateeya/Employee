@@ -237,19 +237,19 @@
         model.checknamesurname = function(firstname, lastname, date, type) {
             basicRegistrationService.CheckSurNameNamedob(lastname, firstname, date).then(function(response) {
                 console.log(response);
-                if (response.data !== null && parseInt(response.data) === 1) {
+                if (response.data !== null && response.data !== undefined && response.data.length > 0 && response.data[0] !== undefined && response.data[0] !== null && parseInt(response.data[0].Status) === 1) {
                     switch (type) {
                         case "Name":
-                            dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Name and Surname Already exist', 4000);
-                            model.reg.txtfirstname = "";
-                            break;
                         case "SurName":
-                            dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Name and Surname Already exist', 4000);
-                            model.reg.txtlastname = "";
+                            dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Name and Surname Already exist    <br><br>Profile ID:' + response.data[0].Profileid + ',Name:' + response.data[0].Name + ',Surname:' + response.data[0].Surname + '', 5000);
                             break;
                         case "dob":
-                            dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Name and Surname Already exist', 4000);
+                            dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Name,Surname and DOB Already exist    <br><br>Profile ID:' + response.data[0].Profileid + ',Name:' + response.data[0].Name + ',Surname:' + response.data[0].Surname + '', 5000);
+                            model.reg.txtfirstname = "";
+                            model.reg.txtlastname = "";
                             model.reg.ddlYear = "";
+                            model.reg.ddlDD = "";
+                            model.reg.ddlMM = "";
                             break;
                     }
                 }
