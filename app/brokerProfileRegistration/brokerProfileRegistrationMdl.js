@@ -185,12 +185,14 @@
                             { text: 'FirstName', key: 'FirstName', type: 'label' },
                             { text: 'LastName', key: 'LastName', type: 'label' },
                             { text: 'Number', key: 'Number', type: 'label' },
-                            { text: 'Email', key: 'Email', type: 'label' }
+                            { text: 'Email', key: 'Email', type: 'label' },
+                            { text: 'FatherName', key: 'FatherName', type: 'label' },
+                            { text: 'MotherName', key: 'MotherName', type: 'label' },
+                            { text: 'FatherFatherName', key: 'FatherFatherName', type: 'label' },
                         ];
                         model.sdata = res.data[0];
-                        modelpopupopenmethod.showPopup('duplicateProfiles.html', model.scope, 'md', "");
-                        model.reg.txtfirstname = '';
-                        model.reg.txtlastname = '';
+                        modelpopupopenmethod.showPopup('duplicateProfiles.html', model.scope, 'lg', "");
+
                     }
                 });
             }
@@ -198,6 +200,14 @@
 
         model.close = function() {
             modelpopupopenmethod.closepopup();
+        };
+
+
+
+        model.ok = function() {
+            model.reg.txtfirstname = '';
+            model.reg.txtlastname = '';
+            model.close();
         };
 
         return model.pageload();

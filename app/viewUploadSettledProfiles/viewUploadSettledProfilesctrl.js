@@ -3,11 +3,11 @@
 
      angular
          .module('Kaakateeya')
-         .controller('viewUploadSettledProfilesCtrl', controller)
+         .controller('viewUploadSettledProfilesCtrl', controller);
 
-     controller.$inject = ['viewUploadSettledProfilesModel', '$scope'];
+     controller.$inject = ['viewUploadSettledProfilesModel', '$scope', 'authSvc'];
 
-     function controller(viewUploadSettledProfilesModel, scope) {
+     function controller(viewUploadSettledProfilesModel, scope, authSvc) {
          /* jshint validthis:true */
          var vm = this,
              model;
@@ -21,6 +21,9 @@
              model.settlementimage = "";
              model.viewsettlementprofileid = '';
              model.showHidediv = false;
+             model.settlementimageID = '';
+             model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+             model.Admin = authSvc.isAdmin();
          };
 
          vm.init();

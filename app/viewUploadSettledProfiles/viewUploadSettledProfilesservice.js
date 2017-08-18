@@ -20,6 +20,9 @@
             },
             getCheckprofileIDstatus: function(profileid) {
                 return http.get(app.apiroot + 'StaticPages/getCheckprofileIDSelect', { params: { Profileid: profileid } });
+            },
+            deleteSettleForm: function(settleid) {
+                return http.get(app.apiroot + 'smallPages/getdeleteSettleForm', { params: { settleID: settleid } });
             }
         };
     }
