@@ -203,6 +203,7 @@
                     model.paymentAuthSelect("export");
                 };
                 model.verifyticketupdate = function(pagemodel) {
+                    console.log(model.ticketownermarketing.length);
                     model.inputobj = {
                         PaymentID: model.paymentverificationobj.Payment_ID,
                         PaymentHisID: model.paymentverificationobj.PaymentHist_ID,
@@ -214,8 +215,8 @@
                         EmployeeID: empid,
                         TicketID: model.paymentverificationobj.Emp_Ticket_ID,
                         TicketName: model.paymentverificationobj.TicketName,
-                        TicketOwnerIDAmt_1: model.ticketownermarketing !== "" && model.ticketownermarketing !== '0' && model.ticketownermarketing !== 0 && model.ticketownermarketing !== undefined ? model.ticketownermarketing[0].toString() + "," + (model.ticketamountforcustomer !== "" && model.ticketamountforcustomer !== null ? model.ticketamountforcustomer : null) : null,
-                        TicketOwnerIDAmt_2: model.ticketownermarketing !== "" && model.ticketownermarketing !== '0' && model.ticketownermarketing !== 0 && model.ticketownermarketing !== undefined ? model.ticketownermarketing[1].toString() + "," + (model.ticketamountforcustomer2 !== "" && model.ticketamountforcustomer2 !== null ? model.ticketamountforcustomer2 : null) : null,
+                        TicketOwnerIDAmt_1: model.ticketownermarketing !== "" && model.ticketownermarketing !== '0' && model.ticketownermarketing !== 0 && model.ticketownermarketing !== undefined ? (model.ticketownermarketing.length > 1 ? model.ticketownermarketing[0].toString() : model.ticketownermarketing.toString()) + "," + (model.ticketamountforcustomer !== "" && model.ticketamountforcustomer !== null ? model.ticketamountforcustomer : null) : null,
+                        TicketOwnerIDAmt_2: model.ticketownermarketing !== "" && model.ticketownermarketing !== '0' && model.ticketownermarketing !== 0 && model.ticketownermarketing !== undefined ? (model.ticketownermarketing.length > 1 ? model.ticketownermarketing[1].toString() : 0) + "," + (model.ticketamountforcustomer2 !== "" && model.ticketamountforcustomer2 !== null && model.ticketamountforcustomer2 !== undefined ? model.ticketamountforcustomer2 : 0) : null,
                         MrkTicketVerified: model.maketingticketverified ? (parseInt(model.rbtnmarketingtkted) === 1 ? 1 : model.maketingticketverified) : null,
                         Markedted: model.rbtnmarketingtkted ? model.rbtnmarketingtkted : null,
                         // TotalAmount_Ticket: model.ticketamountforcustomer !== "" && model.ticketamountforcustomer !== null ? model.ticketamountforcustomer : null

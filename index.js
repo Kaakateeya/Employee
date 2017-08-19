@@ -106,8 +106,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'empTracking', name: 'base.empTracking', url: '/empTrackingPage', isloginrequired: true },
             { routeName: 'dashboardAdminReport', name: 'base.dashboardAdminReport', url: '/dashboardAdminReports', isloginrequired: true },
             { routeName: 'fixedtableTesting', name: 'base.fixedtableTesting', url: '/fixedtableTestings', isloginrequired: true },
-
-            { routeName: 'viewUploadSettledProfiles', name: 'base.viewUploadSettledProfiles', url: '/viewUploadSettledProfilesPage', isloginrequired: true }
+            { routeName: 'viewUploadSettledProfiles', name: 'base.viewUploadSettledProfiles', url: '/viewUploadSettledProfilesPage', isloginrequired: true },
+            { routeName: 'ReportsofEmployees', name: 'base.ReportsofEmployees', url: '/ReportsofEmployee', isloginrequired: true }
 
 
 
