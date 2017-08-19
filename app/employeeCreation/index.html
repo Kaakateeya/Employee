@@ -37,13 +37,12 @@
                                     Total Records : {{page.model.data.length}}
                                 </div>
                             </div>
-
                         </div>
                         <br>
-
+                        <input type="text" ng-model="page.model.inputSearch" class="form-control">
                         <div class="mainDivCls">
                             <div class="row scrollcls">
-                                <div class="col-lg-3" ng-repeat="item in page.model.data">
+                                <div class="col-lg-3" ng-repeat="item in page.model.data | filter :page.model.inputSearch">
                                     <div class="gridcls">
                                         <div>
                                             <img class="center-block" style="height: 195px; width: 195px;cursor:pointer;" ng-src="{{page.model.empImage(item);}}" ng-click="page.model.EmpPhotopopup(item.EmpPhoto,item.UserID,item.EmpID);" />

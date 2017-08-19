@@ -13,12 +13,12 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
                 // scope.gid = 'g1';
 
                 var AdminID = authSvc.isAdmin();
-                var loginempName = authSvc.LoginEmpName() !== undefined && authSvc.LoginEmpName() !== null && authSvc.LoginEmpName() !== "" ? authSvc.LoginEmpName() : "";
-                var Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+                var loginempName = authSvc.LoginEmpName();
+                var Managementid = authSvc.isManagement();
                 scope.init = function() {
                     scope.model.data = [];
                     scope.currentPage = 0;
-                    scope.pageSize = scope.pagesizecommunication !== undefined && scope.pagesizecommunication !== null && scope.pagesizecommunication !== "" ? scope.pagesizecommunication : 100;
+                    scope.model.pageSize = scope.pagesizecommunication !== undefined && scope.pagesizecommunication !== null && scope.pagesizecommunication !== "" ? 10 : 10;
                     // scope.pagen = 100;
                     scope.model.exportColumns = {};
                     _.each(scope.model.columns, function(item) {
@@ -29,9 +29,9 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
                 };
                 scope.page = {};
                 scope.page.model = {};
-                scope.$watch(scope.model, function() {
-                    scope.init();
-                });
+                // scope.$watch(scope.model, function() {
+                //     scope.init();
+                // });
 
 
                 scope.ProfileIdTemplateDUrl = function(row) {
@@ -181,10 +181,11 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
                 $('#id4 .pane-hScroll').scroll(function() {
                     $('#id4 .pane-vScroll').width($('#id4 .pane-hScroll').width() + $('#id4 .pane-hScroll').scrollLeft());
                 });
+
                 timeout(function() {
-                    $('#' + scope.gid + '.pane-hScroll').scroll(function() {
-                        $('#' + scope.gid + '.pane-vScroll').width($('#' + scope.gid + '.pane-hScroll').width() + $('#' + scope.gid + ' .pane-hScroll').scrollLeft());
-                    });
+                    // $('#' + scope.gid + '.pane-hScroll').scroll(function() {
+                    //     $('#' + scope.gid + '.pane-vScroll').width($('#' + scope.gid + '.pane-hScroll').width() + $('#' + scope.gid + ' .pane-hScroll').scrollLeft());
+                    // });
 
                     $('#dynamic .pane-hScroll').scroll(function() {
                         $('#dynamic .pane-vScroll').width($('#dynamic .pane-hScroll').width() + $('#dynamic .pane-hScroll').scrollLeft());
@@ -206,6 +207,12 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
                     });
                 }, 2000);
                 scope.init();
+                scope.loadMore = function() {
+                    scope.model.pageSize = scope.model.pageSize + 10;
+                };
+                scope.model.pageReset = function() {
+                    scope.model.pageSize = 10;
+                };
             }
         };
     }

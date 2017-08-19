@@ -18,8 +18,7 @@
         </div>
     </div>
     <div class="clearfix"></div>
-    <!-- id="{{gid?gid:'dynamic'}}" -->
-
+    <!-- {{model.pageSize}} -->
     <div id="{{gid?gid:'dynamic'}}" class="pane pane--table1">
         <div class="pane-hScroll">
             <table class="headerTbl">
@@ -30,25 +29,25 @@
                 </thead>
             </table>
             <div class="pane-vScroll">
-                <table>
-                    <tbody>
-                        <tr ng-class="inneritem.rowtype" ng-repeat="inneritem in model.data | orderBy:sortKey:reverse | filter: searchKeyword |startFrom:currentPage*pageSize | limitTo:pageSize">
-                            <td ng-class="colitem.key" ng-repeat="colitem in model.columns">
-                                <span title="{{inneritem[colitem.key]}}" ng-if="colitem.type==='label'"> {{inneritem[colitem.key]}}</span>
-                                <a href="#" title="{{inneritem[colitem.key]}}" ng-if="colitem.type==='link'" ng-click="colitem.method(inneritem)">{{inneritem[colitem.key]}}</a>
-                                <span ng-if="colitem.type==='custom'" ng-bind-html="colitem.templateUrl(inneritem)"></span>
-                                <span ng-if="colitem.type==='customlink'" ng-bind-html="colitem.templateUrl(inneritem)" ng-click="colitem.method(inneritem)"></span>
-                                <span ng-if="colitem.type==='customlinkValidation'" ng-disabled="!inneritem[colitem.dependColumn]" ng-class="!inneritem[colitem.dependColumn]?'disablelinkcls':''" ng-bind-html="colitem.templateUrl(inneritem)" ng-click="colitem.method(inneritem)"></span>
-                                <span ng-if="colitem.type==='morelinks'" compile="colitem.templateUrl(inneritem)"></span>
-                                <span ng-if="colitem.type==='dropdown'" class="dropdownclass">
-                        <select multiselectdropdown class="smalldropdowngrid" ng-model="model[colitem.model+inneritem.SNO]" ng-options="itemss.value as itemss.label for itemss in model.ProfileOwnerarray"></select>
+                <div infinite-scroll="loadMore()" infinite-scroll-distance='1' infinite-scroll-immediate-check='false' infinite-scroll-parent="true">
+                    <table>
+                        <tbody>
+                            <tr ng-class="inneritem.rowtype" ng-repeat="inneritem in model.data | orderBy:sortKey:reverse | filter: searchKeyword |startFrom:currentPage*pageSize | limitTo:model.pageSize">
+                                <td ng-class="colitem.key" ng-repeat="colitem in model.columns">
+                                    <span title="{{inneritem[colitem.key]}}" ng-if="colitem.type==='label'"> {{::inneritem[colitem.key]}}</span>
+                                    <a href="#" title="{{inneritem[colitem.key]}}" ng-if="colitem.type==='link'" ng-click="colitem.method(inneritem)">{{::inneritem[colitem.key]}}</a>
+                                    <span ng-if="colitem.type==='custom'" ng-bind-html="colitem.templateUrl(inneritem)"></span>
+                                    <span ng-if="colitem.type==='customlink'" ng-bind-html="colitem.templateUrl(inneritem)" ng-click="colitem.method(inneritem)"></span>
+                                    <span ng-if="colitem.type==='customlinkValidation'" ng-disabled="!inneritem[colitem.dependColumn]" ng-class="!inneritem[colitem.dependColumn]?'disablelinkcls':''" ng-bind-html="colitem.templateUrl(inneritem)" ng-click="colitem.method(inneritem)"></span>
+                                    <span ng-if="colitem.type==='morelinks'" compile="colitem.templateUrl(inneritem)"></span>
+                                    <span ng-if="colitem.type==='dropdown'" class="dropdownclass">
+                                <select multiselectdropdown class="smalldropdowngrid" ng-model="model[colitem.model+inneritem.SNO]" ng-options="itemss.value as itemss.label for itemss in model.ProfileOwnerarray"></select>
                        
                         </span>
-                                <span ng-if="colitem.type==='dropdownlink'" class="dropdownclass">
+                                    <span ng-if="colitem.type==='dropdownlink'" class="dropdownclass">
                         <select multiselectdropdown class="smalldropdowngrid" ng-model="model[colitem.model+inneritem.Row]" ng-options="itemss.value as itemss.label for itemss in model.ProfileOwnerarray" ></select>
                         </span>
-                                <span ng-if="colitem.type==='autocomplete'">
-                         
+                                    <span ng-if="colitem.type==='autocomplete'">                         
                         <md-autocomplete
                             ng-disabled="false"
                             md-no-cache="false"
@@ -60,31 +59,33 @@
                             placeholder="Select Employee">
                         <md-item-template>
                      <span md-highlight-text="model.searchText" md-highlight-flags="^i">{{item.display}}</span>
-                                </md-item-template>
-                                <md-not-found>
-                                    No states matching "{{model.searchText}}" were found.
-                                </md-not-found>
-                                </md-autocomplete>
-                                </span>
-                                <span ng-if="colitem.type==='play'"><a class="detail-icon" ng-click="colitem.method(inneritem)" href="javascript:void(0);"><i class="glyphicon glyphicon-play icon-play"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr ng-if="model.data.length===0">
-                            <td colspan="14">
-                                <div layout="row" layout-sm="column" layout-align="space-around">
-                                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-                                </div>
-                            </td>
-                        </tr>
+                                    </md-item-template>
+                                    <md-not-found>
+                                        No states matching "{{model.searchText}}" were found.
+                                    </md-not-found>
+                                    </md-autocomplete>
+                                    </span>
+                                    <span ng-if="colitem.type==='play'"><a class="detail-icon" ng-click="colitem.method(inneritem)" href="javascript:void(0);"><i class="glyphicon glyphicon-play icon-play"></i></a></span>
+                                </td>
+                            </tr>
+                            <tr ng-if="model.data.length===0">
+                                <td colspan="14">
+                                    <div layout="row" layout-sm="column" layout-align="space-around">
+                                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                    </div>
+                                </td>
+                            </tr>
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-    <div ng-if="config.showpaging">
-        <ul uib-pagination total-items="(model.TotalRows)/10" ng-model="pagen" ng-change="config.pagechange(pagen)" max-size="5" class="pull-right pagination-md" boundary-link-numbers="true" rotate="false"></ul>
-    </div>
+</div>
+<div ng-if="config.showpaging">
+    <ul uib-pagination total-items="(model.TotalRows)/10" ng-model="pagen" ng-change="config.pagechange(pagen)" max-size="5" class="pull-right pagination-md" boundary-link-numbers="true" rotate="false"></ul>
+</div>
 </div>
 
 <script type="text/ng-template" id="marketgrid.html">

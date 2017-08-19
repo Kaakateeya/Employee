@@ -23,7 +23,7 @@
                 <p class="col-lg-offset-4">No Match Meeting Data
                 </p>
             </div>
-            <complex-grid id="id4" ng-show="page.model.gridtable4.data.length>0" model="page.model.gridtable4" config="page.model" pagesizecommunication="999"></complex-grid>
+            <complex-grid-new gid="'id4'" ng-show="page.model.gridtable4.data.length>0" model="page.model.gridtable4" config="page.model" pagesizecommunication="999"></complex-grid-new>
         </div>
         <div ng-show="page.model.gridTableshow && page.model.gridtable1.data">
             <div class="col-lg-12" ng-if="page.model.sendarray.length>0">
@@ -43,7 +43,7 @@
                     </md-radio-button>
                 </md-radio-group>
             </div>
-            <complex-grid id="id1" ng-show="page.model.gridtable1.data" model="page.model.gridtable1" config="page.model" pagesizecommunication="999"></complex-grid>
+            <complex-grid-new gid="'id1'" ng-show="page.model.gridtable1.data" model="page.model.gridtable1" config="page.model" pagesizecommunication="999"></complex-grid-new>
         </div>
         <div ng-show="page.model.gridTableshow && page.model.gridtable2.data">
             <div class="col-lg-12" ng-if="page.model.sendarray2.length>0">
@@ -69,14 +69,14 @@
                     <label class="control-label col-lg-4">Points:{{page.model.sendarray2[0].ServicePoints}}</label>
                 </div>
             </div>
-            <complex-grid id="id2" ng-show="page.model.gridtable2.data" model="page.model.gridtable2" config="page.model" pagesizecommunication="999"></complex-grid>
+            <complex-grid-new gid="'id2'" ng-show="page.model.gridtable2.data" model="page.model.gridtable2" config="page.model" pagesizecommunication="999"></complex-grid-new>
         </div>
         <div ng-show="page.model.gridTableshow && page.model.gridtable3.data">
             <div class="col-lg-12" ng-if="page.model.sendarray3.length>0">
                 <p class="col-lg-offset-4">List of profile to whom mails has resent
                 </p>
             </div>
-            <complex-grid id="id3" ng-show="page.model.gridtable3.data" model="page.model.gridtable3" config="page.model" pagesizecommunication="999"></complex-grid>
+            <complex-grid-new gid="'id3'" ng-show="page.model.gridtable3.data" model="page.model.gridtable3" config="page.model" pagesizecommunication="999"></complex-grid-new>
         </div>
     </div>
 </div>
