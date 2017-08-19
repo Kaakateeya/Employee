@@ -87,7 +87,6 @@
                         if ((response.data[0]).length !== 0 || (response.data[1]).length !== 0 || (response.data[2]).length !== 0 || (response.data[3]).length !== 0) {
                             model.sendarray = response.data[0];
                         }
-
                     });
 
                 } else {
