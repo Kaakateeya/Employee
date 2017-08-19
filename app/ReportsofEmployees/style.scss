@@ -150,5 +150,36 @@
 }
 
 .table-striped>tbody>tr:nth-of-type(odd) {
-    background-color: #eaafaf;
+    // background-color: #eaafaf;
+}
+
+.closetable {
+    font-size: 19px;
+    border: 1px solid #ccc;
+}
+
+.th-inner {
+    background-color: #fdca52;
+}
+
+.modalclassofeditss {
+    z-index: 9999999 !important;
+    top: 0%;
+    left: 0%;
+}
+
+.modalclassofeditss .modal-dialog.modal-md {
+    width: 50%;
+}
+
+.modalclassofeditss {
+    .md-tab {
+        padding: 14px 15px;
+    }
+}
+
+.modalclamodalclassofeditssssofedit {
+    .pop_label_left {
+        width: 40%;
+    }
 }
