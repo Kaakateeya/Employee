@@ -19,6 +19,7 @@
              model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
              model.empStatus = '423';
              model.data = [];
+             model.selectedIndex = 0;
          };
 
          vm.init();

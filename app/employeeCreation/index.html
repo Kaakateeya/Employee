@@ -4,18 +4,18 @@
         <md-content class="md-padding">
             <md-tabs md-selected="page.model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
 
-                <md-tab md-on-select="slide.incomeTab=true" label="Employee list Search">
+                <md-tab md-on-select="slide.incomeTab=true" label="Employee list Search" ng-click="page.model.reset();">
                     <div class="tab">
                         <br>
                         <div class="row">
                             <div class="col-lg-2 form-group">
                                 <label for="" class="control-label col-lg-10 lblcls">Region</label>
-                                <div class=""> <select multiselectdropdown ng-model="page.model.region" multiple typeofdata="'RegionofbranchesWithAll'" ng-change="page.model.dependencyChange(page.model.region,'branch');">   
+                                <div class=""> <select multiselectdropdown ng-model="page.model.region" multiple typeofdata="'RegionofbranchesWithAll'" pagetype="'search'" ng-change="page.model.dependencyChange(page.model.region,'branch');">   
                               </select></div>
                             </div>
                             <div class="col-lg-2 form-group">
                                 <label for="" class="control-label col-lg-10 lblcls">branch</label>
-                                <div class=""> <select multiselectdropdown ng-model="page.model.searchbranch" multiple ng-options="item.value as item.label for item in page.model.branchArr">   
+                                <div class=""> <select multiselectdropdown ng-model="page.model.searchbranch" pagetype="'search'" multiple ng-options="item.value as item.label for item in page.model.branchArr">   
                               </select></div>
                             </div>
                             <div class="col-lg-2 form-group">
@@ -25,7 +25,7 @@
                             </div>
                             <div class="col-lg-2 form-group">
                                 <label for="" class="control-label col-lg-10 lblcls">Employee Type</label>
-                                <div class=""> <select multiselectdropdown ng-model="page.model.empType" ng-options="item.value as item.label for item in page.model.empTypeArr" multiple>   
+                                <div class=""> <select multiselectdropdown ng-model="page.model.empType" pagetype="'search'" ng-options="item.value as item.label for item in page.model.empTypeArr" multiple>   
                               </select></div>
                             </div>
                             <div class="col-lg-2" style="margin-top:2%;">
@@ -39,10 +39,10 @@
                             </div>
                         </div>
                         <br>
-                        <input type="text" ng-model="page.model.inputSearch" class="form-control">
+                        <!-- <input type="text" ng-model="page.model.inputSearch" class="form-control"> -->
                         <div class="mainDivCls">
                             <div class="row scrollcls">
-                                <div class="col-lg-3" ng-repeat="item in page.model.data | filter :page.model.inputSearch">
+                                <div class="col-lg-3" ng-repeat="item in page.model.data">
                                     <div class="gridcls">
                                         <div>
                                             <img class="center-block" style="height: 195px; width: 195px;cursor:pointer;" ng-src="{{page.model.empImage(item);}}" ng-click="page.model.EmpPhotopopup(item.EmpPhoto,item.UserID,item.EmpID);" />
