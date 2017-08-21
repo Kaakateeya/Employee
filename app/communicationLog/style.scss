@@ -19,6 +19,10 @@
     .lblprofileid {
         width: 100px;
     }
+    .col-lg-2.m-b-2.mainDiv.totalrecordCls {
+        float: right;
+        margin-right: 30px;
+    }
 }
 
 .unpaid {
@@ -141,4 +145,9 @@ tr {
     z-index: 99999999999999 !important;
     top: 0%;
     left: 0%;
+}
+
+.headclasstable {
+    font-size: 15px;
+    font-weight: bold;
 }

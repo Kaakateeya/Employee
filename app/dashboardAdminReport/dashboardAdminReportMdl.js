@@ -21,7 +21,7 @@
                     model.dataset = [];
                     _.each(item, function(inneritem) {
                         model.dataset.push({
-                            "seriesname": inneritem.Tablename,
+                            "seriesname": inneritem.Tablename + " days",
                             // "initiallyHidden": inneritem.Tablename === '7days' ? '1' : '0',
                             "data": [{
                                 "value": inneritem.activeCount

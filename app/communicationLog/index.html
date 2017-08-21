@@ -16,19 +16,25 @@
         <br>
         <div ng-show="page.model.gridTableshow && page.model.gridtable4.data">
             <div class="col-lg-12" ng-if="page.model.sendarray4.length>0">
-                <p class="col-lg-offset-4">Match Meeting Data
+                <br ng-if="page.model.sendarray4.length>0">
+                <p class="col-lg-offset-4 headclasstable">Match Meeting Data
                 </p>
+                <br ng-if="page.model.sendarray4.length>0">
             </div>
             <div class="col-lg-12" ng-if="page.model.sendarray.length>0 && page.model.sendarray4.length===0">
-                <p class="col-lg-offset-4">No Match Meeting Data
+                <br ng-if="page.model.sendarray4.length===0">
+                <p class="col-lg-offset-4 headclasstable">No Match Meeting Data
                 </p>
+                <br ng-if="page.model.sendarray4.length===0">
             </div>
             <complex-grid-new gid="'id4'" ng-show="page.model.gridtable4.data.length>0" model="page.model.gridtable4" config="page.model" pagesizecommunication="999"></complex-grid-new>
         </div>
         <div ng-show="page.model.gridTableshow && page.model.gridtable1.data">
             <div class="col-lg-12" ng-if="page.model.sendarray.length>0">
-                <p class="col-lg-offset-4">List of members to whom your profile was sent <img style="width: 43px;height: 29px;" src="src/images/hndreverse.gif"></img>
+                <br ng-if="page.model.sendarray.length>0">
+                <p class="col-lg-offset-4 headclasstable">List of members to whom your profile was sent <img style="width: 43px;height: 29px;" src="src/images/hndreverse.gif"></img>
                 </p>
+                <br ng-if="page.model.sendarray.length>0">
             </div>
             <br>
             <div class="col-lg-12" ng-if="page.model.sendarray.length>0">
@@ -47,8 +53,10 @@
         </div>
         <div ng-show="page.model.gridTableshow && page.model.gridtable2.data">
             <div class="col-lg-12" ng-if="page.model.sendarray2.length>0">
-                <p class="col-lg-offset-4"> <img style="width: 43px;height: 29px;" src="src/images/hnd.gif"></img>List of members to who you contacted
+                <br ng-if="page.model.sendarray2.length>0">
+                <p class="col-lg-offset-4 headclasstable"> <img style="width: 43px;height: 29px;" src="src/images/hnd.gif"></img>List of members to who you contacted
                 </p>
+                <br ng-if="page.model.sendarray2.length>0">
             </div>
             <br>
             <div class="col-lg-12" ng-if="page.model.sendarray2.length>0">
@@ -73,8 +81,10 @@
         </div>
         <div ng-show="page.model.gridTableshow && page.model.gridtable3.data">
             <div class="col-lg-12" ng-if="page.model.sendarray3.length>0">
-                <p class="col-lg-offset-4">List of profile to whom mails has resent
+                <br ng-if="page.model.sendarray3.length>0">
+                <p class="col-lg-offset-4 headclasstable">List of profile to whom mails has resent
                 </p>
+                <br ng-if="page.model.sendarray3.length>0">
             </div>
             <complex-grid-new gid="'id3'" ng-show="page.model.gridtable3.data" model="page.model.gridtable3" config="page.model" pagesizecommunication="999"></complex-grid-new>
         </div>
