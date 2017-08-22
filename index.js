@@ -208,7 +208,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/datePickerDirectiveEdit.js',
                         'directives/divPrint.js',
                         'directives/editFooter.js',
-                        'directives/fixedHeader.js',
+                        // 'directives/fixedHeader.js',
                         'directives/allowOnlyNumbers.js',
                         'directives/allowAdminManagement.js',
                         'directives/comparePassword.js',

@@ -18,9 +18,9 @@
              model.opendiv = false;
              model.visibleProjects = model.modelarray;
              model.visibleProjects1 = model.modelarray2;
-             scope.$watch('selected', function(fac) {
-                 scope.$broadcast("rowSelected", fac);
-             });
+             model.colorsback = 'rgb(175, 209, 234)';
+             model.resetreports();
+
          };
 
          vm.init();
