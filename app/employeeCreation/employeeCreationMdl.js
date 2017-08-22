@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .factory('employeeCreationModel', factory);
 
-    factory.$inject = ['employeeCreationService', 'commonFactory', 'Commondependency', 'complex-grid-config', 'alert', 'modelpopupopenmethod', 'fileUpload', '$timeout', 'helperservice'];
+    factory.$inject = ['employeeCreationService', 'commonFactory', 'Commondependency', 'complex-grid-config', 'alert', 'modelpopupopenmethod', 'fileUpload', '$timeout', 'helperservice', '$window'];
 
-    function factory(employeeCreationService, commonFactory, Commondependency, gridConfig, alertss, modelpopupopenmethod, fileUpload, timeout, helperservice) {
+    function factory(employeeCreationService, commonFactory, Commondependency, gridConfig, alertss, modelpopupopenmethod, fileUpload, timeout, helperservice, window) {
 
         var model = {};
         model = gridConfig;
@@ -72,6 +72,7 @@
         };
 
         model.reset = function() {
+            window.scrollTo(0, 0);
             model.fName = '';
             model.lName = '';
             model.officeEmail = '';
@@ -101,9 +102,19 @@
             model.newuserID = '';
             model.actionFlag = 'create';
 
-            timeout(function() {
-                model.empStatus = '423';
-            }, 1000);
+            // timeout(function() {
+            //     model.empStatus = '423';
+            // }, 1000);
+
+            model.empStatus = '423';
+
+            model.searchbranch = '';
+            model.region = 0;
+            model.empType = '';
+            model.isLoginAnywhere = '';
+
+
+
 
         };
 
@@ -129,6 +140,7 @@
             model.populatemodel(row);
             model.selectedIndex = 1;
             model.editEmpid = row.EmpID;
+
         };
 
         model.deleteEmp = function(row, type) {
@@ -180,7 +192,7 @@
             model.loginLocation = row.LoginLocation;
 
             model.modelEmpPhoto = row.EmpPhoto;
-            debugger;
+
             model.dateOfJoining = row.Created_Date ? row.Created_Date : '';
             if (row.WorkingStartTIme) {
                 var FromHrsArr = (row.WorkingStartTIme).split(' ');
@@ -195,7 +207,7 @@
             }
 
             timeout(function() {
-                debugger;
+
                 model.weakOff = JSON.stringify(row.DayOff);
                 model.country = row.CountryID;
                 model.state = row.StateID;
@@ -214,7 +226,7 @@
         };
 
         model.getEmpList = function() {
-            debugger;
+
             var inObj = {
                 Empid: null,
                 // model.empid,
@@ -222,7 +234,7 @@
                 EmpStatus: model.empStatus,
                 EmpTypeIDs: model.empType ? model.empType.join(',') : null,
                 isLoginanywhere: model.isLoginAnywhere,
-                region: model.region && model.region[0] !== '' ? model.region.join(',') : null
+                region: model.region && model.region[0] !== '' && model.region !== 0 ? model.region.join(',') : null
             };
             employeeCreationService.getEmpList(inObj).then(function(response) {
                 if (response.data && response.data.length > 0) {
@@ -337,6 +349,7 @@
                                 fileUpload.uploadFileToUrl(model.upImage, '/employeeImgupload', keyname).then(function(res) {});
                             }
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Employee creation done successfully', 4500);
+                            model.selectedIndex = 0;
                             break;
                         case 'edit':
                             if (model.upImage) {
@@ -344,6 +357,7 @@
                                 fileUpload.uploadFileToUrl(model.upImage, '/employeeImgupload', keyname).then(function(res) {});
                             }
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Employee Updation done successfully', 4500);
+                            model.selectedIndex = 0;
                             break;
                         case 'Delete':
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Employee deletion done successfully', 4500);
@@ -390,7 +404,7 @@
         model.upload = function() {
             var Imgpath = '';
             if (model.myFile) {
-                debugger;
+
                 var keyname = 'Images/EmployeeImages/' + model.uploadUserid + '_EmplyeeImage/' + model.uploadUserid + '_EmplyeeImage.jpg';
                 fileUpload.uploadFileToUrl(model.myFile, '/employeeImgupload', keyname).then(function(res) {
                     if (res.status == 200) {
