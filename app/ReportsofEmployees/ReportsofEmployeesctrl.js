@@ -19,7 +19,8 @@
              model.visibleProjects = model.modelarray;
              model.visibleProjects1 = model.modelarray2;
              model.colorsback = 'rgb(175, 209, 234)';
-             model.pageloadbindings();
+             model.resetreports();
+
          };
 
          vm.init();

@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .factory('ReportsofEmployeesModel', factory);
 
-    factory.$inject = ['ReportsofEmployeesService', 'modelpopupopenmethod', 'Commondependency'];
+    factory.$inject = ['ReportsofEmployeesService', 'modelpopupopenmethod', 'Commondependency', '$timeout'];
 
-    function factory(ReportsofEmployeesService, modelpopupopenmethod, Commondependency) {
+    function factory(ReportsofEmployeesService, modelpopupopenmethod, Commondependency, timeout) {
 
         var model = {};
         model.arrayheader = ["Emp Name", "No of Profiles", "No Services", "No Login", "EMNV", "Paid", "Unpaid", "Graph"];
@@ -207,6 +207,13 @@
         model.onchangebranch = function() {
             model.Brancharray = [];
             model.Brancharray = Commondependency.branch((model.rbtnregional !== undefined && model.rbtnregional !== null && model.rbtnregional !== "" && model.rbtnregional !== 0 && model.rbtnregional !== '0') ? (model.rbtnregional) : "");
+        };
+        model.resetreports = function() {
+            model.rbtnregional = "";
+            timeout(function() {
+                model.tmarketingbranch = "";
+            }, 50);
+            model.pageloadbindings();
         };
         return model;
 
