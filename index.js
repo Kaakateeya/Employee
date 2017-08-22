@@ -171,7 +171,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'common/services/getArrayService.js',
                         'common/services/selectBindServices.js',
                         'common/services/selectBindServicesEdit.js',
-                        'constants/arrayBindConstatnsEdit.js',
                         'common/services/fileuploadservice.js',
                         'common/models/headermodel.js',
                         'common/controllers/topheaderctrl.js',
@@ -217,7 +216,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                 },
                 {
                     name: 'constants',
-                    files: ['constants/arrayConstants.js', 'constants/arrayBindConstatns.js']
+                    files: ['constants/arrayBindConstatnsEdit.js', 'constants/arrayConstants.js', 'constants/arrayBindConstatns.js']
                 },
                 {
                     name: 'properties',

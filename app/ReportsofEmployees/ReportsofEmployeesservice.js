@@ -9,8 +9,8 @@
 
     function factory(http) {
         return {
-            getAdminReportsAllProfiles: function(i_EmpID, i_BranchID, v_MacAddress) {
-                return http.get(app.apiroot + 'EmployeeReportPage/getAdminReportsAllProfiles', { params: { i_EmpID: i_EmpID, i_BranchID: i_BranchID, v_MacAddress: v_MacAddress, flag: 1 } });
+            getAdminReportsAllProfiles: function(i_EmpID, i_BranchID, v_MacAddress, flag) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getAdminReportsAllProfiles', { params: { i_EmpID: i_EmpID, i_BranchID: i_BranchID, v_MacAddress: v_MacAddress, flag: flag } });
             },
             getMyprofilebind: function(flag, ID) {
                 return http.get(app.apiroot + 'EmployeeReportPage/getMyProfileBindings', {

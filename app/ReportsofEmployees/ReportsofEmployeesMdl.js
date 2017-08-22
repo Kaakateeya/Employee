@@ -12,14 +12,15 @@
         var model = {};
         model.arrayheader = ["Emp Name", "No of Profiles", "No Services", "No Login", "EMNV", "Paid", "Unpaid", "Graph"];
 
-        ReportsofEmployeesService.getAdminReportsAllProfiles(2, "", "").then(function(response) {
+        ReportsofEmployeesService.getAdminReportsAllProfiles("", "", "", 1).then(function(response) {
             model.modelarraydynamic = [];
             console.log(response);
             _.each(response.data, function(item, index) {
                 model.modelarraydynamic.push({ header: model.arrayheader, data: item, ida: false });
             });
         });
-        model.popupopen = function() {
+        model.popupopen = function(Empid) {
+            model.singleempid = Empid;
             model.reportsgraph();
             modelpopupopenmethod.showPopupphotopoup('graph.html', model.scope, 'lg', "modalclassofeditss");
         };
@@ -88,80 +89,38 @@
             }]
         }];
         model.reportsgraph = function() {
-            ReportsofEmployeesService.getAdminReportsAllProfiles(2, "", "").then(function(response) {
-                console.log(response);
-                model.dataSourcesmulti = [];
-                model.dataset = [];
-                model.dataSourcesmulti = [{
-                    "chart": model.charts,
-                    "categories": model.categiries,
-                    "dataset": [{
-                        "seriesname": "7 days",
-                        "data": [{
-                            "value": "130"
-                        }, {
-                            "value": "200"
-                        }, {
-                            "value": "100"
-                        }, {
-                            "value": "150"
-                        }, {
-                            "value": "155"
-                        }, {
-                            "value": "170"
-                        }, {
-                            "value": "195"
-                        }, {
-                            "value": "186"
-                        }, {
-                            "value": "189"
-                        }],
-
-                    }, {
-                        "seriesname": "15 Days",
-                        "data": [{
-                            "value": "154"
-                        }, {
-                            "value": "168"
-                        }, {
-                            "value": "188"
-                        }, {
-                            "value": "224"
-                        }, {
-                            "value": "238"
-                        }, {
-                            "value": "258"
-                        }, {
-                            "value": "308"
-                        }, {
-                            "value": "195"
-                        }, {
-                            "value": "195"
-                        }]
-                    }, {
-                        "seriesname": "30 Days",
-                        "data": [{
-                            "value": "154"
-                        }, {
-                            "value": "168"
-                        }, {
-                            "value": "188"
-                        }, {
-                            "value": "224"
-                        }, {
-                            "value": "238"
-                        }, {
-                            "value": "258"
-                        }, {
-                            "value": "308"
-                        }, {
-                            "value": "195"
-                        }, {
-                            "value": "195"
-                        }]
-                    }],
-                    "EmpName": model.empname
-                }];
+            model.dataSourcesmulti = [];
+            model.dataset = [];
+            ReportsofEmployeesService.getAdminReportsAllProfiles(model.singleempid, "", "", 2).then(function(response) {
+                _.each(response.data, function(item) {
+                    model.dataset = [];
+                    _.each(item, function(inneritem) {
+                        model.dataset.push({
+                            "seriesname": inneritem.Tablename + " days",
+                            // "initiallyHidden": inneritem.Tablename === '7days' ? '1' : '0',
+                            "data": [{
+                                "value": inneritem.activeCount
+                            }, {
+                                "value": inneritem.InactiveCount
+                            }, {
+                                "value": inneritem.PaidCount
+                            }, {
+                                "value": inneritem.UnPaidCount
+                            }, {
+                                "value": inneritem.NoPhotoCount
+                            }, {
+                                "value": inneritem.NoHoroCount
+                            }]
+                        });
+                        model.empname = inneritem.EmpName;
+                    });
+                    model.dataSourcesmulti.push({
+                        "chart": model.charts,
+                        "categories": model.categiries,
+                        "dataset": model.dataset,
+                        "EmpName": model.empname
+                    });
+                });
             });
         };
         model.closeupload = function() {
