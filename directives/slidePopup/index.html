@@ -14,7 +14,7 @@
                <span ng-bind-html="item.html"></span>
                 </label>
                 <div ng-if="!item.dataSource && item.controlType==='select'" class="pop_controls_right select-box-my input-group">
-                    <select multiselectdropdown ng-model="model[item.ngmodel]" typeofdata="item.typeofdata" ng-required="item.required" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi)"></select>
+                    <select multiselectdropdown ng-model="model[item.ngmodel]" typeofdata="item.typeofdata" ng-required="item.required" ng-change="ddlChange(model[item.firstparent],model[item.secondParent],item.childName,item.changeApi)"></select>
                 </div>
                 <div ng-if="item.controlType==='select' && item.dataSource" class="pop_controls_right select-box-my input-group">
                     <select multiselectdropdown ng-model="model[item.ngmodel]" ng-required="item.required" ng-options="item1.value as item1.label for item1 in item.dataSource"></select>

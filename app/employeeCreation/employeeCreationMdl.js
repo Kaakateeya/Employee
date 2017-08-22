@@ -109,7 +109,7 @@
             model.empStatus = '423';
 
             model.searchbranch = '';
-            model.region = 0;
+            model.region = '';
             model.empType = '';
             model.isLoginAnywhere = '';
 
@@ -432,6 +432,8 @@
         model.closepopup = function() {
             modelpopupopenmethod.closepopup();
         };
+
+
         return model.init();
     }
 })();

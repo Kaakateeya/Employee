@@ -107,9 +107,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'dashboardAdminReport', name: 'base.dashboardAdminReport', url: '/dashboardAdminReports', isloginrequired: true },
             { routeName: 'fixedtableTesting', name: 'base.fixedtableTesting', url: '/fixedtableTestings', isloginrequired: true },
             { routeName: 'viewUploadSettledProfiles', name: 'base.viewUploadSettledProfiles', url: '/viewUploadSettledProfilesPage', isloginrequired: true },
-            { routeName: 'ReportsofEmployees', name: 'base.ReportsofEmployees', url: '/ReportsofEmployee', isloginrequired: true }
-
-
+            { routeName: 'ReportsofEmployees', name: 'base.ReportsofEmployees', url: '/ReportsofEmployee', isloginrequired: true },
+            { routeName: 'viewSuccessStories', name: 'base.viewSuccessStories', url: '/viewSuccessStoriesPage', isloginrequired: true },
 
         ];
         $ocLazyLoadProvider.config({
