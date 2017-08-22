@@ -37,11 +37,13 @@
                         SelectBindService[apiPath](commonFactory.listSelectedVal(value2), commonFactory.listSelectedVal(value)).then(function(res) {
                             _.map(_.where(scope.model.popupdata, { parentName: text }), function(item) {
                                 var depData = [];
+                                debugger;
                                 _.each(res.data, function(item) {
                                     depData.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                 });
                                 item.dataSource = [];
                                 item.dataSource = depData;
+
                             });
                         });
                     } else {
@@ -102,7 +104,7 @@
                 }
 
                 if (scope.model[item.ngmodel] && item.childName) {
-                    scope.ddlChange(scope.model[item.ngmodel], scope.model[item.secondParent], item.childName, item.changeApi);
+                    scope.ddlChange(scope.model[item.firstparent], scope.model[item.secondParent], item.childName, item.changeApi);
                 }
             });
 
@@ -169,6 +171,7 @@
                 yearRange: "-40:+5",
                 dateFormat: 'dd-mm-yy'
             };
+
         }
     }
 
