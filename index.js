@@ -216,7 +216,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                 },
                 {
                     name: 'constants',
-                    files: ['constants/arrayBindConstatnsEdit.js', 'constants/arrayConstants.js', 'constants/arrayBindConstatns.js']
+                    files: ['constants/arrayBindConstatnsEdit.js', 'constants/arrayConstants.js'
+                        // 'constants/arrayBindConstatns.js'
+                    ]
                 },
                 {
                     name: 'properties',

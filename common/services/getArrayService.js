@@ -13,67 +13,67 @@
                 var option = [];
                 switch (type) {
                     case 'MaritalStatus':
-                        option = cons.MaritalStatus;
+                        option = cons.MaritalStatusreg;
                         break;
                     case 'height':
-                        option = cons.height;
+                        option = cons.heightreg;
                         break;
                     case 'heightregistration':
-                        option = cons.heightregistration;
+                        option = cons.heightregistrationreg;
                         break;
                     case 'Religion':
-                        option = cons.Religion;
+                        option = cons.Religionreg;
                         break;
                     case 'Mothertongue':
-                        option = cons.Mothertongue;
+                        option = cons.Mothertonguereg;
                         break;
                     case 'educationcategory':
-                        option = cons.educationcategory;
+                        option = cons.educationcategoryreg;
                         break;
                     case 'visastatus':
-                        option = cons.visastatus;
+                        option = cons.visastatusreg;
                         break;
                     case 'stars':
-                        option = cons.stars;
+                        option = cons.starsreg;
                         break;
                     case 'region':
-                        option = cons.region;
+                        option = cons.regionreg;
                         break;
                     case 'bodyType':
-                        option = cons.bodyType;
+                        option = cons.bodyTypereg;
                         break;
                     case 'bloodGroup':
-                        option = cons.bloodGroup;
+                        option = cons.bloodGroupreg;
                         break;
                     case 'healthCondition':
-                        option = cons.healthCondition;
+                        option = cons.healthConditionreg;
                         break;
                     case 'starLanguage':
-                        option = cons.starLanguage;
+                        option = cons.starLanguagereg;
                         break;
                     case 'lagnam':
-                        option = cons.lagnam;
+                        option = cons.lagnamreg;
                         break;
                     case 'ZodaicSign':
-                        option = cons.ZodaicSign;
+                        option = cons.ZodaicSignreg;
                         break;
                     case 'paadam':
-                        option = cons.paadam;
+                        option = cons.paadamreg;
                         break;
                     case 'familyStatus':
-                        option = cons.familyStatus;
+                        option = cons.familyStatusreg;
                         break;
                     case 'RelationshipType':
-                        option = cons.RelationshipType;
+                        option = cons.RelationshipTypereg;
                         break;
                     case 'childStayingWith':
-                        option = cons.childStayingWith;
+                        option = cons.childStayingWithreg;
                         break;
                     case 'Complexion':
-                        option = cons.Complexion;
+                        option = cons.Complexionreg;
                         break;
                     case 'PhysicalStatus':
-                        option = cons.PhysicalStatus;
+                        option = cons.PhysicalStatusreg;
                         break;
                     case 'Country':
                         service.countrySelect().then(function(response) {
