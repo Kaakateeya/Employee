@@ -8,8 +8,10 @@
                 { "label": "Unmarried", "title": "Unmarried", "value": 43 },
                 { "label": "Divorce", "title": "Divorce", "value": 44 },
                 { "label": "Widow/Widower", "title": "Widow/Widower", "value": 45 },
-                { "label": "Separated", "title": "Separated", "value": 46 }
+                { "label": "Separated", "title": "Separated", "value": 46 },
+                { "label": "NULL AND VOID", "title": "NULL AND VOID", "value": 565 }
             ],
+
             "heightregistration": [
                 { "label": "4'8 in - 142 cms", "title": "4'8 in - 142 cms", "value": 9 },
                 { "label": "4'9 in - 144 cms", "title": "4'9 in - 144 cms", "value": 10 }, { "label": "4'10 in - 147 cms", "title": "4'10 in - 147 cms", "value": 11 },
@@ -101,7 +103,8 @@
                 { "label": "Temporary Visa", "title": "Temporary Visa", "value": 286 },
                 { "label": "Citizen", "title": "Citizen", "value": 521 },
                 { "label": "Permanent Resident", "title": "Permanent Resident", "value": 522 },
-                { "label": "Green Card", "title": "Green Card", "value": 553 }
+                { "label": "Green Card", "title": "Green Card", "value": 553 },
+                { "label": "OPT", "title": "OPT", "value": 572 }
             ],
             "stars": [
                 { "label": "--Select--", "title": "--Select--", "value": "" },
@@ -300,7 +303,8 @@
                 { "label": "Fair", "title": "Fair", "value": 18 },
                 { "label": "Medium", "title": "Medium", "value": 19 },
                 { "label": "Dark", "title": "Dark", "value": 20 },
-                { "label": "Doesn't Matter", "title": "Doesn't Matter", "value": 38 }
+                { "label": "Doesn't Matter", "title": "Doesn't Matter", "value": 38 },
+                { "label": "Light Brown", "title": "Light Brown", "value": 573 }
             ],
             'PhysicalStatus': [
                 { "label": "--select-- ", "title": "--select--", "value": "" },

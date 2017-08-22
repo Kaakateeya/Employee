@@ -4,11 +4,11 @@
         .module('Kaakateeya')
         .constant('arrayConstantsreg', {
             'MaritalStatus': [
-
                 { "label": "Unmarried", "title": "Unmarried", "value": 43 },
                 { "label": "Divorce", "title": "Divorce", "value": 44 },
                 { "label": "Widow/Widower", "title": "Widow/Widower", "value": 45 },
-                { "label": "Separated", "title": "Separated", "value": 46 }
+                { "label": "Separated", "title": "Separated", "value": 46 },
+                { "label": "NULL AND VOID", "title": "NULL AND VOID", "value": 565 }
             ],
             "height": [
 
@@ -101,7 +101,8 @@
                 { "label": "Temporary Visa", "title": "Temporary Visa", "value": 286 },
                 { "label": "Citizen", "title": "Citizen", "value": 521 },
                 { "label": "Permanent Resident", "title": "Permanent Resident", "value": 522 },
-                { "label": "Green Card", "title": "Green Card", "value": 553 }
+                { "label": "Green Card", "title": "Green Card", "value": 553 },
+                { "label": "OPT", "title": "OPT", "value": 572 }
             ],
             "stars": [
 
@@ -300,7 +301,10 @@
                 { "label": "Fair", "title": "Fair", "value": 18 },
                 { "label": "Medium", "title": "Medium", "value": 19 },
                 { "label": "Dark", "title": "Dark", "value": 20 },
-                { "label": "Doesn't Matter", "title": "Doesn't Matter", "value": 38 }
+                { "label": "Doesn't Matter", "title": "Doesn't Matter", "value": 38 },
+                { "label": "Light Brown", "title": "Light Brown", "value": 573 }
+
+
             ],
             'PhysicalStatus': [
                 { "label": "Normal", "title": "Normal", "value": 25 },
