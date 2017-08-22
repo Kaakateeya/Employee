@@ -5,7 +5,7 @@
     angular
         .module('Kaakateeya')
         .factory('myProfileModel', ['$http', 'myProfileservice', 'authSvc', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'SelectBindServiceApp',
-            '$uibModal', '$timeout', 'complex-slide-config', 'modelpopupopenmethod', '$filter', 'arrayConstantsreg',
+            '$uibModal', '$timeout', 'complex-slide-config', 'modelpopupopenmethod', '$filter', 'arrayConstants',
             function(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss,
                 SelectBindServiceApp, uibModal, timeout, configslide, commonpage, filter, arrayConstants) {
                 var model = {};
@@ -40,7 +40,7 @@
                         model.ProfileOwnerarray = [];
                         model.Brancharray = [];
                         model.maritalstatusarray = [];
-                        model.maritalstatusarray = arrayConstants.MaritalStatus;
+                        model.maritalstatusarray = arrayConstants.MaritalStatusreg;
                         model.mpObj.ddlProfileOwner = [parseInt(model.empid)];
                         _.each(response.data, function(item) {
                             switch (item.CountryCode) {
