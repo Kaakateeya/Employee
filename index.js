@@ -101,7 +101,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'employeeCreation', name: 'base.employeeCreation', url: '/employeeCreationPage', isloginrequired: true },
             { routeName: 'keywordlikeSearch', name: 'base.keywordlikeSearch', url: '/keywordlikeSearchpage', isloginrequired: true },
             { routeName: 'customerFactsheet', name: 'base.customerFactsheet', url: '/customerFactsheetpage', isloginrequired: true },
-            { routeName: 'sucessStories', name: 'base.sucessStories', url: '/sucessStoriespage', isloginrequired: true },
+            // { routeName: 'sucessStories', name: 'base.sucessStories', url: '/sucessStoriespage', isloginrequired: true },
             { routeName: 'EmployeePaymentInsertnew', name: 'base.EmployeePaymentInsertnew', url: '/EmployeePaymentInsertsnew/:ProfileID/:status/:paymentID/:histryid', isloginrequired: true },
             { routeName: 'empTracking', name: 'base.empTracking', url: '/empTrackingPage', isloginrequired: true },
             { routeName: 'dashboardAdminReport', name: 'base.dashboardAdminReport', url: '/dashboardAdminReports', isloginrequired: true },
