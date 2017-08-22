@@ -5,97 +5,20 @@
         .module('Kaakateeya')
         .factory('ReportsofEmployeesModel', factory);
 
-    factory.$inject = ['ReportsofEmployeesService', 'modelpopupopenmethod'];
+    factory.$inject = ['ReportsofEmployeesService', 'modelpopupopenmethod', 'Commondependency'];
 
-    function factory(ReportsofEmployeesService, modelpopupopenmethod) {
+    function factory(ReportsofEmployeesService, modelpopupopenmethod, Commondependency) {
 
         var model = {};
         model.arrayheader = ["Emp Name", "No of Profiles", "No Services", "No Login", "EMNV", "Paid", "Unpaid", "Graph"];
-        model.modelarray = [{
-            facility: "Admin",
-            code: "230",
-            cost: 100,
-            conditionRating: 52,
-            extent: 50,
-            planYear: 20,
-            Plansss: 100,
-            class: 'rgb(175, 209, 234)',
-            Graph: '<i class="fa fa-bar-chart" aria-hidden="true"></i>'
 
-        }, {
-            facility: "Jyothi",
-            code: "230",
-            cost: 100,
-            conditionRating: 52,
-            extent: 50,
-            planYear: 20,
-            Plansss: 100,
-            class: 'rgb(230, 165, 165)',
-            Graph: '<i class="fa fa-bar-chart" aria-hidden="true"></i>'
-        }, {
-            facility: "Kalpana",
-            code: "230",
-            cost: 100,
-            conditionRating: 52,
-            extent: 50,
-            planYear: 20,
-            Plansss: 100,
-            class: 'rgb(166, 228, 211)',
-            Graph: '<i class="fa fa-bar-chart" aria-hidden="true"></i>'
-        }, {
-            facility: "Santhi",
-            code: "230",
-            cost: 100,
-            conditionRating: 52,
-            extent: 50,
-            planYear: 100,
-            Plansss: 150,
-            class: 'rgb(241, 178, 124)',
-            Graph: '<i class="fa fa-bar-chart" aria-hidden="true"></i>'
-        }, ];
-        model.modelarray2 = [{
-            facility: "Neeraja",
-            code: "230",
-            cost: 100,
-            conditionRating: 52,
-            extent: 50,
-            planYear: 100,
-            Plansss: 150,
-            class: 'rgb(175, 209, 234)',
-            Graph: '<i class="fa fa-bar-chart" aria-hidden="true"></i>'
-
-        }, {
-            facility: "Jyothi",
-            code: "230",
-            cost: 100,
-            conditionRating: 52,
-            extent: 50,
-            planYear: 20,
-            Plansss: 100,
-            class: 'rgb(230, 165, 165)',
-            Graph: '<i class="fa fa-bar-chart" aria-hidden="true"></i>'
-        }, {
-            facility: "Kalpana",
-            code: "230",
-            cost: 100,
-            conditionRating: 52,
-            extent: 50,
-            planYear: 20,
-            Plansss: 100,
-            class: 'rgb(166, 228, 211)',
-            Graph: '<i class="fa fa-bar-chart" aria-hidden="true"></i>'
-        }, {
-            facility: "Santhi",
-            code: "230",
-            cost: 100,
-            conditionRating: 52,
-            extent: 50,
-            planYear: 20,
-            Plansss: 100,
-            class: 'rgb(241, 178, 124)',
-            Graph: '<i class="fa fa-bar-chart" aria-hidden="true"></i>'
-        }, ];
-
+        ReportsofEmployeesService.getAdminReportsAllProfiles(2, "", "").then(function(response) {
+            model.modelarraydynamic = [];
+            console.log(response);
+            _.each(response.data, function(item, index) {
+                model.modelarraydynamic.push({ header: model.arrayheader, data: item, ida: false });
+            });
+        });
         model.popupopen = function() {
             model.reportsgraph();
             modelpopupopenmethod.showPopupphotopoup('graph.html', model.scope, 'lg', "modalclassofeditss");
@@ -169,107 +92,121 @@
                 console.log(response);
                 model.dataSourcesmulti = [];
                 model.dataset = [];
-                _.each(response.data, function(item) {
-                    console.log(item);
-                    model.dataset = [];
-                    _.each(item, function(inneritem) {
-                        model.dataset.push({
-                            "seriesname": inneritem.Tablename,
-                            // "initiallyHidden": inneritem.Tablename === '7days' ? '1' : '0',
-                            "data": [{
-                                "value": inneritem.activeCount
-                            }, {
-                                "value": inneritem.InactiveCount
-                            }, {
-                                "value": inneritem.PaidCount
-                            }, {
-                                "value": inneritem.UnPaidCount
-                            }, {
-                                "value": inneritem.NoPhotoCount
-                            }, {
-                                "value": inneritem.NoHoroCount
-                            }]
-                        });
-                        model.empname = inneritem.EmpName;
-                    });
-                    // model.charts.caption = model.empname;
-                    model.dataSourcesmulti = [{
-                        "chart": model.charts,
-                        "categories": model.categiries,
-                        "dataset": [{
-                            "seriesname": "7 days",
-                            "data": [{
-                                "value": "130"
-                            }, {
-                                "value": "200"
-                            }, {
-                                "value": "100"
-                            }, {
-                                "value": "150"
-                            }, {
-                                "value": "155"
-                            }, {
-                                "value": "170"
-                            }, {
-                                "value": "195"
-                            }, {
-                                "value": "186"
-                            }, {
-                                "value": "189"
-                            }],
-
+                model.dataSourcesmulti = [{
+                    "chart": model.charts,
+                    "categories": model.categiries,
+                    "dataset": [{
+                        "seriesname": "7 days",
+                        "data": [{
+                            "value": "130"
                         }, {
-                            "seriesname": "15 Days",
-                            "data": [{
-                                "value": "154"
-                            }, {
-                                "value": "168"
-                            }, {
-                                "value": "188"
-                            }, {
-                                "value": "224"
-                            }, {
-                                "value": "238"
-                            }, {
-                                "value": "258"
-                            }, {
-                                "value": "308"
-                            }, {
-                                "value": "195"
-                            }, {
-                                "value": "195"
-                            }]
+                            "value": "200"
                         }, {
-                            "seriesname": "30 Days",
-                            "data": [{
-                                "value": "154"
-                            }, {
-                                "value": "168"
-                            }, {
-                                "value": "188"
-                            }, {
-                                "value": "224"
-                            }, {
-                                "value": "238"
-                            }, {
-                                "value": "258"
-                            }, {
-                                "value": "308"
-                            }, {
-                                "value": "195"
-                            }, {
-                                "value": "195"
-                            }]
+                            "value": "100"
+                        }, {
+                            "value": "150"
+                        }, {
+                            "value": "155"
+                        }, {
+                            "value": "170"
+                        }, {
+                            "value": "195"
+                        }, {
+                            "value": "186"
+                        }, {
+                            "value": "189"
                         }],
 
-                        "EmpName": model.empname
-                    }];
-                });
-
+                    }, {
+                        "seriesname": "15 Days",
+                        "data": [{
+                            "value": "154"
+                        }, {
+                            "value": "168"
+                        }, {
+                            "value": "188"
+                        }, {
+                            "value": "224"
+                        }, {
+                            "value": "238"
+                        }, {
+                            "value": "258"
+                        }, {
+                            "value": "308"
+                        }, {
+                            "value": "195"
+                        }, {
+                            "value": "195"
+                        }]
+                    }, {
+                        "seriesname": "30 Days",
+                        "data": [{
+                            "value": "154"
+                        }, {
+                            "value": "168"
+                        }, {
+                            "value": "188"
+                        }, {
+                            "value": "224"
+                        }, {
+                            "value": "238"
+                        }, {
+                            "value": "258"
+                        }, {
+                            "value": "308"
+                        }, {
+                            "value": "195"
+                        }, {
+                            "value": "195"
+                        }]
+                    }],
+                    "EmpName": model.empname
+                }];
             });
         };
         model.closeupload = function() {
             modelpopupopenmethod.closepopuppoptopopup();
+        };
+        model.colorsbackground = function(index) {
+            if (index === 0) {
+                model.colorsback = 'rgb(175, 209, 234)';
+            } else {
+                switch (model.colorsback) {
+                    case 'rgb(175, 209, 234)':
+                        model.colorsback = 'rgb(230, 165, 165)';
+                        break;
+                    case 'rgb(230, 165, 165)':
+                        model.colorsback = 'rgb(166, 228, 211)';
+                        break;
+                    case 'rgb(166, 228, 211)':
+                        model.colorsback = 'rgb(241, 178, 124)';
+                        break;
+                    case 'rgb(241, 178, 124)':
+                        model.colorsback = 'rgb(175, 209, 234)';
+                        break;
+                }
+            }
+            return model.colorsback;
+        };
+        model.arrayslice = function(index) {
+            model.modelarraydynamic.splice(index, 1);
+            return false;
+        };
+        model.pageloadbindings = function() {
+            ReportsofEmployeesService.getMyprofilebind(1, 2, '').then(function(response) {
+                model.Brancharray = [];
+                _.each(response.data, function(item) {
+                    switch (item.CountryCode) {
+                        case "Branch":
+                            model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                            break;
+                    }
+                });
+            });
+        };
+        model.onchangebranch = function() {
+            model.Brancharray = [];
+            model.Brancharray = Commondependency.branch((model.rbtnregional !== undefined && model.rbtnregional !== null && model.rbtnregional !== "" && model.rbtnregional !== 0 && model.rbtnregional !== '0') ? (model.rbtnregional) : "");
         };
         return model;
 

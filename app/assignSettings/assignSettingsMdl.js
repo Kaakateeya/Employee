@@ -167,6 +167,7 @@
                     return obj;
                 };
                 model.assignsettingssubmit = function(obj, from, to, type, pagenumber, PageSize) {
+                    model.pageSize = from === 1 ? 10 : 10;
                     var mobj = {
                         EmpID: parseInt(model.empid),
                         ProfileID: (obj.txtProfileID !== "") ? obj.txtProfileID : null,

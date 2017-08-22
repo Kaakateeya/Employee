@@ -116,7 +116,7 @@
                     { text: 'Owner of the profile', key: 'OwnerOftheProfile', type: 'label' },
                 ];
                 model.reviewpendingsubmit = function(obj, from, to, type) {
-
+                    // model.pageSize = from === 1 ? 10 : 10;
                     model.opendiv = false;
                     var mobj = {
                         EmpID: parseInt(model.empid),
