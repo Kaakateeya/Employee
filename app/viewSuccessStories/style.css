@@ -1,0 +1,17 @@
+#successtoryID .successdata {
+  font-weight: 600;
+  line-height: 22px;
+  font-family: inherit;
+  color: #514e4e; }
+#successtoryID .gclass {
+  border: 1px solid #b6a8ac;
+  border-radius: 27px; }
+#successtoryID .scrollcls {
+  height: 600px;
+  overflow-y: auto;
+  margin-right: 0px;
+  margin-left: 0px; }
+#successtoryID .nav-sm .container.body .right_col {
+  padding: 35px 20px !important; }
+
+/*# sourceMappingURL=style.css.map */
