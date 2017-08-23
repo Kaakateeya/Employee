@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function factory(basicRegistrationService, getArray, commondependency, filter, authSvc, timeout, $state, svcSelectBindServicereg, dynamicalert) {
+    function factory(basicRegistrationService, getArray, commondependency, filter, authSvc, timeout, $state, svcSelectBindServicereg, dynamicalert, modelpopupopenmethod) {
         var model = {};
         model.scope = {};
         model.init = function() {
@@ -241,10 +241,14 @@
                     switch (type) {
                         case "Name":
                         case "SurName":
-                            dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Name and Surname Already exist    <br><br>Profile ID:' + response.data[0].Profileid + ',Name:' + response.data[0].Name + ',Surname:' + response.data[0].Surname + '', 5000);
+                            modelpopupopenmethod.showPopupphotopoup('namesurnamealert.html', model.scope, 'md', "");
+                            model.Alertnamesurname = 'Name and Surname Already exist   <br>Profile ID:' + response.data[0].Profileid + ',Name:' + response.data[0].Name + ',Surname:' + response.data[0].Surname + '';
+                            // dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Name and Surname Already exist    <br><br>Profile ID:' + response.data[0].Profileid + ',Name:' + response.data[0].Name + ',Surname:' + response.data[0].Surname + '', 5000);
                             break;
                         case "dob":
-                            dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Name,Surname and DOB Already exist    <br><br>Profile ID:' + response.data[0].Profileid + ',Name:' + response.data[0].Name + ',Surname:' + response.data[0].Surname + '', 5000);
+                            modelpopupopenmethod.showPopupphotopoup('namesurnamealert.html', model.scope, 'md', "");
+                            model.Alertnamesurname = 'Name,Surname and DOB Already exist   <br>Profile ID:' + response.data[0].Profileid + ',Name:' + response.data[0].Name + ',Surname:' + response.data[0].Surname + '';
+                            // dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Name,Surname and DOB Already exist    <br><br>Profile ID:' + response.data[0].Profileid + ',Name:' + response.data[0].Name + ',Surname:' + response.data[0].Surname + '', 5000);
                             model.reg.txtfirstname = "";
                             model.reg.txtlastname = "";
                             model.reg.ddlYear = "";
@@ -255,6 +259,9 @@
                 }
             });
         };
+        model.close = function() {
+            modelpopupopenmethod.closepopuppoptopopup();
+        };
         return model.init();
     }
     angular
@@ -262,6 +269,6 @@
         .factory('basicRegistrationModel', factory);
 
     factory.$inject = ['basicRegistrationService', 'getArray', 'Commondependency',
-        '$filter', 'authSvc', '$timeout', '$state', 'SelectBindServicereg', 'alert'
+        '$filter', 'authSvc', '$timeout', '$state', 'SelectBindServicereg', 'alert', 'modelpopupopenmethod'
     ];
 })(angular);
