@@ -35,7 +35,6 @@
             ];
             model.init = function() {
                 model.branchArr = Commondependency.branch('');
-                return model;
             };
             model.dependencyChange = function(parentval, type) {
                 switch (type) {
@@ -386,6 +385,6 @@
             model.closepopup = function() {
                 modelpopupopenmethod.closepopup();
             };
-            return model.init();
+            return model;
         }]);
 })();

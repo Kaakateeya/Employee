@@ -146,7 +146,6 @@
                     // model.ProfileOwnerarray = [];
                     model.Brancharray.push({ "label": "--select--", "title": "--select--", "value": "" });
                     model.Brancharray = Commondependency.branch((model.rbtnregional !== undefined && model.rbtnregional !== null && model.rbtnregional !== "" && model.rbtnregional !== 0 && model.rbtnregional !== '0') ? (model.rbtnregional) : "");
-                    debugger;
                     // model.ProfileOwnerarray = Commondependency.branch((model.rbtnregional !== undefined && model.rbtnregional !== null && model.rbtnregional !== "" && model.rbtnregional !== 0 && model.rbtnregional !== '0') ? (model.rbtnregional) : "");
                     //BranchNamebindval
                 };

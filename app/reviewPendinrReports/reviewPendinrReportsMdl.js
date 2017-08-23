@@ -2,8 +2,8 @@
     'use strict';
     angular
         .module('Kaakateeya')
-        .factory('reviewPendinrReportsModel', ['reviewPendinrReportsService', 'complex-grid-config', 'helperservice', 'alert',
-            function(reviewPendinrReportsService, configgrid, helpService, alerts) {
+        .factory('reviewPendinrReportsModel', ['reviewPendinrReportsService', 'complex-grid-config', 'helperservice', 'alert', '$timeout',
+            function(reviewPendinrReportsService, configgrid, helpService, alerts, timeout) {
                 var model = {};
                 model.mpObj = {};
                 model.opendiv = true;
@@ -191,6 +191,21 @@
                 };
                 model.exportexcel = function(topage) {
                     model.reviewpendingsubmit(model.mpObj, 1, topage, 'excel');
+                };
+                model.reset = function() {
+                    model.mpObj.rdnGender = "";
+                    model.mpObj.rdnreviewpending = "";
+                    model.mpObj.rdnregion = "";
+                    model.mpObj.ddlProfileowner = "";
+                    model.mpObj.txtAssignedFromDate = "";
+                    model.mpObj.chkconfidential = false;
+                    model.mpObj.rdntypeofprofile = "";
+                    model.mpObj.txtAssignedtoDate = "";
+                    timeout(function() {
+                        model.mpObj.ddlCaste = "";
+                        model.mpObj.ddlBranch = "";
+                        model.mpObj.ddlApplicationStatus = "";
+                    }, 100);
                 };
                 return model;
             }

@@ -179,7 +179,6 @@
                         model.objvalue.From = from;
                         model.objvalue.To = to;
                     }
-                    debugger;
                     paymentdetailsReportService.EmplyeepaymentReportspayment(model.objvalue).then(function(response) {
                         console.log(response);
                         if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" &&

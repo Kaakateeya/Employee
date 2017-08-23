@@ -5,7 +5,7 @@
         .module('Kaakateeya')
         .factory('getArray', factory);
 
-    factory.$inject = ['arrayConstantsreg', 'SelectBindServicereg'];
+    factory.$inject = ['arrayConstants', 'SelectBindServicereg'];
 
     function factory(cons, service) {
         return {

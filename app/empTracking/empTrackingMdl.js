@@ -71,7 +71,6 @@
         };
 
         model.getEmpReport = function(to, empid, type) {
-            debugger;
             model.columns = [
                 { text: 'Sno', key: 'Sno', type: 'label' },
                 { text: 'Employee name', key: 'Name', type: 'label' },

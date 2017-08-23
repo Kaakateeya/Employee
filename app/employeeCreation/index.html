@@ -3,27 +3,26 @@
     <div class="bodycls">
         <md-content class="md-padding">
             <md-tabs md-selected="page.model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
-
                 <md-tab md-on-select="slide.incomeTab=true" label="Employee list Search" ng-click="page.model.reset();">
                     <div class="tab">
                         <br>
                         <div class="row">
-                            <div class="col-lg-2 form-group">
+                            <div class="col-lg-2">
                                 <label for="" class="control-label col-lg-10 lblcls">Region</label>
                                 <div class=""> <select multiselectdropdown ng-model="page.model.region" multiple typeofdata="'Regionofbranches'" pagetype="'search'" ng-change="page.model.dependencyChange(page.model.region,'branch');">   
                               </select></div>
                             </div>
-                            <div class="col-lg-2 form-group">
+                            <div class="col-lg-2">
                                 <label for="" class="control-label col-lg-10 lblcls">branch</label>
                                 <div class=""> <select multiselectdropdown ng-model="page.model.searchbranch" pagetype="'search'" multiple ng-options="item.value as item.label for item in page.model.branchArr">   
                               </select></div>
                             </div>
-                            <div class="col-lg-2 form-group">
+                            <div class="col-lg-2">
                                 <label for="" class="control-label col-lg-10 lblcls">Employee Status</label>
                                 <div class=""> <select multiselectdropdown pagetype="'search'" ng-model="page.model.empStatus" ng-options="item.value as item.label for item in page.model.empStatusArr">   
                               </select></div>
                             </div>
-                            <div class="col-lg-2 form-group">
+                            <div class="col-lg-2">
                                 <label for="" class="control-label col-lg-10 lblcls">Employee Type</label>
                                 <div class=""> <select multiselectdropdown ng-model="page.model.empType" pagetype="'search'" ng-options="item.value as item.label for item in page.model.empTypeArr" multiple>   
                               </select></div>
@@ -70,7 +69,7 @@
                     </div>
                 </md-tab>
                 <md-tab label="Create Employee" ng-click="page.model.reset();empFormCreation.$setPristine();">
-                    <div class="tab">
+                    <div class="tab" ng-if="page.model.selectedIndex===1">
                         <form name="empFormCreation" novalidate role="form" ng-submit="page.model.CreateEmployeeSubmit()" accessible-form>
                             <br>
                             <div class="row">
