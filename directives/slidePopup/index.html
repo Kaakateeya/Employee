@@ -14,13 +14,13 @@
                <span ng-bind-html="item.html"></span>
                 </label>
                 <div ng-if="!item.dataSource && item.controlType==='select'" class="pop_controls_right select-box-my input-group">
-                    <select multiselectdropdown ng-model="model[item.ngmodel]" typeofdata="item.typeofdata" ng-required="item.required" ng-change="ddlChange(model[item.firstparent],model[item.secondParent],item.childName,item.changeApi)"></select>
+                    <select multiselectdropdown ng-model="model[item.ngmodel]" typeofdata="item.typeofdata" ng-required="item.required" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi,model[item.firstparent])"></select>
                 </div>
                 <div ng-if="item.controlType==='select' && item.dataSource" class="pop_controls_right select-box-my input-group">
                     <select multiselectdropdown ng-model="model[item.ngmodel]" ng-required="item.required" ng-options="item1.value as item1.label for item1 in item.dataSource"></select>
                 </div>
                 <div ng-if="item.controlType==='Changeselect'" class="pop_controls_right select-box-my input-group">
-                    <select multiselectdropdown ng-model="model[item.ngmodel]" ng-required="item.required" ng-options="itm.value as itm.label for itm in item.dataSource" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi)"></select>
+                    <select multiselectdropdown ng-model="model[item.ngmodel]" ng-required="item.required" ng-options="itm.value as itm.label for itm in item.dataSource" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi,model[item.firstparent])"></select>
                 </div>
                 <div ng-if="item.controlType==='textbox'" class="pop_controls_right">
                     <input type="text" ng-model="model[item.ngmodel]" ng-change="model[item.method]();" maxlength="150" class="form-control" ng-required="item.required" />
@@ -56,7 +56,7 @@
                 </div>
 
                 <md-input-container ng-if="item.controlType==='radio'" style="font-weight: 700; color: black;margin-top:-1px;">
-                    <md-radio-group ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi)" ng-required="item.required" layout="row" ng-model="model[item.ngmodel]" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                    <md-radio-group ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi,model[item.firstparent])" ng-required="item.required" layout="row" ng-model="model[item.ngmodel]" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                         <md-radio-button ng-value="rd.value" ng-repeat="rd in item.dataSource" class="md-primary">{{rd.label}}</md-radio-button>
                     </md-radio-group>
                     <div ng-if="dynamicForm.$invalid && dynamicForm.$submitted">
@@ -96,14 +96,14 @@
                     <label id="Label1" style="color: red; font-size: 13px;" class="pull-right" ng-if="item.maxlength!=undefined">(max {{item.maxlength}} characters)</label>
                 </div>
                 <div ng-if="item.controlType==='multiselect'" class="pop_controls_right select-box-my input-group">
-                    <select multiselectdropdown ng-model="model[item.ngmodel]" multiple typeofdata="item.typeofdata" ng-required="item.required" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi)"></select>
+                    <select multiselectdropdown ng-model="model[item.ngmodel]" multiple typeofdata="item.typeofdata" ng-required="item.required" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi,model[item.firstparent])"></select>
                 </div>
                 <div ng-if="item.controlType==='Changemultiselect'" class="pop_controls_right select-box-my input-group">
-                    <select multiselectdropdown ng-model="model[item.ngmodel]" multiple ng-required="item.required" ng-options="inneritem.value as inneritem.label for inneritem in item.dataSource" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi)"></select>
+                    <select multiselectdropdown ng-model="model[item.ngmodel]" multiple ng-required="item.required" ng-options="inneritem.value as inneritem.label for inneritem in item.dataSource" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi,model[item.firstparent])"></select>
                 </div>
                 <div ng-if="item.controlType==='doublemultiselect'" class="pop_controls_right select-box-my select-box-my-double input-group">
-                    <select multiselectdropdown ng-model="model[item.ngmodelSelect1]" typeofdata="item.typeofdata" ng-required="item.required" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi)"></select>
-                    <select multiselectdropdown ng-model="model[item.ngmodelSelect2]" typeofdata="item.typeofdata" ng-required="item.required" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi)"></select>
+                    <select multiselectdropdown ng-model="model[item.ngmodelSelect1]" typeofdata="item.typeofdata" ng-required="item.required" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi,model[item.firstparent])"></select>
+                    <select multiselectdropdown ng-model="model[item.ngmodelSelect2]" typeofdata="item.typeofdata" ng-required="item.required" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi,model[item.firstparent])"></select>
                 </div>
                 <div ng-if="item.controlType==='astroTimeOfBirth'" class="pop_controls_right select-box-my select-box-my-trible select-box-my-trible3 input-group">
                     <select multiselectdropdown ng-model="model.ddlFromHours" ng-options="item.value as item.label for item in model.hrsbindArr" required></select>

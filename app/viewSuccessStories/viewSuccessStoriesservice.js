@@ -11,6 +11,15 @@
         return {
             viewSuccessStories: function(obj) {
                 return http.post(app.apiroot + 'smallPages/ViewSuccessStories', obj);
+            },
+            getBrideGroomDatanew: function(profileid, flag) {
+                return http.get(app.apiroot + 'smallPages/GetbrideGroomDataNew', { params: { profileID: profileid, iFlag: flag } });
+            },
+            getBrideGroomData: function(profileid, flag) {
+                return http.get(app.apiroot + 'smallPages/GetbrideGroomData', { params: { profileID: profileid, iFlag: flag } });
+            },
+            createSuccessStory: function(obj) {
+                return http.post(app.apiroot + 'smallPages/createSuccessStories', obj);
             }
         };
     }

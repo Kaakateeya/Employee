@@ -29,15 +29,14 @@
             scope.getExpression = function(val) {
                 return val;
             };
-            scope.ddlChange = function(value, value2, text, apiPath) {
+            scope.ddlChange = function(value, value2, text, apiPath, firstval) {
                 if (apiPath) {
 
                     if (value2) {
 
-                        SelectBindService[apiPath](commonFactory.listSelectedVal(value2), commonFactory.listSelectedVal(value)).then(function(res) {
+                        SelectBindService[apiPath](commonFactory.listSelectedVal(value2), commonFactory.listSelectedVal(firstval)).then(function(res) {
                             _.map(_.where(scope.model.popupdata, { parentName: text }), function(item) {
                                 var depData = [];
-                                debugger;
                                 _.each(res.data, function(item) {
                                     depData.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                 });
@@ -104,8 +103,13 @@
                 }
 
                 if (scope.model[item.ngmodel] && item.childName) {
-                    scope.ddlChange(scope.model[item.firstparent], scope.model[item.secondParent], item.childName, item.changeApi);
+                    scope.ddlChange(scope.model[item.ngmodel], scope.model[item.secondParent], item.childName, item.changeApi, scope.model[item.firstparent]);
                 }
+
+
+
+
+
             });
 
             scope.model.returnString = function(str) {
