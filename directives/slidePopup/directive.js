@@ -37,7 +37,6 @@
                         SelectBindService[apiPath](commonFactory.listSelectedVal(value2), commonFactory.listSelectedVal(value)).then(function(res) {
                             _.map(_.where(scope.model.popupdata, { parentName: text }), function(item) {
                                 var depData = [];
-                                debugger;
                                 _.each(res.data, function(item) {
                                     depData.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                 });

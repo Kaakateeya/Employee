@@ -291,7 +291,6 @@
         };
 
         model.generatedhoroS3Upload = function() {
-            debugger;
             // s3obj.Path = 'http:\\e.kaakateeya.com\\access\\Images\HoroscopeImages\\91022_HaroscopeImage\\91022_HaroscopeImage.html';
             // s3obj.Path.replace('C:\\inetpub\\wwwroot\\access\\', 'http:\\e.kaakateeya.com\\access\\');
             editAstroService.GenerateHoroS3(s3obj).then(function(response) {});

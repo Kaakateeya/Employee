@@ -112,7 +112,6 @@
                     return links;
                 };
                 model.arrayToString = function(string) {
-                    debugger;
                     return string !== null && string !== "" && string !== undefined ? (string.split(',')).map(Number) : null;
                 };
                 model.authorizepopup = function(row, type, index) {

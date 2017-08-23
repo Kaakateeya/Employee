@@ -9,6 +9,7 @@
              vm.init = function() {
                  vm.model = model = paymentAuthorizationModel;
                  vm.model.scope = scope;
+
                  model.init();
                  model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                  model.ticketownermarketing = "";
