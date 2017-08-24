@@ -545,6 +545,7 @@
                 model.nomatcheslink = function(obj) {
                     model.nomatchesobj = {};
                     model.nomatchesobj = obj;
+                    model.txtreasonnomatches = "";
                     commonpage.showPopupphotopoup('nomatchespopup.html', model.scope, 'md', "modalclassdashboardremainder");
                 };
                 model.nomatchessubmit = function() {
