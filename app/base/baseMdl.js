@@ -15,12 +15,9 @@
             model.menuItem();
             baseService.personalDetails(CustID).then(function(response) {
                 model.PersonalObj = response.data;
-
                 if (model.PersonalObj !== null && model.PersonalObj !== undefined) {
                     $rootScope.ProfileOwner = model.ProfileOwner = model.PersonalObj.ProfileOwner;
                     $rootScope.EditProfilePaidStatus = model.PersonalObj.PaidStatus;
-
-
                     model.isprofileOwner = (model.ProfileOwner ? parseInt(model.ProfileOwner) === parseInt(model.empid) : false) || (model.PersonalObj.PaidStatus !== undefined && model.PersonalObj.PaidStatus !== null ? parseInt(model.PersonalObj.PaidStatus) !== 1 : false);
                     baseService.nodatastatus(model.PersonalObj.ProfileID).then(function(res) {
                         model.rev = res.data;
@@ -95,9 +92,7 @@
 
                 });
             });
-
         };
-
         model.menuItem = function() {
             baseService.menudata(CustID).then(function(response) {
                 model.branchdata = JSON.parse(response.data)[0];
@@ -106,7 +101,6 @@
 
             });
         };
-
         model.photorequestAndshow = function() {
             if (model.PersonalObj.ProfilePic.indexOf('Fnoimage.jpg') !== -1 || model.PersonalObj.ProfilePic.indexOf('Mnoimage.jpg') !== -1) {
                 //photo request

@@ -4,13 +4,10 @@
     angular
         .module('Kaakateeya')
         .factory('dashboardAdminReportModel', factory);
-
     factory.$inject = ['dashboardAdminReportService'];
 
     function factory(dashboardAdminReportService) {
-
         var model = {};
-
         model.reports = function() {
             dashboardAdminReportService.getAdminReportsAllProfiles(2, "", "").then(function(response) {
                 console.log(response);
@@ -47,11 +44,9 @@
                         "EmpName": model.empname
                     });
                 });
-
                 console.log(model.dataSourcesmulti);
             });
         };
         return model;
-
     }
 })();

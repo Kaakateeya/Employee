@@ -221,6 +221,26 @@
         </div>
     </div>
 </div>
+<script type="text/ng-template" id="namesurnamealert.html">
+    <div class="alert-danger">
+        <div class="modal-header">
+            <a href="javascript:void(0);" class="pull-right" ng-click="page.model.close();">
+                <span class="fa fa-close red"></span>
+            </a>
+            <h4 class="modal-title">
+                <center>Alert</center>
+            </h4>
+        </div>
+    </div>
+    <div class="modal-body">
+        <center>
+            <p style="line-height: 1.8;" ng-bind-html="page.model.Alertnamesurname"></p>
+        </center>
+    </div>
+    <div class="modal-footer">
+        <input type="button" value="close" class="btn btn-default" ng-click="page.model.close();">
+    </div>
+</script>
 <style>
     .btn-group {
         width: 98%;

@@ -151,9 +151,7 @@
                     model.reset();
                     model.selectedIndex = 0;
                 }
-
             });
-
         };
 
         model.EditSuccessStories = function(row) {

@@ -35,7 +35,6 @@
                 model.gridtable9.type = 'grid9';
                 model.showplus = false;
                 model.sendexpressinterestservice = function(row) {
-
                     // var obj = {
                     //     EncriptedText: null,
                     //     EncriptedTextrvr: null,
@@ -66,7 +65,6 @@
                     return dd;
                 };
                 model.paymentstatus = function(row) {
-
                     var dd = "";
                     var payment = row.Payment === 1 || row.Payment === '1' ? 'Paid' : 'Unpaid';
                     dd = "<p>" + payment + "</p>";
@@ -159,7 +157,6 @@
                         { text: 'Expiry Date', key: 'expirydate', type: 'label' }
 
                     ];
-
                     model.gridtable6.columns = [
                         { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
                         { text: 'Name', key: 'NAME', type: 'label' },
@@ -173,8 +170,6 @@
                         { text: 'CreatedDate', key: 'CreatedDate', type: 'label' },
                         { text: 'Service', key: 'CreatedDate', type: 'customlink', templateUrl: model.sendservicemailprofile, method: model.sendexpressinterestservice }
                     ];
-
-
                     model.gridtable9.columns = [
                         { text: 'Membership', key: 'membershiptype', type: 'label' },
                         { text: 'Agreed', key: 'AgreedAmount', type: 'label' },
@@ -186,7 +181,6 @@
                         { text: 'Entered', key: 'Used', type: 'morelinks', templateUrl: model.enteredbyemployee }
                         // { text: 'Enteredbyemp', key: 'CreatedByEmpID', type: 'morelinks', templateUrl: model.enteredbyemployee }
                     ];
-
                     customerFactsheetService.getVerifyProfileid(model.txtprofileidfactsheet).then(function(respo) {
                         if (respo.data && parseInt(respo.data) === 1) {
                             customerFactsheetService.CustomerFactsheetDetails(model.txtprofileidfactsheet).then(function(response) {
@@ -228,9 +222,7 @@
                                     model.gridtable8.mainArray = model.sendarray8.length > 0 ? (model.sendarray8) : ["1"];
                                     model.gridtable8.data = model.gridtable8.mainArray;
                                 }
-
                             });
-
                             customerFactsheetService.getEmployeePayment(model.txtprofileidfactsheet).then(function(responses) {
                                 if (_.isArray(responses.data) && responses.data.length > 0) {
                                     console.log(responses.data);
@@ -244,7 +236,6 @@
                         }
                     });
                 };
-
                 model.sendenailviewprofile = function() {
                     customerFactsheetService.custmorfactsheetsendMail(model.txtprofileidfactsheet).then(function(respo) {
                         if (respo.data && parseInt(respo.data) === 1) {
@@ -312,7 +303,6 @@
                 model.closepopup = function() {
                     modelpopupopenmethod.closepopup();
                 };
-
                 return model;
             }
         ]);

@@ -1,6 +1,5 @@
  (function() {
      'use strict';
-
      angular
          .module('Kaakateeya')
          .controller('dashboardAdminReportCtrl', ['dashboardAdminReportModel', '$scope',
@@ -11,7 +10,6 @@
                  vm.init = function() {
                      vm.model = model = dashboardAdminReportModel;
                      model.scope = scope;
-
                      model.charts = {
                          //  "caption": "Comparison of Work Sheet",
                          // "subCaption": "Last year Vs This year",
@@ -75,10 +73,7 @@
                              "label": "Nohoro"
                          }]
                      }];
-
                      model.reports();
-
-
                  };
                  vm.init();
              }
