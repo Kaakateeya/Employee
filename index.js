@@ -109,7 +109,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'viewUploadSettledProfiles', name: 'base.viewUploadSettledProfiles', url: '/viewUploadSettledProfilesPage', isloginrequired: true },
             { routeName: 'ReportsofEmployees', name: 'base.ReportsofEmployees', url: '/ReportsofEmployee', isloginrequired: true },
             { routeName: 'viewSuccessStories', name: 'base.viewSuccessStories', url: '/viewSuccessStoriesPage', isloginrequired: true },
-            { routeName: 'NomatchesReasonpage', name: 'base.NomatchesReasonpage', url: '/NomatchesReason', isloginrequired: true }
+            { routeName: 'NomatchesReasonpage', name: 'base.NomatchesReasonpage', url: '/NomatchesReason', isloginrequired: true },
+            { routeName: 'oldKmplKeywordSearch', name: 'base.oldKmplKeywordSearch', url: '/oldKmplKeywordSearchpage', isloginrequired: true }
 
         ];
         $ocLazyLoadProvider.config({

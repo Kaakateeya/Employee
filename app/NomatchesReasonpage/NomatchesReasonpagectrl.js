@@ -10,7 +10,7 @@
                  vm.model = model = NomatchesReasonpageModel;
                  model.scope = scope;
                  model.opendiv = false;
-                 //  model.resetreports();
+                 model.resetreports();
                  model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                  model.binddata();
              };

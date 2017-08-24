@@ -10,10 +10,14 @@
         model.pageloadbindings = function() {
             NomatchesReasonpageService.getMyprofilebind(1, 2, '').then(function(response) {
                 model.Brancharray = [];
+                model.ProfileOwnerarray = [];
                 _.each(response.data, function(item) {
                     switch (item.CountryCode) {
                         case "Branch":
                             model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                            break;
+                        case "Profile Owner":
+                            model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID, "display": item.Name });
                             break;
                     }
                 });
@@ -23,10 +27,17 @@
             model.Brancharray = [];
             model.Brancharray = Commondependency.branch((model.rbtnregional !== undefined && model.rbtnregional !== null && model.rbtnregional !== "" && model.rbtnregional !== 0 && model.rbtnregional !== '0') ? (model.rbtnregional) : "");
         };
+
+
+        model.onchangeemployee = function() {
+            model.ProfileOwnerarray = [];
+            model.ProfileOwnerarray = Commondependency.branch((model.tmarketingbranch !== undefined && model.tmarketingbranch !== null && model.tmarketingbranch !== "" && model.tmarketingbranch !== 0 && model.tmarketingbranch !== '0') ? (model.tmarketingbranch) : "");
+        }
         model.resetreports = function() {
             model.rbtnregional = "";
             timeout(function() {
                 model.tmarketingbranch = "";
+                model.tmarketingempname = "";
             }, 50);
             model.pageloadbindings();
         };
