@@ -94,6 +94,7 @@
                 model.region = '';
                 model.empType = '';
                 model.isLoginAnywhere = '';
+                model.modelEmpPhoto = '';
             };
             model.EmpPhotopopup = function(src, userid, empid) {
                 model.uploadUserid = userid;

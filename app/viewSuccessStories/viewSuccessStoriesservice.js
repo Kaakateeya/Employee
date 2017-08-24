@@ -20,6 +20,9 @@
             },
             createSuccessStory: function(obj) {
                 return http.post(app.apiroot + 'smallPages/createSuccessStories', obj);
+            },
+            deleteSucessStory: function(photoID, brideProfileid, groomProfileid) {
+                return http.get(app.apiroot + 'smallPages/deleteSucessStories', { params: { sucessStoryID: photoID, brideProfileID: brideProfileid, groomProfileID: groomProfileid } });
             }
         };
     }

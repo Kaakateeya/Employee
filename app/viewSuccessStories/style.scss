@@ -18,4 +18,14 @@
     .nav-sm .container.body .right_col {
         padding: 35px 20px !important;
     }
+    .imglarge:hover {
+        position: relative;
+        top: -25px;
+        left: -35px;
+        width: 400px !important;
+        height: 300px !important;
+        display: block;
+        z-index: 9999999;
+        position: absolute;
+    }
 }
