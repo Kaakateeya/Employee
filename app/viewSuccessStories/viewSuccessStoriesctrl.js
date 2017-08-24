@@ -17,6 +17,9 @@
              model.opendiv = true;
              model.scope = scope;
              model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+             model.typeofAction = '';
+             model.reset();
+
          };
 
          vm.init();
