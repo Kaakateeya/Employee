@@ -1,31 +1,22 @@
 (function(angular) {
     'use strict';
 
-
     function factory(editAstroService, authSvc, alertss, commonFactory, uibModal, fileUpload, http, stateParams) {
-
         var model = {};
         model.scope = {};
-
         // declaration part
-
         model.atroObj = [];
         model.generateData = [];
         model.ImageUrl = '';
         model.iframeShow = false;
         var s3obj = {};
-
         var loginEmpid = authSvc.LoginEmpid();
         var AdminID = authSvc.isAdmin();
         var custID = model.CustID = stateParams.CustID;
         model.eventType = 'add';
-
         var isSubmit = true;
-
         model.loginpaidstatus = authSvc.getpaidstatus();
-
         // end declaration part
-
         model.init = function() {
             custID = model.CustID = stateParams.CustID;
             model.astropageload();
@@ -34,18 +25,13 @@
             model.ddlFromSeconds = '';
             return model;
         };
-
         model.astropageload = function() {
-
             editAstroService.getAstroData(stateParams.CustID).then(function(response) {
-
                 if (response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
                     if (commonFactory.checkvals(response.data[0])) {
                         model.AstroArr = JSON.parse(response.data[0]);
                         model.generateData = JSON.parse(response.data[1]);
-
                         if (commonFactory.checkvals(model.AstroArr[0] && commonFactory.checkvals(model.AstroArr[0].Horoscopeimage))) {
-
                             if (commonFactory.checkvals(model.AstroArr[0].Horoscopeimage) && (model.AstroArr[0].Horoscopeimage).indexOf('Horo_no') === -1) {
                                 var extension = "jpg";
                                 if ((model.AstroArr[0].Horoscopeimage).indexOf('.html') !== -1) {
@@ -54,7 +40,6 @@
                                     model.iframeShow = false;
                                     extension = "jpg";
                                 }
-
                                 model.ImageUrl = app.GlobalImgPath + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
                                 if (extension === "html") {
                                     model.iframeShow = true;
@@ -77,17 +62,11 @@
                                 }
                             }
                         }
-
                     }
-
                 }
-
             });
-
         };
-
         model.populateAstro = function(item) {
-
             model.hrsbindArr = commonFactory.numberBindWithZeros('Hours', 0, 23);
             model.minbindArr = commonFactory.numberBindWithZeros('Minutes', 0, 59);
             model.secbindArr = commonFactory.numberBindWithZeros('Seconds', 0, 59);
@@ -117,21 +96,14 @@
                 model.rdlkujaDosham = item.manglikID;
             }
             commonFactory.open('astroContent.html', model.scope, uibModal);
-
-
         };
-
         model.changeBind = function(type, parentval) {
-
             switch (type) {
-
                 case 'star':
-
                     model.starArr = commonFactory.starBind(parentval);
                     break;
             }
         };
-
         model.updateData = function(inObj, type) {
             if (isSubmit) {
                 isSubmit = false;
@@ -168,16 +140,13 @@
                 } else {
                     model.populateAstro();
                 }
-
             }
         };
 
         model.upload = function(obj) {
             var extension = (obj.myFile.name !== '' && obj.myFile.name !== undefined && obj.myFile.name !== null) ? (obj.myFile.name.split('.'))[1] : null;
             var gifFormat = "gif, jpeg, png,jpg";
-
             if (typeof(obj.myFile.name) != "undefined") {
-
                 var size = parseFloat(obj.myFile.size / 1024).toFixed(2);
                 if (extension !== null && gifFormat.indexOf(angular.lowercase(extension)) === -1) {
                     alert('Your uploaded image contains an unapproved file formats.');
@@ -186,9 +155,7 @@
                 } else {
                     // var extension = ((obj.myFile.name).split('.'))[1];
                     var keyname = "Images/Horoscopeimages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
-
                     fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
-
                         if (res.status == 200) {
                             commonFactory.closepopup();
                             model.uploadData = {
@@ -200,32 +167,24 @@
                                 IsActive: keyname.indexOf('html') !== -1 ? 1 : 0,
                                 i_flag: 1
                             };
-
                             editAstroService.uploadDeleteAstroData(model.uploadData).then(function(response) {
-
                                 commonFactory.closepopup();
-
                                 model.astropageload(custID);
-
                                 model.ImageUrl = app.GlobalImgPathforimage + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
                             });
                         }
                     });
-
                 }
             } else {
                 alert("This browser does not support HTML5.");
             }
         };
-
         model.generateHoro = function(astrocity) {
             var check = moment((model.generateData)[0].DateOfBirth, 'YYYY/MM/DD');
             var month = check.format('M');
             var day = check.format('D');
             var year = check.format('YYYY');
-
             var inputobj = { customerid: custID, EmpIDQueryString: "2", intDay: day, intMonth: month, intYear: year, CityID: commonFactory.checkvals(astrocity) ? astrocity : "" };
-
             editAstroService.generateHoroscope(inputobj).then(function(response) {
                 if (commonFactory.checkvals(response.data.AstroGeneration)) {
                     // response.data.Path = (response.data.Path).Replace("\",'\\');
@@ -240,28 +199,20 @@
                 }
             });
         };
-
         model.deleteHoroImage = function() {
-
             var extension = "jpg";
-
             // if ((model.AstroArr[0].Horoscopeimage).indexOf('.html')) {
             //     extension = "html";
             // } else {
             //     extension = "jpg";
             // }
             var keynameq = "Images/Horoscopeimages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
-            http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {
-
-            });
-
+            http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {});
             model.uploadData = {
                 Cust_ID: custID,
                 i_flag: 0
             };
-
             editAstroService.uploadDeleteAstroData(model.uploadData).then(function(response) {
-
                 if (response.data === 1 || response.data === '1') {
                     model.astropageload(custID);
                     commonFactory.closepopup();
@@ -273,14 +224,10 @@
         model.shoedeletePopup = function() {
             commonFactory.open('deletehoroPopup.html', model.scope, uibModal, 'sm');
         };
-
-
         model.AstroCityChange = function(val) {
             model.generateHoro(val);
         };
-
         model.vewHoro = function() {
-
             if (model.ImageUrl !== null && model.ImageUrl !== '' && model.ImageUrl !== undefined) {
                 if (model.ImageUrl.indexOf('.html') !== -1) {
                     window.open('' + model.ImageUrl + '', '_blank');
@@ -297,7 +244,6 @@
             model.astropageload(custID);
             commonFactory.closepopup();
         };
-
         model.astro = [{
                 lblname: 'Time of Birth',
                 controlType: 'astroTimeOfBirth',
@@ -333,16 +279,8 @@
             { "label": "No", "title": "No", "value": 1 },
             { "label": "Dont't Know", "title": "Dont't Know", "value": 2 }
         ];
-
-
-
-
-
-
-
         return model;
     }
-
     angular
         .module('Kaakateeya')
         .factory('editAstroModel', factory);

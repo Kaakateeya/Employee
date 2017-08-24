@@ -11,7 +11,6 @@
              editAstroModel.init();
              vm.model.scope = scope;
          };
-
          vm.init();
      }
      angular

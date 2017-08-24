@@ -1,26 +1,19 @@
  (function() {
      'use strict';
-
      angular
          .module('Kaakateeya')
-         .controller('NomatchesReasonpageCtrl', controller);
-
-     controller.$inject = ['NomatchesReasonpageModel', '$scope'];
-
-     function controller(NomatchesReasonpageModel, scope) {
-         /* jshint validthis:true */
-         var vm = this,
-             model;
-
-         vm.init = function() {
-             vm.model = model = NomatchesReasonpageModel;
-             model.scope = scope;
-             model.opendiv = false;
-             model.resetreports();
-
-         };
-
-         vm.init();
-
-     }
+         .controller('NomatchesReasonpageCtrl', ['NomatchesReasonpageModel', '$scope', 'authSvc', function(NomatchesReasonpageModel, scope, authSvc) {
+             /* jshint validthis:true */
+             var vm = this,
+                 model;
+             vm.init = function() {
+                 vm.model = model = NomatchesReasonpageModel;
+                 model.scope = scope;
+                 model.opendiv = false;
+                 //  model.resetreports();
+                 model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+                 model.binddata();
+             };
+             vm.init();
+         }]);
  })();

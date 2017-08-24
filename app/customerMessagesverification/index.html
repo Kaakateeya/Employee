@@ -42,13 +42,11 @@
                         <md-radio-button value="1" class="md-primary">Accept</md-radio-button>
                         <md-radio-button value="0"> Reject</md-radio-button>
                     </md-radio-group>
-
                     <div ng-messages="messageform.rbtntypeaccept.$invalid">
                         <div style="color: red;font-size: 14px;" ng-if="messageform.rbtntypeaccept.$invalid && (messageform.$submitted)">This is required.</div>
                     </div>
                 </div>
             </div>
-
             <br>
             <div class="row">
                 <button type="submit" class="button_custom col-lg-offset-5" style="display:initial;">Update</button>

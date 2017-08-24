@@ -15,8 +15,6 @@
                 model.normalexcel = true;
                 model.gridTableshow = false;
                 model.showplus = false;
-
-
                 model.singlegrid1 = {};
                 model.singlegrid2 = {};
                 model.singlegrid3 = {};
@@ -27,8 +25,6 @@
                 model.myprofileexcel = false;
                 model.normalexcel = false;
                 model.gridTableshow = false;
-
-
                 model.dateOptions = {
                     changeMonth: true,
                     changeYear: true,
@@ -37,14 +33,11 @@
                     minDate: null,
                     maxDate: null
                 };
-
                 model.ProfileIdTemplateDUrl = function(row) {
-
                     var paidstatusclass = row.IsPaidMember === 372 ? 'paidclass' : 'unpaid';
                     var paid = row.ProfileID !== undefined ? "<a href='javascript:void(0);' ng-click='model.ViewProfile(" + JSON.stringify(row.ProfileID) + ")' class='" + paidstatusclass + "'>" + row.ProfileID + "</a><br><a href='javascript:void(0);' ng-click='model.getDuplicate(" + JSON.stringify(row.ProfileID) + ");'>Find duplicate</a>" : "";
                     return paid;
                 };
-
                 model.dupProfile = function(row) {
                     var paidstatusclass = row.IsPaidMember === 372 ? 'paidclass' : 'unpaid';
                     var paid = row.ProfileID !== undefined ? "<a href='javascript:void(0);' ng-click='model.ViewProfile(" + JSON.stringify(row.ProfileID) + ")' class='" + paidstatusclass + "'>" + row.ProfileID + "</a>" : "";
@@ -57,7 +50,6 @@
                     });
                     return arr;
                 }
-
                 model.checkPopulateval = function(val) {
                     return (val && _.where(model.ProfileOwnerarray, { value: parseInt(val) }).length > 0) ? val : 0;
                 };
@@ -76,7 +68,6 @@
                 model.EnteredBytext = function(row) {
                     return row.EnteredBy !== undefined && row.EnteredBy !== null && row.EnteredBy !== "" ? row.EnteredBy : "--";
                 };
-
                 model.assignsettingsubmit = function(row) {
                     var PreviousOwner;
                     var checkOwner = row.ProfileOwner ? _.where(model.ProfileOwnerarray, { value: parseInt(row.ProfileOwner) })[0] : undefined;
@@ -93,14 +84,10 @@
                     };
                     assignSettingsService.assignsubmit(obj).then(function(response) {
                         if (parseInt(response.data) === 1) {
-
                             // msg, tktID, empid, assignEmpid
                             SelectBindServicereg.memoSubmit((PreviousOwner ? PreviousOwner + ' profile ' : 'This profile ') + 'assigned to ' + row.ddlowner1 + ' and  Assigned by ' + authSvc.LoginEmpName(), row.TicketID, model.empid, row.ddlowner.value).then(function(response) {
-                                if (parseInt(response.data) === 1) {
-
-                                }
+                                if (parseInt(response.data) === 1) {}
                             });
-
                             alerts.timeoutoldalerts(model.scope, 'alert-success', 'Profile Assigned Successfully', 3000);
                         } else {
                             alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Profile Assigned Fail', 3000);
@@ -123,7 +110,6 @@
                     { text: 'Caste', key: 'Caste', type: 'label' },
                     { text: 'Marketing Ticket', key: 'Marketingticketid', type: 'customlink', templateUrl: model.Marketingticketid, method: model.tickethistorypopup },
                 ];
-
                 model.MyProfilePageLoad = function() {
                     assignSettingsService.getMyprofilebind(1, 2, '').then(function(response) {
                         model.applicationStatusarray = [];
@@ -154,12 +140,9 @@
                         _.each(model.Brancharray, function(item) {
                             model.mpObj.ddlBranch.push(item.value);
                         });
-
                         // timeout(function() {
-
                         //     model.mpObj.ddlBranch = vals;
                         // }, 500);
-
                     });
                 };
                 model.returnnullvalue = function(value) {
@@ -281,7 +264,6 @@
                     model.singlegrid2.sdata = [];
                     model.singlegrid3.sdata = [];
                     model.dupTotalRecords = 0;
-
                     assignSettingsService.getDuplicatProfiles(profileID).then(function(response) {
                         model.singlegrid1.sdata = response.data[0];
                         model.singlegrid2.sdata = response.data[1];

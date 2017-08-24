@@ -10,7 +10,6 @@
      function controller(EmployeePaymentInsertnewModel, stateParams, scope) {
          var vm = this,
              model;
-
          vm.reset = function() {
              model.custobj = {};
              vm.model.PiObj = {};
@@ -20,7 +19,6 @@
              model.StartDateparam = '';
              model.endDateparam = '';
          };
-
          vm.init = function() {
              vm.model = model = {};
              vm.model = model = EmployeePaymentInsertnewModel;
@@ -30,13 +28,9 @@
              vm.model.getpaymentProfile(stateParams.ProfileID);
              vm.model.PiObj.rbtnmail = 1;
              //  var expirydate = '08/25/2017';
-             //  debugger;
              //  if (expirydate > moment().format('MM/DD/YYYY')) {
-
              //  } else if (expirydate < moment().format('MM/DD/YYYY')) {
-
              //  } else if (expirydate === moment().format('MM/DD/YYYY')) {
-
              //  }
          };
          vm.Number = Number;

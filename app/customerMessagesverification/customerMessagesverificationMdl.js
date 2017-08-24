@@ -71,7 +71,6 @@
                         }
                     });
                 };
-
                 model.updatecustomermessages = function(message, messageid, acceptrejectflag) {
                     var obj = {
                         FromCustID: null,

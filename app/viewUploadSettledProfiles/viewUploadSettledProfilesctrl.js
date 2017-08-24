@@ -4,14 +4,12 @@
      angular
          .module('Kaakateeya')
          .controller('viewUploadSettledProfilesCtrl', controller);
-
      controller.$inject = ['viewUploadSettledProfilesModel', '$scope', 'authSvc'];
 
      function controller(viewUploadSettledProfilesModel, scope, authSvc) {
          /* jshint validthis:true */
          var vm = this,
              model;
-
          vm.init = function() {
              vm.model = model = viewUploadSettledProfilesModel;
              vm.model.typeOfReference = '';
@@ -25,8 +23,6 @@
              model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
              model.Admin = authSvc.isAdmin();
          };
-
          vm.init();
-
      }
  })();

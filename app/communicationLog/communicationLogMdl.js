@@ -32,13 +32,10 @@
                         { StatusID: 394, classes: 'Deleted' },
                         { StatusID: 258, classes: 'closed' }
                     ];
-
                     return _.where(test, { StatusID: row.ProfileStatusID }).length >= 1 ? _.where(test, { StatusID: row.ProfileStatusID })[0].classes : (_.where(test, { StatusID: row.TicketStatusID }).length >= 1 ? _.where(test, { StatusID: row.TicketStatusID })[0].classes : '');
                     // _.where(test, { StatusID: parseInt(row.ProfileStatusID) }).length > 0 ? _.where(test, { StatusID: parseInt(row.ProfileStatusID) })[0].classes : '';
                 };
-
                 model.addingserialnumber = function(array) {
-
                     var SNum = 1;
                     _.map(array, function(item) {
                         if (item.MFPStatus !== null) {
@@ -48,12 +45,10 @@
                         item.rowtype = model.rowStyle(item);
                         SNum++;
                     });
-
                     return array;
                 };
 
                 model.communicationlogsubmit = function(profileid) {
-
                     model.gridtable1.data = undefined;
                     model.gridtable2.data = undefined;
                     model.gridtable3.data = undefined;
@@ -72,24 +67,11 @@
                                 model.gridtable3.mainArray = [];
                                 model.gridtable4.mainArray = [];
                                 if ((response.data[0]).length !== 0 || (response.data[1]).length !== 0 || (response.data[2]).length !== 0 || (response.data[3]).length !== 0) {
-                                    // _.each(response.data[0], function(item) {
-                                    //     model.sendarray.push(item);
-                                    // });
-                                    // _.each(response.data[1], function(item) {
-                                    //     model.sendarray2.push(item);
-                                    // });
-                                    // _.each(response.data[2], function(item) {
-                                    //     model.sendarray3.push(item);
-                                    // });
-                                    // _.each(response.data[3], function(item) {
-                                    //     model.sendarray4.push(item);
-                                    // });
-
                                     model.sendarray = response.data[0];
                                     model.sendarray2 = response.data[1];
                                     model.sendarray3 = response.data[2];
                                     model.sendarray4 = response.data[3];
-
+                                    //1
                                     model.gridtable1.mainArray = model.sendarray.length > 0 ? model.addingserialnumber(model.sendarray) : [];
                                     model.gridtable1.TotalRows = model.sendarray.length > 0 ? model.sendarray[0].TotalRows : 0;
                                     model.gridtable1.data = model.gridtable1.mainArray;
@@ -122,7 +104,6 @@
                                     model.gridtable4.mainArray = [];
                                     modelpopupopenmethod.showPopupphotopoup('noServiceData.html', model.scope, 'md', "");
                                 }
-
                             });
 
                         } else {
@@ -134,8 +115,6 @@
                 model.close = function() {
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
-
-
                 model.ProfileIdTemplateDUrl = function(row) {
                     var paidstatusclass = row.Paid === 1 ? 'paidclass' : 'unpaid';
                     var paid = row.ProfileID !== undefined ? "<a class='" + paidstatusclass + "'>" + row.ProfileID + "</a>" : "";
@@ -148,7 +127,6 @@
                     var servicedone = row.BranchName !== undefined ? "<p>" + row.BranchName + "-->(" + row.EmpName + ")</p>" : "";
                     return servicedone;
                 };
-
                 model.Tickidwithtype = function(row) {
                     var ticketid = "";
                     var strMFPStatus = $.trim(row.MFPStatus);
@@ -158,7 +136,6 @@
                     ticketid = ticket !== "--" ? "<a>" + ticket + "</a>" + img : "";
                     return ticketid;
                 };
-
                 model.clickticketupdate = function(row) {
                     model.marketingTicket = row.Emp_FollowupTicket_ID;
                     model.TicketStatusID = row.TicketStatusID;
