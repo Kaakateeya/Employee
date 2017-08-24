@@ -18,4 +18,13 @@
             <div class="col-lg-2"><a href="javascript:void(0)">FatherSisterAll </a></div>
         </div>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-3">
+            <input style="width:185px;" type="text" class="form-control" ng-model="page.model.txtinputfileds" placeholder="List of Fields"></input>
+            <select style="height:600px;" multiple="multiple" ng-model="ddlFruits">
+                <option style="padding:4px;" ng-style="{'color':item.style}" ng-repeat="item in page.model.Searchfields" value="{{item.value}}">{{item.Text}}</option>
+           </select>
+        </div>
+    </div>
 </div>
