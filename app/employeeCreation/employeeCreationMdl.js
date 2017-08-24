@@ -10,8 +10,8 @@
             model.minbindArr = commonFactory.numberBindWithZeros('Minutes', 0, 59);
             model.minsArray = [
                 { label: 'Mins', value: '' },
-                { label: '00', value: 1 },
-                { label: '30', value: 2 }
+                { label: '00', value: 0 },
+                { label: '30', value: 30 }
             ];
             model.dateOptions = {
                 changeMonth: true,
@@ -163,10 +163,11 @@
                     model.fromHrs = parseInt((FromHrsArr[1]).split(':')[0]);
                     model.fromMins = parseInt((FromHrsArr[1]).split(':')[1]);
                 }
+                debugger;
                 if (row.WorkingEndTIme) {
-                    var ToHrsArr = (row.WorkingEndTIme).split(' ');
-                    model.toHrs = parseInt((ToHrsArr[1]).split(':')[0]);
-                    model.toMins = parseInt((ToHrsArr[1]).split(':')[1]);
+                    var ToHrsArr = moment(row.WorkingEndTIme).format('HH:mm:ss');
+                    model.toHrs = parseInt((ToHrsArr).split(':')[0]);
+                    model.toMins = parseInt((ToHrsArr).split(':')[1]);
                 }
                 timeout(function() {
                     model.weakOff = JSON.stringify(row.DayOff);
