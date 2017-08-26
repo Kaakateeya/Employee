@@ -63,8 +63,9 @@
             { text: 'Ticket ID', key: 'TicketOwnerIDName', type: 'label' },
             { text: 'Entered By', key: 'EnteredByEmpName', type: 'label' },
             { text: 'Entered Date', key: 'EnteredDate', type: 'morelinks', templateUrl: model.entereddatetemp },
-            { text: 'Reason', key: 'Reason', type: 'label' },
-            { text: '', key: '', type: 'morelinks', templateUrl: model.linktemplate }
+            { text: '', key: '', type: 'morelinks', templateUrl: model.linktemplate },
+            { text: 'Reason', key: 'Reason', type: 'label' }
+
         ];
         model.binddata = function() {
             NomatchesReasonpageService.getnomatchesreason('', '', '').then(function(response) {

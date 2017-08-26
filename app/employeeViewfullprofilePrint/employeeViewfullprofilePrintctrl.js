@@ -14,7 +14,9 @@
              model.basicinfo = [];
              model.forinbitinfo = {};
              model.nodatasisplay = {};
-             model.empid = parseInt(model.statecontacts) !== 0 ? (authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "") : "";
+             debugger;
+             //  model.empid = parseInt(model.statecontacts) !== 0 ? (authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "") : "";
+             model.empid = (authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "") ? authSvc.LoginEmpid() : "";
              model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
              model.Admin = authSvc.isAdmin();
              if (parseInt(model.stateprofileid) !== 0) {

@@ -92,7 +92,7 @@
                 GenderID: null,
                 PhotoStatus: '1',
                 strBranch: model.branch ? model.branch.join(',') : null,
-                strRegion: model.region ? model.region.join(',') : null,
+                strRegion: model.region.length > 0 ? model.region.join(',') : null,
                 strCaste: model.caste ? model.caste.join(',') : null,
                 StartDate: model.uploadedFrom ? moment(model.uploadedFrom).format('YYYY-MM-DD hh:mm:ss') : null,
                 EnDate: model.uploadedTo ? moment(model.uploadedTo).format('YYYY-MM-DD hh:mm:ss') : null,
