@@ -124,7 +124,7 @@
             commonFactory.closepopup();
         };
         model.profileSettingAndDispalySubmit = function(IProfileDisplayName, ILoginStatusName, IBlockedreason, ITypeofReport, Icurrentprofilestatusid, Iprofilegrade, INoofDaysinactivated, IReason4InActive,
-            IRequestedBy) {
+            IRequestedBy, type) {
             model.Mobj = {
                 intCusID: custID,
                 EmpID: model.empid,
@@ -140,7 +140,8 @@
                 Blockedreason: IBlockedreason
             };
             editProfileSettingService.submitProfileSettingAndDispalyData(model.Mobj).then(function(response) {
-                commonFactory.closepopup();
+                if (type !== 'mmseries')
+                    commonFactory.closepopup();
                 if (response.data === 1) {
                     model.pageload();
                     alertss.timeoutoldalerts(model.scope, 'alert-success', 'Profile Settings Submitted Succesfully', 4500);
@@ -259,6 +260,12 @@
             { "label": "B", "title": "B", "value": 2 },
             { "label": "C", "title": "C", "value": 3 }
         ];
+
+
+        model.makeActive = function(item) {
+            model.profileSettingAndDispalySubmit('', '', '', "ProfileSettings", 54, item.ProfileGradeID, undefined, undefined,
+                undefined, 'mmseries');
+        };
 
         return model;
     }

@@ -17,6 +17,7 @@
                                 </h6>
                                 <h5>
                                     <span>{{item.ProfileStatus}}</span>
+                                    <span ng-if="item.ProfileStatus==='MMSerious'" class="p-l-7"><a href="javascript:void(0);" ng-click="page.model.makeActive(item);">make active</a></span>
                                 </h5>
                             </div>
                         </div>

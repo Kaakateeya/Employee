@@ -42,6 +42,7 @@
                                 _.each(res.data, function(item) {
                                     depData.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                 });
+                                item.dataSource = undefined;
                                 item.dataSource = [];
                                 item.dataSource = depData;
 
@@ -54,7 +55,7 @@
                                 _.each(res.data, function(item) {
                                     depData.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                 });
-                                // item.dataSource = undefined;
+                                item.dataSource = undefined;
                                 item.dataSource = [];
                                 item.dataSource = depData;
                             });
@@ -103,13 +104,10 @@
                         scope.model[item.strland] = undefined;
                         scope.model[item.strmail] = undefined;
                     }
-
+                    if (item.controlType === 'Changeselect') {
+                        item.dataSource = [];
+                    }
                 }
-
-                if (item.controlType === 'Changeselect') {
-                    item.dataSource = [];
-                }
-
 
                 if (scope.model[item.ngmodel] && item.childName) {
                     scope.ddlChange(scope.model[item.ngmodel], scope.model[item.secondParent], item.childName, item.changeApi, scope.model[item.firstparent]);

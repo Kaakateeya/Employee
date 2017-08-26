@@ -1,28 +1,4 @@
-// @mixin marginbottom($value) {
-//     .m-b-#{$value} {
-//         margin-bottom: $value+"px";
-//     }
-// }
-// @mixin set-value($properties, $value) {
-//     @each $prop in $properties {
-//         .m-b-#{$value} {
-//             margin-bottom: $value+"px";
-//         }
-//     }
-// }
-// .login-box {
-//     @include set-value(top, 14px);
-// }
-// @function m-b-($value) {
-//     @return margin-bottom=$value+"px";
-// }
-// @include marginbottom(2);
-// @include marginbottom(2);
-// @include marginbottom(2);
-// @function m-b-($value) {
-//     @return margin-bottom=$value+"px";
-// }
-$columns: 1000;
+$columns: 100;
 @mixin margin($b, $type) {
     @for $i from 1 through $columns {
         .m-#{$b}-#{$i} {
@@ -31,41 +7,19 @@ $columns: 1000;
     }
 }
 
+@mixin padding($b, $type) {
+    @for $i from 1 through $columns {
+        .p-#{$b}-#{$i} {
+            padding-#{$type}:#{$i}px;
+        }
+    }
+}
+
 @include margin("b", 'bottom');
 @include margin("t", 'top');
 @include margin("l", 'left');
 @include margin("r", 'right');
-body {
-    background-color: #bdc3c7;
-}
-
-.table-fixed {
-    width: 100%;
-    background-color: #f3f3f3;
-    tbody {
-        height: 200px;
-        overflow-y: auto;
-        width: 100%;
-    }
-    thead,
-    tbody,
-    tr,
-    td,
-    th {
-        display: block;
-    }
-    tbody {
-        td {
-            float: left;
-        }
-    }
-    thead {
-        tr {
-            th {
-                float: left;
-                background-color: #f39c12;
-                border-color: #e67e22;
-            }
-        }
-    }
-}
+@include padding("b", 'bottom');
+@include padding("t", 'top');
+@include padding("l", 'left');
+@include padding("r", 'right');
