@@ -218,10 +218,10 @@
             var name = model.brideCustID + '_' + model.groomCustID + '_SuccessImage',
                 keynameq = '';
 
-            // keynameq = 'Images/SuccessStoryImages/' + name + '/' + name + '.jpg';
-            // http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {
+            keynameq = 'Images/SuccessStoryImages/' + name + '/' + name + '.jpg';
+            http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {
 
-            // });
+            });
 
             viewSuccessStoriesService.deleteSucessStory(model.dPhotoID, model.dBrideProfileID, model.dGroomProfileID).then(function(response) {
                 if (response.data === 1) {
