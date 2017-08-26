@@ -3,5 +3,90 @@
     /* background-color: rgba(99, 56, 31, 0.46); */
 }
 
+.i {
+    width: 500px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font: 14px/1 Arial, sans-serif;
+}
+
+#tableid table {
+    border-collapse: collapse;
+    background: white;
+    table-layout: fixed;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pane {
+    background: #eee;
+}
+
+.headerTbl {
+    width: calc(100% - 1.3em);
+}
+
+.pane-hScroll {
+    overflow: auto;
+    width: calc(100% - 0.9em);
+    background: white
+}
+
+.pane-vScroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 400px;
+}
+
+ ::-webkit-scrollbar {
+    width: 12px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgb(243, 239, 239);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+ ::-webkit-scrollbar-thumb:window-inactive {
+    background: rgb(243, 239, 239);
+}
+
+.headerStyles {
+    background-color: #fdca52;
+    color: black;
+}
+
+.totalrecordCls {
+    margin-top: 10px;
+}
+
 
 /*# sourceMappingURL=style.css.map */

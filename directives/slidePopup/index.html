@@ -20,7 +20,7 @@
                     <select multiselectdropdown ng-model="model[item.ngmodel]" ng-required="item.required" ng-options="item1.value as item1.label for item1 in item.dataSource"></select>
                 </div>
                 <div ng-if="item.controlType==='Changeselect'" class="pop_controls_right select-box-my input-group">
-                    <select multiselectdropdown ng-model="model[item.ngmodel]" ng-required="item.required" ng-options="itm.value as itm.label for itm in item.dataSource" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi,model[item.firstparent])"></select>
+                    <select ng-if="item.dataSource" multiselectdropdown ng-model="model[item.ngmodel]" ng-required="item.required" ng-options="itm.value as itm.label for itm in item.dataSource" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi,model[item.firstparent])"></select>
                 </div>
                 <div ng-if="item.controlType==='textbox'" class="pop_controls_right">
                     <input type="text" ng-model="model[item.ngmodel]" ng-change="model[item.method]();" maxlength="150" class="form-control" ng-required="item.required" />
