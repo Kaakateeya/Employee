@@ -37,7 +37,7 @@
         </div>
     </uib-accordion>
     <div class="row">
-        <div ng-repeat="itmarray in page.model.modelarraydynamic">
+        <div ng-if="itmarray.data!==undefined && itmarray.data.length>0" ng-repeat="itmarray in page.model.modelarraydynamic">
             <br>
             <div class="col-lg-12">
                 <br>

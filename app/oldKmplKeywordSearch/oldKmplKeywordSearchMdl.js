@@ -237,7 +237,7 @@
             return model.object;
         };
         model.oldkmplsubmit = function(from, to, type) {
-            model.Getfilterobject();
+            // model.Getfilterobject();
             //model.applicationids !== null && model.applicationids !== undefined && model.applicationids !== "" ? model.applicationids 
             model.object.Keyworddlikesrch.CApplicationStatus = 'Active';
             model.object.Keyworddlikesrch.EmpID = model.empid;
@@ -245,9 +245,10 @@
             model.object.Keyworddlikesrch.EndIndex = to;
             model.object.Keyworddlikesrch.CGender = "Female";
             model.object.Keyworddlikesrch.Caste = model.casteids !== null && model.casteids !== undefined && model.casteids !== "" ? model.casteids : null;
-            oldKmplKeywordSearchService.Oldkmplkeywordlikesearch(model.object).then(function(response) {
+            debugger;
+            oldKmplKeywordSearchService.Oldkmplkeywordlikesearch(model.object.Keyworddlikesrch).then(function(response) {
                 console.log(response);
-                model.grid.data = response.data;
+                model.grid.data = response.data[0];
             });
         };
         ////
