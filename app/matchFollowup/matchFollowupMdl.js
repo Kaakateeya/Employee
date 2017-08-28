@@ -5,9 +5,9 @@
     angular
         .module('Kaakateeya')
         .factory('matchFollowupModel', ['$http', 'getArraysearch', '$timeout', 'matchFollowupServices',
-            'complex-slide-config', 'authSvc', 'Commondependency', 'modelpopupopenmethod', 'alert', 'arrayConstants', 'SelectBindServiceApp',
+            'complex-slide-config', 'authSvc', 'Commondependency', 'modelpopupopenmethod', 'alert', 'arrayConstants', 'SelectBindServiceApp', 'helperservice',
             function($http, getArray, timeout, matchFollowupServices, config,
-                authSvc, Commondependency, modelpopupopenmethod, alertss, arrayConstants, SelectBindServiceApp) {
+                authSvc, Commondependency, modelpopupopenmethod, alertss, arrayConstants, SelectBindServiceApp, helpService) {
                 //return function() {
                 var model = {};
                 model.config = config;
@@ -601,7 +601,7 @@
                     config.reset();
                 };
 
-                model.skipthisprofile = function(fromcust_id, tocustid, logid, status, flag) {
+                model.skipthisprofile = function(slide, fromcust_id, tocustid, logid, status, flag) {
                     if (flag === 'From' && slide.isSkippedfrom) {
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'You have already skipped this profile', 3000);
                     } else if (flag === 'To' && slide.isSkippedto) {

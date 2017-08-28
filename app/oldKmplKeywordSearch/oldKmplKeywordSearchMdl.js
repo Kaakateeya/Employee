@@ -5,10 +5,16 @@
         .module('Kaakateeya')
         .factory('oldKmplKeywordSearchModel', factory);
 
-    factory.$inject = ['oldKmplKeywordSearchService'];
+    factory.$inject = ['oldKmplKeywordSearchService', 'complex-grid-config', 'complex-slide-config', 'modelpopupopenmethod'];
 
-    function factory(oldKmplKeywordSearchService) {
+    function factory(oldKmplKeywordSearchService, configgrid, configslide, modelpopupopenmethod) {
         var model = {};
+        model.slide = {};
+        model.grid = {};
+        model.slide.config = configslide;
+        model.object = {
+            Keyworddlikesrch: {}
+        };
         model.Searchfields = [
             { Text: "CandidateAll", value: "CandidateAll", style: "#000;" },
             { Text: "FatherAll", value: "FatherAll", style: "#000;" },
@@ -185,6 +191,83 @@
             { Text: "FSHEmailID", value: "FSHEmailID", style: "#607D8B;" }
 
         ];
+        model.ViewProfile = function(row) {
+            window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
+        };
+        model.ProfileIdTemplateDUrl = function(row) {
+            var paidstatusclass = row.paid === true ? 'paidclass' : 'unpaid';
+            var paid = "<a class='" + paidstatusclass + "'>" + row.ProfileID + ' (' + row.KMPLID + ')' + "</a>";
+            return paid;
+        };
+        model.grid.columns = [
+            { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
+            { text: 'FirstName', key: 'FirstName', type: 'label' },
+            { text: 'LastName', key: 'LastName' },
+            { text: 'DOB', key: 'DOB', type: 'label' },
+            { text: 'Age', key: 'Age', type: 'label' },
+            { text: 'Height', key: 'Height', type: 'label' },
+            { text: 'Caste', key: 'Caste', type: 'label' },
+            { text: 'Education', key: 'Education', type: 'label' },
+            { text: 'Profession', key: 'Profession', type: 'label' },
+            { text: 'JobLocation', key: 'JobLocation', type: 'label' },
+            { text: 'Income', key: 'Income', type: 'label' }
+        ];
+        model.MyProfilePageLoad = function() {
+            oldKmplKeywordSearchService.getMyprofilebind(1, 2, '').then(function(response) {
+                model.Applicationstatusarray = [];
+                model.Castearray = [];
+                _.each(response.data, function(item) {
+                    switch (item.CountryCode) {
+                        case "Application Status":
+                            model.Applicationstatusarray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                            break;
+                        case "Caste":
+                            model.Castearray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                            break;
+                    }
+                });
+            });
+        };
+        ///
+        model.Getfilterobject = function(type) {
+            // _.each((model.txtsearchfiledsinput).split(' and '), function(item) {
+            //     var innerdata = item.indexOf("between") != -1 ? item.split('between') : item.split('like');
+            //     model.object.Keyworddlikesrch[type == "text" ? (innerdata[0]).trim() : _.where(model.Searchfields, { Text: (innerdata[0]).trim() })[0].value] = (innerdata[1]).trim();
+            // });
+            return model.object;
+        };
+        model.oldkmplsubmit = function(from, to, type) {
+            model.Getfilterobject();
+            //model.applicationids !== null && model.applicationids !== undefined && model.applicationids !== "" ? model.applicationids 
+            model.object.Keyworddlikesrch.CApplicationStatus = 'Active';
+            model.object.Keyworddlikesrch.EmpID = model.empid;
+            model.object.Keyworddlikesrch.startindex = from;
+            model.object.Keyworddlikesrch.EndIndex = to;
+            model.object.Keyworddlikesrch.CGender = "Female";
+            model.object.Keyworddlikesrch.Caste = model.casteids !== null && model.casteids !== undefined && model.casteids !== "" ? model.casteids : null;
+            oldKmplKeywordSearchService.Oldkmplkeywordlikesearch(model.object).then(function(response) {
+                console.log(response);
+                model.grid.data = response.data;
+            });
+        };
+        ////
+        model.grid.pagechange = function(val) {
+            var to = val * 100;
+            var from = val === 1 ? 1 : to - 99;
+            model.MyprofileResult(model.mpObj, from, to, 'grid', 1);
+        };
+        model.grid.exportexcel = function(topage) {
+            model.MyprofileResult(model.mpObj, 1, topage, 'excel', 1);
+        };
+        model.close = function() {
+            modelpopupopenmethod.closepopup();
+        };
+
+        model.slidebind = function(old, news, array) {
+            if (parseInt(model.topage) - parseInt(news) === 4) {
+                model.MyprofileResult(model.mpObj, (model.topage) + 1, (model.topage) + 10, 'slide', 0);
+            }
+        };
         return model;
 
     }

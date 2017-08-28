@@ -1,30 +1,75 @@
 <div class="right_col">
-
-    <div class="row" style="border: 1px solid #ccc;
-    border-radius: 6px;">
-        <div class="col-lg-12">
-            <div class="col-lg-2"><a href="javascript:void(0)">CandidateAll </a></div>
-            <div class="col-lg-2"><a href="javascript:void(0)">FatherAll </a></div>
-            <div class="col-lg-2"><a href="javascript:void(0)">MotherAll</a></div>
-            <div class="col-lg-2"><a href="javascript:void(0)">BrotherAll</a></div>
-            <div class="col-lg-2"><a href="javascript:void(0)">SisterAll </a></div>
-            <div class="col-lg-2"><a href="javascript:void(0)">MotherBortherAll </a></div>
+    <div class="">
+        <div class="row" style="border: 1px solid #ccc;border-radius: 6px;">
+            <div class="col-lg-12">
+                <div class="col-lg-2"><a href="javascript:void(0)">CandidateAll </a></div>
+                <div class="col-lg-2"><a href="javascript:void(0)">FatherAll </a></div>
+                <div class="col-lg-2"><a href="javascript:void(0)">MotherAll</a></div>
+                <div class="col-lg-2"><a href="javascript:void(0)">BrotherAll</a></div>
+                <div class="col-lg-2"><a href="javascript:void(0)">SisterAll </a></div>
+                <div class="col-lg-2"><a href="javascript:void(0)">MotherBortherAll </a></div>
+            </div>
+            <br>
+            <br>
+            <div class="col-lg-12">
+                <div class="col-lg-2"><a href="javascript:void(0)">MotherSisterAll</a></div>
+                <div class="col-lg-2"><a href="javascript:void(0)">FatherBrotheAll </a></div>
+                <div class="col-lg-2"><a href="javascript:void(0)">FatherSisterAll </a></div>
+            </div>
         </div>
         <br>
-        <br>
-        <div class="col-lg-12">
-            <div class="col-lg-2"><a href="javascript:void(0)">MotherSisterAll</a></div>
-            <div class="col-lg-2"><a href="javascript:void(0)">FatherBrotheAll </a></div>
-            <div class="col-lg-2"><a href="javascript:void(0)">FatherSisterAll </a></div>
+        <div class="row">
+            <div class="col-lg-3">
+                <input style="width:265px;" type="text" class="form-control" ng-model="page.model.txtinputfileds" placeholder="List of Fields"></input>
+                <select style="height:600px;width: 265px;" multiple="multiple" ng-model="ddlFruits">
+                <option style="padding:4px;" ng-style="{'color':item.style}" ng-repeat="item in page.model.Searchfields | filter:page.model.txtinputfileds" value="{{item.value}}">{{item.Text}}</option>
+           </select>
+            </div>
+            <div class="col-lg-9">
+                <br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <p>Caste</p>
+                        <div class="controls clearfix">
+                            <label ng-repeat="role in [{name:'Bride',value:'2'},{name:'Groom',value:'1'}]">
+                                    <md-checkbox  data-checklist-model="page.model.chkgender" data-checklist-value="role.value">{{role.name}}&nbsp;&nbsp;
+                                    </md-checkbox>
+                                    </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <p>Search For</p>
+                        <div ng-class="page.model.applicationids===undefined || page.model.applicationids===null || page.model.applicationids===0 ?'':'ddlcolor'" class="controls clearfix">
+                            <select ng-model="page.model.applicationids" multiple multiselectdropdown ng-options="item.value as item.label group by item.ParentName for item in page.model.Applicationstatusarray" data-live-search='true'>                                        
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4">
+                        <p>Caste</p>
+                        <div ng-class="page.model.casteids===undefined || page.model.casteids===null || page.model.casteids.length===0 ?'':'ddlcolor'" class="controls clearfix">
+                            <select ng-model="page.model.casteids" multiple multiselectdropdown ng-options="item.value as item.label group by item.ParentName for item in page.model.Castearray" data-live-search='true'>                                        
+                       </select>
+                        </div>
+                    </div>
+                </div>
+                <textarea name="txtsearchfileds" ng-model="page.model.txtsearchfiledsinput" class="form-control row" id="txtsearchfileds" rows="5"></textarea>
+                <br>
+                <div class="text-center row" style="border-top: 1px solid #ddd;padding-top:1%;">
+                    <button class="button_custom" style="display:initial;" type="submit" ng-click="page.model.oldkmplsubmit(1,100,'grid');">Submit</button>
+                    <button style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset" ng-click="page.model.reset();">Reset</button>
+                    <button style="display:initial;margin-left: 2%;" class="button_custom" ng-click="page.model.oldkmplsubmit(1,10,'slide');">Slideshow</button>
+                </div>
+            </div>
         </div>
     </div>
-    <br>
-    <div class="row">
-        <div class="col-lg-3">
-            <input style="width:185px;" type="text" class="form-control" ng-model="page.model.txtinputfileds" placeholder="List of Fields"></input>
-            <select style="height:600px;" multiple="multiple" ng-model="ddlFruits">
-                <option style="padding:4px;" ng-style="{'color':item.style}" ng-repeat="item in page.model.Searchfields" value="{{item.value}}">{{item.Text}}</option>
-           </select>
-        </div>
+    <div>
+        <complex-grid-new gid="'id1'" ng-if="page.model.grid.columns" config="page.model.grid" model="page.model.grid"></complex-grid-new>
+        <script type="text/ng-template" id="oldkmplkeywordlikesearch.html">
+            <div class="modal-body">
+                <complex-slide config="page.model.slide.config" model="page.model"></complex-slide>
+                <div class="clearfix"></div>
+            </div>
+        </script>
     </div>
 </div>

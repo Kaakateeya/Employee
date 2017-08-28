@@ -3,16 +3,22 @@
 
      angular
          .module('Kaakateeya')
-         .controller('oldKmplKeywordSearchCtrl', controller)
+         .controller('oldKmplKeywordSearchCtrl', controller);
 
-     controller.$inject = ['oldKmplKeywordSearchModel'];
+     controller.$inject = ['oldKmplKeywordSearchModel', '$scope', 'authSvc'];
 
-     function controller(oldKmplKeywordSearchModel) {
+     function controller(oldKmplKeywordSearchModel, scope, authSvc) {
          /* jshint validthis:true */
-         var vm = this;
+         var vm = this,
+             model;
 
          vm.init = function() {
-             vm.model = oldKmplKeywordSearchModel;
+             vm.model = model = oldKmplKeywordSearchModel;
+             model.scope = scope;
+             model.empid = model.slide.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+             model.slide.templateUrl = "templates/myprofileSlide.html";
+             model.slide.config.headettemp = "templates/myprofileheader.html";
+             model.MyProfilePageLoad();
          };
 
          vm.init();
