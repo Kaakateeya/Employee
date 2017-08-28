@@ -425,6 +425,16 @@
                                 case "No Data Profiles":
                                     model.typeofslidedate = "Registered Date";
                                     break;
+                                    //26_08_2017
+                                case "No Photos Customers":
+                                    model.typeofslidedate = "Registered Date";
+                                    break;
+                                case "No Horoscope Image Customers":
+                                    model.typeofslidedate = "Registered Date";
+                                    break;
+                                case "No Primary Contact and Email Status":
+                                    model.typeofslidedate = "Registered Date";
+                                    break;
                             }
                             if (topage === parseInt(10)) {
                                 if (model.slideshowopenflag !== 1) {

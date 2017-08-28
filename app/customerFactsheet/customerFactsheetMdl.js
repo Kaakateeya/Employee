@@ -35,33 +35,53 @@
                 model.gridtable9.type = 'grid9';
                 model.showplus = false;
                 model.sendexpressinterestservice = function(row) {
-                    // var obj = {
-                    //     EncriptedText: null,
-                    //     EncriptedTextrvr: null,
-                    //     EncryptedRejectFlagText: null,
-                    //     EncryptedRejectFlagTextrvr: null,
-                    //     FromProfileID: model.gridtable8.data[0].ProfileId,
-                    //     IFromCustID: model.gridtable8.data[0].fromcustid,
-                    //     IToCustID: row.Cust_ID,
-                    //     Logid: null,
-                    //     MessageHistoryId: null,
-                    //     MessageLinkId: null,
-                    //     StrHtmlText: null,
-                    //     ToProfileID: row.ProfileID,
-                    //     TypeofInsert: "E"
-                    // };
-                    // customerFactsheetService.sendexpressinterest(obj).then(function(response) {
-                    //     if (response.data && parseInt(response.data) == 1) {
-                    //         alerts.timeoutoldalerts(model.scope, 'alert-success', 'EXpressInterest done SuccessFully', 3000);
-                    //     } else {
-                    //         alerts.timeoutoldalerts(model.scope, 'alert-danger', 'EXpressInterest Fail', 3000);
-                    //     }
-                    // });
-                    alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Comming Soon Feature', 4000);
+                    var fromobj = {
+                        FromCustID: model.gridtable8.data[0].fromcustid,
+                        EmpID: model.empid,
+                        emailaddress: model.gridtable8.data[0].allemails
+                    };
+                    var toobj = [{
+                        FromProfileID: model.gridtable8.data[0].ProfileId,
+                        ToProfileID: row.ProfileID,
+                        EmpID: model.empid,
+                        ModeofService: 353,
+                        RelationShipID: 0,
+                        TypeOfService: 366,
+                        ProfileType: 358,
+                        Sendsms: 1,
+                        IsRvrSend: 1,
+                        SelectedImages: row.allimages !== undefined && row.allimages !== null && row.allimages !== "" ? row.allimages : null,
+                        Acceptlink: '',
+                        Rejectlink: '',
+                        EmailAddress: model.gridtable8.data[0].allemails,
+                        RVRAcceptlink: '',
+                        RVRRejectlink: ''
+                    }];
+                    var inputObj = {
+                        customerpersonaldetails: fromobj,
+                        GetDetails: toobj
+                    };
+
+                    customerFactsheetService.submitExpressintrst(inputObj).then(function(response) {
+                        var status = 0;
+                        if (_.isArray(response.data.m_Item1))
+                            status = response.data.m_Item1[0] !== undefined && response.data.m_Item1[0] !== null ? response.data.m_Item1[0].Status : 0;
+                        if (parseInt(status) === 1) {
+                            alerts.timeoutoldalerts(model.scope, 'alert-success', 'Expressinterest done successfully', 3000);
+                        } else {
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Expressinterest failed', 3000);
+                        }
+                    });
+                    //alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Comming Soon Feature', 4000);
+                };
+                model.sendservicemailprofilebook = function(row) {
+                    var dd = "";
+                    dd = row.ExpressDate !== null && row.ExpressDate !== undefined && row.ExpressDate !== "" ? row.ExpressDate : "--";
+                    return dd;
                 };
                 model.sendservicemailprofile = function(row) {
                     var dd = "";
-                    dd = "<a href='javascript:void(0)' ng-click='model.sendexpressinterestservice(" + row.Cust_ID + "," + row.ProfileID + ")'>Send service</a>";
+                    dd = row.ExpressDate !== null && row.ExpressDate !== undefined && row.ExpressDate !== "" ? row.ExpressDate : "<a href='javascript:void(0)' ng-click='model.sendexpressinterestservice(" + row.Cust_ID + "," + row.ProfileID + ")'>Send service</a>";
                     return dd;
                 };
                 model.paymentstatus = function(row) {
@@ -161,14 +181,14 @@
                         { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
                         { text: 'Name', key: 'NAME', type: 'label' },
                         { text: 'CreatedDate', key: 'CreatedDate', type: 'label' },
-                        { text: 'Service', key: 'CreatedDate', type: 'customlink', templateUrl: model.sendservicemailprofile, method: model.sendexpressinterestservice }
+                        { text: 'Service', key: 'ExpressDate', type: 'customlink', templateUrl: model.sendservicemailprofilebook }
 
                     ];
                     model.gridtable7.columns = [
                         { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
                         { text: 'Name', key: 'NAME', type: 'label' },
                         { text: 'CreatedDate', key: 'CreatedDate', type: 'label' },
-                        { text: 'Service', key: 'CreatedDate', type: 'customlink', templateUrl: model.sendservicemailprofile, method: model.sendexpressinterestservice }
+                        { text: 'Service', key: 'ExpressDate', type: 'customlink', templateUrl: model.sendservicemailprofile, method: model.sendexpressinterestservice }
                     ];
                     model.gridtable9.columns = [
                         { text: 'Membership', key: 'membershiptype', type: 'label' },
