@@ -1,4 +1,5 @@
 #successtoryID {
+    padding: 38px 20px !important;
     .successdata {
         font-weight: 600;
         line-height: 22px;
@@ -27,5 +28,8 @@
         display: block;
         z-index: 9999999;
         position: absolute;
+    }
+    md-tab-item span {
+        font-weight: bold !important;
     }
 }

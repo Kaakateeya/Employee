@@ -150,6 +150,7 @@
                     }
                     model.reset();
                     model.selectedIndex = 0;
+                    model.scope.successstoriesform.$setPristine();
                 }
             });
         };
@@ -215,16 +216,21 @@
         };
 
         model.deletefromS3 = function() {
+
             var name = model.brideCustID + '_' + model.groomCustID + '_SuccessImage',
                 keynameq = '';
 
-            // keynameq = 'Images/SuccessStoryImages/' + name + '/' + name + '.jpg';
-            // http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {
+            keynameq = 'Images/SuccessStoryImages/' + name + '/' + name + '.jpg';
+            http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {
 
-            // });
+            });
 
             viewSuccessStoriesService.deleteSucessStory(model.dPhotoID, model.dBrideProfileID, model.dGroomProfileID).then(function(response) {
                 if (response.data === 1) {
+                    _.each(model.viewSuccessArray, function(item, index) {
+                        if (model.dPhotoID === item.CustId)
+                            model.viewSuccessArray.splice(index, 1);
+                    });
                     model.closepopup();
                     alertss.timeoutoldalerts(model.scope, 'alert-success', "SuccessStories deleted  successfully", 4500);
                 } else {

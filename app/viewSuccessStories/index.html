@@ -84,7 +84,7 @@
             <md-tab label="Create Success Story" ng-click="page.model.reset();">
                 <div class="tab">
                     <br>
-                    <form name="successstoriesform" novalidate role="form" ng-submit="successstoriesform.$valid && page.model.createSuccessStory();successstoriesform.$setPristine();">
+                    <form name="successstoriesform" novalidate role="form" ng-submit="successstoriesform.$valid && page.model.createSuccessStory();">
                         <div class="row">
                             <div class="col-lg-6" ng-if="page.model.brideName">
                                 <label for="" class="control-label col-lg-4">Bride Name</label>
@@ -138,7 +138,7 @@
                                 <div class="col-lg-6"> <input type="file" file-model="page.model.myFileupload" /></div>
                             </div>
                             <div class="col-lg-6 form-group">
-                                <label for="photoAssigned" class="col-lg-4 control-label">Display in web  {{page.model.rbtndisplay}}<span style="color: red; margin-left: 3px;">*</span></label>
+                                <label for="photoAssigned" class="col-lg-4 control-label">Display in web<span style="color: red; margin-left: 3px;">*</span></label>
                                 <div class="col-lg-6">
                                     <md-radio-group ng-required="true" name="rbtndisplay" layout="col-lg-11" ng-model="page.model.rbtndisplay" class="md-block col-lg-6" flex-gt-sm ng-disabled="manageakerts">
                                         <md-radio-button value="1"> Yes</md-radio-button>
@@ -175,7 +175,7 @@
                                 <button type="submit" class="button_custom pull-right">Submit</button>
                             </div>
                             <div class="col-lg-4">
-                                <input type="reset" class="button_custom button_custom_reset" value="Reset" ng-click="page.model.resetsuccessstories();">
+                                <input type="reset" class="button_custom button_custom_reset" value="Reset" ng-click="page.model.reset();">
                             </div>
                         </div>
                         <div class="clearfix"></div>

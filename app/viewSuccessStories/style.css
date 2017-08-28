@@ -1,26 +1,30 @@
-#successtoryID .successdata {
-  font-weight: 600;
-  line-height: 22px;
-  font-family: inherit;
-  color: #514e4e; }
-#successtoryID .gclass {
-  border: 1px solid #b6a8ac;
-  border-radius: 27px; }
-#successtoryID .scrollcls {
-  height: 600px;
-  overflow-y: auto;
-  margin-right: 0px;
-  margin-left: 0px; }
-#successtoryID .nav-sm .container.body .right_col {
-  padding: 35px 20px !important; }
-#successtoryID .imglarge:hover {
-  position: relative;
-  top: -25px;
-  left: -35px;
-  width: 400px !important;
-  height: 300px !important;
-  display: block;
-  z-index: 9999999;
-  position: absolute; }
+#successtoryID {
+  padding: 38px 20px !important; }
+  #successtoryID .successdata {
+    font-weight: 600;
+    line-height: 22px;
+    font-family: inherit;
+    color: #514e4e; }
+  #successtoryID .gclass {
+    border: 1px solid #b6a8ac;
+    border-radius: 27px; }
+  #successtoryID .scrollcls {
+    height: 600px;
+    overflow-y: auto;
+    margin-right: 0px;
+    margin-left: 0px; }
+  #successtoryID .nav-sm .container.body .right_col {
+    padding: 35px 20px !important; }
+  #successtoryID .imglarge:hover {
+    position: relative;
+    top: -25px;
+    left: -35px;
+    width: 400px !important;
+    height: 300px !important;
+    display: block;
+    z-index: 9999999;
+    position: absolute; }
+  #successtoryID md-tab-item span {
+    font-weight: bold !important; }
 
 /*# sourceMappingURL=style.css.map */

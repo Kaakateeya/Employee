@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .directive('slidePopup', directive);
 
-    directive.$inject = ['commonFactory', '$uibModal', 'arrayConstantsEdit', 'SelectBindService', 'popupSvc', 'authSvc', '$stateParams', '$filter'];
+    directive.$inject = ['commonFactory', '$uibModal', 'arrayConstantsEdit', 'SelectBindService', 'popupSvc', 'authSvc', '$stateParams', '$filter', '$timeout'];
 
-    function directive(commonFactory, uibModal, cons, SelectBindService, popupSvc, authSvc, stateParams, filter) {
+    function directive(commonFactory, uibModal, cons, SelectBindService, popupSvc, authSvc, stateParams, filter, timeout) {
 
         var directive = {
             link: link,
@@ -31,7 +31,9 @@
             };
             scope.ddlChange = function(value, value2, text, apiPath, firstval) {
                 if (apiPath) {
-
+                    _.map(_.where(scope.model.popupdata, { parentName: text }), function(item) {
+                        item.dataSource = undefined;
+                    });
                     if (value2) {
 
                         SelectBindService[apiPath](commonFactory.listSelectedVal(value2), commonFactory.listSelectedVal(firstval)).then(function(res) {
@@ -40,6 +42,7 @@
                                 _.each(res.data, function(item) {
                                     depData.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                 });
+                                item.dataSource = undefined;
                                 item.dataSource = [];
                                 item.dataSource = depData;
 
@@ -52,6 +55,7 @@
                                 _.each(res.data, function(item) {
                                     depData.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                 });
+                                item.dataSource = undefined;
                                 item.dataSource = [];
                                 item.dataSource = depData;
                             });
@@ -59,6 +63,7 @@
                     }
                 }
             };
+
 
             _.each(scope.model.popupdata, function(item) {
                 if (item.arrbind) {
@@ -99,16 +104,14 @@
                         scope.model[item.strland] = undefined;
                         scope.model[item.strmail] = undefined;
                     }
-
+                    if (item.controlType === 'Changeselect') {
+                        item.dataSource = [];
+                    }
                 }
 
                 if (scope.model[item.ngmodel] && item.childName) {
                     scope.ddlChange(scope.model[item.ngmodel], scope.model[item.secondParent], item.childName, item.changeApi, scope.model[item.firstparent]);
                 }
-
-
-
-
 
             });
 
