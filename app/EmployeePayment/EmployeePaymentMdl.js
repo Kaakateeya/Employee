@@ -49,7 +49,7 @@
                     model.editPaidAmt = row.PaidAmount;
                     model.editDescriptionAmt = row.Description;
 
-                    //modelpopupopenmethod.showPopupphotopoup('paymentEditPopup.html', model.scope, 'md', "");
+                    modelpopupopenmethod.showPopupphotopoup('paymentEditPopup.html', model.scope, 'md', "");
                 };
 
                 model.expirydate = function(row) {

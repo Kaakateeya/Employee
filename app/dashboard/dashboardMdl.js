@@ -427,12 +427,15 @@
                                     break;
                                     //26_08_2017
                                 case "No Photos Customers":
+                                    model.typeOfAssign = 'nodatacustomer';
                                     model.typeofslidedate = "Registered Date";
                                     break;
                                 case "No Horoscope Image Customers":
+                                    model.typeOfAssign = 'nodatacustomer';
                                     model.typeofslidedate = "Registered Date";
                                     break;
                                 case "No Primary Contact and Email Status":
+                                    model.typeOfAssign = 'nodatacustomer';
                                     model.typeofslidedate = "Registered Date";
                                     break;
                             }
