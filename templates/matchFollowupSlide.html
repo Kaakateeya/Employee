@@ -20,7 +20,9 @@
                                 <div class="clearfix"></div><br>
                                 <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.redirectContactPage(slide.fromcust_id);">View Contacts</button></div>
                                 <div class="clearfix"></div><br>
-                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.sendNumbers(slide.fromcust_id,slide.tocustid);">Send Numbers</button></div>
+                                <!-- <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.sendNumbers(slide.fromcust_id,slide.tocustid);">Send Numbers</button></div> -->
+                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.skipthisprofile(slide,slide.fromcust_id,slide.tocustid,slide.Expressinterestlogid,'NI','From');" ng-if="slide.FromTicket===null || slide.FromTicket==='' || slide.FromTicket===undefined">Skip This Profile</button></div>
+
                                 <div class="clearfix"></div>
                             </div>
                             <div class="col-lg-7 col-lg-offset-1">
@@ -122,7 +124,9 @@
                                 <div class="clearfix"></div><br>
                                 <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.redirectContactPage(slide.tocustid);">View Contacts</button></div>
                                 <div class="clearfix"></div><br>
-                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.sendNumbers(slide.tocustid,slide.fromcust_id);">Send Numbers</button></div>
+                                <!-- <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.sendNumbers(slide.tocustid,slide.fromcust_id);">Send Numbers</button></div> -->
+                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-if="slide.ToTicket===null || slide.ToTicket==='' || slide.ToTicket===undefined" ng-click="model.skipthisprofile(slide,slide.tocustid,slide.fromcust_id,slide.Expressinterestlogid,'NI','To');">Skip This Profile</button></div>
+
                                 <div class="clearfix"></div>
                             </div>
                         </div>

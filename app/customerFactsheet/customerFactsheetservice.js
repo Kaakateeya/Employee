@@ -21,16 +21,19 @@
                 getsendEmail_ResetPassword: function(profileid) {
                     return http.get(app.apiroot + 'EmployeeReportPage/getsendEmail_ResetPassword', { params: { profileid: profileid } });
                 },
-                sendexpressinterest: function(obj) {
-                    return http.post(app.apiroot + 'CustomerService/CustomerServiceBal', obj);
-                },
+                // sendexpressinterest: function(obj) {
+                //     return http.post(app.apiroot + 'CustomerService/CustomerServiceBal', obj);
+                // },
                 getEmployeePayment: function(ProfileID) {
                     return http.get(app.apiroot + 'Payment/getProfilePaymentDetailsGridview', {
                         params: {
                             intProfileID: ProfileID
                         }
                     });
-                }
+                },
+                submitExpressintrst: function(ExpArrInput) {
+                    return http.post(app.apiroot + 'ExpressInterest/ExpressInterest', ExpArrInput);
+                },
             };
         }]);
 

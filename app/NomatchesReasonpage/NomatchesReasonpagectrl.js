@@ -12,7 +12,7 @@
                  model.opendiv = false;
                  model.resetreports();
                  model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-                 model.binddata();
+                 model.binddata('table', '');
              };
              vm.init();
          }]);

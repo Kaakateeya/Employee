@@ -9,8 +9,16 @@
 
     function factory(http) {
         return {
-            test: function() {
-                return http.get(app.apiroot + 'test', { params: '' });
+            getMyprofilebind: function(flag, ID) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getMyProfileBindings', {
+                    params: {
+                        flag: flag,
+                        ID: ID,
+                    }
+                });
+            },
+            Oldkmplkeywordlikesearch: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/Oldkmplkeywordlikesearch', obj);
             }
         };
     }

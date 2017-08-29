@@ -8,17 +8,22 @@
     factory.$inject = ['ReportsofEmployeesService', 'modelpopupopenmethod', 'Commondependency', '$timeout'];
 
     function factory(ReportsofEmployeesService, modelpopupopenmethod, Commondependency, timeout) {
-
         var model = {};
         model.arrayheader = ["Emp Name", "No of Profiles", "No Services", "No Login", "EMNV", "Paid", "Unpaid", "Graph"];
 
-        ReportsofEmployeesService.getAdminReportsAllProfiles("", "", "", 1).then(function(response) {
-            model.modelarraydynamic = [];
-            console.log(response);
-            _.each(response.data, function(item, index) {
-                model.modelarraydynamic.push({ header: model.arrayheader, data: item, ida: false });
+        model.initdata = function(empid, branchid, macaddress, flag) {
+            ReportsofEmployeesService.getAdminReportsAllProfiles(empid, branchid, macaddress, flag).then(function(response) {
+                model.modelarraydynamic = [];
+                console.log(response);
+                _.each(response.data, function(item, index) {
+                    model.modelarraydynamic.push({ header: model.arrayheader, data: item, ida: false });
+                });
             });
-        });
+        };
+        model.submitreports = function() {
+            model.initdata("", model.tmarketingbranch !== undefined && model.tmarketingbranch !== null && model.tmarketingbranch !== "" ? model.tmarketingbranch : "", "", 1);
+        };
+
         model.popupopen = function(Empid) {
             model.singleempid = Empid;
             model.reportsgraph();

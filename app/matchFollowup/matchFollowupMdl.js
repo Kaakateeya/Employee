@@ -5,9 +5,9 @@
     angular
         .module('Kaakateeya')
         .factory('matchFollowupModel', ['$http', 'getArraysearch', '$timeout', 'matchFollowupServices',
-            'complex-slide-config', 'authSvc', 'Commondependency', 'modelpopupopenmethod', 'alert', 'arrayConstants', 'SelectBindServiceApp',
+            'complex-slide-config', 'authSvc', 'Commondependency', 'modelpopupopenmethod', 'alert', 'arrayConstants', 'SelectBindServiceApp', 'helperservice',
             function($http, getArray, timeout, matchFollowupServices, config,
-                authSvc, Commondependency, modelpopupopenmethod, alertss, arrayConstants, SelectBindServiceApp) {
+                authSvc, Commondependency, modelpopupopenmethod, alertss, arrayConstants, SelectBindServiceApp, helpService) {
                 //return function() {
                 var model = {};
                 model.config = config;
@@ -599,6 +599,29 @@
                 };
                 model.destroy = function() {
                     config.reset();
+                };
+
+                model.skipthisprofile = function(slide, fromcust_id, tocustid, logid, status, flag) {
+                    if (flag === 'From' && slide.isSkippedfrom) {
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'You have already skipped this profile', 3000);
+                    } else if (flag === 'To' && slide.isSkippedto) {
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'You have already skipped this profile', 3000);
+                    } else {
+                        if (status === "NI") {
+                            helpService.acceptrejectexpressinterest(fromcust_id, tocustid, logid, status, parseInt(model.empid)).then(function(response) {
+                                if (response.data === parseInt(1)) {
+                                    if (flag === 'From') {
+                                        slide.isSkippedfrom = true;
+                                    } else {
+                                        slide.isSkippedto = true;
+                                    }
+                                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Skipped successfully', 4000);
+                                } else {
+                                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Skipped fail', 4000);
+                                }
+                            });
+                        }
+                    }
                 };
                 return model;
                 // };
