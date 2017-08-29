@@ -261,7 +261,6 @@
             { "label": "C", "title": "C", "value": 3 }
         ];
 
-
         model.makeActive = function(item) {
             model.profileSettingAndDispalySubmit('', '', '', "ProfileSettings", 54, item.ProfileGradeID, undefined, undefined,
                 undefined, 'mmseries');

@@ -1,0 +1,80 @@
+<div class="right_col">
+
+    <code>below is the predefined code.modify according to ur requiresment, Remove this code</code>
+    <uib-accordion close-others="oneAtATime">
+        <div uib-accordion-group class="panel-default" is-open="page.model.opendiv">
+            <uib-accordion-heading style="color: rgb(160, 2, 1);">
+                Unassigned photos <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+            </uib-accordion-heading>
+            <div class="bodyclsnew">
+                <div class="row">
+
+                    <div class="col-lg-4">
+                        <label for="" class="control-label col-lg-6">label</label>
+                        <div class="col-lg-6"><input type="text" class="form-control"></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="" class="control-label col-lg-6">label</label>
+                        <div class="col-lg-6"> <select multiselectdropdown class="smalldropdown" ng-model="page.model.caste" multiple typeofdata="'caste'">   
+                              </select></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="" class="control-label col-lg-6">label</label>
+                        <div class="col-lg-6"> <select multiselectdropdown class="smalldropdown" ng-model="page.model.region" multiple typeofdata="'region'">   
+                              </select></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="" class="control-label col-lg-6">label</label>
+                        <div class="col-lg-6"><input type="text" class="form-control"></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="" class="control-label col-lg-6">label</label>
+                        <div class="col-lg-6"><input type="text" class="form-control"></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="" class="control-label col-lg-6">label</label>
+                        <div class="col-lg-6"> <select multiselectdropdown class="smalldropdown" ng-model="page.model.branch" multiple typeofdata="'Branch'">   
+                              </select></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="photoAssigned" class="col-lg-5 control-label">label</label>
+                        <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtGender" class="md-block col-lg-6" flex-gt-sm ng-disabled="manageakerts">
+                            <md-radio-button value="2" class="md-primary">Both</md-radio-button>
+                            <md-radio-button value="1"> Yes</md-radio-button>
+                            <md-radio-button value=""> No</md-radio-button>
+                        </md-radio-group>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="Gender" class="col-lg-4 control-label">label</label>
+                        <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtGender" class="md-block col-lg-6" flex-gt-sm ng-disabled="manageakerts">
+                            <md-radio-button value="2" class="md-primary">Both</md-radio-button>
+                            <md-radio-button value="1"> Male</md-radio-button>
+                            <md-radio-button value=""> Female</md-radio-button>
+                        </md-radio-group>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="Gender" class="col-lg-6 control-label">label</label>
+                        <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtGender" class="md-block col-lg-6" flex-gt-sm ng-disabled="manageakerts">
+                            <md-radio-button value="2" class="md-primary">Accept</md-radio-button>
+                            <md-radio-button value="1"> Reject</md-radio-button>
+                        </md-radio-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div style="border-top: 1px solid #ddd;padding-top: 1%;"></div>
+                    <div class="col-lg-5">
+                        <button class="button_custom pull-right" type="submit">Search</button>
+                    </div>
+                    <div class="col-lg-4">
+                        <input type="reset" class="button_custom button_custom_reset" value="Reset" ng-click="page.model.reset();">
+
+                    </div>
+                </div>
+            </div>
+
+
+            <br>
+        </div>
+    </uib-accordion>
+
+</div>

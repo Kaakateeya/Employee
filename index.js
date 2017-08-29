@@ -110,8 +110,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'ReportsofEmployees', name: 'base.ReportsofEmployees', url: '/ReportsofEmployee', isloginrequired: true },
             { routeName: 'viewSuccessStories', name: 'base.viewSuccessStories', url: '/viewSuccessStoriesPage', isloginrequired: true },
             { routeName: 'NomatchesReasonpage', name: 'base.NomatchesReasonpage', url: '/NomatchesReason', isloginrequired: true },
-            { routeName: 'oldKmplKeywordSearch', name: 'base.oldKmplKeywordSearch', url: '/oldKmplKeywordSearchpage', isloginrequired: true }
-
+            { routeName: 'oldKmplKeywordSearch', name: 'base.oldKmplKeywordSearch', url: '/oldKmplKeywordSearchpage', isloginrequired: true },
+            { routeName: 'matchMeetingCountReport', name: 'base.matchMeetingCountReport', url: '/matchMeetingCountReportPage', isloginrequired: true },
+            { routeName: 'settleDeleteProfileseReport', name: 'base.settleDeleteProfileseReport', url: '/settleDeleteProfileseReportPage', isloginrequired: true }
         ];
         $ocLazyLoadProvider.config({
             debug: true

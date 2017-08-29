@@ -264,6 +264,7 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                         case 'Branch':
                             var option = [];
                             option = getArraysearch.GArray('BranchName');
+                            debugger;
                             option.push({ "label": "--select--", "title": "--select--", "value": '' });
                             scope.databind(option);
                             break;
