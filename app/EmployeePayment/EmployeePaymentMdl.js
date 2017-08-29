@@ -51,7 +51,7 @@
                     model.editDescriptionAmt = row.Description;
                     model.paymenteditobject = {};
                     model.paymenteditobject = row;
-                    modelpopupopenmethod.showPopupphotopoup('paymentEditPopup.html', model.scope, 'md', "");
+                    // modelpopupopenmethod.showPopupphotopoup('paymentEditPopup.html', model.scope, 'md', "");
                 };
 
                 model.expirydate = function(row) {
