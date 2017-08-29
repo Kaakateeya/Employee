@@ -21,7 +21,8 @@
             });
         };
         model.submitreports = function() {
-            model.initdata("", model.tmarketingbranch !== undefined && model.tmarketingbranch !== null && model.tmarketingbranch !== "" ? model.tmarketingbranch : "", "", 1);
+            debugger;
+            model.initdata("", model.tmarketingbranch !== undefined && model.tmarketingbranch !== null && model.tmarketingbranch !== "" && model.tmarketingbranch.length > 0 ? model.tmarketingbranch.toString() : "", "", 1);
         };
 
         model.popupopen = function(Empid) {

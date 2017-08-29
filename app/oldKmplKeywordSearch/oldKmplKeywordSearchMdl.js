@@ -200,17 +200,25 @@
             return paid;
         };
         model.grid.columns = [
-            { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
-            { text: 'FirstName', key: 'FirstName', type: 'label' },
-            { text: 'LastName', key: 'LastName' },
+            { text: 'ProfileID', key: 'REGNO', type: 'label' },
+            { text: 'FirstName', key: 'NAME', type: 'label' },
+            { text: 'LastName', key: 'SURNAME', type: 'label' },
             { text: 'DOB', key: 'DOB', type: 'label' },
-            { text: 'Age', key: 'Age', type: 'label' },
-            { text: 'Height', key: 'Height', type: 'label' },
-            { text: 'Caste', key: 'Caste', type: 'label' },
-            { text: 'Education', key: 'Education', type: 'label' },
-            { text: 'Profession', key: 'Profession', type: 'label' },
-            { text: 'JobLocation', key: 'JobLocation', type: 'label' },
-            { text: 'Income', key: 'Income', type: 'label' }
+            { text: 'Age', key: 'AGE', type: 'label' },
+            { text: 'Height', key: 'HEIGHT', type: 'label' },
+            { text: 'Caste', key: 'CASTE', type: 'label' },
+            { text: 'Education', key: 'QUALIFICATION', type: 'label' },
+            { text: 'Profession', key: 'PROFESSION', type: 'label' },
+            { text: 'JobLocation', key: 'JOBLOC', type: 'label' },
+            { text: 'Income', key: 'INCOME', type: 'label' },
+            { text: 'Property', key: 'PROPERTY', type: 'label' },
+            { text: 'PlaceOfBirth', key: 'POB', type: 'label' },
+            { text: 'TOB', key: 'TOB', type: 'label' },
+            { text: 'Gothram', key: 'GOTHRAM', type: 'label' },
+            { text: 'Star', key: 'STAR', type: 'label' },
+            { text: 'FFNative', key: 'FFDISTRICT', type: 'label' },
+            { text: 'MFNative', key: 'MFDISTRICT', type: 'label' },
+            { text: 'DOMICILE', key: 'DOMICILE', type: 'label' }
         ];
         model.MyProfilePageLoad = function() {
             oldKmplKeywordSearchService.getMyprofilebind(1, 2, '').then(function(response) {
