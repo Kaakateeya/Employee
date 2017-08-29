@@ -45,10 +45,12 @@
                 };
 
                 model.showPAymentEdit = function(row) {
+                    console.log(row);
                     model.editAgreedAmt = row.AgreedAmount;
                     model.editPaidAmt = row.PaidAmount;
                     model.editDescriptionAmt = row.Description;
-
+                    model.paymenteditobject = {};
+                    model.paymenteditobject = row;
                     modelpopupopenmethod.showPopupphotopoup('paymentEditPopup.html', model.scope, 'md', "");
                 };
 
@@ -236,16 +238,17 @@
                 model.EditPaymentSubmit = function() {
                     var obj = {
                         Empid: model.empid,
-                        aggredamount: model.editAgreedAmt !== "" && model.editAgreedAmt !== null && model.editAgreedAmt !== undefined ? model.editAgreedAmt : null,
-                        paidamount: model.editPaidAmt !== "" && model.editPaidAmt !== null && model.editPaidAmt !== undefined ? model.editPaidAmt : null,
-                        paymentdescription: model.editDescriptionAmt !== "" && model.editDescriptionAmt !== null && model.editDescriptionAmt !== undefined ? model.editDescriptionAmt : null
+                        intpaymentid: model.paymenteditobject.PaymentID !== undefined && model.paymenteditobject.PaymentID !== null && model.paymenteditobject.PaymentID !== "" ? model.paymenteditobject.PaymentID : null,
+                        intPaymentHisId: model.paymenteditobject.PaymentHist_ID !== undefined && model.paymenteditobject.PaymentHist_ID !== null && model.paymenteditobject.PaymentHist_ID !== "" ? model.paymenteditobject.PaymentHist_ID : null,
+                        ProfileID: model.paymenteditobject.ProfileID !== undefined && model.paymenteditobject.ProfileID !== null && model.paymenteditobject.ProfileID !== "" ? model.paymenteditobject.ProfileID : null,
+                        decgreedAmount: model.editAgreedAmt !== "" && model.editAgreedAmt !== null && model.editAgreedAmt !== undefined ? model.editAgreedAmt : null,
+                        decPaidAmount: model.editPaidAmt !== "" && model.editPaidAmt !== null && model.editPaidAmt !== undefined ? model.editPaidAmt : null,
+                        strPaydescription: model.editDescriptionAmt !== "" && model.editDescriptionAmt !== null && model.editDescriptionAmt !== undefined ? model.editDescriptionAmt : null
                     };
-
                     EmployeePaymentservice.geteditpayment(obj).then(function(response) {
                         console.log(response);
                     });
                 };
-
                 model.paymenteditpointsdate = function(obj) {
                     model.paymentchangedobj = {};
                     model.paymentchangedobj.ProfileID = obj.txtProfileID;
