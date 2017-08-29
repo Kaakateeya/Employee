@@ -19,6 +19,7 @@
         model.close = function() {
             modelpopupopenmethod.closepopuppoptopopup();
         };
+
         model.viewmmInfo = function(row) {
             model.singlegrid.showsearchrows = true;
             model.singlegrid.showsearch = false;

@@ -39,6 +39,9 @@
                         SelectBindService[apiPath](commonFactory.listSelectedVal(value2), commonFactory.listSelectedVal(firstval)).then(function(res) {
                             _.map(_.where(scope.model.popupdata, { parentName: text }), function(item) {
                                 var depData = [];
+                                if (item.controlType === 'Changeselect')
+                                    depData.push({ "label": '--select--', "title": '--select--', "value": '' });
+
                                 _.each(res.data, function(item) {
                                     depData.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                 });
@@ -52,12 +55,16 @@
                         SelectBindService[apiPath](commonFactory.listSelectedVal(value)).then(function(res) {
                             _.map(_.where(scope.model.popupdata, { parentName: text }), function(item) {
                                 var depData = [];
+                                if (item.controlType === 'Changeselect')
+                                    depData.push({ "label": '--select--', "title": '--select--', "value": '' });
+
                                 _.each(res.data, function(item) {
                                     depData.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                 });
                                 item.dataSource = undefined;
                                 item.dataSource = [];
                                 item.dataSource = depData;
+
                             });
                         });
                     }

@@ -160,7 +160,7 @@
                         model.religionId = item.ReligionID;
                         model.motherTongueId = item.MotherTongueID;
                         model.casteId = item.CasteID;
-                        model.subcasteId = item.SubCasteID;
+                        model.subcasteId = item.SubCasteID ? item.SubCasteID : '';
                         model.bornCitizenShipId = item.CitizenshipID;
                         model.physicalStausId = item.PhysicalStatusID;
                     }

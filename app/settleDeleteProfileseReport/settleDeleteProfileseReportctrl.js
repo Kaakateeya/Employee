@@ -3,16 +3,19 @@
 
      angular
          .module('Kaakateeya')
-         .controller('settleDeleteProfileseReportCtrl', controller)
+         .controller('settleDeleteProfileseReportCtrl', controller);
 
-     controller.$inject = ['settleDeleteProfileseReportModel'];
+     controller.$inject = ['settleDeleteProfileseReportModel', '$scope', 'authSvc'];
 
-     function controller(settleDeleteProfileseReportModel) {
+     function controller(settleDeleteProfileseReportModel, scope, authSvc) {
          /* jshint validthis:true */
-         var vm = this;
+         var vm = this,
+             model;
 
          vm.init = function() {
-             vm.model = settleDeleteProfileseReportModel;
+             vm.model = model = settleDeleteProfileseReportModel;
+             model.Admin = authSvc.isAdmin();
+             model.reset();
          };
 
          vm.init();
