@@ -213,7 +213,8 @@
                     if (row.ProfileStatusID === 54 && row.PhotoCount !== 0 && row.PhotoCount !== undefined && row.PhotoCount !== null) {
                         dd = "<a href='javascript:void(0)' ng-click='model.photossent(" + (row.ToCustID) + "," + JSON.stringify(row.FromEmail) + ");'>Photos</a>";
                     }
-                    return row.Snos !== undefined ? (row.Snos + "</br>" + dd) : "";
+                    return row.Snos !== undefined ? (row.Snos + "&nbsp;&nbsp;&nbsp;" + dd) : "";
+                    // return dd;
                 };
                 model.gridtable1.columns = [
                     { text: 'Sno', key: 'Snos', type: 'label' },
@@ -228,6 +229,7 @@
                 ];
                 model.gridtable2.columns = [
                     { text: 'Sno', key: 'Snos', type: 'morelinks', templateUrl: model.sendphotosurl },
+                    // { text: 'Photos', key: 'Snos', type: 'morelinks', templateUrl: model.sendphotosurl },
                     { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
                     { text: 'Name', key: 'NAME', type: 'label' },
                     { text: 'ServiceDate', key: 'ServiceDate', type: 'label' },

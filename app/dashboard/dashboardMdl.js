@@ -434,7 +434,7 @@
                                     model.typeOfAssign = 'nodatacustomer';
                                     model.typeofslidedate = "Registration Date";
                                     break;
-                                case "No Primary Contact and Email Status":
+                                case "Not Yet Verified Contact Details":
                                     model.typeOfAssign = 'nodatacustomer';
                                     model.typeofslidedate = "Registration Date";
                                     break;

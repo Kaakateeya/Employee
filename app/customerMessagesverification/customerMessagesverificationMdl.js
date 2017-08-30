@@ -35,12 +35,13 @@
                     window.open('/Viewfullprofile/' + row.ToProfileID + '/0', '_blank');
                 };
                 model.updatecustomeredit = function(messgeid, body) {
-                    model.txtcustomermessages = model.oldbody = body;
+                    model.txtcustomermessages = model.oldbody = body.replace("\\", "'");
                     model.messgeid = messgeid;
                     modelpopupopenmethod.showPopupphotopoup('messgeseditpopup.html', model.scope, 'md', "modalclassofedit");
                 };
                 model.allLinksTemplateDUrl = function(row) {
-                    var paid = "<a style='cursor:pointer;' ng-click='model.updatecustomeredit(" + (row.MessageStatusID) + "," + JSON.stringify(row.Body) + ");'>Edit</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);'  ng-click='model.updatecustomermessages(null," + row.MessageStatusID + ",1);'>Accept</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' ng-click='model.updatecustomermessages(null," + row.MessageStatusID + ",0);'>Reject</a>" +
+                    var strInputString = row.Body.replace(/'/g, "\\");
+                    var paid = "<a style='cursor:pointer;' ng-click='model.updatecustomeredit(" + (row.MessageStatusID) + "," + JSON.stringify(strInputString) + ");'>Edit</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);'  ng-click='model.updatecustomermessages(null," + row.MessageStatusID + ",1);'>Accept</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' ng-click='model.updatecustomermessages(null," + row.MessageStatusID + ",0);'>Reject</a>" +
                         "&nbsp;&nbsp;&nbsp;";
                     return paid;
                 };
