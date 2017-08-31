@@ -34,7 +34,7 @@
                     ModifiedByEmpID: empid,
                     ModifiedEmpDate: curdate,
                     Notes: model.txtDesc,
-                    isActive: 0,
+                    isActive: 1,
                     Settlementfrompath: Imgpath,
                     isassigned: model.rdnSignIn,
                     ReferenceID: model.typeOfReference,
