@@ -5,15 +5,17 @@
         .module('Kaakateeya')
         .factory('matchMeetingCountReportModel', factory);
 
-    factory.$inject = ['matchMeetingCountReportService', 'complex-grid-config', 'modelpopupopenmethod', 'single-grid-config'];
+    factory.$inject = ['matchMeetingCountReportService', 'complex-grid-config', 'modelpopupopenmethod', 'single-grid-config', 'alert'];
 
-    function factory(matchMeetingCountReportService, config, modelpopupopenmethod, singleconfig) {
+    function factory(matchMeetingCountReportService, config, modelpopupopenmethod, singleconfig, alertss) {
 
         var model = {};
         model = config;
         model.singlegrid = singleconfig;
         model.scope = {};
         model.showpaging = false;
+        model.data = [];
+        model.scope = {};
         model.viewTemplate = function(row) {
             return '<a href="javascript:void();">View</a>';
         };
@@ -61,6 +63,7 @@
                 { text: 'Branch', key: 'Branch', type: 'label' },
                 { text: 'view', key: '', type: 'customlink', templateUrl: model.viewTemplate, method: model.viewmmInfo }
             ];
+            debugger;
             var inobj = {
                 AppusrID: 0,
                 SearchBy: model.rbtnSearchBy ? model.rbtnSearchBy : 0,
@@ -77,10 +80,14 @@
             };
 
             matchMeetingCountReportService.matchMeetingCountReport(inobj).then(function(response) {
-                if (response.data || response.data[0].length > 0) {
+                if (response.data && response.data[0] !== undefined && response.data[0].length > 0) {
                     model.data = response.data[0];
                     model.TotalRows = response.data[0].length;
                     model.opendiv = false;
+                } else {
+                    model.data = [];
+                    model.TotalRows = 0;
+                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'no data found', 4500);
                 }
             });
         };
@@ -90,13 +97,13 @@
             model.opendiv = true;
             model.caste = [402];
             model.branch = ["319", "320", "321", "322", "323", "324", "325", "326", "328", "329", "330", "331", "332", "333", "334", "335", "336", "337", "338", "339", "340", "341", "342", "343", "344"];
-            model.rbtnSearchBy = '1';
+            model.rbtnSearchBy = '0';
             model.rbtnCount = '';
             model.countFrom = '';
             model.countTo = '';
             model.txtFrommeetingDate = '';
             model.txtTomeetingDate = '';
-
+            model.data = [];
         };
 
         return model;
