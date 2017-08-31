@@ -10,8 +10,11 @@
     function factory(http) {
         return {
             ProfileDeleteProfilesReport: function(obj) {
-                return http.post(app.apiroot + 'smallPages/ProfileDeleteProfilesReport', obj);
-            }
+                return http.post(app.apiroot + 'smallPages/settleDeleteProfilesReport', obj);
+            },
+            restoreProfile: function(obj) {
+                return http.post(app.apiroot + 'smallPages/restoreProfile', obj);
+            },
         };
     }
 })();

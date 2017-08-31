@@ -73,7 +73,7 @@
                     </div>
                 </div>
             </div>
-            <br>
+
         </div>
     </uib-accordion>
 
@@ -81,14 +81,10 @@
         Total Records : {{page.model.TotalRows}}
     </div>
 
-
     <complex-grid-new model="page.model" config="page.model"></complex-grid-new>
 </div>
 
-
-
 <script type="text/ng-template" id="mmInfoPopup.html">
-
     <div class="modal-header">
         <a href="javascript:void(0);" class="pull-right" ng-click="page.model.close();">
             <span class="fa fa-close red"></span>
@@ -98,27 +94,6 @@
         </h4>
     </div>
     <div style="max-height: 300px;overflow-y: auto;">
-        <!-- <table>
-            <thead class="headerStyles">
-                <tr>
-                    <td>Date</td>
-                    <td>In-Time</td>
-                    <td>Out-Time</td>
-                    <td>Worked Hours</td>
-                    <td>PWHours</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="item in page.model.empDtailsArray">
-                    <td>{{item.Date}}</td>
-                    <td>{{item.LoginTime}}</td>
-                    <td>{{item.LogoutTime}}</td>
-                    <td>{{item.WorkedHours}}</td>
-                    <td>{{item.PwHours}}</td>
-                </tr>
-            </tbody>
-        </table> -->
-
         <single-grid model="page.model.singlegrid" config="page.model.singlegrid"></single-grid>
     </div>
     <div class="modal-footer">
