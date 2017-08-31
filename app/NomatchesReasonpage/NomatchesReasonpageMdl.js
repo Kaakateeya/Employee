@@ -42,6 +42,8 @@
         }
         model.resetreports = function() {
             model.rbtnregional = "";
+            model.rbtnauthorize = "";
+            model.data = [];
             timeout(function() {
                 model.tmarketingbranch = "";
                 model.tmarketingempname = "";
