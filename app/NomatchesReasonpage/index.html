@@ -1,4 +1,4 @@
-<div class="right_col" role="main" id="assignsettingsid">
+<!-- <div class="right_col" role="main" id="nomatchesreasonid">
     <uib-accordion close-others="oneAtATime">
         <div uib-accordion-group class="panel-default" is-open="page.model.opendiv">
             <uib-accordion-heading style="color: rgb(160, 2, 1);">
@@ -42,9 +42,87 @@
         </div>
     </uib-accordion>
     <div>
-        <complex-grid-new gid="'id1'" config="page.model" model="page.model"></complex-grid-new>
+        <complex-grid config="page.model" model="page.model"></complex-grid>
+
     </div>
 </div>
+ -->
+
+<div class="right_col" role="main" id="nomatchesreasonid">
+    <div class="panel-group">
+        <div class="panel-collapse collapse in">
+            <div class="panel-default regValheader" style="margin-top: -12px;box-shadow: 2px 2px 6px #ccc;" is-open="page.model.opendiv">
+                <div class="panel-heading" style="color: rgb(160, 2, 1);border: 1px solid #ccc">
+                    <div class="row">
+                        <div class="col-lg-2" style="font-size: 14px;font-weight: 700;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
+                            <h4 style="width:200px;"> No Matches <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+                            </h4>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="col-lg-11 rdnoptions">
+                                <label for="photoAssigned" class="col-lg-3 control-label">Region</label>
+                                <md-radio-group ng-change="page.model.onchangebranch()" ng-required="true" name="rbtnregional" layout="row" ng-model="page.model.rbtnregional" class="md-block col-lg-9" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="" class="md-primary">All</md-radio-button>
+                                    <md-radio-button value="408"> Ap</md-radio-button>
+                                    <md-radio-button value="409"> TN</md-radio-button>
+                                    <md-radio-button value="410">KT</md-radio-button>
+                                </md-radio-group>
+                            </div>
+                            <div class="col-lg-1">
+                                <img src="src\images\straightline.png" style="height:33px;margin: -5px;color: maroon;"></img>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="col-lg-11 rdnoptions">
+                                <label for="photoAssigned" class="col-lg-3 control-label">Authorize</label>
+                                <md-radio-group name="rbtnauthorize" layout="row" ng-model="page.model.rbtnauthorize" class="md-block col-lg-9" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="" class="md-primary">Both</md-radio-button>
+                                    <md-radio-button value="1"> Yes</md-radio-button>
+                                    <md-radio-button value="0"> No</md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body" ng-show="page.model.panelbodyhide">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label for="" class="control-label col-lg-3">Branch</label>
+                            <div class="col-lg-9">
+                                <select name="ticketowner" multiple class="smalldropdown col-lg-5" ng-options="item.value as item.label for item in page.model.Brancharray" ng-model="page.model.tmarketingbranch" multiselectdropdown>   
+                            </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="" class="control-label col-lg-3">Employees</label>
+                            <div class="col-lg-9">
+                                <select name="ticketowner" multiple class="smalldropdown col-lg-5" ng-options="item.value as item.label for item in page.model.ProfileOwnerarray" ng-model="page.model.tmarketingempname" multiselectdropdown>   
+                              </select>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div style="border-top: 1px solid #ddd;padding-top: 1%;"></div>
+                        <div class="col-lg-5">
+                            <button class="button_custom pull-right" ng-click="page.model.binddata('table','')">Search</button>
+                        </div>
+                        <div class="col-lg-4">
+                            <input type="reset" class="button_custom button_custom_reset" value="Reset" ng-click="page.model.resetreports();">
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div>
+        <complex-grid ng-show="page.model.data.length>0" model="page.model" config="page.model"></complex-grid>
+    </div>
+</div>
+
+
 <script type="text/ng-template" id="nomatchespopup.html">
     <div class="modal-header">
         <button type="button" class="close" ng-click="page.model.closeupload()">×</button>
@@ -75,3 +153,39 @@
         </div>
     </div>
 </script>
+
+
+<style type="text/css">
+    /* th,
+    td {
+        padding: 8px 16px;
+        border: 1px solid #ddd;
+        width: 199px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: inherit;
+    } */
+    /* .Sno {
+        width: 60px;
+    }
+    
+    .ProfileID {
+        width: 120px;
+    }
+    
+    .TicketOwnerIDName {
+        width: 130px;
+    } */
+    
+    .Reason {
+        width: 500px;
+    }
+    /* .EnteredDate {
+        width: 218px;
+    }
+     */
+    
+    .plusiconshow {
+        width: 60px;
+    }
+</style>

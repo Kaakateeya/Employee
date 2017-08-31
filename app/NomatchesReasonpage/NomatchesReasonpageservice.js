@@ -12,7 +12,7 @@
                         }
                     });
                 },
-                getnomatchesreason: function(v_EmpID, i_Region, v_Branch, i_flag, i_Cust_ID, v_Reason) {
+                getnomatchesreason: function(v_EmpID, i_Region, v_Branch, i_flag, i_Cust_ID, v_Reason, i_Authorized) {
                     return http.get(app.apiroot + 'EmployeeReportPage/getNomatchesreasons', {
                         params: {
                             v_EmpID: v_EmpID,
@@ -20,7 +20,8 @@
                             v_Branch: v_Branch,
                             i_flag: i_flag,
                             i_Cust_ID: i_Cust_ID,
-                            v_Reason: v_Reason
+                            v_Reason: v_Reason,
+                            i_Authorized: i_Authorized
                         }
                     });
                 },

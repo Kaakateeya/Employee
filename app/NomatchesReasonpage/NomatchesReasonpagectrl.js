@@ -9,10 +9,11 @@
              vm.init = function() {
                  vm.model = model = NomatchesReasonpageModel;
                  model.scope = scope;
-                 model.opendiv = false;
+                 model.opendiv = true;
+                 model.panelbodyhide = true;
                  model.resetreports();
                  model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
-                 model.binddata('table', '');
+                 // model.binddata('table', '');
              };
              vm.init();
          }]);
