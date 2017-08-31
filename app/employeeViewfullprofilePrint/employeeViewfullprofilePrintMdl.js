@@ -13,11 +13,25 @@
         model.statecontacts = stateParams.contacts;
         model.textboxshowhide = true;
         model.fullprofileshow = true;
-        model.EmpViewfullProfile = function(stateprofileid) {
+        model.EmpViewfullProfile = function(stateprofileid, type) {
             model.viewprofilearray = [];
             model.aboutmyself = {};
             model.personalinfo = [];
             model.basicinfo = [];
+            if (type === 'textbox') {
+                SelectBindServiceApp.checkConfidentail(stateprofileid, model.empid, 'isconfidentialProfile').then(function(response) {
+                    if (response.data && parseInt(response.data) === 1) {
+                        model.getprofileData(stateprofileid);
+                    } else {
+                        alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Profile not found', 3000);
+                    }
+                });
+            } else {
+                model.getprofileData(stateprofileid);
+            }
+        };
+
+        model.getprofileData = function(stateprofileid) {
             employeeViewfullprofileservice.getEmpViewfullProfile(stateprofileid, model.empid).then(function(response) {
                 model.fullprofileshow = false;
                 if (response.data !== undefined && response.data !== "" && response.data !== null && response.data.length > 0) {
@@ -47,7 +61,23 @@
 
                 }
             });
+
         };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         model.showPhotoPopup = function() {
             commonpage.ShowPhotoPopup(model.custid, model.scope);

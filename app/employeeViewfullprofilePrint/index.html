@@ -10,7 +10,7 @@
                 <input focus-me="true" type="text" maxlength="10" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.txtProfileID" class="form-control" ng-keyup="$event.keyCode == 13 && page.model.EmpViewfullProfile(page.model.txtProfileID)">
             </div>
             <div class="col-lg-1">
-                <button class="btn btn-danger" ng-click="page.model.EmpViewfullProfile(page.model.txtProfileID)">Go</button>
+                <button class="btn btn-danger" ng-click="page.model.EmpViewfullProfile(page.model.txtProfileID,'textbox')">Go</button>
             </div>
             <div class="col-lg-1">
                 <button class="btn btn-danger" ng-click="page.model.inbitdata(page.model.txtProfileID)">For Inbit</button>

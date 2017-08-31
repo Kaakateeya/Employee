@@ -205,7 +205,9 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
                     RelationShipID: RelationShipID
                 }
             });
+        },
+        checkConfidentail: function(profileID, empId, Flag) {
+            return http.get(app.apiroot + 'smallPages/getcheckStatus', { params: { whereID: profileID, secondwhereID: empId, flag: Flag } });
         }
-
     };
 }]);
