@@ -13,6 +13,7 @@
         model.showClientpaging = false;
         model.myprofileexcel = true;
         model.normalexcel = true;
+        model.showplus = true;
         model.pageloadbindings = function() {
             NomatchesReasonpageService.getMyprofilebind(1, 2, '').then(function(response) {
                 model.Brancharray = [];
@@ -41,6 +42,8 @@
         }
         model.resetreports = function() {
             model.rbtnregional = "";
+            model.rbtnauthorize = "";
+            model.data = [];
             timeout(function() {
                 model.tmarketingbranch = "";
                 model.tmarketingempname = "";
@@ -48,12 +51,13 @@
             model.pageloadbindings();
         };
         model.ProfileIdTemplateDUrl = function(row) {
-            var paidstatusclass = row.PaidStatus === 1 ? 'paidclass' : 'unpaid';
+            var paidstatusclass = row.Paidstatus === 1 ? 'paidclass' : 'unpaid';
             var paid = row.ProfileID !== undefined ? "<a class='" + paidstatusclass + "'>" + row.ProfileID + "</a>" : "";
             return paid;
         };
         model.ViewProfile = function(row) {
-            window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
+            //window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
+            window.open('/Education/' + row.Cust_ID, '_blank');
         };
         model.entereddatetemp = function(row) {
             var date = $filter('date')(row.EnteredDate, 'dd/MM/yyyy hh:mm:ss a');
@@ -63,21 +67,25 @@
             debugger;
             var Edit = 'Edit';
             var Delete = 'Delete';
-            var links = "<a href='javascript:void(0);' ng-click='model.editdelete(" + JSON.stringify(row) + "," + JSON.stringify(Edit) + ");'>Edit</a>&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.editdelete(" + JSON.stringify(row) + "," + JSON.stringify(Delete) + ");'>Delete</a>";
+            var authorize = 'authorize';
+            var links = "<a href='javascript:void(0);' ng-click='model.editdelete(" + JSON.stringify(row) + "," + JSON.stringify(Edit) + ");'>Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.editdelete(" + JSON.stringify(row) + "," + JSON.stringify(Delete) + ");'>Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.editdelete(" + JSON.stringify(row) + "," + JSON.stringify(authorize) + ");'>Authorize</a>";
             return links;
         };
-        model.columns = [{ text: 'Profile ID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
-            { text: 'Ticket ID', key: 'TicketOwnerIDName', type: 'label' },
-            { text: 'Entered By', key: 'EnteredByEmpName', type: 'label' },
+        model.columns = [
+            // { text: 'Profile ID', key: 'ProfileID', type: 'custom', templateUrl: model.ProfileIdTemplateDUrl, rowtype: "success" },
+            { text: 'Profile ID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
+            { text: 'Profile Owner/Entered By', key: 'EnteredByEmpName', type: 'label' },
             { text: 'Entered Date', key: 'EnteredDate', type: 'morelinks', templateUrl: model.entereddatetemp },
             { text: 'Reason', key: 'Reason', type: 'label' },
-            { text: '', key: '', type: 'morelinks', templateUrl: model.linktemplate }
+            { text: '', key: 'TicketOwnerIDName', type: 'morelinks', templateUrl: model.linktemplate }
         ];
         model.binddata = function(type, flag) {
             model.empids = model.tmarketingempname !== undefined && model.tmarketingempname !== "" && model.tmarketingempname !== null && model.tmarketingempname.length > 0 ? model.tmarketingempname.toString() : '';
             model.i_Region = model.rbtnregional !== undefined && model.rbtnregional !== "" && model.rbtnregional !== null ? model.rbtnregional : '';
-            model.v_Branch = model.tmarketingbranch !== undefined && model.tmarketingbranch !== "" && model.tmarketingbranch !== null && model.tmarketingbranch.length > 0 ? model.tmarketingbranch : '';
-            NomatchesReasonpageService.getnomatchesreason(model.empids, model.i_Region, model.v_Branch, flag, '', '').then(function(response) {
+            model.v_Branch = model.tmarketingbranch !== undefined && model.tmarketingbranch !== "" && model.tmarketingbranch !== null && model.tmarketingbranch.length > 0 ? model.tmarketingbranch.toString() : '';
+            model.i_Authorized = model.rbtnauthorize !== undefined && model.rbtnauthorize !== "" && model.rbtnauthorize !== null ? model.rbtnauthorize : '';
+
+            NomatchesReasonpageService.getnomatchesreason(model.empids, model.i_Region, model.v_Branch, flag, '', '', model.i_Authorized).then(function(response) {
                 console.log(response);
                 if (response.data !== null && response.data !== undefined && response.data.length > 0 && response.data[0] !== null && response.data[0] !== undefined && (response.data[0]).length !== 0) {
                     if (type === 'export') {
@@ -112,7 +120,7 @@
                     commonpage.showPopupphotopoup('nomatchespopup.html', model.scope, 'md', "modalclassdashboardremainder");
                     break;
                 case 'Delete':
-                    NomatchesReasonpageService.getnomatchesreason('', '', '', 1, row.Cust_ID, '').then(function(response) {
+                    NomatchesReasonpageService.getnomatchesreason('', '', '', 1, row.Cust_ID, '', '').then(function(response) {
                         console.log(response);
                         if (parseInt(response.data) === 1) {
                             debugger;
@@ -120,6 +128,18 @@
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Deleted Sucessfully', 4500);
                         } else {
                             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Deleted Failed', 4500);
+                        }
+                    });
+                    break;
+                case 'authorize':
+                    NomatchesReasonpageService.getnomatchesreason('', '', '', 3, row.Cust_ID, '', '').then(function(response) {
+                        console.log(response);
+                        if (parseInt(response.data) === 1) {
+                            debugger;
+                            (model.data).splice(row.rowIndex, 1);
+                            alertss.timeoutoldalerts(model.scope, 'alert-success', 'authorized Sucessfully', 4500);
+                        } else {
+                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'authorized Failed', 4500);
                         }
                     });
                     break;
@@ -144,7 +164,7 @@
             //     }
             // });
             var strReason = model.txtreasonnomatches !== null && model.txtreasonnomatches !== "" && model.txtreasonnomatches !== undefined ? model.txtreasonnomatches : null;
-            NomatchesReasonpageService.getnomatchesreason('', '', '', 2, model.nomatchesobj.Cust_ID, strReason).then(function(response) {
+            NomatchesReasonpageService.getnomatchesreason('', '', '', 2, model.nomatchesobj.Cust_ID, strReason, '').then(function(response) {
                 console.log(response);
                 if (parseInt(response.data) === 1) {
                     model.binddata('table', '');
