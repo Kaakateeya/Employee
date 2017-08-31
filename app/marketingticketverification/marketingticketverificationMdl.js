@@ -42,15 +42,8 @@
                     model.panelbodyhide = false;
                     model.tmarketingbranch = model.rdntypeofreport === '1' ? model.tmarketingbranch : "";
                     model.ticketmarketowner = model.rdntypeofreport === '0' ? model.ticketmarketowner : "";
-                    // model.columns = [
-                    //     { text: 'Sno', key: 'Sno', type: 'label' },
-                    //     { text: 'Profileid', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
-                    //     { text: 'Marketing Ticket', key: 'TicketName', type: 'label' },
-                    //     { text: 'Marked By', key: 'TicketOwner', type: 'label' },
-                    //     { text: 'Agreed Amount', key: 'AgreedAmount', type: 'label' },
-                    //     { text: 'Paid Amount', key: 'TotalAmount', type: 'label' },
-                    //     { text: 'Commision Amount', key: 'CommisionAmt', type: 'label' }
-                    // ];
+                    model.data = [];
+                    model.pageSize = 10;
                     model.columns = [
                         { text: 'Sno', key: 'Sno', type: 'label' },
                         { text: 'TicketOwner', key: 'TicketOwner', type: 'label' },

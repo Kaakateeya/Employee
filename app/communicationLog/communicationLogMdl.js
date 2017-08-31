@@ -213,7 +213,8 @@
                     if (row.ProfileStatusID === 54 && row.PhotoCount !== 0 && row.PhotoCount !== undefined && row.PhotoCount !== null) {
                         dd = "<a href='javascript:void(0)' ng-click='model.photossent(" + (row.ToCustID) + "," + JSON.stringify(row.FromEmail) + ");'>Photos</a>";
                     }
-                    return row.Snos !== undefined ? (row.Snos + "</br>" + dd) : "";
+                    return row.Snos !== undefined ? (row.Snos + "&nbsp;&nbsp;&nbsp;" + dd) : "";
+                    // return dd;
                 };
                 model.gridtable1.columns = [
                     { text: 'Sno', key: 'Snos', type: 'label' },
@@ -227,7 +228,8 @@
                     { text: 'PhotoCount', key: 'PhotoCount', type: 'customlink', templateUrl: model.photocount }
                 ];
                 model.gridtable2.columns = [
-                    { text: 'Sno', key: 'Snos', type: 'morelinks', templateUrl: model.sendphotosurl },
+                    { text: 'Sno', key: 'PhotoCount', type: 'morelinks', templateUrl: model.sendphotosurl },
+                    // { text: 'Photos', key: 'Snos', type: 'morelinks', templateUrl: model.sendphotosurl },
                     { text: 'ProfileID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
                     { text: 'Name', key: 'NAME', type: 'label' },
                     { text: 'ServiceDate', key: 'ServiceDate', type: 'label' },
@@ -236,7 +238,7 @@
                     { text: 'Viewed/Proceed Date', key: 'MFPStatusDate', type: 'customlink', templateUrl: model.viewdproceeddate },
                     { text: 'TicketID', key: 'TicketID', type: 'customlink', templateUrl: model.Tickidwithtype, method: model.clickticketupdate },
                     { text: 'Options', key: '', type: 'morelinks', templateUrl: model.ResendTempurl },
-                    { text: 'PhotoCount', key: 'PhotoCount', type: 'customlink', templateUrl: model.photocount }
+                    // { text: 'PhotoCount', key: 'PhotoCount', type: 'customlink', templateUrl: model.photocount }
                 ];
                 model.gridtable3.columns = [
                     { text: 'Sno', key: 'Snos', type: 'label' },

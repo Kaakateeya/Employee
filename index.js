@@ -3,7 +3,7 @@
  * @author vinu <vinodanasuri@gmail.com>
  */
 /**
- * Main App Creation
+ * Main App Creation 
  */
 var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap', 'angular-loading-bar',
     'ngAnimate', 'ngIdle', 'ngMaterial',

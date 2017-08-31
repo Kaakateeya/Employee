@@ -121,11 +121,33 @@
         <input type="button" value="close" class="btn btn-default" ng-click="page.model.close();">
     </div>
 </script>
-<style>
-    tbody {
+<style type="text/css">
+    /* tbody {
         height: auto;
         max-height: 350px;
         overflow-y: auto;
+    } */
+    
+    th,
+    td {
+        padding: 8px 16px;
+        border: 1px solid #ddd;
+        width: 199px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: inherit;
+    }
+    
+    .Snos {
+        width: 60px;
+    }
+    
+    .PhotoCount {
+        width: 120px;
+    }
+    
+    .ProfileID {
+        width: 130px;
     }
 </style>
 <!-- <html class="">
@@ -151,14 +173,6 @@
 </tbody>
 
 </html> -->
-<style type="text/css">
-    .scrollArea table {
-        /* max-width: 1361px;
-        min-width: 1200px;  */
-        /* width: 1500px; */
-        /* min-width: 1000px;
-        max-width: 1300px; */
-    }
-</style>
+
 <script>
 </script>
