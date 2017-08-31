@@ -1,121 +1,213 @@
-<div class="right_col">
+<div class="right_col" id="settledeleteReportID">
 
-    <uib-accordion close-others="oneAtATime">
-        <div uib-accordion-group class="panel-default" is-open="page.model.opendiv">
-            <uib-accordion-heading style="color: rgb(160, 2, 1);">
-                Settled and delete profiles report <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
-            </uib-accordion-heading>
-            <div class="bodyclsnew">
-                <div class="row">
+    <div class="panel-group">
+        <div class="panel-collapse collapse in">
+            <div class="panel-default regValheader" style="margin-top: -12px;box-shadow: 2px 2px 6px #ccc;" is-open="page.model.opendiv">
+                <div class="panel-heading" style="color: rgb(160, 2, 1);border: 1px solid #ccc">
+                    <div class="row">
+                        <div class="col-lg-2" style="font-size: 14px;font-weight: 700;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
+                            <h4 style="width:245px;"> Settled & delete profiles report {{page.model.opendiv}} <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+                            </h4>
+                        </div>
 
-                    <div class="col-lg-4">
-                        <label for="" class="control-label col-lg-6">Profile Id</label>
-                        <div class="col-lg-6"><input type="text" ng-model="page.model.profileID" class="form-control"></div>
-                    </div>
-                    <div class="col-lg-4">
-                        <label for="" class="control-label col-lg-6">Owner of the profile</label>
-                        <div class="col-lg-6"> <select multiselectdropdown class="smalldropdown" ng-model="page.model.profileOwner" multiple typeofdata="'EmpNames'">   
-                              </select></div>
-                    </div>
-                    <div class="col-lg-4">
-                        <label for="" class="control-label col-lg-6">Caste</label>
-                        <div class="col-lg-6">
-                            <select multiselectdropdown class="smalldropdown" ng-model="page.model.caste" multiple typeofdata="'caste'">   
-                              </select>
+                        <div class="col-lg-3">
+                            <div class="col-lg-10 rdnoptions">
+                                <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtGender" class="md-block col-lg-6" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="0" class="md-primary">Both</md-radio-button>
+                                    <md-radio-button value="1"> Male</md-radio-button>
+                                    <md-radio-button value="2"> Female</md-radio-button>
+                                </md-radio-group>
+                            </div>
+                            <div class="col-lg-1 m-l-12">
+                                <img src="src\images\straightline.png" style="height:33px;margin: -5px;color: maroon;"></img>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <label for="" class="control-label col-lg-6">Branch</label>
-                        <div class="col-lg-6">
-                            <select multiselectdropdown class="smalldropdown" ng-model="page.model.branch" multiple ng-options="item.value as item.label for item in page.model.branchArr">   
-                                    </select>
+                        <div class="col-lg-4">
+                            <div class="col-lg-11 rdnoptions">
+                                <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtnsettleDeleteType" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="0" class="md-primary">Both</md-radio-button>
+                                    <md-radio-button value="1"> Only Settled</md-radio-button>
+                                    <md-radio-button value="2"> Only Delete</md-radio-button>
+                                </md-radio-group>
+                            </div>
+                            <div class="col-lg-1"> <img src="src\images\straightline.png" style="height:33px;margin:-5px;color: maroon;"></img>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <label for="" class="control-label col-lg-6">Set/Del From Dates</label>
-                        <div class="col-lg-6">
-                            <custom-datepicker name="date" style="padding-right: 0px;" ng-model="page.model.fromDate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
+                        <div class="col-lg-3">
+                            <div class="col-lg-12 rdnoptions">
+                                <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtntypeofProfile" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="0" class="md-primary">Both</md-radio-button>
+                                    <md-radio-button value="372"> Paid</md-radio-button>
+                                    <md-radio-button value="373"> Un-paid</md-radio-button>
+                                </md-radio-group>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <label for="" class="control-label col-lg-6">Set/Del To Dates</label>
-                        <div class="col-lg-6">
-                            <custom-datepicker name="date" style="padding-right: 0px;" ng-model="page.model.todate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions">
-                            </custom-datepicker>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <label for="photoAssigned" class="col-lg-6 control-label">Settled /Deleted by</label>
-                        <div class="col-lg-6"> <select multiselectdropdown class="smalldropdown" ng-model="page.model.settledeleteby" multiple typeofdata="'EmpNames'">   
-                            </select></div>
-                    </div>
-                    <div class="col-lg-4">
-                        <label for="Gender" class="col-lg-6 control-label">Authorized By</label>
-                        <div class="col-lg-6"> <select multiselectdropdown class="smalldropdown" ng-model="page.model.authorizedby" typeofdata="'EmpNames'">   
-                            </select></div>
-                    </div>
-                    <div class="col-lg-4">
-                        <label for="Gender" class="col-lg-4 control-label">Gender</label>
-                        <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtGender" class="md-block col-lg-6" flex-gt-sm ng-disabled="manageakerts">
-                            <md-radio-button value="0" class="md-primary">Both</md-radio-button>
-                            <md-radio-button value="1"> Male</md-radio-button>
-                            <md-radio-button value="2"> Female</md-radio-button>
-                        </md-radio-group>
-                    </div>
-                    <div class="col-lg-6">
-                        <label for="Gender" class="col-lg-4 control-label">Settled/Deleted Type</label>
-                        <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtnsettleDeleteType" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                            <md-radio-button value="0" class="md-primary">Both</md-radio-button>
-                            <md-radio-button value="1"> Only Settled</md-radio-button>
-                            <md-radio-button value="2"> Only Delete</md-radio-button>
-                        </md-radio-group>
-                    </div>
-                    <div class="col-lg-6">
-                        <label for="Gender" class="col-lg-3 control-label">Region</label>
-                        <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtnregion" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                            <md-radio-button value="" class="md-primary">All</md-radio-button>
-                            <md-radio-button value="408"> Andhra Pradesh</md-radio-button>
-                            <md-radio-button value="409"> Tamil Nadu</md-radio-button>
-                            <md-radio-button value="410"> karnataka</md-radio-button>
-                        </md-radio-group>
-                    </div>
-                    <div class="col-lg-6">
-                        <label for="Gender" class="col-lg-4 control-label">Authorization Status</label>
-                        <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtnauthorizationStatus" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                            <md-radio-button value="1" class="md-primary">Authorized</md-radio-button>
-                            <md-radio-button value="0"> Unauthorized</md-radio-button>
-                            <md-radio-button value="2"> Both</md-radio-button>
-                        </md-radio-group>
-                    </div>
-                    <div class="col-lg-6">
-                        <label for="Gender" class="col-lg-3 control-label">Type Of Profile</label>
-                        <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtntypeofProfile" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                            <md-radio-button value="0" class="md-primary">Both</md-radio-button>
-                            <md-radio-button value="372"> Paid</md-radio-button>
-                            <md-radio-button value="373"> Un-paid</md-radio-button>
-                        </md-radio-group>
                     </div>
                 </div>
-                <div class="row">
-                    <div style="border-top: 1px solid #ddd;padding-top: 1%;"></div>
-                    <div class="col-lg-3">
-                        <md-checkbox ng-model="page.model.chkConfidential"> </md-checkbox>Is confidential
+                <div class="panel-body" ng-show="page.model.panelbodyhide">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label for="" class="control-label">Set/Del From Dates</label>
+                                <div>
+                                    <custom-datepicker name="date" ng-model="page.model.fromDate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="" class="control-label">Set/Del To Dates</label>
+                                <div>
+                                    <custom-datepicker name="date" ng-model="page.model.todate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions">
+                                    </custom-datepicker>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="" class="control-label">Region</label>
+                                <div>
+                                    <select multiselectdropdown class="smalldropdown col-lg-5" ng-model="page.model.region" typeofdata="'RegionofbranchesWithAll'" ng-change="page.model.regionChange(page.model.region);"></select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="" class="control-label">Branch</label>
+                                <div>
+                                    <select multiselectdropdown class="smalldropdown  col-lg-5" ng-model="page.model.branch" multiple ng-options="item.value as item.label for item in page.model.branchArr">   
+                                                </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label for="" class="control-label">Profile Id</label>
+                                <div><input type="text" ng-model="page.model.profileID" class="form-control  col-lg-5"></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="" class="control-label">Owner of the profile</label>
+                                <div> <select multiselectdropdown class="smalldropdown  col-lg-5" ng-model="page.model.profileOwner" multiple typeofdata="'EmpNames'">   
+                                      </select></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="" class="control-label">Caste</label>
+                                <div>
+                                    <select multiselectdropdown class="smalldropdown col-lg-5" ng-model="page.model.caste" multiple typeofdata="'caste'">   
+                                      </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <label for="photoAssigned" class="control-label">Settled /Deleted by</label>
+                                <div> <select multiselectdropdown class="smalldropdown  col-lg-5" ng-model="page.model.settledeleteby" multiple typeofdata="'EmpNames'">   
+                            </select></div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label for="Gender" class="control-label">Authorized By</label>
+                                <div> <select multiselectdropdown class="smalldropdown  col-lg-5" ng-model="page.model.authorizedby" typeofdata="'EmpNames'"></select></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="Gender" class="control-label"></label>
+                                <div style="margin-top: 14px;">
+                                    <md-checkbox ng-model="page.model.chkConfidential"> </md-checkbox>Is confidential
+                                </div>
+                            </div>
+                        </div>
+                        <br>
                     </div>
-                    <div class="col-lg-3">
-                        <button class="button_custom pull-right" type="submit" ng-click="page.model.searchProfiles();">Search</button>
+                    <div class="row">
+                        <div style="border-top: 1px solid #ddd;padding-top: 1%;"></div>
+                        <div class="col-lg-3">
+
+                        </div>
+                        <div class="col-lg-3">
+                            <button class="button_custom pull-right" type="submit" ng-click="page.model.searchProfiles();">Search</button>
+                        </div>
+                        <div class="col-lg-4">
+                            <input type="reset" class="button_custom button_custom_reset" value="Reset" ng-click="page.model.reset();">
+                        </div>
+
                     </div>
-                    <div class="col-lg-4">
-                        <input type="reset" class="button_custom button_custom_reset" value="Reset" ng-click="page.model.reset();">
-                    </div>
+                    <br>
                 </div>
             </div>
-            <br>
         </div>
-    </uib-accordion>
-    <complex-grid-new model="page.model" config="page.model"></complex-grid-new>
+    </div>
+
+    <div class="row p-l-12" ng-if="page.model.grid1.TotalRecords>0">
+        <label for="totalrecords" class="control-label">Settled Profiles count : {{page.model.grid1.TotalRecords}}</label>
+    </div>
+    <complex-grid-new gid="'id2'" model="page.model.grid1" config="page.model.grid1"></complex-grid-new>
+    <br>
+    <div class="row p-l-12" ng-if="page.model.grid1.TotalRecords>0">
+        <label for="totalrecords" class="control-label">Deleted Profiles count : {{page.model.grid2.TotalRecords}}</label>
+    </div>
+    <complex-grid-new gid="'id3'" model="page.model.grid2" config="page.model.grid2"></complex-grid-new>
+
 </div>
 
+<br>
 
+
+<script type="text/ng-template" id="restoreProfilePopup.html">
+
+    <div class="modal-header">
+        <a href="javascript:void(0);" class="pull-right" ng-click="page.model.closepopup();">
+            <span class="fa fa-close red"></span>
+        </a>
+        <h4 class="modal-title">
+            Restore Record
+        </h4>
+    </div>
+    <div class="modal-body" style="line-height: 40px;">
+        <div class="row">
+            <label for="" class="control-label col-lg-4">Profile Id</label>
+            <div class="col-lg-6">
+                <input type="text" ng-model="page.model.restoreprofile" readonly class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <label for="" class="control-label col-lg-4">Requested by</label>
+            <div class="col-lg-6">
+                <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.requestedBy" class="md-block col-lg-6" flex-gt-sm ng-disabled="manageakerts">
+                    <md-radio-button value="1" class="md-primary">Customer</md-radio-button>
+                    <md-radio-button value="2"> Employee</md-radio-button>
+                </md-radio-group>
+            </div>
+        </div>
+
+        <div class="row" ng-if="page.model.requestedBy==='1'">
+            <label for="" class="control-label col-lg-4">Relationship </label>
+            <div class="col-lg-6">
+                <select multiselectdropdown class="smalldropdown" ng-model="page.model.relationshipID" typeofdata="'childStayingWith'" ng-change="page.model.RelationshipChange(page.model.restoreprofile,page.model.relationshipID);"></select>
+            </div>
+        </div>
+        <div class="row" ng-if="page.model.requestedBy==='1'">
+            <label for="" class="control-label col-lg-4">Relation name</label>
+            <div class="col-lg-6">
+                <input type="text" ng-model="page.model.relationName" class="form-control">
+            </div>
+        </div>
+        <div class="row" ng-if="page.model.requestedBy==='2'">
+            <label for="" class="control-label col-lg-4">Emp name</label>
+            <div class="col-lg-6">
+                <select multiselectdropdown class="smalldropdown" ng-model="page.model.restoreEmpnames" typeofdata="'EmpNames'">   
+                        </select>
+            </div>
+        </div>
+        <div class="row">
+            <label for="" class="control-label col-lg-4">Reason for restore</label>
+            <div class="col-lg-6">
+                <textarea name="" id="" cols="30" rows="4" class="form-control" ng-model="page.model.narration"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="button" value="Submit" class="btn btn-success" ng-click="page.model.restoreProfile();">
+        <input type="button" value="close" class="btn btn-danger" ng-click="page.model.closepopup();">
+    </div>
+
+</script>
 <style>
     .datepicker3 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;

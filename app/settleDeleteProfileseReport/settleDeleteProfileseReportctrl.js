@@ -16,6 +16,8 @@
              vm.model = model = settleDeleteProfileseReportModel;
              model.Admin = authSvc.isAdmin();
              model.reset();
+             model.scope = scope;
+             model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
          };
 
          vm.init();

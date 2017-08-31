@@ -195,8 +195,17 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
         RegistrationValidation: function(obj) {
             console.log("YYYYYYY");
             return http.post(app.apiroot + 'StaticPages/InsertTicketInfo', obj);
-        }
+        },
+        getEIprofileID: function(flag, ID, RelationShipID) {
 
+            return http.get(app.apiroot + 'ExpressInterest/getExpressInterest_linq', {
+                params: {
+                    flag: flag,
+                    ID: ID,
+                    RelationShipID: RelationShipID
+                }
+            });
+        }
 
     };
 }]);
