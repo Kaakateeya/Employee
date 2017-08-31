@@ -101,7 +101,7 @@
             };
             unAssignedPhotosService.getUnassignPhotoSelect(inobj).then(function(response) {
                 if (response.data && response.data.length > 0) {
-                    model.opendiv = false;
+
                     model.totalRecords = response.data[0].TotalRows;
                     model.data = response.data;
                     _.map(model.data, function(item, index) {
