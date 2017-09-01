@@ -29,10 +29,10 @@
                             <div class="col-lg-3">
                                 <label for="All Profileid" class="classlabelverify">Email<span style="color:red;">*</span> </label>
                                 <div>
-                                    <input ng-required="true" name="txtemailbounceemailid" ng-pattern="page.model.emailpattaren" type="text" class="form-control" style="width:220px" ng-model="page.model.txtemailbounceemailid"></input>
+                                    <input ng-required="true" name="txtemailbounceemailid" type="text" class="form-control" style="width:220px" ng-model="page.model.txtemailbounceemailid"></input>
                                     <div style="color: red;width:305px;" class="row" ng-if="((emailbounceentryform.txtemailbounceemailid.$invalid) && (emailbounceentryform.$submitted))" ng-messages="emailbounceentryform.txtemailbounceemailid.$error" role="alert">
-                                        <div ng-message-exp="['required', 'pattern']">
-                                            *Required and enter valid e-mail address.
+                                        <div ng-message-exp="['required']">
+                                            This is required.
                                         </div>
                                     </div>
                                 </div>
@@ -100,6 +100,44 @@
         </div>
     </div>
 </div>
+
+
+<script type="text/ng-template" id="bounceRecordPopup.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click='page.model.close();'>×</button>
+        <h4 class="modal-title">Email bounced Records</h4>
+    </div>
+    <div class="modal-body">
+        <div class="SetlemainCls">
+            <table class="table">
+                <thead style="background-color: #fdca52;">
+                    <tr>
+                        <th>ProfileID</th>
+                        <th>Email</th>
+                        <th>status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in page.model.bounceRecrdsArr">
+                        <td>{{page.model.txtemailbounceprofileid}}</td>
+                        <td>{{item.EmailID}}</td>
+                        <td>{{item.STATUS===true?'Updated':'Not updated'}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</script>
+
+
+
+
+
+
+
+
+
 <style>
     .datepicker3 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;

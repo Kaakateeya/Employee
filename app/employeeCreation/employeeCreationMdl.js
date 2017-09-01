@@ -13,12 +13,14 @@
                 { label: '00', value: 0 },
                 { label: '30', value: 30 }
             ];
+
             model.dateOptions = {
                 changeMonth: true,
                 changeYear: true,
                 yearRange: "-40:+5",
                 dateFormat: 'mm-dd-yy'
             };
+
             model.DesignationArr = [{ value: '--select--', Id: '' }, { value: 'Match Followup', Id: 1 }, { value: 'Payment', Id: 2 }, { value: 'Review', Id: 3 }, { value: 'Other', Id: 4 }, { value: 'Marketing', Id: 5 }];
             model.WeekDaysArr = [{ value: '--select--', Id: '' }, { value: 'Monday', Id: '1' }, { value: 'Tuesday', Id: '2' }, { value: 'Wednesday', Id: '3' }, { value: 'Thursday', Id: '4' }, { value: 'Friday', Id: '5' }, { value: 'Saturday', Id: '6' }, { value: 'Sunday', Id: '7' }];
             model.empStatusArr = [
@@ -144,6 +146,8 @@
             };
 
             model.populatemodel = function(row) {
+
+                debugger;
                 model.dependencyChange(row.CountryID, 'state');
                 model.dependencyChange(row.StateID, 'district');
                 model.dependencyChange(row.DistrictID, 'city');
@@ -164,6 +168,8 @@
                     model.fromHrs = parseInt((FromHrsArr[1]).split(':')[0]);
                     model.fromMins = parseInt((FromHrsArr[1]).split(':')[1]);
                 }
+
+                model.emptype = JSON.stringify(row.isAdmin);
                 if (row.WorkingEndTIme) {
                     var ToHrsArr = moment(row.WorkingEndTIme).format('HH:mm:ss');
                     model.toHrs = parseInt((ToHrsArr).split(':')[0]);

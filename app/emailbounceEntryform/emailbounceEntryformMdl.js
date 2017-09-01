@@ -2,8 +2,8 @@
     'use strict';
     angular
         .module('Kaakateeya')
-        .factory('emailbounceEntryformModel', ['emailbounceEntryformService', '$filter', 'alert',
-            function(emailbounceEntryformService, filter, alerts) {
+        .factory('emailbounceEntryformModel', ['emailbounceEntryformService', '$filter', 'alert', 'SelectBindServiceApp', 'modelpopupopenmethod',
+            function(emailbounceEntryformService, filter, alerts, SelectBindServiceApp, modelpopupopenmethod) {
                 var model = {};
                 model.emailpattaren = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/i;
                 model.dateOptions = {
@@ -44,12 +44,13 @@
                     if (model.txtemailbounceprofileid !== "" && model.txtemailbounceprofileid !== null && model.txtemailbounceprofileid !== undefined) {
                         emailbounceEntryformService.getexistanceprofileornot(model.txtemailbounceprofileid).then(function(response) {
                             console.log(response);
-                            if (parseInt(response.data) === 2) {
-
+                            if (parseInt(response.data) === 1 || parseInt(response.data) === 2) {
+                                model.checkRecord(model.txtemailbounceprofileid);
                             } else if (parseInt(response.data) === 3) {
                                 alerts.timeoutoldalerts(model.scope, 'alert-danger', 'ProfileID does Not Exists', 3000);
                                 model.txtemailbounceprofileid = "";
                             }
+
                         });
                     }
                 };
@@ -65,6 +66,19 @@
                     model.txtemailbouncedate = "";
                     model.txtemailbouncesentdate = "";
                     model.txtemailbouncenarration = "";
+                };
+                model.checkRecord = function(id) {
+                    if (id) {
+                        SelectBindServiceApp.getEIprofileID('emailbounce', id, '').then(function(response) {
+                            model.bounceRecrdsArr = response.data[0];
+                            debugger;
+                            if (model.bounceRecrdsArr.length > 0)
+                                modelpopupopenmethod.showPopupphotopoup('bounceRecordPopup.html', model.scope, 'md', "");
+                        });
+                    }
+                };
+                model.close = function() {
+                    modelpopupopenmethod.closepopuppoptopopup();
                 };
 
                 return model;

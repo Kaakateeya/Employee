@@ -108,6 +108,9 @@
                     model.ticketmarketowner = "";
                     model.mkttktverified = "";
                     model.marktedvalue = "0";
+                    model.rdntypeofreport = "";
+                    model.dateemployeeverifyfrom = "";
+                    model.dateemployeeverifyto = "";
                 };
                 model.pageloadbindings = function() {
                     marketingticketverificationService.getMyprofilebind(1, 2, '').then(function(response) {
