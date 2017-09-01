@@ -12,18 +12,8 @@
                         }
                     });
                 },
-                getnomatchesreason: function(v_EmpID, i_Region, v_Branch, i_flag, i_Cust_ID, v_Reason, i_Authorized) {
-                    return http.get(app.apiroot + 'EmployeeReportPage/getNomatchesreasons', {
-                        params: {
-                            v_EmpID: v_EmpID,
-                            i_Region: i_Region,
-                            v_Branch: v_Branch,
-                            i_flag: i_flag,
-                            i_Cust_ID: i_Cust_ID,
-                            v_Reason: v_Reason,
-                            i_Authorized: i_Authorized
-                        }
-                    });
+                getnomatchesreason: function(obj) {
+                    return http.post(app.apiroot + 'EmployeeReportPage/getNomatchesreasons', obj);
                 },
                 getdeletenomatchreason: function(Empid, Custid) {
                     return http.get(app.apiroot + 'EmployeeReportPage/getdeletenomatchreason', {

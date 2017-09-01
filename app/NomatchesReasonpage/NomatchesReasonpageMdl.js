@@ -78,13 +78,24 @@
             { text: 'Reason', key: 'Reason', type: 'label' },
             { text: '', key: 'TicketOwnerIDName', type: 'morelinks', templateUrl: model.linktemplate }
         ];
-        model.binddata = function(type, flag) {
+        model.binddata = function(type, flag, from, to) {
             model.empids = model.tmarketingempname !== undefined && model.tmarketingempname !== "" && model.tmarketingempname !== null && model.tmarketingempname.length > 0 ? model.tmarketingempname.toString() : '';
             model.i_Region = model.rbtnregional !== undefined && model.rbtnregional !== "" && model.rbtnregional !== null ? model.rbtnregional : '';
             model.v_Branch = model.tmarketingbranch !== undefined && model.tmarketingbranch !== "" && model.tmarketingbranch !== null && model.tmarketingbranch.length > 0 ? model.tmarketingbranch.toString() : '';
             model.i_Authorized = model.rbtnauthorize !== undefined && model.rbtnauthorize !== "" && model.rbtnauthorize !== null ? model.rbtnauthorize : '';
+            var objnomatch = {
+                v_EmpID: model.empids,
+                i_Region: model.i_Region,
+                v_Branch: model.v_Branch,
+                i_flag: flag,
+                i_Cust_ID: '',
+                v_Reason: '',
+                i_Authorized: model.i_Authorized,
+                startindex: from,
+                endindex: to
+            };
 
-            NomatchesReasonpageService.getnomatchesreason(model.empids, model.i_Region, model.v_Branch, flag, '', '', model.i_Authorized).then(function(response) {
+            NomatchesReasonpageService.getnomatchesreason(objnomatch).then(function(response) {
                 console.log(response);
                 if (response.data !== null && response.data !== undefined && response.data.length > 0 && response.data[0] !== null && response.data[0] !== undefined && (response.data[0]).length !== 0) {
                     if (type === 'export') {
@@ -108,7 +119,7 @@
             });
         };
         model.exportexcel = function(array, columns) {
-            model.binddata("export", '');
+            model.binddata("export", '', 1, model.TotalRows);
         };
         model.editdelete = function(row, type) {
             switch (type) {
@@ -119,7 +130,18 @@
                     commonpage.showPopupphotopoup('nomatchespopup.html', model.scope, 'md', "modalclassdashboardremainder");
                     break;
                 case 'Delete':
-                    NomatchesReasonpageService.getnomatchesreason('', '', '', 1, row.Cust_ID, '', '').then(function(response) {
+                    var objnomatch = {
+                        v_EmpID: '',
+                        i_Region: '',
+                        v_Branch: '',
+                        i_flag: 1,
+                        i_Cust_ID: row.Cust_ID,
+                        v_Reason: '',
+                        i_Authorized: '',
+                        startindex: 1,
+                        endindex: 10
+                    };
+                    NomatchesReasonpageService.getnomatchesreason(objnomatch).then(function(response) {
                         console.log(response);
                         if (parseInt(response.data) === 1) {
                             (model.data).splice(row.rowIndex, 1);
@@ -130,7 +152,18 @@
                     });
                     break;
                 case 'authorize':
-                    NomatchesReasonpageService.getnomatchesreason('', '', '', 3, row.Cust_ID, '', '').then(function(response) {
+                    var objauthorize = {
+                        v_EmpID: '',
+                        i_Region: '',
+                        v_Branch: '',
+                        i_flag: 3,
+                        i_Cust_ID: row.Cust_ID,
+                        v_Reason: '',
+                        i_Authorized: '',
+                        startindex: 1,
+                        endindex: 10
+                    };
+                    NomatchesReasonpageService.getnomatchesreason(objauthorize).then(function(response) {
                         console.log(response);
                         if (parseInt(response.data) === 1) {
                             (model.data).splice(row.rowIndex, 1);
@@ -160,11 +193,22 @@
             //         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Reason Updated Failed', 2000);
             //     }
             // });
+            var objects = {
+                v_EmpID: '',
+                i_Region: '',
+                v_Branch: '',
+                i_flag: 2,
+                i_Cust_ID: model.nomatchesobj.Cust_ID,
+                v_Reason: strReason,
+                i_Authorized: '',
+                startindex: 1,
+                endindex: 10
+            };
             var strReason = model.txtreasonnomatches !== null && model.txtreasonnomatches !== "" && model.txtreasonnomatches !== undefined ? model.txtreasonnomatches : null;
-            NomatchesReasonpageService.getnomatchesreason('', '', '', 2, model.nomatchesobj.Cust_ID, strReason, '').then(function(response) {
+            NomatchesReasonpageService.getnomatchesreason(objects).then(function(response) {
                 console.log(response);
                 if (parseInt(response.data) === 1) {
-                    model.binddata('table', '');
+                    model.binddata('table', '', 1, 100);
                     alertss.timeoutoldalerts(model.scope, 'alert-success', 'Reason Updated Successfully', 4500);
                 } else {
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Reason Updated Failed', 4500);
