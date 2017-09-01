@@ -13,7 +13,7 @@
                     });
                 },
                 getnomatchesreason: function(obj) {
-                    return http.post(app.apiroot + 'EmployeeReportPage/getNomatchesreasons', obj);
+                    return http.post(app.apiroot + 'EmployeeReportPage/Nomatchesreasons', obj);
                 },
                 getdeletenomatchreason: function(Empid, Custid) {
                     return http.get(app.apiroot + 'EmployeeReportPage/getdeletenomatchreason', {
