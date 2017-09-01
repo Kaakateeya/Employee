@@ -24,7 +24,10 @@
         model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
         model.ServiceTaxPercent = app.ServiceTaxPercent;
 
+
+
         model.EmployeePaymentInsert = function(inobj, type) {
+
             var monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                 DateArr, dateformatt = '';
             if (model.ExpiryDaterev === '') {
@@ -64,8 +67,12 @@
             EmployeePaymentInsertservice.paymentInsert(obj).then(function(response) {
                 model.scope.paymentForm.$setPristine();
                 model.scope.paymentForm.$setUntouched();
-                alertss.timeoutoldalerts(model.scope, 'alert-success', 'Payment Entered Successfully ', 4500);
-                window.open("EmployeePayments" + "?idsss=" + model.custobj.ProfileID, "_blank");
+                // alertss.timeoutoldalerts(model.scope, 'alert-success', 'Payment Entered Successfully ', 4500);
+                // window.open("EmployeePayments/0" + "?idsss=" + model.custobj.ProfileID, "_blank");
+
+                modelpopupopenmethod.showPopup('successfulPopup.html', model.scope, 'sm', '');
+
+
                 // if (response.data === 1 || response.data === '1') {
                 //     alert('submited successfully');
                 //     model.PiObj = {};
@@ -108,6 +115,7 @@
                     }
                 }
             });
+
         };
         model.PaidAmtChange = function(paidAmt, agreeAmt) {
             if (agreeAmt === '' || agreeAmt === undefined) {

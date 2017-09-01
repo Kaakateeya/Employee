@@ -14,7 +14,6 @@
                             <md-radio-button value="2"> Repeated MMeetings</md-radio-button>
                         </md-radio-group>
                     </div>
-
                     <div class="col-lg-5" ng-if="page.model.rbtnSearchBy!=='2'">
                         <label for="Gender" class="col-lg-4 control-label">Count</label>
                         <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtnCount" class="md-block" flex-gt-sm ng-disabled="manageakerts">
@@ -101,3 +100,8 @@
     </div>
 
 </script>
+<style>
+    .datepicker3 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+    }
+</style>

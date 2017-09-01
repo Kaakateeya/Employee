@@ -16,11 +16,33 @@
         model.showpaging = false;
         model.data = [];
         model.scope = {};
+        model.dateOptions = {
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-40:+5",
+            dateFormat: 'mm-dd-yy'
+        };
         model.viewTemplate = function(row) {
             return '<a href="javascript:void();">View</a>';
         };
         model.close = function() {
             modelpopupopenmethod.closepopuppoptopopup();
+        };
+
+        model.groomTemplate = function(row) {
+            var paidstatusclass = row.GroomPaidSatus === 1 ? 'paidclass' : 'unpaid';
+            var paid = "<a class='" + paidstatusclass + "' href='javascript:void(0);' ng-click='model.viewProfile(" + JSON.stringify(row.GroomProfileID) + ");'>" + row.GroomProfileID + "</a>";
+            return paid;
+
+        };
+        model.brideTemplate = function(row) {
+            var paidstatusclass = row.BridePaidSatus === 1 ? 'paidclass' : 'unpaid';
+            var paid = "<a class='" + paidstatusclass + "' href='javascript:void(0);' ng-click='model.viewProfile(" + JSON.stringify(row.BrideProfileID) + ");'>" + row.BrideProfileID + "</a>";
+            return paid;
+        };
+
+        model.singlegrid.viewProfile = function(profileID) {
+            window.open('/Viewfullprofile/' + profileID + '/0', '_blank');
         };
 
         model.viewmmInfo = function(row) {
@@ -31,22 +53,62 @@
             model.singlegrid.myprofileexcel = false;
             model.singlegrid.normalexcel = false;
             model.singlegrid.gridTableshow = true;
-            model.singlegrid.columns = [
-                { text: 'Employee name', key: 'EMPName', type: 'label' },
-                { text: 'Groom profileID', key: 'GroomProfileID', type: 'label' },
-                { text: 'Bride profileID', key: 'BrideProfileID', type: 'label' },
-                { text: 'Groom profile owner', key: 'GroomProfileOwner', type: 'label' },
-                { text: 'Groom name	', key: 'GroomProfileName', type: 'label' },
-                { text: 'Bride profile owner', key: 'BrideProfileOwner', type: 'label' },
-                { text: 'Bride name', key: 'BrideProfileName', type: 'label' },
-                { text: 'MM notes', key: 'MeetingNotes', type: 'label' },
-                { text: 'Bride status', key: 'BStatus', type: 'label' },
-                { text: 'Groom status', key: 'GStatus', type: 'label' },
-                { text: 'MM date', key: 'MeetingDate', type: 'label' }
-            ];
-            var inobj = {
-                Empid: row.EmployeeId
-            };
+
+
+
+            var inobj = {};
+            if (model.rbtnSearchBy === '0') {
+                inobj.Empid = row.EmployeeId;
+                model.singlegrid.columns = [
+                    { text: 'Employee name', key: 'EMPName', type: 'label' },
+                    { text: 'Groom profileID', key: 'GroomProfileID', type: 'morelinks', templateUrl: model.groomTemplate },
+                    { text: 'Bride profileID', key: 'BrideProfileID', type: 'morelinks', templateUrl: model.brideTemplate },
+                    { text: 'Groom profile owner', key: 'GroomProfileOwner', type: 'label' },
+                    { text: 'Groom name	', key: 'GroomProfileName', type: 'label' },
+                    { text: 'Bride profile owner', key: 'BrideProfileOwner', type: 'label' },
+                    { text: 'Bride name', key: 'BrideProfileName', type: 'label' },
+                    { text: 'MM notes', key: 'MeetingNotes', type: 'label' },
+                    { text: 'Bride status', key: 'BStatus', type: 'label' },
+                    { text: 'Groom status', key: 'GStatus', type: 'label' },
+                    { text: 'MM date', key: 'MeetingDate', type: 'label' }
+                ];
+
+            } else if (model.rbtnSearchBy === '1') {
+                inobj.custid = row.CustomerID;
+
+                model.singlegrid.columns = [
+                    { text: 'Bride profileID', key: 'BrideProfileID', type: 'morelinks', templateUrl: model.brideTemplate },
+                    { text: 'Groom profileID', key: 'GroomProfileID', type: 'morelinks', templateUrl: model.groomTemplate },
+                    { text: 'MM date', key: 'MeetingDate', type: 'label' },
+                    { text: 'MM arangedby Emp', key: 'MeetingArrangedByEmp_ID', type: 'label' },
+                    { text: 'Bride status', key: 'BStatus', type: 'label' },
+                    { text: 'Groom status', key: 'GStatus', type: 'label' },
+                    { text: 'MM notes', key: 'MeetingNotes', type: 'label' },
+                    { text: 'GPO', key: 'GPO', type: 'label' },
+                    { text: 'BPO', key: 'BPO', type: 'label' }
+                ];
+
+            } else if (model.rbtnSearchBy === '2') {
+                inobj = {
+                    MMCustID: row.BrideProfile_ID,
+                    MMCustID2: row.GroomProfile_ID
+                };
+
+                model.singlegrid.columns = [
+                    { text: 'Bride profileID', key: 'BrideProfileID', type: 'morelinks', templateUrl: model.brideTemplate },
+                    { text: 'Bride name', key: 'BrideProfileName', type: 'label' },
+                    { text: 'Groom profileID', key: 'GroomProfileID', type: 'morelinks', templateUrl: model.groomTemplate },
+                    { text: 'Groom name', key: 'GroomProfileName', type: 'label' },
+                    { text: 'MM date', key: 'MeetingDate', type: 'label' },
+                    { text: 'MM arranged by EmpID', key: 'MeetingArrangedByEmp_ID', type: 'label' },
+                    { text: 'Bride status', key: 'BStatus', type: 'label' },
+                    { text: 'Groom status', key: 'GStatus', type: 'label' },
+                    { text: 'MM notes', key: 'MeetingNotes', type: 'label' },
+                    { text: 'GPO', key: 'GPO', type: 'label' },
+                    { text: 'BPO', key: 'BPO', type: 'label' }
+                ];
+
+            }
 
             matchMeetingCountReportService.matchMeetingCountInfo(inobj).then(function(response) {
                 model.singlegrid.sdata = response.data[0];
@@ -56,14 +118,43 @@
         };
 
         model.matchReport = function() {
-            model.columns = [
-                { text: 'Sno', key: 'ID', type: 'label' },
-                { text: 'Employee name', key: 'Name', type: 'label' },
-                { text: 'Match meeting count', key: 'MeetingArrangedCount', type: 'label' },
-                { text: 'Branch', key: 'Branch', type: 'label' },
-                { text: 'view', key: '', type: 'customlink', templateUrl: model.viewTemplate, method: model.viewmmInfo }
-            ];
-            debugger;
+
+            if (model.rbtnSearchBy === '0') {
+                model.columns = [
+                    { text: 'Sno', key: 'ID', type: 'label' },
+                    { text: 'Employee name', key: 'Name', type: 'label' },
+                    { text: 'Match meeting count', key: 'MeetingArrangedCount', type: 'label' },
+                    { text: 'Branch', key: 'Branch', type: 'label' },
+                    { text: 'view', key: '', type: 'customlink', templateUrl: model.viewTemplate, method: model.viewmmInfo }
+                ];
+            } else if (model.rbtnSearchBy === '1') {
+                model.columns = [
+                    { text: 'Sno', key: 'ID', type: 'label' },
+                    { text: 'ProfileID', key: 'ProfileId', type: 'label' },
+                    { text: 'Name', key: 'Name', type: 'label' },
+                    { text: 'Match meeting count', key: 'MeetingCount', type: 'label' },
+                    { text: 'Caste', key: 'Castename', type: 'label' },
+                    { text: 'view', key: '', type: 'customlink', templateUrl: model.viewTemplate, method: model.viewmmInfo }
+                ];
+            } else if (model.rbtnSearchBy === '2') {
+                model.columns = [
+                    { text: 'Sno', key: 'ID', type: 'label' },
+                    { text: 'Bride profileID', key: 'BrideCust_ID', type: 'label' },
+                    { text: 'Groom profileID', key: 'GroomCust_ID', type: 'label' },
+                    { text: 'Match meeting count', key: 'MatchMeetingCount', type: 'label' },
+                    { text: 'view', key: '', type: 'customlink', templateUrl: model.viewTemplate, method: model.viewmmInfo }
+                ];
+            }
+
+
+
+
+
+
+
+
+
+
             var inobj = {
                 AppusrID: 0,
                 SearchBy: model.rbtnSearchBy ? model.rbtnSearchBy : 0,

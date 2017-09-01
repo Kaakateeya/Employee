@@ -35,3 +35,22 @@
           width: 40%;
       }
   }
+  
+  #PaymentDetailsid {
+      .PaymentDate,
+      {
+          width: 193px;
+      }
+      .StatusBy {
+          width: 253px;
+      }
+      th,
+      td {
+          padding: 8px 16px;
+          border: 1px solid #ddd;
+          width: 129px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: inherit;
+      }
+  }

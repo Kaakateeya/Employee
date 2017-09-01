@@ -50,7 +50,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'dashboard', name: 'base.dashboard', url: '/dashboardpage', isloginrequired: true, module: 'dashboard' },
             { routeName: 'searchpage', name: 'base.searchpage', url: '/search/:id/:Profileid', isloginrequired: true, reload: true },
             { routeName: 'editViewprofile', name: 'base.editViewprofile', url: '/editViewprofileurl', isloginrequired: true },
-            { routeName: 'EmployeePayment', name: 'base.EmployeePayment', url: '/EmployeePayments' },
+            { routeName: 'EmployeePayment', name: 'base.EmployeePayment', url: '/EmployeePayments/:ProfileID' },
             { routeName: 'EmployeePaymentInsert', name: 'base.EmployeePaymentInsert', url: '/EmployeePaymentInserts/:ProfileID/:status/:paymentID/:histryid', isloginrequired: true },
             { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/Viewfullprofile/:ProfileID/:contacts', isloginrequired: true, subname: ['directives/divPrint.js'] },
             { routeName: 'expressInterest', name: 'base.expressInterest', url: '/expressInterestpage', isloginrequired: true },
@@ -319,9 +319,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             resolve: {
                 loadMyCtrl: ['$ocLazyLoad', '$timeout', function($ocLazyLoad, timeout) {
                     $ocLazyLoad.load('auth');
-                    //  timeout(function() {
+                    // timeout(function() {
                     loadmodules($ocLazyLoad);
-                    // }, 1500);
+                    // }, 500);
                 }]
             }
         });
@@ -428,7 +428,6 @@ app.run(function($rootScope, $state, $stateParams) {
         }
     });
 });
-
 
 function loadmodules($ocLazyLoad) {
     $ocLazyLoad.load('constants');

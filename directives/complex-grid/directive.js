@@ -77,7 +77,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     commonpage.showPopup('templates/bindImagePopup.html', scope, 'md', '');
                 };
                 scope.paymentpageredirect = function(profileid) {
-                    window.open("EmployeePayments" + "?idsss=" + profileid, "_blank");
+                    window.open("EmployeePayments/0" + "?idsss=" + profileid, "_blank");
                 };
                 scope.sendtopayment = function(row) {
                     var pay = row.paidamount === '0/0' ? 'unpaid' : row.paidamount;

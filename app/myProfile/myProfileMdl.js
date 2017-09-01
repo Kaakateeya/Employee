@@ -129,7 +129,7 @@
                     modelpopupopenmethod.ShowPhotoPopup(custid, model.scope);
                 };
                 model.grid.RedirectPayment = function(profileid) {
-                    window.open("EmployeePayments" + "?profileid=" + profileid, "_blank");
+                    window.open("EmployeePayments/0" + "?profileid=" + profileid, "_blank");
                 };
                 model.horoTemplate = function(row) {
                     // var rowww = model.frompage === 1 ? 0 : model.frompage;

@@ -1,29 +1,54 @@
 .fixed-table-container thead th .sortable,
 .detail {
-  cursor: pointer;
-  background-position: right;
-  background-repeat: no-repeat;
-  padding-right: 30px;
-  background-color: #fdca52;
-  color: black; }
+    cursor: pointer;
+    background-position: right;
+    background-repeat: no-repeat;
+    padding-right: 30px;
+    background-color: #fdca52;
+    color: black;
+}
 
 .modalclassdashboardremainder {
-  z-index: 99999999999999 !important;
-  top: 0%;
-  left: 0%; }
+    z-index: 99999999999999 !important;
+    top: 0%;
+    left: 0%;
+}
 
 .modalclassofedit {
-  z-index: 9999999999 !important;
-  top: 0%;
-  left: 0%; }
+    z-index: 9999999999 !important;
+    top: 0%;
+    left: 0%;
+}
 
 .modalclassofedit .modal-dialog.modal-md {
-  width: 50%; }
+    width: 50%;
+}
 
 .modalclassofedit .md-tab {
-  padding: 14px 15px; }
+    padding: 14px 15px;
+}
 
 .modalclassofedit .pop_label_left {
-  width: 40%; }
+    width: 40%;
+}
+
+#PaymentDetailsid .PaymentDate {
+    width: 193px;
+}
+
+#PaymentDetailsid .StatusBy {
+    width: 253px;
+}
+
+#PaymentDetailsid th,
+#PaymentDetailsid td {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    width: 129px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: inherit;
+}
+
 
 /*# sourceMappingURL=style.css.map */

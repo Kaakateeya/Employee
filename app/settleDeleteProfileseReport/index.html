@@ -26,8 +26,8 @@
                             <div class="col-lg-11 rdnoptions">
                                 <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtnsettleDeleteType" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                     <md-radio-button value="0" class="md-primary">Both</md-radio-button>
-                                    <md-radio-button value="1"> Only Settled</md-radio-button>
-                                    <md-radio-button value="2"> Only Delete</md-radio-button>
+                                    <md-radio-button value="1">Only Settled</md-radio-button>
+                                    <md-radio-button value="2">Only Delete</md-radio-button>
                                 </md-radio-group>
                             </div>
                             <div class="col-lg-1"> <img src="src\images\straightline.png" style="height:33px;margin:-5px;color: maroon;"></img>
@@ -104,7 +104,7 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <label for="Gender" class="control-label">Authorized By</label>
-                                <div> <select multiselectdropdown class="smalldropdown  col-lg-5" ng-model="page.model.authorizedby" typeofdata="'EmpNames'"></select></div>
+                                <div> <select multiselectdropdown class="smalldropdown  col-lg-5" multiple ng-model="page.model.authorizedby" typeofdata="'EmpNames'"></select></div>
                             </div>
                             <div class="col-lg-3">
                                 <label for="Gender" class="control-label"></label>
@@ -139,7 +139,7 @@
     </div>
     <complex-grid-new gid="'id2'" model="page.model.grid1" config="page.model.grid1"></complex-grid-new>
     <br>
-    <div class="row p-l-12" ng-if="page.model.grid1.TotalRecords>0">
+    <div class="row p-l-12" ng-if="page.model.grid2.TotalRecords>0">
         <label for="totalrecords" class="control-label">Deleted Profiles count : {{page.model.grid2.TotalRecords}}</label>
     </div>
     <complex-grid-new gid="'id3'" model="page.model.grid2" config="page.model.grid2"></complex-grid-new>
@@ -211,5 +211,10 @@
 <style>
     .datepicker3 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+    }
+    
+    md-radio-group.layout-row md-radio-button {
+        margin: 0 6px 0 0;
+        ;
     }
 </style>

@@ -210,26 +210,22 @@
             </form>
         </div>
     </div>
-
-    <script type="text/ng-template" id="alert.html">
-        <div class="modal-header  alert-info">
-            <button type="button" class="close" ng-click='page.model.closepopup();'>×</button>
-            <h4 class="modal-title">Payment offer</h4>
-        </div>
-        <div class="modal-body" style="line-height:20px;">
-            <div class='row'>
-                <span class="paymentOfr col-lg-6">{{page.model.typeTxt}} Amount </span>&nbsp;&nbsp; {{page.model.strAmt}}
-            </div>
-            <div class='row'>
-                <span class="paymentOfr col-lg-6">No of Points </span>&nbsp; &nbsp; {{page.model.strPoints}}
-            </div>
-            <div class='row'>
-                <span class="paymentOfr col-lg-6">Expiry Date </span>&nbsp; &nbsp;{{page.model.strDate }}
-            </div>
-        </div>
-    </script>
-
-
-
-
 </div>
+
+<script type="text/ng-template" id="alert.html">
+    <div class="modal-header  alert-info">
+        <button type="button" class="close" ng-click='page.model.closepopup();'>×</button>
+        <h4 class="modal-title">Payment offer</h4>
+    </div>
+    <div class="modal-body" style="line-height:20px;">
+        <div class='row'>
+            <span class="paymentOfr col-lg-6">{{page.model.typeTxt}} Amount </span>&nbsp;&nbsp; {{page.model.strAmt}}
+        </div>
+        <div class='row'>
+            <span class="paymentOfr col-lg-6">No of Points </span>&nbsp; &nbsp; {{page.model.strPoints}}
+        </div>
+        <div class='row'>
+            <span class="paymentOfr col-lg-6">Expiry Date </span>&nbsp; &nbsp;{{page.model.strDate }}
+        </div>
+    </div>
+</script>

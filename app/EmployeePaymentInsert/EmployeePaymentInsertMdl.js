@@ -59,7 +59,7 @@
                 model.scope.paymentForm.$setPristine();
                 model.scope.paymentForm.$setUntouched();
                 alertss.timeoutoldalerts(model.scope, 'alert-success', 'Payment Entered Successfully ', 4500);
-                window.open("EmployeePayments" + "?idsss=" + model.custobj.ProfileID, "_blank");
+                window.open("EmployeePayments/0" + "?idsss=" + model.custobj.ProfileID, "_blank");
                 // if (response.data === 1 || response.data === '1') {
                 //     alert('submited successfully');
                 //     model.PiObj = {};
@@ -69,6 +69,7 @@
             });
         };
         model.getpaymentProfile = function(profileID) {
+            debugger;
             model.custobj = {};
             model.PiObj.rdnServicetax = '1';
             EmployeePaymentInsertservice.getEmployeePaymentdata(profileID, 0).then(function(response) {
