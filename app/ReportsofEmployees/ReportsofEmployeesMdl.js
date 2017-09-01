@@ -26,7 +26,12 @@
                 _.each(response.data, function(item, index) {
                     model.modelarraydynamic.push({ header: model.arrayheader, data: item, ida: false });
                 });
+                timeout(function() {
+                    $('.pane-hScroll').scroll(function() {
+                        $('.pane-vScroll').width($('.pane-hScroll').width() + $('.pane-hScroll').scrollLeft());
+                    });
 
+                }, 1000);
             });
         };
         model.submitreports = function() {
