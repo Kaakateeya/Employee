@@ -19,8 +19,8 @@
             });
 
         }, 1000);
-        model.initdata = function(empid, branchid, region, macaddress, flag) {
-            ReportsofEmployeesService.getAdminReportsAllProfiles(empid, branchid, region, macaddress, flag).then(function(response) {
+        model.initdata = function(empid, branchid, region, macaddress, flag, v_ProfileOwnerEmpID) {
+            ReportsofEmployeesService.getAdminReportsAllProfiles(empid, branchid, region, macaddress, flag, v_ProfileOwnerEmpID).then(function(response) {
                 model.modelarraydynamic = [];
                 console.log(response);
                 _.each(response.data, function(item, index) {
@@ -30,7 +30,7 @@
             });
         };
         model.submitreports = function() {
-            model.initdata("", model.tmarketingbranch !== undefined && model.tmarketingbranch !== null && model.tmarketingbranch !== "" && model.tmarketingbranch.length > 0 ? model.tmarketingbranch.toString() : "", model.rbtnregional !== undefined && model.rbtnregional !== null ? model.rbtnregional : '', "", 1);
+            model.initdata("", model.tmarketingbranch !== undefined && model.tmarketingbranch !== null && model.tmarketingbranch !== "" && model.tmarketingbranch.length > 0 ? model.tmarketingbranch.toString() : "", model.rbtnregional !== undefined && model.rbtnregional !== null ? model.rbtnregional : '', "", 1, model.tmarketingempname !== undefined && model.tmarketingempname !== null && model.tmarketingempname !== "" && model.tmarketingempname.length > 0 ? model.tmarketingempname.toString() : "");
         };
 
         model.popupopen = function(Empid) {
@@ -105,7 +105,7 @@
         model.reportsgraph = function() {
             model.dataSourcesmulti = [];
             model.dataset = [];
-            ReportsofEmployeesService.getAdminReportsAllProfiles(model.singleempid, "", "", "", 2).then(function(response) {
+            ReportsofEmployeesService.getAdminReportsAllProfiles(model.singleempid, "", "", "", 2, "").then(function(response) {
                 _.each(response.data, function(item) {
                     model.dataset = [];
                     _.each(item, function(inneritem) {
