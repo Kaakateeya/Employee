@@ -41,7 +41,7 @@
             return paid;
         };
 
-        model.singlegrid.viewProfile = function(profileID) {
+        model.viewProfile = model.singlegrid.viewProfile = function(profileID) {
             window.open('/Viewfullprofile/' + profileID + '/0', '_blank');
         };
 
@@ -130,7 +130,7 @@
             } else if (model.rbtnSearchBy === '1') {
                 model.columns = [
                     { text: 'Sno', key: 'ID', type: 'label' },
-                    { text: 'ProfileID', key: 'ProfileId', type: 'label' },
+                    { text: 'ProfileID', key: 'ProfileId', type: 'morelinks', templateUrl: model.customerProfileid },
                     { text: 'Name', key: 'Name', type: 'label' },
                     { text: 'Match meeting count', key: 'MeetingCount', type: 'label' },
                     { text: 'Caste', key: 'Castename', type: 'label' },
@@ -139,20 +139,12 @@
             } else if (model.rbtnSearchBy === '2') {
                 model.columns = [
                     { text: 'Sno', key: 'ID', type: 'label' },
-                    { text: 'Bride profileID', key: 'BrideCust_ID', type: 'label' },
-                    { text: 'Groom profileID', key: 'GroomCust_ID', type: 'label' },
+                    { text: 'Bride profileID', key: 'BrideCust_ID', type: 'morelinks', templateUrl: model.searchBybrideProfileid },
+                    { text: 'Groom profileID', key: 'GroomCust_ID', type: 'morelinks', templateUrl: model.searchBygroomProfileid },
                     { text: 'Match meeting count', key: 'MatchMeetingCount', type: 'label' },
                     { text: 'view', key: '', type: 'customlink', templateUrl: model.viewTemplate, method: model.viewmmInfo }
                 ];
             }
-
-
-
-
-
-
-
-
 
 
             var inobj = {
@@ -196,6 +188,24 @@
             model.txtTomeetingDate = '';
             model.data = [];
         };
+
+
+        model.returnProfileIDTemplate = function(profileid, paidStatus) {
+            var paidstatusclass = paidStatus === 1 ? 'paidclass' : 'unpaid';
+            var paid = "<a class='" + paidstatusclass + "' href='javascript:void(0);' ng-click='model.viewProfile(" + JSON.stringify(profileid) + ");'>" + profileid + "</a>";
+            return paid;
+        };
+
+        model.customerProfileid = function(row) {
+            return model.returnProfileIDTemplate(row.ProfileId, row.PaidSatus);
+        };
+        model.searchBybrideProfileid = function(row) {
+            return model.returnProfileIDTemplate(row.BrideCust_ID, row.bridePaidSatus);
+        };
+        model.searchBygroomProfileid = function(row) {
+            return model.returnProfileIDTemplate(row.GroomCust_ID, row.groomPaidSatus);
+        };
+
 
         return model;
 
