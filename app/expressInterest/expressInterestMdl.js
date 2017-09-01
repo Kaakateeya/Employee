@@ -15,7 +15,6 @@
         model.Max_Offline_Allowed = '';
         model.Offline_Used_Count = '';
         model.FromProfileID = function(ID) {
-            debugger;
             if (ID !== '' && ID !== null && ID !== undefined) {
                 expressInterestService.getEIprofileID(6, ID, '').then(function(response) {
                     if (response.data.length > 0) {
@@ -23,7 +22,6 @@
                             model.ProfileStatusID = response.data[0][0].ProfileStatusID;
                         }
                         if (_.isArray(response.data[1]) && response.data[1].length > 0) {
-                            debugger;
                             model.fromcustid = response.data[1][0].Cust_ID;
                             model.FromAgeMax = response.data[1][0].AgeMax;
                             model.FromAgeMin = response.data[1][0].AgeMin;
@@ -283,7 +281,6 @@
                 GetDetails: ExpressArray
             };
             expressInterestService.submitExpressintrst(inputObj).then(function(response) {
-                debugger;
                 var status = 0;
                 if (_.isArray(response.data.m_Item1))
                     status = response.data.m_Item1[0] !== undefined && response.data.m_Item1[0] !== null ? response.data.m_Item1[0].Status : 0;

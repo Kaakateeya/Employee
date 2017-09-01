@@ -116,7 +116,6 @@
 
 
         model.createSuccessStory = function() {
-            debugger;
             var name = model.brideCustID + '_' + model.groomCustID + '_SuccessImage',
                 keyname = '';
             if (model.myFileupload) {

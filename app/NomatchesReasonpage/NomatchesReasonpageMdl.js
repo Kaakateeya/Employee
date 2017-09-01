@@ -64,7 +64,6 @@
             return date;
         };
         model.linktemplate = function(row) {
-            debugger;
             var Edit = 'Edit';
             var Delete = 'Delete';
             var authorize = 'authorize';
@@ -123,7 +122,6 @@
                     NomatchesReasonpageService.getnomatchesreason('', '', '', 1, row.Cust_ID, '', '').then(function(response) {
                         console.log(response);
                         if (parseInt(response.data) === 1) {
-                            debugger;
                             (model.data).splice(row.rowIndex, 1);
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Deleted Sucessfully', 4500);
                         } else {
@@ -135,7 +133,6 @@
                     NomatchesReasonpageService.getnomatchesreason('', '', '', 3, row.Cust_ID, '', '').then(function(response) {
                         console.log(response);
                         if (parseInt(response.data) === 1) {
-                            debugger;
                             (model.data).splice(row.rowIndex, 1);
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'authorized Sucessfully', 4500);
                         } else {

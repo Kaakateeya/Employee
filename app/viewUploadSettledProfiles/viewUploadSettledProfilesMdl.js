@@ -136,7 +136,6 @@
         model.deleteSettleemnt = function() {
 
             if (model.Managementid === 'true' || model.Admin === '1') {
-                debugger;
                 viewUploadSettledProfilesService.deleteSettleForm(model.settlementimageID).then(function(response) {
                     if (response.data && parseInt(response.data) === 1) {
                         model.close();

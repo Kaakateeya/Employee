@@ -1,6 +1,5 @@
-<!-- <link rel="stylesheet" href="https://rawgit.com/alalonde/angular-scrollable-table/master/scrollable-table.css" /> -->
 <div class="right_col">
-    <uib-accordion close-others="oneAtATime">
+    <!-- <uib-accordion close-others="oneAtATime">
         <div uib-accordion-group class="panel-default" is-open="page.model.opendiv">
             <uib-accordion-heading style="color: rgb(160, 2, 1);">
                 Employee Pending Work <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
@@ -35,10 +34,55 @@
             </div>
             <br>
         </div>
-    </uib-accordion>
+    </uib-accordion> -->
+    <div class="panel-group">
+        <div class="panel-collapse collapse in">
+            <div class="panel-default regValheader" style="margin-top: -12px;box-shadow: 2px 2px 6px #ccc;" is-open="page.model.opendiv">
+                <div class="panel-heading" style="color: rgb(160, 2, 1);border: 1px solid #ccc">
+                    <div class="row">
+                        <div class="col-lg-2" style="font-size: 14px;font-weight: 700;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
+                            <h4 style="width:200px;"> Employee Pending Work
+                            </h4>
+                        </div>
+                        <div class="col-lg-3" style="color: black;">
+                            <md-radio-group ng-change="page.model.onchangebranch()" ng-required="true" name="rbtnregional" layout="row" ng-model="page.model.rbtnregional" class="md-block col-lg-9" flex-gt-sm ng-disabled="manageakerts">
+                                <md-radio-button value="" class="md-primary">All</md-radio-button>
+                                <md-radio-button value="408"> Ap</md-radio-button>
+                                <md-radio-button value="409"> TN</md-radio-button>
+                                <md-radio-button value="410">KT</md-radio-button>
+                            </md-radio-group>
+                        </div>
+                        <div class="col-lg-3" style="color: black;">
+                            <label for="" class="control-label col-lg-3">Branch</label>
+                            <div class="col-lg-9">
+                                <select name="ticketowner" multiple class="smalldropdown" ng-options="item.value as item.label for item in page.model.Brancharray" ng-model="page.model.tmarketingbranch" multiselectdropdown>   
+                                    </select></div>
+                        </div>
+
+                        <div class="col-lg-3" style="color: black;">
+                            <label for="" class="control-label col-lg-4">Employees</label>
+                            <div class="col-lg-8">
+                                <select name="ticketowner" multiple class="smalldropdown" ng-options="item.value as item.label for item in page.model.ProfileOwnerarray" ng-model="page.model.tmarketingempname" multiselectdropdown>   
+                                  </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
-        <div ng-if="itmarray.data!==undefined && itmarray.data.length>0" ng-repeat="itmarray in page.model.modelarraydynamic">
-            <br>
+        <div style="border-top: 1px solid #ddd;padding-top: 1%;"></div>
+        <div class="col-lg-5">
+            <button class="button_custom pull-right" type="submit" ng-click="page.model.submitreports()">Search</button>
+        </div>
+        <div class="col-lg-4">
+            <input type="reset" class="button_custom button_custom_reset" value="Reset" ng-click="page.model.resetreports();">
+        </div>
+    </div>
+
+    <div class="row">
+        <div ng-show="itmarray.data!==undefined && itmarray.data.length>0" ng-repeat="itmarray in page.model.modelarraydynamic">
             <div class="col-lg-12">
                 <br>
                 <h2 style="cursor:pointer;" class="col-lg-3" ng-click="itmarray.ida=!itmarray.ida">Branchid:{{itmarray.data[0].Branchcode}}</h2>
@@ -47,53 +91,86 @@
                 </a>
             </div>
             <div class="col-lg-12" ng-hide="itmarray.ida">
-                <scrollable-table>
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th sortable-header ng-repeat="itemheader in itmarray.header">{{itemheader}}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="response in itmarray.data" row-id="{{response.Empid}}" ng-style="{'background-color':page.model.colorsbackground($index)}">
-                                <td>{{ response.Empname }}</td>
-                                <td>{{ response.NoofProfiles }}</td>
-                                <td>
-                                    {{ response.noservice }}
-                                </td>
-                                <td>{{ response.nologion }}</td>
-                                <td>{{ response.EMNV }}</td>
-                                <td>{{ response.Paid }}</td>
-                                <td>{{ response.Unpaid }}</td>
-                                <td><a href="javascript:void(0)" ng-click="page.model.popupopen(response.Empid)"><i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 23px;"></i></a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </scrollable-table>
+                <div class="pane pane--table1" id='table_{{$index}}'>
+                    <div class="pane-hScroll">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th ng-repeat="itemheader in itmarray.header">{{itemheader}}</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div class="pane-vScroll">
+                            <table>
+                                <tbody>
+                                    <tr ng-repeat="response in itmarray.data" row-id="{{response.Empid}}" ng-style="{'background-color':page.model.colorsbackground($index)}">
+                                        <td>{{ response.Empname }}</td>
+                                        <td>{{ response.NoofProfiles }}</td>
+                                        <td>
+                                            {{ response.noservice }}
+                                        </td>
+                                        <td>{{ response.nologion }}</td>
+                                        <td>{{ response.EMNV }}</td>
+                                        <td>{{ response.Paid }}</td>
+                                        <td>{{ response.Unpaid }}</td>
+                                        <td>{{ response.Paymentexpired }}</td>
+                                        <td>{{ response.NoPhotoCount }}</td>
+                                        <td>{{ response.InactiveCount }}</td>
+                                        <td>{{ response.emailbounce }}</td>
+                                        <td>{{ response.Presentinindia }}</td>
+                                        <td><a href="javascript:void(0)" ng-click="page.model.popupopen(response.Empid)"><i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 23px;"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<script type="text/ng-template" id="graph.html">
-    <div class="modal-header">
-        <button type="button" class="close" ng-click="page.model.closeupload()">×</button>
-        <h4 class="modal-title text-center">Employee report</h4>
-    </div>
-    <div class="modal-body">
-        <div class="row">
-            <div class="col-lg-12" ng-repeat="item in page.model.dataSourcesmulti">
-                <h2 class="" style="text-align:center;"> {{item.EmpName}}</h2>
-                <fusioncharts width="1000" dataFormat: 'json', height="300" type="mscolumn2d" datasource="{{item}}">
-                </fusioncharts>
+    <script type="text/ng-template" id="graph.html">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="page.model.closeupload()">×</button>
+            <h4 class="modal-title text-center">Employee report</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-12" ng-repeat="item in page.model.dataSourcesmulti">
+                    <h2 class="" style="text-align:center;"> {{item.EmpName}}</h2>
+                    <fusioncharts width="1000" dataFormat: 'json', height="300" type="mscolumn2d" datasource="{{item}}">
+                    </fusioncharts>
+                </div>
             </div>
         </div>
-    </div>
-</script>
-<style type="text/css">
-    .scrollableContainer {
-        /* min-height: 200px; */
-        height: auto;
-        /* max-height: 300px; */
-        /* overflow: scroll; */
-    }
-</style>
+    </script>
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+            background: white;
+            table-layout: fixed;
+            width: 100%;
+        }
+        
+        th,
+        td {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            width: 199px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: inherit;
+        }
+        
+        .pane {
+            background: #eee;
+        }
+        
+        .pane-hScroll {
+            overflow: auto;
+        }
+        
+        .pane-vScroll {
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+    </style>

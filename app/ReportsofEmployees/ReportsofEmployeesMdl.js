@@ -9,8 +9,16 @@
 
     function factory(ReportsofEmployeesService, modelpopupopenmethod, Commondependency, timeout) {
         var model = {};
-        model.arrayheader = ["Emp Name", "No of Profiles", "No Services", "No Login", "EMNV", "Paid", "Unpaid", "Graph"];
+        model.arrayheader = ["Emp Name", "Total profiles", "No Services", "No Login", "EMNV", "Paid", "Unpaid", "Payment expired Customers", "No Photos", "In active Customers", "Email Bounce Info", "Presently In india", "Graph"];
+        $('.pane-hScroll').scroll(function() {
+            $('.pane-vScroll').width($('.pane-hScroll').width() + $('.pane-hScroll').scrollLeft());
+        });
+        timeout(function() {
+            $('.pane-hScroll').scroll(function() {
+                $('.pane-vScroll').width($('.pane-hScroll').width() + $('.pane-hScroll').scrollLeft());
+            });
 
+        }, 1000);
         model.initdata = function(empid, branchid, region, macaddress, flag) {
             ReportsofEmployeesService.getAdminReportsAllProfiles(empid, branchid, region, macaddress, flag).then(function(response) {
                 model.modelarraydynamic = [];
@@ -18,10 +26,10 @@
                 _.each(response.data, function(item, index) {
                     model.modelarraydynamic.push({ header: model.arrayheader, data: item, ida: false });
                 });
+
             });
         };
         model.submitreports = function() {
-            debugger;
             model.initdata("", model.tmarketingbranch !== undefined && model.tmarketingbranch !== null && model.tmarketingbranch !== "" && model.tmarketingbranch.length > 0 ? model.tmarketingbranch.toString() : "", model.rbtnregional !== undefined && model.rbtnregional !== null ? model.rbtnregional : '', "", 1);
         };
 
@@ -160,10 +168,14 @@
         model.pageloadbindings = function() {
             ReportsofEmployeesService.getMyprofilebind(1, 2, '').then(function(response) {
                 model.Brancharray = [];
+                model.ProfileOwnerarray = [];
                 _.each(response.data, function(item) {
                     switch (item.CountryCode) {
                         case "Branch":
                             model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                            break;
+                        case "Profile Owner":
+                            model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID, "display": item.Name });
                             break;
                     }
                 });
@@ -177,9 +189,13 @@
             model.rbtnregional = "";
             timeout(function() {
                 model.tmarketingbranch = "";
+                model.tmarketingempname = "";
             }, 50);
             model.pageloadbindings();
         };
+        // $('#id1 .pane-hScroll').scroll(function() {
+        //     $('#id1 .pane-vScroll').width($('#id1 .pane-hScroll').width() + $('#id1 .pane-hScroll').scrollLeft());
+        // });
         return model;
 
     }

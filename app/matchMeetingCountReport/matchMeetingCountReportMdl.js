@@ -63,7 +63,7 @@
                 { text: 'Branch', key: 'Branch', type: 'label' },
                 { text: 'view', key: '', type: 'customlink', templateUrl: model.viewTemplate, method: model.viewmmInfo }
             ];
-            debugger;
+
             var inobj = {
                 AppusrID: 0,
                 SearchBy: model.rbtnSearchBy ? model.rbtnSearchBy : 0,

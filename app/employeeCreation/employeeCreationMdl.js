@@ -164,7 +164,6 @@
                     model.fromHrs = parseInt((FromHrsArr[1]).split(':')[0]);
                     model.fromMins = parseInt((FromHrsArr[1]).split(':')[1]);
                 }
-                debugger;
                 if (row.WorkingEndTIme) {
                     var ToHrsArr = moment(row.WorkingEndTIme).format('HH:mm:ss');
                     model.toHrs = parseInt((ToHrsArr).split(':')[0]);
