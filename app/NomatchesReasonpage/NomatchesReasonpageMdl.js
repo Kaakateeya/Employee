@@ -95,7 +95,6 @@
                 startindex: from,
                 endindex: to
             };
-            debugger;
             NomatchesReasonpageService.getnomatchesreason(objnomatch).then(function(response) {
                 console.log(response);
                 if (response.data !== null && response.data !== undefined && response.data.length > 0 && response.data[0] !== null && response.data[0] !== undefined && (response.data[0]).length !== 0) {
@@ -123,7 +122,6 @@
             });
         };
         model.exportexcel = function(topage) {
-            debugger;
             model.binddata("export", null, 1, model.TotalRows);
         };
         model.pagechange = function(val) {

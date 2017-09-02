@@ -71,7 +71,6 @@
                     if (id) {
                         SelectBindServiceApp.getEIprofileID('emailbounce', id, '').then(function(response) {
                             model.bounceRecrdsArr = response.data[0];
-                            debugger;
                             if (model.bounceRecrdsArr.length > 0)
                                 modelpopupopenmethod.showPopupphotopoup('bounceRecordPopup.html', model.scope, 'md', "");
                         });

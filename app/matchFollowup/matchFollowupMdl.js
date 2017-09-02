@@ -383,8 +383,12 @@
 
                     });
                 };
-                model.openActionPopup = function(ticketID, profileID, number, fromcustid, tocustid, ticketStatusId, ToProfileID) {
+                model.openActionPopup = function(ticketID, profileID, number, fromcustid, tocustid, ticketStatusId, ToProfileID, Name, gender) {
                     model.bindreplytype();
+                    model.ticketstatusforemail = ticketStatusId.trim();
+                    model.genderforemail = gender;
+                    model.tointerestname = Name;
+                    model.toprofileidinterest = ToProfileID;
                     model.actobj.ddlInreceivedfrom = 39;
                     model.actobj.ddlOutreceivedby = 39;
                     model.actobj.ddlInCallresult = model.actobj.ddlOutcallresultout = 417;
@@ -556,8 +560,14 @@
                     model.rbtnnotIntrst = '';
                     model.typeOFCall = type;
                     model.typeOfCtrl = val;
+                    var textpopup = model.ticketstatusforemail !== 'I' ? '(proceed/do not proceed/need time)' : '(do not proceed/need time)';
                     if (val === '1') {
-                        model.txtAllcallDiscusion = 'intrsted';
+                        // model.txtAllcallDiscusion = 'intrsted';
+                        var genderid = model.genderforemail === 2 ? 'Ms.' : 'Mr.';
+                        var she = model.genderforemail === 2 ? 'She' : 'He';
+                        var her = model.genderforemail === 2 ? 'her' : 'his';
+                        model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment().format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
+                            "We are resending " + her + " profile for the ease of viewing and please give your opinion in the options provided in the profile" + textpopup + "";
                         model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else if (val === '2') {
                         model.txtAllcallDiscusion = 'pending';
@@ -565,7 +575,7 @@
                     } else {
                         model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = '';
                     }
-                    modelpopupopenmethod.showPopupphotopoup('notIntrstPopup.html', model.scope, 'md', 'notintrstCls');
+                    // modelpopupopenmethod.showPopupphotopoup('notIntrstPopup.html', model.scope, 'md', 'notintrstCls');
                 };
 
                 model.notIntrstchangeBind = function(val) {
