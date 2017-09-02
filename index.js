@@ -406,6 +406,7 @@ app.run(function($rootScope, $state, $stateParams) {
 
     $rootScope.ProfileOwner = '';
     $rootScope.EditProfilePaidStatus = '';
+    // $rootScope.processingsymbol = true;
 
     $rootScope.$on('$stateChangeStart', function(e, to) {
         if (to && to.name !== 'base.login') {

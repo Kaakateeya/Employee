@@ -93,8 +93,13 @@
                                       </select>
                                 </div>
                             </div>
-
                             <div class="col-lg-3">
+                                <label for="Gender" class="control-label"></label>
+                                <div style="margin-top: 14px;">
+                                    <md-checkbox ng-model="page.model.chkConfidential"> </md-checkbox>Is confidential
+                                </div>
+                            </div>
+                            <div class="col-lg-3" ng-if="false">
                                 <label for="photoAssigned" class="control-label">Settled /Deleted by</label>
                                 <div> <select multiselectdropdown class="smalldropdown  col-lg-5" ng-model="page.model.settledeleteby" multiple typeofdata="'EmpNames'">   
                             </select></div>
@@ -102,16 +107,11 @@
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-3" ng-if="false">
                                 <label for="Gender" class="control-label">Authorized By</label>
                                 <div> <select multiselectdropdown class="smalldropdown  col-lg-5" multiple ng-model="page.model.authorizedby" typeofdata="'EmpNames'"></select></div>
                             </div>
-                            <div class="col-lg-3">
-                                <label for="Gender" class="control-label"></label>
-                                <div style="margin-top: 14px;">
-                                    <md-checkbox ng-model="page.model.chkConfidential"> </md-checkbox>Is confidential
-                                </div>
-                            </div>
+
                         </div>
                         <br>
                     </div>

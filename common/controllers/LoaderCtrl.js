@@ -17,6 +17,7 @@
             //     backdrop: 'static',
             //     keyboard: false
             // });
+
             console.log('Request Started');
         });
         rootScope.$on('request-fail', function(item) {
@@ -25,6 +26,7 @@
         });
         rootScope.$on('request-end', function(item) {
             //show loading symbol
+
             scope.isLoader = false;
             console.log('Request Ended');
         });
