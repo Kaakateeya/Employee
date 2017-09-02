@@ -409,19 +409,19 @@ app.run(function($rootScope, $state, $stateParams) {
     // $rootScope.processingsymbol = true;
 
     $rootScope.$on('$stateChangeStart', function(e, to) {
-        if (to && to.name !== 'base.login') {
+        if (to && to.name !== 'login') {
             if (sessionStorage.getItem('logintime') && (sessionStorage.getItem('logintime')) === moment().format('MM/DD/YYYY')) {
                 if (to.data && to.data.requiresLogin) {
                     if (sessionStorage.getItem('LoginEmpid') === null || sessionStorage.getItem('LoginEmpid') === undefined || sessionStorage.getItem('LoginEmpid') === "") {
                         e.preventDefault();
-                        $state.go('base.login');
+                        $state.go('login');
                     } else {
                         if (sessionStorage.getItem('LoginEmpid') !== null && sessionStorage.getItem('LoginEmpid') !== undefined && sessionStorage.getItem('LoginEmpid') !== "") {}
                     }
                 }
             } else {
                 e.preventDefault();
-                $state.go('base.login');
+                $state.go('login');
             }
         }
     });

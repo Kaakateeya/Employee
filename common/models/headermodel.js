@@ -30,7 +30,7 @@
                     model.name = "";
                     authSvc.logout();
                     helperservice.empLogout(model.empid);
-                    $state.go("base.login", {});
+                    $state.go("login", {});
                 };
 
                 model.lockscreen = function() {
