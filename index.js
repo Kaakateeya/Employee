@@ -426,14 +426,12 @@ app.run(function($rootScope, $state, $stateParams, $ocLazyLoad) {
         }
     });
 
-    $rootScope.$on('$stateChangeSuccess', function(event, view) {
-
-        if (view.name === 'login') {
-            $ocLazyLoad.load('auth');
-            loadmodules($ocLazyLoad);
-        }
-
-    });
+    // $rootScope.$on('$stateChangeSuccess', function(event, view) {
+    //     if (view.name === 'login') {
+    //         $ocLazyLoad.load('auth');
+    //         loadmodules($ocLazyLoad);
+    //     }
+    // });
 
 });
 
