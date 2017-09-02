@@ -30,15 +30,10 @@
         };
 
         model.groomTemplate = function(row) {
-            var paidstatusclass = row.GroomPaidSatus === 1 ? 'paidclass' : 'unpaid';
-            var paid = "<a class='" + paidstatusclass + "' href='javascript:void(0);' ng-click='model.viewProfile(" + JSON.stringify(row.GroomProfileID) + ");'>" + row.GroomProfileID + "</a>";
-            return paid;
-
+            return model.returnProfileIDTemplate(row.GroomProfileID, row.GroomPaidSatus);
         };
         model.brideTemplate = function(row) {
-            var paidstatusclass = row.BridePaidSatus === 1 ? 'paidclass' : 'unpaid';
-            var paid = "<a class='" + paidstatusclass + "' href='javascript:void(0);' ng-click='model.viewProfile(" + JSON.stringify(row.BrideProfileID) + ");'>" + row.BrideProfileID + "</a>";
-            return paid;
+            return model.returnProfileIDTemplate(row.BrideProfileID, row.BridePaidSatus);
         };
 
         model.viewProfile = model.singlegrid.viewProfile = function(profileID) {
@@ -53,8 +48,6 @@
             model.singlegrid.myprofileexcel = false;
             model.singlegrid.normalexcel = false;
             model.singlegrid.gridTableshow = true;
-
-
 
             var inobj = {};
             if (model.rbtnSearchBy === '0') {
@@ -188,7 +181,6 @@
             model.txtTomeetingDate = '';
             model.data = [];
         };
-
 
         model.returnProfileIDTemplate = function(profileid, paidStatus) {
             var paidstatusclass = paidStatus === 1 ? 'paidclass' : 'unpaid';
