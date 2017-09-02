@@ -402,7 +402,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
         });
     }
 ]);
-app.run(function($rootScope, $state, $stateParams) {
+app.run(function($rootScope, $state, $stateParams, $ocLazyLoad) {
 
     $rootScope.ProfileOwner = '';
     $rootScope.EditProfilePaidStatus = '';
@@ -425,6 +425,16 @@ app.run(function($rootScope, $state, $stateParams) {
             }
         }
     });
+
+    $rootScope.$on('$stateChangeSuccess', function(event, view) {
+
+        if (view.name === 'login') {
+            $ocLazyLoad.load('auth');
+            loadmodules($ocLazyLoad);
+        }
+
+    });
+
 });
 
 function loadmodules($ocLazyLoad) {

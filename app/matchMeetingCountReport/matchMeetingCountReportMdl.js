@@ -160,7 +160,9 @@
                     model.data = response.data[0];
                     model.TotalRows = response.data[0].length;
                     model.opendiv = false;
+                    model.panelbodyhide = false;
                 } else {
+                    model.panelbodyhide = true;
                     model.data = [];
                     model.TotalRows = 0;
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'no data found', 4500);
