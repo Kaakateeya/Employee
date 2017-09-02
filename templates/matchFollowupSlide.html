@@ -67,7 +67,7 @@
                     </div>
                     <div class="col-lg-offset-1">
                         <div ng-class="slide.FromTicket!==null && slide.FromTicket!==''?'col-lg-5 col-lg-offset-1':'col-lg-4'">
-                            <button type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.FromTicket,slide.FromProfileid,slide.FromMobileNumber,slide.fromcust_id, slide.tocustid, slide.FromticketStatusIDb, slide.Toprofileid);">{{slide.fromticketid}}</button>
+                            <button type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.FromTicket,slide.FromProfileid,slide.FromMobileNumber,slide.fromcust_id, slide.tocustid, slide.FromticketStatusIDb.trim(), slide.Toprofileid,slide.ToName,slide.togenderid);">{{slide.fromticketid}}</button>
                             <button type="button" ng-if="slide.FromTicket===null || slide.FromTicket===''" class="btn btn-success-outline" ng-click="model.Resendmail(slide.fromcust_id,slide.tocustid,slide.FromProfileid,slide.Toprofileid,slide.FromOfflineExpiryDate,slide.FromOnlineMembershipExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
                             <br>
                             <label>{{slide.FromName}}</label>
@@ -91,7 +91,7 @@
                                 <img id="tocustimg" ng-click="slidepopup(slide.tocustid)" style="min-width:250px;min-height:250px;" ng-src="{{slide.ToApplicationPhoto}}" alt="" class="center-block img-thumbnail" style="border: 1px solid gray;">
                                 <div class="text-center"> <br>
                                     <div class="row">
-                                        <div class="col-lg-10"><b>{{slide.ToName}}    (<b><a href="javascript:void(0)" ng-click="model.viewProfileRedirect(slide.Toprofileid);" ng-class="slide.ToPaidStatus===1?'paidclass':'unpaid'">{{slide.Toprofileid}}</a> - {{slide.ToBranchCode}}){{slide.ToticketStatusIDb}}</b></b>
+                                        <div class="col-lg-10"><b>{{slide.ToName}}    (<b><a href="javascript:void(0)" ng-click="model.viewProfileRedirect(slide.Toprofileid);" ng-class="slide.ToPaidStatus===1?'paidclass':'unpaid'">{{slide.Toprofileid}}</a> - {{slide.ToBranchCode}})</b></b>
                                         </div>
                                         <div class="col-lg-2" ng-if="slide.ToticketStatusIDb.trim()==='I' || slide.ToticketStatusIDb.trim()==='I'"><img ng-src="{{model.proceedImage(slide.ToticketStatusIDb)}}" style="width:28px;"></div>
                                     </div>
@@ -140,7 +140,7 @@
                     <br>
                     <div class="text-left">
                         <div ng-class="slide.ToTicket!==null && slide.ToTicket!==''?'col-lg-6':'col-lg-4'">
-                            <button type="button" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.ToTicket,slide.Toprofileid,slide.ToMobileNumber, slide.tocustid, slide.fromcust_id,slide.ToticketStatusIDb, slide.FromProfileid);">{{slide.Toticketid}}</button>
+                            <button type="button" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.ToTicket,slide.Toprofileid,slide.ToMobileNumber, slide.tocustid, slide.fromcust_id,slide.ToticketStatusIDb.trim(), slide.FromProfileid,slide.FromName,slide.Fromgenderid);">{{slide.Toticketid}}</button>
                             <button type="button" ng-if="slide.ToTicket===null || slide.ToTicket===''" class="btn btn-success-outline" ng-click="model.Resendmail(slide.tocustid,slide.fromcust_id,slide.Toprofileid,slide.FromProfileid,slide.ToOfflineExpiryDate,slide.ToonlineExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
                             <br>
                             <label>{{slide.ToName}}</label>

@@ -69,7 +69,6 @@
             });
         };
         model.getpaymentProfile = function(profileID) {
-            debugger;
             model.custobj = {};
             model.PiObj.rdnServicetax = '1';
             EmployeePaymentInsertservice.getEmployeePaymentdata(profileID, 0).then(function(response) {

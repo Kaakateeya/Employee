@@ -146,8 +146,6 @@
             };
 
             model.populatemodel = function(row) {
-
-                debugger;
                 model.dependencyChange(row.CountryID, 'state');
                 model.dependencyChange(row.StateID, 'district');
                 model.dependencyChange(row.DistrictID, 'city');
