@@ -143,9 +143,9 @@
             var inobj = {
                 AppusrID: 0,
                 SearchBy: model.rbtnSearchBy ? model.rbtnSearchBy : 0,
-                count: model.rbtnCount === '2' ? 'b' : 'm',
-                Countfrom: model.countFrom ? model.countFrom : null,
-                CountTo: model.countTo ? model.countTo : null,
+                count: 'm',
+                Countfrom: null,
+                CountTo: null,
                 Dcount: 0,
                 FromDate: model.txtFrommeetingDate ? moment(model.txtFrommeetingDate).format('YYYY-MM-DD') : null,
                 toDate: model.txtTomeetingDate ? moment(model.txtTomeetingDate).format('YYYY-MM-DD') : null,
@@ -169,14 +169,12 @@
         };
 
         model.reset = function() {
+            model.panelbodyhide = true;
             model.TotalRows = undefined;
             model.opendiv = true;
             model.caste = [402];
             model.branch = ["319", "320", "321", "322", "323", "324", "325", "326", "328", "329", "330", "331", "332", "333", "334", "335", "336", "337", "338", "339", "340", "341", "342", "343", "344"];
             model.rbtnSearchBy = '0';
-            model.rbtnCount = '';
-            model.countFrom = '';
-            model.countTo = '';
             model.txtFrommeetingDate = '';
             model.txtTomeetingDate = '';
             model.data = [];

@@ -425,8 +425,8 @@
             { lblname: "Mother's sister name", controlType: 'textbox', ngmodel: 'txtMSName', required: true, parameterValue: 'Mothersistername' },
             { lblname: "Husband first name", controlType: 'textbox', ngmodel: 'txtMsHusbandfirstname', parameterValue: 'MSHusbandfirstname' },
             { lblname: "Husband last name", controlType: 'textbox', ngmodel: 'txtMsHusbandlastname', parameterValue: 'MSHusbandlastname' },
-            { lblname: 'FSH Education', controlType: 'textbox', ngmodel: 'txtMSHEducation', parameterValue: 'MSEducationdetails' },
-            { lblname: 'FSH Profession', controlType: 'textbox', ngmodel: 'txtMSProfessiondetails', parameterValue: 'MSProfessiondetails' },
+            { lblname: 'MSH Education', controlType: 'textbox', ngmodel: 'txtMSHEducation', parameterValue: 'MSEducationdetails' },
+            { lblname: 'MSH Profession', controlType: 'textbox', ngmodel: 'txtMSProfessiondetails', parameterValue: 'MSProfessiondetails' },
             {
                 controlType: 'country',
                 countryshow: false,

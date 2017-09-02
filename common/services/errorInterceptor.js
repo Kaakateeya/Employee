@@ -15,6 +15,7 @@
             },
             response: function(config) {
                 // console.log('testtttttttttttttttttttttttt');
+
                 $rootScope.$broadcast('request-end');
                 var deferred = $q.defer();
                 deferred.resolve(config);

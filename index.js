@@ -46,7 +46,7 @@ app.prefixPathImg = 'Images/ProfilePics/';
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider',
     function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
         var states = [
-            { routeName: 'login', name: 'base.login', url: '/', isloginrequired: false },
+            { routeName: 'login', name: 'login', url: '/', isloginrequired: false },
             { routeName: 'dashboard', name: 'base.dashboard', url: '/dashboardpage', isloginrequired: true, module: 'dashboard' },
             { routeName: 'searchpage', name: 'base.searchpage', url: '/search/:id/:Profileid', isloginrequired: true, reload: true },
             { routeName: 'editViewprofile', name: 'base.editViewprofile', url: '/editViewprofileurl', isloginrequired: true },
@@ -382,9 +382,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                             if (item.module !== undefined) {
                                 $ocLazyLoad.load(item.module);
                             }
-                            // if (item.routeName !== 'login') {
-                            //     loadmodules($ocLazyLoad);
-                            // }
+                            if (item.routeName === 'login') {
+                                $ocLazyLoad.load('auth');
+                            }
 
                             return $ocLazyLoad.load([
                                 'app/' + item.routeName + '/style.css',
