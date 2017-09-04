@@ -560,7 +560,7 @@
                     model.rbtnnotIntrst = '';
                     model.typeOFCall = type;
                     model.typeOfCtrl = val;
-                    var textpopup = model.ticketstatusforemail !== 'I' ? '(proceed/do not proceed/need time)' : '(do not proceed/need time)';
+                    var textpopup = model.ticketstatusforemail !== 'I' ? '(proceed/do not proceed/need time)' : '(proceed/do not proceed/need time)';
                     if (val === '1') {
                         // model.txtAllcallDiscusion = 'intrsted';
                         var genderid = model.genderforemail === 2 ? 'Ms.' : 'Mr.';

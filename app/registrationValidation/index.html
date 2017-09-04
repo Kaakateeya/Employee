@@ -20,13 +20,13 @@
                 <div class="col-lg-4 form-group">
                     <label for="All Phones" class="control-label">All Phones</label>
                     <div>
-                        <input type="text" class="form-control" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)" maxlength="10" allow-only-numbers focus-me="true" ng-model="page.model.txtAllPhones">
+                        <input type="text" class="form-control" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus,0)" maxlength="10" allow-only-numbers focus-me="true" ng-model="page.model.txtAllPhones">
                     </div>
                 </div>
                 <div class="col-lg-4 form-group">
                     <label for="All Emails" class="control-label">All Emails</label>
                     <div>
-                        <input type="text" class="form-control" ng-model="page.model.txtAllEmails" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
+                        <input type="text" class="form-control" ng-model="page.model.txtAllEmails" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus,0)">
                     </div>
                 </div>
                 <div class="col-lg-4 form-group">
@@ -42,19 +42,19 @@
                 <div class="col-lg-4 form-group">
                     <label for="FF/MF NATIVE" class="control-label">FF/MF NATIVE</label>
                     <div>
-                        <input type="text" class="form-control col-lg-4" ng-model="page.model.txtFFMFNATIVE" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
+                        <input type="text" class="form-control col-lg-4" ng-model="page.model.txtFFMFNATIVE" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus,0)">
                     </div>
                 </div>
                 <div class="col-lg-4 form-group">
                     <label for="FatherName" class="control-label">Father Name</label>
                     <div>
-                        <input type="text" class="form-control" ng-model="page.model.txtFatherName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
+                        <input type="text" class="form-control" ng-model="page.model.txtFatherName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus,0)">
                     </div>
                 </div>
                 <div class="col-lg-4 form-group">
                     <label for="MotherName" class="control-label">Mother Name</label>
                     <div>
-                        <input type="text" class="form-control" ng-model="page.model.txtMotherName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
+                        <input type="text" class="form-control" ng-model="page.model.txtMotherName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus,0)">
                     </div>
                 </div>
             </div>
@@ -63,19 +63,19 @@
                 <div class="col-lg-4 form-group">
                     <label for="FF Name" class="control-label">FF Name</label>
                     <div>
-                        <input type="text" class="form-control" ng-model="page.model.txtFFName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
+                        <input type="text" class="form-control" ng-model="page.model.txtFFName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus,0)">
                     </div>
                 </div>
                 <div class="col-lg-4 form-group">
                     <label for="MF SurName" class="control-label">MF SurName</label>
                     <div>
-                        <input type="text" class="form-control" ng-model="page.model.txtMFSurName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
+                        <input type="text" class="form-control" ng-model="page.model.txtMFSurName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus,0)">
                     </div>
                 </div>
                 <div class="col-lg-4 form-group">
                     <label for="MF Name" class="control-label">MF Name</label>
                     <div>
-                        <input type="text" class="form-control" ng-model="page.model.txtMFName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
+                        <input type="text" class="form-control" ng-model="page.model.txtMFName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus,0)">
                     </div>
                 </div>
 
@@ -85,13 +85,13 @@
                 <div class="col-lg-4 form-group">
                     <label for="C/F/FF SurName" class="control-label">C/F/FF SurName</label>
                     <div>
-                        <input type="text" class="form-control" ng-model="page.model.txtCFFFSurName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
+                        <input type="text" class="form-control" ng-model="page.model.txtCFFFSurName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus,0)">
                     </div>
                 </div>
                 <div class="col-lg-4 form-group">
                     <label for="C Name" class="control-label">C Name</label>
                     <div>
-                        <input type="text" class="form-control" ng-model="page.model.txtCName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus)">
+                        <input type="text" class="form-control" ng-model="page.model.txtCName" ng-keyup="$event.keyCode == 13 && page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus,0)">
                     </div>
                 </div>
                 <div class="col-lg-4 form-group">
@@ -104,7 +104,7 @@
             </div>
             <br>
             <div class="form-group text-center" style="border-top: 1px solid #ddd;padding-top: 1%;">
-                <button class="button_custom" style="display:initial;" type="submit" ng-click="page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus);">Search</button>
+                <button class="button_custom" style="display:initial;" type="submit" ng-click="page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus,0);">Search</button>
                 <input type="reset" class="button_custom button_custom_reset resetCls" value="Reset" ng-click="page.model.reset();">
             </div>
             <br>
@@ -115,15 +115,15 @@
         <div ng-if="page.model.grid.TotalRows">
             <span class="spanHdr">
              <span>Active Count : </span>
-            <span><a href="javascript:void(0);"  ng-class="{'linkdisabled':page.model.activeCount===0 || page.model.activeCount==='0'}" ng-click="page.model.getSearchData(1,10,'slide',54);">{{page.model.activeCount}}</a></span>
+            <span><a href="javascript:void(0);"  ng-class="{'linkdisabled':page.model.activeCount===0 || page.model.activeCount==='0'}" ng-click="page.model.getSearchData(1,10,'slide',54,1);">{{page.model.activeCount}}</a></span>
             </span>
             <span class="spanHdr">
                 <span>Deleted Count : </span>
-            <span><a href="javascript:void(0);"  ng-class="{'linkdisabled':page.model.deleteCount===0 || page.model.deleteCount==='0'}" ng-click="page.model.getSearchData(1,10,'slide',56);">{{page.model.deleteCount}}</a></span>
+            <span><a href="javascript:void(0);"  ng-class="{'linkdisabled':page.model.deleteCount===0 || page.model.deleteCount==='0'}" ng-click="page.model.getSearchData(1,10,'slide',56,1);">{{page.model.deleteCount}}</a></span>
             </span>
-            <span class="spanHdr"><span>Settled Count : </span><span><a href="javascript:void(0);" ng-class="{'linkdisabled':page.model.settleCount===0 || page.model.settleCount==='0'}" ng-click="page.model.getSearchData(1,10,'slide',57);">{{page.model.settleCount}}</a></span></span>
-            <span class="spanHdr"><span>InActive Count : </span><span><a href="javascript:void(0);"  ng-class="{'linkdisabled':page.model.inactiveCount===0 || page.model.inactiveCount==='0'}" ng-click="page.model.getSearchData(1,10,'slide',55);">{{page.model.inactiveCount}}</a></span></span>
-            <span class="spanHdr"><span>MMSerious Count : </span><span><a href="javascript:void(0);"  ng-class="{'linkdisabled':page.model.mmserisCount===0 || page.model.mmserisCount==='0'}" ng-click="page.model.getSearchData(1,10,'slide',394);">{{page.model.mmserisCount}}</a></span></span>
+            <span class="spanHdr"><span>Settled Count : </span><span><a href="javascript:void(0);" ng-class="{'linkdisabled':page.model.settleCount===0 || page.model.settleCount==='0'}" ng-click="page.model.getSearchData(1,10,'slide',57,1);">{{page.model.settleCount}}</a></span></span>
+            <span class="spanHdr"><span>InActive Count : </span><span><a href="javascript:void(0);"  ng-class="{'linkdisabled':page.model.inactiveCount===0 || page.model.inactiveCount==='0'}" ng-click="page.model.getSearchData(1,10,'slide',55,1);">{{page.model.inactiveCount}}</a></span></span>
+            <span class="spanHdr"><span>MMSerious Count : </span><span><a href="javascript:void(0);"  ng-class="{'linkdisabled':page.model.mmserisCount===0 || page.model.mmserisCount==='0'}" ng-click="page.model.getSearchData(1,10,'slide',394,1);">{{page.model.mmserisCount}}</a></span></span>
 
         </div>
         <br>

@@ -90,14 +90,14 @@
                 return _.where(test, { StatusID: parseInt(row.ProfileStatusID) }).length > 0 ? _.where(test, { StatusID: parseInt(row.ProfileStatusID) })[0].classes : '';
             };
             model.grid.exportexcel = function(array, columns) {
-                model.getSearchData(1, model.grid.topage, "export", model.ddlApplicationStatus);
+                model.getSearchData(1, model.grid.topage, "export", model.ddlApplicationStatus, 0);
             };
             model.grid.pagechange = function(val) {
                 var to = val * 100;
                 var from = val === 1 ? 1 : to - 99;
-                model.getSearchData(from, to, 'grid', model.ddlApplicationStatus);
+                model.getSearchData(from, to, 'grid', model.ddlApplicationStatus, 0);
             };
-            model.getSearchData = function(from, to, typeofbind, ApplicationStatus) {
+            model.getSearchData = function(from, to, typeofbind, ApplicationStatus, flag) {
                 model.frompage = from;
                 if (model.checkTxt(model.txtFFMFNATIVE) !== '' || model.checkTxt(model.txtFatherName) !== '' || model.checkTxt(model.txtMotherName) !== '' || model.checkTxt(model.txtFFName) !== '' || model.checkTxt(model.txtMFName) !== '' ||
                     model.checkTxt(model.txtMFSurName) !== '' || model.checkTxt(model.txtCFFFSurName) !== '' || model.checkTxt(model.txtCName) !== '' || model.checkTxt(model.ddlCaste) !== '' ||
@@ -118,7 +118,8 @@
                         intGenderID: model.checkTxt(model.rbtGender),
                         intEmpID: empid,
                         i_Startindex: from,
-                        i_EndIndex: to
+                        i_EndIndex: to,
+                        intflag: flag
                     };
                     svc.getRegSearchProfile(input).then(function(response) {
                         if (_.isArray(response.data) && response.data.length > 0) {
@@ -205,7 +206,7 @@
             };
             model.slide.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
-                    model.getSearchData((model.topage) + 1, (model.topage) + 10, 'slide', model.ddlApplicationStatus);
+                    model.getSearchData((model.topage) + 1, (model.topage) + 10, 'slide', model.ddlApplicationStatus, 1);
                 }
             };
             model.reset = function() {
