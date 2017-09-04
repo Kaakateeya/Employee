@@ -109,7 +109,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'NomatchesReasonpage', name: 'base.NomatchesReasonpage', url: '/NomatchesReason', isloginrequired: true },
             { routeName: 'oldKmplKeywordSearch', name: 'base.oldKmplKeywordSearch', url: '/oldKmplKeywordSearchpage', isloginrequired: true },
             { routeName: 'matchMeetingCountReport', name: 'base.matchMeetingCountReport', url: '/matchMeetingCountReportPage', isloginrequired: true },
-            { routeName: 'settleDeleteProfileseReport', name: 'base.settleDeleteProfileseReport', url: '/settleDeleteProfileseReportPage', isloginrequired: true }
+            { routeName: 'settleDeleteProfileseReport', name: 'base.settleDeleteProfileseReport', url: '/settleDeleteProfileseReportPage', isloginrequired: true },
+            { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrintmail', url: '/Viewfullprofilemail/:ProfileID/:contacts', isloginrequired: false, subname: ['directives/divPrint.js'] },
         ];
         $ocLazyLoadProvider.config({
             debug: true

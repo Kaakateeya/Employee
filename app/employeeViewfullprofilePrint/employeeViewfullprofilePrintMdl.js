@@ -64,9 +64,15 @@
 
         };
 
+        model.getprofileDataencryptedID = function(stateprofileid) {
+            employeeViewfullprofileservice.getdecryptedProfileID(stateprofileid).then(function(response) {
+                if (response.data) {
+                    model.EmpViewfullProfile(response.data);
+                }
 
+            });
 
-
+        };
 
 
 

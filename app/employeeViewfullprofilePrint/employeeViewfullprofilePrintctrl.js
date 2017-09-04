@@ -1,7 +1,7 @@
  (function() {
      'use strict';
 
-     function controller(employeeViewfullprofileModel, scope, authSvc) {
+     function controller(employeeViewfullprofileModel, scope, authSvc, $location) {
          var vm = this,
              model;
          vm.init = function() {
@@ -14,16 +14,31 @@
              model.basicinfo = [];
              model.forinbitinfo = {};
              model.nodatasisplay = {};
+             model.selfProfileID = '';
              //  model.empid = parseInt(model.statecontacts) !== 0 ? (authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "") : "";
              model.empid = (authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "") ? authSvc.LoginEmpid() : "";
              model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
              model.Admin = authSvc.isAdmin();
+
              if (parseInt(model.stateprofileid) !== 0) {
                  model.textboxshowhide = true;
                  model.EmpViewfullProfile(model.stateprofileid);
              } else {
-                 model.textboxshowhide = false;
+                 model.searchObjectquery = $location.search();
+                 model.updatepaymentllink = false;
+                 var meKey = Object.getOwnPropertyNames(model.searchObjectquery)[0];
+                 var meKeyempid = Object.getOwnPropertyNames(model.searchObjectquery)[1];
+                 model.selfProfileID = model.searchObjectquery[meKey];
+                 model.selfEmp = model.searchObjectquery[meKeyempid];
+                 if (model.selfProfileID) {
+                     model.textboxshowhide = true;
+                     model.getprofileDataencryptedID(model.selfProfileID);
+                 } else {
+                     model.textboxshowhide = false;
+                 }
+
              }
+
          };
          vm.divInfo = {
              printDivId: 'printThisElement',
@@ -35,6 +50,6 @@
      angular
          .module('Kaakateeya')
          .controller('employeeViewfullprofilePrintCtrl', controller);
-     controller.$inject = ['employeeViewfullprofilePrintModel', '$scope', 'authSvc'];
+     controller.$inject = ['employeeViewfullprofilePrintModel', '$scope', 'authSvc', '$location'];
 
  })(angular);

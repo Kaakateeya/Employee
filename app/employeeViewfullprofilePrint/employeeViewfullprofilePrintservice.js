@@ -25,6 +25,13 @@
                         ProfileID: profileid
                     }
                 });
+            },
+            getdecryptedProfileID: function(profileid) {
+                return http.get(app.apiroot + 'StaticPages/getdecryptedProfileID', {
+                    params: {
+                        ProfileID: profileid
+                    }
+                });
             }
         };
     }
