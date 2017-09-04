@@ -418,7 +418,8 @@ app.run(function($rootScope, $state, $stateParams, $ocLazyLoad) {
     // $rootScope.processingsymbol = true;
 
     $rootScope.$on('$stateChangeStart', function(e, to) {
-        if (to && to.name !== 'login') {
+
+        if (to && to.name !== 'login' && to.name !== 'base.employeeViewfullprofilePrintmail') {
             if (sessionStorage.getItem('logintime') && (sessionStorage.getItem('logintime')) === moment().format('MM/DD/YYYY')) {
                 if (to.data && to.data.requiresLogin) {
                     if (sessionStorage.getItem('LoginEmpid') === null || sessionStorage.getItem('LoginEmpid') === undefined || sessionStorage.getItem('LoginEmpid') === "") {
@@ -429,8 +430,13 @@ app.run(function($rootScope, $state, $stateParams, $ocLazyLoad) {
                     }
                 }
             } else {
-                e.preventDefault();
-                $state.go('login');
+                if (to.name === 'base.employeeViewfullprofilePrintmail') {
+
+                } else {
+                    e.preventDefault();
+                    $state.go('login');
+                }
+
             }
         }
     });

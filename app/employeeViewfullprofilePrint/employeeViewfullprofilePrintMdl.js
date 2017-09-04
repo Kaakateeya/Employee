@@ -31,8 +31,9 @@
             }
         };
 
-        model.getprofileData = function(stateprofileid) {
-            employeeViewfullprofileservice.getEmpViewfullProfile(stateprofileid, model.empid).then(function(response) {
+        model.getprofileData = function(stateprofileid, empid) {
+            empid = empid ? empid : model.empid;
+            employeeViewfullprofileservice.getEmpViewfullProfile(stateprofileid, empid).then(function(response) {
                 model.fullprofileshow = false;
                 if (response.data !== undefined && response.data !== "" && response.data !== null && response.data.length > 0) {
                     _.each(response.data, function(item) {
@@ -61,29 +62,17 @@
 
                 }
             });
-
         };
 
         model.getprofileDataencryptedID = function(stateprofileid) {
             employeeViewfullprofileservice.getdecryptedProfileID(stateprofileid).then(function(response) {
                 if (response.data) {
-                    model.EmpViewfullProfile(response.data);
+                    model.getprofileData(response.data, 2);
                 }
 
             });
 
         };
-
-
-
-
-
-
-
-
-
-
-
 
         model.showPhotoPopup = function() {
             commonpage.ShowPhotoPopup(model.custid, model.scope);
