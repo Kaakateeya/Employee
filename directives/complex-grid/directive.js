@@ -79,7 +79,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 scope.paymentpageredirect = function(profileid) {
                     if (profileid) {
                         scope.profileid = profileid;
-                        commonpage.showPopupphotopoup('paymentDetailspopup.html', scope, 'lg', "modelpayment");
+                        commonpage.thirdshowPopup('paymentDetailspopup.html', scope, 'lg', "modelpayment");
                     }
                 };
                 scope.sendtopayment = function(row) {

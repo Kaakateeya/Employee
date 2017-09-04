@@ -125,7 +125,7 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                     // window.open("EmployeePayments/0" + "?idsss=" + ProfileID, "_blank");
                     if (profileid) {
                         $scope.profileid = profileid;
-                        modelpopupopenmethod.showPopupphotopoup('paymentDetailspopup.html', $scope, 'lg', "modelpayment");
+                        modelpopupopenmethod.thirdshowPopup('paymentDetailspopup.html', $scope, 'lg', "modelpayment");
                     }
                 };
                 $scope.tickethistoryupdate = function(matkteingticket, type) {

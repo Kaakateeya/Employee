@@ -132,7 +132,7 @@
                 model.grid.RedirectPayment = function(profileid) {
                     if (profileid) {
                         model.profileid = profileid;
-                        commonpage.showPopupphotopoup('paymentDetailspopup.html', model.scope, 'lg', "modelpayment");
+                        commonpage.thirdshowPopup('paymentDetailspopup.html', model.scope, 'lg', "modelpayment");
                     }
                 };
 

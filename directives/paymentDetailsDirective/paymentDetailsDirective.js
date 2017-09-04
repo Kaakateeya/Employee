@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .directive('paymentDetails', directive);
 
-    directive.$inject = ['EmployeePaymentmodel', 'authSvc'];
+    directive.$inject = ['EmployeePaymentmodel', 'authSvc', 'modelpopupopenmethod'];
 
-    function directive(EmployeePaymentmodel, authSvc) {
+    function directive(EmployeePaymentmodel, authSvc, modelpopupopenmethod) {
 
         var directive = {
             link: link,
@@ -38,6 +38,11 @@
                 scope.model.txtProfileID = scope.profileId;
                 scope.model.EmployeePayment(scope.model.txtProfileID);
             }
+
+            scope.close = function() {
+                modelpopupopenmethod.thirdClosepopup();
+            };
+
         }
     }
 
