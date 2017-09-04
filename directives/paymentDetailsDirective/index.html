@@ -1,0 +1,111 @@
+<div class="right_col" role="main" id="PaymentDetailsid">
+    <div class="search_page_main">
+        <h4 style="font-size: 18px;
+        color: #b10c0c;">Payment Details
+            <button type="button" class="close pull-right" ng-click="model.close();">&times;</button></div>
+    </h4>
+
+    <br>
+    <div class="regmain">
+        <div class="row">
+            <div class="col-lg-3">
+                <label for="profileid" class="control-label pull-right">ProfileID</label>
+            </div>
+            <div class="col-lg-2">
+                <input focus-me="true" allow-only-numbers type="text" maxlength="9" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="model.txtProfileID" class="form-control" ng-keyup="$event.keyCode == 13 && model.EmployeePayment(model.txtProfileID)">
+            </div>
+            <div class="col-lg-1">
+                <button class="btn btn-danger" ng-click="model.EmployeePayment(model.txtProfileID)">Go</button>
+            </div>
+            <div class="col-lg-2" ng-show="model.freshLink">
+                <a href="javascript:void(0)" ng-click="model.oldtablepayment(model.txtProfileID)">
+                         old Payment
+                       </a>
+            </div>
+            <div class="col-lg-2">
+                <md-button class="md-primary" ng-click="model.viewProfileRedirect();" ng-if="model.CustName!==''"> {{model.CustName}} ({{model.ProfileOwner}})</md-button>
+            </div>
+        </div>
+        <div>
+            <md-button class="md-primary pull-right" ng-show="model.freshLink" ng-click="model.paymentInsertLink(model.txtProfileID,model.RenewalStatus===1?'Balance':'renewal');"> {{ model.RenewalStatus===1?'Balance':'Renewal'}} </md-button>
+        </div>
+        <div class="row" ng-show="model.updatepaymentllink" ng-if="model.isManagement === 'true' && model.isAdmin ==='1'">
+            <div class="col-lg-5">
+                <a href="javascript:void(0)" ng-click="model.paymenteditpointsdate(model)">Update Points & Expiry Date</a>
+            </div>
+        </div>
+        <div>
+            <complex-grid-new gid="'id1'" ng-if="model.data" model="model" config="model" hidesearch="true" hidepaging="true"></complex-grid-new>
+        </div>
+        <br>
+        <br>
+        <div class="row" ng-if="model.extensiondata.data.length>0">
+            <h4 class="col-lg-8">Points & Expirydate Extension Log</h4>
+        </div>
+        <br>
+        <div>
+            <complex-grid-new id="dynamic" model="model.extensiondata" config="model.extensiondata" hidesearch="true" hidepaging="true"></complex-grid-new>
+        </div>
+    </div>
+</div>
+<script type="text/ng-template" id="oldtablepayment.html">
+    <div class="pull-right">
+        <a href="javascript:void(0);" ng-click="model.close()" style="padding:7px;"> <i class="fa fa-times" aria-hidden="true" style="fill:#c73e5f;font-size: 16pt;"></i></a>
+    </div>
+    <single-grid model="model.singlegrid" config="model.singlegrid"></single-grid>
+</script>
+</div>
+
+<script type="text/ng-template" id="editpopuppayment.html">
+    <payment-editpoints models="model.paymentchangedobj"></payment-editpoints>
+</script>
+<script type="text/ng-template" id="paymentEditPopup.html">
+    <form name="payEditForm" role="form" ng-submit="payEditForm.$valid && model.EditPaymentSubmit();">
+        <div class="modal-header" style="background-color: #fedc01;color: #880b0b;padding: 10px;font-size: 17px;">
+            <h3 class="modal-title text-center">Edit Payment details
+                <a href="javascript:void(0);" ng-click="model.close();">
+                    <ng-md-icon icon="close" style="fill:#c73e5f" class="pull-right" size="25"></ng-md-icon>
+                </a>
+            </h3>
+        </div>
+        <div class="modal-body form-group">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row form-group">
+                        <div class="col-lg-6">Agreed Amount</div>
+                        <div class="col-lg-6"><input type="text" class="form-control" ng-model="model.editAgreedAmt" required></div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6">Paid Amount</div>
+                        <div class="col-lg-6"><input type="text" class="form-control" ng-model="model.editPaidAmt" required></div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-3">Pay description</div>
+                <div class="col-lg-9"><textarea name="" id="" cols="30" rows="5" class="form-control" ng-model="model.editDescriptionAmt" required></textarea></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="col-lg-5 col-lg-offset-1"><input type="submit" value="submit" class="btn btn-danger"></div>
+            <div class="col-lg-2"><input type="button" value="cancel" class="btn btn-default pull-left" ng-click="model.close();"></div>
+        </div>
+    </form>
+</script>
+
+
+</div>
+<style>
+    .fixed-table-container thead th .sortable,
+    .detail {
+        cursor: pointer;
+        background-position: right;
+        background-repeat: no-repeat;
+        padding-right: 30px;
+        background-color: #fdca52;
+        color: black;
+    }
+</style>

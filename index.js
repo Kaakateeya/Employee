@@ -307,6 +307,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'common/services/authSvc.js',
                         'common/services/helpService.js',
                     ]
+                },
+                {
+                    name: 'payment',
+                    files: [
+                        'directives/paymentDetailsDirective/paymentDetailsDirective.js',
+                        'app/EmployeePayment/EmployeePaymentMdl.js',
+                        'app/EmployeePayment/EmployeePaymentservice.js'
+                    ]
                 }
             ]
         });
@@ -452,4 +460,5 @@ function loadmodules($ocLazyLoad) {
     $ocLazyLoad.load('properties');
     $ocLazyLoad.load('norecordsalert-popup');
     $ocLazyLoad.load('payment-editpointsdate');
+    $ocLazyLoad.load('payment');
 }

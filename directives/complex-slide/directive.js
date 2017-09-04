@@ -120,8 +120,13 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                         }
                     });
                 };
-                $scope.paymentpage = function(ProfileID) {
-                    window.open("EmployeePayments/0" + "?idsss=" + ProfileID, "_blank");
+                $scope.paymentpage = function(profileid) {
+
+                    // window.open("EmployeePayments/0" + "?idsss=" + ProfileID, "_blank");
+                    if (profileid) {
+                        $scope.profileid = profileid;
+                        modelpopupopenmethod.showPopupphotopoup('paymentDetailspopup.html', $scope, 'lg', "modelpayment");
+                    }
                 };
                 $scope.tickethistoryupdate = function(matkteingticket, type) {
                     $scope.model.marketingTicket = matkteingticket;

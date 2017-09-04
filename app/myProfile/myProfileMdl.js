@@ -66,7 +66,7 @@
                     return _.isArray(string) && string.length > 0 ? string.join(',') : null;
                 };
                 model.grid.paidstatusclass = function(paid) {
-                    var paidstatusclass = paid === true ? 'paidclass' : 'unpaid';
+                    var paidstatusclass = paid === true ? 'paidclass' : 'unpaid Linkdisabled';
                     return paidstatusclass;
                 };
                 model.ProfileIdTemplateDUrl = function(row) {
@@ -128,9 +128,14 @@
                 model.grid.showphoto = function(custid) {
                     modelpopupopenmethod.ShowPhotoPopup(custid, model.scope);
                 };
+
                 model.grid.RedirectPayment = function(profileid) {
-                    window.open("EmployeePayments/0" + "?profileid=" + profileid, "_blank");
+                    if (profileid) {
+                        model.profileid = profileid;
+                        commonpage.showPopupphotopoup('paymentDetailspopup.html', model.scope, 'lg', "modelpayment");
+                    }
                 };
+
                 model.horoTemplate = function(row) {
                     // var rowww = model.frompage === 1 ? 0 : model.frompage;
                     //  model.frompage = rowww + 1;
@@ -307,6 +312,12 @@
                     model.marketingTicketid = TicketID;
                     commonpage.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
                 };
+
+
+
+
+
+
                 return model.MyProfilePageLoad();
             }
         ]);

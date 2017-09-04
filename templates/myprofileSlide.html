@@ -37,7 +37,7 @@
         <h6> <span style="font-weight: bold;">Payment</span></h6>
         <h5>
             <div style="color:Black;">
-                <a class="alllinkscolor" href='javascript:void(0)' ng-click='paymentpage(slide.ProfileID)'>{{slide.PaidAmount}}</a>
+                <a class="alllinkscolor" href='javascript:void(0)' ng-class="slide.PaidAmount==='Not Paid'?'Linkdisabled':''" ng-click='paymentpage(slide.ProfileID)'>{{slide.PaidAmount}}</a>
             </div>
             <div class="clearfix">
             </div>

@@ -58,8 +58,11 @@
             EmployeePaymentInsertservice.paymentInsert(obj).then(function(response) {
                 model.scope.paymentForm.$setPristine();
                 model.scope.paymentForm.$setUntouched();
-                alertss.timeoutoldalerts(model.scope, 'alert-success', 'Payment Entered Successfully ', 4500);
-                window.open("EmployeePayments/0" + "?idsss=" + model.custobj.ProfileID, "_blank");
+                // alertss.timeoutoldalerts(model.scope, 'alert-success', 'Payment Entered Successfully ', 4500);
+                // window.open("EmployeePayments/0" + "?idsss=" + model.custobj.ProfileID, "_blank");
+
+                modelpopupopenmethod.showPopup('successfulPopup.html', model.scope, 'sm', '');
+
                 // if (response.data === 1 || response.data === '1') {
                 //     alert('submited successfully');
                 //     model.PiObj = {};

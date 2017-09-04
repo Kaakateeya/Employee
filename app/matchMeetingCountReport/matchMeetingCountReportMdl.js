@@ -5,12 +5,17 @@
         .module('Kaakateeya')
         .factory('matchMeetingCountReportModel', factory);
 
-    factory.$inject = ['matchMeetingCountReportService', 'complex-grid-config', 'modelpopupopenmethod', 'single-grid-config', 'alert'];
+    factory.$inject = ['matchMeetingCountReportService', 'complex-grid-config', 'modelpopupopenmethod', 'single-grid-config', 'alert', 'complex-slide-config'];
 
-    function factory(matchMeetingCountReportService, config, modelpopupopenmethod, singleconfig, alertss) {
+    function factory(matchMeetingCountReportService, config, modelpopupopenmethod, singleconfig, alertss, configslide) {
 
         var model = {};
         model = config;
+        model.slide = {};
+        model.slide.config = {};
+        model.slide.config = configslide;
+        model.slide.headervisileble = true;
+        model.slide.totalRecords = 10;
         model.singlegrid = singleconfig;
         model.scope = {};
         model.showpaging = false;
@@ -25,8 +30,9 @@
         model.viewTemplate = function(row) {
             return '<a href="javascript:void();">View</a>';
         };
-        model.close = function() {
-            modelpopupopenmethod.closepopuppoptopopup();
+        model.slide.closemainpopup = function() {
+
+            modelpopupopenmethod.closepopup();
         };
 
         model.groomTemplate = function(row) {
@@ -41,13 +47,13 @@
         };
 
         model.viewmmInfo = function(row) {
-            model.singlegrid.showsearchrows = true;
-            model.singlegrid.showsearch = false;
-            model.singlegrid.showpaging = false;
-            model.singlegrid.showClientpaging = false;
-            model.singlegrid.myprofileexcel = false;
-            model.singlegrid.normalexcel = false;
-            model.singlegrid.gridTableshow = true;
+            // model.singlegrid.showsearchrows = true;
+            // model.singlegrid.showsearch = false;
+            // model.singlegrid.showpaging = false;
+            // model.singlegrid.showClientpaging = false;
+            // model.singlegrid.myprofileexcel = false;
+            // model.singlegrid.normalexcel = false;
+            // model.singlegrid.gridTableshow = true;
 
             var inobj = {};
             if (model.rbtnSearchBy === '0') {
@@ -104,10 +110,14 @@
             }
 
             matchMeetingCountReportService.matchMeetingCountInfo(inobj).then(function(response) {
-                model.singlegrid.sdata = response.data[0];
+                // model.singlegrid.slides = response.data[0];
+                configslide.setSlides(response.data[0], 10, 'normal');
             });
+            model.slide.templateUrl = "templates/matchMeetingSlide.html";
+            model.slide.config.headettemp = "matchmeetingHeader.html";
+            // model.slide.config.headettemp = "templates/myprofileheader.html";
 
-            modelpopupopenmethod.showPopupphotopoup('mmInfoPopup.html', model.scope, 'lg', "");
+            modelpopupopenmethod.showPopup('matchmeetingpopup.html', model.scope, 'lg', "");
         };
 
         model.matchReport = function() {
@@ -171,6 +181,7 @@
         };
 
         model.reset = function() {
+
             model.panelbodyhide = true;
             model.TotalRows = undefined;
             model.opendiv = true;
@@ -197,6 +208,17 @@
         model.searchBygroomProfileid = function(row) {
             return model.returnProfileIDTemplate(row.GroomCust_ID, row.groomPaidSatus);
         };
+
+        model.slide.slidebind = function(old, news, array) {
+            // if (parseInt(model.topage) - parseInt(news) === 4) {
+
+            // }
+        };
+
+        model.slide.viewProfileRedirect = function(id) {
+            window.open('/Viewfullprofile/' + id + '/0', '_blank');
+        };
+
 
 
         return model;
