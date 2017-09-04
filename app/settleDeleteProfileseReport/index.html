@@ -5,12 +5,12 @@
             <div class="panel-default regValheader" style="margin-top: -12px;box-shadow: 2px 2px 6px #ccc;" is-open="page.model.opendiv">
                 <div class="panel-heading" style="color: rgb(160, 2, 1);border: 1px solid #ccc">
                     <div class="row">
-                        <div class="col-lg-2" style="font-size: 14px;font-weight: 700;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
+                        <div class="col-lg-3" style="font-size: 14px;font-weight: 700;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
                             <h4 style="width:245px;"> Settled & delete profiles report {{page.model.opendiv}} <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
                             </h4>
                         </div>
 
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 black">
                             <div class="col-lg-10 rdnoptions">
                                 <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtGender" class="md-block col-lg-6" flex-gt-sm ng-disabled="manageakerts">
                                     <md-radio-button value="0" class="md-primary">Both</md-radio-button>
@@ -22,18 +22,18 @@
                                 <img src="src\images\straightline.png" style="height:33px;margin: -5px;color: maroon;"></img>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="col-lg-11 rdnoptions">
+                        <div class="col-lg-3 black">
+                            <div class="col-lg-10 rdnoptions">
                                 <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtnsettleDeleteType" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                     <md-radio-button value="0" class="md-primary">Both</md-radio-button>
-                                    <md-radio-button value="1">Only Settled</md-radio-button>
-                                    <md-radio-button value="2">Only Delete</md-radio-button>
+                                    <md-radio-button value="1">Settled</md-radio-button>
+                                    <md-radio-button value="2">Delete</md-radio-button>
                                 </md-radio-group>
                             </div>
                             <div class="col-lg-1"> <img src="src\images\straightline.png" style="height:33px;margin:-5px;color: maroon;"></img>
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 black">
                             <div class="col-lg-12 rdnoptions">
                                 <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtntypeofProfile" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                     <md-radio-button value="0" class="md-primary">Both</md-radio-button>
@@ -48,13 +48,13 @@
                     <div class="">
                         <div class="row">
                             <div class="col-lg-3">
-                                <label for="" class="control-label">Set/Del From Dates</label>
+                                <label for="" class="control-label">From Date</label>
                                 <div>
                                     <custom-datepicker name="date" ng-model="page.model.fromDate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                <label for="" class="control-label">Set/Del To Dates</label>
+                                <label for="" class="control-label">To Date</label>
                                 <div>
                                     <custom-datepicker name="date" ng-model="page.model.todate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions">
                                     </custom-datepicker>
@@ -111,7 +111,6 @@
                                 <label for="Gender" class="control-label">Authorized By</label>
                                 <div> <select multiselectdropdown class="smalldropdown  col-lg-5" multiple ng-model="page.model.authorizedby" typeofdata="'EmpNames'"></select></div>
                             </div>
-
                         </div>
                         <br>
                     </div>
@@ -215,6 +214,9 @@
     
     md-radio-group.layout-row md-radio-button {
         margin: 0 6px 0 0;
-        ;
+    }
+    
+    .black {
+        color: black;
     }
 </style>

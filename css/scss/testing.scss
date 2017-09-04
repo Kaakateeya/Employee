@@ -1,4 +1,4 @@
-$columns: 100;
+$columns: 20;
 @mixin margin($b, $type) {
     @for $i from 1 through $columns {
         .m-#{$b}-#{$i} {

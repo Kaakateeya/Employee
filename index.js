@@ -46,7 +46,7 @@ app.prefixPathImg = 'Images/ProfilePics/';
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider',
     function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
         var states = [
-            { routeName: 'login', name: 'base.login', url: '/', isloginrequired: false },
+            { routeName: 'login', name: 'login', url: '/', isloginrequired: false },
             { routeName: 'dashboard', name: 'base.dashboard', url: '/dashboardpage', isloginrequired: true, module: 'dashboard' },
             { routeName: 'searchpage', name: 'base.searchpage', url: '/search/:id/:Profileid', isloginrequired: true, reload: true },
             { routeName: 'editViewprofile', name: 'base.editViewprofile', url: '/editViewprofileurl', isloginrequired: true },
@@ -379,9 +379,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                             if (item.module !== undefined) {
                                 $ocLazyLoad.load(item.module);
                             }
-                            // if (item.routeName !== 'login') {
-                            //     loadmodules($ocLazyLoad);
-                            // }
+                            if (item.routeName === 'login') {
+                                $ocLazyLoad.load('auth');
+                            }
 
                             return $ocLazyLoad.load([
                                 'app/' + item.routeName + '/style.css',
@@ -402,29 +402,37 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
         });
     }
 ]);
-app.run(function($rootScope, $state, $stateParams) {
+app.run(function($rootScope, $state, $stateParams, $ocLazyLoad) {
 
     $rootScope.ProfileOwner = '';
     $rootScope.EditProfilePaidStatus = '';
     // $rootScope.processingsymbol = true;
 
     $rootScope.$on('$stateChangeStart', function(e, to) {
-        if (to && to.name !== 'base.login') {
+        if (to && to.name !== 'login') {
             if (sessionStorage.getItem('logintime') && (sessionStorage.getItem('logintime')) === moment().format('MM/DD/YYYY')) {
                 if (to.data && to.data.requiresLogin) {
                     if (sessionStorage.getItem('LoginEmpid') === null || sessionStorage.getItem('LoginEmpid') === undefined || sessionStorage.getItem('LoginEmpid') === "") {
                         e.preventDefault();
-                        $state.go('base.login');
+                        $state.go('login');
                     } else {
                         if (sessionStorage.getItem('LoginEmpid') !== null && sessionStorage.getItem('LoginEmpid') !== undefined && sessionStorage.getItem('LoginEmpid') !== "") {}
                     }
                 }
             } else {
                 e.preventDefault();
-                $state.go('base.login');
+                $state.go('login');
             }
         }
     });
+
+    // $rootScope.$on('$stateChangeSuccess', function(event, view) {
+    //     if (view.name === 'login') {
+    //         $ocLazyLoad.load('auth');
+    //         loadmodules($ocLazyLoad);
+    //     }
+    // });
+
 });
 
 function loadmodules($ocLazyLoad) {

@@ -1,86 +1,220 @@
 <div class="right_col">
-    <uib-accordion close-others="oneAtATime">
-        <div uib-accordion-group class="panel-default" is-open="page.model.opendiv">
-            <uib-accordion-heading style="color: rgb(160, 2, 1);">
-                Match meeting count report <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
-            </uib-accordion-heading>
-            <div class="bodyclsnew">
-                <div class="row">
-                    <div class="col-lg-7">
-                        <label for="Gender" class="col-lg-3 control-label">Search by</label>
-                        <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtnSearchBy" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                            <md-radio-button value="0" class="md-primary">Employee</md-radio-button>
-                            <md-radio-button value="1"> Customer</md-radio-button>
-                            <md-radio-button value="2"> Repeated MMeetings</md-radio-button>
-                        </md-radio-group>
-                    </div>
-                    <div class="col-lg-5" ng-if="page.model.rbtnSearchBy!=='2'">
-                        <label for="Gender" class="col-lg-4 control-label">Count</label>
-                        <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtnCount" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                            <md-radio-button value="1" class="md-primary">Max Count </md-radio-button>
-                            <md-radio-button value="2"> Between Count</md-radio-button>
-                        </md-radio-group>
-                    </div>
-                    <div class="col-lg-7" ng-if="page.model.rbtnCount==='2'">
-                        <label for="" class="control-label col-lg-3">Count from	</label>
-                        <div class="col-lg-6">
-                            <input type="text" ng-model="page.model.countFrom" maxlength="2" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-lg-5" ng-if="page.model.rbtnCount==='2'">
-                        <label for="" class="control-label col-lg-4">Count to</label>
-                        <div class="col-lg-6">
-                            <input type="text" ng-model="page.model.countTo" maxlength="2" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-7">
-                        <label for="" class="control-label col-lg-3">MMDates from</label>
-                        <div class="col-lg-6">
-                            <custom-datepicker name="date" style="padding-right: 0px;" ng-model="page.model.txtFrommeetingDate" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
-                        </div>
-                    </div>
-                    <div class="col-lg-5">
-                        <label for="" class="control-label col-lg-4">MMDates to</label>
-                        <div class="col-lg-6">
-                            <custom-datepicker name="date" style="padding-right: 0px;" ng-model="page.model.txtTomeetingDate" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
-                        </div>
-                    </div>
-                    <div class="col-lg-7">
-                        <label for="" class="control-label col-lg-3">Branch</label>
-                        <div class="col-lg-6">
-                            <select multiselectdropdown class="smalldropdown" ng-model="page.model.branch" multiple typeofdata="'Branch'"></select>
-                        </div>
-                    </div>
-                    <div class="col-lg-5">
-                        <label for="" class="control-label col-lg-4">Caste</label>
-                        <div class="col-lg-6">
-                            <select multiselectdropdown class="smalldropdown" pagetype="'search'" ng-model="page.model.caste" multiple typeofdata="'caste'"></select>
-                        </div>
-                    </div>
+    <!-- <uib-accordion close-others="oneAtATime"> -->
+    <!-- <div uib-accordion-group class="panel-default" is-open="page.model.opendiv">
+        <uib-accordion-heading style="color: rgb(160, 2, 1);">
+            Match meeting count report <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+        </uib-accordion-heading> -->
 
 
-                </div>
-                <div class="row">
-                    <div style="border-top: 1px solid #ddd;padding-top: 1%;"></div>
-                    <div class="col-lg-5">
-                        <button class="button_custom pull-right" type="submit" ng-click="page.model.matchReport();">Submit</button>
-                    </div>
-                    <div class="col-lg-4">
-                        <input type="reset" class="button_custom button_custom_reset" value="Reset" ng-click="page.model.reset();">
+    <div class="panel-group">
+        <div class="panel-collapse collapse in">
+            <div class="panel-default regValheader" style="margin-top: -12px;box-shadow: 2px 2px 6px #ccc;" is-open="page.model.opendiv">
+
+                <div class="panel-heading" style="color: rgb(160, 2, 1);border: 1px solid #ccc">
+                    <div class="row">
+                        <div class="col-lg-3" style="font-size: 14px;font-weight: 700;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
+                            <h4 style="width:245px;"> Match meeting count report <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+                            </h4>
+                        </div>
+
+                        <div class="col-lg-7" style="color:black;">
+                            <div class="col-lg-10 rdnoptions">
+                                <label for="Gender" class="col-lg-3 control-label">Search by</label>
+                                <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtnSearchBy" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                    <md-radio-button value="0" class="md-primary">Employee</md-radio-button>
+                                    <md-radio-button value="1"> Customer</md-radio-button>
+                                    <md-radio-button value="2"> Repeated MMeetings</md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
+                <div class="panel-body" ng-show="page.model.panelbodyhide">
+                    <div class="bodyclsnew">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label col-lg-3">From Date</label>
+                                <div class="col-lg-6">
+                                    <custom-datepicker name="date" style="padding-right: 0px;" ng-model="page.model.txtFrommeetingDate" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="" class="control-label col-lg-4">To Date</label>
+                                <div class="col-lg-6">
+                                    <custom-datepicker name="date" style="padding-right: 0px;" ng-model="page.model.txtTomeetingDate" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="" class="control-label col-lg-3">Branch</label>
+                                <div class="col-lg-6">
+                                    <select multiselectdropdown class="smalldropdown" ng-model="page.model.branch" multiple typeofdata="'Branch'"></select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="" class="control-label col-lg-4">Caste</label>
+                                <div class="col-lg-6">
+                                    <select multiselectdropdown class="smalldropdown" pagetype="'search'" ng-model="page.model.caste" multiple typeofdata="'caste'"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div style="border-top: 1px solid #ddd;padding-top: 1%;"></div>
+                            <div class="col-lg-5">
+                                <button class="button_custom pull-right" type="submit" ng-click="page.model.matchReport();">Submit</button>
+                            </div>
+                            <div class="col-lg-4">
+                                <input type="reset" class="button_custom button_custom_reset" value="Reset" ng-click="page.model.reset();">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-
         </div>
-    </uib-accordion>
+    </div>
+
 
     <div ng-if="page.model.TotalRows">
         Total Records : {{page.model.TotalRows}}
     </div>
 
     <complex-grid-new model="page.model" config="page.model"></complex-grid-new>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row container">
+        <ul>
+            <div class="col-lg-6" style="border-radius: 20px; border-right: 1px solid maroon;">
+                <div class="row">
+                    <div class="col-lg-3 col-lg-offset-1">
+                        <div>
+                            <div class="text-center"></div>
+                            <div> <img src="http://d16o2fcjgzj2wp.cloudfront.net/Images/EmployeeImages/HD024_EmplyeeImage/HD024_EmplyeeImage.jpg" class="center-block" height="57px" width="57px"></div>
+                            <div class="row ng-binding">Jhansi-9848165533-</div>
+                        </div><br>
+                    </div>
+                    <div class="col-lg-7 col-lg-offset-1">
+                        <div style="padding-bottom: 5px;"> <br><a ng-show="model.ProceededProfiles(slide.FRomSerivceCount,slide.fromempname);" href="javascript:void(0);" ng-click="model.serviceCountProfiles(slide.fromcust_id);" aria-hidden="false" class=""> Proceed Other Profiles</a> </div>
+                        <img ng-click="slidepopup(slide.fromcust_id)" style="min-width:250px;min-height:250px;" ng-src="http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_114268_Images/Img3_Images/211142687_ApplicationPhoto.jpg" class="img-thumbnail" role="button"
+                            tabindex="0" src="http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_114268_Images/Img3_Images/211142687_ApplicationPhoto.jpg">
+                        <div class="text-center"> <br>
+                            <div class="row">
+                                <div class="col-lg-10"><b class="ng-binding">DurgaShailaja  Yedlapalli(<b class="ng-binding"><a href="javascript:void(0)" ng-click="model.viewProfileRedirect(slide.FromProfileid);" class="ng-binding">211142687</a> - HD)</b></b>
+                                </div>
+
+                                <div class="col-lg-2 ng-scope" ng-if="slide.FromticketStatusIDb.trim()==='I' || slide.FromticketStatusIDb.trim()==='I'"><img ng-src="src/images/heartgrren.gif" style="width:28px;" src="src/images/heartgrren.gif"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3"><b class="maroon">Mobile:</b> </div>
+                                <div class="col-lg-9"><b class="ng-binding">8500013048</b></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3"><b class="maroon">Email:</b> </div>
+                                <div class="col-lg-9"><b class="ng-binding">shailaja.yedlapalli@gmail.com</b></div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="row">
+                                <div class="col-lg-6"> <b class="maroon">Service Date</b> <b class="row ng-binding">13 Aug 2017 17:46:43</b></div>
+                                <div class="col-lg-6"> <b class="maroon">Proceed Date </b> <b class="row ng-binding">13 Aug 2017 17:46:43</b></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+            </div>
+            <div class="col-lg-6" style="border-radius: 20px; border-left: 1px solid maroon;">
+                <div class="row">
+                    <div class="col-lg-7 col-lg-push-1">
+                        <div style="padding-bottom: 5px;"> <br><a ng-show="model.ProceededProfiles(slide.ToSerivceCount,slide.toempname);" href="javascript:void(0);" ng-click="model.serviceCountProfiles(slide.tocustid);" aria-hidden="true" class="ng-hide"> Proceed Other Profiles</a> </div>
+                        <img id="tocustimg" ng-click="slidepopup(slide.tocustid)" style="min-width:250px;min-height:250px;" ng-src="http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_79135_Images/Img1_Images/310791350_ApplicationPhoto.jpg" alt="" class="center-block img-thumbnail"
+                            role="button" tabindex="0" src="http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_79135_Images/Img1_Images/310791350_ApplicationPhoto.jpg">
+                        <div class="text-center"> <br>
+                            <div class="row">
+                                <div class="col-lg-10"><b class="ng-binding">Prithvi  Manduva    (<b class="ng-binding"><a href="javascript:void(0)" ng-click="model.viewProfileRedirect(slide.Toprofileid);" class="ng-binding">310791350</a> - WB)V</b></b>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3"><b class="maroon">Mobile:</b> </div>
+                                <div class="col-lg-9"><b class="ng-binding">9963998863</b></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3"><b class="maroon">Email:</b> </div>
+                                <div class="col-lg-9"><b class="ng-binding">Praneet.manoj@gmail.com</b></div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="row">
+                                <div class="col-lg-6"> <b class="maroon">Service Date</b> <b class="row ng-binding">13 Aug 2017 17:46:43</b></div>
+                                <div class="col-lg-6"> <b class="maroon">Proceed Date </b> <b class="row ng-binding">--</b></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3  col-lg-push-1">
+                        <div>
+                            <div class="text-center"></div>
+                            <div> <img src="http://d16o2fcjgzj2wp.cloudfront.net/Images/EmployeeImages/EL003_EmplyeeImage/EL003_EmplyeeImage.jpg" class="center-block" height="57px" width="57px"></div>
+                            <div class="row ng-binding">Sailaja-9848031931</div>
+                        </div><br>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </ul>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
 <script type="text/ng-template" id="mmInfoPopup.html">
