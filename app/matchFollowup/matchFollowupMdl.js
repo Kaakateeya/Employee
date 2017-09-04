@@ -562,12 +562,12 @@
                     model.typeOfCtrl = val;
                     var textpopup = model.ticketstatusforemail !== 'I' ? '(proceed/do not proceed/need time)' : '(proceed/do not proceed/need time)';
                     if (val === '1') {
-                        // model.txtAllcallDiscusion = 'intrsted';
-                        var genderid = model.genderforemail === 2 ? 'Ms.' : 'Mr.';
-                        var she = model.genderforemail === 2 ? 'She' : 'He';
-                        var her = model.genderforemail === 2 ? 'her' : 'his';
-                        model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment().format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
-                            "We are resending " + her + " profile for the ease of viewing and please give your opinion in the options provided in the profile" + textpopup + "";
+                        model.txtAllcallDiscusion = 'intrsted';
+                        // var genderid = model.genderforemail === 2 ? 'Ms.' : 'Mr.';
+                        // var she = model.genderforemail === 2 ? 'She' : 'He';
+                        // var her = model.genderforemail === 2 ? 'her' : 'his';
+                        // model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment().format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
+                        //     "We are resending " + her + " profile for the ease of viewing and please give your opinion in the options provided in the profile" + textpopup + "";
                         model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else if (val === '2') {
                         model.txtAllcallDiscusion = 'pending';
@@ -575,7 +575,7 @@
                     } else {
                         model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = '';
                     }
-                    // modelpopupopenmethod.showPopupphotopoup('notIntrstPopup.html', model.scope, 'md', 'notintrstCls');
+                    modelpopupopenmethod.showPopupphotopoup('notIntrstPopup.html', model.scope, 'md', 'notintrstCls');
                 };
 
                 model.notIntrstchangeBind = function(val) {
