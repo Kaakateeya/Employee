@@ -41,10 +41,15 @@
                                 {{page.model.errormessage}}</div>
                             <div>-->
 
-                            <div class="pull-right"> {{page.model.CurrentDate | date:'dd MMMM yyyy hh.mm.ss'}},{{page.model.CurrentDate |date:'EEEE'}}</div>
+                            <!-- <div class="pull-right"> {{page.model.CurrentDate | date:'dd MMMM yyyy hh.mm.ss'}},{{page.model.CurrentDate |date:'EEEE'}}</div> -->
 
+                            <div class="pull-right">
+                                <div class="col-lg-12">
+                                    <span ng-bind-html="page.model.CurrentDate | date:'dd MMMM yyyy hh.mm.ss'"></span>,
+                                    <span ng-bind-html="page.model.CurrentDate |date:'EEEE'"></span>
+                                </div>
+                            </div>
                         </div>
-
                 </div>
                 <div class="login-footer" ng-if="false">
                     <div class="row">
