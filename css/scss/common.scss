@@ -49,3 +49,18 @@ textarea {
 .bodyclsnew {
     line-height: 39px;
 }
+
+.modelpayment .pane-vScroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 120px !important;
+}
+
+.modelpayment {
+    z-index: 999999 !important;
+}
+
+.linkdisabled {
+    pointer-events: none;
+    cursor: default;
+}

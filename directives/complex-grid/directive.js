@@ -77,11 +77,15 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     commonpage.showPopup('templates/bindImagePopup.html', scope, 'md', '');
                 };
                 scope.paymentpageredirect = function(profileid) {
-                    window.open("EmployeePayments/0" + "?idsss=" + profileid, "_blank");
+                    if (profileid) {
+                        scope.profileid = profileid;
+                        commonpage.showPopupphotopoup('paymentDetailspopup.html', scope, 'lg', "modelpayment");
+                    }
                 };
                 scope.sendtopayment = function(row) {
                     var pay = row.paidamount === '0/0' ? 'unpaid' : row.paidamount;
-                    var paymant = "<a style='cursor:pointer;' ng-click='paymentpageredirect(" + JSON.stringify(row.Profileid) + ")' href='javascript:void(0);'>" + pay + "</a>";
+                    var paycls = row.paidamount === 'Not Paid' ? 'linkdisabled' : '';
+                    var paymant = "<a style='cursor:pointer;' class='" + paycls + "' ng-click='paymentpageredirect(" + JSON.stringify(row.Profileid) + ")' href='javascript:void(0);'>" + pay + "</a>";
                     return paymant;
                 };
                 scope.page.model.close = function() {
