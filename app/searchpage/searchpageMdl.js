@@ -190,7 +190,7 @@
                 ];
                 model.pagechange = function(val) {
                     var to = val * 100;
-                    var from = val === 1 ? 1 : to - 99;
+                    var from = model.gridtable.pageSize = val === 1 ? 1 : to - 99;
                     switch (model.tablename) {
                         case "general":
                             model.submitgeneral(from, to);
@@ -387,6 +387,7 @@
                                 };
                                 alasql('SELECT ProfileID,FirstName,LastName as SurName,Caste,MaritalStatus,DOB(Age),Gender,Height,EducationGroup,Profession,joblocation,countrylivingin,Fathernative,Mothernative INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
                             } else {
+                                model.gridtable.data = [];
                                 _.each(response.data, function(item) {
                                     model.slideshowarray.push(item);
                                 });
@@ -394,6 +395,7 @@
                                     model.gridTableshow = true;
                                     model.divcontrolls = false;
                                 }
+                                model.gridtable.pageSize = 10;
                                 model.gridtable.TotalRows = response.data[0].TotalRows;
                                 model.gridtable.setData(model.slideshowarray);
                             }
@@ -493,6 +495,7 @@
                                     model.gridTableshow = true;
                                     model.divcontrolls = false;
                                 }
+                                model.gridtable.pageSize = 10;
                                 model.gridtable.TotalRows = response.data[0].TotalRows;
                                 model.gridtable.setData(model.slideshowarray);
                             }
