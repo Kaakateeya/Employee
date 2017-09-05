@@ -221,6 +221,7 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
                 }, 2000);
                 scope.init();
                 scope.loadMore = function() {
+                    debugger;
                     scope.model.pageSize = scope.model.pageSize + 10;
                 };
                 scope.model.pageReset = function() {

@@ -236,6 +236,7 @@
                                 configslide.addSlides((model.displayArrayeidt(response.data, to)), response.data, parseInt(to), "normal");
                             }
                         } else {
+                            model.pageSize = 10;
                             model.data = (response.data);
                             model.gridArray = response.data;
                         }
