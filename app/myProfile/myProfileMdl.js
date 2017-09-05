@@ -169,7 +169,7 @@
 
 
                 model.MyprofileResult = function(obj, from, to, type, flagtype) {
-                    model.grid.pageSize = 10;
+
                     if (from === 1) {
                         model.SNum = 1;
                     }
@@ -223,6 +223,7 @@
                         if (_.isArray(response.data) && response.data.length > 0) {
                             if (type === 'grid') {
                                 model.opendiv = false;
+                                model.grid.pageSize = 10;
                                 model.grid.TotalRows = response.data[0].TotalRows;
                                 model.grid.data = model.addingserialnumber(response.data);
                                 model.gridArray = response.data;
