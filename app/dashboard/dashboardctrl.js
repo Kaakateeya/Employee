@@ -15,6 +15,7 @@
              model.config.headettemp = "dashboardheader.html";
              model.slideshowopenflag = 0;
              scope.$on("$destroy", vm.destroy);
+
          };
          vm.destroy = function() {
              model.destroy();

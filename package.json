@@ -15,6 +15,7 @@
     "angular-password": "^1.0.3",
     "angular-resource": "^1.6.5",
     "angular-route": "latest",
+    "angular-spinner": "^1.0.1",
     "angular-ui-router": "^0.3.1",
     "angularjs-slider": "^5.9.0",
     "bootstrap": "latest",

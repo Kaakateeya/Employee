@@ -3,8 +3,8 @@
     /** @ngInject */
     angular
         .module('Kaakateeya')
-        .controller('headerctrl', ['$scope', 'topheadermodel', 'authSvc',
-            function(scope, topheadermodel, authSvc) {
+        .controller('headerctrl', ['$scope', 'topheadermodel', 'authSvc', '$http',
+            function(scope, topheadermodel, authSvc, $http) {
                 var vm = this,
                     model = {};
                 vm.initheader = function() {
@@ -20,6 +20,7 @@
                         model.usernameemployeeid = sessionStorage.getItem("usernameemployeeid");
                         model.unpaidmember = false;
                     }
+                    $http.get('your-server-endpoint');
                 };
                 vm.initheader();
             }
