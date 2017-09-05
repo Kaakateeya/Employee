@@ -22,7 +22,6 @@
                 model.grid.showpaging = true;
                 model.grid.myprofileexcel = true;
                 model.grid.normalexcel = true;
-                model.grid.pageSize = 10;
                 model.dateOptions = {
                     changeMonth: true,
                     changeYear: true,
@@ -170,6 +169,7 @@
 
 
                 model.MyprofileResult = function(obj, from, to, type, flagtype) {
+                    model.grid.pageSize = 10;
                     if (from === 1) {
                         model.SNum = 1;
                     }

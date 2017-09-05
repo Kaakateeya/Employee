@@ -233,7 +233,7 @@
     <a class="excelshow slideImg" ng-if="page.model.gridArray.length>0" ng-click="page.model.MyprofileResult(page.model.mpObj,1,10,'slide',0);" title="Slideshow" href="javascript:void(0)">
         <img style="width: 32px;height: 29px;" src="src/images/slideshowimg.png"></img>
     </a>
-    <complex-grid-new ng-if="page.model.grid.columns" config="page.model.grid" model="page.model.grid"></complex-grid-new>
+    <complex-grid-new gid="'id1'" ng-if="page.model.grid.columns" config="page.model.grid" model="page.model.grid"></complex-grid-new>
 
     <script type="text/ng-template" id="myprofileSlide.html">
         <div class="modal-body">
