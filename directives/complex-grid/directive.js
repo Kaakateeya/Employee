@@ -16,7 +16,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 scope.init = function() {
                     scope.model.data = [];
                     scope.currentPage = 0;
-                    scope.pageSize = scope.pagesizecommunication !== undefined && scope.pagesizecommunication !== null && scope.pagesizecommunication !== "" ? scope.pagesizecommunication : 100;
+                    scope.model.pageSize = scope.pagesizecommunication !== undefined && scope.pagesizecommunication !== null && scope.pagesizecommunication !== "" ? 10 : 10;
                     // scope.pagen = 100;
                     scope.model.exportColumns = {};
                     _.each(scope.model.columns, function(item) {
@@ -76,16 +76,16 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                     scope.page.model.image = Settle;
                     commonpage.showPopup('templates/bindImagePopup.html', scope, 'md', '');
                 };
-                scope.paymentpageredirect = function(profileid) {
-                    if (profileid) {
-                        scope.profileid = profileid;
+                scope.paymentpageredirect = function(row) {
+                    if (row.Profileid) {
+                        scope.profileid = row.Profileid;
                         commonpage.thirdshowPopup('paymentDetailspopup.html', scope, 'lg', "modelpayment");
                     }
                 };
                 scope.sendtopayment = function(row) {
                     var pay = row.paidamount === '0/0' ? 'unpaid' : row.paidamount;
                     var paycls = row.paidamount === 'Not Paid' ? 'linkdisabled' : '';
-                    var paymant = "<a style='cursor:pointer;' class='" + paycls + "' ng-click='paymentpageredirect(" + JSON.stringify(row.Profileid) + ")' href='javascript:void(0);'>" + pay + "</a>";
+                    var paymant = "<a style='cursor:pointer;' class='" + paycls + "' ng-click='paymentpageredirect(" + JSON.stringify(row) + ")' href='javascript:void(0);'>" + pay + "</a>";
                     return paymant;
                 };
                 scope.page.model.close = function() {
@@ -98,7 +98,7 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                         { text: 'Profile Id', key: 'Profileid', type: 'link', method: scope.ViewProfile },
                         { text: 'Branch-Dor', key: 'RegistrationDate', type: 'label' },
                         { text: 'Paid', key: '', type: 'morelinks', templateUrl: scope.sendtopayment },
-                        { text: 'Paid Date', key: 'paiddate', type: 'label' },
+                        { text: 'Paid Date', key: 'paiddate', type: 'link', method: scope.paymentpageredirect },
                         { text: 'S/R', key: 'sentreceivecount', type: 'link', method: scope.sendreceive },
                         { text: 'PC', key: 'photocount', type: 'label' },
                         { text: 'PD', key: 'PD', type: 'label' },
@@ -176,6 +176,13 @@ angular.module('Kaakateeya').directive("complexGrid", ['modelpopupopenmethod', '
                 //     }
                 // }
 
+                scope.loadMore = function() {
+                    scope.model.pageSize = scope.model.pageSize + 10;
+                };
+
+                scope.model.pageReset = function() {
+                    scope.model.pageSize = 10;
+                };
 
                 scope.init();
             }

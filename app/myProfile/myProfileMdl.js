@@ -22,6 +22,7 @@
                 model.grid.showpaging = true;
                 model.grid.myprofileexcel = true;
                 model.grid.normalexcel = true;
+                model.grid.pageSize = 10;
                 model.dateOptions = {
                     changeMonth: true,
                     changeYear: true,
