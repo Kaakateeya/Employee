@@ -1,16 +1,11 @@
 <div class="right_col myprofile" role="main" id="myprofileid">
     <div class="">
         <uib-accordion close-others="oneAtATime">
-
             <div uib-accordion-group style="margin-top: -12px;box-shadow: 2px 2px 6px #ccc;" class="panel-default" is-open="page.model.opendiv">
                 <uib-accordion-heading>
                     My Profiles <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
-
                     <span style="color:black;font-size: 13px;cursor:text;" class="pull-right">
                          <span><img src="src/images/ico_horoscope.jpg" alt=""></span>--Horo &nbsp;
-                    <!--<span class="red">OU</span>--Online-Unpaid &nbsp;
-                    <span class="red">KU</span>--Kmpl-Unpaid &nbsp; -->
-                    <!-- <span class="greentext">OP</span>--Online-Paid &nbsp; <span class="greentext">KP</span>--Kmpl-Paid &nbsp; <span class="greentext">OR</span>--Online-Renew &nbsp; <span class="greentext">KR</span>-- Kmpl-Renew -->
                     <span class="red" style="height: 4px;width: 11px;background-color: red;">&nbsp;&nbsp;&nbsp;&nbsp;</span>--Unpaid &nbsp;
                     <span class="green" style="height: 4px;width: 11px;background-color: green;">&nbsp;&nbsp;&nbsp;&nbsp;</span>--Paid &nbsp;
                     </span>
@@ -57,14 +52,12 @@
                         <div class="clearfix form-group">
                             <label for="Gender" class="control-label col-lg-4">Date OF Reg.From</label>
                             <div class="col-lg-7">
-                                <!--<date-picker strdate="page.model.mpObj.txtRegFromDate"></date-picker>-->
                                 <custom-datepicker ng-class="(page.model.mpObj.txtRegFromDate).trim()!=='' && page.model.mpObj.txtRegFromDate!==undefined &&  page.model.mpObj.txtRegFromDate!==null?'datepicker4':''" ng-model="page.model.mpObj.txtRegFromDate" date-options="page.model.dateOptions"></custom-datepicker>
                             </div>
                         </div>
                         <div class="clearfix form-group">
                             <label for="Gender" class="control-label col-lg-4">Assigned From Date</label>
                             <div class="col-lg-7">
-                                <!--<date-picker strdate="page.model.mpObj.txtAssignFromdate"></date-picker>-->
                                 <custom-datepicker ng-class="(page.model.mpObj.txtAssignFromdate).trim()!=='' && page.model.mpObj.txtAssignFromdate!==undefined &&  page.model.mpObj.txtAssignFromdate!==null?'datepicker4':''" ng-model="page.model.mpObj.txtAssignFromdate" date-options="page.model.dateOptions"></custom-datepicker>
                             </div>
                         </div>
@@ -110,12 +103,6 @@
                                 </md-radio-group>
                             </div>
                         </div>
-                        <!--<div class="clearfix form-group">
-                            <label for="Gender" class="control-label col-lg-4">KMPLID</label>
-                            <div class="col-lg-7">
-                                <input ng-class="(page.model.mpObj.txtKMPLID).trim()!=='' && page.model.mpObj.txtKMPLID!==undefined && page.model.mpObj.txtKMPLID!==null?'bacg':''" type="text" class="form-control" placeholder="KMPLID" ng-model="page.model.mpObj.txtKMPLID">
-                            </div>
-                        </div>-->
                         <div class="clearfix form-group">
                             <label for="Gender" class="control-label col-lg-4">Domacile</label>
                             <div class="col-lg-7">
@@ -133,7 +120,6 @@
                                  </select>
                             </div>
                         </div>
-
                         <div class="clearfix form-group">
                             <label for="Gender" class="control-label col-lg-4">Caste</label>
                             <div class="col-lg-7" ng-class="page.model.mpObj.ddlCaste===undefined || page.model.mpObj.ddlCaste===null || page.model.mpObj.ddlCaste.length===0 ?'':'colorforcontrols'">
@@ -141,13 +127,6 @@
                                  </select>
                             </div>
                         </div>
-                        <!--<div class="clearfix form-group">
-                            <label for="Gender" class="control-label col-lg-4">Marketing Owner</label>
-                            <div class="col-lg-7" ng-class="page.model.mpObj.ddlMarketingOwner===undefined || page.model.mpObj.ddlMarketingOwner===null || page.model.mpObj.ddlMarketingOwner.length===0 ?'':'colorforcontrols'">
-                                <select multiselectdropdown multiple id="MarketingOwner" class="smalldropdown" ng-model="page.model.mpObj.ddlMarketingOwner" ng-options="item.value as item.label for item in page.model.ProfileOwnerarray">   
-                                 </select>
-                            </div>
-                        </div>-->
                         <div class="clearfix form-group">
                             <label for="Gender" class="control-label col-lg-4">Having Profiles</label>
                             <div class="col-lg-7" ng-class="page.model.mpObj.ddlHavingProfiles===undefined || page.model.mpObj.ddlHavingProfiles===null || page.model.mpObj.ddlHavingProfiles.length===0 ?'':'colorforcontrols'">
@@ -164,14 +143,12 @@
                         <div class="clearfix form-group">
                             <label for="Gender" class="control-label col-lg-4">Date OF Reg.To</label>
                             <div class="col-lg-7">
-                                <!--<date-picker strdate="page.model.mpObj.txtRegToDate"></date-picker>-->
                                 <custom-datepicker ng-class="(page.model.mpObj.txtRegToDate).trim()!=='' && page.model.mpObj.txtRegToDate!==undefined &&  page.model.mpObj.txtRegToDate!==null?'datepicker4':''" ng-model="page.model.mpObj.txtRegToDate" date-options="page.model.dateOptions"></custom-datepicker>
                             </div>
                         </div>
                         <div class="clearfix form-group">
                             <label for="Gender" class="control-label col-lg-4">Assigned To Date</label>
                             <div class="col-lg-7">
-                                <!--<date-picker strdate="page.model.mpObj.txtToAssignedDate"></date-picker>-->
                                 <custom-datepicker ng-class="(page.model.mpObj.txtToAssignedDate).trim()!=='' && page.model.mpObj.txtToAssignedDate!==undefined &&  page.model.mpObj.txtToAssignedDate!==null?'datepicker4':''" ng-model="page.model.mpObj.txtToAssignedDate" date-options="page.model.dateOptions"></custom-datepicker>
                             </div>
                         </div>
@@ -227,9 +204,7 @@
                 </div>
             </div>
         </uib-accordion>
-
     </div>
-
     <a class="excelshow slideImg" ng-if="page.model.gridArray.length>0" ng-click="page.model.MyprofileResult(page.model.mpObj,1,10,'slide',0);" title="Slideshow" href="javascript:void(0)">
         <img style="width: 32px;height: 29px;" src="src/images/slideshowimg.png"></img>
     </a>
@@ -242,7 +217,6 @@
         </div>
     </script>
 </div>
-
 <script type="text/ng-template" id="myprofileheader.html">
     <div>
         <div class="row">
@@ -265,22 +239,18 @@
                 <a href="javascript:void(0);" ng-click="model.closemainpopup();" style="padding:7px;">X</a>
             </div>
         </div>
-
     </div>
-
 </script>
 <script type="text/ng-template" id="market.html">
     <div class="modal-body">
         <market-tickethistory ticketid="page.model.marketingTicketid"></market-tickethistory>
     </div>
 </script>
-
 <script type="text/ng-template" id="paymentDetailspopup.html">
     <div class="modal-body" style="max-height:600px;">
         <payment-details profile-id="page.model.profileid"></payment-details>
     </div>
 </script>
-
 <style>
     .datepicker3 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
