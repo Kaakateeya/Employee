@@ -84,7 +84,7 @@
     </div>
 </div>
 <div ng-if="config.showpaging">
-    <ul uib-pagination total-items="(model.TotalRows)/10" ng-model="pagen" ng-change="config.pagechange(pagen)" max-size="5" class="pull-right pagination-md" boundary-link-numbers="true" rotate="false"></ul>
+    <ul uib-pagination total-items="(model.TotalRows)/10" ng-model="pagen" ng-change="scrolltotop();config.pagechange(pagen);" max-size="5" class="pull-right pagination-md" boundary-link-numbers="true" rotate="false"></ul>
 </div>
 </div>
 

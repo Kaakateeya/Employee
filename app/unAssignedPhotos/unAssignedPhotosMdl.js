@@ -85,15 +85,16 @@
                 { text: 'OwnerName', key: 'OwnerName', type: 'label' },
                 { text: 'PhotosCount', key: 'PhotosCount', type: 'label' }
             ];
+            debugger;
             var inobj = {
                 iEmpID: model.empid,
                 StrProfileID: model.profileID ? model.profileID : null,
                 PhotoAssigned: model.photoAssigned,
                 GenderID: null,
                 PhotoStatus: '1',
-                strBranch: model.branch ? model.branch.join(',') : null,
+                strBranch: model.branch.length > 0 ? model.branch.join(',') : null,
                 strRegion: model.region.length > 0 ? model.region.join(',') : null,
-                strCaste: model.caste ? model.caste.join(',') : null,
+                strCaste: model.caste.length > 0 ? model.caste.join(',') : null,
                 StartDate: model.uploadedFrom ? moment(model.uploadedFrom).format('YYYY-MM-DD hh:mm:ss') : null,
                 EnDate: model.uploadedTo ? moment(model.uploadedTo).format('YYYY-MM-DD hh:mm:ss') : null,
                 intlowerBound: 1,

@@ -148,7 +148,6 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
                     scope.model.Reassign(obj);
                 };
 
-
                 scope.useme = function(searchText) {
                     if (searchText)
                         return filter('filter')(scope.model.ProfileOwnerarray, searchText);
@@ -160,8 +159,8 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
                     var results = query ? scope.useme(query) : scope.model.ProfileOwnerarray;
                     console.log(results);
                     return results;
-
                 };
+
                 $('#dynamic .pane-hScroll').scroll(function() {
                     $('#dynamic .pane-vScroll').width($('#dynamic .pane-hScroll').width() + $('#dynamic .pane-hScroll').scrollLeft());
                 });
@@ -226,10 +225,47 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
                 scope.model.pageReset = function() {
                     scope.model.pageSize = 10;
                 };
+
+                scope.scrolltotop = function() {
+                    scope.model.pageSize = 10;
+                    $(".pane-vScroll").animate({
+                        scrollTop: 0
+                    }, 600);
+                    $('#dynamic .vScroll').animate({
+                        scrollTop: 0
+                    }, 600);
+                    $('#id1 .vScroll').animate({
+                        scrollTop: 0
+                    }, 600);
+
+                    $('#id2 .vScroll').animate({
+                        scrollTop: 0
+                    }, 600);
+
+                    $('#id3 .vScroll').animate({
+                        scrollTop: 0
+                    }, 600);
+
+                    $('#id4 .vScroll').animate({
+                        scrollTop: 0
+                    }, 600);
+                    $('#id5 .vScroll').animate({
+                        scrollTop: 0
+                    }, 600);
+
+                    $('#id6 .vScroll').animate({
+                        scrollTop: 0
+                    }, 600);
+
+                };
+
             }
+
         };
     }
 ]);
+
+
 angular.module('Kaakateeya').filter('startFrom', function() {
     return function(input, start) {
         if (input) {

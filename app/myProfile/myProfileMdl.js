@@ -22,7 +22,6 @@
                 model.grid.showpaging = true;
                 model.grid.myprofileexcel = true;
                 model.grid.normalexcel = true;
-                model.grid.pageSize = 10;
                 model.dateOptions = {
                     changeMonth: true,
                     changeYear: true,
@@ -170,6 +169,7 @@
 
 
                 model.MyprofileResult = function(obj, from, to, type, flagtype) {
+
                     if (from === 1) {
                         model.SNum = 1;
                     }
@@ -223,7 +223,7 @@
                         if (_.isArray(response.data) && response.data.length > 0) {
                             if (type === 'grid') {
                                 model.opendiv = false;
-                                debugger;
+                                model.grid.pageSize = 10;
                                 model.grid.TotalRows = response.data[0].TotalRows;
                                 model.grid.data = model.addingserialnumber(response.data);
                                 model.gridArray = response.data;
@@ -278,7 +278,7 @@
                 };
                 model.grid.pagechange = function(val) {
                     var to = val * 100;
-                    var from = val === 1 ? 1 : to - 99;
+                    var from = model.SNum = val === 1 ? 1 : to - 99;
                     model.MyprofileResult(model.mpObj, from, to, 'grid', 1);
                 };
                 model.grid.exportexcel = function(topage) {
