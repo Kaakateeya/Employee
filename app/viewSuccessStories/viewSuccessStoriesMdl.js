@@ -148,7 +148,7 @@
                         fileUpload.uploadFileToUrl(model.myFileupload, '/dynamicUpload', keyname).then(function(res) {});
                     }
                     model.reset();
-                    model.selectedIndex = 0;
+                    model.selectedIndex = 1;
                     model.scope.successstoriesform.$setPristine();
                 }
             });
@@ -167,7 +167,7 @@
             model.txtengagementdate = row.EngagementDate;
             model.SuccesStoryPhotoPath = row.OriginalPhotoPath;
             model.sucessStoryID = row.CustId;
-            model.selectedIndex = 1;
+            model.selectedIndex = 0;
         };
 
         model.reset = function() {

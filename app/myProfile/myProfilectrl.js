@@ -14,6 +14,7 @@
                      model.empid = model.slide.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                      model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
                      model.mpObj.ddlProfileOwner = [parseInt(model.empid)];
+
                      model.mpObj.rdnprofileType = '';
                      model.mpObj.rdnGender = '';
                      model.mpObj.rdnWebsiteLogin = '';
@@ -35,7 +36,7 @@
                  vm.init = function() {
                      vm.model = model = myProfileModel;
                      model.gridArray = [];
-
+                     model.slidedata = [];
                      if (!model.applicationStatusarray) {
                          vm.pageload();
                          model.slide.templateUrl = "templates/myprofileSlide.html";

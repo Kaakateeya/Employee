@@ -5,9 +5,9 @@
     angular
         .module('Kaakateeya')
         .factory('myProfileModel', ['$http', 'myProfileservice', 'authSvc', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'SelectBindServiceApp',
-            '$uibModal', '$timeout', 'complex-slide-config', 'modelpopupopenmethod', '$filter', 'arrayConstants',
+            '$uibModal', '$timeout', 'complex-slide-config', 'modelpopupopenmethod', '$filter', 'arrayConstants', '$linq',
             function(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss,
-                SelectBindServiceApp, uibModal, timeout, configslide, commonpage, filter, arrayConstants) {
+                SelectBindServiceApp, uibModal, timeout, configslide, commonpage, filter, arrayConstants, $linq) {
                 var model = {};
                 // model.grid = config;
                 model.slide = {};
@@ -227,6 +227,9 @@
                                 model.grid.TotalRows = response.data[0].TotalRows;
                                 model.grid.data = model.addingserialnumber(response.data);
                                 model.gridArray = response.data;
+                                if (from === 1)
+                                    model.slidedata = model.grid.data;
+
                             } else if (type === 'excel') {
                                 model.grid.exportarray = [];
                                 model.grid.exportarray = response.data;
@@ -289,8 +292,18 @@
                 };
 
                 model.slide.slidebind = function(old, news, array) {
-                    if (parseInt(model.topage) - parseInt(news) === 4) {
-                        model.MyprofileResult(model.mpObj, (model.topage) + 1, (model.topage) + 10, 'slide', 0);
+                    if (model.slidedata.length > 0 && model.slide10data.length < model.slidedata.length) {
+                        if (parseInt(sliTo) - parseInt(news) === 4) {
+                            slidFrom = sliTo;
+                            sliTo = sliTo + 10;
+                            debugger;
+                            model.slide10data = model.slide10data.concat(angular.copy(model.slidedata.slice(slidFrom, sliTo)));
+                            configslide.addSlides(angular.copy(model.slidedata.slice(slidFrom, sliTo)), configslide.slides, sliTo, "myprofile");
+                        }
+                    } else {
+                        if (parseInt(model.topage) - parseInt(news) === 4) {
+                            model.MyprofileResult(model.mpObj, (model.topage) + 1, (model.topage) + 100, 'slide', 0);
+                        }
                     }
                 };
                 // slide events
@@ -314,11 +327,27 @@
                     model.marketingTicketid = TicketID;
                     commonpage.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
                 };
+                var slidFrom = 0,
+                    sliTo = 10;
+                model.bindSlide = function() {
+                    debugger;
+                    slidFrom = 0;
+                    sliTo = 10;
+                    if (model.slidedata.length > 0) {
+                        model.slide.totalRecords = model.slidedata[0].TotalRows;
+                        model.slide.headervisileble = true;
 
-
-
-
-
+                        model.slide10data = model.slidedata.slice(slidFrom, sliTo);
+                        debugger;
+                        configslide.setSlides(model.slide10data, 10, "myprofile");
+                        if (model.myprofileslideshowopenflag !== 1) {
+                            model.myprofileslideshowopenflag = 1;
+                            modelpopupopenmethod.showPopup('myprofileSlide.html', model.scope, 'lg', "myprofileslide");
+                        }
+                    } else {
+                        model.MyprofileResult(model.mpObj, 1, 100, 'slide', 0);
+                    }
+                };
 
                 return model.MyProfilePageLoad();
             }
