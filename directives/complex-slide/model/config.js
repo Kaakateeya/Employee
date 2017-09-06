@@ -105,7 +105,7 @@
                         Profession: item.Profession,
                         PlaceOfBirth: item.PlaceOfBirth,
                         MFNative: item.MFNative,
-                        Servicedate: item.Servicedate
+                        Servicedate: item.serviceDate
                     });
                 });
             } else if (typebind === "regvali") {
