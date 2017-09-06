@@ -13,6 +13,7 @@
                 model.slide = {};
                 model.grid = {};
                 model.slide.config = configslide;
+                model.slide.dobshow = true;
                 model.mpObj = {};
                 model.empid = model.slide.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 model.opendiv = true;
@@ -314,12 +315,6 @@
                     model.marketingTicketid = TicketID;
                     commonpage.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
                 };
-
-
-
-
-
-
                 return model.MyProfilePageLoad();
             }
         ]);

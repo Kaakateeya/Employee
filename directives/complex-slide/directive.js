@@ -298,6 +298,14 @@ angular.module('Kaakateeya').directive("complexSlide", ['$timeout', 'modelpopupo
                 $scope.communicationlogredirect = function(Profileid) {
                     window.open('/communicationLogs?Profileid=' + Profileid, '_blank');
                 };
+                $scope.paymentcolor = function(date) {
+                    var datepresent = $filter('date')(new Date(), 'dd MMM yyyy hh:mm:ss');
+                    var color = '';
+                    if ((moment(date).isBefore(datepresent))) {
+                        color = 'red';
+                    }
+                    return color;
+                };
                 $scope.keypress = function($event) {
                     var keyCode = $event.which || $event.keyCode;
                     // var keyCode = e.keyCode || e.which;
