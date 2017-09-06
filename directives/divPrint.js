@@ -10,7 +10,7 @@
                 '/css/build/css/custom.min.css',
                 '/css/scss/mainstyles.css',
                 '/css/build/css/custom_styles.css'
-               // '/app/employeeViewfullprofilePrint/style.css'
+                // '/app/employeeViewfullprofilePrint/style.css'
             ];
 
             scope.printDiv = function() {
@@ -44,7 +44,8 @@
             },
             link: link,
             restrict: 'E',
-            template: "<button class='btn btn-danger pull-right' ng-click=printDiv()> <i class='fa fa-print'></i>Print</button>"
+            template: "<button class='btn btn-danger' ng-click=printDiv() style='font-size: 16px;'> <i class='fa fa-print'></i>Print</button>"
+
         };
     }
 

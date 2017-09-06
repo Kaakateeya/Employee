@@ -1,23 +1,27 @@
 <div class="right_col" role="main" id="viwprofilecustomerprint">
     <h2 class="headerStylesview" ng-if="page.model.personalinfo.length>0">Kaakateeya Marriages</h2>
-    <div-print div-info="page.divInfo" ng-show="page.model.Managementid==='true' || page.model.Admin==='1'"></div-print>
-    <div class="text-center" ng-hide="page.model.textboxshowhide">
-        <div class="row">
-            <div class="col-lg-4">
-                <label for="profileid" class="control-label pull-right">ProfileID</label>
+    <div class="row">
+        <div class="text-center col-lg-6" ng-style="{'margin-left':page.model.personalinfo.length>0?'150px':'150px'}" ng-hide="page.model.textboxshowhide">
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="profileid" class="control-label pull-right">ProfileID</label>
+                </div>
+                <div class="col-lg-4">
+                    <input focus-me="true" type="text" maxlength="10" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.txtProfileID" class="form-control" ng-keyup="$event.keyCode == 13 && page.model.EmpViewfullProfile(page.model.txtProfileID)">
+                </div>
+                <div class="col-lg-2">
+                    <button class="btn btn-danger" ng-click="page.model.EmpViewfullProfile(page.model.txtProfileID,'textbox')">Go</button>
+                </div>
+                <div class="col-lg-2">
+                    <button class="btn btn-danger" ng-click="page.model.inbitdata(page.model.txtProfileID)">For Inbit</button>
+                </div>
             </div>
-            <div class="col-lg-2">
-                <input focus-me="true" type="text" maxlength="10" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.txtProfileID" class="form-control" ng-keyup="$event.keyCode == 13 && page.model.EmpViewfullProfile(page.model.txtProfileID)">
-            </div>
-            <div class="col-lg-1">
-                <button class="btn btn-danger" ng-click="page.model.EmpViewfullProfile(page.model.txtProfileID,'textbox')">Go</button>
-            </div>
-            <div class="col-lg-1">
-                <button class="btn btn-danger" ng-click="page.model.inbitdata(page.model.txtProfileID)">For Inbit</button>
-            </div>
+            <br>
         </div>
-        <br>
+        <div-print style="font-size:16px;" ng-class="page.model.textboxshowhide?'floatleftclass':'col-lg-2'" div-info="page.divInfo" ng-show="true"></div-print>
     </div>
+    <br>
+    <div class="clearfix"></div>
     <div id="printThisElement">
         <div id="viewProfileId">
             <div ng-hide="page.model.fullprofileshow" class="printCls">
@@ -250,3 +254,10 @@
 </script>
 
 </div>
+<style type="text/css">
+    .floatleftclass {
+        margin-left: 463px;
+        float: left;
+        margin-top: -20px;
+    }
+</style>
