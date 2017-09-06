@@ -22,6 +22,7 @@
                  model.toIntetestflag = null;
                  model.datapersonal = false;
                  model.showcontrolsdiv = true;
+                 model.isDisabledsubmit = false;
              };
              vm.init();
          }]);

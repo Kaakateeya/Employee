@@ -205,6 +205,7 @@
                     isSlide: typeofbind === "slideshow" ? 1 : 0
                 };
                 ViewAllCustomerService.getViewCustomerData(model.objectedit).then(function(response) {
+                    model.isDisabledsubmit = false;
                     if (_.isArray(response.data) && response.data.length > 0) {
                         model.TotalRows = response.data[0].TotalRows;
                         model.showtaotalrows = false;

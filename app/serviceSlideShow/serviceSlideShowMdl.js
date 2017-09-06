@@ -126,38 +126,42 @@
                 }
             };
             model.serviceslideshowsubmit = function(profileid, frompage, topage) {
-                if (parseInt(frompage) === 1) {
-                    slideconfig.slides = [];
-                }
-                model.Intetestflag(model.typeofbind);
-                model.topage = topage;
-                var obj = {
-                    v_profileid: profileid,
-                    i_empid: parseInt(model.empid),
-                    c_intersttype: model.fromIntetestflag,
-                    c_oppintersttype: model.toIntetestflag,
-                    pagefrom: frompage,
-                    pageto: topage
-                };
-                serviceSlideShowService.getServiceSlideshowdata(obj).then(function(response) {
-                    if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
-                        model.serviceslideshowarray = [];
-                        _.each(response.data[0].BothsideInterest, function(item) {
-                            model.serviceslideshowarray.push(item);
-                        });
-                        if (parseInt(frompage) === 1) {
-                            model.datapersonal = true;
-                            slideconfig.slides = [];
-                            model.servicepersonalarray = response.data[1].BothsideInterest;
-                        }
-                        if (parseInt(frompage) === 1) {
-                            model.totalRecords = parseInt(frompage) === 1 && response !== undefined && response.data !== undefined && model.serviceslideshowarray.length > 0 ? model.serviceslideshowarray[0].TotalRows : 0;
-                            slideconfig.setSlides(model.displayArrayprofile(model.serviceslideshowarray, 10), 10, 'normal');
-                        } else {
-                            slideconfig.addSlides(model.displayArrayprofile(model.serviceslideshowarray, 11), model.serviceslideshowarray, 11, 'normal');
-                        }
+                if (profileid) {
+                    model.isDisabledsubmit = true;
+                    if (parseInt(frompage) === 1) {
+                        slideconfig.slides = [];
                     }
-                });
+                    model.Intetestflag(model.typeofbind);
+                    model.topage = topage;
+                    var obj = {
+                        v_profileid: profileid,
+                        i_empid: parseInt(model.empid),
+                        c_intersttype: model.fromIntetestflag,
+                        c_oppintersttype: model.toIntetestflag,
+                        pagefrom: frompage,
+                        pageto: topage
+                    };
+                    serviceSlideShowService.getServiceSlideshowdata(obj).then(function(response) {
+                        model.isDisabledsubmit = false;
+                        if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
+                            model.serviceslideshowarray = [];
+                            _.each(response.data[0].BothsideInterest, function(item) {
+                                model.serviceslideshowarray.push(item);
+                            });
+                            if (parseInt(frompage) === 1) {
+                                model.datapersonal = true;
+                                slideconfig.slides = [];
+                                model.servicepersonalarray = response.data[1].BothsideInterest;
+                            }
+                            if (parseInt(frompage) === 1) {
+                                model.totalRecords = parseInt(frompage) === 1 && response !== undefined && response.data !== undefined && model.serviceslideshowarray.length > 0 ? model.serviceslideshowarray[0].TotalRows : 0;
+                                slideconfig.setSlides(model.displayArrayprofile(model.serviceslideshowarray, 10), 10, 'normal');
+                            } else {
+                                slideconfig.addSlides(model.displayArrayprofile(model.serviceslideshowarray, 11), model.serviceslideshowarray, 11, 'normal');
+                            }
+                        }
+                    });
+                }
             };
             model.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {

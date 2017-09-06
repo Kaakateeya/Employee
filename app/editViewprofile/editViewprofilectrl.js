@@ -24,6 +24,7 @@
             model.obj.chkProfileIDsts = model.arrayToString('54');
             model.slideshowopenflag = 0;
             scope.$on("$destroy", vm.destroy);
+            model.isDisabledsubmit = false;
         };
         vm.destroy = function() {
             model.destroy();

@@ -31,7 +31,7 @@
                      model.txtCName = '';
                      model.ddlCaste = '';
                      scope.$on("$destroy", vm.destroy);
-
+                     model.isDisabledsubmit = false;
                  };
                  vm.destroy = function() {
                      model.destroy();

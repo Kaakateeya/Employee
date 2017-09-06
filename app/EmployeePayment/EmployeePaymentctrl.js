@@ -29,6 +29,7 @@
                          model.txtProfileID = stateParams.ProfileID;
                          model.EmployeePayment(model.txtProfileID);
                      }
+                     model.isDisabledsubmit = false;
 
                  };
                  vm.init();

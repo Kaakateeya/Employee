@@ -74,7 +74,9 @@
                     model.data = [];
                     model.extensiondata.data = [];
                     if (model.txtProfileID !== undefined && model.txtProfileID !== '' && model.txtProfileID !== null && model.txtProfileID !== "undefined") {
+                        model.isDisabledsubmit = true;
                         SelectBindService.checkProfileID(model.txtProfileID).then(function(respo) {
+                            model.isDisabledsubmit = false;
                             if (respo.data && parseInt(respo.data) === 1) {
                                 model.paymentArr = [];
                                 model.columns = [];

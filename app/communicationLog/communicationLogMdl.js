@@ -49,51 +49,18 @@
                 };
 
                 model.communicationlogsubmit = function(profileid) {
-                    model.gridtable1.data = undefined;
-                    model.gridtable2.data = undefined;
-                    model.gridtable3.data = undefined;
-                    model.gridtable4.data = undefined;
-                    model.Nameofcandidate = '';
-                    SelectBindService.checkProfileID(profileid).then(function(respo) {
-                        if (respo.data && parseInt(respo.data) === 1) {
-                            communicationLogService.Submitcommunicationlog(profileid, model.empid).then(function(response) {
-                                console.log(response);
-                                model.sendarray = [];
-                                model.sendarray2 = [];
-                                model.sendarray3 = [];
-                                model.sendarray4 = [];
-                                model.gridtable1.mainArray = [];
-                                model.gridtable2.mainArray = [];
-                                model.gridtable3.mainArray = [];
-                                model.gridtable4.mainArray = [];
-                                if ((response.data[0]).length !== 0 || (response.data[1]).length !== 0 || (response.data[2]).length !== 0 || (response.data[3]).length !== 0) {
-                                    model.sendarray = response.data[0];
-                                    model.sendarray2 = response.data[1];
-                                    model.sendarray3 = response.data[2];
-                                    model.sendarray4 = response.data[3];
-                                    //1
-                                    model.gridtable1.mainArray = model.sendarray.length > 0 ? model.addingserialnumber(model.sendarray) : [];
-                                    model.gridtable1.TotalRows = model.sendarray.length > 0 ? model.sendarray[0].TotalRows : 0;
-                                    model.gridtable1.data = model.gridtable1.mainArray;
-                                    model.gridTableshow = true;
-                                    model.gridtable1.pageSize = 10;
-                                    model.Nameofcandidate = model.sendarray.length > 0 ? model.sendarray[0].FromName : "";
-                                    //2
-                                    model.gridtable2.mainArray = model.sendarray2.length > 0 ? model.addingserialnumber(model.sendarray2) : [];
-                                    model.gridtable2.TotalRows = model.sendarray2.length > 0 ? model.sendarray2[0].TotalRows : 0;
-                                    model.gridtable2.data = model.gridtable2.mainArray;
-                                    model.gridtable2.pageSize = 10;
-                                    //3
-                                    model.gridtable3.mainArray = model.sendarray3.length > 0 ? model.addingserialnumber(model.sendarray3) : [];
-                                    model.gridtable3.TotalRows = model.sendarray3.length > 0 ? model.sendarray3[0].TotalRows : 0;
-                                    model.gridtable3.data = model.gridtable3.mainArray;
-                                    model.gridtable3.pageSize = 10;
-                                    //4
-                                    model.gridtable4.mainArray = model.sendarray4.length > 0 ? model.addingserialnumber(model.sendarray4) : [];
-                                    model.gridtable4.TotalRows = model.sendarray4.length > 0 ? model.sendarray4[0].TotalRows : 0;
-                                    model.gridtable4.data = model.gridtable4.mainArray;
-                                    model.gridtable4.pageSize = 10;
-                                } else {
+                    if (profileid) {
+                        model.isDisabledsubmit = true;
+                        model.gridtable1.data = undefined;
+                        model.gridtable2.data = undefined;
+                        model.gridtable3.data = undefined;
+                        model.gridtable4.data = undefined;
+                        model.Nameofcandidate = '';
+                        SelectBindService.checkProfileID(profileid).then(function(respo) {
+                            if (respo.data && parseInt(respo.data) === 1) {
+                                communicationLogService.Submitcommunicationlog(profileid, model.empid).then(function(response) {
+                                    model.isDisabledsubmit = false;
+                                    console.log(response);
                                     model.sendarray = [];
                                     model.sendarray2 = [];
                                     model.sendarray3 = [];
@@ -102,15 +69,52 @@
                                     model.gridtable2.mainArray = [];
                                     model.gridtable3.mainArray = [];
                                     model.gridtable4.mainArray = [];
-                                    modelpopupopenmethod.showPopupphotopoup('noServiceData.html', model.scope, 'md', "");
-                                }
-                            });
+                                    if ((response.data[0]).length !== 0 || (response.data[1]).length !== 0 || (response.data[2]).length !== 0 || (response.data[3]).length !== 0) {
+                                        model.sendarray = response.data[0];
+                                        model.sendarray2 = response.data[1];
+                                        model.sendarray3 = response.data[2];
+                                        model.sendarray4 = response.data[3];
+                                        //1
+                                        model.gridtable1.mainArray = model.sendarray.length > 0 ? model.addingserialnumber(model.sendarray) : [];
+                                        model.gridtable1.TotalRows = model.sendarray.length > 0 ? model.sendarray[0].TotalRows : 0;
+                                        model.gridtable1.data = model.gridtable1.mainArray;
+                                        model.gridTableshow = true;
+                                        model.gridtable1.pageSize = 10;
+                                        model.Nameofcandidate = model.sendarray.length > 0 ? model.sendarray[0].FromName : "";
+                                        //2
+                                        model.gridtable2.mainArray = model.sendarray2.length > 0 ? model.addingserialnumber(model.sendarray2) : [];
+                                        model.gridtable2.TotalRows = model.sendarray2.length > 0 ? model.sendarray2[0].TotalRows : 0;
+                                        model.gridtable2.data = model.gridtable2.mainArray;
+                                        model.gridtable2.pageSize = 10;
+                                        //3
+                                        model.gridtable3.mainArray = model.sendarray3.length > 0 ? model.addingserialnumber(model.sendarray3) : [];
+                                        model.gridtable3.TotalRows = model.sendarray3.length > 0 ? model.sendarray3[0].TotalRows : 0;
+                                        model.gridtable3.data = model.gridtable3.mainArray;
+                                        model.gridtable3.pageSize = 10;
+                                        //4
+                                        model.gridtable4.mainArray = model.sendarray4.length > 0 ? model.addingserialnumber(model.sendarray4) : [];
+                                        model.gridtable4.TotalRows = model.sendarray4.length > 0 ? model.sendarray4[0].TotalRows : 0;
+                                        model.gridtable4.data = model.gridtable4.mainArray;
+                                        model.gridtable4.pageSize = 10;
+                                    } else {
+                                        model.sendarray = [];
+                                        model.sendarray2 = [];
+                                        model.sendarray3 = [];
+                                        model.sendarray4 = [];
+                                        model.gridtable1.mainArray = [];
+                                        model.gridtable2.mainArray = [];
+                                        model.gridtable3.mainArray = [];
+                                        model.gridtable4.mainArray = [];
+                                        modelpopupopenmethod.showPopupphotopoup('noServiceData.html', model.scope, 'md', "");
+                                    }
+                                });
 
-                        } else {
-                            model.Profileidcommunication = '';
-                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter valid profileID', 30000);
-                        }
-                    });
+                            } else {
+                                model.Profileidcommunication = '';
+                                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter valid profileID', 30000);
+                            }
+                        });
+                    }
                 };
                 model.close = function() {
                     modelpopupopenmethod.closepopuppoptopopup();

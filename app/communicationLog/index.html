@@ -8,7 +8,7 @@
             <div class="col-lg-offset-4">
                 <p class="col-lg-1 lblprofileid">ProfileID</p>
                 <input focus-me="true" ng-model="page.model.Profileidcommunication" ng-keyup="$event.keyCode == 13 && page.model.communicationlogsubmit(page.model.Profileidcommunication)" type="text" maxlength="12" class="form-control txtboxwidth col-lg-2" onfocus="true">
-                <button class="btn btn-danger col-lg-1" ng-click="page.model.communicationlogsubmit(page.model.Profileidcommunication)">Submit</button>
+                <button class="btn btn-danger col-lg-1" ng-disabled="page.model.isDisabledsubmit" ng-click="page.model.communicationlogsubmit(page.model.Profileidcommunication)">Submit</button>
                 <label class="col-lg-5" style="margin-left: 26px; margin-top: 5px;">{{page.model.Nameofcandidate}}</label>
             </div>
         </div>

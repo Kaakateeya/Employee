@@ -12,7 +12,7 @@
                         <input focus-me="true" ng-keyup="$event.keyCode == 13 && page.model.serviceslideshowsubmit(page.model.viewsettlementprofileid,1,10)" maxlength="11" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" class="form-control" type="text" ng-model="page.model.viewsettlementprofileid"></input>
                     </div>
                     <div class="col-lg-1">
-                        <button class="btn btn-danger" ng-click="page.model.serviceslideshowsubmit(page.model.viewsettlementprofileid,1,10)">Submit</button>
+                        <button class="btn btn-danger" ng-disabled="page.model.isDisabledsubmit" ng-click="page.model.serviceslideshowsubmit(page.model.viewsettlementprofileid,1,10)">Submit</button>
                     </div>
                     <div class="col-lg-6" style="color: black;font-size: 13px;">
                         <md-radio-group layout="row" ng-change="page.model.serviceslideshowsubmit(page.model.viewsettlementprofileid,1,10)" ng-model="page.model.typeofbind" class="md-block" flex-gt-sm>

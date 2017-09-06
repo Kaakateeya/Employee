@@ -104,7 +104,7 @@
             </div>
             <br>
             <div class="form-group text-center" style="border-top: 1px solid #ddd;padding-top: 1%;">
-                <button class="button_custom" style="display:initial;" type="submit" ng-click="page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus,0);">Search</button>
+                <button class="button_custom" style="display:initial;" type="submit" ng-disabled="page.model.isDisabledsubmit" ng-click="page.model.isDisabledsubmit=true;page.model.getSearchData(1,100,'grid',page.model.ddlApplicationStatus,0);">Search</button>
                 <input type="reset" class="button_custom button_custom_reset resetCls" value="Reset" ng-click="page.model.reset();">
             </div>
             <br>

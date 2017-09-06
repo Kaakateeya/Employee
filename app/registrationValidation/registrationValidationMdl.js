@@ -122,6 +122,7 @@
                         intflag: flag
                     };
                     svc.getRegSearchProfile(input).then(function(response) {
+                        model.isDisabledsubmit = false;
                         if (_.isArray(response.data) && response.data.length > 0) {
                             if (typeofbind === "export") {
                                 model.grid.exportarray = [];
@@ -201,6 +202,7 @@
                     });
 
                 } else {
+                    model.isDisabledsubmit = false;
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter atleast one field', 4500);
                 }
             };

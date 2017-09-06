@@ -21,6 +21,7 @@
                  if (model.Profileidcommunication !== "" && model.Profileidcommunication !== null && model.Profileidcommunication !== undefined && model.Profileidcommunication !== "undefined") {
                      model.communicationlogsubmit(model.Profileidcommunication);
                  }
+                 model.isDisabledsubmit = false;
              };
              vm.init();
          }]);
