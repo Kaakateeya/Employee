@@ -359,7 +359,7 @@
                         }
                     };
                     searchpageServices.generalsearchsubmit(model.CgetDetails).then(function(response) {
-
+                        model.isDisabledsubmit = false;
                         model.isshortlistprogressbar = true;
                         model.tablename = "general";
                         model.slideshowarray = [];
@@ -461,6 +461,7 @@
                         }
                     };
                     searchpageServices.advancedsearchsubmit(model.CgetDetails).then(function(response) {
+                        model.isDisabledsubmit = false;
                         model.isshortlistprogressbar = true;
                         model.tablename = "advanced";
                         model.slideshowarray = [];
