@@ -1,28 +1,22 @@
 <div class="right_col" role="main">
     <div class="register_page_main">
-
         <div class="col-lg-12">
             <h4 class="col-lg-2">Registration</h4>
             <div class="col-lg-3">
                 <h5><span style="color:black;">Your ProfileID:</span> {{page.model.profileid}}</h5>
             </div>
-
         </div>
         <div class="clearfix"></div>
         <div class="regmain">
-
             <div layout="column" ng-cloak="" class="inputdemoErrors">
                 <md-content layout-padding="">
                     <form name="secregForm" accessible-formreg novalidate role="form" ng-submit="secregForm.$valid && page.model.secondRegSubmit(page.model.regsec);">
-
-
                         <div class="reg_fields_entry clearfix"><br>
                             <div class="col-lg-12">
                                 <md-input-container class="md-block col-lg-4">
                                     <label>Name</label>
                                     <input readonly md-no-asterisk="" name="LabelName" ng-model="page.model.regsec.LabelName">
                                 </md-input-container>
-
                                 <md-input-container flex="50" class="col-lg-4">
                                     <label>Marital Status</label>
                                     <md-select ng-focus="true" autofocus name="rbtnmarital" ng-model="page.model.regsec.rbtnmarital" required="">
@@ -32,7 +26,6 @@
                                         <div ng-if="secregForm.rbtnmarital.$invalid && (secregForm.$submitted)" ng-message="required">Required</div>
                                     </div>
                                 </md-input-container>
-
                                 <md-input-container flex="50" class="col-lg-4">
                                     <label>Complexion</label>
                                     <md-select name="rbtncomplexion" ng-model="page.model.regsec.rbtncomplexion" required="">
@@ -53,8 +46,6 @@
                                         <div ng-if="secregForm.rbtnphysicalstatus.$invalid && (secregForm.$submitted)" ng-message="required">Required</div>
                                     </div>
                                 </md-input-container>
-
-
                                 <md-input-container flex="50" class="col-lg-4">
                                     <label>Height</label>
                                     <md-select name="ddlHeight" ng-model="page.model.regsec.ddlHeight" required="">
@@ -64,7 +55,6 @@
                                         <div ng-if="secregForm.ddlHeight.$invalid && (secregForm.$submitted)" ng-message="required">Required</div>
                                     </div>
                                 </md-input-container>
-
                                 <md-input-container flex="50" class="col-lg-4">
                                     <label>Born Citizenship</label>
                                     <md-select name="ddlBornCitizenship" ng-model="page.model.regsec.ddlBornCitizenship" required="">
@@ -76,8 +66,6 @@
                                 </md-input-container>
                             </div>
                             <div class="clearfix"></div>
-                            <!--<hr>-->
-
                             <div class="wellOverride">Education details</div>
                             <br>
                             <div class="col-lg-12">
@@ -99,7 +87,6 @@
                                         <div ng-if="secregForm.ddlEduGroup.$invalid && (secregForm.$submitted)" ng-message="required">Required</div>
                                     </div>
                                 </md-input-container>
-
                                 <md-input-container flex="50" class="col-lg-4">
                                     <label>Specialization</label>
                                     <md-select name="ddlEduSpecialisation" ng-model="page.model.regsec.ddlEduSpecialisation" required="">
@@ -117,8 +104,6 @@
                                   border: 0.5px solid rgba(31, 25, 25, 0.38);" onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" rows="2" md-no-asterisk="" name="txtEducationMerits" ng-model="page.model.regsec.txtEducationMerits"></textarea>
                                 </md-input-container>
                             </div>
-
-
                             <div class="clearfix"></div>
                             <div class="wellOverride">profession details</div>
                             <br>
@@ -132,8 +117,6 @@
                                         <div ng-if="secregForm.ddlEmployedIn.$invalid && (secregForm.$submitted)" ng-message="required">Required</div>
                                     </div>
                                 </md-input-container>
-
-
                                 <md-input-container flex="50" class="col-lg-4">
                                     <label>Profession Group</label>
                                     <md-select name="ddlProfessionalGroup" ng-model="page.model.regsec.ddlProfessionalGroup" required="" ng-change="page.model.changeBind('profGroup',page.model.regsec.ddlProfessionalGroup)">
@@ -143,7 +126,6 @@
                                         <div ng-if="secregForm.ddlProfessionalGroup.$invalid && (secregForm.$submitted)" ng-message="required">Required</div>
                                     </div>
                                 </md-input-container>
-
                                 <md-input-container flex="50" class="col-lg-4">
                                     <label>Profession</label>
                                     <md-select name="ddlProfession" ng-model="page.model.regsec.ddlProfession" required="">
@@ -155,21 +137,16 @@
                                 </md-input-container>
                             </div>
                             <div class="col-lg-12">
-
                                 <md-input-container class="md-block col-lg-4">
                                     <label>Company name</label>
                                     <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="100" md-no-asterisk="" name="txtCompanyName" ng-model="page.model.regsec.txtCompanyName">
-
                                 </md-input-container>
-
                                 <md-input-container flex="50" class="col-lg-4">
                                     <label>Currency</label>
                                     <md-select name="ddlcurrency" ng-model="page.model.regsec.ddlcurrency">
                                         <md-option ng-value="h.value" ng-repeat="h in page.model.currency">{{h.label}} </md-option>
                                     </md-select>
-
                                 </md-input-container>
-
                                 <md-input-container class="md-block col-lg-4">
                                     <label>Monthly Salary</label>
                                     <input maxlength="7" md-no-asterisk="" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" name="txtSalary" ng-model="page.model.regsec.txtSalary" ng-pattern="/^[0-9]+$/">
@@ -185,11 +162,9 @@
                                 <textarea onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="500" rows="2" style="height: 87px;
                                   border: 0.5px solid rgba(31, 25, 25, 0.38);" md-no-asterisk="" name="txtOcccupationDetails" ng-model="page.model.regsec.txtOcccupationDetails"></textarea>
                             </md-input-container>
-
                             <div class="clearfix"></div>
                             <div class="wellOverride">Candidate location details</div>
                             <br>
-
                             <div class="col-lg-12">
                                 <md-input-container flex="50" class="col-lg-4">
                                     <label>Country living in</label>
@@ -200,7 +175,6 @@
                                         <div ng-if="secregForm.ddlCountryLivingIn.$invalid && (secregForm.$submitted)" ng-message="required">Required</div>
                                     </div>
                                 </md-input-container>
-
                                 <md-input-container flex="50" class="col-lg-4">
                                     <label>State</label>
                                     <md-select name="ddlStatelivingIn" ng-model="page.model.regsec.ddlStatelivingIn" required="" ng-change="page.model.changeBind('state',page.model.regsec.ddlStatelivingIn,page.model.regsec.ddlCountryLivingIn)">
@@ -219,7 +193,6 @@
                                         <div ng-if="secregForm.ddlDistricLivingIn.$invalid && (secregForm.$submitted)" ng-message="required">Required</div>
                                     </div>
                                 </md-input-container>
-
                                 <md-input-container flex="50" class="col-lg-4">
                                     <label>City</label>
                                     <md-select name="ddlcityLivingIn" ng-model="page.model.regsec.ddlcityLivingIn" required="">
@@ -229,15 +202,12 @@
                                         <div ng-if="secregForm.ddlcityLivingIn.$invalid && (secregForm.$submitted)" ng-message="required">Required</div>
                                     </div>
                                 </md-input-container>
-
-
                                 <md-input-container flex="50" class="col-lg-4" ng-hide="page.model.regsec.ddlBornCitizenship==page.model.regsec.ddlCountryLivingIn">
                                     <label>Visa status</label>
                                     <md-select name="ddlVisaStatus" ng-model="page.model.regsec.ddlVisaStatus">
                                         <md-option ng-value="h.value" ng-repeat="h in page.model.visastatus">{{h.label}} </md-option>
                                     </md-select>
                                 </md-input-container>
-
                                 <md-input-container class="col-lg-4" style="padding-right: 0px;margin-left: 0px;" ng-hide="page.model.regsec.ddlBornCitizenship==page.model.regsec.ddlCountryLivingIn">
                                     <label>Residing since</label>
                                     <md-datepicker ng-model="page.model.regsec.from" md-min-date="minDate" md-max-date="maxDate">
@@ -246,7 +216,6 @@
                             </div>
                             <div class="clearfix"></div>
                             <div class="wellOverride">Family details</div>
-
                             <br>
                             <div class="col-lg-12">
                                 <md-input-container class="md-block col-lg-4">
@@ -254,16 +223,12 @@
                                     <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="100" required="" md-asterisk="" name="txtFatherName" ng-model="page.model.regsec.txtFatherName">
                                     <div ng-messages="secregForm.txtFatherName.$error">
                                         <div ng-if="secregForm.txtFatherName.$invalid && (secregForm.$submitted)" ng-message="required">This is required.</div>
-
                                     </div>
                                 </md-input-container>
-
                                 <md-input-container class="md-block col-lg-4">
                                     <label>Father’s education</label>
                                     <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="150" md-no-asterisk="" name="txtFatherEducation" ng-model="page.model.regsec.txtFatherEducation">
-
                                 </md-input-container>
-
                                 <md-input-container class="md-block col-lg-4">
                                     <label>Father’s profession</label>
                                     <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="200" md-no-asterisk="" name="txtFatherProfession" ng-model="page.model.regsec.txtFatherProfession">
@@ -277,26 +242,20 @@
                                         <div ng-if="secregForm.txtMotherName.$invalid && (secregForm.$submitted)" ng-message="required">This is required.</div>
                                     </div>
                                 </md-input-container>
-
-
                                 <md-input-container class="md-block col-lg-4">
                                     <label>Mother’s education</label>
                                     <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="150" md-no-asterisk="" name="txtMotherEducation" ng-model="page.model.regsec.txtMotherEducation">
                                 </md-input-container>
-
                                 <md-input-container class="md-block col-lg-4">
                                     <label>Mother’s profession</label>
                                     <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="200" md-no-asterisk="" name="txtMotherprofession" ng-model="page.model.regsec.txtMotherprofession">
-
                                 </md-input-container>
                             </div>
                             <div class="col-lg-12">
                                 <md-input-container class="md-block col-lg-4">
                                     <label>Father’s Native place</label>
                                     <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="100" md-no-asterisk="" name="txtfathernative" ng-model="page.model.regsec.txtfathernative">
-
                                 </md-input-container>
-
                                 <md-input-container class="md-block col-lg-4">
                                     <label>Mother’s Native place</label>
                                     <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="100" md-no-asterisk="" name="txtmothernative" ng-model="page.model.regsec.txtmothernative">
@@ -311,7 +270,6 @@
                                             <div ng-if="secregForm.ddlBrothers.$invalid && (secregForm.$submitted)" ng-message="required">Required</div>
                                         </div>
                                     </md-input-container>
-
                                     <md-input-container flex="50" class="col-lg-4">
                                         <label>No of Sisters</label>
                                         <md-select name="ddlSisters" ng-model="page.model.regsec.ddlSisters" required="">
@@ -323,22 +281,13 @@
                                     </md-input-container>
                                 </div>
                             </div>
-
-
-
-
-
-
                             <div class="col-lg-12">
-
                                 <md-input-container class="col-lg-2">
                                     <label>Country code</label>
                                     <md-select md-asterisk="" name="ddlFathermobilecountry" ng-model="page.model.regsec.ddlFathermobilecountry">
                                         <md-option ng-value="h.value" ng-repeat="h in page.model.countryCode">{{h.label}} </md-option>
                                     </md-select>
-
                                 </md-input-container>
-
                                 <md-input-container class="md-block col-lg-2" style="padding-right:3%;">
                                     <label>Father mobile number</label>
                                     <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="10" ng-minlength="10" md-no-asterisk="" ng-pattern="/^[0-9]+$/" name="txtFatherMobileNo" ng-model="page.model.regsec.txtFatherMobileNo" ng-blur="page.model.mobilevalueExists('father',1,page.model.regsec.txtFatherMobileNo);">
@@ -348,16 +297,12 @@
                                         </div>
                                     </div>
                                 </md-input-container>
-
-
                                 <md-input-container class="col-lg-2">
                                     <label>Country code</label>
                                     <md-select md-asterisk="" name="ddlMothermobilecountry" ng-model="page.model.regsec.ddlMothermobilecountry">
                                         <md-option ng-value="h.value" ng-repeat="h in page.model.countryCode">{{h.label}} </md-option>
                                     </md-select>
-
                                 </md-input-container>
-
                                 <md-input-container class="md-block col-lg-2" style="padding-right:3%;">
                                     <label>Mother mobile number</label>
                                     <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" maxlength="10" ng-minlength="10" md-no-asterisk="" ng-pattern="/^[0-9]+$/" name="txtMotherMobileNo" ng-model="page.model.regsec.txtMotherMobileNo" ng-blur="page.model.mobilevalueExists('mother',1,page.model.regsec.txtMotherMobileNo);">
@@ -368,35 +313,15 @@
                                     </div>
                                 </md-input-container>
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                             <div class="clearfix"></div>
-
-
-
                             <div>
                                 <div class="wellOverride">About yourself</div>
                                 <p>
                                     Write About your unique characteristics,The Most Important Things In your life like your Aspiration, Interests, things you like to do,,,,,
-
                                 </p>
                                 <div class="profile_self_dcrb">
                                     <p>(Minimum 50 characters and maximum 1000 characters).</p>
                                 </div>
-
                                 <md-input-container class="md-block" style="margin: 28px 0px 1px 0px">
                                     <label>About yourself</label>
                                     <textarea onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" style="height: 87px;
@@ -418,7 +343,6 @@
                 </md-content>
             </div>
         </div>
-        <!--<button ng-click="redirect();">test</button>-->
     </div>
 </div>
 
