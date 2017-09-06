@@ -60,27 +60,7 @@
             }
         };
 
-        model.checkProfileID = function(profileID) {
-            if (profileID) {
-                viewUploadSettledProfilesService.checkProfileID(profileID).then(function(response) {
-                    if (response && response.data) {
-                        if (parseInt(response.data.m_Item1) !== 1) {
-                            model.txtProfileID = '';
-                            model.showHidediv = false;
-                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter Correct ProfileID', 4500);
-                        } else {
-                            model.showHidediv = true;
-                            if (parseInt(response.data.m_Item2) === 1) {
-                                // model.txtProfileID = '';
-                                model.showHidediv = false;
-                                model.viewprofilesubmit(profileID);
-                                // alertss.timeoutoldalerts(model.scope, 'alert-danger', 'ProfileID  Already exists Enter New ProfileID', 4500);
-                            }
-                        }
-                    }
-                });
-            }
-        };
+
 
         model.reset = function() {
             model.typeOfReference = '';
@@ -92,33 +72,32 @@
         model.viewprofilesubmit = function(profileid) {
             model.settlementimageID = '';
             if (profileid !== undefined && profileid !== "" && profileid !== null) {
-                viewUploadSettledProfilesService.getCheckprofileIDstatus(profileid).then(function(response) {
-                    if (parseInt(response.data) === 1) {
-                        viewUploadSettledProfilesService.getViewSettlementform(profileid).then(function(response) {
-                            var imgArr = response.data.m_Item1.split(';');
 
-                            model.settlementimage = imgArr[0];
-                            model.settlementimageID = imgArr[1];
+                viewUploadSettledProfilesService.getViewSettlementform(profileid).then(function(response) {
+                    var imgArr = response.data.m_Item1.split(';');
 
-                            model.status = response.data.m_Item2;
-                            if (parseInt(model.status) == 1) {
-                                alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Inactive settlement form', 3000);
-                            } else if (parseInt(model.status) == 3) {
+                    model.settlementimage = imgArr[0];
+                    model.settlementimageID = imgArr[1];
 
-                                model.txtProfileID = profileid;
-                                // alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No settlement form', 3000);
-                            } else if (parseInt(model.status) == 2) {
-                                if (model.settlementimage !== "" && model.settlementimage !== undefined && model.settlementimage !== null) {
-                                    modelpopupopenmethod.showPopupphotopoup('viewsettlementform.html', model.scope, '', "");
-                                }
-                            } else {
-                                alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No settlement form', 3000);
-                            }
-                        });
+                    model.status = response.data.m_Item2;
+                    if (parseInt(model.status) == 1) {
+                        model.txtProfileID = '';
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter correct ProfileID', 3000);
+                    } else if (parseInt(model.status) == 2) {
+                        model.showHidediv = true;
+                        // alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No settlement form', 3000);
+                    } else if (parseInt(model.status) == 3) {
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Inactive settlement form', 3000);
+                    } else if (parseInt(model.status) == 5) {
+                        model.showHidediv = false;
+                        if (model.settlementimage !== "" && model.settlementimage !== undefined && model.settlementimage !== null) {
+                            modelpopupopenmethod.showPopupphotopoup('viewsettlementform.html', model.scope, '', "");
+                        }
                     } else {
-                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'ProfileID does not exists', 3000);
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No settlement form', 3000);
                     }
                 });
+
             } else {
                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter  ProfileID', 3000);
             }
@@ -129,7 +108,7 @@
 
         model.checkmethod = function() {
             if (model.showHidediv === true) {
-                model.checkProfileID(model.txtProfileID);
+                model.viewprofilesubmit(model.txtProfileID);
             }
         };
 
