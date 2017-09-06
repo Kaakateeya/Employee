@@ -19,12 +19,12 @@
                     </div>
                 </div>
                 <div class="row maindiv panel-body">
-                    <div class="col-lg-2"><input type="text" focus-me="true" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,100);" placeholder="Surname" ng-model="page.model.obj.surname" class="form-control"> </div>
-                    <div class="col-lg-2"><input type="text" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,100);" placeholder="Name" ng-model="page.model.obj.Name" class="form-control"></div>
-                    <div class="col-lg-2"> <input type="text" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,100);" placeholder="Profile ID" ng-model="page.model.obj.ProfileIDsearch" class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');"></div>
-                    <div class="col-lg-2"><input type="text" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,100);" placeholder="KMPLID" ng-model="page.model.obj.KmlProfileID" class="form-control"></div>
+                    <div class="col-lg-2"><input type="text" focus-me="true" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,100,'grid');" placeholder="Surname" ng-model="page.model.obj.surname" class="form-control"> </div>
+                    <div class="col-lg-2"><input type="text" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,100,'grid');" placeholder="Name" ng-model="page.model.obj.Name" class="form-control"></div>
+                    <div class="col-lg-2"> <input type="text" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,100,'grid');" placeholder="Profile ID" ng-model="page.model.obj.ProfileIDsearch" class="form-control" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');"></div>
+                    <div class="col-lg-2"><input type="text" ng-keyup="$event.keyCode == 13 && page.model.ViewAllsubmit(page.model.obj,1,100,'grid');" placeholder="KMPLID" ng-model="page.model.obj.KmlProfileID" class="form-control"></div>
                     <div class="col-lg-4">
-                        <button class="btn btn-warning pull-left" ng-click="page.model.ViewAllsubmit(page.model.obj,1,100)">Go</button>
+                        <button class="btn btn-warning pull-left" ng-click="page.model.ViewAllsubmit(page.model.obj,1,100,'grid')">Go</button>
                         <label ng-show="page.model.TotalRows" for="noofRecords" class="control-label leftmargin">Total Records : {{page.model.TotalRows}}</label>
                         <input ng-show="page.model.TotalRows" type="image" src="src\images\EXCEL.jpg" ng-click="page.model.exportexcel(page.model.data, page.model.columns)" style="height: 20px;width: 20px;" class="css-class leftmargin"></input>
                         <input ng-show="page.model.TotalRows" type="image" src="src\images\slideshowimg.png" ng-click="page.model.slideshowedit()" style="height: 25px;width: 25px;" class="css-class leftmargin"></input>

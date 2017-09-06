@@ -184,6 +184,7 @@
                 { text: 'Gender', key: 'GenderID', type: 'custom', templateUrl: model.GenderStr },
             ];
             model.ViewAllsubmit = function(inpuobj, from, to, typeofbind) {
+                model.topage = to;
                 if (from === 1) {
                     if (typeofbind === "slideshow") {
                         model.slide.totalRecords = undefined;
@@ -191,8 +192,7 @@
                         model.TotalRows = undefined;
                     }
                 }
-                model.topage = to;
-                var obj = {
+                model.objectedit = {
                     genderID: model.obj.rdnGender,
                     strFName: inpuobj.Name !== undefined ? inpuobj.Name : "",
                     strSurName: inpuobj.surname !== undefined ? inpuobj.surname : "",
@@ -204,7 +204,7 @@
                     intEmpID: model.empid,
                     isSlide: typeofbind === "slideshow" ? 1 : 0
                 };
-                ViewAllCustomerService.getViewCustomerData(obj).then(function(response) {
+                ViewAllCustomerService.getViewCustomerData(model.objectedit).then(function(response) {
                     if (_.isArray(response.data) && response.data.length > 0) {
                         model.TotalRows = response.data[0].TotalRows;
                         model.showtaotalrows = false;
@@ -213,13 +213,11 @@
                             item.rowtype = model.rowStyle(item);
                         });
                         // model.opendiv = false;
-                        if (typeofbind === "export") {
-                            model.exportarray = [];
-                            model.exportarray = response.data;
-                            var options = {
-                                headers: true,
-                            };
-                            alasql('SELECT ProfileID,FirstName,LastName as SurName,CasteName as Caste,ProfileOwner,Height,LoginStatus as Loagin,educationgroup as Education,Profession,Age as DOB,GenderID as Gender INTO  XLSX("EditReports.xlsx",?) FROM ?', [options, model.exportarray]);
+                        if (typeofbind === 'grid') {
+                            model.pageSize = 10;
+                            model.data = (response.data);
+                            model.gridArray = response.data;
+
                         } else if (typeofbind === "slideshow") {
                             model.slide.totalRecords = response.data[0].TotalRows;
                             if (parseInt(from) === 1) {
@@ -232,9 +230,12 @@
                                 configslide.addSlides((model.displayArrayeidt(response.data, to)), response.data, parseInt(to), "normal");
                             }
                         } else {
-                            model.pageSize = 10;
-                            model.data = (response.data);
-                            model.gridArray = response.data;
+                            model.exportarray = [];
+                            model.exportarray = response.data;
+                            var options = {
+                                headers: true,
+                            };
+                            alasql('SELECT ProfileID,FirstName,LastName as SurName,CasteName as Caste,ProfileOwner,Height,LoginStatus as Loagin,educationgroup as Education,Profession,Age as DOB,GenderID as Gender INTO  XLSX("EditReports.xlsx",?) FROM ?', [options, model.exportarray]);
                         }
                     } else {
                         if (from === parseInt(1)) {
@@ -265,7 +266,7 @@
             };
 
             model.chkChange = function() {
-                model.ViewAllsubmit(model.obj, 1, 100);
+                model.ViewAllsubmit(model.obj, 1, 100, 'grid');
             };
 
             // model.genderChange = function(val) {
@@ -276,22 +277,9 @@
             // };
 
             model.pagechange = function(val) {
-                model.columns = [
-                    { text: 'Profile ID', key: 'ProfileID', type: 'custom', templateUrl: model.ProfileIdTemplateDUrl, rowtype: "success" },
-                    { text: 'SurName', key: 'LastName', type: 'label' },
-                    { text: 'Name', key: 'FirstName', type: 'label' },
-                    { text: 'Caste', key: 'CasteName', type: 'label' },
-                    { text: 'Profile Owner', key: 'ProfileOwner', type: 'customlink', templateUrl: model.ProfileOwnerImg, method: model.profileownerMethod },
-                    { text: 'Height', key: 'Height', type: 'label' },
-                    { text: 'Login', key: 'LoginStatus', type: 'label' },
-                    { text: 'Education', key: 'educationgroup', type: 'label' },
-                    { text: 'Profession', key: 'Profession', type: 'label' },
-                    { text: 'Dob', key: 'Age', type: 'label', width: '150px' },
-                    { text: 'Gender', key: 'GenderID', type: 'custom', templateUrl: model.GenderStr },
-                ];
                 var to = val * 100;
                 var from = val === 1 ? 1 : to - 99;
-                model.ViewAllsubmit(model.obj, from, to);
+                model.ViewAllsubmit(model.obj, from, to, 'grid');
             };
             model.exportexcel = function(array, columns) {
                 model.ViewAllsubmit(model.obj, 1, model.TotalRows, "export");
