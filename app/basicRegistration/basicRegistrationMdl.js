@@ -120,6 +120,7 @@
             }
         };
         model.regSubmit = function(obj) {
+            model.isdisabledtrue = true;
             var valmm = _.indexOf(monthArr, obj.ddlMM);
             valmm = (valmm != -1 ? parseInt(valmm) + 1 : 0);
             valmm = valmm >= 10 ? valmm : '0' + valmm;
@@ -151,6 +152,7 @@
 
             basicRegistrationService.submitBasicRegistration(inputObj).then(function(res) {
                 model.genderID = 0;
+                model.isdisabledtrue = false;
                 if (res !== undefined && res !== null && res !== "" && res.data !== undefined && res.data !== null && res.data !== "" && res.data.length > 0) {
                     authSvc.login(res.data[0].ProfileID, "Admin@123").then(function(response) {
                         model.genderID = response.response[0].GenderID;

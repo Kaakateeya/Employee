@@ -9,6 +9,7 @@
              vm.model = model = basicRegistrationModel;
              vm.model.scope = scope;
              model.reg.Chkfree_reg = true;
+             model.isdisabledtrue = false;
              scope.$on("$destroy", vm.destroy);
              // write destroy method 
          };
