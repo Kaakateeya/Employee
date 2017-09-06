@@ -231,7 +231,7 @@
 
                 switch (type) {
                     case 'Parent details':
-
+                        debugger;
                         inObj.GetDetails.FatherCustFamilyID = model.FatherCust_family_id;
                         inObj.GetDetails.MotherCustFamilyID = model.MotherCust_family_id;
                         inObj.GetDetails.CustID = custID;
