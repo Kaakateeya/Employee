@@ -220,7 +220,7 @@
                                     <div class="row">
                                         <br>
                                         <div class="col-lg-offset-5">
-                                            <md-button class="md-raised md-warn md-hue-2" ng-click="tab.arrayname===1?page.model.submitgeneral(1,10):page.model.submitadvancedsearch(1,10)">Search</md-button>
+                                            <md-button class="md-raised md-warn md-hue-2" ng-disabled="page.model.isDisabledsubmit" ng-click="page.model.isDisabledsubmit=true;(tab.arrayname===1?page.model.submitgeneral(1,10):page.model.submitadvancedsearch(1,10))">Search</md-button>
                                             <!--<md-button class="md-raised md-hue-1" ng-click="tab.arrayname===1?page.clearSelection(page.model.domDatageneral):page.clearSelection(page.model.domDataadvanced)">Reset</md-button>-->
                                             <input type="reset" class="btn btn-default" ng-click="tab.arrayname===1?page.clearSelection(page.model.domDatageneral):page.clearSelection(page.model.domDataadvanced)" value="Reset">
                                         </div>
@@ -242,7 +242,7 @@
                 <button class="btn btn-warning" ng-click="page.model.backtosearchpage()">Back to Search Page</button>
             </div>
         </div>
-        <complex-grid model="page.model.gridtable" config="page.model"></complex-grid>
+        <complex-grid-new gid="'id1'" model="page.model.gridtable" config="page.model"></complex-grid-new>
     </div>
     <div class="clearfix"> </div>
     <br>

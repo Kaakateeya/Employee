@@ -13,6 +13,7 @@
                 model.slide = {};
                 model.grid = {};
                 model.slide.config = configslide;
+                model.slide.dobshow = true;
                 model.mpObj = {};
                 model.empid = model.slide.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 model.opendiv = true;
@@ -296,7 +297,6 @@
                         if (parseInt(sliTo) - parseInt(news) === 4) {
                             slidFrom = sliTo;
                             sliTo = sliTo + 10;
-                            debugger;
                             model.slide10data = model.slide10data.concat(angular.copy(model.slidedata.slice(slidFrom, sliTo)));
                             configslide.addSlides(angular.copy(model.slidedata.slice(slidFrom, sliTo)), configslide.slides, sliTo, "myprofile");
                         }
@@ -330,7 +330,6 @@
                 var slidFrom = 0,
                     sliTo = 10;
                 model.bindSlide = function() {
-                    debugger;
                     slidFrom = 0;
                     sliTo = 10;
                     if (model.slidedata.length > 0) {
@@ -338,7 +337,6 @@
                         model.slide.headervisileble = true;
 
                         model.slide10data = model.slidedata.slice(slidFrom, sliTo);
-                        debugger;
                         configslide.setSlides(model.slide10data, 10, "myprofile");
                         if (model.myprofileslideshowopenflag !== 1) {
                             model.myprofileslideshowopenflag = 1;

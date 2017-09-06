@@ -170,9 +170,20 @@
             model.GenderStr = function(row) {
                 return row.GenderID === 1 ? 'Male' : 'Female';
             };
-
+            model.columns = [
+                { text: 'Profile ID', key: 'ProfileID', type: 'custom', templateUrl: model.ProfileIdTemplateDUrl, rowtype: "success" },
+                { text: 'SurName', key: 'LastName', type: 'label' },
+                { text: 'Name', key: 'FirstName', type: 'label' },
+                { text: 'Caste', key: 'CasteName', type: 'label' },
+                { text: 'Profile Owner', key: 'ProfileOwner', type: 'customlink', templateUrl: model.ProfileOwnerImg, method: model.profileownerMethod },
+                { text: 'Height', key: 'Height', type: 'label' },
+                { text: 'Login', key: 'LoginStatus', type: 'label' },
+                { text: 'Education', key: 'educationgroup', type: 'label' },
+                { text: 'Profession', key: 'Profession', type: 'label' },
+                { text: 'Dob', key: 'Age', type: 'label', width: '150px' },
+                { text: 'Gender', key: 'GenderID', type: 'custom', templateUrl: model.GenderStr },
+            ];
             model.ViewAllsubmit = function(inpuobj, from, to, typeofbind) {
-
                 if (from === 1) {
                     if (typeofbind === "slideshow") {
                         model.slide.totalRecords = undefined;
@@ -180,22 +191,7 @@
                         model.TotalRows = undefined;
                     }
                 }
-
                 model.topage = to;
-                model.columns = [
-                    { text: 'Profile ID', key: 'ProfileID', type: 'custom', templateUrl: model.ProfileIdTemplateDUrl, rowtype: "success" },
-                    { text: 'SurName', key: 'LastName', type: 'label' },
-                    { text: 'Name', key: 'FirstName', type: 'label' },
-                    { text: 'Caste', key: 'CasteName', type: 'label' },
-                    { text: 'Profile Owner', key: 'ProfileOwner', type: 'customlink', templateUrl: model.ProfileOwnerImg, method: model.profileownerMethod },
-                    { text: 'Height', key: 'Height', type: 'label' },
-                    { text: 'Login', key: 'LoginStatus', type: 'label' },
-                    { text: 'Education', key: 'educationgroup', type: 'label' },
-                    { text: 'Profession', key: 'Profession', type: 'label' },
-                    { text: 'Dob', key: 'Age', type: 'label', width: '150px' },
-                    { text: 'Gender', key: 'GenderID', type: 'custom', templateUrl: model.GenderStr },
-                ];
-
                 var obj = {
                     genderID: model.obj.rdnGender,
                     strFName: inpuobj.Name !== undefined ? inpuobj.Name : "",
@@ -256,7 +252,6 @@
                             }
                         }
                     }
-
                 });
                 return model;
             };

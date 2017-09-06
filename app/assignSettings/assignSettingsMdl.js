@@ -168,6 +168,7 @@
                         PaymentStatus: obj.rdnPayments && obj.rdnPayments !== "0" ? obj.rdnPayments : null
                     };
                     assignSettingsService.submitassignsettings(mobj).then(function(response) {
+                        model.isDisabledsubmit = false;
                         if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data[0] !== undefined && response.data[0] !== null && response.data[0].length > 0) {
                             model.opendiv = false;
                             if (from === 1) {

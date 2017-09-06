@@ -7,6 +7,7 @@
                 {{(slidedata.SuperConfidentila==='1') ||(slidedata.SuperConfidentila===1)?'SC':''}}  
                     <input ng-click="horoscopeimage(slidedata.HoroscopeImage,'horo')" ng-show="slidedata.HoroscopeStatus===1" src='src/images/ico_horoscope.jpg' style='height:20px;width:25px;' type='image'>
                    </span>
+            <div style="color:Black;" ng-show="model.dobshow"> <span>{{slidedata.DOB}}</span> </div>
             <div class="clearfix">
             </div>
         </h5>
@@ -37,17 +38,18 @@
         <h6> <span style="font-weight: bold;">Payment</span></h6>
         <h5>
             <div style="color:Black;">
-                <a class="alllinkscolor" href='javascript:void(0)' ng-class="slide.PaidAmount==='Not Paid'?'Linkdisabled':''" ng-click='paymentpage(slide.ProfileID)'>{{slide.PaidAmount}}</a>
+                <a class="alllinkscolor" href='javascript:void(0)' ng-show="slide.PaidAmount!=='Not Paid'" ng-click='paymentpage(slide.ProfileID)'>{{slide.PaidAmount}}</a>
+                <p ng-show="slide.PaidAmount==='Not Paid'" style="color:red">{{slide.PaidAmount}}</a>
             </div>
             <div class="clearfix">
             </div>
         </h5>
     </div>
-    <div style="margin-left:60px;" class="edit_page_details_item_descsearch clearfix" ng-if="slide.PaidAmount!=='Not Paid'">
+    <div style="margin-left:60px;" class="edit_page_details_item_descsearch clearfix" ng-show="slide.PaidAmount!=='Not Paid'">
         <h6> <span style="font-weight: bold;">Expiry Date</span></h6>
         <h5>
             <div style="color:Black;">
-                <a class="alllinkscolor" href='javascript:void(0)' ng-click='paymentpage(slide.ProfileID)'>{{slide.ExpiryDate}}({{slide.Points}})</a>
+                <a class="alllinkscolor" href='javascript:void(0)' ng-style="{color:paymentcolor(slide.ExpiryDate)}" ng-click='paymentpage(slide.ProfileID)'>{{slide.ExpiryDate}}({{slide.Points}})</a>
             </div>
             <div class="clearfix">
             </div>
@@ -139,6 +141,20 @@
     </div>
 </div>
 <div class="row">
+    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" ng-show="model.dobshow">
+        <div style="margin-left:69px;" class="edit_page_details_item_descsearch clearfix">
+            <h6> <span style="font-weight: bold;"> Last ServiceDate
+            </span></h6>
+            <h5>
+                <div style="color:Black;">
+                    <span>{{slide.Servicedate}}
+                    </span>
+                </div>
+                <div class="clearfix">
+                </div>
+            </h5>
+        </div>
+    </div>
     <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" ng-show="typeofslidedate ==='Inactive Date'">
         <div style="" class="edit_page_details_item_descsearch clearfix">
             <h6> <span style="font-weight: bold;"> Inactive Reason 

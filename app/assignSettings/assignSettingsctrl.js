@@ -12,6 +12,7 @@
                  model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
                  model.MyProfilePageLoad();
                  model.scope = scope;
+                 model.isDisabledsubmit = false;
                  model.assignsettingsdata = [];
                  model.mpObj.rdnGender = "";
                  model.mpObj.rdnPayments = "0";
