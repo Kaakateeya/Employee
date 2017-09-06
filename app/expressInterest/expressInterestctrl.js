@@ -17,6 +17,7 @@
              vm.model.exiObj.chkrvrsend = true;
              model.scope = scope;
              model.mismatchflag = 0;
+             model.isDisabledsubmit = false;
          };
          vm.init();
      }

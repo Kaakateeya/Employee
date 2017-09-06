@@ -241,6 +241,7 @@
         };
 
         model.Submit = function(obj) {
+            model.isDisabledsubmit = true;
             var ExpressArray = [];
             var inputObj = {};
             var strMails = '';
@@ -281,6 +282,7 @@
                 GetDetails: ExpressArray
             };
             expressInterestService.submitExpressintrst(inputObj).then(function(response) {
+                model.isDisabledsubmit = false;
                 var status = 0;
                 if (_.isArray(response.data.m_Item1))
                     status = response.data.m_Item1[0] !== undefined && response.data.m_Item1[0] !== null ? response.data.m_Item1[0].Status : 0;

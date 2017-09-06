@@ -131,7 +131,7 @@
                             <md-checkbox ng-model="page.model.exiObj.chkrvrsend">RVR send</md-checkbox>
                         </div>
                         <div class="col-lg-4">
-                            <button class="button_custom" style="display:initial;" type="submit">Sent to Service</button>
+                            <button class="button_custom" style="display:initial;" type="submit" ng-disabled="page.model.isDisabledsubmit">Sent to Service</button>
                             <button type="reset" ng-click="page.model.clearform();" style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset">Reset</button>
                         </div>
                     </div>
