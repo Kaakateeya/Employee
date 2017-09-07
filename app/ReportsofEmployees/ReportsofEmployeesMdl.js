@@ -11,20 +11,11 @@
         var model = {};
         model.arrayheader = ["Emp Name", "Total profiles", "No Services", "No Login", "EMNV", "Paid", "Unpaid", "Payment expired Customers", "No Photos", "In active Customers", "Email Bounce Info", "Presently In india", "Graph"];
         model.scrollevent = function(tableId) {
-            console.log(tableId);
             var hscroll = '#table_' + tableId + ' .pane-hScroll';
             var vScroll = '#table_' + tableId + ' .pane-vScroll';
             $(hscroll).scroll(function() {
                 $(vScroll).width($(hscroll).width() + $(hscroll).scrollLeft());
             });
-            // timeout(function() {
-            //     var tableName = '#table_' + tableId;
-            //     var hscroll = '#table_' + tableId + ' .pane-hScroll';
-            //     var vScroll = '#table_' + tableId + ' .pane-vScroll';
-            //     $(hscroll).scroll(function() {
-            //         $(vScroll).width($(hscroll).width() + $(hscroll).scrollLeft());
-            //     });
-            // }, 1000);
         };
         model.initdata = function(empid, branchid, region, macaddress, flag, v_ProfileOwnerEmpID) {
             ReportsofEmployeesService.getAdminReportsAllProfiles(empid, branchid, region, macaddress, flag, v_ProfileOwnerEmpID).then(function(response) {
