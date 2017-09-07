@@ -262,7 +262,8 @@
             });
         };
         model.onTabSelected = function(index) {
-            if (index === 3) {
+            if (index === 3 && model.empnamecalled !== true) {
+                model.empnamecalled = true;
                 model.getemployee('EmapName', '2');
             }
         };
