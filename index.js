@@ -6,18 +6,14 @@
  * Main App Creation 
  */
 var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap', 'angular-loading-bar',
-    'ngAnimate', 'ngIdle', 'ngMaterial',
-    'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate',
-    'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons',
-    'ui.date', 'ng-clipboard', 'anguFixedHeaderTable',
-    'ng-fusioncharts', 'scrollable-table', 'angular-linq', 'infinite-scroll', 'ngLoadingSpinner'
+    'ngAnimate', 'ngIdle', 'ngMaterial', 'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate',
+    'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons', 'ui.date', 'ng-clipboard', 'ng-fusioncharts',
+    'infinite-scroll', 'ngLoadingSpinner'
 ]);
-
 // app.apiroot = 'http://52.66.131.254:8025/Api/';
 // app.apipathold = 'http://52.66.131.254:8010/Api/';
 app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.apipathold = 'http://183.82.0.58:8010/Api/';
-
 app.env = "dev";
 app.kammaPayfixedAmt = 1000;
 app.kammaPaypoints = 12;
@@ -73,7 +69,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'editContact', name: 'base.editContact', url: '/Contact/:CustID', isloginrequired: true },
             { routeName: 'editOfcePurpose', name: 'base.editOfcePurpose', url: '/OfcePurpose/:CustID', isloginrequired: true },
             { routeName: 'editProfileSetting', name: 'base.editProfileSetting', url: '/ProfileSetting/:CustID', isloginrequired: true },
-            // { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrint', url: '/employeeViewfullprofiles/:ProfileID/:contacts', isloginrequired: true, subname: ['directives/divPrint.js'] },
             { routeName: 'registrationValidation', name: 'base.registrationValidation', url: '/registrationValidations', isloginrequired: true },
             { routeName: 'communicationLog', name: 'base.communicationLog', url: '/communicationLogs', isloginrequired: true },
             { routeName: 'uploadSettlementForm', name: 'base.uploadSettlementForm', url: '/uploadSettlementFormPage', isloginrequired: true },
@@ -99,7 +94,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'employeeCreation', name: 'base.employeeCreation', url: '/employeeCreationPage', isloginrequired: true },
             { routeName: 'keywordlikeSearch', name: 'base.keywordlikeSearch', url: '/keywordlikeSearchpage', isloginrequired: true },
             { routeName: 'customerFactsheet', name: 'base.customerFactsheet', url: '/customerFactsheetpage', isloginrequired: true },
-            // { routeName: 'sucessStories', name: 'base.sucessStories', url: '/sucessStoriespage', isloginrequired: true },
             { routeName: 'empTracking', name: 'base.empTracking', url: '/empTrackingPage', isloginrequired: true },
             { routeName: 'dashboardAdminReport', name: 'base.dashboardAdminReport', url: '/dashboardAdminReports', isloginrequired: true },
             { routeName: 'fixedtableTesting', name: 'base.fixedtableTesting', url: '/fixedtableTestings', isloginrequired: true },
@@ -176,9 +170,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'common/models/headermodel.js',
                         'common/controllers/topheaderctrl.js',
                         'common/controllers/LoaderCtrl.js'
-                        // 'common/models/countryArrayModel.js',
-                        // 'common/models/eduprofArrayModel.js',
-                        // 'common/models/otherArrayModel.js'
                     ]
                 },
                 {
@@ -208,7 +199,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/datePickerDirectiveEdit.js',
                         'directives/divPrint.js',
                         'directives/editFooter.js',
-                        // 'directives/fixedHeader.js',
                         'directives/allowOnlyNumbers.js',
                         'directives/allowAdminManagement.js',
                         'directives/comparePassword.js',
@@ -379,11 +369,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                 url: item.url,
                 views: innerView,
                 resolve: {
-
                     // Any property in resolve should return a promise and is executed before the view is loaded
                     loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                         // you can lazy load files for an existing module
-
                         if (app.env === "dev") {
                             if (item.module !== undefined) {
                                 $ocLazyLoad.load(item.module);
@@ -391,7 +379,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                             if (item.routeName === 'login') {
                                 $ocLazyLoad.load('auth');
                             }
-
                             return $ocLazyLoad.load([
                                 'app/' + item.routeName + '/style.css',
                                 'app/' + item.routeName + '/' + item.routeName + 'ctrl.js',
@@ -412,13 +399,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
     }
 ]);
 app.run(function($rootScope, $state, $stateParams, $ocLazyLoad) {
-
     $rootScope.ProfileOwner = '';
     $rootScope.EditProfilePaidStatus = '';
     // $rootScope.processingsymbol = true;
-
     $rootScope.$on('$stateChangeStart', function(e, to) {
-
         if (to && to.name !== 'login' && to.name !== 'base.employeeViewfullprofilePrintmail') {
             if (sessionStorage.getItem('logintime') && (sessionStorage.getItem('logintime')) === moment().format('MM/DD/YYYY')) {
                 if (to.data && to.data.requiresLogin) {
@@ -430,24 +414,19 @@ app.run(function($rootScope, $state, $stateParams, $ocLazyLoad) {
                     }
                 }
             } else {
-                if (to.name === 'base.employeeViewfullprofilePrintmail') {
-
-                } else {
+                if (to.name === 'base.employeeViewfullprofilePrintmail') {} else {
                     e.preventDefault();
                     $state.go('login');
                 }
-
             }
         }
     });
-
     // $rootScope.$on('$stateChangeSuccess', function(event, view) {
     //     if (view.name === 'login') {
     //         $ocLazyLoad.load('auth');
     //         loadmodules($ocLazyLoad);
     //     }
     // });
-
 });
 
 function loadmodules($ocLazyLoad) {

@@ -1,7 +1,3 @@
-<!--<script type="text/ng-template" id="market.html">-->
-
-
-
 <div class="row" style="margin-top: -10px;">
     <div class="text-center ticketpopuppopupheader">
         <div class="col-lg-12"><button type="button" class="close" ng-click="model.close();" style="
@@ -24,21 +20,11 @@
                 <br />
                 <label id="lblmrktOpened" class="ticketpopuplabel">{{model.marInfo[0].TicketOpenedOn}}</label>
             </div>
-            <!--<div class="col-lg-2">
-                <b class="dashboardticketpopup">Catgory</b>
-                <br />
-                <label id="lblNoofdays" class="ticketpopuplabel">{{model.marInfo[0].Prirority}}</label>
-            </div>-->
             <div class="col-lg-2">
                 <b class="dashboardticketpopup">Assigned to</b>
                 <br />
                 <label id="lblmrktAssigned" class="ticketpopuplabel">{{model.marInfo[0].EmpName}}</label>
             </div>
-            <!--<div class="col-lg-2">
-                <b class="dashboardticketpopup">No of days</b>
-                <br />
-                <label id="lblNoofdays" class="ticketpopuplabel">{{model.marInfo[0].NoofDays}}</label>
-            </div>-->
             <div class="col-lg-4">
                 <b class="dashboardticketpopup">Reminder</b>
                 <br />
@@ -47,7 +33,6 @@
         </div>
     </div>
 </div>
-
 <div>
     <md-content class="md-padding">
         <md-tabs md-selected="page.model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
@@ -63,7 +48,6 @@
                     </div>
                 </div>
             </md-tab>
-
             <md-tab label="Incoming Call">
                 <div class="tab">
                     <br>
@@ -81,7 +65,7 @@
                                     <li class="col-lg-6 form-group">
                                         <label class="pop_label_left">Relation name  </label>
                                         <div class="pop_controls_right">
-                                            <input name="txtmrktRelationnameIn" ng-model="model.MAobj.txtmrktRelationnameIn" type="text" class="form-control required" required></input>
+                                            <input name="txtmrktRelationnameIn" ng-model="model.MAobj.txtmrktRelationnameIn" type="text" class="form-control required" required>
 
                                         </div>
                                     </li>
@@ -94,7 +78,7 @@
                                                     <option value="">-- Select --</option>
                                                     <option value="417">Successfull</option>
                                                     <option value="418">UnSuccessfull</option>
-                                                     </select>
+                                           </select>
                                         </div>
                                     </li>
                                     <li class="col-lg-6 form-group">
@@ -238,7 +222,6 @@
                         </div>
                         <md-divider></md-divider>
                     </div>
-
                 </div>
             </md-tab>
             <md-tab label="Internal Memo">
@@ -289,7 +272,6 @@
                         </form>
                         <div class="clearfix">
                         </div>
-
                         <md-divider></md-divider>
                     </div>
                 </div>
@@ -335,25 +317,11 @@
                         </div>
                         <md-divider></md-divider>
                     </div>
-
                 </div>
             </md-tab>
-
-
-            <!--<md-tab label="Reminder" ng-show="showreminder" ng-click="clickme();">
-                <div class="tab">
-                    <br>
-
-                </div>
-            </md-tab>-->
-
         </md-tabs>
-
     </md-content>
-
 </div>
-
-<!--</script>-->
 <style type="text/css">
     .modalclassdashboardphotopopup .md-tab {
         padding: 14px 15px;
@@ -412,5 +380,4 @@
     md-tabs-canvas {
         width: 75%;
     }
-    /*# sourceMappingURL=style.css.map */
 </style>

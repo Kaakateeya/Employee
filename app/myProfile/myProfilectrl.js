@@ -5,16 +5,15 @@
      angular
          .module('Kaakateeya')
          .controller('myProfileCtrl', ['myProfileModel', '$scope', '$location', 'authSvc', '$timeout',
+
              function(myProfileModel, scope, $location, authSvc, timeout) {
                  var vm = this,
                      model;
-
                  vm.pageload = function() {
                      model.mpObj = {};
                      model.empid = model.slide.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                      model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
                      model.mpObj.ddlProfileOwner = [parseInt(model.empid)];
-
                      model.mpObj.rdnprofileType = '';
                      model.mpObj.rdnGender = '';
                      model.mpObj.rdnWebsiteLogin = '';
@@ -43,19 +42,16 @@
                          model.slide.templateUrl = "templates/myprofileSlide.html";
                          model.slide.config.headettemp = "templates/myprofileheader.html";
                      } else {
-                         //  model.caste = [];
                          model.copyOfapplicationStatusarray = angular.copy(model.applicationStatusarray);
                          model.copyOfBrancharray = angular.copy(model.Brancharray);
                          model.copyOfProfileOwnerarray = angular.copy(model.ProfileOwnerarray);
                          model.copyOfmaritalstatusarray = angular.copy(model.maritalstatusarray);
                          model.copyOfCastearray = angular.copy(model.Castearray);
-
                          model.applicationStatusarray = [];
                          model.Brancharray = [];
                          model.ProfileOwnerarray = [];
                          model.maritalstatusarray = [];
                          model.Castearray = [];
-
                          timeout(function() {
                              model.applicationStatusarray = model.copyOfapplicationStatusarray;
                              model.Brancharray = model.copyOfBrancharray;

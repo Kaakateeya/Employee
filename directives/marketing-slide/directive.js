@@ -7,7 +7,6 @@
     directive.$inject = ['marketticketHistrymdl', 'modelpopupopenmethod', '$timeout'];
 
     function directive(marketticketHistrymdl, modelpopupopenmethod, timeout) {
-
         var directive = {
             link: link,
             restrict: 'EA',
@@ -20,7 +19,6 @@
         return directive;
 
         function link(scope, element, attrs) {
-
             scope.model = marketticketHistrymdl;
             scope.model.ticketid = scope.ticketid;
             scope.model.scope = scope;
@@ -37,5 +35,4 @@
                 scope.model.MAobj.txtmrktcalldiscussionMemo = "";
         }
     }
-
 })();
