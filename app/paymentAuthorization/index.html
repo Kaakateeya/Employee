@@ -30,11 +30,9 @@
             </div>
         </div>
         <div class="col-lg-1">
-            <input type="submit" class="btn btn-danger" value="Submit" ng-click="page.model.paymentAuthSelect();">
+            <input type="submit" class="btn btn-danger" ng-disabled="page.model.isDisabledsubmit" value="Submit" ng-click="page.model.isDisabledsubmit=true;page.model.paymentAuthSelect();">
         </div>
-
     </div>
-
     <label ng-show="page.model.TotalRows" for="noofRecords" class="control-label leftmargin">Total Records : {{page.model.TotalRows}}</label>
     <input ng-show="page.model.TotalRows" type="image" src="src\images\EXCEL.jpg" ng-click="page.model.exportexcel(page.model.data, page.model.columns)" style="" class="css-class autorizeExcel"></input>
 
@@ -51,7 +49,7 @@
                 </div>
             </div>
             <div class="col-lg-10">
-                <complex-grid config="page.model" model="page.model" pagesizecommunication="999"></complex-grid>
+                <complex-grid-new gid="'id1'" config="page.model" model="page.model" pagesizecommunication="999"></complex-grid-new>
             </div>
         </div>
     </div>

@@ -10,7 +10,7 @@
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag!==1" ng-click="model.openSmsMail('sms',slide.CustomerName,slide.ProfileID,slide.PrimaryEmail,slide.PrimaryContactNumber,slide.PrimaryContactNumberCountyCode,slide.Emp_Ticket_ID,slide.EmpName);">Send SMS</a>
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag!==1" ng-click="model.openSmsMail('mail',slide.CustomerName,slide.ProfileID,slide.PrimaryEmail,slide.PrimaryContactNumber,slide.PrimaryContactNumberCountyCode,slide.Emp_Ticket_ID);">Send Mail</a>
                         <a href="javascript:void(0);" style="display:none;" class="btn btn-success-outline">Missing Fields</a>
-                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="slide.Photo.indexOf('noimage') !== -1 && slide.Photo.indexOf('_Rev') === -1 && model.siblingsFlag!==1" ng-click="model.PhotoRequest(slide);">Photo Request</a>
+                        <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="slide.Photo.indexOf('noimage') !== -1 && slide.Photo.indexOf('_Rev') === -1 && model.siblingsFlag!==1" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.PhotoRequest(slide);">Photo Request</a>
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="!slide.Lastlogin  && model.siblingsFlag!==1" ng-click="model.forgetpassword(slide);">Forgot Password</a>
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-show="model.siblingsFlag!==1" ng-click="model.NotIntrstToPay('P',slide.Emp_Ticket_ID,slide.CustID);">Not Int To Pay</a>
                         <a href="javascript:void(0);" class="btn btn-success-outline" ng-class="slide.settleddeleted?'':'linkdisabled'" ng-show="model.siblingsFlag===1" ng-click="model.showSAmethod(slide.SAPath);">{{slide.settleddeleted?'Show':'No'}} SA Form</a>
@@ -50,7 +50,7 @@
             </div>
         </div><br>
         <div ng-show="model.guestticketFlag!==1 && slide.CustID">
-            <div class="col-lg-7 col-lg-offset-4" ng-show="model.siblingsFlag!==1"><a href="javascript:void(0);" ng-click="model.Resendmail(slide.CustID,slide.ProfileID);" style="font-weight: bold;">Send Full Profile Tocustomer</a></div><br>
+            <div class="col-lg-7 col-lg-offset-4" ng-show="model.siblingsFlag!==1"><a href="javascript:void(0);" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.Resendmail(slide.CustID,slide.ProfileID);" style="font-weight: bold;">Send Full Profile Tocustomer</a></div><br>
             <div class="col-lg-12 col-lg-push-2" ng-show="model.siblingsFlag!==1 && slide.nodataFoundArr.length>0" style="border:1px solid;border-color:orange;border-radius: 20px;width:81%;display:block;">
                 <div class="row">
                     <div class="col-lg-6" ng-repeat="itm in slide.nodataFoundArr">
@@ -222,10 +222,10 @@
                                             <br>
                                             <li>
                                                 <div class="col-lg-4">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktsubmitIncoming" class="button_custom pull-right" ng-click="inform.$valid && model.incallSubmit(slide);inform.$setPristine();slide.selectedIndex=0;">Incoming Call</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktsubmitIncoming" class="button_custom pull-right" ng-disabled="model.isDisabledsubmit" ng-click="inform.$valid && model.incallSubmit(slide);inform.$setPristine();slide.selectedIndex=0;">Incoming Call</button>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" ng-show="{{slide.NoofDays>10}}" class="button_custom" ng-click="inform.$valid && model.incallSubmit(slide,'assign');inform.$setPristine();slide.selectedIndex=0;">Incomg Call & Assign me</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" ng-show="{{slide.NoofDays>10}}" class="button_custom" ng-disabled="model.isDisabledsubmit" ng-click="inform.$valid && model.incallSubmit(slide,'assign');inform.$setPristine();slide.selectedIndex=0;">Incomg Call & Assign me</button>
                                                 </div>
                                             </li>
                                         </ul>
@@ -299,10 +299,10 @@
                                             <br>
                                             <li class="col-lg-12">
                                                 <div class="col-lg-4">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktoutgng" class="button_custom pull-right" ng-click="outform.$valid && model.outcallSubmit(slide);outform.$setPristine();slide.selectedIndex=0;">Outgoing Call</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" id="btnmrktoutgng" class="button_custom pull-right" ng-disabled="model.isDisabledsubmit" ng-click="outform.$valid && model.outcallSubmit(slide);outform.$setPristine();slide.selectedIndex=0;">Outgoing Call</button>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <button type="submit" style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" id="btnOutgngAssignme" value="Submit" class="button_custom" ng-click="outform.$valid && model.outcallSubmit(slide,'assign');outform.$setPristine();slide.selectedIndex=0;"
+                                                    <button type="submit" style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" id="btnOutgngAssignme" value="Submit" class="button_custom" ng-disabled="model.isDisabledsubmit" ng-click="outform.$valid && model.outcallSubmit(slide,'assign');outform.$setPristine();slide.selectedIndex=0;"
                                                         ng-show="{{slide.NoofDays>10}}">Outgoing Call & Assign me</button>
                                                 </div>
                                             </li>
@@ -343,10 +343,10 @@
                                             <br>
                                             <li class="col-lg-12">
                                                 <div class="col-lg-4">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" class="button_custom pull-right" ng-click="memoform.$valid && model.memoSubmit(slide);memoform.$setPristine();slide.selectedIndex=0;">Internal Memo</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="submit" value="Submit" class="button_custom pull-right" ng-disabled="model.isDisabledsubmit" ng-click="memoform.$valid && model.memoSubmit(slide);memoform.$setPristine();slide.selectedIndex=0;">Internal Memo</button>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIMAssignme" value="Submit" class="button_custom" ng-click="memoform.$valid && model.memoSubmit(slide,'assign');memoform.$setPristine();slide.selectedIndex=0;"
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIMAssignme" ng-disabled="model.isDisabledsubmit" value="Submit" class="button_custom" ng-click="memoform.$valid && model.memoSubmit(slide,'assign');memoform.$setPristine();slide.selectedIndex=0;"
                                                         ng-show="{{slide.NoofDays>10}}">Internal Memo & Assign me</button>;
                                                 </div>
                                             </li>
@@ -380,7 +380,7 @@
                                             <br>
                                             <li class="col-lg-12">
                                                 <div class="col-lg-offset-1 col-lg-6">
-                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" value="Submit" class="button_custom pull-right  pull-right">Close Ticket</button>
+                                                    <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" value="Submit" ng-disabled="model.isDisabledsubmit" class="button_custom pull-right  pull-right">Close Ticket</button>
                                                 </div>
                                             </li>
                                         </ul>

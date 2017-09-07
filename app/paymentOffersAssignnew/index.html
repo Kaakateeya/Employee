@@ -79,7 +79,7 @@
                 <br />
                 <div class="row">
                     <div class="form-group text-center" style="border-top: 1px solid #ddd;padding-top: 1%;">
-                        <input class="button_custom" type="submit" ng-value="page.model.btntextSubmit">
+                        <input class="button_custom" ng-disabled="page.model.isDisabledsubmit" type="submit" ng-value="page.model.btntextSubmit">
                         <input type="reset" class="button_custom button_custom_reset" value="Reset" ng-click="page.model.reset();">
                     </div>
                 </div>

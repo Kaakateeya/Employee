@@ -54,7 +54,7 @@
     </div>
     <div class="modal-footer" style="font-weight:normal;">
         <button class="button_custom button_custom_reset" ng-click="page.model.closepopup();">close</button>
-        <button class="button_custom pull-right" ng-click="page.model.smsMailSubmit(page.model.typeofmailSms);">send {{page.model.typeofmailSms}}</button>
+        <button class="button_custom pull-right" ng-disabled="page.model.isDisabledsubmit" ng-click="page.model.isDisabledsubmit=true;page.model.smsMailSubmit(page.model.typeofmailSms);">send {{page.model.typeofmailSms}}</button>
     </div>
 </script>
 
@@ -268,7 +268,7 @@
                 <br>
                 <div class="row">
                     <div class="col-lg-8">
-                        <button type="submit" class="button_custom pull-right">Submit</button>
+                        <button type="submit" class="button_custom pull-right" ng-disabled="page.model.isDisabledsubmit">Submit</button>
                     </div>
                     <div class="col-lg-4">
                         <button type="button" class="button_custom button_custom_reset" ng-click="page.model.closepopup()">Close</button>

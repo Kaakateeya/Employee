@@ -18,6 +18,7 @@
                  model.config.headettemp = "templates/matchFollowupHeader.html";
                  //  $rootScope.colorurl = 'matchColor';
                  scope.$on("$destroy", vm.destroy);
+                 model.isDisabledsubmit = false;
              };
              vm.destroy = function() {
                  model.destroy();

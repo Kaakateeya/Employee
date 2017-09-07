@@ -35,6 +35,24 @@
                     model.paymentAuthSelect();
                     return model;
                 };
+
+                model.ProfileIdTemplateDUrl = function(row) {
+                    var paidstatusclass = row.PaidStatus === 1 ? 'paidclass' : 'unpaid';
+                    var paid = row.ProfileID !== undefined ? "<a class='" + paidstatusclass + "'>" + row.ProfileID + "</a>" : "";
+                    return paid;
+                };
+                model.ViewProfile = function(row) {
+                    window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
+                };
+                model.Ticketpopupupdate = function(row) {
+                    var links = row.TicketName !== null ? "<a href='javascript:void(0);' ng-click='model.ticketpopupupdateshow(" + JSON.stringify(row) + ");'>" + row.TicketName + "</a>" : "--";
+                    return links;
+                };
+                model.ticketpopupupdateshow = function(row) {
+                    model.marketingTicketid = row.Emp_Ticket_ID;
+                    modelpopupopenmethod.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
+                };
+
                 model.paymentAuthSelect = function(type) {
                     var inObj = {
                         BranchID: model.branch ? model.branch : '',
@@ -42,22 +60,7 @@
                         EndDate: model.endDate ? moment(model.endDate).format('MM/DD/YYYY') : '',
                         Region: model.rdnRegion ? model.rdnRegion : ''
                     };
-                    model.ProfileIdTemplateDUrl = function(row) {
-                        var paidstatusclass = row.PaidStatus === 1 ? 'paidclass' : 'unpaid';
-                        var paid = row.ProfileID !== undefined ? "<a class='" + paidstatusclass + "'>" + row.ProfileID + "</a>" : "";
-                        return paid;
-                    };
-                    model.ViewProfile = function(row) {
-                        window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
-                    };
-                    model.Ticketpopupupdate = function(row) {
-                        var links = row.TicketName !== null ? "<a href='javascript:void(0);' ng-click='model.ticketpopupupdateshow(" + JSON.stringify(row) + ");'>" + row.TicketName + "</a>" : "--";
-                        return links;
-                    };
-                    model.ticketpopupupdateshow = function(row) {
-                        model.marketingTicketid = row.Emp_Ticket_ID;
-                        modelpopupopenmethod.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
-                    };
+
                     model.columns = [{ text: 'Profile ID', key: 'ProfileID', type: 'customlink', templateUrl: model.ProfileIdTemplateDUrl, method: model.ViewProfile },
                         // { text: 'Status', key: 'PaymentStatus', type: 'label' },
                         { text: 'Ticket ID', key: 'Emp_Ticket_ID', type: 'morelinks', templateUrl: model.Ticketpopupupdate },
@@ -71,6 +74,7 @@
                     ];
 
                     paymentAuthorizationService.CustomerUnauthorizedPayments(inObj).then(function(response) {
+                        model.isDisabledsubmit = false;
                         if (response.data) {
                             if ((response.data[0]).length) {
                                 if (type === 'export') {

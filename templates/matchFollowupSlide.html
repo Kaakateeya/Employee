@@ -68,7 +68,7 @@
                     <div class="col-lg-offset-1">
                         <div ng-class="slide.FromTicket!==null && slide.FromTicket!==''?'col-lg-5 col-lg-offset-1':'col-lg-4'">
                             <button type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.FromTicket,slide.FromProfileid,slide.FromMobileNumber,slide.fromcust_id, slide.tocustid, slide.FromticketStatusIDb.trim(), slide.Toprofileid,slide.ToName,slide.togenderid);">{{slide.fromticketid}}</button>
-                            <button type="button" ng-if="slide.FromTicket===null || slide.FromTicket===''" class="btn btn-success-outline" ng-click="model.Resendmail(slide.fromcust_id,slide.tocustid,slide.FromProfileid,slide.Toprofileid,slide.FromOfflineExpiryDate,slide.FromOnlineMembershipExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
+                            <button type="button" ng-if="slide.FromTicket===null || slide.FromTicket===''" class="btn btn-success-outline" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.Resendmail(slide.fromcust_id,slide.tocustid,slide.FromProfileid,slide.Toprofileid,slide.FromOfflineExpiryDate,slide.FromOnlineMembershipExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
                             <br>
                             <label>{{slide.FromName}}</label>
                         </div>
@@ -78,7 +78,7 @@
                                 <br>Paid Status : {{slide.FromPaidStatus===1?'Paid':'Unpaid'}}
 
                             </div>
-                            <button type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" popover-is-open="model.frompopoverIsOpen" ng-click="model.histryPopover(slide.FromTicket,'H','from');" popover-trigger="outsideClick" uib-popover-template="'fromPopoverTemplate.html'"
+                            <button type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" popover-is-open="model.frompopoverIsOpen" ng-disabled="model.isDisabledsubmit" ng-click="model.histryPopover(slide.FromTicket,'H','from');" popover-trigger="outsideClick" uib-popover-template="'fromPopoverTemplate.html'"
                                 class="btn btn-success-outline">Ticket history</button>
                         </div>
                     </div>
@@ -141,7 +141,7 @@
                     <div class="text-left">
                         <div ng-class="slide.ToTicket!==null && slide.ToTicket!==''?'col-lg-6':'col-lg-4'">
                             <button type="button" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.ToTicket,slide.Toprofileid,slide.ToMobileNumber, slide.tocustid, slide.fromcust_id,slide.ToticketStatusIDb.trim(), slide.FromProfileid,slide.FromName,slide.Fromgenderid);">{{slide.Toticketid}}</button>
-                            <button type="button" ng-if="slide.ToTicket===null || slide.ToTicket===''" class="btn btn-success-outline" ng-click="model.Resendmail(slide.tocustid,slide.fromcust_id,slide.Toprofileid,slide.FromProfileid,slide.ToOfflineExpiryDate,slide.ToonlineExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
+                            <button type="button" ng-if="slide.ToTicket===null || slide.ToTicket===''" class="btn btn-success-outline" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.Resendmail(slide.tocustid,slide.fromcust_id,slide.Toprofileid,slide.FromProfileid,slide.ToOfflineExpiryDate,slide.ToonlineExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
                             <br>
                             <label>{{slide.ToName}}</label>
                         </div>
@@ -150,7 +150,7 @@
                                 {{slide.ToExpiryDate?'Expires on '+slide.ToExpiryDate:''}}
                                 <br>Paid Status : {{slide.ToPaidStatus===1?'Paid':'Unpaid'}}
                             </div>
-                            <button type="button" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" popover-is-open="model.topopoverIsOpen" ng-click="model.histryPopover(slide.ToTicket,'H','to');" popover-trigger="outsideClick" uib-popover-template="'ToPopoverTemplate.html'"
+                            <button type="button" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" popover-is-open="model.topopoverIsOpen" ng-disabled="model.isDisabledsubmit" ng-click="model.histryPopover(slide.ToTicket,'H','to');" popover-trigger="outsideClick" uib-popover-template="'ToPopoverTemplate.html'"
                                 class="btn btn-success-outline">Ticket history</button>
                         </div>
                     </div>
@@ -291,7 +291,7 @@
                         <br />
                         <div class="row">
                             <div class="col-lg-6">
-                                <button type="submit" value="Submit" class="button_custom pull-right">Incoming Call</button>
+                                <button type="submit" value="Submit" class="button_custom pull-right" ng-disabled="page.model.isDisabledsubmit">Incoming Call</button>
                             </div>
                             <div class="col-lg-6">
                                 <button type="button" class="button_custom button_custom_reset" ng-click="page.model.closeAction();">Close</button>
@@ -370,7 +370,7 @@
                         <br />
                         <div class="row">
                             <div class="col-lg-6">
-                                <button type="submit" value="Submit" class="button_custom pull-right">Outgoing Call</button>
+                                <button type="submit" value="Submit" class="button_custom pull-right" ng-disabled="page.model.isDisabledsubmit">Outgoing Call</button>
                             </div>
                             <div class="col-lg-6">
                                 <button type="button" class="button_custom button_custom_reset" data-dismiss="modal" ng-click="page.model.closeAction();">Close</button>&nbsp;
@@ -410,7 +410,7 @@
                         <br />
                         <div class="row">
                             <div class="col-lg-6">
-                                <button type="submit" value="Submit" class="button_custom pull-right">Internal Memo</button>
+                                <button type="submit" value="Submit" class="button_custom pull-right" ng-disabled="page.model.isDisabledsubmit">Internal Memo</button>
                             </div>
                             <div class="col-lg-6">
                                 <button type="button" class="button_custom button_custom_reset" data-dismiss="modal" ng-click="page.model.closeAction();">Close</button>&nbsp;
@@ -427,10 +427,6 @@
                             <li class="clearfix form-group">
                                 <label class="pop_label_left">Reply Type </label>
                                 <div class="pop_controls_right input-group">
-                                    <!--<select class="smalldropdown" ng-model="page.model.actobj.ddlcloseReplyType" multiselectdropdown ng-change="page.model.actobj.txtcloseReason=page.model.mailchange(page.model.actobj.ddlcloseReplyType);" ng-options="item.value as item.label for item in page.model.ReplyArr"
-                                        required>   
-                                     </select>-->
-
                                     <md-radio-group ng-required="true" name="rbtnReplyTypeClose" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyTypeClose,'close');" layout="row" ng-model="page.model.actobj.rbtnReplyTypeClose" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                         <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
                                         <md-radio-button value="0"> Not Interested</md-radio-button>
@@ -449,7 +445,7 @@
                         <br />
                         <div class="row">
                             <div class="col-lg-offset-6 col-lg-3">
-                                <button type="submit" class="button_custom pull-right">Close Ticket</button>
+                                <button type="submit" class="button_custom pull-right" ng-disabled="page.model.isDisabledsubmit">Close Ticket</button>
                             </div>
                             <div class="col-lg-2">
                                 <button type="button" class="button_custom button_custom_reset pull-right" ng-click="page.model.closeAction();">Cancel</button>&nbsp;
@@ -494,10 +490,6 @@
                     <label class="control-label pull-right">Mail Type</label>
                 </div>
                 <div class="col-lg-8">
-                    <!--<select multiselectdropdown ng-model="page.model.ddlmail" ng-change="page.model.txtsmsmail=page.model.mailchange(page.model.ddlmail);" ng-options="item.value as item.label for item in page.model.ReplyArr">   
-                                </select>-->
-
-
                     <md-radio-group ng-change="page.model.NotIntrstChnge(page.model.ddlmail,'mail');" layout="row" ng-model="page.model.ddlmail" class="md-block" flex-gt-sm>
                         <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
                         <md-radio-button value="0"> Not Interested</md-radio-button>
@@ -516,7 +508,7 @@
     </div>
     <div class="modal-footer" style="font-weight:normal;">
         <button class="button_custom button_custom_reset" ng-click="page.model.closepopup();">close</button>
-        <button class="button_custom pull-right" ng-click="page.model.smsMailSubmit(page.model.typeofmailSms);">send {{page.model.typeofmailSms}}</button>
+        <button class="button_custom pull-right" ng-disabled="page.model.isDisabledsubmit" ng-click="page.model.isDisabledsubmit=true;page.model.smsMailSubmit(page.model.typeofmailSms);">send {{page.model.typeofmailSms}}</button>
     </div>
 </script>
 

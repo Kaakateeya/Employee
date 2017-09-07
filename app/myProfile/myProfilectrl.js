@@ -32,6 +32,7 @@
                      if (model.myprofileid !== "" && model.myprofileid !== null && model.myprofileid !== undefined && model.myprofileid !== "undefined") {
                          model.mpObj.txtProfileID = model.myprofileid;
                      }
+                     model.isDisabledsubmit = false;
                  };
                  vm.init = function() {
                      vm.model = model = myProfileModel;

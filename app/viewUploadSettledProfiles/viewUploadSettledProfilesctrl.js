@@ -22,6 +22,7 @@
              model.settlementimageID = '';
              model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
              model.Admin = authSvc.isAdmin();
+             model.isDisabledsubmit = false;
          };
          vm.init();
      }

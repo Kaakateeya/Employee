@@ -221,6 +221,7 @@
                         { text: 'AllLinks', key: 'AllLinks', type: 'morelinks', templateUrl: model.allLinksTemplateDUrl },
                     ];
                     myProfileservice.getMyprofileSlide(inputobj).then(function(response) {
+                        model.isDisabledsubmit = false;
                         if (_.isArray(response.data) && response.data.length > 0) {
                             if (type === 'grid') {
                                 model.opendiv = false;

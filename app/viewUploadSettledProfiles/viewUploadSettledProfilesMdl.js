@@ -74,6 +74,7 @@
             if (profileid !== undefined && profileid !== "" && profileid !== null) {
 
                 viewUploadSettledProfilesService.getViewSettlementform(profileid).then(function(response) {
+                    model.isDisabledsubmit = false;
                     var imgArr = response.data.m_Item1.split(';');
 
                     model.settlementimage = imgArr[0];
@@ -99,6 +100,7 @@
                 });
 
             } else {
+                model.isDisabledsubmit = false;
                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter  ProfileID', 3000);
             }
         };

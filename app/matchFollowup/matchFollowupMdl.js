@@ -112,6 +112,7 @@
                         inputobj.pageto = model.topage;
                     }
                     matchFollowupServices.matchFollowupSelect(inputobj).then(function(response) {
+                        model.isDisabledsubmit = false;
                         if (_.isArray(response.data) && response.data.length > 0) {
                             var currentdate = new Date();
                             currentdate = moment(currentdate).format("YYYY-MM-DD");
@@ -227,7 +228,9 @@
                 model.dynamicPopover.fromisOpen = false;
                 model.dynamicPopover.toisOpen = false;
                 model.histryPopover = function(ticketID, type, fromtoType) {
+                    // model.isDisabledsubmit = true;
                     matchFollowupServices.ticketHistry(ticketID, type).then(function(response) {
+                        // model.isDisabledsubmit = false;
                         if (_.isArray(response.data) && response.data.length > 0) {
                             if (fromtoType === 'from') {
                                 model.ticketHistryArr = [];
@@ -311,6 +314,7 @@
                     if (type === 'sms') {
                         model.smsInput.strbody = model.txtsmsmail;
                         matchFollowupServices.sendSms(model.smsInput).then(function(response) {
+                            model.isDisabledsubmit = false;
                             if (parseInt(response.data) === 1) {
                                 model.closepopup();
                                 alertss.timeoutoldalerts(model.scope, 'alert-success', 'sms sent successfully', 9500);
@@ -319,6 +323,7 @@
                     } else {
                         model.mailInput.Notes = model.txtsmsmail;
                         matchFollowupServices.sendMail(model.mailInput).then(function(response) {
+                            model.isDisabledsubmit = false;
                             if (parseInt(response.data) === 1) {
                                 model.closepopup();
                                 alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent successfully', 9500);
@@ -353,6 +358,7 @@
                         Subject: "Kaakateeya Email For Bothsideinterest"
                     };
                     matchFollowupServices.ResendMail(resendInputObj).then(function(response) {
+                        model.isDisabledsubmit = false;
                         if (parseInt(response.data) === 1) {
                             if (offlineExpiry === 'Unpaidcust' && onlineExpiry === 'Unpaidcust') {
                                 alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent succesfully</br> They Can not open View Profile because of there is No Points', 9500);
@@ -401,6 +407,8 @@
                         model.actobj.rbtnReplyType =
                         model.actobj.ddlcloseReplyType = '';
                     model.ActionTicket = ticketID;
+                    model.actobj.rbtnReplyTypememo = model.actobj.rbtnReplyTypeClose = '';
+                    model.actobj.txtcloseReason = model.actobj.txtMemmemocalldiscussion = '';
                     //model.actobj.ddlMemAssign = parseInt(model.empid);
                     model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = '1';
                     model.actobj.txtInCalltelephonenumber = model.actobj.txtOutCalltelephonenumber = number;
@@ -448,6 +456,7 @@
                         AssignedEmpID: obj.AssignedEmpID
                     };
                     matchFollowupServices.ActionSubmit(inputObj).then(function(response) {
+                        model.isDisabledsubmit = false;
                         if (parseInt(response.data) === 1) {
                             model.closeAction();
                             model.mailInput.Notes = obj.CallDiscussion;
@@ -501,6 +510,7 @@
                     });
                 };
                 model.inCallsSubmit = function(obj) {
+                    model.isDisabledsubmit = true;
                     var inputObj = {
                         CallType: 377,
                         RelationID: obj.ddlInreceivedfrom,
@@ -514,6 +524,7 @@
                     model.ActionSubmit(inputObj, 'Incoming', obj.rbtnReplyType);
                 };
                 model.outCallsSubmit = function(obj) {
+                    model.isDisabledsubmit = true;
                     var inputObj = {
                         CallType: 378,
                         RelationID: obj.ddlOutreceivedby,
@@ -527,6 +538,7 @@
                     model.ActionSubmit(inputObj, 'Out going', obj.rbtnReplyTypeout);
                 };
                 model.memoSubmit = function(obj) {
+                    model.isDisabledsubmit = true;
                     var inputObj = {
                         CallType: 379,
                         CallDiscussion: obj.txtMemmemocalldiscussion,
@@ -537,6 +549,7 @@
                 };
 
                 model.closeSubmit = function(obj) {
+                    model.isDisabledsubmit = true;
                     var inputObj = {
                         CallType: 563,
                         CallDiscussion: obj.txtcloseReason
@@ -568,12 +581,12 @@
                         // var her = model.genderforemail === 2 ? 'her' : 'his';
                         // model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment().format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
                         //     "We are resending " + her + " profile for the ease of viewing and please give your opinion in the options provided in the profile" + textpopup + "";
-                        model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
+                        model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else if (val === '2') {
                         model.txtAllcallDiscusion = 'pending';
-                        model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
+                        model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else {
-                        model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = '';
+                        model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = '';
                     }
                     modelpopupopenmethod.showPopupphotopoup('notIntrstPopup.html', model.scope, 'md', 'notintrstCls');
                 };

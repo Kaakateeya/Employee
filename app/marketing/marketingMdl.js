@@ -132,6 +132,7 @@
                     };
 
                     marketingservice.getMarketingSlideShowBind(inputobj).then(function(response) {
+                        model.isDisabledsubmit = false;
                         if (response.data && response.data.Marketingslideticket !== null && response.data.Marketingslideticket.length > 0) {
                             model.Marketingslideticket = response.data.Marketingslideticket;
                             model.MarketingslideHistory = response.data.MarketingslideHistory;
@@ -234,6 +235,7 @@
 
                 model.PhotoRequest = function(row) {
                     helperservice.PhotoRequest(row.ProfileID, empid, row.Emp_Ticket_ID).then(function(response) {
+                        model.isDisabledsubmit = false;
                         if (response.data && parseInt(response.data) === 1) {
                             row.histryObj.splice(0, 0, model.pushTicketHistry('InternalMemo',
                                 '', '', 'Photo request for Upload Photo'
@@ -343,6 +345,7 @@
                     if (type === 'sms') {
                         model.smsInput.strbody = model.txtsmsmail;
                         marketingservice.sendSms(model.smsInput).then(function(response) {
+                            model.isDisabledsubmit = false;
                             if (parseInt(response.data) === 1) {
                                 model.closepopup();
                                 model.pushTicketHistryToArray(model.smsInput.Emp_TicketingCallHistoryID, model.txtsmsmail);
@@ -352,6 +355,7 @@
                     } else {
                         model.mailInput.Notes = model.txtsmsmail;
                         marketingservice.sendMail(model.mailInput).then(function(response) {
+                            model.isDisabledsubmit = false;
                             if (parseInt(response.data) === 1) {
                                 model.closepopup();
                                 model.pushTicketHistryToArray(model.mailInput.LTicketID, model.txtsmsmail);
@@ -424,6 +428,7 @@
                         TicketStatusID: "Accept"
                     };
                     marketingservice.ResendMail(resendInputObj).then(function(response) {
+                        model.isDisabledsubmit = false;
                         if (parseInt(response.data) === 1) {
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent successfully', 9500);
                         } else {
@@ -647,6 +652,7 @@
                     }
                 };
                 model.reminderSubmit = function() {
+                    model.isDisabledsubmit = true;
                     var remDate = $filter('date')(model.txtreminderDate, 'MM-dd-yyyy');
                     var hrs = parseInt(model.ddlHrs) - 1;
                     hrs = hrs < 10 ? '0' + hrs : hrs;
@@ -670,6 +676,7 @@
 
                     modelpopupopenmethod.closepopup();
                     marketingservice.upadateremainderdate(Mobj).then(function(response) {
+                        model.isDisabledsubmit = false;
                         if (response !== undefined && response.data === parseInt(1)) {
                             _.map(model.Marketingslideticket, function(item) {
                                 if (item.Emp_Ticket_ID === model.ticketIDRem) {
@@ -778,6 +785,7 @@
                         EmpID: empid
                     };
                     marketsvc.InOutSubmit(inputObj).then(function(response) {
+                        model.isDisabledsubmit = false;
                         var msg = parseInt(response.data) === 1 ? (obj.CallType === 1 ? 'Incoming Call Created successfully' : 'Outgoing Call Created successfully') :
                             ((obj.CallType === 1 ? 'Incoming Call updation failed' : 'Outgoing Call updation failed'));
                         var msgClass = parseInt(response.data) === 1 ? 'alert-success' : 'alert-danger';
@@ -786,6 +794,7 @@
                     });
                 };
                 model.incallSubmit = function(obj, type) {
+                    model.isDisabledsubmit = true;
                     var inobj = {
                         CallType: 1,
                         RelationID: obj.ddlmrktreceivedIn,
@@ -806,6 +815,7 @@
                     ));
                 };
                 model.outcallSubmit = function(obj, type) {
+                    model.isDisabledsubmit = true;
                     var inobj = {
                         CallType: 2,
                         RelationID: obj.ddlmrktreceivedout,
@@ -827,7 +837,9 @@
                 };
 
                 model.memoSubmit = function(obj, type) {
+                    model.isDisabledsubmit = true;
                     marketsvc.memoSubmit(obj.txtmrktcalldiscussionMemo, obj.Emp_Ticket_ID, empid, obj.ddlmrktAssignmemo).then(function(response) {
+                        model.isDisabledsubmit = false;
                         if (parseInt(response.data) === 1) {
                             if (type === 'assign') {
                                 model.assignSubmit(obj.Emp_Ticket_ID);
@@ -846,9 +858,10 @@
                 };
 
                 model.closeSubmit = function(obj) {
+                    model.isDisabledsubmit = true;
                     //reasn, tktID, empid
                     marketsvc.closeSubmit(obj.txtmrktcloseReasn, obj.Emp_Ticket_ID, empid).then(function(response) {
-
+                        model.isDisabledsubmit = false;
                         if (parseInt(response.data) === 1) {
                             obj.histryObj.splice(0, 0, model.pushTicketHistry('Close',
                                 '', '', obj.txtmrktcloseReasn, ''
