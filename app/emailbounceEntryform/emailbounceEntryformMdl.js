@@ -15,6 +15,7 @@
                     maxDate: null
                 };
                 model.submitemailbouncesubmitform = function() {
+                    model.isDisabledsubmit = true;
                     model.opendiv = false;
                     var CurrentDate = new Date();
                     var obj = {
@@ -29,8 +30,11 @@
                         status: null
                     };
                     emailbounceEntryformService.InsertEmailBouceEntry(obj).then(function(response) {
-                        console.log(response);
+                        model.isDisabledsubmit = false;
                         if (parseInt(response.data) === 1) {
+                            model.clearcontrols();
+                            model.scope.emailbounceentryform.$setPristine();
+                            model.scope.emailbounceentryform.$setUntouched();
                             alerts.timeoutoldalerts(model.scope, 'alert-success', 'Email bounce entry details saved successfully', 3000);
                         } else if (parseInt(response.data) === -2) {
                             alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Already this email exists with ' + model.txtemailbounceprofileid + '', 3000);
@@ -66,6 +70,7 @@
                     model.txtemailbouncedate = "";
                     model.txtemailbouncesentdate = "";
                     model.txtemailbouncenarration = "";
+                    model.isDisabledsubmit = false;
                 };
                 model.checkRecord = function(id) {
                     if (id) {

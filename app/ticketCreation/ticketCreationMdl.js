@@ -112,6 +112,7 @@
                     model.objTicketID = "";
                     model.objMarketTicketID = "";
                     model.objcustomermail = "";
+                    model.isDisabledsubmit = false;
                 };
                 model.ticketpopup = function() {
                     model.close();
@@ -120,6 +121,7 @@
                 };
                 model.ticketcreationsubmit = function() {
                     var obj;
+                    model.isDisabledsubmit = true;
                     if (model.rbtntype === '2') {
                         obj = {
                             profile: null,
@@ -139,6 +141,7 @@
                         };
                         if (model.txtphonenumber.length === 10) {
                             ticketCreationService.ticketcreation(obj).then(function(response) {
+                                model.isDisabledsubmit = false;
                                 console.log(response);
                                 if (response !== null && response !== undefined && response.data !== undefined && response.data !== null && response.data !== "") {
                                     alerts.timeoutoldalerts(model.scope, 'alert-success', 'Ticket Created succesfully', 4000);
@@ -150,6 +153,7 @@
                                 model.scope.ticketcreationform.$setUntouched();
                             });
                         } else {
+                            model.isDisabledsubmit = false;
                             alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please Enter Valid Phone number', 4000);
                         }
                     } else {
@@ -173,6 +177,7 @@
                         //if (model.chkprofileid(model.txtProfileidticket)) {
                         if (model.txtProfileidticket.length === 9) {
                             ticketCreationService.ticketcreation(obj).then(function(response) {
+                                model.isDisabledsubmit = false;
                                 if (response !== null && response !== undefined && response.data !== undefined && response.data !== null && response.data !== "") {
                                     alerts.timeoutoldalerts(model.scope, 'alert-success', 'Ticket Created succesfully', 4000);
                                 } else {

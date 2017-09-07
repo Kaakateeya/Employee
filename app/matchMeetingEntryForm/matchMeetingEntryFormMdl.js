@@ -23,6 +23,7 @@
         };
 
         model.matchMeetingSubmit = function() {
+            model.isDisabledsubmit = true;
             var date = moment(model.txtmeetingDate).format('YYYY-MM-DD') + ' ' + model.ddlhrs + ':' + model.ddlMins + ':00';
             var inObj = {
                 BrideprofileID: model.brideCustID,
@@ -42,6 +43,7 @@
                 GMobile: model.gnumber
             };
             matchMeetingEntryFormService.MMFormSubmit(inObj).then(function(response) {
+                model.isDisabledsubmit = false;
                 if (response.data) {
                     model.reset();
                     model.scope.MMEntryForm.$setPristine();
@@ -78,6 +80,7 @@
             model.matchmeeting = false;
             model.brideCustID = 0;
             model.groomCustID = 0;
+            model.isDisabledsubmit = false;
         };
 
         model.clearProfileID = function(flag) {

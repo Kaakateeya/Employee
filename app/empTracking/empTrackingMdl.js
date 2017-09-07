@@ -99,7 +99,7 @@
             model.empnamedisplay = '';
             model.empnamedisplay = '';
             empTrackingService.getempReport(inobj).then(function(response) {
-
+                model.isDisabledsubmit = false;
                 if (response.data && response.data[0].length > 0) {
                     if (empid) {
                         model.empDtailsArray = response.data[0];

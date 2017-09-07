@@ -101,6 +101,7 @@
                 intUpperBound: 500
             };
             unAssignedPhotosService.getUnassignPhotoSelect(inobj).then(function(response) {
+                model.isDisabledsubmit = false;
                 if (response.data && response.data.length > 0) {
 
                     model.totalRecords = response.data[0].TotalRows;
@@ -126,6 +127,7 @@
             model.uploadedTo = '';
             model.branch = '';
             model.AssignEmp = '';
+            model.isDisabledsubmit = false;
         };
 
         return model;

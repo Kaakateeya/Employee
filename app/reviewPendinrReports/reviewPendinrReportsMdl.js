@@ -137,6 +137,7 @@
                         PageTo: to
                     };
                     reviewPendinrReportsService.submitreviewpending(mobj).then(function(response) {
+                        model.isDisabledsubmit = false;
                         if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
                             if (from === 1) {
                                 model.data = [];

@@ -49,7 +49,7 @@
                     _.each(model.Brancharray, function(item) {
                         model.branchids.push(item.value);
                     });
-
+                    model.isDisabledsubmit = false;
                 };
                 model.pageloadbindings = function() {
                     model.Applicationstatus = [];
@@ -176,11 +176,12 @@
                             ModeOfPaymentID: model.rbtnModeOfPayment !== null && model.rbtnModeOfPayment !== "" && model.rbtnModeOfPayment !== undefined && model.rbtnModeOfPayment !== "0" && model.rbtnModeOfPayment !== 0 ? model.rbtnModeOfPayment : null
                         };
                     } else {
+                        model.isDisabledsubmit = false;
                         model.objvalue.From = from;
                         model.objvalue.To = to;
                     }
                     paymentdetailsReportService.EmplyeepaymentReportspayment(model.objvalue).then(function(response) {
-                        console.log(response);
+                        model.isDisabledsubmit = false;
                         if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" &&
                             response.data[0] !== undefined && response.data[0] !== null && response.data[0].length > 0) {
                             model.panelbodyhide = false;

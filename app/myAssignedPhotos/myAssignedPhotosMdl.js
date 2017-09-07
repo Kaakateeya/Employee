@@ -34,6 +34,7 @@
             model.profileID = '';
             model.assignFromData = '';
             model.assignToData = '';
+            model.isDisabledsubmit = false;
         };
 
         model.downloadTemplateurl = function(row) {
@@ -136,7 +137,7 @@
         };
 
         model.getMyassignedProfiles = function() {
-
+            model.isDisabledsubmit = true;
             model.downloadimagesArr = [];
             model.columns = [
                 { text: 'ProfileID', key: 'ProfileID', type: 'morelinks', templateUrl: model.ProfileIdTemplateDUrl, rowtype: "success" },
@@ -161,6 +162,7 @@
                 PageTo: 1000
             };
             myAssignedPhotosService.getMyassignedProfiles(inobj).then(function(response) {
+                model.isDisabledsubmit = false;
                 if (response.data && response.data.length > 0) {
                     model.totalRecords = response.data[0].TotalRows;
                     model.data = response.data;

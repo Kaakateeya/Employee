@@ -101,7 +101,7 @@
             <br>
             <div class="row">
                 <div class="col-lg-4">
-                    <input type="submit" value="Submit" class="button_custom pull-right">
+                    <input type="submit" value="Submit" ng-disabled="page.model.isDisabledsubmit" class="button_custom pull-right">
                 </div>
                 <div class="col-lg-6">
                     <input type="reset" value="Reset" class="button_custom button_custom_reset resetCls" ng-click="page.model.reset();">
