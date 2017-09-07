@@ -3,9 +3,9 @@
     angular
         .module('Kaakateeya')
         .factory('paymentdetailsReportModel', ['paymentdetailsReportService',
-            'complex-grid-config', 'arrayConstants', 'alert', 'modelpopupopenmethod', 'Commondependency',
+            'complex-grid-config', 'arrayConstants', 'alert', 'modelpopupopenmethod', 'Commondependency', 'helperservice',
             function(paymentdetailsReportService, configgrid, arrayConstants, alerts,
-                modelpopupopenmethod, Commondependency) {
+                modelpopupopenmethod, Commondependency, helperservice) {
                 var model = {};
                 model.showsearchrows = true;
                 model.showsearch = true;
@@ -56,7 +56,7 @@
                     model.Applicationstatus = arrayConstants.Applicationstatus;
                     model.categoryarray = [];
                     model.categoryarray = arrayConstants.catgory;
-                    paymentdetailsReportService.getMyprofilebind(1, 2, '').then(function(response) {
+                    helperservice.getMyprofilebind(1, 2, '').then(function(response) {
                         model.Brancharray = [];
                         model.Brancharraymain = [];
                         _.each(response.data, function(item) {

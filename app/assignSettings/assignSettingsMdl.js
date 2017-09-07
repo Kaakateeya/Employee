@@ -3,6 +3,7 @@
     angular
         .module('Kaakateeya')
         .factory('assignSettingsModel', ['assignSettingsService', 'complex-grid-config', '$filter', 'helperservice', 'alert', '$timeout', 'modelpopupopenmethod', 'SelectBindServicereg', 'authSvc',
+
             function(assignSettingsService, configgrid, filter, helpService, alerts, timeout, modelpopupopenmethod, SelectBindServicereg, authSvc) {
                 var model = {};
                 model.mpObj = {};
@@ -111,7 +112,7 @@
                     { text: 'Marketing Ticket', key: 'Marketingticketid', type: 'customlink', templateUrl: model.Marketingticketid, method: model.tickethistorypopup },
                 ];
                 model.MyProfilePageLoad = function() {
-                    assignSettingsService.getMyprofilebind(1, 2, '').then(function(response) {
+                    helpService.getMyprofilebind(1, 2, '').then(function(response) {
                         model.applicationStatusarray = [];
                         model.Castearray = [];
                         model.ProfileOwnerarray = [];

@@ -2,23 +2,19 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
 
     console.log("XXXXXXXX");
     return {
-
         countrySelect: function() {
-
             return http.get(app.apiroot + 'Dependency/getCountryDependency', { params: { dependencyName: "", dependencyValue: "" } });
         },
         Searchcountry: function() {
             return http.get(app.apiroot + 'Dependency/getCountryDependency', { params: { dependencyName: "Searchcountry", dependencyValue: "" } });
         },
         stateSelect: function(dependencyVal) {
-
             return http.get(app.apiroot + 'Dependency/getCountryDependency', { params: { dependencyName: "state", dependencyValue: dependencyVal } });
         },
         districtSelect: function(dependencyVal1) {
             return http.get(app.apiroot + 'Dependency/getCountryDependency', { params: { dependencyName: "distric", dependencyValue: dependencyVal1 } });
         },
         citySelect: function(dependencyVal2) {
-
             return http.get(app.apiroot + 'Dependency/getCountryDependency', { params: { dependencyName: "city", dependencyValue: dependencyVal2 } });
         },
         EducationCatgory: function() {
@@ -28,7 +24,6 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
             return http.get(app.apiroot + 'Dependency/getEducationDependency', { params: { dependencyName: "educationGroup", dependencyValue: dependencyVal2 } });
         },
         EducationSpecialisation: function(dependencyVal2) {
-
             return http.get(app.apiroot + 'Dependency/getEducationDependency', { params: { dependencyName: "educationSpeacialisation", dependencyValue: dependencyVal2 } });
         },
         ProfessionCatgory: function() {
@@ -38,44 +33,35 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
             return http.get(app.apiroot + 'Dependency/getProfessionDependency', { params: { dependencyName: "", dependencyValue: "" } });
         },
         ProfessionSpecialisation: function(dependencyVal2) {
-
             return http.get(app.apiroot + 'Dependency/getProfessionDependency', { params: { dependencyName: "ProfessionGroup", dependencyValue: dependencyVal2 } });
         },
         profspecialization: function(dependencyVal2) {
             return http.get(app.apiroot + 'Dependency/getProfessionDependency', { params: { dependencyName: "ProfessionSpecialisation", dependencyValue: dependencyVal2 } });
         },
         casteselect: function() {
-
             return http.get(app.apiroot + 'Dependency/getDropdown_filling_values', { params: { strDropdownname: "CasteName" } });
         },
         countryCodeselect: function() {
-
             return http.get(app.apiroot + 'Dependency/getDropdown_filling_values', { params: { strDropdownname: "CountryCode" } });
         },
         currency: function() {
-
             return http.get(app.apiroot + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Currency', dependencyValue: '', dependencyflagID: '' } });
         },
         SearchCurrency: function() {
-
             return http.get(app.apiroot + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'SearchCurrency', dependencyValue: '', dependencyflagID: '' } });
         },
         stars: function(obj) {
             return http.get(app.apiroot + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'StarType', dependencyValue: obj, dependencyflagID: '' } });
         },
         castedependency: function(obj1, obj2) {
-
             return http.get(app.apiroot + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Caste', dependencyValue: obj1, dependencyflagID: obj2 } });
         },
         subCasteBind: function(obj1) {
-
             return http.get(app.apiroot + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'SubCaste', dependencyValue: obj1, dependencyflagID: '' } });
         },
         branch: function(obj1) {
-
             return http.get(app.apiroot + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Region', dependencyValue: obj1, dependencyflagID: '' } });
         },
-
         newProfessionCat: function() {
             return http.get(app.apiroot + 'Dependency/getCountryDependency', { params: { dependencyName: "NewProfessionCat", dependencyValue: '' } });
         },
@@ -85,7 +71,6 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
         MediatorBranchName: function(Mediator) {
             return http.get(app.apiroot + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: Mediator, dependencyValue: '', dependencyflagID: '' } });
         },
-
         BranchNamebind: function(parentval1) {
             return http.get(app.apiroot + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'Region', dependencyValue: parentval1, dependencyflagID: '' } });
         },
@@ -117,7 +102,6 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
                 params: { iCountryID: obj.iCountryID, iCCode: obj.iCCode, MobileNumber: obj.MobileNumber, CustFamilyID: obj.CustFamilyID }
             });
         },
-
         sendMobileCodeBasedOnContactID: function(obj) {
             return http.get(app.apiroot + 'StaticPages/getResendmobile', {
                 params: { iCountryID: obj.iCountryID, iCCode: obj.iCCode, MobileNumber: obj.MobileNumber, CustContactNumbersID: obj.CustContactNumbersID }
@@ -129,11 +113,9 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
         verifyMobile: function(VCode, CustFamilyid) {
             return http.get(app.apiroot + 'StaticPages/getCustomerEmilVerificationCodeUpdate', { params: { VerificationCode: VCode, CustFamilyID: CustFamilyid } });
         },
-
         verifyMobileBasedOnContactID: function(VCode, CustContactNumbersid) {
             return http.get(app.apiroot + 'StaticPages/getEmilVerificationCode', { params: { VerificationCode: VCode, i_EmilMobileVerification: 2, CustContactNumbersID: CustContactNumbersid } });
         },
-
         getphotoslideimages: function(custid) {
             return http.get(app.apiroot + 'StaticPages/GetPhotoSlideImages', { params: { CustID: custid } });
         },
@@ -154,7 +136,6 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
             });
         },
         EmpBinding: function(flag, ID) {
-
             return http.get(app.apiroot + 'EmployeeReportPage/getMyProfileBindings', {
                 params: {
                     flag: flag,
@@ -191,13 +172,10 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
         upadateremainderdate: function(obj) {
             return http.post(app.apiroot + 'EmployeeReportPage/createReminderInsert', obj);
         },
-
         RegistrationValidation: function(obj) {
-            console.log("YYYYYYY");
             return http.post(app.apiroot + 'StaticPages/InsertTicketInfo', obj);
         },
         getEIprofileID: function(flag, ID, RelationShipID) {
-
             return http.get(app.apiroot + 'ExpressInterest/getExpressInterest_linq', {
                 params: {
                     flag: flag,
@@ -208,6 +186,14 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
         },
         checkConfidentail: function(profileID, empId, Flag) {
             return http.get(app.apiroot + 'smallPages/getcheckStatus', { params: { whereID: profileID, secondwhereID: empId, flag: Flag } });
+        },
+        onlyEmpNames: function(flag, ID) {
+            return http.get(app.apiroot + 'EmployeeReportPage/getMyProfileBindings', {
+                params: {
+                    flag: flag,
+                    ID: ID
+                }
+            });
         }
     };
 }]);

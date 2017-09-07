@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .factory('ReportsofEmployeesModel', factory);
 
-    factory.$inject = ['ReportsofEmployeesService', 'modelpopupopenmethod', 'Commondependency', '$timeout'];
+    factory.$inject = ['ReportsofEmployeesService', 'modelpopupopenmethod', 'Commondependency', '$timeout', 'helperservice'];
 
-    function factory(ReportsofEmployeesService, modelpopupopenmethod, Commondependency, timeout) {
+    function factory(ReportsofEmployeesService, modelpopupopenmethod, Commondependency, timeout, helperservice) {
         var model = {};
         model.arrayheader = ["Emp Name", "Total profiles", "No Services", "No Login", "EMNV", "Paid", "Unpaid", "Payment expired Customers", "No Photos", "In active Customers", "Email Bounce Info", "Presently In india", "Graph"];
         model.scrollevent = function(tableId) {
@@ -164,7 +164,7 @@
             return false;
         };
         model.pageloadbindings = function() {
-            ReportsofEmployeesService.getMyprofilebind(1, 2, '').then(function(response) {
+            helperservice.getMyprofilebind(1, 2, '').then(function(response) {
                 model.Brancharray = [];
                 model.ProfileOwnerarray = [];
                 _.each(response.data, function(item) {

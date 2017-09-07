@@ -3,9 +3,9 @@
     angular
         .module('Kaakateeya')
         .factory('NomatchesReasonpageModel', factory);
-    factory.$inject = ['NomatchesReasonpageService', 'Commondependency', '$timeout', 'complex-grid-config', '$filter', 'alert', 'modelpopupopenmethod'];
+    factory.$inject = ['NomatchesReasonpageService', 'Commondependency', '$timeout', 'complex-grid-config', '$filter', 'alert', 'modelpopupopenmethod', 'helperservice'];
 
-    function factory(NomatchesReasonpageService, Commondependency, timeout, complexgrid, $filter, alertss, commonpage) {
+    function factory(NomatchesReasonpageService, Commondependency, timeout, complexgrid, $filter, alertss, commonpage, helperservice) {
         var model = {};
         model.showsearchrows = true;
         model.showsearch = true;
@@ -16,7 +16,7 @@
         model.normalexcel = true;
         model.gridTableshow = false;
         model.pageloadbindings = function() {
-            NomatchesReasonpageService.getMyprofilebind(1, 2, '').then(function(response) {
+            helperservice.getMyprofilebind(1, 2, '').then(function(response) {
                 model.Brancharray = [];
                 model.ProfileOwnerarray = [];
                 _.each(response.data, function(item) {

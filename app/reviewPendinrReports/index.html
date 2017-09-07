@@ -1,4 +1,4 @@
-<div class="right_col" role="main" id="rreviewpendings">
+<div class="right_col" id="rreviewpendings">
     <uib-accordion close-others="oneAtATime">
         <div uib-accordion-group style="margin-top: -12px;box-shadow: 2px 2px 6px #ccc;" class="panel-default" is-open="page.model.opendiv">
             <uib-accordion-heading>
@@ -120,7 +120,9 @@
             </div>
         </div>
     </uib-accordion>
-    <complex-grid-new ng-show="page.model.data.length>0" config="page.model" model="page.model"></complex-grid-new>
+    <div class="search_page_main">
+        <complex-grid-new gid="'id1'" ng-show="page.model.data.length>0" config="page.model" model="page.model"></complex-grid-new>
+    </div>
 </div>
 <style>
     .datepicker3 {

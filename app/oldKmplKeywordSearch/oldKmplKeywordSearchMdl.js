@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .factory('oldKmplKeywordSearchModel', factory);
 
-    factory.$inject = ['oldKmplKeywordSearchService', 'complex-grid-config', 'complex-slide-config', 'modelpopupopenmethod'];
+    factory.$inject = ['oldKmplKeywordSearchService', 'complex-grid-config', 'complex-slide-config', 'modelpopupopenmethod', 'helperservice'];
 
-    function factory(oldKmplKeywordSearchService, configgrid, configslide, modelpopupopenmethod) {
+    function factory(oldKmplKeywordSearchService, configgrid, configslide, modelpopupopenmethod, helperservice) {
         var model = {};
         model.slide = {};
         model.grid = {};
@@ -221,7 +221,7 @@
             { text: 'DOMICILE', key: 'DOMICILE', type: 'label' }
         ];
         model.MyProfilePageLoad = function() {
-            oldKmplKeywordSearchService.getMyprofilebind(1, 2, '').then(function(response) {
+            helperservice.getMyprofilebind(1, 2, '').then(function(response) {
                 model.Applicationstatusarray = [];
                 model.Castearray = [];
                 _.each(response.data, function(item) {
