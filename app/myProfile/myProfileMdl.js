@@ -5,9 +5,9 @@
     angular
         .module('Kaakateeya')
         .factory('myProfileModel', ['$http', 'myProfileservice', 'authSvc', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'SelectBindServiceApp',
-            '$uibModal', '$timeout', 'complex-slide-config', 'modelpopupopenmethod', '$filter', 'arrayConstants', '$linq',
+            '$uibModal', '$timeout', 'complex-slide-config', 'modelpopupopenmethod', '$filter', 'arrayConstants',
             function(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss,
-                SelectBindServiceApp, uibModal, timeout, configslide, commonpage, filter, arrayConstants, $linq) {
+                SelectBindServiceApp, uibModal, timeout, configslide, commonpage, filter, arrayConstants) {
                 var model = {};
                 // model.grid = config;
                 model.slide = {};

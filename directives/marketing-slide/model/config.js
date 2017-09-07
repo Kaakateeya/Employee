@@ -1,6 +1,5 @@
 (function() {
     'use strict';
-
     angular
         .module('Kaakateeya')
         .factory('marketticketHistrymdl', factory);
@@ -9,7 +8,6 @@
     function factory(bindservice, authSvc, marketsvc, alertss, commonpage, arrayConstants, timeout, $filter, SelectBindServiceApp) {
         var model = {};
         model.MAobj = {};
-
         model.ticketid = '';
         model.marReplyArr = [];
         model.marInfo = [];
