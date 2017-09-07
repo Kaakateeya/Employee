@@ -30,17 +30,11 @@
         model.RelationshipChange = function(RelationshipID, type) {
             bindservice.getRelationName(3, model.ProfileID, RelationshipID).then(function(response) {
                 if (_.isArray(response.data[0]) && response.data[0].length > 0) {
-                    if (type === 'In') {
-                        model.MAobj.txtmrktRelationnameIn = response.data[0][0].NAME;
-                    } else {
-                        model.MAobj.txtmrktRelationnameout = response.data[0][0].NAME;
-                    }
+                    model.MAobj.txtmrktRelationnameIn = response.data[0][0].NAME;
+                    model.MAobj.txtmrktRelationnameout = response.data[0][0].NAME;
                 } else {
-                    if (type === 'In') {
-                        model.MAobj.txtmrktRelationnameIn = '';
-                    } else {
-                        model.MAobj.txtmrktRelationnameout = '';
-                    }
+                    model.MAobj.txtmrktRelationnameIn = '';
+                    model.MAobj.txtmrktRelationnameout = '';
                 }
             });
         };
@@ -61,7 +55,6 @@
                     });
                     timeout(function() {
                         model.RelationshipChange(39, 'In');
-                        model.RelationshipChange(39, 'Out');
                     }, 500);
                 }
             });
@@ -133,9 +126,7 @@
             if (type === 'assign') {
                 model.assignSubmit();
             }
-
         };
-
         model.memoSubmit = function(obj, type) {
             //msg, tktID, empid, assignEmpid
             marketsvc.memoSubmit(obj.txtmrktcalldiscussionMemo, model.ticketid, model.empid, obj.ddlmrktAssignmemo).then(function(response) {
@@ -151,7 +142,6 @@
                 }
             });
         };
-
         model.closeSubmit = function(obj) {
             //reasn, tktID, empid
             marketsvc.closeSubmit(obj.txtmrktcloseReasn, model.ticketid, model.empid).then(function(response) {
@@ -163,11 +153,9 @@
                 }
             });
         };
-
         model.assignSubmit = function() {
             marketsvc.assignEmpSubmit(model.ticketid, model.empid, model.empid).then(function(respnse) {});
         };
-
         model.close = function() {
             commonpage.closepopuppoptopopup();
         };
@@ -193,7 +181,6 @@
             model.ddlHrs = "";
             model.ddlmins = "";
             model.ddlcontactperson = "";
-
             model.ddlremCaltype = "";
             commonpage.thirdshowPopup('templates/reminderPopup.html', model.scope, 'md', "modalclassdashboardremainder");
             model.Hoursarray = commonpage.getnumberbind(0, 23, 'Hrs', 1);
@@ -202,19 +189,15 @@
             model.replaytypearray = arrayConstants.childStayingWith;
             model.categoryarray = arrayConstants.catgory;
             model.ddlremCatgory = 462;
-
             model.ticketIDRem = slidearray.Emp_Ticket_ID;
             model.RemID = slidearray.ReminderID;
-
             if (slidearray.ReminderID) {
-
                 model.txtreminderDate = moment(slidearray.ReminderDate).format('MM-DD-YYYY');
                 model.ddlremCaltype = parseInt(slidearray.TicketTypeID);
                 model.ddlcontactperson = slidearray.ReminderRelationID;
                 model.contactpersonname = slidearray.ReminderRelationName;
                 model.ddlremCatgory = parseInt(slidearray.Category);
                 model.remembertickets = slidearray.Reminderbody;
-
                 if (slidearray.ReminderDate) {
                     var remindertime = moment(slidearray.ReminderDate).format('HH:mm');
                     var remindertimeArr = remindertime.split(':');
@@ -225,7 +208,6 @@
                 model.remReset();
             }
         };
-
         model.remReset = function() {
             model.txtreminderDate = '';
             model.ddlremCaltype = '';
@@ -236,7 +218,6 @@
             model.ddlHrs = '';
             model.ddlmins = '';
         };
-
         model.reminderSubmit = function() {
             var Mobj = {
                 ProfileID: model.txtprofileidreminder,
@@ -260,7 +241,6 @@
                 }
             });
         };
-
         model.RelationshipChangerem = function(RelationshipID) {
             model.txtprofileidreminder = model.ProfileID;
             SelectBindServiceApp.getRelationName(3, model.txtprofileidreminder, RelationshipID).then(function(response) {

@@ -5,9 +5,9 @@
     angular
         .module('Kaakateeya')
         .factory('myProfileModel', ['$http', 'myProfileservice', 'authSvc', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'SelectBindServiceApp',
-            '$uibModal', '$timeout', 'complex-slide-config', 'modelpopupopenmethod', '$filter', 'arrayConstants',
+            '$uibModal', '$timeout', 'complex-slide-config', 'modelpopupopenmethod', '$filter', 'arrayConstants', 'helperservice',
             function(http, myProfileservice, authSvc, config, modelpopupopenmethod, alertss,
-                SelectBindServiceApp, uibModal, timeout, configslide, commonpage, filter, arrayConstants) {
+                SelectBindServiceApp, uibModal, timeout, configslide, commonpage, filter, arrayConstants, helperservice) {
                 var model = {};
                 // model.grid = config;
                 model.slide = {};
@@ -32,9 +32,8 @@
                     maxDate: null
                 };
                 model.showplus = false;
-
                 model.MyProfilePageLoad = function() {
-                    myProfileservice.getMyprofilebind(1, 2, '').then(function(response) {
+                    helperservice.getMyprofilebind(1, 2, '').then(function(response) {
                         model.mpObj.ddlProfileOwner = model.empid;
                         model.applicationStatusarray = [];
                         model.Castearray = [];

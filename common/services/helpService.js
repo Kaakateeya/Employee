@@ -49,4 +49,12 @@ app.service('helperservice', ['$http', function(http) {
     this.empLogout = function(empID) {
         return http.get(app.apiroot + 'smallPages/getEmpLogout', { params: { empid: empID } });
     };
+    this.getMyprofilebind = function(flag, ID) {
+        return http.get(app.apiroot + 'EmployeeReportPage/getMyProfileBindings', {
+            params: {
+                flag: flag,
+                ID: ID,
+            }
+        });
+    };
 }]);
