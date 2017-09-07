@@ -105,10 +105,11 @@
 
                         dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Sorry,Upload Photo Size Must Be Less than 4 mb', 4500);
                     } else {
-
+                        model.isDisabledsubmit = true;
                         var keyname = app.prefixPathImg + 'KMPL_' + CustID + '_Images/Img' + model.photorowID + '.' + extension;
 
                         fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
+                            model.isDisabledsubmit = false;
                             if (res.status == 200) {
                                 Commondependency.closepopup();
                                 model.uploadData = {
@@ -163,13 +164,14 @@
             };
 
             model.Delete = function() {
+                model.isDisabledsubmit = true;
                 var keynameq = app.prefixPathImg + model.deleteKey;
                 http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {
 
                 });
 
                 regManagePhotoService.linqSubmits(model.DCust_Photos_ID, 3).then(function(response) {
-
+                    model.isDisabledsubmit = false;
                     if (response.data === 1) {
                         Commondependency.closepopup();
                         model.getData();
