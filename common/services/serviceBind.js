@@ -208,6 +208,14 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
         },
         checkConfidentail: function(profileID, empId, Flag) {
             return http.get(app.apiroot + 'smallPages/getcheckStatus', { params: { whereID: profileID, secondwhereID: empId, flag: Flag } });
+        },
+        onlyEmpNames: function(flag, ID) {
+            return http.get(app.apiroot + 'EmployeeReportPage/getMyProfileBindings', {
+                params: {
+                    flag: flag,
+                    ID: ID
+                }
+            });
         }
     };
 }]);

@@ -234,7 +234,7 @@
                                     <li class="col-lg-6 form-group">
                                         <label class="pop_label_left">Assign/Re-assign </label>
                                         <div class="pop_controls_right select-box-my   input-group">
-                                            <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktAssignmemo" multiselectdropdown typeofdata="'EmpNames'" required>   
+                                            <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktAssignmemo" multiselectdropdown ng-options="item.value as item.label for item in page.model.onlyempnames" required>   
                                                      </select>
                                         </div>
                                     </li>

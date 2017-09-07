@@ -21,9 +21,11 @@
             dateFormat: 'dd-mm-yy'
         };
         model.init = function() {
+            model.onlyempnames = [];
             model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             timeout(function() {
                 model.marketReplytype();
+                model.getemployee('EmapName', '2');
             }, 500);
             return model;
         };
@@ -69,7 +71,18 @@
                 }
             });
         };
-
+        model.getemployee = function(flag, id) {
+            bindservice.onlyEmpNames(flag, id).then(function(response) {
+                console.log(response);
+                model.onlyempnames = [];
+                if (_.isArray(response.data) && response.data.length > 0) {
+                    model.onlyempnames.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                    _.each(response.data, function(item) {
+                        model.onlyempnames.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    });
+                }
+            });
+        };
         model.mailchange = function(val) {
             return _.where(model.marReplyArr, { value: parseInt(val) })[0].text;
         };
