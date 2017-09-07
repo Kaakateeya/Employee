@@ -33,6 +33,7 @@
                 scope.model.MAobj.txtmrktCalldiscussionin =
                 scope.model.MAobj.txtmrktCalldiscussionout =
                 scope.model.MAobj.txtmrktcalldiscussionMemo = "";
+            scope.model.MAobj.ddlmrktAssignmemo = "";
         }
     }
 })();

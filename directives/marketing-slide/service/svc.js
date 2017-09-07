@@ -27,9 +27,15 @@
                 });
             },
             getmarSlide: function(tktID, type) {
-                return http.get(app.apiroot + 'EmployeeReportPage/getMarketingTicketinformation', {
-                    params: { Ticketid: tktID, Type: type }
-                });
+                if (type === 'I') {
+                    return http.get(app.apiroot + 'EmployeeReportPage/getMarketingTicketinformation', {
+                        params: { Ticketid: tktID, Type: type }
+                    });
+                } else {
+                    return http.get(app.apiroot + 'EmployeeReportPage/getMarketingTickethistory', {
+                        params: { Ticketid: tktID, Type: type }
+                    });
+                }
             }
         };
     }

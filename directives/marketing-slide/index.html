@@ -224,7 +224,7 @@
                     </div>
                 </div>
             </md-tab>
-            <md-tab label="Internal Memo">
+            <md-tab label="Internal Memo" ng-click="model.onTabSelected(page.model.selectedIndex)">
                 <div class="tab">
                     <br>
                     <div>
@@ -234,7 +234,7 @@
                                     <li class="col-lg-6 form-group">
                                         <label class="pop_label_left">Assign/Re-assign </label>
                                         <div class="pop_controls_right select-box-my   input-group">
-                                            <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktAssignmemo" multiselectdropdown ng-options="item.value as item.label for item in page.model.onlyempnames" required>   
+                                            <select style="width: 70px;" class="smalldropdown" ng-model="model.MAobj.ddlmrktAssignmemo" multiselectdropdown ng-options="item.value as item.label for item in model.onlyempnames" required>   
                                                      </select>
                                         </div>
                                     </li>

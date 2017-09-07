@@ -25,7 +25,6 @@
             model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             timeout(function() {
                 model.marketReplytype();
-                model.getemployee('EmapName', '2');
             }, 500);
             return model;
         };
@@ -76,7 +75,7 @@
                 console.log(response);
                 model.onlyempnames = [];
                 if (_.isArray(response.data) && response.data.length > 0) {
-                    model.onlyempnames.push({ "label": "--select--", "title": "--select--", "value": 0 });
+                    model.onlyempnames.push({ "label": "--select--", "title": "--select--", "value": "" });
                     _.each(response.data, function(item) {
                         model.onlyempnames.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                     });
@@ -261,6 +260,11 @@
                     model.contactpersonname = response.data[0][0].NAME;
                 }
             });
+        };
+        model.onTabSelected = function(index) {
+            if (index === 3) {
+                model.getemployee('EmapName', '2');
+            }
         };
         return model.init();
     }
