@@ -197,8 +197,8 @@
                         if (response.data && (response.data) === 1) {
                             commonFactory.closepopup();
                             // window.open('http://localhost:3000/empLogintoCustomer/' + model.CustLoginArr[0].ProfileID, '_blank');
-                            window.open('http://183.82.0.58:8030/empLogintoCustomer/' + model.CustLoginArr[0].ProfileID, '_blank');
-                            // window.open('http://www.kaakateeya.com/empLogintoCustomer/' + model.CustLoginArr[0].ProfileID, '_blank');
+                            // window.open('http://183.82.0.58:8030/empLogintoCustomer/' + model.CustLoginArr[0].ProfileID, '_blank');
+                            window.open('http://www.kaakateeya.com/empLogintoCustomer/' + model.CustLoginArr[0].ProfileID, '_blank');
                         }
                     });
                     break;
