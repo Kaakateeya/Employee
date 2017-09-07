@@ -3,8 +3,8 @@
 
     angular
         .module('Kaakateeya')
-        .factory('marketingticketverificationModel', ['marketingticketverificationService', 'complex-grid-config', 'Commondependency',
-            function(marketingticketverificationService, configgrid, Commondependency) {
+        .factory('marketingticketverificationModel', ['marketingticketverificationService', 'complex-grid-config', 'Commondependency', 'helperservice',
+            function(marketingticketverificationService, configgrid, Commondependency, helpService) {
                 var model = {};
                 model.showsearchrows = true;
                 model.showsearch = true;
@@ -113,7 +113,7 @@
                     model.dateemployeeverifyto = "";
                 };
                 model.pageloadbindings = function() {
-                    marketingticketverificationService.getMyprofilebind(1, 2, '').then(function(response) {
+                    helpService.getMyprofilebind(1, 2, '').then(function(response) {
                         model.Brancharray = [];
                         model.ProfileOwnerarray = [];
                         model.Brancharray.push({ "label": "--select--", "title": "--select--", "value": "" });

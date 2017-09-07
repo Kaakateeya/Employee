@@ -30,7 +30,7 @@
                     return Arr;
                 };
                 model.MyProfilePageLoad = function() {
-                    reviewPendinrReportsService.getMyprofilebind(1, 2, '').then(function(response) {
+                    helpService.getMyprofilebind(1, 2, '').then(function(response) {
                         model.mpObj.ddlProfileOwner = model.empid;
                         model.applicationStatusarray = [];
                         model.Castearray = [];
