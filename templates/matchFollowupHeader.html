@@ -41,7 +41,7 @@
                 <label for="Region" class="control-label" ng-hide="true"></label>
                 <br>
                 <div>
-                    <input type="submit" class="btn btn-danger" value="Submit" ng-click="model.matchFollowupSelect();">
+                    <input type="submit" class="btn btn-danger" value="Submit" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.matchFollowupSelect();">
                 </div>
             </div>
         </div>
@@ -54,12 +54,12 @@
         <label style="color:#585050"> of {{config.totalRecords}}</label>
     </div>
     <div class="col-lg-7" ng-if="config.typeofPage==='page'">
-        <button ng-class="model.activebutton==='bothside'?'btn btn-success':'btn btn-default'" ng-click="model.CondtionButtonClick('bothside',0,false,false);">Bothside Intrst</button>&nbsp;
-        <button ng-class="model.activebutton==='oneside'?'btn btn-success':'btn btn-default'" ng-click="model.CondtionButtonClick('oneside',1,false,false);">Oneside Intrst</button>&nbsp;
-        <button ng-class="model.activebutton==='closed'?'btn btn-success':'btn btn-default'" ng-click="model.CondtionButtonClick('closed',0,true,false);">Close Tckt</button>&nbsp;
-        <button ng-class="model.activebutton==='notvwd'?'btn btn-success':'btn btn-default'" ng-click="model.CondtionButtonClick('notvwd',2,false,false);">Not Vwd</button>&nbsp;
-        <button ng-class="model.activebutton==='all'?'btn btn-success':'btn btn-default'" ng-click="model.CondtionButtonClick('all',3,false,false);">All</button>&nbsp;
-        <button ng-class="model.activebutton==='waiting'?'btn btn-success':'btn btn-default'" ng-click="model.CondtionButtonClick('waiting',0,false,true);">Waiting For Reply</button>
+        <button ng-class="model.activebutton==='bothside'?'btn btn-success':'btn btn-default'" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.CondtionButtonClick('bothside',0,false,false);">Bothside Intrst</button>&nbsp;
+        <button ng-class="model.activebutton==='oneside'?'btn btn-success':'btn btn-default'" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.CondtionButtonClick('oneside',1,false,false);">Oneside Intrst</button>&nbsp;
+        <button ng-class="model.activebutton==='closed'?'btn btn-success':'btn btn-default'" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.CondtionButtonClick('closed',0,true,false);">Close Tckt</button>&nbsp;
+        <button ng-class="model.activebutton==='notvwd'?'btn btn-success':'btn btn-default'" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.CondtionButtonClick('notvwd',2,false,false);">Not Vwd</button>&nbsp;
+        <button ng-class="model.activebutton==='all'?'btn btn-success':'btn btn-default'" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.CondtionButtonClick('all',3,false,false);">All</button>&nbsp;
+        <button ng-class="model.activebutton==='waiting'?'btn btn-success':'btn btn-default'" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.CondtionButtonClick('waiting',0,false,true);">Waiting For Reply</button>
     </div>
     <div class="col-lg-3" ng-if="config.typeofPage==='page'">
         <div class="col-lg-8">

@@ -48,9 +48,11 @@
                         model.religion = '';
                         model.mothertongue = 0;
                     }, 500);
+                    model.isDisabledsubmit = false;
                 };
                 model.SubmitPaymentOffer = function() {
                     if (model.btntextSubmit === 'Submit') {
+                        model.isDisabledsubmit = true;
                         var obj = {
                             ProfileID: model.rbtntype === '1' ? model.ProfileID : null,
                             MembershipID: model.memberShipType,
@@ -58,6 +60,7 @@
                             MembershipAmt: model.AgreedAmt
                         };
                         paymentOffersAssignService.submitPaymentOffer(obj).then(function(response) {
+                            model.isDisabledsubmit = false;
                             if (response.data && parseInt(response.data) === 1) {
                                 model.reset();
                                 model.ProfileID = '';

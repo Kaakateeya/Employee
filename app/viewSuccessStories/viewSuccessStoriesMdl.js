@@ -44,6 +44,7 @@
             };
 
             viewSuccessStoriesService.viewSuccessStories(inobj).then(function(response) {
+                model.isDisabledsubmit = false;
                 if (response.data && response.data.length > 0) {
                     model.totalRows = response.data[0][0].TotalRows;
                     if (to > 1) {
@@ -116,6 +117,7 @@
 
 
         model.createSuccessStory = function() {
+            model.isDisabledsubmit = true;
             var name = model.brideCustID + '_' + model.groomCustID + '_SuccessImage',
                 keyname = '';
             if (model.myFileupload) {
@@ -141,6 +143,7 @@
             inputobj.flag = model.typeofAction === 'edit' ? 1 : 0;
 
             viewSuccessStoriesService.createSuccessStory(inputobj).then(function(response) {
+                model.isDisabledsubmit = false;
                 if (response.data === 1) {
                     var strdisplay = model.typeofAction === 'edit' ? 'SuccessStories Updated successfully' : 'SuccessStories created  successfully';
                     alertss.timeoutoldalerts(model.scope, 'alert-success', strdisplay, 4500);
@@ -191,6 +194,7 @@
             model.dBrideProfileID = '';
             model.dGroomProfileID = '';
             model.dPhotoID = '';
+            model.isDisabledsubmit = false;
         };
 
 

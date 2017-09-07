@@ -77,6 +77,7 @@
             };
 
             model.secondRegSubmit = function(obj) {
+                model.isDisabledsubmit = true;
                 var regInput = {
                     GetDetails: {
                         NAME: obj.LabelName,
@@ -132,7 +133,7 @@
                     }
                 };
                 secondaryRegistrationService.submitSecodaryRegistration(regInput).then(function(res) {
-
+                    model.isDisabledsubmit = false;
                     $state.go('base.regManagePhoto', { CustID: stateParams.CustID, ProfileID: stateParams.ProfileID, genderID: stateParams.genderID });
 
                 });

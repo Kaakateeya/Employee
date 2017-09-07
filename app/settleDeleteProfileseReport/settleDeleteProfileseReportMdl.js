@@ -42,6 +42,7 @@
             model.grid2.TotalRecords = 0;
             model.grid1 = {};
             model.grid2 = {};
+            model.isDisabledsubmit = false;
         };
 
         model.regionChange = function(val) {
@@ -131,6 +132,7 @@
 
             model.grid1.gridTableshow = true;
             settleDeleteProfileseReportService.ProfileDeleteProfilesReport(inobj).then(function(response) {
+                model.isDisabledsubmit = false;
                 if (response.data) {
                     model.grid1.data = response.data[0].length > 0 ? response.data[0] : [];
                     model.grid1.TotalRecords = response.data[0].length > 0 ? response.data[0].length : 0;

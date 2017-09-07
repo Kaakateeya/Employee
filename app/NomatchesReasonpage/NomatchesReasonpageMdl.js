@@ -50,6 +50,7 @@
                 model.tmarketingempname = "";
             }, 50);
             model.pageloadbindings();
+            model.isDisabledsubmit = false;
         };
         model.ProfileIdTemplateDUrl = function(row) {
             var paidstatusclass = row.Paidstatus === 1 ? 'paidclass' : 'unpaid';
@@ -96,6 +97,7 @@
                 endindex: to
             };
             NomatchesReasonpageService.getnomatchesreason(objnomatch).then(function(response) {
+                model.isDisabledsubmit = false;
                 console.log(response);
                 if (response.data !== null && response.data !== undefined && response.data.length > 0 && response.data[0] !== null && response.data[0] !== undefined && (response.data[0]).length !== 0) {
                     if (from === 1) {

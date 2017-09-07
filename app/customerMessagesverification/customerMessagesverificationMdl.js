@@ -41,7 +41,7 @@
                 };
                 model.allLinksTemplateDUrl = function(row) {
                     var strInputString = row.Body.replace(/'/g, "\\");
-                    var paid = "<a style='cursor:pointer;' ng-click='model.updatecustomeredit(" + (row.MessageStatusID) + "," + JSON.stringify(strInputString) + ");'>Edit</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);'  ng-click='model.updatecustomermessages(null," + row.MessageStatusID + ",1);'>Accept</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' ng-click='model.updatecustomermessages(null," + row.MessageStatusID + ",0);'>Reject</a>" +
+                    var paid = "<a style='cursor:pointer;' ng-click='model.updatecustomeredit(" + (row.MessageStatusID) + "," + JSON.stringify(strInputString) + ");'>Edit</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-disabled='model.isDisabledsubmit'  ng-click='model.updatecustomermessages(null," + row.MessageStatusID + ",1);'>Accept</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' ng-disabled='model.isDisabledsubmit' ng-click='model.updatecustomermessages(null," + row.MessageStatusID + ",0);'>Reject</a>" +
                         "&nbsp;&nbsp;&nbsp;";
                     return paid;
                 };
@@ -73,6 +73,7 @@
                     });
                 };
                 model.updatecustomermessages = function(message, messageid, acceptrejectflag) {
+                    model.isDisabledsubmit = true;
                     var obj = {
                         FromCustID: null,
                         ToCustID: null,
@@ -85,6 +86,7 @@
                         MessageLinkId: null
                     };
                     customerMessagesverificationService.updatecustomermessages(obj).then(function(response) {
+                        model.isDisabledsubmit = false;
                         if (parseInt(response.data) === 1) {
                             if (message !== null) {
                                 model.close();

@@ -11,6 +11,7 @@
                  vm.model = model = customerMessagesverificationModel;
                  model.scope = scope;
                  model.customermeassgeverification();
+                 model.isDisabledsubmit = false;
              };
              vm.init();
 

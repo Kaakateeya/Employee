@@ -9,7 +9,7 @@
                         <input focus-me="true" type="text" ng-required="true" class="form-control" ng-model="page.model.txtProfileID" ng-blur="page.model.checkmethod();">
                     </div>
                     <div class="col-lg-3" ng-hide="page.model.showHidediv">
-                        <input type="button" value="Go" class="btn btn-danger" ng-click="page.model.viewprofilesubmit(page.model.txtProfileID);">
+                        <input type="button" value="Go" class="btn btn-danger" ng-disabled="page.model.isDisabledsubmit" ng-click="page.model.isDisabledsubmit=true;page.model.viewprofilesubmit(page.model.txtProfileID);">
                     </div>
                 </div>
                 <div ng-show="page.model.showHidediv">

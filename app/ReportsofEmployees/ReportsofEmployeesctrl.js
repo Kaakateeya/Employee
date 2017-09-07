@@ -21,6 +21,7 @@
              model.colorsback = 'rgb(175, 209, 234)';
              model.initdata("", "", "", "", 1, "");
              model.resetreports();
+             model.isDisabledsubmit = false;
          };
 
          vm.init();

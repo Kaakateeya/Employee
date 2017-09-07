@@ -14,6 +14,7 @@
          };
          scope.destroy = function() {
              model.regsec = {};
+             model.isDisabledsubmit = false;
              scope.secregForm.$setPristine();
              scope.secregForm.$setUntouched();
          };

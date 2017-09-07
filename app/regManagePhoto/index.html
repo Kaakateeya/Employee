@@ -174,7 +174,7 @@
         </div>
 
         <div class="modal-footer">
-            <input value="Upload" class="btn btn-success" type="submit">
+            <input value="Upload" class="btn btn-success" type="submit" ng-disabled="page.model.isDisabledsubmit">
             <input value="Cancel" class="btn btn-danger" ng-click="page.model.cancel();" type="button">
         </div>
 
@@ -191,7 +191,7 @@
         </div>
         <div class="modal-footer">
             <input value="Close" class="btn btn-success" ng-click="page.model.cancel();" type="button">
-            <input value="Delete" class="btn btn-danger" type="submit">
+            <input value="Delete" class="btn btn-danger" type="submit" ng-disabled="page.model.isDisabledsubmit">
         </div>
     </form>
 

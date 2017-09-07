@@ -31,7 +31,7 @@
                                 <md-checkbox ng-model="page.model.isLoginAnywhere">LoginAnywhere</md-checkbox>
                             </div>
                             <div class="col-lg-2" style="margin-top:2%;">
-                                <input type="submit" value="Search" class="btn btn-success" ng-click="page.model.getEmpList();">
+                                <input type="submit" value="Search" class="btn btn-success" ng-disabled="page.model.isDisabledsubmit" ng-click="page.model.isDisabledsubmit=true;page.model.getEmpList();">
                                 <div ng-if="page.model.data.length>0">
                                     Total Records : {{page.model.data.length}}
                                 </div>
@@ -279,7 +279,7 @@
                             <div class="row">
                                 <div style="border-top: 1px solid #ddd;padding-top: 1%;"></div>
                                 <div class="col-lg-6">
-                                    <input class="button_custom pull-right" type="submit" value="Submit" />
+                                    <input class="button_custom pull-right" type="submit" value="Submit" ng-disabled="page.model.isDisabledsubmit" />
                                 </div>
                                 <div class="col-lg-1">
                                     <input type="reset" class="button_custom button_custom_reset" value="Reset" ng-click="page.model.reset();">
@@ -331,7 +331,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <input type="submit" value="Submit" class="btn btn-success" ng-click="page.model.setAssignCounts();">
+        <input type="submit" value="Submit" class="btn btn-success" ng-disabled="page.model.isDisabledsubmit" ng-click="page.model.isDisabledsubmit=true;page.model.setAssignCounts();">
         <input type="button" value="close" class="btn btn-default" ng-click="page.model.close();">
     </div>
 </script>

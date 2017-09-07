@@ -15,7 +15,7 @@
                             </div>
                         </div>
                         <div class="col-lg-1">
-                            <button class="button_custom  col-lg-offset-3" style="display:initial;" ng-click="page.model.factsheetdetails(1,100,'grid');">Go</button>
+                            <button class="button_custom  col-lg-offset-3" style="display:initial;" ng-disabled="page.model.isDisabledsubmit" ng-click="page.model.isDisabledsubmit=true;page.model.factsheetdetails(1,100,'grid');">Go</button>
                         </div>
                         <div class="col-lg-4" ng-show="page.model.gridTableshow">
                             <label><a target="_blank" href="Viewfullprofile/{{page.model.txtprofileidfactsheet}}/0">{{page.model.gridtable8.data[0].Firstname}} {{page.model.gridtable8.data[0].Lastname}}</a></label>

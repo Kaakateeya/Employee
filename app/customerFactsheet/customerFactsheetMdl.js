@@ -202,6 +202,7 @@
                         // { text: 'Enteredbyemp', key: 'CreatedByEmpID', type: 'morelinks', templateUrl: model.enteredbyemployee }
                     ];
                     customerFactsheetService.getVerifyProfileid(model.txtprofileidfactsheet).then(function(respo) {
+                        model.isDisabledsubmit = false;
                         if (respo.data && parseInt(respo.data) === 1) {
                             customerFactsheetService.CustomerFactsheetDetails(model.txtprofileidfactsheet).then(function(response) {
                                 console.log(response);
@@ -252,6 +253,7 @@
                                 }
                             });
                         } else {
+                            model.isDisabledsubmit = false;
                             alerts.timeoutoldalerts(model.scope, 'alert-danger', 'ProfileID does not exists', 30000);
                         }
                     });
@@ -319,6 +321,7 @@
                     model.gridtable8.mainArray = [];
                     model.gridtable9.mainArray = [];
                     model.gridTableshow = false;
+                    model.isDisabledsubmit = false;
                 };
                 model.closepopup = function() {
                     modelpopupopenmethod.closepopup();

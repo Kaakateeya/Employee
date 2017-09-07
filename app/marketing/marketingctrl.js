@@ -11,6 +11,7 @@
                  model.templateUrl = "templates/marketingSlide.html";
                  model.config.headettemp = "templates/marketingSlideHeader.html";
                  scope.$on("$destroy", vm.destroy);
+                 model.isDisabledsubmit = false;
              };
              vm.destroy = function() {
                  model.destroy();

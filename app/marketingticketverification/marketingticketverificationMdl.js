@@ -39,6 +39,7 @@
                     return array;
                 };
                 model.submitmarktingreports = function(type) {
+                    model.isDisabledsubmit = true;
                     model.panelbodyhide = false;
                     model.tmarketingbranch = model.rdntypeofreport === '1' ? model.tmarketingbranch : "";
                     model.ticketmarketowner = model.rdntypeofreport === '0' ? model.ticketmarketowner : "";
@@ -62,6 +63,7 @@
                         intMarked: model.marktedvalue !== "" && model.marktedvalue !== null && model.marktedvalue !== undefined ? parseInt(model.marktedvalue) : null,
                     };
                     marketingticketverificationService.marketingverificationticketsubmit(obj).then(function(response) {
+                        model.isDisabledsubmit = false;
                         console.log(response);
                         if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" &&
                             response.data[0] !== undefined && response.data[0] !== null && response.data[0].length > 0) {

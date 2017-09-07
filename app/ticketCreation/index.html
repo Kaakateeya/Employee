@@ -27,9 +27,6 @@
                                 </div>
                                 <div ng-messages="ticketcreationform.txtprofileidcheck.$invalid">
                                     <div style="color: red;font-size: 12px;width:112px;" ng-if="ticketcreationform.txtprofileidcheck.$invalid && (ticketcreationform.$submitted)">*Required.</div>
-                                    <!--<div style="color: red;font-size: 12px;" ng-if="ticketcreationform.txtprofileidcheck.$error.required && (ticketcreationform.$submitted)">*Required.</div>-->
-                                    <!--<span style="color: red;font-size: 12px;" ng-show="ticketcreationform.txtprofileidcheck.$error.minlength">Input is too short!</span>-->
-                                    <!--<span style="color: red;font-size: 12px;" ng-show="ticketcreationform.txtprofileidcheck.$error.maxlength">Input is too long!</span>-->
                                 </div>
                             </div>
                             <div class="col-lg-4" ng-show="page.model.rbtntype!=='2' && page.model.rbtntype!=='0'">
@@ -52,9 +49,6 @@
                                         </div>
                                         <div ng-messages="ticketcreationform.txtphonenumber.$invalid" class="col-lg-6">
                                             <div style="color: red;font-size: 12px;width:112px;" ng-if="ticketcreationform.txtphonenumber.$invalid && (ticketcreationform.$submitted)">*Required.</div>
-                                            <!--<div style="color: red;font-size: 12px;" ng-if="ticketcreationform.txtphonenumber.$error.required && (ticketcreationform.$submitted)">*Required.</div>-->
-                                            <!--<span style="color: red;font-size: 12px;" ng-show="ticketcreationform.txtphonenumber.$error.minlength">Input is too short!</span>-->
-                                            <!--<span style="color: red;font-size: 12px;" ng-show="ticketcreationform.txtphonenumber.$error.maxlength">Input is too long!</span>-->
                                         </div>
                                     </div>
                                 </div>
@@ -101,7 +95,7 @@
                         </div>
                         <br>
                         <div class="form-group text-center" style="border-top: 1px solid #ddd;padding-top: 1%;">
-                            <button type="submit" class="button_custom" style="display:initial;">Submit</button>
+                            <button type="submit" class="button_custom" style="display:initial;" ng-disabled="page.model.isDisabledsubmit">Submit</button>
                             <input type="reset" class="button_custom button_custom_reset resetCls" value="Reset" ng-click="page.model.clearallcontrols();">
                         </div>
                         <br>

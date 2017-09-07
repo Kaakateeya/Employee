@@ -97,6 +97,7 @@
                 model.empType = '';
                 model.isLoginAnywhere = '';
                 model.modelEmpPhoto = '';
+                model.isDisabledsubmit = false;
             };
             model.EmpPhotopopup = function(src, userid, empid) {
                 model.uploadUserid = userid;
@@ -200,6 +201,7 @@
                     region: model.region && model.region[0] !== '' && model.region !== 0 ? model.region.join(',') : null
                 };
                 employeeCreationService.getEmpList(inObj).then(function(response) {
+                    model.isDisabledsubmit = false;
                     if (response.data && response.data.length > 0) {
                         model.data = response.data;
                         _.each(model.data, function(item) {
@@ -223,6 +225,7 @@
                     EMpname: model.AssignEmpname
                 };
                 employeeCreationService.setEmpCounts(inobjEmpCounts).then(function(response) {
+                    model.isDisabledsubmit = false;
                     model.close();
                     if (parseInt(response.data) === 1) {
                         alertss.timeoutoldalerts(model.scope, 'alert-success', 'Work assigned Successfully', 4500);
@@ -235,6 +238,7 @@
             };
 
             model.CreateEmployeeSubmit = function(empid) {
+                model.isDisabledsubmit = true;
                 var Imgpath;
                 var strCustDtryName = model.newuserID + "_EmplyeeImage";
                 if (model.upImage) {
@@ -301,7 +305,9 @@
                         model.inobjemp.EmployeeStatus = 425;
                         break;
                 }
+
                 employeeCreationService.employeeCreation(model.inobjemp).then(function(response) {
+                    model.isDisabledsubmit = false;
                     if (response.data && parseInt(response.data) === 1) {
                         var keyname = "";
                         switch (model.actionFlag) {

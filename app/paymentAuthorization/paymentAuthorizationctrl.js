@@ -14,6 +14,7 @@
                  model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                  model.ticketownermarketing = "";
                  model.ticketiddisable = true;
+                 model.isDisabledsubmit = false;
              };
              vm.init();
          }]);

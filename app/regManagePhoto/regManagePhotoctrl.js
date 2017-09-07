@@ -8,6 +8,7 @@
              window.scrollTo(0, 0);
              vm.model = regManagePhotoModel();
              vm.model.scope = scope;
+             vm.model.isDisabledsubmit = false;
          };
          vm.init();
      }
