@@ -8,7 +8,11 @@
          vm.init = function() {
              scope.model = model = baseModel;
              model.scope = scope;
-             scope.model.init();
+             if (model.currentCustID === stateParams.CustID) {
+
+             } else {
+                 scope.model.init();
+             }
          };
          scope.redirect = function(type) {
              $state.go('base.' + type, { CustID: stateParams.CustID });

@@ -39,7 +39,6 @@
             model.Brancharray = Commondependency.branch((model.rbtnregional !== undefined && model.rbtnregional !== null && model.rbtnregional !== "" && model.rbtnregional !== 0 && model.rbtnregional !== '0') ? (model.rbtnregional) : "");
         };
 
-
         model.onchangeemployee = function() {
             model.ProfileOwnerarray = [];
             model.ProfileOwnerarray = Commondependency.branch((model.tmarketingbranch !== undefined && model.tmarketingbranch !== null && model.tmarketingbranch !== "" && model.tmarketingbranch !== 0 && model.tmarketingbranch !== '0') ? (model.tmarketingbranch) : "");
