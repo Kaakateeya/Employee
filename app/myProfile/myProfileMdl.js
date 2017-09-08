@@ -23,6 +23,7 @@
                 model.grid.showpaging = true;
                 model.grid.myprofileexcel = true;
                 model.grid.normalexcel = true;
+                model.slidedata = [];
                 model.dateOptions = {
                     changeMonth: true,
                     changeYear: true,

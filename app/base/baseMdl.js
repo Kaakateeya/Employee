@@ -11,20 +11,9 @@
             model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
             model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
             CustID = stateParams.CustID;
+            model.currentCustID = stateParams.CustID;
             model.ProfileOwner = '';
             model.menuItem();
-            baseService.personalDetails(CustID).then(function(response) {
-                model.PersonalObj = response.data;
-                if (model.PersonalObj !== null && model.PersonalObj !== undefined) {
-                    $rootScope.ProfileOwner = model.ProfileOwner = model.PersonalObj.ProfileOwner;
-                    $rootScope.EditProfilePaidStatus = model.PersonalObj.PaidStatus;
-                    model.isprofileOwner = (model.ProfileOwner ? parseInt(model.ProfileOwner) === parseInt(model.empid) : false) || (model.PersonalObj.PaidStatus !== undefined && model.PersonalObj.PaidStatus !== null ? parseInt(model.PersonalObj.PaidStatus) !== 1 : false);
-                    baseService.nodatastatus(model.PersonalObj.ProfileID).then(function(res) {
-                        model.rev = res.data;
-                    });
-                }
-                model.unreviewedLinks();
-            });
             return model;
         };
         model.unreviewedLinks = function() {
@@ -96,9 +85,19 @@
         model.menuItem = function() {
             baseService.menudata(CustID).then(function(response) {
                 model.branchdata = JSON.parse(response.data)[0];
+                model.PersonalObj = model.branchdata;
                 model.registrationdate = filter('date')(model.branchdata.RegistrationDate, 'dd-MM-yyyy hh:mm:ss');
-                model.strCon = model.branchdata.HighConfendential == 1 && model.branchdata.IsConfidential == true ? ",SC" : (model.branchdata.HighConfendential == 1 ? ",SC" : (model.branchdata.IsConfidential == true ? ",C" : null));
+                model.strCon = model.branchdata.HighConfendential == 1 && model.branchdata.IsConfidential === true ? ",SC" : (model.branchdata.HighConfendential == 1 ? ",SC" : (model.branchdata.IsConfidential == true ? ",C" : null));
 
+                if (model.PersonalObj !== null && model.PersonalObj !== undefined) {
+                    $rootScope.ProfileOwner = model.ProfileOwner = model.PersonalObj.ProfileOwner;
+                    $rootScope.EditProfilePaidStatus = model.PersonalObj.PaidStatus;
+                    model.isprofileOwner = (model.ProfileOwner ? parseInt(model.ProfileOwner) === parseInt(model.empid) : false) || (model.PersonalObj.PaidStatus !== undefined && model.PersonalObj.PaidStatus !== null ? parseInt(model.PersonalObj.PaidStatus) !== 1 : false);
+                    baseService.nodatastatus(model.PersonalObj.ProfileID).then(function(res) {
+                        model.rev = res.data;
+                    });
+                }
+                model.unreviewedLinks();
             });
         };
         model.photorequestAndshow = function() {

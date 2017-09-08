@@ -109,6 +109,7 @@
                     _.map(model.data, function(item, index) {
                         item.chk = false;
                         item.index = index;
+                        model['chkval' + index] = false;
                     });
                 } else {
                     model.opendiv = true;
@@ -128,7 +129,10 @@
             model.branch = '';
             model.AssignEmp = '';
             model.isDisabledsubmit = false;
+            model.chkAll = '';
+            model.data = [];
         };
+
 
         return model;
 

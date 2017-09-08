@@ -3,9 +3,9 @@
     angular
         .module('Kaakateeya')
         .directive('pageReview', directive);
-    directive.$inject = ['commonFactory', '$uibModal', 'baseService', 'baseModel', 'authSvc'];
+    directive.$inject = ['commonFactory', '$uibModal', 'baseService', 'baseModel', 'authSvc', '$timeout'];
 
-    function directive(commonFactory, uibModal, baseService, baseModel, authSvc) {
+    function directive(commonFactory, uibModal, baseService, baseModel, authSvc, timeout) {
         var model = baseModel;
         var directive = {
             link: link,
@@ -33,6 +33,7 @@
 
                 }
             };
+
             scope.reviewSubmit = function() {
                 baseService.menuReviewstatus(scope.custid, '1', scope.sectionid).then(function(response) {
                     if (response.data !== undefined && response.data.length > 0) {
@@ -91,20 +92,28 @@
                 commonFactory.closepopup();
             };
             if (AdminID === 1 || AdminID === '1') {
-                baseService.menuReviewstatus(scope.custid, '2', scope.sectionid).then(function(response) {
-                    model.revstatus = JSON.parse(response.data);
-                    console.log('sectionID');
-                    console.log(model.revstatus);
-                    _.each(model.revstatus, function(item) {
-                        var SectionID = item.ReviewStatusID;
-                        if (SectionID === 0) {
-                            scope.showChk = true;
-                        } else {
-                            scope.showChk = false;
+
+                timeout(function() {
+                    scope.showChk = false;
+                    var reviewcount = 0;
+                    var sectionArr = scope.sectionid.split(',');
+                    _.each(sectionArr, function(item) {
+                        var isreviewArr = _.where(model.menuReviewdata, { SectionID: parseInt(item) });
+                        if (isreviewArr.length > 0) {
+                            reviewcount++;
                         }
                     });
-                });
+
+                    if (reviewcount > 0) {
+                        scope.showChk = true;
+                    } else {
+                        scope.showChk = false;
+                    }
+
+                }, 500);
+
             }
+
         }
     }
 })();

@@ -59,7 +59,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-5"><label for="" class="control-label required">Meeting arranged by emp</label></div>
-                        <div class="col-lg-6"><select multiselectdropdown name="ddlArrangedByEmp" typeofdata="'EmpNames'" ng-model="page.model.ddlArrangedByEmp" required></select></div>
+                        <div class="col-lg-6"><select multiselectdropdown name="ddlArrangedByEmp" typeofdata="'onlyEmpNames'" ng-model="page.model.ddlArrangedByEmp" required></select></div>
                     </div>
                     <div style="color:#a94442;" class="row clearfix" ng-if="((MMEntryForm.ddlArrangedByEmp.$invalid) && (MMEntryForm.$submitted))" ng-messages="MMEntryForm.ddlArrangedByEmp.$error" role="alert">
                         <div ng-message-exp="['required']" style="margin-left: 44%;">This field is required.

@@ -55,7 +55,7 @@
                             <div class="col-lg-3">
                                 <label for="All Profileid" class="classlabelverify">TypeofReport</label>
                                 <div style="padding-top: 6px;">
-                                    <md-radio-group ng-required="true" name="rdntypeofreport" layout="row" ng-model="page.model.rdntypeofreport" class="md-block" flex-gt-sm>
+                                    <md-radio-group ng-required="true" name="rdntypeofreport" layout="row" ng-model="page.model.rdntypeofreport" class="md-block" ng-change="page.model.typeOFreportChange(page.model.rdntypeofreport);" flex-gt-sm>
                                         <md-radio-button value="1"> Branch Wise</md-radio-button>
                                         <md-radio-button value="0">Employee Wise</md-radio-button>
                                     </md-radio-group>
@@ -68,14 +68,14 @@
                             <div class="col-lg-3" ng-if="page.model.rdntypeofreport==='1'">
                                 <label for="All Profileid" class="">Branch</label>
                                 <div style="padding-top: 6px;">
-                                    <select name="ticketowner" class="smalldropdown col-lg-5" ng-options="item.value as item.label for item in page.model.Brancharray" ng-model="page.model.tmarketingbranch" multiselectdropdown>   
+                                    <select name="ticketowner" class="smalldropdown col-lg-5" ng-options="item.value as item.label for item in page.model.onlyBranchArr" ng-model="page.model.tmarketingbranch" multiselectdropdown>   
                                </select>
                                 </div>
                             </div>
                             <div class="col-lg-3" ng-if="page.model.rdntypeofreport==='0'">
                                 <label for="All Profileid" class="classlabelverify">Employee</label>
                                 <div style="padding-top: 6px;">
-                                    <select name="ticketowner" class="smalldropdown col-lg-5" ng-options="item.value as item.label for item in page.model.ProfileOwnerarray" ng-model="page.model.ticketmarketowner" multiselectdropdown>   
+                                    <select name="ticketowner" class="smalldropdown col-lg-5" ng-options="item.value as item.label for item in page.model.onlyempnames" ng-model="page.model.ticketmarketowner" multiselectdropdown>   
                                </select>
                                 </div>
                             </div>
