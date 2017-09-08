@@ -779,7 +779,9 @@
                                     { ngModel: 'ComplexionID', labelName: 'Complexion', controlType: 'dropdown', isShow: true, dataBind: 'Complexion', dataSource: 'Complexion', validation: true },
                                     { ngModel: 'Showinprofile', labelName: 'Show Profile', controlType: 'dropdown', isShow: true, dataBind: 'Showprofile', dataSource: 'Showprofiles', validation: true },
                                     { ngModel: 'ApplicationstatusID', labelName: 'Application Status', controlType: 'dropdown', isShow: true, dataBind: 'Applicationstatus', dataSource: 'Applicationstatus', validation: true },
-                                    { divClear: true, ngModelFrom: 'PropertyValuefrom', ngModelTo: 'PropertyValueto', labelName: 'Property In Lakhs', controlType: 'textproperty', isShow: true, validation: true }
+                                    { divClear: true, ngModelFrom: 'PropertyValuefrom', ngModelTo: 'PropertyValueto', labelName: 'Property In Lakhs', controlType: 'textproperty', isShow: true, validation: true },
+                                    { ngModel: 'FatherCaste', labelName: 'Father Caste', controlType: 'dropdownparents', isShow: true, dataSource: 'Caste', validation: true },
+                                    { ngModel: 'MotherCaste', labelName: 'Mother Caste', controlType: 'dropdownparents', isShow: true, dataSource: 'Caste', validation: true }
                                 ]
                             }, {
                                 headerName: 'Education and Profession',
@@ -861,7 +863,9 @@
                                     { ngModel: 'ProfessionID', labelName: 'Profession', controlType: 'dropdown', isShow: true, dataBind: 'Professionsearch', dataSource: 'Professionsearch', validation: true },
                                     { ngModel: 'Showinprofile', labelName: 'Show Profile', controlType: 'dropdown', isShow: true, dataBind: 'Showprofile', dataSource: 'Showprofiles', validation: true },
                                     { ngModel: 'ApplicationstatusID', labelName: 'Application Status', controlType: 'dropdown', isShow: true, dataBind: 'Applicationstatus', dataSource: 'Applicationstatus', validation: true },
-                                    { divClear: true, type: 'BranchName', ngModel: 'RegionID', labelName: 'Region Of Branches', controlType: 'dropdown', isShow: true, dataBind: 'Regionofbranches', dataSource: 'Regionofbranches', validation: true }
+                                    { divClear: true, type: 'BranchName', ngModel: 'RegionID', labelName: 'Region Of Branches', controlType: 'dropdown', isShow: true, dataBind: 'Regionofbranches', dataSource: 'Regionofbranches', validation: true },
+                                    { ngModel: 'FatherCaste', labelName: 'Father Caste', controlType: 'dropdownparents', isShow: true, dataSource: 'Caste', validation: true },
+                                    { ngModel: 'MotherCaste', labelName: 'Mother Caste', controlType: 'dropdownparents', isShow: true, dataSource: 'Caste', validation: true }
                                 ]
                             }, {
                                 headerName: 'Profile Settings',
@@ -883,6 +887,18 @@
                         model.domDataadvanced = [];
                     }
                     // }, 1000);
+                };
+                model.parentscaste = function() {
+                    var casteshow = model.selectedIndex === 1 ? model.casteID : model.castID;
+                    if (casteshow !== undefined && casteshow !== null && casteshow !== "" && casteshow.length > 0) {
+                        if (casteshow.toString().indexOf('417') !== -1) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    } else {
+                        return false;
+                    }
                 };
                 model.returndynamicarray = function(val) {
                     var array;
