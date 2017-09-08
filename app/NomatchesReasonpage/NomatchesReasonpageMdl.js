@@ -15,6 +15,8 @@
         model.myprofileexcel = true;
         model.normalexcel = true;
         model.gridTableshow = false;
+        model.Brancharray = [];
+        model.ProfileOwnerarray = [];
         model.pageloadbindings = function() {
             model.getemployee('EmapName_Branch', '');
             // helperservice.getMyprofilebind(1, 2, '').then(function(response) {
@@ -41,7 +43,7 @@
         model.onchangeemployee = function() {
             model.ProfileOwnerarray = [];
             model.ProfileOwnerarray = Commondependency.branch((model.tmarketingbranch !== undefined && model.tmarketingbranch !== null && model.tmarketingbranch !== "" && model.tmarketingbranch !== 0 && model.tmarketingbranch !== '0') ? (model.tmarketingbranch) : "");
-        }
+        };
         model.resetreports = function() {
             model.rbtnregional = "";
             model.rbtnauthorize = "";
