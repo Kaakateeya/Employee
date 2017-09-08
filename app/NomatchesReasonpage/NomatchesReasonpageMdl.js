@@ -3,9 +3,9 @@
     angular
         .module('Kaakateeya')
         .factory('NomatchesReasonpageModel', factory);
-    factory.$inject = ['NomatchesReasonpageService', 'Commondependency', '$timeout', 'complex-grid-config', '$filter', 'alert', 'modelpopupopenmethod', 'helperservice'];
+    factory.$inject = ['NomatchesReasonpageService', 'Commondependency', '$timeout', 'complex-grid-config', '$filter', 'alert', 'modelpopupopenmethod', 'helperservice', 'SelectBindServiceApp'];
 
-    function factory(NomatchesReasonpageService, Commondependency, timeout, complexgrid, $filter, alertss, commonpage, helperservice) {
+    function factory(NomatchesReasonpageService, Commondependency, timeout, complexgrid, $filter, alertss, commonpage, helperservice, SelectBindServiceApp) {
         var model = {};
         model.showsearchrows = true;
         model.showsearch = true;
@@ -16,20 +16,21 @@
         model.normalexcel = true;
         model.gridTableshow = false;
         model.pageloadbindings = function() {
-            helperservice.getMyprofilebind(1, 2, '').then(function(response) {
-                model.Brancharray = [];
-                model.ProfileOwnerarray = [];
-                _.each(response.data, function(item) {
-                    switch (item.CountryCode) {
-                        case "Branch":
-                            model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                            break;
-                        case "Profile Owner":
-                            model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID, "display": item.Name });
-                            break;
-                    }
-                });
-            });
+            model.getemployee('EmapName_Branch', '');
+            // helperservice.getMyprofilebind(1, 2, '').then(function(response) {
+            //     model.Brancharray = [];
+            //     model.ProfileOwnerarray = [];
+            //     _.each(response.data, function(item) {
+            //         switch (item.CountryCode) {
+            //             case "Branch":
+            //                 model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+            //                 break;
+            //             case "Profile Owner":
+            //                 model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID, "display": item.Name });
+            //                 break;
+            //         }
+            //     });
+            // });
         };
         model.onchangebranch = function() {
             model.Brancharray = [];
@@ -233,6 +234,23 @@
         model.closeupload = function() {
             commonpage.closepopuppoptopopup();
         };
+
+        model.getemployee = function(flag, id) {
+            SelectBindServiceApp.onlyEmpNames(flag, id).then(function(response) {
+                console.log(response);
+                if (_.isArray(response.data) && response.data.length > 0) {
+                    _.each(response.data, function(item) {
+                        if (item.CountryCode === 'EmapName')
+                            model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                        else
+                            model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    });
+                }
+            });
+        };
+
+
+
         return model;
     }
 })();

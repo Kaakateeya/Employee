@@ -283,7 +283,7 @@
                             HoroscopeStatus: item.HoroscopeStatus,
                             HoroscopeImage: item.HoroscopeImage
                         });
-                        data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
+                        data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName });
                         data.push({ label: 'Caste', value: item.MotherTongue + "-" + item.Caste });
                         data.push({ label: 'Dor', value: item.DOR });
                         data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });

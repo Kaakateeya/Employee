@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .factory('empTrackingModel', factory);
 
-    factory.$inject = ['empTrackingService', 'commonFactory', 'complex-grid-config', 'modelpopupopenmethod', 'getArraysearch', '$timeout'];
+    factory.$inject = ['empTrackingService', 'commonFactory', 'complex-grid-config', 'modelpopupopenmethod', 'getArraysearch', '$timeout', 'SelectBindServiceApp'];
 
-    function factory(empTrackingService, commonFactory, config, modelpopupopenmethod, getArraysearch, timeout) {
+    function factory(empTrackingService, commonFactory, config, modelpopupopenmethod, getArraysearch, timeout, SelectBindServiceApp) {
 
         var model = {};
         model = config;
@@ -18,9 +18,12 @@
             yearRange: "-40:+5",
             dateFormat: 'dd-mm-yy'
         };
+        model.onlyempnames = [];
+        model.onlyBranchArr = [];
         model.init = function() {
             model.hrsbindArr = commonFactory.numberBindWithZeros('Hours', 1, 14);
             model.wrkngHrs = '';
+            model.getemployee('EmapName_Branch', '');
             model.branch = ["319", "320", "321", "322", "323", "324", "325", "326", "328", "329", "330", "331", "332", "333", "334", "335", "336", "337", "338", "339", "340", "341", "342", "343", "344"];
             return model;
         };
@@ -134,6 +137,20 @@
             model.getEmpReport(model.excelVal, undefined, "export");
         };
 
+        model.getemployee = function(flag, id) {
+            SelectBindServiceApp.onlyEmpNames(flag, id).then(function(response) {
+                console.log(response);
+                model.onlyempnames = [];
+                if (_.isArray(response.data) && response.data.length > 0) {
+                    _.each(response.data, function(item) {
+                        if (item.CountryCode === 'EmapName')
+                            model.onlyempnames.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                        else
+                            model.onlyBranchArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    });
+                }
+            });
+        };
         return model.init();
     }
 })();

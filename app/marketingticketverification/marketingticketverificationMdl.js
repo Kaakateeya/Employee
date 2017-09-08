@@ -3,8 +3,8 @@
 
     angular
         .module('Kaakateeya')
-        .factory('marketingticketverificationModel', ['marketingticketverificationService', 'complex-grid-config', 'Commondependency', 'helperservice',
-            function(marketingticketverificationService, configgrid, Commondependency, helpService) {
+        .factory('marketingticketverificationModel', ['marketingticketverificationService', 'complex-grid-config', 'Commondependency', 'helperservice', 'SelectBindServiceApp',
+            function(marketingticketverificationService, configgrid, Commondependency, helpService, SelectBindServiceApp) {
                 var model = {};
                 model.showsearchrows = true;
                 model.showsearch = true;
@@ -14,6 +14,8 @@
                 model.normalexcel = true;
                 model.gridTableshow = false;
                 model.showplus = false;
+                model.onlyempnames = [];
+                model.onlyBranchArr = [];
                 model.dateOptions = {
                     changeMonth: true,
                     changeYear: true,
@@ -115,22 +117,22 @@
                     model.dateemployeeverifyto = "";
                 };
                 model.pageloadbindings = function() {
-                    helpService.getMyprofilebind(1, 2, '').then(function(response) {
-                        model.Brancharray = [];
-                        model.ProfileOwnerarray = [];
-                        model.Brancharray.push({ "label": "--select--", "title": "--select--", "value": "" });
-                        model.ProfileOwnerarray.push({ "label": "--select--", "title": "--select--", "value": "" });
-                        _.each(response.data, function(item) {
-                            switch (item.CountryCode) {
-                                case "Branch":
-                                    model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                                    break;
-                                case "Profile Owner":
-                                    model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                                    break;
-                            }
-                        });
-                    });
+                    // helpService.getMyprofilebind(1, 2, '').then(function(response) {
+                    //     model.Brancharray = [];
+                    //     model.ProfileOwnerarray = [];
+                    //     model.Brancharray.push({ "label": "--select--", "title": "--select--", "value": "" });
+                    //     model.ProfileOwnerarray.push({ "label": "--select--", "title": "--select--", "value": "" });
+                    //     _.each(response.data, function(item) {
+                    //         switch (item.CountryCode) {
+                    //             case "Branch":
+                    //                 model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    //                 break;
+                    //             case "Profile Owner":
+                    //                 model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    //                 break;
+                    //         }
+                    //     });
+                    // });
                 };
                 model.pagechange = function(val) {
                     model.submitmarktingreports('grid');
@@ -147,6 +149,46 @@
                     // model.ProfileOwnerarray = Commondependency.branch((model.rbtnregional !== undefined && model.rbtnregional !== null && model.rbtnregional !== "" && model.rbtnregional !== 0 && model.rbtnregional !== '0') ? (model.rbtnregional) : "");
                     //BranchNamebindval
                 };
+
+                model.typeOFreportChange = function(val) {
+                    if (val === '0') {
+                        model.getemployee('EmapName', '');
+                    } else {
+                        model.getemployee('Branch', '');
+                    }
+                };
+
+                model.getemployee = function(flag, id) {
+                    if (flag === 'EmapName') {
+                        model.ticketmarketowner = '';
+                        if (model.onlyempnames.length === 0) {
+                            SelectBindServiceApp.onlyEmpNames(flag, id).then(function(response) {
+                                if (_.isArray(response.data) && response.data.length > 0) {
+                                    model.onlyempnames.push({ "label": "--select--", "title": "--select--", "value": "" });
+                                    _.each(response.data, function(item) {
+                                        model.onlyempnames.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                                    });
+                                }
+                            });
+                        }
+                    } else {
+                        model.tmarketingbranch = '';
+                        if (model.onlyBranchArr.length === 0) {
+                            SelectBindServiceApp.onlyEmpNames(flag, id).then(function(response) {
+                                if (_.isArray(response.data) && response.data.length > 0) {
+                                    model.onlyBranchArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+                                    _.each(response.data, function(item) {
+                                        model.onlyBranchArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                                    });
+                                }
+                            });
+                        }
+                    }
+
+                };
+
+
+
                 return model;
 
             }

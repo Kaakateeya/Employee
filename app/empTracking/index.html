@@ -10,13 +10,13 @@
                     <div class="col-lg-4">
                         <label for="" class="control-label col-lg-6">Branch</label>
                         <div class="col-lg-6">
-                            <select multiselectdropdown ng-model="page.model.branch" multiple typeofdata="'Branch'"></select>
+                            <select multiselectdropdown ng-model="page.model.branch" multiple ng-options="item.value as item.label for item in page.model.onlyBranchArr"></select>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <label for="" class="control-label col-lg-6">Employee name</label>
                         <div class="col-lg-6">
-                            <select multiselectdropdown ng-model="page.model.empNames" multiple typeofdata="'EmpNames'"></select>
+                            <select multiselectdropdown ng-model="page.model.empNames" multiple ng-options="item.value as item.label for item in page.model.onlyempnames"></select>
                         </div>
                     </div>
                     <div class="col-lg-4">
