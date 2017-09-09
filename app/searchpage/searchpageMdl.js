@@ -116,10 +116,12 @@
                             model.ReligionID = model.arrayToString(data.religionid);
                             model.MothertongueID = model.arrayToString(data.MotherTongueID);
                             model.Caste = [];
+                            model.Casteparents = [];
                             model.EducationCategoryID = [];
                             model.Educationgroup = [];
                             model.educationspeciallisation = [];
                             model.Caste = Commondependency.casteDepedency(model.ReligionID !== null && model.ReligionID.length > 0 ? model.ReligionID.toString() : "", (model.MothertongueID !== null && model.MothertongueID.length > 0) ? (model.MothertongueID).toString() : "");
+                            model.Casteparents = Commondependency.casteDepedency(model.ReligionID !== null && model.ReligionID.length > 0 ? model.ReligionID.toString() : "", (model.MothertongueID !== null && model.MothertongueID.length > 0) ? (model.MothertongueID).toString() : "", true);
                             model.SubCaste = Commondependency.subCaste((data.casteid !== null && data.casteid !== "" && data.casteid !== undefined) ? (data.casteid).toString() : "");
                             model.CountryID = model.arrayToString(data.CountryID);
                             model.EducationID = model.arrayToString(data.EducationCategoryID);
@@ -153,7 +155,9 @@
                                 model.casteID = model.arrayToString(data.casteid);
                                 model.SubCasteID = model.arrayToString(data.SubCasteID);
                                 model.EducationGroupID = model.arrayToString(data.EducationGroupID);
-
+                                model.FatherCaste = "";
+                                model.MotherCaste = "";
+                                model.getcastetext();
                             }, 100);
                         }
                         alerts.dynamicpopupclose();
@@ -410,8 +414,12 @@
                     model.ApplicationstatusID = model.arrayToString("54");
                     model.MothertongueID = model.arrayToString("1");
                     model.ReligionID = model.arrayToString("1");
+                    model.Casteparents = [];
                     model.Caste = Commondependency.casteDepedency(model.ReligionID, model.MothertongueID);
+                    model.Casteparents = Commondependency.casteDepedency(model.ReligionID, model.MothertongueID, true);
                     model.sidebarnavshow = true;
+                    model.FatherCaste = "";
+                    model.MotherCaste = "";
                 };
                 model.submitadvancedsearch = function(frompage, topage, typeofexcel) {
                     model.config.shortlistmodel.shortlistmodelinner = frompage === 1 ? [] : model.config.shortlistmodel.shortlistmodelinner;
@@ -780,8 +788,8 @@
                                     { ngModel: 'Showinprofile', labelName: 'Show Profile', controlType: 'dropdown', isShow: true, dataBind: 'Showprofile', dataSource: 'Showprofiles', validation: true },
                                     { ngModel: 'ApplicationstatusID', labelName: 'Application Status', controlType: 'dropdown', isShow: true, dataBind: 'Applicationstatus', dataSource: 'Applicationstatus', validation: true },
                                     { divClear: true, ngModelFrom: 'PropertyValuefrom', ngModelTo: 'PropertyValueto', labelName: 'Property In Lakhs', controlType: 'textproperty', isShow: true, validation: true },
-                                    { ngModel: 'FatherCaste', labelName: 'Father Caste', controlType: 'dropdownparents', isShow: true, dataSource: 'Caste', validation: true },
-                                    { ngModel: 'MotherCaste', labelName: 'Mother Caste', controlType: 'dropdownparents', isShow: true, dataSource: 'Caste', validation: true }
+                                    { ngModel: 'FatherCaste', labelName: 'Father Caste', controlType: 'dropdownparents', isShow: true, dataSource: 'Casteparents', validation: true },
+                                    { ngModel: 'MotherCaste', labelName: 'Mother Caste', controlType: 'dropdownparents', isShow: true, dataSource: 'Casteparents', validation: true }
                                 ]
                             }, {
                                 headerName: 'Education and Profession',
@@ -864,8 +872,8 @@
                                     { ngModel: 'Showinprofile', labelName: 'Show Profile', controlType: 'dropdown', isShow: true, dataBind: 'Showprofile', dataSource: 'Showprofiles', validation: true },
                                     { ngModel: 'ApplicationstatusID', labelName: 'Application Status', controlType: 'dropdown', isShow: true, dataBind: 'Applicationstatus', dataSource: 'Applicationstatus', validation: true },
                                     { divClear: true, type: 'BranchName', ngModel: 'RegionID', labelName: 'Region Of Branches', controlType: 'dropdown', isShow: true, dataBind: 'Regionofbranches', dataSource: 'Regionofbranches', validation: true },
-                                    { ngModel: 'FatherCaste', labelName: 'Father Caste', controlType: 'dropdownparents', isShow: true, dataSource: 'Caste', validation: true },
-                                    { ngModel: 'MotherCaste', labelName: 'Mother Caste', controlType: 'dropdownparents', isShow: true, dataSource: 'Caste', validation: true }
+                                    { ngModel: 'FatherCaste', labelName: 'Father Caste', controlType: 'dropdownparents', isShow: true, dataSource: 'Casteparents', validation: true },
+                                    { ngModel: 'MotherCaste', labelName: 'Mother Caste', controlType: 'dropdownparents', isShow: true, dataSource: 'Casteparents', validation: true }
                                 ]
                             }, {
                                 headerName: 'Profile Settings',
@@ -891,7 +899,8 @@
                 model.parentscaste = function() {
                     var casteshow = model.selectedIndex === 1 ? model.casteID : model.castID;
                     if (casteshow !== undefined && casteshow !== null && casteshow !== "" && casteshow.length > 0) {
-                        if (casteshow.toString().indexOf('417') !== -1) {
+                        // if (casteshow.toString().indexOf('417') !== -1) {
+                        if (model.currentSelected.toString().indexOf('Intercaste') !== -1) {
                             return true;
                         } else {
                             return false;
@@ -1018,7 +1027,17 @@
                     }
                     return classslide;
                 };
+                model.getcastetext = function() {
+                    var casteshow = model.selectedIndex === 1 ? model.casteID : model.castID;
+                    if (casteshow !== undefined && casteshow !== null && casteshow !== "" && casteshow.length > 0) {
+                        casteshow = casteshow.toString();
+                        var currentSelected = filter('filter')(model.Caste, { value: parseInt(casteshow) })[0];
+                        debugger;
+                        model.currentSelected = currentSelected.label;
+                        // alert("Selected Value: " + currentSelected.value + "\nSelected Text: " + currentSelected.label);
 
+                    }
+                };
                 return model;
             }
         ]);

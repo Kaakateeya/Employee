@@ -141,9 +141,11 @@
                 });
                 return starArr;
             },
-            casteDepedency: function(parentval1, parentval2) {
+            casteDepedency: function(parentval1, parentval2, paramparents) {
                 var casteArr = [];
-                // casteArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+                if (paramparents === true) {
+                    casteArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+                }
                 SelectBindService.castedependency(parentval1, parentval2).then(function(response) {
                     _.each(response.data, function(item) {
                         casteArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
