@@ -24,20 +24,15 @@
                     model.name = authSvc.LoginEmpName();
                     model.empphoto = authSvc.empphoto();
                     model.getemployeenotification(0, null, null, 0);
-                    // modelpopupopenmethod.getEmployeeLoginCoutDetails().then(function(response) {
-                    //     model.logincounts = JSON.parse(response.data[0]);
-                    // });
                     model.usernameemployeeid = sessionStorage.getItem("usernameemployeeid");
                     return model;
                 };
-
                 model.logout = function() {
                     model.name = "";
                     authSvc.logout();
                     helperservice.empLogout(model.empid);
                     $state.go("login", {});
                 };
-
                 model.lockscreen = function() {
                     model.lock = true;
                     model.passwordemployee = "";
@@ -46,7 +41,6 @@
                 model.close = function(type) {
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
-
                 model.loginsubmit = function(form) {
                     modelpopupopenmethod.getloginpage(form).then(function(response) {
                         if (response.data !== undefined && response.data !== "" && response.data !== null) {
@@ -102,9 +96,7 @@
                     $state.go("base.searchpage", { id: id, Profileid: Profileid }, { reload: true });
                 };
                 model.changepassword = function(form) {
-
                     modelpopupopenmethod.getChangeEmployeePassword(model.empid, form.model.currentpassword, form.model.confirmpassword).then(function(response) {
-
                         if (parseInt(response.data) === 1) {
                             alerts.timeoutoldalerts(model.scope, 'alert-success', 'Password Changed Successfully', 3000);
                             modelpopupopenmethod.closepopuppoptopopup();
@@ -130,13 +122,11 @@
                 model.changepasswordpopup = function() {
                     modelpopupopenmethod.showPopupphotopoup('changepassword.html', model.scope, 'md', "modalclassdashboardphotopopuplogin");
                 };
-
                 model.hideshowunpaid = function() {
                     model.unpaidmember = !model.unpaidmember;
                     if (model.unpaidmember)
                         model.getpresentunpaidmembers();
                 };
-
                 model.showNotifications = function() {
                     model.slideshowheader(1, 10);
                 };
@@ -210,7 +200,6 @@
                             Date: moment(item.Date).format('DD-MMM-YYYY')
                         });
                     });
-
                     return array;
                 };
                 model.slideshowheader = function(frompage, topage) {
@@ -299,14 +288,12 @@
                     modelpopupopenmethod.showPopupphotopoup('unpaidmarket.html', model.scope, 'md', "modalclassdashboardphotopopup");
                 };
                 model.clickNotification = function(item, index) {
-                    console.log(item);
                     model.getemployeenotification(2, item.iNotificationID, item.CategoryID, item.ICustID);
                     model.notificationarray.splice(index, 1);
                 };
                 model.notifyclickhide = function(index) {
                     model.notificationarray.splice(index, 1);
                 };
-
                 return model.init();
             }
         ]);

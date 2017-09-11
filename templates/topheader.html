@@ -176,10 +176,6 @@
             </table>
         </div>
     </ul>
-    <!-- <div class="ui-notification ng-scope success" style="top: 10px; right: 10px;">
-        <h3>ddddddd</h3>
-        <div class="message">Success notification 20s</div>
-    </div> -->
 
     <script type="text/ng-template" id="loginContent.html">
         <div id="loginnewidcc" style='z-index: 99999'>
@@ -330,19 +326,6 @@
     <script type="text/ng-template" id="headerdslide.html">
         <complex-slide config="head.model.configheader" model="head.model"></complex-slide>
     </script>
-    <!-- <script type="text/ng-template" id="custom_template.html">
-        <div class="ui-notification">
-            <div ng-repeat="item in head.model.notificationarray">
-                <div class="message">
-                    <div class="col-lg-12">
-                        <div class="col-xs-11  alert alert-success animated fadeInDown" role="alert"><img class="img-circle pull-left" height="50" width="50" ng-src="item.strCustomerPhoto"><span>{{ item.strCustomerName}}</span><button type="button" class="close" ng-click="head.model.notifyclickhide($index)">×</button><br><span>{{item.strActionName}}</span>&nbsp;&nbsp;&nbsp;
-                            <a href="javascript:void(0);" ng-click="head.model.clickNotification(item,$index)">Read</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </script> -->
     <script type="text/ng-template" id="custom_template.html">
         <div class="ui-notification  warning" ng-show="head.model.notificationarray.length>0" style="top: 10px; right: 10px;">
             <div class="clearfix"></div>
@@ -350,7 +333,7 @@
             <div ng-repeat="item in head.model.notificationarray">
                 <div class="message">
                     <div class="col-lg-12">
-                        <div class="col-xs-11  alert alert-success animated fadeInDown" role="alert"><img class="img-circle pull-left" height="50" width="50" ng-src="{{item.strCustomerPhoto}}"><span>{{ item.strCustomerName}}</span><button type="button" class="close" ng-click="head.model.notifyclickhide($index)">×</button><br><span>{{item.strActionName}}</span>&nbsp;&nbsp;&nbsp;
+                        <div class="col-xs-11  alert alert-success animated fadeInDown" role="alert"><img class="img-circle pull-left" height="50" width="50" ng-src="{{item.strCustomerPhoto}}" style="margin-right: 10px;"><span>{{ item.strCustomerName}}</span><button type="button" class="close" ng-click="head.model.notifyclickhide($index)">×</button><br><span>{{item.strActionName}}</span>&nbsp;&nbsp;&nbsp;
                             <a href="javascript:void(0);" ng-click="head.model.clickNotification(item,$index)" style="color:blue">Read</a>
                         </div>
                     </div>
