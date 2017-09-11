@@ -248,6 +248,21 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                 return http.get(app.apiroot + 'EmployeeReportPage/getpresentunpaidmembers', {
                     params: { EmpID: Empid }
                 });
+            },
+            getemployeenotification: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/employeenotications', obj);
+            },
+            getlandingdataheader: function(empid, branchcode, frompage, topage, tablename, intLoadStatus) {
+                return http.get(app.apiroot + 'CustomerPersonalUpdate/getEmplanding_counts_Admin', {
+                    params: {
+                        OwnerName: empid,
+                        Branchname: branchcode,
+                        StartIndex: frompage,
+                        EndIndex: topage,
+                        strTableType: tablename,
+                        intLoadStatus: intLoadStatus
+                    }
+                });
             }
         };
     }

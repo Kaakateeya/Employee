@@ -20,9 +20,13 @@
                         model.usernameemployeeid = sessionStorage.getItem("usernameemployeeid");
                         model.unpaidmember = false;
                     }
+                    model.templateUrl = "templates/dashBoardslide.html";
+                    model.configheader.headettemp = "dashboardheader.html";
                     $http.get('your-server-endpoint');
                 };
+
                 vm.initheader();
+
             }
         ]);
 
