@@ -273,7 +273,7 @@
                                 model.notificationarray = [];
                                 model.notificationarray.push("No data Found");
                             }
-                            // Notification.warning(({ message: '', templateUrl: 'custom_template.html', delay: null, scope: model.scope }));
+                            Notification.warning(({ message: '', templateUrl: 'custom_template.html', delay: 5000, scope: model.scope, closeOnClick: false }));
                         }
                     });
                 };
