@@ -9,7 +9,8 @@
                         <div style="cursor:pointer;color: #ffffff;font-style: italic;text-decoration: underline;" href="javascript:void(0)" ng-click="head.model.hideshowunpaid()">
                             Unpaid Members
                         </div>
-                        <div style="cursor:pointer;color: #ffffff;font-style: italic;text-decoration: underline;" href="javascript:void(0)" ng-click="head.model.showNotifications()">
+                        <!-- head.model.showNotifications() -->
+                        <div style="cursor:pointer;color: #ffffff;font-style: italic;text-decoration: underline;" href="javascript:void(0)" ng-click="head.model.getemployeenotification(0, null, null, 0)">
                             Notifications
                         </div>
                     </li>
@@ -355,7 +356,13 @@
                     </div>
                 </div>
             </div>
+            <div class="message">
+                <a href="javascript:void(0);" class="pull-right" ng-click="head.model.showNotifications()" style="color:blue">Load more</a>
+            </div>
+            <div class="clearfix"></div>
+            <br>
         </div>
+
     </script>
     <span us-spinner="{radius:30, width:8, length: 16}" spinner-start-active="true"></span>
     </div>

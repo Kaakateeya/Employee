@@ -214,6 +214,7 @@
                     return array;
                 };
                 model.slideshowheader = function(frompage, topage) {
+                    Notification.clearAll();
                     modelpopupopenmethod.getlandingdataheader(model.empid, model.empBranchID, frompage, topage, 'Customer Notification Status', 1).then(function(response) {
                         if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0 && response.data[0].length > 0) {
                             model.slidearrayaa = response.data[0];
@@ -273,7 +274,8 @@
                                 model.notificationarray = [];
                                 model.notificationarray.push("No data Found");
                             }
-                            Notification.warning(({ message: '', templateUrl: 'custom_template.html', delay: 5000, scope: model.scope, closeOnClick: false }));
+                            Notification.clearAll();
+                            Notification.warning(({ message: '', templateUrl: 'custom_template.html', delay: 10000, scope: model.scope, closeOnClick: false }));
                         }
                     });
                 };
