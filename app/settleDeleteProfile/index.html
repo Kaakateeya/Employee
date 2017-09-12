@@ -37,7 +37,7 @@
                             <div class="col-lg-7" ng-show="inItm.controlType==='textbox'">
                                 <input type="text" class="form-control" ng-readonly="inItm.readonly" ng-required="inItm.required" ng-model="page.model[inItm.ngModel]" ng-blur="page.model[inItm.method](inItm.param)">
                             </div>
-                            <div class="col-lg-7" ng-show="inItm.controlType==='numbertextbox'">
+                            <div class="col-lg-7 form-group" ng-show="inItm.controlType==='numbertextbox'">
                                 <input type="text" focus-me="inItm.focus" ng-maxlength="inItm.lengthe" ng-minlength="inItm.lengthe" class="form-control" ng-readonly="inItm.readonly" ng-required="inItm.required" ng-model="page.model[inItm.ngModel]" ng-blur="page.model[inItm.method](inItm.param)">
                             </div>
 

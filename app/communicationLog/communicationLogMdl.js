@@ -110,6 +110,7 @@
                                 });
 
                             } else {
+                                model.isDisabledsubmit = false;
                                 model.Profileidcommunication = '';
                                 alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter valid profileID', 30000);
                             }
