@@ -128,6 +128,8 @@
                         model.getpresentunpaidmembers();
                 };
                 model.showNotifications = function() {
+                    model.templateUrl = "templates/dashBoardslide.html";
+                    model.configheader.headettemp = "topdashboardheader.html";
                     model.slideshowheader(1, 10);
                 };
                 model.slidebind = function(old, news, array) {
@@ -289,9 +291,15 @@
                 model.clickNotification = function(item, index) {
                     model.getemployeenotification(2, item.iNotificationID, item.CategoryID, item.ICustID);
                     model.notificationarray.splice(index, 1);
+                    if (model.notificationarray.length === 0) {
+                        Notification.clearAll();
+                    }
                 };
                 model.notifyclickhide = function(index) {
                     model.notificationarray.splice(index, 1);
+                    if (model.notificationarray.length === 0) {
+                        Notification.clearAll();
+                    }
                 };
                 return model.init();
             }

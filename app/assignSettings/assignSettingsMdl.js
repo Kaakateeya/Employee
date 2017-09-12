@@ -207,7 +207,6 @@
                                 alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Sorry,No Records Found', 3000);
                             }
                         }
-                        // model.populateGridDropdowns(response.data[0]);
                     });
                 };
                 model.pagechange = function(val) {

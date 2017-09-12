@@ -1,36 +1,36 @@
 md-input-container.md-input-focused label:not(.md-no-float) {
-    font-size: 18px;
-}
+  font-size: 18px; }
 
 md-input-container label:not(.md-container-ignore) {
-    position: absolute;
-    bottom: 100%;
-    left: 0;
-    right: auto;
-    color: black;
-    font-weight: normal;
-    font-size: 13px;
-    padding-left: 18px;
-}
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: auto;
+  color: black;
+  font-weight: normal;
+  font-size: 13px;
+  padding-left: 18px; }
 
 md-input-container label:not(.md-no-float):not(.md-container-ignore),
 md-input-container .md-placeholder {
-    padding-left: 13px;
-}
+  padding-left: 13px; }
 
-._md-datepicker-floating-label>md-datepicker .md-datepicker-button {
-    float: none;
-    margin-top: -12px;
-    top: 9.5px;
-}
+._md-datepicker-floating-label > md-datepicker .md-datepicker-button {
+  float: none;
+  margin-top: -12px;
+  top: 9.5px; }
 
-._md-datepicker-floating-label>md-datepicker .md-datepicker-button {
-    margin-left: -9px;
-}
+._md-datepicker-floating-label > md-datepicker .md-datepicker-button {
+  margin-left: -9px; }
 
-.md-icon-button+.md-datepicker-input-container {
-    margin-left: -11px;
-}
+.md-icon-button + .md-datepicker-input-container {
+  margin-left: -11px; }
 
+.dashboardheaderpopup {
+  background-color: rgba(197, 205, 50, 0.42);
+  margin-bottom: 10px;
+  margin-top: 2px;
+  margin-left: 2px;
+  margin-right: 2px; }
 
 /*# sourceMappingURL=style.css.map */

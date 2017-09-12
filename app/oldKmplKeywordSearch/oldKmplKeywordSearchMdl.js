@@ -50,8 +50,6 @@
             { Text: "C Star", value: "CStar", style: "green;" },
             { Text: "C StarLanguage", value: "CStarLanguage", style: "green;" },
             { Text: "C TimeofBirth", value: "CTimeofBirth", style: "green;" },
-            //{ Text: "C ApplicationStatus", value: "CApplicationStatus", style: "#2e89d8;" },
-            //{ Text: "C Caste", value: "Caste", style: "#2e89d8;" },
             { Text: "C BornCitigen", value: "CBornCitigen", style: "#2e89d8;" },
             { Text: "C ContactAddress", value: "CContactAddress", style: "#2e89d8;" },
             { Text: "C ContactNo", value: "CContactNo", style: "#2e89d8;" },
@@ -65,7 +63,6 @@
             { Text: "C SubCaste", value: "CSubCaste", style: "#2e89d8;" },
             { Text: "C FromAge", value: "CFromAge", style: "#2e89d8;" },
             { Text: "C ToAge", value: "CFromHeight", style: "#2e89d8;" },
-            //{ Text: "C Gender", value: "CGender", style: "#2e89d8;" },
             { Text: "C Maritalstatus", value: "CMaritalstatus", style: "#2e89d8;" },
             { Text: "C ToHeight", value: "CToAge", style: "#2e89d8;" },
             { Text: "C ToHeight", value: "CToHeight", style: "#2e89d8;" },
@@ -246,6 +243,7 @@
         };
         model.oldkmplsubmit = function(from, to, type) {
             // model.Getfilterobject();
+
             //model.applicationids !== null && model.applicationids !== undefined && model.applicationids !== "" ? model.applicationids 
             model.object.Keyworddlikesrch.CApplicationStatus = 'Active';
             model.object.Keyworddlikesrch.EmpID = model.empid;
@@ -254,7 +252,14 @@
             model.object.Keyworddlikesrch.CGender = "Female";
             model.object.Keyworddlikesrch.Caste = model.casteids !== null && model.casteids !== undefined && model.casteids !== "" ? model.casteids : null;
             oldKmplKeywordSearchService.Oldkmplkeywordlikesearch(model.object.Keyworddlikesrch).then(function(response) {
-                model.grid.data = response.data[0];
+                if (type === 'grid') {
+                    model.keywordcontrols = false;
+                    model.btnbacktosearch = true;
+                    model.grid.data = response.data[0];
+                } else {
+                    modelpopupopenmethod.showPopupphotopoup('oldkmplkeywordlikesearch.html', model.scope, '', "");
+
+                }
             });
         };
         ////
@@ -274,6 +279,15 @@
             if (parseInt(model.topage) - parseInt(news) === 4) {
                 model.MyprofileResult(model.mpObj, (model.topage) + 1, (model.topage) + 10, 'slide', 0);
             }
+        };
+        model.searchforfields = function(item) {
+            console.log(item);
+        };
+        model.allmenuclickevents = function(value) {
+            modelpopupopenmethod.showPopupphotopoup('allsearchfields.html', model.scope, 'md', "keywordpopup");
+        };
+        model.keywordallfieldssubmit = function(value) {
+            console.log(value);
         };
         return model;
 

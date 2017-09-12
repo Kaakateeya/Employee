@@ -72,7 +72,6 @@
                             alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Expressinterest failed', 3000);
                         }
                     });
-                    //alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Comming Soon Feature', 4000);
                 };
                 model.sendservicemailprofilebook = function(row) {
                     var dd = "";
@@ -199,7 +198,6 @@
                         { text: 'Allowed', key: 'Allowed', type: 'label' },
                         { text: 'Used', key: 'Used', type: 'label' },
                         { text: 'Entered', key: 'Used', type: 'morelinks', templateUrl: model.enteredbyemployee }
-                        // { text: 'Enteredbyemp', key: 'CreatedByEmpID', type: 'morelinks', templateUrl: model.enteredbyemployee }
                     ];
                     customerFactsheetService.getVerifyProfileid(model.txtprofileidfactsheet).then(function(respo) {
                         model.isDisabledsubmit = false;
@@ -263,18 +261,15 @@
                                 if (response.data && parseInt(response.data) === 1) {
                                     model.alertsendemailtext = 'ViewProfile details sent your Mail successfully';
                                     modelpopupopenmethod.showPopup('alertfactsheer.html', model.scope, 'md', '');
-                                    // alerts.timeoutoldalerts(model.scope, 'alert-success', 'ViewProfile details sent your Mail successfully', 3000);
                                 } else {
                                     model.alertsendemailtext = 'ViewProfile details sent your Mail fail';
                                     modelpopupopenmethod.showPopup('alertfactsheer.html', model.scope, 'md', '');
-                                    //   alerts.timeoutoldalerts(model.scope, 'alert-danger', 'ViewProfile details sent your Mail fail', 3000);
                                 }
                             });
                             customerFactsheetService.getsendEmail_ResetPassword(model.txtprofileidfactsheet).then(function(response1) {});
                         } else {
                             model.alertsendemailtext = 'ProfileID not Reviewed';
                             modelpopupopenmethod.showPopup('alertfactsheer.html', model.scope, 'md', '');
-                            //  alerts.timeoutoldalerts(model.scope, 'alert-danger', 'ProfileID not Reviewed', 3000);
                         }
                     });
                 };
@@ -282,7 +277,6 @@
                     customerFactsheetService.getsendEmail_ResetPassword(model.txtprofileidfactsheet).then(function(response) {
                         model.alertsendemailtext = 'EmailId send to the user MailID.';
                         modelpopupopenmethod.showPopup('alertfactsheer.html', model.scope, 'md', '');
-                        //alerts.timeoutoldalerts(model.scope, 'alert-success', 'EmailId send to the user MailID.', 3000);
                     });
                 };
                 model.resetfactsheet = function() {
