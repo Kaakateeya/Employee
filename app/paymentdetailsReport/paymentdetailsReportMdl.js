@@ -97,7 +97,6 @@
                     modelpopupopenmethod.closepopup();
                 };
                 model.sentsmss = function(mobj) {
-                    console.log(model.sendmsgobj);
                     var obj = {
                         CategoryID: model.categoryid !== "" && model.categoryid !== null && model.categoryid !== undefined && model.categoryid !== "0" && model.categoryid !== 0 ? model.categoryid : null,
                         MessageText: model.txtmeassagestext !== "" && model.txtmeassagestext !== undefined && model.txtmeassagestext !== null ? model.txtmeassagestext : null,
@@ -106,7 +105,6 @@
                         CustID: model.tocustid
                     };
                     paymentdetailsReportService.sendsms(obj).then(function(response) {
-                        console.log(response);
                         if (parseInt(response.data) === 1) {
                             model.closepopup();
                             alerts.timeoutoldalerts(model.scope, 'alert-success', "Message sent successfully", 4000);
@@ -118,7 +116,6 @@
                 };
                 model.sendmailscustomer = function(CustID) {
                     paymentdetailsReportService.sendmail(CustID).then(function(response) {
-                        console.log(response);
                         if (parseInt(response.data) === 1) {
                             alerts.timeoutoldalerts(model.scope, 'alert-success', "Mail sent successfully", 4000);
                         } else {

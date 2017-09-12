@@ -8,7 +8,7 @@
 var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap',
     'ngAnimate', 'ngIdle', 'ngMaterial', 'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate',
     'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons', 'ui.date', 'ng-clipboard', 'ng-fusioncharts',
-    'infinite-scroll', 'ngLoadingSpinner'
+    'infinite-scroll', 'ngLoadingSpinner', 'ui-notification'
 ]);
 //'angular-loading-bar',
 // app.apiroot = 'http://52.66.131.254:8025/Api/';
@@ -310,6 +310,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'app/EmployeePayment/EmployeePaymentservice.js'
                     ]
                 }
+
             ]
         });
         $urlRouterProvider.otherwise('/');

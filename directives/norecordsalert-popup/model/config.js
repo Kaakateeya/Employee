@@ -39,7 +39,6 @@
                 EmpID: authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : ""
             };
             norecordsfoundservice.RegistrationValidation(obj).then(function(response) {
-                console.log(response);
                 commonpage.closepopuppoptopopup();
             });
         };

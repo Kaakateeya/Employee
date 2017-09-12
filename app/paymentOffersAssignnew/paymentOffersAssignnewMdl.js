@@ -172,7 +172,6 @@
                         casteid = model.Caste !== "" && model.Caste !== null && model.Caste !== undefined && model.Caste !== 0 && model.Caste !== '0' ? model.Caste : null;
                     }
                     paymentOffersAssignService.selectbasedoncasteprofileid(profileid, casteid).then(function(response) {
-                        console.log(response);
                         if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" &&
                             response.data[0] !== undefined && response.data[0] !== null && response.data[0].length > 0) {
                             model.data = [];

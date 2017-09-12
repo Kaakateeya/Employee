@@ -50,6 +50,8 @@
                              break;
                          case 'caste':
                              model.Caste = [];
+                             model.Casteparents = [];
+                             model.Casteparents = Commondependency.casteDepedency((model.ReligionID !== undefined && model.ReligionID !== null && model.ReligionID.length > 0 ? (model.ReligionID).toString() : ""), ((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : ""), true);
                              model.Caste = Commondependency.casteDepedency((model.ReligionID !== undefined && model.ReligionID !== null && model.ReligionID.length > 0 ? (model.ReligionID).toString() : ""), ((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : ""));
                              break;
                          case 'professionBind':
@@ -65,6 +67,7 @@
                              model.BranchName = Commondependency.branch((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                              break;
                          case 'Subcaste':
+                             model.getcastetext();
                              model.SubCaste = [];
                              model.SubCaste = Commondependency.subCaste((modal !== undefined && modal !== null && model !== "") ? (modal).toString() : "");
                              break;

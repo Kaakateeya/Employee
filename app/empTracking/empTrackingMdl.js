@@ -139,7 +139,6 @@
 
         model.getemployee = function(flag, id) {
             SelectBindServiceApp.onlyEmpNames(flag, id).then(function(response) {
-                console.log(response);
                 model.onlyempnames = [];
                 if (_.isArray(response.data) && response.data.length > 0) {
                     _.each(response.data, function(item) {

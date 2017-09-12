@@ -21,6 +21,7 @@
         function link(scope, element, attrs) {
             scope.$watch(
                 function(scope) {
+                    debugger;
                     // watch the 'compile' expression for changes
                     return scope.$eval(attrs.compile);
                 },

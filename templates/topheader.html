@@ -9,6 +9,10 @@
                         <div style="cursor:pointer;color: #ffffff;font-style: italic;text-decoration: underline;" href="javascript:void(0)" ng-click="head.model.hideshowunpaid()">
                             Unpaid Members
                         </div>
+                        <!-- head.model.showNotifications() -->
+                        <div style="cursor:pointer;color: #ffffff;font-style: italic;text-decoration: underline;" href="javascript:void(0)" ng-click="head.model.getemployeenotification(0, null, null, 0)">
+                            Notifications
+                        </div>
                     </li>
                     <li>
                         <div style="cursor:pointer" href="javascript:void(0)" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -121,10 +125,10 @@
                             </li>
                             <li><a href="updateMacAdresspage">Update Branch IP</a></li>
                             <li><a href="NomatchesReason">No Matches Profiles</a></li>
-                            <li><a ng-hide="true" href="ReportsofEmployee">To Do Work</a></li>
+                            <li><a ng-hide="false" href="ReportsofEmployee">To Do Work</a></li>
 
-                            <li><a ng-hide="true" href="brokerEntryFormpage">Mediater Entry Form</a></li>
-                            <li><a ng-hide="true" href="brokerProfileRegistrationpage">Broker Profile Registration</a></li>
+                            <li><a ng-hide="false" href="brokerEntryFormpage">Mediater Entry Form</a></li>
+                            <li><a ng-hide="false" href="brokerProfileRegistrationpage">Broker Profile Registration</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">Branch Creation</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">List Branches</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">Add/Edit Faqs</a></li>
@@ -172,6 +176,7 @@
             </table>
         </div>
     </ul>
+
     <script type="text/ng-template" id="loginContent.html">
         <div id="loginnewidcc" style='z-index: 99999'>
             <div class="login">
@@ -318,9 +323,31 @@
             <market-tickethistory ticketid="head.model.unpaidticket"></market-tickethistory>
         </div>
     </script>
+    <script type="text/ng-template" id="headerdslide.html">
+        <complex-slide config="head.model.configheader" model="head.model"></complex-slide>
+    </script>
+    <script type="text/ng-template" id="custom_template.html">
+        <div class="ui-notification  warning" ng-show="head.model.notificationarray.length>0" style="top: 10px; right: 10px;">
+            <div class="clearfix"></div>
+            <br>
+            <div ng-repeat="item in head.model.notificationarray">
+                <div class="message">
+                    <div class="col-lg-12">
+                        <div class="col-xs-11  alert alert-success animated fadeInDown" role="alert"><img class="img-circle pull-left" height="50" width="50" ng-src="{{item.strCustomerPhoto}}" style="margin-right: 10px;"><span>{{ item.strCustomerName}}</span><button type="button" class="close" ng-click="head.model.notifyclickhide($index)">×</button><br><span>{{item.strActionName}}</span>&nbsp;&nbsp;&nbsp;
+                            <a href="javascript:void(0);" ng-click="head.model.clickNotification(item,$index)" style="color:blue">Read</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="message">
+                <a href="javascript:void(0);" class="pull-right" ng-click="head.model.showNotifications()" style="color:blue">Load more</a>
+            </div>
+            <div class="clearfix"></div>
+            <br>
+        </div>
+
+    </script>
     <span us-spinner="{radius:30, width:8, length: 16}" spinner-start-active="true"></span>
-
-
     </div>
     <style type="text/css">
         .modalclassdashboardphotopopuplogin {

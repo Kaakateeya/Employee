@@ -82,9 +82,7 @@ app.factory('alert', ['$uibModal', '$timeout', 'SelectBindServiceApp', function(
                     EmpID: 0
                 };
 
-                console.log(mobj);
                 // SelectBindServiceApp.RegistrationValidation(mobj);
-                console.log("Print 1");
 
             };
         }

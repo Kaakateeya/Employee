@@ -100,7 +100,6 @@
             };
             NomatchesReasonpageService.getnomatchesreason(objnomatch).then(function(response) {
                 model.isDisabledsubmit = false;
-                console.log(response);
                 if (response.data !== null && response.data !== undefined && response.data.length > 0 && response.data[0] !== null && response.data[0] !== undefined && (response.data[0]).length !== 0) {
                     if (from === 1) {
                         model.TotalRows = (response.data[0][0]).TotalRows;
@@ -154,9 +153,7 @@
                         startindex: 1,
                         endindex: 10
                     };
-                    console.log(objnomatch);
                     NomatchesReasonpageService.getnomatchesreason(objnomatch).then(function(response) {
-                        console.log(response);
                         if (parseInt(response.data) === 1) {
                             (model.data).splice(row.rowIndex, 1);
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Deleted Sucessfully', 4500);
@@ -177,9 +174,7 @@
                         startindex: 1,
                         endindex: 10
                     };
-                    console.log(objauthorize);
                     NomatchesReasonpageService.getnomatchesreason(objauthorize).then(function(response) {
-                        console.log(response);
                         if (parseInt(response.data) === 1) {
                             (model.data).splice(row.rowIndex, 1);
                             alertss.timeoutoldalerts(model.scope, 'alert-success', 'authorized Sucessfully', 4500);
@@ -191,7 +186,6 @@
             }
         };
         model.nomatchessubmit = function() {
-            console.log(model.nomatchesobj);
             commonpage.closepopuppoptopopup();
             // var Mobj = {
             //     intCust_ID: model.nomatchesobj.Cust_ID,
@@ -222,7 +216,6 @@
                 endindex: 10
             };
             NomatchesReasonpageService.getnomatchesreason(objects).then(function(response) {
-                console.log(response);
                 if (parseInt(response.data) === 1) {
                     model.binddata('table', null, 1, 100);
                     alertss.timeoutoldalerts(model.scope, 'alert-success', 'Reason Updated Successfully', 4500);
@@ -238,7 +231,6 @@
 
         model.getemployee = function(flag, id) {
             SelectBindServiceApp.onlyEmpNames(flag, id).then(function(response) {
-                console.log(response);
                 if (_.isArray(response.data) && response.data.length > 0) {
                     _.each(response.data, function(item) {
                         if (item.CountryCode === 'EmapName')

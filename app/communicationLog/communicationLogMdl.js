@@ -60,7 +60,6 @@
                             if (respo.data && parseInt(respo.data) === 1) {
                                 communicationLogService.Submitcommunicationlog(profileid, model.empid).then(function(response) {
                                     model.isDisabledsubmit = false;
-                                    console.log(response);
                                     model.sendarray = [];
                                     model.sendarray2 = [];
                                     model.sendarray3 = [];

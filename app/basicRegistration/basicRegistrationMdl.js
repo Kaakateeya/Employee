@@ -238,7 +238,6 @@
         };
         model.checknamesurname = function(firstname, lastname, date, type) {
             basicRegistrationService.CheckSurNameNamedob(lastname, firstname, date).then(function(response) {
-                console.log(response);
                 if (response.data !== null && response.data !== undefined && response.data.length > 0 && response.data[0] !== undefined && response.data[0] !== null && parseInt(response.data[0].Status) === 1) {
                     switch (type) {
                         case "Name":

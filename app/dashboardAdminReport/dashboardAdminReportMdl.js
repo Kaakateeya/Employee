@@ -10,11 +10,9 @@
         var model = {};
         model.reports = function() {
             dashboardAdminReportService.getAdminReportsAllProfiles(2, "", "").then(function(response) {
-                console.log(response);
                 model.dataSourcesmulti = [];
                 model.dataset = [];
                 _.each(response.data, function(item) {
-                    console.log(item);
                     model.dataset = [];
                     _.each(item, function(inneritem) {
                         model.dataset.push({
@@ -44,7 +42,6 @@
                         "EmpName": model.empname
                     });
                 });
-                console.log(model.dataSourcesmulti);
             });
         };
         return model;

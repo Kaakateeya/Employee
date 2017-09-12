@@ -57,6 +57,16 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="col-lg-3" ng-if="item.controlType==='dropdownparents'" ng-show="page.model.parentscaste()">
+                                                        <p>{{item.labelName}}</p>
+                                                        <div ng-class="page.model[item.ngModel]===undefined || page.model[item.ngModel]===null || page.model[item.ngModel].length===0 ?'':'ddlcolor'" class="controls clearfix">
+                                                            <div>
+                                                                <select ng-model="page.model[item.ngModel]" multiselectdropdown ng-options="caste.value as caste.label for caste in page.model[item.dataSource]" pagetype="'search'">
+                                                                    </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="col-lg-3  clearfix" ng-if="item.controlType==='textBox'">
                                                         <p>{{item.labelName}}</p>
                                                         <div class="controls clearfix">

@@ -118,12 +118,10 @@
                         if (model.exiObj.txtFromprofileID !== "" && model.exiObj.txtFromprofileID !== undefined && model.exiObj.txtFromprofileID !== null && model.exiObj.txtFromprofileID.length !== 0) {
                             model.mismatch = [];
                             expressInterestService.getServiceInfo(model.exiObj.txtFromprofileID, model.exiObj.txtToprofileID).then(function(res) {
-                                console.log(res.data);
                                 model.servicedatealert = parseInt(res.data.Status);
                                 model.servicedateprofile = res.data.Servicedate;
                             });
                             expressInterestService.getEIprofileID(6, ID, '').then(function(response) {
-                                console.log(response.data);
                                 if (_.isArray(response.data) && response.data.length > 0) {
                                     if (_.isArray(response.data[0]) && response.data[0].length > 0) {
                                         model.ToProfileStatusID = response.data[0][0].ProfileStatusID;
