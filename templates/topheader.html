@@ -160,7 +160,7 @@
             </div>
             <div class="pull-right"><a href="javascript:void(0)" ng-click="head.model.getpresentunpaidmembers()"><span class="fa fa-refresh fa-2x fa-fw"></span></a>
             </div>
-            <table style="width:512px;" class="pull-right" ng-repeat="presentunpaid in head.model.presentunpaidmembersarray">
+            <table style="width:512px;" class="pull-right tableunpaid" ng-repeat="presentunpaid in head.model.presentunpaidmembersarray">
                 <tbody>
                     <tr ng-class="presentunpaid.MINUTE<10?'alert alert-warning fade in':'alert alert-danger fade in'" style="height: 45px;">
                         <td style="width: 6%;"><a class="close" ng-click="head.model.closealert($index)" style="font-size: 23px;">×&nbsp;&nbsp;</a></td>

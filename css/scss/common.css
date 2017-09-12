@@ -57,4 +57,13 @@ textarea {
   top: 0%;
   left: 0%; }
 
+.tableunpaid th,
+.tableunpaid td {
+  padding: 0px !important;
+  border: none;
+  width: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
+
 /*# sourceMappingURL=common.css.map */

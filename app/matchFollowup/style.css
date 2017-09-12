@@ -479,8 +479,8 @@ span.multiselect-selected-text {
   transition: all .2s ease-in-out; }
 
 body {
-  color: #000;
-  background: #333333;
+  color: none;
+  background: none;
   font-family: arial; }
 
 .container {
