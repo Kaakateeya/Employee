@@ -66,7 +66,6 @@
                     };
                     marketingticketverificationService.marketingverificationticketsubmit(obj).then(function(response) {
                         model.isDisabledsubmit = false;
-                        console.log(response);
                         if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" &&
                             response.data[0] !== undefined && response.data[0] !== null && response.data[0].length > 0) {
                             if (type === 'grid') {

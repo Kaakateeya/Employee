@@ -45,7 +45,6 @@
                 };
 
                 model.showPAymentEdit = function(row) {
-                    console.log(row);
                     model.editAgreedAmt = row.AgreedAmount;
                     model.editPaidAmt = row.PaidAmount;
                     model.editDescriptionAmt = row.Description;
@@ -92,7 +91,6 @@
                                 EmployeePaymentservice.getEmployeePayment(model.txtProfileID).then(
                                     function(response) {
                                         if (_.isArray(response.data) && response.data.length > 0) {
-                                            console.log(response.data);
                                             model.updatepaymentllink = true;
                                             model.CustName = (response.data)[0].CustName;
                                             model.ProfileOwner = (response.data)[0].ProfileOwner;
@@ -122,7 +120,6 @@
                                 EmployeePaymentservice.getEmployeePaymentextensiontable(model.txtProfileID).then(
                                     function(res) {
                                         if (_.isArray(res.data) && res.data.length > 0 && _.isArray(res.data[0]) && res.data[0].length > 0) {
-                                            console.log(res.data[0]);
                                             model.extensiondata.data = (res.data[0]);
                                         }
                                     }

@@ -562,7 +562,6 @@
                     commonpage.showPopupphotopoup('nomatchespopup.html', model.scope, 'md', "modalclassdashboardremainder");
                 };
                 model.nomatchessubmit = function() {
-                    console.log(model.nomatchesobj);
                     commonpage.closepopuppoptopopup();
                     var Mobj = {
                         intCust_ID: model.nomatchesobj.Custid,

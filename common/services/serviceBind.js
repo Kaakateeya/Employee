@@ -1,6 +1,4 @@
 app.factory('SelectBindServiceApp', ["$http", function(http) {
-
-    console.log("XXXXXXXX");
     return {
         countrySelect: function() {
             return http.get(app.apiroot + 'Dependency/getCountryDependency', { params: { dependencyName: "", dependencyValue: "" } });

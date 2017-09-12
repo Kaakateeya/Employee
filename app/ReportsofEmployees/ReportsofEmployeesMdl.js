@@ -21,7 +21,6 @@
             ReportsofEmployeesService.getAdminReportsAllProfiles(empid, branchid, region, macaddress, flag, v_ProfileOwnerEmpID).then(function(response) {
                 model.isDisabledsubmit = false;
                 model.modelarraydynamic = [];
-                console.log(response);
                 _.each(response.data, function(item, index) {
                     model.modelarraydynamic.push({ header: model.arrayheader, data: item, ida: false });
                 });

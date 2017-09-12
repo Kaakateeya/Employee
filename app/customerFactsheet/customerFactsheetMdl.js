@@ -205,7 +205,6 @@
                         model.isDisabledsubmit = false;
                         if (respo.data && parseInt(respo.data) === 1) {
                             customerFactsheetService.CustomerFactsheetDetails(model.txtprofileidfactsheet).then(function(response) {
-                                console.log(response);
                                 if ((response.data[0]).length !== 0 || (response.data[1]).length !== 0 || (response.data[2]).length !== 0 || (response.data[3]).length !== 0 ||
                                     (response.data[4]).length !== 0 || (response.data[5]).length !== 0 || (response.data[6]).length !== 0 || (response.data[7]).length !== 0) {
                                     model.sendarray1 = response.data[0];
@@ -246,7 +245,6 @@
                             });
                             customerFactsheetService.getEmployeePayment(model.txtprofileidfactsheet).then(function(responses) {
                                 if (_.isArray(responses.data) && responses.data.length > 0) {
-                                    console.log(responses.data);
                                     model.sendarray9 = (responses.data);
                                     model.gridtable9.mainArray = model.sendarray9.length > 0 ? (model.sendarray9) : [{ membershiptype: 'No Data Found' }];
                                     model.gridtable9.data = model.gridtable9.mainArray;
@@ -262,7 +260,6 @@
                     customerFactsheetService.custmorfactsheetsendMail(model.txtprofileidfactsheet).then(function(respo) {
                         if (respo.data && parseInt(respo.data) === 1) {
                             customerFactsheetService.sendEmail_factResetPassword(model.txtprofileidfactsheet).then(function(response) {
-                                console.log(response);
                                 if (response.data && parseInt(response.data) === 1) {
                                     model.alertsendemailtext = 'ViewProfile details sent your Mail successfully';
                                     modelpopupopenmethod.showPopup('alertfactsheer.html', model.scope, 'md', '');
@@ -273,9 +270,7 @@
                                     //   alerts.timeoutoldalerts(model.scope, 'alert-danger', 'ViewProfile details sent your Mail fail', 3000);
                                 }
                             });
-                            customerFactsheetService.getsendEmail_ResetPassword(model.txtprofileidfactsheet).then(function(response1) {
-                                console.log(response1);
-                            });
+                            customerFactsheetService.getsendEmail_ResetPassword(model.txtprofileidfactsheet).then(function(response1) {});
                         } else {
                             model.alertsendemailtext = 'ProfileID not Reviewed';
                             modelpopupopenmethod.showPopup('alertfactsheer.html', model.scope, 'md', '');
@@ -285,7 +280,6 @@
                 };
                 model.sendforgetpassword = function() {
                     customerFactsheetService.getsendEmail_ResetPassword(model.txtprofileidfactsheet).then(function(response) {
-                        console.log(response);
                         model.alertsendemailtext = 'EmailId send to the user MailID.';
                         modelpopupopenmethod.showPopup('alertfactsheer.html', model.scope, 'md', '');
                         //alerts.timeoutoldalerts(model.scope, 'alert-success', 'EmailId send to the user MailID.', 3000);

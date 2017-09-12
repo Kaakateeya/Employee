@@ -47,7 +47,6 @@
                 model.chkprofileidstatus = function() {
                     if (model.txtemailbounceprofileid !== "" && model.txtemailbounceprofileid !== null && model.txtemailbounceprofileid !== undefined) {
                         emailbounceEntryformService.getexistanceprofileornot(model.txtemailbounceprofileid).then(function(response) {
-                            console.log(response);
                             if (parseInt(response.data) === 1 || parseInt(response.data) === 2) {
                                 model.checkRecord(model.txtemailbounceprofileid);
                             } else if (parseInt(response.data) === 3) {

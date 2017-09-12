@@ -206,7 +206,6 @@
                     model.paymentAuthSelect("export");
                 };
                 model.verifyticketupdate = function(pagemodel) {
-                    console.log(model.ticketownermarketing.length);
                     model.inputobj = {
                         PaymentID: model.paymentverificationobj.Payment_ID,
                         PaymentHisID: model.paymentverificationobj.PaymentHist_ID,
@@ -238,11 +237,8 @@
                                     if (model.typeauthorize === 'Authorize') {
                                         var msggg = 'Thank Your for Your registration and Payment For the services In kaakateeya.com....verified by "looged Username';
                                         paymentAuthorizationService.memoSubmit(msggg, model.paymentverificationobj.Emp_Ticket_ID, model.empid, "").then(function(res) {
-                                            console.log(res);
                                             if (parseInt(res.data) === 1) {
-                                                paymentAuthorizationService.Marketingticketstatus(model.paymentverificationobj.Emp_Ticket_ID, model.empid).then(function(reponsepayment) {
-                                                    console.log(reponsepayment);
-                                                });
+                                                paymentAuthorizationService.Marketingticketstatus(model.paymentverificationobj.Emp_Ticket_ID, model.empid).then(function(reponsepayment) {});
                                             }
                                         });
                                     }

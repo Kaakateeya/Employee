@@ -254,7 +254,6 @@
             model.object.Keyworddlikesrch.CGender = "Female";
             model.object.Keyworddlikesrch.Caste = model.casteids !== null && model.casteids !== undefined && model.casteids !== "" ? model.casteids : null;
             oldKmplKeywordSearchService.Oldkmplkeywordlikesearch(model.object.Keyworddlikesrch).then(function(response) {
-                console.log(response);
                 model.grid.data = response.data[0];
             });
         };

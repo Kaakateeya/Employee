@@ -33,7 +33,6 @@
                  flag: ''
              };
              updateMacAdressService.getmacIps(inObj).then(function(response) {
-                 console.log(response);
                  model.sdata = response.data[0];
                  _.map(model.sdata, function(item, index) {
                      item.sno = index + 1;
@@ -65,7 +64,6 @@
                      var ipaddr1 = model['txtMacnew' + row.sno] !== "" && model['txtMacnew' + row.sno] !== null && model['txtMacnew' + row.sno] !== undefined ? model['txtMacnew' + row.sno] : "";
                      if (ipaddr) {
                          updateMacAdressService.UpdatemacIps(ipaddr, ipaddr1, row.BranchID).then(function(response) {
-                             console.log(response);
                              if (response.data && parseInt(response.data) === 1) {
                                  alertss.timeoutoldalerts(model.scope, 'alert-success', 'IP Address Updated Succesfully', 4500);
                              }

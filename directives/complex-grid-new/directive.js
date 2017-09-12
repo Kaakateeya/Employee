@@ -67,7 +67,6 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
                     commonpage.showPopupphotopoup('marketgrid.html', scope, 'md', "modalclassdashboardphotopopup");
                 };
                 scope.ViewTicket = function(row) {
-                    console.log(row);
                     var paid = "<a style='cursor:pointer;' ng-click='tickethistoryupdate(" + row.TicketID + ")'  href='javascript:void(0);'>View</a>";
                     return paid;
                 };
@@ -157,7 +156,6 @@ angular.module('Kaakateeya').directive("complexGridNew", ['modelpopupopenmethod'
 
                 scope.FilterSerch = function(query) {
                     var results = query ? scope.useme(query) : scope.model.ProfileOwnerarray;
-                    console.log(results);
                     return results;
                 };
 

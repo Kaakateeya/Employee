@@ -256,7 +256,6 @@
                     modelpopupopenmethod.getemployeenotification(obj).then(function(response) {
                         if (intType === 0) {
                             if (response.data !== undefined && response.data !== "" && response.data !== null && response.data !== undefined && response.data.length > 0) {
-                                console.log(response.data);
                                 model.notificationarray = [];
                                 model.notificationarray = response.data;
                             } else {
