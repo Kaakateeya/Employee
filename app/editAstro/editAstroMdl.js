@@ -187,12 +187,11 @@
             var inputobj = { customerid: custID, EmpIDQueryString: "2", intDay: day, intMonth: month, intYear: year, CityID: commonFactory.checkvals(astrocity) ? astrocity : "" };
             editAstroService.generateHoroscope(inputobj).then(function(response) {
                 if (commonFactory.checkvals(response.data.AstroGeneration)) {
-                    // response.data.Path = (response.data.Path).Replace("\",'\\');
                     s3obj = { Path: response.data.Path, KeyName: response.data.KeyName };
-                    // s3obj = { Path: 'C:\\inetpub\\wwwroot\\access\\Images\\HoroscopeImages\\91022_HaroscopeImage\\91022_HaroscopeImage.html', KeyName: response.data.KeyName };
                     window.open('' + response.data.AstroGeneration + '', '_blank');
                     commonFactory.closepopup();
                     commonFactory.open('RefreshPopup.html', model.scope, uibModal);
+                    // window.open('/showHoro', '_blank');
                 } else {
                     model.AstrocityArr = commonFactory.AstroCity(model.AstroArr[0].CountryOfBirth, model.AstroArr[0].StateOfBirth);
                     commonFactory.open('AstroCityPopup.html', model.scope, uibModal);

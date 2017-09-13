@@ -31,9 +31,13 @@
             });
         };
         model.refreshPageLoad = function(Arr) {
+            model.rbtProtectPassword = undefined;
             _.each(Arr, function(item) {
+
                 genderID = item.GenderID;
-                model.rbtProtectPassword = item.PhotoPassword === 'Admin@123' ? '1' : '0';
+                if (model.rbtProtectPassword !== '1') {
+                    model.rbtProtectPassword = item.PhotoPassword === 'Admin@123' ? '1' : '0';
+                }
                 var imagepath = app.accesspathdotsImg;
                 if (item.IsActive === 0 && item.PhotoName !== null) {
                     var strCustDirName1 = "KMPL_" + CustID + "_Images";
