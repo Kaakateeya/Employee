@@ -123,7 +123,7 @@ textarea {
 }
 
 .Actioncls .pop_label_left {
-    width: 29%;
+    width: 40%;
     padding-left: 21px;
 }
 
@@ -1098,4 +1098,17 @@ body {
     margin-top: 2px;
     margin-left: 2px;
     margin-right: 2px;
+}
+
+.pop_label_lefts {
+    display: inline-block;
+    float: left;
+    position: relative;
+    line-height: 36px;
+    font-size: 13px;
+    color: #000 !important;
+    font-weight: 400;
+    width: 19%;
+    padding-left: 21px;
+    text-transform: capitalize;
 }

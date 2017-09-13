@@ -226,67 +226,79 @@
     </div>
     <div id="accordion" style="margin-top: -15px;">
         <uib-tabset active="active">
-            <uib-tab index="0" heading="Incoming Call" style="padding-left:16%;">
+            <uib-tab ng-click="page.model.clearalltext()" index="0" heading="Incoming Call" style="padding-left:16%;">
                 <div>
                     <form name="inform" novalidate role="form" ng-submit="inform.$valid && page.model.inCallsSubmit(page.model.actobj);">
                         <br>
                         <ul>
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left">Call received from </label>
-                                <div class="pop_controls_right input-group">
-                                    <select class="smalldropdown" name="ddlInreceivedfrom" ng-change="page.model.RelationshipChange(page.model.actobj.ddlInreceivedfrom,'In');" ng-model="page.model.actobj.ddlInreceivedfrom" multiselectdropdown typeofdata="'childStayingWith'" required>   
+                            <div class="col-lg-12">
+                                <li class="col-lg-6 form-group">
+                                    <label class="pop_label_left">Call received from </label>
+                                    <div class="pop_controls_right input-group">
+                                        <select class="smalldropdown" name="ddlInreceivedfrom" ng-change="page.model.RelationshipChange(page.model.actobj.ddlInreceivedfrom,'In');" ng-model="page.model.actobj.ddlInreceivedfrom" multiselectdropdown typeofdata="'childStayingWith'" required>   
                                     </select>
-                                </div>
-                            </li>
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left">Relation name  </label>
-                                <div class="pop_controls_right">
-                                    <input ng-model="page.model.actobj.txtInRelationname" type="text" class="form-control required" required></input>
-                                </div>
-                            </li>
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left">Call result </label>
-                                <div class="pop_controls_right input-group">
-                                    <select class="smalldropdown" ng-model="page.model.actobj.ddlInCallresult" multiselectdropdown required>   
+                                    </div>
+                                </li>
+                                <li class="col-lg-6 form-group">
+                                    <label class="pop_label_left">Relation name  </label>
+                                    <div class="pop_controls_right">
+                                        <input ng-model="page.model.actobj.txtInRelationname" type="text" class="form-control required" required></input>
+                                    </div>
+                                </li>
+                            </div>
+                            <div class="col-lg-12">
+                                <li class="col-lg-6 form-group">
+                                    <label class="pop_label_left">Call result </label>
+                                    <div class="pop_controls_right input-group">
+                                        <select class="smalldropdown" ng-model="page.model.actobj.ddlInCallresult" multiselectdropdown required>   
                                           <option value="">-- Select --</option>
                                           <option value="417">Successfull</option>
                                           <option value="418">UnSuccessfull</option>
                                     </select>
-                                </div>
-                            </li>
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left">Call telephone number </label>
-                                <div class="pop_controls_right">
-                                    <input type="text" required ng-model="page.model.actobj.txtInCalltelephonenumber" class="form-control" maxlength="12" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
-                                    />
-                                </div>
-                            </li>
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left">Reply Type </label>
-                                <div class="pop_controls_right input-group">
-                                    <!--<select class="smalldropdown" ng-model="page.model.actobj.ddlInReplyType" multiselectdropdown ng-change="page.model.actobj.txtInCalldiscussion=page.model.mailchange(page.model.actobj.ddlInReplyType);" ng-options="item.value as item.label for item in page.model.ReplyArr"
+                                    </div>
+                                </li>
+                                <li class="col-lg-6 form-group">
+                                    <label class="pop_label_left">Call telephone number </label>
+                                    <div class="pop_controls_right">
+                                        <input type="text" required ng-model="page.model.actobj.txtInCalltelephonenumber" class="form-control" maxlength="12" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
+                                        />
+                                    </div>
+                                </li>
+                            </div>
+                            <div class="col-lg-12">
+                                <li class="col-lg-12 form-group">
+                                    <label class="pop_label_lefts">Reply Type </label>
+                                    <div class="input-group col-lg-9">
+                                        <!--<select class="smalldropdown" ng-model="page.model.actobj.ddlInReplyType" multiselectdropdown ng-change="page.model.actobj.txtInCalldiscussion=page.model.mailchange(page.model.actobj.ddlInReplyType);" ng-options="item.value as item.label for item in page.model.ReplyArr"
                                         required></select>-->
-                                    <md-radio-group ng-required="true" name="rbtnReplyType" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyType,'In');" layout="row" ng-model="page.model.actobj.rbtnReplyType" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                        <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
-                                        <md-radio-button value="0"> Not Interested</md-radio-button>
-                                        <md-radio-button value="2">Pending</md-radio-button>
-                                    </md-radio-group>
-                                </div>
-                            </li>
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left">Call discussion </label>
-                                <div class="pop_controls_right">
-                                    <textarea type="text" ng-model="page.model.actobj.txtInCalldiscussion" class="form-control" ng-required="page.model.actobj.rbtnReplyType==='0'?true:false"></textarea>
-                                </div>
-                            </li>
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left Notrequired">Display to customer </label>
-                                <div class="pop_controls_right pop_radios_list">
-                                    <md-radio-group ng-required="true" name="rbtnPaymode" layout="row" ng-model="page.model.actobj.rbtnInDisplay" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                        <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
-                                    </md-radio-group>
-                                </div>
-                            </li>
+                                        <md-radio-group ng-required="true" name="rbtnReplyType" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyType,'In');" layout="row" ng-model="page.model.actobj.rbtnReplyType" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                            <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
+                                            <md-radio-button value="0"> Not Interested</md-radio-button>
+                                            <md-radio-button value="2">Pending</md-radio-button>
+                                        </md-radio-group>
+                                    </div>
+                                </li>
+                            </div>
+                            <div class="col-lg-12">
+                                <li class="col-lg-12 form-group">
+                                    <label class="pop_label_lefts Notrequired">Display to customer </label>
+                                    <div class="col-lg-9 pop_radios_list">
+                                        <md-radio-group ng-required="true" name="rbtnPaymode" layout="row" ng-model="page.model.actobj.rbtnInDisplay" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                            <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                        </md-radio-group>
+                                    </div>
+                                </li>
+                            </div>
+                            <div class="col-lg-12">
+                                <li class="col-lg-12 form-group">
+                                    <label class="pop_label_lefts">Call discussion </label>
+                                    <div class="col-lg-9">
+                                        <textarea type="text" rows="4" ng-model="page.model.actobj.txtInCalldiscussion" class="form-control" ng-required="page.model.actobj.rbtnReplyType==='0'?true:false"></textarea>
+                                    </div>
+                                </li>
+                            </div>
+                            <div class="clearfix"></div>
+                            <br />
                         </ul>
                         <br />
                         <div class="row">
@@ -301,71 +313,80 @@
                     </form>
                 </div>
             </uib-tab>
-            <uib-tab index="1" heading="Outgoing Call">
+            <uib-tab ng-click="page.model.clearalltext()" index="1" heading="Outgoing Call">
                 <div>
                     <form name="outform" novalidate role="form" ng-submit="outform.$valid && page.model.outCallsSubmit(page.model.actobj);">
                         <br>
                         <ul>
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left">Call received by </label>
-                                <div class="pop_controls_right input-group">
-                                    <select ng-change="page.model.RelationshipChange(page.model.actobj.ddlOutreceivedby,'Out');" ng-model="page.model.actobj.ddlOutreceivedby" multiselectdropdown typeofdata="'childStayingWith'" required>   
+                            <div class="col-lg-12">
+                                <li class="col-lg-6 form-group">
+                                    <label class="pop_label_left">Call received by </label>
+                                    <div class="pop_controls_right input-group">
+                                        <select ng-change="page.model.RelationshipChange(page.model.actobj.ddlOutreceivedby,'Out');" ng-model="page.model.actobj.ddlOutreceivedby" multiselectdropdown typeofdata="'childStayingWith'" required>   
                                      </select>
-                                </div>
-                            </li>
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left">Relation name  </label>
-                                <div class="pop_controls_right">
-                                    <input ng-model="page.model.actobj.txtOutRelationname" type="text" class="form-control" required/>
-                                </div>
-                            </li>
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left">Call result </label>
-                                <div class="pop_controls_right input-group">
-                                    <select ng-model="page.model.actobj.ddlOutcallresultout" multiselectdropdown required>   
+                                    </div>
+                                </li>
+                                <li class="col-lg-6 form-group">
+                                    <label class="pop_label_left">Relation name  </label>
+                                    <div class="pop_controls_right">
+                                        <input ng-model="page.model.actobj.txtOutRelationname" type="text" class="form-control" required/>
+                                    </div>
+                                </li>
+                            </div>
+                            <div class="col-lg-12">
+                                <li class="col-lg-6 form-group">
+                                    <label class="pop_label_left">Call result </label>
+                                    <div class="pop_controls_right input-group">
+                                        <select ng-model="page.model.actobj.ddlOutcallresultout" multiselectdropdown required>   
                                           <option value="0">-- Select --</option>
                                            <option value="417" >Successfull</option>
                                            <option value="418">UnSuccessfull</option>
                                      </select>
-                                </div>
-                            </li>
+                                    </div>
+                                </li>
 
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left">Call telephone number </label>
-                                <div class="pop_controls_right">
-                                    <input ng-model="page.model.actobj.txtOutCalltelephonenumber" type="text" class="form-control" maxlength="12" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
-                                        required/>
-                                </div>
-                            </li>
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left">Reply Type </label>
-                                <div class="pop_controls_right input-group">
-                                    <!--<select class="smalldropdown" ng-model="page.model.actobj.ddlOutreplytype" multiselectdropdown ng-change="page.model.actobj.txtOutCalldiscussion=page.model.mailchange(page.model.actobj.ddlOutreplytype);" ng-options="item.value as item.label for item in page.model.ReplyArr"
-                                        required>   
-                                                     </select>-->
+                                <li class="col-lg-6 form-group">
+                                    <label class="pop_label_left">Call telephone number </label>
+                                    <div class="pop_controls_right">
+                                        <input ng-model="page.model.actobj.txtOutCalltelephonenumber" type="text" class="form-control" maxlength="12" onkeydown="return (((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode >= 35 && event.keyCode <= 40) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)));"
+                                            required/>
+                                    </div>
+                                </li>
+                            </div>
+                            <div class="col-lg-12">
+                                <li class="col-lg-12 form-group">
+                                    <label class="pop_label_lefts">Reply Type </label>
+                                    <div class="col-lg-9 input-group">
+                                        <md-radio-group ng-required="true" name="rbtnReplyTypeout" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyTypeout,'Out');" layout="row" ng-model="page.model.actobj.rbtnReplyTypeout" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                            <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
+                                            <md-radio-button value="0"> Not Interested</md-radio-button>
+                                            <md-radio-button value="2">Pending</md-radio-button>
+                                        </md-radio-group>
 
-                                    <md-radio-group ng-required="true" name="rbtnReplyTypeout" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyTypeout,'Out');" layout="row" ng-model="page.model.actobj.rbtnReplyTypeout" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                        <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
-                                        <md-radio-button value="0"> Not Interested</md-radio-button>
-                                        <md-radio-button value="2">Pending</md-radio-button>
-                                    </md-radio-group>
+                                    </div>
+                                </li>
 
-                                </div>
-                            </li>
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left">Call discussion </label>
-                                <div class="pop_controls_right">
-                                    <textarea type=text ng-model="page.model.actobj.txtOutCalldiscussion" class="form-control" required></textarea>
-                                </div>
-                            </li>
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left Notrequired">Display to customer </label>
-                                <div class="pop_controls_right pop_radios_list">
-                                    <md-radio-group ng-required="true" name="rbtnOutDisplay" layout="row" ng-model="page.model.actobj.rbtnOutDisplay" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                        <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
-                                    </md-radio-group>
-                                </div>
-                            </li>
+                            </div>
+                            <div class="col-lg-12">
+                                <li class="col-lg-12 form-group">
+                                    <label class="pop_label_lefts Notrequired">Display to customer </label>
+                                    <div class="col-lg-9 pop_radios_list">
+                                        <md-radio-group ng-required="true" name="rbtnOutDisplay" layout="row" ng-model="page.model.actobj.rbtnOutDisplay" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                            <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                        </md-radio-group>
+                                    </div>
+                                </li>
+                            </div>
+                            <div class="col-lg-12">
+                                <li class="col-lg-12 form-group">
+                                    <label class="pop_label_lefts">Call discussion </label>
+                                    <div class="col-lg-9">
+                                        <textarea type=text rows="4" ng-model="page.model.actobj.txtOutCalldiscussion" class="form-control" required></textarea>
+                                    </div>
+                                </li>
+                            </div>
+                            <div class="clearfix"></div>
+                            <br />
                         </ul>
                         <br />
                         <div class="row">
@@ -380,32 +401,33 @@
                     </form>
                 </div>
             </uib-tab>
-            <uib-tab index="2" heading="Internal Memo">
+            <uib-tab ng-click="page.model.clearalltext()" index="2" heading="Internal Memo">
                 <div>
                     <form name="memoform" novalidate role="form" ng-submit="memoform.$valid && page.model.memoSubmit(page.model.actobj);">
                         <br>
                         <ul>
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left">Reply Type  </label>
-                                <div class="pop_controls_right input-group">
-                                    <!--<select class="smalldropdown" ng-model="page.model.actobj.ddlMemReplyType" ng-change="page.model.actobj.txtMemmemocalldiscussion=page.model.mailchange(page.model.actobj.ddlMemReplyType);" multiselectdropdown ng-options="item.value as item.label for item in page.model.ReplyArr"
-                                        required>   
-                                  </select>-->
-
-                                    <md-radio-group ng-required="true" name="rbtnReplyTypememo" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyTypememo,'memo');" layout="row" ng-model="page.model.actobj.rbtnReplyTypememo" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                        <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
-                                        <md-radio-button value="0"> Not Interested</md-radio-button>
-                                        <md-radio-button value="2">Pending</md-radio-button>
-
-                                    </md-radio-group>
-                                </div>
-                            </li>
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left">Enter memo  </label>
-                                <div class="pop_controls_right">
-                                    <textarea ng-model="page.model.actobj.txtMemmemocalldiscussion" type="text" class="form-control" required></textarea>
-                                </div>
-                            </li>
+                            <div class="col-lg-12">
+                                <li class="col-lg-12 form-group">
+                                    <label class="pop_label_lefts">Reply Type  </label>
+                                    <div class="col-lg-9 input-group">
+                                        <md-radio-group ng-required="true" name="rbtnReplyTypememo" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyTypememo,'memo');" layout="row" ng-model="page.model.actobj.rbtnReplyTypememo" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                            <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
+                                            <md-radio-button value="0"> Not Interested</md-radio-button>
+                                            <md-radio-button value="2">Pending</md-radio-button>
+                                        </md-radio-group>
+                                    </div>
+                                </li>
+                            </div>
+                            <div class="col-lg-12">
+                                <li class="col-lg-12 form-group">
+                                    <label class="pop_label_lefts">Enter memo  </label>
+                                    <div class="col-lg-9">
+                                        <textarea rows="4" ng-model="page.model.actobj.txtMemmemocalldiscussion" type="text" class="form-control" required></textarea>
+                                    </div>
+                                </li>
+                            </div>
+                            <div class="clearfix"></div>
+                            <br />
                         </ul>
                         <br />
                         <div class="row">
@@ -419,32 +441,38 @@
                     </form>
                 </div>
             </uib-tab>
-            <uib-tab index="3" heading="Close Ticket">
+            <uib-tab ng-click="page.model.clearalltext()" index="3" heading="Close Ticket">
                 <div>
                     <form name="closeform" novalidate role="form" ng-submit="closeform.$valid && page.model.closeSubmit(page.model.actobj);">
                         <br>
                         <ul>
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left">Reply Type </label>
-                                <div class="pop_controls_right input-group">
-                                    <md-radio-group ng-required="true" name="rbtnReplyTypeClose" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyTypeClose,'close');" layout="row" ng-model="page.model.actobj.rbtnReplyTypeClose" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                        <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
-                                        <md-radio-button value="0"> Not Interested</md-radio-button>
-                                        <md-radio-button value="2">Pending</md-radio-button>
-                                    </md-radio-group>
+                            <div class="col-lg-12">
+                                <li class="col-lg-12 form-group">
+                                    <label class="pop_label_lefts">Reply Type </label>
+                                    <div class="col-lg-9 input-group">
+                                        <md-radio-group ng-required="true" name="rbtnReplyTypeClose" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyTypeClose,'close');" layout="row" ng-model="page.model.actobj.rbtnReplyTypeClose" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                            <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
+                                            <md-radio-button value="0"> Not Interested</md-radio-button>
+                                            <md-radio-button value="2">Pending</md-radio-button>
+                                        </md-radio-group>
 
-                                </div>
-                            </li>
-                            <li class="clearfix form-group">
-                                <label class="pop_label_left">Reason for close </label>
-                                <div class="pop_controls_right">
-                                    <textarea type="text" ng-model="page.model.actobj.txtcloseReason" class="form-control" required></textarea>
-                                </div>
-                            </li>
+                                    </div>
+                                </li>
+                            </div>
+                            <div class="col-lg-12">
+                                <li class="col-lg-12 form-group">
+                                    <label class="pop_label_lefts">Reason for close </label>
+                                    <div class="col-lg-9">
+                                        <textarea rows="4" type="text" ng-model="page.model.actobj.txtcloseReason" class="form-control" required></textarea>
+                                    </div>
+                                </li>
+                            </div>
+                            <div class="clearfix"></div>
+                            <br />
                         </ul>
                         <br />
                         <div class="row">
-                            <div class="col-lg-offset-6 col-lg-3">
+                            <div class="col-lg-offset-3 col-lg-3">
                                 <button type="submit" class="button_custom pull-right" ng-disabled="page.model.isDisabledsubmit">Close Ticket</button>
                             </div>
                             <div class="col-lg-2">
