@@ -227,8 +227,8 @@
                     { text: 'ServiceDate', key: 'ServiceDate', type: 'label' },
                     { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' },
                     { text: 'Service Done', key: 'BranchName', type: 'customlink', templateUrl: model.servicedone },
-                    { text: 'Viewed/Proceed Date', key: 'MFPStatusDate', type: 'customlink', templateUrl: model.viewdproceeddate },
                     { text: 'TicketID', key: 'TicketID', type: 'customlink', templateUrl: model.Tickidwithtype, method: model.clickticketupdate },
+                    { text: 'Viewed/Proceed Date', key: 'MFPStatusDate', type: 'customlink', templateUrl: model.viewdproceeddate },
                     { text: 'PhotoCount', key: 'PhotoCount', type: 'customlink', templateUrl: model.photocount }
                 ];
                 model.gridtable2.columns = [
@@ -239,8 +239,8 @@
                     { text: 'ServiceDate', key: 'ServiceDate', type: 'label' },
                     { text: 'ProfileOwner', key: 'ProfileOwner', type: 'label' },
                     { text: 'Service Done', key: 'BranchName', type: 'customlink', templateUrl: model.servicedone },
-                    { text: 'Viewed/Proceed Date', key: 'MFPStatusDate', type: 'customlink', templateUrl: model.viewdproceeddate },
                     { text: 'TicketID', key: 'TicketID', type: 'customlink', templateUrl: model.Tickidwithtype, method: model.clickticketupdate },
+                    { text: 'Viewed/Proceed Date', key: 'MFPStatusDate', type: 'customlink', templateUrl: model.viewdproceeddate },
                     { text: 'Options', key: '', type: 'morelinks', templateUrl: model.ResendTempurl },
                     // { text: 'PhotoCount', key: 'PhotoCount', type: 'customlink', templateUrl: model.photocount }
                 ];
