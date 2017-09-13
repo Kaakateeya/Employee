@@ -274,7 +274,9 @@
         model.close = function() {
             modelpopupopenmethod.closepopup();
         };
-
+        model.closepopup = function() {
+            modelpopupopenmethod.closepopuppoptopopup();
+        };
         model.slidebind = function(old, news, array) {
             if (parseInt(model.topage) - parseInt(news) === 4) {
                 model.MyprofileResult(model.mpObj, (model.topage) + 1, (model.topage) + 10, 'slide', 0);
