@@ -140,11 +140,6 @@
                     { text: 'Agreed amount', key: 'AgreedAmount', type: 'label' },
                     { text: 'Paid amount', key: 'PaidAmount', type: 'label' },
                     { text: 'Balance amount', key: 'BalanceAmount', type: 'label' },
-                    //  { text: 'Marktd by', key: 'AssignMarktedname', type: 'label' },
-                    // { text: 'Pay for', key: 'PayFor', type: 'label' },
-                    // { text: 'Owner of the profile', key: 'ProfileOwner', type: 'label' },
-                    // { text: 'Send message', key: 'marktby', type: 'morelinks', templateUrl: model.sendmessages },
-                    //{ text: 'Send email', key: 'marktby', type: 'morelinks', templateUrl: model.sendemails }
                 ];
                 model.paymentreports = function(from, to, type) {
                     if (type === 'grid') {

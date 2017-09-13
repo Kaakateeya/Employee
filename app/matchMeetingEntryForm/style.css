@@ -11,4 +11,11 @@
   color: maroon;
   font-size: 18px; }
 
+.dashboardheaderpopup {
+  background-color: rgba(197, 205, 50, 0.42);
+  margin-bottom: 10px;
+  margin-top: 2px;
+  margin-left: 2px;
+  margin-right: 2px; }
+
 /*# sourceMappingURL=style.css.map */

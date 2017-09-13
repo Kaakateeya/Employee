@@ -8,10 +8,8 @@
             'complex-slide-config', 'authSvc', 'Commondependency', 'modelpopupopenmethod', 'alert', 'arrayConstants', 'SelectBindServiceApp', 'helperservice',
             function($http, getArray, timeout, matchFollowupServices, config,
                 authSvc, Commondependency, modelpopupopenmethod, alertss, arrayConstants, SelectBindServiceApp, helpService) {
-                //return function() {
                 var model = {};
                 model.config = config;
-                // model.proceed = {};
                 model.config.proceed = {};
                 model.BranchName = [];
                 model.templateUrl = "templates/matchFollowupSlide.html";
@@ -48,8 +46,6 @@
                     model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                     model.loginempName = authSvc.LoginEmpName() !== undefined && authSvc.LoginEmpName() !== null && authSvc.LoginEmpName() !== "" ? authSvc.LoginEmpName() : "";
                     model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
-
-
                     model.lstEmpnames = [parseInt(model.empid)];
                     model.activebutton = 'bothside';
                     model.txtFromProceedDate = model.txtToProceedDate = '';
@@ -57,7 +53,6 @@
                     return model;
                 };
                 model.bindEmpnames = function() {
-
                     if ((model.Managementid) === 'true' && model.EmpNamesArr.length === 0) {
                         SelectBindServiceApp.EmpwithBranch('ProfileBranch', '').then(function(response) {
                             var empBranchData = response.data;
@@ -73,7 +68,6 @@
                         model.RegionArr = [];
                         model.EmpNamesArr = [];
                     }
-
                 };
                 model.smsarray = [
                     { id: 1, text: 'We missed to reach you on 91-XXXXX. please call back' },
@@ -228,9 +222,7 @@
                 model.dynamicPopover.fromisOpen = false;
                 model.dynamicPopover.toisOpen = false;
                 model.histryPopover = function(ticketID, type, fromtoType) {
-                    // model.isDisabledsubmit = true;
                     matchFollowupServices.ticketHistry(ticketID, type).then(function(response) {
-                        // model.isDisabledsubmit = false;
                         if (_.isArray(response.data) && response.data.length > 0) {
                             if (fromtoType === 'from') {
                                 model.ticketHistryArr = [];
@@ -301,9 +293,6 @@
                             FromProfileID: profileid,
                             ToProfileID: ToProfileID
                         };
-                        // timeout(function() {
-                        //     model.txtsmsmail = model.mailchange(model.ddlmail);
-                        // }, 500);
                     }
                     modelpopupopenmethod.showPopup('sendsmsMail.html', model.scope, 'md', 'mailCls');
                 };
@@ -331,7 +320,6 @@
                         });
                     }
                 };
-
                 model.Settlementfom = function(val) {
                     model.image = val;
                     modelpopupopenmethod.showPopupphotopoup('templates/bindImagePopup.html', model.scope, 'md', 'settlecls');
@@ -344,7 +332,6 @@
                 };
                 model.redirectContactPage = function(custid) {
                     window.open('/Contact/' + custid, '_blank');
-
                 };
                 model.Resendmail = function(fromcustID, toCustID, FormProfileid, Toprofileid, offlineExpiry, onlineExpiry) {
                     var resendInputObj = {
@@ -370,7 +357,6 @@
                         }
                     });
                 };
-
                 model.RelationshipChange = function(RelationshipID, type) {
                     matchFollowupServices.getRaltionName(3, model.ActionProfileID, RelationshipID).then(function(response) {
                         if (_.isArray(response.data[0]) && response.data[0].length > 0) {
@@ -431,15 +417,10 @@
                         FromProfileID: profileID,
                         ToProfileID: ToProfileID
                     };
-
-
                     modelpopupopenmethod.showPopup('Actions.html', model.scope, 'lg', 'Actioncls');
                 };
-
-
                 model.ActionSubmit = function(obj, str, intrstType) {
                     obj.CallDiscussion = obj.CallDiscussion;
-                    //intrstType ? (parseInt(intrstType) === 1 ? 'Interested in your match' : obj.CallDiscussion) : obj.CallDiscussion;
                     var alertmsg = '',
                         replyTypedisplay = '';
                     var inputObj = {
@@ -519,7 +500,6 @@
                         PhoneNum: obj.txtInCalltelephonenumber,
                         CallDiscussion: obj.txtInCalldiscussion,
                         DisplayStatus: obj.rbtnInDisplay,
-                        // Replaytypeid: obj.ddlInReplyType
                     };
                     model.ActionSubmit(inputObj, 'Incoming', obj.rbtnReplyType);
                 };
@@ -533,7 +513,6 @@
                         PhoneNum: obj.txtOutCalltelephonenumber,
                         CallDiscussion: obj.txtOutCalldiscussion,
                         DisplayStatus: obj.rbtnOutDisplay,
-                        // Replaytypeid: obj.ddlOutreplytype
                     };
                     model.ActionSubmit(inputObj, 'Out going', obj.rbtnReplyTypeout);
                 };
@@ -542,7 +521,6 @@
                     var inputObj = {
                         CallType: 379,
                         CallDiscussion: obj.txtMemmemocalldiscussion,
-                        // AssignedEmpID: obj.ddlMemAssign
                         AssignedEmpID: null
                     };
                     model.ActionSubmit(inputObj, 'Internal Memo', obj.rbtnReplyTypememo);
@@ -574,19 +552,25 @@
                     model.typeOFCall = type;
                     model.typeOfCtrl = val;
                     var textpopup = model.ticketstatusforemail !== 'I' ? '(proceed/do not proceed/need time)' : '(proceed/do not proceed/need time)';
+                    var genderid = model.genderforemail === 1 ? 'Mr.' : 'Ms.';
+                    var she = model.genderforemail === 1 ? 'He' : 'She';
+                    var her = model.genderforemail === 1 ? 'his' : 'her';
                     if (val === '1') {
                         //  model.txtAllcallDiscusion = 'intrsted';
-                        var genderid = model.genderforemail === 1 ? 'Ms.' : 'Mr.';
-                        var she = model.genderforemail === 1 ? 'She' : 'He';
-                        var her = model.genderforemail === 1 ? 'her' : 'his';
                         model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment().format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
                             "We are resending " + her + " profile for the ease of viewing and please give your opinion in the options provided in the profile" + textpopup + "";
                         model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else if (val === '2') {
-                        model.txtAllcallDiscusion = 'pending';
+                        //model.txtAllcallDiscusion = 'pending';
+                        model.txtAllcallDiscusion = genderid + model.tointerestname + "viewed your full profile and is seeking some more time to proceed." +
+                            "Meanwhile lets look into other options.";
+
                         model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else {
-                        model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = '';
+                        model.txtAllcallDiscusion = genderid + model.tointerestname + "viewed your  profile and did not respond positive." +
+                            "Lets proceed further with our new search options.";
+                        // model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = '';
+                        model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     }
                     //modelpopupopenmethod.showPopupphotopoup('notIntrstPopup.html', model.scope, 'md', 'notintrstCls');
                 };
@@ -623,7 +607,13 @@
                 model.destroy = function() {
                     config.reset();
                 };
-
+                model.clearalltext = function() {
+                    model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion = "";
+                    model.actobj.rbtnReplyTypeout =
+                        model.actobj.rbtnReplyType = "";
+                    model.actobj.rbtnReplyTypememo = "";
+                    model.actobj.rbtnReplyTypeClose = "";
+                };
                 model.skipthisprofile = function(slide, fromcust_id, tocustid, logid, status, flag) {
                     if (flag === 'From' && slide.isSkippedfrom) {
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'You have already skipped this profile', 3000);

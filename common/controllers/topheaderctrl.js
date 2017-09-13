@@ -3,8 +3,8 @@
     /** @ngInject */
     angular
         .module('Kaakateeya')
-        .controller('headerctrl', ['$scope', 'topheadermodel', 'authSvc', '$http',
-            function(scope, topheadermodel, authSvc, $http) {
+        .controller('headerctrl', ['$scope', 'topheadermodel', 'authSvc', '$http', 'Notification',
+            function(scope, topheadermodel, authSvc, $http, Notification) {
                 var vm = this,
                     model = {};
                 vm.initheader = function() {
@@ -20,13 +20,18 @@
                         model.usernameemployeeid = sessionStorage.getItem("usernameemployeeid");
                         model.unpaidmember = false;
                     }
-                    model.templateUrl = "templates/dashBoardslide.html";
-                    model.configheader.headettemp = "dashboardheader.html";
+
                     $http.get('your-server-endpoint');
                 };
 
                 vm.initheader();
-
+                // scope.$watch('model.notificationarray', function() {
+                //     debugger;
+                //     if (model.notificationarray === undefined || model.notificationarray === null ||
+                //         model.notificationarray === "" || model.notificationarray.length === 0) {
+                //         Notification.clearAll();
+                //     }
+                // });
             }
         ]);
 

@@ -1,76 +1,49 @@
 #assignsettingsid .subColumnClass {
-    line-height: 40px;
-}
-
+  line-height: 40px; }
 #assignsettingsid .panel-title {
-    color: #b10c0c;
-}
-
+  color: #b10c0c; }
 #assignsettingsid .unpaid {
-    color: red;
-    font-weight: 700;
-}
-
+  color: red;
+  font-weight: 700; }
 #assignsettingsid .paidclass {
-    color: #16713d;
-    font-weight: 700;
-}
-
+  color: #16713d;
+  font-weight: 700; }
 #assignsettingsid .ProfileOwner {
-    width: 200px;
-}
-
+  width: 200px; }
 #assignsettingsid .MarketedOwner {
-    width: 200px;
-}
-
+  width: 200px; }
 #assignsettingsid .ReviewOwner {
-    width: 200px;
-}
-
+  width: 200px; }
 #assignsettingsid .dropdownclass {
-    width: 250px;
-}
-
+  width: 250px; }
 #assignsettingsid .smalldropdowngrid {
-    width: 201px;
-}
-
+  width: 201px; }
 #assignsettingsid .reviewclass {
-    width: 270px;
-}
-
+  width: 270px; }
 #assignsettingsid .smalldropdown {
-    width: 270px;
-}
-
+  width: 270px; }
 #assignsettingsid .colorforcontrols button {
-    background-color: #f0f0cc !important;
-}
-
+  background-color: #f0f0cc !important; }
 #assignsettingsid .bacg {
-    background-color: #f0f0cc !important;
-}
-
+  background-color: #f0f0cc !important; }
 #assignsettingsid .headerStyles {
-    font-size: 14px;
-}
-
+  font-size: 14px; }
 #assignsettingsid .hasDatepicker {
-    width: 270px;
-}
+  width: 270px; }
+#assignsettingsid .dashboardheaderpopup {
+  background-color: rgba(197, 205, 50, 0.42);
+  margin-bottom: 10px;
+  margin-top: 2px;
+  margin-left: 2px;
+  margin-right: 2px; }
 
 .settled {
-    background-color: #17F067;
-}
+  background-color: #17F067; }
 
 .Deleted {
-    background-color: #BCC3BE;
-}
+  background-color: #BCC3BE; }
 
 .closed {
-    background-color: #C8E6E6;
-}
-
+  background-color: #C8E6E6; }
 
 /*# sourceMappingURL=style.css.map */

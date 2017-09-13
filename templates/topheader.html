@@ -10,9 +10,7 @@
                             Unpaid Members
                         </div>
                         <!-- head.model.showNotifications() -->
-                        <div style="cursor:pointer;color: #ffffff;font-style: italic;text-decoration: underline;" href="javascript:void(0)" ng-click="head.model.getemployeenotification(0, null, null, 0)">
-                            Notifications
-                        </div>
+
                     </li>
                     <li>
                         <div style="cursor:pointer" href="javascript:void(0)" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -147,6 +145,11 @@
                             <li><a href="ticketCreationpage">Ticket Creation</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a style="cursor:pointer;color: #ffffff;font-style: italic;text-decoration: underline;" href="javascript:void(0)" ng-click="head.model.getemployeenotification(0, null, null, 0)">
+                            Notifications
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -157,7 +160,7 @@
             </div>
             <div class="pull-right"><a href="javascript:void(0)" ng-click="head.model.getpresentunpaidmembers()"><span class="fa fa-refresh fa-2x fa-fw"></span></a>
             </div>
-            <table style="width:512px;" class="pull-right" ng-repeat="presentunpaid in head.model.presentunpaidmembersarray">
+            <table style="width:512px;" class="pull-right tableunpaid" ng-repeat="presentunpaid in head.model.presentunpaidmembersarray">
                 <tbody>
                     <tr ng-class="presentunpaid.MINUTE<10?'alert alert-warning fade in':'alert alert-danger fade in'" style="height: 45px;">
                         <td style="width: 6%;"><a class="close" ng-click="head.model.closealert($index)" style="font-size: 23px;">×&nbsp;&nbsp;</a></td>
@@ -346,6 +349,36 @@
             <br>
         </div>
 
+    </script>
+    <script type="text/ng-template" id="topdashboardheader.html">
+        <div class="row dashboardheaderpopup">
+            <div class="col-lg-12">
+                <h4 class="col-lg-4 dashboardheaderhtml">{{model.headerhtml}}</h4>
+                <div class="col-lg-6">
+                    <div class="col-lg-7 col-md-7 col-xs-7 col-sm-7">
+                        <label id="lbltotalrecords">Total Records :</label>
+                        <label id="lblcurrentprofile">{{(activeslide)+1}}</label> &nbsp;of&nbsp;
+                        <label id="lblcurSlide">{{model.totalRecords}}</label>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5">
+                        <div class="col-lg-10 col-md-10 col-xs-10 col-sm-10">
+                            <label>Viewed</label>&nbsp;<label data-ng-bind="slidNum" style="color: blue;">{{(Viwedslide)+1}}</label>&nbsp;<label>Profiles</label>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
+                            <input type="text" ng-model="txtGotoVal" class="form-control" style="width: 50px; height: 24px; margin-left: -20px;" ng-blur="gotoSlide(txtGotoVal)" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <a href="javascript:void(0);" class="dahboardheaderclose">
+                        <a href="javascript:void(0);" ng-click="model.closesashboard()" size="25" style="font-size: 17px;font-weight: bold;">Close</a>
+                    </a>
+                    <a href="javascript:void(0);" ng-click="model.closesashboard()" class="pull-right">
+                        <i class="fa fa-times" aria-hidden="true" style="fill:#c73e5f;font-size: 13pt;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </script>
     <span us-spinner="{radius:30, width:8, length: 16}" spinner-start-active="true"></span>
     </div>

@@ -110,7 +110,6 @@
                                             model.Statusrenewal = (response.data)[0].Status;
                                             model.data = (response.data);
                                         } else {
-                                            // state.go('base.EmployeePaymentInsert', { ProfileID: model.txtProfileID, status: 0, paymentID: 0, histryid: 0 });
                                             state.go('base.EmployeePaymentInsert', { ProfileID: model.txtProfileID, status: 0, paymentID: 0, histryid: 0 });
                                         }
                                     }
@@ -138,11 +137,9 @@
                 model.paymentInsertLink = function(id, type) {
                     if (model.Statusrenewal !== 'W/A') {
                         if (type === 'renewal')
-                        // state.go('base.EmployeePaymentInsert', { ProfileID: id, status: 1, paymentID: 0, histryid: model.PaymentHist_ID });
                             state.go('base.EmployeePaymentInsert', { ProfileID: id, status: 1, paymentID: 0, histryid: model.PaymentHist_ID });
                         else {
                             var Status = model.balancemembershiptype === 'Registration' ? 0 : 1;
-                            //state.go('base.EmployeePaymentInsert', { ProfileID: id, status: Status, paymentID: model.balancepaymentID, histryid: model.PaymentHist_ID });
                             state.go('base.EmployeePaymentInsert', { ProfileID: id, status: Status, paymentID: model.balancepaymentID, histryid: model.PaymentHist_ID });
                         }
                     } else {
@@ -246,6 +243,12 @@
                     };
                     EmployeePaymentservice.geteditpayment(obj).then(function(response) {
                         console.log(response);
+                        if (parseInt(response.data) === 1) {
+                            model.close();
+                            alerts.timeoutoldalerts(model.scope, 'alert-success', 'Payment Updated Successfully', 3000);
+                        } else {
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Payment Updated Failed', 3000);
+                        }
                     });
                 };
                 model.paymenteditpointsdate = function(obj) {

@@ -337,14 +337,11 @@
                             PrimaryContact: item.PrimaryContact,
                             PriWithoutCode: item.PriWithoutCode,
                             EmpReminderID: item.EmpReminderID,
-
                             RemCallType: item.RemCallType,
                             RemReminderRefID: item.RemReminderRefID,
                             RemRelationName: item.RemRelationName,
                             Category: item.Category,
                             RemainderBody: item.RemainderBody,
-                            // ReminderCreatedDate: item.ReminderCreatedDate,
-                            //ReminderCreatedDatepopup: $filter('date')(item.ReminderCreatedDate, 'dd-MM-yyyy')
                             ReminderCreatedDate: model.todaydate,
                             ReminderCreatedDatepopup: $filter('date')(model.todaydate, 'dd-MM-yyyy'),
                             EmpAssignedDate: moment(item.EmpAssignedDate).format('DD-MMM-YYYY'),
