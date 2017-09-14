@@ -26,7 +26,6 @@
         });
         rootScope.$on('request-end', function(item) {
             //show loading symbol
-
             scope.isLoader = false;
             console.log('Request Ended');
         });

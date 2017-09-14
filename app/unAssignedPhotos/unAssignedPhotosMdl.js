@@ -85,7 +85,6 @@
                 { text: 'OwnerName', key: 'OwnerName', type: 'label' },
                 { text: 'PhotosCount', key: 'PhotosCount', type: 'label' }
             ];
-            debugger;
             var inobj = {
                 iEmpID: model.empid,
                 StrProfileID: model.profileID ? model.profileID : null,

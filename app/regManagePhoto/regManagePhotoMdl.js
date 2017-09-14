@@ -1,7 +1,6 @@
 (function(angular) {
     'use strict';
 
-
     function factory(regManagePhotoService, uibModal, Commondependency, http, fileUpload, stateParams, authSvc, dynamicalert) {
         return function() {
             var model = {};
@@ -24,12 +23,10 @@
             model.cancel = function() {
                 Commondependency.closepopup();
             };
-
             model.refreshPageLoad = function(Arr) {
                 _.each(Arr, function(item) {
                     model.rbtProtectPassword = item.PhotoPassword === 'Admin@123' ? '1' : '0';
                     var imagepath = app.accesspathdotsImg;
-
                     if (item.IsActive === 0 && item.PhotoName !== null) {
                         var strCustDirName1 = "KMPL_" + CustID + "_Images";
                         var path1 = imagepath + strCustDirName1 + "/" + item.PhotoName;
@@ -74,16 +71,11 @@
             };
 
             model.getData = function() {
-
                 regManagePhotoService.getPhotoData(CustID).then(function(response) {
                     model.manageArr = response.data;
                     model.refreshPageLoad(model.manageArr);
                 });
             };
-
-
-
-
             model.AddImage = function(index, Cust_Photos_ID, DisplayOrder, IsActive) {
                 model.photorowID = index;
                 model.Cust_Photos_ID = Cust_Photos_ID;
@@ -95,19 +87,15 @@
                 var extension = (obj.myFile.name !== '' && obj.myFile.name !== undefined && obj.myFile.name !== null) ? (obj.myFile.name.split('.'))[1] : null;
                 extension = angular.lowercase(extension);
                 var gifFormat = "gif, jpeg, png,jpg";
-
                 if (typeof(obj.myFile.name) != "undefined") {
                     var size = parseFloat(obj.myFile.size / 1024).toFixed(2);
                     if (extension !== null && gifFormat.indexOf(angular.lowercase(extension)) === -1) {
-
                         dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Your uploaded image contains an unapproved file formats.', 4500);
                     } else if (size > 4 * 1024) {
-
                         dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'Sorry,Upload Photo Size Must Be Less than 4 mb', 4500);
                     } else {
                         model.isDisabledsubmit = true;
                         var keyname = app.prefixPathImg + 'KMPL_' + CustID + '_Images/Img' + model.photorowID + '.' + extension;
-
                         fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
                             model.isDisabledsubmit = false;
                             if (res.status == 200) {
@@ -135,7 +123,6 @@
                                         Admin: AdminID
                                     }
                                 };
-
                                 regManagePhotoService.submituploadData(model.uploadData).then(function(response) {
                                     if (response.status === 200) {
 
@@ -156,20 +143,15 @@
                     dynamicalert.timeoutoldalerts(model.scope, 'alert-danger', 'This browser does not support HTML5.', 4500);
                 }
             };
-
             model.DeleteImage = function(key, Cust_Photoid) {
                 model.deleteKey = key;
                 model.DCust_Photos_ID = Cust_Photoid;
                 Commondependency.open('deleteimagePopup.html', model.scope, uibModal, 'sm');
             };
-
             model.Delete = function() {
                 model.isDisabledsubmit = true;
                 var keynameq = app.prefixPathImg + model.deleteKey;
-                http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {
-
-                });
-
+                http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {});
                 regManagePhotoService.linqSubmits(model.DCust_Photos_ID, 3).then(function(response) {
                     model.isDisabledsubmit = false;
                     if (response.data === 1) {
@@ -197,12 +179,8 @@
                         }
                     }
                 });
-
             };
-
-
             model.redirectPage = function(type) {
-
                 switch (type) {
                     case 'PhotoGuideLines':
                         window.open('registration/photoGuideLines', '_blank');
@@ -215,15 +193,11 @@
                         break;
                 }
             };
-
-
             return model.init();
-        }
+        };
     }
     angular
         .module('Kaakateeya')
         .factory('regManagePhotoModel', factory);
-
     factory.$inject = ['regManagePhotoService', '$uibModal', 'Commondependency', '$http', 'fileUpload', '$stateParams', 'authSvc', 'alert'];
-
 })(angular);

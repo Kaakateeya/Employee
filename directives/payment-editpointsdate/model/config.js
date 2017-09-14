@@ -32,7 +32,6 @@
             if (model.insertopenflag !== 1) {
                 model.insertopenflag = 1;
                 paymenteditpointsservice.paymenteditsubmit(obj).then(function(response) {
-                    console.log(response);
                     if (parseInt(response.data) === 1) {
                         alertss.timeoutoldalerts(model.scope, 'alert-success', 'Payment Modified succesfully', 4000);
                         model.close();

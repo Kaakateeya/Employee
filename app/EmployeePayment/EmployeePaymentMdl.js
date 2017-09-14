@@ -242,7 +242,6 @@
                         strPaydescription: model.editDescriptionAmt !== "" && model.editDescriptionAmt !== null && model.editDescriptionAmt !== undefined ? model.editDescriptionAmt : null
                     };
                     EmployeePaymentservice.geteditpayment(obj).then(function(response) {
-                        console.log(response);
                         if (parseInt(response.data) === 1) {
                             model.close();
                             alerts.timeoutoldalerts(model.scope, 'alert-success', 'Payment Updated Successfully', 3000);
