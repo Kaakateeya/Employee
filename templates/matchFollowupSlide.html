@@ -266,23 +266,19 @@
                                 </li>
                             </div>
                             <div class="col-lg-12">
-                                <li class="col-lg-12 form-group">
-                                    <label class="pop_label_lefts">Reply Type </label>
-                                    <div class="input-group col-lg-9">
-                                        <!--<select class="smalldropdown" ng-model="page.model.actobj.ddlInReplyType" multiselectdropdown ng-change="page.model.actobj.txtInCalldiscussion=page.model.mailchange(page.model.actobj.ddlInReplyType);" ng-options="item.value as item.label for item in page.model.ReplyArr"
-                                        required></select>-->
+                                <li class="col-lg-7 form-group">
+                                    <label class="pop_label_leftss">Reply Type</label>
+                                    <div class="input-group col-lg-11" style="margin-top: 10px">
                                         <md-radio-group ng-required="true" name="rbtnReplyType" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyType,'In');" layout="row" ng-model="page.model.actobj.rbtnReplyType" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                            <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
-                                            <md-radio-button value="0"> Not Interested</md-radio-button>
-                                            <md-radio-button value="2">Pending</md-radio-button>
+                                            <md-radio-button value="1" class="md-primary" style="width: 86px;margin-left: 30px;">Interested</md-radio-button>
+                                            <md-radio-button value="0" style="width: 120px;"> Not Interested</md-radio-button>
+                                            <md-radio-button value="2" style="width: 86px;">Pending</md-radio-button>
                                         </md-radio-group>
                                     </div>
                                 </li>
-                            </div>
-                            <div class="col-lg-12">
-                                <li class="col-lg-12 form-group">
-                                    <label class="pop_label_lefts Notrequired">Display to customer </label>
-                                    <div class="col-lg-9 pop_radios_list">
+                                <li class="col-lg-5 form-group">
+                                    <label class="col-lg-6 pop_label_leftsdisplay Notrequired">Display to customer </label>
+                                    <div class="col-lg-6 pop_radios_list">
                                         <md-radio-group ng-required="true" name="rbtnPaymode" layout="row" ng-model="page.model.actobj.rbtnInDisplay" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                             <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
                                         </md-radio-group>
@@ -354,23 +350,19 @@
                                 </li>
                             </div>
                             <div class="col-lg-12">
-                                <li class="col-lg-12 form-group">
-                                    <label class="pop_label_lefts">Reply Type </label>
-                                    <div class="col-lg-9 input-group">
+                                <li class="col-lg-7 form-group">
+                                    <label class="pop_label_leftss">Reply Type </label>
+                                    <div class="input-group col-lg-11" style="margin-top: 10px">
                                         <md-radio-group ng-required="true" name="rbtnReplyTypeout" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyTypeout,'Out');" layout="row" ng-model="page.model.actobj.rbtnReplyTypeout" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                            <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
-                                            <md-radio-button value="0"> Not Interested</md-radio-button>
-                                            <md-radio-button value="2">Pending</md-radio-button>
+                                            <md-radio-button value="1" style="width: 86px;margin-left: 30px;" class="md-primary">Interested</md-radio-button>
+                                            <md-radio-button value="0" style="width: 120px;"> Not Interested</md-radio-button>
+                                            <md-radio-button value="2" style="width: 86px;">Pending</md-radio-button>
                                         </md-radio-group>
-
                                     </div>
                                 </li>
-
-                            </div>
-                            <div class="col-lg-12">
-                                <li class="col-lg-12 form-group">
-                                    <label class="pop_label_lefts Notrequired">Display to customer </label>
-                                    <div class="col-lg-9 pop_radios_list">
+                                <li class="col-lg-5 form-group">
+                                    <label class="col-lg-6 pop_label_leftsdisplay Notrequired">Display to customer </label>
+                                    <div class="col-lg-6 pop_radios_list">
                                         <md-radio-group ng-required="true" name="rbtnOutDisplay" layout="row" ng-model="page.model.actobj.rbtnOutDisplay" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                             <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
                                         </md-radio-group>

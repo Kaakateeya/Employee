@@ -3,17 +3,20 @@
         <div class="nav_menu">
             <nav class="row">
                 <ul class="nav navbar-nav pull-right col-lg-3">
-                    <li class="col-lg-9">
+                    <li class="col-lg-10">
                         <div style="color:#fff;"><strong style="font-size: 19px;"> Welcome  {{head.model.name}}</strong>
                         </div>
-                        <div style="cursor:pointer;color: #ffffff;font-style: italic;text-decoration: underline;" href="javascript:void(0)" ng-click="head.model.hideshowunpaid()">
-                            Unpaid Members
+                        <div class="row">
+                            <a class="col-lg-5" style="cursor:pointer;color: #ffffff;font-style: italic;text-decoration: underline;" href="javascript:void(0)" ng-click="head.model.getemployeenotification(0, null, null, 0)">
+                                                Notifications
+                                    </a>
+                            <div class="col-lg-7" style="cursor:pointer;color: #ffffff;font-style: italic;text-decoration: underline;" href="javascript:void(0)" ng-click="head.model.hideshowunpaid()">
+                                Unpaid Members
+                            </div>
                         </div>
-                        <!-- head.model.showNotifications() -->
-
                     </li>
-                    <li>
-                        <div style="cursor:pointer" href="javascript:void(0)" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <li class="col-lg-2">
+                        <div style="cursor:pointer;width: 65px;height: 56px;" href="javascript:void(0)" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             <img ng-src="{{head.model.empphoto}}" alt="">
                             <span class="fa fa-angle-down" id="spandownheader"></span>
                         </div>
@@ -33,6 +36,7 @@
                             </li>
                         </ul>
                     </li>
+
                 </ul>
                 <ul class="navtop navbar-left col-lg-9">
                     <li>
@@ -145,11 +149,11 @@
                             <li><a href="ticketCreationpage">Ticket Creation</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a style="cursor:pointer;color: #ffffff;font-style: italic;text-decoration: underline;" href="javascript:void(0)" ng-click="head.model.getemployeenotification(0, null, null, 0)">
                             Notifications
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
         </div>

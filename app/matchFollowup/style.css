@@ -840,4 +840,28 @@ body {
   padding-left: 21px;
   text-transform: capitalize; }
 
+.pop_label_leftss {
+  display: inline-block;
+  float: left;
+  position: relative;
+  line-height: 36px;
+  font-size: 13px;
+  color: #000 !important;
+  font-weight: 400;
+  width: 24%;
+  padding-left: 21px;
+  text-transform: capitalize; }
+
+.pop_label_leftsdisplay {
+  display: inline-block;
+  float: left;
+  position: relative;
+  line-height: 36px;
+  font-size: 13px;
+  color: #000 !important;
+  font-weight: 400;
+  width: 45%;
+  margin-left: -66px;
+  text-transform: capitalize; }
+
 /*# sourceMappingURL=style.css.map */

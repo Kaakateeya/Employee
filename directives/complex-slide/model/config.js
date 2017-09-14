@@ -58,6 +58,7 @@
                     });
                     model.data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
                     model.data.push({ label: 'DOB-Height', value: '', DOB: item.DOB + ' -- ' + item.Height });
+                    // model.data.push({ label: 'DOB-Height', value: item.DOB + ' -- ' + item.Height, });
                     model.data.push({ label: 'Caste', value: item.mothertongue + "-" + item.Caste });
                     model.data.push({ label: 'Dor', value: item.RegistrationDate });
                     model.data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
