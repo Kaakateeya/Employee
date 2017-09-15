@@ -2,11 +2,11 @@
     'use strict';
     angular
         .module('Kaakateeya')
-        .factory('searchpageModel', ['$http', 'searchpageServices', 'arrayConstants',
+        .factory('searchpageModel', ['searchpageServices', 'arrayConstants',
             'getArraysearch', '$timeout', 'helperservice',
             'authSvc', 'alert', 'Commondependency', '$filter', 'modelpopupopenmethod', 'complex-slide-config',
             'expressInterestModel', 'complex-grid-config', '$stateParams',
-            function($http, searchpageServices, arrayConstants, getArray, timeout,
+            function(searchpageServices, arrayConstants, getArray, timeout,
                 helpService, authSvc, alerts, Commondependency, filter, modelpopupopenmethod, config,
                 expressInterestModel, configgrid, $stateParams) {
                 var model = {};
@@ -102,65 +102,68 @@
                     model.progressbar = [];
                     model.sidebarnavshow = false;
                     searchpageServices.getPrimaryCustomerDataResponse(obj.ProfileIDpopup, model.empid).then(function(response) {
-
                         if (response !== null && response.data !== undefined && response.data !== null && response.data !== "") {
-
-                            var data = model.getpageloadobject = response.data;
-                            model.Cust_ID = data.Cust_ID;
-                            model.GenderID = data.GenderID;
-                            model.AgeFromID = parseInt(data.AgeMin);
-                            model.AgeToID = parseInt(data.AgeMax);
-                            model.DOBfrom = data.MaxDob;
-                            model.DOBTo = data.MinDob;
-                            model.MaritalstatusID = model.arrayToString(data.maritalstatusid);
-                            model.ReligionID = model.arrayToString(data.religionid);
-                            model.MothertongueID = model.arrayToString(data.MotherTongueID);
-                            model.Caste = [];
-                            model.Casteparents = [];
-                            model.EducationCategoryID = [];
-                            model.Educationgroup = [];
-                            model.educationspeciallisation = [];
-                            model.Caste = Commondependency.casteDepedency(model.ReligionID !== null && model.ReligionID.length > 0 ? model.ReligionID.toString() : "", (model.MothertongueID !== null && model.MothertongueID.length > 0) ? (model.MothertongueID).toString() : "");
-                            model.Casteparents = Commondependency.casteDepedency(model.ReligionID !== null && model.ReligionID.length > 0 ? model.ReligionID.toString() : "", (model.MothertongueID !== null && model.MothertongueID.length > 0) ? (model.MothertongueID).toString() : "", true);
-                            model.SubCaste = Commondependency.subCaste((data.casteid !== null && data.casteid !== "" && data.casteid !== undefined) ? (data.casteid).toString() : "");
-                            model.CountryID = model.arrayToString(data.CountryID);
-                            model.EducationID = model.arrayToString(data.EducationCategoryID);
-                            model.RegionID = model.arrayToString(data.Regions);
-                            model.BranchID = model.arrayToString(data.Branches);
-                            model.ComplexionID = model.arrayToString(data.complexionid);
-                            model.EducationCategoryID = model.arrayToString(data.EducationCategoryID);
-                            model.Educationgroup = Commondependency.educationGroupBind((data.EducationCategoryID !== undefined && data.EducationCategoryID !== null && data.EducationCategoryID !== "") ? (data.EducationCategoryID) : "");
-                            model.educationspeciallisation = Commondependency.educationSpeciakisationBind((data.EducationGroupID !== undefined && data.EducationGroupID !== null && data.EducationGroupID !== "") ? (data.EducationGroupID) : "");
-                            model.HeightFromID = data.MinHeight === 0 ? 9 : parseInt(data.MinHeight);
-                            model.HeightToID = parseInt(data.MaxHeight);
-                            if (model.selectedIndex === 1) {
-                                model.ProfessionID = model.arrayToString(data.ProfessionGroup);
+                            if (response.data.GenderID !== null && response.data.GenderID !== undefined && response.data.GenderID !== "") {
+                                var data = model.getpageloadobject = response.data;
+                                model.Cust_ID = data.Cust_ID;
+                                model.GenderID = data.GenderID;
+                                model.AgeFromID = parseInt(data.AgeMin);
+                                model.AgeToID = parseInt(data.AgeMax);
+                                model.DOBfrom = data.MaxDob;
+                                model.DOBTo = data.MinDob;
+                                model.MaritalstatusID = model.arrayToString(data.maritalstatusid);
+                                model.ReligionID = model.arrayToString(data.religionid);
+                                model.MothertongueID = model.arrayToString(data.MotherTongueID);
+                                model.Caste = [];
+                                model.Casteparents = [];
+                                model.EducationCategoryID = [];
+                                model.Educationgroup = [];
+                                model.educationspeciallisation = [];
+                                model.Caste = Commondependency.casteDepedency(model.ReligionID !== null && model.ReligionID.length > 0 ? model.ReligionID.toString() : "", (model.MothertongueID !== null && model.MothertongueID.length > 0) ? (model.MothertongueID).toString() : "");
+                                model.Casteparents = Commondependency.casteDepedency(model.ReligionID !== null && model.ReligionID.length > 0 ? model.ReligionID.toString() : "", (model.MothertongueID !== null && model.MothertongueID.length > 0) ? (model.MothertongueID).toString() : "", true);
+                                model.SubCaste = Commondependency.subCaste((data.casteid !== null && data.casteid !== "" && data.casteid !== undefined) ? (data.casteid).toString() : "");
+                                model.CountryID = model.arrayToString(data.CountryID);
+                                model.EducationID = model.arrayToString(data.EducationCategoryID);
+                                model.RegionID = model.arrayToString(data.Regions);
+                                model.BranchID = model.arrayToString(data.Branches);
+                                model.ComplexionID = model.arrayToString(data.complexionid);
+                                model.EducationCategoryID = model.arrayToString(data.EducationCategoryID);
+                                model.Educationgroup = Commondependency.educationGroupBind((data.EducationCategoryID !== undefined && data.EducationCategoryID !== null && data.EducationCategoryID !== "") ? (data.EducationCategoryID) : "");
+                                model.educationspeciallisation = Commondependency.educationSpeciakisationBind((data.EducationGroupID !== undefined && data.EducationGroupID !== null && data.EducationGroupID !== "") ? (data.EducationGroupID) : "");
+                                model.HeightFromID = data.MinHeight === 0 ? 9 : parseInt(data.MinHeight);
+                                model.HeightToID = parseInt(data.MaxHeight);
+                                if (model.selectedIndex === 1) {
+                                    model.ProfessionID = model.arrayToString(data.ProfessionGroup);
+                                }
+                                model.jobCountryID = model.arrayToString(data.CountryID);
+                                model.State = Commondependency.StateBind((data.CountryID !== undefined && data.CountryID !== null && data.CountryID !== "") ? (data.CountryID).toString() : "");
+                                model.StateID = model.arrayToString(data.StateID);
+                                model.DistrictBind = Commondependency.districtBind((data.StateID !== undefined && data.StateID !== null && data.StateID !== "") ? (data.StateID).toString() : "");
+                                model.DistrictID = model.arrayToString(data.DistrictID);
+                                model.StarLanguageID = model.arrayToString(data.StarLanguageID);
+                                model.StarsID = model.arrayToString(data.PreferredStars);
+                                model.KojadoshamID = data.KujaDosham;
+                                model.BranchID = model.arrayToString(data.Branches);
+                                model.DietID = model.arrayToString(data.Diet);
+                                model.SmokeID = model.arrayToString(data.Smoke);
+                                model.DrinkID = model.arrayToString(data.Drink);
+                                model.bodytypeID = model.arrayToString(data.BodyTypeID);
+                                model.physicalStatusID = model.arrayToString(data.physicalstatusid);
+                                timeout(function() {
+                                    model.castID = model.arrayToString(data.casteid);
+                                    model.casteID = model.arrayToString(data.casteid);
+                                    model.SubCasteID = model.arrayToString(data.SubCasteID);
+                                    model.EducationGroupID = model.arrayToString(data.EducationGroupID);
+                                    model.FatherCaste = "";
+                                    model.MotherCaste = "";
+                                    model.getcastetext();
+                                }, 100);
+                                alerts.dynamicpopupclose();
+                            } else {
+                                alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Profileid Does not Exist', 4000);
                             }
-                            model.jobCountryID = model.arrayToString(data.CountryID);
-                            model.State = Commondependency.StateBind((data.CountryID !== undefined && data.CountryID !== null && data.CountryID !== "") ? (data.CountryID).toString() : "");
-                            model.StateID = model.arrayToString(data.StateID);
-                            model.DistrictBind = Commondependency.districtBind((data.StateID !== undefined && data.StateID !== null && data.StateID !== "") ? (data.StateID).toString() : "");
-                            model.DistrictID = model.arrayToString(data.DistrictID);
-                            model.StarLanguageID = model.arrayToString(data.StarLanguageID);
-                            model.StarsID = model.arrayToString(data.PreferredStars);
-                            model.KojadoshamID = data.KujaDosham;
-                            model.BranchID = model.arrayToString(data.Branches);
-                            model.DietID = model.arrayToString(data.Diet);
-                            model.SmokeID = model.arrayToString(data.Smoke);
-                            model.DrinkID = model.arrayToString(data.Drink);
-                            model.bodytypeID = model.arrayToString(data.BodyTypeID);
-                            model.physicalStatusID = model.arrayToString(data.physicalstatusid);
-                            timeout(function() {
-                                model.castID = model.arrayToString(data.casteid);
-                                model.casteID = model.arrayToString(data.casteid);
-                                model.SubCasteID = model.arrayToString(data.SubCasteID);
-                                model.EducationGroupID = model.arrayToString(data.EducationGroupID);
-                                model.FatherCaste = "";
-                                model.MotherCaste = "";
-                                model.getcastetext();
-                            }, 100);
                         }
-                        alerts.dynamicpopupclose();
+
                     });
                     return false;
                 };
