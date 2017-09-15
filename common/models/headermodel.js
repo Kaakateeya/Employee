@@ -205,6 +205,7 @@
                     return array;
                 };
                 model.slideshowheader = function(frompage, topage) {
+                    model.notificationarray = [];
                     Notification.clearAll();
                     modelpopupopenmethod.getlandingdataheader(model.empid, model.empBranchID, frompage, topage, 'Customer Notification Status', 1).then(function(response) {
                         if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0 && response.data[0].length > 0) {
@@ -283,6 +284,7 @@
                 };
                 model.closealert = function(index) {
                     model.presentunpaidmembersarray.splice(index, 1);
+
                 };
                 model.ticketpopupunpaid = function(ticketid) {
                     model.unpaidticket = ticketid;

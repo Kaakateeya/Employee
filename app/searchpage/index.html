@@ -306,7 +306,7 @@
                         <label class="generalpopuplabel">ProfileID<label>
                     </div>
                 <div class="col-lg-5">
-                <input focus-me="true" ng-model="page.model.ProfileIDpopup"  type="text"  style="width: 220px !important;" class="form-control"></input>
+                <input focus-me="true" max-length="9" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.ProfileIDpopup"   style="width: 220px !important;" class="form-control" ng-keyup="$event.keyCode == 13 && page.model.profileidupdate(page.model)"></input>
                 </div>
                <div class="col-lg-3">
                  <md-switch  class="md-secondary col-lg-5" style="margin-top:-1px;"  ng-model="page.model.activatedmobile">  </md-switch>  
