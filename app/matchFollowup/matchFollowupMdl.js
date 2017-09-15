@@ -1,7 +1,5 @@
 (function(angular) {
     'use strict';
-
-
     angular
         .module('Kaakateeya')
         .factory('matchFollowupModel', ['$http', 'getArraysearch', '$timeout', 'matchFollowupServices',
@@ -551,23 +549,23 @@
                     model.rbtnnotIntrst = '';
                     model.typeOFCall = type;
                     model.typeOfCtrl = val;
-                    var textpopup = model.ticketstatusforemail !== 'I' ? '(proceed/do not proceed/need time)' : '(proceed/do not proceed/need time)';
+                    // var textpopup = model.ticketstatusforemail !== 'I' ? '(proceed/do not proceed/need time)' : '(proceed/do not proceed/need time)';
                     var genderid = model.genderforemail === 1 ? 'Mr.' : 'Ms.';
                     var she = model.genderforemail === 1 ? 'He' : 'She';
                     var her = model.genderforemail === 1 ? 'his' : 'her';
                     if (val === '1') {
                         //  model.txtAllcallDiscusion = 'intrsted';
                         model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment().format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
-                            "We are resending " + her + " profile for the ease of viewing and please give your opinion in the options provided in the profile" + textpopup + "";
+                            "We are resending " + her + " profile for the ease of viewing and please give your opinion in the options provided in the profile";
                         model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else if (val === '2') {
                         //model.txtAllcallDiscusion = 'pending';
-                        model.txtAllcallDiscusion = genderid + model.tointerestname + "viewed your full profile and is seeking some more time to proceed." +
+                        model.txtAllcallDiscusion = genderid + model.tointerestname + " viewed your full profile and is seeking some more time to proceed." +
                             "Meanwhile lets look into other options.";
 
                         model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else {
-                        model.txtAllcallDiscusion = genderid + model.tointerestname + "viewed your  profile and did not respond positive." +
+                        model.txtAllcallDiscusion = genderid + model.tointerestname + " viewed your  profile and did not respond positive." +
                             "Lets proceed further with our new search options.";
                         // model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = '';
                         model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
@@ -637,7 +635,6 @@
                     }
                 };
                 return model;
-                // };
             }
         ]);
 

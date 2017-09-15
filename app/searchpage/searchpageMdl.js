@@ -1032,10 +1032,8 @@
                     if (casteshow !== undefined && casteshow !== null && casteshow !== "" && casteshow.length > 0) {
                         casteshow = casteshow.toString();
                         var currentSelected = filter('filter')(model.Caste, { value: parseInt(casteshow) })[0];
-                        debugger;
                         model.currentSelected = currentSelected.label;
                         // alert("Selected Value: " + currentSelected.value + "\nSelected Text: " + currentSelected.label);
-
                     }
                 };
                 return model;

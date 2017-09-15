@@ -243,7 +243,6 @@
         };
         model.oldkmplsubmit = function(from, to, type) {
             // model.Getfilterobject();
-
             //model.applicationids !== null && model.applicationids !== undefined && model.applicationids !== "" ? model.applicationids 
             model.object.Keyworddlikesrch.CApplicationStatus = 'Active';
             model.object.Keyworddlikesrch.EmpID = model.empid;

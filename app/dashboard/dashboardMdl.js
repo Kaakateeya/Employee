@@ -284,6 +284,7 @@
                             HoroscopeImage: item.HoroscopeImage
                         });
                         data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName });
+                        // data.push({ label: 'DOB-Height', value: item.DOB + ' -- ' + item.Height, });
                         data.push({ label: 'Caste', value: item.MotherTongue + "-" + item.Caste });
                         data.push({ label: 'Dor', value: item.DOR });
                         data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });

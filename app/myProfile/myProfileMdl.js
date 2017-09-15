@@ -206,6 +206,7 @@
                         WebsiteBlocked: obj.rdnWebsiteBlocked,
                         pagefrom: from,
                         pageto: to,
+                        previousownerID: model.arrayToString(obj.PreviousOwner),
                         intTableType: flagtype,
                         v_MaritalStatus: model.arrayToString(obj.ddlMaritalstatus),
                         i_Domacile: obj.rdndocmacile !== undefined && obj.rdndocmacile !== "" && obj.rdndocmacile !== null ? obj.rdndocmacile : null

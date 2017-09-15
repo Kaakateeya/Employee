@@ -1,7 +1,5 @@
  (function(angular) {
      'use strict';
-
-
      angular
          .module('Kaakateeya')
          .controller('matchFollowupCtrl', ['$scope', 'matchFollowupModel', '$rootScope', 'authSvc', function(scope, matchFollowupModel, $rootScope, authSvc) {

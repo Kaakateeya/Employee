@@ -36,7 +36,6 @@
                  vm.destroy = function() {
                      model.destroy();
                  };
-
                  vm.init();
              }
          ]);

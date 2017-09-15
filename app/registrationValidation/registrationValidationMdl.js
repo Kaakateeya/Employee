@@ -238,9 +238,7 @@
             model.destroy = function() {
                 slideConfig.reset();
             };
-
             return model.init();
-
         }]);
 
 })();
