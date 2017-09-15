@@ -5,19 +5,24 @@
         .module('Kaakateeya')
         .factory('unAssignedPhotosModel', factory);
 
-    factory.$inject = ['unAssignedPhotosService', 'alert'];
+    factory.$inject = ['unAssignedPhotosService', 'alert', 'Commondependency', '$timeout'];
 
-    function factory(unAssignedPhotosService, alertss) {
+    function factory(unAssignedPhotosService, alertss, Commondependency, timeout) {
 
         var model = {};
         model.scope = {};
-
+        model.Castearray = [];
         model.dateOptions = {
             changeMonth: true,
             changeYear: true,
             yearRange: "-40:+5",
             dateFormat: 'dd-mm-yy'
         };
+        model.init = function() {
+            model.Brancharray = Commondependency.branch(model.SplitstringintoArray(''));
+            return model;
+        };
+
         model.inpucheckboxTemplate = function(row) {
             return "<md-checkbox type='checkbox' ng-model='model.chkval" + row.index + "' ng-change='model.checkchange(model.chkval" + row.index + "," + JSON.stringify(row.ProfileID) + ");'>";
         };
@@ -83,7 +88,9 @@
                 { text: 'ProfileID', key: 'ProfileID', type: 'morelinks', templateUrl: model.ProfileIdTemplateDUrl },
                 { text: 'CustomerName', key: 'CustomerName', type: 'label' },
                 { text: 'OwnerName', key: 'OwnerName', type: 'label' },
-                { text: 'PhotosCount', key: 'PhotosCount', type: 'label' }
+                { text: 'PhotosCount', key: 'PhotosCount', type: 'label' },
+                { text: 'PhotoAssignedTo', key: 'PhotosCount', type: 'label' },
+                { text: 'caste', key: 'PhotosCount', type: 'label' }
             ];
             var inobj = {
                 iEmpID: model.empid,
@@ -131,9 +138,34 @@
             model.chkAll = '';
             model.data = [];
         };
+        model.SplitstringintoArray = function(val) {
+            var str;
+            if (val && val.length > 0) {
+                str = val.join(',');
+            }
+            return str;
+        };
+        model.religionMothertongueChange = function(parent1, parent2) {
+            model.casteArr = Commondependency.casteDepedency(model.SplitstringintoArray(parent1), model.SplitstringintoArray(parent2));
+            timeout(function() {
+                model.caste = [];
+                _.each(model.casteArr, function(item) {
+                    (model.caste).push(parseInt(item.value));
+                });
+            }, 500);
+        };
 
+        model.regionChnage = function(val) {
+            model.Brancharray = Commondependency.branch(model.SplitstringintoArray(val));
+            timeout(function() {
+                model.branch = [];
+                _.each(model.Brancharray, function(item) {
+                    (model.branch).push(parseInt(item.value));
+                });
+            }, 500);
+        };
 
-        return model;
+        return model.init();
 
     }
 })();

@@ -11,16 +11,37 @@
                         <label for="" class="control-label col-lg-6">Profile ID</label>
                         <div class="col-lg-6"><input type="text" class="form-control" ng-model="page.model.profileID"></div>
                     </div>
+
                     <div class="col-lg-4">
-                        <label for="" class="control-label col-lg-6">Caste</label>
-                        <div class="col-lg-6"> <select multiselectdropdown pagetype="'search'" class="smalldropdown" ng-model="page.model.caste" multiple typeofdata="'caste'">   
+                        <label for="" class="control-label col-lg-6">Region</label>
+                        <div class="col-lg-6">
+                            <select multiselectdropdown pagetype="'search'" ng-change="page.model.regionChnage(page.model.region);" ng-model="page.model.region" multiple typeofdata="'Regionofbranches'"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label for="" class="control-label col-lg-5">Branch</label>
+                        <div class="col-lg-6"> <select multiselectdropdown pagetype="'search'" class="smalldropdown" ng-model="page.model.branch" multiple ng-options="item.value as item.label for item in page.model.Brancharray">   
+                              </select></div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label for="" class="control-label col-lg-6">Religion</label>
+                        <div class="col-lg-6"> <select multiselectdropdown ng-change="page.model.religionMothertongueChange(page.model.religion,page.model.mothertongue);" pagetype="'search'" class="smalldropdown" ng-model="page.model.religion" multiple typeofdata="'Religion'">   
                               </select></div>
                     </div>
                     <div class="col-lg-4">
-                        <label for="" class="control-label col-lg-4">Region</label>
-                        <div class="col-lg-6"> <select multiselectdropdown pagetype="'search'" ng-model="page.model.region" multiple typeofdata="'Regionofbranches'">   
+                        <label for="" class="control-label col-lg-6">Mothertongue</label>
+                        <div class="col-lg-6"> <select multiselectdropdown ng-change="page.model.religionMothertongueChange(page.model.religion,page.model.mothertongue);" pagetype="'search'" class="smalldropdown" ng-model="page.model.mothertongue" multiple typeofdata="'Mothertongue'">   
                               </select></div>
                     </div>
+
+                    <div class="col-lg-4">
+                        <label for="" class="control-label col-lg-5">Caste</label>
+                        <div class="col-lg-6"> <select multiselectdropdown pagetype="'search'" class="smalldropdown" ng-model="page.model.caste" multiple ng-options="item.value as item.label for item in page.model.casteArr">   
+                              </select></div>
+                    </div>
+
                     <div class="col-lg-4">
                         <label for="" class="control-label col-lg-6">Photos uploaded from</label>
                         <div class="col-lg-6">
@@ -33,11 +54,7 @@
                             <custom-datepicker name="date" style="padding-right: 0px;" ng-model="page.model.uploadedTo" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <label for="" class="control-label col-lg-4">Branch</label>
-                        <div class="col-lg-6"> <select multiselectdropdown pagetype="'search'" class="smalldropdown" ng-model="page.model.branch" multiple typeofdata="'Branch'">   
-                              </select></div>
-                    </div>
+
                     <div class="col-lg-4">
                         <label for="photoAssigned" class="col-lg-5 control-label">Photo assigned</label>
                         <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.photoAssigned" class="md-block col-lg-6" flex-gt-sm ng-disabled="manageakerts">
