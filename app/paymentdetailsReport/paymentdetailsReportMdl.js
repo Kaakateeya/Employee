@@ -3,9 +3,10 @@
     angular
         .module('Kaakateeya')
         .factory('paymentdetailsReportModel', ['paymentdetailsReportService',
-            'complex-grid-config', 'arrayConstants', 'alert', 'modelpopupopenmethod', 'Commondependency', 'helperservice',
+            'complex-grid-config', 'arrayConstants', 'alert', 'modelpopupopenmethod',
+            'Commondependency', 'helperservice', '$timeout',
             function(paymentdetailsReportService, configgrid, arrayConstants, alerts,
-                modelpopupopenmethod, Commondependency, helperservice) {
+                modelpopupopenmethod, Commondependency, helperservice, $timeout) {
                 var model = {};
                 model.showsearchrows = true;
                 model.showsearch = true;
@@ -43,12 +44,14 @@
                     model.rbtnregion = "0";
                     model.fromamount = "";
                     model.toamount = "";
-                    model.txtpaymentfrom = "";
-                    model.txtpaymentto = "";
                     model.rbtnModeOfPayment = 0;
-                    _.each(model.Brancharray, function(item) {
-                        model.branchids.push(item.value);
-                    });
+                    $timeout(function() {
+                        _.each(model.Brancharray, function(item) {
+                            model.branchids.push(item.value);
+                        });
+                        // model.txtpaymentfrom = "";
+                        // model.txtpaymentto = "";
+                    }, 100);
                     model.isDisabledsubmit = false;
                 };
                 model.pageloadbindings = function() {
