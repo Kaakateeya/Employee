@@ -89,8 +89,8 @@
                 { text: 'CustomerName', key: 'CustomerName', type: 'label' },
                 { text: 'OwnerName', key: 'OwnerName', type: 'label' },
                 { text: 'PhotosCount', key: 'PhotosCount', type: 'label' },
-                { text: 'PhotoAssignedTo', key: 'PhotosCount', type: 'label' },
-                { text: 'caste', key: 'PhotosCount', type: 'label' }
+                { text: 'PhotoAssignedTo', key: 'AssignedTo', type: 'label' },
+                { text: 'caste', key: 'CasteName', type: 'label' }
             ];
             var inobj = {
                 iEmpID: model.empid,
