@@ -234,7 +234,7 @@
                 myAssignedPhotosService.submitPhotos(inobj).then(function(response) {
                     model.close();
                     if (response.data && parseInt(response.data) === 1) {
-                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Uploaded successfully', 2500);
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Uploaded successfully', 2000);
                     } else {
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Uploading failed', 4500);
                     }
