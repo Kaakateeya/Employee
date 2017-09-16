@@ -486,7 +486,7 @@
                             if (str !== 'Close') {
                                 model.closeAction();
                             }
-                            model.mailInput.Notes = obj.CallDiscussion;
+                            model.mailInput.Notes = (model.activebutton === 'bothside') ? model.txtAllcallDiscusionemail : obj.CallDiscussion;
                             if (str === 'Incoming' || str === 'Out going') {
                                 matchFollowupServices.sendMail(model.mailInput).then(function(response) {
                                     if (parseInt(response.data) === 1) {}
@@ -638,7 +638,7 @@
                         model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Interested";
                         if (model.activebutton === 'bothside') {
                             model.txtAllcallDiscusionemail = genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance." +
-                                "So please reach us on any of the numbers. Your relationship manager " +
+                                "<br><br>Your relationship manager " +
                                 model.fromempname + " " + model.tointerestname + " relationship manager " + model.toempname +
                                 " Team head Mr.sivaprasad 9841282222";
                             model.txtAllcallDiscusion = genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
