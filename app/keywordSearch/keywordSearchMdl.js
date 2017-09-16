@@ -13,6 +13,7 @@
         model.slide = {};
         model.grid = {};
         model.slide.config = configslide;
+        model.applicationids = [54];
         model.object = {
             Keyworddlikesrch: {}
         };
@@ -198,24 +199,24 @@
             return paid;
         };
         model.grid.columns = [
-            { text: 'ProfileID', key: 'REGNO', type: 'label' },
-            { text: 'FirstName', key: 'NAME', type: 'label' },
-            { text: 'LastName', key: 'SURNAME', type: 'label' },
+            { text: 'ProfileID', key: 'ProfileID', type: 'label' },
+            { text: 'FirstName', key: 'FirstName', type: 'label' },
+            { text: 'LastName', key: 'LastName', type: 'label' },
             { text: 'DOB', key: 'DOB', type: 'label' },
-            { text: 'Age', key: 'AGE', type: 'label' },
-            { text: 'Height', key: 'HEIGHT', type: 'label' },
-            { text: 'Caste', key: 'CASTE', type: 'label' },
-            { text: 'Education', key: 'QUALIFICATION', type: 'label' },
-            { text: 'Profession', key: 'PROFESSION', type: 'label' },
-            { text: 'JobLocation', key: 'JOBLOC', type: 'label' },
-            { text: 'Income', key: 'INCOME', type: 'label' },
-            { text: 'Property', key: 'PROPERTY', type: 'label' },
-            { text: 'PlaceOfBirth', key: 'POB', type: 'label' },
+            { text: 'Age', key: 'Age', type: 'label' },
+            { text: 'Height', key: 'Height', type: 'label' },
+            { text: 'Caste', key: 'Caste', type: 'label' },
+            { text: 'Education', key: 'EduGroupnamenew', type: 'label' },
+            { text: 'Profession', key: 'Profession', type: 'label' },
+            { text: 'JobLocation', key: 'JobLocation', type: 'label' },
+            { text: 'Income', key: 'Income', type: 'label' },
+            { text: 'Property', key: 'Property', type: 'label' },
+            { text: 'PlaceOfBirth', key: 'PlaceOfBirth', type: 'label' },
             { text: 'TOB', key: 'TOB', type: 'label' },
-            { text: 'Gothram', key: 'GOTHRAM', type: 'label' },
-            { text: 'Star', key: 'STAR', type: 'label' },
-            { text: 'FFNative', key: 'FFDISTRICT', type: 'label' },
-            { text: 'MFNative', key: 'MFDISTRICT', type: 'label' },
+            { text: 'Gothram', key: 'Gothram', type: 'label' },
+            { text: 'Star', key: 'Star', type: 'label' },
+            { text: 'FFNative', key: 'FF District', type: 'label' },
+            { text: 'MFNative', key: 'MF Native', type: 'label' },
             { text: 'DOMICILE', key: 'DOMICILE', type: 'label' }
         ];
         model.MyProfilePageLoad = function() {
@@ -236,18 +237,31 @@
         };
         ///
 
-        model.oldkmplsubmit = function(from, to, type) {
-            // model.Getfilterobject();
-            //model.applicationids !== null && model.applicationids !== undefined && model.applicationids !== "" ? model.applicationids 
-            model.object.Keyworddlikesrch.CApplicationStatus = 'Active';
-            model.object.Keyworddlikesrch.EmpID = model.empid;
+        model.keywordlikesearch = function(from, to, type) {
+            model.object.Keyworddlikesrch.AllContactNo = model.allphones !== null && model.allphones !== "" && model.allphones !== undefined ? model.allphones : null;
+            model.object.Keyworddlikesrch.AllEmails = model.allemails !== null && model.allemails !== "" && model.allemails !== undefined ? model.allemails : null;
+            model.object.Keyworddlikesrch.AllSurNames = model.allsurnames !== null && model.allsurnames !== "" && model.allsurnames !== undefined ? model.allsurnames : null;
+            model.object.Keyworddlikesrch.AllNatives = model.allnativeplaces !== null && model.allnativeplaces !== "" && model.allnativeplaces !== undefined ? model.allnativeplaces : null;
+            model.object.Keyworddlikesrch.CEducationAll = null;
+            model.object.Keyworddlikesrch.CProfAll = null;
+            model.object.Keyworddlikesrch.FAllFields = null;
+            model.object.Keyworddlikesrch.MAllFields = null;
+            model.object.Keyworddlikesrch.Br_AllFields = null;
+            model.object.Keyworddlikesrch.Sr_AllFields = null;
+            model.object.Keyworddlikesrch.FB_AllFields = null;
+            model.object.Keyworddlikesrch.FS_AllFields = null;
+            model.object.Keyworddlikesrch.MB_AllFields = null;
+            model.object.Keyworddlikesrch.MS_AllFields = null;
+            model.object.Keyworddlikesrch.CAll = null;
+            //
+            model.object.Keyworddlikesrch.ApplicationStatus = 'Active';
             model.object.Keyworddlikesrch.startindex = from;
             model.object.Keyworddlikesrch.EndIndex = to;
-            model.object.Keyworddlikesrch.CGender = "Female";
-            model.object.Keyworddlikesrch.Caste = model.casteids !== null && model.casteids !== undefined && model.casteids !== "" ? model.casteids : null;
-            keywordSearchService.Oldkmplkeywordlikesearch(model.object.Keyworddlikesrch).then(function(response) {
+            model.object.Keyworddlikesrch.EmpID = model.empid;
+
+            keywordSearchService.keywordlikesearch(model.object.Keyworddlikesrch).then(function(response) {
                 if (type === 'grid') {
-                    model.keywordcontrols = false;
+                    model.keywordcontrols = true;
                     model.btnbacktosearch = true;
                     model.grid.data = response.data[0];
                 } else {

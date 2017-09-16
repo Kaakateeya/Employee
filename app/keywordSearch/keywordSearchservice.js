@@ -9,8 +9,8 @@
 
     function factory(http) {
         return {
-            Oldkmplkeywordlikesearch: function(obj) {
-                return http.post(app.apiroot + 'EmployeeReportPage/Oldkmplkeywordlikesearch', obj);
+            keywordlikesearch: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/keywordlikesearch', obj);
             }
         };
     }
