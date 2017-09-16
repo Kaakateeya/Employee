@@ -3,17 +3,17 @@
 
      angular
          .module('Kaakateeya')
-         .controller('keywordLikeSearchCtrl', controller);
+         .controller('keywordSearchCtrl', controller);
 
-     controller.$inject = ['keywordLikeSearchModel', '$scope', 'authSvc'];
+     controller.$inject = ['keywordSearchModel', '$scope', 'authSvc'];
 
-     function controller(keywordLikeSearchModel, scope, authSvc) {
+     function controller(keywordSearchModel, scope, authSvc) {
          /* jshint validthis:true */
          var vm = this,
              model;
 
          vm.init = function() {
-             vm.model = model = keywordLikeSearchModel;
+             vm.model = model = keywordSearchModel;
              model.scope = scope;
              model.keywordcontrols = true;
              model.btnbacktosearch = false;
@@ -23,6 +23,5 @@
              model.MyProfilePageLoad();
          };
          vm.init();
-
      }
  })();

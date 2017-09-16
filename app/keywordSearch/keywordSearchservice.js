@@ -3,7 +3,7 @@
 
     angular
         .module('Kaakateeya')
-        .factory('keywordLikeSearchService', factory);
+        .factory('keywordSearchService', factory);
 
     factory.$inject = ['$http'];
 

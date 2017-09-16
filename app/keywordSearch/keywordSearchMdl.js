@@ -3,10 +3,12 @@
 
     angular
         .module('Kaakateeya')
-        .factory('keywordLikeSearchModel', factory);
-    factory.$inject = ['keywordLikeSearchService', 'complex-grid-config', 'complex-slide-config', 'modelpopupopenmethod', 'helperservice'];
+        .factory('keywordSearchModel', factory);
 
-    function factory(keywordLikeSearchService, configgrid, configslide, modelpopupopenmethod, helperservice) {
+    factory.$inject = ['keywordSearchService', 'complex-grid-config', 'complex-slide-config', 'modelpopupopenmethod', 'helperservice'];
+
+    function factory(keywordSearchService, configgrid, configslide, modelpopupopenmethod, helperservice) {
+
         var model = {};
         model.slide = {};
         model.grid = {};
@@ -243,7 +245,7 @@
             model.object.Keyworddlikesrch.EndIndex = to;
             model.object.Keyworddlikesrch.CGender = "Female";
             model.object.Keyworddlikesrch.Caste = model.casteids !== null && model.casteids !== undefined && model.casteids !== "" ? model.casteids : null;
-            keywordLikeSearchService.Oldkmplkeywordlikesearch(model.object.Keyworddlikesrch).then(function(response) {
+            keywordSearchService.Oldkmplkeywordlikesearch(model.object.Keyworddlikesrch).then(function(response) {
                 if (type === 'grid') {
                     model.keywordcontrols = false;
                     model.btnbacktosearch = true;
@@ -284,5 +286,6 @@
             console.log(value);
         };
         return model;
+
     }
 })();
