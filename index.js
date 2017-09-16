@@ -108,7 +108,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'matchMeetingCountReport', name: 'base.matchMeetingCountReport', url: '/matchMeetingCountReportPage', isloginrequired: true },
             { routeName: 'settleDeleteProfileseReport', name: 'base.settleDeleteProfileseReport', url: '/settleDeleteProfileseReportPage', isloginrequired: true },
             { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrintmail', url: '/Viewfullprofilemail/:ProfileID/:contacts', isloginrequired: false, subname: ['directives/divPrint.js'] },
-            { routeName: 'showHoro', name: 'base.showHoro', url: '/showHoro', isloginrequired: false }
+            { routeName: 'showHoro', name: 'base.showHoro', url: '/showHoro', isloginrequired: false },
         ];
         $ocLazyLoadProvider.config({
             debug: true

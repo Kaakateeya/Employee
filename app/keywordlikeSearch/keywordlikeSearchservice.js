@@ -3,11 +3,15 @@
 
     angular
         .module('Kaakateeya')
-        .factory('keywordlikeSearchService', ['$http', function(http) {
-            return {
-                test: function() {
-                    return http.get(app.apiroot + 'test', { params: '' });
-                }
-            };
-        }]);
+        .factory('keywordLikeSearchService', factory);
+
+    factory.$inject = ['$http'];
+
+    function factory(http) {
+        return {
+            Oldkmplkeywordlikesearch: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/Oldkmplkeywordlikesearch', obj);
+            }
+        };
+    }
 })();
