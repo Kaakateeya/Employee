@@ -635,7 +635,7 @@
                     var genderid = model.genderforemail === 1 ? 'Mr.' : 'Ms.';
                     var she = model.genderforemail === 1 ? 'He' : 'She';
                     var her = model.genderforemail === 1 ? 'his' : 'her';
-                    model.emailmanagers = "for further assistance feel free to contact your relationship manager: 91-9392696969 <br><br> <br><br> Your relationship manager " +
+                    model.emailmanagers = "<br><br>for further assistance feel free to contact your relationship manager: 91-9392696969 <br><br> Your relationship manager " +
                         model.fromempname + " " + model.tointerestname + " relationship manager " + model.toempname +
                         " Team head Mr.sivaprasad 9841282222";
                     if (val === '1') {
