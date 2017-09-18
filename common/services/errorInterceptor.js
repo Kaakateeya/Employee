@@ -21,7 +21,6 @@
                 return deferred.promise;
             }
         };
-
     }]);
     angular.module('Kaakateeya').config(['$httpProvider', function($httpProvider) {
         $httpProvider.interceptors.push('errorInterceptor');

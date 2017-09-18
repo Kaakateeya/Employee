@@ -20,12 +20,12 @@
                     </div>
 
                     <div class="col-lg-4">
-                        <label for="" class="control-label col-lg-5">Branch</label>
+                        <label for="" class="control-label col-lg-6">Branch</label>
                         <div class="col-lg-6"> <select multiselectdropdown pagetype="'search'" class="smalldropdown" ng-model="page.model.branch" multiple ng-options="item.value as item.label for item in page.model.Brancharray">   
                               </select></div>
                     </div>
 
-                    <div class="col-lg-4">
+                    <!-- <div class="col-lg-4">
                         <label for="" class="control-label col-lg-6">Religion</label>
                         <div class="col-lg-6"> <select multiselectdropdown ng-change="page.model.religionMothertongueChange(page.model.religion,page.model.mothertongue);" pagetype="'search'" class="smalldropdown" ng-model="page.model.religion" multiple typeofdata="'Religion'">   
                               </select></div>
@@ -34,12 +34,14 @@
                         <label for="" class="control-label col-lg-6">Mothertongue</label>
                         <div class="col-lg-6"> <select multiselectdropdown ng-change="page.model.religionMothertongueChange(page.model.religion,page.model.mothertongue);" pagetype="'search'" class="smalldropdown" ng-model="page.model.mothertongue" multiple typeofdata="'Mothertongue'">   
                               </select></div>
-                    </div>
+                    </div> -->
 
                     <div class="col-lg-4">
-                        <label for="" class="control-label col-lg-5">Caste</label>
-                        <div class="col-lg-6"> <select multiselectdropdown pagetype="'search'" class="smalldropdown" ng-model="page.model.caste" multiple ng-options="item.value as item.label for item in page.model.casteArr">   
-                              </select></div>
+                        <label for="" class="control-label col-lg-6">Caste</label>
+                        <div class="col-lg-6">
+                            <!-- <select multiselectdropdown pagetype="'search'" class="smalldropdown" ng-model="page.model.caste" multiple ng-options="item.value as item.label for item in page.model.casteArr"></select> -->
+                            <select multiselectdropdown pagetype="'search'" class="smalldropdown" ng-model="page.model.caste" multiple typeofdata="'AllCaste'"></select>
+                        </div>
                     </div>
 
                     <div class="col-lg-4">

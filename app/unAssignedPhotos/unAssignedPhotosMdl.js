@@ -145,15 +145,15 @@
             }
             return str;
         };
-        model.religionMothertongueChange = function(parent1, parent2) {
-            model.casteArr = Commondependency.casteDepedency(model.SplitstringintoArray(parent1), model.SplitstringintoArray(parent2));
-            timeout(function() {
-                model.caste = [];
-                _.each(model.casteArr, function(item) {
-                    (model.caste).push(parseInt(item.value));
-                });
-            }, 500);
-        };
+        // model.religionMothertongueChange = function(parent1, parent2) {
+        //     model.casteArr = Commondependency.casteDepedency(model.SplitstringintoArray(parent1), model.SplitstringintoArray(parent2));
+        //     timeout(function() {
+        //         model.caste = [];
+        //         _.each(model.casteArr, function(item) {
+        //             (model.caste).push(parseInt(item.value));
+        //         });
+        //     }, 500);
+        // };
 
         model.regionChnage = function(val) {
             model.Brancharray = Commondependency.branch(model.SplitstringintoArray(val));

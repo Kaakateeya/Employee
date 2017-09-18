@@ -39,6 +39,9 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
         casteselect: function() {
             return http.get(app.apiroot + 'Dependency/getDropdown_filling_values', { params: { strDropdownname: "CasteName" } });
         },
+        allCasteselect: function() {
+            return http.get(app.apiroot + 'Dependency/getDropdown_filling_values', { params: { strDropdownname: "AllCaste" } });
+        },
         countryCodeselect: function() {
             return http.get(app.apiroot + 'Dependency/getDropdown_filling_values', { params: { strDropdownname: "CountryCode" } });
         },
