@@ -95,7 +95,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'unAssignedPhotos', name: 'base.unAssignedPhotos', url: '/unAssignedPhotosPage', isloginrequired: true },
             { routeName: 'paymentOffersAssignnew', name: 'base.paymentOffersAssignnew', url: '/paymentOffersAssignPage', isloginrequired: true },
             { routeName: 'employeeCreation', name: 'base.employeeCreation', url: '/employeeCreationPage', isloginrequired: true },
-            { routeName: 'keywordlikeSearch', name: 'base.keywordlikeSearch', url: '/keywordlikeSearchpage', isloginrequired: true },
+            // { routeName: 'keywordlikeSearch', name: 'base.keywordlikeSearch', url: '/keywordlikeSearchpage', isloginrequired: true },
             { routeName: 'customerFactsheet', name: 'base.customerFactsheet', url: '/customerFactsheetpage', isloginrequired: true },
             { routeName: 'empTracking', name: 'base.empTracking', url: '/empTrackingPage', isloginrequired: true },
             { routeName: 'dashboardAdminReport', name: 'base.dashboardAdminReport', url: '/dashboardAdminReports', isloginrequired: true },
@@ -108,7 +108,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'matchMeetingCountReport', name: 'base.matchMeetingCountReport', url: '/matchMeetingCountReportPage', isloginrequired: true },
             { routeName: 'settleDeleteProfileseReport', name: 'base.settleDeleteProfileseReport', url: '/settleDeleteProfileseReportPage', isloginrequired: true },
             { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrintmail', url: '/Viewfullprofilemail/:ProfileID/:contacts', isloginrequired: false, subname: ['directives/divPrint.js'] },
-            { routeName: 'showHoro', name: 'base.showHoro', url: '/showHoro', isloginrequired: false }
+            { routeName: 'showHoro', name: 'base.showHoro', url: '/showHoro', isloginrequired: false },
+            { routeName: 'keywordSearch', name: 'base.keywordSearch', url: '/keywordSearchpage', isloginrequired: true },
         ];
         $ocLazyLoadProvider.config({
             debug: true

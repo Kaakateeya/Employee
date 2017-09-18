@@ -67,7 +67,7 @@
                     </div>
                     <div class="col-lg-offset-1">
                         <div ng-class="slide.FromTicket!==null && slide.FromTicket!==''?'col-lg-5 col-lg-offset-1':'col-lg-4'">
-                            <button type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.FromTicket,slide.FromProfileid,slide.FromMobileNumber,slide.fromcust_id, slide.tocustid, slide.FromticketStatusIDb.trim(), slide.Toprofileid,slide.ToName,slide.togenderid);">{{slide.fromticketid}}</button>
+                            <button type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.FromTicket,slide.FromProfileid,slide.FromMobileNumber,slide.fromcust_id, slide.tocustid, slide.FromticketStatusIDb.trim(), slide.Toprofileid,slide.ToName,slide.togenderid,slide.FromName,slide.FromEmail,slide,'from');">{{slide.fromticketid}}</button>
                             <button type="button" ng-if="slide.FromTicket===null || slide.FromTicket===''" class="btn btn-success-outline" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.Resendmail(slide.fromcust_id,slide.tocustid,slide.FromProfileid,slide.Toprofileid,slide.FromOfflineExpiryDate,slide.FromOnlineMembershipExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
                             <br>
                             <label>{{slide.FromName}}</label>
@@ -140,7 +140,7 @@
                     <br>
                     <div class="text-left">
                         <div ng-class="slide.ToTicket!==null && slide.ToTicket!==''?'col-lg-6':'col-lg-4'">
-                            <button type="button" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.ToTicket,slide.Toprofileid,slide.ToMobileNumber, slide.tocustid, slide.fromcust_id,slide.ToticketStatusIDb.trim(), slide.FromProfileid,slide.FromName,slide.fromgenderid);">{{slide.Toticketid}}</button>
+                            <button type="button" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.ToTicket,slide.Toprofileid,slide.ToMobileNumber, slide.tocustid, slide.fromcust_id,slide.ToticketStatusIDb.trim(), slide.FromProfileid,slide.FromName,slide.fromgenderid,slide.ToName,slide.TOEmail,slide,'to');">{{slide.Toticketid}}</button>
                             <button type="button" ng-if="slide.ToTicket===null || slide.ToTicket===''" class="btn btn-success-outline" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.Resendmail(slide.tocustid,slide.fromcust_id,slide.Toprofileid,slide.FromProfileid,slide.ToOfflineExpiryDate,slide.ToonlineExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
                             <br>
                             <label>{{slide.ToName}}</label>
@@ -194,7 +194,7 @@
     </div>
 </script>
 <script type="text/ng-template" id="Actions.html">
-    <button type="button" style="margin-right: 4px;" class="close pull-right" ng-click="page.model.closeAction();">&times;</button>
+    <button type="button" style="margin-right: 4px;font-size: 37px;" class="close pull-right" ng-click="page.model.closeAction();">&times;</button>
     <div class="jumbotron text-center" style="background-color: rgb(254, 220, 1); color: white; padding-top: 2px; padding-bottom: 4px;">
         <div class="row">
             <div class="col-lg-2">
@@ -225,6 +225,11 @@
         </div>
     </div>
     <div id="accordion" style="margin-top: -15px;">
+        <div class="col-lg-12">
+            <label>Name : {{page.model.selfname}}</label>
+            <label style="color: #ea1d1d;font-size: 18px;font-weight: 900;">|</label>
+            <label>Updated Text Going This Email {{page.model.selfemail}}</label>
+        </div>
         <uib-tabset active="active">
             <uib-tab ng-click="page.model.clearalltext()" index="0" heading="Incoming Call" style="padding-left:16%;">
                 <div>
@@ -266,28 +271,20 @@
                                 </li>
                             </div>
                             <div class="col-lg-12">
-                                <li class="col-lg-7 form-group">
-                                    <label class="pop_label_leftss">Reply Type</label>
-                                    <div class="input-group col-lg-11" style="margin-top: 10px">
+                                <li class="col-lg-12 form-group">
+                                    <label class="pop_label_lefts">Reply Type</label>
+                                    <div class="input-group col-lg-9" style="margin-top:10px;">
                                         <md-radio-group ng-required="true" name="rbtnReplyType" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyType,'In');" layout="row" ng-model="page.model.actobj.rbtnReplyType" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                            <md-radio-button value="1" class="md-primary" style="width: 86px;margin-left: 30px;">Interested</md-radio-button>
-                                            <md-radio-button value="0" style="width: 120px;"> Not Interested</md-radio-button>
-                                            <md-radio-button value="2" style="width: 86px;">Pending</md-radio-button>
-                                        </md-radio-group>
-                                    </div>
-                                </li>
-                                <li class="col-lg-5 form-group">
-                                    <label class="col-lg-6 pop_label_leftsdisplay Notrequired">Display to customer </label>
-                                    <div class="col-lg-6 pop_radios_list">
-                                        <md-radio-group ng-required="true" name="rbtnPaymode" layout="row" ng-model="page.model.actobj.rbtnInDisplay" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                            <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                            <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
+                                            <md-radio-button value="0"> Not Interested</md-radio-button>
+                                            <md-radio-button value="2">Pending</md-radio-button>
                                         </md-radio-group>
                                     </div>
                                 </li>
                             </div>
                             <div class="col-lg-12">
                                 <li class="col-lg-12 form-group">
-                                    <label class="pop_label_lefts">Call discussion </label>
+                                    <label class="pop_label_lefts">Call discussion</label>
                                     <div class="col-lg-9">
                                         <textarea type="text" rows="4" ng-model="page.model.actobj.txtInCalldiscussion" class="form-control" ng-required="page.model.actobj.rbtnReplyType==='0'?true:false"></textarea>
                                     </div>
@@ -299,12 +296,15 @@
                         <br />
                         <div class="row">
                             <div class="col-lg-6">
-                                <button type="submit" value="Submit" class="button_custom pull-right" ng-disabled="page.model.isDisabledsubmit">Incoming Call</button>
+                                <button type="submit" value="Submit" class="button_custom pull-right" ng-disabled="page.model.isDisabledsubmit">{{page.model.incommingbtntext}}</button>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6" ng-if="false">
                                 <button type="button" class="button_custom button_custom_reset" ng-click="page.model.closeAction();">Close</button>
                             </div>
+                            <br />
                         </div>
+                        <div class="clearfix"></div>
+                        <br />
                         <br />
                     </form>
                 </div>
@@ -350,21 +350,13 @@
                                 </li>
                             </div>
                             <div class="col-lg-12">
-                                <li class="col-lg-7 form-group">
-                                    <label class="pop_label_leftss">Reply Type </label>
-                                    <div class="input-group col-lg-11" style="margin-top: 10px">
+                                <li class="col-lg-12 form-group">
+                                    <label class="pop_label_lefts">Reply Type </label>
+                                    <div class="input-group col-lg-9" style="margin-top:10px;">
                                         <md-radio-group ng-required="true" name="rbtnReplyTypeout" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyTypeout,'Out');" layout="row" ng-model="page.model.actobj.rbtnReplyTypeout" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                            <md-radio-button value="1" style="width: 86px;margin-left: 30px;" class="md-primary">Interested</md-radio-button>
-                                            <md-radio-button value="0" style="width: 120px;"> Not Interested</md-radio-button>
-                                            <md-radio-button value="2" style="width: 86px;">Pending</md-radio-button>
-                                        </md-radio-group>
-                                    </div>
-                                </li>
-                                <li class="col-lg-5 form-group">
-                                    <label class="col-lg-6 pop_label_leftsdisplay Notrequired">Display to customer </label>
-                                    <div class="col-lg-6 pop_radios_list">
-                                        <md-radio-group ng-required="true" name="rbtnOutDisplay" layout="row" ng-model="page.model.actobj.rbtnOutDisplay" class="md-block" flex-gt-sm ng-disabled="manageakerts">
-                                            <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                            <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
+                                            <md-radio-button value="0"> Not Interested</md-radio-button>
+                                            <md-radio-button value="2">Pending</md-radio-button>
                                         </md-radio-group>
                                     </div>
                                 </li>
@@ -383,13 +375,16 @@
                         <br />
                         <div class="row">
                             <div class="col-lg-6">
-                                <button type="submit" value="Submit" class="button_custom pull-right" ng-disabled="page.model.isDisabledsubmit">Outgoing Call</button>
+                                <button type="submit" value="Submit" class="button_custom pull-right" ng-disabled="page.model.isDisabledsubmit">{{page.model.outgoingcallbtntext}}</button>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6" ng-if="false">
                                 <button type="button" class="button_custom button_custom_reset" data-dismiss="modal" ng-click="page.model.closeAction();">Close</button>&nbsp;
                             </div>
-
+                            <br />
                         </div>
+                        <div class="clearfix"></div>
+                        <br />
+                        <br />
                     </form>
                 </div>
             </uib-tab>
@@ -424,16 +419,20 @@
                         <br />
                         <div class="row">
                             <div class="col-lg-6">
-                                <button type="submit" value="Submit" class="button_custom pull-right" ng-disabled="page.model.isDisabledsubmit">Internal Memo</button>
+                                <button type="submit" value="Submit" class="button_custom pull-right" ng-disabled="page.model.isDisabledsubmit">{{page.model.internalmemobtntext}}</button>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6" ng-if="false">
                                 <button type="button" class="button_custom button_custom_reset" data-dismiss="modal" ng-click="page.model.closeAction();">Close</button>&nbsp;
                             </div>
+                            <br />
                         </div>
+                        <div class="clearfix"></div>
+                        <br />
+                        <br />
                     </form>
                 </div>
             </uib-tab>
-            <uib-tab ng-click="page.model.clearalltext()" index="3" heading="Close Ticket">
+            <uib-tab ng-if="false" ng-click="page.model.clearalltext()" index="3" heading="Close Ticket">
                 <div>
                     <form name="closeform" novalidate role="form" ng-submit="closeform.$valid && page.model.closeSubmit(page.model.actobj);">
                         <br>
@@ -467,7 +466,7 @@
                             <div class="col-lg-offset-3 col-lg-3">
                                 <button type="submit" class="button_custom pull-right" ng-disabled="page.model.isDisabledsubmit">Close Ticket</button>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-2" ng-if="false">
                                 <button type="button" class="button_custom button_custom_reset pull-right" ng-click="page.model.closeAction();">Cancel</button>&nbsp;
                             </div>
                         </div>

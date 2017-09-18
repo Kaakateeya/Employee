@@ -344,14 +344,16 @@
                     };
                     matchFollowupServices.ResendMail(resendInputObj).then(function(response) {
                         model.isDisabledsubmit = false;
-                        if (parseInt(response.data) === 1) {
-                            if (offlineExpiry === 'Unpaidcust' && onlineExpiry === 'Unpaidcust') {
-                                alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent succesfully</br> They Can not open View Profile because of there is No Points', 9500);
+                        if (model.emailresendflag === 0) {
+                            if (parseInt(response.data) === 1) {
+                                if (offlineExpiry === 'Unpaidcust' && onlineExpiry === 'Unpaidcust') {
+                                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent succesfully</br> They Can not open View Profile because of there is No Points', 9500);
+                                } else {
+                                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent successfully', 9500);
+                                }
                             } else {
-                                alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent successfully', 9500);
+                                alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sending Failed', 9500);
                             }
-                        } else {
-                            alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sending Failed', 9500);
                         }
                     });
                 };
@@ -373,8 +375,31 @@
 
                     });
                 };
-                model.openActionPopup = function(ticketID, profileID, number, fromcustid, tocustid, ticketStatusId, ToProfileID, Name, gender) {
+                model.openActionPopup = function(ticketID, profileID, number, fromcustid, tocustid, ticketStatusId, ToProfileID, Name,
+                    gender, selfname, selfemail, slideobj, flagtype) {
                     model.bindreplytype();
+                    model.emailresendflag = 0;
+                    model.flagtype = flagtype;
+                    if (flagtype === 'from') {
+                        model.fromempname = slideobj.fromempname;
+                        model.toempname = slideobj.toempname;
+                        model.toticketstatusemail = slideobj.ToticketStatusIDb.trim();
+                        model.fromticketstatusemail = slideobj.FromticketStatusIDb.trim();
+                        model.FromOfflineExpiryDate = slideobj.FromOfflineExpiryDate;
+                        model.FromOnlineMembershipExpiryDate = slideobj.FromOnlineMembershipExpiryDate;
+
+                    } else {
+                        model.toempname = slideobj.fromempname;
+                        model.fromempname = slideobj.toempname;
+                        model.toticketstatusemail = slideobj.FromticketStatusIDb.trim();
+                        model.fromticketstatusemail = slideobj.ToticketStatusIDb.trim();
+                        model.FromOfflineExpiryDate = slideobj.ToOfflineExpiryDate;
+                        model.FromOnlineMembershipExpiryDate = slideobj.ToonlineExpiryDate;
+                    }
+                    model.selfname = selfname;
+                    model.selfemail = selfemail;
+                    model.fromcustidselef = fromcustid;
+                    model.tocustidself = tocustid;
                     model.ticketstatusforemail = ticketStatusId.trim();
                     model.genderforemail = gender;
                     model.tointerestname = Name;
@@ -395,6 +420,9 @@
                     model.actobj.txtcloseReason = model.actobj.txtMemmemocalldiscussion = '';
                     //model.actobj.ddlMemAssign = parseInt(model.empid);
                     model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = '1';
+                    model.incommingbtntext = "Incoming Call";
+                    model.outgoingcallbtntext = "Outgoing Call";
+                    model.internalmemobtntext = "Internal Memo";
                     model.actobj.txtInCalltelephonenumber = model.actobj.txtOutCalltelephonenumber = number;
                     matchFollowupServices.ticketHistry(ticketID, 'I').then(function(response) {
                         if (_.isArray(response.data) && response.data.length > 0) {
@@ -417,6 +445,24 @@
                     };
                     modelpopupopenmethod.showPopup('Actions.html', model.scope, 'lg', 'Actioncls');
                 };
+                model.textforalerts = function(btntext, type) {
+                    var textalert = type;
+                    switch (btntext) {
+                        case 'Interested':
+                            textalert = 'Interested Updated ';
+                            break;
+                        case 'Pending':
+                            textalert = 'Pending Updated ';
+                            break;
+                        case 'Close Ticket':
+                            textalert = 'Close Ticket Updated ';
+                            break;
+                        default:
+                            textalert = type;
+                            break;
+                    }
+                    return textalert;
+                };
                 model.ActionSubmit = function(obj, str, intrstType) {
                     obj.CallDiscussion = obj.CallDiscussion;
                     var alertmsg = '',
@@ -437,26 +483,31 @@
                     matchFollowupServices.ActionSubmit(inputObj).then(function(response) {
                         model.isDisabledsubmit = false;
                         if (parseInt(response.data) === 1) {
-                            model.closeAction();
-                            model.mailInput.Notes = obj.CallDiscussion;
+                            if (str !== 'Close') {
+                                model.closeAction();
+                            }
+                            model.mailInput.Notes = (model.activebutton === 'bothside') ? model.txtAllcallDiscusionemail : obj.CallDiscussion;
                             if (str === 'Incoming' || str === 'Out going') {
                                 matchFollowupServices.sendMail(model.mailInput).then(function(response) {
                                     if (parseInt(response.data) === 1) {}
                                 });
                             }
-
                             var curdate = moment().format('Do MMMM YYYY, h:mm:ss');
                             if (str === 'Incoming') {
-                                alertmsg = 'Incoming call created ';
+                                // alertmsg = 'Incoming call created ';
+                                alertmsg = model.textforalerts(model.incommingbtntext, 'Incoming call created ');
                                 replyTypedisplay = 'INCOMING';
                             } else if (str === 'Out going') {
-                                alertmsg = 'Out going created ';
+                                // alertmsg = 'Out going created ';
+                                alertmsg = model.textforalerts(model.incommingbtntext, 'Out going created ');
                                 replyTypedisplay = 'OUT GOING';
                             } else if (str === 'Internal Memo') {
-                                alertmsg = 'memo created ';
+                                // alertmsg = 'memo created ';
+                                alertmsg = model.textforalerts(model.incommingbtntext, 'memo created ');
                                 replyTypedisplay = 'INTERNAL MEMO';
                             } else {
-                                alertmsg = 'Ticket closed';
+                                // alertmsg = 'Ticket closed';
+                                alertmsg = model.textforalerts(model.incommingbtntext, 'Ticket closed ');
                                 replyTypedisplay = 'Close';
                             }
                             var relation = '';
@@ -490,40 +541,71 @@
                 };
                 model.inCallsSubmit = function(obj) {
                     model.isDisabledsubmit = true;
-                    var inputObj = {
-                        CallType: 377,
-                        RelationID: obj.ddlInreceivedfrom,
-                        RelationName: obj.txtInRelationname,
-                        CallResult: obj.ddlInCallresult,
-                        PhoneNum: obj.txtInCalltelephonenumber,
-                        CallDiscussion: obj.txtInCalldiscussion,
-                        DisplayStatus: obj.rbtnInDisplay,
-                    };
-                    model.ActionSubmit(inputObj, 'Incoming', obj.rbtnReplyType);
+                    var inputObj;
+                    if (model.incommingbtntext === 'Close Ticket') {
+                        inputObj = {
+                            CallType: 563,
+                            CallDiscussion: model.txtAllcallDiscusion
+                        };
+                        model.ActionSubmit(inputObj, 'Close');
+                    } else {
+                        inputObj = {
+                            CallType: 377,
+                            RelationID: obj.ddlInreceivedfrom,
+                            RelationName: obj.txtInRelationname,
+                            CallResult: obj.ddlInCallresult,
+                            PhoneNum: obj.txtInCalltelephonenumber,
+                            CallDiscussion: obj.txtInCalldiscussion,
+                            // DisplayStatus: obj.rbtnInDisplay,
+                            DisplayStatus: 1
+                        };
+                        // if (model.activebutton === 'bothside') {
+                        //     inputObj.CallDiscussion = model.txtAllcallDiscusionemail;
+                        // }
+                        model.ActionSubmit(inputObj, 'Incoming', obj.rbtnReplyType);
+                    }
                 };
                 model.outCallsSubmit = function(obj) {
                     model.isDisabledsubmit = true;
-                    var inputObj = {
-                        CallType: 378,
-                        RelationID: obj.ddlOutreceivedby,
-                        RelationName: obj.txtOutRelationname,
-                        CallResult: obj.ddlOutcallresultout,
-                        PhoneNum: obj.txtOutCalltelephonenumber,
-                        CallDiscussion: obj.txtOutCalldiscussion,
-                        DisplayStatus: obj.rbtnOutDisplay,
-                    };
-                    model.ActionSubmit(inputObj, 'Out going', obj.rbtnReplyTypeout);
+                    var inputObj;
+                    if (model.incommingbtntext === 'Close Ticket') {
+                        inputObj = {
+                            CallType: 563,
+                            CallDiscussion: model.txtAllcallDiscusion
+                        };
+                        model.ActionSubmit(inputObj, 'Close');
+                    } else {
+                        inputObj = {
+                            CallType: 378,
+                            RelationID: obj.ddlOutreceivedby,
+                            RelationName: obj.txtOutRelationname,
+                            CallResult: obj.ddlOutcallresultout,
+                            PhoneNum: obj.txtOutCalltelephonenumber,
+                            CallDiscussion: obj.txtOutCalldiscussion,
+                            // DisplayStatus: obj.rbtnOutDisplay,
+                            DisplayStatus: 1
+                        };
+                        model.ActionSubmit(inputObj, 'Out going', obj.rbtnReplyTypeout);
+                    }
                 };
                 model.memoSubmit = function(obj) {
                     model.isDisabledsubmit = true;
-                    var inputObj = {
-                        CallType: 379,
-                        CallDiscussion: obj.txtMemmemocalldiscussion,
-                        AssignedEmpID: null
-                    };
-                    model.ActionSubmit(inputObj, 'Internal Memo', obj.rbtnReplyTypememo);
+                    var inputObj;
+                    if (model.incommingbtntext === 'Close Ticket') {
+                        inputObj = {
+                            CallType: 563,
+                            CallDiscussion: model.txtAllcallDiscusion
+                        };
+                        model.ActionSubmit(inputObj, 'Close');
+                    } else {
+                        inputObj = {
+                            CallType: 379,
+                            CallDiscussion: obj.txtMemmemocalldiscussion,
+                            AssignedEmpID: null
+                        };
+                        model.ActionSubmit(inputObj, 'Internal Memo', obj.rbtnReplyTypememo);
+                    }
                 };
-
                 model.closeSubmit = function(obj) {
                     model.isDisabledsubmit = true;
                     var inputObj = {
@@ -544,27 +626,52 @@
                         }
                     });
                 };
-
                 model.NotIntrstChnge = function(val, type) {
+                    model.emailresendflag = 0;
                     model.rbtnnotIntrst = '';
                     model.typeOFCall = type;
                     model.typeOfCtrl = val;
-                    // var textpopup = model.ticketstatusforemail !== 'I' ? '(proceed/do not proceed/need time)' : '(proceed/do not proceed/need time)';
                     var genderid = model.genderforemail === 1 ? 'Mr.' : 'Ms.';
                     var she = model.genderforemail === 1 ? 'He' : 'She';
                     var her = model.genderforemail === 1 ? 'his' : 'her';
                     if (val === '1') {
-                        //  model.txtAllcallDiscusion = 'intrsted';
-                        model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment().format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
-                            "We are resending " + her + " profile for the ease of viewing and please give your opinion in the options provided in the profile";
+                        model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Interested";
+                        if (model.activebutton === 'bothside') {
+                            model.txtAllcallDiscusionemail = genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance." +
+                                "<br><br>Your relationship manager " +
+                                model.fromempname + " " + model.tointerestname + " relationship manager " + model.toempname +
+                                " Team head Mr.sivaprasad 9841282222";
+                            model.txtAllcallDiscusion = genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
+
+                        } else {
+                            if (model.fromticketstatusemail === 'I' && model.toticketstatusemail === 'V') {
+                                model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment().format('DD-MM-YYYY') +
+                                    "We have noticed that " + she + " had viewed your profile but yet to give " + her + " opinion." +
+                                    her + " relationship manager will contact  " + her + " and get back to you with " + her + " opinion at the earliest.";
+                            } else if (model.fromticketstatusemail === 'I' && model.toticketstatusemail === 'NV') {
+                                //resend
+                                model.emailresendflag = 1;
+                                model.Resendmail(model.fromcustidselef, model.tocustidself, model.ActionProfileID, model.toprofileidinterest, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
+                                model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment().format('DD-MM-YYYY') +
+                                    "We have noticed that " + she + " is yet to view your profile and we have resent your profile to " + her + " now and " +
+                                    "have also sent a mobile message and we will also try to reach  " + her + " over phone to inform the same";
+                            } else if (model.fromticketstatusemail === 'V' && model.toticketstatusemail === 'I') {
+                                model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment().format('DD-MM-YYYY') +
+                                    "and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
+                                    "and please give your opinion in the options provided in the profile.";
+                            } else {
+                                model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment().format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
+                                    "We are resending " + her + " profile for the ease of viewing and please give your opinion in the options provided in the profile";
+                            }
+                        }
                         model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else if (val === '2') {
-                        //model.txtAllcallDiscusion = 'pending';
+                        model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Pending";
                         model.txtAllcallDiscusion = genderid + model.tointerestname + " viewed your full profile and is seeking some more time to proceed." +
                             "Meanwhile lets look into other options.";
-
                         model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else {
+                        model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Close Ticket";
                         model.txtAllcallDiscusion = genderid + model.tointerestname + " viewed your  profile and did not respond positive." +
                             "Lets proceed further with our new search options.";
                         // model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = '';
@@ -572,7 +679,6 @@
                     }
                     //modelpopupopenmethod.showPopupphotopoup('notIntrstPopup.html', model.scope, 'md', 'notintrstCls');
                 };
-
                 model.notIntrstchangeBind = function(val) {
                     if (model.typeOfCtrl === '0') {
                         var txt = val.length > 0 ? val.join(' , ') : val;
@@ -606,6 +712,9 @@
                     config.reset();
                 };
                 model.clearalltext = function() {
+                    model.incommingbtntext = "Incoming Call";
+                    model.outgoingcallbtntext = "Outgoing Call";
+                    model.internalmemobtntext = "Internal Memo";
                     model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion = "";
                     model.actobj.rbtnReplyTypeout =
                         model.actobj.rbtnReplyType = "";
