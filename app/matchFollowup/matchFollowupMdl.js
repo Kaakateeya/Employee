@@ -486,7 +486,7 @@
                             if (str !== 'Close') {
                                 model.closeAction();
                             }
-                            model.mailInput.Notes = (model.activebutton === 'bothside') ? model.txtAllcallDiscusionemail : obj.CallDiscussion;
+                            model.mailInput.Notes = model.txtAllcallflag === 1 ? model.txtAllcallDiscusionemail : obj.CallDiscussion + model.emailmanagers;
                             if (str === 'Incoming' || str === 'Out going') {
                                 matchFollowupServices.sendMail(model.mailInput).then(function(response) {
                                     if (parseInt(response.data) === 1) {}
@@ -628,17 +628,22 @@
                 };
                 model.NotIntrstChnge = function(val, type) {
                     model.emailresendflag = 0;
+                    model.txtAllcallflag = 0;
                     model.rbtnnotIntrst = '';
                     model.typeOFCall = type;
                     model.typeOfCtrl = val;
                     var genderid = model.genderforemail === 1 ? 'Mr.' : 'Ms.';
                     var she = model.genderforemail === 1 ? 'He' : 'She';
                     var her = model.genderforemail === 1 ? 'his' : 'her';
+                    model.emailmanagers = "for further assistance feel free to contact your relationship manager: 91-9392696969 <br><br> <br><br> Your relationship manager " +
+                        model.fromempname + " " + model.tointerestname + " relationship manager " + model.toempname +
+                        " Team head Mr.sivaprasad 9841282222";
                     if (val === '1') {
                         model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Interested";
                         if (model.activebutton === 'bothside') {
+                            model.txtAllcallflag = 1;
                             model.txtAllcallDiscusionemail = genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance." +
-                                "<br><br>Your relationship manager " +
+                                "<br><br>for further assistance feel free to contact your relationship manager: 91-9392696969 <br><br> Your relationship manager " +
                                 model.fromempname + " " + model.tointerestname + " relationship manager " + model.toempname +
                                 " Team head Mr.sivaprasad 9841282222";
                             model.txtAllcallDiscusion = genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
@@ -659,6 +664,13 @@
                                 model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment().format('DD-MM-YYYY') +
                                     "and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
                                     "and please give your opinion in the options provided in the profile.";
+                            } else if (model.fromticketstatusemail === 'I' && model.toticketstatusemail === 'I') {
+                                model.txtAllcallflag = 1;
+                                model.txtAllcallDiscusionemail = genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance." +
+                                    "<br><br>for further assistance feel free to contact your relationship manager: 91-9392696969 <br><br> Your relationship manager " +
+                                    model.fromempname + " " + model.tointerestname + " relationship manager " + model.toempname +
+                                    " Team head Mr.sivaprasad 9841282222";
+                                model.txtAllcallDiscusion = genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
                             } else {
                                 model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment().format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
                                     "We are resending " + her + " profile for the ease of viewing and please give your opinion in the options provided in the profile";
@@ -667,7 +679,7 @@
                         model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else if (val === '2') {
                         model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Pending";
-                        model.txtAllcallDiscusion = genderid + model.tointerestname + " viewed your full profile and is seeking some more time to proceed." +
+                        model.txtAllcallDiscusion = genderid + model.tointerestname + " viewed your full profile and is seeking Three more days to update " + her + "  opinion." +
                             "Meanwhile lets look into other options.";
                         model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else {

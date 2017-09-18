@@ -201,23 +201,21 @@
         model.grid.columns = [
             { text: 'ProfileID', key: 'ProfileID', type: 'label' },
             { text: 'FirstName', key: 'FirstName', type: 'label' },
-            { text: 'LastName', key: 'LastName', type: 'label' },
+            { text: 'SurName', key: 'LastName', type: 'label' },
             { text: 'DOB', key: 'DOB', type: 'label' },
-            { text: 'Age', key: 'Age', type: 'label' },
             { text: 'Height', key: 'Height', type: 'label' },
             { text: 'Caste', key: 'Caste', type: 'label' },
             { text: 'Education', key: 'EduGroupnamenew', type: 'label' },
             { text: 'Profession', key: 'Profession', type: 'label' },
             { text: 'JobLocation', key: 'JobLocation', type: 'label' },
-            { text: 'Income', key: 'Income', type: 'label' },
             { text: 'Property', key: 'Property', type: 'label' },
+            { text: 'companyname', key: 'Income', type: 'label' },
             { text: 'PlaceOfBirth', key: 'PlaceOfBirth', type: 'label' },
             { text: 'TOB', key: 'TOB', type: 'label' },
             { text: 'Gothram', key: 'Gothram', type: 'label' },
             { text: 'Star', key: 'Star', type: 'label' },
             { text: 'FFNative', key: 'FF District', type: 'label' },
-            { text: 'MFNative', key: 'MF Native', type: 'label' },
-            { text: 'DOMICILE', key: 'DOMICILE', type: 'label' }
+            { text: 'MFNative', key: 'MF Native', type: 'label' }
         ];
         model.MyProfilePageLoad = function() {
             helperservice.getMyprofilebind(1, 2, '').then(function(response) {
