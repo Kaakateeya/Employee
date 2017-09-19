@@ -191,7 +191,9 @@
                             }
                         } else {
                             if (from === 1)
-                                model.grid.data = [];
+                                if (flag === 0) {
+                                    model.grid.data = [];
+                                }
                             if (model.checkTxt(model.txtAllPhones) !== '') {
                                 modelpopupopenmethod.showPopupphotopoup('nodatafoundrecords.html', model.scope, 'md', "modalclassnorecordss");
                             } else {

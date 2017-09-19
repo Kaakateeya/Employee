@@ -1,13 +1,11 @@
 (function() {
     'use strict';
-
     angular
         .module('Kaakateeya')
         .factory('keywordSearchModel', factory);
+    factory.$inject = ['keywordSearchService', 'complex-grid-config', 'complex-slide-config', 'modelpopupopenmethod', 'helperservice', 'alert'];
 
-    factory.$inject = ['keywordSearchService', 'complex-grid-config', 'complex-slide-config', 'modelpopupopenmethod', 'helperservice'];
-
-    function factory(keywordSearchService, configgrid, configslide, modelpopupopenmethod, helperservice) {
+    function factory(keywordSearchService, configgrid, configslide, modelpopupopenmethod, helperservice, alertss) {
         var model = {};
         model.slide = {};
         model.grid = {};
@@ -196,6 +194,9 @@
             { Text: "FSHEmailID", value: "FSHEmailID", style: "#607D8B;" }
 
         ];
+        model.checkTxt = function(val) {
+            return val !== '' && val !== undefined ? val : '';
+        };
         model.displayArrayprofile = function(arr, topage) {
             // model.slide.headervisileble = true;
             var array = [];
@@ -366,118 +367,121 @@
             });
         };
         ///
-
         model.keywordlikesearch = function(from, to, type) {
             model.topage = to;
-            model.object.Keyworddlikesrch.AllContactNo = model.allphones !== null && model.allphones !== "" && model.allphones !== undefined ? model.allphones : null;
-            model.object.Keyworddlikesrch.AllEmails = model.allemails !== null && model.allemails !== "" && model.allemails !== undefined ? model.allemails : null;
-            model.object.Keyworddlikesrch.AllSurNames = model.allsurnames !== null && model.allsurnames !== "" && model.allsurnames !== undefined ? model.allsurnames : null;
-            model.object.Keyworddlikesrch.AllNatives = model.allnativeplaces !== null && model.allnativeplaces !== "" && model.allnativeplaces !== undefined ? model.allnativeplaces : null;
-            model.object.Keyworddlikesrch.CEducationAll = null;
-            model.object.Keyworddlikesrch.CProfAll = null;
-            model.object.Keyworddlikesrch.FAllFields = null;
-            model.object.Keyworddlikesrch.MAllFields = null;
-            model.object.Keyworddlikesrch.Br_AllFields = null;
-            model.object.Keyworddlikesrch.Sr_AllFields = null;
-            model.object.Keyworddlikesrch.FB_AllFields = null;
-            model.object.Keyworddlikesrch.FS_AllFields = null;
-            model.object.Keyworddlikesrch.MB_AllFields = null;
-            model.object.Keyworddlikesrch.MS_AllFields = null;
-            model.object.Keyworddlikesrch.CAll = null;
-            model.object.Keyworddlikesrch.ApplicationStatus = 'Active';
-            model.object.Keyworddlikesrch.startindex = from;
-            model.object.Keyworddlikesrch.EndIndex = to;
-            model.object.Keyworddlikesrch.EmpID = model.empid;
-
-            keywordSearchService.keywordlikesearch(model.object.Keyworddlikesrch).then(function(response) {
-                if (_.isArray(response.data) && response.data.length > 0) {
-                    if (type === 'grid') {
-                        model.keywordcontrols = true;
-                        model.btnbacktosearch = true;
-                        model.grid.pageSize = 10;
-                        model.grid.TotalRows = response.data[0][0].TotalRows;
-                        model.grid.data = response.data[0];
-                    } else if (type === 'excel') {
-                        model.grid.exportarray = [];
-                        model.grid.exportarray = response.data[0];
-                        var options = {
-                            headers: true,
-                            columns: [{
-                                    columnid: 'ProfileID',
-                                    title: 'ProfileID'
-                                }, {
-                                    columnid: 'FirstName',
-                                    title: 'FirstName'
-                                }, {
-                                    columnid: 'LastName',
-                                    title: 'SurName'
-                                },
-                                {
-                                    columnid: 'Caste',
-                                    title: 'Caste'
-                                },
-                                {
-                                    columnid: 'EducationGroup',
-                                    title: 'Education'
-                                },
-                                {
-                                    columnid: 'Profession',
-                                    title: 'Profession'
-                                },
-                                {
-                                    columnid: 'JobLocation',
-                                    title: 'JobLocation'
-                                },
-                                {
-                                    columnid: 'Property',
-                                    title: 'Property'
-                                },
-                                {
-                                    columnid: 'CompanyName',
-                                    title: 'CompanyName'
-                                },
-                                {
-                                    columnid: 'PlaceOfBirth',
-                                    title: 'PlaceOfBirth'
-                                },
-                                {
-                                    columnid: 'TOB',
-                                    title: 'TOB'
-                                },
-                                {
-                                    columnid: 'Gothram',
-                                    title: 'Gothram'
-                                },
-                                {
-                                    columnid: 'Star',
-                                    title: 'Star'
-                                },
-                                {
-                                    columnid: 'FFNative',
-                                    title: 'FFNative'
-                                },
-                                {
-                                    columnid: 'MFNative',
-                                    title: 'MFNative'
-                                }
-                            ]
-                        };
-                        alasql('SELECT ProfileID,GenderID as Gender,FirstName,LastName as SurName,Caste,RegistrationDate INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.grid.exportarray]);
-                    } else {
-                        model.slide.totalRecords = response.data[0][0].TotalRows;
-                        model.slide.headervisileble = true;
-                        if (parseInt(from) === 1) {
-                            configslide.setSlides(model.displayArrayprofile(response.data[0], 10), 10, 'normal');
-                            if (model.myprofileslideshowopenflag !== 1) {
-                                model.myprofileslideshowopenflag = 1;
-                                modelpopupopenmethod.showPopup('keywordlikesearch.html', model.scope, 'lg', "myprofileslide");
-                            }
+            if (model.checkTxt(model.allphones) !== '' || model.checkTxt(model.allemails) !== '' || model.checkTxt(model.allnativeplaces) !== '' || model.checkTxt(model.allsurnames) !== '') {
+                model.object.Keyworddlikesrch.AllContactNo = model.allphones !== null && model.allphones !== "" && model.allphones !== undefined ? model.allphones : null;
+                model.object.Keyworddlikesrch.AllEmails = model.allemails !== null && model.allemails !== "" && model.allemails !== undefined ? model.allemails : null;
+                model.object.Keyworddlikesrch.AllSurNames = model.allsurnames !== null && model.allsurnames !== "" && model.allsurnames !== undefined ? model.allsurnames : null;
+                model.object.Keyworddlikesrch.AllNatives = model.allnativeplaces !== null && model.allnativeplaces !== "" && model.allnativeplaces !== undefined ? model.allnativeplaces : null;
+                model.object.Keyworddlikesrch.CEducationAll = null;
+                model.object.Keyworddlikesrch.CProfAll = null;
+                model.object.Keyworddlikesrch.FAllFields = null;
+                model.object.Keyworddlikesrch.MAllFields = null;
+                model.object.Keyworddlikesrch.Br_AllFields = null;
+                model.object.Keyworddlikesrch.Sr_AllFields = null;
+                model.object.Keyworddlikesrch.FB_AllFields = null;
+                model.object.Keyworddlikesrch.FS_AllFields = null;
+                model.object.Keyworddlikesrch.MB_AllFields = null;
+                model.object.Keyworddlikesrch.MS_AllFields = null;
+                model.object.Keyworddlikesrch.CAll = null;
+                model.object.Keyworddlikesrch.ApplicationStatus = 'Active';
+                model.object.Keyworddlikesrch.startindex = from;
+                model.object.Keyworddlikesrch.EndIndex = to;
+                model.object.Keyworddlikesrch.EmpID = model.empid;
+                keywordSearchService.keywordlikesearch(model.object.Keyworddlikesrch).then(function(response) {
+                    if (_.isArray(response.data) && response.data.length > 0) {
+                        if (type === 'grid') {
+                            model.keywordcontrols = true;
+                            model.btnbacktosearch = true;
+                            model.grid.pageSize = 10;
+                            model.grid.TotalRows = response.data[0][0].TotalRows;
+                            model.grid.data = response.data[0];
+                        } else if (type === 'excel') {
+                            model.grid.exportarray = [];
+                            model.grid.exportarray = response.data[0];
+                            var options = {
+                                headers: true,
+                                columns: [{
+                                        columnid: 'ProfileID',
+                                        title: 'ProfileID'
+                                    }, {
+                                        columnid: 'FirstName',
+                                        title: 'FirstName'
+                                    }, {
+                                        columnid: 'LastName',
+                                        title: 'SurName'
+                                    },
+                                    {
+                                        columnid: 'Caste',
+                                        title: 'Caste'
+                                    },
+                                    {
+                                        columnid: 'EducationGroup',
+                                        title: 'Education'
+                                    },
+                                    {
+                                        columnid: 'Profession',
+                                        title: 'Profession'
+                                    },
+                                    {
+                                        columnid: 'JobLocation',
+                                        title: 'JobLocation'
+                                    },
+                                    {
+                                        columnid: 'Property',
+                                        title: 'Property'
+                                    },
+                                    {
+                                        columnid: 'CompanyName',
+                                        title: 'CompanyName'
+                                    },
+                                    {
+                                        columnid: 'PlaceOfBirth',
+                                        title: 'PlaceOfBirth'
+                                    },
+                                    {
+                                        columnid: 'TOB',
+                                        title: 'TOB'
+                                    },
+                                    {
+                                        columnid: 'Gothram',
+                                        title: 'Gothram'
+                                    },
+                                    {
+                                        columnid: 'Star',
+                                        title: 'Star'
+                                    },
+                                    {
+                                        columnid: 'FFNative',
+                                        title: 'FFNative'
+                                    },
+                                    {
+                                        columnid: 'MFNative',
+                                        title: 'MFNative'
+                                    }
+                                ]
+                            };
+                            alasql('SELECT ProfileID,GenderID as Gender,FirstName,LastName as SurName,Caste,RegistrationDate INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.grid.exportarray]);
                         } else {
-                            configslide.addSlides(model.displayArrayprofile(response.data[0], 11), configslide.slides, parseInt(to), 'normal');
+                            model.slide.totalRecords = response.data[0][0].TotalRows;
+                            model.slide.headervisileble = true;
+                            if (parseInt(from) === 1) {
+                                configslide.setSlides(model.displayArrayprofile(response.data[0], 10), 10, 'normal');
+                                if (model.myprofileslideshowopenflag !== 1) {
+                                    model.myprofileslideshowopenflag = 1;
+                                    modelpopupopenmethod.showPopup('keywordlikesearch.html', model.scope, 'lg', "myprofileslide");
+                                }
+                            } else {
+                                configslide.addSlides(model.displayArrayprofile(response.data[0], 11), configslide.slides, parseInt(to), 'normal');
+                            }
                         }
                     }
-                }
-            });
+                });
+            } else {
+                model.isDisabledsubmit = false;
+                alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter atleast one field', 4500);
+            }
         };
         ////
         model.slide.closemainpopup = function() {
@@ -503,11 +507,9 @@
                 model.keywordlikesearch((model.topage) + 1, (model.topage) + 10, 'slide');
             }
         };
-
         model.bindSlide = function() {
             model.keywordlikesearch(1, 10, 'slide');
         };
         return model;
-
     }
 })();

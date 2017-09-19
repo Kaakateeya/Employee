@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-lg-2" ng-class="page.model.applicationids===undefined || page.model.applicationids===null || page.model.applicationids===0 ?'':'ddlcolor'" class="controls clearfix">
                     <select ng-model="page.model.applicationids" multiple multiselectdropdown ng-options="item.value as item.label group by item.ParentName for item in page.model.Applicationstatusarray" data-live-search='true'>                                        
-                                    </select>
+                    </select>
                 </div>
                 <button class="button_custom col-lg-1 col-lg-offset-1" style="display:initial;" type="submit" ng-click="page.model.keywordlikesearch(1,100,'grid');">Submit</button>
                 <div class="clearfix"></div>
@@ -33,7 +33,6 @@
             <div class="col-lg-9" ng-if="false">
                 <br>
                 <div class="text-center row" style="border-top: 1px solid #ddd;padding-top:1%;">
-
                     <button style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset" ng-click="page.model.reset();">Reset</button>
                     <button style="display:initial;margin-left: 2%;" class="button_custom" ng-click="page.model.keywordlikesearch(1,10,'slide');">Slideshow</button>
                 </div>
@@ -54,7 +53,6 @@
         </div>
     </script>
 </div>
-
 <style>
     .datepicker3 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;

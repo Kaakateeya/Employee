@@ -4,14 +4,12 @@
      angular
          .module('Kaakateeya')
          .controller('keywordSearchCtrl', controller);
-
      controller.$inject = ['keywordSearchModel', '$scope', 'authSvc'];
 
      function controller(keywordSearchModel, scope, authSvc) {
          /* jshint validthis:true */
          var vm = this,
              model;
-
          vm.init = function() {
              vm.model = model = keywordSearchModel;
              model.scope = scope;
