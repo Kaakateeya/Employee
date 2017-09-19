@@ -390,7 +390,7 @@
                 model.object.Keyworddlikesrch.EndIndex = to;
                 model.object.Keyworddlikesrch.EmpID = model.empid;
                 keywordSearchService.keywordlikesearch(model.object.Keyworddlikesrch).then(function(response) {
-                    if (_.isArray(response.data) && response.data.length > 0) {
+                    if (_.isArray(response.data) && response.data.length > 0 && _.isArray(response.data[0]) && response.data[0].length) {
                         if (type === 'grid') {
                             model.keywordcontrols = true;
                             model.btnbacktosearch = true;
@@ -475,6 +475,11 @@
                             } else {
                                 configslide.addSlides(model.displayArrayprofile(response.data[0], 11), configslide.slides, parseInt(to), 'normal');
                             }
+                        }
+                    } else {
+                        if (type === 'grid') {
+                            model.grid.data = [];
+                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No Records Found', 4500);
                         }
                     }
                 });
