@@ -30,7 +30,7 @@
                                 <img ng-click="slidepopup(slide.fromcust_id)" style="min-width:250px;min-height:250px;" ng-src="{{slide.FromApplicationPhoto}}" class="img-thumbnail" style="border: 1px solid gray;">
                                 <div class="text-center"> <br>
                                     <div class="row">
-                                        <div class="col-lg-10"><b>{{slide.FromName}}(<b><a href="javascript:void(0)" ng-class="slide.FromPaidStatus===1?'paidclass':'unpaid'" ng-click="model.viewProfileRedirect(slide.FromProfileid);">{{slide.FromProfileid}}</a> - {{slide.FromBranchCode}}){{slide.FromticketStatusIDb.trim()}}</b></b>
+                                        <div class="col-lg-10"><b>{{slide.FromName}}(<b><a href="javascript:void(0)" ng-class="slide.FromPaidStatus===1?'paidclass':'unpaid'" ng-click="model.viewProfileRedirect(slide.FromProfileid);">{{slide.FromProfileid}}</a> - {{slide.FromBranchCode}})</b></b>
                                         </div>
                                         <div class="col-lg-2" ng-if="slide.FromticketStatusIDb.trim()==='I' || slide.FromticketStatusIDb.trim()==='I'"><img ng-src="{{model.proceedImage(slide.FromticketStatusIDb)}}" style="width:28px;"></div>
                                     </div>
@@ -91,7 +91,7 @@
                                 <img id="tocustimg" ng-click="slidepopup(slide.tocustid)" style="min-width:250px;min-height:250px;" ng-src="{{slide.ToApplicationPhoto}}" alt="" class="center-block img-thumbnail" style="border: 1px solid gray;">
                                 <div class="text-center"> <br>
                                     <div class="row">
-                                        <div class="col-lg-10"><b>{{slide.ToName}}    (<b><a href="javascript:void(0)" ng-click="model.viewProfileRedirect(slide.Toprofileid);" ng-class="slide.ToPaidStatus===1?'paidclass':'unpaid'">{{slide.Toprofileid}}</a> - {{slide.ToBranchCode}}){{slide.ToticketStatusIDb.trim()}}</b></b>
+                                        <div class="col-lg-10"><b>{{slide.ToName}}    (<b><a href="javascript:void(0)" ng-click="model.viewProfileRedirect(slide.Toprofileid);" ng-class="slide.ToPaidStatus===1?'paidclass':'unpaid'">{{slide.Toprofileid}}</a> - {{slide.ToBranchCode}})</b></b>
                                         </div>
                                         <div class="col-lg-2" ng-if="slide.ToticketStatusIDb.trim()==='I' || slide.ToticketStatusIDb.trim()==='I'"><img ng-src="{{model.proceedImage(slide.ToticketStatusIDb)}}" style="width:28px;"></div>
                                     </div>
