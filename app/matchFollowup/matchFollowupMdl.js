@@ -344,7 +344,7 @@
                     };
                     matchFollowupServices.ResendMail(resendInputObj).then(function(response) {
                         model.isDisabledsubmit = false;
-                        if (model.emailresendflag === 0) {
+                        if (model.emailresendflag !== 1) {
                             if (parseInt(response.data) === 1) {
                                 if (offlineExpiry === 'Unpaidcust' && onlineExpiry === 'Unpaidcust') {
                                     alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent succesfully</br> They Can not open View Profile because of there is No Points', 9500);
@@ -387,7 +387,8 @@
                         model.fromticketstatusemail = slideobj.FromticketStatusIDb.trim();
                         model.FromOfflineExpiryDate = slideobj.FromOfflineExpiryDate;
                         model.FromOnlineMembershipExpiryDate = slideobj.FromOnlineMembershipExpiryDate;
-
+                        model.fromcustidselef = fromcustid;
+                        model.tocustidself = tocustid;
                     } else {
                         model.toempname = slideobj.fromempname;
                         model.fromempname = slideobj.toempname;
@@ -395,11 +396,12 @@
                         model.fromticketstatusemail = slideobj.ToticketStatusIDb.trim();
                         model.FromOfflineExpiryDate = slideobj.ToOfflineExpiryDate;
                         model.FromOnlineMembershipExpiryDate = slideobj.ToonlineExpiryDate;
+                        model.fromcustidselef = fromcustid;
+                        model.tocustidself = tocustid;
                     }
+                    model.ServiceDate = slideobj.ServiceDate;
                     model.selfname = selfname;
                     model.selfemail = selfemail;
-                    model.fromcustidselef = fromcustid;
-                    model.tocustidself = tocustid;
                     model.ticketstatusforemail = ticketStatusId.trim();
                     model.genderforemail = gender;
                     model.tointerestname = Name;
@@ -486,7 +488,7 @@
                             if (str !== 'Close') {
                                 model.closeAction();
                             }
-                            model.mailInput.Notes = (model.activebutton === 'bothside') ? model.txtAllcallDiscusionemail : obj.CallDiscussion;
+                            model.mailInput.Notes = model.txtAllcallflag === 1 ? model.txtAllcallDiscusionemail : obj.CallDiscussion + model.emailmanagers;
                             if (str === 'Incoming' || str === 'Out going') {
                                 matchFollowupServices.sendMail(model.mailInput).then(function(response) {
                                     if (parseInt(response.data) === 1) {}
@@ -628,46 +630,58 @@
                 };
                 model.NotIntrstChnge = function(val, type) {
                     model.emailresendflag = 0;
+                    model.txtAllcallflag = 0;
                     model.rbtnnotIntrst = '';
                     model.typeOFCall = type;
                     model.typeOfCtrl = val;
                     var genderid = model.genderforemail === 1 ? 'Mr.' : 'Ms.';
                     var she = model.genderforemail === 1 ? 'He' : 'She';
                     var her = model.genderforemail === 1 ? 'his' : 'her';
+                    model.emailmanagers = "<br><br><div style='color:black;'>For further assistance feel free to contact</div><br> <div style='color:black;'>Your relationship manager " +
+                        model.fromempname + "</div> <br> <div style='color:black;'>" + model.tointerestname + " relationship manager " + model.toempname +
+                        "</div><br><div style='color:black;'> Team head Mr.sivaprasad 91-9841282222</div>";
                     if (val === '1') {
                         model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Interested";
                         if (model.activebutton === 'bothside') {
-                            model.txtAllcallDiscusionemail = genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance." +
-                                "<br><br>Your relationship manager " +
-                                model.fromempname + " " + model.tointerestname + " relationship manager " + model.toempname +
-                                " Team head Mr.sivaprasad 9841282222";
+                            model.txtAllcallflag = 1;
+                            model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;'>" + genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
+                                "<div style='color:black;'>For further assistance feel free to contact</div><br> <div style='color:black;'>Your relationship manager " +
+                                model.fromempname + "</div> <br> <div style='color:black;'>" + model.tointerestname + " relationship manager " + model.toempname +
+                                "</div><br><div style='color:black;'> Team head Mr.sivaprasad 91-9841282222</div>";
                             model.txtAllcallDiscusion = genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
 
                         } else {
                             if (model.fromticketstatusemail === 'I' && model.toticketstatusemail === 'V') {
-                                model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment().format('DD-MM-YYYY') +
-                                    "We have noticed that " + she + " had viewed your profile but yet to give " + her + " opinion." +
+                                model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
+                                    " We have noticed that " + she + " had viewed your profile but yet to give " + her + " opinion." +
                                     her + " relationship manager will contact  " + her + " and get back to you with " + her + " opinion at the earliest.";
                             } else if (model.fromticketstatusemail === 'I' && model.toticketstatusemail === 'NV') {
                                 //resend
                                 model.emailresendflag = 1;
-                                model.Resendmail(model.fromcustidselef, model.tocustidself, model.ActionProfileID, model.toprofileidinterest, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
-                                model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment().format('DD-MM-YYYY') +
-                                    "We have noticed that " + she + " is yet to view your profile and we have resent your profile to " + her + " now and " +
+                                model.Resendmail(model.tocustidself, model.fromcustidselef, model.toprofileidinterest, model.ActionProfileID, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
+                                model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
+                                    " We have noticed that " + she + " is yet to view your profile and we have resent your profile to " + her + " now and " +
                                     "have also sent a mobile message and we will also try to reach  " + her + " over phone to inform the same";
                             } else if (model.fromticketstatusemail === 'V' && model.toticketstatusemail === 'I') {
-                                model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment().format('DD-MM-YYYY') +
-                                    "and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
+                                model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
+                                    " and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
                                     "and please give your opinion in the options provided in the profile.";
+                            } else if (model.fromticketstatusemail === 'I' && model.toticketstatusemail === 'I') {
+                                model.txtAllcallflag = 1;
+                                model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;'>" + genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
+                                    "<div style='color:black;'>For further assistance feel free to contact</div><br> <div style=color:black'>Your relationship manager " +
+                                    model.fromempname + "</div> <br> <div style='color:black;'>" + model.tointerestname + " relationship manager " + model.toempname +
+                                    "</div><br><div style='color:black;'> Team head Mr.sivaprasad 91-9841282222</div>";
+                                model.txtAllcallDiscusion = genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
                             } else {
-                                model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment().format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
+                                model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
                                     "We are resending " + her + " profile for the ease of viewing and please give your opinion in the options provided in the profile";
                             }
                         }
                         model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else if (val === '2') {
                         model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Pending";
-                        model.txtAllcallDiscusion = genderid + model.tointerestname + " viewed your full profile and is seeking some more time to proceed." +
+                        model.txtAllcallDiscusion = genderid + model.tointerestname + " viewed your full profile and is seeking Three more days to update " + her + "  opinion." +
                             "Meanwhile lets look into other options.";
                         model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else {

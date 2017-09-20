@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-lg-2" ng-class="page.model.applicationids===undefined || page.model.applicationids===null || page.model.applicationids===0 ?'':'ddlcolor'" class="controls clearfix">
                     <select ng-model="page.model.applicationids" multiple multiselectdropdown ng-options="item.value as item.label group by item.ParentName for item in page.model.Applicationstatusarray" data-live-search='true'>                                        
-                                    </select>
+                    </select>
                 </div>
                 <button class="button_custom col-lg-1 col-lg-offset-1" style="display:initial;" type="submit" ng-click="page.model.keywordlikesearch(1,100,'grid');">Submit</button>
                 <div class="clearfix"></div>
@@ -33,7 +33,6 @@
             <div class="col-lg-9" ng-if="false">
                 <br>
                 <div class="text-center row" style="border-top: 1px solid #ddd;padding-top:1%;">
-
                     <button style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset" ng-click="page.model.reset();">Reset</button>
                     <button style="display:initial;margin-left: 2%;" class="button_custom" ng-click="page.model.keywordlikesearch(1,10,'slide');">Slideshow</button>
                 </div>
@@ -41,42 +40,40 @@
         </div>
     </div>
     <div ng-show="page.model.btnbacktosearch">
+        <a class="excelshow slideImg" ng-if="page.model.grid.data.length>0" ng-click="page.model.bindSlide();" title="Slideshow" href="javascript:void(0)">
+            <img style="width: 32px;height: 29px;" src="src/images/slideshowimg.png"></img>
+        </a>
         <div class="col-lg-12" ng-hide="true"><button class="btn btn-danger col-lg-offset-7" ng-click="page.model.keywordcontrols=true;page.model.btnbacktosearch=true;">BacktoSearch</button></div>
         <complex-grid-new gid="'id1'" ng-if="page.model.grid.columns" config="page.model.grid" model="page.model.grid"></complex-grid-new>
     </div>
-    <script type="text/ng-template" id="oldkmplkeywordlikesearch.html">
+    <script type="text/ng-template" id="keywordlikesearch.html">
         <div class="modal-body">
-            <complex-slide config="page.model.slide.config" model="page.model"></complex-slide>
+            <complex-slide config="page.model.slide.config" model="page.model.slide"></complex-slide>
             <div class="clearfix"></div>
         </div>
     </script>
-    <script type="text/ng-template" id="allsearchfields.html">
-        <div class="modal-header">
-            <button type="button" class="close" ng-click="page.model.closepopup()">×</button>
-            <h4 class="modal-title text-center">All Fileds</h4>
-        </div>
-        <div class="modal-body reminderticket">
-            <div class="reminderCls">
-                <form name="nomatchesform" novalidate role="form" ng-submit="page.model.keywordallfieldssubmit(page.model.txtallfields);">
-                    <ul>
-                        <li class="clearfix">
-                            <div class="col-lg-12">
-                                <textarea ng-model="page.model.txtallfields" name="txtallfields" class="form-control" rows="4">
-                                            </textarea>
-                            </div>
-                        </li>
-                    </ul>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <button type="submit" class="button_custom pull-right">Submit</button>
-                        </div>
-                        <div class="col-lg-4">
-                            <button type="button" class="button_custom button_custom_reset" ng-click="page.model.closepopup()">Close</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </script>
 </div>
+<style>
+    .datepicker3 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+    }
+    
+    .datepicker4 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+        background-color: #f0f0cc !important;
+    }
+    
+    .headerStyles {
+        font-size: 16px;
+    }
+    
+    .AllLinks {
+        width: 480px !important;
+    }
+    
+    .modelpayment .pane-vScroll {
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: 120px !important;
+    }
+</style>
