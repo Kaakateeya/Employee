@@ -109,7 +109,8 @@
                 { text: 'Ticket ID', key: 'TicketId', type: 'label' },
                 // { text: 'Action', key: '', type: 'morelinks', templateUrl: model.restore }
             ];
-
+            model.grid2.data = [];
+            model.grid1.data = [];
             var inobj = {
                 IsAdmin: model.Admin,
                 strProfileID: model.profileID ? model.profileID : null,
@@ -134,6 +135,7 @@
             settleDeleteProfileseReportService.ProfileDeleteProfilesReport(inobj).then(function(response) {
                 model.isDisabledsubmit = false;
                 if (response.data) {
+                    // if (model.rbtnsettleDeleteType === "0") {
                     model.grid1.data = response.data[0].length > 0 ? response.data[0] : [];
                     model.grid1.TotalRecords = response.data[0].length > 0 ? response.data[0].length : 0;
                     model.grid2.data = response.data[1].length > 0 ? response.data[1] : [];
@@ -142,6 +144,25 @@
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 19500);
                         model.panelbodyhide = true;
                     }
+                    // } else {
+                    //     if (model.rbtnsettleDeleteType === "1") {
+                    //         model.grid1.data = response.data.length > 0 ? response.data : [];
+                    //         model.grid1.TotalRecords = response.data.length > 0 ? response.data.length : 0;
+                    //         if (model.grid1.data.length === 0) {
+                    //             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 19500);
+                    //             model.panelbodyhide = true;
+                    //         }
+                    //     }
+                    //     if (model.rbtnsettleDeleteType === "2") {
+                    //         model.grid2.data = response.data.length > 0 ? response.data : [];
+                    //         model.grid2.TotalRecords = response.data.length > 0 ? response.data.length : 0;
+                    //         if (model.grid2.data.length === 0) {
+                    //             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 19500);
+                    //             model.panelbodyhide = true;
+                    //         }
+                    //     }
+                    // }
+
                 } else {
 
                 }
