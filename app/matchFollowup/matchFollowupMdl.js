@@ -234,7 +234,7 @@
                     });
                 };
                 model.checkStatusID = function(val) {
-                    return (val === "NI") ? "NotViewed" : (val === "I" ? "Accept" : (val === "NI" ? "Reject" : "NotViewed"));
+                    return (val === "NV") ? "NotViewed" : (val === "I" ? "Accept" : (val === "NI" ? "Reject" : "NotViewed"));
                 };
                 model.bindreplytype = function() {
                     if (model.ReplyArr.length === 0) {
