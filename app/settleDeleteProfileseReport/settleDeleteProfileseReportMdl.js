@@ -35,8 +35,10 @@
             model.settledeleteby = '';
             model.authorizedby = '';
             model.chkConfidential = '';
-            model.fromDate = moment().subtract(1, 'months').format('MM-DD-YYYY');
-            model.todate = moment().format('MM-DD-YYYY');
+
+            var date = moment().subtract(1, 'months').format('DD MMM YYYY');
+            model.fromDate = date;
+            model.todate = moment().format('DD MMM YYYY');
             restoreCustID = undefined;
             model.grid1.TotalRecords = 0;
             model.grid2.TotalRecords = 0;
@@ -136,10 +138,22 @@
                 model.isDisabledsubmit = false;
                 if (response.data) {
                     // if (model.rbtnsettleDeleteType === "0") {
-                    model.grid1.data = response.data[0].length > 0 ? response.data[0] : [];
-                    model.grid1.TotalRecords = response.data[0].length > 0 ? response.data[0].length : 0;
-                    model.grid2.data = response.data[1].length > 0 ? response.data[1] : [];
-                    model.grid2.TotalRecords = response.data[1].length > 0 ? response.data[1].length : 0;
+                    debugger;
+
+
+                    if (inobj.typeofStatus === 'B') {
+                        model.grid1.data = response.data[0].length > 0 ? response.data[0] : [];
+                        model.grid1.TotalRecords = response.data[0].length > 0 ? response.data[0].length : 0;
+                        model.grid2.data = response.data[1].length > 0 ? response.data[1] : [];
+                        model.grid2.TotalRecords = response.data[1].length > 0 ? response.data[1].length : 0;
+                    } else if (inobj.typeofStatus === 'S') {
+                        model.grid1.data = response.data[0].length > 0 ? response.data[0] : [];
+                        model.grid1.TotalRecords = response.data[0].length > 0 ? response.data[0].length : 0;
+                    } else {
+                        model.grid2.data = response.data[0].length > 0 ? response.data[0] : [];
+                        model.grid2.TotalRecords = response.data[0].length > 0 ? response.data[0].length : 0;
+                    }
+
                     if (model.grid1.data.length === 0 && model.grid2.data.length === 0) {
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 19500);
                         model.panelbodyhide = true;
