@@ -660,18 +660,18 @@
                     var genderid = model.genderforemail === 1 ? 'Mr.' : 'Ms.';
                     var she = model.genderforemail === 1 ? 'He' : 'She';
                     var her = model.genderforemail === 1 ? 'his' : 'her';
-                    model.emailmanagers = "<br><br><div style='color:black;'>For further assistance feel free to contact</div><br> <div style='color:black;'>Your relationship manager " +
-                        model.fromempname + "</div> <br> <div style='color:black;'>" + model.tointerestname + " relationship manager " + model.toempname +
-                        "</div><br><div style='color:black;'> Team head Mr.sivaprasad 91-9841282222</div>";
+                    model.emailmanagers = "<br><br><div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style='color:black;text-align: justify;'>Your relationship manager " +
+                        model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.tointerestname + " relationship manager " + model.toempname +
+                        "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
                     if (val === '1') {
                         model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Interested";
                         if (model.activebutton === 'bothside') {
                             model.txtAllcallflag = 1;
                             model.mailInput.TicketStatusID = "bothSideinterest";
-                            model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;'>" + genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
-                                "<div style='color:black;'>For further assistance feel free to contact</div><br> <div style='color:black;'>Your relationship manager " +
-                                model.fromempname + "</div> <br> <div style='color:black;'>" + model.tointerestname + " relationship manager " + model.toempname +
-                                "</div><br><div style='color:black;'> Team head Mr.sivaprasad 91-9841282222</div>";
+                            model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;text-align: justify;'>" + genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
+                                "<div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style='color:black;text-align: justify;'>Your relationship manager " +
+                                model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.tointerestname + " relationship manager " + model.toempname +
+                                "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
                             model.txtAllcallDiscusion = genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
 
                         } else {
@@ -701,10 +701,10 @@
                             } else if (model.fromticketstatusemail === 'I' && model.toticketstatusemail === 'I') {
                                 model.txtAllcallflag = 1;
                                 model.mailInput.TicketStatusID = "bothSideinterest";
-                                model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;'>" + genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
-                                    "<div style='color:black;'>For further assistance feel free to contact</div><br> <div style=color:black'>Your relationship manager " +
-                                    model.fromempname + "</div> <br> <div style='color:black;'>" + model.tointerestname + " relationship manager " + model.toempname +
-                                    "</div><br><div style='color:black;'> Team head Mr.sivaprasad 91-9841282222</div>";
+                                model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;text-align: justify;'>" + genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
+                                    "<div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style=color:black;text-align: justify;'>Your relationship manager " +
+                                    model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.tointerestname + " relationship manager " + model.toempname +
+                                    "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
                                 model.txtAllcallDiscusion = genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
                             } else {
                                 model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
