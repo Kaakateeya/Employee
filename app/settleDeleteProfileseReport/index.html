@@ -133,12 +133,12 @@
         </div>
     </div>
 
-    <div class="row p-l-12" ng-if="page.model.grid1.TotalRecords>0">
+    <div class="row p-l-12" ng-if="page.model.grid1.data.length>0">
         <label for="totalrecords" class="control-label">Settled Profiles count : {{page.model.grid1.TotalRecords}}</label>
     </div>
     <complex-grid-new gid="'id2'" model="page.model.grid1" config="page.model.grid1"></complex-grid-new>
     <br>
-    <div class="row p-l-12" ng-if="page.model.grid2.TotalRecords>0">
+    <div class="row p-l-12" ng-if="page.model.grid2.data.length>0">
         <label for="totalrecords" class="control-label">Deleted Profiles count : {{page.model.grid2.TotalRecords}}</label>
     </div>
     <complex-grid-new gid="'id3'" model="page.model.grid2" config="page.model.grid2"></complex-grid-new>
