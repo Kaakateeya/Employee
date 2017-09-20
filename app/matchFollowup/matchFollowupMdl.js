@@ -362,6 +362,7 @@
                         Subject: "Kaakateeya Email For Bothsideinterest"
                     };
                     matchFollowupServices.ResendMail(resendInputObj).then(function(response) {
+                        model.TicketStatusID2 = "";
                         model.isDisabledsubmit = false;
                         if (model.emailresendflag !== 1) {
                             if (parseInt(response.data) === 1) {
@@ -667,8 +668,6 @@
                         if (model.activebutton === 'bothside') {
                             model.txtAllcallflag = 1;
                             model.mailInput.TicketStatusID = "bothSideinterest";
-
-
                             model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;'>" + genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
                                 "<div style='color:black;'>For further assistance feel free to contact</div><br> <div style='color:black;'>Your relationship manager " +
                                 model.fromempname + "</div> <br> <div style='color:black;'>" + model.tointerestname + " relationship manager " + model.toempname +
