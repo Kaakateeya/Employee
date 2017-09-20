@@ -105,17 +105,19 @@
   line-height: 2.1; }
 
 #paymentdetailsreports .ProfileOwner {
-  width: 210px; }
+  width: 210px !important; }
 #paymentdetailsreports .TicketHistoryID {
-  width: 114px; }
+  width: 114px !important; }
 #paymentdetailsreports .headerStyles {
-  font-size: 14px; }
+  font-size: 14px !important; }
 #paymentdetailsreports .ProfileID {
-  width: 130px; }
+  width: 130px !important; }
 #paymentdetailsreports .plusiconshow {
-  width: 33px; }
+  width: 33px !important; }
 #paymentdetailsreports .DOR {
-  width: 98px; }
+  width: 98px !important; }
+#paymentdetailsreports .SNO {
+  width: 80px !important; }
 
 .modalclassdashboardphotopopup {
   z-index: 999999999 !important;

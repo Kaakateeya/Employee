@@ -40,19 +40,22 @@ th.ReviewedEmpID.headerStyles {
 
 #rreviewpendings {
     .smalldropdown {
-        width: 270px;
+        width: 270px !important;
     }
     .hasDatepicker {
-        width: 270px;
+        width: 270px !important;
     }
     .reviewclass {
-        width: 270px;
+        width: 270px !important;
     }
     .headerStyles {
-        font-size: 14px;
+        font-size: 14px !important;
     }
     .DOR {
-        width: 110px;
+        width: 110px !important;
+    }
+    .Sno {
+        width: 80px !important;
     }
 }
 
