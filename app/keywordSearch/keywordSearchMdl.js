@@ -465,7 +465,7 @@
                                     }
                                 ]
                             };
-                            alasql('SELECT ProfileID,GenderID as Gender,FirstName,LastName as SurName,Caste,RegistrationDate INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.grid.exportarray]);
+                            alasql('SELECT ProfileID,FirstName,LastName as SurName,Caste,EducationGroup as Education,Profession,JobLocation,Property,CompanyName,PlaceOfBirth,TOB,Gothram,Star,FFNative,MFNative  INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.grid.exportarray]);
                         } else {
                             model.slide.totalRecords = response.data[0][0].TotalRows;
                             model.slide.headervisileble = true;
