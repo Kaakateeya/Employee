@@ -252,7 +252,6 @@
                     onlinepaid: item.onlinepaid,
                     educationspecialisation: item.EducationGroup,
                     currency: item.currency,
-                    countrylivingin: item.CountryLivingin,
                     UploadedPhotoscount: item.UploadedPhotoscount,
                     TOB: item.TOB,
                     SubCaste: item.SubCaste,
@@ -368,7 +367,7 @@
         };
         ///
         model.returnnullvalue = function(value) {
-            var obj = helpService.checkstringvalue(value) && (value.toString()) !== "0" && (value.toString()) !== 0 ? (value.toString()) : null;
+            var obj = helperservice.checkstringvalue(value) && (value.toString()) !== "0" && (value.toString()) !== 0 ? (value.toString()) : null;
             return obj;
         };
         model.keywordlikesearch = function(from, to, type) {
@@ -389,7 +388,7 @@
                 model.object.Keyworddlikesrch.MB_AllFields = null;
                 model.object.Keyworddlikesrch.MS_AllFields = null;
                 model.object.Keyworddlikesrch.CAll = null;
-                model.object.Keyworddlikesrch.ApplicationStatus = 'Active';
+                model.object.Keyworddlikesrch.ApplicationStatus = model.returnnullvalue(model.applicationids);
                 model.object.Keyworddlikesrch.startindex = from;
                 model.object.Keyworddlikesrch.EndIndex = to;
                 model.object.Keyworddlikesrch.EmpID = model.empid;

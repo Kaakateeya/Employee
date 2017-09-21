@@ -422,6 +422,7 @@
                     model.ServiceDate = slideobj.ServiceDate;
                     model.selfname = selfname;
                     model.selfemail = selfemail;
+                    model.headertextpop = "Updated Text Going This Email " + model.selfemail;
                     model.ticketstatusforemail = ticketStatusId.trim();
                     model.genderforemail = gender;
                     model.tointerestname = Name;
@@ -768,7 +769,12 @@
                 model.destroy = function() {
                     config.reset();
                 };
-                model.clearalltext = function() {
+                model.clearalltext = function(textint) {
+                    if (textint === 'internal') {
+                        model.headertextpop = "Updated Internal Memo  Will Not Sharing With the Customer";
+                    } else {
+                        model.headertextpop = "Updated Text Going This Email " + model.selfemail;
+                    }
                     model.incommingbtntext = "Incoming Call";
                     model.outgoingcallbtntext = "Outgoing Call";
                     model.internalmemobtntext = "Internal Memo";
