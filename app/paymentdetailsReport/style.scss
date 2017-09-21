@@ -140,22 +140,25 @@
 
 #paymentdetailsreports {
     .ProfileOwner {
-        width: 210px;
+        width: 210px !important;
     }
     .TicketHistoryID {
-        width: 114px;
+        width: 114px !important;
     }
     .headerStyles {
-        font-size: 14px;
+        font-size: 14px !important;
     }
     .ProfileID {
-        width: 130px;
+        width: 130px !important;
     }
     .plusiconshow {
-        width: 33px;
+        width: 33px !important;
     }
     .DOR {
-        width: 98px;
+        width: 98px !important;
+    }
+    .SNO {
+        width: 80px !important;
     }
 }
 

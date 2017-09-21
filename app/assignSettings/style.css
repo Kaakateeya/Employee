@@ -9,17 +9,21 @@
   color: #16713d;
   font-weight: 700; }
 #assignsettingsid .ProfileOwner {
-  width: 200px; }
+  width: 214px !important; }
+#assignsettingsid .SNO {
+  width: 80px !important; }
+#assignsettingsid .cust_id {
+  width: 100px !important; }
 #assignsettingsid .MarketedOwner {
-  width: 200px; }
+  width: 200px !important; }
 #assignsettingsid .ReviewOwner {
-  width: 200px; }
+  width: 200px !important; }
 #assignsettingsid .dropdownclass {
-  width: 250px; }
+  width: 250px !important; }
 #assignsettingsid .smalldropdowngrid {
-  width: 201px; }
+  width: 201px !important; }
 #assignsettingsid .reviewclass {
-  width: 270px; }
+  width: 270px !important; }
 #assignsettingsid .smalldropdown {
   width: 270px; }
 #assignsettingsid .colorforcontrols button {

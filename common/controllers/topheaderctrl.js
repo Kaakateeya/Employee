@@ -8,7 +8,6 @@
                 var vm = this,
                     model = {};
                 vm.initheader = function() {
-
                     if (authSvc.LoginEmpid() !== topheadermodel.empid) {
                         vm.model = model = topheadermodel.init();
                         model.scope = scope;
@@ -23,7 +22,6 @@
 
                     $http.get('your-server-endpoint');
                 };
-
                 vm.initheader();
                 // scope.$watch('model.notificationarray', function() {
                 //     debugger;

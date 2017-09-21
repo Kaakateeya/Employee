@@ -422,6 +422,7 @@
                     model.ServiceDate = slideobj.ServiceDate;
                     model.selfname = selfname;
                     model.selfemail = selfemail;
+                    model.headertextpop = "Updated Text Going This Email " + model.selfemail;
                     model.ticketstatusforemail = ticketStatusId.trim();
                     model.genderforemail = gender;
                     model.tointerestname = Name;
@@ -510,9 +511,16 @@
                             }
                             model.mailInput.Notes = model.txtAllcallflag === 1 ? model.txtAllcallDiscusionemail : obj.CallDiscussion + model.emailmanagers;
                             if (str === 'Incoming' || str === 'Out going') {
-                                matchFollowupServices.sendMail(model.mailInput).then(function(response) {
-                                    if (parseInt(response.data) === 1) {}
-                                });
+                                if (model.mailInput.TicketStatusID === "NotViewed") {
+                                    matchFollowupServices.sendMail(model.mailInput).then(function(response) {
+                                        if (parseInt(response.data) === 1) {}
+                                    });
+                                    model.Resendmail(model.tocustidself, model.fromcustidselef, model.toprofileidinterest, model.ActionProfileID, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
+                                } else {
+                                    matchFollowupServices.sendMail(model.mailInput).then(function(response) {
+                                        if (parseInt(response.data) === 1) {}
+                                    });
+                                }
                             }
                             var curdate = moment().format('Do MMMM YYYY, h:mm:ss');
                             if (str === 'Incoming') {
@@ -652,6 +660,7 @@
                     });
                 };
                 model.NotIntrstChnge = function(val, type) {
+                    model.TicketStatusID2 = "";
                     model.emailresendflag = 0;
                     model.txtAllcallflag = 0;
                     model.rbtnnotIntrst = '';
@@ -660,18 +669,18 @@
                     var genderid = model.genderforemail === 1 ? 'Mr.' : 'Ms.';
                     var she = model.genderforemail === 1 ? 'He' : 'She';
                     var her = model.genderforemail === 1 ? 'his' : 'her';
-                    model.emailmanagers = "<br><br><div style='color:black;'>For further assistance feel free to contact</div><br> <div style='color:black;'>Your relationship manager " +
-                        model.fromempname + "</div> <br> <div style='color:black;'>" + model.tointerestname + " relationship manager " + model.toempname +
-                        "</div><br><div style='color:black;'> Team head Mr.sivaprasad 91-9841282222</div>";
+                    model.emailmanagers = "<br><br><div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style='color:black;text-align: justify;'>Your relationship manager " +
+                        model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.tointerestname + " relationship manager " + model.toempname +
+                        "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
                     if (val === '1') {
                         model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Interested";
                         if (model.activebutton === 'bothside') {
                             model.txtAllcallflag = 1;
                             model.mailInput.TicketStatusID = "bothSideinterest";
-                            model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;'>" + genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
-                                "<div style='color:black;'>For further assistance feel free to contact</div><br> <div style='color:black;'>Your relationship manager " +
-                                model.fromempname + "</div> <br> <div style='color:black;'>" + model.tointerestname + " relationship manager " + model.toempname +
-                                "</div><br><div style='color:black;'> Team head Mr.sivaprasad 91-9841282222</div>";
+                            model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;text-align: justify;'>" + genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
+                                "<div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style='color:black;text-align: justify;'>Your relationship manager " +
+                                model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.tointerestname + " relationship manager " + model.toempname +
+                                "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
                             model.txtAllcallDiscusion = genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
 
                         } else {
@@ -689,7 +698,7 @@
                                 //model.mailInput.TicketStatusID = "bothSideinterest";
                                 model.TicketStatusID2 = "Resend";
                                 model.mailInput.TicketStatusID = "NotViewed";
-                                model.Resendmail(model.tocustidself, model.fromcustidselef, model.toprofileidinterest, model.ActionProfileID, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
+                                // model.Resendmail(model.tocustidself, model.fromcustidselef, model.toprofileidinterest, model.ActionProfileID, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
                                 model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
                                     " We have noticed that " + she + " is yet to view your profile and we have resent your profile to " + her + " now and " +
                                     "have also sent a mobile message and we will also try to reach  " + her + " over phone to inform the same";
@@ -701,10 +710,10 @@
                             } else if (model.fromticketstatusemail === 'I' && model.toticketstatusemail === 'I') {
                                 model.txtAllcallflag = 1;
                                 model.mailInput.TicketStatusID = "bothSideinterest";
-                                model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;'>" + genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
-                                    "<div style='color:black;'>For further assistance feel free to contact</div><br> <div style=color:black'>Your relationship manager " +
-                                    model.fromempname + "</div> <br> <div style='color:black;'>" + model.tointerestname + " relationship manager " + model.toempname +
-                                    "</div><br><div style='color:black;'> Team head Mr.sivaprasad 91-9841282222</div>";
+                                model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;text-align: justify;'>" + genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
+                                    "<div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style=color:black;text-align: justify;'>Your relationship manager " +
+                                    model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.tointerestname + " relationship manager " + model.toempname +
+                                    "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
                                 model.txtAllcallDiscusion = genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
                             } else {
                                 model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
@@ -760,7 +769,12 @@
                 model.destroy = function() {
                     config.reset();
                 };
-                model.clearalltext = function() {
+                model.clearalltext = function(textint) {
+                    if (textint === 'internal') {
+                        model.headertextpop = "Updated Internal Memo  Will Not Shared With the Customer";
+                    } else {
+                        model.headertextpop = "Updated Text Going This Email " + model.selfemail;
+                    }
                     model.incommingbtntext = "Incoming Call";
                     model.outgoingcallbtntext = "Outgoing Call";
                     model.internalmemobtntext = "Internal Memo";

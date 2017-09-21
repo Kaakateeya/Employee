@@ -28,15 +28,17 @@ th.ReviewedEmpID.headerStyles {
   width: 125px !important; }
 
 #rreviewpendings .smalldropdown {
-  width: 270px; }
+  width: 270px !important; }
 #rreviewpendings .hasDatepicker {
-  width: 270px; }
+  width: 270px !important; }
 #rreviewpendings .reviewclass {
-  width: 270px; }
+  width: 270px !important; }
 #rreviewpendings .headerStyles {
-  font-size: 14px; }
+  font-size: 14px !important; }
 #rreviewpendings .DOR {
-  width: 110px; }
+  width: 110px !important; }
+#rreviewpendings .Sno {
+  width: 80px !important; }
 
 .modalclassdashboardremainder {
   z-index: 99999999999999 !important;
