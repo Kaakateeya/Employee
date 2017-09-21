@@ -2,7 +2,7 @@
     'use strict';
 
 
-    function factory(editContactService, authSvc, alertss, commonFactory, uibModal, stateParams, SelectBindServicereg) {
+    function factory(editContactService, authSvc, alertss, commonFactory, uibModal, stateParams, SelectBindServicereg, timeout) {
         var model = {};
         model.scope = {};
 
@@ -125,6 +125,11 @@
                             model.candidateobj.txtFBMobileNumber2 = item.CandidateLandlinenumber;
                         }
                         model.candidateobj.txtcandidateEmails = item.CandidateEmail;
+                        model.oldCandidateMail = '';
+                        if (item.CandidateEmail) {
+                            model.oldCandidateMail = item.CandidateEmail;
+                        }
+
                     }
                     commonFactory.open('candidateContactContent.html', model.scope, uibModal);
                     break;
@@ -323,11 +328,60 @@
                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please Enter Valid Verification code', 4500);
             }
         };
+
+
+        model.EmailValidation = function(val) {
+            if (val) {
+                if (val !== model.oldCandidateMail) {
+                    SelectBindServicereg.emailExists({ iflagEmailmobile: 0, EmailMobile: model.candidateobj.txtcandidateEmails }).then(function(response) {
+                        if (response.data === 1) {
+                            model.candidateobj.txtcandidateEmails = '';
+                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Email Already Exists', 9500);
+                            return false;
+                        } else {
+                            model.candidateSubmitmethod();
+                        }
+
+                    });
+                } else {
+                    model.candidateSubmitmethod();
+                }
+            } else {
+                model.candidateSubmitmethod();
+            }
+        };
+
+
+
+
+
+        model.candidateSubmitmethod = function() {
+
+            model.commonContactSubmit(model.candidateobj.emaILcust_family_id, '',
+                model.candidateobj.ddlcandidateMobileCountryID,
+                model.candidateobj.txtcandidatemobilenumber, model.candidateobj.ddlcandidateMobileCountryID2,
+                model.candidateobj.txtFBMobileNumber2, model.candidateobj.ddlcandidateLandLineCountry, model.candidateobj.txtcandidateAreCode,
+                model.candidateobj.txttxtcandidateAreCodeLandNumber,
+                model.candidateobj.txtcandidateEmails, 'Candidate');
+
+        };
+
+
+
+
+
+
+
+
+
+
+
+
         return model;
     }
     angular
         .module('Kaakateeya')
         .factory('editContactModel', factory);
 
-    factory.$inject = ['editContactService', 'authSvc', 'alert', 'commonFactory', '$uibModal', '$stateParams', 'SelectBindServicereg'];
+    factory.$inject = ['editContactService', 'authSvc', 'alert', 'commonFactory', '$uibModal', '$stateParams', 'SelectBindServicereg', '$timeout'];
 })(angular);

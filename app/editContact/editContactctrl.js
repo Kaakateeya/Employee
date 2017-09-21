@@ -9,6 +9,7 @@
              vm.model = editContactModel;
              editContactModel.init();
              vm.model.scope = scope;
+             vm.model.oldCandidateMail = '';
          };
 
          vm.init();
