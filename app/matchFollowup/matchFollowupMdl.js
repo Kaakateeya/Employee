@@ -771,7 +771,7 @@
                 };
                 model.clearalltext = function(textint) {
                     if (textint === 'internal') {
-                        model.headertextpop = "Updated Internal Memo  Will Not Sharing With the Customer";
+                        model.headertextpop = "Updated Internal Memo  Will Not Shared With the Customer";
                     } else {
                         model.headertextpop = "Updated Text Going This Email " + model.selfemail;
                     }
