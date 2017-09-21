@@ -50,7 +50,7 @@
     <li class="clearfix" ng-show="mail">
         <label for="lblEmail" class="pop_label_left">Email  </label>
         <div class="pop_controls_right" ng-form name="myForm">
-            <input name="strmail" type=text ng-model="strmail" class="form-control" placeholder="Enter Email" text=" " tabindex="16" ng-pattern="/^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/i" />
+            <input name="strmail" type=text ng-model="strmail" class="form-control" placeholder="Enter Email" text=" " tabindex="16" />
             <div ng-if="myForm.strmail.$error.pattern" style="color:rgb(221, 44, 0);">
                 Please enter valid e-mail address.
             </div>

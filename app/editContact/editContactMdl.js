@@ -50,35 +50,40 @@
         model.commonContactSubmit = function(Icustfamiliyid, IName, IMoblieCountryCode, IMobileNumber, IMoblieCountryCode2, IMobileNumber2, ILandCountryCode,
             ILandAreaCode, ILandNumber, IEmail, ISibblingFlag,
             FFcountryCode, FFNumber, FFcountryCode2, FFnumber2, FFLandCode, FFareaCode, FFLandNumber, FFflag) {
-            model.Mobj = {
-                familyID: Icustfamiliyid,
-                Name: IName,
-                MoblieCountryCode: IMoblieCountryCode,
-                MobileNumber: IMobileNumber,
-                LandCountryCode: commonFactory.checkvals(IMoblieCountryCode2) ? IMoblieCountryCode2 : commonFactory.checkvals(ILandCountryCode) ? ILandCountryCode : null,
-                LandAreaCode: commonFactory.checkvals(IMobileNumber2) ? null : (commonFactory.checkvals(ILandAreaCode) ? ILandAreaCode : null),
-                LandNumber: commonFactory.checkvals(IMobileNumber2) ? IMobileNumber2 : commonFactory.checkvals(ILandNumber) ? ILandNumber : null,
-                Email: IEmail,
-                intCusID: custID,
-                EmpID: loginEmpid,
-                Admin: authSvc.isAdmin(),
-                SibblingFlag: ISibblingFlag,
-                FFMobileCountryID: FFcountryCode,
-                FFMobileNumber: FFNumber,
-                FFLandLineCountryCodeID: commonFactory.checkvals(FFcountryCode2) ? FFcountryCode2 : commonFactory.checkvals(FFLandCode) ? FFLandCode : null,
-                FFLandAreaCode: commonFactory.checkvals(FFnumber2) ? null : (commonFactory.checkvals(FFareaCode) ? FFareaCode : null),
-                FFLandNumber: commonFactory.checkvals(FFnumber2) ? FFnumber2 : commonFactory.checkvals(FFLandNumber) ? FFLandNumber : null,
-                iflagFF: FFflag
-            };
-            editContactService.submitContactData(model.Mobj).then(function(response) {
-                commonFactory.closepopup();
-                if (response.data === 1) {
-                    model.pageload();
-                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Contact Details  submitted Succesfully', 4500);
-                } else {
-                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Contact Details  Updation failed', 4500);
-                }
-            });
+            if (model.validateForm(IEmail)) {
+
+                model.Mobj = {
+                    familyID: Icustfamiliyid,
+                    Name: IName,
+                    MoblieCountryCode: IMoblieCountryCode,
+                    MobileNumber: IMobileNumber,
+                    LandCountryCode: commonFactory.checkvals(IMoblieCountryCode2) ? IMoblieCountryCode2 : commonFactory.checkvals(ILandCountryCode) ? ILandCountryCode : null,
+                    LandAreaCode: commonFactory.checkvals(IMobileNumber2) ? null : (commonFactory.checkvals(ILandAreaCode) ? ILandAreaCode : null),
+                    LandNumber: commonFactory.checkvals(IMobileNumber2) ? IMobileNumber2 : commonFactory.checkvals(ILandNumber) ? ILandNumber : null,
+                    Email: IEmail,
+                    intCusID: custID,
+                    EmpID: loginEmpid,
+                    Admin: authSvc.isAdmin(),
+                    SibblingFlag: ISibblingFlag,
+                    FFMobileCountryID: FFcountryCode,
+                    FFMobileNumber: FFNumber,
+                    FFLandLineCountryCodeID: commonFactory.checkvals(FFcountryCode2) ? FFcountryCode2 : commonFactory.checkvals(FFLandCode) ? FFLandCode : null,
+                    FFLandAreaCode: commonFactory.checkvals(FFnumber2) ? null : (commonFactory.checkvals(FFareaCode) ? FFareaCode : null),
+                    FFLandNumber: commonFactory.checkvals(FFnumber2) ? FFnumber2 : commonFactory.checkvals(FFLandNumber) ? FFLandNumber : null,
+                    iflagFF: FFflag
+                };
+                editContactService.submitContactData(model.Mobj).then(function(response) {
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+                        model.pageload();
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Contact Details  submitted Succesfully', 4500);
+                    } else {
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Contact Details  Updation failed', 4500);
+                    }
+                });
+            }
+
+
         };
         model.CandidateAddressSubmit = function(obj) {
             model.Mobj = {
@@ -252,26 +257,30 @@
             commonFactory.closepopup();
         };
         model.submitContactReference = function(obj) {
-            model.Mobj = {
-                Cust_Reference_ID: model.referenceobj.emaILcust_family_id,
-                Cust_ID: custID,
-                FirstName: obj.txtreferencename,
-                MobileCode: obj.ddlreferencemobile,
-                Number: obj.txtreferencemobile,
-                CountryCode: commonFactory.checkvals(obj.ddlreferencemobile2) ? obj.ddlreferencemobile2 : commonFactory.checkvals(obj.ddlreferencelandnumber) ? obj.ddlreferencelandnumber : null,
-                AreaCode: commonFactory.checkvals(obj.txtreferencemobile2) ? null : (commonFactory.checkvals(obj.txtreferenceAreCode) ? obj.txtreferenceAreCode : null),
-                Landlinenumber: commonFactory.checkvals(obj.txtreferencemobile2) ? obj.txtreferencemobile2 : commonFactory.checkvals(obj.txtreferencelandnumber) ? obj.txtreferencelandnumber : null,
-                Email: obj.txtreferenceemail
-            };
-            editContactService.submitContactReferenceData(model.Mobj).then(function(response) {
-                commonFactory.closepopup();
-                if (response.data === 1) {
-                    model.pageload();
-                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Contact Details submitted Succesfully', 4500);
-                } else {
-                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Contact Details  Updation failed', 4500);
-                }
-            });
+            if (model.validateForm(obj.txtreferenceemail)) {
+
+                model.Mobj = {
+                    Cust_Reference_ID: model.referenceobj.emaILcust_family_id,
+                    Cust_ID: custID,
+                    FirstName: obj.txtreferencename,
+                    MobileCode: obj.ddlreferencemobile,
+                    Number: obj.txtreferencemobile,
+                    CountryCode: commonFactory.checkvals(obj.ddlreferencemobile2) ? obj.ddlreferencemobile2 : commonFactory.checkvals(obj.ddlreferencelandnumber) ? obj.ddlreferencelandnumber : null,
+                    AreaCode: commonFactory.checkvals(obj.txtreferencemobile2) ? null : (commonFactory.checkvals(obj.txtreferenceAreCode) ? obj.txtreferenceAreCode : null),
+                    Landlinenumber: commonFactory.checkvals(obj.txtreferencemobile2) ? obj.txtreferencemobile2 : commonFactory.checkvals(obj.txtreferencelandnumber) ? obj.txtreferencelandnumber : null,
+                    Email: obj.txtreferenceemail
+                };
+                editContactService.submitContactReferenceData(model.Mobj).then(function(response) {
+                    commonFactory.closepopup();
+                    if (response.data === 1) {
+                        model.pageload();
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Contact Details submitted Succesfully', 4500);
+                    } else {
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Contact Details  Updation failed', 4500);
+                    }
+                });
+
+            }
         };
         model.setprimaryrelationPopup = function() {
             commonFactory.open('primaryRelationContent.html', model.scope, uibModal);
@@ -352,9 +361,6 @@
         };
 
 
-
-
-
         model.candidateSubmitmethod = function() {
 
             model.commonContactSubmit(model.candidateobj.emaILcust_family_id, '',
@@ -363,18 +369,23 @@
                 model.candidateobj.txtFBMobileNumber2, model.candidateobj.ddlcandidateLandLineCountry, model.candidateobj.txtcandidateAreCode,
                 model.candidateobj.txttxtcandidateAreCodeLandNumber,
                 model.candidateobj.txtcandidateEmails, 'Candidate');
-
         };
 
-
-
-
-
-
-
-
-
-
+        model.validateForm = function(val) {
+            if (val !== undefined && val !== null && val !== '') {
+                var x = val;
+                var atpos = x.indexOf("@");
+                var dotpos = x.lastIndexOf(".");
+                if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= x.length) {
+                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter valid email address', 4500);
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                return true;
+            }
+        };
 
 
         return model;
