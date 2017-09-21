@@ -367,6 +367,10 @@
             });
         };
         ///
+        model.returnnullvalue = function(value) {
+            var obj = helpService.checkstringvalue(value) && (value.toString()) !== "0" && (value.toString()) !== 0 ? (value.toString()) : null;
+            return obj;
+        };
         model.keywordlikesearch = function(from, to, type) {
             model.topage = to;
             if (model.checkTxt(model.allphones) !== '' || model.checkTxt(model.allemails) !== '' || model.checkTxt(model.allnativeplaces) !== '' || model.checkTxt(model.allsurnames) !== '') {

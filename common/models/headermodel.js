@@ -4,10 +4,11 @@
 
     angular
         .module('Kaakateeya')
-        .factory('topheadermodel', ['$http', 'authSvc', 'modelpopupopenmethod', '$state', 'alert', 'helperservice', 'Notification', '$compile', 'complex-slide-config', '$filter',
+        .factory('topheadermodel', ['$http', 'authSvc', 'modelpopupopenmethod', '$state', 'alert', 'helperservice', 'Notification', '$compile',
+            'complex-slide-config', '$filter', '$timeout',
 
             function(http, authSvc,
-                modelpopupopenmethod, $state, alerts, helperservice, Notification, compile, configheader, $filter) {
+                modelpopupopenmethod, $state, alerts, helperservice, Notification, compile, configheader, $filter, timeout) {
                 var model = {};
                 model.scope = {};
                 model.configheader = configheader;
@@ -236,21 +237,21 @@
                         case 0:
                             obj.CategoryID = null;
                             obj.i_display = 0;
-                            obj.iEmpID = 2;
+                            obj.iEmpID = model.empid;
                             obj.iNotificationID = null;
                             obj.strProfileID = null;
                             break;
                         case 1:
                             obj.CategoryID = null;
                             obj.i_display = 1;
-                            obj.iEmpID = 2;
+                            obj.iEmpID = model.empid;
                             obj.iNotificationID = null;
                             obj.strProfileID = null;
                             break;
                         case 2:
                             obj.CategoryID = Categoryid;
                             obj.i_display = 2;
-                            obj.iEmpID = 2;
+                            obj.iEmpID = model.empid;
                             obj.iNotificationID = NotificationID;
                             obj.strProfileID = ProfileID;
                             break;
@@ -267,6 +268,9 @@
                             }
                             Notification.clearAll();
                             Notification.warning(({ message: '', templateUrl: 'custom_template.html', delay: 10000, scope: model.scope, closeOnClick: false }));
+                            timeout(function() {
+                                Notification.clearAll();
+                            }, 10000);
                         }
                     });
                 };
@@ -303,6 +307,7 @@
                         Notification.clearAll();
                     }
                 };
+
                 return model.init();
             }
         ]);

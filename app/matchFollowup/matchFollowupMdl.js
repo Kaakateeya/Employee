@@ -510,9 +510,16 @@
                             }
                             model.mailInput.Notes = model.txtAllcallflag === 1 ? model.txtAllcallDiscusionemail : obj.CallDiscussion + model.emailmanagers;
                             if (str === 'Incoming' || str === 'Out going') {
-                                matchFollowupServices.sendMail(model.mailInput).then(function(response) {
-                                    if (parseInt(response.data) === 1) {}
-                                });
+                                if (model.mailInput.TicketStatusID === "NotViewed") {
+                                    matchFollowupServices.sendMail(model.mailInput).then(function(response) {
+                                        if (parseInt(response.data) === 1) {}
+                                    });
+                                    model.Resendmail(model.tocustidself, model.fromcustidselef, model.toprofileidinterest, model.ActionProfileID, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
+                                } else {
+                                    matchFollowupServices.sendMail(model.mailInput).then(function(response) {
+                                        if (parseInt(response.data) === 1) {}
+                                    });
+                                }
                             }
                             var curdate = moment().format('Do MMMM YYYY, h:mm:ss');
                             if (str === 'Incoming') {
@@ -652,6 +659,7 @@
                     });
                 };
                 model.NotIntrstChnge = function(val, type) {
+                    model.TicketStatusID2 = "";
                     model.emailresendflag = 0;
                     model.txtAllcallflag = 0;
                     model.rbtnnotIntrst = '';
@@ -689,7 +697,7 @@
                                 //model.mailInput.TicketStatusID = "bothSideinterest";
                                 model.TicketStatusID2 = "Resend";
                                 model.mailInput.TicketStatusID = "NotViewed";
-                                model.Resendmail(model.tocustidself, model.fromcustidselef, model.toprofileidinterest, model.ActionProfileID, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
+                                // model.Resendmail(model.tocustidself, model.fromcustidselef, model.toprofileidinterest, model.ActionProfileID, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
                                 model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
                                     " We have noticed that " + she + " is yet to view your profile and we have resent your profile to " + her + " now and " +
                                     "have also sent a mobile message and we will also try to reach  " + her + " over phone to inform the same";
