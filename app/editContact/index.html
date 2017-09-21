@@ -450,6 +450,8 @@
         </div>
     </div>
 </div>
+
+
 <script type="text/ng-template" id="SibContactContent.html">
     <form name="sibForm" novalidate role="form" ng-submit="page.model.commonContactSubmit(page.model.sibobj.SiblingemaILcust_family_id,page.model.sibobj.txtsiblingname,
     page.model.sibobj.ddlSiblingmob,page.model.sibobj.txtSiblingmob,page.model.sibobj.ddlsiblingmob2,page.model.sibobj.txtsiblingmob2,page.model.sibobj.ddlsiblinglandcode,
@@ -547,12 +549,7 @@
     </form>
 </script>
 <script type="text/ng-template" id="candidateContactContent.html">
-    <form name="candidateForm" novalidate role="form" ng-submit="page.model.commonContactSubmit(page.model.candidateobj.emaILcust_family_id,'',
-    page.model.candidateobj.ddlcandidateMobileCountryID,
-    page.model.candidateobj.txtcandidatemobilenumber,page.model.candidateobj.ddlcandidateMobileCountryID2,
-    page.model.candidateobj.txtFBMobileNumber2,page.model.candidateobj.ddlcandidateLandLineCountry,page.model.candidateobj.txtcandidateAreCode,
-    page.model.candidateobj.txttxtcandidateAreCodeLandNumber,
-    page.model.candidateobj.txtcandidateEmails,'Candidate')">
+    <form name="candidateForm" novalidate role="form" ng-submit="page.model.EmailValidation(page.model.candidateobj.txtcandidateEmails)">
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Candidate Contact details
                 <a href="javascript:void(0);" ng-click="page.model.cancel();">
@@ -570,8 +567,8 @@
                     </div>
                 </li>
                 <contact-directive emailhide="true" dmobile="page.model.candidateobj.ddlcandidateMobileCountryID" strmobile="page.model.candidateobj.txtcandidatemobilenumber" dalternative="page.model.candidateobj.ddlcandidateMobileCountryID2" stralternative="page.model.candidateobj.txtFBMobileNumber2"
-                    dland="page.model.candidateobj.ddlcandidateLandLineCountry" strareacode="page.model.candidateobj.txtcandidateAreCode" strland="page.model.candidateobj.txttxtcandidateAreCodeLandNumber" strmail="page.model.candidateobj.txtcandidateEmails"
-                    emailvalidation="true"></contact-directive>
+                    dland="page.model.candidateobj.ddlcandidateLandLineCountry" strareacode="page.model.candidateobj.txtcandidateAreCode" strland="page.model.candidateobj.txttxtcandidateAreCodeLandNumber" strmail="page.model.candidateobj.txtcandidateEmails"></contact-directive>
+
                 <li class="row">
                     <edit-footer></edit-footer>
                 </li>
@@ -746,6 +743,10 @@
         </div>
     </form>
 </script>
+
+
+
+
 <style>
     .fa-check-circle {
         font-size: 21px;

@@ -84,13 +84,13 @@
         model.getUnassigndata = function() {
 
             model.columns = [
-                { text: '', key: '', type: 'morelinks', templateUrl: model.inpucheckboxTemplate },
+                { text: '', key: 'chktest', type: 'morelinks', templateUrl: model.inpucheckboxTemplate },
                 { text: 'ProfileID', key: 'ProfileID', type: 'morelinks', templateUrl: model.ProfileIdTemplateDUrl },
                 { text: 'CustomerName', key: 'CustomerName', type: 'label' },
-                { text: 'OwnerName', key: 'OwnerName', type: 'label' },
                 { text: 'PhotosCount', key: 'PhotosCount', type: 'label' },
                 { text: 'PhotoAssignedTo', key: 'AssignedTo', type: 'label' },
-                { text: 'caste', key: 'CasteName', type: 'label' }
+                { text: 'caste', key: 'CasteName', type: 'label' },
+                { text: 'OwnerName', key: 'OwnerName', type: 'label' }
             ];
             var inobj = {
                 iEmpID: model.empid,
