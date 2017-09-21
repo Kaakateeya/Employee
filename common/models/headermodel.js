@@ -269,6 +269,7 @@
                             Notification.clearAll();
                             Notification.warning(({ message: '', templateUrl: 'custom_template.html', delay: 10000, scope: model.scope, closeOnClick: false }));
                             timeout(function() {
+                                model.notificationarray = [];
                                 Notification.clearAll();
                             }, 10000);
                         }

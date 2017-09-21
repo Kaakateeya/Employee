@@ -22,4 +22,66 @@ md-input-container .md-placeholder {
   margin-left: 2px;
   margin-right: 2px; }
 
+.edit_page_details_item_descsearch {
+  padding: 4px 0;
+  background-size: 522px auto;
+  background-position: -29% center;
+  position: relative; }
+
+.edit_page_details_item_descsearch h6 {
+  float: left;
+  width: 30%;
+  position: relative;
+  color: #7a7a7a;
+  text-transform: capitalize;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: left; }
+
+.edit_page_details_item_descsearch h6:after {
+  content: ":";
+  position: absolute;
+  right: 10px; }
+
+.edit_page_details_item_descsearch h5 {
+  float: left;
+  color: #000;
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px; }
+
+.dashboardpopupdesign {
+  margin-left: 57px;
+  margin-right: 57px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  height: auto;
+  padding: 10px;
+  background: #f6f3ea; }
+
+.dashboardheaderpopup {
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: rgba(197, 205, 50, 0.42);
+  padding-top: 5px;
+  margin-top: 2px; }
+
+.dashboardheaderhtml {
+  color: maroon;
+  font-size: 16px; }
+
+.dahboardheaderclose {
+  fill: #c73e5f;
+  font-size: 13pt;
+  width: 30px;
+  margin-left: 85px; }
+
+.dashboardmodelheader {
+  border-bottom: 1px solid #ffffff; }
+
+.dashboardfooterlinks {
+  font-size: 15px;
+  line-height: 1.8; }
+
 /*# sourceMappingURL=style.css.map */
