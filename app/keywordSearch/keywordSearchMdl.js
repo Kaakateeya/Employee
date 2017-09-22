@@ -10,7 +10,7 @@
         model.slide = {};
         model.grid = {};
         model.slide.config = configslide;
-        model.applicationids = ['Active'];
+        model.applicationids = [54];
         model.slide.dobshow = true;
         model.grid.showsearchrows = true;
         model.grid.showsearch = true;
