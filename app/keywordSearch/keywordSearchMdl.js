@@ -408,6 +408,7 @@
                 keywordSearchService.keywordlikesearch(model.object.Keyworddlikesrch).then(function(response) {
                     if (_.isArray(response.data) && response.data.length > 0 && _.isArray(response.data[0]) && response.data[0].length) {
                         if (type === 'grid') {
+                            model.grid.showpaging = true;
                             model.keywordcontrols = true;
                             model.btnbacktosearch = true;
                             model.grid.pageSize = 10;
@@ -495,6 +496,7 @@
                     } else {
                         if (type === 'grid') {
                             model.grid.data = [];
+                            model.grid.showpaging = false;
                             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No Records Found', 4500);
                         }
                     }
