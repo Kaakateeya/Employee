@@ -66,6 +66,8 @@
                         itmArr: model.data,
                         custPhoto: item.Photo,
                         Custid: item.Cust_ID,
+                        lastlogin: item.LastLoginDate,
+                        logincount: item.LoginCount,
                         matkteingticket: item.TicketID,
                         matchmarktingcount: item.MatchMeetingCount,
                         ownername: item.ProfileOwnername,

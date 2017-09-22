@@ -222,16 +222,19 @@
                     itmArr: data,
                     custPhoto: item.CustomerApplicationPhoto,
                     Custid: item.Cust_ID,
+                    lastlogin: item.LastLoginDate,
+                    logincount: item.LoginCount,
                     matkteingticket: item.TicketID,
                     matchmarktingcount: item.MatchMeetingCount,
                     ownername: item.ProfileOwnername,
+                    reg: item.DOR,
                     branch: item.KMPLID,
                     SAForm: item.SAForm,
                     primarynumber: item.Primarynumber,
                     primaryemail: item.Primaryemail,
                     CreatedDate: item.CreatedDate,
                     SRCount: item.SRCount,
-                    PaidAmount: item.PaidAmount,
+                    PaidAmount: item.Payment,
                     ExpiryDate: item.ExpiryDate,
                     Points: item.Points,
                     mobilestatus: item.CNumberVerStatus,
@@ -259,7 +262,17 @@
                     Profession: item.Profession,
                     PlaceOfBirth: item.PlaceOfBirth,
                     MFNative: item.MFNative,
-                    Servicedate: item.serviceDate
+                    Servicedate: item.CreatedDate,
+                    HoroscopePath: item.HoroscopePath,
+                    LastModifiedDate: item.LastModifiedDate,
+                    TicketHisUpdatedDate: item.TicketHisUpdatedDate,
+                    TicketOwner: item.TicketOwner,
+                    Ticketuserid: item.Ticketuserid,
+                    CountryCode: item.CountryCode,
+                    PrimaryContact: item.PrimaryContact,
+                    PriWithoutCode: item.PriWithoutCode,
+                    paidclass: item.paid === true || item.paid === 1 ? 1 : 0,
+                    Date: moment(item.Date).format('DD-MMM-YYYY')
                 });
             });
             return array;
@@ -517,6 +530,10 @@
         };
         model.bindSlide = function() {
             model.keywordlikesearch(1, 10, 'slide');
+        };
+        model.slide.tickethistorypopup = function(TicketID) {
+            model.marketingTicketid = TicketID;
+            modelpopupopenmethod.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
         };
         return model;
     }
