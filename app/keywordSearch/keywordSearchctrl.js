@@ -19,6 +19,7 @@
              model.slide.templateUrl = "templates/myprofileSlide.html";
              model.slide.config.headettemp = "templates/myprofileheader.html";
              model.MyProfilePageLoad();
+             model.resetkeyword();
          };
          vm.init();
      }

@@ -535,6 +535,13 @@
             model.marketingTicketid = TicketID;
             modelpopupopenmethod.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
         };
+        model.resetkeyword = function() {
+            model.allphones = "";
+            model.allemails = "";
+            model.allnativeplaces = "";
+            model.allsurnames = "";
+            model.applicationids = [54];
+        };
         return model;
     }
 })();
