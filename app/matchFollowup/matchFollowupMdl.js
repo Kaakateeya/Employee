@@ -690,7 +690,7 @@
                                 model.mailInput.TicketStatusID = "Viewed";
 
                                 model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
-                                    " We have noticed that " + she + " had viewed your profile but yet to give " + her + " opinion." +
+                                    " We have noticed that " + she + " had viewed your profile but yet to give " + her + " opinion. " +
                                     her + " relationship manager will contact  " + herhim + " and get back to you with " + her + " opinion at the earliest.";
                             } else if (model.fromticketstatusemail === 'I' && model.toticketstatusemail === 'NV') {
                                 //resend
