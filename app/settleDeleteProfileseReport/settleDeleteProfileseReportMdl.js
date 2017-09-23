@@ -138,9 +138,6 @@
                 model.isDisabledsubmit = false;
                 if (response.data) {
                     // if (model.rbtnsettleDeleteType === "0") {
-                    debugger;
-
-
                     if (inobj.typeofStatus === 'B') {
                         model.grid1.data = response.data[0].length > 0 ? response.data[0] : [];
                         model.grid1.TotalRecords = response.data[0].length > 0 ? response.data[0].length : 0;
