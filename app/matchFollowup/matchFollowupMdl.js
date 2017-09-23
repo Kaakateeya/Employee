@@ -669,6 +669,7 @@
                     var genderid = model.genderforemail === 1 ? 'Mr.' : 'Ms.';
                     var she = model.genderforemail === 1 ? 'He' : 'She';
                     var her = model.genderforemail === 1 ? 'his' : 'her';
+                    var herhim = model.genderforemail === 1 ? 'him' : 'her';
                     model.emailmanagers = "<br><br><div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style='color:black;text-align: justify;'>Your relationship manager " +
                         model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.tointerestname + " relationship manager " + model.toempname +
                         "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
@@ -690,7 +691,7 @@
 
                                 model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
                                     " We have noticed that " + she + " had viewed your profile but yet to give " + her + " opinion." +
-                                    her + " relationship manager will contact  " + her + " and get back to you with " + her + " opinion at the earliest.";
+                                    her + " relationship manager will contact  " + herhim + " and get back to you with " + her + " opinion at the earliest.";
                             } else if (model.fromticketstatusemail === 'I' && model.toticketstatusemail === 'NV') {
                                 //resend
                                 model.emailresendflag = 1;
