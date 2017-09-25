@@ -383,6 +383,17 @@
             var obj = helperservice.checkstringvalue(value) && (value.toString()) !== "0" && (value.toString()) !== 0 ? (value.toString()) : null;
             return obj;
         };
+        model.rowStyle = function(row) {
+            var test = [
+                { StatusID: 57, classes: 'settled' },
+                { StatusID: 393, classes: 'settled' },
+                { StatusID: 56, classes: 'Deleted' },
+                { StatusID: 394, classes: 'Deleted' },
+                { StatusID: 258, classes: 'closed' }
+            ];
+
+            return _.where(test, { StatusID: parseInt(row.ProfileStatusID) }).length > 0 ? _.where(test, { StatusID: parseInt(row.ProfileStatusID) })[0].classes : '';
+        };
         model.keywordlikesearch = function(from, to, type) {
             model.topage = to;
             if (model.checkTxt(model.allphones) !== '' || model.checkTxt(model.allemails) !== '' || model.checkTxt(model.allnativeplaces) !== '' || model.checkTxt(model.allsurnames) !== '') {
@@ -412,6 +423,9 @@
                             model.keywordcontrols = true;
                             model.btnbacktosearch = true;
                             model.grid.pageSize = 10;
+                            _.map(response.data[0], function(item) {
+                                item.rowtype = model.rowStyle(item);
+                            });
                             model.grid.TotalRows = response.data[0][0].TotalRows;
                             model.grid.data = response.data[0];
                         } else if (type === 'excel') {
