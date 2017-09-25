@@ -518,6 +518,7 @@
                             if (str !== 'Close') {
                                 model.closeAction();
                             }
+                            debugger;
                             model.mailInput.Notes = model.txtAllcallflag === 1 ? model.txtAllcallDiscusionemail : obj.CallDiscussion + model.emailmanagers;
                             if (str === 'Incoming' || str === 'Out going') {
                                 if (model.mailInput.TicketStatusID === "NotViewed") {
@@ -584,7 +585,7 @@
                     if (model.incommingbtntext === 'Close Ticket') {
                         inputObj = {
                             CallType: 563,
-                            CallDiscussion: model.txtAllcallDiscusion
+                            CallDiscussion: obj.txtInCalldiscussion
                         };
                         //model.ActionSubmit(inputObj, 'Close');
                         model.ActionSubmit(inputObj, 'Incoming');
@@ -611,7 +612,7 @@
                     if (model.incommingbtntext === 'Close Ticket') {
                         inputObj = {
                             CallType: 563,
-                            CallDiscussion: model.txtAllcallDiscusion
+                            CallDiscussion: obj.txtOutCalldiscussion
                         };
                         //model.ActionSubmit(inputObj, 'Close');
                         model.ActionSubmit(inputObj, 'Out going');
@@ -635,7 +636,7 @@
                     if (model.incommingbtntext === 'Close Ticket') {
                         inputObj = {
                             CallType: 563,
-                            CallDiscussion: model.txtAllcallDiscusion
+                            CallDiscussion: obj.txtMemmemocalldiscussion
                         };
                         // model.ActionSubmit(inputObj, 'Close');
                         model.ActionSubmit(inputObj, 'Internal Memo');
