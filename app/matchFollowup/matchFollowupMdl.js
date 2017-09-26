@@ -431,7 +431,7 @@
                     model.ServiceDate = slideobj.ServiceDate;
                     model.selfname = selfname;
                     model.selfemail = selfemail;
-                    model.headertextpop = "Updated Text Going This Email " + model.selfemail;
+
                     model.ticketstatusforemail = ticketStatusId.trim();
                     model.genderforemail = gender;
                     model.tointerestname = Name;
@@ -440,6 +440,7 @@
                     model.actobj.ddlOutreceivedby = 39;
                     model.actobj.ddlInCallresult = model.actobj.ddlOutcallresultout = 417;
                     model.ActionProfileID = profileID;
+                    model.headertextpop = "Mail going to <label style='color: #da0d0d;font-weight: 800;'>===></label> " + model.selfname + "," + model.ActionProfileID + "(" + model.selfemail + ")";
                     model.RelationshipChange(39, 'In');
                     model.RelationshipChange(39, 'Out');
                     model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = '';
@@ -518,7 +519,6 @@
                             if (str !== 'Close') {
                                 model.closeAction();
                             }
-                            debugger;
                             model.mailInput.Notes = model.txtAllcallflag === 1 ? model.txtAllcallDiscusionemail : obj.CallDiscussion + model.emailmanagers;
                             if (str === 'Incoming' || str === 'Out going') {
                                 if (model.mailInput.TicketStatusID === "NotViewed") {
@@ -782,9 +782,9 @@
                 };
                 model.clearalltext = function(textint) {
                     if (textint === 'internal') {
-                        model.headertextpop = "Updated Internal Memo  Will Not Shared With the Customer";
+                        model.headertextpop = "Name:" + model.selfname + " <label style='color: #da0d0d;font-weight: 800;'>===></label> Updated Internal Memo  Will Not Shared With the Customer";
                     } else {
-                        model.headertextpop = "Updated Text Going This Email " + model.selfemail;
+                        model.headertextpop = "Mail going to <label style='color: #da0d0d;font-weight: 800;'>===></label> " + model.selfname + "," + model.ActionProfileID + "(" + model.selfemail + ")";
                     }
                     model.incommingbtntext = "Incoming Call";
                     model.outgoingcallbtntext = "Outgoing Call";
