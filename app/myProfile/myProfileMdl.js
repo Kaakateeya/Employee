@@ -167,8 +167,94 @@
                     });
                     return array;
                 };
+                //
+                model.displayArrayprofile = function(arr, topage) {
+                    model.headervisileble = true;
+                    var array = [];
+                    _.each(arr, function(item) {
+                        var data = [];
+                        data.push({
+                            label: 'ProfileID',
+                            value: '',
+                            ProfileID: item.ProfileID,
+                            KMPLID: item.KMPLID,
+                            paid: item.paid === true || item.paid === 1 ? 1 : 0,
+                            IsConfidential: item.IsConfidential,
+                            SuperConfidentila: item.SuperConfidentila,
+                            HoroscopeStatus: item.HoroscopeStatus,
+                            HoroscopeImage: item.HoroscopeImage
+                        });
+                        data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
+                        data.push({ label: 'DOB(age)', value: item.DOB + '(' + item.Age + ')' });
+                        data.push({ label: 'Height', value: item.Height });
+                        data.push({ label: 'Time of Birth', value: item.TOB });
+                        data.push({ label: 'Place of Birth', value: item.PlaceOfBirth });
+                        data.push({ label: 'Gothram', value: item.Gothram });
+                        data.push({ label: 'Caste', value: item.Caste });
+                        data.push({ label: 'Marital Status', value: item.MaritalStatus || item.MaritalStatusID });
+                        data.push({ label: 'Star', value: item.Star });
 
-
+                        data.push({ label: 'Qualification', value: item.qualification });
+                        data.push({ label: 'Profession', value: item.Profession });
+                        data.push({ label: 'Job Location', value: item.JobLocation });
+                        data.push({ label: 'Income(P.M)', value: item.Income !== null && item.Income !== "" ? item.currency + " " + item.Income : "--" });
+                        data.push({ label: 'Father Native', value: item.FFNative });
+                        data.push({ label: 'Mother Native', value: item.MFNative });
+                        data.push({ label: 'Property(Lakhs)', value: item.Property });
+                        array.push({
+                            itmArr: data,
+                            custPhoto: item.Photo,
+                            Custid: item.Cust_ID,
+                            lastlogin: item.LastLoginDate,
+                            logincount: item.LoginCount,
+                            matkteingticket: item.TicketID,
+                            matchmarktingcount: item.MatchMeetingCount,
+                            ownername: item.ProfileOwnername,
+                            branch: item.KMPLID,
+                            SAForm: item.SAForm,
+                            primarynumber: item.Primarynumber,
+                            primaryemail: item.Primaryemail,
+                            CreatedDate: item.CreatedDate,
+                            SRCount: item.SRCount,
+                            PaidAmount: item.PaidAmount,
+                            ExpiryDate: item.ExpiryDate,
+                            Points: item.Points,
+                            mobilestatus: item.CNumberVerStatus,
+                            emailstatus: item.CEmailVerStatus,
+                            UserName: item.EmpUserName,
+                            Reason4InActive: item.Reason4InActive,
+                            ProfileID: item.ProfileID,
+                            CountryCodeID: item.CountryCodeID,
+                            Cust_Family_ID: item.Cust_Family_ID,
+                            PhotoCount: item.PhotoCount,
+                            Age: item.Age,
+                            HeightInCentimeters: item.HeightInCentimeters,
+                            MaritalStatusID: item.MaritalStatusID,
+                            CasteID: item.CasteID,
+                            Tickets: item.Tickets,
+                            TicketID: item.Emp_Ticket_ID,
+                            onlinepaidcls: item.onlinepaidcls,
+                            onlinepaid: item.onlinepaid,
+                            offlinepaidcls: item.offlinepaidcls,
+                            offlinepaid: item.offlinepaid,
+                            educationspecialisation: item.educationspecialisation,
+                            currency: item.currency,
+                            countrylivingin: item.countrylivingin,
+                            UploadedPhotoscount: item.UploadedPhotoscount,
+                            TOB: item.TOB,
+                            SubCaste: item.SubCaste,
+                            Star: item.Star,
+                            Profession: item.Profession,
+                            PlaceOfBirth: item.PlaceOfBirth,
+                            MFNative: item.MFNative,
+                            Servicedate: item.serviceDate,
+                            DOR: item.DOR
+                                //
+                        });
+                    });
+                    return array;
+                };
+                //
                 model.MyprofileResult = function(obj, from, to, type, flagtype) {
 
                     if (from === 1) {
@@ -267,13 +353,15 @@
                                 model.slide.totalRecords = response.data[0].TotalRows;
                                 model.slide.headervisileble = true;
                                 if (parseInt(from) === 1) {
-                                    configslide.setSlides(response.data, model.topage, "myprofile");
+                                    configslide.setSlides(model.displayArrayprofile(response.data, 10), 10, 'normal');
+                                    //configslide.setSlides(response.data, model.topage, "myprofile");
                                     if (model.myprofileslideshowopenflag !== 1) {
                                         model.myprofileslideshowopenflag = 1;
                                         modelpopupopenmethod.showPopup('myprofileSlide.html', model.scope, 'lg', "myprofileslide");
                                     }
                                 } else {
-                                    configslide.addSlides(response.data, configslide.slides, parseInt(to), "myprofile");
+                                    // configslide.addSlides(response.data, configslide.slides, parseInt(to), "myprofile");
+                                    configslide.addSlides(model.displayArrayprofile(response.data, 11), configslide.slides, 11, 'normal');
                                 }
                             }
                         } else {
@@ -300,7 +388,8 @@
                             slidFrom = sliTo;
                             sliTo = sliTo + 10;
                             model.slide10data = model.slide10data.concat(angular.copy(model.slidedata.slice(slidFrom, sliTo)));
-                            configslide.addSlides(angular.copy(model.slidedata.slice(slidFrom, sliTo)), configslide.slides, sliTo, "myprofile");
+                            // configslide.addSlides(angular.copy(model.slidedata.slice(slidFrom, sliTo)), configslide.slides, sliTo, "myprofile");
+                            configslide.addSlides(model.displayArrayprofile(angular.copy(model.slidedata.slice(slidFrom, sliTo)), sliTo), configslide.slides, sliTo, 'normal');
                         }
                     } else {
                         if (parseInt(model.topage) - parseInt(news) === 4) {
@@ -339,7 +428,8 @@
                         model.slide.headervisileble = true;
 
                         model.slide10data = model.slidedata.slice(slidFrom, sliTo);
-                        configslide.setSlides(model.slide10data, 10, "myprofile");
+                        // configslide.setSlides(model.slide10data, 10, "myprofile");
+                        configslide.setSlides(model.displayArrayprofile(model.slide10data, 10), 10, 'normal');
                         if (model.myprofileslideshowopenflag !== 1) {
                             model.myprofileslideshowopenflag = 1;
                             modelpopupopenmethod.showPopup('myprofileSlide.html', model.scope, 'lg', "myprofileslide");

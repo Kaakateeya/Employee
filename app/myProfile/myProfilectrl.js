@@ -64,7 +64,7 @@
                          //clear dom array in model
                          //time out will call dom array back
                      }
-                     model.slide.templateUrl = "templates/myprofileSlide.html";
+                     model.slide.templateUrl = "templates/myprofileSlidenew.html";
                      model.slide.config.headettemp = "templates/myprofileheader.html";
                      model.myprofileslideshowopenflag = 0;
                      scope.$on("$destroy", vm.destroy);

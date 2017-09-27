@@ -41,7 +41,7 @@
                     model.topage = 10;
                     model.config.proceed.frompage = 1;
                     model.config.proceed.topage = 10;
-                    model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+                    model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? parseInt(authSvc.LoginEmpid()) : "";
                     model.loginempName = authSvc.LoginEmpName() !== undefined && authSvc.LoginEmpName() !== null && authSvc.LoginEmpName() !== "" ? authSvc.LoginEmpName() : "";
                     model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
                     model.lstEmpnames = [parseInt(model.empid)];
@@ -816,6 +816,15 @@
                             });
                         }
                     }
+                };
+                model.bindmobilehtml = function(fromIsconfidential, fromHighconfidential, FromEmpownerid, FromMobileNumber) {
+                    var html;
+                    if ((fromIsconfidential === 0 && fromHighconfidential === 0) || (parseInt(FromEmpownerid) === parseInt(model.empid))) {
+                        html = FromMobileNumber;
+                    } else {
+                        html = 'Contact RM';
+                    }
+                    return html;
                 };
                 return model;
             }

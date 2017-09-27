@@ -36,7 +36,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3"><b class="maroon">Mobile:</b> </div>
-                                        <div class="col-lg-9"><b class="">{{slide.FromMobileNumber}}</b></div>
+                                        <div class="col-lg-9"><b class="" ng-bind-html="model.bindmobilehtml(slide.fromIsconfidential,slide.fromHighconfidential,slide.FromEmpownerid,slide.FromMobileNumber)"></b></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3"><b class="maroon">Email:</b> </div>
@@ -97,7 +97,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3"><b class="maroon">Mobile:</b> </div>
-                                        <div class="col-lg-9"><b class="">{{slide.ToMobileNumber}}</b></div>
+                                        <div class="col-lg-9"><b class="" ng-bind-html="model.bindmobilehtml(slide.toIsconfidential,slide.toHighconfidential,slide.ToEmpownerid,slide.ToMobileNumber)"></b></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3"><b class="maroon">Email:</b> </div>

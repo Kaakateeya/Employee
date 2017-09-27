@@ -1,4 +1,52 @@
 <div class="right_col" id="keywordlikesearch">
+    <uib-accordion close-others="oneAtATime">
+        <div uib-accordion-group class="panel-default" is-open="page.model.opendiv">
+            <uib-accordion-heading style="color: rgb(160, 2, 1);">
+                Keyword Search<i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+            </uib-accordion-heading>
+            <div class="bodyclsnew">
+                <div class="row" ng-show="page.model.keywordcontrols">
+                    <div class="col-lg-12">
+                        <div class="col-lg-2"><input class="form-control" type="text" placeholder="All phones" ng-model="page.model.allphones"> </input>
+                        </div>
+                        <div class="col-lg-2"><input class="form-control" type="text" placeholder="All emails" ng-model="page.model.allemails"> </input>
+                        </div>
+                        <div class="col-lg-2"><input class="form-control" type="text" placeholder="All native places" ng-model="page.model.allnativeplaces"> </input>
+                        </div>
+                        <div class="col-lg-2"><input class="form-control" type="text" placeholder="All surnames" ng-model="page.model.allsurnames"> </input>
+                        </div>
+                        <div class="col-lg-2" ng-class="page.model.applicationids===undefined || page.model.applicationids===null || page.model.applicationids===0 ?'':'ddlcolor'" class="controls clearfix">
+                            <select ng-model="page.model.applicationids" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.Applicationstatusarray" data-live-search='true'>                                        
+                             </select>
+                        </div>
+                        <button class="button_custom col-lg-1 col-lg-offset-1" style="display:initial;" type="submit" ng-click="page.model.keywordlikesearch(1,100,'grid');">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </uib-accordion>
+    <div ng-show="page.model.btnbacktosearch">
+        <a class="excelshow slideImg" ng-if="page.model.grid.data.length>0" ng-click="page.model.bindSlide();" title="Slideshow" href="javascript:void(0)">
+            <img style="width: 32px;height: 29px;" src="src/images/slideshowimg.png"></img>
+        </a>
+        <div class="col-lg-12" ng-hide="true"><button class="btn btn-danger col-lg-offset-7" ng-click="page.model.keywordcontrols=true;page.model.btnbacktosearch=true;">BacktoSearch</button></div>
+        <complex-grid-new gid="'id1'" ng-if="page.model.grid.columns" config="page.model.grid" model="page.model.grid"></complex-grid-new>
+    </div>
+    <script type="text/ng-template" id="keywordlikesearch.html">
+        <div class="modal-body">
+            <complex-slide config="page.model.slide.config" model="page.model.slide"></complex-slide>
+            <div class="clearfix"></div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="market.html">
+        <div class="modal-body">
+            <market-tickethistory ticketid="page.model.marketingTicketid"></market-tickethistory>
+        </div>
+    </script>
+</div>
+
+
+<!-- <div class="right_col" id="keywordlikesearch">
     <div class="" ng-show="page.model.keywordcontrols">
         <div class="row" style="border: 1px solid #ccc;border-radius: 6px;">
             <div class="col-lg-12">
@@ -57,7 +105,7 @@
             <market-tickethistory ticketid="page.model.marketingTicketid"></market-tickethistory>
         </div>
     </script>
-</div>
+</div> -->
 <style>
     .datepicker3 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;

@@ -18,6 +18,7 @@
              model.empid = model.slide.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
              model.slide.templateUrl = "templates/myprofileSlide.html";
              model.slide.config.headettemp = "templates/myprofileheader.html";
+             model.opendiv = true;
              model.MyProfilePageLoad();
              model.resetkeyword();
          };

@@ -1,7 +1,7 @@
  (function() {
      'use strict';
 
-     function controller(employeeViewfullprofileModel, scope, authSvc, $location) {
+     function controller(employeeViewfullprofileModel, scope, authSvc, $location, stateParams) {
          var vm = this,
              model;
          vm.init = function() {
@@ -17,6 +17,8 @@
              model.selfProfileID = '';
              model.txtProfileID = '';
              model.fullprofileshow = true;
+             model.stateprofileid = stateParams.ProfileID;
+             model.statecontacts = stateParams.contacts;
              //  model.empid = parseInt(model.statecontacts) !== 0 ? (authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "") : "";
              model.empid = (authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "") ? authSvc.LoginEmpid() : "";
              model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
@@ -25,6 +27,12 @@
                  model.textboxshowhide = true;
                  model.EmpViewfullProfile(model.stateprofileid);
              } else {
+                 //  model.viewprofilearray = [];
+                 //  model.aboutmyself = {};
+                 //  model.personalinfo = [];
+                 //  model.basicinfo = [];
+                 //  model.textboxshowhide = false;
+                 //
                  model.searchObjectquery = $location.search();
                  model.updatepaymentllink = false;
                  var meKey = Object.getOwnPropertyNames(model.searchObjectquery)[0];
@@ -51,6 +59,6 @@
      angular
          .module('Kaakateeya')
          .controller('employeeViewfullprofilePrintCtrl', controller);
-     controller.$inject = ['employeeViewfullprofilePrintModel', '$scope', 'authSvc', '$location'];
+     controller.$inject = ['employeeViewfullprofilePrintModel', '$scope', 'authSvc', '$location', '$stateParams'];
 
  })(angular);

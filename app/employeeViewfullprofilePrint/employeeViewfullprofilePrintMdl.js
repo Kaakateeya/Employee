@@ -9,16 +9,15 @@
         model.personalinfo = [];
         model.basicinfo = [];
         model.custid = 0;
-        model.stateprofileid = stateParams.ProfileID;
-        model.statecontacts = stateParams.contacts;
         model.textboxshowhide = true;
         model.fullprofileshow = true;
         model.EmpViewfullProfile = function(stateprofileid, type) {
+            model.typeofbuttonprint = type;
             model.viewprofilearray = [];
             model.aboutmyself = {};
             model.personalinfo = [];
             model.basicinfo = [];
-            if (type === 'textbox') {
+            if (type === 'textbox' || type === 'textbox2') {
                 SelectBindServiceApp.checkConfidentail(stateprofileid, model.empid, 'isconfidentialProfile').then(function(response) {
                     if (response.data && parseInt(response.data) === 1) {
                         model.getprofileData(stateprofileid);
@@ -32,7 +31,7 @@
         };
 
         model.getprofileData = function(stateprofileid, empid) {
-            empid = empid ? empid : model.empid;
+            empid = empid ? empid : (model.typeofbuttonprint === 'textbox2' ? '' : model.empid);
             employeeViewfullprofileservice.getEmpViewfullProfile(stateprofileid, empid).then(function(response) {
                 model.fullprofileshow = false;
                 if (response.data !== undefined && response.data !== "" && response.data !== null && response.data.length > 0) {

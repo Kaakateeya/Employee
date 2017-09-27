@@ -259,6 +259,13 @@
                     model.insertopenflag = 0;
                     modelpopupopenmethod.showPopupphotopoup('editpopuppayment.html', model.scope, 'md', "modalclassofedit");
                 };
+
+                model.validatepaidamount = function() {
+                    if (parseInt(model.editPaidAmt) > parseInt(model.editAgreedAmt)) {
+                        model.editPaidAmt = '';
+                        alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter paid amount less than Agreed amount', 3000);
+                    }
+                };
                 return model.init();
             }
         ]);

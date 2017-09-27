@@ -164,7 +164,7 @@
                 var infm = 'Agreed Amount : ' + Amt + '    \n     No of Points : ' + model.strPoints + '    \n Expiry Date : ' + model.strDate;
                 if (type === 'Agreed' || type === 'Paid') {
                     model.typeTxt = type;
-                    modelpopupopenmethod.showPopup('alert.html', model.scope, 'sm', '');
+                    // modelpopupopenmethod.showPopup('alert.html', model.scope, 'sm', '');
                 }
             }
         };
