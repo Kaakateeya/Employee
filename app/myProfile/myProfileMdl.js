@@ -187,7 +187,7 @@
                         data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
                         data.push({ label: 'DOB(age)', value: item.DOB + '(' + item.Age + ')' });
                         data.push({ label: 'Height', value: item.Height });
-                        data.push({ label: 'Time of Birth', value: item.TOB + (item.Star !== null && item.Star !== "" ? " (" + item.Star + ")" : '') });
+                        data.push({ label: 'TOB(Star)', value: item.TOB + (item.Star !== null && item.Star !== "" ? " (" + item.Star + ")" : '') });
                         data.push({ label: 'Place of Birth', value: item.PlaceOfBirth });
                         data.push({ label: 'Gothram', value: item.Gothram });
                         data.push({ label: 'Caste', value: item.Caste });
