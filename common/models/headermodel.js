@@ -283,7 +283,8 @@
                             model.presentunpaidmembersarray = response.data[0];
                         } else {
                             model.presentunpaidmembersarray = [];
-                            model.presentunpaidmembersarray.push("No data Found");
+                            // model.presentunpaidmembersarray.push("No data Found");
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'No Records Found', 3000);
                         }
                     });
                 };

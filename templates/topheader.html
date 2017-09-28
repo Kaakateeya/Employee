@@ -155,7 +155,7 @@
             </nav>
         </div>
     </div>
-    <ul class="dropdown-menus col-lg-5" ng-show="head.model.unpaidmember">
+    <ul class="dropdown-menus col-lg-5" ng-if="head.model.presentunpaidmembersarray.length>0" ng-show="head.model.unpaidmember">
         <div class="col-lg-6" style="width:557px;background: rgb(228, 223, 144);background-color: rgb(228, 223, 144); display: block; z-index: 9999; max-height: 600px; overflow-y: auto; overflow-x: hidden; position: fixed; top: 60px;right:0;">
             <div class="pull-left"><a href="javascript:void(0)" ng-click="head.model.unpaidmember=false"><span class="fa fa-times-circle-o fa-2x fa-fw"></span></a>
             </div>
