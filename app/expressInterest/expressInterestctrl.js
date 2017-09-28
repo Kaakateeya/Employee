@@ -15,8 +15,11 @@
              vm.model.SelectProfilelst = [];
              vm.model.exiObj.txtFromprofileID = '';
              vm.model.exiObj.chkrvrsend = true;
+             vm.model.exiObj.ModeofService = 353;
              model.scope = scope;
              model.mismatchflag = 0;
+             model.showHide = 0;
+             model.emailselectedArr = [];
              model.isDisabledsubmit = false;
          };
          vm.init();

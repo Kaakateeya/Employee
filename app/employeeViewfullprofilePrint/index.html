@@ -1,7 +1,7 @@
 <div class="right_col" role="main" id="viwprofilecustomerprint">
     <h2 class="headerStylesview" ng-show="page.model.textboxshowhide">Kaakateeya Marriages</h2>
     <div class="row">
-        <div class="col-lg-7" ng-style="{'margin-left':page.model.personalinfo.length>0?'0px':'0px'}" ng-hide="page.model.textboxshowhide">
+        <div class="col-lg-8" ng-style="{'margin-left':page.model.personalinfo.length>0?'0px':'0px'}" ng-hide="page.model.textboxshowhide">
             <div class="row">
                 <div class="col-lg-3">
                     <label for="profileid" class="control-label pull-right">ProfileID</label>
@@ -9,11 +9,11 @@
                 <div class="col-lg-3">
                     <input focus-me="true" type="text" maxlength="10" onkeyup="this.value=this.value.replace(/[^\d\.\-]/g,'');" ng-model="page.model.txtProfileID" class="form-control" ng-keyup="$event.keyCode == 13 && page.model.EmpViewfullProfile(page.model.txtProfileID)">
                 </div>
-                <div class="col-lg-1">
-                    <button class="btn btn-danger" ng-click="page.model.EmpViewfullProfile(page.model.txtProfileID,'textbox')">Go</button>
+                <div class="col-lg-2">
+                    <button class="btn btn-danger" ng-click="page.model.EmpViewfullProfile(page.model.txtProfileID,'textbox')">{{page.model.Managementid==='true' && page.model.Admin==='1'?'With Contacts':'Without Contacts'}}</button>
                 </div>
-                <div class="col-lg-3" ng-if="page.model.Managementid==='true' && page.model.Admin==='1'">
-                    <button class="btn btn-danger" ng-click="page.model.EmpViewfullProfile(page.model.txtProfileID,'textbox2')">Customer Print</button>
+                <div class="col-lg-2" ng-if="page.model.Managementid==='true' && page.model.Admin==='1'">
+                    <button class="btn btn-danger" ng-click="page.model.EmpViewfullProfile(page.model.txtProfileID,'textbox2')">Without Contacts</button>
                 </div>
                 <div class="col-lg-2">
                     <button class="btn btn-danger" ng-click="page.model.inbitdata(page.model.txtProfileID)">For Inbit</button>

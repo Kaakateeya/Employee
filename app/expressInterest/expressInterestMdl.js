@@ -62,7 +62,7 @@
                                     _.each(response.data[2], function(item) {
                                         model.Modeservicearray.push({ "label": item.NAME, "title": item.NAME, "value": item.ID });
                                     });
-                                    model.exiObj.ModeofService = '';
+                                    model.exiObj.ModeofService = 353;
                                 }
 
                                 if (_.isArray(response.data) && response.data.length > 3) {
@@ -89,7 +89,7 @@
                         model.Max_Offline_Allowed = '';
                         model.Offline_Used_Count = '';
                         model.exiObj.Relationship = 0;
-                        model.exiObj.ModeofService = '';
+                        model.exiObj.ModeofService = 353;
                         model.exiObj.txtRelationName = '';
                         model.Emailsarray = null;
                         // model.SelectProfilelst = null;

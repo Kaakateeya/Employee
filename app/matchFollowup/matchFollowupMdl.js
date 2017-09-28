@@ -817,12 +817,12 @@
                         }
                     }
                 };
-                model.bindmobilehtml = function(fromIsconfidential, fromHighconfidential, FromEmpownerid, FromMobileNumber) {
+                model.bindmobilehtml = function(fromIsconfidential, fromHighconfidential, FromEmpownerid, FromMobileNumber, fromempnumber) {
                     var html;
                     if ((fromIsconfidential === 0 && fromHighconfidential === 0) || (parseInt(FromEmpownerid) === parseInt(model.empid))) {
                         html = FromMobileNumber;
                     } else {
-                        html = 'Contact RM';
+                        html = fromempnumber;
                     }
                     return html;
                 };
