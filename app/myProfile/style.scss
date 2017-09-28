@@ -243,3 +243,10 @@ th.headerStyles {
     width: 70%;
     text-align: justify;
 }
+
+.pop_content_my {
+    display: block;
+    width: 100%;
+    max-height: 500px;
+    overflow-y: scroll;
+}
