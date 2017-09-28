@@ -72,6 +72,7 @@
             });
         };
         model.getpaymentProfile = function(profileID) {
+            model.paymentID = stateParams.paymentID;
             model.custobj = {};
             model.PiObj.rdnServicetax = '1';
             EmployeePaymentInsertservice.getEmployeePaymentdata(profileID, 0).then(function(response) {
@@ -89,10 +90,13 @@
                         model.paymentDays = parseInt(model.custobj.CasteID) === 402 ? app.kammaPaymentDays : app.PaymentDays;
                         model.showOfferDetails(model.custobj.Price, 'pageload', model.custobj.Expirydate);
                         model.PiObj.txtAgreedAmt = model.custobj.AgreedAmount;
-                        model.PiObj.txtAmountPaid = model.custobj.Price;
+                        model.PiObj.balamountpaid = model.custobj.Price;
+                        model.PiObj.txtAmountPaid = parseInt(stateParams.paymentID) !== 0 ? model.custobj.Price : (model.custobj.AgreedAmount - model.custobj.Price);
+                        // model.PiObj.balamountpaidamount = model.custobj.Price;
                         model.PiObj.rdnServicetax = model.custobj.ServiceTax !== null ? 1 : 0;
                         model.PiObj.txtpayDescription = model.custobj.MemberShipDescription;
                         model.PiObj.txtSettlementAmount = model.custobj.SettlementAmount ? model.custobj.SettlementAmount : '';
+                        //model.strPoints = parseInt(stateParams.paymentID) !== 0 ? parseInt(Amt * model.paymentpoints) : 0;
                         if (parseInt(stateParams.paymentID) === 0) {
                             model.PiObj.txtAgreedAmt = '';
                             model.PiObj.txtAmountPaid = '';
@@ -111,6 +115,9 @@
                 model.PiObj.txtAmountPaid = '';
                 alert('Please enter paid amount less than Agreed amount');
             } else {
+                if (parseInt(stateParams.paymentID) !== 0 && (parseInt(model.PiObj.txtAmountPaid) > parseInt(model.PiObj.balamountpaid))) {
+                    alert('Please enter valid Balance Amount');
+                }
                 if (parseInt(paidAmt) !== agreeAmt) {
                     model.showOfferDetails(paidAmt, 'Paid', model.custobj.Expirydate);
                 }
@@ -119,7 +126,7 @@
                 model.ExpiryDate = moment().add(parseInt(num), 'days').format('MM-DD-YYYY');
                 var olddate = moment(model.custobj.Expirydate).format('MM-DD-YYYY');
                 var curdate = moment().format('MM-DD-YYYY');
-
+                //  model.PiObj.balamountpaidamount = parseInt(model.PiObj.balamountpaid) - parseInt(model.PiObj.txtAmountPaid);
                 if (model.custobj.Expirydate) {
                     var datebool = moment(curdate).isSame(olddate);
                     if (datebool || (moment(olddate).isBefore(curdate))) {
@@ -174,8 +181,8 @@
         model.resetemployeepaymetinsert = function() {
             //model.PiObj = {};
             model.PiObj.txtAgreedAmt = model.custobj.AgreedAmount;
-            model.PiObj.txtAmountPaid = model.custobj.Price;
-            model.PiObj.txtSettlementAmount = "";
+            model.PiObj.txtAmountPaid = parseInt(stateParams.paymentID) !== 0 ? model.custobj.AgreedAmount - model.custobj.Price : model.custobj.Price;
+            model.PiObj.txtSettlementAmount = parseInt(stateParams.paymentID) !== 0 ? model.custobj.SettlementAmount : "";
             model.PiObj.rbtnPaymode = "";
             model.PiObj.rbtnmail = "";
             model.PiObj.txtbillno = "";

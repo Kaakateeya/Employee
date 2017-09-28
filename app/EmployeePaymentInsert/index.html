@@ -2,14 +2,15 @@
     <div class="search_page_main">
         <h4 style="font-size: 18px;
     color: #b10c0c;">Pament details</h4>
-        <div ng-if="page.model.PiObj.txtAgreedAmt!==undefined" class="text-center"><span>
+        <div ng-if="page.model.PiObj.txtAmountPaid!==undefined && page.model.PiObj.txtAmountPaid!==null && page.model.PiObj.txtAmountPaid!==''" class="text-center"><span>
              
             <span class="infn">No of points  </span>- {{page.model.strPoints}}
             </span>&nbsp;&nbsp;
             <span class="infn">Expiry Date </span>- {{page.model.strDate}}
             </span>&nbsp;&nbsp;
             <span ng-if="page.model.PiObj.txtAmountPaid!==undefined && (page.model.PiObj.txtAgreedAmt|number)!==(page.model.PiObj.txtAmountPaid|number)">
-             <span class="infn">Balance Amount </span>- {{page.model.PiObj.txtAgreedAmt-page.model.PiObj.txtAmountPaid}}
+                    <span class="infn">Balance Amount </span>- {{page.model.PiObj.balamountpaid}}
+            <!-- {{page.model.PiObj.txtAgreedAmt-(page.model.paymentID!==0?page.model.PiObj.balamountpaid:page.model.PiObj.txtAmountPaid)}} -->
             </span>
             </span>
 
@@ -82,7 +83,8 @@
                                 <label for="" class="control-label pull-right">Settlement amount </label>
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" allow-only-numbers ng-readonly="page.model.typeofprofile!==0" ng-model="page.model.PiObj.txtSettlementAmount" class="form-control" ng-required="page.model.typeofprofile===0">
+                                <input type="text" allow-only-numbers ng-readonly="page.model.typeofprofile!==0 && page.model.custobj.SettlementAmount!==null &&  page.model.custobj.SettlementAmount!==undefined && page.model.custobj.SettlementAmount!==''" ng-model="page.model.PiObj.txtSettlementAmount"
+                                    class="form-control" ng-required="page.model.typeofprofile===0">
                             </div>
                         </div>
 
