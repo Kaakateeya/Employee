@@ -281,15 +281,11 @@
                 model.MyprofileResult(model.mpObj, (model.topage) + 1, (model.topage) + 10, 'slide', 0);
             }
         };
-        model.searchforfields = function(item) {
-            console.log(item);
-        };
+        model.searchforfields = function(item) {};
         model.allmenuclickevents = function(value) {
             modelpopupopenmethod.showPopupphotopoup('allsearchfields.html', model.scope, 'md', "keywordpopup");
         };
-        model.keywordallfieldssubmit = function(value) {
-            console.log(value);
-        };
+        model.keywordallfieldssubmit = function(value) {};
         return model;
 
     }

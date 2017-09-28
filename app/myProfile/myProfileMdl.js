@@ -187,19 +187,18 @@
                         data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
                         data.push({ label: 'DOB(age)', value: item.DOB + '(' + item.Age + ')' });
                         data.push({ label: 'Height', value: item.Height });
-                        data.push({ label: 'Time of Birth', value: item.TOB });
+                        data.push({ label: 'Time of Birth', value: item.TOB + (item.Star !== null && item.Star !== "" ? " (" + item.Star + ")" : '') });
                         data.push({ label: 'Place of Birth', value: item.PlaceOfBirth });
                         data.push({ label: 'Gothram', value: item.Gothram });
                         data.push({ label: 'Caste', value: item.Caste });
                         data.push({ label: 'Marital Status', value: item.MaritalStatus || item.MaritalStatusID });
-                        data.push({ label: 'Star', value: item.Star });
-
+                        // data.push({ label: 'Star', value: item.Star });
                         data.push({ label: 'Qualification', value: item.qualification });
                         data.push({ label: 'Profession', value: item.Profession });
                         data.push({ label: 'Job Location', value: item.JobLocation });
                         data.push({ label: 'Income(P.M)', value: item.Income !== null && item.Income !== "" ? item.currency + " " + item.Income : "--" });
-                        data.push({ label: 'Father Native', value: item.FFNative });
-                        data.push({ label: 'Mother Native', value: item.MFNative });
+                        data.push({ label: 'Father/Mother Native', value: item.FFNative + " / " + item.MFNative });
+                        // data.push({ label: 'Mother Native', value: item.MFNative });
                         data.push({ label: 'Property(Lakhs)', value: item.Property });
                         array.push({
                             itmArr: data,
