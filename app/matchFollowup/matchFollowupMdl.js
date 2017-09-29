@@ -48,24 +48,44 @@
                     model.activebutton = 'bothside';
                     model.txtFromProceedDate = model.txtToProceedDate = '';
                     model.matchFollowupSelect(model.empid);
-                    //model.astrogenerate();
-                    //model.thirdmethod();
+                    // model.astrogenerate();
+                    model.thirdmethod();
+
+                    // var anchor = angular.element('<a/>');
+                    // var blob = new Blob(['PEhUTUw+PEhFQUQ+PFRJVExFPkhvcm9zY29wZSA8L1RJVExFPg0KPHNjcmlwdCBsYW5ndWFnZT0iamF2YXNjcmlwdCI+ZnVuY3Rpb24gY2xlYXJkaXMoKXtkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgiZGlzIikuaW5uZXJIVE1MPSI8Zm9udCBzaXplPTE+PGZvbnQgZmFjZT1WZXJkYW5hLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmPjxiPkRpc2NsYWltZXI6PC9iPiBBbGwgYXN0cm9sb2dpY2FsIGNhbGN1bGF0aW9ucyBhcmUgYmFzZWQgcHVyZWx5IG9uIHNjaWVudGlmaWMgZXF1YXRpb25zIGFuZCBub3Qgb24gYW55IHNwZWNpZmljIHB1Ymxpc2hlZCBhbG1hbmFjLiAgVGhlcmVmb3JlIHdlIHNoYWxsIG5vdCBiZSByZXNwb25zaWJsZSBmb3IgZGVjaXNpb25zIHRoYXQgbWF5IGJlIHRha2VuIGJ5IGFueW9uZSBiYXNlZCBvbiB0aGlzIHJlcG9ydC48L2ZvbnQ+IjsJd2luZG93LnByaW50KCk7fTwvc2NyaXB0PjwvSEVBRD48Qk9EWSAgbWFyZ2luaGVpZ2h0PSIwIiBtYXJnaW53aWR0aD0iMCIgdG9wbWFyZ2luPSIwIiBsZWZ0bWFyZ2luPSIwIiBiZ2NvbG9yPSIjRkZGRkZGIj4NCjx0ZCBoZWlnaHQ9IjM5Ij48ZGl2IGFsaWduPSJyaWdodCI+PC9kaXY+PC90ZD48dGFibGUgYm9yZGVyPSIyIiBjZWxscGFkZGluZz0iMCIgY2VsbHNwYWNpbmc9IjAiIHN0eWxlPSJib3JkZXItd2lkdGg6IDVweDsgYm9yZGVyLWNvbG9yOiAjRjQ4NDQyOyBib3JkZXItc3R5bGU6IHNvbGlkOyIgd2lkdGg9IjYxMCIgYmdjb2xvcj0iI0ZGRkZGRiIgaGVpZ2h0PSIxMDAlIj4gDQo8dHI+PHRkIHZhbGlnbj0idG9wIiBoZWlnaHQ9IjgzOCI+PHRhYmxlIHdpZHRoID0iMTAwJSIgYm9yZGVyPSIwIiBoZWlnaHQ9IjY5NCI+IA0KPHRyPiA8dGQgaGVpZ2h0PSIzOCIgd2lkdGg9IjgwJSIgYWxpZ249ImNlbnRlciIgc3R5bGU9ImZvbnQtZmFtaWx5OnZlcmRhbmE7Zm9udC1zaXplOjEycHg7Ij48ZGl2IGFsaWduPSJyaWdodCI+IA0KPHRhYmxlIGNlbGxzcGFjaW5nPTAgY2VsbHBhZGRpbmc9MCBib3JkZXI9MCB3aWR0aD0iNjUwIiBhbGlnbj0iY2VudGVyIj48dGJvZHk+IA0KPHRyPjx0ZCBiZ2NvbG9yPSNmZmZmZmYgcm93c3Bhbj0yPiANCjwvdGQ+PHRkIGFsaWduPXJpZ2h0IHJvd3NwYW49IjIiIGJnY29sb3I9I2ZmZmZmZiBoZWlnaHQ9IjM1IiB3aWR0aD01NjIgdmFsaWduPSJib3R0b20iPiANCjxkaXYgYWxpZ249InJpZ2h0Ij48Zm9udCBzaXplPSIzIj48YSBocmVmPSJqYXZhc2NyaXB0OjsiIG9uQ2xpY2s9ImNsZWFyZGlzKCk7Ij48Zm9udCBmYWNlPSJWZXJkYW5hLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiBzaXplPSIxIiBjb2xvcj0iIzk0NjYzRSI+UHJpbnQ8L2ZvbnQ+PC9hPjxmb250IGZhY2U9IlZlcmRhbmEsIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIHNpemU9IjEiPiANCjxhIGhyZWY9amF2YXNjcmlwdDo7IG9uQ2xpY2s9ZG9jdW1lbnQuZXhlY0NvbW1hbmQoIlNhdmVBcyIsIjEiLCJIb3Jvc2NvcGUuaHRtbCIpO3JldHVybiBmYWxzZTsgPjxmb250IGNvbG9yPSIjOTQ2NjNFIj5TYXZlPC9mb250PjwvYT4gDQombmJzcDs8YSBocmVmPSJodHRwOi8vcmVwLmNsaWNrYXN0cm8uY29tL2Rvd25sb2FkZm9udHMuaHRtbCIgdGFyZ2V0PSJfYmxhbmsiID48Zm9udCBjb2xvcj0iIzk0NjYzRSI+RG93bmxvYWRGb250czwvZm9udD48L2E+Jm5ic3A7PGEgaHJlZj0iamF2YXNjcmlwdDogd2luZG93LmNsb3NlKCk7Ij48Zm9udCBjb2xvcj0iIzk0NjYzRSI+Q2xvc2U8L2ZvbnQ+PC9hPjwvZm9udD48L2ZvbnQ+PC9kaXY+PC90ZD48L3RyPjx0cj4gDQo8L3RyPjwvdGJvZHk+IDwvdGFibGU+PC9kaXY+PC90ZD48L3RyPjwhLS1WZXJzaW9uOjIuNC0tPiA8dHI+IDx0ZCBoZWlnaHQ9IjIyIiBiZ2NvbG9yPSIjQzhEMzE5IiBhbGlnbj0iY2VudGVyIiBzdHlsZT0iZm9udC1mYW1pbHk6dmVyZGFuYTtmb250LXNpemU6MTJweDtmb250LXdlaWdodDpib2xkOyI+IA0KPGZvbnQgZmFjZT0iVmVyZGFuYSwgQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiI+SG9yb3Njb3BlIG9mIDkxMDM1PC9mb250PjwvdGQ+PC90cj4gDQo8dHI+IDx0ZCB3aWR0aD0iODAlIiBoZWlnaHQ9Ijc2MCIgdmFsaWduPSJ0b3AiPiA8dGFibGUgYWxpZ249ImNlbnRlciIgY2VsbHBhZGRpbmc9IjAiIGNlbGxzcGFjaW5nPSIyIiAgYmdjb2xvcj0jRmZmZmZmIGhlaWdodD0iMjg2IiB3aWR0aD0iNjUwIiA+IA0KPHRyPiA8dGQgd2lkdGg9IjUwJSIgIGJnY29sb3I9I0YwRjBFMCBzdHlsZT0icGFkZGluZy1sZWZ0OjMwcHgiIGhlaWdodD0iMTQiPjxiPjxmb250IGZhY2U9IlZlcmRhbmEsIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIHNpemU9IjEiPk5hbWU8L2ZvbnQ+PC9iPjwvdGQ+PHRkIHdpZHRoPSI1MCUiICBiZ2NvbG9yPSNGMEYwRTAgc3R5bGU9InBhZGRpbmctbGVmdDozMHB4IiBoZWlnaHQ9IjE0']);
+                    // debugger;
+                    // anchor.attr({
+                    //     href: window.URL.createObjectURL(blob),
+                    //     target: '_blank',
+                    //     download: 'testttt.html'
+                    // })[0].click();
+
+                    // var string = 'Hello World!';
+
+                    // // Encode the String
+                    // var encodedString = btoa(string);
+                    // console.log(encodedString); // Outputs: "SGVsbG8gV29ybGQh"
+
+                    // // Decode the String
+                    // var decodedString = atob(encodedString);
+                    // console.log(decodedString); // Outputs: "Hello World!"
+
                     return model;
                 };
-                ///1 st maethod
+
+                //1st maethod
                 model.astrogenerate = function() {
-                    return $http.POST('astrovisiononline.com/avservices/singlepagehoro/inserttolsdb_v3.php?data=<DATA><BIRTHDATA><CUSTID>AV678</CUSTID><SEX>Male</SEX><NAME>AnilS</NAME><DAY>22</DAY><MONTH>8</MONTH><YEAR>1990</YEAR><TIME24HR>13:11:00</TIME24HR><CORR>1</CORR><PLACE>Pulivendla</PLACE><LONG>078.14</LONG><LAT>14.25</LAT><LONGDIR>E</LONGDIR><LATDIR>N</LATDIR><TZONE>05.30</TZONE><TZONEDIR>E</TZONEDIR></BIRTHDATA><OPTIONS><CHARTSTYLE>0</CHARTSTYLE><LANGUAGE>ENG</LANGUAGE><REPTYPE>LS-SP</REPTYPE><REPDMN>KKSTAGING</REPDMN><HSETTINGS><AYANAMSA>1</AYANAMSA><DASASYSTEM>1</DASASYSTEM><GULIKATYPE>1</GULIKATYPE><PARYANTHARSTART>0</PARYANTHARSTART><PARYANTHAREND>25</PARYANTHAREND><FAVMARPERIOD>50</FAVMARPERIOD><BHAVABALAMETHOD>1</BHAVABALAMETHOD><ADVANCEDOPTION1>0</ADVANCEDOPTION1><ADVANCEDOPTION2>0</ADVANCEDOPTION2><ADVANCEDOPTION3>0</ADVANCEDOPTION3><ADVANCEDOPTION4>0</ADVANCEDOPTION4></HSETTINGS><IMGURL>http://emp.kaakateeya.com/access/Images/HoroscopeImages/AV678_HaroscopeImage/</IMGURL></OPTIONS><PARAMS>employee</PARAMS></DATA>').then(function(res) {
+                    return $http.get('http://www.astrovisiononline.com/avservices/singlepagehoro/inserttolsdb_v3.php?data=<DATA><BIRTHDATA><CUSTID>91035</CUSTID><SEX>Male</SEX><NAME>AnilS</NAME><DAY>22</DAY><MONTH>8</MONTH><YEAR>1990</YEAR><TIME24HR>13:11:00</TIME24HR><CORR>1</CORR><PLACE>Pulivendla</PLACE><LONG>078.14</LONG><LAT>14.25</LAT><LONGDIR>E</LONGDIR><LATDIR>N</LATDIR><TZONE>05.30</TZONE><TZONEDIR>E</TZONEDIR></BIRTHDATA><OPTIONS><CHARTSTYLE>0</CHARTSTYLE><LANGUAGE>ENG</LANGUAGE><REPTYPE>LS-SP</REPTYPE><REPDMN>KKSTAGING</REPDMN><HSETTINGS><AYANAMSA>1</AYANAMSA><DASASYSTEM>1</DASASYSTEM><GULIKATYPE>1</GULIKATYPE><PARYANTHARSTART>0</PARYANTHARSTART><PARYANTHAREND>25</PARYANTHAREND><FAVMARPERIOD>50</FAVMARPERIOD><BHAVABALAMETHOD>1</BHAVABALAMETHOD><ADVANCEDOPTION1>0</ADVANCEDOPTION1><ADVANCEDOPTION2>0</ADVANCEDOPTION2><ADVANCEDOPTION3>0</ADVANCEDOPTION3><ADVANCEDOPTION4>0</ADVANCEDOPTION4></HSETTINGS><IMGURL>http://emp.kaakateeya.com/access/Images/HoroscopeImages/91022_HaroscopeImage/</IMGURL></OPTIONS><PARAMS>employee</PARAMS></DATA>').then(function(res) {
                         console.log(res);
                     });
                 };
+
                 model.thirdmethod = function() {
                     $.ajax({
                         url: "http://www.astrovisiononline.com/avservices/singlepagehoro/inserttolsdb_v3.php",
                         type: 'GET',
-                        data: { data: "<DATA><BIRTHDATA><CUSTID>AV678</CUSTID><SEX>Male</SEX><NAME>AnilS</NAME><DAY>22</DAY><MONTH>8</MONTH><YEAR>1990</YEAR><TIME24HR>13:11:00</TIME24HR><CORR>1</CORR><PLACE>Pulivendla</PLACE><LONG>078.14</LONG><LAT>14.25</LAT><LONGDIR>E</LONGDIR><LATDIR>N</LATDIR><TZONE>05.30</TZONE><TZONEDIR>E</TZONEDIR></BIRTHDATA><OPTIONS><CHARTSTYLE>0</CHARTSTYLE><LANGUAGE>ENG</LANGUAGE><REPTYPE>LS-SP</REPTYPE><REPDMN>KKSTAGING</REPDMN><HSETTINGS><AYANAMSA>1</AYANAMSA><DASASYSTEM>1</DASASYSTEM><GULIKATYPE>1</GULIKATYPE><PARYANTHARSTART>0</PARYANTHARSTART><PARYANTHAREND>25</PARYANTHAREND><FAVMARPERIOD>50</FAVMARPERIOD><BHAVABALAMETHOD>1</BHAVABALAMETHOD><ADVANCEDOPTION1>0</ADVANCEDOPTION1><ADVANCEDOPTION2>0</ADVANCEDOPTION2><ADVANCEDOPTION3>0</ADVANCEDOPTION3><ADVANCEDOPTION4>0</ADVANCEDOPTION4></HSETTINGS><IMGURL>http://emp.kaakateeya.com/access/Images/HoroscopeImages/AV678_HaroscopeImage/</IMGURL></OPTIONS><PARAMS>employee</PARAMS></DATA>" },
-                        success: function(response) {
-                            console.log(response);
-                        }
+                        data: { data: "<DATA><BIRTHDATA><CUSTID>91035</CUSTID><SEX>Male</SEX><NAME>AnilS</NAME><DAY>22</DAY><MONTH>8</MONTH><YEAR>1990</YEAR><TIME24HR>13:11:00</TIME24HR><CORR>1</CORR><PLACE>Pulivendla</PLACE><LONG>078.14</LONG><LAT>14.25</LAT><LONGDIR>E</LONGDIR><LATDIR>N</LATDIR><TZONE>05.30</TZONE><TZONEDIR>E</TZONEDIR></BIRTHDATA><OPTIONS><CHARTSTYLE>0</CHARTSTYLE><LANGUAGE>ENG</LANGUAGE><REPTYPE>LS-SP</REPTYPE><REPDMN>KKSTAGING</REPDMN><HSETTINGS><AYANAMSA>1</AYANAMSA><DASASYSTEM>1</DASASYSTEM><GULIKATYPE>1</GULIKATYPE><PARYANTHARSTART>0</PARYANTHARSTART><PARYANTHAREND>25</PARYANTHAREND><FAVMARPERIOD>50</FAVMARPERIOD><BHAVABALAMETHOD>1</BHAVABALAMETHOD><ADVANCEDOPTION1>0</ADVANCEDOPTION1><ADVANCEDOPTION2>0</ADVANCEDOPTION2><ADVANCEDOPTION3>0</ADVANCEDOPTION3><ADVANCEDOPTION4>0</ADVANCEDOPTION4></HSETTINGS><IMGURL>http://emp.kaakateeya.com/access/Images/HoroscopeImages/91035_HaroscopeImage/</IMGURL></OPTIONS><PARAMS>employee</PARAMS></DATA>" },
+                        success: function(response) {}
                     });
                 };
                 //
