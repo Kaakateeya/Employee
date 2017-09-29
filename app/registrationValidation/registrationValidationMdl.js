@@ -181,11 +181,21 @@
                                     item.rowtype = model.rowStyle(item);
                                 });
 
-                                model.activeCount = response.data[0].ActiveCount;
-                                model.deleteCount = response.data[0].DeletedCount;
-                                model.settleCount = response.data[0].SettledCount;
-                                model.inactiveCount = response.data[0].InActiveCount;
-                                model.mmserisCount = response.data[0].MMSerious;
+                                // model.activeCount = response.data[0].ActiveCount;
+                                // model.deleteCount = response.data[0].DeletedCount;
+                                // model.settleCount = response.data[0].SettledCount;
+                                // model.inactiveCount = response.data[0].InActiveCount;
+                                // model.mmserisCount = response.data[0].MMSerious;
+
+                                svc.getRegSearchcounts(input).then(function(rescounts) {
+                                    if (_.isArray(rescounts.data) && rescounts.data.length > 0) {
+                                        model.activeCount = rescounts.data[0].ActiveCount;
+                                        model.deleteCount = rescounts.data[0].DeletedCount;
+                                        model.settleCount = rescounts.data[0].SettledCount;
+                                        model.inactiveCount = rescounts.data[0].InActiveCount;
+                                        model.mmserisCount = rescounts.data[0].MMSerious;
+                                    }
+                                });
                                 model.grid.TotalRows = response.data[0].TotalRows;
                                 model.grid.data = (response.data);
                             }
