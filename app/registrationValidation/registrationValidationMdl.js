@@ -161,6 +161,8 @@
                                 alasql('SELECT ProfileID as ProfileID,FirstName,LastName,Caste,DOR,ProfileOwner,TicketHistoryID as Ticket  INTO  XLSX("EditReports.xlsx",?) FROM ?', [options, model.grid.exportarray]);
 
                             } else if (typeofbind === 'slide') {
+
+                                model.slideApplicationStatus = ApplicationStatus;
                                 model.topage = to;
                                 model.slide.headervisileble = true;
                                 model.slide.totalRecords = response.data[0].TotalRows;
@@ -220,7 +222,7 @@
             };
             model.slide.slidebind = function(old, news, array) {
                 if (parseInt(model.topage) - parseInt(news) === 4) {
-                    model.getSearchData((model.topage) + 1, (model.topage) + 10, 'slide', model.ddlApplicationStatus, 1);
+                    model.getSearchData((model.topage) + 1, (model.topage) + 10, 'slide', model.slideApplicationStatus, 1);
                 }
             };
             model.reset = function() {
