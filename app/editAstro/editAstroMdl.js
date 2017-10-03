@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function factory(editAstroService, authSvc, alertss, commonFactory, uibModal, fileUpload, http, stateParams) {
+    function factory(editAstroService, authSvc, alertss, commonFactory, uibModal, fileUpload, http, stateParams, SelectBindServiceApp) {
         var model = {};
         model.scope = {};
         // declaration part
@@ -23,6 +23,7 @@
             model.ddlFromHours = '';
             model.ddlFromMinutes = '';
             model.ddlFromSeconds = '';
+            var encryptCustid;
             return model;
         };
 
@@ -48,7 +49,7 @@
 
                     http.post('/createAstroHtml', JSON.stringify({ custid: custID, htmldata: model.decodedString })).then(function(response) {
                         if (response.status === 200) {
-
+                            model.generatedhoroS3Upload();
                         }
                     });
 
@@ -223,13 +224,8 @@
             editAstroService.generateHoroscope(inputobj).then(function(response) {
                 if (commonFactory.checkvals(response.data.AstroGeneration)) {
                     s3obj = { Path: response.data.Path, KeyName: response.data.KeyName };
-                    // response.data.AstroGeneration = (response.data.AstroGeneration).replace('<REPDMN>kaakateeya</REPDMN>', '<REPDMN>KKSTAGING</REPDMN>');
                     model.createhoroHtml(response.data.AstroGeneration);
-
-                    // window.open('' + response.data.AstroGeneration + '', '_blank');
                     commonFactory.closepopup();
-                    commonFactory.open('RefreshPopup.html', model.scope, uibModal);
-                    // window.open('/showHoro', '_blank');
                 } else {
                     model.AstrocityArr = commonFactory.AstroCity(model.AstroArr[0].CountryOfBirth, model.AstroArr[0].StateOfBirth);
                     commonFactory.open('AstroCityPopup.html', model.scope, uibModal);
@@ -275,9 +271,12 @@
         };
 
         model.generatedhoroS3Upload = function() {
-            // s3obj.Path = 'http:\\e.kaakateeya.com\\access\\Images\HoroscopeImages\\91022_HaroscopeImage\\91022_HaroscopeImage.html';
-            // s3obj.Path.replace('C:\\inetpub\\wwwroot\\access\\', 'http:\\e.kaakateeya.com\\access\\');
-            editAstroService.GenerateHoroS3(s3obj).then(function(response) {});
+            editAstroService.GenerateHoroS3(s3obj).then(function(response) {
+                SelectBindServiceApp.getencrypt(custID).then(function(response) {
+                    encryptCustid = response.data;
+                    window.open('/showHoro/' + encryptCustid, '_blank');
+                });
+            });
             model.astropageload(custID);
             commonFactory.closepopup();
         };
@@ -322,6 +321,6 @@
         .module('Kaakateeya')
         .factory('editAstroModel', factory);
 
-    factory.$inject = ['editAstroService', 'authSvc', 'alert', 'commonFactory', '$uibModal', 'fileUpload', '$http', '$stateParams'];
+    factory.$inject = ['editAstroService', 'authSvc', 'alert', 'commonFactory', '$uibModal', 'fileUpload', '$http', '$stateParams', 'SelectBindServiceApp'];
 
 })(angular);

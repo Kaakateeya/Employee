@@ -108,7 +108,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'matchMeetingCountReport', name: 'base.matchMeetingCountReport', url: '/matchMeetingCountReportPage', isloginrequired: true },
             { routeName: 'settleDeleteProfileseReport', name: 'base.settleDeleteProfileseReport', url: '/settleDeleteProfileseReportPage', isloginrequired: true },
             { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrintmail', url: '/Viewfullprofilemail/:ProfileID/:contacts', isloginrequired: false, subname: ['directives/divPrint.js'] },
-            { routeName: 'showHoro', name: 'base.showHoro', url: '/showHoro', isloginrequired: false },
+            { routeName: 'showHoro', name: 'base.showHoro', url: '/showHoro/:ID', isloginrequired: false },
             { routeName: 'keywordSearch', name: 'base.keywordSearch', url: '/keywordSearchpage', isloginrequired: true },
         ];
         $ocLazyLoadProvider.config({
@@ -350,7 +350,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
         });
         _.each(states, function(item) {
             var innerView = {};
-            if (item.routeName === "login") {
+            if (item.routeName === "login" || item.routeName === "showHoro") {
                 innerView = {
                     "lazyLoadView@": {
                         templateUrl: "app/" + item.routeName + '/index.html',
