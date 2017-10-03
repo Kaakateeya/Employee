@@ -15,6 +15,7 @@
         var custID = model.CustID = stateParams.CustID;
         model.eventType = 'add';
         var isSubmit = true;
+        var encryptCustid;
         model.loginpaidstatus = authSvc.getpaidstatus();
         // end declaration part
         model.init = function() {
@@ -23,7 +24,7 @@
             model.ddlFromHours = '';
             model.ddlFromMinutes = '';
             model.ddlFromSeconds = '';
-            var encryptCustid;
+            encryptCustid = '';
             return model;
         };
 
