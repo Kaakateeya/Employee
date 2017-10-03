@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function factory(editAstroService, authSvc, alertss, commonFactory, uibModal, fileUpload, http, stateParams, SelectBindServiceApp) {
+    function factory(editAstroService, authSvc, alertss, commonFactory, uibModal, fileUpload, http, stateParams, SelectBindServiceApp, timeout) {
         var model = {};
         model.scope = {};
         // declaration part
@@ -50,7 +50,10 @@
 
                     http.post('/createAstroHtml', JSON.stringify({ custid: custID, htmldata: model.decodedString })).then(function(response) {
                         if (response.status === 200) {
-                            model.generatedhoroS3Upload();
+                            timeout(function() {
+                                model.generatedhoroS3Upload();
+
+                            }, 1000);
                         }
                     });
 
@@ -322,6 +325,6 @@
         .module('Kaakateeya')
         .factory('editAstroModel', factory);
 
-    factory.$inject = ['editAstroService', 'authSvc', 'alert', 'commonFactory', '$uibModal', 'fileUpload', '$http', '$stateParams', 'SelectBindServiceApp'];
+    factory.$inject = ['editAstroService', 'authSvc', 'alert', 'commonFactory', '$uibModal', 'fileUpload', '$http', '$stateParams', 'SelectBindServiceApp', '$timeout'];
 
 })(angular);
