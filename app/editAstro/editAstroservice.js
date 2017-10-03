@@ -16,7 +16,7 @@
                 return http.get(app.apiroot + 'CustomerPersonalUpdate/getGenerateHoroscorpe', { params: { customerid: obj.customerid, EmpIDQueryString: obj.EmpIDQueryString, intDay: obj.intDay, intMonth: obj.intMonth, intYear: obj.intYear, CityID: obj.CityID } });
             },
             GenerateHoroS3: function(obj) {
-                return http.get(app.apiroot + 'CustomerPersonalUpdate/getAstroGenerationS3Update', { params: { Path: (obj.Path), KeyName: (obj.KeyName) } });
+                return http.get(app.apiroot + 'CustomerPersonalUpdate/getAstroGenerationS3Update_test', { params: { Path: (obj.Path), KeyName: (obj.KeyName) } });
             }
         };
     }

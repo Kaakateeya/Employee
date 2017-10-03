@@ -236,6 +236,8 @@
                 }
             });
         };
+
+
         model.deleteHoroImage = function() {
             var extension = "jpg";
             // if ((model.AstroArr[0].Horoscopeimage).indexOf('.html')) {
