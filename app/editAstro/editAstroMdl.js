@@ -28,7 +28,6 @@
             return model;
         };
 
-
         model.createhoroHtml = function(xmldata) {
             http.get(xmldata).success(function(data) {
                     var parser, xmlDoc;
@@ -84,6 +83,7 @@
                                 if (extension === "html") {
                                     model.iframeShow = true;
                                     $('#iframe').attr('src', model.ImageUrl);
+                                    // $('#iframe').attr('src', app.GlobalImgPath + 'Images/HoroscopeImages/91022_HaroscopeImage/91022_HaroscopeImage.html');
                                 }
                             }
                         } else if (commonFactory.checkvals(model.generateData[0].Horoscopeimage) && (model.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
@@ -283,8 +283,18 @@
                     window.open('/showHoro/' + encryptCustid, '_blank');
                 });
             });
+
+            // var paths = '//Images//HoroscopeImages//' + custID + '_HaroscopeImage//' + custID + '_HaroscopeImage.html';
+
+            // http.post('/photoUpladhoro', { keyname: s3obj.KeyName, path: paths }).then(function(res) {
+            //     SelectBindServiceApp.getencrypt(custID).then(function(response) {
+            //         encryptCustid = response.data;
+            //         window.open('/showHoro/' + encryptCustid, '_blank');
+            //     });
+            // });
+
             model.astropageload(custID);
-            commonFactory.closepopup();
+            // commonFactory.closepopup();
         };
         model.astro = [{
                 lblname: 'Time of Birth',
