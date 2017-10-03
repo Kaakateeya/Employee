@@ -51,7 +51,7 @@
             </div>
             <complex-grid-new gid="'id1'" ng-show="page.model.gridtable1.data" model="page.model.gridtable1" config="page.model" pagesizecommunication="999"></complex-grid-new>
         </div>
-        <div ng-show="page.model.gridTableshow && page.model.gridtable2.data">
+        <div ng-show="page.model.gridTableshow && page.model.gridtable2.data" id="secondgridID">
             <div class="col-lg-12" ng-if="page.model.sendarray2.length>0">
                 <br ng-if="page.model.sendarray2.length>0">
                 <p class="col-lg-offset-4 headclasstable"> <img style="width: 43px;height: 29px;" src="src/images/hnd.gif"></img>List of members to who you contacted
@@ -72,10 +72,14 @@
                         </md-radio-button>
                     </md-radio-group>
                 </div>
-                <div class="col-lg-4">
+                <!-- <div class="col-lg-4">
                     <label class="control-label col-lg-8">Expiry Date:{{page.model.sendarray2[0].ServiceExpiryDate}}</label>
                     <label class="control-label col-lg-4">Points:{{page.model.sendarray2[0].ServicePoints}}</label>
-                </div>
+                </div> -->
+            </div>
+            <div class="col-lg-4" style="margin-top:1%;">
+                <label class="control-label col-lg-4">Points:{{page.model.sendarray2[0].ServicePoints}}</label>
+                <label class="control-label col-lg-8">Expiry Date:{{page.model.sendarray2[0].ServiceExpiryDate}}</label>
             </div>
             <complex-grid-new gid="'id2'" ng-show="page.model.gridtable2.data" model="page.model.gridtable2" config="page.model" pagesizecommunication="999"></complex-grid-new>
         </div>
@@ -146,6 +150,10 @@
     
     .ProfileOwner {
         width: 199px;
+    }
+    
+    #secondgridID label.col-lg-6.control-label.arrow.ng-binding {
+        display: none;
     }
 </style>
 <script>
