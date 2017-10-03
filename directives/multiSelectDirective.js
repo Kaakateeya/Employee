@@ -293,6 +293,14 @@ app.directive('multiselectdropdown', ['arrayConstants', 'SelectBindServiceApp', 
                             options.push({ "label": "--select--", "title": "--select--", "value": '' });
                             scope.databind(options);
                             break;
+
+                        case 'mediaterBranchBind':
+                            var options1 = [];
+                            options1 = getArraysearch.GArray('MediatorBranch');
+                            options1.push({ "label": "--select--", "title": "--select--", "value": '' });
+                            scope.databind(options1);
+                            break;
+
                         case 'passOfYear':
                             var test = [];
                             var yr = 1,

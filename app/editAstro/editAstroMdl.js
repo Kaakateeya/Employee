@@ -23,17 +23,12 @@
             model.ddlFromHours = '';
             model.ddlFromMinutes = '';
             model.ddlFromSeconds = '';
-
-            // model.thirdmethod();
-
             return model;
         };
 
 
-        model.thirdmethod = function() {
-
-            var dataUrl = 'shttp://www.astrovisiononline.com/avservices/singlepagehoro/inserttolsdb_v3.php?data=<DATA><BIRTHDATA><CUSTID>91035</CUSTID><SEX>Male</SEX><NAME>AnilS</NAME><DAY>22</DAY><MONTH>8</MONTH><YEAR>1990</YEAR><TIME24HR>13:11:00</TIME24HR><CORR>1</CORR><PLACE>Pulivendla</PLACE><LONG>078.14</LONG><LAT>14.25</LAT><LONGDIR>E</LONGDIR><LATDIR>N</LATDIR><TZONE>05.30</TZONE><TZONEDIR>E</TZONEDIR></BIRTHDATA><OPTIONS><CHARTSTYLE>0</CHARTSTYLE><LANGUAGE>ENG</LANGUAGE><REPTYPE>LS-SP</REPTYPE><REPDMN>KKSTAGING</REPDMN><HSETTINGS><AYANAMSA>1</AYANAMSA><DASASYSTEM>1</DASASYSTEM><GULIKATYPE>1</GULIKATYPE><PARYANTHARSTART>0</PARYANTHARSTART><PARYANTHAREND>25</PARYANTHAREND><FAVMARPERIOD>50</FAVMARPERIOD><BHAVABALAMETHOD>1</BHAVABALAMETHOD><ADVANCEDOPTION1>0</ADVANCEDOPTION1><ADVANCEDOPTION2>0</ADVANCEDOPTION2><ADVANCEDOPTION3>0</ADVANCEDOPTION3><ADVANCEDOPTION4>0</ADVANCEDOPTION4></HSETTINGS><IMGURL>http://emp.kaakateeya.com/access/Images/HoroscopeImages/91022_HaroscopeImage/</IMGURL></OPTIONS><PARAMS>employee</PARAMS></DATA>';
-            http.get(dataUrl).success(function(data) {
+        model.createhoroHtml = function(xmldata) {
+            http.get(xmldata).success(function(data) {
                     var parser, xmlDoc;
                     parser = new DOMParser();
                     xmlDoc = parser.parseFromString(data, "text/xml");
@@ -51,9 +46,13 @@
                     model.decodedString = model.decodedString.replace('http://emp.kaakateeya.com/access/Images/HoroscopeImages/91022_HaroscopeImage/' + raasiImgName, 'data:image/png;base64,' + rasiSrcData);
                     model.decodedString = model.decodedString.replace('http://emp.kaakateeya.com/access/Images/HoroscopeImages/91022_HaroscopeImage/' + navamsaImgName, 'data:image/png;base64,' + navamsaSrcData);
 
-                    http.post('/createAstroHtml', JSON.stringify({ custid: custID, htmldata: model.decodedString }));
+                    http.post('/createAstroHtml', JSON.stringify({ custid: custID, htmldata: model.decodedString })).then(function(response) {
+                        if (response.status === 200) {
 
-                    debugger;
+                        }
+                    });
+
+
                 })
                 .error(function(error) {
                     alert(error);
@@ -224,7 +223,10 @@
             editAstroService.generateHoroscope(inputobj).then(function(response) {
                 if (commonFactory.checkvals(response.data.AstroGeneration)) {
                     s3obj = { Path: response.data.Path, KeyName: response.data.KeyName };
-                    window.open('' + response.data.AstroGeneration + '', '_blank');
+                    // response.data.AstroGeneration = (response.data.AstroGeneration).replace('<REPDMN>kaakateeya</REPDMN>', '<REPDMN>KKSTAGING</REPDMN>');
+                    model.createhoroHtml(response.data.AstroGeneration);
+
+                    // window.open('' + response.data.AstroGeneration + '', '_blank');
                     commonFactory.closepopup();
                     commonFactory.open('RefreshPopup.html', model.scope, uibModal);
                     // window.open('/showHoro', '_blank');

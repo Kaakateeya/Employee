@@ -8,7 +8,7 @@
                         <div class="reg_fields_entry clearfix">
                             <div class="row">
                                 <md-input-container class="col-lg-3">
-                                    <label class="droplabel">Branch</label>
+                                    <label class="droplabel">Broker Name</label>
                                     <md-select name="branchID" md-asterisk="" ng-model="page.model.reg.branchID" required="" ng-change="page.model.branchChange(page.model.reg.branchID);">
                                         <md-option ng-value="h.value" ng-repeat="h in page.model.branchArr">{{h.label}} </md-option>
                                     </md-select>
@@ -34,7 +34,7 @@
                             <div class="row">
                                 <md-input-container class="col-lg-3">
                                     <label> First Name</label>
-                                    <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" focus-me="true" ng-focus="true" autofocus maxlength="100" required="" md-asterisk="" name="txtfirstname" ng-model="page.model.reg.txtfirstname" ng-blur="page.model.validateFields();">
+                                    <input onkeyup="this.value=this.value.replace(/^ +/g, '').replace(/  +/g, ' ');" autofocus maxlength="100" required="" md-asterisk="" name="txtfirstname" ng-model="page.model.reg.txtfirstname" ng-blur="page.model.validateFields();">
                                     <div ng-messages="regForm.txtfirstname.$error">
                                         <div ng-if="regForm.txtfirstname.$invalid && (regForm.$submitted)" ng-message="required">This is required.</div>
                                     </div>
