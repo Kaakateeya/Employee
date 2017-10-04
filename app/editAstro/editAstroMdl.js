@@ -44,14 +44,20 @@
                     model.decodedString = atob(htmlData);
                     var raasiImgName = atob(raasiNameData);
                     var navamsaImgName = atob(navamsaNameData);
+                    debugger;
 
-                    model.decodedString = model.decodedString.replace('http://emp.kaakateeya.com/access/Images/HoroscopeImages/' + custID + '_HaroscopeImage/' + raasiImgName, 'data:image/png;base64,' + rasiSrcData);
-                    model.decodedString = model.decodedString.replace('http://emp.kaakateeya.com/access/Images/HoroscopeImages/' + custID + '_HaroscopeImage/' + navamsaImgName, 'data:image/png;base64,' + navamsaSrcData);
+                    // model.decodedString = model.decodedString.replace('http://emp.kaakateeya.com/access/Images/HoroscopeImages/' + custID + '_HaroscopeImage/' + raasiImgName, 'data:image/png;base64,' + rasiSrcData);
+                    // model.decodedString = model.decodedString.replace('http://emp.kaakateeya.com/access/Images/HoroscopeImages/' + custID + '_HaroscopeImage/' + navamsaImgName, 'data:image/png;base64,' + navamsaSrcData);
 
+
+                    model.decodedString = model.decodedString.replace('http://localhost:7000/showHoro' + custID + '_HaroscopeImage/' + raasiImgName, 'data:image/png;base64,' + rasiSrcData);
+                    model.decodedString = model.decodedString.replace('http://localhost:7000/showHoro' + custID + '_HaroscopeImage/' + navamsaImgName, 'data:image/png;base64,' + navamsaSrcData);
+
+                    // debugger;
                     http.post('/createAstroHtml', JSON.stringify({ custid: custID, htmldata: model.decodedString })).then(function(response) {
                         if (response.status === 200) {
                             timeout(function() {
-                                model.generatedhoroS3Upload();
+                                // model.generatedhoroS3Upload();
 
                             }, 1000);
                         }
