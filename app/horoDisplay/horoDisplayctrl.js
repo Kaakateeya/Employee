@@ -20,7 +20,7 @@
 
          vm.init = function() {
              SelectBindServiceApp.getdecrypt(vm.selfProfileID).then(function(response) {
-                 document.getElementById('iframe').setAttribute('src', app.GlobalImgPath + 'Images/HoroscopeImages/' + response.data + '_HaroscopeImage/' + response.data + '_HaroscopeImage.html');
+                 document.getElementById('iframe').setAttribute('src', app.GlobalImgPathforimage + 'Images/HoroscopeImages/' + response.data + '_HaroscopeImage/' + response.data + '_HaroscopeImage.html');
              });
          };
          vm.init();

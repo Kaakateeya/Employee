@@ -89,6 +89,7 @@
                                 model.ImageUrl = app.GlobalImgPath + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
                                 if (extension === "html") {
                                     model.iframeShow = true;
+                                    model.ImageUrl = app.GlobalImgPathforimage + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
                                     $('#iframe').attr('src', model.ImageUrl);
                                     // $('#iframe').attr('src', app.GlobalImgPath + 'Images/HoroscopeImages/91022_HaroscopeImage/91022_HaroscopeImage.html');
                                 }
@@ -104,6 +105,7 @@
                                 }
                                 model.ImageUrl = app.GlobalImgPath + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extensn;
                                 if (extensn === "html") {
+                                    model.ImageUrl = app.GlobalImgPathforimage + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extensn;
                                     model.iframeShow = true;
                                     $('#iframe').attr('src', model.ImageUrl);
                                 }

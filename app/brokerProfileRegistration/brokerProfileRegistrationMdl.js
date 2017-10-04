@@ -156,6 +156,7 @@
                 model.mediaterID = model.mediaterData.MediatorSno;
 
                 model.reg.txtMobileNo = model.mediaterData.MobileNumber ? model.mediaterData.MobileNumber : model.mediaterData.whatsappNumber;
+                model.isdisabled = true;
             });
         };
 

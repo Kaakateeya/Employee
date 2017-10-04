@@ -16,6 +16,7 @@
              vm.model = model = brokerProfileRegistrationModel;
              vm.model.scope = scope;
              vm.model.mediaterID = '';
+             model.isdisabled = false;
              scope.$on("$destroy", vm.destroy);
          };
          vm.destroy = function() {
