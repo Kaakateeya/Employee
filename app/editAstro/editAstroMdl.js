@@ -25,6 +25,7 @@
             model.ddlFromMinutes = '';
             model.ddlFromSeconds = '';
             encryptCustid = '';
+
             return model;
         };
 
@@ -280,7 +281,7 @@
             editAstroService.GenerateHoroS3(s3obj).then(function(response) {
                 SelectBindServiceApp.getencrypt(custID).then(function(response) {
                     encryptCustid = response.data;
-                    window.open('/showHoro/' + encryptCustid, '_blank');
+                    window.open('/horoDisplay?ID=' + encryptCustid, '_blank');
                 });
             });
 

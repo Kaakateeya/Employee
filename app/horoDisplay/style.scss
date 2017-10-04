@@ -1,18 +1,13 @@
-<div class="right_col">
-    <iframe id="iframe" frameborder="no" marginheight="0" marginwidth="0" width="100%" style="height:800px;"></iframe>
-</div>
-<style type="text/css">
+#horodisplayID {
     html {
         overflow: auto;
     }
-    
     iframe {
         margin: 0px;
         padding: 0px;
         height: 100%;
         border: none;
     }
-    
     iframe {
         display: block;
         width: 100%;
@@ -20,8 +15,7 @@
         overflow-y: auto;
         overflow-x: hidden;
     }
-    
     font {
         font-size: 14px;
     }
-</style>
+}

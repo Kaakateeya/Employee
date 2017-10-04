@@ -108,8 +108,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'matchMeetingCountReport', name: 'base.matchMeetingCountReport', url: '/matchMeetingCountReportPage', isloginrequired: true },
             { routeName: 'settleDeleteProfileseReport', name: 'base.settleDeleteProfileseReport', url: '/settleDeleteProfileseReportPage', isloginrequired: true },
             { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrintmail', url: '/Viewfullprofilemail/:ProfileID/:contacts', isloginrequired: false, subname: ['directives/divPrint.js'] },
-            { routeName: 'showHoro', name: 'base.showHoro', url: '/showHoro/:ID', isloginrequired: false },
+            // { routeName: 'showHoro', name: 'base.showHoro', url: '/showHoro', isloginrequired: false },
             { routeName: 'keywordSearch', name: 'base.keywordSearch', url: '/keywordSearchpage', isloginrequired: true },
+            { routeName: 'horoDisplay', name: 'base.horoDisplay', url: '/horoDisplay', isloginrequired: false }
         ];
         $ocLazyLoadProvider.config({
             debug: true
@@ -311,6 +312,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'app/EmployeePayment/EmployeePaymentMdl.js',
                         'app/EmployeePayment/EmployeePaymentservice.js'
                     ]
+                },
+                {
+                    name: 'horoDisplay',
+                    files: [
+                        'app/horoDisplay/horoDisplayctrl.js',
+                        'app/horoDisplay/horoDisplayMdl.js',
+                        'app/horoDisplay/horoDisplayservice.js'
+                    ]
                 }
 
             ]
@@ -350,7 +359,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
         });
         _.each(states, function(item) {
             var innerView = {};
-            if (item.routeName === "login" || item.routeName === "showHoro") {
+            if (item.routeName === "login" || item.routeName === "horoDisplay") {
                 innerView = {
                     "lazyLoadView@": {
                         templateUrl: "app/" + item.routeName + '/index.html',
@@ -409,7 +418,7 @@ app.run(function($rootScope, $state, $stateParams, $ocLazyLoad) {
     $rootScope.EditProfilePaidStatus = '';
     // $rootScope.processingsymbol = true;
     $rootScope.$on('$stateChangeStart', function(e, to) {
-        if (to && to.name !== 'login' && to.name !== 'base.employeeViewfullprofilePrintmail') {
+        if (to && to.name !== 'login' && to.name !== 'base.employeeViewfullprofilePrintmail' && to.name !== 'base.horoDisplay') {
             if (sessionStorage.getItem('logintime') && (sessionStorage.getItem('logintime')) === moment().format('MM/DD/YYYY')) {
                 if (to.data && to.data.requiresLogin) {
                     if (sessionStorage.getItem('LoginEmpid') === null || sessionStorage.getItem('LoginEmpid') === undefined || sessionStorage.getItem('LoginEmpid') === "") {
@@ -420,7 +429,7 @@ app.run(function($rootScope, $state, $stateParams, $ocLazyLoad) {
                     }
                 }
             } else {
-                if (to.name === 'base.employeeViewfullprofilePrintmail') {} else {
+                if (to.name === 'base.employeeViewfullprofilePrintmail' || to.name !== 'base.horoDisplay') {} else {
                     e.preventDefault();
                     $state.go('login');
                 }
@@ -453,4 +462,5 @@ function loadmodules($ocLazyLoad) {
     $ocLazyLoad.load('norecordsalert-popup');
     $ocLazyLoad.load('payment-editpointsdate');
     $ocLazyLoad.load('payment');
+    $ocLazyLoad.load('horoDisplay');
 }

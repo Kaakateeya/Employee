@@ -1,0 +1,17 @@
+#horodisplayID html {
+  overflow: auto; }
+#horodisplayID iframe {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  border: none; }
+#horodisplayID iframe {
+  display: block;
+  width: 100%;
+  border: none;
+  overflow-y: auto;
+  overflow-x: hidden; }
+#horodisplayID font {
+  font-size: 14px; }
+
+/*# sourceMappingURL=style.css.map */

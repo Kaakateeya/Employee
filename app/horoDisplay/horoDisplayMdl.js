@@ -3,14 +3,13 @@
 
     angular
         .module('Kaakateeya')
-        .factory('showHoroModel', factory);
+        .factory('horoDisplayModel', factory)
 
-    factory.$inject = ['showHoroService'];
+    factory.$inject = ['horoDisplayService'];
 
-    function factory(showHoroService) {
+    function factory(horoDisplayService) {
 
         var model = {};
-
 
         return model;
 

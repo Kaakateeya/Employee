@@ -3,7 +3,7 @@
 
     angular
         .module('Kaakateeya')
-        .factory('showHoroService', factory)
+        .factory('horoDisplayService', factory)
 
     factory.$inject = ['$http'];
 
