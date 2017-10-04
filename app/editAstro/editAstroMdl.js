@@ -57,7 +57,7 @@
                     http.post('/createAstroHtml', JSON.stringify({ custid: custID, htmldata: model.decodedString })).then(function(response) {
                         if (response.status === 200) {
                             timeout(function() {
-                                // model.generatedhoroS3Upload();
+                                model.generatedhoroS3Upload();
 
                             }, 1000);
                         }
