@@ -56,10 +56,7 @@
                     // debugger;
                     http.post('/createAstroHtml', JSON.stringify({ custid: custID, htmldata: model.decodedString })).then(function(response) {
                         if (response.status === 200) {
-                            timeout(function() {
-                                model.generatedhoroS3Upload();
-
-                            }, 1000);
+                            model.generatedhoroS3Upload();
                         }
                     });
 
@@ -91,7 +88,6 @@
                                     model.iframeShow = true;
                                     model.ImageUrl = app.GlobalImgPathforimage + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
                                     $('#iframe').attr('src', model.ImageUrl);
-                                    // $('#iframe').attr('src', app.GlobalImgPath + 'Images/HoroscopeImages/91022_HaroscopeImage/91022_HaroscopeImage.html');
                                 }
                             }
                         } else if (commonFactory.checkvals(model.generateData[0].Horoscopeimage) && (model.generateData[0].Horoscopeimage).indexOf('Horo_no') === -1) {
@@ -289,6 +285,7 @@
             editAstroService.GenerateHoroS3(s3obj).then(function(response) {
                 SelectBindServiceApp.getencrypt(custID).then(function(response) {
                     encryptCustid = response.data;
+                    model.astropageload(custID);
                     window.open('/horoDisplay?ID=' + encryptCustid, '_blank');
                 });
             });
@@ -302,7 +299,7 @@
             //     });
             // });
 
-            model.astropageload(custID);
+
             // commonFactory.closepopup();
         };
         model.astro = [{
