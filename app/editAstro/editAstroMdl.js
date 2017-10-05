@@ -250,7 +250,7 @@
             // } else {
             //     extension = "jpg";
             // }
-            var keynameq = "Images/Horoscopeimages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+            var keynameq = "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
             http.post('/photoDelete', JSON.stringify({ keyname: keynameq })).then(function(data) {});
             model.uploadData = {
                 Cust_ID: custID,
