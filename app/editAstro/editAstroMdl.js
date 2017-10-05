@@ -83,7 +83,7 @@
                                     model.iframeShow = false;
                                     extension = "jpg";
                                 }
-                                model.ImageUrl = app.GlobalImgPath + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+                                model.ImageUrl = app.GlobalImgPathforimage + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
                                 if (extension === "html") {
                                     model.iframeShow = true;
                                     model.ImageUrl = app.GlobalImgPathforimage + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
@@ -99,7 +99,7 @@
                                     model.iframeShow = false;
                                     extensn = "jpg";
                                 }
-                                model.ImageUrl = app.GlobalImgPath + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extensn;
+                                model.ImageUrl = app.GlobalImgPathforimage + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extensn;
                                 if (extensn === "html") {
                                     model.ImageUrl = app.GlobalImgPathforimage + "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extensn;
                                     model.iframeShow = true;
@@ -199,7 +199,7 @@
                     alert('Sorry,Upload Photo Size Must Be Less than 1 mb');
                 } else {
                     // var extension = ((obj.myFile.name).split('.'))[1];
-                    var keyname = "Images/Horoscopeimages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
+                    var keyname = "Images/HoroscopeImages/" + custID + "_HaroscopeImage/" + custID + "_HaroscopeImage." + extension;
                     fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
                         if (res.status == 200) {
                             commonFactory.closepopup();
