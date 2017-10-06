@@ -11,7 +11,7 @@
              }
              //vm.model = model = dashboardModel;
              model.scope = scope;
-             model.templateUrl = "templates/dashBoardslidenew.html";
+             model.templateUrl = "templates/dashBoardslide.html";
              model.config.headettemp = "dashboardheader.html";
              model.slideshowopenflag = 0;
              scope.$on("$destroy", vm.destroy);
