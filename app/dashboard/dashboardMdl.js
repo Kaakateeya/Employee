@@ -21,7 +21,7 @@
                 model.calltypearray = [];
                 model.replaytypearray = [];
                 model.categoryarray = [];
-                model.templateUrl = "templates/dashBoardslide.html";
+                model.templateUrl = "templates/dashBoardslidenew.html";
                 model.config.headettemp = "dashboardheader.html";
                 model.todaydate = new Date();
                 model.exportData = function(id) {
@@ -266,7 +266,95 @@
                     });
                     return arraylist;
                 };
+                // model.displayArrayprofile = function(arr, topage) {
+                //     model.headervisileble = true;
+                //     var array = [];
+                //     _.each(arr, function(item) {
+                //         var data = [];
+                //         data.push({
+                //             label: 'ProfileID',
+                //             value: '',
+                //             ProfileID: item.ProfileID,
+                //             KMPLID: item.KMPLID,
+                //             paid: item.paid === true || item.paid === 1 ? 1 : 0,
+                //             IsConfidential: item.IsConfidential,
+                //             SuperConfidentila: item.SuperConfidentila,
+                //             HoroscopeStatus: item.HoroscopeStatus,
+                //             HoroscopeImage: item.HoroscopeImage
+                //         });
+                //         data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName });
+                //         // data.push({ label: 'DOB-Height', value: item.DOB + ' -- ' + item.Height, });
+                //         data.push({ label: 'Caste', value: item.MotherTongue + "-" + item.Caste });
+                //         data.push({ label: 'Dor', value: item.DOR });
+                //         data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
+                //         array.push({
+                //             itmArr: data,
+                //             custPhoto: item.ApplicationPhotoPath,
+                //             Custid: item.Cust_ID,
+                //             lastlogin: item.LastLoginDate,
+                //             logincount: item.LoginCount,
+                //             matkteingticket: item.TicketID,
+                //             matchmarktingcount: item.MatchMeetingCount,
+                //             ownername: item.EmpName,
+                //             branch: item.KMPLID,
+                //             reg: item.DOR,
+                //             SAForm: item.SAForm,
+                //             primarynumber: item.ContactNumber,
+                //             primaryemail: item.Email,
+                //             CreatedDate: item.CreatedDate,
+                //             SRCount: item.SRCount,
+                //             PaidAmount: item.PaidAmount,
+                //             ExpiryDate: item.ExpiryDate,
+                //             Points: item.Points,
+                //             mobilestatus: item.CNumberVerStatus,
+                //             emailstatus: item.CEmailVerStatus,
+                //             UserName: item.UserName,
+                //             Reason4InActive: item.Reason4InActive,
+                //             ProfileID: item.ProfileID,
+                //             CountryCodeID: item.CountryCodeID,
+                //             Cust_Family_ID: item.Cust_Family_ID,
+                //             PhotoCount: item.PhotoCount,
+                //             Age: item.Age,
+                //             HeightInCentimeters: item.HeightInCentimeters,
+                //             MaritalStatusID: item.MaritalStatusID,
+                //             CasteID: item.CasteID,
+                //             serviceDate: item.serviceDate,
+                //             bouncedEmailID: item.EmailID,
+                //             bouncedemailentryid: item.Cust_EmailBounceEntryId,
+                //             Cust_NotificationID: item.Cust_NotificationID || item.NotificationID,
+                //             CategoryID: item.CategoryID,
+                //             ActionType: item.ActionType,
+                //             ReadStatus: item.ReadStatus,
+                //             Tickets: item.Tickets,
+                //             TicketID: item.Emp_Ticket_Id || item.Emp_Ticket_ID,
+                //             NoDataFound: model.nodataarray(item.NoDataFound, item.Cust_ID),
+                //             LastModifiedDate: item.LastModifiedDate,
+                //             TicketHisUpdatedDate: item.TicketHisUpdatedDate,
+                //             To_Profile_ID: item.To_Profile_ID,
+                //             TicketOwner: item.TicketOwner,
+                //             Ticketuserid: item.Ticketuserid,
+                //             CountryCode: item.CountryCode,
+                //             PrimaryContact: item.PrimaryContact,
+                //             PriWithoutCode: item.PriWithoutCode,
+                //             EmpReminderID: item.EmpReminderID,
+                //             RemCallType: item.RemCallType,
+                //             RemReminderRefID: item.RemReminderRefID,
+                //             RemRelationName: item.RemRelationName,
+                //             Category: item.Category,
+                //             RemainderBody: item.RemainderBody,
+                //             ReminderCreatedDate: model.todaydate,
+                //             ReminderCreatedDatepopup: $filter('date')(model.todaydate, 'dd-MM-yyyy'),
+                //             EmpAssignedDate: moment(item.EmpAssignedDate).format('DD-MMM-YYYY'),
+                //             TicketAssignedDate: moment(item.TicketAssignedDate).format('DD-MMM-YYYY'),
+                //             NotificationDate: moment(item.NotificationDate).format('DD-MMM-YYYY'),
+                //             inActiveDate: moment(item.InActiveToDate).format('DD-MMM-YYYY'),
+                //             paidclass: item.paid === true || item.paid === 1 ? 1 : 0,
+                //             Date: moment(item.Date).format('DD-MMM-YYYY')
+                //         });
+                //     });
 
+                //     return array;
+                // };
                 model.displayArrayprofile = function(arr, topage) {
                     model.headervisileble = true;
                     var array = [];
@@ -284,10 +372,25 @@
                             HoroscopeImage: item.HoroscopeImage
                         });
                         data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName });
-                        // data.push({ label: 'DOB-Height', value: item.DOB + ' -- ' + item.Height, });
+                        //
+                        data.push({ label: 'DOB(age)', value: item.DOB + '(' + item.Age + ')' });
+                        data.push({ label: 'Height', value: item.Height });
+                        data.push({ label: 'TOB(Star)', value: item.TOB + (item.Star !== null && item.Star !== "" ? " (" + item.Star + ")" : '') });
+                        data.push({ label: 'Place of Birth', value: item.PlaceOfBirth });
+                        data.push({ label: 'Gothram', value: item.Gothram });
+                        //
                         data.push({ label: 'Caste', value: item.MotherTongue + "-" + item.Caste });
-                        data.push({ label: 'Dor', value: item.DOR });
-                        data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
+                        //
+                        data.push({ label: 'Marital Status', value: item.MaritalStatus || item.MaritalStatusID });
+                        data.push({ label: 'Qualification', value: item.qualification });
+                        data.push({ label: 'Profession', value: item.Profession });
+                        data.push({ label: 'Job Location', value: item.JobLocation });
+                        data.push({ label: 'Income(P.M)', value: item.Income !== null && item.Income !== "" ? item.currency + " " + item.Income : "--" });
+                        data.push({ label: 'Father/Mother Native', value: item.FFNative + " / " + item.MFNative });
+                        data.push({ label: 'Property(Lakhs)', value: item.Property });
+                        //
+                        // data.push({ label: 'Dor', value: item.DOR });
+                        //data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
                         array.push({
                             itmArr: data,
                             custPhoto: item.ApplicationPhotoPath,
@@ -350,7 +453,19 @@
                             NotificationDate: moment(item.NotificationDate).format('DD-MMM-YYYY'),
                             inActiveDate: moment(item.InActiveToDate).format('DD-MMM-YYYY'),
                             paidclass: item.paid === true || item.paid === 1 ? 1 : 0,
-                            Date: moment(item.Date).format('DD-MMM-YYYY')
+                            Date: moment(item.Date).format('DD-MMM-YYYY'),
+
+                            //05_10_2017_dashboard
+                            educationspecialisation: item.educationspecialisation,
+                            currency: item.currency,
+                            countrylivingin: item.countrylivingin,
+                            TOB: item.TOB,
+                            SubCaste: item.SubCaste,
+                            Star: item.Star,
+                            Profession: item.Profession,
+                            PlaceOfBirth: item.PlaceOfBirth,
+                            MFNative: item.MFNative,
+                            DOR: item.DOR
                         });
                     });
 

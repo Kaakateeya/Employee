@@ -16,6 +16,7 @@
                  model.templateUrl = "templates/matchFollowupSlide.html";
                  model.config.headettemp = "templates/matchFollowupHeader.html";
                  //  $rootScope.colorurl = 'matchColor';
+                 model.activetab = 1;
                  scope.$on("$destroy", vm.destroy);
                  model.isDisabledsubmit = false;
              };

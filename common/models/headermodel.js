@@ -133,6 +133,10 @@
                     model.configheader.headettemp = "topdashboardheader.html";
                     model.slideshowheader(1, 10);
                 };
+                model.closenotificationdasbd = function() {
+                    model.notificationarray = [];
+                    Notification.clearAll();
+                };
                 model.slidebind = function(old, news, array) {
                     if (parseInt(model.topageheder) - parseInt(news) === 4) {
                         model.slideshowheader((model.topageheder) + 1, (model.topageheder) + 10);

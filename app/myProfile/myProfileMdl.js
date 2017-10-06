@@ -190,7 +190,7 @@
                         data.push({ label: 'TOB(Star)', value: item.TOB + (item.Star !== null && item.Star !== "" ? " (" + item.Star + ")" : '') });
                         data.push({ label: 'Place of Birth', value: item.PlaceOfBirth });
                         data.push({ label: 'Gothram', value: item.Gothram });
-                        data.push({ label: 'Caste', value: item.Caste });
+                        data.push({ label: 'Caste', value: item.mothertongue + "-" + item.Caste });
                         data.push({ label: 'Marital Status', value: item.MaritalStatus || item.MaritalStatusID });
                         // data.push({ label: 'Star', value: item.Star });
                         data.push({ label: 'Qualification', value: item.qualification });
