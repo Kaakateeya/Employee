@@ -443,10 +443,10 @@
                         model.Fromsurname=slideobj.Tosurname;
                         model.Tosurname=slideobj.Fromsurname;
                     }
+                    model.logidmatchfollowup=slideobj.Expressinterestlogid;
                     model.ServiceDate = slideobj.ServiceDate;
                     model.selfname = selfname;
                     model.selfemail = selfemail;
-
                     model.ticketstatusforemail = ticketStatusId.trim();
                     model.genderforemail = gender;
                     model.tointerestname = Name;
@@ -508,13 +508,22 @@
                             textalert = 'Close Ticket Updated ';
                             break;
                         default:
-                            textalert = type;
+                            textalert = type;  
                             break;
                     }
                     return textalert;
                 };
                 model.ActionSubmit = function(obj, str, intrstType) {
-                    debugger;
+                      ////
+                    if(model.typeOfCtrl==='1' || model.typeOfCtrl==='0')
+                    {
+                        var status=model.typeOfCtrl==='1'?'I':'NI';
+                        helpService.matchacceptrejectexpressinterest(model.fromcustidselef, model.tocustidself, model.logidmatchfollowup, status, parseInt(model.empid)).then(function(response) {
+                            if (response.data === parseInt(1)) {
+                            } else {
+                            }
+                        });
+                    }
                     obj.CallDiscussion = obj.CallDiscussion;
                     var alertmsg = '',
                         replyTypedisplay = '';
@@ -624,6 +633,8 @@
                         //     inputObj.CallDiscussion = model.txtAllcallDiscusionemail;
                         // }
                         model.ActionSubmit(inputObj, 'Incoming', obj.rbtnReplyType);
+                        //////
+                
                     }
                 };
                 model.outCallsSubmit = function(obj) {
@@ -818,7 +829,7 @@
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'You have already skipped this profile', 3000);
                     } else {
                         if (status === "NI") {
-                            helpService.acceptrejectexpressinterest(fromcust_id, tocustid, logid, status, parseInt(model.empid)).then(function(response) {
+                            helpService.matchacceptrejectexpressinterest(fromcust_id, tocustid, logid, status, parseInt(model.empid)).then(function(response) {
                                 if (response.data === parseInt(1)) {
                                     if (flag === 'From') {
                                         slide.isSkippedfrom = true;
