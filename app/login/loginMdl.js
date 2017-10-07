@@ -10,7 +10,7 @@
             model.usernameemployee = false;
             model.usernameemployeepassword = false;
             model.init = function() {
-
+                model.testJWT();
                 model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 // authSvc.getmacaddress();
                 authSvc.getClientIp();
