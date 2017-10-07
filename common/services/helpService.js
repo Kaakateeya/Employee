@@ -20,6 +20,9 @@ app.service('helperservice', ['$http', function(http) {
     this.acceptrejectexpressinterest = function(fromid, toid, logid, type, empid) {
         return http.get(app.apiroot + 'DashboardRequest/getInsertCustomerExpressinterest', { params: { fromcustid: fromid, tocustid: toid, logID: logid, interstTYpe: type, empid: empid } });
     };
+    this.matchacceptrejectexpressinterest = function(fromid, toid, logid, type, empid) {
+        return http.get(app.apiroot + 'EmployeeReportPage/getInsertMatchfollowupExpressinterest', { params: { fromcustid: fromid, tocustid: toid, logID: logid, interstTYpe: type, empid: empid } });
+    };
     this.getipAddressReturn = function() {
         return http.get(app.apiroot + 'StaticPages/getipAddressReturn', { params: {} });
     };

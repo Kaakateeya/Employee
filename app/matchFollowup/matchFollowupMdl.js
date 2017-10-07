@@ -414,8 +414,9 @@
                     });
                 };
                 model.openActionPopup = function(ticketID, profileID, number, fromcustid, tocustid, ticketStatusId, ToProfileID, Name,
-                    gender, selfname, selfemail, slideobj, flagtype) {
+                    gender, selfname, selfemail, slideobj, flagtype, toemail) {
                     model.bindreplytype();
+                    model.activetab = 1;
                     model.emailresendflag = 0;
                     model.flagtype = flagtype;
                     if (flagtype === 'from') {
@@ -427,6 +428,9 @@
                         model.FromOnlineMembershipExpiryDate = slideobj.FromOnlineMembershipExpiryDate;
                         model.fromcustidselef = fromcustid;
                         model.tocustidself = tocustid;
+                        model.Fromsurname=slideobj.Fromsurname;
+                        model.Tosurname=slideobj.Tosurname;
+                        
                     } else {
                         model.toempname = slideobj.fromempname;
                         model.fromempname = slideobj.toempname;
@@ -436,11 +440,13 @@
                         model.FromOnlineMembershipExpiryDate = slideobj.ToonlineExpiryDate;
                         model.fromcustidselef = fromcustid;
                         model.tocustidself = tocustid;
+                        model.Fromsurname=slideobj.Tosurname;
+                        model.Tosurname=slideobj.Fromsurname;
                     }
+                    model.logidmatchfollowup=slideobj.Expressinterestlogid;
                     model.ServiceDate = slideobj.ServiceDate;
                     model.selfname = selfname;
                     model.selfemail = selfemail;
-
                     model.ticketstatusforemail = ticketStatusId.trim();
                     model.genderforemail = gender;
                     model.tointerestname = Name;
@@ -449,7 +455,9 @@
                     model.actobj.ddlOutreceivedby = 39;
                     model.actobj.ddlInCallresult = model.actobj.ddlOutcallresultout = 417;
                     model.ActionProfileID = profileID;
-                    model.headertextpop = "Mail going to <label style='color: #da0d0d;font-weight: 800;'>===></label> " + model.selfname + "," + model.ActionProfileID + "(" + model.selfemail + ")";
+                    model.toemailidforemail = toemail;
+                    model.groombride = model.genderforemail === 1 ? 'Groom' : 'Bride';
+                    model.headertextpop = "Mail going to " + model.groombride + "<label style='color: #da0d0d;font-weight: 800;'>===></label> " + Name + "," + ToProfileID + "(" + toemail + ")";
                     model.RelationshipChange(39, 'In');
                     model.RelationshipChange(39, 'Out');
                     model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = '';
@@ -461,7 +469,7 @@
                     model.actobj.rbtnReplyTypememo = model.actobj.rbtnReplyTypeClose = '';
                     model.actobj.txtcloseReason = model.actobj.txtMemmemocalldiscussion = '';
                     //model.actobj.ddlMemAssign = parseInt(model.empid);
-                    model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = '1';
+                    model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = model.actobj.rbtnFollowUpTicketout=model.actobj.rbtnFollowUpTicket='0';
                     model.incommingbtntext = "Incoming Call";
                     model.outgoingcallbtntext = "Outgoing Call";
                     model.internalmemobtntext = "Internal Memo";
@@ -476,14 +484,14 @@
                     model.mailInput = {
                         // Notes: obj.CallDiscussion,
                         EMPID: model.empid,
-                        profileid: profileID,
+                        profileid: ToProfileID,
                         LTicketID: ticketID,
                         HistoryUpdate: 2,
-                        FromCustID: fromcustid,
-                        TocustID: tocustid,
+                        FromCustID: tocustid,
+                        TocustID: fromcustid,
                         TicketStatusID: model.checkStatusID(ticketStatusId),
-                        FromProfileID: profileID,
-                        ToProfileID: ToProfileID
+                        FromProfileID: ToProfileID,
+                        ToProfileID: profileID
                     };
                     modelpopupopenmethod.showPopup('Actions.html', model.scope, 'lg', 'Actioncls');
                 };
@@ -500,12 +508,22 @@
                             textalert = 'Close Ticket Updated ';
                             break;
                         default:
-                            textalert = type;
+                            textalert = type;  
                             break;
                     }
                     return textalert;
                 };
                 model.ActionSubmit = function(obj, str, intrstType) {
+                      ////
+                    if(model.typeOfCtrl==='1' || model.typeOfCtrl==='0')
+                    {
+                        var status=model.typeOfCtrl==='1'?'I':'NI';
+                        helpService.matchacceptrejectexpressinterest(model.fromcustidselef, model.tocustidself, model.logidmatchfollowup, status, parseInt(model.empid)).then(function(response) {
+                            if (response.data === parseInt(1)) {
+                            } else {
+                            }
+                        });
+                    }
                     obj.CallDiscussion = obj.CallDiscussion;
                     var alertmsg = '',
                         replyTypedisplay = '';
@@ -516,11 +534,12 @@
                         CallResult: obj.CallResult,
                         PhoneNum: obj.PhoneNum,
                         CallDiscussion: obj.CallDiscussion,
-                        DisplayStatus: obj.DisplayStatus,
+                        DisplayStatus: parseInt(obj.DisplayStatus),
                         TicketID: model.ActionTicket,
                         EmpID: model.empid,
                         // Replaytypeid: obj.Replaytypeid,
-                        AssignedEmpID: obj.AssignedEmpID
+                        AssignedEmpID: obj.AssignedEmpID,
+                        FollowupStatus:parseInt(obj.FollowupStatus)
                     };
                     matchFollowupServices.ActionSubmit(inputObj).then(function(response) {
                         model.isDisabledsubmit = false;
@@ -606,13 +625,16 @@
                             CallResult: obj.ddlInCallresult,
                             PhoneNum: obj.txtInCalltelephonenumber,
                             CallDiscussion: obj.txtInCalldiscussion,
-                            // DisplayStatus: obj.rbtnInDisplay,
-                            DisplayStatus: 1
+                            DisplayStatus: obj.rbtnInDisplay,
+                            FollowupStatus:obj.rbtnFollowUpTicket
+                            //DisplayStatus: 1
                         };
                         // if (model.activebutton === 'bothside') {
                         //     inputObj.CallDiscussion = model.txtAllcallDiscusionemail;
                         // }
                         model.ActionSubmit(inputObj, 'Incoming', obj.rbtnReplyType);
+                        //////
+                
                     }
                 };
                 model.outCallsSubmit = function(obj) {
@@ -633,8 +655,9 @@
                             CallResult: obj.ddlOutcallresultout,
                             PhoneNum: obj.txtOutCalltelephonenumber,
                             CallDiscussion: obj.txtOutCalldiscussion,
-                            // DisplayStatus: obj.rbtnOutDisplay,
-                            DisplayStatus: 1
+                            DisplayStatus: obj.rbtnOutDisplay,
+                            FollowupStatus:obj.rbtnFollowUpTicketout
+                            // DisplayStatus: 1
                         };
                         model.ActionSubmit(inputObj, 'Out going', obj.rbtnReplyTypeout);
                     }
@@ -685,58 +708,55 @@
                     model.rbtnnotIntrst = '';
                     model.typeOFCall = type;
                     model.typeOfCtrl = val;
-                    var genderid = model.genderforemail === 1 ? 'Mr.' : 'Ms.';
-                    var she = model.genderforemail === 1 ? 'He' : 'She';
-                    var her = model.genderforemail === 1 ? 'his' : 'her';
-                    var herhim = model.genderforemail === 1 ? 'him' : 'her';
+                    var genderid = model.genderforemail === 1 ? 'Ms.' : 'Mr.';
+                    var she = model.genderforemail === 1 ? 'She' : 'He';
+                    var her = model.genderforemail === 1 ? 'her' : 'his';
+                    var herhim = model.genderforemail === 1 ? 'her' : 'him';
                     model.emailmanagers = "<br><br><div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style='color:black;text-align: justify;'>Your relationship manager " +
-                        model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.tointerestname + " relationship manager " + model.toempname +
+                        model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" +  model.Tosurname + " relationship manager " + model.toempname +
                         "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
                     if (val === '1') {
                         model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Interested";
                         if (model.activebutton === 'bothside') {
                             model.txtAllcallflag = 1;
                             model.mailInput.TicketStatusID = "bothSideinterest";
-                            model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;text-align: justify;'>" + genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
+                            model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;text-align: justify;'>" + genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
                                 "<div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style='color:black;text-align: justify;'>Your relationship manager " +
-                                model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.tointerestname + " relationship manager " + model.toempname +
+                                model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" +  model.Tosurname + " relationship manager " + model.toempname +
                                 "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
-                            model.txtAllcallDiscusion = genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
+                            model.txtAllcallDiscusion = genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
 
                         } else {
                             if (model.fromticketstatusemail === 'I' && model.toticketstatusemail === 'V') {
 
                                 model.mailInput.TicketStatusID = "Viewed";
+                                model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
+                                    " and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
+                                    "and please give your opinion in the options provided in the profile.";
 
-                                model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
-                                    " We have noticed that " + she + " had viewed your profile but yet to give " + her + " opinion. " +
-                                    her + " relationship manager will contact  " + herhim + " and get back to you with " + her + " opinion at the earliest.";
                             } else if (model.fromticketstatusemail === 'I' && model.toticketstatusemail === 'NV') {
                                 //resend
                                 model.emailresendflag = 1;
-
-                                //model.mailInput.TicketStatusID = "bothSideinterest";
                                 model.TicketStatusID2 = "Resend";
                                 model.mailInput.TicketStatusID = "NotViewed";
-                                // model.Resendmail(model.tocustidself, model.fromcustidselef, model.toprofileidinterest, model.ActionProfileID, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
-                                model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
+                                model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
                                     " We have noticed that " + she + " is yet to view your profile and we have resent your profile to " + her + " now and " +
                                     "have also sent a mobile message and we will also try to reach  " + her + " over phone to inform the same";
                             } else if (model.fromticketstatusemail === 'V' && model.toticketstatusemail === 'I') {
                                 model.mailInput.TicketStatusID = "onsideinterest";
-                                model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
-                                    " and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
-                                    "and please give your opinion in the options provided in the profile.";
+                                model.txtAllcallDiscusion = genderid + model.Fromsurname+ " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
+                                    " We have noticed that " + she + " had viewed your profile but yet to give " + her + " opinion. " +
+                                    her + " relationship manager will contact  " + herhim + " and get back to you with " + her + " opinion at the earliest.";
                             } else if (model.fromticketstatusemail === 'I' && model.toticketstatusemail === 'I') {
                                 model.txtAllcallflag = 1;
                                 model.mailInput.TicketStatusID = "bothSideinterest";
-                                model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;text-align: justify;'>" + genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
+                                model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;text-align: justify;'>" + genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
                                     "<div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style=color:black;text-align: justify;'>Your relationship manager " +
-                                    model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.tointerestname + " relationship manager " + model.toempname +
+                                    model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.Fromsurname + " relationship manager " + model.toempname +
                                     "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
-                                model.txtAllcallDiscusion = genderid + model.tointerestname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
+                                model.txtAllcallDiscusion = genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
                             } else {
-                                model.txtAllcallDiscusion = genderid + model.tointerestname + " (" + model.toprofileidinterest + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
+                                model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
                                     "We are resending " + her + " profile for the ease of viewing and please give your opinion in the options provided in the profile";
                             }
                         }
@@ -744,18 +764,16 @@
                     } else if (val === '2') {
                         model.mailInput.TicketStatusID = "Pending";
                         model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Pending";
-                        model.txtAllcallDiscusion = genderid + model.tointerestname + " viewed your full profile and is seeking Three more days to update " + her + "  opinion." +
+                        model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your full profile and is seeking Three more days to update " + her + "  opinion." +
                             "Meanwhile lets look into other options.";
                         model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else {
                         model.mailInput.TicketStatusID = "Notinterest";
                         model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Close Ticket";
-                        model.txtAllcallDiscusion = genderid + model.tointerestname + " viewed your  profile and did not respond positive." +
+                        model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your  profile and did not respond positive." +
                             "Lets proceed further with our new search options.";
-                        // model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = '';
                         model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     }
-                    //modelpopupopenmethod.showPopupphotopoup('notIntrstPopup.html', model.scope, 'md', 'notintrstCls');
                 };
                 model.notIntrstchangeBind = function(val) {
                     if (model.typeOfCtrl === '0') {
@@ -793,7 +811,7 @@
                     if (textint === 'internal') {
                         model.headertextpop = "Name:" + model.selfname + " <label style='color: #da0d0d;font-weight: 800;'>===></label> Updated Internal Memo  Will Not Shared With the Customer";
                     } else {
-                        model.headertextpop = "Mail going to <label style='color: #da0d0d;font-weight: 800;'>===></label> " + model.selfname + "," + model.ActionProfileID + "(" + model.selfemail + ")";
+                        model.headertextpop = "Mail going to " + model.groombride + "<label style='color: #da0d0d;font-weight: 800;'>===></label> " + model.tointerestname + "," + model.toprofileidinterest + "(" + model.toemailidforemail + ")";
                     }
                     model.incommingbtntext = "Incoming Call";
                     model.outgoingcallbtntext = "Outgoing Call";
@@ -811,7 +829,7 @@
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'You have already skipped this profile', 3000);
                     } else {
                         if (status === "NI") {
-                            helpService.acceptrejectexpressinterest(fromcust_id, tocustid, logid, status, parseInt(model.empid)).then(function(response) {
+                            helpService.matchacceptrejectexpressinterest(fromcust_id, tocustid, logid, status, parseInt(model.empid)).then(function(response) {
                                 if (response.data === parseInt(1)) {
                                     if (flag === 'From') {
                                         slide.isSkippedfrom = true;
@@ -835,8 +853,19 @@
                     }
                     return html;
                 };
+                model.classbtnlogin = function(fromempid) {
+                    var classbtn = 'btnwarningsout';
+                    if (parseInt(fromempid) === parseInt(model.empid)) {
+                        classbtn = 'btnsuccessout';
+                    } else {
+                        classbtn = 'btnwarningsout';
+                    }
+                    return classbtn;
+                };
                 return model;
+
             }
+
         ]);
 
 })(angular);

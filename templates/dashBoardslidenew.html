@@ -1,0 +1,405 @@
+<div class="clearfix">
+</div>
+<br>
+<div ng-hide="false">
+    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" ng-style="{'margin-top':slide.PhotoCount===0?'14px':''}">
+        <div style="margin-left:60px;" class="edit_page_details_item_descprofile clearfix" ng-repeat="slidedata in slide.itmArr" ng-if="slidedata.label!=='backendFields'">
+            <h6> <span style="font-weight: bold;">{{slidedata.label}}</span></h6>
+            <h5>
+                <div style="color:Black;"> <span>{{slidedata.value}}</span> </div>
+                <span ng-if="slidedata.label=='ProfileID'">&nbsp;<a ng-click="viewfullprofile(slidedata.ProfileID)" href="javascript:void(0);" ng-class="slidedata.paid==='1' || slidedata.paid===1?'paidCls':'unpaidCls'" >{{slidedata.ProfileID}}</a> {{slidedata.KMPLID}} {{(slidedata.IsConfidential===1) ||(slidedata.IsConfidential==='1')?'C':''}}  
+              {{(slidedata.SuperConfidentila==='1') ||(slidedata.SuperConfidentila===1)?'SC':''}}  
+                <input ng-click="horoscopeimage(slidedata.HoroscopeImage,'horo')" ng-show="slidedata.HoroscopeStatus===1" src='src/images/ico_horoscope.jpg' style='height:20px;width:25px;' type='image'>
+                  <button ng-if="model.typeofslidedate=='Service Date'" class="" style="background-color: #ff6014;border-radius: 3px;border-color: #ff6014;background: #ff6014;color: white;border: none;
+                       height: 27px;" ng-click="model.nomatcheslink(slide)" ng-show="model.typeofslidedate=='Service Date'">No Matches</button>
+                            </span>
+                <div class="clearfix">
+                </div>
+            </h5>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" style="margin-top: -4px;">
+        <div class="row" style="margin-right: 128px;">
+            <img ng-click="slidepopup(slide.Custid)" ng-src="{{slide.custPhoto}}" class="image" style="cursor: pointer;width:100px;
+            height:100px;" />
+            <br>
+            <div ng-if="slide.PhotoCount!==0" class="col-lg-8 col-lg-offset-2"><a href="javascript:void(0)"><span style="color:Black;font-size:9pt;">No of Photos {{slide.PhotoCount}}</span></a></div>
+            <div ng-if="slide.PhotoCount===0" class="col-lg-8 col-lg-offset-2"><a href="javascript:void(0)" ng-click="photorequest(slide.ProfileID,model.empid,'')"><span style="color:#3030d8;font-size:10pt;">Photo Request</span></a></div>
+        </div>
+        <br>
+        <div class="row" style="border: 1px solid #908383;border-radius: 3px;width: 93%;">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                <div class="edit_page_details_item_descsearchmyprofile clearfix">
+                    <h6> <span style="font-weight: bold;">Primary Email 
+                        </span></h6>
+                    <h5>
+                        <div style="color:Black;">
+                            <span>{{slide.primaryemail}}
+                                 <i style="line-height:0;" ng-class="slide.emailstatus===true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></i>
+                                    <a href="javascript:void(0)" ng-hide="slide.emailstatus===true" ng-click="verifymail(slide.Custid)">Verify mail</a>
+                                </span>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+                <div class="edit_page_details_item_descsearchmyprofile clearfix">
+                    <h6> <span style="font-weight: bold;"> Primary Mobile
+                           </span></h6>
+                    <h5>
+                        <div style="color:Black;">
+                            <span>{{slide.PrimaryContact}}
+                                  <i style="line-height:0;" ng-class="slide.mobilestatus===true?'fa fa-check-circle':'glyphicon glyphicon-ok'"></i>
+                                 <a href="javascript:void(0)" ng-hide="slide.mobilestatus===true" ng-click="sendMobileCode(slide)">Verify mobile</a>
+                                  </span>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row" style="border: 1px solid #908383;border-radius: 3px;width: 93%;">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+
+
+                <div class="edit_page_details_item_descsearchmyprofile clearfix" ng-if="model.typeofslidedate">
+                    <h6> <span style="font-weight: bold;">{{model.typeofslidedate}}
+                            </span></h6>
+                    <h5>
+                        <div style="color:Black;">
+                            <!--<span ng-show="model.typeofslidedate!=='Ticket Last Updated' && model.typeofslidedate!=='Reminder Date'">{{slide.EmpAssignedDate}}
+                                    </span>-->
+                            <span ng-show="model.typeofslidedate==='Reminder Date'">
+                                        {{slide.ReminderCreatedDate | date: "dd-MM-yyyy"}}
+                                     <a class="alllinkscolor" href="javascript:void(0)" ng-click="model.changereminders(slide)" ng-if="slide.ReminderCreatedDate!==null && slide.ReminderCreatedDate!=='' && slide.ReminderCreatedDate!==undefined">Change Reminder</a>
+                                    </span>
+                            <span ng-show="model.typeofslidedate==='Ticket Last Updated'">{{slide.TicketHisUpdatedDate}}</span>
+                            <span ng-show="model.typeOfAssign==='Tickets'">{{slide.TicketAssignedDate}}</span>
+                            <span ng-show="model.typeOfAssign==='Profiles'">{{slide.EmpAssignedDate}}</span>
+                            <span ng-show="model.typeOfAssign==='notification'">{{slide.Date}}</span>
+                            <span ng-show="model.typeOfAssign==='noserviceDate' || model.typeOfAssign==='proceeding'">{{slide.CreatedDate}}
+                                                            </span>
+                            <span ng-show="model.typeofslidedate==='Registration Date'">{{slide.reg}}</span>
+
+                            <span ng-show="model.typeofslidedate==='Inactive Date'">{{slide.inActiveDate}}</span>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+
+                <div class="edit_page_details_item_descsearchmyprofile clearfix" ng-show="model.typeofslidedate ==='Inactive Date'">
+                    <h6> <span style="font-weight: bold;color:Red;"> Inactive Reason 
+                       </span></h6>
+                    <h5>
+                        <div style="color:Red;">
+                            <span>{{slide.Reason4InActive}}     
+                              </span>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+                <div class="edit_page_details_item_descsearchmyprofile clearfix" ng-show="model.typeofslidedate ==='Inactive Date'">
+                    <h6> <span style="font-weight: bold;color:Red;">Active This Profile
+                       </span></h6>
+                    <h5>
+                        <div>
+                            <a href="javascript:void(0)" ng-click="model.changeProfileidstatus(slide.ProfileID)">Click here to Active this Profile </a>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+
+
+                <div class="edit_page_details_item_descsearchmyprofile clearfix" ng-show="model.typeofslidedate ==='Bounced On'">
+                    <h6> <span style="font-weight: bold;color:Red;"> Bounced Email
+                         </span></h6>
+                    <h5>
+                        <div style="color:Red;">
+                            <span>{{slide.bouncedEmailID}}
+                                <a href="javascript:void(0)" ng-click="updatebouncedemail(slide)">Update Email</a>
+                                </span>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+
+
+
+                <div class="edit_page_details_item_descsearchmyprofile clearfix" ng-show="model.typeofslidedate==='proceeding Date'">
+                    <h6> <span style="font-weight: bold;color:Red;"> Proceeding Profile
+                         </span></h6>
+                    <h5>
+                        <div style="color:Red;">
+                            <span>{{slide.To_Profile_ID}}
+                                </span>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+
+                <div class="edit_page_details_item_descsearchmyprofile clearfix" ng-show="model.typeofslidedate ==='Notification Date'">
+                    <h6> <span style="font-weight: bold;color:Red;">Notification
+                         </span></h6>
+                    <h5>
+                        <div style="color:Red;">
+                            <span>{{slide.ActionType}}
+                             </span>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+
+                <div class="edit_page_details_item_descsearchmyprofile clearfix" ng-show="model.typeofslidedate ==='Notification Date'">
+                    <div>
+                        <a href="javascript:void(0)" ng-click="notificationread(slide,$parent.$index,$parent.$parent.$index)">Close The Notification</a>
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                </div>
+                <div class="edit_page_details_item_descsearchmyprofile clearfix" ng-show="model.typeofslidedate ==='Registered Date' && model.typeOfAssign!=='nodatacustomer'">
+                    <h6> <span style="font-weight: bold;color:Red;">NoDataFound
+                         </span></h6>
+                    <h5>
+                        <div style="color:Red;width: 319px;float:left;">
+                            <span ng-repeat="links in slide.NoDataFound">
+                                    <a href="{{links.href}}" target="_blank">{{links.linkname}}&nbsp;&nbsp;</a>
+                           </span>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+                <div class="edit_page_details_item_descsearchmyprofile clearfix">
+                    <h6> <span style="font-weight: bold;">DOR</span></h6>
+                    <h5>
+                        <div style="color:Black;">
+                            <span ng-if='(slide.DOR !== null) && (slide.DOR !=="") && (slide.DOR !== undefined) && (slide.DOR !== "--")'>{{slide.DOR}}</span>
+
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+                <div class="edit_page_details_item_descsearchmyprofile clearfix">
+                    <h6> <span style="font-weight: bold;">Last Login</span></h6>
+                    <h5>
+                        <div style="color:Black;">
+                            <span ng-if='(slide.lastlogin !== null) && (slide.lastlogin !== "") && (slide.lastlogin !== undefined)'>{{slide.lastlogin}}<span ng-if="slide.logincount!==null">({{slide.logincount}})</span></span>
+                            <a class="alllinkscolor" ng-if='(slide.lastlogin === null)|| (slide.lastlogin === "") || (slide.lastlogin === undefined)' href='javascript:void(0)' ng-click='forgetpassword(slide.ProfileID)'>forgot password</a>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+                <div class="edit_page_details_item_descsearchmyprofile clearfix">
+                    <h6> <span style="font-weight: bold;">Send/Recv</span></h6>
+                    <h5>
+                        <div style="color:Black;">
+                            <a class="alllinkscolor" href='javascript:void(0)' ng-class="slide.SRCount==='No Service'?'disablelinkclsnoservice':''" ng-click="communicationlogredirect(slide.ProfileID)">{{slide.SRCount}}</a>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+                <div class="edit_page_details_item_descsearchmyprofile clearfix">
+                    <h6> <span style="font-weight: bold;">Payment</span></h6>
+                    <h5>
+                        <div style="color:Black;">
+                            <a class="alllinkscolor" href='javascript:void(0)' ng-class="{'disablelinkcls':slide.PaidAmount==='Not Paid'}" ng-click='paymentpage(slide.ProfileID)'>{{slide.PaidAmount}}</a>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+                <div class="edit_page_details_item_descsearchmyprofile clearfix" ng-if="slide.PaidAmount!=='Not Paid'">
+                    <h6> <span style="font-weight: bold;">Expiry Date</span></h6>
+                    <h5>
+                        <div style="color:Black;">
+                            <a class="alllinkscolor" href='javascript:void(0)' ng-click='paymentpage(slide.ProfileID)'>{{slide.ExpiryDate}}({{slide.Points}})</a>
+                            <a class="alllinkscolor" style="text-decoration: underline;margin-left: 4px;font-size: 16px;" ng-if="model.headerhtml==='Payment Expired Customers'" href='javascript:void(0)' ng-click='model.paymenteditpointsdate(slide)'>Edit</a>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+                <div class="edit_page_details_item_descsearchmyprofile clearfix">
+                    <h6> <span style="font-weight: bold;">{{model.typeOfAssign==='proceeding'?'MF Ticket':'Marketing Ticket'}}     </span></h6>
+                    <h5>
+                        <div style="color:Black;">
+                            <a ng-click="tickethistoryupdate(slide.TicketID,(model.typeOfAssign==='proceeding'?'match':'market'))" class="alllinkscolor" href='javascript:void(0)'>{{slide.matkteingticket}}</a>
+                            <span>({{slide.TicketOwner}}-{{slide.Ticketuserid}})</span>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+                <div class="edit_page_details_item_descsearchmyprofile clearfix">
+                    <h6> <span style="font-weight: bold;">Matcch Meetings
+                </span></h6>
+                    <h5>
+                        <div style="color:Black;">
+                            <a class="alllinkscolor" ng-click="communicationlogredirect(slide.ProfileID)" href="javascript:void(0)" ng-class="{'disablelinkcls':slide.matchmarktingcount==='0' || slide.matchmarktingcount===0}"> {{slide.matchmarktingcount}}</a>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+
+                <div class="edit_page_details_item_descsearchmyprofile clearfix">
+                    <h6> <span style="font-weight: bold;">{{slide.SAForm!==null && slide.SAForm!=='--' && (slide.SAForm).trim()!=='' ? "View SA Form":"SA Form"}}
+                        </span></h6>
+                    <h5>
+                        <div style="color:Black;">
+                            <a class="alllinkscolor" ng-show="slide.SAForm!==null && slide.SAForm!=='--' && (slide.SAForm).trim()!==''" href="javascript:void(0)" ng-click="horoscopeimage(slide.SAForm,'SA')">View SA Form </a>
+                            <a href="javascript:void(0)" ng-click="saformupload(slide.ProfileID)" class="alllinkscolor" ng-show="slide.SAForm===null || slide.SAForm==='--' || (slide.SAForm).trim()===''">Upload SA Form</a>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+
+                <div class="edit_page_details_item_descsearchmyprofile clearfix" ng-show="model.dobshow">
+                    <h6> <span style="font-weight: bold;"> Last ServiceDate
+                    </span></h6>
+                    <h5>
+                        <div style="color:Black;">
+                            <span>{{slide.Servicedate}}
+                            </span>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="clearfix">
+</div>
+<!-- // -->
+<!-- <div class="row container">
+    <ul>
+        <div class="col-lg-6" style="border-radius: 20px; border-right: 1px solid maroon;">
+            <div class="row">
+                <div class="col-lg-3 col-lg-offset-1">
+                    <div>
+                        <div class="text-center"></div>
+                        <div> <img src="http://d16o2fcjgzj2wp.cloudfront.net/Images/EmployeeImages/HD024_EmplyeeImage/HD024_EmplyeeImage.jpg" class="center-block" height="57px" width="57px"></div>
+                        <div class="row ng-binding">Jhansi-9848165533-</div>
+                    </div><br>
+                </div>
+                <div class="col-lg-7 col-lg-offset-1">
+                    <div style="padding-bottom: 5px;"> <br><a ng-show="model.ProceededProfiles(slide.FRomSerivceCount,slide.fromempname);" href="javascript:void(0);" ng-click="model.serviceCountProfiles(slide.fromcust_id);" aria-hidden="false" class=""> Proceed Other Profiles</a> </div>
+                    <img ng-click="slidepopup(slide.fromcust_id)" style="min-width:250px;min-height:250px;" ng-src="http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_114268_Images/Img3_Images/211142687_ApplicationPhoto.jpg" class="img-thumbnail" role="button"
+                        tabindex="0" src="http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_114268_Images/Img3_Images/211142687_ApplicationPhoto.jpg">
+                    <div class="text-center"> <br>
+                        <div class="row">
+                            <div class="col-lg-10"><b class="ng-binding">DurgaShailaja  Yedlapalli(<b class="ng-binding"><a href="javascript:void(0)" ng-click="model.viewProfileRedirect(slide.FromProfileid);" class="ng-binding">211142687</a> - HD)</b></b>
+                            </div>
+
+                            <div class="col-lg-2 ng-scope" ng-if="slide.FromticketStatusIDb.trim()==='I' || slide.FromticketStatusIDb.trim()==='I'"><img ng-src="src/images/heartgrren.gif" style="width:28px;" src="src/images/heartgrren.gif"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><b class="maroon">Mobile:</b> </div>
+                            <div class="col-lg-9"><b class="ng-binding">8500013048</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><b class="maroon">Email:</b> </div>
+                            <div class="col-lg-9"><b class="ng-binding">shailaja.yedlapalli@gmail.com</b></div>
+                        </div>
+                        <div class="row"></div>
+                        <div class="row">
+                            <div class="col-lg-6"> <b class="maroon">Service Date</b> <b class="row ng-binding">13 Aug 2017 17:46:43</b></div>
+                            <div class="col-lg-6"> <b class="maroon">Proceed Date </b> <b class="row ng-binding">13 Aug 2017 17:46:43</b></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+        </div>
+        <div class="col-lg-6" style="border-radius: 20px; border-left: 1px solid maroon;">
+            <div class="row">
+                <div class="col-lg-7 col-lg-push-1">
+                    <div style="padding-bottom: 5px;"> <br><a ng-show="model.ProceededProfiles(slide.ToSerivceCount,slide.toempname);" href="javascript:void(0);" ng-click="model.serviceCountProfiles(slide.tocustid);" aria-hidden="true" class="ng-hide"> Proceed Other Profiles</a> </div>
+                    <img id="tocustimg" ng-click="slidepopup(slide.tocustid)" style="min-width:250px;min-height:250px;" ng-src="http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_79135_Images/Img1_Images/310791350_ApplicationPhoto.jpg" alt="" class="center-block img-thumbnail"
+                        role="button" tabindex="0" src="http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_79135_Images/Img1_Images/310791350_ApplicationPhoto.jpg">
+                    <div class="text-center"> <br>
+                        <div class="row">
+                            <div class="col-lg-10"><b class="ng-binding">Prithvi  Manduva    (<b class="ng-binding"><a href="javascript:void(0)" ng-click="model.viewProfileRedirect(slide.Toprofileid);" class="ng-binding">310791350</a> - WB)V</b></b>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><b class="maroon">Mobile:</b> </div>
+                            <div class="col-lg-9"><b class="ng-binding">9963998863</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><b class="maroon">Email:</b> </div>
+                            <div class="col-lg-9"><b class="ng-binding">Praneet.manoj@gmail.com</b></div>
+                        </div>
+                        <div class="row"></div>
+                        <div class="row">
+                            <div class="col-lg-6"> <b class="maroon">Service Date</b> <b class="row ng-binding">13 Aug 2017 17:46:43</b></div>
+                            <div class="col-lg-6"> <b class="maroon">Proceed Date </b> <b class="row ng-binding">--</b></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3  col-lg-push-1">
+                    <div>
+                        <div class="text-center"></div>
+                        <div> <img src="http://d16o2fcjgzj2wp.cloudfront.net/Images/EmployeeImages/EL003_EmplyeeImage/EL003_EmplyeeImage.jpg" class="center-block" height="57px" width="57px"></div>
+                        <div class="row ng-binding">Sailaja-9848031931</div>
+                    </div><br>
+                </div>
+            </div>
+            <br>
+        </div>
+    </ul>
+</div> -->
+<!-- // -->
+</br>
+<div class="row dashboardpopupdesign">
+    <div class="col-lg-12">
+        <a href='javascript:void(0);' ng-click="pagesredirect('Partner',slide.Custid)" class="dashboardfooterlinks">Edit Partnerpreference</a>
+        <span> | </span>
+        <a href='javascript:void(0);' ng-click="pagesredirect('general',0,slide.ProfileID)" class="dashboardfooterlinks">General search</a>
+        <span> | </span>
+        <a href='javascript:void(0);' ng-click="pagesredirect('general',1,slide.ProfileID)" class="dashboardfooterlinks">Advanced Search</a>
+        <span> | </span>
+        <a href='javascript:void(0);' class="dashboardfooterlinks" ng-click="pagesredirect('searchbycontact',1)">Search By Contact</a>
+        <span> | </span>
+        <a href='javascript:void(0);' class="dashboardfooterlinks" ng-click="pagesredirect('nopage',1)">Delete Profile</a>
+        <span> | </span>
+        <a href='javascript:void(0);' ng-click="pagesredirect('contacts',slide.Custid)" class="dashboardfooterlinks">View Contacts</a>
+        <span> | </span>
+        <a href='javascript:void(0);' ng-click="pagesredirect('myprofile',0,slide.ProfileID)" class="dashboardfooterlinks">My Profile</a>
+        <span> | </span>
+        <a href='javascript:void(0);' ng-click="pagesredirect('marketing',1)" class="dashboardfooterlinks">Marketing Slide Show</a>
+        <span> | </span>
+        <a href='javascript:void(0);' ng-click="pagesredirect('matchfollowup',0)" class="dashboardfooterlinks">Match Followup Slide Show</a>
+        <span> | </span>
+        <a href='javascript:void(0);' ng-click="pagesredirect('nopage',1)" class="dashboardfooterlinks">Create Reminder</a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+<br>
+<script type="text/ng-template" id="marketpopup.html">
+    <div class="modal-body">
+        <market-tickethistory ticketid="model.marketingTicket" showreminder="true"></market-tickethistory>
+    </div>
+</script>
+<script type="text/ng-template" id="matchfollowup.html">
+    <div class="modal-body">
+        <matchfollowup-tickethistory ticketid="model.matchTicket" ticketstatus="model.TicketStatusID" showsendemail="'1'"></matchfollowup-tickethistory>
+    </div>
+</script>
