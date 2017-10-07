@@ -67,15 +67,15 @@
                     </div>
                     <div class="col-lg-offset-1">
                         <div ng-class="slide.FromTicket!==null && slide.FromTicket!==''?'col-lg-5 col-lg-offset-1':'col-lg-4'">
-                            <div  style="float: left;" class="row" ng-if="slide.FromTicket!==null && slide.FromTicket!==''">
+                            <!-- <div style="float: left;" class="row" ng-if="slide.FromTicket!==null && slide.FromTicket!==''">
                                 <label>{{slide.fromempname}}</label>
                             </div>
-                            <div class="clearfix"></div>
-                            <button style="float: left;" type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" ng-class="model.classbtnlogin(slide.FromEmpownerid)" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.ToTicket,slide.FromProfileid,slide.FromMobileNumber,slide.fromcust_id, slide.tocustid, slide.ToticketStatusIDb.trim(), slide.Toprofileid,slide.ToName,slide.togenderid,slide.FromName,slide.FromEmail,slide,'from',slide.TOEmail);">{{slide.fromticketid}}</button>
+                            <div class="clearfix"></div> -->
+                            <button style="float: left;" type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" ng-class="model.classbtnlogin(slide.FromEmpownerid)" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.ToTicket,slide.FromProfileid,slide.FromMobileNumber,slide.fromcust_id, slide.tocustid, slide.ToticketStatusIDb.trim(), slide.Toprofileid,slide.ToName,slide.togenderid,slide.FromName,slide.FromEmail,slide,'from',slide.TOEmail);">{{slide.fromonlyempname}} Ticket</button>
                             <span ng-if="slide.FromTicket!==null && slide.FromTicket!==''" class="glyphicon glyphicon-chevron-right" style=" margin-top: 7px;margin-left: -25px;font-size: 22px;"></span>
                             <button type="button" ng-if="slide.FromTicket===null || slide.FromTicket===''" class="btn btn-success-outline" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.Resendmail(slide.fromcust_id,slide.tocustid,slide.FromProfileid,slide.Toprofileid,slide.FromOfflineExpiryDate,slide.FromOnlineMembershipExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
                             <br>
-                            <label  style="float: left;">{{slide.FromName}}</label>
+                            <label style="float: left;">{{slide.FromName}}</label>
                         </div>
                         <div ng-class="slide.FromTicket!==null && slide.FromTicket!==''?'col-lg-6':'col-lg-8'">
                             <div ng-if="slide.FromTicket===null || slide.FromTicket===''" style="color:maroon">
@@ -145,17 +145,17 @@
                     <br>
                     <div class="text-left">
                         <div ng-class="slide.ToTicket!==null && slide.ToTicket!==''?'col-lg-6':'col-lg-4'">
-                            <div class="row"  ng-if="slide.ToTicket!==null && slide.ToTicket!==''">
+                            <!-- <div class="row" ng-if="slide.ToTicket!==null && slide.ToTicket!==''">
                                 <label>{{slide.toempname}}</label>
                                 <br>
-                            </div>
-                            <span style=" margin-top: 7px;margin-left: -25px;font-size: 22px;float:left;" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" class="glyphicon glyphicon-chevron-left" ></span>
-                            <button type="button" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" ng-class="model.classbtnlogin(slide.ToEmpownerid)" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.FromTicket,slide.Toprofileid,slide.ToMobileNumber, slide.tocustid, slide.fromcust_id,slide.FromticketStatusIDb.trim(), slide.FromProfileid,slide.FromName,slide.fromgenderid,slide.ToName,slide.TOEmail,slide,'to',slide.FromEmail);">{{slide.Toticketid}}</button>
-                          
-                           
+                            </div> -->
+                            <span style=" margin-top: 7px;margin-left: -25px;font-size: 22px;float:left;" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" class="glyphicon glyphicon-chevron-left"></span>
+                            <button type="button" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" ng-class="model.classbtnlogin(slide.ToEmpownerid)" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.FromTicket,slide.Toprofileid,slide.ToMobileNumber, slide.tocustid, slide.fromcust_id,slide.FromticketStatusIDb.trim(), slide.FromProfileid,slide.FromName,slide.fromgenderid,slide.ToName,slide.TOEmail,slide,'to',slide.FromEmail);">{{slide.toonlyempname}} Ticket</button>
+
+
                             <button type="button" ng-if="slide.ToTicket===null || slide.ToTicket===''" class="btn btn-success-outline" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.Resendmail(slide.tocustid,slide.fromcust_id,slide.Toprofileid,slide.FromProfileid,slide.ToOfflineExpiryDate,slide.ToonlineExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
                             <br>
-                            <label  >{{slide.ToName}}</label>
+                            <label>{{slide.ToName}}</label>
                         </div>
                         <div ng-class="slide.ToTicket!==null && slide.ToTicket!==''?'col-lg-6':'col-lg-8'">
                             <div ng-if="slide.ToTicket===null || slide.ToTicket===''" style="color:maroon">
@@ -285,43 +285,33 @@
                             <div class="col-lg-12" style="line-height: 36px;">
                                 <li class="col-lg-12">
                                     <label class="col-lg-2 pop_label_leftss">Reply Type</label>
-                                    <div class="col-lg-5" style="">
+                                    <div class="col-lg-9" style="">
                                         <md-radio-group ng-required="true" name="rbtnReplyType" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyType,'In');" layout="row" ng-model="page.model.actobj.rbtnReplyType" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                             <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
                                             <md-radio-button value="0"> Not Interested</md-radio-button>
                                             <md-radio-button value="2">Pending</md-radio-button>
+                                            <md-radio-button value="3">FollowUpTicket</md-radio-button>
                                         </md-radio-group>
                                     </div>
-                                    <label class="col-lg-2 pop_label_leftss  Notrequired" style="margin-left:-4%;">DisplayToCustomer </label>
-                                    <div class="col-lg-2 input-group">
+                                </li>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-lg-12" style="line-height: 36px;">
+                                <li class="col-lg-12">
+                                    <label class="col-lg-2 pop_label_leftss  Notrequired">DisplayToCustomer </label>
+                                    <div class="col-lg-3">
                                         <md-radio-group ng-required="true" name="rbtnInDisplay" layout="row" ng-model="page.model.actobj.rbtnInDisplay" class="md-block" flex-gt-sm>
                                             <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
                                             <md-radio-button value="0"> No</md-radio-button>
                                         </md-radio-group>
                                     </div>
                                 </li>
-                                <div class="clearfix"></div>
                             </div>
-
-
-
-                            <div class="col-lg-12">
-                                <li class="col-lg-12 form-group">
-                                    <label class="pop_label_lefts" style="width: 19%;">FollowUpTicket</label>
-                                    <div class="col-lg-9 input-group" style="margin-top:10px;">
-                                        <md-radio-group ng-required="true" name="rbtnFollowUpTicket"  layout="row" ng-model="page.model.actobj.rbtnFollowUpTicket" class="md-block" flex-gt-sm>
-                                            <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
-                                            <md-radio-button value="0"> No</md-radio-button>
-                                        </md-radio-group>
-                                    </div>
-                                </li>
-                            </div>
-
                             <div class="col-lg-12">
                                 <li class="col-lg-12 form-group">
                                     <label class="pop_label_lefts" style="width:17%;">Call discussion</label>
                                     <div class="col-lg-9">
-                                        <textarea type="text" rows="4" ng-model="page.model.actobj.txtInCalldiscussion" class="form-control" ng-required="page.model.actobj.rbtnReplyType==='0'?true:false"></textarea>
+                                        <textarea type="text" rows="4" ng-model="page.model.actobj.txtInCalldiscussion" class="form-control" ng-required="page.model.actobj.rbtnReplyType==='0'?true:false" ng-disabled="page.model.replytypetxtdiabled"></textarea>
                                     </div>
                                 </li>
                             </div>
@@ -387,29 +377,22 @@
                             <div class="col-lg-12" style="line-height: 36px;">
                                 <li class="col-lg-12">
                                     <label class="col-lg-2 pop_label_leftss">Reply Type</label>
-                                    <div class="col-lg-5" style="">
+                                    <div class="col-lg-9" style="">
                                         <md-radio-group ng-required="true" name="rbtnReplyTypeout" ng-change="page.model.NotIntrstChnge(page.model.actobj.rbtnReplyTypeout,'Out');" layout="row" ng-model="page.model.actobj.rbtnReplyTypeout" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                             <md-radio-button value="1" class="md-primary">Interested</md-radio-button>
                                             <md-radio-button value="0"> Not Interested</md-radio-button>
                                             <md-radio-button value="2">Pending</md-radio-button>
-                                        </md-radio-group>
-                                    </div>
-                                    <label class="col-lg-2 pop_label_leftss  Notrequired" style="margin-left:-4%;">DisplayToCustomer </label>
-                                    <div class="col-lg-2 input-group">
-                                        <md-radio-group ng-required="true" name="rbtnOutDisplay" layout="row" ng-model="page.model.actobj.rbtnOutDisplay" class="md-block" flex-gt-sm>
-                                            <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
-                                            <md-radio-button value="0"> No</md-radio-button>
+                                            <md-radio-button value="3">FollowUpTicket</md-radio-button>
                                         </md-radio-group>
                                     </div>
                                 </li>
                                 <div class="clearfix"></div>
                             </div>
-                            
-                            <div class="col-lg-12">
-                                <li class="col-lg-12 form-group">
-                                    <label class="pop_label_lefts" style="width: 19%;">FollowUpTicket</label>
-                                    <div class="col-lg-9 input-group" style="margin-top:10px;">
-                                        <md-radio-group ng-required="true" name="rbtnFollowUpTicketout"  layout="row" ng-model="page.model.actobj.rbtnFollowUpTicketout" class="md-block" flex-gt-sm>
+                            <div class="col-lg-12" style="line-height: 36px;">
+                                <li class="col-lg-12">
+                                    <label class="col-lg-2 pop_label_leftss  Notrequired">DisplayToCustomer</label>
+                                    <div class="col-lg-3">
+                                        <md-radio-group ng-required="true" name="rbtnOutDisplay" layout="row" ng-model="page.model.actobj.rbtnOutDisplay" class="md-block" flex-gt-sm>
                                             <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
                                             <md-radio-button value="0"> No</md-radio-button>
                                         </md-radio-group>
@@ -420,7 +403,7 @@
                                 <li class="col-lg-12 form-group">
                                     <label class="pop_label_lefts" style="width:17%;">Call discussion </label>
                                     <div class="col-lg-9">
-                                        <textarea type=text rows="4" ng-model="page.model.actobj.txtOutCalldiscussion" class="form-control" required></textarea>
+                                        <textarea type=text rows="4" ng-model="page.model.actobj.txtOutCalldiscussion" class="form-control" required ng-disabled="page.model.replytypetxtdiabled"></textarea>
                                     </div>
                                 </li>
                             </div>
