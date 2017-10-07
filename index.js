@@ -110,7 +110,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'employeeViewfullprofilePrint', name: 'base.employeeViewfullprofilePrintmail', url: '/Viewfullprofilemail/:ProfileID/:contacts', isloginrequired: false, subname: ['directives/divPrint.js'] },
             // { routeName: 'showHoro', name: 'base.showHoro', url: '/showHoro', isloginrequired: false },
             { routeName: 'keywordSearch', name: 'base.keywordSearch', url: '/keywordSearchpage', isloginrequired: true },
-            { routeName: 'horoDisplay', name: 'base.horoDisplay', url: '/horoDisplay', isloginrequired: false }
+            { routeName: 'horoDisplay', name: 'base.horoDisplay', url: '/horoDisplay', isloginrequired: false },
+            { routeName: 'sampleViewfullprofile', name: 'base.sampleViewfullprofile', url: '/sampleViewfullprofilePage', isloginrequired: false }
         ];
         $ocLazyLoadProvider.config({
             debug: true
