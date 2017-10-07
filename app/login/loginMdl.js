@@ -10,6 +10,7 @@
             model.usernameemployee = false;
             model.usernameemployeepassword = false;
             model.init = function() {
+
                 model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 // authSvc.getmacaddress();
                 authSvc.getClientIp();
@@ -27,6 +28,7 @@
                         if (response.data !== undefined && response.data !== "" && response.data !== null) {
                             switch (response.data.m_Item5) {
                                 case 1:
+                                    model.testJWT();
                                     authSvc.logout();
                                     model.loginarray = response.data.m_Item1;
                                     model.empphoto = response.data.m_Item1.EmpPhotoPath;
@@ -77,6 +79,13 @@
                     });
                 }
             };
+
+            model.testJWT = function() {
+                $http.post('/authenticate').then(function(response) {
+
+                });
+            };
+            //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6InRydWUiLCJpYXQiOjE1MDczNzYyNjgsImV4cCI6MTUwNzM3NzcwOH0.CH5lYTCvDcgjJnJN94dpNu3uESKmvV6Wc0hiFkkEwmo
             return model;
         }]);
 })();
