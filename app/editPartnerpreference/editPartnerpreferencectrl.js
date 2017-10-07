@@ -1,12 +1,13 @@
  (function(angular) {
      'use strict';
 
-     function controller(editPartnerpreferenceModel, scope, window) {
+     function controller(editPartnerpreferenceModel, scope, window, modelpopupopenmethod) {
          /* jshint validthis:true */
-         var vm = this;
+         var vm = this,
+             model;
          vm.init = function() {
              window.scrollTo(0, 0);
-             vm.model = editPartnerpreferenceModel.init();
+             vm.model = model = editPartnerpreferenceModel.init();
              vm.model.scope = scope;
          };
 
@@ -17,5 +18,5 @@
          .module('Kaakateeya')
          .controller('editPartnerpreferenceCtrl', controller);
 
-     controller.$inject = ['editPartnerpreferenceModel', '$scope', '$window'];
+     controller.$inject = ['editPartnerpreferenceModel', '$scope', '$window', 'modelpopupopenmethod'];
  })(angular);

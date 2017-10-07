@@ -96,10 +96,17 @@
                     <label id="Label1" style="color: red; font-size: 13px;" class="pull-right" ng-if="item.maxlength!=undefined">(max {{item.maxlength}} characters)</label>
                 </div>
                 <div ng-if="item.controlType==='multiselect'" class="pop_controls_right select-box-my input-group">
-                    <select multiselectdropdown ng-model="model[item.ngmodel]" multiple typeofdata="item.typeofdata" ng-required="item.required" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi,model[item.firstparent])"></select>
+                    <select multiselectdropdown pagetype="'search'" ng-model="model[item.ngmodel]" multiple typeofdata="item.typeofdata" ng-required="item.required" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi,model[item.firstparent])"></select>
+                </div>
+
+                <div ng-if="item.controlType==='countrymultiselect'" class="pop_controls_right select-box-my input-group">
+                    <select multiselectdropdown pagetype="'search'" ng-model="model[item.ngmodel]" multiple typeofdata="item.typeofdata" ng-required="item.required" ng-change="model.changeBindrestrict('Country',model[item.ngmodel]);"></select>
                 </div>
                 <div ng-if="item.controlType==='Changemultiselect'" class="pop_controls_right select-box-my input-group">
-                    <select multiselectdropdown ng-model="model[item.ngmodel]" multiple ng-required="item.required" ng-options="inneritem.value as inneritem.label for inneritem in item.dataSource" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi,model[item.firstparent])"></select>
+                    <select multiselectdropdown pagetype="'search'" ng-model="model[item.ngmodel]" multiple ng-required="item.required" ng-options="inneritem.value as inneritem.label for inneritem in item.dataSource" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi,model[item.firstparent])"></select>
+                </div>
+                <div ng-if="item.controlType==='casteChangemultiselect'" class="pop_controls_right select-box-my input-group">
+                    <select multiselectdropdown pagetype="'search'" ng-model="model[item.ngmodel]" multiple ng-required="item.required" ng-options="inneritem.value as inneritem.label for inneritem in item.dataSource" ng-change="model.changeBindrestrict('subCaste',model[item.ngmodel]);"></select>
                 </div>
                 <div ng-if="item.controlType==='doublemultiselect'" class="pop_controls_right select-box-my select-box-my-double input-group">
                     <select multiselectdropdown ng-model="model[item.ngmodelSelect1]" typeofdata="item.typeofdata" ng-required="item.required" ng-change="ddlChange(model[item.ngmodel],model[item.secondParent],item.childName,item.changeApi,model[item.firstparent])"></select>
