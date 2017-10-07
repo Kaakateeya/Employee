@@ -5,6 +5,16 @@
           color: #000;
           font-weight: 700;
       }*/ }
+  #viewProfileIddd .search_page_main {
+    max-width: 1160px;
+    border: 1px solid #cecece;
+    border-radius: 3px;
+    box-shadow: 2px 2px 6px #ccc;
+    min-height: 200px; }
+  #viewProfileIddd .classtable th,
+  #viewProfileIddd .classtable td {
+    white-space: inherit !important;
+    border: none !important; }
   #viewProfileIddd .profile_full_main {
     width: 1160px;
     margin: 0 auto;
@@ -39,10 +49,6 @@
     padding: 0 4px; }
   #viewProfileIddd .profile_full_header .search_result_item_ui_exprsns {
     padding: 0 0 10px 0; }
-  #viewProfileIddd .profile_full_header_in_ui {
-    position: absolute;
-    right: 20px;
-    top: 10px; }
   #viewProfileIddd .profile_full_header_in_ui a {
     border-radius: 3px;
     margin: 0 0 0 10px;

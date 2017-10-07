@@ -111,7 +111,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             // { routeName: 'showHoro', name: 'base.showHoro', url: '/showHoro', isloginrequired: false },
             { routeName: 'keywordSearch', name: 'base.keywordSearch', url: '/keywordSearchpage', isloginrequired: true },
             { routeName: 'horoDisplay', name: 'base.horoDisplay', url: '/horoDisplay', isloginrequired: false },
-            { routeName: 'sampleViewfullprofile', name: 'base.sampleViewfullprofile', url: '/sampleViewfullprofilePage', isloginrequired: true },
+            { routeName: 'sampleViewfullprofile', name: 'base.sampleViewfullprofile', url: '/sampleViewfullprofilePage/:id', isloginrequired: true },
             { routeName: 'mailFormats', name: 'base.mailFormats', url: '/mailFormats', isloginrequired: true }
         ];
         $ocLazyLoadProvider.config({
