@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function factory(editPartnerpreferenceService, authSvc, alertss, commonFactory, uibModal, stateParams) {
+    function factory(editPartnerpreferenceService, authSvc, alertss, commonFactory, uibModal, stateParams, modelpopupopenmethod, timeout) {
         var model = {};
         model.scope = {};
         //start declaration block
@@ -60,6 +60,7 @@
                 model.religionId = model.SplitstringintoArray(item.religionid);
                 model.mothertongueId = model.SplitstringintoArray(item.MotherTongueID);
                 model.casteId = model.SplitstringintoArray(item.casteid);
+                castetempval = model.casteId.length <= 2 ? model.casteId : [];
                 model.subCasteId = model.SplitstringintoArray(item.subcasteid);
                 model.maritalstatusId = item.maritalstatusid;
                 model.eduCatgoryId = model.SplitstringintoArray(item.EducationCategoryID);
@@ -67,6 +68,7 @@
                 model.employedinId = model.SplitstringintoArray(item.ProfessionCategoryID);
                 model.profGroupId = model.SplitstringintoArray(item.ProfessionGroupID);
                 model.countryId = model.SplitstringintoArray(item.CountryID);
+                countrytempval = model.countryId.length <= 2 ? model.countryId : [];
                 model.stateId = model.SplitstringintoArray(item.StateID);
                 model.regionId = model.SplitstringintoArray(item.regionId);
                 model.branchId = model.SplitstringintoArray(item.branchid);
@@ -98,11 +100,14 @@
             }
         };
         model.updateData = function(inObj, type) {
-            if (isSubmit) {
-                isSubmit = false;
-                switch (type) {
-                    case 'Partnerprefernece details':
-                        inObj.GetDetails.CustID = custID;
+            // if (isSubmit) {
+            //     isSubmit = false;
+            switch (type) {
+                case 'Partnerprefernece details':
+                    inObj.GetDetails.CustID = custID;
+                    if (model.countryId.length > 5 || model.casteId.length > 2) {
+                        alert('Select only 5 country values and 2 caste values');
+                    } else {
                         model.submitPromise = editPartnerpreferenceService.submitPartnerPrefData(inObj).then(function(response) {
                             commonFactory.closepopup();
                             if (response.data === 1) {
@@ -114,20 +119,21 @@
                                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'PartnerPreference Details Updation failed', 4500);
                             }
                         });
-                        break;
-                    case 'Partner Description':
-                        model.submitPromise = editPartnerpreferenceService.submitPartnerDescData({ CustID: custID, AboutYourself: inObj.GetDetails.AboutYourself, flag: 1 }).then(function(response) {
-                            commonFactory.closepopup();
-                            if (response.data === '1') {
-                                model.partnerDescription = inObj.GetDetails.AboutYourself;
-                                alertss.timeoutoldalerts(model.scope, 'alert-success', 'Partner Description Submitted Succesfully', 4500);
-                            } else {
-                                alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Partner Description Updation failed', 4500);
-                            }
-                        });
-                        break;
-                }
+                    }
+                    break;
+                case 'Partner Description':
+                    model.submitPromise = editPartnerpreferenceService.submitPartnerDescData({ CustID: custID, AboutYourself: inObj.GetDetails.AboutYourself, flag: 1 }).then(function(response) {
+                        commonFactory.closepopup();
+                        if (response.data === '1') {
+                            model.partnerDescription = inObj.GetDetails.AboutYourself;
+                            alertss.timeoutoldalerts(model.scope, 'alert-success', 'Partner Description Submitted Succesfully', 4500);
+                        } else {
+                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Partner Description Updation failed', 4500);
+                        }
+                    });
+                    break;
             }
+            // }
         };
         model.partnerPreference = [
             { lblname: 'Gender', controlType: 'radio', ngmodel: 'genderId', arrbind: 'gender', parameterValue: 'GenderID' },
@@ -135,7 +141,7 @@
             { lblname: 'Height', controlType: 'doublemultiselect', ngmodelSelect1: 'fromheightId', ngmodelSelect2: 'toheightId', required: true, typeofdata: 'heightregistration', parameterValue1: 'HeightFrom', parameterValue2: 'HeightTo' },
             { lblname: 'Religion', controlType: 'multiselect', ngmodel: 'religionId', typeofdata: 'Religion', required: true, secondParent: 'religionId', firstparent: 'mothertongueId', childName: 'caste', changeApi: 'castedependency', parameterValue: 'Religion' },
             { lblname: 'Mother tongue', controlType: 'multiselect', ngmodel: 'mothertongueId', typeofdata: 'Mothertongue', required: true, secondParent: 'religionId', firstparent: 'mothertongueId', childName: 'caste', changeApi: 'castedependency', parameterValue: 'Mothertongue' },
-            { lblname: 'Caste', controlType: 'Changemultiselect', ngmodel: 'casteId', parentName: 'caste', required: true, childName: 'subCaste', changeApi: 'subCasteBind', parameterValue: 'Caste' },
+            { lblname: 'Caste', controlType: 'casteChangemultiselect', ngmodel: 'casteId', parentName: 'caste', required: true, childName: 'subCaste', changeApi: 'subCasteBind', parameterValue: 'Caste' },
             { lblname: 'Subcaste', controlType: 'Changemultiselect', ngmodel: 'subCasteId', typeofdata: 'Religion', parentName: 'subCaste', parameterValue: 'Subcaste' },
             { lblname: 'Marital status', controlType: 'multiselect', ngmodel: 'maritalstatusId', typeofdata: 'MaritalStatus', required: true, parameterValue: 'Maritalstatus' },
             { lblname: 'Education category', controlType: 'multiselect', ngmodel: 'eduCatgoryId', typeofdata: 'educationcategory', childName: 'educationgroup', changeApi: 'EducationGroup', parameterValue: 'Educationcategory' },
@@ -143,7 +149,7 @@
             { lblname: 'Employed in', controlType: 'multiselect', ngmodel: 'employedinId', typeofdata: 'ProfCatgory', parameterValue: 'Employedin' },
             { lblname: 'Profession group', controlType: 'multiselect', ngmodel: 'profGroupId', typeofdata: 'ProfGroup', parameterValue: 'Professiongroup' },
             { lblname: 'Domicile', controlType: 'radio', ngmodel: 'domicileId', arrbind: 'Domicile', parameterValue: 'Domacile' },
-            { lblname: 'Preferred country', controlType: 'multiselect', ngmodel: 'countryId', typeofdata: 'Country', childName: 'state', changeApi: 'stateSelect', parameterValue: 'Preferredcountry' },
+            { lblname: 'Preferred country', controlType: 'countrymultiselect', ngmodel: 'countryId', typeofdata: 'Country', childName: 'state', changeApi: 'stateSelect', parameterValue: 'Preferredcountry' },
             { lblname: 'Preferred state', controlType: 'Changemultiselect', ngmodel: 'stateId', typeofdata: 'Religion', parentName: 'state', parameterValue: 'Preferredstate' },
             { lblname: 'Region', controlType: 'multiselect', ngmodel: 'regionId', typeofdata: 'region', childName: 'branch', changeApi: 'branch', parameterValue: 'Region' },
             { lblname: 'Branch', controlType: 'Changemultiselect', ngmodel: 'branchId', parentName: 'branch', parameterValue: 'Branch' },
@@ -157,10 +163,84 @@
         model.aboutPartnerDescription = [
             { lblname: '', controlType: 'about', required: true, ngmodel: 'partnerDescriptionId', parameterValue: 'AboutYourself' },
         ];
+
+        var castetempval = [],
+            countrytempval = [];
+        model.changeBindrestrict = function(type, parentval) {
+            switch (type) {
+                case 'Country':
+                    if (parentval.length <= 5) {
+                        countrytempval = parentval;
+                        _.each(model.partnerPreference, function(item) {
+                            if (item.ngmodel === 'stateId') {
+                                item.dataSource = model.removeSelect(commonFactory.StateBind(commonFactory.listSelectedVal(parentval)));
+                            }
+                        });
+                    } else {
+                        model.partnerDomacile = undefined;
+                        model.displayText = 'You cannot select more than 5 countries . If interested in all countries,please select Abroad or Both';
+                        model.restrictType = 'country';
+                        modelpopupopenmethod.showPopupphotopoup('castepopup.html', model.scope, 'md', "castepopupcls");
+                        timeout(function() {
+                            model.countryId = [];
+                            model.countryId = countrytempval;
+                        }, 500);
+                    }
+                    break;
+
+                case 'subCaste':
+                    if (parentval.length <= 2) {
+                        castetempval = model.casteId;
+                        _.each(model.partnerPreference, function(item) {
+                            if (item.ngmodel === 'subCasteId') {
+                                item.dataSource = model.removeSelect(commonFactory.subCaste(commonFactory.listSelectedVal(parentval)));
+                            }
+                        });
+                    } else {
+                        model.rbtnCasteNobar = undefined;
+                        model.displayText = 'You cannot select more than 2 castes . Please select below caste No Bar , if you are interested';
+                        model.restrictType = 'caste';
+                        modelpopupopenmethod.showPopupphotopoup('castepopup.html', model.scope, 'md', "castepopupcls");
+                        timeout(function() {
+                            model.casteId = [];
+                            model.casteId = castetempval;
+                        }, 500);
+                    }
+                    break;
+            }
+        };
+
+
+        model.castenobarChange = function(val) {
+            if (val === 'caste') {
+                if (model.rbtnCasteNobar) {
+                    model.casteId = [];
+                    model.casteId = [parseInt(model.rbtnCasteNobar)];
+                    model.closeAssign();
+                } else {
+                    alert('Please select Caste No Bar');
+                }
+            } else {
+                if (model.partnerDomacile) {
+                    model.countryId = [];
+                    model.domicileId = model.partnerDomacile;
+                    model.closeAssign();
+                } else {
+                    alert('Please select Domacile');
+                }
+            }
+
+        };
+
+        model.closeAssign = function() {
+            modelpopupopenmethod.closepopuppoptopopup();
+        };
+
+
         return model;
     }
     angular
         .module('Kaakateeya')
         .factory('editPartnerpreferenceModel', factory);
-    factory.$inject = ['editPartnerpreferenceService', 'authSvc', 'alert', 'commonFactory', '$uibModal', '$stateParams'];
+    factory.$inject = ['editPartnerpreferenceService', 'authSvc', 'alert', 'commonFactory', '$uibModal', '$stateParams', 'modelpopupopenmethod', '$timeout'];
 })(angular);
