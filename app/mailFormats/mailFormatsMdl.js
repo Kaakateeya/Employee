@@ -14,10 +14,11 @@
         model.sideMenuLinksArr = [
             { label: 'Email Verification', typeofDiv: 'emailVerify' },
             { label: 'Forgot Password', typeofDiv: 'forgot' },
-            { label: 'Unpaid Partial ViewProfile', typeofDiv: 'unpaidpartialProfile' },
-            { label: 'Paid Partial ViewProfile', typeofDiv: 'paidpartialProfile' },
-            { label: 'View Profile', typeofDiv: 'FullViewProfile' },
             { label: 'Basic Profile', typeofDiv: 'basicProfile' },
+            { label: 'Partial view profile for unpaid', typeofDiv: 'unpaidpartialProfile' },
+            { label: 'Partial view profile for paid', typeofDiv: 'paidpartialProfile' },
+            { label: 'View full profile for unpaid', typeofDiv: 'unPaidFullViewProfile' },
+            { label: 'View fulll profile for paid', typeofDiv: 'PaidFullViewProfile' }
         ];
 
         model.paidPartialviewfull = [
@@ -66,6 +67,22 @@
             [{ "TableName": "Relation Ship Manager", "columnname": "RelationShipManager", "value": "Jamuna P ( 08:00 to 20:00 ) " }, { "TableName": "Relation Ship Manager", "columnname": "Contact Details", "value": "91 - 7680876060" }, { "TableName": "Relation Ship Manager", "columnname": "EmailID", "value": "tirupatikaakateeya@yahoo.com" }, { "TableName": "Relation Ship Manager", "columnname": "Note", "value": "<b><font color=\"red\">\"For Paid Member\" Information will be provided Once you become a \"PAID MEMBER\"</font></b>" }]
         ];
 
+        model.Unapaidarrayviewprofile = [
+            [{ "Row": 1, "TableName": "Headings", "Headings": "My Basic Details", "classname": "personal_inform_main_in_list clearfix" }, { "Row": 2, "TableName": "Headings", "Headings": "My Education & Profession", "classname": "" }, { "Row": 3, "TableName": "Headings", "Headings": "My Location", "classname": "personal_inform_main_in_list clearfix" }, { "Row": 4, "TableName": "Headings", "Headings": "My Contact & Email", "classname": "" }, { "Row": 5, "TableName": "Headings", "Headings": "About My Family", "classname": "" }, { "Row": 7, "TableName": "Headings", "Headings": "My Brothers and Sisters", "classname": "" }, { "Row": 8, "TableName": "Headings", "Headings": "My Father side & Mother side Family", "classname": "" }, { "Row": 9, "TableName": "Headings", "Headings": "My Mother side Family", "classname": "" }, { "Row": 10, "TableName": "Headings", "Headings": "My Reference Details", "classname": "" }, { "Row": 11, "TableName": "Headings", "Headings": "Profile Relation Ship Manager", "classname": "" }],
+            [{ "TableName": "My Basic Details", "columnname": "SURNAME", "value": "konegaru" }, { "TableName": "My Basic Details", "columnname": "Marital Status", "value": "Unmarried" }, { "TableName": "My Basic Details", "columnname": "Height", "value": "5'8 in - 172 cms" }, { "TableName": "My Basic Details", "columnname": "Caste", "value": "Kapu" }, { "TableName": "My Basic Details", "columnname": "Religion", "value": "Hindu" }, { "TableName": "My Basic Details", "columnname": "Mother Tongue", "value": "Telugu" }, { "TableName": "My Basic Details", "columnname": "Age", "value": "28-Aug-1987 (30)" }, { "TableName": "My Basic Details", "columnname": "Time of Birth (Hrs)", "value": "<font color=\"red\">For Paid Member</font>" }, { "TableName": "My Basic Details", "columnname": "Place of Birth", "value": "<font color=\"red\">For Paid Member</font>" }, { "TableName": "My Basic Details", "columnname": "Star(Padam)", "value": "<font color=\"red\">For Paid Member</font>" }, { "TableName": "My Basic Details", "columnname": "Raasi", "value": "Not Specified" }, { "TableName": "My Basic Details", "columnname": "Lagnam", "value": "Not Given" }, { "TableName": "My Basic Details", "columnname": "Gothram", "value": "Not Given" }, { "TableName": "My Basic Details", "columnname": "Complexion", "value": "Fair" }],
+            [{ "TableName": "My Location", "columnname": "Country Living", "value": "South Africa" }, { "TableName": "My Location", "columnname": "State Living", "value": "other" }],
+            [{ "TableName": "My Education & Profession", "ColumnName": "Education", "Value": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BTech (Computer) : <font color=\"red\">For Paid Member</font>" }, { "TableName": "My Education & Profession", "ColumnName": "Education", "Value": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Intermediate (MPC) : <font color=\"red\">For Paid Member</font>" }, { "TableName": "My Education & Profession", "ColumnName": "Education", "Value": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SSC : <font color=\"red\">For Paid Member</font>" }, { "TableName": "My Education & Profession<br><br>", "ColumnName": "Profession", "Value": "Software Engineer, GHANA, other" }, { "TableName": "My Education & Profession<br><br>", "ColumnName": "Company Name", "Value": "<font color=\"red\">For Paid Member</font>" }, { "TableName": "My Education & Profession<br><br>", "ColumnName": "Profession Details", "Value": "<font color=\"red\">For Paid Member</font>" }, { "TableName": "My Education & Profession<br><br>", "ColumnName": "Monthly Income", "Value": "<font color=\"red\">For Paid Member</font>" }],
+            [{ "TableName": "About My Family", "columnname": "Father Name", "value": "MOHAN, 7th class" }, { "TableName": "About My Family", "columnname": "Father Profession", "value": "<font color=\"red\">For Paid Member</font>" }, { "TableName": "About My Family", "columnname": "Father Native District", "value": "<font color=\"red\">For Paid Member</font><br><br>" }, { "TableName": "About My Family", "columnname": "Mother Name", "value": "USHA, BELOW GRADUATION" }, { "TableName": "About My Family", "columnname": "Mother Father Name", "value": "" }, { "TableName": "About My Family", "columnname": "Mother Native District", "value": "<font color=\"red\">For Paid Member</font><br><br>" }, { "TableName": "About My Family", "columnname": "Property", "value": "<font color=\"red\">For Paid Member</font>" }, { "TableName": "About My Family", "columnname": "No of Siblings", "value": "No Of Brothers: 1    No Of Sisters: 0" }],
+            [{ "TableName": "About", "Aboutyourself": "", "FromReleationName": "P", "Fromrelationcontact": "91 - 7680876060", "FromreleationEmail": "tirupatikaakateeya@yahoo.com", "RelationShipManager": "Sandhya BS", "ContactDetails": "91 - 9342939343", "EmailID": "kaakateeyab@gmail.com" }],
+            [{ "TableName": "Primary", "ProfileID": "211198328", "Cust_ID": 119832, "NAME": "konegaru", "GenderID": 1, "Age": 30, "ProfilePhotoName": "Img1.jpg", "PhotoName_Cust": 1, "Height": "5'8 in - 172 cms", "ReligionName": "Hindu", "Caste": "Kapu", "Education": "Bachelors in Engineering", "StateName": "other", "HoroscopeImage": null, "ExpressInterestFlag": null, "ExpressInterestLinkFlag": null, "EmpFollowTicket": null, "ibookmark": 0, "No of Siblings": null, "ApplicationPhotoPath": "http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_119832_Images/Img1_Images/211198328_ApplicationPhoto.jpg", "RelationshipManger": "Mr.Dummy Manager", "RelationshipManagerNumber": "91-9392696969" }],
+            [{ "TableName": "My Contact & Email", "columnname": "Address", "value": "<font color=\"red\">For Paid Member</font>" }, { "TableName": "My Contact & Email", "columnname": "Phone", "value": "<font color=\"red\">For Paid Member</font>" }, { "TableName": "My Contact & Email", "columnname": "Email", "value": "<font color=\"red\">For Paid Member</font>" }],
+            [{ "TableName": "My Brothers and Sisters", "ColumnName": "Brother (Younger)", "Value": "<font color=\"red\">For Paid Member</font>" }],
+            [],
+            [],
+            [{ "TableName": "Relation Ship Manager", "columnname": "RelationShipManager", "value": "Jamuna P ( 08:00 to 20:00 ) " }, { "TableName": "Relation Ship Manager", "columnname": "Contact Details", "value": "91 - 7680876060" }, { "TableName": "Relation Ship Manager", "columnname": "EmailID", "value": "tirupatikaakateeya@yahoo.com" }, { "TableName": "Relation Ship Manager", "columnname": "Note", "value": "<b><font color=\"red\">\"For Paid Member\" Information will be provided Once you become a \"PAID MEMBER\"</font></b>" }]
+        ];
+
+
         model.partnerinformation = function(response) {
             model.arr = [];
             model.personalinfo = {};
@@ -96,9 +113,12 @@
                 model.partnerinformation(model.paidPartialviewfull);
             } else if (model.typeofDiv === 'unpaidpartialProfile') {
                 model.partnerinformation(model.unPaidPartialviewfull);
-            } else if (model.typeofDiv === 'FullViewProfile') {
+            } else if (model.typeofDiv === 'PaidFullViewProfile') {
                 model.btnticket = 'KAKHD1203084';
                 model.partnerinformation(model.arrayviewprofile);
+            } else if (model.typeofDiv === 'unPaidFullViewProfile') {
+                model.btnticket = 'KAKHD1203084';
+                model.partnerinformation(model.Unapaidarrayviewprofile);
             } else {
 
             }

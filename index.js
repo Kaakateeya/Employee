@@ -361,7 +361,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
         });
         _.each(states, function(item) {
             var innerView = {};
-            if (item.routeName === "login" || item.routeName === "horoDisplay" || item.routeName === "mailFormats") {
+            if (item.routeName === "login" || item.routeName === "horoDisplay") {
                 innerView = {
                     "lazyLoadView@": {
                         templateUrl: "app/" + item.routeName + '/index.html',
