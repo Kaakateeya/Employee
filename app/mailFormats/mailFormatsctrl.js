@@ -3,7 +3,7 @@
 
      angular
          .module('Kaakateeya')
-         .controller('mailFormatsCtrl', controller)
+         .controller('mailFormatsCtrl', controller);
 
      controller.$inject = ['mailFormatsModel'];
 
@@ -13,6 +13,7 @@
 
          vm.init = function() {
              vm.model = mailFormatsModel;
+             vm.model.typeofDiv = 'forgot';
          };
 
          vm.init();
