@@ -519,17 +519,19 @@
                 model.ActionSubmit = function(obj, str, intrstType) {
                     ////
                     if (model.typeOfCtrl === '1' || model.typeOfCtrl === '0') {
-                        var status = model.typeOfCtrl === '1' ? 'I' : 'NI';
+                        // var status = model.typeOfCtrl === '1' ? 'I' : 'NI';
                         // helpService.matchacceptrejectexpressinterest(model.fromcustidselef, model.tocustidself, model.logidmatchfollowup, status, parseInt(model.empid)).then(function(response) {
                         //     if (response.data === parseInt(1)) {} else {}
                         // });
+                        var status = model.typeOfCtrl === '1' ? 1 : 2;
+                        var statusint = model.fromticketstatusemail === 'I' || model.fromticketstatusemail === 'NI' ? true : false;
                         var MobjViewprofile = {
                             ExpressInrestID: model.logidmatchfollowup,
                             CustID: model.fromcustidselef,
                             FromCustID: model.fromcustidselef,
                             ToCustID: model.tocustidself,
-                            AcceptStatus: model.typeOfCtrl === '1' ? 1 : 2,
-                            MatchFollwupStatus: model.typeOfCtrl === '1' ? 1 : 2
+                            AcceptStatus: statusint ? (model.fromticketstatusemail === 'I' ? 1 : 2) : status,
+                            MatchFollwupStatus: statusint ? (model.fromticketstatusemail === 'I' ? 1 : 2) : status
                         };
                         helpService.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
                             if (response.data === parseInt(1)) {} else {}
