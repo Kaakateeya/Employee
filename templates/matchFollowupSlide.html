@@ -32,7 +32,7 @@
                                     <div class="row">
                                         <div class="col-lg-10"><b>{{slide.FromName}}(<b><a href="javascript:void(0)" ng-class="slide.FromPaidStatus===1?'paidclass':'unpaid'" ng-click="model.viewProfileRedirect(slide.FromProfileid);">{{slide.FromProfileid}}</a> - {{slide.FromBranchCode}})</b></b>
                                         </div>
-                                        <div class="col-lg-2" ng-if="slide.FromticketStatusIDb.trim()==='I' || slide.FromticketStatusIDb.trim()==='I'"><img ng-src="{{model.proceedImage(slide.FromticketStatusIDb)}}" style="width:28px;"></div>
+                                        <div class="col-lg-2" ng-if="slide.FromticketStatusIDb.trim()==='I' || slide.FromticketStatusIDb.trim()==='NI'"><img ng-src="{{model.proceedImage(slide.FromticketStatusIDb)}}" style="width:28px;"></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3"><b class="maroon">Mobile:</b> </div>
@@ -100,7 +100,7 @@
                                     <div class="row">
                                         <div class="col-lg-10"><b>{{slide.ToName}}    (<b><a href="javascript:void(0)" ng-click="model.viewProfileRedirect(slide.Toprofileid);" ng-class="slide.ToPaidStatus===1?'paidclass':'unpaid'">{{slide.Toprofileid}}</a> - {{slide.ToBranchCode}})</b></b>
                                         </div>
-                                        <div class="col-lg-2" ng-if="slide.ToticketStatusIDb.trim()==='I' || slide.ToticketStatusIDb.trim()==='I'"><img ng-src="{{model.proceedImage(slide.ToticketStatusIDb)}}" style="width:28px;"></div>
+                                        <div class="col-lg-2" ng-if="slide.ToticketStatusIDb.trim()==='I' || slide.ToticketStatusIDb.trim()==='NI'"><img ng-src="{{model.proceedImage(slide.ToticketStatusIDb)}}" style="width:28px;"></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3"><b class="maroon">Mobile:</b> </div>
