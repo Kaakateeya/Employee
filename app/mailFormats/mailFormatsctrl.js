@@ -5,15 +5,17 @@
          .module('Kaakateeya')
          .controller('mailFormatsCtrl', controller);
 
-     controller.$inject = ['mailFormatsModel'];
+     controller.$inject = ['mailFormatsModel', '$scope'];
 
-     function controller(mailFormatsModel) {
+     function controller(mailFormatsModel, scope) {
          /* jshint validthis:true */
-         var vm = this;
+         var vm = this,
+             model;
 
          vm.init = function() {
-             vm.model = mailFormatsModel;
-             vm.model.typeofDiv = 'forgot';
+             vm.model = model = mailFormatsModel;
+             model.typeofDiv = 'emailVerify';
+             model.scope = scope;
          };
 
          vm.init();

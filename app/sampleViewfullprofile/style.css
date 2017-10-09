@@ -1,4 +1,6 @@
 #viewProfileIddd {
+  margin-left: 12%;
+  margin-right: 12%;
   /*.personal_inform_main h4 {
           text-transform: uppercase;
           font-size: 14px;
@@ -16,11 +18,9 @@
     white-space: inherit !important;
     border: none !important; }
   #viewProfileIddd .profile_full_main {
-    width: 1160px;
     margin: 0 auto;
     display: block; }
   #viewProfileIddd .profile_full_header {
-    padding: 20px;
     border: solid 1px #ccc;
     border-radius: 3px;
     position: relative; }
@@ -42,7 +42,6 @@
   #viewProfileIddd .profile_full_header_in p {
     color: #000;
     font-size: 14px;
-    line-height: 18px;
     margin: 0 0 10px 0; }
   #viewProfileIddd .profile_full_header_in p span {
     display: inline-block;
@@ -78,12 +77,11 @@
     height: 30px;
     display: block; }
   #viewProfileIddd .personal_inform_main_in {
-    padding: 6px 20px;
+    padding: 0px 20px;
     border-bottom: solid 1px #ccc; }
   #viewProfileIddd .personal_inform_main_in p {
     color: #717171;
-    line-height: 20px;
-    margin: 0 0 8px 0;
+    margin: 0 0 5px 0;
     font-weight: 400; }
   #viewProfileIddd .personal_inform_main_in h4 {
     padding: 0 0 10px 0; }
