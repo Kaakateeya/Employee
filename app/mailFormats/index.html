@@ -1,93 +1,502 @@
-<div class="right_col" id="mailFormats"></div>
-
-
-<div class="row">
-    <div class="col-lg-3" id="menuid">
-        <ul>
-            <li ng-click="page.model.typeofDiv='forgot'" ng-class="{'red':page.model.typeofDiv==='forgot'}">Forgot Password</li>
-            <li ng-click="page.model.typeofDiv='reset'" ng-class="{'red':page.model.typeofDiv==='reset'}">Reset Password</li>
-        </ul>
-    </div>
-    <div class="col-lg-9">
-        <div ng-if="page.model.typeofDiv==='forgot'">
-            <table width="800" align="center" cellpadding="0" cellspacing="0" style="border:solid 30px #cecece; background:url('http://d16o2fcjgzj2wp.cloudfront.net/Images/main-background_2.jpg')no-repeat center top ; ">
-                <tr align="center" valign="middle" bgcolor="#fff">
-                    <td style="padding:20px 0;" align="center">
-                        <a href="http://183.82.0.58:8030/home" target="_blank"><img src='http://d16o2fcjgzj2wp.cloudfront.net/Images/logo3.png' width="160" height="75" alt="Kaakateeya"></a>
-                    </td>
-                </tr>
-                <tr align="center" valign="middle">
-                    <td align="center" bgcolor="#f9b418" style="padding:10px 0; border:0 none; font-size:28px; color:#d42e02; line-height:30px; font-weight:300;"> Email Verification </td>
-                </tr>
-                <tr>
-                    <td style="line-height:41px; border:0 none; font-size:20px; color:#99cc00;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dear &nbsp; <span style="font-weight:bold;">Lakshmi A ,</span><br> <span style="color: #8e0222;font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;Thank you for creating an account on </span>
-                        <span style="font-size:14px; color:#d42e02;"><a href="Kaakateeya.com" style="color: #d42e02; text-decoration: none;">Kaakateeya.com </a></span> <span style="color:#8e0222;font-size:16px;"> to verify your account,please click the link below </span></td>
-                </tr>
-                <tr align="center" valign="middle">
-                    <td style="border:0 none; font-size:16px; color:#8e0222; line-height:24px; font-weight:300;"> <a style="font-size:13px; color:#fff; background:#66ccff;  line-height:24px; font-weight:700; border:0 none; border-radius:5px; display:block; margin:0 auto; padding:14px 30px; text-transform:uppercase; text-decoration:none; width:236px;"
-                            href="http://183.82.0.58:8030/registration/confirmEmail/010085123F25D4C7949499ED024A72B817B919E51E55B850AE50">Verify your Account</a> </td>
-                </tr>
-                <tr>
-                    <td style="border:0 none; font-size:16px; color:#8e0222; line-height:24px; font-weight:300;">&nbsp;&nbsp;&nbsp;&nbsp;Your primary email id is : <a style="font-size:20px; text-decoration:none;  color:#99cc00; font-weight:bold;">kusumavishwaneni@gmail.com</a></td>
-                </tr>
-                <tr>
-                    <td style="padding:0 10px 20px 10px; border:0 none; font-size:16px;color:#8e0222; line-height:24px; font-weight:300;">&nbsp;&nbsp;&nbsp;&nbsp;Your primary Mobile Number is :<span style="font-size:20px; text-decoration:none;  color:#99cc00; font-weight:bold;"> 8985201371 </span></td>
-                </tr>
-                <tr align="center" valign="middle">
-                    <td style="border: 0 none; font-size: 16px;  color: #8e0222; line-height: 24px; font-weight: 300;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You Have Received This Mail As A Member Of Kaakateeya.com Please add Info@telugumarriages.com to your address book to ensure mail Delivery Into Your Inbox.</td>
-                </tr>
-                <tr align="center" valign="middle">
-                    <td style="padding:20px 6px 15px 10px; border: 0 none; border-top: solid 1px #ccc; font-size: 14px; color: #4d4d4d; line-height: 24px; font-weight: 400;">Thanks and regards <br/> Customer Care <br /> <a href="http://183.82.0.58:8030/home" style="color: #d42e02; text-decoration: none;">Kaakateeya.com </a>India Private Limited <br /> <a style="color: #d42e02;" href="http://183.82.0.58:8030/home">www.Telugumarriages.com</a>                        <br /> Mobile : 91-9848344977 ( 10 am to 6 pm IST ) ,91-7702525444 (9:30 am to 5:30 pm IST )</td>
-                </tr>
-                <tr align="center
+<div class="" id="mailFormats">
+    <div class="row">
+        <div class="col-lg-2" id="menuid">
+            <ul>
+                <li ng-repeat="item in page.model.sideMenuLinksArr" ng-click="page.model.typeofDiv=item.typeofDiv" ng-class="{'red':page.model.typeofDiv===item.typeofDiv}">{{item.label}}</li>
+            </ul>
+        </div>
+        <div class="col-lg-9">
+            <div ng-if="page.model.typeofDiv==='forgot'">
+                <table width="800" align="center" cellpadding="0" cellspacing="0" style="border:solid 30px #cecece; background:url('http://d16o2fcjgzj2wp.cloudfront.net/Images/main-background_2.jpg')no-repeat center top ; ">
+                    <tr align="center" valign="middle" bgcolor="#fff">
+                        <td style="padding:20px 0;" align="center">
+                            <a href="http://183.82.0.58:8030/home" target="_blank"><img src='http://d16o2fcjgzj2wp.cloudfront.net/Images/logo3.png' width="160" height="75" alt="Kaakateeya"></a>
+                        </td>
+                    </tr>
+                    <tr align="center" valign="middle">
+                        <td align="center" bgcolor="#f9b418" style="padding:10px 0; border:0 none; font-size:28px; color:#d42e02; line-height:30px; font-weight:300;"> Email Verification </td>
+                    </tr>
+                    <tr>
+                        <td style="line-height:41px; border:0 none; font-size:20px; color:#99cc00;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dear &nbsp; <span style="font-weight:bold;">Lakshmi A ,</span><br> <span style="color: #8e0222;font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;Thank you for creating an account on </span>
+                            <span style="font-size:14px; color:#d42e02;"><a href="Kaakateeya.com" style="color: #d42e02; text-decoration: none;">Kaakateeya.com </a></span> <span style="color:#8e0222;font-size:16px;"> to verify your account,please click the link below </span></td>
+                    </tr>
+                    <tr align="center" valign="middle">
+                        <td style="border:0 none; font-size:16px; color:#8e0222; line-height:24px; font-weight:300;"> <a style="font-size:13px; color:#fff; background:#66ccff;  line-height:24px; font-weight:700; border:0 none; border-radius:5px; display:block; margin:0 auto; padding:14px 30px; text-transform:uppercase; text-decoration:none; width:236px;"
+                                href="http://183.82.0.58:8030/registration/confirmEmail/010085123F25D4C7949499ED024A72B817B919E51E55B850AE50">Verify your Account</a> </td>
+                    </tr>
+                    <tr>
+                        <td style="border:0 none; font-size:16px; color:#8e0222; line-height:24px; font-weight:300;">&nbsp;&nbsp;&nbsp;&nbsp;Your primary email id is : <a style="font-size:20px; text-decoration:none;  color:#99cc00; font-weight:bold;">kusumavishwaneni@gmail.com</a></td>
+                    </tr>
+                    <tr>
+                        <td style="padding:0 10px 20px 10px; border:0 none; font-size:16px;color:#8e0222; line-height:24px; font-weight:300;">&nbsp;&nbsp;&nbsp;&nbsp;Your primary Mobile Number is :<span style="font-size:20px; text-decoration:none;  color:#99cc00; font-weight:bold;"> 8985201371 </span></td>
+                    </tr>
+                    <tr align="center" valign="middle">
+                        <td style="border: 0 none; font-size: 16px;  color: #8e0222; line-height: 24px; font-weight: 300;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You Have Received This Mail As A Member Of Kaakateeya.com Please add Info@telugumarriages.com to your address book to ensure mail Delivery Into Your Inbox.</td>
+                    </tr>
+                    <tr align="center" valign="middle">
+                        <td style="padding:20px 6px 15px 10px; border: 0 none; border-top: solid 1px #ccc; font-size: 14px; color: #4d4d4d; line-height: 24px; font-weight: 400;">Thanks and regards <br/> Customer Care <br /> <a href="http://183.82.0.58:8030/home" style="color: #d42e02; text-decoration: none;">Kaakateeya.com </a>India Private Limited <br /> <a style="color: #d42e02;" href="http://183.82.0.58:8030/home">www.Telugumarriages.com</a>                            <br /> Mobile : 91-9848344977 ( 10 am to 6 pm IST ) ,91-7702525444 (9:30 am to 5:30 pm IST )</td>
+                    </tr>
+                    <tr align="center
                                     " valign="middle ">
-                    <td style="border:0 none; height:20px; background:#f9b418; margin:30px 0 0 0; ">&nbsp;</td>
-                </tr>
-                <tr align="center " valign="middle ">
-                    <td style="border:0 none; height:20px; background:#f9b418;
+                        <td style="border:0 none; height:20px; background:#f9b418; margin:30px 0 0 0; ">&nbsp;</td>
+                    </tr>
+                    <tr align="center " valign="middle ">
+                        <td style="border:0 none; height:20px; background:#f9b418;
                                     margin:30px 0 0 0; ">&nbsp;</td>
-                </tr>
-            </table>
+                    </tr>
+                </table>
 
-        </div>
-        <div ng-if="page.model.typeofDiv==='reset'">
-            <table width="740" align="center" cellpadding="0" cellspacing="0" style="border:solid 30px #cecece; background:url('http://d16o2fcjgzj2wp.cloudfront.net/Images/main-background_2.jpg')no-repeat center top ; ">
-                <tr align="center" valign="middle">
-                    <td style="padding: 25px 0;" align="center">
-                        <a href="http://183.82.0.58:8030/home" target="_blank"> <img src='http://d16o2fcjgzj2wp.cloudfront.net/Images/logo3.png' alt="Kaakateeya" height="75" width="160"> </a>
-                    </td>
-                </tr>
-                <tr align="center" valign="middle">
-                    <td align="center" bgcolor="#f9b418" style="padding: 10px 0; border: 0 none; font-size: 28px; color: #d42e02; line-height: 30px; font-weight: 300;">Reset your Password </td>
-                </tr>
-                <tr align="left" valign="middle">
-                    <td style="font-size: 20px; color:#99cc00; font-weight: 300; border: 0 none;"> &nbsp; &nbsp;&nbsp; Dear Lakshmi.A , </td>
-                </tr>
-                <tr>
-                    <td style="font-size: 18px; color: #8e0222; font-weight: 300; padding: 7px 0; border: 0 none;">
-                        <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Click On Reset Password button To reset your password with minimum <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6
-                            to maximum 15 characters. For your own profile security we suggest not to &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; share your password with any second person. </p>
-                    </td>
-                </tr>
-                <tr align="center" valign="middle">
-                    <td style="border: 0 none; font-size: 16px; color: #4d4d4d; line-height: 24px; font-weight: 300;"> <a style="font-size:13px; color:#fff; background:#66ccff;  line-height:24px; font-weight:700; border:0 none; border-radius:5px; display:block; margin:0 auto; padding:14px 30px; text-transform:uppercase; text-decoration:none; width:236px;"
-                            href=http://183.82.0.58:8030/forgetpasswordemail?CustID=NSAdd>reset&nbsp;&nbsp;Password</a> </td>
-                </tr>
-                <tr align="center" valign="middle">
-                    <td style="border: 0 none; font-size: 16px;  color: #8e0222; line-height: 24px; font-weight: 300;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You Have Received This Mail As A Member Of Kaakateeya.com Please add Info@telugumarriages.com to your address book to ensure mail Delivery Into Your Inbox.</td>
-                </tr>
-                <tr align="center" valign="middle">
-                    <td style="padding:20px 6px 15px 10px; border: 0 none; border-top: solid 1px #ccc; font-size: 14px; color: #4d4d4d; line-height: 24px; font-weight: 400;">Thanks and regards <br/> Customer Care <br /> <a href="http://183.82.0.58:8030/home" style="color: #d42e02; text-decoration: none;">Kaakateeya.com </a>India Private Limited <br /> <a style="color: #d42e02;" href="http://183.82.0.58:8030/home">www.Telugumarriages.com</a>
-                        <br /> Mobile : 91-9848344977 ( 10 am to 6 pm IST ) ,91-7702525444 (9:30 am to 5:30 pm IST )</td>
-                </tr>
-                <tr align="center" valign="middle ">
-                    <td style="border: 0 none; height: 20px; background: #f9b418; margin: 30px 0 0 0; ">&nbsp;</td>
-                </tr>
-            </table>
+            </div>
+            <div ng-if="page.model.typeofDiv==='emailVerify'">
+                <table width="740" align="center" cellpadding="0" cellspacing="0" style="border:solid 30px #cecece; background:url('http://d16o2fcjgzj2wp.cloudfront.net/Images/main-background_2.jpg')no-repeat center top ; ">
+                    <tr align="center" valign="middle">
+                        <td style="padding: 25px 0;" align="center">
+                            <a href="http://183.82.0.58:8030/home" target="_blank"> <img src='http://d16o2fcjgzj2wp.cloudfront.net/Images/logo3.png' alt="Kaakateeya" height="75" width="160"> </a>
+                        </td>
+                    </tr>
+                    <tr align="center" valign="middle">
+                        <td align="center" bgcolor="#f9b418" style="padding: 10px 0; border: 0 none; font-size: 28px; color: #d42e02; line-height: 30px; font-weight: 300;">Reset your Password </td>
+                    </tr>
+                    <tr align="left" valign="middle">
+                        <td style="font-size: 20px; color:#99cc00; font-weight: 300; border: 0 none;"> &nbsp; &nbsp;&nbsp; Dear Lakshmi.A , </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 18px; color: #8e0222; font-weight: 300; padding: 7px 0; border: 0 none;">
+                            <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Click On Reset Password button To reset your password with minimum <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                6 to maximum 15 characters. For your own profile security we suggest not to &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; share your password with any second person. </p>
+                        </td>
+                    </tr>
+                    <tr align="center" valign="middle">
+                        <td style="border: 0 none; font-size: 16px; color: #4d4d4d; line-height: 24px; font-weight: 300;"> <a style="font-size:13px; color:#fff; background:#66ccff;  line-height:24px; font-weight:700; border:0 none; border-radius:5px; display:block; margin:0 auto; padding:14px 30px; text-transform:uppercase; text-decoration:none; width:236px;"
+                                href=http://183.82.0.58:8030/forgetpasswordemail?CustID=NSAdd>reset&nbsp;&nbsp;Password</a> </td>
+                    </tr>
+                    <tr align="center" valign="middle">
+                        <td style="border: 0 none; font-size: 16px;  color: #8e0222; line-height: 24px; font-weight: 300;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You Have Received This Mail As A Member Of Kaakateeya.com Please add Info@telugumarriages.com to your address book to ensure mail Delivery Into Your Inbox.</td>
+                    </tr>
+                    <tr align="center" valign="middle">
+                        <td style="padding:20px 6px 15px 10px; border: 0 none; border-top: solid 1px #ccc; font-size: 14px; color: #4d4d4d; line-height: 24px; font-weight: 400;">Thanks and regards <br/> Customer Care <br /> <a href="http://183.82.0.58:8030/home" style="color: #d42e02; text-decoration: none;">Kaakateeya.com </a>India Private Limited <br /> <a style="color: #d42e02;" href="http://183.82.0.58:8030/home">www.Telugumarriages.com</a>
+                            <br /> Mobile : 91-9848344977 ( 10 am to 6 pm IST ) ,91-7702525444 (9:30 am to 5:30 pm IST )</td>
+                    </tr>
+                    <tr align="center" valign="middle ">
+                        <td style="border: 0 none; height: 20px; background: #f9b418; margin: 30px 0 0 0; ">&nbsp;</td>
+                    </tr>
+                </table>
+
+            </div>
+            <div ng-if="page.model.typeofDiv==='FullViewProfile'" ng-init="page.model.init();">
+                <div class="profile_full_main">
+                    <div style="border: solid 1px #fff;">
+                        <div id="upAll">
+                            <div class="clearfix"></div>
+                            <div class="row">
+                                <div class="col-lg-2" style="height: 83px;">
+                                    <img src="src/images/logo2.png" class="pull-left" style="width: 165px;
+                                                        height: 83px;">&nbsp;</img>
+                                </div>
+                                <div class="col-lg-9 col-lg-offset-1" style="font-size: 14px;font-weight: bold;">
+                                    <label style="float: left;margin-top: 4px;" ng-bind-html="proceedtextforbothsides"></label>
+                                    <br>
+                                    <div class="clearfix">
+                                    </div>
+                                    <div class="row" ng-show="page.model.typeofDiv==='paidpartialProfile'">
+                                        <a href="javascript:void(0)" class="classproceeddontproceed" ng-click="btnProceed_Click('btnProceed')">Proceed</a>
+                                        <label style="float: left;margin-left:4px;margin-top: 4px;">If Interested.</label>
+                                        <a class="classproceeddontproceed2" href="javascript:void(0)" ng-click="btnProceed_Click('btnDontProceed')">Don't Proceed</a>
+                                        <label style="float: left;margin-left:4px;margin-top: 4px;" class="">If not Interested.</label>
+                                    </div>
+                                </div>
+                                <div class="profile_full_header_in_ui clearfix col-lg-3 col-lg-offset-7" ng-show="page.model.typeofDiv==='FullViewProfile'">
+                                    <a class="aspNetDisabled">{{page.model.btnticket}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div id="divProfile" class="profile_full_header clearfix">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div id="UpdateImagesContent">
+                                    <div id="divmask" class="profile_full_header_pic">
+                                        <img name="iProfilePic" id="iProfilePic" ng-click="photoalbum()" ng-src="{{page.model.personalinfo[0].ApplicationPhotoPath}}" style="height:150px;width:150px;cursor:pointer;" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="profile_full_header_in">
+                                    <h6>
+                                        <span id="lblName">{{page.model.personalinfo[0].NAME}}</span>
+                                        <span>
+                                                        <span id="lblonlychild" style="font-weight:bold;"></span>
+                                        <span id="lblProfileIDs"> (Profile ID:{{page.model.personalinfo[0].ProfileID}})</span>
+                                        </span>
+                                    </h6>
+                                    <p>
+                                        <span id="lblAboutMyself" class="lblAboutMyself" style="color:Black;font-weight:bold;color: #000">About Myself :</span>
+                                    </p>
+                                    <p>
+                                        <span id="lblDescMy" class="fontsize" style="width: 750px;color:DarkBlue;">{{page.model.aboutmyself[0].Aboutyourself}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <img name="iProfilePic" ng-click="viewhoroscopeimage()" ng-src="{{page.model.horoimagesrc}}" style="height:160px;width:150px;cursor:pointer;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="printdiv">
+                        <div class="personal_inform_main">
+                            <div ng-repeat="item in page.model.arr" ng-if="item.header=='Headings' || item.header=='About'?'':item.header">
+                                <div id="ctl00_divmain" class="personal_inform_head clearfix" style="background-color: rgb(244, 182, 36); padding: 6px 10px; border-bottom: solid 1px #ccc;">
+                                    <h6>
+                                        <span id="ctl00_lblHeadings" class="lblHeadings" style="color: black;font-weight: 700;">{{item.header}}</span></h6>
+                                </div>
+                                <div id="ctl00_divsub" class="personal_inform_main_in">
+                                    <div id="ctl00_divStyle" ng-class="item.header=='My Basic Details' || item.header=='My Location' ||item.header=='My Location Information'||item.header=='Basic details'|| item.header=='Location' || item.header=='Religious information'?'personal_inform_main_in_list clearfix': ''">
+                                        <p ng-repeat="itm in item.value">
+                                            <span id="ctl00_innerRepeater_ctl00_lblContentName" class="lblContentName" style="color:Black;font-weight:bold;" ng-bind-html="page.model.bindeduction(itm.columnname || itm.ColumnName)"></span>
+                                            <span style="color:DarkBlue;"> 
+                                                          <span ng-if="(itm.columnname!='' && itm.columnname!=null) ||(itm.ColumnName!='' && itm.ColumnName!=null && itm.ColumnName!=='Education') " style="color:DarkBlue;">:</span>
+                                            <span ng-bind-html="itm.value || itm.Value" style="color:DarkBlue;"></span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row" style="font-size: 14px;font-weight: bold;margin-left: 40px;" ng-show="page.model.typeofDiv==='paidpartialProfile'">
+                            <br>
+                            <label style="float: left;margin-top: 4px;" ng-bind-html="proceedtextforbothsides"></label>
+                            <a href="javascript:void(0)" class="classproceeddontproceed" ng-click="btnProceed_Click('btnProceed')">Proceed</a>
+                            <label style="float: left;margin-left:4px;margin-top: 4px;">If Interested.</label>
+                            <a class="classproceeddontproceed" href="javascript:void(0)" ng-click="btnProceed_Click('btnDontProceed')">Don't Proceed</a>
+                            <label style="float: left;margin-left:4px;margin-top: 4px;">If not Interested.</label>
+                        </div>
+                        <div class="row pull-right" ng-show="page.model.typeofDiv==='FullViewProfile'">
+                            <br>
+                            <div class="profile_full_header_in_ui clearfix col-lg-12">
+                                <a class="aspNetDisabled">{{page.model.btnticket}}</a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <br>
+                    </div>
+                </div>
+
+            </div>
+            <div ng-if="page.model.typeofDiv==='paidpartialProfile'" ng-init="page.model.init();">
+                <div class="profile_full_main">
+                    <div style="border: solid 1px #fff;">
+                        <div id="upAll">
+                            <div class="clearfix"></div>
+                            <div class="row">
+                                <div class="col-lg-2" style="height: 83px;">
+                                    <img src="src/images/logo2.png" class="pull-left" style="width: 165px;
+                                                        height: 83px;">&nbsp;</img>
+                                </div>
+                                <div class="col-lg-9 col-lg-offset-1" style="font-size: 14px;font-weight: bold;">
+                                    <label style="float: left;margin-top: 4px;" ng-bind-html="proceedtextforbothsides"></label>
+                                    <br>
+                                    <div class="clearfix">
+                                    </div>
+                                    <div class="row" ng-show="page.model.typeofDiv==='paidpartialProfile'">
+                                        <a href="javascript:void(0)" class="classproceeddontproceed" ng-click="btnProceed_Click('btnProceed')">Proceed</a>
+                                        <label style="float: left;margin-left:4px;margin-top: 4px;">If Interested.</label>
+                                        <a class="classproceeddontproceed2" href="javascript:void(0)" ng-click="btnProceed_Click('btnDontProceed')">Don't Proceed</a>
+                                        <label style="float: left;margin-left:4px;margin-top: 4px;" class="">If not Interested.</label>
+                                    </div>
+                                </div>
+                                <div class="profile_full_header_in_ui clearfix col-lg-3 col-lg-offset-7" ng-show="page.model.typeofDiv==='FullViewProfile'">
+                                    <a class="aspNetDisabled">{{page.model.btnticket}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div id="divProfile" class="profile_full_header clearfix">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div id="UpdateImagesContent">
+                                    <div id="divmask" class="profile_full_header_pic">
+                                        <img name="iProfilePic" id="iProfilePic" ng-click="photoalbum()" ng-src="{{page.model.personalinfo[0].ApplicationPhotoPath}}" style="height:150px;width:150px;cursor:pointer;" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="profile_full_header_in">
+                                    <h6>
+                                        <span id="lblName">{{page.model.personalinfo[0].NAME}}</span>
+                                        <span>
+                                                        <span id="lblonlychild" style="font-weight:bold;"></span>
+                                        <span id="lblProfileIDs"> (Profile ID:{{page.model.personalinfo[0].ProfileID}})</span>
+                                        </span>
+                                    </h6>
+                                    <p>
+                                        <span id="lblAboutMyself" class="lblAboutMyself" style="color:Black;font-weight:bold;color: #000">About Myself :</span>
+                                    </p>
+                                    <p>
+                                        <span id="lblDescMy" class="fontsize" style="width: 750px;color:DarkBlue;">{{page.model.aboutmyself[0].Aboutyourself}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <img name="iProfilePic" ng-click="viewhoroscopeimage()" ng-src="{{page.model.horoimagesrc}}" style="height:160px;width:150px;cursor:pointer;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="printdiv">
+                        <div class="personal_inform_main">
+                            <div ng-repeat="item in page.model.arr" ng-if="item.header=='Headings' || item.header=='About'?'':item.header">
+                                <div id="ctl00_divmain" class="personal_inform_head clearfix" style="background-color: rgb(244, 182, 36); padding: 6px 10px; border-bottom: solid 1px #ccc;">
+                                    <h6>
+                                        <span id="ctl00_lblHeadings" class="lblHeadings" style="color: black;font-weight: 700;">{{item.header}}</span></h6>
+                                </div>
+                                <div id="ctl00_divsub" class="personal_inform_main_in">
+                                    <div id="ctl00_divStyle" ng-class="item.header=='My Basic Details' || item.header=='My Location' ||item.header=='My Location Information'||item.header=='Basic details'|| item.header=='Location' || item.header=='Religious information'?'personal_inform_main_in_list clearfix': ''">
+                                        <p ng-repeat="itm in item.value">
+                                            <span id="ctl00_innerRepeater_ctl00_lblContentName" class="lblContentName" style="color:Black;font-weight:bold;" ng-bind-html="page.model.bindeduction(itm.columnname || itm.ColumnName)"></span>
+                                            <span style="color:DarkBlue;"> 
+                                                          <span ng-if="(itm.columnname!='' && itm.columnname!=null) ||(itm.ColumnName!='' && itm.ColumnName!=null && itm.ColumnName!=='Education') " style="color:DarkBlue;">:</span>
+                                            <span ng-bind-html="itm.value || itm.Value" style="color:DarkBlue;"></span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row" style="font-size: 14px;font-weight: bold;margin-left: 40px;" ng-show="page.model.typeofDiv==='paidpartialProfile'">
+                            <br>
+                            <label style="float: left;margin-top: 4px;" ng-bind-html="proceedtextforbothsides"></label>
+                            <a href="javascript:void(0)" class="classproceeddontproceed" ng-click="btnProceed_Click('btnProceed')">Proceed</a>
+                            <label style="float: left;margin-left:4px;margin-top: 4px;">If Interested.</label>
+                            <a class="classproceeddontproceed" href="javascript:void(0)" ng-click="btnProceed_Click('btnDontProceed')">Don't Proceed</a>
+                            <label style="float: left;margin-left:4px;margin-top: 4px;">If not Interested.</label>
+                        </div>
+                        <div class="row pull-right" ng-show="page.model.typeofDiv==='FullViewProfile'">
+                            <br>
+                            <div class="profile_full_header_in_ui clearfix col-lg-12">
+                                <a class="aspNetDisabled">{{page.model.btnticket}}</a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="page.model.typeofDiv==='unpaidpartialProfile'" ng-init="page.model.init();">
+                <div class="profile_full_main">
+                    <div style="border: solid 1px #fff;">
+                        <div id="upAll">
+                            <div class="clearfix"></div>
+                            <div class="row">
+                                <div class="col-lg-2" style="height: 83px;">
+                                    <img src="src/images/logo2.png" class="pull-left" style="width: 165px;
+                                                                height: 83px;">&nbsp;</img>
+                                </div>
+                                <div class="col-lg-9 col-lg-offset-1" style="font-size: 14px;font-weight: bold;">
+                                    <label style="float: left;margin-top: 4px;" ng-bind-html="proceedtextforbothsides"></label>
+                                    <br>
+                                    <div class="clearfix">
+                                    </div>
+                                    <div class="row" ng-show="page.model.typeofDiv==='unpaidpartialProfile'">
+                                        <a href="javascript:void(0)" class="classproceeddontproceed" ng-click="btnProceed_Click('btnProceed')">Proceed</a>
+                                        <label style="float: left;margin-left:4px;margin-top: 4px;">If Interested.</label>
+                                        <a class="classproceeddontproceed2" href="javascript:void(0)" ng-click="btnProceed_Click('btnDontProceed')">Don't Proceed</a>
+                                        <label style="float: left;margin-left:4px;margin-top: 4px;" class="">If not Interested.</label>
+                                    </div>
+                                </div>
+                                <div class="profile_full_header_in_ui clearfix col-lg-3 col-lg-offset-7" ng-show="page.model.typeofDiv==='FullViewProfile'">
+                                    <a class="aspNetDisabled">{{page.model.btnticket}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div id="divProfile" class="profile_full_header clearfix">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div id="UpdateImagesContent">
+                                    <div id="divmask" class="profile_full_header_pic">
+                                        <img name="iProfilePic" id="iProfilePic" ng-click="photoalbum()" ng-src="{{page.model.personalinfo[0].ApplicationPhotoPath}}" style="height:150px;width:150px;cursor:pointer;" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="profile_full_header_in">
+                                    <h6>
+                                        <span id="lblName">{{page.model.personalinfo[0].NAME}}</span>
+                                        <span>
+                                                                <span id="lblonlychild" style="font-weight:bold;"></span>
+                                        <span id="lblProfileIDs"> (Profile ID:{{page.model.personalinfo[0].ProfileID}})</span>
+                                        </span>
+                                    </h6>
+                                    <p>
+                                        <span id="lblAboutMyself" class="lblAboutMyself" style="color:Black;font-weight:bold;color: #000">About Myself :</span>
+                                    </p>
+                                    <p>
+                                        <span id="lblDescMy" class="fontsize" style="width: 750px;color:DarkBlue;">{{page.model.aboutmyself[0].Aboutyourself}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <img name="iProfilePic" ng-click="viewhoroscopeimage()" ng-src="{{page.model.horoimagesrc}}" style="height:160px;width:150px;cursor:pointer;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="printdiv">
+                        <div class="personal_inform_main">
+                            <div ng-repeat="item in page.model.arr" ng-if="item.header=='Headings' || item.header=='About'?'':item.header">
+                                <div id="ctl00_divmain" class="personal_inform_head clearfix" style="background-color: rgb(244, 182, 36); padding: 6px 10px; border-bottom: solid 1px #ccc;">
+                                    <h6>
+                                        <span id="ctl00_lblHeadings" class="lblHeadings" style="color: black;font-weight: 700;">{{item.header}}</span></h6>
+                                </div>
+                                <div id="ctl00_divsub" class="personal_inform_main_in">
+                                    <div id="ctl00_divStyle" ng-class="item.header=='My Basic Details' || item.header=='My Location' ||item.header=='My Location Information'||item.header=='Basic details'|| item.header=='Location' || item.header=='Religious information'?'personal_inform_main_in_list clearfix': ''">
+                                        <p ng-repeat="itm in item.value">
+                                            <span id="ctl00_innerRepeater_ctl00_lblContentName" class="lblContentName" style="color:Black;font-weight:bold;" ng-bind-html="page.model.bindeduction(itm.columnname || itm.ColumnName)"></span>
+                                            <span style="color:DarkBlue;"> 
+                                                                  <span ng-if="(itm.columnname!='' && itm.columnname!=null) ||(itm.ColumnName!='' && itm.ColumnName!=null && itm.ColumnName!=='Education') " style="color:DarkBlue;">:</span>
+                                            <span ng-bind-html="itm.value || itm.Value" style="color:DarkBlue;"></span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row" style="font-size: 14px;font-weight: bold;margin-left: 40px;" ng-show="page.model.typeofDiv==='unpaidpartialProfile'">
+                            <br>
+                            <label style="float: left;margin-top: 4px;" ng-bind-html="proceedtextforbothsides"></label>
+                            <a href="javascript:void(0)" class="classproceeddontproceed" ng-click="btnProceed_Click('btnProceed')">Proceed</a>
+                            <label style="float: left;margin-left:4px;margin-top: 4px;">If Interested.</label>
+                            <a class="classproceeddontproceed" href="javascript:void(0)" ng-click="btnProceed_Click('btnDontProceed')">Don't Proceed</a>
+                            <label style="float: left;margin-left:4px;margin-top: 4px;">If not Interested.</label>
+                        </div>
+                        <div class="row pull-right" ng-show="page.model.typeofDiv==='FullViewProfile'">
+                            <br>
+                            <div class="profile_full_header_in_ui clearfix col-lg-12">
+                                <a class="aspNetDisabled">{{page.model.btnticket}}</a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="page.model.typeofDiv==='basicProfile'">
+                <table align="center" class="col-lg-8 classtable text-center" style="width:90%;border:solid 30px #cecece;background:url('http://d16o2fcjgzj2wp.cloudfront.net/Images/main-background_2.jpg')no-repeat center top ;">
+                    <tr align="center" valign="middle" bgcolor="#fff">
+                        <td align="center">
+                            <a href="http://183.82.0.58:8030/home" target="_blank"><img src='http://d16o2fcjgzj2wp.cloudfront.net/Images/logo3.png' width="160" height="75" alt="Kaakateeya"></a>
+                        </td>
+                    </tr>
+                    <tr align="center" valign="middle">
+                        <td align="center" bgcolor="#f9b418" style="padding:7px 0; border:0 none; font-size:28px; color:#d42e02; line-height:30px; font-weight:300;"> Basic Profiles </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <p style="margin-left:20px;font-size: 17px;">Dear Lakshmi Devi Avisagadda, </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <p style="margin-left: 29px;font-size: 17px;text-align: justify;margin-right: 29px;line-height: 1.5;">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We have shortlisted few profiles expecting them to match your requirement. If you find them suitable please click on the option "View Basic Profile" or "Skip" if the profile is not suitable. </p>
+                        </td>
+                    </tr>
+
+                    <tr align="center" valign="middle">
+                        <td align="left" valign="top" style="padding:0 20px;">
+                            <table bgcolor="#fff" style="border:solid 1px #ccc; border-radius:4px; width:100%; margin:0 0 20px 0;">
+                                <tr align="left" valign="top">
+                                    <td style="width:138px;"> <img src='http://d16o2fcjgzj2wp.cloudfront.net/Images/customernoimages/Mnoimage.jpg' style="width:138px; height:138px; border-radius:100%; border:solid 4px #d1d0d0; display:block;" alt="Profile"></td>
+                                    <td align="left" valign="middle" style="padding:20px 10px 20px 0;">
+                                        <table style="width:100%;" align="left" valign="middle">
+                                            <tr align="left" valign="top">
+                                                <td align="left" valign="top" style="font-size:14px; font-weight:bold; color:#000; padding:10px 0 10px 0;"><span>210910352</span> </td>
+                                                <td align="left" valign="top" style="padding-right: 1%;font-size: 14px; line-height: 18px; color: #bf2111;"> <a style="font-size:13px; color:#fff; background:#bf2111;  line-height:4px; font-weight:700; border:0 none; border-radius:5px; display:block; margin:0 auto; padding:14px 30px; text-transform:uppercase; text-decoration:none; width:203px;"
+                                                        href=http://183.82.0.58:8030/commonviewfull?MyProfileQSAccept=7YrKbCteX/RfSC2jOgj8GfaMliVJjDiPnJu7cnUEbqdCkYUuX6BeepEu8JZsMoOIbu6seK7IZ3EMB4bodiOp+UpZSKfBKzy3+Sif+i6eOlJDCPKjHxmTn1E3w608xY5am4M6rTDY9+Ym3QjBS2O9Rw==>View Basic Profile</a></td>
+                                                <td align="left" valign="top" style="font-size: 14px; line-height: 18px; color: #bf2111;"> <a style="font-size:13px; color:#fff; background:#bf2111;  line-height:4px; font-weight:700; border:0 none; border-radius:5px; display:block; margin:0 auto; padding:14px 30px; text-transform:uppercase; text-decoration:none; width:55;"
+                                                        href=http://183.82.0.58:8030/commonviewfull?MyProfileQSReject=7YrKbCteX/RfSC2jOgj8GfaMliVJjDiPnJu7cnUEbqdCkYUuX6BeepEu8JZsMoOIbu6seK7IZ3EMB4bodiOp+UpZSKfBKzy3+Sif+i6eOlJDCPKjHxmTn1E3w608xY5agOWytZf9PUFnUi2ZHUi/fQ==>Skip</a></td>
+                                            </tr>
+                                            <tr align="left" valign="top">
+                                                <td align="left" valign="top" style="font-size:14px; color:#4d4d4d; line-height:20px;">Age,Height(DOB)</td>
+                                                <td align="left" valign="top" style="font-size:14px; color:#000000; line-height:20px;">27,6'0 (22-Aug-1990)</td>
+                                            </tr>
+                                            <tr align="left" valign="top">
+                                                <td align="left" valign="top" style="font-size:14px; color:#4d4d4d; line-height:20px;">Religion</td>
+                                                <td align="left" valign="top" style="font-size:14px; color:#000000; line-height:20px;">Hindu Reddy</td>
+                                            </tr>
+                                            <tr align="left" valign="top">
+                                                <td align="left" valign="top" style="font-size:14px; color:#4d4d4d; line-height:20px;">Star</td>
+                                                <td align="left" valign="top" style="font-size:14px; color:#000000; line-height:20px;"></td>
+                                            </tr>
+                                            <tr align="left" valign="top">
+                                                <td align="left" valign="top" style="font-size:14px; color:#4d4d4d; line-height:20px;">Location</td>
+                                                <td align="left" valign="top" style="font-size:14px; color:#000000; line-height:20px;">Near Vempalle</td>
+                                            </tr>
+                                            <tr align="left" valign="top">
+                                                <td align="left" valign="top" style="font-size:14px; color:#4d4d4d; line-height:20px;">Education</td>
+                                                <td align="left" valign="top" style="font-size:14px; color:#000000; line-height:20px;">MBA</td>
+                                            </tr>
+                                            <tr align="left" valign="top">
+                                                <td align="left" valign="top" style="font-size:14px; color:#4d4d4d; line-height:20px;">Occupation</td>
+                                                <td align="left" valign="top" style="font-size:14px; color:#000000; line-height:20px;">Not Working</td>
+                                            </tr>
+                                            <tr align="left" valign="top">
+                                                <td align="left" valign="top" style="font-size:14px; color:#4d4d4d; line-height:20px;">Father Occupation</td>
+                                                <td align="left" valign="top" style="font-size:14px; color:#000000; line-height:20px;"></td>
+                                            </tr>
+                                            <tr align="left" valign="top">
+                                                <td align="left" valign="top" style="font-size:14px; color:#4d4d4d; line-height:20px;">Mother Occupation</td>
+                                                <td align="left" valign="top" style="font-size:14px; color:#000000; line-height:20px;">HouseWife</td>
+                                            </tr>
+                                            <tr align="left" valign="top">
+                                                <td align="left" valign="top" style="font-size:14px; color:#4d4d4d; line-height:20px;">Father District</td>
+                                                <td align="left" valign="top" style="font-size:14px; color:#000000; line-height:20px;">Y S R</td>
+                                            </tr>
+                                            <tr align="left" valign="top">
+                                                <td align="left" valign="top" style="font-size:14px; color:#4d4d4d; line-height:20px;">Mother District</td>
+                                                <td align="left" valign="top" style="font-size:14px; color:#000000; line-height:20px;">Y S R</td>
+                                            </tr>
+                                            <tr align="left" valign="top">
+                                                <td align="left" valign="top" style="font-size:14px; color:#4d4d4d; line-height:20px;">No of Brothers</td>
+                                                <td align="left" valign="top" style="font-size:14px; color:#000000; line-height:20px;">1</td>
+                                            </tr>
+                                            <tr align="left" valign="top">
+                                                <td align="left" valign="top" style="font-size:14px; color:#4d4d4d; line-height:20px;">No of Sisters</td>
+                                                <td align="left" valign="top" style="font-size:14px; color:#000000; line-height:20px;">1</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr align="center" valign="middle">
+                        <td style="border: 0 none; font-size: 16px;  color: #8e0222; line-height: 24px; font-weight: 300;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You Have Received This Mail As A Member Of Kaakateeya.com Please add Info@telugumarriages.com to your address book to ensure mail Delivery Into Your Inbox.</td>
+                    </tr>
+                    <tr align="center" valign="middle">
+                        <td style="padding:20px 6px 15px 10px; border: 0 none; border-top: solid 1px #ccc; font-size: 14px; color: #4d4d4d; line-height: 24px; font-weight: 400;">Thanks and regards <br/> Customer Care <br /> <a href="Kaakateeya.com" style="color: #d42e02; text-decoration: none;">Kaakateeya.com </a>India Private Limited <br />
+                            <a style="color: #d42e02;" href="www.Telugumarriages.com" text-decoration: none;>www.Telugumarriages.com</a> <br /> Employee support: admin ,Mobile :91- (9:30 am to 5:30 pm IST )</td>
+                    </tr>
+                    <tr align="center" valign="middle">
+                        <td style="border:0 none; height:20px; background:#f9b418; margin:30px 0 0 0; ">&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
 
         </div>
     </div>
-</div>
 </div>
 <style>
     div#mailFormats {
