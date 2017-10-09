@@ -431,6 +431,7 @@
                         model.tocustidself = tocustid;
                         model.Fromsurname = slideobj.Fromsurname;
                         model.Tosurname = slideobj.Tosurname;
+                        model.logidmatchfollowup = slideobj.Expressinterestlogid;
 
                     } else {
                         model.toempname = slideobj.fromempname;
@@ -443,8 +444,9 @@
                         model.tocustidself = tocustid;
                         model.Fromsurname = slideobj.Tosurname;
                         model.Tosurname = slideobj.Fromsurname;
+                        model.logidmatchfollowup = slideobj.ExpressinterestTologid;
                     }
-                    model.logidmatchfollowup = slideobj.Expressinterestlogid;
+
                     model.ServiceDate = slideobj.ServiceDate;
                     model.selfname = selfname;
                     model.selfemail = selfemail;
@@ -518,7 +520,18 @@
                     ////
                     if (model.typeOfCtrl === '1' || model.typeOfCtrl === '0') {
                         var status = model.typeOfCtrl === '1' ? 'I' : 'NI';
-                        helpService.matchacceptrejectexpressinterest(model.fromcustidselef, model.tocustidself, model.logidmatchfollowup, status, parseInt(model.empid)).then(function(response) {
+                        // helpService.matchacceptrejectexpressinterest(model.fromcustidselef, model.tocustidself, model.logidmatchfollowup, status, parseInt(model.empid)).then(function(response) {
+                        //     if (response.data === parseInt(1)) {} else {}
+                        // });
+                        var MobjViewprofile = {
+                            ExpressInrestID: model.logidmatchfollowup,
+                            CustID: model.fromcustidselef,
+                            FromCustID: model.fromcustidselef,
+                            ToCustID: model.tocustidself,
+                            AcceptStatus: model.typeOfCtrl === '1' ? 1 : 2,
+                            MatchFollwupStatus: model.typeOfCtrl === '1' ? 1 : 2
+                        };
+                        helpService.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
                             if (response.data === parseInt(1)) {} else {}
                         });
                     }
@@ -724,26 +737,7 @@
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
 
                         } else {
-                            if (model.fromticketstatusemail === 'I' && model.toticketstatusemail === 'V') {
-                                model.mailInput.TicketStatusID = "Viewed";
-                                model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
-                                    " and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
-                                    "and please give your opinion in the options provided in the profile.";
-
-                            } else if (model.fromticketstatusemail === 'I' && model.toticketstatusemail === 'NV') {
-                                //resend
-                                model.emailresendflag = 1;
-                                model.TicketStatusID2 = "Resend";
-                                model.mailInput.TicketStatusID = "NotViewed";
-                                model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
-                                    " We have noticed that " + she + " is yet to view your profile and we have resent your profile to " + her + " now and " +
-                                    "have also sent a mobile message and we will also try to reach  " + her + " over phone to inform the same";
-                            } else if (model.fromticketstatusemail === 'V' && model.toticketstatusemail === 'I') {
-                                model.mailInput.TicketStatusID = "onsideinterest";
-                                model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
-                                    " We have noticed that " + she + " had viewed your profile but yet to give " + her + " opinion. " +
-                                    her + " relationship manager will contact  " + herhim + " and get back to you with " + her + " opinion at the earliest.";
-                            } else if (model.fromticketstatusemail === 'I' && model.toticketstatusemail === 'I') {
+                            if (val === '1' && model.toticketstatusemail === 'I') {
                                 model.txtAllcallflag = 1;
                                 model.mailInput.TicketStatusID = "bothSideinterest";
                                 model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;text-align: justify;'>" + genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
@@ -751,6 +745,25 @@
                                     model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.Fromsurname + " relationship manager " + model.toempname +
                                     "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
                                 model.txtAllcallDiscusion = genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
+                            } else if (val === '1' && model.toticketstatusemail === 'V') {
+                                model.mailInput.TicketStatusID = "Viewed";
+                                model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
+                                    " and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
+                                    "and please give your opinion in the options provided in the profile.";
+
+                            } else if (val === '1' && model.toticketstatusemail === 'NV') {
+                                //resend
+                                model.emailresendflag = 1;
+                                model.TicketStatusID2 = "Resend";
+                                model.mailInput.TicketStatusID = "NotViewed";
+                                model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
+                                    " We have noticed that " + she + " is yet to view your profile and we have resent your profile to " + her + " now and " +
+                                    "have also sent a mobile message and we will also try to reach  " + her + " over phone to inform the same";
+                            } else if (val === '1' && model.toticketstatusemail === 'I') {
+                                model.mailInput.TicketStatusID = "onsideinterest";
+                                model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
+                                    " We have noticed that " + she + " had viewed your profile but yet to give " + her + " opinion. " +
+                                    her + " relationship manager will contact  " + herhim + " and get back to you with " + her + " opinion at the earliest.";
                             } else {
                                 model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
                                     "We are resending " + her + " profile for the ease of viewing and please give your opinion in the options provided in the profile";
@@ -834,7 +847,27 @@
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'You have already skipped this profile', 3000);
                     } else {
                         if (status === "NI") {
-                            helpService.matchacceptrejectexpressinterest(fromcust_id, tocustid, logid, status, parseInt(model.empid)).then(function(response) {
+                            // helpService.matchacceptrejectexpressinterest(fromcust_id, tocustid, logid, status, parseInt(model.empid)).then(function(response) {
+                            //     if (response.data === parseInt(1)) {
+                            //         if (flag === 'From') {
+                            //             slide.isSkippedfrom = true;
+                            //         } else {
+                            //             slide.isSkippedto = true;
+                            //         }
+                            //         alertss.timeoutoldalerts(model.scope, 'alert-success', 'Skipped successfully', 4000);
+                            //     } else {
+                            //         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Skipped fail', 4000);
+                            //     }
+                            // });
+                            var MobjViewprofile = {
+                                ExpressInrestID: logid,
+                                CustID: fromcust_id,
+                                FromCustID: fromcust_id,
+                                ToCustID: tocustid,
+                                AcceptStatus: 2,
+                                MatchFollwupStatus: 2
+                            };
+                            helpService.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
                                 if (response.data === parseInt(1)) {
                                     if (flag === 'From') {
                                         slide.isSkippedfrom = true;
