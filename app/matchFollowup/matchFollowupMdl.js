@@ -531,7 +531,8 @@
                             FromCustID: model.fromcustidselef,
                             ToCustID: model.tocustidself,
                             AcceptStatus: statusint ? (model.fromticketstatusemail === 'I' ? 1 : 2) : status,
-                            MatchFollwupStatus: statusint ? (model.fromticketstatusemail === 'I' ? 1 : 2) : status
+                            MatchFollwupStatus: statusint ? (model.fromticketstatusemail === 'I' ? 1 : 2) : status,
+                            intEmpId: parseInt(model.empid)
                         };
                         helpService.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
                             if (response.data === parseInt(1)) {} else {}
@@ -867,7 +868,8 @@
                                 FromCustID: fromcust_id,
                                 ToCustID: tocustid,
                                 AcceptStatus: 2,
-                                MatchFollwupStatus: 2
+                                MatchFollwupStatus: 2,
+                                intEmpId: parseInt(model.empid)
                             };
                             helpService.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
                                 if (response.data === parseInt(1)) {

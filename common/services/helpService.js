@@ -14,7 +14,7 @@ app.service('helperservice', ['$http', function(http) {
         }
     };
     this.UpdateExpressIntrestViewfullprofile = function(obj) {
-        return http.post(app.apipathold + 'StaticPages/UpdateExpressIntrestViewfullprofile', obj);
+        return http.post(app.apiroot + 'StaticPages/UpdateExpressIntrestViewfullprofile', obj);
     };
 
     this.acceptrejectexpressinterest = function(fromid, toid, logid, type, empid) {
