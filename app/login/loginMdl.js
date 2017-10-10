@@ -81,9 +81,7 @@
             };
 
             model.testJWT = function() {
-                $http.post('/authenticate').then(function(response) {
-
-                });
+                $http.post('http://localhost:3000/authenticate').then(function(response) {});
             };
             //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6InRydWUiLCJpYXQiOjE1MDczNzYyNjgsImV4cCI6MTUwNzM3NzcwOH0.CH5lYTCvDcgjJnJN94dpNu3uESKmvV6Wc0hiFkkEwmo
             return model;
