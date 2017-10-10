@@ -266,12 +266,14 @@
                             if (response.data !== undefined && response.data !== "" && response.data !== null && response.data !== undefined && response.data.length > 0) {
                                 model.notificationarray = [];
                                 model.notificationarray = response.data;
+                                Notification.clearAll();
+                                Notification.warning(({ message: '', templateUrl: 'custom_template.html', delay: 10000, scope: model.scope, closeOnClick: false }));
                             } else {
                                 model.notificationarray = [];
                                 model.notificationarray.push("No data Found");
+                                Notification.clearAll();
+                                // alerts.timeoutoldalerts(model.scope, 'alert-danger', 'No Records Found', 3000);
                             }
-                            Notification.clearAll();
-                            Notification.warning(({ message: '', templateUrl: 'custom_template.html', delay: 10000, scope: model.scope, closeOnClick: false }));
                             timeout(function() {
                                 model.notificationarray = [];
                                 Notification.clearAll();
