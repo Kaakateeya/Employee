@@ -420,6 +420,7 @@ app.run(function($rootScope, $state, $stateParams, $ocLazyLoad) {
     $rootScope.EditProfilePaidStatus = '';
     // $rootScope.processingsymbol = true;
     $rootScope.$on('$stateChangeStart', function(e, to) {
+        debugger;
         if (to && to.name !== 'login' && to.name !== 'base.employeeViewfullprofilePrintmail' && to.name !== 'base.horoDisplay') {
             if (sessionStorage.getItem('logintime') && (sessionStorage.getItem('logintime')) === moment().format('MM/DD/YYYY')) {
                 if (to.data && to.data.requiresLogin) {
@@ -431,7 +432,7 @@ app.run(function($rootScope, $state, $stateParams, $ocLazyLoad) {
                     }
                 }
             } else {
-                if (to.name === 'base.employeeViewfullprofilePrintmail' || to.name !== 'base.horoDisplay') {} else {
+                if (to.name === 'base.employeeViewfullprofilePrintmail' || to.name === 'base.horoDisplay') {} else {
                     e.preventDefault();
                     $state.go('login');
                 }
