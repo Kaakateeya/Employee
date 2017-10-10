@@ -28,7 +28,6 @@
 //             });
 
 //             function MakeStaticHeader(gridId, height, width, headerHeight, isFooter) {
-//                 debugger;
 //                 var tbl = document.getElementById(gridId);
 //                 if (tbl) {
 //                     var DivHR = document.getElementById('DivHeaderRow');

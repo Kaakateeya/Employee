@@ -47,8 +47,6 @@
                     // model.decodedString = model.decodedString.replace('http://emp.kaakateeya.com/access/Images/HoroscopeImages/' + custID + '_HaroscopeImage/' + navamsaImgName, 'data:image/png;base64,' + navamsaSrcData);
                     model.decodedString = model.decodedString.replace('http://localhost:7000/showHoro' + custID + '_HaroscopeImage/' + raasiImgName, 'data:image/png;base64,' + rasiSrcData);
                     model.decodedString = model.decodedString.replace('http://localhost:7000/showHoro' + custID + '_HaroscopeImage/' + navamsaImgName, 'data:image/png;base64,' + navamsaSrcData);
-
-                    // debugger;
                     http.post('/createAstroHtml', JSON.stringify({ custid: custID, htmldata: model.decodedString })).then(function(response) {
                         if (response.status === 200) {
                             model.generatedhoroS3Upload();

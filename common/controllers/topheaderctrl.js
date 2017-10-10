@@ -24,7 +24,6 @@
                 };
                 vm.initheader();
                 // scope.$watch('model.notificationarray', function() {
-                //     debugger;
                 //     if (model.notificationarray === undefined || model.notificationarray === null ||
                 //         model.notificationarray === "" || model.notificationarray.length === 0) {
                 //         Notification.clearAll();
