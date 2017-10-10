@@ -365,8 +365,12 @@
                 model.closeprocced = function() {
                     modelpopupopenmethod.closepopuppoptopopup();
                 };
-                model.redirectContactPage = function(custid) {
-                    window.open('/Contact/' + custid, '_blank');
+                model.redirectContactPage = function(custid, fromIsconfidential, fromHighconfidential, FromEmpownerid, ownername) {
+                    if ((fromIsconfidential === 0 && fromHighconfidential === 0) || (parseInt(FromEmpownerid) === parseInt(model.empid)) || (model.Managementid === 'true')) {
+                        window.open('/Contact/' + custid, '_blank');
+                    } else {
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please Contact Profile Owner ' + ownername, 4500);
+                    }
                 };
                 model.Resendmail = function(fromcustID, toCustID, FormProfileid, Toprofileid, offlineExpiry, onlineExpiry) {
                     var resendInputObj = {
@@ -759,14 +763,21 @@
                                 model.emailresendflag = 1;
                                 model.TicketStatusID2 = "Resend";
                                 model.mailInput.TicketStatusID = "NotViewed";
+                                // model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
+                                //     " We have noticed that " + she + " is yet to view your profile and we have resent your profile to " + her + " now and " +
+                                //     "have also sent a mobile message and we will also try to reach  " + her + " over phone to inform the same";
                                 model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
-                                    " We have noticed that " + she + " is yet to view your profile and we have resent your profile to " + her + " now and " +
-                                    "have also sent a mobile message and we will also try to reach  " + her + " over phone to inform the same";
+                                    " and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
+                                    "and please give your opinion in the options provided in the profile.";
+
                             } else if (val === '1' && model.toticketstatusemail === 'I') {
                                 model.mailInput.TicketStatusID = "onsideinterest";
+                                // model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
+                                //     " We have noticed that " + she + " had viewed your profile but yet to give " + her + " opinion. " +
+                                //     her + " relationship manager will contact  " + herhim + " and get back to you with " + her + " opinion at the earliest.";
                                 model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
-                                    " We have noticed that " + she + " had viewed your profile but yet to give " + her + " opinion. " +
-                                    her + " relationship manager will contact  " + herhim + " and get back to you with " + her + " opinion at the earliest.";
+                                    " and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
+                                    "and please give your opinion in the options provided in the profile.";
                             } else {
                                 model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
                                     "We are resending " + her + " profile for the ease of viewing and please give your opinion in the options provided in the profile";

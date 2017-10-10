@@ -18,7 +18,7 @@
                                 <div class="clearfix"></div><br>
                                 <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-class="{'maroon linkDisable':slide.FromSaPath===''}" ng-click="model.Settlementfom(slide.FromSaPath);">{{slide.FromSaPath!==''?'View SA Form':'No SA Form'}}</button></div>
                                 <div class="clearfix"></div><br>
-                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.redirectContactPage(slide.fromcust_id);">View Contacts</button></div>
+                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.redirectContactPage(slide.fromcust_id,slide.fromIsconfidential,slide.fromHighconfidential,slide.FromEmpownerid,slide.fromempname);">View Contacts</button></div>
                                 <div class="clearfix"></div><br>
                                 <!-- <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.sendNumbers(slide.fromcust_id,slide.tocustid);">Send Numbers</button></div> -->
                                 <div class="clearfix"> <button style="color: #c72828;border-color: #d01212;" type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.skipthisprofile(slide,slide.fromcust_id,slide.tocustid,slide.Expressinterestlogid,'NI','From');"
@@ -72,7 +72,7 @@
                             </div>
                             <span ng-if="slide.FromTicket!==null && slide.FromTicket!==''" class="glyphicon glyphicon-chevron-right" style="font-size: 22px;line-height: 0.5;top: 4px;"></span>
                             <div class="clearfix"></div> -->
-                            <button style="float: left;" type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" ng-class="model.classbtnlogin(slide.FromEmpownerid)" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.FromTicket,slide.FromProfileid,slide.FromMobileNumber,slide.fromcust_id, slide.tocustid, slide.ToticketStatusIDb.trim(), slide.Toprofileid,slide.ToName,slide.togenderid,slide.FromName,slide.FromEmail,slide,'from',slide.TOEmail);"><span>{{slide.fromonlyempname}} Ticket</span>
+                            <button style="float: left;" type="button" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" ng-class="model.classbtnlogin(slide.FromEmpownerid)" class="btn btn-success-outlinenew" ng-click="model.openActionPopup(slide.FromTicket,slide.FromProfileid,slide.FromMobileNumber,slide.fromcust_id, slide.tocustid, slide.ToticketStatusIDb.trim(), slide.Toprofileid,slide.ToName,slide.togenderid,slide.FromName,slide.FromEmail,slide,'from',slide.TOEmail);"><span>{{slide.fromonlyempname}} Ticket</span>
                                 <i class="fa fa-arrow-right" style="font-size: 19px;margin-left: 8px;"></i>
                             </button>
                             <button type="button" ng-if="slide.FromTicket===null || slide.FromTicket===''" class="btn btn-success-outline" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.Resendmail(slide.fromcust_id,slide.tocustid,slide.FromProfileid,slide.Toprofileid,slide.FromOfflineExpiryDate,slide.FromOnlineMembershipExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
@@ -129,7 +129,7 @@
                                 <div class="clearfix"></div><br>
                                 <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-class="{ 'linkDisable maroon':slide.ToSaPath ===''}" ng-click="model.Settlementfom(slide.ToSaPath);">   {{slide.ToSaPath!==''?'View SA Form':'No SA Form'}}</button></div>
                                 <div class="clearfix"></div><br>
-                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.redirectContactPage(slide.tocustid);">View Contacts</button></div>
+                                <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.redirectContactPage(slide.tocustid,slide.toIsconfidential,slide.toHighconfidential,slide.ToEmpownerid,slide.toempname);">View Contacts</button></div>
                                 <div class="clearfix"></div><br>
                                 <!-- <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.sendNumbers(slide.tocustid,slide.fromcust_id);">Send Numbers</button></div> -->
                                 <div class="clearfix"> <button type="button" style="color: #c72828;border-color: #d01212;" class="btn btn-success-outline row sidebuttons" ng-if="slide.ToTicket===null || slide.ToTicket==='' || slide.ToTicket===undefined" ng-click="model.skipthisprofile(slide,slide.tocustid,slide.fromcust_id,slide.ExpressinterestTologid,'NI','To');">Skip This Profile</button></div>
@@ -151,7 +151,7 @@
                                 <label>{{slide.toempname}}</label>
                                 <br>
                             </div> -->
-                            <button type="button" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" ng-class="model.classbtnlogin(slide.ToEmpownerid)" class="btn btn-success-outline" ng-click="model.openActionPopup(slide.ToTicket,slide.Toprofileid,slide.ToMobileNumber,slide.tocustid,slide.fromcust_id,slide.FromticketStatusIDb.trim(), slide.FromProfileid,slide.FromName,slide.fromgenderid,slide.ToName,slide.TOEmail,slide,'to',slide.FromEmail);"> 
+                            <button type="button" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" ng-class="model.classbtnlogin(slide.ToEmpownerid)" class="btn btn-success-outlinenew" ng-click="model.openActionPopup(slide.ToTicket,slide.Toprofileid,slide.ToMobileNumber,slide.tocustid,slide.fromcust_id,slide.FromticketStatusIDb.trim(), slide.FromProfileid,slide.FromName,slide.fromgenderid,slide.ToName,slide.TOEmail,slide,'to',slide.FromEmail);"> 
                                 <i class="fa fa-arrow-left" style="font-size: 19px;margin-right: 8px;"></i><span>{{slide.toonlyempname}} Ticket</span></button>
                             <button type="button" ng-if="slide.ToTicket===null || slide.ToTicket===''" class="btn btn-success-outline" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.Resendmail(slide.tocustid,slide.fromcust_id,slide.Toprofileid,slide.FromProfileid,slide.ToOfflineExpiryDate,slide.ToonlineExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Email' : 'Rvr Send'}}</button>
                             <br>
@@ -240,7 +240,7 @@
         <div class="col-lg-12">
             <!-- <label>Name : {{page.model.selfname}}</label> -->
             <!-- <label style="color: #ea1d1d;font-size: 18px;font-weight: 900;">|</label> -->
-            <label ng-bind-html="page.model.headertextpop"></label>
+            <label style="color: #0e0ed4;" ng-bind-html="page.model.headertextpop"></label>
         </div>
         <uib-tabset active="page.model.activetab">
             <uib-tab ng-click="page.model.clearalltext()" index="0" heading="Incoming Call" style="padding-left:16%;">
