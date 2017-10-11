@@ -1,4 +1,14 @@
 #mailFormats {
+    th,
+    td,
+    tr {
+        width: 0px;
+    }
+    #dataDivid td,
+    #sendMailDivid td,
+    #updateMailDivid td {
+        border: 1px solid #ffffff;
+    }
     .nav-sm .container.body .right_col {
         padding: 32px 20px;
         margin-left: 20px;

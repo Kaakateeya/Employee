@@ -18,7 +18,10 @@
             { label: 'Partial view profile for unpaid', typeofDiv: 'unpaidpartialProfile' },
             { label: 'Partial view profile for paid', typeofDiv: 'paidpartialProfile' },
             { label: 'View full profile for unpaid', typeofDiv: 'unPaidFullViewProfile' },
-            { label: 'View fulll profile for paid', typeofDiv: 'PaidFullViewProfile' }
+            { label: 'View fulll profile for paid', typeofDiv: 'PaidFullViewProfile' },
+            { label: 'Matchfollowup Send Email', typeofDiv: 'MatchfollowupSendMail' },
+            { label: 'Matchfollowup Resend Email', typeofDiv: 'MatchfollowupResendMail' },
+            { label: 'Matchfollowup Ticket Updation Mail', typeofDiv: 'MatchfollowupTicketUpdateMail' }
         ];
 
         model.paidPartialviewfull = [
