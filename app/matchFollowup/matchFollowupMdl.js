@@ -407,6 +407,7 @@
                     model.activetab = 1;
                     model.replytypetxtdiabled = false;
                     model.emailresendflag = 0;
+                    model.DisplayToCustomerin = false;
                     model.flagtype = flagtype;
                     if (flagtype === 'from') {
                         model.fromempname = slideobj.fromempname;
@@ -422,7 +423,10 @@
                         model.logidmatchfollowup = slideobj.Expressinterestlogid;
                         model.FromTicketMatchmeetingStatus = slideobj.FromTicketMatchmeetingStatus;
                         model.ToTicketMatchmeetingStatus = slideobj.ToTicketMatchmeetingStatus;
-
+                        model.fromIsconfidential = slideobj.fromIsconfidential;
+                        model.toIsconfidential = slideobj.toIsconfidential;
+                        model.fromHighconfidential = slideobj.fromHighconfidential;
+                        model.toHighconfidential = slideobj.toHighconfidential;
                     } else {
                         model.toempname = slideobj.fromempname;
                         model.fromempname = slideobj.toempname;
@@ -437,6 +441,10 @@
                         model.logidmatchfollowup = slideobj.ExpressinterestTologid;
                         model.FromTicketMatchmeetingStatus = slideobj.ToTicketMatchmeetingStatus;
                         model.ToTicketMatchmeetingStatus = slideobj.FromTicketMatchmeetingStatus;
+                        model.fromIsconfidential = slideobj.toIsconfidential;
+                        model.toIsconfidential = slideobj.fromIsconfidential;
+                        model.fromHighconfidential = slideobj.toHighconfidential;
+                        model.toHighconfidential = slideobj.fromHighconfidential;
                     }
 
                     model.ServiceDate = slideobj.ServiceDate;
@@ -559,15 +567,17 @@
                                 if ((model.actobj.rbtnInDisplay === '0' && model.actobj.rbtnReplyType === '3') || (model.actobj.rbtnOutDisplay === '0' && model.actobj.rbtnReplyTypeout === '3')) {
 
                                 } else {
-                                    if (model.mailInput.TicketStatusID === "NotViewed") {
-                                        matchFollowupServices.sendMail(model.mailInput).then(function(response) {
-                                            if (parseInt(response.data) === 1) {}
-                                        });
-                                        model.Resendmail(model.tocustidself, model.fromcustidselef, model.toprofileidinterest, model.ActionProfileID, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
-                                    } else {
-                                        matchFollowupServices.sendMail(model.mailInput).then(function(response) {
-                                            if (parseInt(response.data) === 1) {}
-                                        });
+                                    if ((model.fromIsconfidential === 0 && model.toIsconfidential === 0 && model.fromHighconfidential === 0 && model.toHighconfidential === 0) || (model.actobj.rbtnOutDisplay === 1 || model.actobj.rbtnInDisplay === 1)) {
+                                        if (model.mailInput.TicketStatusID === "NotViewed") {
+                                            matchFollowupServices.sendMail(model.mailInput).then(function(response) {
+                                                if (parseInt(response.data) === 1) {}
+                                            });
+                                            model.Resendmail(model.tocustidself, model.fromcustidselef, model.toprofileidinterest, model.ActionProfileID, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
+                                        } else {
+                                            matchFollowupServices.sendMail(model.mailInput).then(function(response) {
+                                                if (parseInt(response.data) === 1) {}
+                                            });
+                                        }
                                     }
                                 }
                             }
@@ -711,8 +721,11 @@
                     });
                 };
                 model.NotIntrstChnge = function(val, type) {
-                    //
-                    //
+                    if (model.fromIsconfidential === 1 || model.toIsconfidential === 1 || model.fromHighconfidential === 1 || model.toHighconfidential === 1) {
+                        model.DisplayToCustomerin = true;
+                    } else {
+                        model.DisplayToCustomerin = false;
+                    }
                     model.TicketStatusID2 = "";
                     model.emailresendflag = 0;
                     model.txtAllcallflag = 0;
@@ -776,6 +789,7 @@
                             "Meanwhile lets look into other options.";
                         model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else if (val === '3') {
+                        model.DisplayToCustomerin = true;
                         model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = '0';
                         model.replytypetxtdiabled = false;
                         model.mailInput.TicketStatusID = "Followup";
