@@ -11,11 +11,11 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'infinite-scroll', 'ngLoadingSpinner', 'ui-notification'
 ]);
 //'angular-loading-bar',
-app.apiroot = 'http://52.66.131.254:8025/Api/';
-app.apipathold = 'http://52.66.131.254:8010/Api/';
+// app.apiroot = 'http://52.66.131.254:8025/Api/';
+// app.apipathold = 'http://52.66.131.254:8010/Api/';
 
-// app.apiroot = 'http://183.82.0.58:8025/Api/';
-// app.apipathold = 'http://183.82.0.58:8070/Api/';
+app.apiroot = 'http://183.82.0.58:8025/Api/';
+app.apipathold = 'http://183.82.0.58:8070/Api/';
 
 app.env = "dev";
 app.kammaPayfixedAmt = 1000;
@@ -420,7 +420,6 @@ app.run(function($rootScope, $state, $stateParams, $ocLazyLoad) {
     $rootScope.EditProfilePaidStatus = '';
     // $rootScope.processingsymbol = true;
     $rootScope.$on('$stateChangeStart', function(e, to) {
-        debugger;
         if (to && to.name !== 'login' && to.name !== 'base.employeeViewfullprofilePrintmail' && to.name !== 'base.horoDisplay') {
             if (sessionStorage.getItem('logintime') && (sessionStorage.getItem('logintime')) === moment().format('MM/DD/YYYY')) {
                 if (to.data && to.data.requiresLogin) {

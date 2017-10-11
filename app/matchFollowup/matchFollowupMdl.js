@@ -567,16 +567,20 @@
                                 model.closeAction();
                             }
                             model.mailInput.Notes = model.txtAllcallflag === 1 ? model.txtAllcallDiscusionemail : obj.CallDiscussion + model.emailmanagers;
-                            if (str === 'Incoming' || str === 'Out going') {
-                                if (model.mailInput.TicketStatusID === "NotViewed") {
-                                    matchFollowupServices.sendMail(model.mailInput).then(function(response) {
-                                        if (parseInt(response.data) === 1) {}
-                                    });
-                                    model.Resendmail(model.tocustidself, model.fromcustidselef, model.toprofileidinterest, model.ActionProfileID, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
+                            if ((str === 'Incoming') || (str === 'Out going')) {
+                                if ((model.actobj.rbtnInDisplay === '0' && model.actobj.rbtnReplyType === '3') || (model.actobj.rbtnOutDisplay === '0' && model.actobj.rbtnReplyTypeout === '3')) {
+
                                 } else {
-                                    matchFollowupServices.sendMail(model.mailInput).then(function(response) {
-                                        if (parseInt(response.data) === 1) {}
-                                    });
+                                    if (model.mailInput.TicketStatusID === "NotViewed") {
+                                        matchFollowupServices.sendMail(model.mailInput).then(function(response) {
+                                            if (parseInt(response.data) === 1) {}
+                                        });
+                                        model.Resendmail(model.tocustidself, model.fromcustidselef, model.toprofileidinterest, model.ActionProfileID, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
+                                    } else {
+                                        matchFollowupServices.sendMail(model.mailInput).then(function(response) {
+                                            if (parseInt(response.data) === 1) {}
+                                        });
+                                    }
                                 }
                             }
                             var curdate = moment().format('Do MMMM YYYY, h:mm:ss');
@@ -764,21 +768,13 @@
                                 model.emailresendflag = 1;
                                 model.TicketStatusID2 = "Resend";
                                 model.mailInput.TicketStatusID = "NotViewed";
-                                // model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
-                                //     " We have noticed that " + she + " is yet to view your profile and we have resent your profile to " + her + " now and " +
-                                //     "have also sent a mobile message and we will also try to reach  " + her + " over phone to inform the same";
                                 model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
                                     " and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
                                     "and please give your opinion in the options provided in the profile.";
 
-                            } else if (val === '1' && model.toticketstatusemail === 'I') {
+                            } else if (val === '1' && model.toticketstatusemail === 'NI') {
                                 model.mailInput.TicketStatusID = "onsideinterest";
-                                // model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
-                                //     " We have noticed that " + she + " had viewed your profile but yet to give " + her + " opinion. " +
-                                //     her + " relationship manager will contact  " + herhim + " and get back to you with " + her + " opinion at the earliest.";
-                                model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
-                                    " and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
-                                    "and please give your opinion in the options provided in the profile.";
+                                model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
                             } else {
                                 model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
                                     "We are resending " + her + " profile for the ease of viewing and please give your opinion in the options provided in the profile";
@@ -793,6 +789,7 @@
                             "Meanwhile lets look into other options.";
                         model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else if (val === '3') {
+                        model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = '0';
                         model.replytypetxtdiabled = false;
                         model.mailInput.TicketStatusID = "Followup";
                         model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Followup Ticket";
@@ -802,8 +799,13 @@
                         model.replytypetxtdiabled = true;
                         model.mailInput.TicketStatusID = "Notinterest";
                         model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Close Ticket";
-                        model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your  profile and did not respond positive." +
-                            "Lets proceed further with our new search options.";
+                        if (model.fromticketstatusemail === 'NI' && model.toticketstatusemail === 'I') {
+                            model.txtAllcallDiscusion = "We have informed to  " + genderid + model.Fromsurname + "  about your interest to proceed  but  " + she + " is not keen to proceed ahead. For further communication please contact your relationship manager.";
+
+                        } else {
+                            model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your  profile and did not respond positive." +
+                                "Lets proceed further with our new search options.";
+                        }
                         model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     }
                 };
@@ -854,6 +856,8 @@
                     model.actobj.rbtnReplyTypememo = "";
                     model.actobj.rbtnReplyTypeClose = "";
                     model.replytypetxtdiabled = false;
+                    model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = '0';
+
                 };
                 model.skipthisprofile = function(slide, fromcust_id, tocustid, logid, status, flag) {
                     if (flag === 'From' && slide.isSkippedfrom) {
