@@ -18,7 +18,7 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
 // app.apipathold = 'http://183.82.0.58:8010/Api/';
 
 app.apiroot = 'http://localhost:3000/Api/';
-app.apipathold = 'http://localhost:3000/Api/';
+app.apipathold = 'http://183.82.0.58:3000/Api/';
 
 app.env = "dev";
 app.kammaPayfixedAmt = 1000;
@@ -179,7 +179,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'common/services/fileuploadservice.js',
                         'common/models/headermodel.js',
                         'common/controllers/topheaderctrl.js',
-                        'common/controllers/LoaderCtrl.js'
+                        'common/controllers/LoaderCtrl.js',
+                        "common/services/errorInterceptor.js"
                     ]
                 },
                 {

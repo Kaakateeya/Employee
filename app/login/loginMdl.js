@@ -10,7 +10,7 @@
             model.usernameemployee = false;
             model.usernameemployeepassword = false;
             model.init = function() {
-                model.testJWT();
+
                 model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                 // authSvc.getmacaddress();
                 authSvc.getClientIp();
@@ -28,7 +28,7 @@
                         if (response.data !== undefined && response.data !== "" && response.data !== null) {
                             switch (response.data.m_Item5) {
                                 case 1:
-                                    model.testJWT();
+                                    model.setToken();
                                     authSvc.logout();
                                     model.loginarray = response.data.m_Item1;
                                     model.empphoto = response.data.m_Item1.EmpPhotoPath;
@@ -80,8 +80,10 @@
                 }
             };
 
-            model.testJWT = function() {
-                $http.post('http://localhost:3000/authenticate').then(function(response) {});
+            model.setToken = function() {
+                $http.post('http://localhost:3000/authenticate', JSON.stringify({ username: '310910220', password: '1234567', custid: 91022 })).then(function(response) {
+                    authSvc.PutToken(response.data.token);
+                });
             };
             //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6InRydWUiLCJpYXQiOjE1MDczNzYyNjgsImV4cCI6MTUwNzM3NzcwOH0.CH5lYTCvDcgjJnJN94dpNu3uESKmvV6Wc0hiFkkEwmo
             return model;

@@ -202,7 +202,7 @@
                     intStartIndex: from,
                     intEndIndex: to,
                     intEmpID: model.empid,
-                    isSlide: typeofbind === "slideshow" ? 1 : 0
+                    isSlide: typeofbind === "slideshow" ? true : false
                 };
                 ViewAllCustomerService.getViewCustomerData(model.objectedit).then(function(response) {
                     model.isDisabledsubmit = false;
