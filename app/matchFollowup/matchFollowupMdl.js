@@ -809,7 +809,7 @@
 
                         } else if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Close') {
 
-                            model.txtAllcallDiscusion = "We have informed to  " + genderid + model.Fromsurname + "  about your interest to proceed  but  " + she + " is not keen to proceed ahead. For further communication please contact your relationship manager.";
+                            model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
 
                         } else if (model.toticketstatusemail === 'NI' && model.ToTicketMatchmeetingStatus === 'Close') {
 
