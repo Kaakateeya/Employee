@@ -53,6 +53,13 @@
                         mailTxt: text
                     }
                 });
+            },
+            getMarketingticket: function(custid) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getMarketingtickethistory', {
+                    params: {
+                        custid: custid
+                    }
+                });
             }
         };
     }

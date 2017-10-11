@@ -52,22 +52,6 @@
                     return model;
                 };
 
-                // //1st maethod
-                // model.astrogenerate = function() {
-                //     return $http.get('http://www.astrovisiononline.com/avservices/singlepagehoro/inserttolsdb_v3.php?data=<DATA><BIRTHDATA><CUSTID>91035</CUSTID><SEX>Male</SEX><NAME>AnilS</NAME><DAY>22</DAY><MONTH>8</MONTH><YEAR>1990</YEAR><TIME24HR>13:11:00</TIME24HR><CORR>1</CORR><PLACE>Pulivendla</PLACE><LONG>078.14</LONG><LAT>14.25</LAT><LONGDIR>E</LONGDIR><LATDIR>N</LATDIR><TZONE>05.30</TZONE><TZONEDIR>E</TZONEDIR></BIRTHDATA><OPTIONS><CHARTSTYLE>0</CHARTSTYLE><LANGUAGE>ENG</LANGUAGE><REPTYPE>LS-SP</REPTYPE><REPDMN>KKSTAGING</REPDMN><HSETTINGS><AYANAMSA>1</AYANAMSA><DASASYSTEM>1</DASASYSTEM><GULIKATYPE>1</GULIKATYPE><PARYANTHARSTART>0</PARYANTHARSTART><PARYANTHAREND>25</PARYANTHAREND><FAVMARPERIOD>50</FAVMARPERIOD><BHAVABALAMETHOD>1</BHAVABALAMETHOD><ADVANCEDOPTION1>0</ADVANCEDOPTION1><ADVANCEDOPTION2>0</ADVANCEDOPTION2><ADVANCEDOPTION3>0</ADVANCEDOPTION3><ADVANCEDOPTION4>0</ADVANCEDOPTION4></HSETTINGS><IMGURL>http://emp.kaakateeya.com/access/Images/HoroscopeImages/91022_HaroscopeImage/</IMGURL></OPTIONS><PARAMS>employee</PARAMS></DATA>').then(function(res) {
-                //         console.log(res);
-                //     });
-                // };
-
-                // model.thirdmethod = function() {
-                //     $.ajax({
-                //         url: "http://www.astrovisiononline.com/avservices/singlepagehoro/inserttolsdb_v3.php",
-                //         type: 'GET',
-                //         data: { data: "<DATA><BIRTHDATA><CUSTID>91035</CUSTID><SEX>Male</SEX><NAME>AnilS</NAME><DAY>22</DAY><MONTH>8</MONTH><YEAR>1990</YEAR><TIME24HR>13:11:00</TIME24HR><CORR>1</CORR><PLACE>Pulivendla</PLACE><LONG>078.14</LONG><LAT>14.25</LAT><LONGDIR>E</LONGDIR><LATDIR>N</LATDIR><TZONE>05.30</TZONE><TZONEDIR>E</TZONEDIR></BIRTHDATA><OPTIONS><CHARTSTYLE>0</CHARTSTYLE><LANGUAGE>ENG</LANGUAGE><REPTYPE>LS-SP</REPTYPE><REPDMN>KKSTAGING</REPDMN><HSETTINGS><AYANAMSA>1</AYANAMSA><DASASYSTEM>1</DASASYSTEM><GULIKATYPE>1</GULIKATYPE><PARYANTHARSTART>0</PARYANTHARSTART><PARYANTHAREND>25</PARYANTHAREND><FAVMARPERIOD>50</FAVMARPERIOD><BHAVABALAMETHOD>1</BHAVABALAMETHOD><ADVANCEDOPTION1>0</ADVANCEDOPTION1><ADVANCEDOPTION2>0</ADVANCEDOPTION2><ADVANCEDOPTION3>0</ADVANCEDOPTION3><ADVANCEDOPTION4>0</ADVANCEDOPTION4></HSETTINGS><IMGURL>http://emp.kaakateeya.com/access/Images/HoroscopeImages/91035_HaroscopeImage/</IMGURL></OPTIONS><PARAMS>employee</PARAMS></DATA>" },
-                //         success: function(response) {}
-                //     });
-                // };
-                // //
                 model.bindEmpnames = function() {
                     if ((model.Managementid) === 'true' && model.EmpNamesArr.length === 0) {
                         SelectBindServiceApp.EmpwithBranch('ProfileBranch', '').then(function(response) {
@@ -728,7 +712,6 @@
                 };
                 model.NotIntrstChnge = function(val, type) {
                     //
-
                     //
                     model.TicketStatusID2 = "";
                     model.emailresendflag = 0;
@@ -803,32 +786,38 @@
                         model.replytypetxtdiabled = true;
                         model.mailInput.TicketStatusID = "Notinterest";
                         model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Close Ticket";
-                        if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Open') {
+                        if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Open' && (model.fromticketstatusemail === 'I' || model.fromticketstatusemail === 'NI' || model.fromticketstatusemail === 'V' || model.fromticketstatusemail === 'NV')) {
 
                             model.txtAllcallDiscusion = "We have informed to  " + genderid + model.Fromsurname + "  about your interest to proceed  but  " + she + " is not keen to proceed ahead. For further communication please contact your relationship manager.";
 
-                        } else if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Close') {
+                        } else if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Close' && (model.fromticketstatusemail === 'I' || model.fromticketstatusemail === 'NI' || model.fromticketstatusemail === 'V' || model.fromticketstatusemail === 'NV')) {
 
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
 
-                        } else if (model.toticketstatusemail === 'NI' && model.ToTicketMatchmeetingStatus === 'Close') {
+                        } else if (model.toticketstatusemail === 'NI' && model.ToTicketMatchmeetingStatus === 'Close' && (model.fromticketstatusemail === 'I' || model.fromticketstatusemail === 'NI' || model.fromticketstatusemail === 'V' || model.fromticketstatusemail === 'NV')) {
 
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
 
-                        } else if (model.toticketstatusemail === 'NI' && model.ToTicketMatchmeetingStatus === 'Open') {
+                        } else if (model.toticketstatusemail === 'NI' && model.ToTicketMatchmeetingStatus === 'Open' && (model.fromticketstatusemail === 'I' || model.fromticketstatusemail === 'NI' || model.fromticketstatusemail === 'V' || model.fromticketstatusemail === 'NV')) {
 
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
 
-                        } else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Close') {
+                        } else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Close' && (model.fromticketstatusemail === 'I' || model.fromticketstatusemail === 'NI' || model.fromticketstatusemail === 'V' || model.fromticketstatusemail === 'NV')) {
 
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your  profile and did not respond positive." +
                                 "Lets proceed further with our new search options.";
 
-                        } else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Open') {
+                        } else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Open' && (model.fromticketstatusemail === 'I') && model.FromTicketMatchmeetingStatus === 'Open') {
+                            model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your  profile and did not respond positive." +
+                                "Lets proceed further with our new search options.";
 
-                            model.txtAllcallDiscusion = "We have informed to  " + genderid + model.Fromsurname + "  about your interest to proceed  but  " + she + " is not keen to proceed ahead. For further communication please contact your relationship manager.";
 
-                        } else {
+                        }
+                        // else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Open' && (model.fromticketstatusemail === 'I') && model.FromTicketMatchmeetingStatus === 'Close') {
+                        //     model.txtAllcallDiscusion = "We have informed to  " + genderid + model.Fromsurname + "  about your interest to proceed  but  " + she + " is not keen to proceed ahead. For further communication please contact your relationship manager.";
+
+                        // } 
+                        else {
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your  profile and did not respond positive." +
                                 "Lets proceed further with our new search options.";
                         }
@@ -892,18 +881,6 @@
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'You have already skipped this profile', 3000);
                     } else {
                         if (status === "NI") {
-                            // helpService.matchacceptrejectexpressinterest(fromcust_id, tocustid, logid, status, parseInt(model.empid)).then(function(response) {
-                            //     if (response.data === parseInt(1)) {
-                            //         if (flag === 'From') {
-                            //             slide.isSkippedfrom = true;
-                            //         } else {
-                            //             slide.isSkippedto = true;
-                            //         }
-                            //         alertss.timeoutoldalerts(model.scope, 'alert-success', 'Skipped successfully', 4000);
-                            //     } else {
-                            //         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Skipped fail', 4000);
-                            //     }
-                            // });
                             var MobjViewprofile = {
                                 ExpressInrestID: logid,
                                 CustID: fromcust_id,
@@ -947,10 +924,15 @@
                     return classbtn;
                 };
                 model.marketingticket = function(custid) {
-
+                    matchFollowupServices.getMarketingticket(custid).then(function(response) {
+                        console.log(response);
+                        if (_.isArray(response.data) && response.data.length > 0 && response.data[0].length > 0) {
+                            model.marketingTicketid = response.data[0][0].TicketID;
+                            modelpopupopenmethod.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
+                        }
+                    });
                 };
                 return model;
-
             }
 
         ]);
