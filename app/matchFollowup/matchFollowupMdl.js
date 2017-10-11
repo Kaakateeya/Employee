@@ -756,7 +756,7 @@
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
 
                         } else {
-                            if (val === '1' && model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Open') {
+                            if (val === '1' && model.toticketstatusemail === 'I') {
                                 model.txtAllcallflag = 1;
                                 model.mailInput.TicketStatusID = "bothSideinterest";
                                 model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;text-align: justify;'>" + genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
@@ -764,13 +764,13 @@
                                     model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.Fromsurname + " relationship manager " + model.toempname +
                                     "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
                                 model.txtAllcallDiscusion = genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
-                            } else if (val === '1' && model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Open') {
+                            } else if (val === '1' && model.toticketstatusemail === 'V') {
                                 model.mailInput.TicketStatusID = "Viewed";
                                 model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
                                     " and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
                                     "and please give your opinion in the options provided in the profile.";
 
-                            } else if (val === '1' && model.toticketstatusemail === 'NV' && model.ToTicketMatchmeetingStatus === 'Open') {
+                            } else if (val === '1' && model.toticketstatusemail === 'NV') {
                                 //resend
                                 model.emailresendflag = 1;
                                 model.TicketStatusID2 = "Resend";
@@ -779,9 +779,6 @@
                                     " and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
                                     "and please give your opinion in the options provided in the profile.";
 
-                            } else if (val === '1' && model.toticketstatusemail === 'NI' && model.ToTicketMatchmeetingStatus === 'Close') {
-                                model.mailInput.TicketStatusID = "onsideinterest";
-                                model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
                             } else {
                                 model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
                                     "We are resending " + her + " profile for the ease of viewing and please give your opinion in the options provided in the profile";
@@ -806,7 +803,29 @@
                         model.replytypetxtdiabled = true;
                         model.mailInput.TicketStatusID = "Notinterest";
                         model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Close Ticket";
-                        if (model.fromticketstatusemail === 'NI' && model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Open') {
+                        if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Open') {
+
+                            model.txtAllcallDiscusion = "We have informed to  " + genderid + model.Fromsurname + "  about your interest to proceed  but  " + she + " is not keen to proceed ahead. For further communication please contact your relationship manager.";
+
+                        } else if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Close') {
+
+                            model.txtAllcallDiscusion = "We have informed to  " + genderid + model.Fromsurname + "  about your interest to proceed  but  " + she + " is not keen to proceed ahead. For further communication please contact your relationship manager.";
+
+                        } else if (model.toticketstatusemail === 'NI' && model.ToTicketMatchmeetingStatus === 'Close') {
+
+                            model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
+
+                        } else if (model.toticketstatusemail === 'NI' && model.ToTicketMatchmeetingStatus === 'Open') {
+
+                            model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
+
+                        } else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Close') {
+
+                            model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your  profile and did not respond positive." +
+                                "Lets proceed further with our new search options.";
+
+                        } else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Open') {
+
                             model.txtAllcallDiscusion = "We have informed to  " + genderid + model.Fromsurname + "  about your interest to proceed  but  " + she + " is not keen to proceed ahead. For further communication please contact your relationship manager.";
 
                         } else {
@@ -926,6 +945,9 @@
                         classbtn = 'btnwarningsout';
                     }
                     return classbtn;
+                };
+                model.marketingticket = function(custid) {
+
                 };
                 return model;
 
