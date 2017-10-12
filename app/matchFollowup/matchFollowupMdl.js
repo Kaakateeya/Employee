@@ -819,10 +819,9 @@
 
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
 
-                        } else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Close') {
+                        } else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Close' && (model.fromticketstatusemail === 'I') && model.FromTicketMatchmeetingStatus === 'Open') {
 
-                            model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your  profile and did not respond positive." +
-                                "Lets proceed further with our new search options.";
+                            model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
 
                         } else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Open' && (model.fromticketstatusemail === 'I') && model.FromTicketMatchmeetingStatus === 'Open') {
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your  profile and did not respond positive." +
