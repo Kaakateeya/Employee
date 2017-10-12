@@ -528,8 +528,6 @@
                         var MobjViewprofile = {
                             ExpressInrestID: model.logidmatchfollowup,
                             CustID: model.fromcustidselef,
-                            FromCustID: model.fromcustidselef,
-                            ToCustID: model.tocustidself,
                             AcceptStatus: statusint ? (model.fromticketstatusemail === 'I' ? 1 : 2) : status,
                             MatchFollwupStatus: statusint ? (model.fromticketstatusemail === 'I' ? 1 : 2) : status,
                             intEmpId: parseInt(model.empid)
