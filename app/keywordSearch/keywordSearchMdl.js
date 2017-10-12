@@ -396,13 +396,13 @@
         };
         model.keywordlikesearch = function(from, to, type) {
             model.topage = to;
-            if (model.checkTxt(model.allphones) !== '' || model.checkTxt(model.allemails) !== '' || model.checkTxt(model.allnativeplaces) !== '' || model.checkTxt(model.allsurnames) !== '') {
+            if (model.checkTxt(model.allphones) !== '' || model.checkTxt(model.allemails) !== '' || model.checkTxt(model.allnativeplaces) !== '' || model.checkTxt(model.allsurnames) !== '' || model.checkTxt(model.allEducation) !== '' || model.checkTxt(model.allProfession) !== '') {
                 model.object.Keyworddlikesrch.AllContactNo = model.allphones !== null && model.allphones !== "" && model.allphones !== undefined ? model.allphones : null;
                 model.object.Keyworddlikesrch.AllEmails = model.allemails !== null && model.allemails !== "" && model.allemails !== undefined ? model.allemails : null;
                 model.object.Keyworddlikesrch.AllSurNames = model.allsurnames !== null && model.allsurnames !== "" && model.allsurnames !== undefined ? model.allsurnames : null;
                 model.object.Keyworddlikesrch.AllNatives = model.allnativeplaces !== null && model.allnativeplaces !== "" && model.allnativeplaces !== undefined ? model.allnativeplaces : null;
-                model.object.Keyworddlikesrch.CEducationAll = null;
-                model.object.Keyworddlikesrch.CProfAll = null;
+                model.object.Keyworddlikesrch.CEducationAll = model.allEducation;
+                model.object.Keyworddlikesrch.CProfAll = model.allProfession;
                 model.object.Keyworddlikesrch.FAllFields = null;
                 model.object.Keyworddlikesrch.MAllFields = null;
                 model.object.Keyworddlikesrch.Br_AllFields = null;
@@ -412,6 +412,7 @@
                 model.object.Keyworddlikesrch.MB_AllFields = null;
                 model.object.Keyworddlikesrch.MS_AllFields = null;
                 model.object.Keyworddlikesrch.CAll = null;
+                model.object.Keyworddlikesrch.Gender = model.rbtnGender;
                 model.object.Keyworddlikesrch.ApplicationStatus = model.returnnullvalue(model.applicationids);
                 model.object.Keyworddlikesrch.startindex = from;
                 model.object.Keyworddlikesrch.EndIndex = to;
@@ -419,6 +420,7 @@
                 keywordSearchService.keywordlikesearch(model.object.Keyworddlikesrch).then(function(response) {
                     if (_.isArray(response.data) && response.data.length > 0 && _.isArray(response.data[0]) && response.data[0].length) {
                         if (type === 'grid') {
+                            model.panelbodyhide = false;
                             model.grid.showpaging = true;
                             model.keywordcontrols = true;
                             model.btnbacktosearch = true;
@@ -511,6 +513,7 @@
                         if (type === 'grid') {
                             model.grid.data = [];
                             model.grid.showpaging = false;
+                            model.panelbodyhide = true;
                             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No Records Found', 4500);
                         }
                     }

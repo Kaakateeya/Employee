@@ -21,6 +21,7 @@
              model.opendiv = true;
              model.MyProfilePageLoad();
              model.resetkeyword();
+             model.panelbodyhide = true;
          };
          vm.init();
      }
