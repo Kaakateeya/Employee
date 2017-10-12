@@ -21,7 +21,9 @@
             { label: 'View fulll profile for paid', typeofDiv: 'PaidFullViewProfile' },
             { label: 'Matchfollowup Resend', typeofDiv: 'MatchfollowupResendMail' },
             { label: 'Matchfollowup Interest', typeofDiv: 'Matchfollowupinterest' },
-            { label: 'Matchfollowup Not Interest', typeofDiv: 'MatchfollowupNotinterst' }
+            { label: 'Matchfollowup Not Interest', typeofDiv: 'MatchfollowupNotinterst' },
+            { label: 'Customer Bookmark', typeofDiv: 'bookmark' },
+            { label: 'Customer Message sending', typeofDiv: 'custMessage' }
         ];
 
         model.paidPartialviewfull = [
