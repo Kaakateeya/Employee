@@ -27,7 +27,7 @@
                             </div>
                             <div class="col-lg-7 col-lg-offset-1">
                                 <div style="padding-bottom: 5px;"> <br><a ng-show="model.ProceededProfiles(slide.FRomSerivceCount,slide.fromempname);" href="javascript:void(0);" ng-click="model.serviceCountProfiles(slide.fromcust_id);"> Proceed Other Profiles</a> </div>
-                                <img ng-click="slidepopup(slide.fromcust_id)" style="min-width:250px;min-height:250px;" ng-src="{{slide.FromApplicationPhoto}}" class="img-thumbnail" style="border: 1px solid gray;">
+                                <img ng-click="slidepopup(slide.fromcust_id)" style="width:260px;height:260px;" ng-src="{{slide.FromApplicationPhoto}}" class="img-thumbnail" style="border: 1px solid gray;">
                                 <div class="text-center"> <br>
                                     <div class="row">
                                         <div class="col-lg-10"><b>{{slide.FromName}}(<b><a href="javascript:void(0)" ng-class="slide.FromPaidStatus===1?'paidclass':'unpaid'" ng-click="model.viewProfileRedirect(slide.FromProfileid);">{{slide.FromProfileid}}</a> - {{slide.FromBranchCode}})</b></b>
@@ -88,7 +88,7 @@
                         <div class="row">
                             <div class="col-lg-7 col-lg-push-1">
                                 <div style="padding-bottom: 5px;"> <br><a ng-show="model.ProceededProfiles(slide.ToSerivceCount,slide.toempname);" href="javascript:void(0);" ng-click="model.serviceCountProfiles(slide.tocustid);"> Proceed Other Profiles</a> </div>
-                                <img id="tocustimg" ng-click="slidepopup(slide.tocustid)" style="min-width:250px;min-height:250px;" ng-src="{{slide.ToApplicationPhoto}}" alt="" class="center-block img-thumbnail" style="border: 1px solid gray;">
+                                <img id="tocustimg" ng-click="slidepopup(slide.tocustid)" style="width:260px;height:260px;" ng-src="{{slide.ToApplicationPhoto}}" alt="" class="center-block img-thumbnail" style="border: 1px solid gray;">
                                 <div class="text-center"> <br>
                                     <div class="row">
                                         <div class="col-lg-10"><b>{{slide.ToName}}    (<b><a href="javascript:void(0)" ng-click="model.viewProfileRedirect(slide.Toprofileid);" ng-class="slide.ToPaidStatus===1?'paidclass':'unpaid'">{{slide.Toprofileid}}</a> - {{slide.ToBranchCode}})</b></b>
