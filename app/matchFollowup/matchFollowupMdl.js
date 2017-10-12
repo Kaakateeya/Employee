@@ -567,7 +567,7 @@
                                 if ((model.actobj.rbtnInDisplay === '0' && model.actobj.rbtnReplyType === '3') || (model.actobj.rbtnOutDisplay === '0' && model.actobj.rbtnReplyTypeout === '3')) {
 
                                 } else {
-                                    if ((model.fromIsconfidential === 0 && model.toIsconfidential === 0 && model.fromHighconfidential === 0 && model.toHighconfidential === 0) || (model.actobj.rbtnOutDisplay === 1 || model.actobj.rbtnInDisplay === 1)) {
+                                    if ((model.fromIsconfidential === 0 && model.toIsconfidential === 0 && model.fromHighconfidential === 0 && model.toHighconfidential === 0) || (model.actobj.rbtnOutDisplay === '1' || model.actobj.rbtnInDisplay === '1')) {
                                         if (model.mailInput.TicketStatusID === "NotViewed") {
                                             matchFollowupServices.sendMail(model.mailInput).then(function(response) {
                                                 if (parseInt(response.data) === 1) {}
