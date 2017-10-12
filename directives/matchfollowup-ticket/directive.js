@@ -29,9 +29,6 @@
                 scope.model.MAobj.ddlmrktreplyClose =
                 scope.model.MAobj.ddlmrktReplyTypeIn = "";
             scope.model.MAobj.ddlresendemailmatchfollowup = 5;
-            scope.model.incommingbtntext = "Incoming Call";
-            scope.model.outgoingcallbtntext = "Outgoing Call";
-            scope.model.selectedIndex = 0;
             timeout(function() {
                 scope.model.MAobj.txtresendemail = scope.model.mailchange(scope.model.MAobj.ddlresendemailmatchfollowup);
             }, 2000);

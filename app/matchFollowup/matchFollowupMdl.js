@@ -52,22 +52,6 @@
                     return model;
                 };
 
-                // //1st maethod
-                // model.astrogenerate = function() {
-                //     return $http.get('http://www.astrovisiononline.com/avservices/singlepagehoro/inserttolsdb_v3.php?data=<DATA><BIRTHDATA><CUSTID>91035</CUSTID><SEX>Male</SEX><NAME>AnilS</NAME><DAY>22</DAY><MONTH>8</MONTH><YEAR>1990</YEAR><TIME24HR>13:11:00</TIME24HR><CORR>1</CORR><PLACE>Pulivendla</PLACE><LONG>078.14</LONG><LAT>14.25</LAT><LONGDIR>E</LONGDIR><LATDIR>N</LATDIR><TZONE>05.30</TZONE><TZONEDIR>E</TZONEDIR></BIRTHDATA><OPTIONS><CHARTSTYLE>0</CHARTSTYLE><LANGUAGE>ENG</LANGUAGE><REPTYPE>LS-SP</REPTYPE><REPDMN>KKSTAGING</REPDMN><HSETTINGS><AYANAMSA>1</AYANAMSA><DASASYSTEM>1</DASASYSTEM><GULIKATYPE>1</GULIKATYPE><PARYANTHARSTART>0</PARYANTHARSTART><PARYANTHAREND>25</PARYANTHAREND><FAVMARPERIOD>50</FAVMARPERIOD><BHAVABALAMETHOD>1</BHAVABALAMETHOD><ADVANCEDOPTION1>0</ADVANCEDOPTION1><ADVANCEDOPTION2>0</ADVANCEDOPTION2><ADVANCEDOPTION3>0</ADVANCEDOPTION3><ADVANCEDOPTION4>0</ADVANCEDOPTION4></HSETTINGS><IMGURL>http://emp.kaakateeya.com/access/Images/HoroscopeImages/91022_HaroscopeImage/</IMGURL></OPTIONS><PARAMS>employee</PARAMS></DATA>').then(function(res) {
-                //         console.log(res);
-                //     });
-                // };
-
-                // model.thirdmethod = function() {
-                //     $.ajax({
-                //         url: "http://www.astrovisiononline.com/avservices/singlepagehoro/inserttolsdb_v3.php",
-                //         type: 'GET',
-                //         data: { data: "<DATA><BIRTHDATA><CUSTID>91035</CUSTID><SEX>Male</SEX><NAME>AnilS</NAME><DAY>22</DAY><MONTH>8</MONTH><YEAR>1990</YEAR><TIME24HR>13:11:00</TIME24HR><CORR>1</CORR><PLACE>Pulivendla</PLACE><LONG>078.14</LONG><LAT>14.25</LAT><LONGDIR>E</LONGDIR><LATDIR>N</LATDIR><TZONE>05.30</TZONE><TZONEDIR>E</TZONEDIR></BIRTHDATA><OPTIONS><CHARTSTYLE>0</CHARTSTYLE><LANGUAGE>ENG</LANGUAGE><REPTYPE>LS-SP</REPTYPE><REPDMN>KKSTAGING</REPDMN><HSETTINGS><AYANAMSA>1</AYANAMSA><DASASYSTEM>1</DASASYSTEM><GULIKATYPE>1</GULIKATYPE><PARYANTHARSTART>0</PARYANTHARSTART><PARYANTHAREND>25</PARYANTHAREND><FAVMARPERIOD>50</FAVMARPERIOD><BHAVABALAMETHOD>1</BHAVABALAMETHOD><ADVANCEDOPTION1>0</ADVANCEDOPTION1><ADVANCEDOPTION2>0</ADVANCEDOPTION2><ADVANCEDOPTION3>0</ADVANCEDOPTION3><ADVANCEDOPTION4>0</ADVANCEDOPTION4></HSETTINGS><IMGURL>http://emp.kaakateeya.com/access/Images/HoroscopeImages/91035_HaroscopeImage/</IMGURL></OPTIONS><PARAMS>employee</PARAMS></DATA>" },
-                //         success: function(response) {}
-                //     });
-                // };
-                // //
                 model.bindEmpnames = function() {
                     if ((model.Managementid) === 'true' && model.EmpNamesArr.length === 0) {
                         SelectBindServiceApp.EmpwithBranch('ProfileBranch', '').then(function(response) {
@@ -423,6 +407,7 @@
                     model.activetab = 1;
                     model.replytypetxtdiabled = false;
                     model.emailresendflag = 0;
+                    model.DisplayToCustomerin = false;
                     model.flagtype = flagtype;
                     if (flagtype === 'from') {
                         model.fromempname = slideobj.fromempname;
@@ -438,7 +423,10 @@
                         model.logidmatchfollowup = slideobj.Expressinterestlogid;
                         model.FromTicketMatchmeetingStatus = slideobj.FromTicketMatchmeetingStatus;
                         model.ToTicketMatchmeetingStatus = slideobj.ToTicketMatchmeetingStatus;
-
+                        model.fromIsconfidential = slideobj.fromIsconfidential;
+                        model.toIsconfidential = slideobj.toIsconfidential;
+                        model.fromHighconfidential = slideobj.fromHighconfidential;
+                        model.toHighconfidential = slideobj.toHighconfidential;
                     } else {
                         model.toempname = slideobj.fromempname;
                         model.fromempname = slideobj.toempname;
@@ -453,6 +441,10 @@
                         model.logidmatchfollowup = slideobj.ExpressinterestTologid;
                         model.FromTicketMatchmeetingStatus = slideobj.ToTicketMatchmeetingStatus;
                         model.ToTicketMatchmeetingStatus = slideobj.FromTicketMatchmeetingStatus;
+                        model.fromIsconfidential = slideobj.toIsconfidential;
+                        model.toIsconfidential = slideobj.fromIsconfidential;
+                        model.fromHighconfidential = slideobj.toHighconfidential;
+                        model.toHighconfidential = slideobj.fromHighconfidential;
                     }
 
                     model.ServiceDate = slideobj.ServiceDate;
@@ -536,8 +528,6 @@
                         var MobjViewprofile = {
                             ExpressInrestID: model.logidmatchfollowup,
                             CustID: model.fromcustidselef,
-                            FromCustID: model.fromcustidselef,
-                            ToCustID: model.tocustidself,
                             AcceptStatus: statusint ? (model.fromticketstatusemail === 'I' ? 1 : 2) : status,
                             MatchFollwupStatus: statusint ? (model.fromticketstatusemail === 'I' ? 1 : 2) : status,
                             intEmpId: parseInt(model.empid)
@@ -575,15 +565,17 @@
                                 if ((model.actobj.rbtnInDisplay === '0' && model.actobj.rbtnReplyType === '3') || (model.actobj.rbtnOutDisplay === '0' && model.actobj.rbtnReplyTypeout === '3')) {
 
                                 } else {
-                                    if (model.mailInput.TicketStatusID === "NotViewed") {
-                                        matchFollowupServices.sendMail(model.mailInput).then(function(response) {
-                                            if (parseInt(response.data) === 1) {}
-                                        });
-                                        model.Resendmail(model.tocustidself, model.fromcustidselef, model.toprofileidinterest, model.ActionProfileID, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
-                                    } else {
-                                        matchFollowupServices.sendMail(model.mailInput).then(function(response) {
-                                            if (parseInt(response.data) === 1) {}
-                                        });
+                                    if ((model.fromIsconfidential === 0 && model.toIsconfidential === 0 && model.fromHighconfidential === 0 && model.toHighconfidential === 0) || (model.actobj.rbtnOutDisplay === '1' || model.actobj.rbtnInDisplay === '1')) {
+                                        if (model.mailInput.TicketStatusID === "NotViewed") {
+                                            matchFollowupServices.sendMail(model.mailInput).then(function(response) {
+                                                if (parseInt(response.data) === 1) {}
+                                            });
+                                            model.Resendmail(model.tocustidself, model.fromcustidselef, model.toprofileidinterest, model.ActionProfileID, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
+                                        } else {
+                                            matchFollowupServices.sendMail(model.mailInput).then(function(response) {
+                                                if (parseInt(response.data) === 1) {}
+                                            });
+                                        }
                                     }
                                 }
                             }
@@ -727,9 +719,11 @@
                     });
                 };
                 model.NotIntrstChnge = function(val, type) {
-                    //
-
-                    //
+                    if (model.fromIsconfidential === 1 || model.toIsconfidential === 1 || model.fromHighconfidential === 1 || model.toHighconfidential === 1) {
+                        model.DisplayToCustomerin = true;
+                    } else {
+                        model.DisplayToCustomerin = false;
+                    }
                     model.TicketStatusID2 = "";
                     model.emailresendflag = 0;
                     model.txtAllcallflag = 0;
@@ -793,6 +787,7 @@
                             "Meanwhile lets look into other options.";
                         model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion;
                     } else if (val === '3') {
+                        model.DisplayToCustomerin = true;
                         model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = '0';
                         model.replytypetxtdiabled = false;
                         model.mailInput.TicketStatusID = "Followup";
@@ -807,10 +802,13 @@
 
                             model.txtAllcallDiscusion = "We have informed to  " + genderid + model.Fromsurname + "  about your interest to proceed  but  " + she + " is not keen to proceed ahead. For further communication please contact your relationship manager.";
 
-                        } else if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Close') {
+                        } else if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Close' && (model.fromticketstatusemail === 'I') && (model.FromTicketMatchmeetingStatus === 'Open')) {
 
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
 
+                        } else if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Close' && (model.fromticketstatusemail === 'I') && (model.FromTicketMatchmeetingStatus === 'Close')) {
+                            model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your  profile and did not respond positive." +
+                                "Lets proceed further with our new search options.";
                         } else if (model.toticketstatusemail === 'NI' && model.ToTicketMatchmeetingStatus === 'Close') {
 
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
@@ -819,16 +817,23 @@
 
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
 
-                        } else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Close') {
+                        } else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Close' && (model.fromticketstatusemail === 'I') && model.FromTicketMatchmeetingStatus === 'Open') {
 
+                            model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
+
+                        } else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Open' && (model.fromticketstatusemail === 'I') && model.FromTicketMatchmeetingStatus === 'Open') {
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your  profile and did not respond positive." +
                                 "Lets proceed further with our new search options.";
 
-                        } else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Open') {
 
+                        } else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Open' && (model.fromticketstatusemail === 'I') && model.FromTicketMatchmeetingStatus === 'Close') {
                             model.txtAllcallDiscusion = "We have informed to  " + genderid + model.Fromsurname + "  about your interest to proceed  but  " + she + " is not keen to proceed ahead. For further communication please contact your relationship manager.";
+                        }
+                        // else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Open' && (model.fromticketstatusemail === 'I') && model.FromTicketMatchmeetingStatus === 'Close') {
+                        //     model.txtAllcallDiscusion = "We have informed to  " + genderid + model.Fromsurname + "  about your interest to proceed  but  " + she + " is not keen to proceed ahead. For further communication please contact your relationship manager.";
 
-                        } else {
+                        // } 
+                        else {
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your  profile and did not respond positive." +
                                 "Lets proceed further with our new search options.";
                         }
@@ -892,18 +897,6 @@
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'You have already skipped this profile', 3000);
                     } else {
                         if (status === "NI") {
-                            // helpService.matchacceptrejectexpressinterest(fromcust_id, tocustid, logid, status, parseInt(model.empid)).then(function(response) {
-                            //     if (response.data === parseInt(1)) {
-                            //         if (flag === 'From') {
-                            //             slide.isSkippedfrom = true;
-                            //         } else {
-                            //             slide.isSkippedto = true;
-                            //         }
-                            //         alertss.timeoutoldalerts(model.scope, 'alert-success', 'Skipped successfully', 4000);
-                            //     } else {
-                            //         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Skipped fail', 4000);
-                            //     }
-                            // });
                             var MobjViewprofile = {
                                 ExpressInrestID: logid,
                                 CustID: fromcust_id,
@@ -947,10 +940,15 @@
                     return classbtn;
                 };
                 model.marketingticket = function(custid) {
-
+                    matchFollowupServices.getMarketingticket(custid).then(function(response) {
+                        console.log(response);
+                        if (_.isArray(response.data) && response.data.length > 0 && response.data[0].length > 0) {
+                            model.marketingTicketid = response.data[0][0].TicketID;
+                            modelpopupopenmethod.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
+                        }
+                    });
                 };
                 return model;
-
             }
 
         ]);
