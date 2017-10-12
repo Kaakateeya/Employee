@@ -412,7 +412,7 @@
                 model.object.Keyworddlikesrch.MB_AllFields = null;
                 model.object.Keyworddlikesrch.MS_AllFields = null;
                 model.object.Keyworddlikesrch.CAll = null;
-                model.object.Keyworddlikesrch.Gender = model.rbtnGender;
+                model.object.Keyworddlikesrch.Gender = model.rbtnGender ? model.rbtnGender : null;
                 model.object.Keyworddlikesrch.ApplicationStatus = model.returnnullvalue(model.applicationids);
                 model.object.Keyworddlikesrch.startindex = from;
                 model.object.Keyworddlikesrch.EndIndex = to;
