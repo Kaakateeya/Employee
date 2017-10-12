@@ -420,7 +420,7 @@
                         model.tocustidself = tocustid;
                         model.Fromsurname = slideobj.Fromsurname;
                         model.Tosurname = slideobj.Tosurname;
-                        model.logidmatchfollowup = slideobj.Expressinterestlogid;
+                        model.logidmatchfollowup = slideobj.ExpressinterestFromlogid;
                         model.FromTicketMatchmeetingStatus = slideobj.FromTicketMatchmeetingStatus;
                         model.ToTicketMatchmeetingStatus = slideobj.ToTicketMatchmeetingStatus;
                         model.fromIsconfidential = slideobj.fromIsconfidential;
