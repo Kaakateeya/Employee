@@ -411,7 +411,7 @@
                 model.object.Keyworddlikesrch.FS_AllFields = model.allFS;
                 model.object.Keyworddlikesrch.MB_AllFields = model.allMB;
                 model.object.Keyworddlikesrch.MS_AllFields = model.allMS;
-                model.object.Keyworddlikesrch.CAll = null;
+                model.object.Keyworddlikesrch.CAll = model.c_all;
                 model.object.Keyworddlikesrch.Gender = model.rbtnGender ? model.rbtnGender : null;
                 model.object.Keyworddlikesrch.ApplicationStatus = model.returnnullvalue(model.applicationids);
                 model.object.Keyworddlikesrch.startindex = from;
