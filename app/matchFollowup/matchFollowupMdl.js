@@ -518,6 +518,7 @@
                 };
                 model.ActionSubmit = function(obj, str, intrstType) {
                     ////
+                    debugger;
                     if (model.typeOfCtrl === '1' || model.typeOfCtrl === '0') {
                         // var status = model.typeOfCtrl === '1' ? 'I' : 'NI';
                         // helpService.matchacceptrejectexpressinterest(model.fromcustidselef, model.tocustidself, model.logidmatchfollowup, status, parseInt(model.empid)).then(function(response) {
@@ -798,42 +799,35 @@
                         model.replytypetxtdiabled = true;
                         model.mailInput.TicketStatusID = "Notinterest";
                         model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Close Ticket";
-                        if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Open') {
-
-                            model.txtAllcallDiscusion = "We have informed to  " + genderid + model.Fromsurname + "  about your interest to proceed  but  " + she + " is not keen to proceed ahead. For further communication please contact your relationship manager.";
-
-                        } else if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Close' && (model.fromticketstatusemail === 'I') && (model.FromTicketMatchmeetingStatus === 'Open')) {
-
+                        if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Open' && (model.fromticketstatusemail === 'I') && (model.FromTicketMatchmeetingStatus === 'Close')) {
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
-
+                        } else if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Open' && (model.fromticketstatusemail === 'I') && (model.FromTicketMatchmeetingStatus === 'Open')) {
+                            model.txtAllcallDiscusion = "We have informed to  " + genderid + model.Fromsurname + "  about your interest to proceed  but  " + she + " is not keen to proceed ahead. For further communication please contact your relationship manager.";
+                        } else if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Close' && (model.fromticketstatusemail === 'I') && (model.FromTicketMatchmeetingStatus === 'Open')) {
+                            model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
                         } else if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Close' && (model.fromticketstatusemail === 'I') && (model.FromTicketMatchmeetingStatus === 'Close')) {
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your  profile and did not respond positive." +
                                 "Lets proceed further with our new search options.";
-                        } else if (model.toticketstatusemail === 'NI' && model.ToTicketMatchmeetingStatus === 'Close') {
-
+                        }
+                        //
+                        else if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Close' && (model.fromticketstatusemail === 'V') && (model.FromTicketMatchmeetingStatus === 'Open')) {
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
-
+                        } else if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Open' && (model.fromticketstatusemail === 'V') && (model.FromTicketMatchmeetingStatus === 'Open')) {
+                            model.txtAllcallDiscusion = "We have informed to  " + genderid + model.Fromsurname + "  about your interest to proceed  but  " + she + " is not keen to proceed ahead. For further communication please contact your relationship manager.";
+                        }
+                        //
+                        else if (model.toticketstatusemail === 'NI' && model.ToTicketMatchmeetingStatus === 'Close') {
+                            model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
                         } else if (model.toticketstatusemail === 'NI' && model.ToTicketMatchmeetingStatus === 'Open') {
-
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
-
                         } else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Close' && (model.fromticketstatusemail === 'I') && model.FromTicketMatchmeetingStatus === 'Open') {
-
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please ask your relationship manager.";
-
                         } else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Open' && (model.fromticketstatusemail === 'I') && model.FromTicketMatchmeetingStatus === 'Open') {
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your  profile and did not respond positive." +
                                 "Lets proceed further with our new search options.";
-
-
                         } else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Open' && (model.fromticketstatusemail === 'I') && model.FromTicketMatchmeetingStatus === 'Close') {
                             model.txtAllcallDiscusion = "We have informed to  " + genderid + model.Fromsurname + "  about your interest to proceed  but  " + she + " is not keen to proceed ahead. For further communication please contact your relationship manager.";
-                        }
-                        // else if (model.toticketstatusemail === 'V' && model.ToTicketMatchmeetingStatus === 'Open' && (model.fromticketstatusemail === 'I') && model.FromTicketMatchmeetingStatus === 'Close') {
-                        //     model.txtAllcallDiscusion = "We have informed to  " + genderid + model.Fromsurname + "  about your interest to proceed  but  " + she + " is not keen to proceed ahead. For further communication please contact your relationship manager.";
-
-                        // } 
-                        else {
+                        } else {
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your  profile and did not respond positive." +
                                 "Lets proceed further with our new search options.";
                         }
