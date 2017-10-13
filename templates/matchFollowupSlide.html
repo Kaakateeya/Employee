@@ -21,11 +21,11 @@
                                 <div class="clearfix"></div><br>
                                 <div class="clearfix"> <button type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.redirectContactPage(slide.fromcust_id,slide.fromIsconfidential,slide.fromHighconfidential,slide.FromEmpownerid,slide.fromempname);">View Contacts</button></div>
                                 <div class="clearfix"></div><br>
-                                <div class="clearfix"> <button style="color: #c72828;border-color: #d01212;" type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.skipthisprofile(slide,slide.fromcust_id,slide.tocustid,slide.ExpressinterestFromlogid,'NI','From');"
+                                <div class="clearfix"> <button style="color: #c72828;border-color: #d01212;" type="button" class="btn btn-success-outline row sidebuttons" ng-click="model.skipthisprofile(slide,slide.fromcust_id,slide.tocustid,slide.Expressinterestlogid,'NI','From');"
                                         ng-if="slide.FromTicket===null || slide.FromTicket==='' || slide.FromTicket===undefined">Skip This Profile</button></div>
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="col-lg-7 col-lg-offset-1">
+                            <div class="col-lg-7">
                                 <div style="padding-bottom: 5px;"> <br><a ng-show="model.ProceededProfiles(slide.FRomSerivceCount,slide.fromempname);" href="javascript:void(0);" ng-click="model.serviceCountProfiles(slide.fromcust_id);"> Proceed Other Profiles</a> </div>
                                 <img ng-click="slidepopup(slide.fromcust_id)" style="width:260px;height:260px;" ng-src="{{slide.FromApplicationPhoto}}" class="img-thumbnail" style="border: 1px solid gray;">
                                 <div class="text-center"> <br>

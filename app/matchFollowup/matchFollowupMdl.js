@@ -420,7 +420,7 @@
                         model.tocustidself = tocustid;
                         model.Fromsurname = slideobj.Fromsurname;
                         model.Tosurname = slideobj.Tosurname;
-                        model.logidmatchfollowup = slideobj.ExpressinterestFromlogid;
+                        model.logidmatchfollowup = slideobj.Expressinterestlogid;
                         model.FromTicketMatchmeetingStatus = slideobj.FromTicketMatchmeetingStatus;
                         model.ToTicketMatchmeetingStatus = slideobj.ToTicketMatchmeetingStatus;
                         model.fromIsconfidential = slideobj.fromIsconfidential;
@@ -518,6 +518,7 @@
                 };
                 model.ActionSubmit = function(obj, str, intrstType) {
                     ////
+                    debugger;
                     if (model.typeOfCtrl === '1' || model.typeOfCtrl === '0') {
                         // var status = model.typeOfCtrl === '1' ? 'I' : 'NI';
                         // helpService.matchacceptrejectexpressinterest(model.fromcustidselef, model.tocustidself, model.logidmatchfollowup, status, parseInt(model.empid)).then(function(response) {
