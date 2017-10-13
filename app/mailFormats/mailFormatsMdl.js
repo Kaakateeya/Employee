@@ -23,7 +23,8 @@
             { label: 'Matchfollowup Interest', typeofDiv: 'Matchfollowupinterest' },
             { label: 'Matchfollowup Not Interest', typeofDiv: 'MatchfollowupNotinterst' },
             { label: 'Customer Bookmark', typeofDiv: 'bookmark' },
-            { label: 'Customer Message sending', typeofDiv: 'custMessage' }
+            { label: 'Customer Message sending', typeofDiv: 'custMessage' },
+            { label: 'No photos', typeofDiv: 'noPhotos' }
         ];
 
         model.paidPartialviewfull = [
