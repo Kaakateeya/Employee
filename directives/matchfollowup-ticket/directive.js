@@ -23,12 +23,17 @@
             scope.model.getMrktSlideInfo(scope.ticketid);
             scope.model.MAobj.ddlmrktCallresultIn = scope.model.MAobj.ddlmrktcallresultout = "417";
             scope.model.MAobj.ddlmrktreceivedIn = scope.model.MAobj.ddlmrktreceivedout = "39";
-            scope.model.MAobj.rbtnmarketDisplayIn = scope.model.MAobj.rbtndisplayOut = "2";
+            scope.model.MAobj.rbtnmarketDisplayIn = scope.model.MAobj.rbtndisplayOut = scope.model.MAobj.rbtnshowOutmatchfollowup = scope.model.MAobj.rbtnmarketDisplayIn = "0";
             scope.model.MAobj.ddlmrktreplytypeout =
                 scope.model.MAobj.ddlmrktReplyMemo =
                 scope.model.MAobj.ddlmrktreplyClose =
                 scope.model.MAobj.ddlmrktReplyTypeIn = "";
             scope.model.MAobj.ddlresendemailmatchfollowup = 5;
+            scope.model.incommingbtntext = "Incoming Call";
+            scope.model.outgoingcallbtntext = "Outgoing Call";
+            scope.model.selectedIndex = 0;
+            scope.model.MAobj.txtmatchfollowupCalldiscussionOut = scope.model.MAobj.txtmatchfollowupCalldiscussion = "";
+            scope.model.replytypetxtdiabled = false;
             timeout(function() {
                 scope.model.MAobj.txtresendemail = scope.model.mailchange(scope.model.MAobj.ddlresendemailmatchfollowup);
             }, 2000);

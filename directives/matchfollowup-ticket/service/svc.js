@@ -46,6 +46,12 @@
             submitemails: function(obj) {
                 return http.post(app.apiroot + 'EmployeeReportPage/EmployeeCommunicationLogSendMarketingMail', obj);
             },
+            sendMail: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/MatchFollowupMailSend', obj);
+            },
+            ResendMail: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/MatchFollowupResendMail', obj);
+            }
 
         };
     }

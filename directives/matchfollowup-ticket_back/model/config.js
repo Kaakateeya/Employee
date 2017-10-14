@@ -53,11 +53,6 @@
                 if (respnse.data !== undefined && respnse.data !== null && respnse.data.length > 0) {
                     model.marInfo = respnse.data;
                     model.ProfileID = (model.marInfo)[0].FromProfileID;
-                    //
-                    model.genderforemail = (model.marInfo)[0].genderforemail = 1;
-                    model.Fromticketstatus = (model.marInfo)[0].Fromticketstatus = "I";
-                    model.Toticketstatus = (model.marInfo)[0].Toticketstatus = "NI";
-                    //
                     model.MAobj.txtmrktCalltelephonenumberIn = model.MAobj.txtmrktCalltelephonenumberout = (model.marInfo)[0].MobileNumber !== "--" ? (model.marInfo)[0].MobileNumber : null;
                     marketsvc.getmarSlide(ticketid, 'H').then(function(innrespnse) {
                         model.marHistry = innrespnse.data;
@@ -222,93 +217,6 @@
             var dd = moment(date).fromNow();
             return dd;
         };
-
-        model.NotIntrstChnge = function(val, type) {
-            model.TicketStatusID2 = "";
-            model.emailresendflag = 0;
-            model.txtAllcallflag = 0;
-            model.rbtnnotIntrst = '';
-            model.typeOFCall = type;
-            model.typeOfCtrl = val;
-            var genderid = model.genderforemail === 1 ? 'Ms.' : 'Mr.';
-            var she = model.genderforemail === 1 ? 'She' : 'He';
-            var her = model.genderforemail === 1 ? 'her' : 'his';
-            var herhim = model.genderforemail === 1 ? 'her' : 'him';
-            model.emailmanagers = "<br><br><div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style='color:black;text-align: justify;'>Your relationship manager " +
-                model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.Tosurname + " relationship manager " + model.toempname +
-                "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
-
-            if (val === '1') {
-                model.replytypetxtdiabled = true;
-                model.incommingbtntext = model.outgoingcallbtntext = "Interested";
-                if (val === '1' && model.Toticketstatus === 'I') {
-                    model.txtAllcallflag = 1;
-                    model.TicketStatusID = "bothSideinterest";
-                    model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;text-align: justify;'>" + genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
-                        "<div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style=color:black;text-align: justify;'>Your relationship manager " +
-                        model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.Fromsurname + " relationship manager " + model.toempname +
-                        "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
-                    model.txtAllcallDiscusion = genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
-                } else if (val === '1' && model.Toticketstatus === 'V') {
-                    model.TicketStatusID = "Viewed";
-                    model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
-                        " and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
-                        "and please give your opinion in the options provided in the profile.";
-
-                } else if (val === '1' && model.Toticketstatus === 'NV') {
-                    //resend
-                    model.emailresendflag = 1;
-                    model.TicketStatusID2 = "Resend";
-                    model.TicketStatusID = "NotViewed";
-                    model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
-                        " and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
-                        "and please give your opinion in the options provided in the profile.";
-
-                } else if (val === '1' && model.Toticketstatus === 'I') {
-                    model.TicketStatusID = "onsideinterest";
-                    model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
-                        " and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
-                        "and please give your opinion in the options provided in the profile.";
-                } else {
-                    model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') + " and " + she + " is showing interest in your profile.Please go through the profile and reply to us on the same." +
-                        "We are resending " + her + " profile for the ease of viewing and please give your opinion in the options provided in the profile";
-                }
-
-                model.MAobj.txtmrktCalldiscussionin = model.MAobj.txtmrktCalldiscussionout = model.txtAllcallDiscusion;
-            } else if (val === '2') {
-                model.replytypetxtdiabled = false;
-                model.TicketStatusID = "Pending";
-                model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Pending";
-                model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your full profile and is seeking Three more days to update " + her + "  opinion." +
-                    "Meanwhile lets look into other options.";
-                model.MAobj.txtmrktCalldiscussionin = model.MAobj.txtmrktCalldiscussionout = model.txtAllcallDiscusion;
-            } else if (val === '3') {
-                model.replytypetxtdiabled = false;
-                model.TicketStatusID = "Followup";
-                model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Followup Ticket";
-                model.txtAllcallDiscusion = "";
-                model.MAobj.txtmrktCalldiscussionin = model.MAobj.txtmrktCalldiscussionout = model.txtAllcallDiscusion;
-            } else {
-                model.replytypetxtdiabled = true;
-                model.TicketStatusID = "Notinterest";
-                model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Close Ticket";
-                model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your  profile and did not respond positive." +
-                    "Lets proceed further with our new search options.";
-                model.MAobj.txtmrktCalldiscussionin = model.MAobj.txtmrktCalldiscussionout = model.txtAllcallDiscusion;
-            }
-
-        };
-        model.onTabSelected = function(tabindex) {
-            model.MAobj.ddlmrktCallresultIn = model.MAobj.ddlmrktcallresultout = "417";
-            model.MAobj.ddlmrktreceivedIn = model.MAobj.ddlmrktreceivedout = "39";
-            model.MAobj.rbtnmarketDisplayIn = model.MAobj.rbtndisplayOut = "2";
-            model.MAobj.ddlmrktreplytypeout =
-                model.MAobj.ddlmrktReplyMemo =
-                model.MAobj.ddlmrktreplyClose =
-                model.MAobj.ddlmrktReplyTypeIn = "";
-            model.MAobj.ddlresendemailmatchfollowup = 5;
-        };
-
         return model.init();
     }
 })();

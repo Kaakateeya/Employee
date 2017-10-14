@@ -518,12 +518,7 @@
                 };
                 model.ActionSubmit = function(obj, str, intrstType, callmatchdiscussion) {
                     ////
-                    debugger;
                     if (model.typeOfCtrl === '1' || model.typeOfCtrl === '0') {
-                        // var status = model.typeOfCtrl === '1' ? 'I' : 'NI';
-                        // helpService.matchacceptrejectexpressinterest(model.fromcustidselef, model.tocustidself, model.logidmatchfollowup, status, parseInt(model.empid)).then(function(response) {
-                        //     if (response.data === parseInt(1)) {} else {}
-                        // });
                         var status = model.typeOfCtrl === '1' ? 1 : 2;
                         var statusint = model.fromticketstatusemail === 'I' || model.fromticketstatusemail === 'NI' ? true : false;
                         var MobjViewprofile = {
