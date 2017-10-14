@@ -21,7 +21,7 @@
                 { text: 'groom name', key: 'GroomName', type: 'label' },
                 { text: 'caste', key: 'groomcaste', type: 'label' },
                 { text: 'profile owner ', key: 'GroomOwner', type: 'label' },
-                { text: 'paid Type', key: 'BrideOwner', type: 'customlink', templateUrl: model.showbuttons, method: model.openPouptoedit }
+                { text: 'paid Type', key: 'BrideOwner', type: 'customlink', templateUrl: model.singleshowbuttons, method: model.openPouptoedit }
 
             ];
 
@@ -30,7 +30,7 @@
                 { text: 'bride name', key: 'BrideName', type: 'label' },
                 { text: 'caste', key: 'Bridecaste', type: 'label' },
                 { text: 'bride owner', key: 'BrideOwner', type: 'label' },
-                { text: 'paid Type', key: 'BrideOwner', type: 'customlink', templateUrl: model.showbuttons, method: model.openPouptoedit }
+                { text: 'paid Type', key: 'BrideOwner', type: 'customlink', templateUrl: model.singleshowbuttons, method: model.openPouptoedit }
             ];
 
             model.grid1.showsearchrows = true;
@@ -116,7 +116,10 @@
             var str = '<a>Paid</a>&nbsp;&nbsp;&nbsp;<a>PartialPaid</a>&nbsp;&nbsp;&nbsp;<a>NotIntToPay</a><br><a>Paid</a>&nbsp;&nbsp;&nbsp;<a>PartialPaid</a>&nbsp;&nbsp;&nbsp;<a>NotIntToPay</a>';
             return str;
         };
-
+        model.singleshowbuttons = function() {
+            var str = '<a>Paid</a>&nbsp;&nbsp;&nbsp;<a>PartialPaid</a>&nbsp;&nbsp;&nbsp;<a>NotIntToPay</a>';
+            return str;
+        };
         model.openPouptoedit = function() {
             modelpopupopenmethod.showPopup('aboutpayment.html', model.scope, 'md', '');
         };
