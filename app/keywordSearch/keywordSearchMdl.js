@@ -195,7 +195,7 @@
 
         ];
         model.checkTxt = function(val) {
-            return val !== '' && val !== undefined ? val : '';
+            return val !== '' && val !== undefined && val !== null ? true : false;
         };
         model.displayArrayprofile = function(arr, topage) {
             // model.slide.headervisileble = true;
@@ -396,7 +396,7 @@
         };
         model.keywordlikesearch = function(from, to, type) {
             model.topage = to;
-            if (model.checkTxt(model.allphones) !== '' || model.checkTxt(model.allemails) !== '' || model.checkTxt(model.allnativeplaces) !== '' || model.checkTxt(model.allsurnames) !== '' || model.checkTxt(model.allEducation) !== '' || model.checkTxt(model.allProfession) !== '') {
+            if (model.checkInputs()) {
                 model.object.Keyworddlikesrch.AllContactNo = model.allphones !== null && model.allphones !== "" && model.allphones !== undefined ? model.allphones : null;
                 model.object.Keyworddlikesrch.AllEmails = model.allemails !== null && model.allemails !== "" && model.allemails !== undefined ? model.allemails : null;
                 model.object.Keyworddlikesrch.AllSurNames = model.allsurnames !== null && model.allsurnames !== "" && model.allsurnames !== undefined ? model.allsurnames : null;
@@ -524,6 +524,24 @@
             }
         };
         ////
+
+        model.checkInputs = function() {
+            var inputArray = ['allphones', 'allemails', 'allsurnames', 'allnativeplaces', 'allEducation',
+                'allProfession', 'allFather', 'allMother', 'allBrother', 'allSister', 'c_all'
+            ];
+            var count = 0;
+            _.each(inputArray, function(item) {
+                if (model.checkTxt(model[item])) {
+                    count++;
+                }
+            });
+            if (count > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+
         model.slide.closemainpopup = function() {
             model.myprofileslideshowopenflag = 0;
             modelpopupopenmethod.closepopup();
