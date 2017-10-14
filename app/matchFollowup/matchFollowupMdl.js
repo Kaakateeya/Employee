@@ -463,7 +463,7 @@
                     model.headertextpop = "Mail going to " + model.groombride + "<label style='color: #da0d0d;font-weight: 800;'>===></label> " + Name + "," + ToProfileID + "(" + toemail + ")";
                     model.RelationshipChange(39, 'In');
                     model.RelationshipChange(39, 'Out');
-                    model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = '';
+                    model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtmatchfollowupCalldiscussionOut = model.actobj.txtmatchfollowupCalldiscussion = '';
                     model.actobj.ddlInReplyType =
                         model.actobj.rbtnReplyTypeout =
                         model.actobj.rbtnReplyType =
@@ -472,7 +472,7 @@
                     model.actobj.rbtnReplyTypememo = model.actobj.rbtnReplyTypeClose = '';
                     model.actobj.txtcloseReason = model.actobj.txtMemmemocalldiscussion = '';
                     //model.actobj.ddlMemAssign = parseInt(model.empid);
-                    model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = '0';
+                    model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = model.actobj.rbtnshowmatchfollowup = model.actobj.rbtnshowOutmatchfollowup = '0';
                     model.incommingbtntext = "Incoming Call";
                     model.outgoingcallbtntext = "Outgoing Call";
                     model.internalmemobtntext = "Internal Memo";
@@ -516,7 +516,7 @@
                     }
                     return textalert;
                 };
-                model.ActionSubmit = function(obj, str, intrstType) {
+                model.ActionSubmit = function(obj, str, intrstType, callmatchdiscussion) {
                     ////
                     debugger;
                     if (model.typeOfCtrl === '1' || model.typeOfCtrl === '0') {
@@ -561,7 +561,18 @@
                             if (str !== 'Close') {
                                 model.closeAction();
                             }
-                            model.mailInput.Notes = model.txtAllcallflag === 1 ? model.txtAllcallDiscusionemail : obj.CallDiscussion + model.emailmanagers;
+                            switch (intrstType) {
+                                case 1:
+                                    model.mailInput.Notes = obj.CallDiscussion + (callmatchdiscussion !== "" && callmatchdiscussion !== null && callmatchdiscussion !== undefined ? ("<br><span style='text-align: justify;margin-left: 29px;padding-top: 18px;'>" + callmatchdiscussion) + "</span>" : '') + model.emailmanagers;
+                                    break;
+                                case 0:
+                                    model.mailInput.Notes = obj.CallDiscussion + model.emailmanagers;
+                                    break;
+                                default:
+                                    model.mailInput.Notes = obj.CallDiscussion + model.emailmanagers;
+                                    break;
+                            }
+
                             if ((str === 'Incoming') || (str === 'Out going')) {
                                 if ((model.actobj.rbtnInDisplay === '0' && model.actobj.rbtnReplyType === '3') || (model.actobj.rbtnOutDisplay === '0' && model.actobj.rbtnReplyTypeout === '3')) {
 
@@ -582,19 +593,15 @@
                             }
                             var curdate = moment().format('Do MMMM YYYY, h:mm:ss');
                             if (str === 'Incoming') {
-                                // alertmsg = 'Incoming call created ';
                                 alertmsg = model.textforalerts(model.incommingbtntext, 'Incoming call created ');
                                 replyTypedisplay = 'INCOMING';
                             } else if (str === 'Out going') {
-                                // alertmsg = 'Out going created ';
                                 alertmsg = model.textforalerts(model.incommingbtntext, 'Out going created ');
                                 replyTypedisplay = 'OUT GOING';
                             } else if (str === 'Internal Memo') {
-                                // alertmsg = 'memo created ';
                                 alertmsg = model.textforalerts(model.incommingbtntext, 'memo created ');
                                 replyTypedisplay = 'INTERNAL MEMO';
                             } else {
-                                // alertmsg = 'Ticket closed';
                                 alertmsg = model.textforalerts(model.incommingbtntext, 'Ticket closed ');
                                 replyTypedisplay = 'Close';
                             }
@@ -635,8 +642,7 @@
                             CallType: 563,
                             CallDiscussion: obj.txtInCalldiscussion
                         };
-                        //model.ActionSubmit(inputObj, 'Close');
-                        model.ActionSubmit(inputObj, 'Incoming');
+                        model.ActionSubmit(inputObj, 'Incoming', parseInt(obj.rbtnshowmatchfollowup), obj.txtmatchfollowupCalldiscussion);
                     } else {
                         inputObj = {
                             CallType: 377,
@@ -646,15 +652,27 @@
                             PhoneNum: obj.txtInCalltelephonenumber,
                             CallDiscussion: obj.txtInCalldiscussion,
                             DisplayStatus: obj.rbtnInDisplay
-                                //DisplayStatus: 1
                         };
-                        // if (model.activebutton === 'bothside') {
-                        //     inputObj.CallDiscussion = model.txtAllcallDiscusionemail;
-                        // }
-                        model.ActionSubmit(inputObj, 'Incoming', obj.rbtnReplyType);
-                        //////
-
+                        model.ActionSubmit(inputObj, 'Incoming', parseInt(obj.rbtnshowmatchfollowup), obj.txtmatchfollowupCalldiscussion);
                     }
+                    if (obj.txtmatchfollowupCalldiscussion !== "" && obj.txtmatchfollowupCalldiscussion !== undefined && obj.txtmatchfollowupCalldiscussion !== null) {
+                        var matchfollowupobj = {
+                            CallType: 377,
+                            RelationID: obj.ddlInreceivedfrom,
+                            RelationName: obj.txtInRelationname,
+                            CallResult: obj.ddlInCallresult,
+                            PhoneNum: obj.txtInCalltelephonenumber,
+                            CallDiscussion: obj.txtmatchfollowupCalldiscussion,
+                            DisplayStatus: parseInt(obj.rbtnshowmatchfollowup),
+                            TicketID: model.ActionTicket,
+                            EmpID: model.empid,
+                            AssignedEmpID: obj.AssignedEmpID
+                        };
+                        matchFollowupServices.ActionSubmit(matchfollowupobj).then(function(response) {
+
+                        });
+                    }
+
                 };
                 model.outCallsSubmit = function(obj) {
                     model.isDisabledsubmit = true;
@@ -664,8 +682,7 @@
                             CallType: 563,
                             CallDiscussion: obj.txtOutCalldiscussion
                         };
-                        //model.ActionSubmit(inputObj, 'Close');
-                        model.ActionSubmit(inputObj, 'Out going');
+                        model.ActionSubmit(inputObj, 'Out going', parseInt(obj.rbtnshowOutmatchfollowup), obj.txtmatchfollowupCalldiscussionOut);
                     } else {
                         inputObj = {
                             CallType: 378,
@@ -675,9 +692,24 @@
                             PhoneNum: obj.txtOutCalltelephonenumber,
                             CallDiscussion: obj.txtOutCalldiscussion,
                             DisplayStatus: obj.rbtnOutDisplay
-                                // DisplayStatus: 1
+
                         };
-                        model.ActionSubmit(inputObj, 'Out going', obj.rbtnReplyTypeout);
+                        model.ActionSubmit(inputObj, 'Out going', parseInt(obj.rbtnshowOutmatchfollowup), obj.txtmatchfollowupCalldiscussionOut);
+                    }
+                    if (obj.txtmatchfollowupCalldiscussionOut !== "" && obj.txtmatchfollowupCalldiscussionOut !== undefined && obj.txtmatchfollowupCalldiscussionOut !== null) {
+                        var matchfollowupobj = {
+                            CallType: 378,
+                            RelationID: obj.ddlOutreceivedby,
+                            RelationName: obj.txtOutRelationname,
+                            CallResult: obj.ddlOutcallresultout,
+                            PhoneNum: obj.txtOutCalltelephonenumber,
+                            CallDiscussion: obj.txtmatchfollowupCalldiscussionOut,
+                            DisplayStatus: parseInt(obj.rbtnshowOutmatchfollowup),
+                            TicketID: model.ActionTicket,
+                            EmpID: model.empid,
+                            AssignedEmpID: obj.AssignedEmpID
+                        };
+                        matchFollowupServices.ActionSubmit(matchfollowupobj).then(function(response) {});
                     }
                 };
                 model.memoSubmit = function(obj) {
@@ -688,7 +720,6 @@
                             CallType: 563,
                             CallDiscussion: obj.txtMemmemocalldiscussion
                         };
-                        // model.ActionSubmit(inputObj, 'Close');
                         model.ActionSubmit(inputObj, 'Internal Memo');
                     } else {
                         inputObj = {
@@ -742,22 +773,22 @@
                         model.replytypetxtdiabled = true;
                         model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Interested";
                         if (model.activebutton === 'bothside') {
-                            model.txtAllcallflag = 1;
+                            //model.txtAllcallflag = 1;
                             model.mailInput.TicketStatusID = "bothSideinterest";
-                            model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;text-align: justify;'>" + genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
-                                "<div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style='color:black;text-align: justify;'>Your relationship manager " +
-                                model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.Tosurname + " relationship manager " + model.toempname +
-                                "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
+                            // model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;text-align: justify;'>" + genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
+                            //     "<div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style='color:black;text-align: justify;'>Your relationship manager " +
+                            //     model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.Tosurname + " relationship manager " + model.toempname +
+                            //     "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
 
                         } else {
                             if (val === '1' && model.toticketstatusemail === 'I') {
-                                model.txtAllcallflag = 1;
+                                // model.txtAllcallflag = 1;
                                 model.mailInput.TicketStatusID = "bothSideinterest";
-                                model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;text-align: justify;'>" + genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
-                                    "<div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style=color:black;text-align: justify;'>Your relationship manager " +
-                                    model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.Fromsurname + " relationship manager " + model.toempname +
-                                    "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
+                                // model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;text-align: justify;'>" + genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
+                                //     "<div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style=color:black;text-align: justify;'>Your relationship manager " +
+                                //     model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.Fromsurname + " relationship manager " + model.toempname +
+                                //     "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
                                 model.txtAllcallDiscusion = genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
                             } else if (val === '1' && model.toticketstatusemail === 'V') {
                                 model.mailInput.TicketStatusID = "Viewed";
@@ -875,13 +906,14 @@
                     model.incommingbtntext = "Incoming Call";
                     model.outgoingcallbtntext = "Outgoing Call";
                     model.internalmemobtntext = "Internal Memo";
-                    model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion = model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion = "";
+                    model.actobj.txtcloseReason = model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtMemmemocalldiscussion =
+                        model.txtsmsmail = model.txtMemmemocalldiscussion = model.txtAllcallDiscusion = model.actobj.txtmatchfollowupCalldiscussionOut = model.actobj.txtmatchfollowupCalldiscussion = "";
                     model.actobj.rbtnReplyTypeout =
                         model.actobj.rbtnReplyType = "";
                     model.actobj.rbtnReplyTypememo = "";
                     model.actobj.rbtnReplyTypeClose = "";
                     model.replytypetxtdiabled = false;
-                    model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = '0';
+                    model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = model.actobj.rbtnshowmatchfollowup = model.actobj.rbtnshowOutmatchfollowup = '0';
 
                 };
                 model.skipthisprofile = function(slide, fromcust_id, tocustid, logid, status, flag) {
