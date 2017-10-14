@@ -13,14 +13,12 @@
                  model.searchObjectquery = $location.search();
                  var meKey = Object.getOwnPropertyNames(model.searchObjectquery)[0];
                  model.Profileidcommunication = model.searchObjectquery[meKey];
-                 model.Profileidcommunication = '311134610';
                  model.Nameofcandidate = "";
                  model.sendarray = [];
                  model.sendarray2 = [];
                  model.sendarray3 = [];
                  model.sendarray4 = [];
                  if (model.Profileidcommunication !== "" && model.Profileidcommunication !== null && model.Profileidcommunication !== undefined && model.Profileidcommunication !== "undefined") {
-                     model.Profileidcommunication = '311134610';
                      model.communicationlogsubmit(model.Profileidcommunication);
                  }
                  model.isDisabledsubmit = false;
