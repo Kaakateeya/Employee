@@ -27,15 +27,16 @@
                     yearRange: "-40:+5",
                     dateFormat: 'dd-mm-yy'
                 };
-                model.opendiv = false;
+                model.opendiv = true;
                 var empid, AdminID, TicketId, custId, isSibbling;
 
                 model.reset = function() {
-                    model.opendiv = false;
+                    model.opendiv = true;
                     model.TicketId = model.Email = model.PhoneNumber = model.ProfileID = model.fromremainderdate =
                         model.toremainderdate = model.regions = model.Branchs =
                         model.ProfileOwner = model.fromticketcreateddate = model.toticketcreateddate = undefined;
                     model.Expiryin = '';
+                    model.totalrowsshow = false;
                 };
 
                 model.init = function() {
@@ -44,19 +45,18 @@
                     model.loginempName = authSvc.LoginEmpName() !== undefined && authSvc.LoginEmpName() !== null && authSvc.LoginEmpName() !== "" ? authSvc.LoginEmpName() : "";
                     AdminID = model.Admin = authSvc.isAdmin();
                     model.ProfileOwner = [parseInt(empid)];
-                    model.ActiveButton = 'unpaid';
-
+                    model.ActiveButton = '';
                     model.Marketingslideticket = [];
                     model.MarketingslideHistory = [];
                     model.marketFlag = 0;
                     model.siblingsFlag = 0;
                     model.guestticketFlag = 0;
                     model.onlineexprdFlag = 0;
-                    // model.offlineexprdFlag = 0;
                     model.Excelflag = 2;
                     model.notinpay = null;
-                    model.MarketingSlideShowBind(1, 10);
-
+                    // model.MarketingSlideShowBind(1, 10);
+                    model.getEmpnamesinout();
+                    model.bindEmpnames();
                     model.ddlmail = "";
                     return model;
                 };
@@ -104,6 +104,10 @@
                     return val = val !== '' && val !== undefined && val.length > 0 ? val.join(',') : null;
                 };
                 model.MarketingSlideShowBind = function(from, to) {
+                    if (from === 1) {
+                        model.totalrowsshow = true;
+                        model.opendiv = false;
+                    }
                     model.topage = to;
                     var inputobj = {
                         strBranch: model.splitArray(model.Branchs),
@@ -365,20 +369,6 @@
                     }
                 };
 
-                // model.bindreplytype = function() {
-                //     if (model.ReplyArr.length === 0) {
-                //         marketingservice.marketreplytypeBind().then(function(response) {
-                //             var data = response.data[0];
-
-                //             if (_.isArray(response.data[0]) && response.data[0].length > 0 && model.ReplyArr.length === 0) {
-                //                 model.ReplyArr.push({ "label": "--Select--", "title": "--Select--", "value": "", "text": "" });
-                //                 _.each(response.data[0], function(item) {
-                //                     model.ReplyArr.push({ "label": item.Heder, "title": item.Heder, "value": item.ID, "text": item.TEXT });
-                //                 });
-                //             }
-                //         });
-                //     }
-                // };
                 model.mailchange = function(val) {
                     return model.ReplyArr.length > 0 ? (_.where(model.ReplyArr, { value: parseInt(val) })[0].text) : '';
                 };
@@ -480,36 +470,6 @@
                         }
                     }
                 };
-                // model.sendMobileCode = function(CountryID, CCode, MobileNumber, CustContactNumbersID) {
-                //     model.popupMobilenumber = MobileNumber;
-                //     model.ID = CustContactNumbersID;
-                //     var inputOBj = {
-                //         iCountryID: CountryID,
-                //         iCCode: CCode,
-                //         MobileNumber: MobileNumber,
-                //         CustFamilyID: CustContactNumbersID
-                //     };
-                //     SelectBindServiceApp.sendMobileCode(inputOBj).then(function(response) {
-                //         model.mobileVerificationCode = response.data;
-                //         modelpopupopenmethod.showPopupphotopoup('verifyMobileContentmar.html', model.scope, '', "modalclassdashboardphotopopup");
-                //     });
-                // };
-                // model.verifyMobCode = function(val) {
-                //     if (val === "") {
-                //         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter Mobile verify Code', 4500);
-                //     } else if (model.mobileVerificationCode === val) {
-                //         SelectBindServiceApp.verifyMobile(model.mobileVerificationCode, model.ID).then(function(response) {
-                //             if (response.data && parseInt(response.data) === 1) {
-                //                 modelpopupopenmethod.closepopuppoptopopup();
-                //                 alertss.timeoutoldalerts(model.scope, 'alert-success', 'Verified Successfully', 4500);
-                //             } else {
-                //                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Verification failed', 4500);
-                //             }
-                //         });
-                //     } else {
-                //         alert('Please Enter Valid Verification code');
-                //     }
-                // };
                 model.cancel = function() {
                     modelpopupopenmethod.closepopup();
                 };
@@ -637,8 +597,6 @@
                     model.RemID = slidearray.ReminderID;
                     if (slidearray.ReminderID) {
                         model.txtreminderDate = moment(slidearray.ReminderDate).format('MM-DD-YYYY');
-                        // model.ddlHrs = slidearray.ReminderID;
-                        // model.ddlmins = slidearray.ReminderID;
                         model.ddlremCaltype = parseInt(slidearray.TicketTypeID);
                         model.ddlcontactperson = slidearray.ReminderRelationID;
                         model.contactpersonname = slidearray.ReminderRelationName;
