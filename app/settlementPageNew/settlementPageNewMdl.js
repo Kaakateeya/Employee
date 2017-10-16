@@ -61,10 +61,10 @@
 
 
             model.grid3.columns = [
-                { text: 'bride profile id', key: 'BrideProfileID', type: 'custom', templateUrl: model.profileidmehod },
-                { text: 'bride name', key: 'BrideName', type: 'morelinks', templateUrl: model.nemeMethod },
-                { text: 'caste', key: 'Bridecaste', type: 'morelinks', templateUrl: model.casteMethod },
-                { text: 'bride owner', key: 'BrideOwner', type: 'morelinks', templateUrl: model.ownerMethod },
+                { text: 'ProfileID', key: 'BrideProfileID', type: 'custom', templateUrl: model.profileidmehod },
+                { text: 'Name', key: 'BrideName', type: 'morelinks', templateUrl: model.nemeMethod },
+                { text: 'Caste', key: 'Bridecaste', type: 'morelinks', templateUrl: model.casteMethod },
+                { text: 'Owner', key: 'BrideOwner', type: 'morelinks', templateUrl: model.ownerMethod },
                 { text: 'paid Type', key: 'BrideOwner', type: 'customlink', templateUrl: model.showbuttons, method: model.openPouptoedit }
             ];
 
