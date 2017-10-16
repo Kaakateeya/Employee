@@ -132,6 +132,30 @@
             return model;
         };
 
+
+
+
+
+        model.rowStyle = function(row) {
+            var test = [
+                { StatusID: 57, classes: 'settled' },
+                { StatusID: 393, classes: 'settled' },
+                { StatusID: 56, classes: 'Deleted' },
+                { StatusID: 394, classes: 'Deleted' },
+                { StatusID: 258, classes: 'closed' }
+            ];
+            return _.where(test, { StatusID: row.ProfileStatusID }).length >= 1 ? _.where(test, { StatusID: row.ProfileStatusID })[0].classes : (_.where(test, { StatusID: row.TicketStatusID }).length >= 1 ? _.where(test, { StatusID: row.TicketStatusID })[0].classes : '');
+            // _.where(test, { StatusID: parseInt(row.ProfileStatusID) }).length > 0 ? _.where(test, { StatusID: parseInt(row.ProfileStatusID) })[0].classes : '';
+        };
+
+
+
+
+
+
+
+
+
         return model;
 
     }
