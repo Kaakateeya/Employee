@@ -35,23 +35,7 @@
 </div>
 <div>
     <md-content class="md-padding">
-        <div class="col-lg-12" ng-show="model.selectedIndex===0">
-            <div class="col-lg-1">
-                <img style="width:60px;height:60px;" src="http://d16o2fcjgzj2wp.cloudfront.net/Images/ProfilePics/KMPL_113461_Images/Img2_Images/311134610_ApplicationPhoto.jpg" alt="">
-            </div>
-            <div class="col-lg-11" style="line-height:1.4;">
-                <div class="col-lg-6">
-                    <label>{{model.marInfo[0].Cust_Name}} ({{model.marInfo[0].ProfileID}} - {{model.marInfo[0].BranchCode}})</label>
-                    <br><label>DOR: {{model.marInfo[0].DOR}} </label>
-                </div>
-                <div class="col-lg-6">
-                    <label> Mobile : {{model.marInfo[0].number}}</label>
-                    <br><label> Email : {{model.marInfo[0].email}}</label>
-                </div>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-        <md-tabs md-selected="model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
+        <md-tabs md-selected="page.model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
             <md-tab label="View">
                 <div class="tab">
                     <div class="col-lg-12">
@@ -279,6 +263,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <button style="margin-top: 2px;padding: 5px 5px 5px 5px; float: left; margin-right: 20px;" type="submit" id="btnIMAssignme" value="Submit" class="button_custom" ng-click="memoform.$valid && model.memoSubmit(model.MAobj,'assign');">Internal Memo & Assign me</button>
+
                                             <button style="margin-top: 2px;padding: 5px 5px 5px 5px;" type="button" class="button_custom button_custom_reset" ng-click="model.close();">Close</button>&nbsp;
                                         </div>
                                     </li>

@@ -768,29 +768,17 @@
                         model.replytypetxtdiabled = true;
                         model.incommingbtntext = model.outgoingcallbtntext = model.internalmemobtntext = "Interested";
                         if (model.activebutton === 'bothside') {
-                            //model.txtAllcallflag = 1;
                             model.mailInput.TicketStatusID = "bothSideinterest";
-                            // model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;text-align: justify;'>" + genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
-                            //     "<div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style='color:black;text-align: justify;'>Your relationship manager " +
-                            //     model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.Tosurname + " relationship manager " + model.toempname +
-                            //     "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
                             model.txtAllcallDiscusion = genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
-
                         } else {
                             if (val === '1' && model.toticketstatusemail === 'I') {
-                                // model.txtAllcallflag = 1;
                                 model.mailInput.TicketStatusID = "bothSideinterest";
-                                // model.txtAllcallDiscusionemail = "<div style='margin-left:30px;color:black;text-align: justify;'>" + genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.</div><br>" +
-                                //     "<div style='color:black;text-align: justify;'>For further assistance feel free to contact</div><br> <div style=color:black;text-align: justify;'>Your relationship manager " +
-                                //     model.fromempname + "</div> <br> <div style='color:black;text-align: justify;'>" + model.Fromsurname + " relationship manager " + model.toempname +
-                                //     "</div><br><div style='color:black;text-align: justify;'> Team head Mr.sivaprasad 91-9841282222</div>";
                                 model.txtAllcallDiscusion = genderid + model.Fromsurname + " is also interested in your profile, Since both of you are interested you need one of our customer relationship manager assistance.";
                             } else if (val === '1' && model.toticketstatusemail === 'V') {
                                 model.mailInput.TicketStatusID = "Viewed";
                                 model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
                                     " and " + she + " is showing interest in your profile Please go through the profile and reply to us on the same.We are resending " + her + " profile for the ease of viewing " +
                                     "and please give your opinion in the options provided in the profile.";
-
                             } else if (val === '1' && model.toticketstatusemail === 'NV') {
                                 //resend
                                 model.emailresendflag = 1;
