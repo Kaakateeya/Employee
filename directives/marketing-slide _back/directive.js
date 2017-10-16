@@ -34,7 +34,6 @@
                 scope.model.MAobj.txtmrktCalldiscussionout =
                 scope.model.MAobj.txtmrktcalldiscussionMemo = "";
             scope.model.MAobj.ddlmrktAssignmemo = "";
-            scope.model.selectedIndex = 0;
         }
     }
 })();

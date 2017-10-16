@@ -127,7 +127,6 @@
             });
         };
         model.ActionSubmit = function(obj, str, intrstType, callmatchdiscussion) {
-            debugger;
             var curdate = moment().format('DD-MMM-YYYY h:mm:ss');
             if (model.typeOfCtrl === '1' || model.typeOfCtrl === '0') {
                 var status = model.typeOfCtrl === '1' ? 1 : 2;
@@ -165,9 +164,7 @@
                     if (str !== 'Close') {
                         model.close();
                     }
-                    debugger;
                     switch (intrstType) {
-
                         case 1:
                             model.mailInput.Notes = obj.CallDiscussion + (callmatchdiscussion !== "" && callmatchdiscussion !== null && callmatchdiscussion !== undefined ? ("<br><span style='text-align: justify;margin-left: 29px;padding-top: 18px;'>" + callmatchdiscussion) + "</span>" : '') + model.emailmanagers;
                             break;
