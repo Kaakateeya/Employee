@@ -13,6 +13,7 @@
              model;
 
          vm.init = function() {
+
              vm.model = model = settleDeleteProfileseReportModel;
              model.Admin = authSvc.isAdmin();
              model.reset();

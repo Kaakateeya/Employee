@@ -1,0 +1,85 @@
+<div class="right_col">
+    <div class="panel-group">
+        <div class="panel-collapse collapse in">
+            <div class="panel-default regValheader" style="margin-top: -12px;box-shadow: 2px 2px 6px #ccc;" is-open="page.model.opendiv">
+                <div class="panel-heading" style="padding: 13px 0px 30px;color: rgb(160, 2, 1);border: 1px solid #ccc">
+                    <div class="col-lg-2" style="font-size: 17px;font-weight: bold;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
+                        Settlement <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+                    </div>
+                    <div class="col-lg-7" style="color:black;">
+                        <label for="All Profileid" class="col-lg-1 classlabelverify">Paid</label>
+                        <div class="col-lg-9" style="font-size:13px;">
+                            <md-radio-group name="rbtnGender" layout="row" ng-model="page.model.rbtnGender" class="md-block" flex-gt-sm>
+                                <md-radio-button value="" class="md-primary">Partial paid</md-radio-button>
+                                <md-radio-button value="1" class="md-primary">Full paid</md-radio-button>
+                                <md-radio-button value="2">Not int to paid</md-radio-button>
+                            </md-radio-group>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body" ng-show="page.model.panelbodyhide">
+
+                    <div class="row">
+
+                        <div class="col-lg-3">
+                            <label for="" class="control-label lbl col-lg-3">Region</label>
+                            <div class="col-lg-8">
+                                <select multiselectdropdown class="smalldropdown" ng-model="page.model.caste" multiple typeofdata="'Regionofbranches'"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="" class="control-label lbl col-lg-3">Branch</label>
+                            <div class="col-lg-8">
+                                <select multiselectdropdown class="smalldropdown" ng-model="page.model.caste" multiple typeofdata="'Branch'"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="" class="control-label lbl col-lg-5">Employee Name</label>
+                            <div class="col-lg-6">
+                                <select multiselectdropdown class="smalldropdown" ng-model="page.model.caste" multiple typeofdata="'EmpNames'"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-1">
+                            <input type="button" class="btn btn-danger" value="Submit" ng-click="page.model.submit();">
+                        </div>
+
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+
+    <complex-grid-new gid="'id1'" model="page.model.grid1" config="page.model.grid1"></complex-grid-new>
+    <br>
+    <complex-grid-new gid="'id2'" model="page.model.grid2" config="page.model.grid2"></complex-grid-new>
+    <br>
+    <complex-grid-new gid="'id3'" model="page.model.grid3" config="page.model.grid3"></complex-grid-new>
+
+</div>
+<script type="text/ng-template" id="aboutpayment.html">
+    <form class="EditViewClass" name="uploadForm" novalidate role="form" ng-submit="page.model.upload(page.model.up)">
+        <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-title">Description </h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <textarea rows="" cols="" class="form-control"></textarea>
+        </div>
+        <div class="modal-footer">
+            <input value="Cancel" class="button_custom button_custom_reset" ng-click="page.model.close();" type="button">
+            <input value="Submit" class="button_custom" type="submit">
+        </div>
+    </form>
+</script>
+
+<style>
+    .headerStyles {
+        font-size: 16px;
+    }
+    
+    .lbl {
+        margin-top: 3%;
+    }
+</style>
