@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .factory('viewSuccessStoriesModel', factory);
 
-    factory.$inject = ['viewSuccessStoriesService', 'Commondependency', 'alert', 'fileUpload', 'modelpopupopenmethod'];
+    factory.$inject = ['viewSuccessStoriesService', 'Commondependency', 'alert', 'fileUpload', 'modelpopupopenmethod', '$http'];
 
-    function factory(viewSuccessStoriesService, Commondependency, alertss, fileUpload, modelpopupopenmethod) {
+    function factory(viewSuccessStoriesService, Commondependency, alertss, fileUpload, modelpopupopenmethod, http) {
 
         var model = {};
         model.scope = {};
@@ -230,11 +230,13 @@
 
             viewSuccessStoriesService.deleteSucessStory(model.dPhotoID, model.dBrideProfileID, model.dGroomProfileID).then(function(response) {
                 if (response.data === 1) {
-                    _.each(model.viewSuccessArray, function(item, index) {
-                        if (model.dPhotoID === item.CustId)
-                            model.viewSuccessArray.splice(index, 1);
-                    });
                     model.closepopup();
+                    _.each(model.viewSuccessArray, function(item, index) {
+                        if (item) {
+                            if (model.dPhotoID === item.CustId)
+                                model.viewSuccessArray.splice(index, 1);
+                        }
+                    });
                     alertss.timeoutoldalerts(model.scope, 'alert-success', "SuccessStories deleted  successfully", 4500);
                 } else {
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', "SuccessStories deletion fail  successfully", 4500);
