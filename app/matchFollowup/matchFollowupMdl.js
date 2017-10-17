@@ -526,7 +526,8 @@
                             CustID: model.fromcustidselef,
                             AcceptStatus: statusint ? (model.fromticketstatusemail === 'I' ? 1 : 2) : status,
                             MatchFollwupStatus: statusint ? (model.fromticketstatusemail === 'I' ? 1 : 2) : status,
-                            intEmpId: parseInt(model.empid)
+                            intEmpId: parseInt(model.empid),
+                            strFromStatus: model.fromticketstatusemail
                         };
 
                         helpService.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
@@ -558,7 +559,7 @@
                             }
                             switch (intrstType) {
                                 case 1:
-                                    model.mailInput.Notes = obj.CallDiscussion + (callmatchdiscussion !== "" && callmatchdiscussion !== null && callmatchdiscussion !== undefined ? ("<br><span style='text-align: justify;margin-left: 29px;padding-top: 18px;'>" + callmatchdiscussion) + "</span>" : '') + model.emailmanagers;
+                                    model.mailInput.Notes = obj.CallDiscussion + (callmatchdiscussion !== "" && callmatchdiscussion !== null && callmatchdiscussion !== undefined ? ("<br><br><span style='text-align: justify;margin-left: 29px;padding-top: 18px;'>" + callmatchdiscussion) + "</span>" : '') + model.emailmanagers;
                                     break;
                                 case 0:
                                     model.mailInput.Notes = obj.CallDiscussion + model.emailmanagers;
