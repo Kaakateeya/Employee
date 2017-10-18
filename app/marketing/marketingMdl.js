@@ -37,6 +37,7 @@
                         model.ProfileOwner = model.fromticketcreateddate = model.toticketcreateddate = undefined;
                     model.Expiryin = '';
                     model.totalrowsshow = false;
+                    model.textdiv = true;
                 };
 
                 model.init = function() {
@@ -107,6 +108,7 @@
                     if (from === 1) {
                         model.totalrowsshow = true;
                         model.opendiv = false;
+                        model.textdiv = false;
                     }
                     model.topage = to;
                     var inputobj = {
