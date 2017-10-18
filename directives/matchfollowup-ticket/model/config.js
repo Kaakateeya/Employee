@@ -136,7 +136,8 @@
                     CustID: model.fromcustidselef,
                     AcceptStatus: statusint ? (model.fromticketstatusemail === 'I' ? 1 : 2) : status,
                     MatchFollwupStatus: statusint ? (model.fromticketstatusemail === 'I' ? 1 : 2) : status,
-                    intEmpId: parseInt(model.empid)
+                    intEmpId: parseInt(model.empid),
+                    strFromStatus: model.fromticketstatusemail
                 };
 
                 helpService.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
