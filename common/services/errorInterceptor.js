@@ -6,8 +6,8 @@
                 return {
                     request: function(config) {
                         $rootScope.$broadcast('request-start');
-                        config.headers.Authorization = 'Bearer' + ' ' + sessionStorage.getItem('Token');
-                        config.headers['Content-Type'] = 'application/json';
+                        // config.headers.Authorization = 'Bearer' + ' ' + sessionStorage.getItem('Token');
+                        config.headers['Content-Type'] = undefined;
                         return config;
                     },
                     responseError: function(rejection) {

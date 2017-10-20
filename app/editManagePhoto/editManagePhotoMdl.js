@@ -100,43 +100,43 @@
                 } else {
                     // var extension = ((obj.myFile.name).split('.'))[1];
                     var keyname = app.prefixPathImg + 'KMPL_' + CustID + '_Images/Img' + model.photorowID + '.' + extension;
-                    fileUpload.uploadFileToUrl(obj.myFile, '/photoUplad', keyname).then(function(res) {
+                    fileUpload.uploadFileToUrl(obj.myFile, 'http://localhost:3000/s3upload', keyname).then(function(res) {
                         if (res.status == 200) {
-                            commonFactory.closepopup();
-                            model.uploadData = {
-                                GetDetails: {
-                                    ID: model.Cust_Photos_ID,
-                                    url: 'Img' + model.photorowID + '.' + extension,
-                                    order: model.DisplayOrder,
-                                    IsProfilePic: 0,
-                                    DisplayStatus: model.DisplayOrder,
-                                    Password: 0,
-                                    IsReviewed: 0,
-                                    TempImageUrl: app.GlobalImgPath + keyname,
-                                    IsTempActive: commonFactory.checkvals(model.IsActive) ? model.IsActive : '0',
-                                    DeletedImageurl: null,
-                                    IsImageDeleted: 0,
-                                    PhotoStatus: null,
-                                    PhotoID: model.DisplayOrder,
-                                    PhotoPassword: null
-                                },
-                                customerpersonaldetails: {
-                                    intCusID: CustID,
-                                    EmpID: loginEmpid,
-                                    Admin: AdminID
-                                }
-                            };
-                            editManagePhotoService.submituploadData(model.uploadData).then(function(response) {
-                                if (response.status === 200) {
-                                    model.manageArr = response.data;
-                                    model.refreshPageLoad(model.manageArr);
-                                    alert('Uploaded Succesfully');
-                                    //alertss.timeoutoldalerts(model.scope, 'alert-success', 'Uploaded Succesfully', 4500);
-                                } else {
-                                    alert('Uploaded failed');
-                                    // alertss.timeoutoldalerts(model.scope, 'alert-success', 'Uploaded failed', 4500);
-                                }
-                            });
+                            // commonFactory.closepopup();
+                            // model.uploadData = {
+                            //     GetDetails: {
+                            //         ID: model.Cust_Photos_ID,
+                            //         url: 'Img' + model.photorowID + '.' + extension,
+                            //         order: model.DisplayOrder,
+                            //         IsProfilePic: 0,
+                            //         DisplayStatus: model.DisplayOrder,
+                            //         Password: 0,
+                            //         IsReviewed: 0,
+                            //         TempImageUrl: app.GlobalImgPath + keyname,
+                            //         IsTempActive: commonFactory.checkvals(model.IsActive) ? model.IsActive : '0',
+                            //         DeletedImageurl: null,
+                            //         IsImageDeleted: 0,
+                            //         PhotoStatus: null,
+                            //         PhotoID: model.DisplayOrder,
+                            //         PhotoPassword: null
+                            //     },
+                            //     customerpersonaldetails: {
+                            //         intCusID: CustID,
+                            //         EmpID: loginEmpid,
+                            //         Admin: AdminID
+                            //     }
+                            // };
+                            // editManagePhotoService.submituploadData(model.uploadData).then(function(response) {
+                            //     if (response.status === 200) {
+                            //         model.manageArr = response.data;
+                            //         model.refreshPageLoad(model.manageArr);
+                            //         alert('Uploaded Succesfully');
+                            //         //alertss.timeoutoldalerts(model.scope, 'alert-success', 'Uploaded Succesfully', 4500);
+                            //     } else {
+                            //         alert('Uploaded failed');
+                            //         // alertss.timeoutoldalerts(model.scope, 'alert-success', 'Uploaded failed', 4500);
+                            //     }
+                            // });
                         }
                     });
                 }
