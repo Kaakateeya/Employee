@@ -27,6 +27,7 @@
                     yearRange: "-40:+5",
                     dateFormat: 'dd-mm-yy'
                 };
+
                 model.opendiv = true;
                 var empid, AdminID, TicketId, custId, isSibbling;
 

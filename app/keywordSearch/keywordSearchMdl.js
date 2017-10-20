@@ -573,10 +573,12 @@
             modelpopupopenmethod.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");
         };
         model.resetkeyword = function() {
-            model.allphones = "";
-            model.allemails = "";
-            model.allnativeplaces = "";
-            model.allsurnames = "";
+            var inputArray = ['allphones', 'allemails', 'allsurnames', 'allnativeplaces', 'allEducation',
+                'allProfession', 'allFather', 'allMother', 'allBrother', 'allSister', 'c_all'
+            ];
+            inputArray.forEach(function(element) {
+                model[element] = '';
+            }, this);
             model.applicationids = [54];
         };
         return model;
