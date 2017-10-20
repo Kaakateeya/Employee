@@ -100,6 +100,47 @@
         <input type="submit" ng-class="model.ActiveButton==='notinpay'?'btn btn-success':'btn btn-default'" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.MarketingTicket('notinpay',2,0, 0, 0, 4, 'P');" value="NotInPay" />
     </div>
 </div>
+
+<div ng-show="model.textdiv">
+    <div class="clearfix"></div>
+    <br>
+    <div class="col-lg-12" style="border: 1px solid #ccc;border-radius: 5px;padding-top: 8px;">
+        <div class="col-lg-12">
+            <label class="col-lg-1" style="width: 159px;color: black;">UnPaid Tkts</label>
+            <label>: Only Unpaid Tickets </label>
+        </div>
+        <div class="clearfix"></div>
+        <br>
+        <div class="col-lg-12">
+            <label class="col-lg-1" style="width: 159px;color: black;">Remainder Tkts</label>
+            <label>: All Your Remainder Tickets </label>
+        </div>
+        <div class="clearfix"></div>
+        <br>
+        <div class="col-lg-12">
+            <label class="col-lg-1" style="width: 159px;color: black;">Sel/del Sibllings</label>
+            <label>: Settleted/Deleted Tickets of Bride/Groom Sisters And Brothers Profiles </label>
+        </div>
+        <div class="clearfix"></div>
+        <br>
+        <div class="col-lg-12">
+            <label class="col-lg-1" style="width: 159px;color: black;">Guset Tkts</label>
+            <label>: All Your Guest Tickets</label>
+        </div>
+        <div class="clearfix"></div>
+        <br>
+        <div class="col-lg-12">
+            <label class="col-lg-1" style="width: 159px;color: black;">Exprd Profiles</label>
+            <label>: Expired Profiles</label>
+        </div>
+        <div class="clearfix"></div>
+        <br>
+        <div class="col-lg-12">
+            <label class="col-lg-1" style="width: 159px;color: black;">NotInPay</label>
+            <label>: Not Interest To Pay Tickets</label>
+        </div>
+    </div>
+</div>
 <br>
 <style>
     .datepicker3 {

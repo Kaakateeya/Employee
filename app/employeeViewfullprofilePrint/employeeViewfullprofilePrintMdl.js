@@ -31,6 +31,10 @@
         };
 
         model.getprofileData = function(stateprofileid, empid) {
+            model.personalinfo = [];
+            model.aboutmyself = {};
+            model.basicinfo = [];
+            model.viewprofilearray = [];
             empid = empid ? empid : (model.typeofbuttonprint === 'textbox2' ? '' : model.empid);
             employeeViewfullprofileservice.getEmpViewfullProfile(stateprofileid, empid).then(function(response) {
                 model.fullprofileshow = false;
