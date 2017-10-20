@@ -276,6 +276,7 @@
         model.closereminderstatus = function(reminderid) {
             model.closerem();
             model.Reminderidforclose = reminderid;
+            model.txtremCloseNotes = "";
             commonpage.thirdshowPopup('templates/closeReminderStatus.html', model.scope, 'md', "modalclassdashboardremainder");
 
         };
