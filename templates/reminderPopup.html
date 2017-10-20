@@ -5,7 +5,6 @@
 <div class="modal-body reminderCls">
     <div>
         <form name="reminderform" novalidate role="form" ng-submit="reminderform.$valid  && model.reminderSubmit();">
-
             <ul>
                 <li class="clearfix">
                     <label class="pop_label_left Notrequired">Profile ID</label>
@@ -50,11 +49,9 @@
                     <div class="pop_controls_right">
                         <select required="" class="selectCls" name="calltypeddl" ng-model="model.ddlremCaltype" ng-options="call.value as call.label for call in model.calltypearray" multiselectdropdown>   
                        </select>
-
                         <div ng-messages="reminderform.calltypeddl.$invalid">
                             <div style="color: red;font-size: 12px;" ng-if="reminderform.calltypeddl.$invalid && (reminderform.$submitted)">*Required.</div>
                         </div>
-
                     </div>
                 </li>
                 <li class="clearfix">
@@ -68,7 +65,6 @@
                             <div class="col-lg-5">
                                 <input ng-model="model.contactpersonname" name="txtcontactPersnname" type="text" class="form-control doublesmalldropdown">
                             </div>
-
                         </div>
                         <div ng-messages="reminderform.ddlcontactpersonrember.$invalid">
                             <div style="color: red;font-size: 12px;" ng-if="reminderform.ddlcontactpersonrember.$invalid && (reminderform.$submitted)">*Required.</div>
@@ -110,7 +106,6 @@
         </form>
     </div>
 </div>
-
 <style>
     .reminderCls .pop_controls_right>input,
     .reminderCls .selectCls {
