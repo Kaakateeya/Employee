@@ -464,6 +464,8 @@
 
         };
         model.onTabSelected = function(tabindex) {
+            model.incommingbtntext = "Incoming Call";
+            model.outgoingcallbtntext = "Outgoing Call";
             model.MAobj.ddlmrktCallresultIn = model.MAobj.ddlmrktcallresultout = "417";
             model.MAobj.ddlmrktreceivedIn = model.MAobj.ddlmrktreceivedout = "39";
             model.MAobj.rbtnmarketDisplayIn = model.MAobj.rbtndisplayOut = model.MAobj.rbtnshowOutmatchfollowup = model.MAobj.rbtnmarketDisplayIn = "0";

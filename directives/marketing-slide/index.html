@@ -37,15 +37,16 @@
     <md-content class="md-padding">
         <div class="col-lg-12" ng-show="model.selectedIndex===0">
             <div class="col-lg-1">
-                <img style="width:60px;height:60px;" src="{{model.marInfo[0].CustomerApplicationPhoto}}" alt="">
+                <img style="width:60px;height:60px;" ng-click="model.slidepopup(model.marInfo[0].Cust_ID)" src="{{model.marInfo[0].CustomerApplicationPhoto}}" alt="">
             </div>
             <div class="col-lg-11" style="line-height:1.4;">
                 <div class="col-lg-6">
-                    <label>{{model.marInfo[0].Cust_Name}} ({{model.marInfo[0].ProfileID}} - {{model.marInfo[0].BranchCode}})</label>
-                    <br><label>DOR: {{model.marInfo[0].DOR}} </label>
+                    <label>{{model.marInfo[0].Cust_Name}} (<a href="javascript:void(0)" ng-click="model.viewfullprofile(model.marInfo[0].ProfileID)">{{model.marInfo[0].ProfileID}}</a> - {{model.marInfo[0].BranchCode}})</label>
+                    <br> <label> Mobile : {{model.marInfo[0].number}}</label>
+
                 </div>
                 <div class="col-lg-6">
-                    <label> Mobile : {{model.marInfo[0].number}}</label>
+                    <label>DOR: {{model.marInfo[0].DOR}} </label>
                     <br><label> Email : {{model.marInfo[0].email}}</label>
                 </div>
             </div>
@@ -337,6 +338,27 @@
         </md-tabs>
     </md-content>
 </div>
+<script type="text/ng-template" id="phototicket.html">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="close" ng-click="model.closerem()">×</button>
+            <h4 class="modal-title">{{model.photoalbum}}</h4>
+        </div>
+        <div class="modal-body">
+            <div class="bs-example">
+                <div id="slideshow">
+                    <div uib-carousel active="model.activeslidephoto" interval="model.myIntervalphoto" no-wrap="model.noWrapSlidesphoto" carousel-controls>
+                        <div uib-slide ng-repeat="slide in model.slidephotos track by $index" index="$index">
+                            <img id="imh" ng-src="{{slide.FullPhotoPath}}" style="margin-left: auto;
+                      margin-right: auto;"></img>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</script>
 <style type="text/css">
     .modalclassdashboardphotopopup .md-tab {
         padding: 14px 15px;

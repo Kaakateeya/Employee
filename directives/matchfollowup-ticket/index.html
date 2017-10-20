@@ -32,6 +32,12 @@
 </div>
 
 <div>
+    <br>
+    <div class="col-lg-12">
+        <label style="color: #0e0ed4;"> Mail going to Groom===> {{model.marInfo[0].Toname}},{{model.marInfo[0].ToProfileID}}({{model.marInfo[0].ToEmail}})
+        </label>
+    </div>
+    <div class="clearfix"></div>
     <md-content class="md-padding">
         <md-tabs md-selected="model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
             <md-tab label="View" ng-click="model.onTabSelected(model.selectedIndex)">
@@ -57,7 +63,7 @@
                     </div>
                 </div>
             </md-tab>
-            <md-tab label="Send Mail" data-ng-if="model.showsendemail" ng-click="model.onTabSelected(model.selectedIndex)">
+            <md-tab label="Send Mail" ng-if="false" ng-click="model.onTabSelected(model.selectedIndex)">
                 <br>
                 <form name="sendemail" novalidate role="form" ng-submit="">
                     <div class="tab-pane active">

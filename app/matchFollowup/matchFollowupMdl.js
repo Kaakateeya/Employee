@@ -48,7 +48,6 @@
                     model.activebutton = 'bothside';
                     model.txtFromProceedDate = model.txtToProceedDate = '';
                     model.matchFollowupSelect(model.empid);
-
                     return model;
                 };
 

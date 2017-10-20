@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="model.closerem()">×</button>
+    <h4 class="modal-title text-center">Close Reminder</h4>
+</div>
+<div class="modal-body reminderticket">
+    <div class="reminderCls">
+        <form name="remindercloseform" novalidate role="form" ng-submit="remindercloseform.$valid  && model.closeremindersubmit(model.Reminderidforclose,model.txtremCloseNotes);">
+            <ul>
+                <li class="clearfix">
+                    <label class="pop_label_left">Reason<span style="color:red;">*</span></label>
+                    <div class="pop_controls_right">
+                        <textarea class="selectCls" required="" ng-model="model.txtremCloseNotes" name="txtremCloseNotes" class="form-control"></textarea>
+                        <div ng-messages="remindercloseform.txtremCloseNotes.$invalid">
+                            <div style="color: red;font-size: 12px;" ng-if="remindercloseform.txtremCloseNotes.$invalid && (remindercloseform.$submitted)">*Required.</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <br>
+            <div class="row">
+                <div class="col-lg-8">
+                    <button type="submit" class="button_custom pull-right">Submit</button>
+                </div>
+                <div class="col-lg-4">
+                    <button type="button" class="button_custom button_custom_reset" ng-click="model.closerem()">Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

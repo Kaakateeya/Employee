@@ -598,7 +598,7 @@
                     model.ddlmins = "";
                     model.ddlcontactperson = "";
                     model.ddlremCaltype = "";
-                    commonpage.showPopupphotopoup('Reminderticket.html', model.scope, 'md', "modalclassdashboardremainder");
+                    commonpage.showPopupphotopoup('Remindertickets.html', model.scope, 'md', "modalclassdashboardremainder");
                     model.Hoursarray = model.getnumberbind(0, 23, 'Hrs', 1);
                     model.miniutearray = model.getnumberbind(0, 59, 'Mins', 1);
                     model.calltypearray = model.replytype('calltype');

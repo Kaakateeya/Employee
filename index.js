@@ -185,6 +185,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                 {
                     name: 'directives',
                     files: [
+                        'directives/focusDirective.js',
                         'directives/multiSelectDirective.js',
                         'directives/angularMaterialmultiselectDirectives.js',
                         'directives/dynamicAlets.js',
@@ -192,7 +193,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/checkboxList.js',
                         'directives/accessForm.js',
                         'directives/invalidFocus.js',
-                        'directives/focusDirective.js',
                         'directives/bindHtmlEvents.js',
                         'directives/tickethistryInfm.js',
                         'directives/marketingticket.js',

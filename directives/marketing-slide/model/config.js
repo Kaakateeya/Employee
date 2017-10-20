@@ -3,9 +3,9 @@
     angular
         .module('Kaakateeya')
         .factory('marketticketHistrymdl', factory);
-    factory.$inject = ['SelectBindServiceApp', 'authSvc', 'marketingTicketHistryservice', 'alert', 'modelpopupopenmethod', 'arrayConstants', '$timeout', '$filter', 'SelectBindServiceApp'];
+    factory.$inject = ['SelectBindServiceApp', 'authSvc', 'marketingTicketHistryservice', 'alert', 'modelpopupopenmethod', 'arrayConstants', '$timeout', '$filter', 'SelectBindServiceApp', 'helperservice'];
 
-    function factory(bindservice, authSvc, marketsvc, alertss, commonpage, arrayConstants, timeout, $filter, SelectBindServiceApp) {
+    function factory(bindservice, authSvc, marketsvc, alertss, commonpage, arrayConstants, timeout, $filter, SelectBindServiceApp, helperservice) {
         var model = {};
         model.MAobj = {};
         model.ticketid = '';
@@ -185,6 +185,8 @@
             return options;
         };
         model.changereminder = function(slidearray) {
+            model.reminderidsession = "";
+            model.reminderidsession = slidearray.ReminderID;
             model.reminderslidearray = {};
             model.reminderslidearray = slidearray;
             model.txtprofileidreminder = slidearray.ProfileID;
@@ -243,12 +245,14 @@
                 Category: model.ddlremCatgory,
                 IsFollowup: 0
             };
-            commonpage.closepopuppoptopopup();
+            model.closerem();
             bindservice.upadateremainderdate(Mobj).then(function(response) {
                 if (response !== undefined && response.data === parseInt(1)) {
-                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Reminder date  Updated Successfully', 3000);
+                    //alertss.timeoutoldalerts(model.scope, 'alert-success', 'Reminder date  Updated Successfully', 3000);
+                    alert("Reminder date  Updated Successfully");
                 } else {
-                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Reminder date Updated Failed', 3000);
+                    alert("Reminder date  Updated Failed");
+                    // alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Reminder date Updated Failed', 3000);
                 }
             });
         };
@@ -265,6 +269,49 @@
                 model.empnamecalled = true;
                 model.getemployee('EmapName', '2');
             }
+        };
+
+
+
+        model.closereminderstatus = function(reminderid) {
+            model.closerem();
+            model.Reminderidforclose = reminderid;
+            commonpage.thirdshowPopup('templates/closeReminderStatus.html', model.scope, 'md', "modalclassdashboardremainder");
+
+        };
+        model.closeremindersubmit = function(reminderid, reason) {
+            var obj = {
+                Reminderid: parseInt(reminderid),
+                closeEmpid: parseInt(model.empid),
+                ClosedReminderreason: reason
+            };
+            helperservice.closereminderstatus(obj).then(function(response) {
+                console.log(response.data);
+                if (response !== undefined && response.data === parseInt(1)) {
+                    model.closerem();
+                    alerts.timeoutoldalerts(model.scope, 'alert-success', 'Reminder Closed Successfully', 3000);
+                } else {
+                    alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Reminder Closed Failed', 3000);
+                }
+            });
+        };
+        model.slidepopup = function(custid) {
+            model.photoalbum = "Photo Album";
+            model.slidephotos = [];
+            model.activeslidephoto = 0;
+            model.myIntervalphoto = 0;
+            model.noWrapSlidesphoto = true;
+            SelectBindServiceApp.getphotoslideimages(custid).then(function(response) {
+                model.slidephotos = [];
+                model.popupmodalbody = false;
+                _.each(response.data, function(item) {
+                    model.slidephotos.push(item);
+                });
+                commonpage.thirdshowPopup('phototicket.html', model.scope, '', "modalclassdashboardremainder");
+            });
+        };
+        model.viewfullprofile = function(ProfileID) {
+            window.open('/Viewfullprofile/' + ProfileID + '/0', '_blank');
         };
         return model.init();
     }
