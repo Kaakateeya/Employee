@@ -1039,6 +1039,12 @@
                         // alert("Selected Value: " + currentSelected.value + "\nSelected Text: " + currentSelected.label);
                     }
                 };
+                // model.morepopup = function() {
+                //     model.myArraySelect = [];
+                //     $('#mySelectID option').each(function() {
+                //         model.myArraySelect.push($(this).text());
+                //     });
+                // };
                 return model;
             }
         ]);
