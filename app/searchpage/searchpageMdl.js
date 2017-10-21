@@ -746,6 +746,9 @@
                 model.viewfullprofile = function(profileid) {
                     window.open("Viewfullprofile/" + profileid + '/0', "_blank");
                 };
+                model.viewfullprofilesearch = function(profileid) {
+                    window.open("Viewfullprofilesearch/" + profileid + '/0', "_blank");
+                };
                 model.ticketclass = function(status) {
                     var background = "#fff";
                     if (parseInt(status) === 258) {

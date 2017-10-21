@@ -150,8 +150,16 @@
                     //model.empid = 8;
                     model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                     model.empBranchID = authSvc.empBranchID() !== undefined && authSvc.empBranchID() !== null && authSvc.empBranchID() !== "" ? authSvc.empBranchID() : "";
+                    model.loadDashboard = authSvc.loadDashboard() !== undefined && authSvc.loadDashboard() !== null && authSvc.loadDashboard() !== "" ? authSvc.loadDashboard() : "";
+                    debugger;
                     if (model.empid !== null && model.empid !== "" && model.empBranchID !== null && model.empBranchID !== "") {
-                        model.tabledata(model.empid, model.empBranchID, 1, 5, '', 'pageload', undefined, 0);
+                        debugger;
+                        if (parseInt(model.loadDashboard) === 1) {
+                            model.tabledata(model.empid, model.empBranchID, 1, 5, '', 'pageload', undefined, 0);
+                        } else {
+                            model.norecordstable = true;
+                            model.landingItems = [];
+                        }
                     }
                     return model;
                 };

@@ -203,6 +203,7 @@
                     model.eduCatgory = row.EducationCategoryID;
                     model.chkloginaAnyWhere = row.isLoginanywhere;
                     model.newuserID = row.UserID;
+                    model.emploaddashboard = row.Dashboard_Status;
                 };
                 model.getEmpList = function() {
                     var inObj = {
@@ -296,7 +297,8 @@
                         EmployeeStatus: null,
                         isLoginAnywhere: model.chkloginaAnyWhere === true ? true : false,
                         CreatedEMPID: model.empid,
-                        loginname: model.newuserID
+                        loginname: model.newuserID,
+                        Dashboard_Status: parseInt(model.emploaddashboard)
                     };
                     switch (model.actionFlag) {
                         case 'create':

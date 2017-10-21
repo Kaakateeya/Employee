@@ -950,7 +950,6 @@
                 };
                 model.marketingticket = function(custid) {
                     matchFollowupServices.getMarketingticket(custid).then(function(response) {
-                        console.log(response);
                         if (_.isArray(response.data) && response.data.length > 0 && response.data[0].length > 0) {
                             model.marketingTicketid = response.data[0][0].TicketID;
                             modelpopupopenmethod.showPopupphotopoup('market.html', model.scope, 'md', "modalclassdashboardphotopopup");

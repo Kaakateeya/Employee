@@ -19,6 +19,8 @@
                 model.usernameemployeepasswordpop = false;
                 model.lockscreendiv = true;
                 model.init = function() {
+                    model.isManagement = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
+                    model.isAdmin = authSvc.isAdmin() !== undefined && authSvc.isAdmin() !== null && authSvc.isAdmin() !== "" ? authSvc.isAdmin() : "";
                     model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
                     model.empBranchID = authSvc.empBranchID() !== undefined && authSvc.empBranchID() !== null && authSvc.empBranchID() !== "" ? authSvc.empBranchID() : "";
                     //pageload Callings
@@ -315,7 +317,20 @@
                         Notification.clearAll();
                     }
                 };
-
+                model.otheremployeepassword = function() {
+                    model.close();
+                    model.changeemppassword = "";
+                    modelpopupopenmethod.showPopupphotopoup('changeotheremppassword.html', model.scope, 'md', "modalclassdashboardphotopopuplogin");
+                };
+                model.changeotheremployeepassword = function() {
+                    modelpopupopenmethod.getresetempPassword(model.changeemppassword).then(function(response) {
+                        if (parseInt(response.data) === 1) {
+                            alerts.timeoutoldalerts(model.scope, 'alert-success', 'Password had reset succesfully', 3000);
+                        } else {
+                            alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Password had reset Fail', 3000);
+                        }
+                    });
+                };
                 return model.init();
             }
         ]);

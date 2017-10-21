@@ -253,8 +253,8 @@
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col-lg-7">
-
+                                <div class="col-lg-5">
+                                    <label for="" class="control-label lblcls">Employee Type</label>
                                     <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.emptype" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                         <md-radio-button value="1" class="md-primary">isAdmin</md-radio-button>
                                         <md-radio-button value="2"> Senior Emp</md-radio-button>
@@ -262,7 +262,14 @@
                                         <md-radio-button value="4"> isMarketing</md-radio-button>
                                     </md-radio-group>
                                 </div>
-                                <div>
+                                <div class="col-lg-2">
+                                    <label for="" class="control-label lblcls">Load DashBoard</label>
+                                    <md-radio-group name="rbtnemployeedashboard" layout="row" ng-model="page.model.emploaddashboard" class="md-block" flex-gt-sm>
+                                        <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                        <md-radio-button value="0">No</md-radio-button>
+                                    </md-radio-group>
+                                </div>
+                                <div class="col-lg-3">
                                     <md-checkbox ng-model="page.model.chkloginaAnyWhere">LoginAnywhere</md-checkbox>
                                 </div>
                             </div>

@@ -282,9 +282,6 @@
                                          Confirm Password:
                                           </label>
                                             <input compare-to="head.model.newpassword" ng-focus="true" type="Password" class="text" ng-model="head.model.confirmpassword" name="confirmpassword" required>
-                                            <!--<div ng-messages="changepasswordform.confirmpassword.$invalid">
-                                                <div style="color: red;font-size: 12px;" ng-if="changepasswordform.confirmpassword.$invalid && (changepasswordform.$submitted)">*Required.</div>
-                                            </div>-->
                                             <div ng-messages="changepasswordform.confirmpassword.$error">
                                                 <div ng-if="changepasswordform.confirmpassword.$error.required && (changepasswordform.$submitted)" style="color: red;font-size: 12px;" ng-message="required">*Required</div>
                                                 <div style="color: red;font-size: 12px;" ng-message="compareTo">Must match the previous entry</div>
@@ -292,6 +289,63 @@
                                         </div>
                                         <div class="row">
                                             <button type="submit" class="button col-lg-5">Change Password</button>
+                                            <button class="button col-lg-4" ng-click="head.model.close()">Cancel</button>
+                                        </div>
+                                        <div class="row" ng-if="head.model.isManagement === 'true' && head.model.isAdmin ==='1'">
+                                            <a href="javascript:void(0)" style="margin-left: 27px;text-decoration: underline;" ng-click="head.model.otheremployeepassword()">
+                                                    Reset Other Employee Password
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="login-footer">
+                                    <div class="row">
+                                        <div class="col-lg-3  col-lg-offset-1">
+                                            <label style="color:#ffffff;font-size: 14px;">AP:</label>
+                                            <label style="color:#ffffff;font-size: 14px;">{{head.model.logincounts[0].LoggedCount!==undefind?head.model.logincounts[0].LoggedCount:0}}-{{head.model.logincounts[0].EmpCount!==undefined?head.model.logincounts[0].EmpCount:0}}</label>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label style="color:#ffffff;font-size: 14px;">TN:</label>
+                                            <label style="color:#ffffff;font-size: 14px;">{{head.model.logincounts[1].LoggedCount!==undefined?head.model.logincounts[1].LoggedCount:0}}-{{head.model.logincounts[1].EmpCount!==undefined?head.model.logincounts[1].EmpCount:0}}</label>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label style="color:#ffffff;font-size: 14px;">KA:</label>
+                                            <label style="color:#ffffff;font-size: 14px;">{{head.model.logincounts[2].LoggedCount!==undefined?head.model.logincounts[2].LoggedCount:0}}-{{head.model.logincounts[2].EmpCount!==undefined?head.model.logincounts[2].EmpCount:0}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </script>
+
+    <script type="text/ng-template" id="changeotheremppassword.html">
+        <div id="changeotheremppassword" style='z-index: 99999'>
+            <div class="login">
+                <div class="login-box">
+                    <div class="login-border">
+                        <div class="login-style">
+                            <div class="login-header">
+                                <div class="logo clear">
+                                    <img src="src/images/1234 yellow01.png" style="width: 90px;height: 76px;" alt="" class="picture" />
+                                    <span class="textlogo"><span class="title">Kaakateeya Marraiages</span> </span>
+                                </div>
+                            </div>
+                            <form name="changeotheremppasswordform" novalidate role="form">
+                                <div class="login-inside">
+                                    <div class="login-data">
+                                        <div class="row clear">
+                                            <label for="user">
+                                              User ID:</label>
+                                            <input type="Password" class="text" ng-model="head.model.changeemppassword" name="changeemppassword" required/>
+                                            <div ng-messages="changeotheremppasswordform.changeemppassword.$invalid">
+                                                <div style="color: red;font-size: 12px;" ng-if="changeotheremppasswordform.changeemppassword.$invalid && (changeotheremppasswordform.$submitted)">*Required.</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <button class="button col-lg-5" ng-click="changeotheremppasswordform.$valid  && head.model.changeotheremployeepassword();">Change Password</button>
                                             <button class="button col-lg-4" ng-click="head.model.close()">Cancel</button>
                                         </div>
                                     </div>
@@ -318,6 +372,7 @@
                 </div>
             </div>
     </script>
+
     <script type="text/ng-template" id="unpaidmarket.html">
         <div class="modal-body">
             <market-tickethistory ticketid="head.model.unpaidticket"></market-tickethistory>

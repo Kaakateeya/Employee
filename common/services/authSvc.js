@@ -8,6 +8,7 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
         setSession("empRegionID", value.RegionID);
         setSession("empphoto", value.EmpPhotoPath);
         setSession("logintime", moment().format('MM/DD/YYYY'));
+        setSession("loadDashboard", value.Dashboard_Status);
     }
 
     function getSession(key) {
@@ -36,6 +37,7 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
         clearSession('macAddress');
         clearSession('empphoto');
         clearSession("usernameemployeeid");
+        clearSession("loadDashboard");
     }
 
     function getUser() {
@@ -46,6 +48,7 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
             isAdmin: getSession('isAdmin'),
             isManagement: getSession('isManagement'),
             empRegionID: getSession('empRegionID'),
+            loadDashboard: getSession('loadDashboard')
         };
     }
     return {
@@ -87,6 +90,9 @@ app.factory('authSvc', ['$injector', 'Idle', '$http', 'helperservice', function(
         },
         empphoto: function() {
             return getSession('empphoto');
+        },
+        loadDashboard: function() {
+            return getSession('loadDashboard');
         },
         macAddress: function() {
             return getSession('macAddress');

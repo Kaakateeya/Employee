@@ -263,6 +263,11 @@ app.factory('modelpopupopenmethod', ['$uibModal', 'SelectBindServiceApp', '$time
                         intLoadStatus: intLoadStatus
                     }
                 });
+            },
+            getresetempPassword: function(userid) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getChangeEmppassword', {
+                    params: { UserID: userid }
+                });
             }
         };
     }

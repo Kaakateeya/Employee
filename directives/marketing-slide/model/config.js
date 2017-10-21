@@ -287,7 +287,6 @@
                 ClosedReminderreason: reason
             };
             helperservice.closereminderstatus(obj).then(function(response) {
-                console.log(response.data);
                 if (response !== undefined && response.data === parseInt(1)) {
                     model.closerem();
                     alerts.timeoutoldalerts(model.scope, 'alert-success', 'Reminder Closed Successfully', 3000);
