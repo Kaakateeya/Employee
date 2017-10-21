@@ -69,19 +69,32 @@
                     model.ActionProfileID = (model.marInfo)[0].FromProfileID;
                     model.toprofileidinterest = (model.marInfo)[0].ToProfileID;
                     model.logidmatchfollowup = (model.marInfo)[0].Cust_ProfileInterestsLog_ID;
+                    // model.mailInput = {
+                    //     Notes: '',
+                    //     EMPID: model.empid,
+                    //     profileid: model.ActionProfileID,
+                    //     LTicketID: model.ticketid,
+                    //     HistoryUpdate: 2,
+                    //     FromCustID: model.fromcustidselef,
+                    //     TocustID: model.tocustidself,
+                    //     TicketStatusID: null,
+                    //     FromProfileID: model.ActionProfileID,
+                    //     ToProfileID: model.toprofileidinterest
+                    // };
+                    //
+
                     model.mailInput = {
                         Notes: '',
                         EMPID: model.empid,
-                        profileid: model.ActionProfileID,
+                        profileid: model.toprofileidinterest,
                         LTicketID: model.ticketid,
                         HistoryUpdate: 2,
-                        FromCustID: model.fromcustidselef,
-                        TocustID: model.tocustidself,
+                        FromCustID: model.tocustidself,
+                        TocustID: model.fromcustidselef,
                         TicketStatusID: null,
-                        FromProfileID: model.ActionProfileID,
-                        ToProfileID: model.toprofileidinterest
+                        FromProfileID: model.toprofileidinterest,
+                        ToProfileID: model.ActionProfileID
                     };
-                    //
                     model.MAobj.txtmrktCalltelephonenumberIn = model.MAobj.txtmrktCalltelephonenumberout = (model.marInfo)[0].MobileNumber !== "--" ? (model.marInfo)[0].MobileNumber : null;
                     marketsvc.getmarSlide(ticketid, 'H').then(function(innrespnse) {
                         model.marHistry = innrespnse.data;
