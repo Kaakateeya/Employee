@@ -69,7 +69,6 @@
                     model.ActionProfileID = (model.marInfo)[0].FromProfileID;
                     model.toprofileidinterest = (model.marInfo)[0].ToProfileID;
                     model.logidmatchfollowup = (model.marInfo)[0].Cust_ProfileInterestsLog_ID;
-                    debugger;
                     model.mailInput = {
                         Notes: '',
                         EMPID: model.empid,

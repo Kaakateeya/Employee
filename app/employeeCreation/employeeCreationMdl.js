@@ -93,6 +93,7 @@
                     model.emptype = '';
                     model.chkloginaAnyWhere = '';
                     model.newuserID = '';
+                    model.emploaddashboard = '';
                     model.actionFlag = 'create';
                     model.empStatus = '423';
                     model.searchbranch = '';
