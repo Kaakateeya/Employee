@@ -60,6 +60,13 @@
                         custid: custid
                     }
                 });
+            },
+            getMatchfollowupticketStatus: function(empticketid) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getMatchfollowupTicketStatus', {
+                    params: {
+                        Ticketid: empticketid
+                    }
+                });
             }
         };
     }

@@ -402,6 +402,8 @@
                 };
                 model.openActionPopup = function(ticketID, profileID, number, fromcustid, tocustid, ticketStatusId, ToProfileID, Name,
                     gender, selfname, selfemail, slideobj, flagtype, toemail) {
+                    model.FromTicketMatchmeetingStatus = "";
+                    model.ToTicketMatchmeetingStatus = "";
                     model.bindreplytype();
                     model.activetab = 1;
                     model.replytypetxtdiabled = false;
@@ -420,12 +422,14 @@
                         model.Fromsurname = slideobj.Fromsurname;
                         model.Tosurname = slideobj.Tosurname;
                         model.logidmatchfollowup = slideobj.Expressinterestlogid;
-                        model.FromTicketMatchmeetingStatus = slideobj.FromTicketMatchmeetingStatus;
-                        model.ToTicketMatchmeetingStatus = slideobj.ToTicketMatchmeetingStatus;
+                        // model.FromTicketMatchmeetingStatus = slideobj.FromTicketMatchmeetingStatus;
+                        // model.ToTicketMatchmeetingStatus = slideobj.ToTicketMatchmeetingStatus;
                         model.fromIsconfidential = slideobj.fromIsconfidential;
                         model.toIsconfidential = slideobj.toIsconfidential;
                         model.fromHighconfidential = slideobj.fromHighconfidential;
                         model.toHighconfidential = slideobj.toHighconfidential;
+                        model.FromTicketchkstatus = slideobj.FromTicket;
+                        model.ToTicketchkStattus = slideobj.ToTicket;
                     } else {
                         model.toempname = slideobj.fromempname;
                         model.fromempname = slideobj.toempname;
@@ -438,14 +442,21 @@
                         model.Fromsurname = slideobj.Tosurname;
                         model.Tosurname = slideobj.Fromsurname;
                         model.logidmatchfollowup = slideobj.ExpressinterestTologid;
-                        model.FromTicketMatchmeetingStatus = slideobj.ToTicketMatchmeetingStatus;
-                        model.ToTicketMatchmeetingStatus = slideobj.FromTicketMatchmeetingStatus;
+                        // model.FromTicketMatchmeetingStatus = slideobj.ToTicketMatchmeetingStatus;
+                        // model.ToTicketMatchmeetingStatus = slideobj.FromTicketMatchmeetingStatus;
                         model.fromIsconfidential = slideobj.toIsconfidential;
                         model.toIsconfidential = slideobj.fromIsconfidential;
                         model.fromHighconfidential = slideobj.toHighconfidential;
                         model.toHighconfidential = slideobj.fromHighconfidential;
+                        model.FromTicketchkstatus = slideobj.ToTicket;
+                        model.ToTicketchkStattus = slideobj.FromTicket;
                     }
-
+                    matchFollowupServices.getMatchfollowupticketStatus(model.FromTicketchkstatus).then(function(respsts) {
+                        model.FromTicketMatchmeetingStatus = respsts.data[0].trim();
+                    });
+                    matchFollowupServices.getMatchfollowupticketStatus(model.ToTicketchkStattus).then(function(respststo) {
+                        model.ToTicketMatchmeetingStatus = respststo.data[0].trim();
+                    });
                     model.ServiceDate = slideobj.ServiceDate;
                     model.selfname = selfname;
                     model.selfemail = selfemail;
@@ -746,6 +757,7 @@
                     });
                 };
                 model.NotIntrstChnge = function(val, type) {
+                    console.log(model.ToTicketMatchmeetingStatus);
                     if (model.fromIsconfidential === 1 || model.toIsconfidential === 1 || model.fromHighconfidential === 1 || model.toHighconfidential === 1) {
                         model.DisplayToCustomerin = true;
                     } else {

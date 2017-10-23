@@ -5,7 +5,7 @@
         .factory('loginModel', ['$http', '$uibModal', 'loginservice', 'authSvc', '$state', function($http, uibModal, loginservice, authSvc, $state) {
             var model = {},
                 modalpopupopen;
-            model.loginsubmit = {};
+            model.loginsubmitobj = {};
             model.CurrentDate = new Date();
             model.usernameemployee = false;
             model.usernameemployeepassword = false;
@@ -15,15 +15,16 @@
                 authSvc.getClientIp();
                 return model;
             };
-            model.loginsubmit = function(form, formempvalid, formpasswordvalid, formvalid) {
-                if (formempvalid.required === true) {
-                    model.usernameemployee = true;
-                }
-                if (formpasswordvalid.required === true) {
+            model.loginsubmitmethod = function(form, formempvalid, formpasswordvalid, formvalid) {
+                if (form.passwordemployee === "" || form.passwordemployee === null || form.passwordemployee === undefined) {
                     model.usernameemployeepassword = true;
+                }
+                if (form.usernameemployee === "" || form.usernameemployee === null || form.usernameemployee === undefined) {
+                    model.usernameemployee = true;
                 }
                 if (formvalid === true) {
                     loginservice.getloginpage(form).then(function(response) {
+                        console.log(response.data);
                         if (response.data !== undefined && response.data !== "" && response.data !== null) {
                             switch (response.data.m_Item5) {
                                 case 1:
@@ -31,10 +32,10 @@
                                     model.loginarray = response.data.m_Item1;
                                     model.empphoto = response.data.m_Item1.EmpPhotoPath;
                                     authSvc.user(response.data.m_Item1);
-                                    sessionStorage.setItem("usernameemployeeid", model.loginsubmit.usernameemployee);
+                                    sessionStorage.setItem("usernameemployeeid", model.loginsubmitobj.usernameemployee);
                                     $state.go("base.dashboard", {});
-                                    model.loginsubmit.usernameemployee = "";
-                                    model.loginsubmit.passwordemployee = "";
+                                    model.loginsubmitobj.usernameemployee = "";
+                                    model.loginsubmitobj.passwordemployee = "";
                                     break;
                                 case 0:
                                     model.errormessage = "Invalid login credentials";
@@ -72,7 +73,14 @@
                                     model.errormessage = "Please Contact Mr.CHIRANJEEVI sir to Login With Ur UserID";
                                     alert("Please Contact Mr.CHIRANJEEVI sir to Login With Ur UserID");
                                     break;
+                                default:
+                                    model.errormessage = "Invalid UserName/Password";
+                                    alert("Invalid UserName/Password");
+                                    break;
                             }
+                        } else {
+                            model.errormessage = "Invalid UserName/Password";
+                            alert("Invalid UserName/Password");
                         }
                     });
                 }

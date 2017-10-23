@@ -15,6 +15,7 @@
                         model.unpaidmember = false;
                     } else {
                         vm.model = model = topheadermodel;
+                        model.name = authSvc.LoginEmpName();
                         model.scope = scope;
                         model.usernameemployeeid = sessionStorage.getItem("usernameemployeeid");
                         model.unpaidmember = false;

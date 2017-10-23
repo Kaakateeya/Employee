@@ -55,7 +55,10 @@
                     model.genderforemail = (model.marInfo)[0].GenderID;
                     model.fromticketstatusemail = (model.marInfo)[0].FromCust_InterestStatus.trim();
                     model.toticketstatusemail = (model.marInfo)[0].ToCust_InterestStatus.trim();
-                    model.ToTicketMatchmeetingStatus = (model.marInfo)[0].TicketToStatus.trim();
+                    //model.ToTicketMatchmeetingStatus = (model.marInfo)[0].TicketToStatus.trim();
+                    marketsvc.getMatchfollowupticketStatus(model.ToTicketchkStattus).then(function(respststo) {
+                        model.ToTicketMatchmeetingStatus = respststo.data[0].trim();
+                    });
                     model.Tosurname = (model.marInfo)[0].ToCustIDLastName;
                     model.fromempname = (model.marInfo)[0].FromOwner;
                     model.toempname = (model.marInfo)[0].ToOwner;
@@ -69,19 +72,6 @@
                     model.ActionProfileID = (model.marInfo)[0].FromProfileID;
                     model.toprofileidinterest = (model.marInfo)[0].ToProfileID;
                     model.logidmatchfollowup = (model.marInfo)[0].Cust_ProfileInterestsLog_ID;
-                    // model.mailInput = {
-                    //     Notes: '',
-                    //     EMPID: model.empid,
-                    //     profileid: model.ActionProfileID,
-                    //     LTicketID: model.ticketid,
-                    //     HistoryUpdate: 2,
-                    //     FromCustID: model.fromcustidselef,
-                    //     TocustID: model.tocustidself,
-                    //     TicketStatusID: null,
-                    //     FromProfileID: model.ActionProfileID,
-                    //     ToProfileID: model.toprofileidinterest
-                    // };
-                    //
 
                     model.mailInput = {
                         Notes: '',
@@ -408,7 +398,6 @@
                             "and please give your opinion in the options provided in the profile.";
 
                     } else if (val === '1' && model.toticketstatusemail === 'NV') {
-                        //resend
                         model.TicketStatusID2 = "Resend";
                         model.mailInput.TicketStatusID = "NotViewed";
                         model.txtAllcallDiscusion = genderid + model.Fromsurname + " (" + model.ActionProfileID + ") profile was sent to you on " + moment(model.ServiceDate).format('DD-MM-YYYY') +
@@ -449,15 +438,11 @@
                 } else if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Close' && (model.fromticketstatusemail === 'I') && (model.FromTicketMatchmeetingStatus === 'Close')) {
                     model.txtAllcallDiscusion = genderid + model.Fromsurname + " viewed your  profile and did not respond positive." +
                         "Lets proceed further with our new search options.";
-                }
-                //
-                else if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Close' && (model.fromticketstatusemail === 'V') && (model.FromTicketMatchmeetingStatus === 'Open')) {
+                } else if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Close' && (model.fromticketstatusemail === 'V') && (model.FromTicketMatchmeetingStatus === 'Open')) {
                     model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please contact your relationship manager.";
                 } else if (model.toticketstatusemail === 'I' && model.ToTicketMatchmeetingStatus === 'Open' && (model.fromticketstatusemail === 'V') && (model.FromTicketMatchmeetingStatus === 'Open')) {
                     model.txtAllcallDiscusion = "We have informed to  " + genderid + model.Fromsurname + "  about your interest to proceed  but  " + she + " is not keen to proceed ahead. For further communication please contact your relationship manager.";
-                }
-                //
-                else if (model.toticketstatusemail === 'NI' && model.ToTicketMatchmeetingStatus === 'Close') {
+                } else if (model.toticketstatusemail === 'NI' && model.ToTicketMatchmeetingStatus === 'Close') {
                     model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please contact your relationship manager.";
                 } else if (model.toticketstatusemail === 'NI' && model.ToTicketMatchmeetingStatus === 'Open') {
                     model.txtAllcallDiscusion = genderid + model.Fromsurname + " is showing interest in your profile but you were not keen to proceed ahead. Incase if you want to rethink about this profile please contact your relationship manager.";
@@ -476,6 +461,7 @@
             }
 
         };
+
         model.onTabSelected = function(tabindex) {
             model.incommingbtntext = "Incoming Call";
             model.outgoingcallbtntext = "Outgoing Call";

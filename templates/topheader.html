@@ -189,7 +189,7 @@
                                     <span class="textlogo"><span class="title">Kaakateeya Marraiages</span> </span>
                                 </div>
                             </div>
-                            <form name="loginForm" role="form" novalidate ng-submit="loginForm.$valid && head.model.loginsubmit(head)">
+                            <form name="loginForm" role="form" novalidate ng-submit="loginForm.$valid && head.model.loginsubmit(head.model)">
                                 <div class="login-inside">
                                     <div class="login-data" ng-hide="!page.model.lockscreendiv">
                                         <div class="row clear">
@@ -201,7 +201,7 @@
                                             <label for="password">
                                            Password:
                                           </label>
-                                            <input ng-focus="true" type="Password" class="text" ng-model="head.model.passwordemployee" name="passwordemployee" required>
+                                            <input disallow-spaces ng-focus="true" type="Password" class="text" ng-model="head.model.passwordemployee" name="passwordemployee" required>
                                             <div ng-messages="loginForm.passwordemployee.$invalid">
                                                 <div style="color: red;font-size: 12px;" ng-if="loginForm.passwordemployee.$invalid && (loginForm.$submitted)">*Required.</div>
                                             </div>
@@ -291,27 +291,12 @@
                                             <button type="submit" class="button col-lg-5">Change Password</button>
                                             <button class="button col-lg-4" ng-click="head.model.close()">Cancel</button>
                                         </div>
-                                        <div class="row" ng-if="head.model.isManagement === 'true' && head.model.isAdmin ==='1'">
-                                            <a href="javascript:void(0)" style="margin-left: 27px;text-decoration: underline;" ng-click="head.model.otheremployeepassword()">
-                                                    Reset Other Employee Password
-                                            </a>
-                                        </div>
                                     </div>
-                                </div>
-                                <div class="login-footer">
-                                    <div class="row">
-                                        <div class="col-lg-3  col-lg-offset-1">
-                                            <label style="color:#ffffff;font-size: 14px;">AP:</label>
-                                            <label style="color:#ffffff;font-size: 14px;">{{head.model.logincounts[0].LoggedCount!==undefind?head.model.logincounts[0].LoggedCount:0}}-{{head.model.logincounts[0].EmpCount!==undefined?head.model.logincounts[0].EmpCount:0}}</label>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <label style="color:#ffffff;font-size: 14px;">TN:</label>
-                                            <label style="color:#ffffff;font-size: 14px;">{{head.model.logincounts[1].LoggedCount!==undefined?head.model.logincounts[1].LoggedCount:0}}-{{head.model.logincounts[1].EmpCount!==undefined?head.model.logincounts[1].EmpCount:0}}</label>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <label style="color:#ffffff;font-size: 14px;">KA:</label>
-                                            <label style="color:#ffffff;font-size: 14px;">{{head.model.logincounts[2].LoggedCount!==undefined?head.model.logincounts[2].LoggedCount:0}}-{{head.model.logincounts[2].EmpCount!==undefined?head.model.logincounts[2].EmpCount:0}}</label>
-                                        </div>
+                                    <br>
+                                    <div class="row" ng-if="head.model.isManagement === 'true' && head.model.isAdmin ==='1'">
+                                        <a class="col-lg-offset-4" href="javascript:void(0)" style="text-decoration: underline;" ng-click="head.model.otheremployeepassword()">
+                                                Reset Other Employee Password
+                                        </a>
                                     </div>
                                 </div>
                             </form>
@@ -347,22 +332,6 @@
                                         <div class="row">
                                             <button class="button col-lg-5" ng-click="changeotheremppasswordform.$valid  && head.model.changeotheremployeepassword();">Change Password</button>
                                             <button class="button col-lg-4" ng-click="head.model.close()">Cancel</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="login-footer">
-                                    <div class="row">
-                                        <div class="col-lg-3  col-lg-offset-1">
-                                            <label style="color:#ffffff;font-size: 14px;">AP:</label>
-                                            <label style="color:#ffffff;font-size: 14px;">{{head.model.logincounts[0].LoggedCount!==undefind?head.model.logincounts[0].LoggedCount:0}}-{{head.model.logincounts[0].EmpCount!==undefined?head.model.logincounts[0].EmpCount:0}}</label>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <label style="color:#ffffff;font-size: 14px;">TN:</label>
-                                            <label style="color:#ffffff;font-size: 14px;">{{head.model.logincounts[1].LoggedCount!==undefined?head.model.logincounts[1].LoggedCount:0}}-{{head.model.logincounts[1].EmpCount!==undefined?head.model.logincounts[1].EmpCount:0}}</label>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <label style="color:#ffffff;font-size: 14px;">KA:</label>
-                                            <label style="color:#ffffff;font-size: 14px;">{{head.model.logincounts[2].LoggedCount!==undefined?head.model.logincounts[2].LoggedCount:0}}-{{head.model.logincounts[2].EmpCount!==undefined?head.model.logincounts[2].EmpCount:0}}</label>
                                         </div>
                                     </div>
                                 </div>
