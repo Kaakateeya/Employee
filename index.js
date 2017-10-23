@@ -213,7 +213,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                         'directives/allowOnlyNumbers.js',
                         'directives/allowAdminManagement.js',
                         'directives/comparePassword.js',
-                        'directives/avoidFormsubmit.js'
+                        'directives/avoidFormsubmit.js',
+                        'directives/disallowSpaces.js'
                     ]
                 },
                 {
