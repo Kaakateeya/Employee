@@ -71,8 +71,8 @@
 
 
         model.joinArray = function(val) {
-            var str = [];
-            if (val.length > 0) {
+            var str = "";
+            if (val && val.length > 0) {
                 str = val.join(',');
             }
             return str;
