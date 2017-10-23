@@ -56,7 +56,8 @@
                     model.fromticketstatusemail = (model.marInfo)[0].FromCust_InterestStatus.trim();
                     model.toticketstatusemail = (model.marInfo)[0].ToCust_InterestStatus.trim();
                     //model.ToTicketMatchmeetingStatus = (model.marInfo)[0].TicketToStatus.trim();
-                    marketsvc.getMatchfollowupticketStatus(model.ToTicketchkStattus).then(function(respststo) {
+                    model.toticketid = (model.marInfo)[0].Toticketid;
+                    marketsvc.getMatchfollowupticketStatus(model.toticketid).then(function(respststo) {
                         model.ToTicketMatchmeetingStatus = respststo.data[0].trim();
                     });
                     model.Tosurname = (model.marInfo)[0].ToCustIDLastName;

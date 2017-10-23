@@ -925,7 +925,8 @@
                                 ToCustID: tocustid,
                                 AcceptStatus: 2,
                                 MatchFollwupStatus: 2,
-                                intEmpId: parseInt(model.empid)
+                                intEmpId: parseInt(model.empid),
+                                strFromStatus: 'NV'
                             };
                             helpService.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
                                 if (response.data === parseInt(1)) {
