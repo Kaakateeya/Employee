@@ -51,6 +51,13 @@
             },
             ResendMail: function(obj) {
                 return http.post(app.apiroot + 'EmployeeReportPage/MatchFollowupResendMail', obj);
+            },
+            getMatchfollowupticketStatus: function(empticketid) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getMatchfollowupTicketStatus', {
+                    params: {
+                        Ticketid: empticketid
+                    }
+                });
             }
 
         };
