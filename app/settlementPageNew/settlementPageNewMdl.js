@@ -9,63 +9,25 @@
 
     function factory(settlementPageNewService, configgrid, modelpopupopenmethod) {
         var model = {};
-        model.grid1 = {};
-        model.grid2 = {};
+
         model.grid3 = {};
 
         model.scope = {};
+        model.dateOptions = {
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-40:+5",
+            dateFormat: 'mm-dd-yy'
+        };
 
         model.submit = function() {
-            model.grid1.columns = [
-                { text: 'groom profile id', key: 'GroomProfileID', type: 'label' },
-                { text: 'groom name', key: 'GroomName', type: 'label' },
-                { text: 'caste', key: 'groomcaste', type: 'label' },
-                { text: 'profile owner ', key: 'GroomOwner', type: 'label' },
-                { text: 'paid Type', key: 'BrideOwner', type: 'customlink', templateUrl: model.singleshowbuttons, method: model.openPouptoedit }
-
-            ];
-
-            model.grid2.columns = [
-                { text: 'bride profile id', key: 'BrideProfileID', type: 'label' },
-                { text: 'bride name', key: 'BrideName', type: 'label' },
-                { text: 'caste', key: 'Bridecaste', type: 'label' },
-                { text: 'bride owner', key: 'BrideOwner', type: 'label' },
-                { text: 'paid Type', key: 'BrideOwner', type: 'customlink', templateUrl: model.singleshowbuttons, method: model.openPouptoedit }
-            ];
-
-            model.grid1.showsearchrows = true;
-            model.grid1.showsearch = true;
-            model.grid1.showpaging = false;
-            model.grid1.myprofileexcel = true;
-            model.grid1.normalexcel = true;
-            model.grid1.totalRecords = 10;
-            model.grid1.data = [{
-                GroomProfileID: '310910220',
-                GroomName: 'lakshmi',
-                groomcaste: 'kamma',
-                GroomOwner: 'Pushpa Narra',
-
-            }];
-            model.grid2.showsearchrows = true;
-            model.grid2.showsearch = true;
-            model.grid2.showpaging = false;
-            model.grid2.myprofileexcel = true;
-            model.grid2.normalexcel = true;
-            model.grid2.totalRecords = 10;
-            model.grid2.data = [{
-                BrideProfileID: '210910352',
-                BrideName: 'anil',
-                Bridecaste: 'yadava',
-                BrideOwner: 'Pushpa Narra'
-            }];
-
-
             model.grid3.columns = [
                 { text: 'ProfileID', key: 'BrideProfileID', type: 'custom', templateUrl: model.profileidmehod },
                 { text: 'Name', key: 'BrideName', type: 'morelinks', templateUrl: model.nemeMethod },
                 { text: 'Caste', key: 'Bridecaste', type: 'morelinks', templateUrl: model.casteMethod },
                 { text: 'Owner', key: 'BrideOwner', type: 'morelinks', templateUrl: model.ownerMethod },
-                { text: 'paid Type', key: 'BrideOwner', type: 'customlink', templateUrl: model.showbuttons, method: model.openPouptoedit }
+                { text: 'paid Type', key: 'BrideOwner', type: 'customlink', templateUrl: model.showbuttons, method: model.openPouptoedit },
+                { text: 'History', key: 'BrideOwner', type: 'customlink', templateUrl: model.showHistrybuttons, method: model.openPouptoedit }
             ];
 
 
@@ -83,13 +45,39 @@
                     GroomProfileID: '310910220',
                     GroomName: 'anil',
                     groomcaste: 'kamma',
-                    GroomOwner: 'Pushpa Narra',
-
+                    GroomOwner: 'Pushpa Narra'
                 },
                 { BrideProfileID: '310910352', BrideName: 'vinisha', Bridecaste: 'yadava', BrideOwner: 'vijaya', GroomProfileID: '110910220', GroomName: 'anvesh', groomcaste: 'kapu', GroomOwner: 'Pushpa Narra' }
             ];
 
+            var inobj = {
+                i_PaidType: model.paidType,
+                i_gender: model.rbtnGender,
+                i_Region: model.joinArray(model.Region),
+                t_Branch: model.joinArray(model.Branch),
+                t_ProfileOwner: model.joinArray(model.ProfileOwner),
+                d_settleStartDate: model.fromDate,
+                d_settleEndDate: model.toDate,
+                i_Startindex: 1,
+                i_EndIndex: 10
+            };
+
+            settlementPageNewService.settledInfo(inobj).then(function(response) {
+
+
+            });
+
         };
+
+
+        model.joinArray = function(val) {
+            var str = [];
+            if (val.length > 0) {
+                str = val.join(',');
+            }
+            return str;
+        };
+
 
         model.profileidmehod = function(row) {
             var str = "<a>" + row.BrideProfileID + "</a><br><a>" + row.GroomProfileID + "</a>";
@@ -116,10 +104,12 @@
             var str = '<a>Paid</a>&nbsp;&nbsp;&nbsp;<a>PartialPaid</a>&nbsp;&nbsp;&nbsp;<a>NotIntToPay</a><br><a>Paid</a>&nbsp;&nbsp;&nbsp;<a>PartialPaid</a>&nbsp;&nbsp;&nbsp;<a>NotIntToPay</a>';
             return str;
         };
-        model.singleshowbuttons = function() {
-            var str = '<a>Paid</a>&nbsp;&nbsp;&nbsp;<a>PartialPaid</a>&nbsp;&nbsp;&nbsp;<a>NotIntToPay</a>';
+
+        model.showHistrybuttons = function() {
+            var str = '<a>History</a><br><a>History</a>';
             return str;
         };
+
         model.openPouptoedit = function() {
             modelpopupopenmethod.showPopup('aboutpayment.html', model.scope, 'md', '');
         };
@@ -131,29 +121,6 @@
         model.init = function() {
             return model;
         };
-
-
-
-
-
-        model.rowStyle = function(row) {
-            var test = [
-                { StatusID: 57, classes: 'settled' },
-                { StatusID: 393, classes: 'settled' },
-                { StatusID: 56, classes: 'Deleted' },
-                { StatusID: 394, classes: 'Deleted' },
-                { StatusID: 258, classes: 'closed' }
-            ];
-            return _.where(test, { StatusID: row.ProfileStatusID }).length >= 1 ? _.where(test, { StatusID: row.ProfileStatusID })[0].classes : (_.where(test, { StatusID: row.TicketStatusID }).length >= 1 ? _.where(test, { StatusID: row.TicketStatusID })[0].classes : '');
-            // _.where(test, { StatusID: parseInt(row.ProfileStatusID) }).length > 0 ? _.where(test, { StatusID: parseInt(row.ProfileStatusID) })[0].classes : '';
-        };
-
-
-
-
-
-
-
 
 
         return model;
