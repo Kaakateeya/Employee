@@ -402,7 +402,8 @@
                 };
                 model.openActionPopup = function(ticketID, profileID, number, fromcustid, tocustid, ticketStatusId, ToProfileID, Name,
                     gender, selfname, selfemail, slideobj, flagtype, toemail) {
-
+                    model.FromTicketMatchmeetingStatus = "";
+                    model.ToTicketMatchmeetingStatus = "";
                     model.bindreplytype();
                     model.activetab = 1;
                     model.replytypetxtdiabled = false;
