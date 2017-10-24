@@ -106,6 +106,7 @@
         };
 
         model.grid3.openPouptoedit = function(id, status) {
+            model.txtdescription = '';
             model.insertProfileID = id;
             model.insertStatus = status;
             modelpopupopenmethod.showPopup('aboutpayment.html', model.scope, 'md', '');
@@ -115,13 +116,11 @@
             modelpopupopenmethod.closepopup();
         };
 
-
         model.init = function() {
             return model;
         };
 
         model.reset = function() {
-
             var date = moment().subtract(6, 'months').format('DD MMM YYYY');
             model.fromDate = date;
             model.toDate = moment().format('DD MMM YYYY');
@@ -142,14 +141,19 @@
         model.insertProfileID = 0;
         model.insertSettleAmount = function() {
             var inobj = {
-                i_CustId: model.insertProfileID,
+                s_ProfileID: model.insertProfileID,
                 i_SettlementType: model.insertStatus,
                 i_Discription: model.txtdescription,
                 s_EnteredBy: model.empid
             };
 
             settlementPageNewService.insertSettledInfo(inobj).then(function(response) {
-
+                model.close();
+                if (parseInt(response.data) === 1) {
+                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'updated successfully', 3500);
+                } else {
+                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'updation failed', 3500);
+                }
             });
 
         };

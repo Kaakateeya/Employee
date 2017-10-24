@@ -80,7 +80,7 @@
 
 </div>
 <script type="text/ng-template" id="aboutpayment.html">
-    <form class="EditViewClass" name="uploadForm" novalidate role="form" ng-submit="page.model.upload(page.model.up)">
+    <form class="EditViewClass" name="uploadForm" novalidate role="form" ng-submit="page.model.insertSettleAmount()">
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Description </h3>
         </div>
@@ -121,5 +121,13 @@
     
     .GroomName {
         width: 100px;
+    }
+    
+    .BrideCaste {
+        width: 100px;
+    }
+    
+    .BrideName {
+        width: 180px;
     }
 </style>
