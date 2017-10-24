@@ -72,12 +72,8 @@
                         </md-radio-button>
                     </md-radio-group>
                 </div>
-                <!-- <div class="col-lg-4">
-                    <label class="control-label col-lg-8">Expiry Date:{{page.model.sendarray2[0].ServiceExpiryDate}}</label>
-                    <label class="control-label col-lg-4">Points:{{page.model.sendarray2[0].ServicePoints}}</label>
-                </div> -->
             </div>
-            <div class="col-lg-4" style="margin-top:1%;">
+            <div class="col-lg-4" style="margin-top:1%;" ng-if="page.model.sendarray2.length>0">
                 <label class="control-label col-lg-4">Points:{{page.model.sendarray2[0].ServicePoints}}</label>
                 <label class="control-label col-lg-8">Expiry Date:{{page.model.sendarray2[0].ServiceExpiryDate}}</label>
             </div>
