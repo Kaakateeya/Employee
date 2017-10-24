@@ -171,7 +171,7 @@
                     }
                     switch (intrstType) {
                         case 1:
-                            model.mailInput.Notes = obj.CallDiscussion + (callmatchdiscussion !== "" && callmatchdiscussion !== null && callmatchdiscussion !== undefined ? ("<br><span style='text-align: justify;margin-left: 29px;padding-top: 18px;'>" + callmatchdiscussion) + "</span>" : '') + model.emailmanagers;
+                            model.mailInput.Notes = obj.CallDiscussion + (callmatchdiscussion !== "" && callmatchdiscussion !== null && callmatchdiscussion !== undefined ? ("<br><br><span style='text-align: justify;margin-left: 29px;padding-top: 18px;'>" + callmatchdiscussion) + "</span>" : '') + model.emailmanagers;
                             break;
                         case 0:
                             model.mailInput.Notes = obj.CallDiscussion + model.emailmanagers;
