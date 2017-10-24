@@ -1,0 +1,165 @@
+<div class="right_col">
+    <div class="panel-group">
+        <div class="panel-collapse collapse in">
+            <div class="panel-default regValheader" style="margin-top: -12px;box-shadow: 2px 2px 6px #ccc;" is-open="page.model.opendiv">
+                <div class="panel-heading" style="padding: 13px 0px 30px;color: rgb(160, 2, 1);border: 1px solid #ccc">
+                    <div class="col-lg-2" style="font-size: 17px;font-weight: bold;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
+                        No profile grading <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+                    </div>
+                    <div class="col-lg-3" style="color:black;">
+                        <!-- <label for="All Profileid" class="col-lg-4 classlabelverify">Type of grade</label> -->
+                        <div style="font-size:13px;" class="col-lg-10">
+                            <md-radio-group name="rbtnGender" layout="row" ng-model="page.model.paidType" class="md-block" flex-gt-sm>
+                                <md-radio-button value="N" class="md-primary">No grade</md-radio-button>
+                                <md-radio-button value="E" class="md-primary">Edit grade</md-radio-button>
+                            </md-radio-group>
+                        </div>
+                        <div class="col-lg-1">
+                            <img src="src\images\straightline.png" style="height:33px;margin: -5px;color: maroon;"></img>
+                        </div>
+                    </div>
+                    <div class="col-lg-3" style="color:black;">
+                        <!-- <label for="All Profileid" class="col-lg-2 classlabelverify">Gender</label> -->
+                        <div style="font-size:13px;" class="col-lg-10">
+                            <md-radio-group name="rbtnGender" layout="row" ng-model="page.model.rbtnGender" class="md-block" flex-gt-sm>
+                                <md-radio-button value="" class="md-primary">Both</md-radio-button>
+                                <md-radio-button value="1" class="md-primary">Male</md-radio-button>
+                                <md-radio-button value="2">Female</md-radio-button>
+                            </md-radio-group>
+                        </div>
+                        <div class="col-lg-1" style="margin-left: 5%;">
+                            <img src="src\images\straightline.png" style="height:33px;margin: -5px;color: maroon;"></img>
+                        </div>
+                    </div>
+                    <div class="col-lg-3" style="color:black;">
+                        <!-- <label for="All Profileid" class="col-lg-2 classlabelverify">Payment status</label> -->
+                        <div style="font-size:13px;">
+                            <md-radio-group name="rbtnGender" layout="row" ng-model="page.model.rbtnGender" class="md-block" flex-gt-sm>
+                                <md-radio-button value="" class="md-primary">Both</md-radio-button>
+                                <md-radio-button value="1" class="md-primary">Male</md-radio-button>
+                                <md-radio-button value="2">Female</md-radio-button>
+                            </md-radio-group>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body" ng-show="page.model.panelbodyhide">
+
+                    <div class="row">
+
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Profile ID</label>
+                            <div>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Application status 	</label>
+                            <div>
+                                <select multiselectdropdown class="smalldropdown" ng-model="page.model.Branch" multiple ng-options="item.value as item.label for item in page.model.applicationStatusarray"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Grading Type</label>
+                            <div>
+                                <select multiselectdropdown class="smalldropdown" ng-model="page.model.ProfileOwner" multiple ng-options="item.value as item.label for item in page.model.gradingTypeArr"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Grading</label>
+                            <div>
+                                <select multiselectdropdown class="smalldropdown" ng-model="page.model.ProfileOwner" ng-options="item.value as item.label for item in page.model.profileGrade"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Branch</label>
+                            <div>
+                                <select multiselectdropdown class="smalldropdown" ng-model="page.model.ProfileOwner" multiple ng-options="item.value as item.label for item in page.model.Brancharray"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Caste</label>
+                            <div>
+                                <select multiselectdropdown class="smalldropdown" ng-model="page.model.ProfileOwner" multiple ng-options="item.value as item.label for item in page.model.Castearray"></select>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        <br>
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Owner of profile</label>
+                            <div>
+                                <select multiselectdropdown class="smalldropdown" ng-model="page.model.ProfileOwner" multiple ng-options="item.value as item.label for item in page.model.ProfileOwnerarray"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">DOR from</label>
+                            <div>
+                                <custom-datepicker name="date" ng-model="page.model.fromDate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">DOR to</label>
+                            <div>
+                                <custom-datepicker name="date" ng-model="page.model.fromDate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="button" class="btn btn-danger" style="margin-top: 4%;" value="Submit" ng-click="page.model.submit();">
+                            <input type="button" class="btn btn-default" style="margin-top: 4%;margin-left: 2%;" value="Reset" ng-click="page.model.submit();">
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+
+    <br>
+    <complex-grid-new gid="'id1'" model="page.model.grid1" config="page.model.grid1"></complex-grid-new>
+
+</div>
+<!-- <script type="text/ng-template" id="aboutpayment.html">
+    <form class="EditViewClass" name="uploadForm" novalidate role="form" ng-submit="page.model.upload(page.model.up)">
+        <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-title">Description </h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <textarea rows="" cols="" class="form-control"></textarea>
+        </div>
+        <div class="modal-footer">
+            <input value="Cancel" class="button_custom button_custom_reset" ng-click="page.model.close();" type="button">
+            <input value="Submit" class="button_custom" type="submit">
+        </div>
+    </form>
+</script> -->
+
+<style>
+    .headerStyles {
+        font-size: 16px;
+    }
+    
+    .lbl {
+        margin-top: 3%;
+    }
+    
+    tr:nth-child(even) {
+        background: #f5ecef;
+    }
+    
+    tr:nth-child(odd) {
+        background: #FFF;
+    }
+    
+    .datepicker3 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+    }
+    
+    .BrideOwner {
+        width: 240px;
+    }
+</style>

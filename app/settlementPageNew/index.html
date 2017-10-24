@@ -6,17 +6,18 @@
                     <div class="col-lg-2" style="font-size: 17px;font-weight: bold;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
                         Settlement <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
                     </div>
-                    <div class="col-lg-5" style="color:black;">
+                    <div class="col-lg-6" style="color:black;">
                         <label for="All Profileid" class="col-lg-1 classlabelverify">Paid</label>
-                        <div class="col-lg-9" style="font-size:13px;">
+                        <div class="col-lg-11" style="font-size:13px;">
                             <md-radio-group name="rbtnGender" layout="row" ng-model="page.model.paidType" class="md-block" flex-gt-sm>
+                                <md-radio-button value="" class="md-primary">Not paid</md-radio-button>
                                 <md-radio-button value="1" class="md-primary">Partial paid</md-radio-button>
                                 <md-radio-button value="2" class="md-primary">Full paid</md-radio-button>
                                 <md-radio-button value="0">Not int to paid</md-radio-button>
                             </md-radio-group>
                         </div>
                     </div>
-                    <div class="col-lg-5" style="color:black;">
+                    <div class="col-lg-4" style="color:black;">
                         <label for="All Profileid" class="col-lg-2 classlabelverify">Gender</label>
                         <div class="col-lg-9" style="font-size:13px;">
                             <md-radio-group name="rbtnGender" layout="row" ng-model="page.model.rbtnGender" class="md-block" flex-gt-sm>
@@ -64,20 +65,17 @@
                         </div>
 
                         <div class="col-lg-1">
-                            <!-- <label for=""></label> -->
-                            <input type="button" class="btn btn-danger" style="margin-top: 29%;" value="Submit" ng-click="page.model.submit();">
+                            <input type="button" class="btn btn-danger" style="margin-top: 29%;" value="Submit" ng-click="page.model.submit(1,100);">
                         </div>
 
                     </div>
                     <br>
                 </div>
             </div>
-            <br>
+
         </div>
     </div>
 
-
-    <br>
     <complex-grid-new gid="'id3'" model="page.model.grid3" config="page.model.grid3"></complex-grid-new>
 
 </div>
@@ -87,7 +85,7 @@
             <h3 class="modal-title text-center" id="modal-title">Description </h3>
         </div>
         <div class="modal-body" id="modal-body">
-            <textarea rows="" cols="" class="form-control"></textarea>
+            <textarea rows="" cols="" class="form-control" ng-model="page.model.txtdescription"></textarea>
         </div>
         <div class="modal-footer">
             <input value="Cancel" class="button_custom button_custom_reset" ng-click="page.model.close();" type="button">
@@ -117,7 +115,11 @@
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
     }
     
-    .BrideOwner {
+    .GroomCaste {
         width: 240px;
+    }
+    
+    .GroomName {
+        width: 100px;
     }
 </style>
