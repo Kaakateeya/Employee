@@ -451,12 +451,16 @@
                         model.FromTicketchkstatus = slideobj.ToTicket;
                         model.ToTicketchkStattus = slideobj.FromTicket;
                     }
-                    matchFollowupServices.getMatchfollowupticketStatus(model.FromTicketchkstatus).then(function(respsts) {
-                        model.FromTicketMatchmeetingStatus = respsts.data[0].trim();
-                    });
-                    matchFollowupServices.getMatchfollowupticketStatus(model.ToTicketchkStattus).then(function(respststo) {
-                        model.ToTicketMatchmeetingStatus = respststo.data[0].trim();
-                    });
+                    if (model.FromTicketchkstatus !== null && model.FromTicketchkstatus !== "" && model.FromTicketchkstatus !== undefined) {
+                        matchFollowupServices.getMatchfollowupticketStatus(model.FromTicketchkstatus).then(function(respsts) {
+                            model.FromTicketMatchmeetingStatus = respsts.data[0].trim();
+                        });
+                    }
+                    if (model.ToTicketchkStattus !== null && model.ToTicketchkStattus !== "" && model.ToTicketchkStattus !== undefined) {
+                        matchFollowupServices.getMatchfollowupticketStatus(model.ToTicketchkStattus).then(function(respststo) {
+                            model.ToTicketMatchmeetingStatus = respststo.data[0].trim();
+                        });
+                    }
                     model.ServiceDate = slideobj.ServiceDate;
                     model.selfname = selfname;
                     model.selfemail = selfemail;
