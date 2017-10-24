@@ -57,9 +57,11 @@
                     model.toticketstatusemail = (model.marInfo)[0].ToCust_InterestStatus.trim();
                     //model.ToTicketMatchmeetingStatus = (model.marInfo)[0].TicketToStatus.trim();
                     model.toticketid = (model.marInfo)[0].Toticketid;
-                    marketsvc.getMatchfollowupticketStatus(model.toticketid).then(function(respststo) {
-                        model.ToTicketMatchmeetingStatus = respststo.data[0].trim();
-                    });
+                    if (model.toticketid !== null && model.toticketid !== "" && model.toticketid !== undefined) {
+                        marketsvc.getMatchfollowupticketStatus(model.toticketid).then(function(respststo) {
+                            model.ToTicketMatchmeetingStatus = respststo.data[0].trim();
+                        });
+                    }
                     model.Tosurname = (model.marInfo)[0].ToCustIDLastName;
                     model.fromempname = (model.marInfo)[0].FromOwner;
                     model.toempname = (model.marInfo)[0].ToOwner;
