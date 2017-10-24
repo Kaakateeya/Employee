@@ -3,10 +3,6 @@
     <div class="row">
         <div class="col-lg-4">
             <div-print style="font-size:16px;" ng-class="page.model.textboxshowhide?'floatleftclass':'col-lg-3'" div-info="page.divInfo" ng-show="true"></div-print>
-            <div class="col-lg-4" ng-hide="page.model.textboxshowhide">
-                <img src="src/images/logo2.png" style="width: 130px;
-                    height: 65px;" class="">&nbsp;</img>
-            </div>
         </div>
     </div>
     <br>
@@ -139,5 +135,11 @@
         margin-left: 463px;
         float: left;
         margin-top: -20px;
+    }
+    
+    .nav-sm .container.body .right_col {
+        padding: 28px 20px;
+        margin-left: 20px;
+        z-index: 2;
     }
 </style>
