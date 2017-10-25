@@ -406,117 +406,121 @@
 
                     });
                 };
-                model.openActionPopup = function(ticketID, profileID, number, fromcustid, tocustid, ticketStatusId, ToProfileID, Name,
+                model.openActionPopup = function(fromticketstatus, ticketID, profileID, number, fromcustid, tocustid, ticketStatusId, ToProfileID, Name,
                     gender, selfname, selfemail, slideobj, flagtype, toemail) {
-                    model.FromTicketMatchmeetingStatus = "";
-                    model.ToTicketMatchmeetingStatus = "";
-                    model.bindreplytype();
-                    model.activetab = 1;
-                    model.replytypetxtdiabled = false;
-                    model.emailresendflag = 0;
-                    model.DisplayToCustomerin = false;
-                    model.flagtype = flagtype;
-                    if (flagtype === 'from') {
-                        model.fromempname = slideobj.fromempname;
-                        model.toempname = slideobj.toempname;
-                        model.toticketstatusemail = slideobj.ToticketStatusIDb.trim();
-                        model.fromticketstatusemail = slideobj.FromticketStatusIDb.trim();
-                        model.FromOfflineExpiryDate = slideobj.FromOfflineExpiryDate;
-                        model.FromOnlineMembershipExpiryDate = slideobj.FromOnlineMembershipExpiryDate;
-                        model.fromcustidselef = fromcustid;
-                        model.tocustidself = tocustid;
-                        model.Fromsurname = slideobj.Fromsurname;
-                        model.Tosurname = slideobj.Tosurname;
-                        model.logidmatchfollowup = slideobj.Expressinterestlogid;
-                        // model.FromTicketMatchmeetingStatus = slideobj.FromTicketMatchmeetingStatus;
-                        // model.ToTicketMatchmeetingStatus = slideobj.ToTicketMatchmeetingStatus;
-                        model.fromIsconfidential = slideobj.fromIsconfidential;
-                        model.toIsconfidential = slideobj.toIsconfidential;
-                        model.fromHighconfidential = slideobj.fromHighconfidential;
-                        model.toHighconfidential = slideobj.toHighconfidential;
-                        model.FromTicketchkstatus = slideobj.FromTicket;
-                        model.ToTicketchkStattus = slideobj.ToTicket;
+                    if (fromticketstatus === 258) {
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Ticket Is Closed', 3000);
                     } else {
-                        model.toempname = slideobj.fromempname;
-                        model.fromempname = slideobj.toempname;
-                        model.toticketstatusemail = slideobj.FromticketStatusIDb.trim();
-                        model.fromticketstatusemail = slideobj.ToticketStatusIDb.trim();
-                        model.FromOfflineExpiryDate = slideobj.ToOfflineExpiryDate;
-                        model.FromOnlineMembershipExpiryDate = slideobj.ToonlineExpiryDate;
-                        model.fromcustidselef = fromcustid;
-                        model.tocustidself = tocustid;
-                        model.Fromsurname = slideobj.Tosurname;
-                        model.Tosurname = slideobj.Fromsurname;
-                        model.logidmatchfollowup = slideobj.ExpressinterestTologid;
-                        // model.FromTicketMatchmeetingStatus = slideobj.ToTicketMatchmeetingStatus;
-                        // model.ToTicketMatchmeetingStatus = slideobj.FromTicketMatchmeetingStatus;
-                        model.fromIsconfidential = slideobj.toIsconfidential;
-                        model.toIsconfidential = slideobj.fromIsconfidential;
-                        model.fromHighconfidential = slideobj.toHighconfidential;
-                        model.toHighconfidential = slideobj.fromHighconfidential;
-                        model.FromTicketchkstatus = slideobj.ToTicket;
-                        model.ToTicketchkStattus = slideobj.FromTicket;
-                    }
-                    if (model.FromTicketchkstatus !== null && model.FromTicketchkstatus !== "" && model.FromTicketchkstatus !== undefined) {
-                        matchFollowupServices.getMatchfollowupticketStatus(model.FromTicketchkstatus).then(function(respsts) {
-                            model.FromTicketMatchmeetingStatus = respsts.data[0].trim();
-                        });
-                    }
-                    if (model.ToTicketchkStattus !== null && model.ToTicketchkStattus !== "" && model.ToTicketchkStattus !== undefined) {
-                        matchFollowupServices.getMatchfollowupticketStatus(model.ToTicketchkStattus).then(function(respststo) {
-                            model.ToTicketMatchmeetingStatus = respststo.data[0].trim();
-                        });
-                    }
-                    model.ServiceDate = slideobj.ServiceDate;
-                    model.selfname = selfname;
-                    model.selfemail = selfemail;
-                    model.ticketstatusforemail = ticketStatusId.trim();
-                    model.genderforemail = gender;
-                    model.tointerestname = Name;
-                    model.toprofileidinterest = ToProfileID;
-                    model.actobj.ddlInreceivedfrom = 39;
-                    model.actobj.ddlOutreceivedby = 39;
-                    model.actobj.ddlInCallresult = model.actobj.ddlOutcallresultout = 417;
-                    model.ActionProfileID = profileID;
-                    model.toemailidforemail = toemail;
-                    model.groombride = model.genderforemail === 1 ? 'Groom' : 'Bride';
-                    model.headertextpop = "Mail going to " + model.groombride + "<label style='color: #da0d0d;font-weight: 800;'>===></label> " + Name + "," + ToProfileID + "(" + toemail + ")";
-                    model.RelationshipChange(39, 'In');
-                    model.RelationshipChange(39, 'Out');
-                    model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtmatchfollowupCalldiscussionOut = model.actobj.txtmatchfollowupCalldiscussion = '';
-                    model.actobj.ddlInReplyType =
-                        model.actobj.rbtnReplyTypeout =
-                        model.actobj.rbtnReplyType =
-                        model.actobj.ddlcloseReplyType = '';
-                    model.ActionTicket = ticketID;
-                    model.actobj.rbtnReplyTypememo = model.actobj.rbtnReplyTypeClose = '';
-                    model.actobj.txtcloseReason = model.actobj.txtMemmemocalldiscussion = '';
-                    //model.actobj.ddlMemAssign = parseInt(model.empid);
-                    model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = model.actobj.rbtnshowmatchfollowup = model.actobj.rbtnshowOutmatchfollowup = '0';
-                    model.incommingbtntext = "Incoming Call";
-                    model.outgoingcallbtntext = "Outgoing Call";
-                    model.internalmemobtntext = "Internal Memo";
-                    model.actobj.txtInCalltelephonenumber = model.actobj.txtOutCalltelephonenumber = number;
-                    matchFollowupServices.ticketHistry(ticketID, 'I').then(function(response) {
-                        if (_.isArray(response.data) && response.data.length > 0) {
-                            model.infnArr = {};
-                            model.infnArr = (response.data)[0];
+                        model.FromTicketMatchmeetingStatus = "";
+                        model.ToTicketMatchmeetingStatus = "";
+                        model.bindreplytype();
+                        model.activetab = 1;
+                        model.replytypetxtdiabled = false;
+                        model.emailresendflag = 0;
+                        model.DisplayToCustomerin = false;
+                        model.flagtype = flagtype;
+                        if (flagtype === 'from') {
+                            model.fromempname = slideobj.fromempname;
+                            model.toempname = slideobj.toempname;
+                            model.toticketstatusemail = slideobj.ToticketStatusIDb.trim();
+                            model.fromticketstatusemail = slideobj.FromticketStatusIDb.trim();
+                            model.FromOfflineExpiryDate = slideobj.FromOfflineExpiryDate;
+                            model.FromOnlineMembershipExpiryDate = slideobj.FromOnlineMembershipExpiryDate;
+                            model.fromcustidselef = fromcustid;
+                            model.tocustidself = tocustid;
+                            model.Fromsurname = slideobj.Fromsurname;
+                            model.Tosurname = slideobj.Tosurname;
+                            model.logidmatchfollowup = slideobj.Expressinterestlogid;
+                            // model.FromTicketMatchmeetingStatus = slideobj.FromTicketMatchmeetingStatus;
+                            // model.ToTicketMatchmeetingStatus = slideobj.ToTicketMatchmeetingStatus;
+                            model.fromIsconfidential = slideobj.fromIsconfidential;
+                            model.toIsconfidential = slideobj.toIsconfidential;
+                            model.fromHighconfidential = slideobj.fromHighconfidential;
+                            model.toHighconfidential = slideobj.toHighconfidential;
+                            model.FromTicketchkstatus = slideobj.FromTicket;
+                            model.ToTicketchkStattus = slideobj.ToTicket;
+                        } else {
+                            model.toempname = slideobj.fromempname;
+                            model.fromempname = slideobj.toempname;
+                            model.toticketstatusemail = slideobj.FromticketStatusIDb.trim();
+                            model.fromticketstatusemail = slideobj.ToticketStatusIDb.trim();
+                            model.FromOfflineExpiryDate = slideobj.ToOfflineExpiryDate;
+                            model.FromOnlineMembershipExpiryDate = slideobj.ToonlineExpiryDate;
+                            model.fromcustidselef = fromcustid;
+                            model.tocustidself = tocustid;
+                            model.Fromsurname = slideobj.Tosurname;
+                            model.Tosurname = slideobj.Fromsurname;
+                            model.logidmatchfollowup = slideobj.ExpressinterestTologid;
+                            // model.FromTicketMatchmeetingStatus = slideobj.ToTicketMatchmeetingStatus;
+                            // model.ToTicketMatchmeetingStatus = slideobj.FromTicketMatchmeetingStatus;
+                            model.fromIsconfidential = slideobj.toIsconfidential;
+                            model.toIsconfidential = slideobj.fromIsconfidential;
+                            model.fromHighconfidential = slideobj.toHighconfidential;
+                            model.toHighconfidential = slideobj.fromHighconfidential;
+                            model.FromTicketchkstatus = slideobj.ToTicket;
+                            model.ToTicketchkStattus = slideobj.FromTicket;
                         }
-                    });
-                    model.mailInput = {};
-                    model.mailInput = {
-                        // Notes: obj.CallDiscussion,
-                        EMPID: model.empid,
-                        profileid: ToProfileID,
-                        LTicketID: ticketID,
-                        HistoryUpdate: 2,
-                        FromCustID: tocustid,
-                        TocustID: fromcustid,
-                        TicketStatusID: model.checkStatusID(ticketStatusId),
-                        FromProfileID: ToProfileID,
-                        ToProfileID: profileID
-                    };
-                    modelpopupopenmethod.showPopup('Actions.html', model.scope, 'lg', 'Actioncls');
+                        if (model.FromTicketchkstatus !== null && model.FromTicketchkstatus !== "" && model.FromTicketchkstatus !== undefined) {
+                            matchFollowupServices.getMatchfollowupticketStatus(model.FromTicketchkstatus).then(function(respsts) {
+                                model.FromTicketMatchmeetingStatus = respsts.data[0].trim();
+                            });
+                        }
+                        if (model.ToTicketchkStattus !== null && model.ToTicketchkStattus !== "" && model.ToTicketchkStattus !== undefined) {
+                            matchFollowupServices.getMatchfollowupticketStatus(model.ToTicketchkStattus).then(function(respststo) {
+                                model.ToTicketMatchmeetingStatus = respststo.data[0].trim();
+                            });
+                        }
+                        model.ServiceDate = slideobj.ServiceDate;
+                        model.selfname = selfname;
+                        model.selfemail = selfemail;
+                        model.ticketstatusforemail = ticketStatusId.trim();
+                        model.genderforemail = gender;
+                        model.tointerestname = Name;
+                        model.toprofileidinterest = ToProfileID;
+                        model.actobj.ddlInreceivedfrom = 39;
+                        model.actobj.ddlOutreceivedby = 39;
+                        model.actobj.ddlInCallresult = model.actobj.ddlOutcallresultout = 417;
+                        model.ActionProfileID = profileID;
+                        model.toemailidforemail = toemail;
+                        model.groombride = model.genderforemail === 1 ? 'Groom' : 'Bride';
+                        model.headertextpop = "Mail going to " + model.groombride + "<label style='color: #da0d0d;font-weight: 800;'>===></label> " + Name + "," + ToProfileID + "(" + toemail + ")";
+                        model.RelationshipChange(39, 'In');
+                        model.RelationshipChange(39, 'Out');
+                        model.actobj.txtInCalldiscussion = model.actobj.txtOutCalldiscussion = model.actobj.txtmatchfollowupCalldiscussionOut = model.actobj.txtmatchfollowupCalldiscussion = '';
+                        model.actobj.ddlInReplyType =
+                            model.actobj.rbtnReplyTypeout =
+                            model.actobj.rbtnReplyType =
+                            model.actobj.ddlcloseReplyType = '';
+                        model.ActionTicket = ticketID;
+                        model.actobj.rbtnReplyTypememo = model.actobj.rbtnReplyTypeClose = '';
+                        model.actobj.txtcloseReason = model.actobj.txtMemmemocalldiscussion = '';
+                        //model.actobj.ddlMemAssign = parseInt(model.empid);
+                        model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = model.actobj.rbtnshowmatchfollowup = model.actobj.rbtnshowOutmatchfollowup = '0';
+                        model.incommingbtntext = "Incoming Call";
+                        model.outgoingcallbtntext = "Outgoing Call";
+                        model.internalmemobtntext = "Internal Memo";
+                        model.actobj.txtInCalltelephonenumber = model.actobj.txtOutCalltelephonenumber = number;
+                        matchFollowupServices.ticketHistry(ticketID, 'I').then(function(response) {
+                            if (_.isArray(response.data) && response.data.length > 0) {
+                                model.infnArr = {};
+                                model.infnArr = (response.data)[0];
+                            }
+                        });
+                        model.mailInput = {};
+                        model.mailInput = {
+                            // Notes: obj.CallDiscussion,
+                            EMPID: model.empid,
+                            profileid: ToProfileID,
+                            LTicketID: ticketID,
+                            HistoryUpdate: 2,
+                            FromCustID: tocustid,
+                            TocustID: fromcustid,
+                            TicketStatusID: model.checkStatusID(ticketStatusId),
+                            FromProfileID: ToProfileID,
+                            ToProfileID: profileID
+                        };
+                        modelpopupopenmethod.showPopup('Actions.html', model.scope, 'lg', 'Actioncls');
+                    }
                 };
                 model.textforalerts = function(btntext, type) {
                     var textalert = type;
