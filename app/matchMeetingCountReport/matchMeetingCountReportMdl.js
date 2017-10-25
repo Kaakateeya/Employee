@@ -15,7 +15,6 @@
         model.slide.config = {};
         model.slide.config = configslide;
         model.slide.headervisileble = true;
-        model.slide.totalRecords = 10;
         model.singlegrid = singleconfig;
         model.scope = {};
         model.showpaging = false;
@@ -47,14 +46,7 @@
         };
 
         model.viewmmInfo = function(row) {
-            // model.singlegrid.showsearchrows = true;
-            // model.singlegrid.showsearch = false;
-            // model.singlegrid.showpaging = false;
-            // model.singlegrid.showClientpaging = false;
-            // model.singlegrid.myprofileexcel = false;
-            // model.singlegrid.normalexcel = false;
-            // model.singlegrid.gridTableshow = true;
-
+            debugger;
             var inobj = {};
             if (model.rbtnSearchBy === '0') {
                 inobj.Empid = row.EmployeeId;
@@ -110,14 +102,29 @@
             }
 
             matchMeetingCountReportService.matchMeetingCountInfo(inobj).then(function(response) {
-                // model.singlegrid.slides = response.data[0];
-                configslide.setSlides(response.data[0], 10, 'normal');
+                if (response.data && response.data[0] && response.data[0].length > 0) {
+                    model.slide.totalRecords = response.data[0].length;
+                    response.data[0].forEach(function(element) {
+                        element.BrideProfileOwnerUrl = element.BrideProfileOwnerUrl ? 'http://d16o2fcjgzj2wp.cloudfront.net' + element.BrideProfileOwnerUrl.split('~')[1] : '';
+                        element.GroomProfileOwnerUrl = element.GroomProfileOwnerUrl ? 'http://d16o2fcjgzj2wp.cloudfront.net' + element.GroomProfileOwnerUrl.split('~')[1] : '';
+                        if (model.rbtnSearchBy === '0') {
+                            element.arrangedby = row.Name;
+                        } else {
+                            element.arrangedby = element.MeetingArrangedByEmp_ID;
+                        }
+
+                    }, this);
+
+                    configslide.setSlides(response.data[0], 10, 'normal');
+                }
             });
+
+            model.employeeName = row.Name;
+
+
             model.slide.templateUrl = "templates/matchMeetingSlide.html";
             model.slide.config.headettemp = "matchmeetingHeader.html";
-            // model.slide.config.headettemp = "templates/myprofileheader.html";
-
-            modelpopupopenmethod.showPopup('matchmeetingpopup.html', model.scope, 'lg', "");
+            modelpopupopenmethod.showPopup('matchmeetingpopup.html', model.scope, 'lg', "matchmeting");
         };
 
         model.matchReport = function() {
@@ -148,7 +155,6 @@
                     { text: 'view', key: '', type: 'customlink', templateUrl: model.viewTemplate, method: model.viewmmInfo }
                 ];
             }
-
 
             var inobj = {
                 AppusrID: 0,
