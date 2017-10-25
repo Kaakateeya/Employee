@@ -23,6 +23,7 @@
         };
 
         model.matchMeetingSubmit = function() {
+            debugger;
             model.isDisabledsubmit = true;
             var date = moment(model.txtmeetingDate).format('YYYY-MM-DD') + ' ' + model.ddlhrs + ':' + model.ddlMins + ':00';
             var inObj = {
@@ -42,18 +43,20 @@
                 GLand: model.gLandline,
                 GMobile: model.gnumber
             };
-            matchMeetingEntryFormService.MMFormSubmit(inObj).then(function(response) {
-                model.isDisabledsubmit = false;
-                if (response.data) {
-                    model.reset();
-                    model.scope.MMEntryForm.$setPristine();
-                    if ((response.data.m_Item1) === 1) {
-                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Match meeting created successfully ', 4500);
-                    } else {
-                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Failed please contact admin', 4500);
-                    }
-                }
-            });
+            console.log(inObj);
+            model.isDisabledsubmit = false;
+            // matchMeetingEntryFormService.MMFormSubmit(inObj).then(function(response) {
+            //     model.isDisabledsubmit = false;
+            //     if (response.data) {
+            //         model.reset();
+            //         model.scope.MMEntryForm.$setPristine();
+            //         if ((response.data.m_Item1) === 1) {
+            //             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Match meeting created successfully ', 4500);
+            //         } else {
+            //             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Failed please contact admin', 4500);
+            //         }
+            //     }
+            // });
         };
 
         model.reset = function() {
@@ -81,6 +84,7 @@
             model.brideCustID = 0;
             model.groomCustID = 0;
             model.isDisabledsubmit = false;
+            model.chkphonenumbers = false;
         };
 
         model.clearProfileID = function(flag) {
@@ -91,11 +95,9 @@
         };
 
         model.getEmpDetails = function(profileID, flag, oppProfileID) {
-
             if (profileID) {
                 matchMeetingEntryFormService.getEmpDetails(profileID, flag).then(function(response) {
                     if (response.data) {
-
                         if ((response.data.m_Item2).length > 0) {
                             if (flag === 1) {
                                 model.brideEmpID = (response.data.m_Item2)[0][0].Name;
@@ -213,7 +215,28 @@
                 modelpopupopenmethod.closepopup();
             }
         };
-
+        model.sharedphonenumbers = function() {
+            if (model.chkphonenumbers === true) {
+                model.txtmeetingDate = new Date();
+                model.ddlhrs = 0;
+                model.ddlMins = 0;
+                model.txtPlace = 'dummy';
+                model.ddlbrideMembers = ['283'];
+                model.ddlGroomMembers = ['283'];
+                model.ddlArrangedByEmp = '2';
+            } else {
+                model.ddlhrs = '';
+                model.ddlMins = '';
+                model.txtPlace = '';
+                model.ddlbrideMembers = '';
+                model.ddlGroomMembers = '';
+                model.ddlArrangedByEmp = 0;
+                timeout(function() {
+                    model.txtmeetingDate = '';
+                }, 500);
+                // model.reset();
+            }
+        };
         return model.init();
     }
 })();
