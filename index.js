@@ -113,7 +113,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'sampleViewfullprofile', name: 'base.sampleViewfullprofile', url: '/sampleViewfullprofilePage/:id', isloginrequired: true },
             { routeName: 'mailFormats', name: 'base.mailFormats', url: '/mailFormats', isloginrequired: true },
             { routeName: 'settlementPageNew', name: 'base.settlementPageNew', url: '/settlementPageNews', isloginrequired: true },
-            { routeName: 'employeeViewfullprofilePrintsearch', name: 'base.employeeViewfullprofilePrintsearch', url: '/Viewfullprofilesearch/:ProfileID/:contacts', isloginrequired: true }
+            { routeName: 'employeeViewfullprofilePrintsearch', name: 'base.employeeViewfullprofilePrintsearch', url: '/Viewfullprofilesearch/:ProfileID/:contacts', isloginrequired: true },
+            { routeName: 'noProfilegrading', name: 'base.noProfilegrading', url: '/noProfilegrading', isloginrequired: true },
+
         ];
         $ocLazyLoadProvider.config({
             debug: true

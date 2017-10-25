@@ -11,6 +11,9 @@
         return {
             settledInfo: function(obj) {
                 return http.post(app.apiroot + 'smallPages/SettledProfilesInfo', obj);
+            },
+            insertSettledInfo: function(obj) {
+                return http.post(app.apiroot + 'smallPages/insertsettleAmountInfo', obj);
             }
         };
     }
