@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .factory('noProfilegradingModel', factory);
 
-    factory.$inject = ['noProfilegradingService', 'helperservice'];
+    factory.$inject = ['noProfilegradingService', 'helperservice', 'complex-grid-config'];
 
-    function factory(noProfilegradingService, helpService) {
+    function factory(noProfilegradingService, helpService, configgrid) {
 
         var model = {};
         model.grid1 = {};
@@ -59,6 +59,67 @@
         model.reset = function() {
             model.ddlApplicationStatus = [54];
             model.MyProfilePageLoad();
+        };
+
+
+        model.getNogradingprofiles = function() {
+
+            model.grid1.columns = [
+                { text: 'ProfileID', key: 'BrideProfileID', type: 'morelinks', templateUrl: model.profileidmehod },
+                { text: 'Name', key: 'BrideName', type: 'morelinks', templateUrl: model.nemeMethod },
+                { text: 'Caste', key: 'BrideCaste', type: 'morelinks', templateUrl: model.casteMethod },
+                { text: 'Owner', key: 'BrideOwner', type: 'morelinks', templateUrl: model.ownerMethod },
+                { text: 'paid Type', key: 'GroomCaste', type: 'morelinks', templateUrl: model.showbuttons },
+                { text: 'History', key: 'GroomName', type: 'customlink', templateUrl: model.showHistrybuttons, method: model.openPouptoedit }
+            ];
+
+            model.grid1.showsearchrows = true;
+            model.grid1.showsearch = true;
+            model.grid1.showpaging = true;
+            model.grid1.myprofileexcel = true;
+            model.grid1.normalexcel = true;
+
+            var inobj = {
+                TypeOFGrade: model.paidType ? model.paidType : 'N',
+                StrProfileID: model.profileID,
+                Gender: model.rbtnGender,
+                PaymentStatus: model.aaa,
+                Confidential: model.aaa,
+                GradeID: model.aaa,
+                strApplicationStatus: model.joinArray(model.ApplicationStatus),
+                GradingType: model.aaa,
+                strBranch: model.joinArray(model.branch),
+                strCaste: model.joinArray(model.caste),
+                strOwnerOfTheProfile: model.joinArray(model.ProfileOwner),
+                StartDate: moment(model.dorFrom).format('MM-DD-YYYY'),
+                EndDate: moment(model.dorTo).format('MM-DD-YYYY'),
+                From: model.aaa,
+                To: model.aaa,
+                PageSize: model.aaa,
+                PageNumber: model.aaa,
+                flag: model.aaa
+            };
+
+            settlementPageNewService.settledInfo(inobj).then(function(response) {
+                if ((response.data[0]).length > 0) {
+                    model.panelbodyhide = false;
+                    model.grid1.TotalRows = (response.data[0])[0].TotalRows;
+                    model.grid1.data = (response.data[0]);
+                } else {
+                    if (from === 1) {
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 3500);
+                    }
+                }
+            });
+
+        };
+
+        model.joinArray = function(val) {
+            var str = null;
+            if (val && val.length > 0) {
+                str = val.join(',');
+            }
+            return str;
         };
 
         return model;

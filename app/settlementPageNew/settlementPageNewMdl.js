@@ -5,13 +5,13 @@
         .module('Kaakateeya')
         .factory('settlementPageNewModel', factory);
 
-    factory.$inject = ['settlementPageNewService', 'complex-grid-config', 'modelpopupopenmethod', 'alert'];
+    factory.$inject = ['settlementPageNewService', 'complex-grid-config', 'modelpopupopenmethod', 'alert', 'Commondependency'];
 
-    function factory(settlementPageNewService, configgrid, modelpopupopenmethod, alertss) {
+    function factory(settlementPageNewService, configgrid, modelpopupopenmethod, alertss, Commondependency) {
         var model = {};
 
         model.grid3 = {};
-
+        model.singlegrid1 = {};
         model.scope = {};
         model.dateOptions = {
             changeMonth: true,
@@ -19,7 +19,7 @@
             yearRange: "-40:+5",
             dateFormat: 'mm-dd-yy'
         };
-
+        model.paidStausFlag = true;
         model.submit = function(from, to) {
             model.grid3.columns = [
                 { text: 'ProfileID', key: 'BrideProfileID', type: 'morelinks', templateUrl: model.profileidmehod },
@@ -27,9 +27,9 @@
                 { text: 'Caste', key: 'BrideCaste', type: 'morelinks', templateUrl: model.casteMethod },
                 { text: 'Owner', key: 'BrideOwner', type: 'morelinks', templateUrl: model.ownerMethod },
                 { text: 'paid Type', key: 'GroomCaste', type: 'morelinks', templateUrl: model.showbuttons },
-                { text: 'History', key: 'GroomName', type: 'customlink', templateUrl: model.showHistrybuttons, method: model.openPouptoedit }
+                { text: 'History', key: 'GroomName', type: 'morelinks', templateUrl: model.showHistrybuttons }
             ];
-
+            model.paidStausFlag = model.paidType && model.paidType === '574' ? false : true;
             model.grid3.showsearchrows = true;
             model.grid3.showsearch = true;
             model.grid3.showpaging = true;
@@ -55,6 +55,7 @@
                     model.grid3.data = (response.data[0]);
                 } else {
                     if (from === 1) {
+                        model.grid3.data = [];
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 3500);
                     }
                 }
@@ -96,12 +97,17 @@
         };
 
         model.showbuttons = function(row) {
-            var str = "<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.BrideProfileID) + "," + JSON.stringify('2') + ");'>Paid</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.BrideProfileID) + "," + JSON.stringify('1') + ");'>PartialPaid</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.BrideProfileID) + "," + JSON.stringify('0') + ");'>NotIntToPay</a><br><a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.GroomProfileID) + "," + JSON.stringify('2') + ");'>Paid</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.GroomProfileID) + "," + JSON.stringify('1') + ");'>PartialPaid</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.GroomProfileID) + "," + JSON.stringify('0') + ");'>NotIntToPay</a>";
+            var str = '';
+            if (model.paidStausFlag === true) {
+                str = "<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.BrideProfileID) + "," + JSON.stringify('574') + ");'>Paid</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.BrideProfileID) + "," + JSON.stringify('575') + ");'>PartialPaid</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.BrideProfileID) + "," + JSON.stringify('577') + ");'>NotIntToPay</a><br><a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.GroomProfileID) + "," + JSON.stringify('574') + ");'>Paid</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.GroomProfileID) + "," + JSON.stringify('575') + ");'>PartialPaid</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.GroomProfileID) + "," + JSON.stringify('577') + ");'>NotIntToPay</a>";
+            } else {
+                str = '<div>----</div>';
+            }
             return str;
         };
 
-        model.showHistrybuttons = function() {
-            var str = '<a>History</a><br><a>History</a>';
+        model.showHistrybuttons = function(row) {
+            var str = "<a href='javascript:void(0);' ng-click='model.getSettleHistryInfo(" + JSON.stringify(row.BrideProfileID) + ");'>History</a><br><a href='javascript:void(0);' ng-click='model.getSettleHistryInfo(" + JSON.stringify(row.GroomProfileID) + ");'>History</a>";
             return str;
         };
 
@@ -130,7 +136,7 @@
             model.Branch = '';
             model.ProfileOwner = '';
             model.rbtnGender = '';
-
+            model.BranchNameArr = Commondependency.branch('');
         };
 
         model.grid3.pagechange = function(val) {
@@ -158,7 +164,35 @@
 
         };
 
-        return model;
 
+        model.grid3.getSettleHistryInfo = function(id) {
+            model.singlegrid1.columns = [
+                { text: 'Payment status', key: 'paymentStatus', type: 'label' },
+                { text: 'Entered Date', key: 'SettledDate', type: 'label' },
+                { text: 'Entered By', key: 'enteredBy', type: 'label' },
+                { text: 'Notes', key: 'Discription', type: 'label' }
+            ];
+
+            settlementPageNewService.settleInfo(id).then(function(response) {
+                if (response.data.length > 0) {
+                    model.singlegrid1.sdata = response.data;
+                    modelpopupopenmethod.showPopup('duplicataProfilesPopup.html', model.scope, 'lg', "modalclassdashboardphotopopupassign");
+                } else {
+                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No Records Found', 3500);
+                }
+            });
+
+        };
+
+        model.closemainpopup = function() {
+            modelpopupopenmethod.closepopup();
+        };
+
+        model.regionChange = function(parent) {
+            model.BranchNameArr = [];
+            model.BranchNameArr = Commondependency.branch(model.joinArray(parent));
+        };
+
+        return model;
     }
 })();

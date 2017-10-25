@@ -14,6 +14,9 @@
             },
             insertSettledInfo: function(obj) {
                 return http.post(app.apiroot + 'smallPages/insertsettleAmountInfo', obj);
+            },
+            settleInfo: function(id) {
+                return http.get(app.apiroot + 'smallPages/getSettleInfo', { params: { profileid: id } });
             }
         };
     }
