@@ -160,6 +160,15 @@
                                     </li>
                                     <div class="clearfix">
                                     </div>
+
+                                    <li class="col-lg-12 form-group">
+                                        <label class="pop_label_left" style="width: 19%;">Call discussion </label>
+                                        <div class="pop_controls_right" style="width: 80% !important;">
+                                            <textarea rows="4" type="text" ng-model="model.MAobj.txtmrktCalldiscussionin" class="form-control" required ng-disabled="model.replytypetxtdiabled"></textarea>
+                                        </div>
+                                    </li>
+                                </div>
+                                <div class="col-lg-12">
                                     <li class="col-lg-12 form-group" ng-show="model.DisplayToCustomerin">
                                         <label class="pop_label_left Notrequired" style="width: 19%;">Display to customer </label>
                                         <div class="pop_controls_right pop_radios_list">
@@ -170,36 +179,28 @@
                                         </div>
                                     </li>
                                 </div>
-                                <div class="col-lg-12">
+                                <div class="clearfix"></div>
+                                <br ng-hide="model.DisplayToCustomerin">
+
+                                <div class="col-lg-12" ng-show="model.MAobj.ddlmrktReplyTypeIn==='0' || model.MAobj.ddlmrktReplyTypeIn==='1'">
                                     <li class="col-lg-12 form-group">
-                                        <label class="pop_label_left" style="width: 19%;">Call discussion </label>
+                                        <label class="pop_label_left" style="width:19%;">Call Description</label>
                                         <div class="pop_controls_right" style="width: 80% !important;">
-                                            <textarea rows="4" type="text" ng-model="model.MAobj.txtmrktCalldiscussionin" class="form-control" required ng-disabled="model.replytypetxtdiabled"></textarea>
+                                            <textarea type="text" rows="2" ng-model="model.MAobj.txtmatchfollowupCalldiscussion" class="form-control"></textarea>
                                         </div>
                                     </li>
                                 </div>
-
-
                                 <div class="col-lg-12" style="line-height: 36px;" ng-show="model.MAobj.ddlmrktReplyTypeIn==='0' || model.MAobj.ddlmrktReplyTypeIn==='1'">
                                     <li class="col-lg-12 form-group">
                                         <label class="pop_label_left" style="width: 19%;">DisplayToCustomer </label>
                                         <div class="pop_controls_right pop_radios_list">
-                                            <md-radio-group style="margin-top:8px;" name="rbtnshowmatchfollowup" layout="row" ng-model="model.MAobj.rbtnshowmatchfollowup" class="md-block" flex-gt-sm>
+                                            <md-radio-group style="" name="rbtnshowmatchfollowup" layout="row" ng-model="model.MAobj.rbtnshowmatchfollowup" class="md-block" flex-gt-sm>
                                                 <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
                                                 <md-radio-button value="0"> No</md-radio-button>
                                             </md-radio-group>
                                         </div>
                                     </li>
                                 </div>
-                                <div class="col-lg-12" ng-show="model.MAobj.ddlmrktReplyTypeIn==='0' || model.MAobj.ddlmrktReplyTypeIn==='1'">
-                                    <li class="col-lg-12 form-group">
-                                        <label class="pop_label_left" style="width:19%;">Call discussion</label>
-                                        <div class="pop_controls_right" style="width: 80% !important;">
-                                            <textarea type="text" rows="2" ng-model="model.MAobj.txtmatchfollowupCalldiscussion" class="form-control"></textarea>
-                                        </div>
-                                    </li>
-                                </div>
-
                                 <div class="col-lg-12">
                                     <br>
                                     <li class="col-lg-12">
@@ -277,6 +278,15 @@
                                 </div>
                                 <div class="clearfix">
                                 </div>
+
+                                <div class="col-lg-12 form-group">
+                                    <li class="col-lg-12">
+                                        <label class="pop_label_left" style="width:19%;">Call discussion </label>
+                                        <div class="pop_controls_right" style="width:80% !important;">
+                                            <textarea rows="4" ng-model="model.MAobj.txtmrktCalldiscussionout" type="text" class="form-control" required ng-disabled="model.replytypetxtdiabled"></textarea>
+                                        </div>
+                                    </li>
+                                </div>
                                 <div class="col-lg-12" ng-show="model.DisplayToCustomerin">
                                     <li class="col-lg-12 form-group">
                                         <label class="pop_label_left Notrequired" style="width: 19%;">Display to customer </label>
@@ -288,11 +298,14 @@
                                         </div>
                                     </li>
                                 </div>
-                                <div class="col-lg-12 form-group">
-                                    <li class="col-lg-12">
-                                        <label class="pop_label_left" style="width:19%;">Call discussion </label>
+                                <div class="clearfix"></div>
+                                <br ng-hide="model.DisplayToCustomerin">
+
+                                <div class="col-lg-12" ng-show="model.MAobj.ddlmrktreplytypeout==='0' || model.MAobj.ddlmrktreplytypeout==='1'">
+                                    <li class="col-lg-12 form-group">
+                                        <label class="pop_label_left" style="width:19%;">Call Description</label>
                                         <div class="pop_controls_right" style="width:80% !important;">
-                                            <textarea rows="4" ng-model="model.MAobj.txtmrktCalldiscussionout" type="text" class="form-control" required ng-disabled="model.replytypetxtdiabled"></textarea>
+                                            <textarea type="text" rows="2" ng-model="model.MAobj.txtmatchfollowupCalldiscussionOut" class="form-control"></textarea>
                                         </div>
                                     </li>
                                 </div>
@@ -304,14 +317,6 @@
                                                 <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
                                                 <md-radio-button value="0"> No</md-radio-button>
                                             </md-radio-group>
-                                        </div>
-                                    </li>
-                                </div>
-                                <div class="col-lg-12" ng-show="model.MAobj.ddlmrktreplytypeout==='0' || model.MAobj.ddlmrktreplytypeout==='1'">
-                                    <li class="col-lg-12 form-group">
-                                        <label class="pop_label_left" style="width:19%;">Call discussion</label>
-                                        <div class="pop_controls_right" style="width:80% !important;">
-                                            <textarea type="text" rows="2" ng-model="model.MAobj.txtmatchfollowupCalldiscussionOut" class="form-control"></textarea>
                                         </div>
                                     </li>
                                 </div>

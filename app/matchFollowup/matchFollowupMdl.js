@@ -273,7 +273,10 @@
                 model.mailchange = function(val) {
                     return _.where(model.ReplyArr, { value: parseInt(val) })[0].text;
                 };
-                model.openSmsMail = function(type, name, profileid, email, mobilenumber, mobileCountryCode, ticketID, EmpmobileNumber, fromcustid, tocustid, ticketStatusId, ToProfileID) {
+                //('sms',slide.ToName,slide.Toprofileid,slide.TOEmail,slide.ToMobileNumber,slide.ToMobileCountryCode,slide.ToTicket,slide.toempname,slide.Fromsurname,slide.FromProfileid)
+                model.openSmsMail = function(type, tosurname, toprofileid, name, profileid, email, mobilenumber, mobileCountryCode, ticketID, EmpmobileNumber, fromcustid, tocustid, ticketStatusId, ToProfileID) {
+                    model.smssurname = tosurname;
+                    model.smsTotoprofileid = toprofileid;
                     model.typeofmailSms = type;
                     model.txtsmsmail = '';
                     model.ddlmail = '';
@@ -316,6 +319,9 @@
                 };
                 model.smsOnchange = function(val) {
                     model.txtsmsmail = _.where(model.smsarray, { id: parseInt(val) })[0].text;
+                    if (val !== 1) {
+                        model.txtsmsmail = model.smssurname + " (" + model.smsTotoprofileid + ") " + model.txtsmsmail;
+                    }
                 };
                 model.smsMailSubmit = function(type) {
                     if (type === 'sms') {
@@ -962,6 +968,15 @@
                         classbtn = 'btnsuccessout';
                     } else {
                         classbtn = 'btnwarningsout';
+                    }
+                    return classbtn;
+                };
+                model.classbtnloginclose = function(fromempid) {
+                    var classbtn = 'ticketclosedlabel';
+                    if (parseInt(fromempid) === parseInt(model.empid)) {
+                        classbtn = 'ticketclosedlabellogin';
+                    } else {
+                        classbtn = 'ticketclosedlabel';
                     }
                     return classbtn;
                 };

@@ -23,7 +23,6 @@
         };
 
         model.matchMeetingSubmit = function() {
-            debugger;
             model.isDisabledsubmit = true;
             var date = moment(model.txtmeetingDate).format('YYYY-MM-DD') + ' ' + model.ddlhrs + ':' + model.ddlMins + ':00';
             var inObj = {
@@ -43,20 +42,18 @@
                 GLand: model.gLandline,
                 GMobile: model.gnumber
             };
-            console.log(inObj);
-            model.isDisabledsubmit = false;
-            // matchMeetingEntryFormService.MMFormSubmit(inObj).then(function(response) {
-            //     model.isDisabledsubmit = false;
-            //     if (response.data) {
-            //         model.reset();
-            //         model.scope.MMEntryForm.$setPristine();
-            //         if ((response.data.m_Item1) === 1) {
-            //             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Match meeting created successfully ', 4500);
-            //         } else {
-            //             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Failed please contact admin', 4500);
-            //         }
-            //     }
-            // });
+            matchMeetingEntryFormService.MMFormSubmit(inObj).then(function(response) {
+                model.isDisabledsubmit = false;
+                if (response.data) {
+                    model.reset();
+                    model.scope.MMEntryForm.$setPristine();
+                    if ((response.data.m_Item1) === 1) {
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Match meeting created successfully ', 4500);
+                    } else {
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Failed please contact admin', 4500);
+                    }
+                }
+            });
         };
 
         model.reset = function() {
