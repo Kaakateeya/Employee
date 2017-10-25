@@ -81,6 +81,7 @@
             model.brideCustID = 0;
             model.groomCustID = 0;
             model.isDisabledsubmit = false;
+            model.chkphonenumbers = false;
         };
 
         model.clearProfileID = function(flag) {
@@ -91,11 +92,9 @@
         };
 
         model.getEmpDetails = function(profileID, flag, oppProfileID) {
-
             if (profileID) {
                 matchMeetingEntryFormService.getEmpDetails(profileID, flag).then(function(response) {
                     if (response.data) {
-
                         if ((response.data.m_Item2).length > 0) {
                             if (flag === 1) {
                                 model.brideEmpID = (response.data.m_Item2)[0][0].Name;
@@ -213,7 +212,28 @@
                 modelpopupopenmethod.closepopup();
             }
         };
-
+        model.sharedphonenumbers = function() {
+            if (model.chkphonenumbers === true) {
+                model.txtmeetingDate = new Date();
+                model.ddlhrs = 0;
+                model.ddlMins = 0;
+                model.txtPlace = 'dummy';
+                model.ddlbrideMembers = ['283'];
+                model.ddlGroomMembers = ['283'];
+                model.ddlArrangedByEmp = '2';
+            } else {
+                model.ddlhrs = '';
+                model.ddlMins = '';
+                model.txtPlace = '';
+                model.ddlbrideMembers = '';
+                model.ddlGroomMembers = '';
+                model.ddlArrangedByEmp = 0;
+                timeout(function() {
+                    model.txtmeetingDate = '';
+                }, 500);
+                // model.reset();
+            }
+        };
         return model.init();
     }
 })();

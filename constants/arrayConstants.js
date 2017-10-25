@@ -256,11 +256,11 @@ app.constant('arrayConstants', {
     ],
     "region": [
         { "label": "--Select--", "title": "--Select--", "value": "" },
-        { "label": "Telangana", "title": "Telangana", "value": 1 },
+        // { "label": "Telangana", "title": "Telangana", "value": 1 },
         { "label": "Andhra Pradesh", "title": "Andhra Pradesh", "value": 408 },
         { "label": "Tamilnadu", "title": "Tamilnadu", "value": 409 },
         { "label": "Karnataka", "title": "Karnataka", "value": 410 },
-        { "label": "Panducherry", "title": "Panducherry", "value": 2 },
+        // { "label": "Panducherry", "title": "Panducherry", "value": 2 },
 
     ],
     'bodyType': [
