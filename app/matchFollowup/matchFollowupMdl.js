@@ -465,11 +465,11 @@
                                 model.FromTicketMatchmeetingStatus = respsts.data[0].trim();
                             });
                         }
-                        if (model.ToTicketchkStattus !== null && model.ToTicketchkStattus !== "" && model.ToTicketchkStattus !== undefined) {
-                            matchFollowupServices.getMatchfollowupticketStatus(model.ToTicketchkStattus).then(function(respststo) {
-                                model.ToTicketMatchmeetingStatus = respststo.data[0].trim();
-                            });
-                        }
+                        // if (model.ToTicketchkStattus !== null && model.ToTicketchkStattus !== "" && model.ToTicketchkStattus !== undefined) {
+                        //     matchFollowupServices.getMatchfollowupticketStatus(model.ToTicketchkStattus).then(function(respststo) {
+                        //         model.ToTicketMatchmeetingStatus = respststo.data[0].trim();
+                        //     });
+                        // }
                         model.ServiceDate = slideobj.ServiceDate;
                         model.selfname = selfname;
                         model.selfemail = selfemail;
@@ -494,7 +494,6 @@
                         model.ActionTicket = ticketID;
                         model.actobj.rbtnReplyTypememo = model.actobj.rbtnReplyTypeClose = '';
                         model.actobj.txtcloseReason = model.actobj.txtMemmemocalldiscussion = '';
-                        //model.actobj.ddlMemAssign = parseInt(model.empid);
                         model.actobj.rbtnOutDisplay = model.actobj.rbtnInDisplay = model.actobj.rbtnshowmatchfollowup = model.actobj.rbtnshowOutmatchfollowup = '0';
                         model.incommingbtntext = "Incoming Call";
                         model.outgoingcallbtntext = "Outgoing Call";
@@ -504,6 +503,11 @@
                             if (_.isArray(response.data) && response.data.length > 0) {
                                 model.infnArr = {};
                                 model.infnArr = (response.data)[0];
+                                if (model.infnArr.Toticketid !== null && model.infnArr.Toticketid !== "" && model.infnArr.Toticketid !== undefined) {
+                                    matchFollowupServices.getMatchfollowupticketStatus(model.infnArr.Toticketid).then(function(respststo) {
+                                        model.ToTicketMatchmeetingStatus = respststo.data[0].trim();
+                                    });
+                                }
                             }
                         });
                         model.mailInput = {};
