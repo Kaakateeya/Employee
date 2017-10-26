@@ -30,7 +30,6 @@
             return '<a href="javascript:void();">View</a>';
         };
         model.slide.closemainpopup = function() {
-
             modelpopupopenmethod.closepopup();
         };
 

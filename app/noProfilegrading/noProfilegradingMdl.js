@@ -5,12 +5,13 @@
         .module('Kaakateeya')
         .factory('noProfilegradingModel', factory);
 
-    factory.$inject = ['noProfilegradingService', 'helperservice', 'complex-grid-config'];
+    factory.$inject = ['noProfilegradingService', 'helperservice', 'complex-grid-config', 'alert', 'modelpopupopenmethod'];
 
-    function factory(noProfilegradingService, helpService, configgrid) {
+    function factory(noProfilegradingService, helpService, configgrid, alertss, modelpopupopenmethod) {
 
         var model = {};
         model.grid1 = {};
+        model.scope = {};
         model.dateOptions = {
             changeMonth: true,
             changeYear: true,
@@ -57,20 +58,29 @@
         };
 
         model.reset = function() {
-            model.ddlApplicationStatus = [54];
+            model.ApplicationStatus = [54];
             model.MyProfilePageLoad();
+            model.paidType = 'N';
+            model.rbtnGender = '';
+            model.rbtnPaymentStatus = '';
+
+
         };
 
 
         model.getNogradingprofiles = function() {
 
             model.grid1.columns = [
-                { text: 'ProfileID', key: 'BrideProfileID', type: 'morelinks', templateUrl: model.profileidmehod },
-                { text: 'Name', key: 'BrideName', type: 'morelinks', templateUrl: model.nemeMethod },
-                { text: 'Caste', key: 'BrideCaste', type: 'morelinks', templateUrl: model.casteMethod },
-                { text: 'Owner', key: 'BrideOwner', type: 'morelinks', templateUrl: model.ownerMethod },
-                { text: 'paid Type', key: 'GroomCaste', type: 'morelinks', templateUrl: model.showbuttons },
-                { text: 'History', key: 'GroomName', type: 'customlink', templateUrl: model.showHistrybuttons, method: model.openPouptoedit }
+                { text: 'ProfileID', key: 'ProfileID', type: 'label' },
+                { text: 'First Name', key: 'FirstName', type: 'label' },
+                { text: 'Surname', key: 'LastName', type: 'label' },
+                { text: 'caste', key: 'CasteName', type: 'label' },
+                { text: 'Photo grade', key: 'PhotoGreade', type: 'label' },
+                { text: 'family grade', key: 'FamilyGrade', type: 'label' },
+                { text: 'Property grade', key: 'PropertyGrade', type: 'label' },
+                { text: 'Education grade', key: 'EducationGrade', type: 'label' },
+                { text: 'Profession grade', key: 'ProfessionGrade', type: 'label' },
+                { text: 'Action', key: 'ProfileID', type: 'customlink', templateUrl: model.gradeTemplate, method: model.showGradingPopup }
             ];
 
             model.grid1.showsearchrows = true;
@@ -83,24 +93,24 @@
                 TypeOFGrade: model.paidType ? model.paidType : 'N',
                 StrProfileID: model.profileID,
                 Gender: model.rbtnGender,
-                PaymentStatus: model.aaa,
-                Confidential: model.aaa,
-                GradeID: model.aaa,
+                PaymentStatus: model.rbtnPaymentStatus ? model.rbtnPaymentStatus : null,
+                Confidential: model.isConfidential,
+                GradeID: model.grading,
                 strApplicationStatus: model.joinArray(model.ApplicationStatus),
-                GradingType: model.aaa,
+                GradingType: model.gradingType,
                 strBranch: model.joinArray(model.branch),
                 strCaste: model.joinArray(model.caste),
                 strOwnerOfTheProfile: model.joinArray(model.ProfileOwner),
-                StartDate: moment(model.dorFrom).format('MM-DD-YYYY'),
-                EndDate: moment(model.dorTo).format('MM-DD-YYYY'),
-                From: model.aaa,
-                To: model.aaa,
-                PageSize: model.aaa,
-                PageNumber: model.aaa,
-                flag: model.aaa
+                StartDate: model.dorFrom ? moment(model.dorFrom).format('MM-DD-YYYY') : null,
+                EndDate: model.dorTo ? moment(model.dorTo).format('MM-DD-YYYY') : null,
+                From: null,
+                To: null,
+                PageSize: 100,
+                PageNumber: 1,
+                flag: 0
             };
 
-            settlementPageNewService.settledInfo(inobj).then(function(response) {
+            noProfilegradingService.getNoProfileGradeProfiles(inobj).then(function(response) {
                 if ((response.data[0]).length > 0) {
                     model.panelbodyhide = false;
                     model.grid1.TotalRows = (response.data[0])[0].TotalRows;
@@ -120,6 +130,18 @@
                 str = val.join(',');
             }
             return str;
+        };
+
+        model.gradeTemplate = function(row) {
+            return "<a>Grading</a>";
+        };
+
+        model.showGradingPopup = function() {
+            modelpopupopenmethod.showPopup('gradingPopup.html', model.scope, 'lg', "matchmeting");
+        };
+
+        model.closemainpopup = function() {
+            modelpopupopenmethod.closepopup();
         };
 
         return model;

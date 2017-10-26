@@ -5,9 +5,9 @@
          .module('Kaakateeya')
          .controller('noProfilegradingCtrl', controller);
 
-     controller.$inject = ['noProfilegradingModel'];
+     controller.$inject = ['noProfilegradingModel', '$scope'];
 
-     function controller(noProfilegradingModel) {
+     function controller(noProfilegradingModel, scope) {
          /* jshint validthis:true */
          var vm = this,
              model;
@@ -16,6 +16,7 @@
              vm.model = model = noProfilegradingModel;
              model.panelbodyhide = true;
              model.reset();
+             model.scope = scope;
          };
 
          vm.init();

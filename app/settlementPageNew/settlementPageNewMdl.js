@@ -20,7 +20,7 @@
             dateFormat: 'mm-dd-yy'
         };
         model.paidStausFlag = true;
-        model.submit = function(from, to) {
+        model.submit = function(from, to, type) {
             model.grid3.columns = [
                 { text: 'ProfileID', key: 'BrideProfileID', type: 'morelinks', templateUrl: model.profileidmehod },
                 { text: 'Name', key: 'BrideName', type: 'morelinks', templateUrl: model.nemeMethod },
@@ -50,9 +50,18 @@
 
             settlementPageNewService.settledInfo(inobj).then(function(response) {
                 if ((response.data[0]).length > 0) {
-                    model.panelbodyhide = false;
-                    model.grid3.TotalRows = (response.data[0])[0].TotalRows;
-                    model.grid3.data = (response.data[0]);
+                    if (type === 'excel') {
+                        model.exportarray = [];
+                        model.exportarray = (response.data[0]);
+                        var options = {
+                            headers: true
+                        };
+                        alasql('SELECT BrideProfileID,BrideName,BrideCaste,BrideOwner,GroomProfileID,GroomName,GroomCaste,GroomOwner INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
+                    } else {
+                        model.panelbodyhide = false;
+                        model.grid3.TotalRows = (response.data[0])[0].TotalRows;
+                        model.grid3.data = (response.data[0]);
+                    }
                 } else {
                     if (from === 1) {
                         model.grid3.data = [];
@@ -164,7 +173,6 @@
 
         };
 
-
         model.grid3.getSettleHistryInfo = function(id) {
             model.singlegrid1.columns = [
                 { text: 'Payment status', key: 'paymentStatus', type: 'label' },
@@ -191,6 +199,10 @@
         model.regionChange = function(parent) {
             model.BranchNameArr = [];
             model.BranchNameArr = Commondependency.branch(model.joinArray(parent));
+        };
+
+        model.grid3.exportexcel = function(topage) {
+            model.submit(1, topage, 'excel');
         };
 
         return model;
