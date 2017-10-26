@@ -33,8 +33,8 @@
                         <div style="font-size:13px;">
                             <md-radio-group name="rbtnGender" layout="row" ng-model="page.model.rbtnPaymentStatus" class="md-block" flex-gt-sm>
                                 <md-radio-button value="" class="md-primary">Both</md-radio-button>
-                                <md-radio-button value="1" class="md-primary">Paid</md-radio-button>
-                                <md-radio-button value="2">Unpaid</md-radio-button>
+                                <md-radio-button value="372" class="md-primary">Paid</md-radio-button>
+                                <md-radio-button value="373">Unpaid</md-radio-button>
                             </md-radio-group>
                         </div>
                     </div>
@@ -104,59 +104,66 @@
                                 <custom-datepicker name="date" ng-model="page.model.dorTo" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <input type="button" class="btn btn-danger" style="margin-top: 4%;" value="Submit" ng-click="page.model.submit();">
-                            <input type="button" class="btn btn-default" style="margin-top: 4%;margin-left: 2%;" value="Reset" ng-click="page.model.submit();">
+                        <div class="col-lg-3 form-group">
+                            <md-checkbox style="margin-top: 9%;" ng-model="page.model.isConfidential">IsConfidential</md-checkbox>
+                        </div>
+                        <div class="col-lg-2">
+                            <input type="button" class="btn btn-danger" style="margin-top: 11%;" value="Submit" ng-click="page.model.getNogradingprofiles();">
+                            <input type="button" class="btn btn-default" style="margin-top: 11%;margin-left: 11%;" value="Reset">
                         </div>
                     </div>
                     <br>
                 </div>
             </div>
-            <br>
+
         </div>
     </div>
 
-    <br>
+
     <complex-grid-new gid="'id1'" model="page.model.grid1" config="page.model.grid1"></complex-grid-new>
 
 </div>
-<!-- <script type="text/ng-template" id="aboutpayment.html">
-    <form class="EditViewClass" name="uploadForm" novalidate role="form" ng-submit="page.model.upload(page.model.up)">
-        <div class="modal-header">
-            <h3 class="modal-title text-center" id="modal-title">Description </h3>
-        </div>
-        <div class="modal-body" id="modal-body">
-            <textarea rows="" cols="" class="form-control"></textarea>
-        </div>
-        <div class="modal-footer">
-            <input value="Cancel" class="button_custom button_custom_reset" ng-click="page.model.close();" type="button">
-            <input value="Submit" class="button_custom" type="submit">
-        </div>
-    </form>
-</script> -->
+<script type="text/ng-template" id="gradingPopup.html">
+    <md-content class="md-padding">
+        <md-tabs md-selected="slide.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
+            <md-tab label="Family">
+                <div class="tab">
+                    <div class="col-lg-12">
+                        <div id="Updatediv1" style="overflow-y: scroll;height: 450px;overflow-x: hidden;">
+
+
+                        </div>
+                    </div>
+                </div>
+            </md-tab>
+            <md-tab md-on-select="slide.incomeTab=true" label="Photo">
+                <div class="tab">
+                    <br>
+
+                </div>
+            </md-tab>
+            <md-tab md-on-select="slide.outgoingTab=true" label="Education">
+                <div class="tab">
+                    <br>
+
+                </div>
+            </md-tab>
+            <md-tab md-on-select="slide.internalMemoTab=true" label="Profession">
+                <div class="tab">
+                    <br>
+
+                </div>
+            </md-tab>
+            <md-tab md-on-select="slide.closeTab=true" label="property">
+                <div class="tab">
+                    <br>
+
+                </div>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</script>
 
 <style>
-    .headerStyles {
-        font-size: 16px;
-    }
-    
-    .lbl {
-        margin-top: 3%;
-    }
-    
-    tr:nth-child(even) {
-        background: #f5ecef;
-    }
-    
-    tr:nth-child(odd) {
-        background: #FFF;
-    }
-    
-    .datepicker3 {
-        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
-    }
-    
-    .BrideOwner {
-        width: 240px;
-    }
+
 </style>

@@ -5,4 +5,27 @@
   margin-left: 2px;
   margin-right: 2px; }
 
+.infoCls {
+  line-height: 24px; }
+
+.matchmeting .carousel-indicators li {
+  display: none; }
+
+.matchmeting .lastdivcls {
+  margin-left: 19%;
+  line-height: 19px; }
+
+.bordercls {
+  border-top: 1px solid #c0b6b6;
+  padding: 1%; }
+
+.ID {
+  width: 57px; }
+
+.Name {
+  width: 180px; }
+
+.MeetingArrangedCount {
+  width: 104px; }
+
 /*# sourceMappingURL=style.css.map */
