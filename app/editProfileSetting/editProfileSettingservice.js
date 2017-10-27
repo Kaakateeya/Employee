@@ -21,7 +21,11 @@
                 return http.get(app.apiroot + 'Registration/getUpdateEmplogintoCustomersite', {
                     params: { empid: Empid, ProfileID: profileid, Narration: narration }
                 });
+            },
+            restoredProfile: function(mobj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/RestoredProfileidupdate', mobj);
             }
+
         };
     }
 

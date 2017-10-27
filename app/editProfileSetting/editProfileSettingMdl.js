@@ -2,7 +2,8 @@
     'use strict';
 
 
-    function factory(editProfileSettingService, authSvc, alertss, commonFactory, uibModal, stateParams, SelectBindServiceApp, gridConfig) {
+    function factory(editProfileSettingService, authSvc, alertss, commonFactory, uibModal, stateParams,
+        SelectBindServiceApp, gridConfig, timeout) {
         var model = {};
         model = gridConfig;
         model.scope = {};
@@ -17,7 +18,7 @@
         model.csObj = {};
         model.psdObj = {};
         model.gradeObj = {};
-
+        model.EmpNamesArr = [];
         model.showsearchrows = true;
         model.showsearch = false;
         model.showpaging = false;
@@ -32,6 +33,15 @@
             model.Managementid = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
             model.Admin = authSvc.isAdmin();
             model.pageload();
+            SelectBindServiceApp.EmpwithBranch('ProfileBranch', '').then(function(response) {
+                var empBranchData = response.data;
+                _.each(empBranchData, function(item, index) {
+                    if (index === 0) {
+                        model.EmpNamesArr = [{ "label": '--Select--', "title": '--Select--', "value": 0, ParentName: '' }];
+                    }
+                    model.EmpNamesArr.push({ "label": item.Name, "title": item.Name, "value": item.ID, ParentName: item.BranchesName });
+                });
+            });
             return model;
         };
         model.pageload = function() {
@@ -75,6 +85,7 @@
                     model.popupHeader = 'Profile Settings';
                     if (item !== undefined) {
                         model.eventType = 'edit';
+                        model.beforerestoredprofile = item.ProfileStatusID;
                         model.rdlapplicationstatus = item.ProfileStatusID;
                         model.txtnoofdaysinactive = item.NoofDaysinactivated;
                         model.txtreasonforinactive = item.Reason4InActive;
@@ -125,6 +136,26 @@
         };
         model.profileSettingAndDispalySubmit = function(IProfileDisplayName, ILoginStatusName, IBlockedreason, ITypeofReport, Icurrentprofilestatusid, Iprofilegrade, INoofDaysinactivated, IReason4InActive,
             IRequestedBy, type) {
+
+            ///27_10_2017_Delete to Active Reason
+            model.resoreobj = {
+                CustID: custID,
+                EmpID: parseInt(model.empid),
+                RequestedBY: model.rbtnrequestedby !== null && model.rbtnrequestedby !== '' && model.rbtnrequestedby !== undefined ? parseInt(model.rbtnrequestedby) : null,
+                RequestedBYEmpID: model.ddlemployeenamed !== null && model.ddlemployeenamed !== '' && model.ddlemployeenamed !== undefined ? parseInt(model.ddlemployeenamed) : null,
+                RelationshipID: model.ddlrelationship !== null && model.ddlrelationship !== '' && model.ddlrelationship !== undefined ? parseInt(model.ddlrelationship) : null,
+                Relationshipname: model.txtrelationshipname !== null && model.txtrelationshipname !== '' && model.txtrelationshipname !== undefined ? model.txtrelationshipname : null,
+                Reasonforrestore: model.txtReasonforrestore !== null && model.txtReasonforrestore !== '' && model.txtReasonforrestore !== undefined ? model.txtReasonforrestore : null,
+                PriviousProfileStatus: parseInt(model.beforerestoredprofile)
+            };
+            if (model.beforerestoredprofile !== 54 && model.beforerestoredprofile !== 55) {
+                if (parseInt(Icurrentprofilestatusid) === 54) {
+                    editProfileSettingService.restoredProfile(model.resoreobj).then(function(response) {
+                        console.log(response);
+                    });
+                }
+            }
+            //
             model.Mobj = {
                 intCusID: custID,
                 EmpID: model.empid,
@@ -213,11 +244,44 @@
             }
             return true;
         };
+
+        model.ShowifActive = function() {
+            if (parseInt(model.rdlapplicationstatus) === 54) {
+                model.txtnoofdaysinactive = '';
+                model.txtreasonforinactive = '';
+                model.ddlrequestedby = '';
+                return true;
+            }
+            return false;
+        };
+        model.showcustempcndn = function() {
+            if (parseInt(model.rbtnrequestedby) === 2) {
+                model.txtnoofdaysinactive = '';
+                model.txtreasonforinactive = '';
+                model.ddlrequestedby = '';
+                return true;
+            }
+            return false;
+        };
+        model.showcustempcndnfalse = function() {
+            if (parseInt(model.rbtnrequestedby) === 1) {
+                model.txtnoofdaysinactive = '';
+                model.txtreasonforinactive = '';
+                model.ddlrequestedby = '';
+                return true;
+            }
+            return false;
+        };
         model.profileSetting = [
             { lblname: 'Application Status', controlType: 'radio', ngmodel: 'rdlapplicationstatus', ownArray: 'AplicationStatusArr', parameterValue: 'rdlapplicationstatus' },
             { lblname: 'No of Days to be inactivated ', controlType: 'textbox', ngmodel: 'txtnoofdaysinactive', parameterValue: 'txtnoofdaysinactive', parentDependecy: 'hideifActive' },
             { lblname: 'Reason for InActive', controlType: 'textareaSide', ngmodel: 'txtreasonforinactive', parameterValue: 'txtreasonforinactive', parentDependecy: 'hideifActive' },
             { lblname: 'Requested By', controlType: 'select', ngmodel: 'ddlrequestedby', typeofdata: 'childStayingWith', parameterValue: 'ddlrequestedby', parentDependecy: 'hideifActive' },
+            { lblname: 'Requested by', controlType: 'radio', ngmodel: 'rbtnrequestedby', ownArray: 'requestedbyarr', parameterValue: 'rbtnrequestedby', parentDependecy: 'ShowifActive' },
+            { lblname: 'Emp name', controlType: 'select', ngmodel: 'ddlemployeenamed', ownArray: 'EmpNamesArr', parameterValue: 'ddlemployeenamed', parentDependecy: 'showcustempcndn' },
+            { lblname: 'RelationShip', controlType: 'select', ngmodel: 'ddlrelationship', typeofdata: 'childStayingWith', parameterValue: 'ddlrelationship', parentDependecy: 'showcustempcndnfalse' },
+            { lblname: 'Relation name', controlType: 'textbox', ngmodel: 'txtrelationshipname', parameterValue: 'txtrelationshipname', parentDependecy: 'showcustempcndnfalse' },
+            { lblname: 'Reason for restore', controlType: 'textareaSide', ngmodel: 'txtReasonforrestore', parameterValue: 'txtReasonforrestore', parentDependecy: 'ShowifActive' },
             { lblname: 'Profile Grade', controlType: 'radio', ngmodel: 'rdlprofilegrade', ownArray: 'profileGrade', parameterValue: 'rdlprofilegrade' },
         ];
         model.profileSettingDisplay = [
@@ -261,7 +325,10 @@
             { "label": "B", "title": "B", "value": 2 },
             { "label": "C", "title": "C", "value": 3 }
         ];
-
+        model.requestedbyarr = [
+            { "label": "Customer", "title": "Customer", "value": 1 },
+            { "label": "Employee", "title": "Employee", "value": 2 },
+        ];
         model.makeActive = function(item) {
             model.profileSettingAndDispalySubmit('', '', '', "ProfileSettings", 54, item.ProfileGradeID, undefined, undefined,
                 undefined, 'mmseries');
@@ -273,6 +340,6 @@
         .module('Kaakateeya')
         .factory('editProfileSettingModel', factory);
 
-    factory.$inject = ['editProfileSettingService', 'authSvc', 'alert', 'commonFactory', '$uibModal', '$stateParams', 'SelectBindServiceApp', 'single-grid-config'];
+    factory.$inject = ['editProfileSettingService', 'authSvc', 'alert', 'commonFactory', '$uibModal', '$stateParams', 'SelectBindServiceApp', 'single-grid-config', '$timeout'];
 
 })(angular);
