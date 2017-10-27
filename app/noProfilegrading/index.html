@@ -46,7 +46,7 @@
                         <div class="col-lg-2 form-group">
                             <label for="" class="control-label lbl">Profile ID</label>
                             <div>
-                                <input type="text" class="form-control" ng-model="profileID">
+                                <input type="text" class="form-control" ng-model="page.model.profileID">
                             </div>
                         </div>
                         <div class="col-lg-2 form-group">
@@ -71,7 +71,7 @@
                         <div class="col-lg-2 form-group">
                             <label for="" class="control-label lbl">Branch</label>
                             <div>
-                                <select multiselectdropdown class="smalldropdown" ng-model="page.model.branch" multiple ng-options="item.value as item.label for item in page.model.Brancharray"></select>
+                                <select multiselectdropdown pagetype="'search'" class="smalldropdown" ng-model="page.model.branch" multiple ng-options="item.value as item.label for item in page.model.Brancharray"></select>
                             </div>
                         </div>
                         <div class="col-lg-2 form-group">
@@ -80,8 +80,6 @@
                                 <select multiselectdropdown class="smalldropdown" ng-model="page.model.caste" multiple ng-options="item.value as item.label for item in page.model.Castearray"></select>
                             </div>
                         </div>
-
-
                     </div>
 
                     <div class="row">
@@ -108,8 +106,8 @@
                             <md-checkbox style="margin-top: 9%;" ng-model="page.model.isConfidential">IsConfidential</md-checkbox>
                         </div>
                         <div class="col-lg-2">
-                            <input type="button" class="btn btn-danger" style="margin-top: 11%;" value="Submit" ng-click="page.model.getNogradingprofiles();">
-                            <input type="button" class="btn btn-default" style="margin-top: 11%;margin-left: 11%;" value="Reset">
+                            <input type="button" class="btn btn-danger" style="margin-top: 11%;" value="Submit" ng-click="page.model.getNogradingprofiles(1);">
+                            <input type="button" class="btn btn-default" style="margin-top: 11%;margin-left: 11%;" value="Reset" ng-click="page.model.reset();">
                         </div>
                     </div>
                     <br>
@@ -118,52 +116,69 @@
 
         </div>
     </div>
-
-
     <complex-grid-new gid="'id1'" model="page.model.grid1" config="page.model.grid1"></complex-grid-new>
 
 </div>
 <script type="text/ng-template" id="gradingPopup.html">
-    <md-content class="md-padding">
-        <md-tabs md-selected="slide.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
-            <md-tab label="Family">
-                <div class="tab">
-                    <div class="col-lg-12">
-                        <div id="Updatediv1" style="overflow-y: scroll;height: 450px;overflow-x: hidden;">
+    <div class="modal-header header">
+        <center>To view Profile <a href="javascript:void(0);" ng-click="page.model.ViewProfile(page.model.profileIDpopup);">{{page.model.profileID}}</a></center>
+        <div class="pull-right">
+            <a href="javascript:void(0);" ng-click="page.model.closemainpopup();" style="padding:7px;font-size: 18px;
+            font-weight: bold;">X</a>
+        </div>
+    </div>
+    <div class="modal-body" style="line-height: 35px;">
+        <div class="row">
+            <div class="col-lg-4"> <label for="photoGrade" class="control-label pull-right">Family Grade</label></div>
+            <div class="col-lg-6">
+                <select multiselectdropdown class="smalldropdown" ng-model="page.model.Familygrading" ng-options="item.value as item.label for item in page.model.profileGrade"></select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4"> <label for="photoGrade" class="control-label pull-right">Photo Grade</label> </div>
+            <div class="col-lg-6">
+                <select multiselectdropdown class="smalldropdown" ng-model="page.model.photoGrading" ng-options="item.value as item.label for item in page.model.profileGrade"></select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4"> <label for="photoGrade" class="control-label pull-right">Education Grade</label> </div>
+            <div class="col-lg-6">
+                <select multiselectdropdown class="smalldropdown" ng-model="page.model.educationGrading" ng-options="item.value as item.label for item in page.model.profileGrade"></select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4"> <label for="photoGrade" class="control-label pull-right">Profesion Grade</label> </div>
+            <div class="col-lg-6">
+                <select multiselectdropdown class="smalldropdown" ng-model="page.model.professionGrading" ng-options="item.value as item.label for item in page.model.profileGrade"></select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4"> <label for="photoGrade" class="control-label pull-right">Property Grade</label> </div>
+            <div class="col-lg-6">
+                <select multiselectdropdown class="smalldropdown" ng-model="page.model.propertyGrading" ng-options="item.value as item.label for item in page.model.profileGrade"></select>
+            </div>
+        </div>
+    </div>
 
 
-                        </div>
-                    </div>
-                </div>
-            </md-tab>
-            <md-tab md-on-select="slide.incomeTab=true" label="Photo">
-                <div class="tab">
-                    <br>
-
-                </div>
-            </md-tab>
-            <md-tab md-on-select="slide.outgoingTab=true" label="Education">
-                <div class="tab">
-                    <br>
-
-                </div>
-            </md-tab>
-            <md-tab md-on-select="slide.internalMemoTab=true" label="Profession">
-                <div class="tab">
-                    <br>
-
-                </div>
-            </md-tab>
-            <md-tab md-on-select="slide.closeTab=true" label="property">
-                <div class="tab">
-                    <br>
-
-                </div>
-            </md-tab>
-        </md-tabs>
-    </md-content>
+    <div class="modal-footer">
+        <input type="button" class="btn btn-danger" name="submit" value="Submit" ng-click="page.model.updateGrades();">
+        <input type="button" class="btn btn-default" name="Cancel" value="Cancel" ng-click="page.model.closemainpopup();">
+    </div>
 </script>
 
 <style>
-
+    .heightcls {
+        height: 230px;
+    }
+    
+    .sno {
+        width: 83px;
+    }
+    
+    .header {
+        background-color: #eaf35e;
+        font-weight: 800;
+    }
 </style>
