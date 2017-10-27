@@ -118,7 +118,7 @@
 
             var inobj = {
                 TypeOFGrade: model.paidType ? model.paidType : 'N',
-                StrProfileID: model.profileID,
+                StrProfileID: model.profileID && model.profileID !== '' ? model.profileID : null,
                 Gender: model.rbtnGender,
                 PaymentStatus: model.rbtnPaymentStatus ? model.rbtnPaymentStatus : null,
                 Confidential: model.isConfidential === true ? 1 : 0,
