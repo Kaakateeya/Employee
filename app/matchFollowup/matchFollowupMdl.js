@@ -422,8 +422,8 @@
                         if (flagtype === 'from') {
                             model.fromempname = slideobj.fromempname;
                             model.toempname = slideobj.toempname;
-                            model.toticketstatusemail = slideobj.ToticketStatusIDb.trim();
-                            model.fromticketstatusemail = slideobj.FromticketStatusIDb.trim();
+                            // model.toticketstatusemail = slideobj.ToticketStatusIDb.trim();
+                            // model.fromticketstatusemail = slideobj.FromticketStatusIDb.trim();
                             model.FromOfflineExpiryDate = slideobj.FromOfflineExpiryDate;
                             model.FromOnlineMembershipExpiryDate = slideobj.FromOnlineMembershipExpiryDate;
                             model.fromcustidselef = fromcustid;
@@ -440,8 +440,8 @@
                         } else {
                             model.toempname = slideobj.fromempname;
                             model.fromempname = slideobj.toempname;
-                            model.toticketstatusemail = slideobj.FromticketStatusIDb.trim();
-                            model.fromticketstatusemail = slideobj.ToticketStatusIDb.trim();
+                            // model.toticketstatusemail = slideobj.FromticketStatusIDb.trim();
+                            // model.fromticketstatusemail = slideobj.ToticketStatusIDb.trim();
                             model.FromOfflineExpiryDate = slideobj.ToOfflineExpiryDate;
                             model.FromOnlineMembershipExpiryDate = slideobj.ToonlineExpiryDate;
                             model.fromcustidselef = fromcustid;
@@ -494,6 +494,8 @@
                             if (_.isArray(response.data) && response.data.length > 0) {
                                 model.infnArr = {};
                                 model.infnArr = (response.data)[0];
+                                model.toticketstatusemail = model.infnArr.ToCust_InterestStatus.trim();
+                                model.fromticketstatusemail = model.infnArr.FromCust_InterestStatus.trim();
                                 if (model.infnArr.Toticketid !== null && model.infnArr.Toticketid !== "" && model.infnArr.Toticketid !== undefined) {
                                     matchFollowupServices.getMatchfollowupticketStatus(model.infnArr.Toticketid).then(function(respststo) {
                                         model.ToTicketMatchmeetingStatus = respststo.data[0].trim();

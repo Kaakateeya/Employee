@@ -45,7 +45,6 @@
         };
 
         model.viewmmInfo = function(row) {
-            debugger;
             var inobj = {};
             if (model.rbtnSearchBy === '0') {
                 inobj.Empid = row.EmployeeId;
