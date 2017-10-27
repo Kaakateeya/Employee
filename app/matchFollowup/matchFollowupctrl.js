@@ -17,6 +17,7 @@
                  model.config.headettemp = "templates/matchFollowupHeader.html";
                  //  $rootScope.colorurl = 'matchColor';
                  model.activetab = 1;
+                 model.EmpNamesArr = [];
                  scope.$on("$destroy", vm.destroy);
                  model.isDisabledsubmit = false;
              };
