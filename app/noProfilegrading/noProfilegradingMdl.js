@@ -237,7 +237,6 @@
         };
 
         model.grid1.exportexcel = function(topage) {
-            debugger;
             model.exportarray = [];
             model.exportarray = model.excelData;
             var options = {
