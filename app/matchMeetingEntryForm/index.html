@@ -10,16 +10,16 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="row">
-                        <div class="col-lg-5"><label for="" class="control-label required">Bride profileID</label></div>
+                        <div class="col-lg-4"><label for="" class="control-label required">Bride profileID</label></div>
                         <div class="col-lg-3 form-group">
                             <input type="text" ng-model="page.model.brideProfileID" class="form-control" ng-blur="page.model.getEmpDetails(page.model.brideProfileID, 1,page.model.groomProfileID);" required>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-5">
                             <label for="" class="control-label">{{page.model.brideEmpID}}</label>
                         </div>
                     </div>
                     <div class="row" ng-hide="page.model.chkphonenumbers">
-                        <div class="col-lg-5 clearfix"><label for="" class="control-label required">Meeting date/time</label></div>
+                        <div class="col-lg-4 clearfix"><label for="" class="control-label required">Meeting date/time</label></div>
                         <custom-datepicker name="date" style="padding-right: 0px;" ng-model="page.model.txtmeetingDate" ng-required="true" class="datepicker3 col-lg-2" date-options="page.model.dateOptions"></custom-datepicker>
                         <div class="col-lg-2">
                             <select name="hrs" multiselectdropdown ng-model="page.model.ddlhrs" ng-required="true" ng-options="item.value as item.label for item in page.model.hrsbindArr"></select>
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="row" ng-hide="page.model.chkphonenumbers">
-                        <div class="col-lg-5"><label for="" class="control-label required">Members joining the meeting (Bride) </label></div>
+                        <div class="col-lg-4"><label for="" class="control-label required">Members joining the meeting (Bride) </label></div>
                         <div class="col-lg-6"><select multiselectdropdown name="bridemembers" multiple pagetype="'search'" typeofdata="'childStayingWith'" ng-model="page.model.ddlbrideMembers" ng-required="true"></select></div>
                     </div>
                     <div style="color:#a94442;" class="row clearfix" ng-if="((MMEntryForm.bridemembers.$invalid) && (MMEntryForm.$submitted))" ng-messages="MMEntryForm.bridemembers.$error" role="alert">
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="row" ng-hide="page.model.chkphonenumbers">
-                        <div class="col-lg-5"><label for="" class="control-label required">Meeting arranged by emp</label></div>
+                        <div class="col-lg-4"><label for="" class="control-label required">Meeting arranged by emp</label></div>
                         <div class="col-lg-6"><select multiselectdropdown name="ddlArrangedByEmp" typeofdata="'onlyEmpNames'" ng-model="page.model.ddlArrangedByEmp" required></select></div>
                     </div>
                     <div style="color:#a94442;" class="row clearfix" ng-if="((MMEntryForm.ddlArrangedByEmp.$invalid) && (MMEntryForm.$submitted))" ng-messages="MMEntryForm.ddlArrangedByEmp.$error" role="alert">
@@ -61,18 +61,18 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="row">
-                        <div class="col-lg-5"><label for="" class="control-label required">Groom profileID</label></div>
+                        <div class="col-lg-4"><label for="" class="control-label required">Groom profileID</label></div>
                         <div class="col-lg-3 form-group"><input type="text" class="form-control" ng-model="page.model.groomProfileID" required ng-blur="page.model.getEmpDetails(page.model.groomProfileID, 2,page.model.brideProfileID);"></div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-5">
                             <label for="" class="control-label">{{page.model.groomEmpID}}</label>
                         </div>
                     </div>
                     <div class="row" ng-hide="page.model.chkphonenumbers">
-                        <div class="col-lg-5"><label for="" class="control-label required">Place</label></div>
+                        <div class="col-lg-4"><label for="" class="control-label required">Place</label></div>
                         <div class="col-lg-6 form-group"><input type="text" class="form-control" ng-model="page.model.txtPlace" required></div>
                     </div>
                     <div class="row" ng-hide="page.model.chkphonenumbers">
-                        <div class="col-lg-5"><label for="" class="control-label required">Members joining the meeting (Groom)</label></div>
+                        <div class="col-lg-4"><label for="" class="control-label required">Members joining the meeting (Groom)</label></div>
                         <div class="col-lg-6"><select multiselectdropdown name="ddlGroomMembers" multiple pagetype="'search'" typeofdata="'childStayingWith'" ng-model="page.model.ddlGroomMembers" required></select></div>
                     </div>
 
@@ -85,7 +85,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-2"><label for="" class="control-label required">Notes for meeting</label></div>
-                <div class="col-lg-9"><textarea style="margin-left: 6%;" name="txtNotes" id="" cols="115" rows="3" class="form-control" ng-model="page.model.txtNotes" required></textarea></div>
+                <div class="col-lg-9"><textarea style="" name="txtNotes" id="" cols="115" rows="3" class="form-control" ng-model="page.model.txtNotes" required></textarea></div>
             </div>
             <div style="color:#a94442;" class="row clearfix" ng-if="((MMEntryForm.txtNotes.$invalid) && (MMEntryForm.$submitted))" ng-messages="MMEntryForm.txtNotes.$error" role="alert">
                 <div ng-message-exp="['required']" style="margin-left: 22%;">This field is required.

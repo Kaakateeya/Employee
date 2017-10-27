@@ -182,17 +182,19 @@
                                         model.casteFlag = true;
                                         model.expressFlag = true;
                                         model.castedataArr = res.data.m_Item1[1];
-                                        model.casteDiff = 'Bride caste name is ' + res.data.m_Item1[1][0].CasteName + ' and Groom caste name is ' + res.data.m_Item1[2][0].CasteName + '';
-                                        if (res.data.m_Item4 === 10 && res.data.m_Item5 === 10) {
-                                            model.ExpressintrstText = 'Both expressed interest to eachother';
-                                        } else if (res.data.m_Item4 === 10 && res.data.m_Item5 === 0) {
-                                            model.ExpressintrstText = 'Bride expressed interest to groom';
-                                        } else if (res.data.m_Item4 === 0 && res.data.m_Item5 === 10) {
-                                            model.ExpressintrstText = 'Groom expressed interest to bride';
-                                        } else {
-                                            model.expressFlag = false;
+                                        model.casteDiff = 'Bride caste name is ' + (res.data.m_Item1[1].length > 0 ? res.data.m_Item1[1][0].CasteName : '') + ' and Groom caste name is ' + res.data.m_Item1[2][0].CasteName + '';
+                                        if (res.data.m_Item1[1].length > 0) {
+                                            if (res.data.m_Item4 === 10 && res.data.m_Item5 === 10) {
+                                                model.ExpressintrstText = 'Both expressed interest to eachother';
+                                            } else if (res.data.m_Item4 === 10 && res.data.m_Item5 === 0) {
+                                                model.ExpressintrstText = 'Bride expressed interest to groom';
+                                            } else if (res.data.m_Item4 === 0 && res.data.m_Item5 === 10) {
+                                                model.ExpressintrstText = 'Groom expressed interest to bride';
+                                            } else {
+                                                model.expressFlag = false;
+                                            }
+                                            modelpopupopenmethod.showPopup('meeetingStatus.html', model.scope, 'md', '');
                                         }
-                                        modelpopupopenmethod.showPopup('meeetingStatus.html', model.scope, 'md', '');
                                     }
                                     break;
                             }

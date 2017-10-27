@@ -431,8 +431,6 @@
                             model.Fromsurname = slideobj.Fromsurname;
                             model.Tosurname = slideobj.Tosurname;
                             model.logidmatchfollowup = slideobj.Expressinterestlogid;
-                            // model.FromTicketMatchmeetingStatus = slideobj.FromTicketMatchmeetingStatus;
-                            // model.ToTicketMatchmeetingStatus = slideobj.ToTicketMatchmeetingStatus;
                             model.fromIsconfidential = slideobj.fromIsconfidential;
                             model.toIsconfidential = slideobj.toIsconfidential;
                             model.fromHighconfidential = slideobj.fromHighconfidential;
@@ -451,8 +449,6 @@
                             model.Fromsurname = slideobj.Tosurname;
                             model.Tosurname = slideobj.Fromsurname;
                             model.logidmatchfollowup = slideobj.ExpressinterestTologid;
-                            // model.FromTicketMatchmeetingStatus = slideobj.ToTicketMatchmeetingStatus;
-                            // model.ToTicketMatchmeetingStatus = slideobj.FromTicketMatchmeetingStatus;
                             model.fromIsconfidential = slideobj.toIsconfidential;
                             model.toIsconfidential = slideobj.fromIsconfidential;
                             model.fromHighconfidential = slideobj.toHighconfidential;
@@ -465,11 +461,6 @@
                                 model.FromTicketMatchmeetingStatus = respsts.data[0].trim();
                             });
                         }
-                        // if (model.ToTicketchkStattus !== null && model.ToTicketchkStattus !== "" && model.ToTicketchkStattus !== undefined) {
-                        //     matchFollowupServices.getMatchfollowupticketStatus(model.ToTicketchkStattus).then(function(respststo) {
-                        //         model.ToTicketMatchmeetingStatus = respststo.data[0].trim();
-                        //     });
-                        // }
                         model.ServiceDate = slideobj.ServiceDate;
                         model.selfname = selfname;
                         model.selfemail = selfemail;
@@ -544,7 +535,7 @@
                     }
                     return textalert;
                 };
-                model.ActionSubmit = function(obj, str, intrstType, callmatchdiscussion) {
+                model.ActionSubmit = function(obj, str, intrstType, callmatchdiscussion, matchfollowupobj) {
                     ////
                     if (model.typeOfCtrl === '1' || model.typeOfCtrl === '0') {
                         var status = model.typeOfCtrl === '1' ? 1 : 2;
@@ -562,125 +553,116 @@
                             if (response.data === parseInt(1)) {} else {}
                         });
                     }
-                    obj.CallDiscussion = obj.CallDiscussion;
-                    var alertmsg = '',
-                        replyTypedisplay = '';
-                    var inputObj = {
-                        CallType: obj.CallType,
-                        RelationID: obj.RelationID,
-                        RelationName: obj.RelationName,
-                        CallResult: obj.CallResult,
-                        PhoneNum: obj.PhoneNum,
-                        CallDiscussion: obj.CallDiscussion,
-                        DisplayStatus: parseInt(obj.DisplayStatus),
-                        TicketID: model.ActionTicket,
-                        EmpID: model.empid,
-                        // Replaytypeid: obj.Replaytypeid,
-                        AssignedEmpID: obj.AssignedEmpID
+                    timeout(function() {
+                        if (callmatchdiscussion !== "" && callmatchdiscussion !== undefined && callmatchdiscussion !== null) {
+                            matchFollowupServices.ActionSubmit(matchfollowupobj).then(function(response) {
 
-                    };
-                    matchFollowupServices.ActionSubmit(inputObj).then(function(response) {
-                        model.isDisabledsubmit = false;
-                        if (parseInt(response.data) === 1) {
-                            if (str !== 'Close') {
-                                model.closeAction();
-                            }
-                            switch (intrstType) {
-                                case 1:
-                                    model.mailInput.Notes = obj.CallDiscussion + (callmatchdiscussion !== "" && callmatchdiscussion !== null && callmatchdiscussion !== undefined ? ("<br><br><span style='text-align: justify;margin-left: 29px;padding-top: 18px;'>" + callmatchdiscussion) + "</span>" : '') + model.emailmanagers;
-                                    break;
-                                case 0:
-                                    model.mailInput.Notes = obj.CallDiscussion + model.emailmanagers;
-                                    break;
-                                default:
-                                    model.mailInput.Notes = obj.CallDiscussion + model.emailmanagers;
-                                    break;
-                            }
+                            });
+                        }
+                    }, 200);
+                    timeout(function() {
+                        obj.CallDiscussion = obj.CallDiscussion;
+                        var alertmsg = '',
+                            replyTypedisplay = '';
+                        var inputObj = {
+                            CallType: obj.CallType,
+                            RelationID: obj.RelationID,
+                            RelationName: obj.RelationName,
+                            CallResult: obj.CallResult,
+                            PhoneNum: obj.PhoneNum,
+                            CallDiscussion: obj.CallDiscussion,
+                            DisplayStatus: parseInt(obj.DisplayStatus),
+                            TicketID: model.ActionTicket,
+                            EmpID: model.empid,
+                            // Replaytypeid: obj.Replaytypeid,
+                            AssignedEmpID: obj.AssignedEmpID
 
-                            if ((str === 'Incoming') || (str === 'Out going')) {
-                                if ((model.actobj.rbtnInDisplay === '0' && model.actobj.rbtnReplyType === '3') || (model.actobj.rbtnOutDisplay === '0' && model.actobj.rbtnReplyTypeout === '3')) {
+                        };
+                        matchFollowupServices.ActionSubmit(inputObj).then(function(response) {
+                            model.isDisabledsubmit = false;
+                            if (parseInt(response.data) === 1) {
+                                if (str !== 'Close') {
+                                    model.closeAction();
+                                }
+                                switch (intrstType) {
+                                    case 1:
+                                        model.mailInput.Notes = obj.CallDiscussion + (callmatchdiscussion !== "" && callmatchdiscussion !== null && callmatchdiscussion !== undefined ? ("<br><br><span style='text-align: justify;margin-left: 29px;padding-top: 18px;'>" + callmatchdiscussion) + "</span>" : '') + model.emailmanagers;
+                                        break;
+                                    case 0:
+                                        model.mailInput.Notes = obj.CallDiscussion + model.emailmanagers;
+                                        break;
+                                    default:
+                                        model.mailInput.Notes = obj.CallDiscussion + model.emailmanagers;
+                                        break;
+                                }
 
-                                } else {
-                                    if ((model.fromIsconfidential === 0 && model.toIsconfidential === 0 && model.fromHighconfidential === 0 && model.toHighconfidential === 0) || (model.actobj.rbtnOutDisplay === '1' || model.actobj.rbtnInDisplay === '1')) {
-                                        if (model.mailInput.TicketStatusID === "NotViewed") {
-                                            matchFollowupServices.sendMail(model.mailInput).then(function(response) {
-                                                if (parseInt(response.data) === 1) {}
-                                            });
-                                            model.Resendmail(model.tocustidself, model.fromcustidselef, model.toprofileidinterest, model.ActionProfileID, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
-                                        } else {
-                                            matchFollowupServices.sendMail(model.mailInput).then(function(response) {
-                                                if (parseInt(response.data) === 1) {}
-                                            });
+                                if ((str === 'Incoming') || (str === 'Out going')) {
+                                    if ((model.actobj.rbtnInDisplay === '0' && model.actobj.rbtnReplyType === '3') || (model.actobj.rbtnOutDisplay === '0' && model.actobj.rbtnReplyTypeout === '3')) {
+
+                                    } else {
+                                        if ((model.fromIsconfidential === 0 && model.toIsconfidential === 0 && model.fromHighconfidential === 0 && model.toHighconfidential === 0) || (model.actobj.rbtnOutDisplay === '1' || model.actobj.rbtnInDisplay === '1')) {
+                                            if (model.mailInput.TicketStatusID === "NotViewed") {
+                                                matchFollowupServices.sendMail(model.mailInput).then(function(response) {
+                                                    if (parseInt(response.data) === 1) {}
+                                                });
+                                                model.Resendmail(model.tocustidself, model.fromcustidselef, model.toprofileidinterest, model.ActionProfileID, model.FromOfflineExpiryDate, model.FromOnlineMembershipExpiryDate);
+                                            } else {
+                                                matchFollowupServices.sendMail(model.mailInput).then(function(response) {
+                                                    if (parseInt(response.data) === 1) {}
+                                                });
+                                            }
                                         }
                                     }
                                 }
-                            }
-                            var curdate = moment().format('Do MMMM YYYY, h:mm:ss');
-                            if (str === 'Incoming') {
-                                alertmsg = model.textforalerts(model.incommingbtntext, 'Incoming call created ');
-                                replyTypedisplay = 'INCOMING';
-                            } else if (str === 'Out going') {
-                                alertmsg = model.textforalerts(model.incommingbtntext, 'Out going created ');
-                                replyTypedisplay = 'OUT GOING';
-                            } else if (str === 'Internal Memo') {
-                                alertmsg = model.textforalerts(model.incommingbtntext, 'memo created ');
-                                replyTypedisplay = 'INTERNAL MEMO';
-                            } else {
-                                alertmsg = model.textforalerts(model.incommingbtntext, 'Ticket closed ');
-                                replyTypedisplay = 'Close';
-                            }
-                            var relation = '';
-                            if (obj.RelationID !== undefined) {
-                                relation = (_.where(arrayConstants.childStayingWith, { value: parseInt(obj.RelationID) }))[0].label;
-                            }
-                            _.each(config.slides, function(item) {
-                                if (model.ActionTicket === item.FromTicket && replyTypedisplay !== 'Close') {
-                                    item.FromTicketHisoryType = replyTypedisplay;
-                                    item.FromTicketInfo = replyTypedisplay + ' done on ' + curdate + '(0 days ago)';
-                                    item.FromTicketHisoryNAME = model.loginempName;
-                                    item.FromTicketHisoryCallStatus = obj.CallResult === 417 ? 'Successfull' : (obj.CallResult === 418 ? 'UnSuccessfull' : '');
-                                    item.FromTicketHisoryCallReceivedBy = obj.RelationName;
-                                    item.FromTicketHisoryReplyDesc = obj.CallDiscussion;
-                                    item.FromTicketHisoryRelationShip = relation;
-                                } else if (model.ActionTicket === item.ToTicket && replyTypedisplay !== 'Close') {
-                                    item.ToTicketHisoryType = replyTypedisplay;
-                                    item.ToTicketInfo = replyTypedisplay + ' done on ' + curdate + '(0 days ago)';
-                                    item.ToTicketHisoryNAME = model.loginempName;
-                                    item.ToTicketHisoryCallStatus = obj.CallResult === 417 ? 'Successfull' : (obj.CallResult === 418 ? 'UnSuccessfull' : '');
-                                    item.ToTicketHisoryCallReceivedBy = obj.RelationName;
-                                    item.ToTicketHisoryReplyDesc = obj.CallDiscussion;
-                                    item.ToTicketHisoryRelationShip = relation;
+                                var curdate = moment().format('Do MMMM YYYY, h:mm:ss');
+                                if (str === 'Incoming') {
+                                    alertmsg = model.textforalerts(model.incommingbtntext, 'Incoming call created ');
+                                    replyTypedisplay = 'INCOMING';
+                                } else if (str === 'Out going') {
+                                    alertmsg = model.textforalerts(model.incommingbtntext, 'Out going created ');
+                                    replyTypedisplay = 'OUT GOING';
+                                } else if (str === 'Internal Memo') {
+                                    alertmsg = model.textforalerts(model.incommingbtntext, 'memo created ');
+                                    replyTypedisplay = 'INTERNAL MEMO';
+                                } else {
+                                    alertmsg = model.textforalerts(model.incommingbtntext, 'Ticket closed ');
+                                    replyTypedisplay = 'Close';
                                 }
-                            });
-                            alertss.timeoutoldalerts(model.scope, 'alert-success', alertmsg + ' successfully', 9500);
-                        } else {
-                            alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail send Failed', 9500);
-                        }
-                    });
+                                var relation = '';
+                                if (obj.RelationID !== undefined) {
+                                    relation = (_.where(arrayConstants.childStayingWith, { value: parseInt(obj.RelationID) }))[0].label;
+                                }
+                                _.each(config.slides, function(item) {
+                                    if (model.ActionTicket === item.FromTicket && replyTypedisplay !== 'Close') {
+                                        item.FromTicketHisoryType = replyTypedisplay;
+                                        item.FromTicketInfo = replyTypedisplay + ' done on ' + curdate + '(0 days ago)';
+                                        item.FromTicketHisoryNAME = model.loginempName;
+                                        item.FromTicketHisoryCallStatus = obj.CallResult === 417 ? 'Successfull' : (obj.CallResult === 418 ? 'UnSuccessfull' : '');
+                                        item.FromTicketHisoryCallReceivedBy = obj.RelationName;
+                                        item.FromTicketHisoryReplyDesc = obj.CallDiscussion;
+                                        item.FromTicketHisoryRelationShip = relation;
+                                    } else if (model.ActionTicket === item.ToTicket && replyTypedisplay !== 'Close') {
+                                        item.ToTicketHisoryType = replyTypedisplay;
+                                        item.ToTicketInfo = replyTypedisplay + ' done on ' + curdate + '(0 days ago)';
+                                        item.ToTicketHisoryNAME = model.loginempName;
+                                        item.ToTicketHisoryCallStatus = obj.CallResult === 417 ? 'Successfull' : (obj.CallResult === 418 ? 'UnSuccessfull' : '');
+                                        item.ToTicketHisoryCallReceivedBy = obj.RelationName;
+                                        item.ToTicketHisoryReplyDesc = obj.CallDiscussion;
+                                        item.ToTicketHisoryRelationShip = relation;
+                                    }
+                                });
+                                alertss.timeoutoldalerts(model.scope, 'alert-success', alertmsg + ' successfully', 9500);
+                            } else {
+                                alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail send Failed', 9500);
+                            }
+                        });
+                    }, 500);
                 };
                 model.inCallsSubmit = function(obj) {
                     model.isDisabledsubmit = true;
-                    var inputObj;
-                    if (model.incommingbtntext === 'Close Ticket') {
-                        inputObj = {
-                            CallType: 563,
-                            CallDiscussion: obj.txtInCalldiscussion
-                        };
-                        model.ActionSubmit(inputObj, 'Incoming', parseInt(obj.rbtnshowmatchfollowup), obj.txtmatchfollowupCalldiscussion);
-                    } else {
-                        inputObj = {
-                            CallType: 377,
-                            RelationID: obj.ddlInreceivedfrom,
-                            RelationName: obj.txtInRelationname,
-                            CallResult: obj.ddlInCallresult,
-                            PhoneNum: obj.txtInCalltelephonenumber,
-                            CallDiscussion: obj.txtInCalldiscussion,
-                            DisplayStatus: obj.rbtnInDisplay
-                        };
-                        model.ActionSubmit(inputObj, 'Incoming', parseInt(obj.rbtnshowmatchfollowup), obj.txtmatchfollowupCalldiscussion);
-                    }
+                    var matchfollowupobj;
                     if (obj.txtmatchfollowupCalldiscussion !== "" && obj.txtmatchfollowupCalldiscussion !== undefined && obj.txtmatchfollowupCalldiscussion !== null) {
-                        var matchfollowupobj = {
+                        matchfollowupobj = {
                             CallType: 377,
                             RelationID: obj.ddlInreceivedfrom,
                             RelationName: obj.txtInRelationname,
@@ -692,36 +674,39 @@
                             EmpID: model.empid,
                             AssignedEmpID: obj.AssignedEmpID
                         };
-                        matchFollowupServices.ActionSubmit(matchfollowupobj).then(function(response) {
+                        // matchFollowupServices.ActionSubmit(matchfollowupobj).then(function(response) {
 
-                        });
+                        // });
                     }
+
+                    var inputObj;
+                    if (model.incommingbtntext === 'Close Ticket') {
+                        inputObj = {
+                            CallType: 563,
+                            CallDiscussion: obj.txtInCalldiscussion
+                        };
+                        model.ActionSubmit(inputObj, 'Incoming', parseInt(obj.rbtnshowmatchfollowup), obj.txtmatchfollowupCalldiscussion, matchfollowupobj);
+                    } else {
+                        inputObj = {
+                            CallType: 377,
+                            RelationID: obj.ddlInreceivedfrom,
+                            RelationName: obj.txtInRelationname,
+                            CallResult: obj.ddlInCallresult,
+                            PhoneNum: obj.txtInCalltelephonenumber,
+                            CallDiscussion: obj.txtInCalldiscussion,
+                            DisplayStatus: obj.rbtnInDisplay
+                        };
+                        model.ActionSubmit(inputObj, 'Incoming', parseInt(obj.rbtnshowmatchfollowup), obj.txtmatchfollowupCalldiscussion, matchfollowupobj);
+                    }
+
 
                 };
                 model.outCallsSubmit = function(obj) {
                     model.isDisabledsubmit = true;
                     var inputObj;
-                    if (model.incommingbtntext === 'Close Ticket') {
-                        inputObj = {
-                            CallType: 563,
-                            CallDiscussion: obj.txtOutCalldiscussion
-                        };
-                        model.ActionSubmit(inputObj, 'Out going', parseInt(obj.rbtnshowOutmatchfollowup), obj.txtmatchfollowupCalldiscussionOut);
-                    } else {
-                        inputObj = {
-                            CallType: 378,
-                            RelationID: obj.ddlOutreceivedby,
-                            RelationName: obj.txtOutRelationname,
-                            CallResult: obj.ddlOutcallresultout,
-                            PhoneNum: obj.txtOutCalltelephonenumber,
-                            CallDiscussion: obj.txtOutCalldiscussion,
-                            DisplayStatus: obj.rbtnOutDisplay
-
-                        };
-                        model.ActionSubmit(inputObj, 'Out going', parseInt(obj.rbtnshowOutmatchfollowup), obj.txtmatchfollowupCalldiscussionOut);
-                    }
+                    var matchfollowupobj;
                     if (obj.txtmatchfollowupCalldiscussionOut !== "" && obj.txtmatchfollowupCalldiscussionOut !== undefined && obj.txtmatchfollowupCalldiscussionOut !== null) {
-                        var matchfollowupobj = {
+                        matchfollowupobj = {
                             CallType: 378,
                             RelationID: obj.ddlOutreceivedby,
                             RelationName: obj.txtOutRelationname,
@@ -733,8 +718,28 @@
                             EmpID: model.empid,
                             AssignedEmpID: obj.AssignedEmpID
                         };
-                        matchFollowupServices.ActionSubmit(matchfollowupobj).then(function(response) {});
+                        // matchFollowupServices.ActionSubmit(matchfollowupobj).then(function(response) {});
                     }
+                    if (model.incommingbtntext === 'Close Ticket') {
+                        inputObj = {
+                            CallType: 563,
+                            CallDiscussion: obj.txtOutCalldiscussion
+                        };
+                        model.ActionSubmit(inputObj, 'Out going', parseInt(obj.rbtnshowOutmatchfollowup), obj.txtmatchfollowupCalldiscussionOut, matchfollowupobj);
+                    } else {
+                        inputObj = {
+                            CallType: 378,
+                            RelationID: obj.ddlOutreceivedby,
+                            RelationName: obj.txtOutRelationname,
+                            CallResult: obj.ddlOutcallresultout,
+                            PhoneNum: obj.txtOutCalltelephonenumber,
+                            CallDiscussion: obj.txtOutCalldiscussion,
+                            DisplayStatus: obj.rbtnOutDisplay
+
+                        };
+                        model.ActionSubmit(inputObj, 'Out going', parseInt(obj.rbtnshowOutmatchfollowup), obj.txtmatchfollowupCalldiscussionOut, matchfollowupobj);
+                    }
+
                 };
                 model.memoSubmit = function(obj) {
                     model.isDisabledsubmit = true;
