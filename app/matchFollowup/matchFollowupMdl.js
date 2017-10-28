@@ -52,6 +52,8 @@
                 };
 
                 model.bindEmpnames = function() {
+                    model.BranchName = getArray.GArray('BranchName');
+                    model.RegionArr = getArray.GArray('Regionofbranches');
                     if ((model.Managementid) === 'true' && model.EmpNamesArr.length === 0) {
                         SelectBindServiceApp.EmpwithBranch('ProfileBranch', '').then(function(response) {
                             var empBranchData = response.data;
@@ -59,8 +61,8 @@
                                 model.EmpNamesArr.push({ "label": item.Name, "title": item.Name, "value": item.ID, ParentName: item.BranchesName });
                             });
                         });
-                        model.BranchName = getArray.GArray('BranchName');
-                        model.RegionArr = getArray.GArray('Regionofbranches');
+                        // model.BranchName = getArray.GArray('BranchName');
+                        // model.RegionArr = getArray.GArray('Regionofbranches');
                         model.lstregions = '';
                     } else {
                         model.BranchName = [];
@@ -175,7 +177,13 @@
                 };
                 model.regionChange = function(parent) {
                     model.BranchName = [];
-                    model.BranchName = Commondependency.BranchNamebindval((parent !== undefined && parent !== null && parent !== "") ? (parent).toString() : "");
+                    SelectBindServiceApp.branch(parent).then(function(response) {
+                        console.log(response);
+                        _.each(response.data, function(item) {
+                            model.BranchName.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                        });
+                    });
+                    // model.BranchName = Commondependency.BranchNamebindval((parent !== undefined && parent !== null && parent !== "") ? (parent).toString() : "");
                 };
 
                 model.proceedImage = function(status) {

@@ -115,7 +115,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'settlementPageNew', name: 'base.settlementPageNew', url: '/settlementPageNews', isloginrequired: true },
             { routeName: 'employeeViewfullprofilePrintsearch', name: 'base.employeeViewfullprofilePrintsearch', url: '/Viewfullprofilesearch/:ProfileID/:contacts', isloginrequired: true },
             { routeName: 'noProfilegrading', name: 'base.noProfilegrading', url: '/noProfilegrading', isloginrequired: true },
-
+            { routeName: 'matchfollowupReport', name: 'base.matchfollowupReport', url: '/matchfollowupReportPage', isloginrequired: true },
         ];
         $ocLazyLoadProvider.config({
             debug: true

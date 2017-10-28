@@ -11,12 +11,11 @@
          /* jshint validthis:true */
          var vm = this,
              model;
-
          vm.init = function() {
-             vm.model = model = matchfollowupReportModel;
+             vm.model = model = matchfollowupReportModel.init();
              model.scope = scope;
+             model.empNamesInOutArr = [];
          };
-
          vm.init();
 
      }
