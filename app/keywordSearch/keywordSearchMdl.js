@@ -22,15 +22,6 @@
             Keyworddlikesrch: {}
         };
         model.Searchfields = [
-            { Text: "CandidateAll", value: "CandidateAll", style: "#000;" },
-            { Text: "FatherAll", value: "FatherAll", style: "#000;" },
-            { Text: "MotherAll", value: "MotherAll", style: "#000;" },
-            { Text: "BrotherAll", value: "BrotherAll", style: "#000;" },
-            { Text: "SisterAll", value: "SisterAll", style: "#000;" },
-            { Text: "MotherBortherAll", value: "MotherBortherAll", style: "#000;" },
-            { Text: "MotherSisterAll", value: "MotherSisterAll", style: "#000;" },
-            { Text: "FatherBrotheAll", value: "FatherBrotheAll", style: "#000;" },
-            { Text: "FatherSisterAll", value: "FatherSisterAll", style: "#000;" },
             { Text: "C EducationalDetails", value: "CEducationalDetails", style: "#dc970d;" },
             { Text: "C EducationCategory", value: "CEducationCategory", style: "#dc970d;" },
             { Text: "C University", value: "CEduUniversity", style: "#dc970d;" },

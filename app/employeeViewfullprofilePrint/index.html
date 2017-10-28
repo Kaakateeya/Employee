@@ -125,12 +125,12 @@
                         </div>
                     </div>
                     <div ng-hide="page.model.textboxshowhide">
-                        <div class="personal_inform_head clearfix" ng-show="(page.model.aboutmyself[0].SelfContactNumber!==null && page.model.aboutmyself[0].SelfContactNumber!==undefined && page.model.aboutmyself[0].SelfContactNumber!=='')||(page.model.aboutmyself[0].SelfEmailID!==null && page.model.aboutmyself[0].SelfEmailID!==undefined && page.model.aboutmyself[0].SelfEmailID!=='')"
+                        <div class="personal_inform_head clearfix" ng-if="(page.model.aboutmyself[0].SelfContactNumber!==null && page.model.aboutmyself[0].SelfContactNumber!==undefined && page.model.aboutmyself[0].SelfContactNumber!=='')||(page.model.aboutmyself[0].SelfEmailID!==null && page.model.aboutmyself[0].SelfEmailID!==undefined && page.model.aboutmyself[0].SelfEmailID!=='')"
                             style="background-color: rgb(244, 182, 36); padding: 0px 10px; border-bottom: solid 1px #ccc;">
                             <h4>{{page.model.personalinfo[0].GenderID===2?"Bride Contacts":"Groom Contacts"}}
                             </h4>
                         </div>
-                        <div class="personal_inform_main_in" ng-show="(page.model.aboutmyself[0].SelfContactNumber!==null && page.model.aboutmyself[0].SelfContactNumber!==undefined && page.model.aboutmyself[0].SelfContactNumber!=='')||(page.model.aboutmyself[0].SelfEmailID!==null && page.model.aboutmyself[0].SelfEmailID!==undefined && page.model.aboutmyself[0].SelfEmailID!=='')">
+                        <div class="personal_inform_main_in" ng-if="(page.model.aboutmyself[0].SelfContactNumber!==null && page.model.aboutmyself[0].SelfContactNumber!==undefined && page.model.aboutmyself[0].SelfContactNumber!=='')||(page.model.aboutmyself[0].SelfEmailID!==null && page.model.aboutmyself[0].SelfEmailID!==undefined && page.model.aboutmyself[0].SelfEmailID!=='')">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-show="page.model.aboutmyself[0].SelfContactNumber!==null && page.model.aboutmyself[0].SelfContactNumber!==undefined && page.model.aboutmyself[0].SelfContactNumber!==''">
                                     <span style="color:Black;font-weight:bold;">Mobile</span>
