@@ -37,7 +37,6 @@
             { "label": "D", "title": "D", "value": 219 }
         ];
 
-
         model.MyProfilePageLoad = function() {
             if (model.applicationStatusarray.length === 0) {
                 helpService.getMyprofilebind(1, 2, '').then(function(response) {
@@ -56,9 +55,6 @@
                             case "Branch":
                                 model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                 model.branch = [];
-
-
-
                                 break;
                         }
                     });
@@ -67,7 +63,6 @@
         };
 
         model.reset = function() {
-
             model.profileID = '';
             model.gradingType = '';
             model.grading = 0;
@@ -85,7 +80,6 @@
             timeout(function() {
                 model.branch = [319, 320, 321, 322, 323, 324, 325, 326, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344];
             }, 1000);
-
         };
         model.returnProfileIDTemplate = function(row) {
             var paidstatusclass = row.IsPaidMember === 372 ? 'paidclass' : 'unpaid';
