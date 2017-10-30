@@ -48,6 +48,7 @@
             editProfileSettingService.getProfileSettingData(custID).then(function(response) {
                 if (response.data.length > 0) {
                     model.profileSettingArr = response.data[0].length > 0 ? JSON.parse(response.data[0]) : [];
+                    model.Profileidfordisplay = model.profileSettingArr.length > 0 ? model.profileSettingArr[0].ProfileID : '';
                     model.ConfidentialArr = response.data[1].length > 0 ? JSON.parse(response.data[1]) : [];
                     model.profileDisplayArr = response.data[2].length > 0 ? JSON.parse(response.data[2]) : [];
                     if (response.data[3] !== undefined && response.data[3].length > 0) {
@@ -279,11 +280,12 @@
             { lblname: 'Requested By', controlType: 'select', ngmodel: 'ddlrequestedby', typeofdata: 'childStayingWith', parameterValue: 'ddlrequestedby', parentDependecy: 'hideifActive' },
             { lblname: 'Requested by', controlType: 'radio', ngmodel: 'rbtnrequestedby', ownArray: 'requestedbyarr', parameterValue: 'rbtnrequestedby', parentDependecy: 'ShowifActive' },
             { lblname: 'Emp name', controlType: 'select', ngmodel: 'ddlemployeenamed', ownArray: 'EmpNamesArr', parameterValue: 'ddlemployeenamed', parentDependecy: 'showcustempcndn' },
-            { lblname: 'RelationShip', controlType: 'select', ngmodel: 'ddlrelationship', typeofdata: 'childStayingWith', parameterValue: 'ddlrelationship', parentDependecy: 'showcustempcndnfalse' },
+            { lblname: 'RelationShip', controlType: 'selectwithmethod', ngmodel: 'ddlrelationship', typeofdata: 'childStayingWith', parameterValue: 'ddlrelationship', parentDependecy: 'showcustempcndnfalse', modelmethod: 'bindnames' },
             { lblname: 'Relation name', controlType: 'textbox', ngmodel: 'txtrelationshipname', parameterValue: 'txtrelationshipname', parentDependecy: 'showcustempcndnfalse' },
             { lblname: 'Reason for restore', controlType: 'textareaSide', ngmodel: 'txtReasonforrestore', parameterValue: 'txtReasonforrestore', parentDependecy: 'ShowifActive' },
             { lblname: 'Profile Grade', controlType: 'radio', ngmodel: 'rdlprofilegrade', ownArray: 'profileGrade', parameterValue: 'rdlprofilegrade' },
         ];
+
         model.profileSettingDisplay = [
             { lblname: 'Display In', controlType: 'radio', ngmodel: 'rdldisplayin', ownArray: 'profileDisplayIn', parameterValue: 'rdldisplayin' },
             { lblname: 'Password Block/Release ', controlType: 'radio', ngmodel: 'rdlpwdblock', ownArray: 'blockReleseArr', parameterValue: 'rdlpwdblock' },
@@ -332,6 +334,17 @@
         model.makeActive = function(item) {
             model.profileSettingAndDispalySubmit('', '', '', "ProfileSettings", 54, item.ProfileGradeID, undefined, undefined,
                 undefined, 'mmseries');
+        };
+        model.bindnames = function() {
+            if (model.ddlrelationship !== '' && model.ddlrelationship !== null && model.ddlrelationship !== undefined) {
+                SelectBindServiceApp.getRelationName(3, model.Profileidfordisplay, model.ddlrelationship).then(function(response) {
+                    if (_.isArray(response.data[0]) && response.data[0].length > 0) {
+                        model.txtrelationshipname = response.data[0][0].NAME;
+                    } else {
+                        model.txtrelationshipname = '';
+                    }
+                });
+            }
         };
 
         return model;
