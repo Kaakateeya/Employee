@@ -1,0 +1,129 @@
+<div class="right_col" id="emailbounce">
+    <div class="panel-group">
+        <div class="panel-collapse collapse in">
+            <div class="panel-default regValheader" style="margin-top: -12px;box-shadow: 2px 2px 6px #ccc;" is-open="page.model.opendiv">
+                <div class="panel-heading" style="padding: 13px 0px 30px;color: rgb(160, 2, 1);border: 1px solid #ccc">
+                    <div class="col-lg-3" style="font-size: 17px;font-weight: bold;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
+                        Email Bounce Report <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+                    </div>
+                    <div class="col-lg-4" style="color:black;">
+                        <label for="All Profileid" class="col-lg-2 classlabelverify">Gender</label>
+                        <div class="col-lg-9" style="font-size:13px;">
+                            <md-radio-group name="rbtnGender" ng-change="page.model.panelbodyhide = true" layout="row" ng-model="page.model.rbtnGender" class="md-block" flex-gt-sm>
+                                <md-radio-button value="" class="md-primary">Both</md-radio-button>
+                                <md-radio-button value="1" class="md-primary">Male</md-radio-button>
+                                <md-radio-button value="2">Female</md-radio-button>
+                            </md-radio-group>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4" style="color:black;">
+                        <md-checkbox ng-model="page.model.confidential" ng-change="page.model.panelbodyhide = true">Is confidential</md-checkbox>
+                    </div>
+
+                </div>
+                <div class="panel-body" ng-show="page.model.panelbodyhide">
+                    <div class="row">
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Profile ID</label>
+                            <div>
+                                <input type="text" class="form-control" ng-model="page.model.profileid">
+                            </div>
+                        </div>
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Email</label>
+                            <div>
+                                <input type="text" class="form-control" ng-model="page.model.Email">
+                            </div>
+                        </div>
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Application status</label>
+                            <div>
+                                <select multiselectdropdown class="smalldropdown" ng-model="page.model.applicationStatus" multiple ng-options="item.value as item.label for item in page.model.applicationStatusarray"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Owner of the profile</label>
+                            <div>
+                                <select multiselectdropdown pagetype="'search'" class="smalldropdown" ng-model="page.model.ProfileOwner" multiple ng-options="item.value as item.label for item in page.model.ProfileOwnerarray"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Branch</label>
+                            <div>
+                                <select multiselectdropdown pagetype="'search'" class="smalldropdown" ng-model="page.model.branch" multiple ng-options="item.value as item.label for item in page.model.Brancharray"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Caste</label>
+                            <div>
+                                <select multiselectdropdown class="smalldropdown" ng-model="page.model.caste" multiple ng-options="item.value as item.label for item in page.model.Castearray"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Modified by	</label>
+                            <div>
+                                <select multiselectdropdown pagetype="'search'" class="smalldropdown" ng-model="page.model.modifiedBy" multiple ng-options="item.value as item.label for item in page.model.ProfileOwnerarray"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Created from date	</label>
+                            <div>
+                                <custom-datepicker name="date" ng-model="page.model.createdFromDate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Created to date</label>
+                            <div>
+                                <custom-datepicker name="date" ng-model="page.model.createdToDate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Modified from date</label>
+                            <div>
+                                <custom-datepicker name="date" ng-model="page.model.modifiedFromDate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Modified to date</label>
+                            <div>
+                                <custom-datepicker name="date" ng-model="page.model.modifiedToDate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <input type="button" class="btn btn-danger" style="margin-top: 29%;" value="Submit" ng-click="page.model.geBouncedMailsList(1);">
+                        </div>
+                        <div class="col-lg-1">
+                            <input type="button" class="btn btn-default" style="margin-top: 29%;" value="Reset" ng-click="page.model.reset();">
+                        </div>
+                    </div>
+
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <complex-grid-new gid="'id1'" model="page.model.grid1" config="page.model.grid1"></complex-grid-new>
+
+</div>
+
+
+<style>
+    #emailbounce .sno {
+        width: 70px;
+    }
+    
+    #emailbounce .ProfileId {
+        width: 115px;
+    }
+    
+    #emailbounce .EmailId,
+    #emailbounce .ModifiedEmailId,
+    #emailbounce .Name {
+        width: 240px;
+    }
+</style>

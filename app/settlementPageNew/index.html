@@ -20,7 +20,7 @@
                     <div class="col-lg-4" style="color:black;">
                         <label for="All Profileid" class="col-lg-2 classlabelverify">Gender</label>
                         <div class="col-lg-9" style="font-size:13px;">
-                            <md-radio-group name="rbtnGender" layout="row" ng-model="page.model.rbtnGender" class="md-block" flex-gt-sm>
+                            <md-radio-group name="rbtnGender" ng-change="page.model.panelbodyhide = true" layout="row" ng-model="page.model.rbtnGender" class="md-block" flex-gt-sm>
                                 <md-radio-button value="" class="md-primary">Both</md-radio-button>
                                 <md-radio-button value="1" class="md-primary">Male</md-radio-button>
                                 <md-radio-button value="2">Female</md-radio-button>

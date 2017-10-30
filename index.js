@@ -116,9 +116,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'employeeViewfullprofilePrintsearch', name: 'base.employeeViewfullprofilePrintsearch', url: '/Viewfullprofilesearch/:ProfileID/:contacts', isloginrequired: true },
             { routeName: 'noProfilegrading', name: 'base.noProfilegrading', url: '/noProfilegrading', isloginrequired: true },
             { routeName: 'listOFServuceTaken', name: 'base.listOFServuceTaken', url: '/listOFServuceTaken', isloginrequired: true },
-            { routeName: 'emailBouncereport', name: 'base.emailBouncereport', url: '/emailBouncereportPage', isloginrequired: true },
-            { routeName: 'matchfollowupReport', name: 'base.matchfollowupReport', url: '/emppendingReportPage', isloginrequired: true },
-
+            { routeName: 'matchfollowupReport', name: 'base.matchfollowupReport', url: '/matchfollowupReportPage', isloginrequired: true },
+            { routeName: 'emailBounceList', name: 'base.emailBounceList', url: '/emailBounceList', isloginrequired: true }
         ];
         $ocLazyLoadProvider.config({
             debug: true

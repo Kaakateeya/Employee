@@ -22,14 +22,14 @@
                     <div class="col-lg-4">
                         <label for="" class="control-label col-lg-6">Branch</label>
                         <div class="col-lg-6">
-                            <select multiselectdropdown class="smalldropdown" ng-model="page.model.branch" multiple ng-options="item.value as item.label for item in page.model.Brancharray">   
+                            <select multiselectdropdown pagetype="'search'" class="smalldropdown" ng-model="page.model.branch" multiple ng-options="item.value as item.label for item in page.model.Brancharray">   
                               </select>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <label for="" class="control-label col-lg-6">Owner of the profile</label>
                         <div class="col-lg-6">
-                            <select multiselectdropdown class="smalldropdown" ng-model="page.model.profileOwner" multiple ng-options="item.value as item.label for item in page.model.ProfileOwnerarray">   
+                            <select multiselectdropdown pagetype="'search'" class="smalldropdown" ng-model="page.model.profileOwner" multiple ng-options="item.value as item.label for item in page.model.ProfileOwnerarray">   
                                     </select>
                         </div>
                     </div>
