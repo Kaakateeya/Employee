@@ -3,11 +3,11 @@
 
     angular
         .module('Kaakateeya')
-        .factory('emailBouncereportModel', factory)
+        .factory('emailBounceReportModel', factory);
 
-    factory.$inject = ['emailBouncereportService'];
+    factory.$inject = ['emailBounceReportService'];
 
-    function factory(emailBouncereportService) {
+    function factory(emailBounceReportService) {
 
         var model = {};
 

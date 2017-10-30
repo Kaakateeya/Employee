@@ -3,16 +3,16 @@
 
      angular
          .module('Kaakateeya')
-         .controller('emailBouncereportCtrl', controller)
+         .controller('emailBounceReportCtrl', controller);
 
-     controller.$inject = ['emailBouncereportModel'];
+     controller.$inject = ['emailBounceReportModel'];
 
-     function controller(emailBouncereportModel) {
+     function controller(emailBounceReportModel) {
          /* jshint validthis:true */
          var vm = this;
 
          vm.init = function() {
-             vm.model = emailBouncereportModel;
+             vm.model = emailBounceReportModel;
          };
 
          vm.init();
