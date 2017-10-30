@@ -250,6 +250,13 @@
                 if (response !== undefined && response.data === parseInt(1)) {
                     //alertss.timeoutoldalerts(model.scope, 'alert-success', 'Reminder date  Updated Successfully', 3000);
                     alert("Reminder date  Updated Successfully");
+                    model.marInfo[0].ReminderDate = moment(Mobj.DateOfReminder).format('DD-MM-YYYY hh:mm:ss');
+                    model.txtreminderDate = moment(Mobj.DateOfReminder).format('MM-DD-YYYY');
+                    model.ddlremCaltype = Mobj.ReminderType1;
+                    model.ddlcontactperson = Mobj.ddlcontactperson;
+                    model.contactpersonname = Mobj.contactpersonname;
+                    model.ddlremCatgory = parseInt(Mobj.ddlremCatgory);
+                    model.remembertickets = Mobj.remembertickets;
                 } else {
                     alert("Reminder date  Updated Failed");
                     // alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Reminder date Updated Failed', 3000);
@@ -270,9 +277,6 @@
                 model.getemployee('EmapName', '2');
             }
         };
-
-
-
         model.closereminderstatus = function(reminderid) {
             model.closerem();
             model.Reminderidforclose = reminderid;

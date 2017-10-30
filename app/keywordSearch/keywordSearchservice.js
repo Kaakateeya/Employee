@@ -11,6 +11,9 @@
         return {
             keywordlikesearch: function(obj) {
                 return http.post(app.apiroot + 'EmployeeReportPage/keywordlikesearch', obj);
+            },
+            KeywordlikeSearchnewpage: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/KeywordlikeSearchnewpage', obj);
             }
         };
     }

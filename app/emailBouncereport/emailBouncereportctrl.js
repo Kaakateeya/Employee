@@ -5,14 +5,15 @@
          .module('Kaakateeya')
          .controller('emailBounceReportCtrl', controller);
 
-     controller.$inject = ['emailBounceReportModel'];
+     controller.$inject = ['emailBounceReportModel', '$scope'];
 
-     function controller(emailBounceReportModel) {
+     function controller(emailBounceReportModel, scope) {
          /* jshint validthis:true */
-         var vm = this;
+         var vm = this,
+             model;
 
          vm.init = function() {
-             vm.model = emailBounceReportModel;
+             vm.model = model = emailBounceReportModel;
          };
 
          vm.init();

@@ -15,6 +15,7 @@
              model.scope = scope;
              model.keywordcontrols = true;
              model.btnbacktosearch = false;
+             model.controllistbox = false;
              model.empid = model.slide.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
              model.slide.templateUrl = "templates/myprofileSlide.html";
              model.slide.config.headettemp = "templates/myprofileheader.html";
@@ -22,6 +23,7 @@
              model.MyProfilePageLoad();
              model.resetkeyword();
              model.panelbodyhide = true;
+             model.txtallkeywordsearh = '';
          };
          vm.init();
      }
