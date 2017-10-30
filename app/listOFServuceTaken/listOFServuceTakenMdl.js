@@ -109,8 +109,8 @@
                 strOwneroftheProfile: model.joinArray(model.profileOwner),
                 strservicetakeby: model.joinArray(model.serviceGivenEmp),
                 IsConfidential: model.confidential === true ? 1 : 0,
-                ServiceTakenFromDate: model.fromDate,
-                ServiceTakenToDate: model.toDate,
+                ServiceTakenFromDate: model.fromDate ? moment(model.fromDate).format('MM-DD-YYYY') : null,
+                ServiceTakenToDate: model.toDate ? moment(model.toDate).format('MM-DD-YYYY') : null,
                 StartIndex: null,
                 EndIndex: null,
                 ResultFlag: null
@@ -151,8 +151,8 @@
                 });
             }, 1000);
 
-            model.fromDate = '';
-            model.toDate = '';
+            model.fromDate = moment().subtract(1, 'days').format('MM-DD-YYYY');
+            model.toDate = moment().format('MM-DD-YYYY');
             model.serviceGivenEmp = '';
             model.confidential = '';
         };

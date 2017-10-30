@@ -1,10 +1,4 @@
 <div class="right_col">
-    <!-- <uib-accordion close-others="oneAtATime"> -->
-    <!-- <div uib-accordion-group class="panel-default" is-open="page.model.opendiv">
-        <uib-accordion-heading style="color: rgb(160, 2, 1);">
-            Match meeting count report <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
-        </uib-accordion-heading> -->
-
 
     <div class="panel-group">
         <div class="panel-collapse collapse in">
@@ -20,7 +14,7 @@
                         <div class="col-lg-7" style="color:black;">
                             <div class="col-lg-10 rdnoptions">
                                 <label for="Gender" class="col-lg-3 control-label">Search by</label>
-                                <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtnSearchBy" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                <md-radio-group name="rbtnBasic" ng-change="page.model.panelbodyhide=true" layout="row" ng-model="page.model.rbtnSearchBy" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                     <md-radio-button value="0" class="md-primary">Employee</md-radio-button>
                                     <md-radio-button value="1"> Customer</md-radio-button>
                                     <md-radio-button value="2"> Repeated MMeetings</md-radio-button>
