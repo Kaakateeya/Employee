@@ -197,10 +197,10 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
             });
         },
         getencrypt: function(custid) {
-            return http.get(app.apipathold + 'StaticPages/getencryptedProfileID', { params: { ProfileID: custid } });
+            return http.get(app.apiroot + 'StaticPages/getencryptedProfileID', { params: { ProfileID: custid } });
         },
         getdecrypt: function(custid) {
-            return http.get(app.apipathold + 'StaticPages/getdecryptedProfileID', { params: { ProfileID: custid } });
+            return http.get(app.apiroot + 'StaticPages/getdecryptedProfileID', { params: { ProfileID: custid } });
         }
 
     };
