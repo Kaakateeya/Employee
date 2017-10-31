@@ -24,6 +24,7 @@
              model.resetkeyword();
              model.panelbodyhide = true;
              model.txtallkeywordsearh = '';
+             model.dobshow = true;
          };
          vm.init();
      }

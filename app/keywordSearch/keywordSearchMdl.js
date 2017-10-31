@@ -10,6 +10,7 @@
         model.slide = {};
         model.grid = {};
         model.slide.config = configslide;
+        model.slide.config.dobshow = true;
         model.applicationids = [54];
         model.slide.dobshow = true;
         model.grid.showsearchrows = true;
@@ -22,7 +23,6 @@
             Keyworddlikesrch: {}
         };
         model.Searchfields = [
-            { Text: "ContactNoAll", value: "ContactNo_All" },
             { Text: "CAboutMe", value: "CAboutMe" },
             { Text: "CAboutFamily", value: "CAboutFamily" },
             { Text: "CBornCitigen", value: "CBornCitigen" },
@@ -58,7 +58,6 @@
             { Text: "CFamilyGrade", value: "CFamilyGrade" },
             { Text: "Name", value: "CFName" },
             { Text: "SurName", value: "CLName" },
-            { Text: "CProfession all", value: "CProfAll" },
             { Text: "CProfessional Group", value: "Professionalgroup" },
             { Text: "CProfession", value: "Profession" },
             { Text: "CProfession Details", value: "professionDetails" },
@@ -86,7 +85,6 @@
             { Text: "CMotherTongue", value: "CMotherTongue" },
             { Text: "CKujadosham", value: "CKujadosham" },
             { Text: "CWebsiteStatus", value: "CWebsiteStatus" },
-            { Text: "Father All", value: "FAllFields" },
             { Text: "FName", value: "FFirstName" },
             { Text: "FEducation", value: "FEducationDetails" },
             { Text: "FProfession", value: "FProfessionDetails" },
@@ -100,7 +98,6 @@
             { Text: "FFDistrict", value: "FFDistrictName" },
             { Text: "FFNative Place", value: "FFNativePlace" },
             //mother
-            { Text: "Mother All", value: "MAllFields" },
             { Text: "Mother Name", value: "MFirstName" },
             { Text: "M LastName", value: "MLastName" },
             { Text: "MEducation", value: "MEducationDetails" },
@@ -116,7 +113,6 @@
             { Text: "MFDistrict", value: "MFDistrictName" },
             { Text: "MFNative Place", value: "MFNativePlace" },
             //Brother
-            { Text: "Brother All", value: "Br_AllFields" },
             { Text: "CBname", value: "Br_Name" },
             { Text: "CBeducation", value: "Br_Education" },
             { Text: "CBprofession", value: "Br_Profession" },
@@ -137,7 +133,6 @@
             { Text: "CBWFdistrict", value: "BrwfDistrictName" },
             { Text: "CBWFNative Place", value: "BrwfCity" },
             //sister
-            { Text: "Sister All", value: "Sr_AllFields" },
             { Text: "CSName", value: "Sr_Name" },
             { Text: "CSeducation", value: "Sr_Education" },
             { Text: "CSprofession", value: "Sr_Profession" },
@@ -267,7 +262,7 @@
                 data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
                 data.push({ label: 'DOB-Height', value: '', DOB: item.DOB + ' -- ' + item.Height });
                 data.push({ label: 'Caste', value: item.MotherTongue + "-" + item.Caste });
-                data.push({ label: 'Dor', value: item.DOR });
+                data.push({ label: 'Dor', value: item.RegistrationDate });
                 data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
                 array.push({
                     itmArr: data,
@@ -447,8 +442,8 @@
 
             return _.where(test, { StatusID: parseInt(row.ProfileStatusID) }).length > 0 ? _.where(test, { StatusID: parseInt(row.ProfileStatusID) })[0].classes : '';
         };
-        model.keywordlikesearch = function(from, to, type, flagtypeofsearch) {
-            if (from === 1) {
+        model.keywordlikesearch = function(from, to, type, flagtypeofsearch, btnsearch) {
+            if (btnsearch === 'btnsearch') {
                 model.flagtypeofsearch = flagtypeofsearch;
             }
             if (model.flagtypeofsearch === 'all') {
