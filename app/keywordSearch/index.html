@@ -18,39 +18,45 @@
                     </div>
                     <div class="col-lg-4" style="color:black;" ng-show="page.model.panelbodyhide">
                         <label for="All Profileid" class="col-lg-5 classlabelverify">Application status</label>
-                        <div class="col-lg-6" style="font-size:13px;">
+                        <div class="col-lg-6" style="font-size:13px;" ng-class="page.model.applicationids===undefined || page.model.applicationids===null || page.model.applicationids===0 ?'':'ddlcolor'">
                             <select id="applicationStatus" style="margin-top:-10px;" ng-model="page.model.applicationids" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.Applicationstatusarray" data-live-search='true'>                                        
-                                    </select>
+                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="row" ng-show="page.model.panelbodyhide">
                         <div class="row">
-                            <div class="col-lg-2"><input class="form-control" type="text" placeholder="All phones" ng-model="page.model.allphones"> </input>
+                            <div class="col-lg-2"><input class="form-control" ng-class="page.model.allphones.trim()!=='' && page.model.allphones!==undefined && page.model.allphones!==null ?'bacg':''" type="text" placeholder="All phones" ng-model="page.model.allphones"> </input>
                             </div>
-                            <div class="col-lg-2"><input class="form-control" type="text" placeholder="All emails" ng-model="page.model.allemails"> </input>
+                            <div class="col-lg-2"><input class="form-control" ng-class="page.model.allemails.trim()!=='' && page.model.allemails!==undefined && page.model.allemails!==null ?'bacg':''" type="text" placeholder="All emails" ng-model="page.model.allemails"> </input>
                             </div>
-                            <div class="col-lg-2"><input class="form-control" type="text" placeholder="All native places" ng-model="page.model.allnativeplaces"> </input>
+                            <div class="col-lg-2"><input class="form-control" ng-class="page.model.allnativeplaces.trim()!=='' && page.model.allnativeplaces!==undefined && page.model.allnativeplaces!==null ?'bacg':''" type="text" placeholder="All native places" ng-model="page.model.allnativeplaces">
+                                </input>
                             </div>
-                            <div class="col-lg-2"><input class="form-control" type="text" placeholder="All surnames" ng-model="page.model.allsurnames"> </input>
+                            <div class="col-lg-2"><input class="form-control" ng-class="page.model.allsurnames.trim()!=='' && page.model.allsurnames!==undefined && page.model.allsurnames!==null ?'bacg':''" type="text" placeholder="All surnames" ng-model="page.model.allsurnames">
+                                </input>
                             </div>
-                            <div class="col-lg-2"><input class="form-control" type="text" placeholder="CEducation all" ng-model="page.model.allEducation"> </input>
+                            <div class="col-lg-2"><input class="form-control" ng-class="page.model.allEducation.trim()!=='' && page.model.allEducation!==undefined && page.model.allEducation!==null ?'bacg':''" type="text" placeholder="CEducation all" ng-model="page.model.allEducation">
+                                </input>
                             </div>
-                            <div class="col-lg-2"><input class="form-control" type="text" placeholder="CProfession all" ng-model="page.model.allProfession"> </input>
+                            <div class="col-lg-2"><input class="form-control" ng-class="page.model.allProfession.trim()!=='' && page.model.allProfession!==undefined && page.model.allProfession!==null ?'bacg':''" type="text" placeholder="CProfession all" ng-model="page.model.allProfession">
+                                </input>
                             </div>
                         </div>
                         <div class="row" style="margin-top: 2%;">
-                            <div class="col-lg-2"><input class="form-control" type="text" placeholder="Father All" ng-model="page.model.allFather"> </input>
+                            <div class="col-lg-2"><input class="form-control" ng-class="page.model.allFather.trim()!=='' && page.model.allFather!==undefined && page.model.allFather!==null ?'bacg':''" type="text" placeholder="Father All" ng-model="page.model.allFather"> </input>
                             </div>
-                            <div class="col-lg-2"><input class="form-control" type="text" placeholder="Mother All" ng-model="page.model.allMother"> </input>
+                            <div class="col-lg-2"><input class="form-control" ng-class="page.model.allMother.trim()!=='' && page.model.allMother!==undefined && page.model.allMother!==null ?'bacg':''" type="text" placeholder="Mother All" ng-model="page.model.allMother"> </input>
                             </div>
 
-                            <div class="col-lg-2"><input class="form-control" type="text" placeholder="Brother All" ng-model="page.model.allBrother"> </input>
+                            <div class="col-lg-2"><input class="form-control" ng-class="page.model.allBrother.trim()!=='' && page.model.allBrother!==undefined && page.model.allBrother!==null ?'bacg':''" type="text" placeholder="Brother All" ng-model="page.model.allBrother">
+                                </input>
                             </div>
-                            <div class="col-lg-2"><input class="form-control" type="text" placeholder="Sister All" ng-model="page.model.allSister"> </input>
+                            <div class="col-lg-2"><input class="form-control" ng-class="page.model.allSister.trim()!=='' && page.model.allSister!==undefined && page.model.allSister!==null ?'bacg':''" type="text" placeholder="Sister All" ng-model="page.model.allSister">
+                                </input>
                             </div>
-                            <div class="col-lg-2"><input class="form-control" type="text" placeholder="C All" ng-model="page.model.c_all"> </input>
+                            <div class="col-lg-2"><input class="form-control" ng-class="page.model.c_all.trim()!=='' && page.model.c_all!==undefined && page.model.c_all!==null ?'bacg':''" type="text" placeholder="C All" ng-model="page.model.c_all"> </input>
                             </div>
                             <!-- 30_10_2017_Added -->
                             <!-- <div class="col-lg-2"><input class="form-control" type="text" placeholder="Partner All" ng-model="page.model.P_all"> </input>
@@ -111,7 +117,7 @@
                         <div class="col-lg-3" ng-if="true">
                             <input style="width:265px;" type="text" class="form-control" ng-model="page.model.txtinputfileds" placeholder="List of Fields"></input>
                             <select style="height:600px;width: 265px;" multiple="multiple">
-                             <option style="padding: 9px;" ng-disabled="$index_option" ng-style="{'color':item.style}" ng-repeat="item in page.model.Searchfields | filter:page.model.txtinputfileds" value="{{item.value}}" ng-click="page.model.onchangeselectlistvalues(item.Text);$index_option=true;">{{item.Text}}</option>
+                             <option style="padding: 9px;" ng-disabled="$index_option" ng-style="{'color':$index_style}" ng-repeat="item in page.model.Searchfields | filter:page.model.txtinputfileds" value="{{item.value}}" ng-click="page.model.onchangeselectlistvalues(item.Text);$index_option=true;$index_style='red';">{{item.Text}}</option>
                             </select>
                         </div>
                         <div class="col-lg-9" ng-if="true">
@@ -120,14 +126,14 @@
                                 <div class="row" ng-show="page.model.controllistbox">
                                     <div class="col-lg-3">
                                         <label for="All Profileid" style="padding-bottom: 7px;" class="">Caste</label>
-                                        <div class="clearfix" style="font-size:13px;">
+                                        <div class="clearfix" style="font-size:13px;" ng-class="page.model.Casteids===undefined || page.model.Casteids===null || page.model.Casteids===0 ?'':'ddlcolor'">
                                             <select ng-model="page.model.Casteids" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.Castearray" data-live-search='true'>                                        
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <label for="All Profileid" style="padding-bottom: 7px;" class="">Marital Status</label>
-                                        <div class="clearfix" style="font-size:13px;">
+                                        <div class="clearfix" style="font-size:13px;" ng-class="page.model.maritalstatusids===undefined || page.model.maritalstatusids===null || page.model.maritalstatusids===0 ?'':'ddlcolor'">
                                             <select ng-model="page.model.maritalstatusids" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.maritalstatusarray" data-live-search='true'>                                        
                                            </select>
                                         </div>
@@ -136,15 +142,15 @@
                                     <div class="col-lg-3">
                                         <label for="All Profileid" style="padding-bottom: 7px;" class="">Age</label>
                                         <div class="clearfix" style="font-size:13px;margin-top:-10px;">
-                                            <input type="number" ng-model="page.model.txtfromagekey" style="width: 58px;float: left;height: 32px;" />
-                                            <input type="number" ng-model="page.model.txttoagekey" style="width: 58px;float: left;height: 32px;" />
+                                            <input type="number" ng-model="page.model.txtfromagekey" ng-class="page.model.txtfromagekey!=='' && page.model.txtfromagekey!==undefined && page.model.txtfromagekey!==null ?'bacg':''" style="width: 58px;float: left;height: 32px;" />
+                                            <input type="number" ng-model="page.model.txttoagekey" ng-class="page.model.txttoagekey!=='' && page.model.txttoagekey!==undefined && page.model.txttoagekey!==null ?'bacg':''" style="width: 58px;float: left;height: 32px;" />
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <label for="All Profileid" style="padding-bottom: 7px;" class="">Height</label>
                                         <div class="clearfix" style="font-size:13px;margin-top:-10px;">
-                                            <input type="number" ng-model="page.model.txtfromheightkey" style="width: 58px;float: left;height:32px;" />
-                                            <input type="number" ng-model="page.model.txttoheightkey" style="width: 58px;float: left;height:32px;" />
+                                            <input type="text" ng-model="page.model.txtfromheightkey" ng-class="page.model.txtfromheightkey!=='' && page.model.txtfromheightkey!==undefined && page.model.txtfromheightkey!==null ?'bacg':''" style="width: 58px;float: left;height:32px;" />
+                                            <input type="text" ng-model="page.model.txttoheightkey" ng-class="page.model.txttoheightkey!=='' && page.model.txttoheightkey!==undefined && page.model.txttoheightkey!==null ?'bacg':''" style="width: 58px;float: left;height:32px;" />
                                         </div>
                                     </div>
                                 </div>
