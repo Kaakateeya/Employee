@@ -8,7 +8,7 @@
                     </div>
                     <div class="col-lg-3" style="color:black;">
                         <div style="font-size:13px;" class="col-lg-10">
-                            <md-radio-group name="rbtnGender" layout="row" ng-model="page.model.paidType" class="md-block" flex-gt-sm>
+                            <md-radio-group ng-change="page.model.panelbodyhide=true" name="rbtnGender" layout="row" ng-model="page.model.paidType" class="md-block" flex-gt-sm>
                                 <md-radio-button value="N" class="md-primary">No grade</md-radio-button>
                                 <md-radio-button value="E" class="md-primary">Edit grade</md-radio-button>
                             </md-radio-group>
@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-lg-3" style="color:black;">
                         <div style="font-size:13px;" class="col-lg-10">
-                            <md-radio-group name="rbtnGender" layout="row" ng-model="page.model.rbtnGender" class="md-block" flex-gt-sm>
+                            <md-radio-group name="rbtnGender" ng-change="page.model.panelbodyhide=true" layout="row" ng-model="page.model.rbtnGender" class="md-block" flex-gt-sm>
                                 <md-radio-button value="" class="md-primary">Both</md-radio-button>
                                 <md-radio-button value="1" class="md-primary">Male</md-radio-button>
                                 <md-radio-button value="2">Female</md-radio-button>
@@ -30,13 +30,19 @@
                         </div>
                     </div>
                     <div class="col-lg-3" style="color:black;">
-                        <div style="font-size:13px;">
-                            <md-radio-group name="rbtnGender" layout="row" ng-model="page.model.rbtnPaymentStatus" class="md-block" flex-gt-sm>
+                        <div style="font-size:13px;" class="col-lg-10">
+                            <md-radio-group name="rbtnGender" ng-change="page.model.panelbodyhide=true" layout="row" ng-model="page.model.rbtnPaymentStatus" class="md-block" flex-gt-sm>
                                 <md-radio-button value="" class="md-primary">Both</md-radio-button>
                                 <md-radio-button value="372" class="md-primary">Paid</md-radio-button>
                                 <md-radio-button value="373">Unpaid</md-radio-button>
                             </md-radio-group>
                         </div>
+                        <div class="col-lg-1" style="margin-left: 5%;">
+                            <img src="src\images\straightline.png" style="height:33px;margin: -5px;color: maroon;"></img>
+                        </div>
+                    </div>
+                    <div class="col-lg-1" style="color:black;">
+                        <md-checkbox ng-change="page.model.panelbodyhide=true" ng-model="page.model.ApplicationStatus">Active</md-checkbox>
                     </div>
                 </div>
                 <div class="panel-body" ng-show="page.model.panelbodyhide">
@@ -47,12 +53,12 @@
                                 <input type="text" class="form-control" ng-model="page.model.profileID">
                             </div>
                         </div>
-                        <div class="col-lg-2 form-group">
+                        <!-- <div class="col-lg-2 form-group">
                             <label for="" class="control-label lbl">Application status 	</label>
                             <div>
                                 <select multiselectdropdown class="smalldropdown" ng-model="page.model.ApplicationStatus" multiple ng-options="item.value as item.label for item in page.model.applicationStatusarray"></select>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-lg-2 form-group">
                             <label for="" class="control-label lbl">Grading Type</label>
                             <div>
@@ -65,7 +71,12 @@
                                 <select multiselectdropdown class="smalldropdown" ng-model="page.model.grading" ng-options="item.value as item.label for item in page.model.profileGrade"></select>
                             </div>
                         </div>
-
+                        <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Region</label>
+                            <div>
+                                <select multiselectdropdown ng-change="page.model.regionChange(page.model.Region);" class="smalldropdown" ng-model="page.model.Region" multiple typeofdata="'Regionofbranches'"></select>
+                            </div>
+                        </div>
                         <div class="col-lg-2 form-group">
                             <label for="" class="control-label lbl">Branch</label>
                             <div>
@@ -167,6 +178,10 @@
 </script>
 
 <style>
+    .datepicker3 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+    }
+    
     .heightcls {
         height: 230px;
     }

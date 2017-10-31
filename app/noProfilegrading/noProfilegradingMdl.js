@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .factory('noProfilegradingModel', factory);
 
-    factory.$inject = ['noProfilegradingService', 'helperservice', 'complex-grid-config', 'alert', 'modelpopupopenmethod', '$timeout'];
+    factory.$inject = ['noProfilegradingService', 'helperservice', 'complex-grid-config', 'alert', 'modelpopupopenmethod', '$timeout', 'Commondependency'];
 
-    function factory(noProfilegradingService, helpService, configgrid, alertss, modelpopupopenmethod, timeout) {
+    function factory(noProfilegradingService, helpService, configgrid, alertss, modelpopupopenmethod, timeout, Commondependency) {
 
         var model = {};
         model.grid1 = {};
@@ -38,14 +38,13 @@
         ];
 
         model.MyProfilePageLoad = function() {
-            if (model.applicationStatusarray.length === 0) {
+            if (model.Castearray.length === 0) {
                 helpService.getMyprofilebind(1, 2, '').then(function(response) {
-
                     _.each(response.data, function(item) {
                         switch (item.CountryCode) {
-                            case "Application Status":
-                                model.applicationStatusarray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                                break;
+                            // case "Application Status":
+                            //     model.applicationStatusarray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                            //     break;
                             case "Caste":
                                 model.Castearray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                 break;
@@ -67,7 +66,7 @@
             model.gradingType = '';
             model.grading = 0;
             model.caste = '';
-            model.ApplicationStatus = [54];
+            model.ApplicationStatus = true;
             model.MyProfilePageLoad();
             model.paidType = 'N';
             model.rbtnGender = '';
@@ -77,9 +76,12 @@
             model.dorTo = '';
             model.isConfidential = '';
             model.excelData = [];
-            timeout(function() {
-                model.branch = [319, 320, 321, 322, 323, 324, 325, 326, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344];
-            }, 1000);
+            // timeout(function() {
+            //     model.branch = [319, 320, 321, 322, 323, 324, 325, 326, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344];
+            // }, 1000);
+
+            model.branch = null;
+
         };
         model.returnProfileIDTemplate = function(row) {
             var paidstatusclass = row.IsPaidMember === 372 ? 'paidclass' : 'unpaid';
@@ -117,10 +119,11 @@
                 PaymentStatus: model.rbtnPaymentStatus ? model.rbtnPaymentStatus : null,
                 Confidential: model.isConfidential === true ? 1 : 0,
                 GradeID: model.grading,
-                strApplicationStatus: model.joinArray(model.ApplicationStatus),
+                strApplicationStatus: model.ApplicationStatus === true ? '54' : null,
                 GradingType: model.gradingType,
                 strBranch: model.joinArray(model.branch),
                 strCaste: model.joinArray(model.caste),
+                strRegion: model.joinArray(model.Region),
                 strOwnerOfTheProfile: model.joinArray(model.ProfileOwner),
                 StartDate: model.dorFrom ? moment(model.dorFrom).format('MM-DD-YYYY') : null,
                 EndDate: model.dorTo ? moment(model.dorTo).format('MM-DD-YYYY') : null,
@@ -239,7 +242,10 @@
             alasql('SELECT ProfileID,FirstName,LastName,CasteName,PhotoGreade,FamilyGrade,PropertyGrade,EducationGrade,ProfessionGrade INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
             // model.getNogradingprofiles(parseInt(topage / 100), 'excel');
         };
-
+        model.regionChange = function(parent) {
+            model.Brancharray = [];
+            model.Brancharray = Commondependency.branch(model.joinArray(parent));
+        };
 
         return model;
     }
