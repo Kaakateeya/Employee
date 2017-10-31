@@ -17,10 +17,12 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4" style="color:black;">
+                    <div class="col-lg-2" style="color:black;">
                         <md-checkbox ng-model="page.model.confidential" ng-change="page.model.panelbodyhide = true">Is confidential</md-checkbox>
                     </div>
-
+                    <div class="col-lg-1" style="color:black;">
+                        <md-checkbox ng-model="page.model.applicationStatus" ng-change="page.model.panelbodyhide = true">Active</md-checkbox>
+                    </div>
                 </div>
                 <div class="panel-body" ng-show="page.model.panelbodyhide">
                     <div class="row">
@@ -36,12 +38,12 @@
                                 <input type="text" class="form-control" ng-model="page.model.Email">
                             </div>
                         </div>
-                        <div class="col-lg-2 form-group">
+                        <!-- <div class="col-lg-2 form-group">
                             <label for="" class="control-label lbl">Application status</label>
                             <div>
                                 <select multiselectdropdown class="smalldropdown" ng-model="page.model.applicationStatus" multiple ng-options="item.value as item.label for item in page.model.applicationStatusarray"></select>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-lg-2 form-group">
                             <label for="" class="control-label lbl">Owner of the profile</label>
                             <div>
@@ -49,26 +51,33 @@
                             </div>
                         </div>
                         <div class="col-lg-2 form-group">
+                            <label for="" class="control-label lbl">Region</label>
+                            <div>
+                                <select multiselectdropdown ng-change="page.model.regionChange(page.model.Region);" class="smalldropdown" ng-model="page.model.Region" multiple typeofdata="'Regionofbranches'"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 form-group">
                             <label for="" class="control-label lbl">Branch</label>
                             <div>
                                 <select multiselectdropdown pagetype="'search'" class="smalldropdown" ng-model="page.model.branch" multiple ng-options="item.value as item.label for item in page.model.Brancharray"></select>
                             </div>
                         </div>
-                        <div class="col-lg-2 form-group">
+                        <!-- <div class="col-lg-2 form-group">
                             <label for="" class="control-label lbl">Caste</label>
                             <div>
                                 <select multiselectdropdown class="smalldropdown" ng-model="page.model.caste" multiple ng-options="item.value as item.label for item in page.model.Castearray"></select>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-lg-2 form-group">
+                        <!-- <div class="col-lg-2 form-group">
                             <label for="" class="control-label lbl">Modified by	</label>
                             <div>
                                 <select multiselectdropdown pagetype="'search'" class="smalldropdown" ng-model="page.model.modifiedBy" multiple ng-options="item.value as item.label for item in page.model.ProfileOwnerarray"></select>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-lg-2 form-group">
                             <label for="" class="control-label lbl">Created from date	</label>
                             <div>
@@ -81,7 +90,7 @@
                                 <custom-datepicker name="date" ng-model="page.model.createdToDate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
                             </div>
                         </div>
-                        <div class="col-lg-2 form-group">
+                        <!-- <div class="col-lg-2 form-group">
                             <label for="" class="control-label lbl">Modified from date</label>
                             <div>
                                 <custom-datepicker name="date" ng-model="page.model.modifiedFromDate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
@@ -92,7 +101,7 @@
                             <div>
                                 <custom-datepicker name="date" ng-model="page.model.modifiedToDate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-lg-1">
                             <input type="button" class="btn btn-danger" style="margin-top: 29%;" value="Submit" ng-click="page.model.geBouncedMailsList(1);">
                         </div>
@@ -113,6 +122,10 @@
 
 
 <style>
+    .datepicker3 {
+        background: url(src/images/date_icon.png) no-repeat 98% 44% !important;
+    }
+    
     #emailbounce .sno {
         width: 70px;
     }

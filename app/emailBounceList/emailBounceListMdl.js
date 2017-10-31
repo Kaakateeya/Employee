@@ -5,9 +5,9 @@
         .module('Kaakateeya')
         .factory('emailBounceListModel', factory);
 
-    factory.$inject = ['emailBounceListService', 'helperservice', 'alert', '$timeout'];
+    factory.$inject = ['emailBounceListService', 'helperservice', 'alert', '$timeout', 'Commondependency'];
 
-    function factory(emailBounceListService, helpService, alertss, timeout) {
+    function factory(emailBounceListService, helpService, alertss, timeout, Commondependency) {
 
         var model = {};
         model.grid1 = {};
@@ -20,21 +20,21 @@
         };
 
         model.applicationStatusarray = [];
-        model.Castearray = [];
+        // model.Castearray = [];
         model.ProfileOwnerarray = [];
         model.Brancharray = [];
 
         model.MyProfilePageLoad = function() {
-            if (model.applicationStatusarray.length === 0) {
+            if (model.ProfileOwnerarray.length === 0) {
                 helpService.getMyprofilebind(1, 2, '').then(function(response) {
                     _.each(response.data, function(item) {
                         switch (item.CountryCode) {
-                            case "Application Status":
-                                model.applicationStatusarray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                                break;
-                            case "Caste":
-                                model.Castearray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                                break;
+                            // case "Application Status":
+                            //     model.applicationStatusarray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                            //     break;
+                            // case "Caste":
+                            //     model.Castearray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                            //     break;
                             case "Profile Owner":
                                 model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID, "display": item.Name });
                                 break;
@@ -51,16 +51,16 @@
         model.MyProfilePageLoad();
         model.reset = function() {
             model.createdToDate = moment().format('MM-DD-YYYY');
-            model.modifiedToDate = moment().format('MM-DD-YYYY');
-            model.caste = [402];
-            model.applicationStatus = [54];
+            // model.modifiedToDate = moment().format('MM-DD-YYYY');
+            // model.caste = [402];
+            model.applicationStatus = true;
             model.ProfileOwner = [];
             model.modifiedBy = [];
             timeout(function() {
                 model.branch = [319, 320, 321, 322, 323, 324, 325, 326, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344];
                 _.each(model.ProfileOwnerarray, function(item) {
                     model.ProfileOwner.push(parseInt(item.value));
-                    model.modifiedBy.push(parseInt(item.value));
+                    // model.modifiedBy.push(parseInt(item.value));
                 });
             }, 1000);
 
@@ -69,7 +69,9 @@
             model.profileid = '';
             model.Email = '';
             model.createdFromDate = '';
-            model.modifiedFromDate = '';
+            model.branch = null;
+            model.ProfileOwner = null;
+            // model.modifiedFromDate = '';
         };
 
         model.joinArray = function(val) {
@@ -113,16 +115,16 @@
             var obj = {
                 strProfileID: model.profileid ? model.profileid : null,
                 BouncedEmail: model.Email ? model.Email : null,
-                strAppllicationStatus: model.joinArray(model.applicationStatus),
+                strAppllicationStatus: model.applicationStatus === true ? '54' : null,
                 isConfidential: model.confidential === true ? 1 : 0,
-                strCaste: model.joinArray(model.caste),
+                strCaste: null,
                 strBranch: model.joinArray(model.branch),
                 strOwnerOfProfile: model.joinArray(model.ProfileOwner),
                 StartDate: model.createdFromDate ? moment(model.createdFromDate).format('MM-DD-YYYY') : null,
                 EndDate: model.createdToDate ? moment(model.createdToDate).format('MM-DD-YYYY') : null,
-                strModifiedBy: model.joinArray(model.modifiedBy),
-                ModifiedStartDate: model.modifiedFromDate ? moment(model.modifiedFromDate).format('MM-DD-YYYY') : null,
-                ModifiedEndDate: model.modifiedToDate ? moment(model.modifiedToDate).format('MM-DD-YYYY') : null,
+                strModifiedBy: null,
+                ModifiedStartDate: null,
+                ModifiedEndDate: null,
                 GenderID: model.rbtnGender,
                 rangeFrom: null,
                 rangeTo: null,
@@ -150,16 +152,12 @@
 
                 } else {
                     if (to === 1) {
+                        model.excelData = model.grid1.data = [];
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 3500);
                     }
                 }
-
             });
-
         };
-
-
-
 
         model.grid1.pagechange = function(val) {
             model.geBouncedMailsList(val);
@@ -173,6 +171,11 @@
             };
             alasql('SELECT ProfileId,Name,EmailId as oldEmailID,ModifiedEmailId,RealtionName,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
             // model.getNogradingprofiles(parseInt(topage / 100), 'excel');
+        };
+
+        model.regionChange = function(parent) {
+            model.Brancharray = [];
+            model.Brancharray = Commondependency.branch(model.joinArray(parent));
         };
 
 

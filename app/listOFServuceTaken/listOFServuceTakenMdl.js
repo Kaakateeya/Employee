@@ -135,6 +135,7 @@
 
                 } else {
                     if (to === 1) {
+                        model.excelData = model.grid1.data = [];
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 3500);
                     }
                 }

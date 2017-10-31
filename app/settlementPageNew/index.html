@@ -80,7 +80,7 @@
 <script type="text/ng-template" id="aboutpayment.html">
     <form class="EditViewClass" name="uploadForm" novalidate role="form" ng-submit="page.model.insertSettleAmount()">
         <div class="modal-header">
-            <h3 class="modal-title text-center" id="modal-title">Description </h3>
+            <h3 class="modal-title text-center" id="modal-title">{{page.model.strdisplay}} Description ({{page.model.insertProfileID}})</h3>
         </div>
         <div class="modal-body" id="modal-body">
             <textarea rows="" cols="" class="form-control" ng-model="page.model.txtdescription"></textarea>
@@ -92,7 +92,7 @@
     </form>
 </script>
 <script type="text/ng-template" id="duplicataProfilesPopup.html">
-    <div class="modal-header">History Info
+    <div class="modal-header"> History Info
         <div class="pull-right">
             <a href="javascript:void(0);" ng-click="page.model.closemainpopup()" style="padding:7px;"> <i class="fa fa-times" aria-hidden="true" style="fill:#c73e5f;font-size: 16pt;"></i></a>
         </div>
@@ -140,5 +140,14 @@
     
     .linkcls {
         margin-left: 2%;
+    }
+    
+    .BrideProfileID {
+        width: 195px;
+    }
+    
+    .Linkdisabled {
+        pointer-events: none;
+        cursor: default;
     }
 </style>

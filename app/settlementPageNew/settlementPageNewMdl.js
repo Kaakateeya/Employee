@@ -17,7 +17,7 @@
             changeMonth: true,
             changeYear: true,
             yearRange: "-40:+5",
-            dateFormat: 'mm-dd-yy'
+            dateFormat: 'dd-mm-yy'
         };
         model.paidStausFlag = true;
         model.submit = function(from, to, type) {
@@ -25,7 +25,8 @@
                 { text: 'ProfileID', key: 'BrideProfileID', type: 'morelinks', templateUrl: model.profileidmehod },
                 { text: 'Name', key: 'BrideName', type: 'morelinks', templateUrl: model.nemeMethod },
                 { text: 'Caste', key: 'BrideCaste', type: 'morelinks', templateUrl: model.casteMethod },
-                { text: 'Owner', key: 'BrideOwner', type: 'morelinks', templateUrl: model.ownerMethod },
+                { text: 'Profile Owner', key: 'BrideOwner', type: 'morelinks', templateUrl: model.ownerMethod },
+                { text: 'Settle Date', key: 'SettledDate', type: 'label' },
                 { text: 'paid Type', key: 'GroomCaste', type: 'morelinks', templateUrl: model.showbuttons },
                 { text: 'History', key: 'GroomName', type: 'morelinks', templateUrl: model.showHistrybuttons }
             ];
@@ -81,11 +82,11 @@
 
         model.profileidmehod = function(row) {
 
-            var bridefirsthalfcls = row.Bride_SettleAmtStatus === 574 ? 'paidclass' : 'unpaid';
-            var brideNexthalfcls = row.Bride_SettleAmtStatus === 574 ? 'paidclass' : (row.Bride_SettleAmtStatus === 575 ? 'paidclass' : 'unpaid');
+            var bridefirsthalfcls = row.Bride_SettleAmtStatus === 574 ? 'paidclass' : (row.Bride_SettleAmtStatus === 575 ? 'paidclass' : 'unpaid');
+            var brideNexthalfcls = row.Bride_SettleAmtStatus === 574 ? 'paidclass' : 'unpaid';
 
-            var groomfirsthalfcls = row.Groom_SettleAmtStatus === 574 ? 'paidclass' : 'unpaid';
-            var groomNexthalfcls = row.Groom_SettleAmtStatus === 574 ? 'paidclass' : (row.Groom_SettleAmtStatus === 575 ? 'paidclass' : 'unpaid');
+            var groomfirsthalfcls = row.Groom_SettleAmtStatus === 574 ? 'paidclass' : (row.Groom_SettleAmtStatus === 575 ? 'paidclass' : 'unpaid');
+            var groomNexthalfcls = row.Groom_SettleAmtStatus === 574 ? 'paidclass' : 'unpaid';
 
             var bridefirsthalf = "<span class='" + bridefirsthalfcls + "'>" + row.BrideProfileID.substr(0, 5) + "</span>";
             var brideNexthalf = "<span class='" + brideNexthalfcls + "'>" + row.BrideProfileID.substr(5, 4) + "</span>";
@@ -93,7 +94,13 @@
             var groomfirsthalf = "<span class='" + groomfirsthalfcls + "'>" + row.GroomProfileID.substr(0, 5) + "</span>";
             var groomNexthalf = "<span class='" + groomNexthalfcls + "'>" + row.GroomProfileID.substr(5, 4) + "</span>";
 
-            var str = "<a href='javascript:void(0);' ng-click='model.viewfullprofile(" + JSON.stringify(row.BrideProfileID) + ")' >" + bridefirsthalf + brideNexthalf + "</a><br><a href='javascript:void(0);' ng-click='model.viewfullprofile(" + JSON.stringify(row.GroomProfileID) + ")'>" + groomfirsthalf + groomNexthalf + "</a>";
+            var brideSAdisplay = row.BrideSettleForm === null ? 'NoSAForm' : 'ViewSAForm';
+            var groomSAdisplay = row.GroomSettleForm === null ? 'NoSAForm' : 'ViewSAForm';
+
+            var brideSAdisplaycls = row.BrideSettleForm === null ? 'Linkdisabled' : '';
+            var groomSAdisplaycls = row.GroomSettleForm === null ? 'Linkdisabled' : '';
+
+            var str = "<a href='javascript:void(0);' ng-click='model.viewfullprofile(" + JSON.stringify(row.BrideProfileID) + ")' >" + bridefirsthalf + brideNexthalf + "</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.showSAmethod(" + JSON.stringify(row.BrideSettleForm) + ")' class=" + brideSAdisplaycls + ">" + brideSAdisplay + "</a><br><a href='javascript:void(0);' ng-click='model.viewfullprofile(" + JSON.stringify(row.GroomProfileID) + ")'>" + groomfirsthalf + groomNexthalf + "</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.showSAmethod(" + JSON.stringify(row.GroomSettleForm) + ")'  class=" + groomSAdisplaycls + ">" + groomSAdisplay + "</a>";
             return str;
         };
 
@@ -112,7 +119,7 @@
         };
 
         model.ownerMethod = function(row) {
-            var str = "<label style='font-weight: 200;'>" + row.BrideOwner + "</label><br><label style='font-weight: 200;'>" + row.GroomOwner + "</label>";
+            var str = "<label style='font-weight: 200;'>" + row.BrideOwner + ' (' + row.BrideEmpUserName + ")</label><br><label style='font-weight: 200;'>" + row.GroomOwner + ' (' + row.GroomEmpUserName + ")</label>";
             return str;
         };
 
@@ -131,6 +138,8 @@
         };
 
         model.grid3.openPouptoedit = function(id, status) {
+            debugger;
+            model.strdisplay = status === '574' ? 'Paid' : (status === '575' ? 'Partial Paid' : 'Not interest to pay');
             model.txtdescription = '';
             model.insertProfileID = id;
             model.insertStatus = status;
@@ -194,6 +203,12 @@
             settlementPageNewService.settleInfo(id).then(function(response) {
                 if (response.data.length > 0) {
                     model.singlegrid1.sdata = response.data;
+                    model.singlegrid1.sdata.forEach(function(element) {
+                        element.SettledDate = moment(element.SettledDate).format('DD-MM-YYYY');
+
+                    }, this);
+
+
                     modelpopupopenmethod.showPopup('duplicataProfilesPopup.html', model.scope, 'lg', "modalclassdashboardphotopopupassign");
                 } else {
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No Records Found', 3500);
@@ -214,7 +229,13 @@
         model.grid3.exportexcel = function(topage) {
             model.submit(1, topage, 'excel');
         };
-
+        model.grid3.showSAmethod = function(saform) {
+            if (saform) {
+                var imgArr = saform.replace(/\\/g, '/');
+                model.image = app.GlobalImgPath + imgArr.substring(2);
+                modelpopupopenmethod.showPopup('templates/bindImagePopup.html', model.scope, 'md', '');
+            }
+        };
         return model;
     }
 })();
