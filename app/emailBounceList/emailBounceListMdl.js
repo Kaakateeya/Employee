@@ -16,7 +16,7 @@
             changeMonth: true,
             changeYear: true,
             yearRange: "-40:+5",
-            dateFormat: 'mm-dd-yy'
+            dateFormat: 'dd-mm-yy'
         };
 
         model.applicationStatusarray = [];

@@ -26,7 +26,7 @@
             changeMonth: true,
             changeYear: true,
             yearRange: "-40:+5",
-            dateFormat: 'mm-dd-yy'
+            dateFormat: 'dd-mm-yy'
         };
 
         model.MyProfilePageLoad = function() {
@@ -73,11 +73,11 @@
         };
 
         model.fromProfileid = function(row) {
-            return model.returnProfileIDTemplate(row.ReceipentName, 0);
+            return model.returnProfileIDTemplate(row.ReceipentName, row.FromPaidStatus);
         };
 
         model.toProfileid = function(row) {
-            return model.returnProfileIDTemplate(row.SenderName, 0);
+            return model.returnProfileIDTemplate(row.SenderName, row.ToPaidStatus);
         };
 
         model.grid1.pagechange = function(val) {
@@ -119,7 +119,7 @@
             listOFServuceTakenService.listOFServiceGiven(obj).then(function(response) {
                 if ((response.data[0]).length > 0) {
                     model.opendiv = false;
-                    model.grid1.TotalRows = (response.data[1])[0].TotalRows;
+                    model.grid1.TotalRows = (response.data[0])[0].TotalRows;
                     model.grid1.data = (response.data[0]);
                     var i = 1;
                     model.excelData = (response.data[0]);
@@ -132,7 +132,6 @@
                             i++;
                         }
                     });
-
                 } else {
                     if (to === 1) {
                         model.excelData = model.grid1.data = [];
@@ -145,12 +144,14 @@
         model.reset = function() {
             model.applicationStatus = [54];
             model.caste = [402];
-            timeout(function() {
-                model.branch = [319, 320, 321, 322, 323, 324, 325, 326, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344];
-                _.each(model.ProfileOwnerarray, function(item) {
-                    model.profileOwner.push(parseInt(item.value));
-                });
-            }, 1000);
+            model.profileOwner = null;
+            model.branch = null;
+            // timeout(function() {
+            //     model.branch = [319, 320, 321, 322, 323, 324, 325, 326, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344];
+            //     _.each(model.ProfileOwnerarray, function(item) {
+            //         model.profileOwner.push(parseInt(item.value));
+            //     });
+            // }, 1000);
 
             model.fromDate = moment().subtract(1, 'days').format('MM-DD-YYYY');
             model.toDate = moment().format('MM-DD-YYYY');
