@@ -3,13 +3,14 @@
     angular
         .module('Kaakateeya')
         .factory('keywordSearchModel', factory);
-    factory.$inject = ['keywordSearchService', 'complex-grid-config', 'complex-slide-config', 'modelpopupopenmethod', 'helperservice', 'alert'];
+    factory.$inject = ['keywordSearchService', 'complex-grid-config', 'complex-slide-config', 'modelpopupopenmethod', 'helperservice', 'alert', 'arrayConstants'];
 
-    function factory(keywordSearchService, configgrid, configslide, modelpopupopenmethod, helperservice, alertss) {
+    function factory(keywordSearchService, configgrid, configslide, modelpopupopenmethod, helperservice, alertss, arrayConstants) {
         var model = {};
         model.slide = {};
         model.grid = {};
         model.slide.config = configslide;
+        model.slide.config.dobshow = true;
         model.applicationids = [54];
         model.slide.dobshow = true;
         model.grid.showsearchrows = true;
@@ -22,168 +23,222 @@
             Keyworddlikesrch: {}
         };
         model.Searchfields = [
-            { Text: "C EducationalDetails", value: "CEducationalDetails", style: "#dc970d;" },
-            { Text: "C EducationCategory", value: "CEducationCategory", style: "#dc970d;" },
-            { Text: "C University", value: "CEduUniversity", style: "#dc970d;" },
-            { Text: "C SecondaryQualification", value: "CSecondaryQualification", style: "#dc970d;" },
-            { Text: "C PrimaryQualification", value: "CPrimaryQualification", style: "#dc970d;" },
-            { Text: "C QualificationDetails", value: "CQualificationDetails", style: "#dc970d;" },
-            { Text: "C JobLocation", value: "CJobLocation", style: "#dc970d;" },
-            { Text: "C CompanyName", value: "Companyname", style: "#dc970d;" },
-            { Text: "C MonthlySalary", value: "CMonthlysalary", style: "#dc970d;" },
-            { Text: "C Profession", value: "CProfession", style: "#dc970d;" },
-            { Text: "C ProfessionDetails", value: "CprofessionDetails", style: "#dc970d;" },
-            { Text: "C PropertyDetails", value: "CPropertyDetails", style: "#dc970d;" },
-            { Text: "C PropertyType", value: "CpropertyType", style: "#dc970d;" },
-            { Text: "C PropertyValue", value: "CPropertyValue", style: "#dc970d;" },
-            { Text: "C PlaceOfBirth", value: "CPlaceOfBirth", style: "green;" },
-            { Text: "C Gothram", value: "CGothram", style: "green;" },
-            { Text: "C Kujadosham", value: "CKujadosham", style: "green;" },
-            { Text: "C Lagnam", value: "CLagnam", style: "green;" },
-            { Text: "C MaternalGothram", value: "CMaternalGothram", style: "green;" },
-            { Text: "C MotherTongue", value: "CMotherTongue", style: "green;" },
-            { Text: "C Paadam", value: "CPaadam", style: "green;" },
-            { Text: "C Raasi", value: "CRaasi", style: "green;" },
-            { Text: "C Star", value: "CStar", style: "green;" },
-            { Text: "C StarLanguage", value: "CStarLanguage", style: "green;" },
-            { Text: "C TimeofBirth", value: "CTimeofBirth", style: "green;" },
-            { Text: "C BornCitigen", value: "CBornCitigen", style: "#2e89d8;" },
-            { Text: "C ContactAddress", value: "CContactAddress", style: "#2e89d8;" },
-            { Text: "C ContactNo", value: "CContactNo", style: "#2e89d8;" },
-            { Text: "C DateofReg", value: "CDateofReg", style: "#2e89d8;" },
-            { Text: "C DOB", value: "CDOB", style: "#2e89d8;" },
-            { Text: "C EmailID", value: "CEmailID", style: "#2e89d8;" },
-            { Text: "C FirstName", value: "CFName", style: "#2e89d8;" },
-            { Text: "C LastName", value: "CLName", style: "#2e89d8;" },
-            { Text: "C Photos", value: "CPhotos", style: "#2e89d8;" },
-            { Text: "C Relision", value: "CRelision", style: "#2e89d8;" },
-            { Text: "C SubCaste", value: "CSubCaste", style: "#2e89d8;" },
-            { Text: "C FromAge", value: "CFromAge", style: "#2e89d8;" },
-            { Text: "C ToAge", value: "CFromHeight", style: "#2e89d8;" },
-            { Text: "C Maritalstatus", value: "CMaritalstatus", style: "#2e89d8;" },
-            { Text: "C ToHeight", value: "CToAge", style: "#2e89d8;" },
-            { Text: "C ToHeight", value: "CToHeight", style: "#2e89d8;" },
-            { Text: "C CityOfLiving", value: "CCityOfLiving", style: "#7f54ca;" },
-            { Text: "C DistrictOfLiving", value: "CDistrictOfLiving", style: "#7f54ca;" },
-            { Text: "C Domicile", value: "CDomicile", style: "#7f54ca;" },
-            { Text: "C StateOfLiving", value: "CStateOfLiving", style: "#7f54ca;" },
-            { Text: "C PhoneNumberOffice", value: "CPhNosOffice", style: "#00BCD4;" },
-            { Text: "C Residence", value: "CResidence", style: "#00BCD4;" },
-            { Text: "C Mobile", value: "CMobile", style: "#00BCD4;" },
-            { Text: "C Emailid", value: "CEmailid", style: "#00BCD4;" },
-            { Text: "C SecondaryEmailID", value: "CSecondary_EmailID", style: "#00BCD4;" },
-            { Text: "C PermenentAddress", value: "CPermt_Add", style: "#00BCD4;" },
-            { Text: "C Notes", value: "CNotes", style: "#00BCD4;" },
-            { Text: "C KnownLanguage", value: "CKnown_Language", style: "#00BCD4;" },
-            { Text: "C Diet", value: "CDiet", style: "#00BCD4;" },
-            { Text: "C Smoker", value: "CSmoker", style: "#00BCD4;" },
-            { Text: "C Drinker", value: "CDrinker", style: "#00BCD4;" },
-            { Text: "C BodyType", value: "CBodyType", style: "#00BCD4;" },
-            { Text: "C FamilyValue", value: "CFamilyValue", style: "#00BCD4;" },
-            { Text: "CPFromAge", value: "PAgeFrom", style: "#607D8B;" },
-            { Text: "CPToAge", value: "PAgeTo", style: "#607D8B;" },
-            { Text: "CPFromHeight", value: "PHeightFrom", style: "#607D8B;" },
-            { Text: "CPToHeight", value: "PHeightTo", style: "#607D8B;" },
-            { Text: "CPCaste", value: "PCaste", style: "#607D8B;" },
-            { Text: "CPSubCaste", value: "PSubCaste", style: "#607D8B;" },
-            { Text: "CPCategory", value: "PCategory", style: "#607D8B;" },
-            { Text: "CPQualification", value: "PQualifications", style: "#607D8B;" },
-            { Text: "CPProfession", value: "PProfession", style: "#607D8B;" },
-            { Text: "CPJobPreference", value: "PJobPreference", style: "#607D8B;" },
-            { Text: "CPJobLocation", value: "PLocation", style: "#607D8B;" },
-            { Text: "CPAbroadPrefer", value: "PAbroadPrefer", style: "#607D8B;" },
-            { Text: "CPCountry", value: "PCountry", style: "#607D8B;" },
-            { Text: "CPState", value: "PState", style: "#607D8B;" },
-            { Text: "CPDistrict", value: "PDistrict", style: "#607D8B;" },
-            { Text: "CPMotherTongue", value: "PMotherTongue", style: "#607D8B;" },
-            { Text: "CPComplexion", value: "PComplexion", style: "#607D8B;" },
-            { Text: "CPPrefStars", value: "PPrefStars", style: "#607D8B;" },
-            { Text: "CPNonPrefStars", value: "PNonPrefStars", style: "#607D8B;" },
-            { Text: "CBName", value: "CBName", style: "#607D8B;" },
-            { Text: "CBType", value: "CBType", style: "#607D8B;" },
-            { Text: "CBEducation", value: "CBEducation", style: "#607D8B;" },
-            { Text: "CBProfession", value: "CBProfession", style: "#607D8B;" },
-            { Text: "CBDesignation", value: "CBDesignation", style: "#607D8B;" },
-            { Text: "CBJobLocation", value: "CBJobLocation", style: "#607D8B;" },
-            { Text: "CBPhoneNumber", value: "CBPhone", style: "#607D8B;" },
-            { Text: "CBEmailID", value: "CBEmail", style: "#607D8B;" },
-            { Text: "CBWName", value: "CBWName", style: "#607D8B;" },
-            { Text: "CBWEducation", value: "CBWEducation", style: "#607D8B;" },
-            { Text: "CBWProfession", value: "CBWProfession", style: "#607D8B;" },
-            { Text: "CBWDesignation", value: "CBWDesignation", style: "#607D8B;" },
-            { Text: "CBWPhoneNumber", value: "CBWPhone", style: "#607D8B;" },
-            { Text: "CBWEmailId", value: "CBWEmailId", style: "#607D8B;" },
-            { Text: "CBWFFirstName", value: "CBWFatherName", style: "#607D8B;" },
-            { Text: "CBWFSurName", value: "CBWFatherSName", style: "#607D8B;" },
-            { Text: "CBWFPhoneNumber", value: "CBWFPhoneNumber", style: "#607D8B;" },
-            { Text: "CBWFNativePlace", value: "CBWFNativePlace", style: "#607D8B;" },
-            { Text: "CSName", value: "CSName", style: "#607D8B;" },
-            { Text: "CSType", value: "CSType", style: "#607D8B;" },
-            { Text: "CSEducation", value: "CSEducation", style: "#607D8B;" },
-            { Text: "CSDesignation", value: "CSDesignation", style: "#607D8B;" },
-            { Text: "CSJobLocation", value: "CSJobLocation", style: "#607D8B;" },
-            { Text: "CSPhoneNumber", value: "CSPNumber", style: "#607D8B;" },
-            { Text: "CSEmailID", value: "CSEmailID", style: "#607D8B;" },
-            { Text: "CSHFirstName", value: "CSHFirstName", style: "#607D8B;" },
-            { Text: "CSHSurName", value: "CSHSurName", style: "#607D8B;" },
-            { Text: "CSHEducation", value: "CSHEducation", style: "#607D8B;" },
-            { Text: "CSHProfession", value: "CSHProfession", style: "#607D8B;" },
-            { Text: "CSHDesignation", value: "CSHDesignation", style: "#607D8B;" },
-            { Text: "CSHPhoneNumber", value: "CSHNumber", style: "#607D8B;" },
-            { Text: "CSHEmailID", value: "CSHEmailID", style: "#607D8B;" },
-            { Text: "CSHFName", value: "CSHFName", style: "#607D8B;" },
-            { Text: "CSHFPhoneNumber", value: "CSHFPNumbe", style: "#607D8B;" },
-            { Text: "CSHFNative", value: "CSHFNative", style: "#607D8B;" },
-            { Text: "CSHCaste", value: "CSHCaste", style: "#607D8B;" },
-            { Text: "FName", value: "FName", style: "#607D8B;" },
-            { Text: "FEducation", value: "FEducation", style: "#607D8B;" },
-            { Text: "FProfession", value: "FProfession", style: "#607D8B;" },
-            { Text: "FPhoneNumber", value: "FPhone", style: "#607D8B;" },
-            { Text: "FEmailId", value: "FEmailId", style: "#607D8B;" },
-            { Text: "FFName", value: "FFName", style: "#607D8B;" },
-            { Text: "FFPhoneNumber", value: "FFPhone", style: "#607D8B;" },
-            { Text: "FFEmailID", value: "FFEmailID", style: "#607D8B;" },
-            { Text: "FFState", value: "FFState", style: "#607D8B;" },
-            { Text: "FFDistrict", value: "FFDistrict", style: "#607D8B;" },
-            { Text: "FFNative", value: "FFNative", style: "#607D8B;" },
-            { Text: "MName", value: "MName", style: "#607D8B;" },
-            { Text: "MEducation", value: "MEducation", style: "#607D8B;" },
-            { Text: "MProfession", value: "MProfession", style: "#607D8B;" },
-            { Text: "MPhoneNumber", value: "MPhone", style: "#607D8B;" },
-            { Text: "MEmailId", value: "MEmailId", style: "#607D8B;" },
-            { Text: "MFName", value: "MFName", style: "#607D8B;" },
-            { Text: "MFPhoneNumber", value: "MFPhone", style: "#607D8B;" },
-            { Text: "MFEmailID", value: "MFEmailID", style: "#607D8B;" },
-            { Text: "MFState", value: "MFState", style: "#607D8B;" },
-            { Text: "MFDistrict", value: "MFDistrict", style: "#607D8B;" },
-            { Text: "MFNative", value: "MFNative", style: "#607D8B;" },
-            { Text: "MBName", value: "MBName", style: "#607D8B;" },
-            { Text: "MBType", value: "MBType", style: "#607D8B;" },
-            { Text: "MBProfession", value: "MBProfession", style: "#607D8B;" },
-            { Text: "MBPhoneNumber", value: "MBPNumber", style: "#607D8B;" },
-            { Text: "MBEmailId", value: "MBEmailId", style: "#607D8B;" },
-            { Text: "MSName", value: "MSName", style: "#607D8B;" },
-            { Text: "MSType", value: "MSType", style: "#607D8B;" },
-            { Text: "MSHFirstName", value: "MSHFName", style: "#607D8B;" },
-            { Text: "MSHSurName", value: "MSHSName", style: "#607D8B;" },
-            { Text: "MSHNative", value: "MSHNative", style: "#607D8B;" },
-            { Text: "MSHProfession", value: "MSHProfession", style: "#607D8B;" },
-            { Text: "MSHPhoneNumber", value: "MSHPNumber", style: "#607D8B;" },
-            { Text: "MSHEmailID", value: "MSHEmailID", style: "#607D8B;" },
-            { Text: "FBName", value: "FBName", style: "#607D8B;" },
-            { Text: "FBType", value: "FBType", style: "#607D8B;" },
-            { Text: "FBProfession", value: "FBProfession", style: "#607D8B;" },
-            { Text: "FBPhoneNumber", value: "FBPNuFBer", style: "#607D8B;" },
-            { Text: "FBEmailId", value: "FBEmailId", style: "#607D8B;" },
-            { Text: "FSName", value: "FSName", style: "#607D8B;" },
-            { Text: "FSType", value: "FSType", style: "#607D8B;" },
-            { Text: "FSHFirstName", value: "FSHFName", style: "#607D8B;" },
-            { Text: "FSHSurName", value: "FSHSName", style: "#607D8B;" },
-            { Text: "FSHNative", value: "FSHNative", style: "#607D8B;" },
-            { Text: "FSHProfession", value: "FSHProfession", style: "#607D8B;" },
-            { Text: "FSHPhoneNumber", value: "FSHPNuFBer", style: "#607D8B;" },
-            { Text: "FSHEmailID", value: "FSHEmailID", style: "#607D8B;" }
-
+            { Text: "CAboutMe", value: "CAboutMe" },
+            { Text: "CAboutFamily", value: "CAboutFamily" },
+            { Text: "CBornCitigen", value: "CBornCitigen" },
+            { Text: "CBodyType", value: "CBodyType" },
+            { Text: "CBranch", value: "CBranch" },
+            { Text: "CColor", value: "CColor" },
+            { Text: "CCountryOfBirth", value: "CCountryOfBirth" },
+            { Text: "CStateOfBirth", value: "CStateOfBirth" },
+            { Text: "CDistrictOfBirth", value: "CDistrictOfBirth" },
+            { Text: "CCountry Working", value: "countryworking" },
+            { Text: "CState Working", value: "stateworking" },
+            { Text: "CDistrict Working", value: "districtworking" },
+            { Text: "CCity Working", value: "cityworking" },
+            { Text: "CCityOfBirth", value: "CCityOfBirth" },
+            { Text: "CDOB", value: "CDOB" },
+            { Text: "CDrink", value: "CDrink" },
+            { Text: "CDiet", value: "CDiet" },
+            { Text: "CDateofReg", value: "CDateofReg" },
+            { Text: "CEducation all", value: "CEducationAll" },
+            { Text: "CEdu category", value: "CEducationCategory" },
+            { Text: "CEducation", value: "CEduGroup" },
+            { Text: "CEdu Specialization", value: "CEduSplecialization" },
+            { Text: "CUniversity", value: "CEduUniversity" },
+            { Text: "CCollege", value: "CEduCollege" },
+            { Text: "CEdu country", value: "CEduCountry" },
+            { Text: "CEdu state", value: "CEduState" },
+            { Text: "CEdu district", value: "CEduDistrict" },
+            { Text: "CEdu city", value: "CEduCity" },
+            { Text: "CEdu merits", value: "CEduMerits" },
+            { Text: "CEdupass of year", value: "CEduPass_Year" },
+            { Text: "CEmployeed In", value: "EmployeedIn" },
+            { Text: "CEducationGrade", value: "CEducationGrade" },
+            { Text: "CFamilyGrade", value: "CFamilyGrade" },
+            { Text: "Name", value: "CFName" },
+            { Text: "SurName", value: "CLName" },
+            { Text: "CProfessional Group", value: "Professionalgroup" },
+            { Text: "CProfession", value: "Profession" },
+            { Text: "CProfession Details", value: "professionDetails" },
+            { Text: "CProfessionStatus", value: "CProfessionStatus" },
+            { Text: "CCompany Name", value: "Companyname" },
+            { Text: "CMonthly Salary", value: "monthlysalary" },
+            { Text: "CWorking From Date", value: "workingfromdate" },
+            { Text: "CpropertyType", value: "CpropertyType" },
+            { Text: "CPropertyValue", value: "CPropertyValue" },
+            { Text: "CPropertyDescription", value: "CPropertyDescription" },
+            { Text: "CPhysicalStatus", value: "CPhysicalStatus" },
+            { Text: "CParentCaste", value: "CParentCaste" },
+            { Text: "CPropertyGrade", value: "CPropertyGrade" },
+            { Text: "CPhotoGrade", value: "CPhotoGrade" },
+            { Text: "CPaadam", value: "CPaadam" },
+            { Text: "CRelision", value: "CRelision" },
+            { Text: "CRegStatus", value: "CRegStatus" },
+            { Text: "CSmoke", value: "CSmoke" },
+            { Text: "CStarLanguage", value: "CStarLanguage" },
+            { Text: "CStar", value: "CStar" },
+            { Text: "CRaasi", value: "CRaasi" },
+            { Text: "CLagnam", value: "CLagnam" },
+            { Text: "CGothram", value: "CGothram" },
+            { Text: "CMaternalGothram", value: "CMaternalGothram" },
+            { Text: "CMotherTongue", value: "CMotherTongue" },
+            { Text: "CKujadosham", value: "CKujadosham" },
+            { Text: "CWebsiteStatus", value: "CWebsiteStatus" },
+            { Text: "FName", value: "FFirstName" },
+            { Text: "FEducation", value: "FEducationDetails" },
+            { Text: "FProfession", value: "FProfessionDetails" },
+            { Text: "Fcompany Name", value: "FCompanyId" },
+            { Text: "Fjob Location", value: "FJobLocation" },
+            { Text: "FMobile/LandLine", value: "FNumber" },
+            { Text: "FEmail", value: "Femail" },
+            { Text: "FFName", value: "FFatherName" },
+            { Text: "FFmobile/Landline", value: "FFatherContactNumber" },
+            { Text: "FFstate", value: "FFStateName" },
+            { Text: "FFDistrict", value: "FFDistrictName" },
+            { Text: "FFNative Place", value: "FFNativePlace" },
+            //mother
+            { Text: "Mother Name", value: "MFirstName" },
+            { Text: "M LastName", value: "MLastName" },
+            { Text: "MEducation", value: "MEducationDetails" },
+            { Text: "Mprofession", value: "MProfessionDetails" },
+            { Text: "Mcompany Name", value: "MCompanyId" },
+            { Text: "MJob location", value: "MJobLocation" },
+            { Text: "MMobile/Land Line", value: "MNumber" },
+            { Text: "MEmail", value: "Memail" },
+            { Text: "MFName", value: "MFatherFirstName" },
+            { Text: "MFSurName", value: "MFatherLastName" },
+            { Text: "MFmobile/Land", value: "MFatherContactNumber" },
+            { Text: "MFState", value: "MFStateName" },
+            { Text: "MFDistrict", value: "MFDistrictName" },
+            { Text: "MFNative Place", value: "MFNativePlace" },
+            //Brother
+            { Text: "CBname", value: "Br_Name" },
+            { Text: "CBeducation", value: "Br_Education" },
+            { Text: "CBprofession", value: "Br_Profession" },
+            { Text: "CBcompany", value: "Br_CompanyNAME" },
+            { Text: "CBjoblocation", value: "Br_Joblocation" },
+            { Text: "CBMobile/land", value: "BrContactNo" },
+            { Text: "CBemail", value: "Br_Email" },
+            { Text: "CBWname", value: "Brw_Name" },
+            { Text: "CBWeducation", value: "Brw_Education" },
+            { Text: "CBWprofession", value: "Brw_Profession" },
+            { Text: "CBWcompany Name", value: "Brw_CompanyNAME" },
+            { Text: "CBWjob location", value: "Brw_Joblocation" },
+            { Text: "CBWMobile/land", value: "BrwContactNo" },
+            { Text: "CBWemail", value: "Brw_Email" },
+            { Text: "CBWFSurname", value: "Brwf_Surname" },
+            { Text: "CBWFName", value: "Brwf_Name" },
+            { Text: "CBWFState", value: "BrwfStateName" },
+            { Text: "CBWFdistrict", value: "BrwfDistrictName" },
+            { Text: "CBWFNative Place", value: "BrwfCity" },
+            //sister
+            { Text: "CSName", value: "Sr_Name" },
+            { Text: "CSeducation", value: "Sr_Education" },
+            { Text: "CSprofession", value: "Sr_Profession" },
+            { Text: "CScompany", value: "Sr_CompanyNAME" },
+            { Text: "CSjoblocation", value: "Sr_Joblocation" },
+            { Text: "CSMobile/Land", value: "SrContactNo" },
+            { Text: "CSemail", value: "Sr_Email" },
+            { Text: "CSHName", value: "Srh_Name" },
+            { Text: "CSHeducation", value: "Srh_Education" },
+            { Text: "CSHprofession", value: "Srh_Profession" },
+            { Text: "CSHcompany Name", value: "Srh_CompanyNAME" },
+            { Text: "CSHjob location", value: "Srh_Joblocation" },
+            { Text: "CSHMobile/land", value: "SrhContactNo" },
+            { Text: "CSHemail", value: "Srh_Email" },
+            { Text: "CSHFSurname", value: "Srhf_Surname" },
+            { Text: "CSHFName", value: "Srhf_Name" },
+            { Text: "CSHFstate", value: "SrhfStateName" },
+            { Text: "CSHFdistrict", value: "SrhfDistrictName" },
+            { Text: "CSHFNative Place", value: "SrhfCity" },
+            //father brother
+            { Text: "Father Brother All", value: "FB_AllFields" },
+            { Text: "FB(E/Y)", value: "FB_ElderYounger" },
+            { Text: "FBName", value: "FB_Name" },
+            { Text: "FBEducation", value: "FB_Education" },
+            { Text: "FBProfession", value: "FB_Profession" },
+            { Text: "FBMobile/land", value: "FB_Contactnumber" },
+            { Text: "FBEmail", value: "FB_Email" },
+            { Text: "FBCurrent Location", value: "FB_professionlocation" },
+            //father sister
+            { Text: "Father Sister All", value: "FS_AllFields" },
+            { Text: "FSName", value: "FS_Name" },
+            { Text: "FSHName", value: "FSH_Name" },
+            { Text: "FSHSur Name", value: "FSH_Surname" },
+            { Text: "FSHEducation", value: "FSH_Education" },
+            { Text: "FSHProfession", value: "FSH_Profession" },
+            { Text: "FSHMobile/Land", value: "FSHContactNo" },
+            { Text: "FSHEmail", value: "FSH_Email" },
+            { Text: "FSHCurrent Location", value: "FSH_ProfessionLocation" },
+            { Text: "FSHstate", value: "FSHStateName" },
+            { Text: "FSHDistrict", value: "FSHDistrictName" },
+            { Text: "FSHNative Place", value: "FSHCityName" },
+            //Mother Brother 
+            { Text: "Mother Brother All", value: "MB_AllFields" },
+            { Text: "MBName", value: "MB_Name" },
+            { Text: "MBEducation", value: "MB_Education" },
+            { Text: "MBProfession", value: "MB_Profession" },
+            { Text: "MBMobile/land", value: "MB_ContactNo" },
+            { Text: "MBEmail", value: "MB_Email" },
+            { Text: "MBCurrent Location", value: "MB_professionlocation" },
+            ///Mothrer sister
+            { Text: "Mother Sister All", value: "MS_AllFields" },
+            { Text: "MSName", value: "MS_Name" },
+            { Text: "MSHName", value: "MSH_Name" },
+            { Text: "MSHSur Name", value: "MSH_Surname" },
+            { Text: "MSHEducation", value: "MSH_Education" },
+            { Text: "MSHProfession", value: "MSH_Profession" },
+            { Text: "MSHMobile/Land", value: "MSH_ContactNo" },
+            { Text: "MSHEmail", value: "MSH_Email" },
+            { Text: "MSHCurrent Location", value: "MSH_ProfessionLocation" },
+            { Text: "MSHstate", value: "MSHStateName" },
+            { Text: "MSHDistrict", value: "MSHDistrictName" },
+            { Text: "MSHNative Place", value: "MSHCityName" },
+            { Text: "SFName", value: "SFName" },
+            { Text: "SLName", value: "SLName" },
+            { Text: "Spouse Education", value: "SpouseEducation" },
+            { Text: "Spouse Profession", value: " SpouseProfession" },
+            { Text: "Spouse Married On", value: "SpouseMarriedOn" },
+            { Text: "Spouse Separated Date", value: "SpouseSeparatedDate" },
+            { Text: "Spouse Legally Divorced", value: "SpouseLegallyDivorced" },
+            { Text: "Souse FatherName", value: "SouseFatherName" },
+            { Text: "Spouse FatherSurname", value: "SpouseFatherSurname" },
+            { Text: "Spouse about previous marriage", value: "Spouseaboutpreviousmarriage" },
+            { Text: "Spouse familyPlaning", value: "SpousefamilyPlaning" },
+            { Text: "Sspouse NoOfChildrens", value: "SspouseNoOfChildrens" },
+            { Text: "RefName", value: "RefName" },
+            { Text: "RefSurname", value: "RefSurname" },
+            { Text: "Refprofession", value: "Refprofession" },
+            { Text: "Refcountry", value: "Refcountry" },
+            { Text: "RefState", value: "RefState" },
+            { Text: "RefDistrict", value: "RefDistrict" },
+            { Text: "RefNativePlace", value: "RefNativePlace" },
+            { Text: "RefPresentLocation", value: "RefPresentLocation" },
+            { Text: "RefMobile", value: "RefMobile" },
+            { Text: "Refland Line", value: "ReflandLine" },
+            { Text: "RefEmail", value: "RefEmail" },
+            { Text: "RefNarration", value: "RefNarration" },
+            { Text: "Pr_Age_fr", value: "Pr_Age_fr" },
+            { Text: "Pr_Age_to", value: "Pr_Age_to" },
+            { Text: "Pr_Hight_fr", value: "Pr_Hight_fr" },
+            { Text: "Pr_Hight_to", value: "Pr_Hight_to" },
+            { Text: "Pr_MotherTongue", value: "Pr_MotherTongue" },
+            { Text: "Pr_Religion", value: "Pr_Religion" },
+            { Text: "Pr_Caste", value: "Pr_Caste" },
+            { Text: "Pr_SubCaste", value: "Pr_SubCaste" },
+            { Text: "Pr_MaritalStatus", value: "Pr_MaritalStatus" },
+            { Text: "Pr_Education", value: "Pr_Education" },
+            { Text: "Pr_Profession", value: "Pr_Profession" },
+            { Text: "Pr_Mangalic", value: "Pr_Mangalic" },
+            { Text: "Pr_StarLanguage", value: "Pr_StarLanguage" },
+            { Text: "Pr_NonPreferredStar", value: "Pr_NonPreferredStar" },
+            { Text: "Pr_Diet", value: "Pr_Diet" },
+            { Text: "Pr_PreferredCountry", value: "Pr_PreferredCountry" },
+            { Text: "Pr_PreferredStat", value: "Pr_PreferredStat" },
+            { Text: "Pr_Region", value: "Pr_Region" },
+            { Text: "Pr_Branch", value: "Pr_Branch" },
+            { Text: "contact address all", value: "CContactAddress_All" },
         ];
         model.checkTxt = function(val) {
             return val !== '' && val !== undefined && val !== null ? true : false;
@@ -207,7 +262,7 @@
                 data.push({ label: 'Name', value: item.LastName + ' ' + item.FirstName, style: item.NoOfBrothers == "0" && item.NoOfSisters == "0" ? "style= color:DarkViolet;" : "style= color:Black;" });
                 data.push({ label: 'DOB-Height', value: '', DOB: item.DOB + ' -- ' + item.Height });
                 data.push({ label: 'Caste', value: item.MotherTongue + "-" + item.Caste });
-                data.push({ label: 'Dor', value: item.DOR });
+                data.push({ label: 'Dor', value: item.RegistrationDate });
                 data.push({ label: 'Profile Grade', value: item.ProfileGrade == "1" ? "A" : (item.ProfileGrade == "2" ? "B" : (item.ProfileGrade == "3" ? "C" : "--")) });
                 array.push({
                     itmArr: data,
@@ -357,6 +412,12 @@
             helperservice.getMyprofilebind(1, 2, '').then(function(response) {
                 model.Applicationstatusarray = [];
                 model.Castearray = [];
+                model.maritalstatusarray = [];
+                model.maritalstatusarray = arrayConstants.MaritalStatusreg;
+                model.arraygender = [
+                    { value: 2, name: 'Bride' },
+                    { value: 1, name: 'Groom' }
+                ];
                 _.each(response.data, function(item) {
                     switch (item.CountryCode) {
                         case "Application Status":
@@ -385,137 +446,273 @@
 
             return _.where(test, { StatusID: parseInt(row.ProfileStatusID) }).length > 0 ? _.where(test, { StatusID: parseInt(row.ProfileStatusID) })[0].classes : '';
         };
-        model.keywordlikesearch = function(from, to, type) {
-            model.topage = to;
-            if (model.checkInputs()) {
-                model.object.Keyworddlikesrch.AllContactNo = model.allphones !== null && model.allphones !== "" && model.allphones !== undefined ? model.allphones : null;
-                model.object.Keyworddlikesrch.AllEmails = model.allemails !== null && model.allemails !== "" && model.allemails !== undefined ? model.allemails : null;
-                model.object.Keyworddlikesrch.AllSurNames = model.allsurnames !== null && model.allsurnames !== "" && model.allsurnames !== undefined ? model.allsurnames : null;
-                model.object.Keyworddlikesrch.AllNatives = model.allnativeplaces !== null && model.allnativeplaces !== "" && model.allnativeplaces !== undefined ? model.allnativeplaces : null;
-                model.object.Keyworddlikesrch.CEducationAll = model.allEducation;
-                model.object.Keyworddlikesrch.CProfAll = model.allProfession;
-                model.object.Keyworddlikesrch.FAllFields = model.allFather;
-                model.object.Keyworddlikesrch.MAllFields = model.allMother;
-                model.object.Keyworddlikesrch.Br_AllFields = model.allBrother;
-                model.object.Keyworddlikesrch.Sr_AllFields = model.allSister;
-                // model.object.Keyworddlikesrch.FB_AllFields = model.allFB;
-                // model.object.Keyworddlikesrch.FS_AllFields = model.allFS;
-                // model.object.Keyworddlikesrch.MB_AllFields = model.allMB;
-                // model.object.Keyworddlikesrch.MS_AllFields = model.allMS;
-                model.object.Keyworddlikesrch.CAll = model.c_all;
-                model.object.Keyworddlikesrch.Gender = model.rbtnGender ? model.rbtnGender : null;
-                model.object.Keyworddlikesrch.ApplicationStatus = model.returnnullvalue(model.applicationids);
-                model.object.Keyworddlikesrch.startindex = from;
-                model.object.Keyworddlikesrch.EndIndex = to;
-                model.object.Keyworddlikesrch.EmpID = model.empid;
-                keywordSearchService.keywordlikesearch(model.object.Keyworddlikesrch).then(function(response) {
-                    if (_.isArray(response.data) && response.data.length > 0 && _.isArray(response.data[0]) && response.data[0].length) {
-                        if (type === 'grid') {
-                            model.panelbodyhide = false;
-                            model.grid.showpaging = true;
-                            model.keywordcontrols = true;
-                            model.btnbacktosearch = true;
-                            model.grid.pageSize = 10;
-                            _.map(response.data[0], function(item) {
-                                item.rowtype = model.rowStyle(item);
-                            });
-                            model.grid.TotalRows = response.data[0][0].TotalRows;
-                            model.grid.data = response.data[0];
-                        } else if (type === 'excel') {
-                            model.grid.exportarray = [];
-                            model.grid.exportarray = response.data[0];
-                            var options = {
-                                headers: true,
-                                columns: [{
-                                        columnid: 'ProfileID',
-                                        title: 'ProfileID'
-                                    }, {
-                                        columnid: 'FirstName',
-                                        title: 'FirstName'
-                                    }, {
-                                        columnid: 'LastName',
-                                        title: 'SurName'
-                                    },
-                                    {
-                                        columnid: 'Caste',
-                                        title: 'Caste'
-                                    },
-                                    {
-                                        columnid: 'EducationGroup',
-                                        title: 'Education'
-                                    },
-                                    {
-                                        columnid: 'Profession',
-                                        title: 'Profession'
-                                    },
-                                    {
-                                        columnid: 'JobLocation',
-                                        title: 'JobLocation'
-                                    },
-                                    {
-                                        columnid: 'Property',
-                                        title: 'Property'
-                                    },
-                                    {
-                                        columnid: 'CompanyName',
-                                        title: 'CompanyName'
-                                    },
-                                    {
-                                        columnid: 'PlaceOfBirth',
-                                        title: 'PlaceOfBirth'
-                                    },
-                                    {
-                                        columnid: 'TOB',
-                                        title: 'TOB'
-                                    },
-                                    {
-                                        columnid: 'Gothram',
-                                        title: 'Gothram'
-                                    },
-                                    {
-                                        columnid: 'Star',
-                                        title: 'Star'
-                                    },
-                                    {
-                                        columnid: 'FFNative',
-                                        title: 'FFNative'
-                                    },
-                                    {
-                                        columnid: 'MFNative',
-                                        title: 'MFNative'
-                                    }
-                                ]
-                            };
-                            alasql('SELECT ProfileID,FirstName,LastName as SurName,Caste,EducationGroup as Education,Profession,JobLocation,Property,CompanyName,PlaceOfBirth,TOB,Gothram,Star,FFNative,MFNative  INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.grid.exportarray]);
-                        } else {
-                            model.slide.totalRecords = response.data[0][0].TotalRows;
-                            model.slide.headervisileble = true;
-                            if (parseInt(from) === 1) {
-                                configslide.setSlides(model.displayArrayprofile(response.data[0], 10), 10, 'normal');
-                                if (model.myprofileslideshowopenflag !== 1) {
-                                    model.myprofileslideshowopenflag = 1;
-                                    modelpopupopenmethod.showPopup('keywordlikesearch.html', model.scope, 'lg', "myprofileslide");
-                                }
+        model.keywordlikesearch = function(from, to, type, flagtypeofsearch, btnsearch) {
+            if (btnsearch === 'btnsearch') {
+                model.flagtypeofsearch = flagtypeofsearch;
+            }
+            if (model.flagtypeofsearch === 'all') {
+                model.topage = to;
+                if (model.checkInputs()) {
+                    model.object.Keyworddlikesrch.AllContactNo = model.allphones !== null && model.allphones !== "" && model.allphones !== undefined ? model.allphones : null;
+                    model.object.Keyworddlikesrch.AllEmails = model.allemails !== null && model.allemails !== "" && model.allemails !== undefined ? model.allemails : null;
+                    model.object.Keyworddlikesrch.AllSurNames = model.allsurnames !== null && model.allsurnames !== "" && model.allsurnames !== undefined ? model.allsurnames : null;
+                    model.object.Keyworddlikesrch.AllNatives = model.allnativeplaces !== null && model.allnativeplaces !== "" && model.allnativeplaces !== undefined ? model.allnativeplaces : null;
+                    model.object.Keyworddlikesrch.CEducationAll = model.allEducation;
+                    model.object.Keyworddlikesrch.CProfAll = model.allProfession;
+                    model.object.Keyworddlikesrch.FAllFields = model.allFather;
+                    model.object.Keyworddlikesrch.MAllFields = model.allMother;
+                    model.object.Keyworddlikesrch.Br_AllFields = model.allBrother;
+                    model.object.Keyworddlikesrch.Sr_AllFields = model.allSister;
+                    // model.object.Keyworddlikesrch.FB_AllFields = model.allFB;
+                    // model.object.Keyworddlikesrch.FS_AllFields = model.allFS;
+                    // model.object.Keyworddlikesrch.MB_AllFields = model.allMB;
+                    // model.object.Keyworddlikesrch.MS_AllFields = model.allMS;
+                    model.object.Keyworddlikesrch.CAll = model.c_all;
+                    model.object.Keyworddlikesrch.Gender = model.rbtnGender ? model.rbtnGender : null;
+                    model.object.Keyworddlikesrch.ApplicationStatus = model.returnnullvalue(model.applicationids);
+                    model.object.Keyworddlikesrch.startindex = from;
+                    model.object.Keyworddlikesrch.EndIndex = to;
+                    model.object.Keyworddlikesrch.EmpID = model.empid;
+                    keywordSearchService.keywordlikesearch(model.object.Keyworddlikesrch).then(function(response) {
+                        if (_.isArray(response.data) && response.data.length > 0 && _.isArray(response.data[0]) && response.data[0].length) {
+                            if (type === 'grid') {
+                                model.panelbodyhide = false;
+                                model.grid.showpaging = true;
+                                model.keywordcontrols = true;
+                                model.btnbacktosearch = true;
+                                model.grid.pageSize = 10;
+                                _.map(response.data[0], function(item) {
+                                    item.rowtype = model.rowStyle(item);
+                                });
+                                model.grid.TotalRows = response.data[0][0].TotalRows;
+                                model.grid.data = response.data[0];
+                            } else if (type === 'excel') {
+                                model.grid.exportarray = [];
+                                model.grid.exportarray = response.data[0];
+                                var options = {
+                                    headers: true,
+                                    columns: [{
+                                            columnid: 'ProfileID',
+                                            title: 'ProfileID'
+                                        }, {
+                                            columnid: 'FirstName',
+                                            title: 'FirstName'
+                                        }, {
+                                            columnid: 'LastName',
+                                            title: 'SurName'
+                                        },
+                                        {
+                                            columnid: 'Caste',
+                                            title: 'Caste'
+                                        },
+                                        {
+                                            columnid: 'EducationGroup',
+                                            title: 'Education'
+                                        },
+                                        {
+                                            columnid: 'Profession',
+                                            title: 'Profession'
+                                        },
+                                        {
+                                            columnid: 'JobLocation',
+                                            title: 'JobLocation'
+                                        },
+                                        {
+                                            columnid: 'Property',
+                                            title: 'Property'
+                                        },
+                                        {
+                                            columnid: 'CompanyName',
+                                            title: 'CompanyName'
+                                        },
+                                        {
+                                            columnid: 'PlaceOfBirth',
+                                            title: 'PlaceOfBirth'
+                                        },
+                                        {
+                                            columnid: 'TOB',
+                                            title: 'TOB'
+                                        },
+                                        {
+                                            columnid: 'Gothram',
+                                            title: 'Gothram'
+                                        },
+                                        {
+                                            columnid: 'Star',
+                                            title: 'Star'
+                                        },
+                                        {
+                                            columnid: 'FFNative',
+                                            title: 'FFNative'
+                                        },
+                                        {
+                                            columnid: 'MFNative',
+                                            title: 'MFNative'
+                                        }
+                                    ]
+                                };
+                                alasql('SELECT ProfileID,FirstName,LastName as SurName,Caste,EducationGroup as Education,Profession,JobLocation,Property,CompanyName,PlaceOfBirth,TOB,Gothram,Star,FFNative,MFNative  INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.grid.exportarray]);
                             } else {
-                                configslide.addSlides(model.displayArrayprofile(response.data[0], 11), configslide.slides, parseInt(to), 'normal');
+                                model.slide.totalRecords = response.data[0][0].TotalRows;
+                                model.slide.headervisileble = true;
+                                if (parseInt(from) === 1) {
+                                    configslide.setSlides(model.displayArrayprofile(response.data[0], 10), 10, 'normal');
+                                    if (model.myprofileslideshowopenflag !== 1) {
+                                        model.myprofileslideshowopenflag = 1;
+                                        modelpopupopenmethod.showPopup('keywordlikesearch.html', model.scope, 'lg', "myprofileslide");
+                                    }
+                                } else {
+                                    configslide.addSlides(model.displayArrayprofile(response.data[0], 11), configslide.slides, parseInt(to), 'normal');
+                                }
+                            }
+                        } else {
+                            if (type === 'grid') {
+                                model.grid.data = [];
+                                model.grid.showpaging = false;
+                                model.panelbodyhide = true;
+                                alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No Records Found', 4500);
                             }
                         }
-                    } else {
-                        if (type === 'grid') {
-                            model.grid.data = [];
-                            model.grid.showpaging = false;
-                            model.panelbodyhide = true;
-                            alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No Records Found', 4500);
-                        }
-                    }
-                });
+                    });
+                } else {
+                    model.isDisabledsubmit = false;
+                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter atleast one field', 4500);
+                }
             } else {
-                model.isDisabledsubmit = false;
-                alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter atleast one field', 4500);
+                model.keywordlikesearchforlist(from, to, type);
             }
         };
         ////
-
+        model.returnnullvalue = function(value) {
+            var obj = helperservice.checkstringvalue(value) && (value.toString()) !== "0" && (value.toString()) !== 0 ? (value.toString()) : null;
+            return obj;
+        };
+        model.keywordlikesearchforlist = function(from, to, type) {
+            model.topage = to;
+            if (from === 1) {
+                model.object.Keyworddlikesrch = {};
+                if (model.txtallkeywordsearh !== "" && model.txtallkeywordsearh !== undefined && model.txtallkeywordsearh !== null) {
+                    model.Getfilterobject();
+                }
+            }
+            model.object.Keyworddlikesrch.ApplicationStatus = model.returnnullvalue(model.applicationids);
+            model.object.Keyworddlikesrch.EmpID = parseInt(model.empid);
+            model.object.Keyworddlikesrch.startindex = from;
+            model.object.Keyworddlikesrch.EndIndex = to;
+            model.object.Keyworddlikesrch.Gender = model.returnnullvalue(model.rbtnGender);
+            model.object.Keyworddlikesrch.maritalstatus = model.returnnullvalue(model.maritalstatusids);
+            model.object.Keyworddlikesrch.FromAge = model.txtfromagekey !== "" && model.txtfromagekey !== undefined && model.txtfromagekey !== null ? parseInt(model.txtfromagekey) : null;
+            model.object.Keyworddlikesrch.ToAge = model.txttoagekey !== "" && model.txttoagekey !== undefined && model.txttoagekey !== null ? parseInt(model.txttoagekey) : null;
+            model.object.Keyworddlikesrch.FromHeight = model.txtfromheightkey !== "" && model.txtfromheightkey !== undefined && model.txtfromheightkey !== null ? parseInt(model.txtfromheightkey) : null;
+            model.object.Keyworddlikesrch.ToHeight = model.txttoheightkey !== "" && model.txttoheightkey !== undefined && model.txttoheightkey !== null ? parseInt(model.txttoheightkey) : null;
+            model.object.Keyworddlikesrch.Caste = model.returnnullvalue(model.Casteids);
+            model.object.Keyworddlikesrch.CDomicile = model.rbtndomacile !== "" && model.rbtndomacile !== undefined && model.rbtndomacile !== null ? parseInt(model.rbtndomacile) : null;
+            keywordSearchService.KeywordlikeSearchnewpage(model.object.Keyworddlikesrch).then(function(response) {
+                console.log(response.data);
+                if (_.isArray(response.data) && response.data.length > 0) {
+                    if (type === 'grid') {
+                        if (from === 1) {
+                            model.controllistbox = false;
+                        }
+                        model.panelbodyhide = false;
+                        model.grid.showpaging = true;
+                        model.keywordcontrols = true;
+                        model.btnbacktosearch = true;
+                        model.grid.pageSize = 10;
+                        _.map(response.data, function(item) {
+                            item.rowtype = model.rowStyle(item);
+                        });
+                        model.grid.TotalRows = response.data[0].TotalRows;
+                        model.grid.data = response.data;
+                    } else if (type === 'excel') {
+                        model.grid.exportarray = [];
+                        model.grid.exportarray = response.data;
+                        var options = {
+                            headers: true,
+                            columns: [{
+                                    columnid: 'ProfileID',
+                                    title: 'ProfileID'
+                                }, {
+                                    columnid: 'FirstName',
+                                    title: 'FirstName'
+                                }, {
+                                    columnid: 'LastName',
+                                    title: 'SurName'
+                                },
+                                {
+                                    columnid: 'Caste',
+                                    title: 'Caste'
+                                },
+                                {
+                                    columnid: 'EducationGroup',
+                                    title: 'Education'
+                                },
+                                {
+                                    columnid: 'Profession',
+                                    title: 'Profession'
+                                },
+                                {
+                                    columnid: 'JobLocation',
+                                    title: 'JobLocation'
+                                },
+                                {
+                                    columnid: 'Property',
+                                    title: 'Property'
+                                },
+                                {
+                                    columnid: 'CompanyName',
+                                    title: 'CompanyName'
+                                },
+                                {
+                                    columnid: 'PlaceOfBirth',
+                                    title: 'PlaceOfBirth'
+                                },
+                                {
+                                    columnid: 'TOB',
+                                    title: 'TOB'
+                                },
+                                {
+                                    columnid: 'Gothram',
+                                    title: 'Gothram'
+                                },
+                                {
+                                    columnid: 'Star',
+                                    title: 'Star'
+                                },
+                                {
+                                    columnid: 'FFNative',
+                                    title: 'FFNative'
+                                },
+                                {
+                                    columnid: 'MFNative',
+                                    title: 'MFNative'
+                                }
+                            ]
+                        };
+                        alasql('SELECT ProfileID,FirstName,LastName as SurName,Caste,EducationGroup as Education,Profession,JobLocation,Property,CompanyName,PlaceOfBirth,TOB,Gothram,Star,FFNative,MFNative  INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.grid.exportarray]);
+                    } else {
+                        model.slide.totalRecords = response.data[0].TotalRows;
+                        model.slide.headervisileble = true;
+                        if (parseInt(from) === 1) {
+                            configslide.setSlides(model.displayArrayprofile(response.data, 10), 10, 'normal');
+                            if (model.myprofileslideshowopenflag !== 1) {
+                                model.myprofileslideshowopenflag = 1;
+                                modelpopupopenmethod.showPopup('keywordlikesearch.html', model.scope, 'lg', "myprofileslide");
+                            }
+                        } else {
+                            configslide.addSlides(model.displayArrayprofile(response.data, 11), configslide.slides, parseInt(to), 'normal');
+                        }
+                    }
+                } else {
+                    if (type === 'grid') {
+                        model.grid.data = [];
+                        model.grid.showpaging = false;
+                        model.panelbodyhide = true;
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No Records Found', 4500);
+                    }
+                }
+            });
+        };
         model.checkInputs = function() {
             var inputArray = ['allphones', 'allemails', 'allsurnames', 'allnativeplaces', 'allEducation',
                 'allProfession', 'allFather', 'allMother', 'allBrother', 'allSister', 'c_all'
@@ -571,6 +768,35 @@
                 model[element] = '';
             }, this);
             model.applicationids = [54];
+            model.txtallkeywordsearh = '';
+        };
+        model.onchangeselectlistvalues = function(value) {
+            var optionSelected = $.trim(value);
+            console.log(optionSelected);
+            var entertext;
+            if (optionSelected === "CDateofReg" || optionSelected === "Salary" || optionSelected === "workingfromdate" || optionSelected === "PropertyValue") {
+                if (model.txtallkeywordsearh === "") {
+                    entertext = "" + optionSelected + " between ' , '";
+                } else {
+                    entertext = "  and  " + optionSelected + " between ' , '";
+                }
+            } else {
+                if (model.txtallkeywordsearh === "") {
+                    entertext = "" + optionSelected + " like '%%'";
+                } else {
+                    entertext = "  and  " + optionSelected + " like '%%'";
+                }
+            }
+            var strSearchText = entertext;
+            model.txtallkeywordsearh = model.txtallkeywordsearh + strSearchText;
+        };
+        model.Getfilterobject = function() {
+            _.each(model.txtallkeywordsearh.split(' and '), function(item) {
+                var innerdata = item.indexOf("between") != -1 ? item.split('between') : item.split('like');
+                model.object.Keyworddlikesrch[_.where(model.Searchfields, { Text: (innerdata[0]).trim() })[0].value] = (innerdata[1]).trim();
+            });
+            console.log((model.object.Keyworddlikesrch));
+            return model.object;
         };
         return model;
     }

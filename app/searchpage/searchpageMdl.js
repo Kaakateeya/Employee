@@ -306,20 +306,7 @@
                     return str;
                 };
 
-                //  model.GetPhotoandHoroscopevalues = function(strType, str) {
-                //     var strtt;
-                //     if (str !== null && str !== undefined && str !== "" && str.length > 0) {
-                //         strtt = str.toString();
-                //         if (strType == "horo") {
-                //             strtt = ((str === '2,3') ? null : (str === '2') ? "1" : (str === '3') ? "0" : null);
-                //         } else {
-                //             strtt = ((str === "1,0") ? null : (str === '1') ? "1" : (str === '0') ? "0" : null);
-                //         }
-                //     }
-                //     return strtt;
-                // };
                 model.submitgeneral = function(frompage, topage, typeofexcel) {
-
                     model.config.shortlistmodel.shortlistmodelinner = frompage === 1 ? [] : model.config.shortlistmodel.shortlistmodelinner;
                     var paramters = {};
                     _.each(model.domDatageneral, function(parentItem) {
