@@ -414,6 +414,10 @@
                 model.Castearray = [];
                 model.maritalstatusarray = [];
                 model.maritalstatusarray = arrayConstants.MaritalStatusreg;
+                model.arraygender = [
+                    { value: 2, name: 'Bride' },
+                    { value: 1, name: 'Groom' }
+                ];
                 _.each(response.data, function(item) {
                     switch (item.CountryCode) {
                         case "Application Status":
@@ -595,7 +599,7 @@
             model.object.Keyworddlikesrch.EmpID = parseInt(model.empid);
             model.object.Keyworddlikesrch.startindex = from;
             model.object.Keyworddlikesrch.EndIndex = to;
-            model.object.Keyworddlikesrch.Gender = model.rbtnGender !== "" && model.rbtnGender !== undefined && model.rbtnGender !== null ? parseInt(model.rbtnGender) : null;
+            model.object.Keyworddlikesrch.Gender = model.returnnullvalue(model.rbtnGender);
             model.object.Keyworddlikesrch.maritalstatus = model.returnnullvalue(model.maritalstatusids);
             model.object.Keyworddlikesrch.FromAge = model.txtfromagekey !== "" && model.txtfromagekey !== undefined && model.txtfromagekey !== null ? parseInt(model.txtfromagekey) : null;
             model.object.Keyworddlikesrch.ToAge = model.txttoagekey !== "" && model.txttoagekey !== undefined && model.txttoagekey !== null ? parseInt(model.txttoagekey) : null;
