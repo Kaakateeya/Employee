@@ -3,9 +3,12 @@
     angular
         .module('Kaakateeya')
         .factory('keywordSearchModel', factory);
-    factory.$inject = ['keywordSearchService', 'complex-grid-config', 'complex-slide-config', 'modelpopupopenmethod', 'helperservice', 'alert', 'arrayConstants'];
+    factory.$inject = ['keywordSearchService', 'complex-grid-config', 'complex-slide-config',
+        'modelpopupopenmethod', 'helperservice', 'alert', 'arrayConstants', '$timeout'
+    ];
 
-    function factory(keywordSearchService, configgrid, configslide, modelpopupopenmethod, helperservice, alertss, arrayConstants) {
+    function factory(keywordSearchService, configgrid, configslide, modelpopupopenmethod, helperservice,
+        alertss, arrayConstants, timeout) {
         var model = {};
         model.slide = {};
         model.grid = {};
@@ -770,8 +773,31 @@
             inputArray.forEach(function(element) {
                 model[element] = '';
             }, this);
-            model.applicationids = [54];
             model.txtallkeywordsearh = '';
+            model.lblsearchedfields = '';
+            model.rbtnGender = '';
+            model.rbtndomacile = '';
+            model.txtfromagekey = '';
+            model.txttoagekey = '';
+            model.txtfromheightkey = '';
+            model.txttoheightkey = '';
+            model.applicationids = [54];
+            model.Casteids = undefined;
+            model.maritalstatusids = undefined;
+        };
+
+        model.resetfieldsearch = function() {
+            model.txtallkeywordsearh = '';
+            model.lblsearchedfields = '';
+            model.rbtnGender = '';
+            model.rbtndomacile = '';
+            model.txtfromagekey = '';
+            model.txttoagekey = '';
+            model.txtfromheightkey = '';
+            model.txttoheightkey = '';
+            model.applicationids = [54];
+            model.Casteids = undefined;
+            model.maritalstatusids = undefined;
         };
         model.onchangeselectlistvalues = function(value) {
             var optionSelected = $.trim(value);

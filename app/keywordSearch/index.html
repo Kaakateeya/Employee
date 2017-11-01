@@ -18,8 +18,8 @@
                     </div>
                     <div class="col-lg-4" style="color:black;" ng-show="page.model.panelbodyhide">
                         <label for="All Profileid" class="col-lg-5 classlabelverify">Application status</label>
-                        <div class="col-lg-6" style="font-size:13px;" ng-class="page.model.applicationids===undefined || page.model.applicationids===null || page.model.applicationids===0 ?'':'ddlcolor'">
-                            <select id="applicationStatus" style="margin-top:-10px;" ng-model="page.model.applicationids" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.Applicationstatusarray" data-live-search='true'>                                        
+                        <div class="col-lg-6" style="font-size:13px;" ng-class="page.model.applicationids===undefined || page.model.applicationids===null || page.model.applicationids===0 ||  page.model.applicationids==='' ?'':'ddlcolor'">
+                            <select style="margin-top:-10px;" ng-model="page.model.applicationids" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.Applicationstatusarray" pagetype="'search'">                                        
                              </select>
                         </div>
                     </div>
@@ -96,8 +96,8 @@
                         </div>
                         <div class="col-lg-4" style="color:black;" ng-show="page.model.controllistbox">
                             <label for="All Profileid" class="col-lg-6 classlabelverify">Application status</label>
-                            <div class="col-lg-6" style="font-size:13px;">
-                                <select style="margin-top:-10px;" ng-model="page.model.applicationids" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.Applicationstatusarray" data-live-search='true'>                                        
+                            <div class="col-lg-6" style="font-size:13px;" ng-class="page.model.applicationids===undefined || page.model.applicationids===null || page.model.applicationids===0 ||  page.model.applicationids==='' ?'':'ddlcolor'">
+                                <select style="margin-top:-10px;" ng-model="page.model.applicationids" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.Applicationstatusarray" pagetype="'search'">                                        
                                 </select>
                             </div>
                         </div>
@@ -125,15 +125,15 @@
                                 <div class="row" ng-show="page.model.controllistbox">
                                     <div class="col-lg-3">
                                         <label for="All Profileid" style="padding-bottom: 7px;" class="">Caste</label>
-                                        <div class="clearfix" style="font-size:13px;" ng-class="page.model.Casteids===undefined || page.model.Casteids===null || page.model.Casteids===0 ?'':'ddlcolor'">
-                                            <select ng-model="page.model.Casteids" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.Castearray" data-live-search='true'>                                        
+                                        <div class="clearfix" style="font-size:13px;" ng-class="page.model.Casteids===undefined || page.model.Casteids===null || page.model.Casteids===0 || page.model.Casteids==='' ?'':'ddlcolor'">
+                                            <select ng-model="page.model.Casteids" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.Castearray" pagetype="'search'">                                        
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <label for="All Profileid" style="padding-bottom: 7px;" class="">Marital Status</label>
-                                        <div class="clearfix" style="font-size:13px;" ng-class="page.model.maritalstatusids===undefined || page.model.maritalstatusids===null || page.model.maritalstatusids===0 ?'':'ddlcolor'">
-                                            <select ng-model="page.model.maritalstatusids" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.maritalstatusarray" data-live-search='true'>                                        
+                                        <div class="clearfix" style="font-size:13px;" ng-class="page.model.maritalstatusids===undefined || page.model.maritalstatusids===null || page.model.maritalstatusids===0 || page.model.maritalstatusids==='' ?'':'ddlcolor'">
+                                            <select ng-model="page.model.maritalstatusids" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.maritalstatusarray" pagetype="'search'">                                        
                                            </select>
                                         </div>
                                     </div>
@@ -182,7 +182,8 @@
                             <hr>
                             <div class="text-center row">
                                 <button style="display:initial;margin-left: 2%;" class="button_custom" ng-click="page.model.keywordlikesearch(1,10,'grid','single','btnsearch');">Search</button>
-                                <button style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset" ng-click="page.model.reset();">Reset</button>
+                                <button type="reset" style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset" ng-click="page.model.resetfieldsearch();">Reset</button>
+                                <!-- <input type="reset" class="btn btn-default" ng-click="page.model.resetfieldsearch()" value="Reset"> -->
                                 <button style="display:initial;margin-left: 2%;" class="button_custom" ng-click="page.model.keywordlikesearch(1,10,'slide','single','btnsearch');">Slideshow</button>
                             </div>
                         </div>
