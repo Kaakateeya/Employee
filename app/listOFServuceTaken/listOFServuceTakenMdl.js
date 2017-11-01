@@ -14,7 +14,7 @@
         model.scope = {};
         model.grid1.showsearchrows = true;
         model.grid1.showsearch = true;
-        model.grid1.showpaging = true;
+        model.grid1.showpaging = false;
         model.grid1.myprofileexcel = true;
         model.grid1.normalexcel = true;
         model.profileOwner = [];
@@ -32,7 +32,6 @@
         model.MyProfilePageLoad = function() {
             if (model.applicationStatusarray.length === 0) {
                 helpService.getMyprofilebind(1, 2, '').then(function(response) {
-
                     _.each(response.data, function(item) {
                         switch (item.CountryCode) {
                             case "Application Status":
@@ -84,7 +83,6 @@
             model.getServiceGivenProfiles(val);
         };
         model.getServiceGivenProfiles = function(to) {
-
             model.grid1.columns = [
                 { text: 'Sno', key: 'sno', type: 'label' },
                 { text: 'From profile ID', key: 'ReceipentName', type: 'morelinks', templateUrl: model.fromProfileid },
@@ -95,7 +93,6 @@
                 { text: 'Service given by', key: 'AssignedEmp', type: 'label' },
                 { text: 'Branch', key: 'BranchesName', type: 'label' }
             ];
-
             var obj = {
                 AppUserId: model.aaa,
                 intlowerBound: 1,
@@ -115,9 +112,9 @@
                 EndIndex: null,
                 ResultFlag: null
             };
-
             listOFServuceTakenService.listOFServiceGiven(obj).then(function(response) {
                 if ((response.data[0]).length > 0) {
+                    model.grid1.showpaging = true;
                     model.opendiv = false;
                     model.grid1.TotalRows = (response.data[0])[0].TotalRows;
                     model.grid1.data = (response.data[0]);
@@ -146,13 +143,14 @@
             model.caste = [402];
             model.profileOwner = null;
             model.branch = null;
+            model.grid1.showpaging = false;
+            model.grid1.data = [];
             // timeout(function() {
             //     model.branch = [319, 320, 321, 322, 323, 324, 325, 326, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344];
             //     _.each(model.ProfileOwnerarray, function(item) {
             //         model.profileOwner.push(parseInt(item.value));
             //     });
             // }, 1000);
-
             model.fromDate = moment().subtract(1, 'days').format('MM-DD-YYYY');
             model.toDate = moment().format('MM-DD-YYYY');
             model.serviceGivenEmp = '';
