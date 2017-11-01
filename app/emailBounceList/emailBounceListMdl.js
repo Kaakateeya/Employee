@@ -46,8 +46,6 @@
                 });
             }
         };
-
-        model.MyProfilePageLoad();
         model.reset = function() {
             model.createdToDate = moment().format('MM-DD-YYYY');
             // model.modifiedToDate = moment().format('MM-DD-YYYY');

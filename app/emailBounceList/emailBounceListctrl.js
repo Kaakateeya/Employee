@@ -15,6 +15,8 @@
          vm.init = function() {
              vm.model = model = emailBounceListModel;
              model.panelbodyhide = true;
+             model.ProfileOwnerarray = [];
+             model.MyProfilePageLoad();
              model.reset();
              model.scope = scope;
          };
