@@ -101,6 +101,17 @@
     </div>
 </script>
 <style>
+    th,
+    td {
+        border: 1px solid #ddd;
+        text-overflow: ellipsis;
+        white-space: inherit;
+    }
+    
+    .SettledDate {
+        width: 105px;
+    }
+    
     .headerStyles {
         font-size: 16px;
     }
@@ -122,11 +133,11 @@
     }
     
     .GroomCaste {
-        width: 254px;
+        width: 230px;
     }
     
     .GroomName {
-        width: 100px;
+        width: 72px;
     }
     
     .BrideCaste {
@@ -134,7 +145,7 @@
     }
     
     .BrideName {
-        width: 180px;
+        width: 200px;
     }
     
     .linkcls {
@@ -142,11 +153,17 @@
     }
     
     .BrideProfileID {
-        width: 195px;
+        width: 187px;
     }
     
     .Linkdisabled {
         pointer-events: none;
         cursor: default;
+    }
+    
+    .Linkdisabledredcolor {
+        pointer-events: none;
+        cursor: default;
+        color: #d30909;
     }
 </style>

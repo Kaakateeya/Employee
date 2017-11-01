@@ -111,10 +111,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'mailFormats', name: 'base.mailFormats', url: '/mailFormats', isloginrequired: true },
             { routeName: 'settlementPageNew', name: 'base.settlementPageNew', url: '/settlementPageNews', isloginrequired: true },
             { routeName: 'employeeViewfullprofilePrintsearch', name: 'base.employeeViewfullprofilePrintsearch', url: '/Viewfullprofilesearch/:ProfileID/:contacts', isloginrequired: true },
-            { routeName: 'noProfilegrading', name: 'base.noProfilegrading', url: '/noProfilegrading', isloginrequired: true },
-            { routeName: 'listOFServuceTaken', name: 'base.listOFServuceTaken', url: '/listOFServuceTaken', isloginrequired: true },
+            { routeName: 'noProfilegrading', name: 'base.noProfilegrading', url: '/noProfilegradingPage', isloginrequired: true },
+            { routeName: 'listOFServuceTaken', name: 'base.listOFServuceTaken', url: '/listofservucetakenPage', isloginrequired: true },
             { routeName: 'matchfollowupReport', name: 'base.matchfollowupReport', url: '/matchfollowupReportPage', isloginrequired: true },
-            { routeName: 'emailBounceList', name: 'base.emailBounceList', url: '/emailBounceList', isloginrequired: true }
+            { routeName: 'emailBounceList', name: 'base.emailBounceList', url: '/emailBounceListPage', isloginrequired: true }
         ];
         $ocLazyLoadProvider.config({
             debug: true

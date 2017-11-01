@@ -94,11 +94,11 @@
             var groomfirsthalf = "<span class='" + groomfirsthalfcls + "'>" + row.GroomProfileID.substr(0, 5) + "</span>";
             var groomNexthalf = "<span class='" + groomNexthalfcls + "'>" + row.GroomProfileID.substr(5, 4) + "</span>";
 
-            var brideSAdisplay = row.BrideSettleForm === null ? 'NoSAForm' : 'ViewSAForm';
-            var groomSAdisplay = row.GroomSettleForm === null ? 'NoSAForm' : 'ViewSAForm';
+            var brideSAdisplay = row.BrideSettleForm === null ? 'No SA Form' : 'View SA Form';
+            var groomSAdisplay = row.GroomSettleForm === null ? 'No SA Form' : 'View SA Form';
 
-            var brideSAdisplaycls = row.BrideSettleForm === null ? 'Linkdisabled' : '';
-            var groomSAdisplaycls = row.GroomSettleForm === null ? 'Linkdisabled' : '';
+            var brideSAdisplaycls = row.BrideSettleForm === null ? 'Linkdisabledredcolor' : '';
+            var groomSAdisplaycls = row.GroomSettleForm === null ? 'Linkdisabledredcolor' : '';
 
             var str = "<a href='javascript:void(0);' ng-click='model.viewfullprofile(" + JSON.stringify(row.BrideProfileID) + ")' >" + bridefirsthalf + brideNexthalf + "</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.showSAmethod(" + JSON.stringify(row.BrideSettleForm) + ")' class=" + brideSAdisplaycls + ">" + brideSAdisplay + "</a><br><a href='javascript:void(0);' ng-click='model.viewfullprofile(" + JSON.stringify(row.GroomProfileID) + ")'>" + groomfirsthalf + groomNexthalf + "</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.showSAmethod(" + JSON.stringify(row.GroomSettleForm) + ")'  class=" + groomSAdisplaycls + ">" + groomSAdisplay + "</a>";
             return str;
@@ -126,8 +126,8 @@
         model.showbuttons = function(row) {
             var str = '',
                 bridestr, groomstr;
-            bridestr = row.Bride_SettleAmtStatus === 574 ? '--' : "<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.BrideProfileID) + "," + JSON.stringify('574') + ");'>Paid</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);'  ng-click='model.openPouptoedit(" + JSON.stringify(row.BrideProfileID) + "," + JSON.stringify('575') + ");'>PartialPaid</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.BrideProfileID) + "," + JSON.stringify('577') + ");'>NotIntToPay</a>";
-            groomstr = row.Groom_SettleAmtStatus === 574 ? '--' : "<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.GroomProfileID) + "," + JSON.stringify('574') + ");'>Paid</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.GroomProfileID) + "," + JSON.stringify('575') + ");'>PartialPaid</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.GroomProfileID) + "," + JSON.stringify('577') + ");'>NotIntToPay</a>";
+            bridestr = row.Bride_SettleAmtStatus === 574 ? '--' : "<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.BrideProfileID) + "," + JSON.stringify('574') + ");'>Paid</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);'  ng-click='model.openPouptoedit(" + JSON.stringify(row.BrideProfileID) + "," + JSON.stringify('575') + ");'>PartialPaid</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.BrideProfileID) + "," + JSON.stringify('577') + ");'>NotIntToPay</a>";
+            groomstr = row.Groom_SettleAmtStatus === 574 ? '--' : "<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.GroomProfileID) + "," + JSON.stringify('574') + ");'>Paid</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.GroomProfileID) + "," + JSON.stringify('575') + ");'>PartialPaid</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.openPouptoedit(" + JSON.stringify(row.GroomProfileID) + "," + JSON.stringify('577') + ");'>NotIntToPay</a>";
             str = bridestr + '<br>' + groomstr;
             return str;
         };
