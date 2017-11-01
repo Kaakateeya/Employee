@@ -81,17 +81,13 @@
                         </div>
                         <hr>
                     </div>
-                    <div class="panel-heading row" style="color: rgb(160, 2, 1);">
+                    <div class="row" style="color: rgb(160, 2, 1);background-color: #f5f5f5;border-color: #ddd;border-bottom: 1px solid #ccc;height: 38px;border: 1px solid #ccc;padding-top: 9px;">
                         <div class="col-lg-2" style="font-size: 17px;font-weight: bold;cursor:pointer;width: 200px;" ng-click="page.model.controllistbox=!page.model.controllistbox;page.model.panelbodyhide=false;">
                             Field Wise Search<i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.controllistbox, 'glyphicon-chevron-right': !page.model.controllistbox}"></i>
                         </div>
                         <div class="col-lg-3" style="color:black;" ng-show="page.model.controllistbox">
                             <label for="All Profileid" class="col-lg-3 classlabelverify">Gender</label>
                             <div class="col-lg-9" style="font-size:13px;">
-                                <!-- <md-radio-group name="rbtnGender" layout="row" ng-model="page.model.rbtnGender" class="md-block" flex-gt-sm>
-                                    <md-radio-button value="1" class="md-primary">Male</md-radio-button>
-                                    <md-radio-button value="2"> Female</md-radio-button>
-                                </md-radio-group> -->
                                 <label ng-repeat="role in page.model.arraygender" class="col-lg-6">
                                         <md-checkbox  data-checklist-model="page.model.rbtnGender" data-checklist-value="role.value">{{role.name}}&nbsp;&nbsp;
                                         </md-checkbox>
@@ -116,11 +112,10 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <br>
                     <div class="row" ng-show="page.model.controllistbox">
                         <div class="col-lg-3" ng-if="true">
                             <input style="width:265px;" type="text" class="form-control" ng-model="page.model.txtinputfileds" placeholder="List of Fields"></input>
-                            <select style="height:600px;width: 265px;" multiple="multiple">
+                            <select style="height:400px;width: 265px;" multiple="multiple">
                              <option style="padding: 9px;" ng-disabled="$index_option" ng-class="item.style" ng-repeat="item in page.model.Searchfields | filter:page.model.txtinputfileds" value="{{item.value}}" ng-click="page.model.onchangeselectlistvalues(item.Text);$index_option=true;">{{item.Text}}</option>
                             </select>
                         </div>
