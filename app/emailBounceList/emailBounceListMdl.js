@@ -120,6 +120,7 @@
                 strCaste: null,
                 strBranch: model.joinArray(model.branch),
                 strOwnerOfProfile: model.joinArray(model.ProfileOwner),
+                strRegion: model.joinArray(model.Region),
                 StartDate: model.createdFromDate ? moment(model.createdFromDate).format('MM-DD-YYYY') : null,
                 EndDate: model.createdToDate ? moment(model.createdToDate).format('MM-DD-YYYY') : null,
                 strModifiedBy: null,
