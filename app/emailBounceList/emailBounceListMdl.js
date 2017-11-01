@@ -8,7 +8,6 @@
     factory.$inject = ['emailBounceListService', 'helperservice', 'alert', '$timeout', 'Commondependency'];
 
     function factory(emailBounceListService, helpService, alertss, timeout, Commondependency) {
-
         var model = {};
         model.grid1 = {};
         model.scope = {};
@@ -58,10 +57,10 @@
             model.modifiedBy = [];
             timeout(function() {
                 model.branch = [319, 320, 321, 322, 323, 324, 325, 326, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344];
-                _.each(model.ProfileOwnerarray, function(item) {
-                    model.ProfileOwner.push(parseInt(item.value));
-                    // model.modifiedBy.push(parseInt(item.value));
-                });
+                // _.each(model.ProfileOwnerarray, function(item) {
+                //     model.ProfileOwner.push(parseInt(item.value));
+                //     // model.modifiedBy.push(parseInt(item.value));
+                // });
             }, 1000);
 
             model.rbtnGender = '';
@@ -108,7 +107,6 @@
 
             model.grid1.showsearchrows = true;
             model.grid1.showsearch = true;
-            model.grid1.showpaging = true;
             model.grid1.myprofileexcel = true;
             model.grid1.normalexcel = true;
 
@@ -135,7 +133,7 @@
             };
             emailBounceListService.getEmailsBouncedList(obj).then(function(response) {
                 if ((response.data[0]).length > 0) {
-
+                    model.grid1.showpaging = true;
                     model.panelbodyhide = false;
                     model.grid1.TotalRows = (response.data[1])[0].TotalRows;
                     model.grid1.data = (response.data[0]);
