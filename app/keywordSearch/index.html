@@ -121,7 +121,7 @@
                         <div class="col-lg-3" ng-if="true">
                             <input style="width:265px;" type="text" class="form-control" ng-model="page.model.txtinputfileds" placeholder="List of Fields"></input>
                             <select style="height:600px;width: 265px;" multiple="multiple">
-                             <option style="padding: 9px;" ng-disabled="$index_option" ng-style="{'color':$index_style}" ng-repeat="item in page.model.Searchfields | filter:page.model.txtinputfileds" value="{{item.value}}" ng-click="page.model.onchangeselectlistvalues(item.Text);$index_option=true;$index_style='red';">{{item.Text}}</option>
+                             <option style="padding: 9px;" ng-disabled="$index_option" ng-class="item.style" ng-repeat="item in page.model.Searchfields | filter:page.model.txtinputfileds" value="{{item.value}}" ng-click="page.model.onchangeselectlistvalues(item.Text);$index_option=true;">{{item.Text}}</option>
                             </select>
                         </div>
                         <div class="col-lg-9" ng-if="true">
@@ -164,12 +164,27 @@
                                         <label style="color: maroon; font-weight: bold; font-size: 14px;">Enter Query</label>
                                     </div>
                                     <div class="col-lg-12 pull-left">
-                                        <textarea id="txtallsearch" ng-model="page.model.txtallkeywordsearh" rows="3" class="form-control"></textarea>
+                                        <textarea ng-model="page.model.txtallkeywordsearh" rows="3" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <label style="color: maroon; font-weight: bold; font-size: 14px;">Searched Fields</label>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <br>
+                                    <div class="col-lg-12 pull-left">
+                                        <p style="line-height: 1.7;">{{page.model.lblsearchedfields}}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
                             <br>
+                            <div class="clearfix"></div>
+                            <br>
+                            <hr>
                             <div class="text-center row">
                                 <button style="display:initial;margin-left: 2%;" class="button_custom" ng-click="page.model.keywordlikesearch(1,10,'grid','single','btnsearch');">Search</button>
                                 <button style="display:initial;margin-left: 2%;" class="button_custom button_custom_reset" ng-click="page.model.reset();">Reset</button>
@@ -224,5 +239,113 @@
         overflow-y: auto;
         overflow-x: hidden;
         max-height: 120px !important;
+    }
+    
+    .redcolor {
+        color: #FF7F50;
+    }
+    
+    .redcolorborder {
+        color: #FF7F50;
+        border-bottom: 2px solid #ccc;
+    }
+    
+    .lightbluecolor {
+        color: #6495ED;
+    }
+    
+    .lightbluecolorborder {
+        color: #6495ED;
+        border-bottom: 2px solid #ccc;
+    }
+    
+    .darkblue {
+        color: #DAA520;
+    }
+    
+    .darkblueboder {
+        color: #DAA520;
+        border-bottom: 2px solid #ccc;
+    }
+    
+    .lightgreen {
+        color: #2E8B57;
+    }
+    
+    .lightgreenborder {
+        color: #2E8B57;
+        border-bottom: 2px solid #ccc;
+    }
+    
+    .lightbrown {
+        color: #A0522D;
+    }
+    
+    .lightbrownborder {
+        color: #A0522D;
+        border-bottom: 2px solid #ccc;
+    }
+    
+    .tealcolor {
+        color: #00FF7F;
+    }
+    
+    .tealcolorborder {
+        color: #00FF7F;
+        border-bottom: 2px solid #ccc;
+    }
+    
+    .purplecolor {
+        color: #800080;
+    }
+    
+    .purplecolorborder {
+        color: #800080;
+        border-bottom: 2px solid #ccc;
+    }
+    
+    .tomatocolor {
+        color: #FF6347;
+    }
+    
+    .tomatocolorborder {
+        color: #FF6347;
+        border-bottom: 2px solid #ccc;
+    }
+    
+    .slatebue {
+        color: #6A5ACD;
+    }
+    
+    .slatebueborder {
+        color: #6A5ACD;
+        border-bottom: 2px solid #ccc;
+    }
+    
+    .teallcolor {
+        color: #EE82EE;
+    }
+    
+    .teallcolorborder {
+        color: #EE82EE;
+        border-bottom: 2px solid #ccc;
+    }
+    
+    .olivedrabcolor {
+        color: #6B8E23;
+    }
+    
+    .olivedrabcolorborder {
+        color: #6B8E23;
+        border-bottom: 2px solid #ccc;
+    }
+    
+    .salmoncolor {
+        color: #B8860B;
+    }
+    
+    .salmoncolorborder {
+        color: #B8860B;
+        border-bottom: 2px solid #ccc;
     }
 </style>
