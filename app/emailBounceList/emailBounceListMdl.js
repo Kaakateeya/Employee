@@ -48,7 +48,7 @@
         };
         model.reset = function() {
             model.createdToDate = moment().format('MM-DD-YYYY');
-            // model.modifiedToDate = moment().format('MM-DD-YYYY');
+            model.modifiedToDate = moment().format('MM-DD-YYYY');
             // model.caste = [402];
             model.applicationStatus = true;
             model.ProfileOwner = [];
@@ -88,12 +88,11 @@
         };
 
 
-        model.geBouncedMailsList = function(to) {
-
+        model.geBouncedMailsList = function(from, to, type) {
             model.grid1.columns = [
                 { text: 'Sno', key: 'sno', type: 'label' },
                 { text: 'ProfileID', key: 'ProfileId', type: 'morelinks', templateUrl: model.returnProfileIDTemplate },
-                { text: 'Name', key: 'Name', type: 'label' },
+                { text: 'Name', key: 'NAME', type: 'label' },
                 { text: 'Old email id', key: 'EmailId', type: 'label' },
                 { text: 'Modified email id', key: 'ModifiedEmailId', type: 'label' },
                 { text: 'Relation name', key: 'RealtionName', type: 'label' },
@@ -102,12 +101,10 @@
                 { text: 'Modified by', key: 'ModifiedBy', type: 'label' },
                 { text: 'Modified date', key: 'ModifiedDate', type: 'label' },
             ];
-
             model.grid1.showsearchrows = true;
             model.grid1.showsearch = true;
             model.grid1.myprofileexcel = true;
             model.grid1.normalexcel = true;
-
             var obj = {
                 strProfileID: model.profileid ? model.profileid : null,
                 BouncedEmail: model.Email ? model.Email : null,
@@ -120,35 +117,76 @@
                 StartDate: model.createdFromDate ? moment(model.createdFromDate).format('MM-DD-YYYY') : null,
                 EndDate: model.createdToDate ? moment(model.createdToDate).format('MM-DD-YYYY') : null,
                 strModifiedBy: null,
-                ModifiedStartDate: null,
-                ModifiedEndDate: null,
+                ModifiedStartDate: model.modifiedFromDate ? moment(model.modifiedFromDate).format('MM-DD-YYYY') : null,
+                ModifiedEndDate: model.modifiedToDate ? moment(model.modifiedToDate).format('MM-DD-YYYY') : null,
                 GenderID: model.rbtnGender,
-                rangeFrom: null,
-                rangeTo: null,
-                PageSize: 100,
-                PageNumber: to,
+                rangeFrom: from,
+                rangeTo: to,
                 flag: 0
             };
             emailBounceListService.getEmailsBouncedList(obj).then(function(response) {
                 if ((response.data[0]).length > 0) {
                     model.grid1.showpaging = true;
                     model.panelbodyhide = false;
-                    model.grid1.TotalRows = (response.data[1])[0].TotalRows;
-                    model.grid1.data = (response.data[0]);
-                    var i = 1;
-                    model.excelData = (response.data[0]);
-                    _.map((response.data[0]), function(item) {
-                        if (to === 1) {
-                            item.sno = i;
-                            i++;
-                        } else {
-                            item.sno = to * 100 + i;
-                            i++;
-                        }
-                    });
-
+                    if (type === 'grid') {
+                        model.grid1.pageSize = 10;
+                        model.grid1.TotalRows = (response.data[0])[0].TotalRows;
+                        var i = 1;
+                        _.map((response.data[0]), function(item) {
+                            if (from === 1) {
+                                item.sno = i;
+                                i++;
+                            } else {
+                                item.sno = (from - 1) + i;
+                                i++;
+                            }
+                        });
+                        model.grid1.data = (response.data[0]);
+                    } else {
+                        model.excelData = [];
+                        model.excelData = response.data[0];
+                        var options = {
+                            headers: true,
+                            columns: [{
+                                    columnid: 'ProfileId',
+                                    title: 'ProfileID'
+                                }, {
+                                    columnid: 'NAME',
+                                    title: 'NAME'
+                                }, {
+                                    columnid: 'EmailId',
+                                    title: 'Old email id'
+                                },
+                                {
+                                    columnid: 'ModifiedEmailId',
+                                    title: 'Modified email id'
+                                },
+                                {
+                                    columnid: 'RealtionName',
+                                    title: 'Relation name'
+                                },
+                                {
+                                    columnid: 'CreatedBy',
+                                    title: 'Created by'
+                                },
+                                {
+                                    columnid: 'CreatedDate',
+                                    title: 'Created date'
+                                },
+                                {
+                                    columnid: 'ModifiedBy',
+                                    title: 'Modified by'
+                                },
+                                {
+                                    columnid: 'ModifiedDate',
+                                    title: 'Modified date'
+                                }
+                            ]
+                        };
+                        alasql('SELECT ProfileId,NAME,EmailId as Oldemailid,Caste,ModifiedEmailId as Modifiedemailid,RealtionName,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate INTO  XLSX("EmailBounceReports.xlsx",?) FROM ?', [options, model.excelData]);
+                    }
                 } else {
-                    if (to === 1) {
+                    if (from === 1) {
                         model.excelData = model.grid1.data = [];
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 3500);
                     }
@@ -157,16 +195,19 @@
         };
 
         model.grid1.pagechange = function(val) {
-            model.geBouncedMailsList(val);
+            var to = val * 100;
+            var from = val === 1 ? 1 : to - 99;
+            model.geBouncedMailsList(from, to, 'grid');
         };
 
         model.grid1.exportexcel = function(topage) {
-            model.exportarray = [];
-            model.exportarray = model.excelData;
-            var options = {
-                headers: true
-            };
-            alasql('SELECT ProfileId,Name,EmailId as oldEmailID,ModifiedEmailId,RealtionName,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
+            model.geBouncedMailsList(1, topage, 'excel');
+            // model.exportarray = [];
+            // model.exportarray = model.excelData;
+            // var options = {
+            //     headers: true
+            // };
+            // alasql('SELECT ProfileId,Name,EmailId as oldEmailID,ModifiedEmailId,RealtionName,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportarray]);
             // model.getNogradingprofiles(parseInt(topage / 100), 'excel');
         };
 

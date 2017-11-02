@@ -90,7 +90,7 @@
                                 <custom-datepicker name="date" ng-model="page.model.createdToDate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
                             </div>
                         </div>
-                        <!-- <div class="col-lg-2 form-group">
+                        <div class="col-lg-2 form-group">
                             <label for="" class="control-label lbl">Modified from date</label>
                             <div>
                                 <custom-datepicker name="date" ng-model="page.model.modifiedFromDate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
@@ -101,9 +101,9 @@
                             <div>
                                 <custom-datepicker name="date" ng-model="page.model.modifiedToDate" ng-required="true" class="datepicker3" date-options="page.model.dateOptions"></custom-datepicker>
                             </div>
-                        </div> -->
+                        </div>
                         <div class="col-lg-1">
-                            <input type="button" class="btn btn-danger" style="margin-top: 29%;" value="Submit" ng-click="page.model.geBouncedMailsList(1);">
+                            <input type="button" class="btn btn-danger" style="margin-top: 29%;" value="Submit" ng-click="page.model.geBouncedMailsList(1,100,'grid');">
                         </div>
                         <div class="col-lg-1">
                             <input type="button" class="btn btn-default" style="margin-top: 29%;" value="Reset" ng-click="page.model.reset();">
@@ -138,5 +138,9 @@
     #emailbounce .ModifiedEmailId,
     #emailbounce .Name {
         width: 240px;
+    }
+    
+    .sno {
+        width: 76px;
     }
 </style>

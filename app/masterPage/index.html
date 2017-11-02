@@ -1,0 +1,50 @@
+<div class="right_col" role="main" id="masterpageid">
+    <div class="search_page_main">
+        <div class="sample" layout="column">
+            <md-content class="md-padding">
+                <md-tabs md-selected="page.model.selectedIndex" md-dynamic-height flex md-border-bottom md-autoselect>
+                    <md-tab ng-repeat="tab in page.model.tabsselected" label="{{tab.tabname}}" ng-click="page.onTabSelected(page.model.selectedIndex)">
+                        <div class="tab">
+                            <form name="{{tab.formame}}" role="form">
+                                <div class="profile_search_main profile_settings_main clearfix">
+                                    <div class="row">
+                                        <div ng-repeat="parentitem in page.model.returndynamicarray(tab.arrayname)">
+                                            <div ng-repeat="item in parentitem.controlList" class='row'>
+                                                <div class="col-lg-6 col-lg-offset-2  clearfix" ng-if="item.controlType==='textBox'">
+                                                    <p class="col-lg-4  clearfix">{{item.labelName}}</p>
+                                                    <div class="col-lg-6 controls clearfix">
+                                                        <div layout-gt-sm="row" class="generalane">
+                                                            <input ng-class="page.model[item.ngModel].trim()!=='' && page.model[item.ngModel]!==undefined && page.model[item.ngModel]!==null ?'bacg':''" class="form-control" style="width: 220px !important;" type="text" ng-model="page.model[item.ngModel]"></input>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                                <br>
+                                                <div class="col-lg-4 pull-right clearfix" ng-if="item.controlType==='checkbox'">
+                                                    <md-checkbox ng-model="page.model[item.ngModel]">
+                                                        Show Inactive
+                                                    </md-checkbox>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <br>
+                                                <complex-grid-new gid="{{item.id}}}" ng-if="page.model.gridtable9.columns" config="page.model.gridtable9" model="page.model.gridtable9"></complex-grid-new>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <br>
+                                        <div class="col-lg-offset-5">
+                                            <md-button class="md-raised md-warn md-hue-2" ng-disabled="page.model.isDisabledsubmit" ng-click="page.model.isDisabledsubmit=true;(tab.arrayname===1?page.model.submitgeneral(1,10):page.model.submitadvancedsearch(1,10))">Search</md-button>
+                                            <input type="reset" class="btn btn-default" ng-click="tab.arrayname===1?page.clearSelection(page.model.domDatageneral):page.clearSelection(page.model.domDataadvanced)" value="Reset">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </md-tab>
+                </md-tabs>
+            </md-content>
+        </div>
+    </div>
+</div>
