@@ -1,0 +1,106 @@
+#educationmasterid .sideMenu {
+  border: 1px solid #8b8989 !important;
+  border-radius: 5%; }
+#educationmasterid .bodycls {
+  padding-left: 0% !important; }
+#educationmasterid .btncls {
+  height: 38px; }
+#educationmasterid .lblcls {
+  left: 32px; }
+#educationmasterid .boderCls {
+  margin: 0 1% 0 2%; }
+#educationmasterid .hdrCls {
+  font-size: 15px; }
+#educationmasterid .edit_pages_sidebar_menu ul li {
+  display: block;
+  border-top: solid 1px #ccc;
+  width: 198px; }
+#educationmasterid .edit_pages_sidebar_menu {
+  width: 200px; }
+#educationmasterid ul {
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc; }
+#educationmasterid .edit_pages_sidebar_menu ul li a {
+  padding: 10px 8px !important; }
+
+.paymentAuthorizeCls {
+  line-height: 42px;
+  width: 78%;
+  left: 12%; }
+  .paymentAuthorizeCls button.close {
+    padding-right: 12px; }
+
+tbody {
+  height: auto;
+  max-height: 350px;
+  overflow-y: auto; }
+
+md-sidemenu-button > a {
+  width: 100% !important; }
+
+.md-sidemenu-button span {
+  text-align: left; }
+
+.btnbgColor {
+  background: #A00201;
+  color: #fff !important; }
+
+.unpaid {
+  color: red;
+  font-weight: 700; }
+
+.paidclass {
+  color: #16713d;
+  font-weight: 700; }
+
+.modalclassdashboardremainder {
+  z-index: 99999999999999 !important;
+  top: 0%;
+  left: 0%; }
+
+.modalclassofedit {
+  z-index: 9999999 !important;
+  top: 0%;
+  left: 0%; }
+
+.modalclassofedit .modal-dialog.modal-md {
+  width: 50%; }
+
+.modalclassofedit .md-tab {
+  padding: 14px 15px; }
+
+.modalclassofedit .pop_label_left {
+  width: 40%; }
+
+th.Emp_Ticket_ID.headerStyles {
+  width: 120px !important; }
+
+th.ProfileID.headerStyles {
+  width: 100px !important; }
+
+th.PaymentDate.headerStyles {
+  width: 110px !important; }
+
+th.ExpiryOn.headerStyles {
+  width: 110px !important; }
+
+th.SAForm.headerStyles {
+  width: 100px !important; }
+
+th.AgreedAmount.headerStyles {
+  width: 90px !important; }
+
+th.PaidAmount.headerStyles {
+  width: 90px !important; }
+
+th.ValidMonths.headerStyles {
+  width: 85px !important; }
+
+.dashboardheaderpopup {
+  background-color: rgba(197, 205, 50, 0.42);
+  margin-bottom: 10px;
+  margin-top: 2px;
+  margin-left: 2px;
+  margin-right: 2px; }
+
+/*# sourceMappingURL=style.css.map */

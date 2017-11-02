@@ -3,11 +3,11 @@
 
     angular
         .module('Kaakateeya')
-        .factory('masterPageModel', factory);
+        .factory('masterPageNewModel', factory)
 
-    factory.$inject = ['masterPageService', 'complex-grid-config'];
+    factory.$inject = ['masterPageNewService', 'complex-grid-config'];
 
-    function factory(masterPageService, complexgrid) {
+    function factory(masterPageNewService, complexgrid) {
         var model = {};
         model.grid1 = {};
         model.grid2 = {};
@@ -15,11 +15,6 @@
         model.grid4 = {};
         model.grid5 = {};
         model.grid6 = {};
-        // model.grid1.showsearchrows = true;
-        // model.grid1.showsearch = true;
-        // model.grid1.showpaging = true;
-        // model.grid1.myprofileexcel = true;
-        // model.grid1.normalexcel = true;
         model.showsearchrows = true;
         model.showsearch = true;
         model.showpaging = false;
@@ -29,25 +24,56 @@
         model.gridTableshow = false;
         model.init = function() {
             model.selectedIndex = 0;
+            model.labelName = 'Education Category';
+            model.grid1.columns = [
+                { text: 'Education Category', key: 'EducationCategory', type: 'label' },
+                { text: 'Status', key: 'StatusCode', type: 'label' },
+                { text: 'Action', key: 'EducationCategoryID', type: 'morelinks', templateUrl: model.Educationtemp },
+                { text: 'Change Status', key: 'EducationCategoryID', type: 'morelinks', templateUrl: model.changevalue }
+            ];
+            model.typeindex = 'Education Master';
             model.loadmasterdata('EducationCategory', null);
             model.tabsselected = [
                 { tabname: 'Education Master', arrayname: 1, formame: "educationform" },
                 { tabname: 'Profession Master', arrayname: 2, formame: "professionform" }
             ];
-            return model;
         };
-        // model.returnstringvalue = function(value) {
-        //     var valuetext = "<a>Edit</a> &nbsp;&nbsp;&nbsp;<a>Select</a>";
-        //     return valuetext;
-        // };
-        // // model.changevalue = function(row) {
-        // //     var valuetext = "<a>Active</a> &nbsp;&nbsp;&nbsp;<a>InActive</a>";
-        // //     return valuetext;
-        // // };
-        // model.Educationtemp = function(row) {
-        //     var EducationGroup = model.returnstringvalue(row.EducationCategoryID);
-        //     return EducationGroup;
-        // };
+        model.masterpageid = function(id, type) {
+            model.typeindex = type;
+            model.grid1.columns = [];
+            if (type === 'Education Master') {
+                model.grid1.columns = [
+                    { text: 'Education Category', key: 'EducationCategory', type: 'label' },
+                    { text: 'Status', key: 'StatusCode', type: 'label' },
+                    { text: 'Action', key: 'EducationCategoryID', type: 'morelinks', templateUrl: model.Educationtemp },
+                    { text: 'Change Status', key: 'EducationCategoryID', type: 'morelinks', templateUrl: model.changevalue }
+                ];
+                model.loadmasterdata('EducationCategory', null);
+                model.labelName = 'Education Category';
+            } else {
+                model.grid1.columns = [
+                    { text: 'Profession Category', key: 'ProfessionCategory', type: 'label' },
+                    { text: 'Status', key: 'StatusCode', type: 'label' },
+                    { text: 'Action', key: 'ProfessionCategoryID', type: 'morelinks', templateUrl: model.Educationtemp },
+                    { text: 'Change Status', key: 'ProfessionCategoryID', type: 'morelinks', templateUrl: model.changevalue }
+                ];
+                model.labelName = 'Profession Category';
+                model.loadmasterdata('ProfessionCategory', null);
+            }
+        };
+        model.returnstringvalue = function(value) {
+            var valuetext = "<a>Edit</a> &nbsp;&nbsp;&nbsp;<a>Select</a>";
+            return valuetext;
+        };
+        model.changevalue = function(row) {
+            var valuetext = "<a>Active</a> &nbsp;&nbsp;&nbsp;<a>InActive</a>";
+            return valuetext;
+        };
+        model.Educationtemp = function(row) {
+            var EducationGroup = model.returnstringvalue(row.EducationCategoryID);
+            return EducationGroup;
+        };
+
         model.returndynamicarray = function(val) {
             var array;
             if (val === 1) {
@@ -140,12 +166,6 @@
 
         };
         model.loadmasterdata = function(MasterType, DependentId) {
-            model.grid1.columns = [
-                { text: 'Education Category', key: 'EducationCategory', type: 'label' },
-                { text: 'Status', key: 'StatusCode', type: 'label' },
-                // { text: 'Action', key: 'EducationCategoryID', type: 'morelinks', templateUrl: model.Educationtemp },
-                // { text: 'Change Status', key: 'EducationCategoryID', type: 'morelinks', templateUrl: model.changevalue }
-            ];
             var obj = {
                 AppuserID: 1,
                 MasterType: MasterType,
@@ -153,14 +173,13 @@
                 DependentId: DependentId,
                 StatusCode: 1
             };
-            masterPageService.MasterDataselect(obj).then(function(response) {
+            masterPageNewService.MasterDataselect(obj).then(function(response) {
                 console.log(response);
                 if (_.isArray(response.data) && response.data.length > 0) {
                     model.grid1.data = response.data[0];
                 }
             });
         };
-
 
         return model;
 

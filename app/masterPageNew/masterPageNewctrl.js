@@ -3,21 +3,22 @@
 
      angular
          .module('Kaakateeya')
-         .controller('masterPageCtrl', controller);
+         .controller('masterPageNewCtrl', controller)
 
-     controller.$inject = ['masterPageModel', '$scope'];
+     controller.$inject = ['masterPageNewModel', '$scope'];
 
-     function controller(masterPageModel, scope) {
+     function controller(masterPageNewModel, scope) {
          /* jshint validthis:true */
          var vm = this,
              model;
 
          vm.init = function() {
-             vm.model = model = masterPageModel.init();
+             vm.model = model = masterPageNewModel;
              model.scope = scope;
-             //  model.init();
-
+             model.init();
          };
+
          vm.init();
+
      }
  })();

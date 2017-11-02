@@ -3,7 +3,7 @@
 
     angular
         .module('Kaakateeya')
-        .factory('masterPageService', factory);
+        .factory('masterPageNewService', factory)
 
     factory.$inject = ['$http'];
 
@@ -12,7 +12,6 @@
             MasterDataselect: function(obj) {
                 return http.post(app.apiroot + 'EmployeeReportPage/MasterDataselect', obj);
             }
-
         };
     }
 })();

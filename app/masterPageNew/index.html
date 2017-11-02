@@ -1,0 +1,38 @@
+<div class="right_col" id="educationmasterid">
+    <div class="row">
+        <div class="col-lg-2">
+            <h4 class="hdrCls">Master Page</h4>
+        </div>
+    </div>
+    <br>
+    <div class="bodycls">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="edit_pages_sidebar_menu clearfix">
+                    <ul>
+                        <li ng-repeat="item in page.model.tabsselected">
+                            <a href="javascript:void(0);" ng-click="page.model.masterpageid(item.arrayname,item.tabname);" ng-class="{'btnbgColor':page.model.typeindex===item.tabname}">{{item.tabname}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-10">
+                <div class="col-lg-6 col-lg-offset-2  clearfix">
+                    <p class="col-lg-5  clearfix">{{page.model.labelName}}</p>
+                    <div class="col-lg-6 controls clearfix">
+                        <div layout-gt-sm="row" class="generalane">
+                            <input ng-class="page.model.dynamictextbox!=='' && page.model.dynamictextbox!==undefined && ppage.model.dynamictextbox!==null ?'bacg':''" class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.dynamictextbox"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 pull-right clearfix">
+                    <md-checkbox ng-model="page.model.dynamicshowactiveinactive">
+                        Show Inactive
+                    </md-checkbox>
+                </div>
+                <br>
+                <complex-grid-new gid="'id1'" config="page.model.grid1" model="page.model.grid1"></complex-grid-new>
+            </div>
+        </div>
+    </div>
+</div>
