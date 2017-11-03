@@ -27,12 +27,12 @@
                         </div>
                     </div>
                     <div class="col-lg-4 pull-right clearfix">
-                        <md-checkbox ng-model="page.model.dynamicshowactiveinactive">
+                        <md-checkbox ng-model="page.model.dynamicshowactiveinactive" ng-change="page.model.filteractiveinactive(page.model.dynamicshowactiveinactive,page.model.labelName)">
                             Show Inactive
                         </md-checkbox>
                     </div>
                     <div class="col-lg-2">
-                        <button class="btn btn-custom">Submit</button>
+                        <button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-click="page.model.submiteditcategory()">Submit</button>
                     </div>
                     <br>
                     <complex-grid-new gid="'id1'" config="page.model.grid1" model="page.model.grid1"></complex-grid-new>
@@ -40,7 +40,7 @@
                 <div class="clearfix"></div>
                 <br>
                 <br>
-                <div class="col-lg-12">
+                <div class="col-lg-12" ng-show="page.model.grid2.columnsshow">
                     <div class="col-lg-5 col-lg-offset-1  clearfix">
                         <p class="col-lg-6  clearfix">{{page.model.labelgroupName}}</p>
                         <div class="col-lg-6 controls clearfix">
@@ -50,10 +50,10 @@
                         </div>
                     </div>
                     <div class="col-lg-2">
-                        <button class="btn btn-custom">Submit</button>
+                        <button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-click="page.model.submiteditcategory()">Submit</button>
                     </div>
                     <div class="col-lg-4 pull-right clearfix">
-                        <md-checkbox ng-model="page.model.dynamicgroupinactive">
+                        <md-checkbox ng-model="page.model.dynamicgroupinactive" ng-change="page.model.filteractiveinactive(page.model.dynamicgroupinactive,page.model.labelgroupName)">
                             Show Inactive
                         </md-checkbox>
                     </div>
@@ -63,7 +63,7 @@
                 <div class="clearfix"></div>
                 <br>
                 <br>
-                <div class="col-lg-12">
+                <div class="col-lg-12" ng-show="page.model.grid3.columnsshow">
                     <div class="col-lg-5 col-lg-offset-1  clearfix">
                         <p class="col-lg-6  clearfix">{{page.model.labelSpecialName}}</p>
                         <div class="col-lg-6 controls clearfix">
@@ -73,10 +73,10 @@
                         </div>
                     </div>
                     <div class="col-lg-2">
-                        <button class="btn btn-custom">Submit</button>
+                        <button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-click="page.model.submiteditcategory()">Submit</button>
                     </div>
                     <div class="col-lg-4 pull-right clearfix">
-                        <md-checkbox ng-model="page.model.dynamicsplinactive">
+                        <md-checkbox ng-model="page.model.dynamicsplinactive" ng-change="page.model.filteractiveinactive(page.model.dynamicsplinactive,page.model.labelSpecialName)">
                             Show Inactive
                         </md-checkbox>
                     </div>

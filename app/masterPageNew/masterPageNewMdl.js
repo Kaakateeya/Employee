@@ -21,7 +21,11 @@
         model.showplus = false;
         model.init = function() {
             model.selectedIndex = 0;
+            model.statuscode = 1;
             model.grid1.data = [];
+            model.grid1.columns = [];
+            model.grid2.columns = [];
+            model.grid3.columns = [];
             model.labelName = 'Education Category';
             model.labelgroupName = 'Education Group';
             model.labelSpecialName = 'EduSpecialization name';
@@ -32,7 +36,7 @@
                 { text: 'Change Status', key: 'EducationCategoryID', type: 'morelinks', templateUrl: model.changevaluestring }
             ];
             model.typeindex = 'Education Master';
-            model.loadmasterdata('EducationCategory', null, 1);
+            model.loadmasterdata('EducationCategory', null, 1, 1);
             model.tabsselected = [
                 { tabname: 'Education Master', arrayname: 1, formame: "educationform" },
                 { tabname: 'Profession Master', arrayname: 2, formame: "professionform" }
@@ -51,7 +55,7 @@
                     { text: 'Action', key: 'EducationCategoryID', type: 'morelinks', templateUrl: model.Educationtemp },
                     { text: 'Change Status', key: 'EducationCategoryID', type: 'morelinks', templateUrl: model.changevaluestring }
                 ];
-                model.loadmasterdata('EducationCategory', null, 1);
+                model.loadmasterdata('EducationCategory', null, 1, 1);
                 model.labelName = 'Education Category';
                 model.labelgroupName = 'Education Group';
                 model.labelSpecialName = 'EduSpecialization name';
@@ -65,26 +69,38 @@
                 model.labelName = 'Profession Category';
                 model.labelgroupName = 'Profession Group';
                 model.labelSpecialName = 'Profession name';
-                model.loadmasterdata('ProfessionCategory', null, 1);
-                model.loadmasterdata('ProfessionGroup', null, 2);
+                model.loadmasterdata('ProfessionCategory', null, 1, 1);
+                model.loadmasterdata('ProfessionGroup', null, 2, 1);
             }
         };
         //
         model.returnstringvalue = function(type, dependencyid, grid) {
-            var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.loadmasterdata(" + JSON.stringify(type) + "," + dependencyid + "," + grid + ")'>Select</a>";
+            var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.educationprofessionload(" + JSON.stringify(type) + "," + dependencyid + "," + grid + ",1)'>Select</a>";
             return valuetext;
         };
         model.changevalue = function(value) {
             var valuetext = "<a  href='javascript:void(0)'>Active</a> &nbsp;&nbsp;&nbsp;<a  href='javascript:void(0)'>InActive</a>";
             return valuetext;
         };
-
+        model.grid3.educationprofessionload = model.grid1.educationprofessionload = model.grid2.educationprofessionload = model.educationprofessionload = function(MasterType, DependentId, grid, statuscode) {
+            if (MasterType === 'EducationGroup') {
+                model.EducationGroup = DependentId;
+                model.loadmasterdata(MasterType, DependentId, grid, statuscode);
+            } else if (MasterType === 'Profession') {
+                model.Professionid = DependentId;
+                model.loadmasterdata(MasterType, DependentId, grid, statuscode);
+            } else {
+                model.EducationGroupspecialization = DependentId;
+                model.loadmasterdata(MasterType, DependentId, grid, statuscode);
+            }
+        };
+        //
         model.professioncategorytemptemp = function(row) {
             var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;";
             return valuetext;
         };
         model.professiongrouptemptemp = function(row) {
-            var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.loadmasterdata(" + JSON.stringify('Profession') + "," + row.ProfessionGroupID + "," + 3 + ")'>Select</a>";
+            var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.educationprofessionload(" + JSON.stringify('Profession') + "," + row.ProfessionGroupID + "," + 3 + ",1)'>Select</a>";
             return valuetext;
         };
         //
@@ -138,14 +154,26 @@
             }
             return array;
         };
-        model.grid3.loadmasterdata = model.grid1.loadmasterdata = model.grid2.loadmasterdata = model.loadmasterdata = function(MasterType, DependentId, grid) {
+        model.grid3.loadmasterdata = model.grid1.loadmasterdata = model.grid2.loadmasterdata = model.loadmasterdata = function(MasterType, DependentId, grid, statuscode) {
             var obj = {
                 AppuserID: 1,
                 MasterType: MasterType,
                 MasterTypeID: null,
                 DependentId: DependentId,
-                StatusCode: 1
+                StatusCode: statuscode
             };
+            switch (grid) {
+                case 1:
+                    model.grid1.columnsshow = true;
+                    break;
+                case 2:
+                    model.grid2.columnsshow = true;
+                    break;
+                case 3:
+                    model.grid3.columnsshow = true;
+                    break;
+            }
+
             masterPageNewService.MasterDataselect(obj).then(function(response) {
                 console.log(response);
                 if (_.isArray(response.data) && response.data.length > 0) {
@@ -153,8 +181,12 @@
                         case 1:
                             if (model.typeindex === 'Education Master') {
                                 model.grid1.data = response.data[0];
+                                model.grid2.data = [];
+                                model.grid3.data = [];
                             } else {
                                 model.grid1.data = response.data[0];
+                                model.grid2.data = [];
+                                model.grid3.data = [];
                             }
                             break;
                         case 2:
@@ -167,6 +199,7 @@
                                     { text: 'Change Status', key: 'EducationGroupID', type: 'morelinks', templateUrl: model.changevaluestringedugroup }
                                 ];
                                 model.grid2.data = response.data[0];
+                                model.grid3.data = [];
                             } else {
                                 model.grid2.columns = [
                                     { text: 'Profession Group Name', key: 'ProfessionGroupName', type: 'label' },
@@ -201,6 +234,35 @@
                     }
                 }
             });
+        };
+
+        model.filteractiveinactive = function(con, labelname) {
+            if (con === true) {
+                model.statuscode = 0;
+            } else {
+                model.statuscode = 1;
+            }
+
+            switch (labelname) {
+                case 'Education Category':
+                    model.loadmasterdata('EducationCategory', null, 1, model.statuscode);
+                    break;
+                case 'Education Group':
+                    model.loadmasterdata('EducationGroup', model.EducationGroup, 2, model.statuscode);
+                    break;
+                case 'EduSpecialization name':
+                    model.loadmasterdata('EduSpecialization', model.EducationGroupspecialization, 3, model.statuscode);
+                    break;
+                case 'Profession Category':
+                    model.loadmasterdata('ProfessionCategory', null, 1, model.statuscode);
+                    break;
+                case 'Profession Group':
+                    model.loadmasterdata('ProfessionGroup', null, 2, model.statuscode);
+                    break;
+                case 'Profession name':
+                    model.loadmasterdata('Profession', null, model.Professionid, model.statuscode);
+                    break;
+            }
         };
         return model;
     }
