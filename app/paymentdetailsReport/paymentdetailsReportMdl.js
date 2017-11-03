@@ -49,8 +49,6 @@
                         _.each(model.Brancharray, function(item) {
                             model.branchids.push(item.value);
                         });
-                        // model.txtpaymentfrom = "";
-                        // model.txtpaymentto = "";
                     }, 100);
                     model.isDisabledsubmit = false;
                 };
@@ -58,6 +56,7 @@
                     model.Applicationstatus = [];
                     model.Applicationstatus = arrayConstants.Applicationstatus;
                     model.categoryarray = [];
+                    model.ProfileOwnerarray = [];
                     model.categoryarray = arrayConstants.catgory;
                     helperservice.getMyprofilebind(1, 2, '').then(function(response) {
                         model.Brancharray = [];
@@ -68,9 +67,13 @@
                                     model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                     model.Brancharraymain.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                                     break;
+                                case "Profile Owner":
+                                    model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                                    break;
                             }
                         });
                         model.branchids = [];
+                        model.profileownerids = [];
                         _.each(model.Brancharray, function(item) {
                             model.branchids.push(item.value);
                         });
@@ -143,6 +146,8 @@
                     { text: 'Agreed amount', key: 'AgreedAmount', type: 'label' },
                     { text: 'Paid amount', key: 'PaidAmount', type: 'label' },
                     { text: 'Balance amount', key: 'BalanceAmount', type: 'label' },
+                    { text: 'Profile Owner', key: 'ProfileOwner', type: 'label' },
+                    { text: 'Markted By', key: 'AssignMarktedname', type: 'label' }
                 ];
                 model.paymentreports = function(from, to, type) {
                     if (type === 'grid') {
@@ -157,7 +162,7 @@
                             IsServiceTaxPaid: null,
                             IsAmountThere: model.isbalamount === true ? 1 : 0,
                             EmpType: null,
-                            profileownerid: null,
+                            profileownerid: model.profileownerids !== "" && model.profileownerids !== null && model.profileownerids !== undefined ? model.profileownerids.toString() : null,
                             ApplicationStatusid: model.ApplicationStatusid !== "" && model.ApplicationStatusid !== null && model.ApplicationStatusid !== undefined ? model.ApplicationStatusid.toString() : null,
                             FromAmount: model.fromamount !== "" && model.fromamount !== null && model.fromamount !== undefined ? model.fromamount : null,
                             ToAmount: model.toamount !== "" && model.toamount !== null && model.toamount !== undefined ? model.toamount : null,

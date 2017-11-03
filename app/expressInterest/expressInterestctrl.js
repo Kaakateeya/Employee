@@ -1,7 +1,7 @@
  (function() {
      'use strict';
 
-     function controller(expressInterestModel, scope, $rootScope) {
+     function controller(expressInterestModel, scope, $rootScope, authSvc) {
          var vm = this,
              model;
 
@@ -21,11 +21,13 @@
              model.showHide = 0;
              model.emailselectedArr = [];
              model.isDisabledsubmit = false;
+             model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+             model.isManagement = authSvc.isManagement() !== undefined && authSvc.isManagement() !== null && authSvc.isManagement() !== "" ? authSvc.isManagement() : "";
          };
          vm.init();
      }
      angular
          .module('Kaakateeya')
          .controller('expressInterestCtrl', controller);
-     controller.$inject = ['expressInterestModel', '$scope', '$rootScope'];
+     controller.$inject = ['expressInterestModel', '$scope', '$rootScope', 'authSvc'];
  })(angular);

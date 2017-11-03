@@ -74,14 +74,15 @@
             }
         };
         //
-        model.returnstringvalue = function(type, dependencyid, grid) {
-            var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.educationprofessionload(" + JSON.stringify(type) + "," + dependencyid + "," + grid + ",1)'>Select</a>";
+        model.returnstringvalue = function(type, dependencyid, grid, editvalue, statuscode, editflag, typeofedit) {
+            var valuetext = "<a href='javascript:void(0)' ng-click='model.editvalues(" + dependencyid + "," + editvalue + ", " + statuscode + ", " + editflag + "," + typeofedit + ")' >Edit</a> &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.educationprofessionload(" + JSON.stringify(type) + "," + dependencyid + "," + grid + ",1)'>Select</a>";
             return valuetext;
         };
         model.changevalue = function(value) {
             var valuetext = "<a  href='javascript:void(0)'>Active</a> &nbsp;&nbsp;&nbsp;<a  href='javascript:void(0)'>InActive</a>";
             return valuetext;
         };
+        //
         model.grid3.educationprofessionload = model.grid1.educationprofessionload = model.grid2.educationprofessionload = model.educationprofessionload = function(MasterType, DependentId, grid, statuscode) {
             if (MasterType === 'EducationGroup') {
                 model.EducationGroup = DependentId;
@@ -94,7 +95,6 @@
                 model.loadmasterdata(MasterType, DependentId, grid, statuscode);
             }
         };
-        //
         model.professioncategorytemptemp = function(row) {
             var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;";
             return valuetext;
@@ -103,9 +103,12 @@
             var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.educationprofessionload(" + JSON.stringify('Profession') + "," + row.ProfessionGroupID + "," + 3 + ",1)'>Select</a>";
             return valuetext;
         };
-        //
         model.Educationtemp = function(row) {
-            var Educationcat = model.returnstringvalue('EducationGroup', row.EducationCategoryID, 2);
+            var Educationcat = model.returnstringvalue('EducationGroup', row.EducationCategoryID, 2, row.EducationCategory, row.StatusCode, 0, 'educate');
+            return Educationcat;
+        };
+        model.Educationgrouptemp = function(row) {
+            var Educationcat = model.returnstringvalue('EduSpecialization', row.EducationGroupID, 3, row.EducationGroupName, row.StatusCode, 0, 'edugroup');
             return Educationcat;
         };
         model.changevaluestring = function(row) {
@@ -120,11 +123,6 @@
             var EducationGroup = model.changevalue(row.ProfessionID);
             return EducationGroup;
         };
-        model.Educationgrouptemp = function(row) {
-            var Educationcat = model.returnstringvalue('EduSpecialization', row.EducationGroupID, 3);
-            return Educationcat;
-        };
-
         model.changevaluestringedugroup = function(row) {
             var EducationGroup = model.changevalue(row.EducationGroupID);
             return EducationGroup;
@@ -137,14 +135,10 @@
             var EducationGroup = model.changevalue(row.EducationGroupID);
             return EducationGroup;
         };
-
         model.professiongrouptemptspl = function(row) {
             var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;";
             return valuetext;
         };
-
-
-
         model.returndynamicarray = function(val) {
             var array;
             if (val === 1) {
