@@ -111,13 +111,33 @@
 #paymentdetailsreports .headerStyles {
   font-size: 14px !important; }
 #paymentdetailsreports .ProfileID {
-  width: 130px !important; }
+  width: 105px !important; }
 #paymentdetailsreports .plusiconshow {
   width: 33px !important; }
 #paymentdetailsreports .DOR {
   width: 120px !important; }
 #paymentdetailsreports .SNO {
-  width: 80px !important; }
+  width: 60px !important; }
+#paymentdetailsreports .SurName {
+  width: 150px; }
+#paymentdetailsreports .GENDERID {
+  width: 82px; }
+#paymentdetailsreports .Caste {
+  width: 125px; }
+#paymentdetailsreports .PaymentType {
+  width: 120px; }
+#paymentdetailsreports .paymnetdate {
+  width: 129px; }
+#paymentdetailsreports .PaymentCashmode {
+  width: 130px; }
+#paymentdetailsreports .AgreedAmount {
+  width: 129px; }
+#paymentdetailsreports .PaidAmount {
+  width: 113px; }
+#paymentdetailsreports .BalanceAmount {
+  width: 135px; }
+#paymentdetailsreports .paidbranch {
+  width: 109px; }
 
 .modalclassdashboardphotopopup {
   z-index: 999999999 !important;
