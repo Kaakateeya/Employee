@@ -3,8 +3,7 @@
 
     angular
         .module('Kaakateeya')
-        .factory('masterPageNewModel', factory)
-
+        .factory('masterPageNewModel', factory);
     factory.$inject = ['masterPageNewService', 'complex-grid-config'];
 
     function factory(masterPageNewService, complexgrid) {
@@ -12,27 +11,28 @@
         model.grid1 = {};
         model.grid2 = {};
         model.grid3 = {};
-        model.grid4 = {};
-        model.grid5 = {};
-        model.grid6 = {};
         model.showsearchrows = true;
         model.showsearch = true;
-        model.showpaging = false;
-        model.showClientpaging = true;
+        model.showpaging = true;
+        model.showClientpaging = false;
         model.myprofileexcel = false;
         model.normalexcel = false;
         model.gridTableshow = false;
+        model.showplus = false;
         model.init = function() {
             model.selectedIndex = 0;
+            model.grid1.data = [];
             model.labelName = 'Education Category';
+            model.labelgroupName = 'Education Group';
+            model.labelSpecialName = 'EduSpecialization name';
             model.grid1.columns = [
                 { text: 'Education Category', key: 'EducationCategory', type: 'label' },
                 { text: 'Status', key: 'StatusCode', type: 'label' },
                 { text: 'Action', key: 'EducationCategoryID', type: 'morelinks', templateUrl: model.Educationtemp },
-                { text: 'Change Status', key: 'EducationCategoryID', type: 'morelinks', templateUrl: model.changevalue }
+                { text: 'Change Status', key: 'EducationCategoryID', type: 'morelinks', templateUrl: model.changevaluestring }
             ];
             model.typeindex = 'Education Master';
-            model.loadmasterdata('EducationCategory', null);
+            model.loadmasterdata('EducationCategory', null, 1);
             model.tabsselected = [
                 { tabname: 'Education Master', arrayname: 1, formame: "educationform" },
                 { tabname: 'Profession Master', arrayname: 2, formame: "professionform" }
@@ -41,38 +41,93 @@
         model.masterpageid = function(id, type) {
             model.typeindex = type;
             model.grid1.columns = [];
+            model.grid1.data = [];
+            model.grid2.data = [];
+            model.grid3.data = [];
             if (type === 'Education Master') {
                 model.grid1.columns = [
                     { text: 'Education Category', key: 'EducationCategory', type: 'label' },
                     { text: 'Status', key: 'StatusCode', type: 'label' },
                     { text: 'Action', key: 'EducationCategoryID', type: 'morelinks', templateUrl: model.Educationtemp },
-                    { text: 'Change Status', key: 'EducationCategoryID', type: 'morelinks', templateUrl: model.changevalue }
+                    { text: 'Change Status', key: 'EducationCategoryID', type: 'morelinks', templateUrl: model.changevaluestring }
                 ];
-                model.loadmasterdata('EducationCategory', null);
+                model.loadmasterdata('EducationCategory', null, 1);
                 model.labelName = 'Education Category';
+                model.labelgroupName = 'Education Group';
+                model.labelSpecialName = 'EduSpecialization name';
             } else {
                 model.grid1.columns = [
                     { text: 'Profession Category', key: 'ProfessionCategory', type: 'label' },
                     { text: 'Status', key: 'StatusCode', type: 'label' },
-                    { text: 'Action', key: 'ProfessionCategoryID', type: 'morelinks', templateUrl: model.Educationtemp },
-                    { text: 'Change Status', key: 'ProfessionCategoryID', type: 'morelinks', templateUrl: model.changevalue }
+                    { text: 'Action', key: 'ProfessionCategoryID', type: 'morelinks', templateUrl: model.professioncategorytemptemp },
+                    { text: 'Change Status', key: 'ProfessionCategoryID', type: 'morelinks', templateUrl: model.changevaluestringprofession }
                 ];
                 model.labelName = 'Profession Category';
-                model.loadmasterdata('ProfessionCategory', null);
+                model.labelgroupName = 'Profession Group';
+                model.labelSpecialName = 'Profession name';
+                model.loadmasterdata('ProfessionCategory', null, 1);
+                model.loadmasterdata('ProfessionGroup', null, 2);
             }
         };
-        model.returnstringvalue = function(value) {
-            var valuetext = "<a>Edit</a> &nbsp;&nbsp;&nbsp;<a>Select</a>";
+        //
+        model.returnstringvalue = function(type, dependencyid, grid) {
+            var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.loadmasterdata(" + JSON.stringify(type) + "," + dependencyid + "," + grid + ")'>Select</a>";
             return valuetext;
         };
-        model.changevalue = function(row) {
-            var valuetext = "<a>Active</a> &nbsp;&nbsp;&nbsp;<a>InActive</a>";
+        model.changevalue = function(value) {
+            var valuetext = "<a  href='javascript:void(0)'>Active</a> &nbsp;&nbsp;&nbsp;<a  href='javascript:void(0)'>InActive</a>";
             return valuetext;
         };
+
+        model.professioncategorytemptemp = function(row) {
+            var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;";
+            return valuetext;
+        };
+        model.professiongrouptemptemp = function(row) {
+            var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.loadmasterdata(" + JSON.stringify('Profession') + "," + row.ProfessionGroupID + "," + 3 + ")'>Select</a>";
+            return valuetext;
+        };
+        //
         model.Educationtemp = function(row) {
-            var EducationGroup = model.returnstringvalue(row.EducationCategoryID);
+            var Educationcat = model.returnstringvalue('EducationGroup', row.EducationCategoryID, 2);
+            return Educationcat;
+        };
+        model.changevaluestring = function(row) {
+            var EducationGroup = model.changevalue(row.EducationCategoryID);
             return EducationGroup;
         };
+        model.changevaluestringprofession = function(row) {
+            var EducationGroup = model.changevalue(row.ProfessionCategoryID);
+            return EducationGroup;
+        };
+        model.changevaluestringprofessionspl = function(row) {
+            var EducationGroup = model.changevalue(row.ProfessionID);
+            return EducationGroup;
+        };
+        model.Educationgrouptemp = function(row) {
+            var Educationcat = model.returnstringvalue('EduSpecialization', row.EducationGroupID, 3);
+            return Educationcat;
+        };
+
+        model.changevaluestringedugroup = function(row) {
+            var EducationGroup = model.changevalue(row.EducationGroupID);
+            return EducationGroup;
+        };
+        model.Educationspecializationtemp = function(row) {
+            var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;";
+            return valuetext;
+        };
+        model.changevaluestringeduspl = function(row) {
+            var EducationGroup = model.changevalue(row.EducationGroupID);
+            return EducationGroup;
+        };
+
+        model.professiongrouptemptspl = function(row) {
+            var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;";
+            return valuetext;
+        };
+
+
 
         model.returndynamicarray = function(val) {
             var array;
@@ -83,89 +138,7 @@
             }
             return array;
         };
-        model.showcontrolonselect = function(DIVid) {
-            var array = model.selectedIndex === 1 ? model.domProfession : model.domEducation;
-            _.map(_.where(array, { collapseid: DIVid }), function(item) {
-                switch (item.collapseid) {
-                    case 1:
-                        item.controlList = [{ bindPlusCtrlFlagin: 'joblocation', divClear: true, type: 'state', ngModel: 'jobCountryID', labelName: 'Country Living In', controlType: 'dropdown', isShow: true, dataApi: 'Country', dataSource: 'Country', validation: true }, { bindPlusCtrlFlagin: 'joblocation', type: 'district', ngModel: 'StateID', labelName: 'State Living In', controlType: 'dropdown', isShow: true, dataSource: 'State', validation: true }, { bindPlusCtrlFlagin: 'joblocation', type: 'city', ngModel: 'DistrictID', labelName: 'District Living In', controlType: 'dropdown', isShow: true, dataSource: 'DistrictBind', validation: true }, { bindPlusCtrlFlagin: 'joblocation', ngModel: 'CityID', labelName: 'City Living In', controlType: 'dropdown', isShow: true, dataSource: 'cityBind', validation: true }, { bindPlusCtrlFlagin: 'joblocation', divClear: true, ngModel: 'VisaStatusID', labelName: 'Visa Status', controlType: 'dropdown', isShow: true, dataSource: 'visastatus', dataBind: 'visastatus', validation: true }, { bindPlusCtrlFlagin: 'joblocation', ngModelFrom: 'Residingsincefrom', ngModelTo: 'ResidingsinceTo', labelName: 'Residing Since', controlType: 'datePicker', isShow: true, validation: true }, { bindPlusCtrlFlagin: 'joblocation', ngModelFrom: 'Arrivaldatefrom', ngModelTo: 'Arrivaldateto', labelName: 'Arriving Date', controlType: 'datePicker', isShow: true, validation: true }, { bindPlusCtrlFlagin: 'joblocation', divClear: true, ngModelFrom: 'Departuredatefrom', ngModelTo: 'DeparturedateTo', labelName: 'Departure Date', controlType: 'datePicker', isShow: true, validation: true }];
-                        break;
-                    case 2:
-                        item.controlList = [{ bindPlusCtrlFlagin: 'AstroDetails', divClear: true, type: 'star', ngModel: 'StarLanguageID', labelName: 'Star Language', controlType: 'dropdown', isShow: true, dataApi: 'starLanguage', dataSource: 'starLanguage', validation: true }, { bindPlusCtrlFlagin: 'AstroDetails', ngModel: 'StarsID', labelName: 'Star', controlType: 'dropdown', isShow: true, dataSource: 'stars', dataBind: 'stars', validation: true }, { bindPlusCtrlFlagin: 'AstroDetails', ngModel: 'KojadoshamID', labelName: 'Manglik/Kuja Dosham', controlType: 'radiomalagik', isShow: true, validation: true }];
-                        break;
-                    case 3:
-                        item.controlList = [{ bindPlusCtrlFlagin: 'AstroDetails', divClear: true, type: 'star', ngModel: 'StarLanguageID', labelName: 'Star Language', controlType: 'dropdown', isShow: true, dataApi: 'starLanguage', dataSource: 'starLanguage', validation: true }, { bindPlusCtrlFlagin: 'AstroDetails', ngModel: 'StarsID', labelName: 'Star', controlType: 'dropdown', isShow: true, dataSource: 'stars', dataBind: 'stars', validation: true }, { bindPlusCtrlFlagin: 'AstroDetails', ngModel: 'KojadoshamID', labelName: 'Manglik/Kuja Dosham', controlType: 'radiomalagik', isShow: true, validation: true }];
-                        break;
-                    case 4:
-                        item.controlList = [{ bindPlusCtrlFlagin: 'AstroDetails', divClear: true, type: 'star', ngModel: 'StarLanguageID', labelName: 'Star Language', controlType: 'dropdown', isShow: true, dataApi: 'starLanguage', dataSource: 'starLanguage', validation: true }, { bindPlusCtrlFlagin: 'AstroDetails', ngModel: 'StarsID', labelName: 'Star', controlType: 'dropdown', isShow: true, dataSource: 'stars', dataBind: 'stars', validation: true }, { bindPlusCtrlFlagin: 'AstroDetails', ngModel: 'KojadoshamID', labelName: 'Manglik/Kuja Dosham', controlType: 'radiomalagik', isShow: true, validation: true }];
-                        break;
-                    case 5:
-                        item.controlList = [{ bindPlusCtrlFlagin: 'AstroDetails', divClear: true, type: 'star', ngModel: 'StarLanguageID', labelName: 'Star Language', controlType: 'dropdown', isShow: true, dataApi: 'starLanguage', dataSource: 'starLanguage', validation: true }, { bindPlusCtrlFlagin: 'AstroDetails', ngModel: 'StarsID', labelName: 'Star', controlType: 'dropdown', isShow: true, dataSource: 'stars', dataBind: 'stars', validation: true }, { bindPlusCtrlFlagin: 'AstroDetails', ngModel: 'KojadoshamID', labelName: 'Manglik/Kuja Dosham', controlType: 'radiomalagik', isShow: true, validation: true }];
-                        break;
-                    case 6:
-                        item.controlList = [{ bindPlusCtrlFlagin: 'AstroDetails', divClear: true, type: 'star', ngModel: 'StarLanguageID', labelName: 'Star Language', controlType: 'dropdown', isShow: true, dataApi: 'starLanguage', dataSource: 'starLanguage', validation: true }, { bindPlusCtrlFlagin: 'AstroDetails', ngModel: 'StarsID', labelName: 'Star', controlType: 'dropdown', isShow: true, dataSource: 'stars', dataBind: 'stars', validation: true }, { bindPlusCtrlFlagin: 'AstroDetails', ngModel: 'KojadoshamID', labelName: 'Manglik/Kuja Dosham', controlType: 'radiomalagik', isShow: true, validation: true }];
-                        break;
-                }
-
-            });
-            return false;
-        };
-        model.dommasterpage = function() {
-            if (parseInt(model.selectedIndex) === 0) {
-                model.domEducation = [{
-                    collapseid: 1,
-                    controlList: [
-                        { ngModel: 'educationcategory', labelName: 'Education category', controlType: 'textBox', isShow: true, validation: true },
-                        { ngModel: 'iscateshowinactive', labelName: '', controlType: 'checkbox', isShow: true, validation: true },
-                        { id: 'id1', controlType: 'table', isShow: true, columns: model.grid1.columns, config: model.grid1, model: model.grid1 },
-                    ]
-                }, {
-                    collapseid: 2,
-                    controlList: [{ ngModel: 'educationgroup', labelName: 'Education Group', controlType: 'textBox', isShow: true, validation: true },
-                        { ngModel: 'isgroupshowinactive', labelName: '', controlType: 'checkbox', isShow: true, validation: true }
-                    ]
-                }, {
-                    collapseid: 3,
-                    controlList: [
-                        { ngModel: 'educationspeciali', labelName: 'Education Specialization', controlType: 'textBox', isShow: true, validation: true },
-                        { ngModel: 'isSpecializashowinactive', labelName: '', controlType: 'checkbox', isShow: true, validation: true }
-                    ]
-                }];
-                model.domProfession = [];
-            } else {
-                model.domEducation = [{
-                        controlList: [
-                            { ngModel: 'GenderID', controlType: 'gender', isShow: true, validation: true },
-                            { ngModelFrom: 'DOBfrom', ngModelTo: 'DOBTo', labelName: 'Date Of Birth', controlType: 'dobirth', isShow: true, validation: true },
-                            { typeofdata: 'Ageselect', ngModelFrom: 'AgeFromID', ngModelTo: 'AgeToID', labelName: 'Age', controlType: 'dualDropdownage', isShow: true, validation: true },
-                            { ngModelFrom: 'HeightFromID', ngModelTo: 'HeightToID', labelName: 'Height', controlType: 'dualDropdown', isShow: true, dataBind: 'heightreSearch', dataSource: 'heightregistrationarray', validation: true },
-                            { ngModel: 'MaritalstatusID', labelName: 'Marital status', controlType: 'dropdown', isShow: true, dataBind: 'MaritalStatus', dataSource: 'maritalstatusg', validation: true },
-                            { type: 'caste', ngModel: 'ReligionID', labelName: 'Religion', controlType: 'dropdown', isShow: true, dataBind: 'Religion', dataSource: 'religiong', validation: true },
-                        ]
-                    }, {
-                        controlList: [
-                            { divClear: true, ngModel: 'BranchID', labelName: 'Branch', controlType: 'dropdown', isShow: true, dataSource: 'BranchName', validation: true, dataApi: 'BranchName' },
-                            { ngModelFrom: 'Dateofregfrom', ngModelTo: 'Dateofregto', labelName: 'Date Of Reg', controlType: 'datePicker', isShow: true, validation: true },
-                            { ngModelFrom: 'LastestLoginsfrom', ngModelTo: 'LastestLoginsto', labelName: 'Lastest Logins', controlType: 'datePicker', isShow: true, validation: true },
-                            { divClear: true, ngModelFrom: 'PropertyValuefrom', ngModelTo: 'PropertyValueto', labelName: 'Property In Lakhs', controlType: 'textproperty', isShow: true, validation: true },
-                            { ngModel: 'ProfileID', labelName: 'Profile ID', controlType: 'profileid', isShow: true, validation: true },
-                        ]
-                    }, {
-                        controlList: [
-                            { divClear: true, ngModel: 'BranchID', labelName: 'Branch', controlType: 'dropdown', isShow: true, dataSource: 'BranchName', validation: true, dataApi: 'BranchName' },
-                            { ngModelFrom: 'Dateofregfrom', ngModelTo: 'Dateofregto', labelName: 'Date Of Reg', controlType: 'datePicker', isShow: true, validation: true },
-                            { ngModelFrom: 'LastestLoginsfrom', ngModelTo: 'LastestLoginsto', labelName: 'Lastest Logins', controlType: 'datePicker', isShow: true, validation: true },
-                            { divClear: true, ngModelFrom: 'PropertyValuefrom', ngModelTo: 'PropertyValueto', labelName: 'Property In Lakhs', controlType: 'textproperty', isShow: true, validation: true },
-                            { ngModel: 'ProfileID', labelName: 'Profile ID', controlType: 'profileid', isShow: true, validation: true },
-                        ]
-                    }
-
-                ];
-                model.domProfession = [];
-            }
-
-        };
-        model.loadmasterdata = function(MasterType, DependentId) {
+        model.grid3.loadmasterdata = model.grid1.loadmasterdata = model.grid2.loadmasterdata = model.loadmasterdata = function(MasterType, DependentId, grid) {
             var obj = {
                 AppuserID: 1,
                 MasterType: MasterType,
@@ -176,12 +149,59 @@
             masterPageNewService.MasterDataselect(obj).then(function(response) {
                 console.log(response);
                 if (_.isArray(response.data) && response.data.length > 0) {
-                    model.grid1.data = response.data[0];
+                    switch (grid) {
+                        case 1:
+                            if (model.typeindex === 'Education Master') {
+                                model.grid1.data = response.data[0];
+                            } else {
+                                model.grid1.data = response.data[0];
+                            }
+                            break;
+                        case 2:
+                            if (model.typeindex === 'Education Master') {
+                                model.grid2.columns = [
+                                    { text: 'Education Category', key: 'EducationCategory', type: 'label' },
+                                    { text: 'Education Group Name', key: 'EducationGroupName', type: 'label' },
+                                    { text: 'Status', key: 'StatusCode', type: 'label' },
+                                    { text: 'Action', key: 'EducationGroupID', type: 'morelinks', templateUrl: model.Educationgrouptemp },
+                                    { text: 'Change Status', key: 'EducationGroupID', type: 'morelinks', templateUrl: model.changevaluestringedugroup }
+                                ];
+                                model.grid2.data = response.data[0];
+                            } else {
+                                model.grid2.columns = [
+                                    { text: 'Profession Group Name', key: 'ProfessionGroupName', type: 'label' },
+                                    { text: 'Status', key: 'StatusCode', type: 'label' },
+                                    { text: 'Action', key: 'ProfessionGroupID', type: 'morelinks', templateUrl: model.professiongrouptemptemp },
+                                    { text: 'Change Status', key: 'ProfessionGroupID', type: 'morelinks', templateUrl: model.changevaluestringprofession }
+                                ];
+                                model.grid2.data = response.data[0];
+                                model.grid3.data = [];
+                            }
+                            break;
+                        case 3:
+                            if (model.typeindex === 'Education Master') {
+                                model.grid3.columns = [
+                                    { text: 'Education Group Name', key: 'EducationGroupName', type: 'label' },
+                                    { text: 'EduSpecialization Name', key: 'EduSpecializationName', type: 'label' },
+                                    { text: 'Status', key: 'StatusCode', type: 'label' },
+                                    { text: 'Action', key: 'EduSpecializationID', type: 'morelinks', templateUrl: model.Educationspecializationtemp },
+                                    { text: 'Change Status', key: 'EduSpecializationID', type: 'morelinks', templateUrl: model.changevaluestringeduspl }
+                                ];
+                            } else {
+                                model.grid3.columns = [
+                                    { text: 'Profession group name', key: 'ProfessionGroupName', type: 'label' },
+                                    { text: 'Profession name', key: 'ProfessionName', type: 'label' },
+                                    { text: 'Status', key: 'StatusCode', type: 'label' },
+                                    { text: 'Action', key: 'ProfessionID', type: 'morelinks', templateUrl: model.professiongrouptemptspl },
+                                    { text: 'Change Status', key: 'ProfessionID', type: 'morelinks', templateUrl: model.changevaluestringprofessionspl }
+                                ];
+                            }
+                            model.grid3.data = response.data[0];
+                            break;
+                    }
                 }
             });
         };
-
         return model;
-
     }
 })();
