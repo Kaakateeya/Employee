@@ -53,7 +53,7 @@
                     return array;
                 };
                 model.historyshowing = function(row) {
-                    var paid = "<a class='' href='javascript:void(0);' ng-click='model.profileshistory(" + JSON.stringify(row.userlist) + ");'> History </a>";
+                    var paid = "<a class='' href='javascript:void(0);' ng-click='model.profileshistory(" + JSON.stringify(row.CustIDsList) + "," + row.TicketOwnerID + ");'> History </a>";
                     return paid;
                 };
                 model.ticketid = function(row) {
@@ -100,7 +100,7 @@
                     }
 
                 };
-                model.profileshistory = function(value) {
+                model.profileshistory = function(value, innerempid) {
                     model.innergrid.columns = [
                         { text: 'Profile ID', key: 'profileid', type: 'label' },
                         { text: 'TicketID', key: 'ticketid', type: 'textbox', templateUrl: model.ticketid, model: 'TicketID' },
@@ -123,8 +123,8 @@
                     //     model.innergrid['paidamount' + item.sno] = item.paidamount;
                     //     model.innergrid['commisionamt' + item.sno] = item.comminsion;
                     // });
-                    value = '107249,111435';
-                    marketingticketverificationService.marketinggetprofiledetails(value).then(function(response) {
+                    // value = '107249,111435';
+                    marketingticketverificationService.marketinggetprofiledetails(value, innerempid).then(function(response) {
                         console.log(response);
                         model.innergrid.sdata = response.data[0];
                         _.map(model.innergrid.sdata, function(item, index) {
@@ -147,7 +147,7 @@
                     model.columns = [
                         { text: 'Sno', key: 'Sno', type: 'label' },
                         { text: 'History', key: 'Sno', type: 'morelinks', templateUrl: model.historyshowing },
-                        { text: 'Profiles count', key: 'Counts', type: 'label' },
+                        { text: 'Profiles count', key: 'ProfileCount', type: 'label' },
                         { text: 'TicketOwner', key: 'TicketOwner', type: 'label' },
                         { text: 'Month', key: 'Month', type: 'label' },
                         { text: 'Agreed Amount', key: 'AgreedAmount', type: 'label' },

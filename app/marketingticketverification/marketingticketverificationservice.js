@@ -8,9 +8,9 @@
                     return http.post(app.apiroot + 'EmployeeReportPage/authorizationpaymentamoutReport', obj);
                 },
 
-                marketinggetprofiledetails: function(custids) {
+                marketinggetprofiledetails: function(custids, Empid) {
                     return http.get(app.apiroot + 'EmployeeReportPage/getCustomerinfobasedoncustid', {
-                        params: { custids: custids }
+                        params: { custids: custids, Empid: Empid }
                     });
                 },
                 updatemarketingvrfycation: function(obj) {
