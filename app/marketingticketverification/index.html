@@ -5,13 +5,13 @@
                 <form accessible-form name="marketingverificationid" novalidate role="form" ng-submit="marketingverificationid.$valid  && page.model.submitmarktingreports('grid');">
                     <div class="panel-heading" style="color: rgb(160, 2, 1);border: 1px solid #ccc">
                         <div class="row">
-                            <div class="col-lg-3" style="font-size: 17px;font-weight: bold;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
+                            <div class="col-lg-2" style="font-size: 17px;font-weight: bold;cursor:pointer;width:260px;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
                                 Market Ticket Verification <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
                             </div>
-                            <div class="col-lg-4" style="color:black;">
+                            <div class="col-lg-3" style="color:black;">
                                 <label for="All Profileid" class="col-lg-3 classlabelverify">Region</label>
                                 <div class="col-lg-9" style="font-size:13px;">
-                                    <md-radio-group ng-change="page.model.onchangebranch()" name="rbtnregional" layout="row" ng-model="page.model.rbtnregional" class="md-block" flex-gt-sm>
+                                    <md-radio-group ng-change="page.model.onchangebranch(page.model.rbtnregional)" name="rbtnregional" layout="row" ng-model="page.model.rbtnregional" class="md-block" flex-gt-sm>
                                         <md-radio-button value="" class="md-primary">All</md-radio-button>
                                         <md-radio-button value="408"> Ap</md-radio-button>
                                         <md-radio-button value="409"> TN</md-radio-button>
@@ -19,10 +19,20 @@
                                     </md-radio-group>
                                 </div>
                             </div>
-                            <div class="col-lg-3" style="margin-left:22px;color:black;">
-                                <label for="All Profileid" class="col-lg-4 classlabelverify" style="width: 100px;">Walk-In</label>
-                                <div class="col-lg-6" style="font-size:13px;">
+                            <div class="col-lg-2" style="color:black;">
+                                <label for="All Profileid" class="col-lg-6 classlabelverify" style="margin-left:15px;">Walk-In</label>
+                                <div class="col-lg-5" style="font-size:13px;margin-left: -14px;">
                                     <md-radio-group name="marktedvalue" layout="row" ng-model="page.model.marktedvalue" class="md-block" flex-gt-sm>
+                                        <md-radio-button value="1"> Yes</md-radio-button>
+                                        <md-radio-button value="0">No</md-radio-button>
+                                    </md-radio-group>
+                                </div>
+                            </div>
+                            <div class="col-lg-4" style="color:black;">
+                                <label for="All Profileid" class="col-lg-6 classlabelverify" style="margin-left: 26px;">Mkt Ticket Verified</label>
+                                <div class="col-lg-5" style="font-size:13px;margin-left: -46px;">
+                                    <md-radio-group name="mkttktverified" layout="row" ng-model="page.model.mkttktverified" class="md-block" flex-gt-sm>
+                                        <md-radio-button value="">Both</md-radio-button>
                                         <md-radio-button value="1"> Yes</md-radio-button>
                                         <md-radio-button value="0">No</md-radio-button>
                                     </md-radio-group>
@@ -32,28 +42,25 @@
                     </div>
                     <div class="panel-body" ng-show="page.model.panelbodyhide">
                         <div class="row">
-                            <div class="col-lg-3">
-                                <label for="All Profileid" class="classlabelverify">Mkt Ticket Verified</label>
-                                <div>
-                                    <md-radio-group name="mkttktverified" layout="row" ng-model="page.model.mkttktverified" class="md-block" flex-gt-sm>
-                                        <md-radio-button value="1"> Yes</md-radio-button>
-                                        <md-radio-button value="0">No</md-radio-button>
-                                    </md-radio-group>
-                                </div>
-                            </div>
                             <div class="col-lg-3" style="margin-left:-10px;">
-                                <label for="All Profileid" class="classlabelverify">Date</label>
-                                <div class="controls clearfix row">
-                                    <div class="col-lg-6 datepicker" style="width:130px;padding: 6px;">
-                                        <custom-datepicker ng-class="page.model.dateemployeeverifyfrom!=='' && page.model.dateemployeeverifyfrom!==undefined &&  page.model.dateemployeeverifyfrom!==null?'datepicker4':''" ng-model="page.model.dateemployeeverifyfrom" date-options="page.model.dateOptions"></custom-datepicker>
+                                <div class="col-lg-6">
+                                    <label for="All Profileid" class="classlabelverify">From Date</label>
+                                    <div class="controls clearfix row">
+                                        <div class="col-lg-6 datepicker" style="width:130px;padding: 6px;">
+                                            <custom-datepicker ng-class="page.model.dateemployeeverifyfrom!=='' && page.model.dateemployeeverifyfrom!==undefined &&  page.model.dateemployeeverifyfrom!==null?'datepicker4':''" ng-model="page.model.dateemployeeverifyfrom" date-options="page.model.dateOptions"></custom-datepicker>
+                                        </div>
                                     </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="All Profileid" class="classlabelverify">To Date</label>
                                     <div class="col-lg-6 datepicker" style="width: 130px;padding: 6px;">
                                         <custom-datepicker ng-class="page.model.dateemployeeverifyto!=='' && page.model.dateemployeeverifyto!==undefined &&  page.model.dateemployeeverifyto!==null?'datepicker4':''" ng-model="page.model.dateemployeeverifyto" date-options="page.model.dateOptions"></custom-datepicker>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-3" ng-if="false">
                                 <label for="All Profileid" class="classlabelverify">TypeofReport</label>
+                                <br>
                                 <div style="padding-top: 6px;">
                                     <md-radio-group ng-required="true" name="rdntypeofreport" layout="row" ng-model="page.model.rdntypeofreport" class="md-block" ng-change="page.model.typeOFreportChange(page.model.rdntypeofreport);" flex-gt-sm>
                                         <md-radio-button value="1"> Branch Wise</md-radio-button>
@@ -65,14 +72,14 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-3" ng-if="page.model.rdntypeofreport==='1'">
-                                <label for="All Profileid" class="">Branch</label>
+                            <div class="col-lg-3">
+                                <label for="All Profileid" class="classlabelverify">Branch</label>
                                 <div style="padding-top: 6px;">
                                     <select name="ticketowner" class="smalldropdown col-lg-5" ng-options="item.value as item.label for item in page.model.onlyBranchArr" ng-model="page.model.tmarketingbranch" multiselectdropdown>   
                                </select>
                                 </div>
                             </div>
-                            <div class="col-lg-3" ng-if="page.model.rdntypeofreport==='0'">
+                            <div class="col-lg-3" ng-if="false">
                                 <label for="All Profileid" class="classlabelverify">Employee</label>
                                 <div style="padding-top: 6px;">
                                     <select name="ticketowner" class="smalldropdown col-lg-5" ng-options="item.value as item.label for item in page.model.onlyempnames" ng-model="page.model.ticketmarketowner" multiselectdropdown>   
@@ -96,6 +103,12 @@
         <complex-grid-new gid="'id1'" ng-show="page.model.data.length>0" model="page.model" config="page.model"></complex-grid-new>
     </div>
 </div>
+
+<script type="text/ng-template" id="innergrid.html">
+    <complex-grid-new gid="'id2'" model="page.model.innergrid" config="page.model.innergrid"></complex-grid-new>
+</script>
+
+
 <style>
     .datepicker3 {
         background: url(src/images/date_icon.png) no-repeat 98% 44% !important;

@@ -75,6 +75,12 @@
         margin-left: 16%;
         // content: url(../../src/images/arraowimages.png);
     }
+    .Sno {
+        width: 78px;
+    }
+    .Counts {
+        width: 111px;
+    }
 }
 
 .myregvaliprofile {
@@ -881,4 +887,10 @@ body {
     margin-top: 2px;
     margin-left: 2px;
     margin-right: 2px;
+}
+
+.modalclassdashboard {
+    z-index: 99999 !important;
+    top: 0%;
+    left: 0%;
 }

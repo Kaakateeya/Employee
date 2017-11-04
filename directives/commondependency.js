@@ -173,6 +173,16 @@
                 });
                 return branchArr;
             },
+            branchselect: function(parentval1) {
+                var branchArr = [];
+                SelectBindService.branch(parentval1).then(function(response) {
+                    branchArr.push({ "label": '--select--', "title": '--select--', "value": '' });
+                    _.each(response.data, function(item) {
+                        branchArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    });
+                });
+                return branchArr;
+            },
             showConfirm: function(ev, mdDialog, header, okTxt, cancelTxt) {
 
                 var status = false;

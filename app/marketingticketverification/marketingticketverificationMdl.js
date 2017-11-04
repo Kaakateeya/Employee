@@ -3,9 +3,11 @@
 
     angular
         .module('Kaakateeya')
-        .factory('marketingticketverificationModel', ['marketingticketverificationService', 'complex-grid-config', 'Commondependency', 'helperservice', 'SelectBindServiceApp',
-            function(marketingticketverificationService, configgrid, Commondependency, helpService, SelectBindServiceApp) {
+        .factory('marketingticketverificationModel', ['marketingticketverificationService', 'complex-grid-config', 'Commondependency',
+            'helperservice', 'SelectBindServiceApp', 'modelpopupopenmethod',
+            function(marketingticketverificationService, configgrid, Commondependency, helpService, SelectBindServiceApp, commonpage) {
                 var model = {};
+                model.innergrid = {};
                 model.showsearchrows = true;
                 model.showsearch = true;
                 model.showpaging = true;
@@ -40,15 +42,28 @@
                     });
                     return array;
                 };
+                model.profileshistory = function(value) {
+                    commonpage.showPopup('innergrid.html', model.scope, 'lg', "modalclassdashboard");
+                };
+                model.historyshowing = function(row) {
+                    var paid = "<a class='' href='javascript:void(0);' ng-click='model.profileshistory(" + JSON.stringify('hh') + ");' > History < /a>";
+                    return paid;
+                };
+                model.innergrid.columns = [
+                    { text: 'Profile ID', key: 'ProfileId', type: 'label' },
+                    { text: 'TicketID', key: 'ProfileId', type: 'label' },
+                    { text: 'Paid Amount', key: 'ProfileId', type: 'label' },
+                    { text: 'Commision Amount', key: 'ProfileId', type: 'label' }
+                ];
                 model.submitmarktingreports = function(type) {
                     model.isDisabledsubmit = true;
                     model.panelbodyhide = false;
-                    model.tmarketingbranch = model.rdntypeofreport === '1' ? model.tmarketingbranch : "";
-                    model.ticketmarketowner = model.rdntypeofreport === '0' ? model.ticketmarketowner : "";
                     model.data = [];
                     model.pageSize = 10;
                     model.columns = [
                         { text: 'Sno', key: 'Sno', type: 'label' },
+                        { text: 'History', key: 'Sno', type: 'morelinks', templateUrl: model.historyshowing },
+                        { text: 'Profiles count', key: 'Counts', type: 'label' },
                         { text: 'TicketOwner', key: 'TicketOwner', type: 'label' },
                         { text: 'Month', key: 'Month', type: 'label' },
                         { text: 'Agreed Amount', key: 'AgreedAmount', type: 'label' },
@@ -60,7 +75,7 @@
                         intBranch: model.tmarketingbranch !== "" && model.tmarketingbranch !== null && model.tmarketingbranch !== undefined ? (model.tmarketingbranch).toString() : null,
                         dtStartDate: model.dateemployeeverifyfrom !== "" && model.dateemployeeverifyfrom !== null && model.dateemployeeverifyfrom !== undefined ? (model.dateemployeeverifyfrom) : "",
                         dtEndDate: model.dateemployeeverifyto !== "" && model.dateemployeeverifyto !== null && model.dateemployeeverifyto !== undefined ? (model.dateemployeeverifyto) : "",
-                        intEmpID: model.ticketmarketowner !== "" && model.ticketmarketowner !== null && model.ticketmarketowner !== undefined ? (model.ticketmarketowner).toString() : null,
+                        intEmpID: null,
                         intTicketVerified: model.mkttktverified !== "" && model.mkttktverified !== null && model.mkttktverified !== undefined ? parseInt(model.mkttktverified) : null,
                         intMarked: model.marktedvalue !== "" && model.marktedvalue !== null && model.marktedvalue !== undefined ? parseInt(model.marktedvalue) : null,
                     };
@@ -116,6 +131,7 @@
                     model.dateemployeeverifyto = "";
                 };
                 model.pageloadbindings = function() {
+                    model.getemployee('Branch', '');
                     // helpService.getMyprofilebind(1, 2, '').then(function(response) {
                     //     model.Brancharray = [];
                     //     model.ProfileOwnerarray = [];
@@ -140,15 +156,19 @@
                     model.submitmarktingreports('excel');
                 };
 
-                model.onchangebranch = function() {
-                    model.Brancharray = [];
-                    // model.ProfileOwnerarray = [];
-                    model.Brancharray.push({ "label": "--select--", "title": "--select--", "value": "" });
-                    model.Brancharray = Commondependency.branch((model.rbtnregional !== undefined && model.rbtnregional !== null && model.rbtnregional !== "" && model.rbtnregional !== 0 && model.rbtnregional !== '0') ? (model.rbtnregional) : "");
-                    // model.ProfileOwnerarray = Commondependency.branch((model.rbtnregional !== undefined && model.rbtnregional !== null && model.rbtnregional !== "" && model.rbtnregional !== 0 && model.rbtnregional !== '0') ? (model.rbtnregional) : "");
-                    //BranchNamebindval
+                // model.onchangebranch = function() {
+                //     model.onlyBranchArr = [];
+                //     // model.ProfileOwnerarray = [];
+                //     model.onlyBranchArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+                //     model.onlyBranchArr = Commondependency.branch((model.rbtnregional !== undefined && model.rbtnregional !== null && model.rbtnregional !== "" && model.rbtnregional !== 0 && model.rbtnregional !== '0') ? (model.rbtnregional) : "");
+                //     // model.ProfileOwnerarray = Commondependency.branch((model.rbtnregional !== undefined && model.rbtnregional !== null && model.rbtnregional !== "" && model.rbtnregional !== 0 && model.rbtnregional !== '0') ? (model.rbtnregional) : "");
+                //     //BranchNamebindval
+                // };
+                model.onchangebranch = function(parent) {
+                    model.onlyBranchArr = [];
+                    model.onlyBranchArr.push({ "label": "--select--", "title": "--select--", "value": "" });
+                    model.onlyBranchArr = Commondependency.branchselect(parent);
                 };
-
                 model.typeOFreportChange = function(val) {
                     if (val === '0') {
                         model.getemployee('EmapName', '');

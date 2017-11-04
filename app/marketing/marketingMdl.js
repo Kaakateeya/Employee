@@ -230,14 +230,14 @@
                 };
 
                 model.bindEmpnames = function() {
-                    if (model.EmpNamesArr.length === 0) {
-                        SelectBindServiceApp.EmpwithBranch('ProfileBranch', '').then(function(response) {
-                            var empBranchData = response.data;
-                            _.each(empBranchData, function(item) {
-                                model.EmpNamesArr.push({ "label": item.Name, "title": item.Name, "value": item.ID, ParentName: item.BranchesName });
-                            });
+                    // if (model.EmpNamesArr.length === 0) {
+                    SelectBindServiceApp.EmpwithBranch('ProfileBranch', '').then(function(response) {
+                        var empBranchData = response.data;
+                        _.each(empBranchData, function(item) {
+                            model.EmpNamesArr.push({ "label": item.Name, "title": item.Name, "value": item.ID, ParentName: item.BranchesName });
                         });
-                    }
+                    });
+                    // }
                 };
 
                 model.PhotoRequest = function(row) {
