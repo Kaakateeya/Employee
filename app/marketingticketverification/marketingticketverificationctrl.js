@@ -16,6 +16,7 @@
                      model.pageloadbindings();
                      model.resetmarketverification();
                      model.isDisabledsubmit = false;
+
                  };
                  vm.init();
              }

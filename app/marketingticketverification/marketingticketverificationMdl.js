@@ -16,6 +16,16 @@
                 model.normalexcel = true;
                 model.gridTableshow = false;
                 model.showplus = false;
+
+                model.innergrid.showsearchrows = true;
+                model.innergrid.showsearch = true;
+                model.innergrid.showpaging = true;
+                model.innergrid.showClientpaging = false;
+                model.innergrid.myprofileexcel = true;
+                model.innergrid.normalexcel = true;
+                model.innergrid.gridTableshow = false;
+                model.innergrid.showplus = false;
+
                 model.onlyempnames = [];
                 model.onlyBranchArr = [];
                 model.dateOptions = {
@@ -42,19 +52,93 @@
                     });
                     return array;
                 };
-                model.profileshistory = function(value) {
-                    commonpage.showPopup('innergrid.html', model.scope, 'lg', "modalclassdashboard");
-                };
                 model.historyshowing = function(row) {
-                    var paid = "<a class='' href='javascript:void(0);' ng-click='model.profileshistory(" + JSON.stringify('hh') + ");' > History < /a>";
+                    var paid = "<a class='' href='javascript:void(0);' ng-click='model.profileshistory(" + JSON.stringify(row.userlist) + ");'> History </a>";
                     return paid;
                 };
-                model.innergrid.columns = [
-                    { text: 'Profile ID', key: 'ProfileId', type: 'label' },
-                    { text: 'TicketID', key: 'ProfileId', type: 'label' },
-                    { text: 'Paid Amount', key: 'ProfileId', type: 'label' },
-                    { text: 'Commision Amount', key: 'ProfileId', type: 'label' }
-                ];
+                model.ticketid = function(row) {
+                    var str = row.optionType === 'label' ? '<label>' + row.ProfileId + '</label>' : '<input  type="text" ng-model="row.ProfileId" class="form-control">';
+                    return str;
+                };
+                model.paidamount = function(row) {
+                    var str = row.optionType === 'label' ? '<label>' + row.TicketID + '</label>' : '<input  type="text" ng-model="row.TicketID" class="form-control">';
+                    return str;
+                };
+                model.commisionamt = function(row) {
+                    var str = row.optionType === 'label' ? '<label>' + row.comminsion + '</label>' : '<input  type="text" ng-model="row.comminsion" class="form-control">';
+                    return str;
+                };
+
+
+                model.optionTemplate = function(row) {
+                    var lblname = row.optionType === 'label' ? 'Edit' : 'Save';
+                    var str = '<a>' + lblname + '</a>';
+                    return str;
+                };
+                model.actionlink = function(row) {
+                    if (row.optionType === 'input') {
+                        row.optionType = 'label';
+
+                        var ticketid = model.innergrid['TicketID' + item.sno] !== "" && model.innergrid['TicketID' + item.sno] !== null && model.innergrid['TicketID' + item.sno] !== undefined ? model.innergrid['TicketID' + item.sno] : "";
+                        var paidamount = model.innergrid['paidamount' + item.sno] !== "" && model.innergrid['paidamount' + item.sno] !== null && model.innergrid['paidamount' + item.sno] !== undefined ? model.innergrid['paidamount' + item.sno] : "";
+                        var commisionamt = model.innergrid['commisionamt' + item.sno] !== "" && model.innergrid['commisionamt' + item.sno] !== null && model.innergrid['commisionamt' + item.sno] !== undefined ? model.innergrid['commisionamt' + item.sno] : "";
+
+                        var obj = {
+                            Profileid: 5445
+                        };
+                        marketingticketverificationService.updatemarketingvrfycation(obj).then(function(response) {
+                            if (response.data && parseInt(response.data) === 1) {
+                                alertss.timeoutoldalerts(model.scope, 'alert-success', 'Updated Succesfully', 4500);
+                            } else {
+                                alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Updated failed', 4500);
+                            }
+                        });
+                        row.optionType = 'label';
+
+                    } else {
+                        row.optionType = 'input';
+                    }
+
+                };
+                model.profileshistory = function(value) {
+                    model.innergrid.columns = [
+                        { text: 'Profile ID', key: 'profileid', type: 'label' },
+                        { text: 'TicketID', key: 'ticketid', type: 'textbox', templateUrl: model.ticketid, model: 'TicketID' },
+                        { text: 'Paid Amount', key: 'PaidAmount', type: 'textbox', templateUrl: model.paidamount, model: 'paidamount' },
+                        { text: 'Commision Amount', key: 'commisionamt', type: 'textbox', templateUrl: model.commisionamt, model: 'commisionamt' },
+                        { text: '', key: '', type: 'customlink', templateUrl: model.optionTemplate, method: model.actionlink }
+                    ];
+
+                    // model.arraychecking = [{
+                    //     ProfileId: 31111110,
+                    //     TicketID: 'vhghdds',
+                    //     paidamount: 3334,
+                    //     comminsion: 222
+                    // }];
+                    // model.innergrid.sdata = model.arraychecking;
+                    // _.map(model.innergrid.sdata, function(item, index) {
+                    //     item.sno = index + 1;
+                    //     item.optionType = 'label';
+                    //     model.innergrid['TicketID' + item.sno] = item.TicketID;
+                    //     model.innergrid['paidamount' + item.sno] = item.paidamount;
+                    //     model.innergrid['commisionamt' + item.sno] = item.comminsion;
+                    // });
+                    value = '107249,111435';
+                    marketingticketverificationService.marketinggetprofiledetails(value).then(function(response) {
+                        console.log(response);
+                        model.innergrid.sdata = response.data[0];
+                        _.map(model.innergrid.sdata, function(item, index) {
+                            item.sno = index + 1;
+                            item.optionType = 'label';
+                            model.innergrid['TicketID' + item.sno] = item.ticketid;
+                            model.innergrid['paidamount' + item.sno] = item.PaidAmount;
+                            model.innergrid['commisionamt' + item.sno] = item.commisionamt;
+                        });
+                        commonpage.showPopup('innergrid.html', model.scope, 'lg', "modalclassdashboard");
+
+                    });
+                };
+
                 model.submitmarktingreports = function(type) {
                     model.isDisabledsubmit = true;
                     model.panelbodyhide = false;
@@ -132,22 +216,6 @@
                 };
                 model.pageloadbindings = function() {
                     model.getemployee('Branch', '');
-                    // helpService.getMyprofilebind(1, 2, '').then(function(response) {
-                    //     model.Brancharray = [];
-                    //     model.ProfileOwnerarray = [];
-                    //     model.Brancharray.push({ "label": "--select--", "title": "--select--", "value": "" });
-                    //     model.ProfileOwnerarray.push({ "label": "--select--", "title": "--select--", "value": "" });
-                    //     _.each(response.data, function(item) {
-                    //         switch (item.CountryCode) {
-                    //             case "Branch":
-                    //                 model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                    //                 break;
-                    //             case "Profile Owner":
-                    //                 model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                    //                 break;
-                    //         }
-                    //     });
-                    // });
                 };
                 model.pagechange = function(val) {
                     model.submitmarktingreports('grid');
@@ -156,14 +224,6 @@
                     model.submitmarktingreports('excel');
                 };
 
-                // model.onchangebranch = function() {
-                //     model.onlyBranchArr = [];
-                //     // model.ProfileOwnerarray = [];
-                //     model.onlyBranchArr.push({ "label": "--select--", "title": "--select--", "value": "" });
-                //     model.onlyBranchArr = Commondependency.branch((model.rbtnregional !== undefined && model.rbtnregional !== null && model.rbtnregional !== "" && model.rbtnregional !== 0 && model.rbtnregional !== '0') ? (model.rbtnregional) : "");
-                //     // model.ProfileOwnerarray = Commondependency.branch((model.rbtnregional !== undefined && model.rbtnregional !== null && model.rbtnregional !== "" && model.rbtnregional !== 0 && model.rbtnregional !== '0') ? (model.rbtnregional) : "");
-                //     //BranchNamebindval
-                // };
                 model.onchangebranch = function(parent) {
                     model.onlyBranchArr = [];
                     model.onlyBranchArr.push({ "label": "--select--", "title": "--select--", "value": "" });
@@ -205,9 +265,9 @@
                     }
 
                 };
-
-
-
+                model.closeinnergrid = function() {
+                    commonpage.closepopup();
+                };
                 return model;
 
             }
