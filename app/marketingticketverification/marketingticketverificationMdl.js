@@ -4,8 +4,9 @@
     angular
         .module('Kaakateeya')
         .factory('marketingticketverificationModel', ['marketingticketverificationService', 'complex-grid-config', 'Commondependency',
-            'helperservice', 'SelectBindServiceApp', 'modelpopupopenmethod',
-            function(marketingticketverificationService, configgrid, Commondependency, helpService, SelectBindServiceApp, commonpage) {
+            'helperservice', 'SelectBindServiceApp', 'modelpopupopenmethod', 'alert',
+            function(marketingticketverificationService, configgrid, Commondependency, helpService, SelectBindServiceApp,
+                commonpage, alertss) {
                 var model = {};
                 model.innergrid = {};
                 model.showsearchrows = true;
@@ -75,28 +76,29 @@
                 };
                 model.actionlink = function(row) {
                     if (row.optionType === 'input') {
-                        row.optionType = 'label';
-
                         var ticketid = model.innergrid['TicketID' + row.sno] !== "" && model.innergrid['TicketID' + row.sno] !== null && model.innergrid['TicketID' + row.sno] !== undefined ? model.innergrid['TicketID' + row.sno] : "";
                         var paidamount = model.innergrid['paidamount' + row.sno] !== "" && model.innergrid['paidamount' + row.sno] !== null && model.innergrid['paidamount' + row.sno] !== undefined ? model.innergrid['paidamount' + row.sno] : "";
                         var commisionamt = model.innergrid['commisionamt' + row.sno] !== "" && model.innergrid['commisionamt' + row.sno] !== null && model.innergrid['commisionamt' + row.sno] !== undefined ? model.innergrid['commisionamt' + row.sno] : "";
-
                         var obj = {
-                            Profileid: 5445
+                            Empid: parseInt(model.empid),
+                            Profileid: row.profileid,
+                            Emp_commisionTicketid: row.Emp_Commision_TicketID,
+                            PaidAmount: paidamount,
+                            commisionAmount: commisionamt
                         };
+                        debugger;
                         marketingticketverificationService.updatemarketingvrfycation(obj).then(function(response) {
                             if (response.data && parseInt(response.data) === 1) {
+                                row.optionType = 'label';
                                 alertss.timeoutoldalerts(model.scope, 'alert-success', 'Updated Succesfully', 4500);
                             } else {
+                                row.optionType = 'label';
                                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Updated failed', 4500);
                             }
                         });
-                        row.optionType = 'label';
-
                     } else {
                         row.optionType = 'input';
                     }
-
                 };
                 model.profileshistory = function(value, innerempid) {
                     model.innergrid.columns = [
