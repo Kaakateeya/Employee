@@ -894,3 +894,21 @@ body {
     top: 0%;
     left: 0%;
 }
+
+.modalclassdashboard {
+    .modal-dialog.modal-md {
+        width: 835px !important;
+    }
+    th.profileid.headerStyles {
+        width: 160px;
+    }
+    th.commisionamt.headerStyles {
+        width: 160px;
+    }
+    th.PaidAmount.headerStyles {
+        width: 160px;
+    }
+    th.ticketid.headerStyles {
+        width: 160px;
+    }
+}

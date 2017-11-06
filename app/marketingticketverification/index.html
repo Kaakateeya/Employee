@@ -102,17 +102,17 @@
     <div>
         <complex-grid-new gid="'id1'" ng-show="page.model.data.length>0" model="page.model" config="page.model"></complex-grid-new>
     </div>
+    <script type="text/ng-template" id="innergrid.html">
+        <div class="modal-header">
+            <div class="pull-right">
+                <a href="javascript:void(0);" ng-click="page.model.closeinnergrid()" style="padding:7px;"> <i class="fa fa-times" aria-hidden="true" style="fill:#c73e5f;font-size: 16pt;"></i></a>
+            </div>
+        </div>
+        <single-grid-new model="page.model.innergrid" config="page.model.innergrid"></single-grid-new>
+    </script>
+
 </div>
 
-<script type="text/ng-template" id="innergrid.html">
-    <div class="modal-header">
-        <div class="pull-right">
-            <a href="javascript:void(0);" ng-click="page.model.closeinnergrid()" style="padding:7px;"> <i class="fa fa-times" aria-hidden="true" style="fill:#c73e5f;font-size: 16pt;"></i></a>
-        </div>
-    </div>
-    <single-grid model="page.model.innergrid" config="page.model.innergrid"></single-grid>
-    <!-- <complex-grid-new gid="'id2'" model="page.model.innergrid" config="page.model"></complex-grid-new> -->
-</script>
 
 
 <style>

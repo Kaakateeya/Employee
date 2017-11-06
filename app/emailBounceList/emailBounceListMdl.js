@@ -93,13 +93,13 @@
                 { text: 'Sno', key: 'sno', type: 'label' },
                 { text: 'ProfileID', key: 'ProfileId', type: 'morelinks', templateUrl: model.returnProfileIDTemplate },
                 { text: 'Name', key: 'NAME', type: 'label' },
-                { text: 'Old email id', key: 'EmailId', type: 'label' },
-                { text: 'Modified email id', key: 'ModifiedEmailId', type: 'label' },
+                { text: 'Bounced email id', key: 'EmailId', type: 'label' },
+                // { text: 'Modified email id', key: 'ModifiedEmailId', type: 'label' },
                 { text: 'Relation name', key: 'RealtionName', type: 'label' },
                 { text: 'Created by', key: 'CreatedBy', type: 'label' },
-                { text: 'Created date', key: 'CreatedDate', type: 'label' },
-                { text: 'Modified by', key: 'ModifiedBy', type: 'label' },
-                { text: 'Modified date', key: 'ModifiedDate', type: 'label' },
+                { text: 'Created date', key: 'CreatedDate', type: 'label' }
+                // { text: 'Modified by', key: 'ModifiedBy', type: 'label' },
+                // { text: 'Modified date', key: 'ModifiedDate', type: 'label' },
             ];
             model.grid1.showsearchrows = true;
             model.grid1.showsearch = true;

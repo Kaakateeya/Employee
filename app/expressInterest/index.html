@@ -111,7 +111,7 @@
                         <div class="col-lg-6">
                             <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.exiObj.rbtnBasic" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                 <md-radio-button value="358" class="md-primary">Basic Profile</md-radio-button>
-                                <md-radio-button value="359" ng-if="page.model.isManagement === 'true'"> Full Profile</md-radio-button>
+                                <md-radio-button value="359" ng-if="page.model.showempid===2 || page.model.showempid===223"> Full Profile</md-radio-button>
                             </md-radio-group>
                         </div>
                     </div>

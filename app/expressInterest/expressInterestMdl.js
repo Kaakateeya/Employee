@@ -8,6 +8,7 @@
         var strimages = '';
         model.exiObj = {};
         model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+        model.showempid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? parseInt(authSvc.LoginEmpid()) : "";
         model.fromcustid = '';
         model.SelectProfilelst = [];
         model.NAME = '';

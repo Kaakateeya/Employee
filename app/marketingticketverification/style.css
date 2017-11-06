@@ -667,4 +667,15 @@ body {
   top: 0%;
   left: 0%; }
 
+.modalclassdashboard .modal-dialog.modal-md {
+  width: 835px !important; }
+.modalclassdashboard th.profileid.headerStyles {
+  width: 160px; }
+.modalclassdashboard th.commisionamt.headerStyles {
+  width: 160px; }
+.modalclassdashboard th.PaidAmount.headerStyles {
+  width: 160px; }
+.modalclassdashboard th.ticketid.headerStyles {
+  width: 160px; }
+
 /*# sourceMappingURL=style.css.map */

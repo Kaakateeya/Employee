@@ -287,6 +287,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
                     ]
                 },
                 {
+                    name: 'single-grid-new',
+                    files: [
+                        'directives/singel-grid-new/config.js',
+                        'directives/singel-grid-new/directive.js',
+                        'directives/singel-grid-new/css/style.css'
+                    ]
+                },
+                {
                     name: 'norecordsalert-popup',
                     files: [
                         'directives/norecordsalert-popup/css/style.css',
@@ -464,6 +472,7 @@ function loadmodules($ocLazyLoad) {
     $ocLazyLoad.load('EditSideMenu-base');
     $ocLazyLoad.load('EditSlide-popup');
     $ocLazyLoad.load('single-grid');
+    $ocLazyLoad.load('single-grid-new');
     $ocLazyLoad.load('properties');
     $ocLazyLoad.load('norecordsalert-popup');
     $ocLazyLoad.load('payment-editpointsdate');

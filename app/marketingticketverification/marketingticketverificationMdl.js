@@ -16,7 +16,6 @@
                 model.normalexcel = true;
                 model.gridTableshow = false;
                 model.showplus = false;
-
                 model.innergrid.showsearchrows = true;
                 model.innergrid.showsearch = true;
                 model.innergrid.showpaging = true;
@@ -25,7 +24,6 @@
                 model.innergrid.normalexcel = true;
                 model.innergrid.gridTableshow = false;
                 model.innergrid.showplus = false;
-
                 model.onlyempnames = [];
                 model.onlyBranchArr = [];
                 model.dateOptions = {
@@ -79,9 +77,9 @@
                     if (row.optionType === 'input') {
                         row.optionType = 'label';
 
-                        var ticketid = model.innergrid['TicketID' + item.sno] !== "" && model.innergrid['TicketID' + item.sno] !== null && model.innergrid['TicketID' + item.sno] !== undefined ? model.innergrid['TicketID' + item.sno] : "";
-                        var paidamount = model.innergrid['paidamount' + item.sno] !== "" && model.innergrid['paidamount' + item.sno] !== null && model.innergrid['paidamount' + item.sno] !== undefined ? model.innergrid['paidamount' + item.sno] : "";
-                        var commisionamt = model.innergrid['commisionamt' + item.sno] !== "" && model.innergrid['commisionamt' + item.sno] !== null && model.innergrid['commisionamt' + item.sno] !== undefined ? model.innergrid['commisionamt' + item.sno] : "";
+                        var ticketid = model.innergrid['TicketID' + row.sno] !== "" && model.innergrid['TicketID' + row.sno] !== null && model.innergrid['TicketID' + row.sno] !== undefined ? model.innergrid['TicketID' + row.sno] : "";
+                        var paidamount = model.innergrid['paidamount' + row.sno] !== "" && model.innergrid['paidamount' + row.sno] !== null && model.innergrid['paidamount' + row.sno] !== undefined ? model.innergrid['paidamount' + row.sno] : "";
+                        var commisionamt = model.innergrid['commisionamt' + row.sno] !== "" && model.innergrid['commisionamt' + row.sno] !== null && model.innergrid['commisionamt' + row.sno] !== undefined ? model.innergrid['commisionamt' + row.sno] : "";
 
                         var obj = {
                             Profileid: 5445
@@ -108,22 +106,6 @@
                         { text: 'Commision Amount', key: 'commisionamt', type: 'textbox', templateUrl: model.commisionamt, model: 'commisionamt' },
                         { text: '', key: '', type: 'customlink', templateUrl: model.optionTemplate, method: model.actionlink }
                     ];
-
-                    // model.arraychecking = [{
-                    //     ProfileId: 31111110,
-                    //     TicketID: 'vhghdds',
-                    //     paidamount: 3334,
-                    //     comminsion: 222
-                    // }];
-                    // model.innergrid.sdata = model.arraychecking;
-                    // _.map(model.innergrid.sdata, function(item, index) {
-                    //     item.sno = index + 1;
-                    //     item.optionType = 'label';
-                    //     model.innergrid['TicketID' + item.sno] = item.TicketID;
-                    //     model.innergrid['paidamount' + item.sno] = item.paidamount;
-                    //     model.innergrid['commisionamt' + item.sno] = item.comminsion;
-                    // });
-                    // value = '107249,111435';
                     marketingticketverificationService.marketinggetprofiledetails(value, innerempid).then(function(response) {
                         console.log(response);
                         model.innergrid.sdata = response.data[0];
@@ -134,7 +116,7 @@
                             model.innergrid['paidamount' + item.sno] = item.PaidAmount;
                             model.innergrid['commisionamt' + item.sno] = item.commisionamt;
                         });
-                        commonpage.showPopup('innergrid.html', model.scope, 'lg', "modalclassdashboard");
+                        commonpage.showPopup('innergrid.html', model.scope, 'md', "modalclassdashboard");
 
                     });
                 };
