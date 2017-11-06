@@ -178,12 +178,10 @@
                 model.regionChange = function(parent) {
                     model.BranchName = [];
                     SelectBindServiceApp.branch(parent).then(function(response) {
-                        console.log(response);
                         _.each(response.data, function(item) {
                             model.BranchName.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                         });
                     });
-                    // model.BranchName = Commondependency.BranchNamebindval((parent !== undefined && parent !== null && parent !== "") ? (parent).toString() : "");
                 };
 
                 model.proceedImage = function(status) {
@@ -559,9 +557,9 @@
                             strFromStatus: model.fromticketstatusemail
                         };
 
-                        helpService.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
-                            if (response.data === parseInt(1)) {} else {}
-                        });
+                        // helpService.UpdateExpressIntrestViewfullprofile(MobjViewprofile).then(function(response) {
+                        //     if (response.data === parseInt(1)) {} else {}
+                        // });
                     }
                     timeout(function() {
                         if (callmatchdiscussion !== "" && callmatchdiscussion !== undefined && callmatchdiscussion !== null) {
@@ -790,7 +788,6 @@
                     });
                 };
                 model.NotIntrstChnge = function(val, type) {
-                    console.log(model.ToTicketMatchmeetingStatus);
                     if (model.fromIsconfidential === 1 || model.toIsconfidential === 1 || model.fromHighconfidential === 1 || model.toHighconfidential === 1) {
                         model.DisplayToCustomerin = true;
                     } else {

@@ -24,7 +24,6 @@
                 }
                 if (formvalid === true) {
                     loginservice.getloginpage(form).then(function(response) {
-                        console.log(response.data);
                         if (response.data !== undefined && response.data !== "" && response.data !== null) {
                             switch (response.data.m_Item5) {
                                 case 1:

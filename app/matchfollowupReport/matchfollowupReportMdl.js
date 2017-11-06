@@ -31,7 +31,6 @@
         model.regionchange = function(val) {
             model.Brancharray = [];
             SelectBindServiceApp.branch(val).then(function(response) {
-                console.log(response);
                 _.each(response.data, function(item) {
                     model.Brancharray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
                 });

@@ -48,6 +48,10 @@
             model.grid1.data = [];
             model.grid2.data = [];
             model.grid3.data = [];
+            model.dynamictextbox = '';
+            model.dynamicgrouptextbox = '';
+            model.dynamicspltextbox = '';
+            model.editflag = 1;
             if (type === 'Education Master') {
                 model.grid1.columns = [
                     { text: 'Education Category', key: 'EducationCategory', type: 'label' },
@@ -73,14 +77,106 @@
                 model.loadmasterdata('ProfessionGroup', null, 2, 1);
             }
         };
+        model.submitupdate = function() {
+            var terst;
+            switch (model.typeofcategory) {
+                case 'EducationCategory':
+                case 'ProfessionCategory':
+                    terst = model.dynamictextbox;
+                    break;
+                case 'EducationGroup':
+                case 'ProfessionGroup':
+                    terst = model.dynamicgrouptextbox;
+                    break;
+                case 'EduSpecialization':
+                case 'Profession':
+                    terst = model.dynamicspltextbox;
+                    break;
+            }
+            var obj = {
+                AppUserId: 1,
+                Name: terst,
+                CountryCode: null,
+                CountryCurrency: null,
+                MobileLength: null,
+                landlineLength: null,
+                StatusCode: 1,
+                MasterType: model.typeofcategory,
+                DependentId: null,
+                DependentDistrictIDId: null,
+                SubDependentId: null,
+                MinWords: null,
+                MaxWords: null,
+                CostPOBox: null,
+                LanguageID: null,
+                Comments: null,
+                ExtraWordPrice: null,
+                TamilStarName: null,
+                KannadaStarName: null,
+                MasterTypeID: model.dependencyid
+            };
+            masterPageNewService.MasterdataInsertUpdate(obj).then(function(response) {
+                model.editflag = 1;
+                if (model.typeofcategory === 'EducationCategory') {
+                    model.loadmasterdata('EducationCategory', null, 1, 1);
+                } else if (model.typeofcategory === 'EducationGroup') {
+                    model.loadmasterdata('EducationGroup', model.dependencyid, 2, 1);
+                } else {
+                    model.loadmasterdata('EduSpecialization', model.dependencyid, 3, 1);
+                }
+            });
+        };
         //
         model.returnstringvalue = function(type, dependencyid, grid, editvalue, statuscode, editflag, typeofedit) {
-            var valuetext = "<a href='javascript:void(0)' ng-click='model.editvalues(" + dependencyid + "," + editvalue + ", " + statuscode + ", " + editflag + "," + typeofedit + ")' >Edit</a> &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.educationprofessionload(" + JSON.stringify(type) + "," + dependencyid + "," + grid + ",1)'>Select</a>";
+            var valuetext = "<a href='javascript:void(0)' ng-click='model.editvalues(" + dependencyid + "," + JSON.stringify(editvalue) + ", " + JSON.stringify(statuscode) + ", " + editflag + "," + JSON.stringify(typeofedit) + ")' >Edit</a> &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.educationprofessionload(" + JSON.stringify(type) + "," + dependencyid + "," + grid + ",1)'>Select</a>";
             return valuetext;
         };
         model.changevalue = function(value) {
             var valuetext = "<a  href='javascript:void(0)'>Active</a> &nbsp;&nbsp;&nbsp;<a  href='javascript:void(0)'>InActive</a>";
             return valuetext;
+        };
+
+        model.editvalues = model.grid3.editvalues = model.grid2.editvalues = model.grid1.editvalues = function(dependencyid, dependencyvalue, statuscode, editflag, type) {
+            model.editflag = editflag;
+            model.dependencyid = dependencyid;
+            switch (type) {
+                case 'educate':
+                    model.typeofcategory = 'EducationCategory';
+                    model.dynamictextbox = dependencyvalue;
+                    model.dynamicgrouptextbox = '';
+                    model.dynamicspltextbox = '';
+                    break;
+                case 'edugroup':
+                    model.typeofcategory = 'EducationGroup';
+                    model.dynamicgrouptextbox = dependencyvalue;
+                    model.dynamictextbox = '';
+                    model.dynamicspltextbox = '';
+                    break;
+                case 'eduspl':
+                    model.typeofcategory = 'EduSpecialization';
+                    model.dynamicspltextbox = dependencyvalue;
+                    model.dynamictextbox = '';
+                    model.dynamicgrouptextbox = '';
+                    break;
+                case 'profcate':
+                    model.typeofcategory = 'ProfessionCategory';
+                    model.dynamictextbox = dependencyvalue;
+                    model.dynamicgrouptextbox = '';
+                    model.dynamicspltextbox = '';
+                    break;
+                case 'profgroup':
+                    model.typeofcategory = 'ProfessionGroup';
+                    model.dynamicgrouptextbox = dependencyvalue;
+                    model.dynamictextbox = '';
+                    model.dynamicspltextbox = '';
+                    break;
+                case 'profspl':
+                    model.typeofcategory = 'Profession';
+                    model.dynamicspltextbox = dependencyvalue;
+                    model.dynamictextbox = '';
+                    model.dynamicgrouptextbox = '';
+                    break;
+            }
         };
         //
         model.grid3.educationprofessionload = model.grid1.educationprofessionload = model.grid2.educationprofessionload = model.educationprofessionload = function(MasterType, DependentId, grid, statuscode) {
@@ -96,11 +192,11 @@
             }
         };
         model.professioncategorytemptemp = function(row) {
-            var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;";
+            var valuetext = "<a href='javascript:void(0)' ng-click='model.editvalues(" + row.ProfessionCategoryID + "," + JSON.stringify(row.ProfessionCategory) + ", " + JSON.stringify(row.StatusCode) + ", " + 0 + "," + JSON.stringify('profcate') + ")'>Edit</a> &nbsp;&nbsp;&nbsp;";
             return valuetext;
         };
         model.professiongrouptemptemp = function(row) {
-            var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.educationprofessionload(" + JSON.stringify('Profession') + "," + row.ProfessionGroupID + "," + 3 + ",1)'>Select</a>";
+            var valuetext = "<a href='javascript:void(0)'  ng-click='model.editvalues(" + row.ProfessionGroupID + "," + JSON.stringify(row.ProfessionGroupName) + ", " + JSON.stringify(row.StatusCode) + ", " + 0 + "," + JSON.stringify('profgroup') + ")'>Edit</a> &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.educationprofessionload(" + JSON.stringify('Profession') + "," + row.ProfessionGroupID + "," + 3 + ",1)'>Select</a>";
             return valuetext;
         };
         model.Educationtemp = function(row) {
@@ -128,7 +224,7 @@
             return EducationGroup;
         };
         model.Educationspecializationtemp = function(row) {
-            var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;";
+            var valuetext = "<a href='javascript:void(0)' ng-click='model.editvalues(" + model.EducationGroupspecialization + ", " + JSON.stringify(row.EduSpecializationName) + ", 1, 0, " + JSON.stringify('eduspl') + ")'>Edit</a> &nbsp;&nbsp;&nbsp;";
             return valuetext;
         };
         model.changevaluestringeduspl = function(row) {
@@ -136,7 +232,7 @@
             return EducationGroup;
         };
         model.professiongrouptemptspl = function(row) {
-            var valuetext = "<a href='javascript:void(0)'>Edit</a> &nbsp;&nbsp;&nbsp;";
+            var valuetext = "<a href='javascript:void(0)'  ng-click='model.editvalues(" + row.ProfessionID + "," + JSON.stringify(row.ProfessionName) + ", " + JSON.stringify(row.StatusCode) + ", " + 0 + "," + JSON.stringify('profspl') + ")'>Edit</a> &nbsp;&nbsp;&nbsp;";
             return valuetext;
         };
         model.returndynamicarray = function(val) {
@@ -169,7 +265,6 @@
             }
 
             masterPageNewService.MasterDataselect(obj).then(function(response) {
-                console.log(response);
                 if (_.isArray(response.data) && response.data.length > 0) {
                     switch (grid) {
                         case 1:

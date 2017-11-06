@@ -50,7 +50,6 @@
                 model.marHistry = [];
                 if (respnse.data !== undefined && respnse.data !== null && respnse.data.length > 0) {
                     model.marInfo = respnse.data;
-                    console.log(model.marInfo);
                     model.ticketgender = (model.marInfo)[0].GenderID === 1 ? 'Bride' : 'Groom';
                     model.ProfileID = (model.marInfo)[0].FromProfileID;
                     //

@@ -86,7 +86,7 @@
                             PaidAmount: paidamount,
                             commisionAmount: commisionamt
                         };
-                        debugger;
+
                         marketingticketverificationService.updatemarketingvrfycation(obj).then(function(response) {
                             if (response.data && parseInt(response.data) === 1) {
                                 row.optionType = 'label';
@@ -109,7 +109,6 @@
                         { text: '', key: '', type: 'customlink', templateUrl: model.optionTemplate, method: model.actionlink }
                     ];
                     marketingticketverificationService.marketinggetprofiledetails(value, innerempid).then(function(response) {
-                        console.log(response);
                         model.innergrid.sdata = response.data[0];
                         _.map(model.innergrid.sdata, function(item, index) {
                             item.sno = index + 1;

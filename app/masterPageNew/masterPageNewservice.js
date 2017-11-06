@@ -11,6 +11,9 @@
         return {
             MasterDataselect: function(obj) {
                 return http.post(app.apiroot + 'EmployeeReportPage/MasterDataselect', obj);
+            },
+            MasterdataInsertUpdate: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/MasterdataInsertUpdate', obj);
             }
         };
     }

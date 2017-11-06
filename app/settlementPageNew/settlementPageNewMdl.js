@@ -138,7 +138,6 @@
         };
 
         model.grid3.openPouptoedit = function(id, status) {
-            debugger;
             model.strdisplay = status === '574' ? 'Paid' : (status === '575' ? 'Partial Paid' : 'Not interest to pay');
             model.txtdescription = '';
             model.insertProfileID = id;

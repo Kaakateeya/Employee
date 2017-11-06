@@ -614,7 +614,6 @@
             model.object.Keyworddlikesrch.Caste = model.returnnullvalue(model.Casteids);
             model.object.Keyworddlikesrch.CDomicile = model.rbtndomacile !== "" && model.rbtndomacile !== undefined && model.rbtndomacile !== null ? parseInt(model.rbtndomacile) : null;
             keywordSearchService.KeywordlikeSearchnewpage(model.object.Keyworddlikesrch).then(function(response) {
-                console.log(response.data);
                 if (_.isArray(response.data) && response.data.length > 0) {
                     if (type === 'grid') {
                         if (from === 1) {
@@ -801,7 +800,6 @@
         };
         model.onchangeselectlistvalues = function(value) {
             var optionSelected = $.trim(value);
-            console.log(optionSelected);
             if (optionSelected !== "") {
                 model.lblsearchedfields = model.lblsearchedfields === '' ? optionSelected : model.lblsearchedfields + "," + optionSelected;
             }
@@ -827,7 +825,6 @@
                 var innerdata = item.indexOf("between") != -1 ? item.split('between') : item.split('like');
                 model.object.Keyworddlikesrch[_.where(model.Searchfields, { Text: (innerdata[0]).trim() })[0].value] = (innerdata[1]).trim();
             });
-            console.log((model.object.Keyworddlikesrch));
             return model.object;
         };
         return model;

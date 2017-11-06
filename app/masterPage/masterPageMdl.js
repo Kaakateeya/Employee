@@ -154,7 +154,6 @@
                 StatusCode: 1
             };
             masterPageService.MasterDataselect(obj).then(function(response) {
-                console.log(response);
                 if (_.isArray(response.data) && response.data.length > 0) {
                     model.grid1.data = response.data[0];
                 }

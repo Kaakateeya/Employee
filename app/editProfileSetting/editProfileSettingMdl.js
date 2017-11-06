@@ -152,7 +152,7 @@
             if (model.beforerestoredprofile !== 54 && model.beforerestoredprofile !== 55) {
                 if (parseInt(Icurrentprofilestatusid) === 54) {
                     editProfileSettingService.restoredProfile(model.resoreobj).then(function(response) {
-                        console.log(response);
+
                     });
                 }
             }
