@@ -116,7 +116,7 @@
                         <div class="col-lg-3" ng-if="true">
                             <input style="width:265px;" type="text" class="form-control" ng-model="page.model.txtinputfileds" placeholder="List of Fields"></input>
                             <select style="height:400px;width: 265px;" multiple="multiple">
-                             <option style="padding: 9px;" ng-disabled="$index_option" ng-class="item.style" ng-repeat="item in page.model.Searchfields | filter:page.model.txtinputfileds" value="{{item.value}}" ng-click="page.model.onchangeselectlistvalues(item.Text);$index_option=true;">{{item.Text}}</option>
+                             <option title="{{item.toolTip}}" style="padding: 9px;" ng-disabled="$index_option" ng-class="item.style" ng-repeat="item in page.model.Searchfields | filter:page.model.txtinputfileds" value="{{item.value}}" ng-click="page.model.onchangeselectlistvalues(item.Text);$index_option=true;">{{item.Text}}</option>
                             </select>
                         </div>
                         <div class="col-lg-9" ng-if="true">
