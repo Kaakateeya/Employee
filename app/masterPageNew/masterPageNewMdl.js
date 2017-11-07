@@ -252,14 +252,15 @@
             var valuetext = "<a href='javascript:void(0)' ng-click='model.editvalues(" + dependencyid + "," + JSON.stringify(editvalue) + ", " + JSON.stringify(statuscode) + ", " + editflag + "," + JSON.stringify(typeofedit) + ")' >Edit</a> &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.educationprofessionload(" + JSON.stringify(type) + "," + dependencyid + "," + grid + ",1)'>Select</a>";
             return valuetext;
         };
-        model.changevalue = function(id, name, category) {
-            var valuetext = "<a  href='javascript:void(0)' ng-click='model.activeinactive(" + id + "," + name + "," + category + ",1)'>Active</a> &nbsp;&nbsp;&nbsp;<a  href='javascript:void(0)' ng-click='model.activeinactive(" + id + "," + name + "," + category + ",0)'>InActive</a>";
+        model.changevalue = function(id, name, category, dependencyid) {
+            var valuetext = "<a  href='javascript:void(0)' ng-click='model.activeinactive(" + id + "," + name + "," + category + ",1," + dependencyid + ")'>Active</a> &nbsp;&nbsp;&nbsp;<a  href='javascript:void(0)' ng-click='model.activeinactive(" + id + "," + name + "," + category + ",0," + dependencyid + ")'>InActive</a>";
             return valuetext;
         };
         //
 
-        model.grid3.activeinactive = model.grid2.activeinactive = model.grid1.activeinactive = model.activeinactive = function(id, name, category, status) {
+        model.grid3.activeinactive = model.grid2.activeinactive = model.grid1.activeinactive = model.activeinactive = function(id, name, category, status, dependencyid) {
             model.typeofcategory = category;
+            model.dependencyid = dependencyid;
             var object = {
                 AppUserId: 1,
                 Name: name,
@@ -269,7 +270,7 @@
                 landlineLength: null,
                 StatusCode: status,
                 MasterType: category,
-                DependentId: null,
+                DependentId: dependencyid,
                 DependentDistrictIDId: null,
                 SubDependentId: null,
                 MinWords: null,
@@ -322,27 +323,27 @@
             return valuetext;
         };
         model.changevaluestring = function(row) {
-            var EducationGroup = model.changevalue(row.EducationCategoryID, JSON.stringify(row.EducationCategory), JSON.stringify('EducationCategory'));
+            var EducationGroup = model.changevalue(row.EducationCategoryID, JSON.stringify(row.EducationCategory), JSON.stringify('EducationCategory'), null);
             return EducationGroup;
         };
         model.changevaluestringedugroup = function(row) {
-            var EducationGroup = model.changevalue(row.EducationGroupID, JSON.stringify(row.EducationGroupName), JSON.stringify('EducationGroup'));
+            var EducationGroup = model.changevalue(row.EducationGroupID, JSON.stringify(row.EducationGroupName), JSON.stringify('EducationGroup'), model.EducationGroup);
             return EducationGroup;
         };
         model.changevaluestringeduspl = function(row) {
-            var EducationGroup = model.changevalue(row.EduSpecializationID, JSON.stringify(row.EduSpecializationName), JSON.stringify('EduSpecialization'));
+            var EducationGroup = model.changevalue(row.EduSpecializationID, JSON.stringify(row.EduSpecializationName), JSON.stringify('EduSpecialization'), model.EducationGroupspecialization);
             return EducationGroup;
         };
         model.changevaluestringprofession = function(row) {
-            var EducationGroup = model.changevalue(row.ProfessionCategoryID, JSON.stringify(row.ProfessionCategory), JSON.stringify('ProfessionCategory'));
+            var EducationGroup = model.changevalue(row.ProfessionCategoryID, JSON.stringify(row.ProfessionCategory), JSON.stringify('ProfessionCategory'), null);
             return EducationGroup;
         };
         model.changevaluestringprofessiongroup = function(row) {
-            var EducationGroup = model.changevalue(row.ProfessionGroupID, JSON.stringify(row.ProfessionGroupName), JSON.stringify('ProfessionGroup'));
+            var EducationGroup = model.changevalue(row.ProfessionGroupID, JSON.stringify(row.ProfessionGroupName), JSON.stringify('ProfessionGroup'), null);
             return EducationGroup;
         };
         model.changevaluestringprofessionspl = function(row) {
-            var EducationGroup = model.changevalue(row.ProfessionID, JSON.stringify(row.ProfessionName), JSON.stringify('Profession'));
+            var EducationGroup = model.changevalue(row.ProfessionID, JSON.stringify(row.ProfessionName), JSON.stringify('Profession'), model.Professionid);
             return EducationGroup;
         };
 
