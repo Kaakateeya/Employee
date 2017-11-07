@@ -11,7 +11,7 @@
                 model.innergrid = {};
                 model.showsearchrows = true;
                 model.showsearch = true;
-                model.showpaging = true;
+                model.showpaging = false;
                 model.showClientpaging = false;
                 model.myprofileexcel = true;
                 model.normalexcel = true;

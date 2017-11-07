@@ -22,7 +22,7 @@
                         <p class="col-lg-6  clearfix">{{page.model.labelName}}</p>
                         <div class="col-lg-6 controls clearfix">
                             <div layout-gt-sm="row" class="generalane">
-                                <input required ng-class="page.model.dynamictextbox!=='' && page.model.dynamictextbox!==undefined && page.model.dynamictextbox!==null ?'bacg':''" class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.dynamictextbox"></input>
+                                <input ng-required="true" ng-class="page.model.dynamictextbox!=='' && page.model.dynamictextbox!==undefined && page.model.dynamictextbox!==null ?'bacg':''" class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.dynamictextbox"></input>
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                         </md-checkbox>
                     </div>
                     <div class="col-lg-2">
-                        <button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-click="page.model.submitupdate(page.model.labelName,page.model.btnfirst,page.model.dynamictextbox)">{{page.model.btnfirst}}</button>
+                        <button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-disabled="page.model.dynamictextbox!=='' && page.model.dynamictextbox!==undefined && page.model.dynamictextbox!==null?false:true" ng-click="page.model.submitupdate(page.model.labelName,page.model.btnfirst,page.model.dynamictextbox)">{{page.model.btnfirst}}</button>
                     </div>
                     <br>
                     <complex-grid-new gid="'id1'" config="page.model.grid1" model="page.model.grid1"></complex-grid-new>
@@ -45,12 +45,12 @@
                         <p class="col-lg-6  clearfix">{{page.model.labelgroupName}}</p>
                         <div class="col-lg-6 controls clearfix">
                             <div layout-gt-sm="row" class="generalane">
-                                <input required="true" ng-class="page.model.dynamicgrouptextbox!=='' && page.model.dynamicgrouptextbox!==undefined && ppage.model.dynamicgrouptextbox!==null ?'bacg':''" class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.dynamicgrouptextbox"></input>
+                                <input required="true" ng-class="page.model.dynamicgrouptextbox!=='' && page.model.dynamicgrouptextbox!==undefined && page.model.dynamicgrouptextbox!==null ?'bacg':''" class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.dynamicgrouptextbox"></input>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-2">
-                        <button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-click="page.model.submitupdate(page.model.labelgroupName,page.model.btnsecond,page.model.dynamicgrouptextbox)">{{page.model.btnsecond}}</button>
+                        <button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-disabled="page.model.dynamicgrouptextbox!=='' && page.model.dynamicgrouptextbox!==undefined && page.model.dynamicgrouptextbox!==null ?false:true" ng-click="page.model.submitupdate(page.model.labelgroupName,page.model.btnsecond,page.model.dynamicgrouptextbox)">{{page.model.btnsecond}}</button>
                     </div>
                     <div class="col-lg-4 pull-right clearfix">
                         <md-checkbox ng-model="page.model.dynamicgroupinactive" ng-change="page.model.filteractiveinactive(page.model.dynamicgroupinactive,page.model.labelgroupName)">
@@ -68,12 +68,12 @@
                         <p class="col-lg-6  clearfix">{{page.model.labelSpecialName}}</p>
                         <div class="col-lg-6 controls clearfix">
                             <div layout-gt-sm="row" class="generalane">
-                                <input required="true" ng-class="page.model.dynamicspltextbox!=='' && page.model.dynamicspltextbox!==undefined && ppage.model.dynamicspltextbox!==null ?'bacg':''" class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.dynamicspltextbox"></input>
+                                <input required="true" ng-class="page.model.dynamicspltextbox!=='' && page.model.dynamicspltextbox!==undefined && page.model.dynamicspltextbox!==null ?'bacg':''" class="form-control" style="width: 220px !important;" type="text" ng-model="page.model.dynamicspltextbox"></input>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-2">
-                        <button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-click="page.model.submitupdate(page.model.labelSpecialName,page.model.btnthird,page.model.dynamicspltextbox)">{{page.model.btnthird}}</button>
+                        <button class="md-raised md-warn md-hue-2 md-button md-ink-ripple" ng-disabled="page.model.dynamicspltextbox!=='' && page.model.dynamicspltextbox!==undefined && page.model.dynamicspltextbox!==null ?false:true" ng-click="page.model.submitupdate(page.model.labelSpecialName,page.model.btnthird,page.model.dynamicspltextbox)">{{page.model.btnthird}}</button>
                     </div>
                     <div class="col-lg-4 pull-right clearfix">
                         <md-checkbox ng-model="page.model.dynamicsplinactive" ng-change="page.model.filteractiveinactive(page.model.dynamicsplinactive,page.model.labelSpecialName)">

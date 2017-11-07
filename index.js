@@ -92,7 +92,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'unAssignedPhotos', name: 'base.unAssignedPhotos', url: '/unAssignedPhotosPage', isloginrequired: true },
             { routeName: 'paymentOffersAssignnew', name: 'base.paymentOffersAssignnew', url: '/paymentOffersAssignPage', isloginrequired: true },
             { routeName: 'employeeCreation', name: 'base.employeeCreation', url: '/employeeCreationPage', isloginrequired: true },
-            // { routeName: 'keywordlikeSearch', name: 'base.keywordlikeSearch', url: '/keywordlikeSearchpage', isloginrequired: true },
             { routeName: 'customerFactsheet', name: 'base.customerFactsheet', url: '/customerFactsheetpage', isloginrequired: true },
             { routeName: 'empTracking', name: 'base.empTracking', url: '/empTrackingPage', isloginrequired: true },
             { routeName: 'dashboardAdminReport', name: 'base.dashboardAdminReport', url: '/dashboardAdminReports', isloginrequired: true },

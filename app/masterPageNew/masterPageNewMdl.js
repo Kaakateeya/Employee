@@ -44,6 +44,7 @@
             ];
         };
         model.masterpageid = function(id, type) {
+            model.btnfirst = model.btnsecond = model.btnthird = 'Submit';
             model.typeindex = type;
             model.grid1.columns = [];
             model.grid1.data = [];
@@ -312,7 +313,7 @@
             return Educationcat;
         };
         model.Educationspecializationtemp = function(row) {
-            var valuetext = "<a href='javascript:void(0)' ng-click='model.editvalues(" + model.EducationGroupspecialization + ", " + JSON.stringify(row.EduSpecializationName) + ", 1, 0, " + JSON.stringify('eduspl') + ")'>Edit</a> &nbsp;&nbsp;&nbsp;";
+            var valuetext = "<a href='javascript:void(0)' ng-click='model.editvalues(" + row.EduSpecializationID + ", " + JSON.stringify(row.EduSpecializationName) + ", 1, 0, " + JSON.stringify('eduspl') + ")'>Edit</a> &nbsp;&nbsp;&nbsp;";
             return valuetext;
         };
         model.professiongrouptemptspl = function(row) {
