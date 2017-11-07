@@ -20,6 +20,7 @@
         model.gridTableshow = false;
         model.showplus = false;
         model.init = function() {
+            model.btnfirst = model.btnsecond = model.btnthird = 'Submit';
             model.selectedIndex = 0;
             model.statuscode = 1;
             model.grid1.data = [];
@@ -51,7 +52,6 @@
             model.dynamictextbox = '';
             model.dynamicgrouptextbox = '';
             model.dynamicspltextbox = '';
-            model.editflag = null;
             if (type === 'Education Master') {
                 model.grid1.columns = [
                     { text: 'Education Category', key: 'EducationCategory', type: 'label' },
@@ -82,9 +82,11 @@
                 model.grid3.columnsshow = false;
             }
         };
-        model.submitupdate = function(lblname) {
+        model.submitupdate = function(lblname, btntext, txtboxtxt) {
             var terst, object;
-            if (model.editflag === 0) {
+            debugger;
+            if (btntext === 'Update') {
+
                 switch (model.typeofcategory) {
                     case 'EducationCategory':
                     case 'ProfessionCategory':
@@ -102,31 +104,8 @@
                         model.dynamicdependency = model.typeofcategory === 'EduSpecialization' ? model.EducationGroupspecialization : model.Professionid;
                         break;
                 }
-                object = {
-                    AppUserId: 1,
-                    Name: terst,
-                    CountryCode: null,
-                    CountryCurrency: null,
-                    MobileLength: null,
-                    landlineLength: null,
-                    StatusCode: 1,
-                    MasterType: model.typeofcategory,
-                    DependentId: model.dynamicdependency,
-                    DependentDistrictIDId: null,
-                    SubDependentId: null,
-                    MinWords: null,
-                    MaxWords: null,
-                    CostPOBox: null,
-                    LanguageID: null,
-                    Comments: null,
-                    ExtraWordPrice: null,
-                    TamilStarName: null,
-                    KannadaStarName: null,
-                    MasterTypeID: model.dependencyid
-                };
-
             } else {
-                switch (model.typeofcategory) {
+                switch (lblname) {
                     case 'Education Category':
                         model.typeofcategory = 'EducationCategory';
                         terst = model.dynamictextbox;
@@ -158,58 +137,69 @@
                         model.dynamicdependency = model.Professionid;
                         break;
                 }
-                object = {
-                    AppUserId: 1,
-                    Name: terst,
-                    CountryCode: null,
-                    CountryCurrency: null,
-                    MobileLength: null,
-                    landlineLength: null,
-                    StatusCode: 1,
-                    MasterType: model.typeofcategory,
-                    DependentId: model.dynamicdependency,
-                    DependentDistrictIDId: null,
-                    SubDependentId: null,
-                    MinWords: null,
-                    MaxWords: null,
-                    CostPOBox: null,
-                    LanguageID: null,
-                    Comments: null,
-                    ExtraWordPrice: null,
-                    TamilStarName: null,
-                    KannadaStarName: null,
-                    MasterTypeID: null
-                };
             }
+            object = {
+                AppUserId: 1,
+                Name: terst,
+                CountryCode: null,
+                CountryCurrency: null,
+                MobileLength: null,
+                landlineLength: null,
+                StatusCode: 1,
+                MasterType: model.typeofcategory,
+                DependentId: model.dynamicdependency,
+                DependentDistrictIDId: null,
+                SubDependentId: null,
+                MinWords: null,
+                MaxWords: null,
+                CostPOBox: null,
+                LanguageID: null,
+                Comments: null,
+                ExtraWordPrice: null,
+                TamilStarName: null,
+                KannadaStarName: null,
+                MasterTypeID: btntext === 'Update' ? model.dependencyid : null
+            };
             model.submitforallleditupdate(object);
         };
-
         model.submitforallleditupdate = function(object) {
             masterPageNewService.MasterdataInsertUpdate(object).then(function(response) {
-                model.editflag = null;
                 switch (model.typeofcategory) {
                     case 'EducationCategory':
                         model.loadmasterdata('EducationCategory', null, 1, 1);
+                        model.dynamictextbox = '';
+                        model.btnfirst = 'Submit';
                         break;
                     case 'EducationGroup':
-                        model.loadmasterdata('EducationGroup', model.dependencyid, 2, 1);
+                        model.loadmasterdata('EducationGroup', model.EducationGroup, 2, 1);
+                        model.dynamicgrouptextbox = '';
+                        model.btnsecond = 'Submit';
                         break;
                     case 'EduSpecialization':
-                        model.loadmasterdata('EduSpecialization', model.dependencyid, 3, 1);
+                        model.loadmasterdata('EduSpecialization', model.EducationGroupspecialization, 3, 1);
+                        model.dynamicspltextbox = '';
+                        model.btnthird = 'Submit';
                         break;
                     case 'ProfessionCategory':
                         model.loadmasterdata('ProfessionCategory', null, 1, 1);
+                        model.dynamictextbox = '';
+                        model.btnfirst = 'Submit';
                         break;
                     case 'ProfessionGroup':
                         model.loadmasterdata('ProfessionGroup', null, 2, 1);
+                        model.dynamicgrouptextbox = '';
+                        model.btnsecond = 'Submit';
                         break;
                     case 'Profession':
                         model.loadmasterdata('Profession', model.Professionid, 3, 1);
+                        model.dynamicspltextbox = '';
+                        model.btnthird = 'Submit';
                         break;
                 }
             });
         };
         model.editvalues = model.grid3.editvalues = model.grid2.editvalues = model.grid1.editvalues = function(dependencyid, dependencyvalue, statuscode, editflag, type) {
+            debugger;
             model.editflag = editflag;
             model.dependencyid = dependencyid;
             switch (type) {
@@ -218,41 +208,45 @@
                     model.dynamictextbox = dependencyvalue;
                     model.dynamicgrouptextbox = '';
                     model.dynamicspltextbox = '';
+                    model.btnfirst = 'Update';
                     break;
                 case 'edugroup':
                     model.typeofcategory = 'EducationGroup';
                     model.dynamicgrouptextbox = dependencyvalue;
                     model.dynamictextbox = '';
                     model.dynamicspltextbox = '';
+                    model.btnsecond = 'Update';
                     break;
                 case 'eduspl':
                     model.typeofcategory = 'EduSpecialization';
                     model.dynamicspltextbox = dependencyvalue;
                     model.dynamictextbox = '';
                     model.dynamicgrouptextbox = '';
+                    model.btnthird = 'Update';
                     break;
                 case 'profcate':
                     model.typeofcategory = 'ProfessionCategory';
                     model.dynamictextbox = dependencyvalue;
                     model.dynamicgrouptextbox = '';
                     model.dynamicspltextbox = '';
+                    model.btnfirst = 'Update';
                     break;
                 case 'profgroup':
                     model.typeofcategory = 'ProfessionGroup';
                     model.dynamicgrouptextbox = dependencyvalue;
                     model.dynamictextbox = '';
                     model.dynamicspltextbox = '';
+                    model.btnsecond = 'Update';
                     break;
                 case 'profspl':
                     model.typeofcategory = 'Profession';
                     model.dynamicspltextbox = dependencyvalue;
                     model.dynamictextbox = '';
                     model.dynamicgrouptextbox = '';
+                    model.btnthird = 'Update';
                     break;
             }
         };
-        //
-        //
         model.returnstringvalue = function(type, dependencyid, grid, editvalue, statuscode, editflag, typeofedit) {
             var valuetext = "<a href='javascript:void(0)' ng-click='model.editvalues(" + dependencyid + "," + JSON.stringify(editvalue) + ", " + JSON.stringify(statuscode) + ", " + editflag + "," + JSON.stringify(typeofedit) + ")' >Edit</a> &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.educationprofessionload(" + JSON.stringify(type) + "," + dependencyid + "," + grid + ",1)'>Select</a>";
             return valuetext;
@@ -261,8 +255,6 @@
             var valuetext = "<a  href='javascript:void(0)' ng-click='model.activeinactive(" + id + "," + name + "," + category + ",1," + dependencyid + ")'>Active</a> &nbsp;&nbsp;&nbsp;<a  href='javascript:void(0)' ng-click='model.activeinactive(" + id + "," + name + "," + category + ",0," + dependencyid + ")'>InActive</a>";
             return valuetext;
         };
-        //
-
         model.grid3.activeinactive = model.grid2.activeinactive = model.grid1.activeinactive = model.activeinactive = function(id, name, category, status, dependencyid) {
             model.typeofcategory = category;
             model.dependencyid = dependencyid;
@@ -351,7 +343,6 @@
             var EducationGroup = model.changevalue(row.ProfessionID, JSON.stringify(row.ProfessionName), JSON.stringify('Profession'), model.Professionid);
             return EducationGroup;
         };
-
         model.returndynamicarray = function(val) {
             var array;
             if (val === 1) {
