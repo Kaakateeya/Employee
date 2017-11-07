@@ -51,7 +51,7 @@
             model.dynamictextbox = '';
             model.dynamicgrouptextbox = '';
             model.dynamicspltextbox = '';
-            model.editflag = 1;
+            model.editflag = null;
             if (type === 'Education Master') {
                 model.grid1.columns = [
                     { text: 'Education Category', key: 'EducationCategory', type: 'label' },
@@ -63,6 +63,9 @@
                 model.labelName = 'Education Category';
                 model.labelgroupName = 'Education Group';
                 model.labelSpecialName = 'EduSpecialization name';
+                model.grid2.columnsshow = false;
+                model.grid3.columnsshow = false;
+
             } else {
                 model.grid1.columns = [
                     { text: 'Profession Category', key: 'ProfessionCategory', type: 'label' },
@@ -75,67 +78,128 @@
                 model.labelSpecialName = 'Profession name';
                 model.loadmasterdata('ProfessionCategory', null, 1, 1);
                 model.loadmasterdata('ProfessionGroup', null, 2, 1);
+                model.grid2.columnsshow = true;
+                model.grid3.columnsshow = false;
             }
         };
-        model.submitupdate = function() {
-            var terst;
-            switch (model.typeofcategory) {
-                case 'EducationCategory':
-                case 'ProfessionCategory':
-                    terst = model.dynamictextbox;
-                    break;
-                case 'EducationGroup':
-                case 'ProfessionGroup':
-                    terst = model.dynamicgrouptextbox;
-                    break;
-                case 'EduSpecialization':
-                case 'Profession':
-                    terst = model.dynamicspltextbox;
-                    break;
+        model.submitupdate = function(lblname) {
+            var terst, object;
+            if (model.editflag === 0) {
+                switch (model.typeofcategory) {
+                    case 'EducationCategory':
+                    case 'ProfessionCategory':
+                        terst = model.dynamictextbox;
+                        break;
+                    case 'EducationGroup':
+                    case 'ProfessionGroup':
+                        terst = model.dynamicgrouptextbox;
+                        break;
+                    case 'EduSpecialization':
+                    case 'Profession':
+                        terst = model.dynamicspltextbox;
+                        break;
+                }
+                object = {
+                    AppUserId: 1,
+                    Name: terst,
+                    CountryCode: null,
+                    CountryCurrency: null,
+                    MobileLength: null,
+                    landlineLength: null,
+                    StatusCode: 1,
+                    MasterType: model.typeofcategory,
+                    DependentId: null,
+                    DependentDistrictIDId: null,
+                    SubDependentId: null,
+                    MinWords: null,
+                    MaxWords: null,
+                    CostPOBox: null,
+                    LanguageID: null,
+                    Comments: null,
+                    ExtraWordPrice: null,
+                    TamilStarName: null,
+                    KannadaStarName: null,
+                    MasterTypeID: model.dependencyid
+                };
+
+            } else {
+                switch (model.typeofcategory) {
+                    case 'Education Category':
+                        model.typeofcategory = 'EducationCategory';
+                        terst = model.dynamictextbox;
+                        break;
+                    case 'Education Group':
+                        model.typeofcategory = 'EducationGroup';
+                        terst = model.dynamicgrouptextbox;
+                        break;
+                    case 'EduSpecialization name':
+                        model.typeofcategory = 'EduSpecialization';
+                        terst = model.dynamicspltextbox;
+                        break;
+                    case 'Profession Category':
+                        model.typeofcategory = 'ProfessionCategory';
+                        terst = model.dynamictextbox;
+                        break;
+                    case 'Profession Group':
+                        model.typeofcategory = 'ProfessionGroup';
+                        terst = model.dynamicgrouptextbox;
+                        break;
+                    case 'Profession name':
+                        model.typeofcategory = 'Profession';
+                        terst = model.dynamicspltextbox;
+                        break;
+                }
+                object = {
+                    AppUserId: 1,
+                    Name: terst,
+                    CountryCode: null,
+                    CountryCurrency: null,
+                    MobileLength: null,
+                    landlineLength: null,
+                    StatusCode: 1,
+                    MasterType: model.typeofcategory,
+                    DependentId: null,
+                    DependentDistrictIDId: null,
+                    SubDependentId: null,
+                    MinWords: null,
+                    MaxWords: null,
+                    CostPOBox: null,
+                    LanguageID: null,
+                    Comments: null,
+                    ExtraWordPrice: null,
+                    TamilStarName: null,
+                    KannadaStarName: null,
+                    MasterTypeID: null
+                };
             }
-            var obj = {
-                AppUserId: 1,
-                Name: terst,
-                CountryCode: null,
-                CountryCurrency: null,
-                MobileLength: null,
-                landlineLength: null,
-                StatusCode: 1,
-                MasterType: model.typeofcategory,
-                DependentId: null,
-                DependentDistrictIDId: null,
-                SubDependentId: null,
-                MinWords: null,
-                MaxWords: null,
-                CostPOBox: null,
-                LanguageID: null,
-                Comments: null,
-                ExtraWordPrice: null,
-                TamilStarName: null,
-                KannadaStarName: null,
-                MasterTypeID: model.dependencyid
-            };
-            masterPageNewService.MasterdataInsertUpdate(obj).then(function(response) {
-                model.editflag = 1;
-                if (model.typeofcategory === 'EducationCategory') {
-                    model.loadmasterdata('EducationCategory', null, 1, 1);
-                } else if (model.typeofcategory === 'EducationGroup') {
-                    model.loadmasterdata('EducationGroup', model.dependencyid, 2, 1);
-                } else {
-                    model.loadmasterdata('EduSpecialization', model.dependencyid, 3, 1);
+            model.submitforallleditupdate(object);
+        };
+
+        model.submitforallleditupdate = function(object) {
+            masterPageNewService.MasterdataInsertUpdate(object).then(function(response) {
+                model.editflag = null;
+                switch (model.typeofcategory) {
+                    case 'EducationCategory':
+                        model.loadmasterdata('EducationCategory', null, 1, 1);
+                        break;
+                    case 'EducationGroup':
+                        model.loadmasterdata('EducationGroup', model.dependencyid, 2, 1);
+                        break;
+                    case 'EduSpecialization':
+                        model.loadmasterdata('EduSpecialization', model.dependencyid, 3, 1);
+                        break;
+                    case 'ProfessionCategory':
+                        model.loadmasterdata('ProfessionCategory', null, 1, 1);
+                        break;
+                    case 'ProfessionGroup':
+                        model.loadmasterdata('ProfessionGroup', null, 2, 1);
+                        break;
+                    case 'Profession':
+                        model.loadmasterdata('Profession', model.Professionid, 3, 1);
+                        break;
                 }
             });
         };
-        //
-        model.returnstringvalue = function(type, dependencyid, grid, editvalue, statuscode, editflag, typeofedit) {
-            var valuetext = "<a href='javascript:void(0)' ng-click='model.editvalues(" + dependencyid + "," + JSON.stringify(editvalue) + ", " + JSON.stringify(statuscode) + ", " + editflag + "," + JSON.stringify(typeofedit) + ")' >Edit</a> &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.educationprofessionload(" + JSON.stringify(type) + "," + dependencyid + "," + grid + ",1)'>Select</a>";
-            return valuetext;
-        };
-        model.changevalue = function(value) {
-            var valuetext = "<a  href='javascript:void(0)'>Active</a> &nbsp;&nbsp;&nbsp;<a  href='javascript:void(0)'>InActive</a>";
-            return valuetext;
-        };
-
         model.editvalues = model.grid3.editvalues = model.grid2.editvalues = model.grid1.editvalues = function(dependencyid, dependencyvalue, statuscode, editflag, type) {
             model.editflag = editflag;
             model.dependencyid = dependencyid;
@@ -179,6 +243,44 @@
             }
         };
         //
+        //
+        model.returnstringvalue = function(type, dependencyid, grid, editvalue, statuscode, editflag, typeofedit) {
+            var valuetext = "<a href='javascript:void(0)' ng-click='model.editvalues(" + dependencyid + "," + JSON.stringify(editvalue) + ", " + JSON.stringify(statuscode) + ", " + editflag + "," + JSON.stringify(typeofedit) + ")' >Edit</a> &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' ng-click='model.educationprofessionload(" + JSON.stringify(type) + "," + dependencyid + "," + grid + ",1)'>Select</a>";
+            return valuetext;
+        };
+        model.changevalue = function(id, name, category) {
+            var valuetext = "<a  href='javascript:void(0)' ng-click='model.activeinactive(" + id + "," + name + "," + category + ",1)'>Active</a> &nbsp;&nbsp;&nbsp;<a  href='javascript:void(0)' ng-click='model.activeinactive(" + id + "," + name + "," + category + ",0)'>InActive</a>";
+            return valuetext;
+        };
+        //
+
+        model.grid3.activeinactive = model.grid2.activeinactive = model.grid1.activeinactive = model.activeinactive = function(id, name, category, status) {
+            model.typeofcategory = category;
+            var object = {
+                AppUserId: 1,
+                Name: name,
+                CountryCode: null,
+                CountryCurrency: null,
+                MobileLength: null,
+                landlineLength: null,
+                StatusCode: status,
+                MasterType: category,
+                DependentId: null,
+                DependentDistrictIDId: null,
+                SubDependentId: null,
+                MinWords: null,
+                MaxWords: null,
+                CostPOBox: null,
+                LanguageID: null,
+                Comments: null,
+                ExtraWordPrice: null,
+                TamilStarName: null,
+                KannadaStarName: null,
+                MasterTypeID: id
+            };
+            model.submitforallleditupdate(object);
+        };
+
         model.grid3.educationprofessionload = model.grid1.educationprofessionload = model.grid2.educationprofessionload = model.educationprofessionload = function(MasterType, DependentId, grid, statuscode) {
             if (MasterType === 'EducationGroup') {
                 model.EducationGroup = DependentId;
@@ -207,34 +309,39 @@
             var Educationcat = model.returnstringvalue('EduSpecialization', row.EducationGroupID, 3, row.EducationGroupName, row.StatusCode, 0, 'edugroup');
             return Educationcat;
         };
-        model.changevaluestring = function(row) {
-            var EducationGroup = model.changevalue(row.EducationCategoryID);
-            return EducationGroup;
-        };
-        model.changevaluestringprofession = function(row) {
-            var EducationGroup = model.changevalue(row.ProfessionCategoryID);
-            return EducationGroup;
-        };
-        model.changevaluestringprofessionspl = function(row) {
-            var EducationGroup = model.changevalue(row.ProfessionID);
-            return EducationGroup;
-        };
-        model.changevaluestringedugroup = function(row) {
-            var EducationGroup = model.changevalue(row.EducationGroupID);
-            return EducationGroup;
-        };
         model.Educationspecializationtemp = function(row) {
             var valuetext = "<a href='javascript:void(0)' ng-click='model.editvalues(" + model.EducationGroupspecialization + ", " + JSON.stringify(row.EduSpecializationName) + ", 1, 0, " + JSON.stringify('eduspl') + ")'>Edit</a> &nbsp;&nbsp;&nbsp;";
             return valuetext;
-        };
-        model.changevaluestringeduspl = function(row) {
-            var EducationGroup = model.changevalue(row.EducationGroupID);
-            return EducationGroup;
         };
         model.professiongrouptemptspl = function(row) {
             var valuetext = "<a href='javascript:void(0)'  ng-click='model.editvalues(" + row.ProfessionID + "," + JSON.stringify(row.ProfessionName) + ", " + JSON.stringify(row.StatusCode) + ", " + 0 + "," + JSON.stringify('profspl') + ")'>Edit</a> &nbsp;&nbsp;&nbsp;";
             return valuetext;
         };
+        model.changevaluestring = function(row) {
+            var EducationGroup = model.changevalue(row.EducationCategoryID, JSON.stringify(row.EducationCategory), JSON.stringify('EducationCategory'));
+            return EducationGroup;
+        };
+        model.changevaluestringedugroup = function(row) {
+            var EducationGroup = model.changevalue(row.EducationGroupID, JSON.stringify(row.EducationGroupName), JSON.stringify('EducationGroup'));
+            return EducationGroup;
+        };
+        model.changevaluestringeduspl = function(row) {
+            var EducationGroup = model.changevalue(row.EduSpecializationID, JSON.stringify(row.EduSpecializationName), JSON.stringify('EduSpecialization'));
+            return EducationGroup;
+        };
+        model.changevaluestringprofession = function(row) {
+            var EducationGroup = model.changevalue(row.ProfessionCategoryID, JSON.stringify(row.ProfessionCategory), JSON.stringify('ProfessionCategory'));
+            return EducationGroup;
+        };
+        model.changevaluestringprofessiongroup = function(row) {
+            var EducationGroup = model.changevalue(row.ProfessionGroupID, JSON.stringify(row.ProfessionGroupName), JSON.stringify('ProfessionGroup'));
+            return EducationGroup;
+        };
+        model.changevaluestringprofessionspl = function(row) {
+            var EducationGroup = model.changevalue(row.ProfessionID, JSON.stringify(row.ProfessionName), JSON.stringify('Profession'));
+            return EducationGroup;
+        };
+
         model.returndynamicarray = function(val) {
             var array;
             if (val === 1) {
@@ -263,7 +370,6 @@
                     model.grid3.columnsshow = true;
                     break;
             }
-
             masterPageNewService.MasterDataselect(obj).then(function(response) {
                 if (_.isArray(response.data) && response.data.length > 0) {
                     switch (grid) {
@@ -294,7 +400,7 @@
                                     { text: 'Profession Group Name', key: 'ProfessionGroupName', type: 'label' },
                                     { text: 'Status', key: 'StatusCode', type: 'label' },
                                     { text: 'Action', key: 'ProfessionGroupID', type: 'morelinks', templateUrl: model.professiongrouptemptemp },
-                                    { text: 'Change Status', key: 'ProfessionGroupID', type: 'morelinks', templateUrl: model.changevaluestringprofession }
+                                    { text: 'Change Status', key: 'ProfessionGroupID', type: 'morelinks', templateUrl: model.changevaluestringprofessiongroup }
                                 ];
                                 model.grid2.data = response.data[0];
                                 model.grid3.data = [];
@@ -331,7 +437,6 @@
             } else {
                 model.statuscode = 1;
             }
-
             switch (labelname) {
                 case 'Education Category':
                     model.loadmasterdata('EducationCategory', null, 1, model.statuscode);
@@ -349,7 +454,7 @@
                     model.loadmasterdata('ProfessionGroup', null, 2, model.statuscode);
                     break;
                 case 'Profession name':
-                    model.loadmasterdata('Profession', null, model.Professionid, model.statuscode);
+                    model.loadmasterdata('Profession', model.Professionid, 3, model.statuscode);
                     break;
             }
         };
