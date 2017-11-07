@@ -80,7 +80,7 @@
                         var paidamount = model.innergrid['paidamount' + row.sno] !== "" && model.innergrid['paidamount' + row.sno] !== null && model.innergrid['paidamount' + row.sno] !== undefined ? model.innergrid['paidamount' + row.sno] : "";
                         var commisionamt = model.innergrid['commisionamt' + row.sno] !== "" && model.innergrid['commisionamt' + row.sno] !== null && model.innergrid['commisionamt' + row.sno] !== undefined ? model.innergrid['commisionamt' + row.sno] : "";
                         var obj = {
-                            Empid: parseInt(model.empid),
+                            Empid: row.EmpID,
                             Profileid: row.profileid,
                             Emp_commisionTicketid: row.Emp_Commision_TicketID,
                             PaidAmount: paidamount,
