@@ -94,7 +94,6 @@
                     case 'EducationGroup':
                     case 'ProfessionGroup':
                         terst = model.dynamicgrouptextbox;
-                        debugger;
                         model.dynamicdependency = model.typeofcategory === 'EducationGroup' ? model.EducationGroup : null;
                         break;
                     case 'EduSpecialization':
@@ -131,26 +130,32 @@
                     case 'Education Category':
                         model.typeofcategory = 'EducationCategory';
                         terst = model.dynamictextbox;
+                        model.dynamicdependency = null;
                         break;
                     case 'Education Group':
                         model.typeofcategory = 'EducationGroup';
                         terst = model.dynamicgrouptextbox;
+                        model.dynamicdependency = model.EducationGroup;
                         break;
                     case 'EduSpecialization name':
                         model.typeofcategory = 'EduSpecialization';
                         terst = model.dynamicspltextbox;
+                        model.dynamicdependency = model.EducationGroupspecialization;
                         break;
                     case 'Profession Category':
                         model.typeofcategory = 'ProfessionCategory';
                         terst = model.dynamictextbox;
+                        model.dynamicdependency = null;
                         break;
                     case 'Profession Group':
                         model.typeofcategory = 'ProfessionGroup';
                         terst = model.dynamicgrouptextbox;
+                        model.dynamicdependency = null;
                         break;
                     case 'Profession name':
                         model.typeofcategory = 'Profession';
                         terst = model.dynamicspltextbox;
+                        model.dynamicdependency = model.Professionid;
                         break;
                 }
                 object = {
@@ -162,7 +167,7 @@
                     landlineLength: null,
                     StatusCode: 1,
                     MasterType: model.typeofcategory,
-                    DependentId: null,
+                    DependentId: model.dynamicdependency,
                     DependentDistrictIDId: null,
                     SubDependentId: null,
                     MinWords: null,
