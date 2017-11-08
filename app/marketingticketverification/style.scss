@@ -911,4 +911,17 @@ body {
     th.ticketid.headerStyles {
         width: 160px;
     }
+    th.TicketName.headerStyles {
+        width: 160px;
+    }
+}
+
+.unpaid {
+    color: red;
+    font-weight: 700;
+}
+
+.paidclass {
+    color: #16713d;
+    font-weight: 700;
 }

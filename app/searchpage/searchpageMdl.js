@@ -157,6 +157,7 @@
                                     model.FatherCaste = "";
                                     model.MotherCaste = "";
                                     model.getcastetext();
+                                    model.parentscaste();
                                 }, 100);
                                 alerts.dynamicpopupclose();
                             } else {
@@ -290,7 +291,6 @@
                     model.DOBTo = "";
                     model.AnnualincomeID = "";
                     model.getpageloadobject = {};
-                    // model.Caste = Commondependency.casteDepedency((model.ReligionID !== undefined && model.ReligionID !== null && model.ReligionID.length > 0 ? (model.ReligionID).toString() : ""), ((model.MothertongueID !== undefined && model.MothertongueID !== null && model.MothertongueID !== "" && model.MothertongueID.length > 0) ? (model.MothertongueID).toString() : []));
                 };
                 model.GetPhotoandHoroscopevalues = function(strType, str) {
                     if (str !== null && str !== undefined && str !== "" && str.length > 0) {

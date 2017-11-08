@@ -85,9 +85,7 @@
         };
         model.submitupdate = function(lblname, btntext, txtboxtxt) {
             var terst, object;
-            debugger;
             if (btntext === 'Update') {
-
                 switch (model.typeofcategory) {
                     case 'EducationCategory':
                     case 'ProfessionCategory':
@@ -200,7 +198,6 @@
             });
         };
         model.editvalues = model.grid3.editvalues = model.grid2.editvalues = model.grid1.editvalues = function(dependencyid, dependencyvalue, statuscode, editflag, type) {
-            debugger;
             model.editflag = editflag;
             model.dependencyid = dependencyid;
             switch (type) {

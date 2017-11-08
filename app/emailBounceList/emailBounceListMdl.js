@@ -94,12 +94,9 @@
                 { text: 'ProfileID', key: 'ProfileId', type: 'morelinks', templateUrl: model.returnProfileIDTemplate },
                 { text: 'Name', key: 'NAME', type: 'label' },
                 { text: 'Bounced email id', key: 'EmailId', type: 'label' },
-                // { text: 'Modified email id', key: 'ModifiedEmailId', type: 'label' },
-                { text: 'Relation name', key: 'RealtionName', type: 'label' },
-                { text: 'Created by', key: 'CreatedBy', type: 'label' },
-                { text: 'Created date', key: 'CreatedDate', type: 'label' }
-                // { text: 'Modified by', key: 'ModifiedBy', type: 'label' },
-                // { text: 'Modified date', key: 'ModifiedDate', type: 'label' },
+                { text: 'Region', key: 'regionName', type: 'label' },
+                { text: 'Branch', key: 'branchName', type: 'label' },
+                { text: 'Profile Owner', key: 'profileowner', type: 'label' },
             ];
             model.grid1.showsearchrows = true;
             model.grid1.showsearch = true;
@@ -152,38 +149,26 @@
                                     title: 'ProfileID'
                                 }, {
                                     columnid: 'NAME',
-                                    title: 'NAME'
+                                    title: 'Name'
                                 }, {
                                     columnid: 'EmailId',
-                                    title: 'Old email id'
+                                    title: 'Bounced email id'
                                 },
                                 {
-                                    columnid: 'ModifiedEmailId',
-                                    title: 'Modified email id'
+                                    columnid: 'regionName',
+                                    title: 'Region'
                                 },
                                 {
-                                    columnid: 'RealtionName',
-                                    title: 'Relation name'
+                                    columnid: 'branchName',
+                                    title: 'Branch'
                                 },
                                 {
-                                    columnid: 'CreatedBy',
-                                    title: 'Created by'
-                                },
-                                {
-                                    columnid: 'CreatedDate',
-                                    title: 'Created date'
-                                },
-                                {
-                                    columnid: 'ModifiedBy',
-                                    title: 'Modified by'
-                                },
-                                {
-                                    columnid: 'ModifiedDate',
-                                    title: 'Modified date'
+                                    columnid: 'profileowner',
+                                    title: 'Profile Owner'
                                 }
                             ]
                         };
-                        alasql('SELECT ProfileId,NAME,EmailId as Oldemailid,Caste,ModifiedEmailId as Modifiedemailid,RealtionName,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate INTO  XLSX("EmailBounceReports.xlsx",?) FROM ?', [options, model.excelData]);
+                        alasql('SELECT ProfileId as ProfileID,NAME as Name,EmailId as Bouncedemailid,regionName as Region,branchName as Branch,profileowner as ProfileOwner INTO  XLSX("EmailBounceReports.xlsx",?) FROM ?', [options, model.excelData]);
                     }
                 } else {
                     if (from === 1) {

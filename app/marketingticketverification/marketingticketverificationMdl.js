@@ -51,16 +51,21 @@
                     });
                     return array;
                 };
+
+                model.innergrid.marketingpopup = function(ticketid) {
+                    model.marketingTicketid = ticketid;
+                    commonpage.showPopupphotopoup('marketverifytkt.html', model.scope, 'md', "modalclassdashboardphotopopup");
+                };
                 model.historyshowing = function(row) {
                     var paid = "<a class='' href='javascript:void(0);' ng-click='model.profileshistory(" + JSON.stringify(row.CustIDsList) + "," + row.TicketOwnerID + ");'> History </a>";
                     return paid;
                 };
                 model.ticketid = function(row) {
-                    var str = row.optionType === 'label' ? '<label>' + row.ProfileId + '</label>' : '<input  type="text" ng-model="row.ProfileId" class="form-control">';
-                    return str;
+                    var paid = "<a class='' href='javascript:void(0);' ng-click='model.marketingpopup(" + (row.ticketid) + ");'>" + row.TicketName + "</a>";
+                    return paid;
                 };
                 model.paidamount = function(row) {
-                    var str = row.optionType === 'label' ? '<label>' + row.TicketID + '</label>' : '<input  type="text" ng-model="row.TicketID" class="form-control">';
+                    var str = row.optionType === 'label' ? '<label>' + row.PaidAmount + '</label>' : '<input  type="text" ng-model="row.PaidAmount" class="form-control">';
                     return str;
                 };
                 model.commisionamt = function(row) {
@@ -76,7 +81,6 @@
                 };
                 model.actionlink = function(row) {
                     if (row.optionType === 'input') {
-                        var ticketid = model.innergrid['TicketID' + row.sno] !== "" && model.innergrid['TicketID' + row.sno] !== null && model.innergrid['TicketID' + row.sno] !== undefined ? model.innergrid['TicketID' + row.sno] : "";
                         var paidamount = model.innergrid['paidamount' + row.sno] !== "" && model.innergrid['paidamount' + row.sno] !== null && model.innergrid['paidamount' + row.sno] !== undefined ? model.innergrid['paidamount' + row.sno] : "";
                         var commisionamt = model.innergrid['commisionamt' + row.sno] !== "" && model.innergrid['commisionamt' + row.sno] !== null && model.innergrid['commisionamt' + row.sno] !== undefined ? model.innergrid['commisionamt' + row.sno] : "";
                         var obj = {
@@ -100,10 +104,19 @@
                         row.optionType = 'input';
                     }
                 };
+                model.innergrid.ViewProfile = function(ProfileID) {
+                    window.open('/Viewfullprofile/' + ProfileID + '/0', '_blank');
+                };
+
+                model.returnProfileIDTemplate = function(row) {
+                    var paidstatusclass = 'paidclass';
+                    var paid = "<a class='" + paidstatusclass + "' href='javascript:void(0);' ng-click='model.ViewProfile(" + JSON.stringify(row.profileid) + ");'>" + row.profileid + "</a>";
+                    return paid;
+                };
                 model.profileshistory = function(value, innerempid) {
                     model.innergrid.columns = [
-                        { text: 'Profile ID', key: 'profileid', type: 'label' },
-                        { text: 'TicketID', key: 'ticketid', type: 'textbox', templateUrl: model.ticketid, model: 'TicketID' },
+                        { text: 'Profile ID', key: 'profileid', type: 'morelinks', templateUrl: model.returnProfileIDTemplate },
+                        { text: 'TicketID', key: 'TicketName', type: 'morelinks', templateUrl: model.ticketid },
                         { text: 'Paid Amount', key: 'PaidAmount', type: 'textbox', templateUrl: model.paidamount, model: 'paidamount' },
                         { text: 'Commision Amount', key: 'commisionamt', type: 'textbox', templateUrl: model.commisionamt, model: 'commisionamt' },
                         { text: '', key: '', type: 'customlink', templateUrl: model.optionTemplate, method: model.actionlink }
@@ -113,7 +126,6 @@
                         _.map(model.innergrid.sdata, function(item, index) {
                             item.sno = index + 1;
                             item.optionType = 'label';
-                            model.innergrid['TicketID' + item.sno] = item.ticketid;
                             model.innergrid['paidamount' + item.sno] = item.PaidAmount;
                             model.innergrid['commisionamt' + item.sno] = item.commisionamt;
                         });
