@@ -22,6 +22,10 @@
   border-bottom: 1px solid #ccc; }
 #educationmasterid .edit_pages_sidebar_menu ul li a {
   padding: 10px 8px !important; }
+#educationmasterid th.headerStylesnew.EducationCategory {
+  width: 258px; }
+#educationmasterid td.EducationCategory {
+  width: 262px; }
 
 .paymentAuthorizeCls {
   line-height: 42px;

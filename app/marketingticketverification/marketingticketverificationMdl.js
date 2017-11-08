@@ -4,9 +4,9 @@
     angular
         .module('Kaakateeya')
         .factory('marketingticketverificationModel', ['marketingticketverificationService', 'complex-grid-config', 'Commondependency',
-            'helperservice', 'SelectBindServiceApp', 'modelpopupopenmethod', 'alert',
+            'helperservice', 'SelectBindServiceApp', 'modelpopupopenmethod', 'alert', '$filter',
             function(marketingticketverificationService, configgrid, Commondependency, helpService, SelectBindServiceApp,
-                commonpage, alertss) {
+                commonpage, alertss, filter) {
                 var model = {};
                 model.innergrid = {};
                 model.showsearchrows = true;
@@ -149,15 +149,17 @@
                         { text: 'Paid Amount', key: 'TotalAmount', type: 'label' },
                         { text: 'Commision Amount', key: 'TotalCommisionAmt', type: 'label' }
                     ];
+                    debugger;
                     var obj = {
                         intRegional: model.rbtnregional !== "" && model.rbtnregional !== null ? parseInt(model.rbtnregional) : null,
                         intBranch: model.tmarketingbranch !== "" && model.tmarketingbranch !== null && model.tmarketingbranch !== undefined ? (model.tmarketingbranch).toString() : null,
-                        dtStartDate: model.dateemployeeverifyfrom !== "" && model.dateemployeeverifyfrom !== null && model.dateemployeeverifyfrom !== undefined ? (model.dateemployeeverifyfrom) : "",
-                        dtEndDate: model.dateemployeeverifyto !== "" && model.dateemployeeverifyto !== null && model.dateemployeeverifyto !== undefined ? (model.dateemployeeverifyto) : "",
+                        dtStartDate: model.dateemployeeverifyfrom !== "" && model.dateemployeeverifyfrom !== null && model.dateemployeeverifyfrom !== undefined ? filter('date')(model.dateemployeeverifyfrom, 'yyyy-MM-dd') : "",
+                        dtEndDate: model.dateemployeeverifyto !== "" && model.dateemployeeverifyto !== null && model.dateemployeeverifyto !== undefined ? filter('date')(model.dateemployeeverifyto, 'yyyy-MM-dd') : "",
                         intEmpID: null,
                         intTicketVerified: model.mkttktverified !== "" && model.mkttktverified !== null && model.mkttktverified !== undefined ? parseInt(model.mkttktverified) : null,
                         intMarked: model.marktedvalue !== "" && model.marktedvalue !== null && model.marktedvalue !== undefined ? parseInt(model.marktedvalue) : null,
                     };
+                    console.log(obj);
                     marketingticketverificationService.marketingverificationticketsubmit(obj).then(function(response) {
                         model.isDisabledsubmit = false;
                         if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" &&
