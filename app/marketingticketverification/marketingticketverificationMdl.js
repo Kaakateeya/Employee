@@ -142,23 +142,19 @@
 
                     });
                 };
-
+                model.columns = [
+                    { text: 'Sno', key: 'Sno', type: 'label' },
+                    { text: 'History', key: 'Sno', type: 'morelinks', templateUrl: model.historyshowing },
+                    { text: 'Profiles count', key: 'ProfileCount', type: 'label' },
+                    { text: 'TicketOwner', key: 'TicketOwner', type: 'label' },
+                    { text: 'Month', key: 'Month', type: 'label' },
+                    { text: 'Agreed Amount', key: 'AgreedAmount', type: 'label' },
+                    { text: 'Paid Amount', key: 'TotalAmount', type: 'label' },
+                    { text: 'Commision Amount', key: 'TotalCommisionAmt', type: 'label' }
+                ];
                 model.submitmarktingreports = function(type) {
                     model.isDisabledsubmit = true;
-                    model.panelbodyhide = false;
-                    model.data = [];
                     model.pageSize = 10;
-                    model.columns = [
-                        { text: 'Sno', key: 'Sno', type: 'label' },
-                        { text: 'History', key: 'Sno', type: 'morelinks', templateUrl: model.historyshowing },
-                        { text: 'Profiles count', key: 'ProfileCount', type: 'label' },
-                        { text: 'TicketOwner', key: 'TicketOwner', type: 'label' },
-                        { text: 'Month', key: 'Month', type: 'label' },
-                        { text: 'Agreed Amount', key: 'AgreedAmount', type: 'label' },
-                        { text: 'Paid Amount', key: 'TotalAmount', type: 'label' },
-                        { text: 'Commision Amount', key: 'TotalCommisionAmt', type: 'label' }
-                    ];
-                    debugger;
                     var obj = {
                         intRegional: model.rbtnregional !== "" && model.rbtnregional !== null ? parseInt(model.rbtnregional) : null,
                         intBranch: model.tmarketingbranch !== "" && model.tmarketingbranch !== null && model.tmarketingbranch !== undefined ? (model.tmarketingbranch).toString() : null,
@@ -168,12 +164,13 @@
                         intTicketVerified: model.mkttktverified !== "" && model.mkttktverified !== null && model.mkttktverified !== undefined ? parseInt(model.mkttktverified) : null,
                         intMarked: model.marktedvalue !== "" && model.marktedvalue !== null && model.marktedvalue !== undefined ? parseInt(model.marktedvalue) : null,
                     };
-                    console.log(obj);
                     marketingticketverificationService.marketingverificationticketsubmit(obj).then(function(response) {
                         model.isDisabledsubmit = false;
                         if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" &&
                             response.data[0] !== undefined && response.data[0] !== null && response.data[0].length > 0) {
                             if (type === 'grid') {
+                                model.data = [];
+                                model.panelbodyhide = false;
                                 model.TotalRows = response.data[0].length;
                                 model.data = model.addingserialnumber(response.data[0]);
                             } else {
