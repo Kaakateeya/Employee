@@ -900,19 +900,41 @@ body {
         width: 835px !important;
     }
     th.profileid.headerStyles {
-        width: 160px;
+        width: 140px;
     }
-    th.commisionamt.headerStyles {
-        width: 160px;
+    th.commisionamts.headerStyles {
+        width: 153px;
     }
-    th.PaidAmount.headerStyles {
-        width: 160px;
-    }
-    th.ticketid.headerStyles {
-        width: 160px;
+    th.PaidAmounts.headerStyles {
+        width: 168px;
     }
     th.TicketName.headerStyles {
-        width: 160px;
+        width: 133px;
+    }
+    th.TicketMrkedStatus.headerStyles {
+        width: 100px;
+    }
+    th.customlink.headerStyles {
+        width: 135px;
+    }
+    //
+    td.profileid {
+        width: 140px;
+    }
+    td.commisionamts {
+        width: 153px;
+    }
+    td.PaidAmounts {
+        width: 162px;
+    }
+    td.TicketName {
+        width: 121px;
+    }
+    td.TicketMrkedStatus {
+        width: 100px;
+    }
+    td.customlink {
+        width: 135px;
     }
 }
 

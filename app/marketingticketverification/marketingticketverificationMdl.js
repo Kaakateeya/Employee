@@ -72,7 +72,11 @@
                     var str = row.optionType === 'label' ? '<label>' + row.comminsion + '</label>' : '<input  type="text" ng-model="row.comminsion" class="form-control">';
                     return str;
                 };
-
+                model.TicketMrkedStatus = function(row) {
+                    var ticket = row.TicketMrkedStatus === false ? 0 : 1;
+                    var str = row.optionType === 'label' ? '<label>' + ticket + '</label>' : '<input  type="text" ng-model="row.mrktedstatus" class="form-control">';
+                    return str;
+                };
 
                 model.optionTemplate = function(row) {
                     var lblname = row.optionType === 'label' ? 'Edit' : 'Save';
@@ -83,12 +87,14 @@
                     if (row.optionType === 'input') {
                         var paidamount = model.innergrid['paidamount' + row.sno] !== "" && model.innergrid['paidamount' + row.sno] !== null && model.innergrid['paidamount' + row.sno] !== undefined ? model.innergrid['paidamount' + row.sno] : "";
                         var commisionamt = model.innergrid['commisionamt' + row.sno] !== "" && model.innergrid['commisionamt' + row.sno] !== null && model.innergrid['commisionamt' + row.sno] !== undefined ? model.innergrid['commisionamt' + row.sno] : "";
+                        var mrktedstatus = model.innergrid['mrktedstatus' + row.sno] !== "" && model.innergrid['mrktedstatus' + row.sno] !== null && model.innergrid['mrktedstatus' + row.sno] !== undefined ? model.innergrid['mrktedstatus' + row.sno] : "";
                         var obj = {
                             Empid: row.EmpID,
                             Profileid: row.profileid,
                             Emp_commisionTicketid: row.Emp_Commision_TicketID,
                             PaidAmount: paidamount,
-                            commisionAmount: commisionamt
+                            commisionAmount: commisionamt,
+                            TicketMrkedStatus: mrktedstatus === 0 ? false : true
                         };
 
                         marketingticketverificationService.updatemarketingvrfycation(obj).then(function(response) {
@@ -113,17 +119,15 @@
                     var paid = "<a class='" + paidstatusclass + "' href='javascript:void(0);' ng-click='model.ViewProfile(" + JSON.stringify(row.profileid) + ");'>" + row.profileid + "</a>";
                     return paid;
                 };
-                model.TicketMrkedStatus = function() {
 
-                };
                 model.profileshistory = function(value, innerempid) {
                     model.innergrid.columns = [
                         { text: 'Profile ID', key: 'profileid', type: 'morelinks', templateUrl: model.returnProfileIDTemplate },
                         { text: 'TicketID', key: 'TicketName', type: 'morelinks', templateUrl: model.ticketid },
-                        { text: 'Paid Amount', key: 'PaidAmount', type: 'textbox', templateUrl: model.paidamount, model: 'paidamount' },
-                        { text: 'Commision Amount', key: 'commisionamt', type: 'textbox', templateUrl: model.commisionamt, model: 'commisionamt' },
-                        // { text: 'Walk In', key: 'TicketMrkedStatus', type: 'morelinks', templateUrl: model.TicketMrkedStatus, model: 'mrktedstatus' },
-                        { text: '', key: '', type: 'customlink', templateUrl: model.optionTemplate, method: model.actionlink }
+                        { text: 'Paid Amount', key: 'PaidAmounts', type: 'textbox', templateUrl: model.paidamount, model: 'paidamount' },
+                        { text: 'Commision Amount', key: 'commisionamts', type: 'textbox', templateUrl: model.commisionamt, model: 'commisionamt' },
+                        { text: 'Walk In', key: 'TicketMrkedStatus', type: 'textbox', templateUrl: model.TicketMrkedStatus, model: 'mrktedstatus' },
+                        { text: '', key: 'customlink', type: 'customlink', templateUrl: model.optionTemplate, method: model.actionlink }
                     ];
                     marketingticketverificationService.marketinggetprofiledetails(value, innerempid).then(function(response) {
                         model.innergrid.sdata = response.data[0];
@@ -132,6 +136,7 @@
                             item.optionType = 'label';
                             model.innergrid['paidamount' + item.sno] = item.PaidAmount;
                             model.innergrid['commisionamt' + item.sno] = item.commisionamt;
+                            model.innergrid['mrktedstatus' + item.sno] = item.TicketMrkedStatus === false ? 0 : 1;
                         });
                         commonpage.showPopup('innergrid.html', model.scope, 'md', "modalclassdashboard");
 

@@ -670,15 +670,29 @@ body {
 .modalclassdashboard .modal-dialog.modal-md {
   width: 835px !important; }
 .modalclassdashboard th.profileid.headerStyles {
-  width: 160px; }
-.modalclassdashboard th.commisionamt.headerStyles {
-  width: 160px; }
-.modalclassdashboard th.PaidAmount.headerStyles {
-  width: 160px; }
-.modalclassdashboard th.ticketid.headerStyles {
-  width: 160px; }
+  width: 140px; }
+.modalclassdashboard th.commisionamts.headerStyles {
+  width: 153px; }
+.modalclassdashboard th.PaidAmounts.headerStyles {
+  width: 168px; }
 .modalclassdashboard th.TicketName.headerStyles {
-  width: 160px; }
+  width: 133px; }
+.modalclassdashboard th.TicketMrkedStatus.headerStyles {
+  width: 100px; }
+.modalclassdashboard th.customlink.headerStyles {
+  width: 135px; }
+.modalclassdashboard td.profileid {
+  width: 140px; }
+.modalclassdashboard td.commisionamts {
+  width: 153px; }
+.modalclassdashboard td.PaidAmounts {
+  width: 162px; }
+.modalclassdashboard td.TicketName {
+  width: 121px; }
+.modalclassdashboard td.TicketMrkedStatus {
+  width: 100px; }
+.modalclassdashboard td.customlink {
+  width: 135px; }
 
 .unpaid {
   color: red;

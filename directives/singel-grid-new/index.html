@@ -83,7 +83,7 @@
                                 <td ng-if="inneritem.isDetail">
                                     <a class="detail-icon" ng-click="minus(inneritem)" href="javascript:"><i class="glyphicon glyphicon-pause icon-pause"></i></a>
                                 </td>
-                                <td ng-repeat="colitem in model.columns">
+                                <td ng-class="colitem.key" ng-repeat="colitem in model.columns">
                                     <span ng-if="colitem.type==='label'"> {{inneritem[colitem.key]}}</span>
                                     <input ng-if="colitem.type==='textbox'" type="text" class="form-control" ng-readonly="inneritem.optionType==='label'" ng-model="model[colitem.model+inneritem.sno]">
                                     <a href="#" ng-if="colitem.type==='link'" ng-click="colitem.method(inneritem)">{{inneritem[colitem.key]}}</a>

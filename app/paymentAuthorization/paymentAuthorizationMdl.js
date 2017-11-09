@@ -89,6 +89,7 @@
                                     model.mainArray = response.data[0];
                                     model.BranchmenuArr = response.data[1];
                                     model.gridTableshow = true;
+                                    model.pageSize = 10;
                                     model.data = (response.data[0]);
                                     _.map(model.data, function(item, index) {
                                         item.rowIndex = index;
@@ -119,20 +120,24 @@
                     return string !== null && string !== "" && string !== undefined ? (string.split(',')).map(Number) : null;
                 };
                 model.authorizepopup = function(row, type, index) {
-                    model.employeenamesbind();
-                    model.paymentverificationobj = row;
-                    model.typeauthorize = type;
-                    model.maketingticketverified = null;
-                    model.rbtnmarketingtkted = null;
-                    model.ticketamountforcustomer = row.WithTax;
-                    // model.ticketownermarketing = row.AssignedToEmpID !== "" && row.AssignedToEmpID !== null ? parseInt(row.AssignedToEmpID) : "";
-                    model.ticketownermarketing = row.AssignedToEmpID !== "" && row.AssignedToEmpID !== null ? model.arrayToString(row.AssignedToEmpID.toString()) : "";
+                    if (model.showempid === 2 || model.showempid === 90 || model.showempid === 146 || model.showempid === 223) {
+                        model.employeenamesbind();
+                        model.paymentverificationobj = row;
+                        model.typeauthorize = type;
+                        model.maketingticketverified = null;
+                        model.rbtnmarketingtkted = null;
+                        model.ticketamountforcustomer = row.WithTax;
+                        // model.ticketownermarketing = row.AssignedToEmpID !== "" && row.AssignedToEmpID !== null ? parseInt(row.AssignedToEmpID) : "";
+                        model.ticketownermarketing = row.AssignedToEmpID !== "" && row.AssignedToEmpID !== null ? model.arrayToString(row.AssignedToEmpID.toString()) : "";
 
-                    model.ticketidmarketing = row.TicketName;
-                    model.oldticketidmarketing = row.TicketName;
-                    model.index = row.rowIndex;
-                    model.ticketiddisable = true;
-                    modelpopupopenmethod.showPopupphotopoup('authorizePopupticket.html', model.scope, 'md', "modalclassofedit");
+                        model.ticketidmarketing = row.TicketName;
+                        model.oldticketidmarketing = row.TicketName;
+                        model.index = row.rowIndex;
+                        model.ticketiddisable = true;
+                        modelpopupopenmethod.showPopupphotopoup('authorizePopupticket.html', model.scope, 'md', "modalclassofedit");
+                    } else {
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'please Contact Admin employees', 4500);
+                    }
                 };
 
                 model.SaFormTemplate = function(row) {

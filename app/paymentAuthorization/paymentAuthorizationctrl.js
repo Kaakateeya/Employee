@@ -12,6 +12,7 @@
 
                  model.init();
                  model.empid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? authSvc.LoginEmpid() : "";
+                 model.showempid = authSvc.LoginEmpid() !== undefined && authSvc.LoginEmpid() !== null && authSvc.LoginEmpid() !== "" ? parseInt(authSvc.LoginEmpid()) : "";
                  model.ticketownermarketing = "";
                  model.ticketiddisable = true;
                  model.isDisabledsubmit = false;
