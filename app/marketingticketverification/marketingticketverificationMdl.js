@@ -113,12 +113,16 @@
                     var paid = "<a class='" + paidstatusclass + "' href='javascript:void(0);' ng-click='model.ViewProfile(" + JSON.stringify(row.profileid) + ");'>" + row.profileid + "</a>";
                     return paid;
                 };
+                model.TicketMrkedStatus = function() {
+
+                };
                 model.profileshistory = function(value, innerempid) {
                     model.innergrid.columns = [
                         { text: 'Profile ID', key: 'profileid', type: 'morelinks', templateUrl: model.returnProfileIDTemplate },
                         { text: 'TicketID', key: 'TicketName', type: 'morelinks', templateUrl: model.ticketid },
                         { text: 'Paid Amount', key: 'PaidAmount', type: 'textbox', templateUrl: model.paidamount, model: 'paidamount' },
                         { text: 'Commision Amount', key: 'commisionamt', type: 'textbox', templateUrl: model.commisionamt, model: 'commisionamt' },
+                        // { text: 'Walk In', key: 'TicketMrkedStatus', type: 'morelinks', templateUrl: model.TicketMrkedStatus, model: 'mrktedstatus' },
                         { text: '', key: '', type: 'customlink', templateUrl: model.optionTemplate, method: model.actionlink }
                     ];
                     marketingticketverificationService.marketinggetprofiledetails(value, innerempid).then(function(response) {

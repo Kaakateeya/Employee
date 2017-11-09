@@ -375,12 +375,12 @@
                         case 1:
                             if (model.typeindex === 'Education Master') {
                                 model.grid1.data = response.data[0];
-                                model.grid2.data = [];
-                                model.grid3.data = [];
+                                // model.grid2.data = [];
+                                // model.grid3.data = [];
                             } else {
                                 model.grid1.data = response.data[0];
-                                model.grid2.data = [];
-                                model.grid3.data = [];
+                                // model.grid2.data = [];
+                                // model.grid3.data = [];
                             }
                             break;
                         case 2:
@@ -393,7 +393,7 @@
                                     { text: 'Change Status', key: 'EducationGroupID', type: 'morelinks', templateUrl: model.changevaluestringedugroup }
                                 ];
                                 model.grid2.data = response.data[0];
-                                model.grid3.data = [];
+                                // model.grid3.data = [];
                             } else {
                                 model.grid2.columns = [
                                     { text: 'Profession Group Name', key: 'ProfessionGroupName', type: 'label' },
@@ -402,7 +402,7 @@
                                     { text: 'Change Status', key: 'ProfessionGroupID', type: 'morelinks', templateUrl: model.changevaluestringprofessiongroup }
                                 ];
                                 model.grid2.data = response.data[0];
-                                model.grid3.data = [];
+                                // model.grid3.data = [];
                             }
                             break;
                         case 3:
