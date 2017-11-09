@@ -16,7 +16,7 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="col-lg-10 rdnoptions">
-                                <md-radio-group name="rbtngender" layout="row" ng-model="page.model.rbtngender" class="md-block" flex-gt-sm>
+                                <md-radio-group name="rbtngender" ng-change="page.model.panelbodyhide=true" layout="row" ng-model="page.model.rbtngender" class="md-block" flex-gt-sm>
                                     <md-radio-button value="0" class="md-primary">Both</md-radio-button>
                                     <md-radio-button value="1"> Male</md-radio-button>
                                     <md-radio-button value="2"> FeMale</md-radio-button>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="col-lg-10 rdnoptions">
-                                <md-radio-group ng-change="page.model.onchangebranch()" name="rbtnregion" layout="row" ng-model="page.model.rbtnregion" class="md-block" flex-gt-sm>
+                                <md-radio-group ng-change="page.model.onchangebranch();page.model.panelbodyhide=true" name="rbtnregion" layout="row" ng-model="page.model.rbtnregion" class="md-block" flex-gt-sm>
                                     <md-radio-button value="0" class="md-primary">All</md-radio-button>
                                     <md-radio-button value="408"> AP </md-radio-button>
                                     <md-radio-button value="409"> TN</md-radio-button>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="col-lg-10 rdnoptions">
-                                <md-radio-group name="rbtnpaymentstatus" layout="row" ng-model="page.model.rbtnpaymentstatus" class="md-block" flex-gt-sm>
+                                <md-radio-group ng-change="page.model.panelbodyhide=true" name="rbtnpaymentstatus" layout="row" ng-model="page.model.rbtnpaymentstatus" class="md-block" flex-gt-sm>
                                     <md-radio-button value="0" class="md-primary">Both</md-radio-button>
                                     <md-radio-button value="236"> Registration</md-radio-button>
                                     <md-radio-button value="237"> Renewal</md-radio-button>
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel-body" ng-show="page.model.panelbodyhide" ng-show="page.model.panelbodyhide">
+                <div class="panel-body" ng-show="page.model.panelbodyhide">
                     <div class="row">
                         <div class="row">
                             <div class="col-lg-3">

@@ -10,7 +10,7 @@
                         </div>
                         <div class="col-lg-3 black">
                             <div class="col-lg-10 rdnoptions">
-                                <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtGender" class="md-block col-lg-6" flex-gt-sm ng-disabled="manageakerts">
+                                <md-radio-group ng-change="page.model.panelbodyhide=true" ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtGender" class="md-block col-lg-6" flex-gt-sm ng-disabled="manageakerts">
                                     <md-radio-button value="0" class="md-primary">Both</md-radio-button>
                                     <md-radio-button value="1"> Male</md-radio-button>
                                     <md-radio-button value="2"> Female</md-radio-button>
@@ -22,7 +22,7 @@
                         </div>
                         <div class="col-lg-3 black">
                             <div class="col-lg-10 rdnoptions">
-                                <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtnsettleDeleteType" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                <md-radio-group ng-change="page.model.panelbodyhide=true" ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtnsettleDeleteType" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                     <md-radio-button value="0" class="md-primary">Both</md-radio-button>
                                     <md-radio-button value="1">Settled</md-radio-button>
                                     <md-radio-button value="2">Delete</md-radio-button>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="col-lg-3 black">
                             <div class="col-lg-12 rdnoptions">
-                                <md-radio-group ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtntypeofProfile" class="md-block" flex-gt-sm ng-disabled="manageakerts">
+                                <md-radio-group ng-change="page.model.panelbodyhide=true" ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtntypeofProfile" class="md-block" flex-gt-sm ng-disabled="manageakerts">
                                     <md-radio-button value="0" class="md-primary">Both</md-radio-button>
                                     <md-radio-button value="372"> Paid</md-radio-button>
                                     <md-radio-button value="373"> Un-paid</md-radio-button>
