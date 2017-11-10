@@ -45,69 +45,67 @@
                     <li class="has-sub">
                         <a href="javascript:void(0)">Registration</a>
                         <ul>
-                            <li><a href="Registration">Customer New Registration</a></li>
-                            <li><a href="editViewprofileurl">Edit/View Profile</a></li>
-                            <li><a href="registrationValidations">RegistrationprofileValidation</a></li>
-                            <li class="has-sub"><a href="#">services</a>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.CustomerNewRegistration)"><a href="Registration">Customer New Registration</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.EditViewProfile)"><a href="editViewprofileurl">Edit/View Profile</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.RegistrationprofileValidation)"><a href="registrationValidations">RegistrationprofileValidation</a></li>
+                            <li class="has-sub" ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.services)"><a href="#">services</a>
                                 <ul>
-                                    <li><a href="expressInterestpage">Expressinterest</a></li>
-                                    <li><a href="communicationLogs">Communication Log</a></li>
-                                    <li><a href="serviceSlideShows">Services Slideshow</a></li>
+                                    <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.Expressinterest)"><a href="expressInterestpage">Expressinterest</a></li>
+                                    <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.CommunicationLog)"><a href="communicationLogs">Communication Log</a></li>
+                                    <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.ServicesSlideshow)"><a href="serviceSlideShows">Services Slideshow</a></li>
                                 </ul>
                             </li>
-                            <li><a href="EmployeePayments/0">Payment Details</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.PaymentDetails)"><a href="EmployeePayments/0">Payment Details</a></li>
 
-                            <li class="has-sub"><a href="#">Settlement Details</a>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.SettlementDetails)" class="has-sub"><a href="#">Settlement Details</a>
                                 <ul>
-                                    <li><a href="settleDeleteProfilePage">SettleDeleteProfiles</a></li>
-                                    <li><a href="viewUploadSettledProfilesPage">View / Upload Settlement</a></li>
-                                </ul>
-                            </li>
-
-                            <li><a href="#">Payment</a>
-                                <ul>
-                                    <li><a href="paymentOffersAssignPage">Payment offer</a></li>
-                                    <li><a href="paymentAuthorizationpage">Payment Authorization</a></li>
+                                    <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.SettleDeleteProfiles)"><a href="settleDeleteProfilePage">SettleDeleteProfiles</a></li>
+                                    <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.ViewUploadSettlement)"><a href="viewUploadSettledProfilesPage">View / Upload Settlement</a></li>
                                 </ul>
                             </li>
 
-                            <li><a href="Viewfullprofile/0/1">Customer New Admin Profile</a></li>
-                            <li><a href="customerFactsheetpage">CustomerFactsheet</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.Payment)" class="has-sub"><a href="javascript:void(0)">Payment</a>
+                                <ul>
+                                    <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.Paymentoffer)"><a href="paymentOffersAssignPage">Payment offer</a></li>
+                                    <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.PaymentAuthorization)"><a href="paymentAuthorizationpage">Payment Authorization</a></li>
+                                </ul>
+                            </li>
+
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.CustomerNewAdminProfile)"><a href="Viewfullprofile/0/1">Customer New Admin Profile</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.CustomerFactsheet)"><a href="customerFactsheetpage">CustomerFactsheet</a></li>
                             <li ng-hide="true"><a href="employeeViewfullprofileschk/0/1">Customer New Admin Profile Print</a></li>
                         </ul>
                     </li>
                     <li class="has-sub"><a href="javascript:void(0)"> Search </a>
                         <ul>
-                            <li><a href="javascript:void(0);" ng-click="head.model.searchredirect(0,0);">General Search</a></li>
-                            <li><a href="javascript:void(0);" ng-click="head.model.searchredirect(1,0);">Advanced search</a></li>
-                            <li><a href="keywordSearchpage">Keyword Search</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.GeneralSearch)"><a href="javascript:void(0);" ng-click="head.model.searchredirect(0,0);">General Search</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.Advancedsearch)"><a href="javascript:void(0);" ng-click="head.model.searchredirect(1,0);">Advanced search</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.KeywordSearch)"><a href="keywordSearchpage">Keyword Search</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">Keyword Search_Kmpl</a></li>
                         </ul>
                     </li>
                     <li class="has-sub"><a href="javascript:void(0)"> My Account</a>
                         <ul>
-                            <li><a href="myProfilepage">My Profile</a></li>
-                            <li><a href="marketingpage">Marketing Slide Show</a></li>
-                            <li><a href="matchFollowuppage">Match Followup Slide Show</a></li>
-                            <li><a href="matchMeetingEntryFormPage">Match Meeting Entry Form</a></li>
-                            <li><a ng-hide="true" href="javascript:void(0)">My Assigned Photos</a></li>
-                            <li><a href="ticketCreationpage">Ticket Creation</a></li>
-                            <li><a href="myAssignedPhotosPage">My Assigned Photos</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.MyProfile)"><a href="myProfilepage">My Profile</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.MarketingSlideShow)"><a href="marketingpage">Marketing Slide Show</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.MatchFollowupSlideShow)"><a href="matchFollowuppage">Match Followup Slide Show</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.MatchMeetingEntryForm)"><a href="matchMeetingEntryFormPage">Match Meeting Entry Form</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.TicketCreation)"><a href="ticketCreationpage">Ticket Creation</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.MyAssignedPhotos)"><a href="myAssignedPhotosPage">My Assigned Photos</a></li>
                         </ul>
                     </li>
                     <li class="has-sub"><a href="javascript:void(0)">Maintance Work  </a>
                         <ul>
-                            <li class="has-sub"><a href="#">Unassigned Info</a>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.UnassignedInfo)" class="has-sub"><a href="#">Unassigned Info</a>
                                 <ul>
-                                    <li><a href="unAssignedPhotosPage">Photos</a></li>
+                                    <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.Photos)"><a href="unAssignedPhotosPage">Photos</a></li>
                                 </ul>
                             </li>
-                            <li><a href="assignSetting">Assign Settings</a></li>
-                            <li><a href="emailbounceEntryformpage">Email Bounce</a></li>
-                            <li><a href="customerMessagesverificationpage">Customer Message Verification</a></li>
-                            <li><a href="marketingticketverificationpage">Maketing Ticket verification</a></li>
-                            <li><a href="viewSuccessStoriesPage">View/Create successStories</a></li>
-
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.AssignSettings)"><a href="assignSetting">Assign Settings</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.EmailBounce)"><a href="emailbounceEntryformpage">Email Bounce</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.CustomerMessageVerification)"><a href="customerMessagesverificationpage">Customer Message Verification</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.MaketingTicketverification)"><a href="marketingticketverificationpage">Maketing Ticket verification</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.ViewCreatesuccessStories)"><a href="viewSuccessStoriesPage">View/Create successStories</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">Upload Success Stories</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">View Success Stories</a></li>
                             <li><a ng-hide="true" href="javascript:void(0)">Re Assign Employee</a></li>
@@ -117,17 +115,17 @@
                     </li>
                     <li class="has-sub"><a href="javascript:void(0)">Admin Forms  </a>
                         <ul>
-                            <li><a href="#">Employee</a>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.Employee)"><a href="#">Employee</a>
                                 <ul>
-                                    <li><a href="employeeCreationPage">Creation/View Employee</a></li>
-                                    <li><a href="empTrackingPage">EmpLoginLogoutReport</a></li>
+                                    <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.CreationViewEmployee)"><a href="employeeCreationPage">Creation/View Employee</a></li>
+                                    <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.EmpLoginLogoutReport)"><a href="empTrackingPage">EmpLoginLogoutReport</a></li>
                                 </ul>
                             </li>
-                            <li><a href="updateMacAdresspage">Update Branch IP</a></li>
-                            <li><a href="NomatchesReason">No Matches Profiles</a></li>
-                            <li><a href="mailFormats">Sample Mail Formats</a></li>
-                            <li><a href="settlementPageNews">Settlement Info</a></li>
-                            <li><a href="listofservucetakenPage">LST</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.UpdateBranchIP)"><a href="updateMacAdresspage">Update Branch IP</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.NoMatchesProfiles)"><a href="NomatchesReason">No Matches Profiles</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.SampleMailFormats)"><a href="mailFormats">Sample Mail Formats</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.SettlementInfo)"><a href="settlementPageNews">Settlement Info</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.LST)"><a href="listofservucetakenPage">LST</a></li>
                             <li><a ng-hide="true" href="ReportsofEmployee">To Do Work</a></li>
                             <li><a ng-hide="true" href="brokerEntryFormpage">Mediater Entry Form</a></li>
                             <li><a ng-hide="true" href="brokerProfileRegistrationpage">Broker Profile Registration</a></li>
@@ -139,12 +137,12 @@
                     </li>
                     <li class="has-sub"><a href="javascript:void(0)"> Reports </a>
                         <ul>
-                            <li><a href="reviewPendinrReport">Review Pending Profiles</a></li>
-                            <li><a href="paymentdetailsReportpage">Payment Reports</a></li>
-                            <li><a href="matchMeetingCountReportPage">MatchMeeting Count Report</a></li>
-                            <li><a href="settleDeleteProfileseReportPage">SettleDelete Profiles Report</a></li>
-                            <li><a href="noProfilegradingPage">No profile grade</a></li>
-                            <li><a href="emailBounceListPage">EmailBounce Report</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.ReviewPendingProfiles)"><a href="reviewPendinrReport">Review Pending Profiles</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.PaymentReports)"><a href="paymentdetailsReportpage">Payment Reports</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.MatchMeetingCountReport)"><a href="matchMeetingCountReportPage">MatchMeeting Count Report</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.SettleDeleteProfilesReport)"><a href="settleDeleteProfileseReportPage">SettleDelete Profiles Report</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.Noprofilegrade)"><a href="noProfilegradingPage">No profile grade</a></li>
+                            <li ng-if="head.model.showhidemenulist(head.model.employeemenulistarray.EmailBounceReport)"><a href="emailBounceListPage">EmailBounce Report</a></li>
                         </ul>
                     </li>
                     <li class="has-sub" ng-hide="true"><a href="javascript:void(0)"> help </a>

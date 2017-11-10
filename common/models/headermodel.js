@@ -27,8 +27,20 @@
                     model.name = authSvc.LoginEmpName();
                     model.empphoto = authSvc.empphoto();
                     model.getemployeenotification(0, null, null, 0);
+                    model.getEmployeemenulists(model.empid);
                     model.usernameemployeeid = sessionStorage.getItem("usernameemployeeid");
                     return model;
+                };
+
+                model.getEmployeemenulists = function(empid) {
+                    helperservice.Employeemenulist(empid).then(function(responses) {
+                        console.log(responses);
+                        if (_.isArray(responses.data) && responses.data.length > 0 && _.isArray(responses.data[0])) {
+                            model.employeemenulistarray = [];
+                            model.employeemenulistarray = responses.data[0][0];
+                            console.log(model.employeemenulistarray);
+                        }
+                    });
                 };
                 model.logout = function() {
                     model.name = "";
@@ -331,6 +343,16 @@
                         }
                     });
                 };
+                model.showhidemenulist = function(val) {
+                    var show = true;
+                    if (val === 1) {
+                        show = true;
+                    } else {
+                        show = false;
+                    }
+                    return show;
+                };
+
                 return model.init();
             }
         ]);

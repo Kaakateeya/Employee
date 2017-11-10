@@ -63,4 +63,7 @@ app.service('helperservice', ['$http', function(http) {
     this.closereminderstatus = function(obj) {
         return http.post(app.apiroot + 'EmployeeReportPage/CloseReminderStatus', obj);
     };
+    this.Employeemenulist = function(empid) {
+        return http.get(app.apiroot + 'EmployeeReportPage/getEmployeeMenulist', { params: { Empid: empid } });
+    };
 }]);
