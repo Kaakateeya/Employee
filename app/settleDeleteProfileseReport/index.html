@@ -5,7 +5,7 @@
                 <div class="panel-heading" style="color: rgb(160, 2, 1);border: 1px solid #ccc">
                     <div class="row">
                         <div class="col-lg-3" style="font-size: 14px;font-weight: 700;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
-                            <h4 style="width:245px;"> Settled & delete profiles report {{page.model.opendiv}} <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
+                            <h4 style="width:245px;"> Settled & Delete Profiles Report <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
                             </h4>
                         </div>
                         <div class="col-lg-3 black">
@@ -61,14 +61,14 @@
                             <div class="col-lg-3">
                                 <label for="" class="control-label">Region</label>
                                 <div>
-                                    <select multiselectdropdown class="smalldropdown col-lg-5" ng-model="page.model.region" typeofdata="'RegionofbranchesWithAll'" ng-change="page.model.regionChange(page.model.region);"></select>
+                                    <select multiselectdropdown class="smalldropdown col-lg-5" ng-model="page.model.region" typeofdata="'Regionofbranches'" ng-change="page.model.regionChange(page.model.region);"></select>
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <label for="" class="control-label">Branch</label>
                                 <div>
-                                    <select multiselectdropdown class="smalldropdown  col-lg-5" ng-model="page.model.branch" multiple ng-options="item.value as item.label for item in page.model.branchArr">   
-                                                </select>
+                                    <select multiselectdropdown class="smalldropdown  col-lg-5" ng-model="page.model.branch" multiple ng-options="item.value as item.label for item in page.model.branchArr" ng-change="page.model.onchangeemployee(page.model.branch);">   
+                                    </select>
                                 </div>
                             </div>
 
@@ -81,7 +81,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <label for="" class="control-label">Owner of the profile</label>
-                                <div> <select multiselectdropdown class="smalldropdown  col-lg-5" ng-model="page.model.profileOwner" multiple typeofdata="'EmpNames'">   
+                                <div> <select multiselectdropdown class="smalldropdown  col-lg-5" ng-model="page.model.profileOwner" multiple ng-options="item.value as item.label for item in page.model.ProfileOwnerarray">   
                                       </select></div>
                             </div>
                             <div class="col-lg-3">
@@ -196,6 +196,92 @@
     <div class="modal-footer">
         <input type="button" value="Submit" class="btn btn-success" ng-click="page.model.restoreProfile();">
         <input type="button" value="close" class="btn btn-danger" ng-click="page.model.closepopup();">
+    </div>
+
+</script>
+
+
+<script type="text/ng-template" id="authozedeletepopup.html">
+    <div class="modal-header">
+        <a href="javascript:void(0);" class="pull-right" ng-click="page.model.closepopup();">
+            <span class="fa fa-close red"></span>
+        </a>
+        <h4 class="modal-title">
+            Authorize
+        </h4>
+    </div>
+    <div class="modal-body" style="line-height: 40px;">
+        <div class="row">
+            <div class="col-lg-6">
+                <label for="" class="control-label col-lg-4">{{page.model.Bridegrrom}} Name</label>
+                <div class="col-lg-8">
+                    <input type="text" ng-model="page.model.oppProfileidoppname" class="form-control">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label for="" class="control-label col-lg-4">SurName</label>
+                <div class="col-lg-8">
+                    <input type="text" ng-model="page.model.oppsurnamename" class="form-control">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="col-lg-6">
+                <label for="" class="control-label col-lg-4"> Father name</label>
+                <div class="col-lg-8">
+                    <input type="text" ng-model="page.model.oppFathername" class="form-control">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label for="" class="control-label col-lg-4">Education</label>
+                <div class="col-lg-8">
+                    <input type="text" ng-model="page.model.oppEducationname" class="form-control">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="col-lg-6">
+                <label for="" class="control-label col-lg-4"> Profession</label>
+                <div class="col-lg-8">
+                    <input type="text" ng-model="page.model.oppProfession" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <label for="" class="control-label col-lg-4">Joblocation</label>
+                <div class="col-lg-8">
+                    <input type="text" ng-model="page.model.oppjoblocation" class="form-control">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-12">
+                <label for="" class="control-label col-lg-2">Informed By</label>
+                <div class="col-lg-8 rdnoptions">
+                    <md-radio-group ng-change="page.model.panelbodyhide=true" ng-required="true" name="rbtnBasic" layout="row" ng-model="page.model.rbtGender" class="md-block col-lg-6" flex-gt-sm ng-disabled="manageakerts">
+                        <md-radio-button value="39" class="md-primary">Father</md-radio-button>
+                        <md-radio-button value="40"> Mother</md-radio-button>
+                        <md-radio-button value="3"> Brother</md-radio-button>
+                        <md-radio-button value="4"> Sister</md-radio-button>
+                        <md-radio-button value="5"> Relatives</md-radio-button>
+                    </md-radio-group>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-12">
+                <label for="" class="control-label col-lg-2">Reason</label>
+                <div class="col-lg-8">
+                    <textarea name="" id="" cols="30" rows="4" class="form-control" ng-model="page.model.oppauthoreason"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="col-lg-12">
+            <div class="col-lg-offset-5">
+                <input type="button" value="Submit" class="btn btn-success col-lg-2" ng-click="page.model.restoreProfile();">
+                <input type="button" value="close" class="btn btn-danger col-lg-2" ng-click="page.model.closepopup();">
+            </div>
+        </div>
     </div>
 
 </script>

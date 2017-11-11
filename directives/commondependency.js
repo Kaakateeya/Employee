@@ -199,6 +199,15 @@
             },
             checkvals: function(val) {
                 return (val !== undefined && val !== null && val !== '') ? true : false;
+            },
+            dependencyempnames: function(parentval1) {
+                var Profileowner = [];
+                SelectBindService.dependencyempnames(parentval1).then(function(response) {
+                    _.each(response.data, function(item) {
+                        Profileowner.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    });
+                });
+                return Profileowner;
             }
 
         };

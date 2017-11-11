@@ -48,23 +48,17 @@
         };
 
         model.regionChange = function(val) {
+            model.branchArr = [];
             model.branchArr = Commondependency.branch(val);
         };
 
         model.commaSeperated = function(val) {
             return val && val.length > 0 ? val.join(',') : null;
         };
-
-        // model.restore = function(row) {
-        //     return "<a href='javascript:void(0);' ng-click='model.restorePopup(" + JSON.stringify(row.ProfileID) + "," + JSON.stringify(row.Cust_Id) + ");'>Restore</a>";
-        // };
-
-        // model.grid2.restorePopup = function(ProfileID, Cust_Id) {
-        //     model.restoreprofile = ProfileID;
-        //     modelpopupopenmethod.showPopupphotopoup('restoreProfilePopup.html', model.scope, 'md', "");
-        //     restoreCustID = Cust_Id;
-        // };
-
+        model.onchangeemployee = function(val) {
+            model.ProfileOwnerarray = [];
+            model.ProfileOwnerarray = Commondependency.dependencyempnames((val !== undefined && val !== null && val !== "" && val !== 0 && val !== '0' && val.length > 0) ? (val).toString() : "");
+        };
         model.saTemplate = function() {
             return "<a href='javascript:void(0);'>View SA Form</a>";
         };
@@ -75,7 +69,27 @@
         model.showNarration = function(row) {
             alertss.timeoutoldalerts(model.scope, 'alert-success', row.settlenotes, 19500);
         };
-
+        model.authorizerestore = function(row) {
+            var authorize;
+            authorize = "<a href='javascript:void(0);'>Authorize</a>";
+            return authorize;
+        };
+        model.authorizepopup = function(row) {
+            if (parseInt(model.empid) === 28 || parseInt(model.empid) === 330 || model.Managementid === 'true') {
+                model.Bridegrrom = row.Genderid === 1 ? 'Bride' : 'Groom';
+                model.oppsurnamename = row.OppSurName;
+                model.oppProfileidoppname = row.OppName;
+                model.oppFathername = row.OppFatherName;
+                model.oppEducationname = row.OppEducation;
+                model.oppProfession = row.OppProfession;
+                model.oppjoblocation = row.OppJobLoc;
+                model.oppauthoreason = row.deletenotes;
+                model.Cust_DeleteDetails_ID = row.Cust_DeleteDetails_ID;
+                modelpopupopenmethod.showPopupphotopoup('authozedeletepopup.html', model.scope, 'md', "modalclassdashboardphotopopup");
+            } else {
+                alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please Contact Admin Employees', 4000);
+            }
+        };
         model.searchProfiles = function() {
             model.panelbodyhide = false;
             model.grid1.columns = [
@@ -94,22 +108,18 @@
                 { text: 'Settlement Form', key: '', type: 'customlink', templateUrl: model.saTemplate, method: model.showSAmethod },
                 { text: 'AuthorizedByName', key: 'AuthorizedByName', type: 'label' },
                 { text: 'Authorize date', key: 'Authorizedate', type: 'label' },
-                // { text: 'Match Meeting Count', key: 'MatchMeetingCount', type: 'label' },
                 { text: 'Settled By', key: 'settletedby', type: 'label' }
             ];
 
             model.grid2.columns = [
                 { text: 'Profile ID', key: 'ProfileID', type: 'customlink', templateUrl: model.deleteProfileIdTemplateDUrl, method: model.deleteViewProfile },
                 { text: 'Name', key: 'NAME', type: 'label' },
-                { text: 'Marriage Date', key: 'MarriageDate', type: 'label' },
                 { text: 'Deleted by', key: 'DeleteBy', type: 'label' },
-                { text: 'Narriation', key: 'deletenotes', type: 'label' },
                 { text: 'Deleted Date', key: 'DeletedDate', type: 'label' },
-                { text: 'Authorized Date', key: 'Authoriseddate', type: 'label' },
+                { text: 'Narriation', key: 'deletenotes', type: 'label' },
                 { text: 'Authorized By', key: 'AuthorizedByEmpName', type: 'label' },
-                // { text: 'Match Meeting Count', key: 'MatchMeetingCount', type: 'label' },
-                { text: 'Ticket ID', key: 'TicketId', type: 'label' },
-                // { text: 'Action', key: '', type: 'morelinks', templateUrl: model.restore }
+                { text: 'Authorized Date', key: 'Authoriseddate', type: 'label' },
+                { text: 'Authorization', key: '', type: 'customlink', templateUrl: model.authorizerestore, method: model.authorizepopup }
             ];
             model.grid2.data = [];
             model.grid1.data = [];
@@ -155,24 +165,6 @@
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 19500);
                         model.panelbodyhide = true;
                     }
-                    // } else {
-                    //     if (model.rbtnsettleDeleteType === "1") {
-                    //         model.grid1.data = response.data.length > 0 ? response.data : [];
-                    //         model.grid1.TotalRecords = response.data.length > 0 ? response.data.length : 0;
-                    //         if (model.grid1.data.length === 0) {
-                    //             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 19500);
-                    //             model.panelbodyhide = true;
-                    //         }
-                    //     }
-                    //     if (model.rbtnsettleDeleteType === "2") {
-                    //         model.grid2.data = response.data.length > 0 ? response.data : [];
-                    //         model.grid2.TotalRecords = response.data.length > 0 ? response.data.length : 0;
-                    //         if (model.grid2.data.length === 0) {
-                    //             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 19500);
-                    //             model.panelbodyhide = true;
-                    //         }
-                    //     }
-                    // }
 
                 } else {
 
@@ -180,29 +172,6 @@
             });
         };
 
-
-        // model.restoreProfile = function() {
-
-        //     var obj = {
-        //         Cust_ID: restoreCustID,
-        //         EmpID: model.empid,
-        //         RequestedBY: model.requestedBy,
-        //         RequestedbyEmpID: model.restoreEmpnames,
-        //         RelationshipID: model.relationshipID,
-        //         strRelationshipname: model.relationName,
-        //         strReasonforrestore: model.narration,
-        //         ProfileStatusID: 56
-        //     };
-
-        //     settleDeleteProfileseReportService.restoreProfile(obj).then(function(response) {
-        //         model.close();
-        //         if (response.data && parseInt(response.data) === 1) {
-        //             alertss.timeoutoldalerts(model.scope, 'alert-success', 'Profile restored successfully', 9500);
-        //         } else {
-        //             alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Profile restoration failed', 9500);
-        //         }
-        //     });
-        // };
 
         model.closepopup = function() {
             modelpopupopenmethod.closepopuppoptopopup();
@@ -238,8 +207,8 @@
             return paid;
         };
         model.deleteProfileIdTemplateDUrl = function(row) {
-            // var paidstatusclass = row.ProfileID === 'Paid' ? 'paidclass' : 'unpaid';
-            var paid = "<a>" + row.ProfileID + "</a>";
+            var paidstatusclass = row.PaidStatus === 1 ? 'paidclass' : 'unpaid';
+            var paid = "<a class='" + paidstatusclass + "'>" + row.ProfileID + "</a>";
             return paid;
         };
         model.fromViewProfile = function(row) {
@@ -251,6 +220,18 @@
         };
         model.deleteViewProfile = function(row) {
             window.open('/Viewfullprofile/' + row.ProfileID + '/0', '_blank');
+        };
+
+        model.Profileownerbind = function() {
+            SelectBindServiceApp.EmpBinding(1, 2, '').then(function(response) {
+                model.ProfileOwnerarray = [];
+                _.each(response.data, function(item) {
+                    if (item.CountryCode === 'Profile Owner') {
+                        model.ProfileOwnerarray.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                    }
+                });
+
+            });
         };
         return model;
     }

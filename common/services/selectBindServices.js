@@ -82,6 +82,9 @@
             },
             emailExists: function(obj) {
                 return http.get(app.apiroot + 'StaticPages/getEmailMobilenumberexists', { params: obj });
+            },
+            dependencyempnames: function(obj1) {
+                return http.get(app.apiroot + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'EmployeeName', dependencyValue: obj1, dependencyflagID: '' } });
             }
 
         };

@@ -48,6 +48,12 @@
             var inobj = {};
             if (model.rbtnSearchBy === '0') {
                 inobj.Empid = row.EmployeeId;
+                inobj.FromDate = model.txtFrommeetingDate ? moment(model.txtFrommeetingDate).format('YYYY-MM-DD') : null;
+                inobj.toDate = model.txtTomeetingDate ? moment(model.txtTomeetingDate).format('YYYY-MM-DD') : null;
+                inobj.strBranch = model.branch && model.branch.length > 0 ? model.branch.join(',') : null;
+                inobj.strCaste = model.caste && model.caste.length > 0 ? model.caste.join(',') : null;
+                inobj.SerialnoFrom = null;
+                inobj.serialnoto = null;
                 model.singlegrid.columns = [
                     { text: 'Employee name', key: 'EMPName', type: 'label' },
                     { text: 'Groom profileID', key: 'GroomProfileID', type: 'morelinks', templateUrl: model.groomTemplate },
