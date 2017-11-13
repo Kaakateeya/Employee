@@ -481,7 +481,6 @@
                     model.object.Keyworddlikesrch.EmpID = model.empid;
                     model.object.Keyworddlikesrch.Caste = model.returnnullvalue(model.casteidkey);
                     model.object.Keyworddlikesrch.Age = model.c_age;
-
                     keywordSearchService.keywordlikesearch(model.object.Keyworddlikesrch).then(function(response) {
                         if (_.isArray(response.data) && response.data.length > 0 && _.isArray(response.data[0]) && response.data[0].length) {
                             if (type === 'grid') {
@@ -784,7 +783,7 @@
             model.txtfromheightkey = '';
             model.txttoheightkey = '';
             model.applicationids = [54];
-
+            model.c_age = '';
             model.Casteids = undefined;
             model.casteidkey = undefined;
             model.maritalstatusids = undefined;
@@ -800,6 +799,7 @@
             model.txtfromheightkey = '';
             model.txttoheightkey = '';
             model.applicationids = [54];
+            model.c_age = '';
             model.Casteids = undefined;
             model.casteidkey = undefined;
             model.maritalstatusids = undefined;

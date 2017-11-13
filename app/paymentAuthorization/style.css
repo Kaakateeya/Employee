@@ -22,6 +22,38 @@
   border-bottom: 1px solid #ccc; }
 #paymentAuthorization .edit_pages_sidebar_menu ul li a {
   padding: 10px 8px !important; }
+#paymentAuthorization th.headerStylesnew.AgreedAmount {
+  width: 100px; }
+#paymentAuthorization td.AgreedAmount {
+  width: 100px; }
+#paymentAuthorization th.headerStylesnew.PaidAmount {
+  width: 100px; }
+#paymentAuthorization td.PaidAmount {
+  width: 100px; }
+#paymentAuthorization th.headerStylesnew.ValidMonths {
+  width: 90px; }
+#paymentAuthorization td.ValidMonths {
+  width: 90px; }
+#paymentAuthorization th.headerStylesnew.PaymentDate {
+  width: 116px; }
+#paymentAuthorization td.PaymentDate {
+  width: 116px; }
+#paymentAuthorization th.headerStylesnew.ProfileID {
+  width: 105px; }
+#paymentAuthorization td.ProfileID {
+  width: 105px; }
+#paymentAuthorization th.headerStylesnew.Emp_Ticket_ID {
+  width: 132px; }
+#paymentAuthorization td.Emp_Ticket_ID {
+  width: 132px; }
+#paymentAuthorization th.headerStylesnew.ExpiryOn {
+  width: 116px; }
+#paymentAuthorization td.ExpiryOn {
+  width: 116px; }
+#paymentAuthorization th.headerStylesnew.SAForm {
+  width: 100px; }
+#paymentAuthorization td.SAForm {
+  width: 100px; }
 
 .paymentAuthorizeCls {
   line-height: 42px;

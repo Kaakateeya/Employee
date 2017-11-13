@@ -71,7 +71,7 @@
         };
         model.authorizerestore = function(row) {
             var authorize;
-            authorize = "<a href='javascript:void(0);'>Authorize</a>";
+            authorize = row.AuthorizationStatus === 0 ? "" : "<a href='javascript:void(0);'>Authorize</a>";
             return authorize;
         };
         model.authorizepopup = function(row) {
@@ -85,6 +85,7 @@
                 model.oppjoblocation = row.OppJobLoc;
                 model.oppauthoreason = row.deletenotes;
                 model.Cust_DeleteDetails_ID = row.Cust_DeleteDetails_ID;
+                model.rbtopprelation = row.RelationShipTypeID;
                 modelpopupopenmethod.showPopupphotopoup('authozedeletepopup.html', model.scope, 'md', "modalclassdelete");
             } else {
                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please Contact Admin Employees', 4000);
@@ -244,7 +245,8 @@
                 Joblocation: model.oppjoblocation !== '' && model.oppjoblocation !== null && model.oppjoblocation !== undefined ? model.oppjoblocation : '',
                 Narriation: model.oppauthoreason !== '' && model.oppauthoreason !== null && model.oppauthoreason !== undefined ? model.oppauthoreason : '',
                 ID: parseInt(model.Cust_DeleteDetails_ID),
-                AuthorizationStatus: 1
+                AuthorizationStatus: 1,
+                Authorizeempid: parseInt(model.empid)
             };
             settleDeleteProfileseReportService.Updatedeletecustomerdetails_new(inobj).then(function(response) {
                 console.log(response);

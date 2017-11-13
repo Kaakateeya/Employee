@@ -94,7 +94,7 @@
                             Emp_commisionTicketid: row.Emp_Commision_TicketID,
                             PaidAmount: paidamount,
                             commisionAmount: commisionamt,
-                            TicketMrkedStatus: mrktedstatus === 0 ? false : true
+                            TicketMrkedStatus: parseInt(mrktedstatus) === 0 ? false : true
                         };
 
                         marketingticketverificationService.updatemarketingvrfycation(obj).then(function(response) {
@@ -126,7 +126,7 @@
                         { text: 'TicketID', key: 'TicketName', type: 'morelinks', templateUrl: model.ticketid },
                         { text: 'Paid Amount', key: 'PaidAmounts', type: 'textbox', templateUrl: model.paidamount, model: 'paidamount' },
                         { text: 'Commision Amount', key: 'commisionamts', type: 'textbox', templateUrl: model.commisionamt, model: 'commisionamt' },
-                        { text: 'Walk In', key: 'TicketMrkedStatus', type: 'textbox', templateUrl: model.TicketMrkedStatus, model: 'mrktedstatus' },
+                        { text: 'Walk In', key: 'TicketMrkedStatus', type: 'radio', templateUrl: model.TicketMrkedStatus, model: 'mrktedstatus' },
                         { text: '', key: 'customlink', type: 'customlink', templateUrl: model.optionTemplate, method: model.actionlink }
                     ];
                     marketingticketverificationService.marketinggetprofiledetails(value, innerempid).then(function(response) {
