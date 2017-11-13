@@ -31,7 +31,12 @@
   margin-left: 2px;
   margin-right: 2px; }
 
-.modalclassdashboardphotopopup .modal-dialog.modal-md {
-  width: 62%; }
+.modalclassdelete .modal-dialog.modal-md {
+  width: 70%; }
+
+.modalclassdelete {
+  z-index: 99999999 !important;
+  top: 0%;
+  left: 0%; }
 
 /*# sourceMappingURL=style.css.map */

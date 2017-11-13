@@ -85,7 +85,7 @@
                 model.oppjoblocation = row.OppJobLoc;
                 model.oppauthoreason = row.deletenotes;
                 model.Cust_DeleteDetails_ID = row.Cust_DeleteDetails_ID;
-                modelpopupopenmethod.showPopupphotopoup('authozedeletepopup.html', model.scope, 'md', "modalclassdashboardphotopopup");
+                modelpopupopenmethod.showPopupphotopoup('authozedeletepopup.html', model.scope, 'md', "modalclassdelete");
             } else {
                 alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please Contact Admin Employees', 4000);
             }
@@ -250,6 +250,7 @@
                 console.log(response);
                 if (response.data !== null && response.data !== undefined && parseInt(response.data) === 1) {
                     alertss.timeoutoldalerts(model.scope, 'alert-success', 'Update Delete Details Sucessfully', 4000);
+                    model.closepopup();
                 } else {
                     alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Update Delete Details faild', 4000);
                 }
