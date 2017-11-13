@@ -71,7 +71,7 @@
         };
         model.authorizerestore = function(row) {
             var authorize;
-            authorize = row.AuthorizationStatus === 0 ? "" : "<a href='javascript:void(0);'>Authorize</a>";
+            authorize = row.AuthorizationStatus === 1 ? "" : "<a href='javascript:void(0);'>Authorize</a>";
             return authorize;
         };
         model.authorizepopup = function(row) {
