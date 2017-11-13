@@ -15,6 +15,9 @@
             restoreProfile: function(obj) {
                 return http.post(app.apiroot + 'smallPages/restoreProfile', obj);
             },
+            Updatedeletecustomerdetails_new: function(obj) {
+                return http.post(app.apiroot + 'EmployeeReportPage/Updatedeletecustomerdetails_new', obj);
+            }
         };
     }
 })();

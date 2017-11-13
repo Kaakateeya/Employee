@@ -233,6 +233,28 @@
 
             });
         };
+        model.authorizedeleteprofiles = function() {
+            var inobj = {
+                DelSurname: model.oppsurnamename !== '' && model.oppsurnamename !== null && model.oppsurnamename !== undefined ? model.oppsurnamename : '',
+                DelName1: model.oppProfileidoppname !== '' && model.oppProfileidoppname !== null && model.oppProfileidoppname !== undefined ? model.oppProfileidoppname : '',
+                DelFatherName: model.oppFathername !== '' && model.oppFathername !== null && model.oppFathername !== undefined ? model.oppFathername : '',
+                DelEducation: model.oppEducationname !== '' && model.oppEducationname !== null && model.oppEducationname !== undefined ? model.oppEducationname : '',
+                DelProfession: model.oppProfession !== '' && model.oppProfession !== null && model.oppProfession !== undefined ? model.oppProfession : '',
+                DelRelationship: model.rbtopprelation !== '' && model.rbtopprelation !== null && model.rbtopprelation !== undefined ? parseInt(model.rbtopprelation) : '',
+                Joblocation: model.oppjoblocation !== '' && model.oppjoblocation !== null && model.oppjoblocation !== undefined ? model.oppjoblocation : '',
+                Narriation: model.oppauthoreason !== '' && model.oppauthoreason !== null && model.oppauthoreason !== undefined ? model.oppauthoreason : '',
+                ID: parseInt(model.Cust_DeleteDetails_ID),
+                AuthorizationStatus: 1
+            };
+            settleDeleteProfileseReportService.Updatedeletecustomerdetails_new(inobj).then(function(response) {
+                console.log(response);
+                if (response.data !== null && response.data !== undefined && parseInt(response.data) === 1) {
+                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Update Delete Details Sucessfully', 4000);
+                } else {
+                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Update Delete Details faild', 4000);
+                }
+            });
+        };
         return model;
     }
 })();
