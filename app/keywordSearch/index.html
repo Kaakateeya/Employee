@@ -6,8 +6,8 @@
                     <div class="col-lg-2" style="font-size: 17px;font-weight: bold;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide;page.model.controllistbox=false;">
                         Keyword Search <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i>
                     </div>
-                    <div class="col-lg-4" style="color:black;" ng-show="page.model.panelbodyhide">
-                        <label for="All Profileid" class="col-lg-2 classlabelverify">Gender</label>
+                    <div class="col-lg-3" style="color:black;" ng-show="page.model.panelbodyhide">
+                        <label for="All Profileid" class="col-lg-3 classlabelverify">Gender</label>
                         <div class="col-lg-9" style="font-size:13px;">
                             <md-radio-group name="rbtnGender" layout="row" ng-model="page.model.rbtnGender" class="md-block" flex-gt-sm>
                                 <md-radio-button value="" class="md-primary">Both</md-radio-button>
@@ -17,12 +17,21 @@
                         </div>
                     </div>
                     <div class="col-lg-4" style="color:black;" ng-show="page.model.panelbodyhide">
-                        <label for="All Profileid" class="col-lg-5 classlabelverify">Application status</label>
+                        <label for="All Profileid" class="col-lg-5 classlabelverify" style="margin-left: 21px;">Application status</label>
                         <div class="col-lg-6" style="font-size:13px;" ng-class="page.model.applicationids===undefined || page.model.applicationids===null || page.model.applicationids===0 ||  page.model.applicationids==='' ?'':'ddlcolor'">
                             <select style="margin-top:-10px;" ng-model="page.model.applicationids" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.Applicationstatusarray" pagetype="'search'">                                        
                              </select>
                         </div>
                     </div>
+
+                    <div class="col-lg-3" style="color:black;" ng-show="page.model.panelbodyhide">
+                        <label for="All Profileid" class="col-lg-3 classlabelverify">Caste</label>
+                        <div class="col-lg-7" style="font-size:13px;" ng-class="page.model.casteidkey===undefined || page.model.casteidkey===null || page.model.casteidkey===0 ||  page.model.casteidkey==='' ?'':'ddlcolor'">
+                            <select style="margin-top:-10px;" ng-model="page.model.casteidkey" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.Castearray" pagetype="'search'">                                        
+                             </select>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="panel-body">
                     <div class="row" ng-show="page.model.panelbodyhide">
@@ -57,6 +66,11 @@
                                 </input>
                             </div>
                             <div class="col-lg-2"><input class="form-control" ng-class="page.model.c_all.trim()!=='' && page.model.c_all!==undefined && page.model.c_all!==null ?'bacg':''" type="text" placeholder="C All" ng-model="page.model.c_all"> </input>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <input class="form-control" ng-class="page.model.c_age.trim()!=='' && page.model.c_age!==undefined && page.model.c_age!==null ?'bacg':''" type="number" placeholder="C Age" ng-model="page.model.c_age">
+                                </input>
                             </div>
                             <!-- 30_10_2017_Added -->
                             <!-- <div class="col-lg-2"><input class="form-control" type="text" placeholder="Partner All" ng-model="page.model.P_all"> </input>
