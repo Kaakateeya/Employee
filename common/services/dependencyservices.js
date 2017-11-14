@@ -170,7 +170,6 @@ app.factory('Commondependency', ['SelectBindServiceApp', function(SelectBindServ
             return branchArr;
         },
         dependencyempnames: function(parentval1) {
-            debugger;
             var Profileowner = [];
             SelectBindService.dependencyempnames(parentval1).then(function(response) {
                 _.each(response.data, function(item) {

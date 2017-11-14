@@ -111,7 +111,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'listOFServuceTaken', name: 'base.listOFServuceTaken', url: '/listofservucetakenPage', isloginrequired: true },
             { routeName: 'matchfollowupReport', name: 'base.matchfollowupReport', url: '/matchfollowupReportPage', isloginrequired: true },
             { routeName: 'emailBounceList', name: 'base.emailBounceList', url: '/emailBounceListPage', isloginrequired: true },
-            { routeName: 'masterPageNew', name: 'base.masterPageNew', url: '/masterPages', isloginrequired: true }
+            { routeName: 'masterPageNew', name: 'base.masterPageNew', url: '/masterPages', isloginrequired: true },
+            { routeName: 'employeePermission', name: 'base.employeePermission', url: '/employeePermissionPage', isloginrequired: true },
+
         ];
         $ocLazyLoadProvider.config({
             debug: true

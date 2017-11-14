@@ -202,7 +202,7 @@ app.factory('SelectBindServiceApp', ["$http", function(http) {
         getdecrypt: function(custid) {
             return http.get(app.apiroot + 'StaticPages/getdecryptedProfileID', { params: { ProfileID: custid } });
         },
-        dependencyempnames: function(obj1) {
+        dependencyempnames: function(val) {
             return http.get(app.apiroot + 'Dependency/getDropdownValues_dependency_injection', { params: { dependencyName: 'EmployeeName', dependencyValue: val, dependencyflagID: '' } });
         }
 

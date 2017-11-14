@@ -1,0 +1,47 @@
+<div class="right_col" id="employeepermissionid">
+    <div class="panel-group">
+        <div class="panel-collapse collapse in">
+            <div class="panel-default regValheader" style="margin-top: -12px;box-shadow: 2px 2px 6px #ccc;" is-open="page.model.opendiv">
+                <div class="panel-heading" style="color: rgb(160, 2, 1);border: 1px solid #ccc">
+                    <div class="row">
+                        <div class="col-lg-2" style="font-size: 14px;font-weight: 700;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
+                            <h4 style="width:170px;"> Employee Permission
+                                <!-- <i class="glyphicon" ng-class="{'glyphicon-chevron-down': page.model.opendiv, 'glyphicon-chevron-right': !page.model.opendiv}"></i> -->
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-3 black">
+                            <label class="col-lg-3">Region</label>
+                            <div class="col-lg-12 clearfix">
+                                <select multiselectdropdown class="smalldropdown col-lg-5" ng-model="page.model.region" typeofdata="'Regionofbranches'" ng-change="page.model.regionChange(page.model.region);"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 black">
+                            <label class="col-lg-3">Branch</label>
+                            <div class="col-lg-12 clearfix">
+                                <select name="ticketowner" class="smalldropdown" ng-options="item.value as item.label for item in page.model.branchArr" ng-model="page.model.branchid" ng-change="page.model.onchangeemployee(page.model.branchid);" multiselectdropdown>   
+                                            </select></div>
+                        </div>
+                        <div class="col-lg-3 black">
+                            <label for="" class="control-label col-lg-4">Employees</label>
+                            <div class="col-lg-12 clearfix rdnoptions">
+                                <select name="ticketowner" class="smalldropdown" ng-options="item.value as item.label for item in page.model.ProfileOwnerarray" ng-model="page.model.profileownerid" multiselectdropdown>   
+                                     </select>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="button_custom" type="submit" ng-click="page.model.isDisabledsubmit=true;page.model.submitemployeepermission(page.model.profileownerid)">GO</button>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <complex-grid-new gid="'id2'" model="page.model" config="page.model"></complex-grid-new>
+    <br>
+</div>
