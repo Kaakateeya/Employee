@@ -10,8 +10,8 @@ var app = angular.module('Kaakateeya', ['ui.router', 'ngSanitize', 'ui.bootstrap
     'angularPromiseButtons', 'oc.lazyLoad', 'ngMdIcons', 'ui.date', 'ng-clipboard', 'ng-fusioncharts',
     'infinite-scroll', 'ngLoadingSpinner', 'ui-notification'
 ]);
-// app.apiroot = 'http://52.66.131.254:8025/Api/';
-app.apiroot = 'http://183.82.0.58:8025/Api/';
+app.apiroot = 'http://52.66.131.254:8025/Api/';
+// app.apiroot = 'http://183.82.0.58:8025/Api/';
 app.env = "dev";
 app.kammaPayfixedAmt = 1000;
 app.kammaPaypoints = 12;
