@@ -20,7 +20,7 @@
         model.grid.gridTableshow = true;
         model.grid.showsearchrows = true;
         model.grid.showsearch = true;
-        model.grid.showpaging = true;
+        model.grid.showpaging = false;
         model.grid.myprofileexcel = true;
         model.grid.normalexcel = true;
         model.grid.showplus = true;
@@ -37,7 +37,6 @@
             });
         };
         model.init = function() {
-            // model.resetreport();
             model.getEmpnamesinout();
             model.empregion = '';
             return model;
@@ -49,7 +48,6 @@
             model.empregion = '';
         };
         model.getEmpnamesinout = function() {
-            // model.regionarray = arraycons.region;
             model.regionarray = [
                 { "label": "--Select--", "title": "--Select--", "value": '' },
                 { "label": "AP", "title": "AP", "value": 408 },
@@ -84,10 +82,68 @@
             });
 
         };
-        model.empworkpendingreport = function() {
+        model.joinArray = function(val) {
+            var str = null;
+            if (val && val.length > 0) {
+                str = val.join(',');
+            }
+            return str;
+        };
+        model.returnint = function(val) {
+            var dd;
+            if (val === true) {
+                dd = 1;
+            } else {
+                dd = 0;
+            }
+            return dd;
+        };
+        model.empworkpendingreport = function(from, to) {
+            model.grid.columns = [
+                { text: 'Sno', key: 'sno', type: 'label' },
+                { text: 'Noserive', key: 'ServiceDrofCust_ID', type: 'label' },
+                { text: 'Paymentexpired', key: 'PayExpCust_ID', type: 'label' },
+                { text: 'NoPhotos', key: 'phoCust_ID', type: 'label' },
+                { text: 'Notverifiedcontacts', key: 'unpaidCust_ID', type: 'label' },
+                { text: 'Unpaid', key: 'unpaidCust_ID', type: 'label' },
+                { text: 'Inactive', key: 'inactiveCust_ID', type: 'label' },
+                { text: 'EmailBounce', key: 'inactiveCust_ID', type: 'label' },
+                { text: 'Presently in India', key: 'inactiveCust_ID', type: 'label' },
+                { text: 'No SA form', key: 'inactiveCust_ID', type: 'label' },
+            ];
             var obj = {
-
+                strBranch: model.joinArray(model.empbranch),
+                strEmpIDs: model.joinArray(model.employeename),
+                intRegion: model.empregion !== "" && model.empregion !== undefined && model.empregion !== null ? parseInt(model.empregion) : '',
+                intStartIndex: from,
+                intEndIndex: 100,
+                intServiceDate: model.returnint(model.noservice),
+                intPaymentExp: model.returnint(model.Paymentexp),
+                intNoPhoto: model.returnint(model.nophotos),
+                intNOtYetVerified: model.returnint(model.notyetverify),
+                intUnPaid: model.returnint(model.unpaid),
+                intInactive: model.returnint(model.inactive),
+                intEmailBounce: model.returnint(model.emailbounce),
+                intNoSAFirm: model.returnint(model.nosaform)
             };
+            matchfollowupReportService.EmployeeReportsCounts(obj).then(function(response) {
+                console.log(response);
+                if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
+                    var i = 1;
+                    model.grid.pageSize = 10;
+                    model.grid.showpaging = true;
+                    _.map((response.data[0]), function(item) {
+                        if (from === 1) {
+                            item.sno = i;
+                            i++;
+                        } else {
+                            item.sno = (from - 1) + i;
+                            i++;
+                        }
+                    });
+                    model.grid.data = (response.data[0]);
+                }
+            });
         };
         model.empreset = function() {
             model.empregion = '';
@@ -95,7 +151,7 @@
             model.employeename = '';
             model.chkservice = '';
         };
-        return model;
 
+        return model;
     }
 })();

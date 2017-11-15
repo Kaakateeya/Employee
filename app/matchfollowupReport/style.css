@@ -109,6 +109,11 @@ body {
   border: 1px solid #c8bcbc;
   padding: 13px;
   border-radius: 7px; }
+#matchfolowupreport md-checkbox .md-label {
+  font-size: 13px;
+  font-weight: 700; }
+#matchfolowupreport md-checkbox {
+  margin-bottom: 9px; }
 
 #matchfolowupreport .search_page_main {
   max-width: 1193px;

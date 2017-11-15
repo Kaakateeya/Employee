@@ -141,6 +141,13 @@ body {
         padding: 13px;
         border-radius: 7px;
     }
+    md-checkbox .md-label {
+        font-size: 13px;
+        font-weight: 700;
+    }
+    md-checkbox {
+        margin-bottom: 9px;
+    }
 }
 
 #matchfolowupreport {

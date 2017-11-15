@@ -40,6 +40,7 @@
                                     <span ng-if="colitem.type==='customlink'" ng-bind-html="colitem.templateUrl(inneritem)" ng-click="colitem.method(inneritem)"></span>
                                     <span ng-if="colitem.type==='customlinkValidation'" ng-disabled="!inneritem[colitem.dependColumn]" ng-class="!inneritem[colitem.dependColumn]?'disablelinkcls':''" ng-bind-html="colitem.templateUrl(inneritem)" ng-click="colitem.method(inneritem)"></span>
                                     <span ng-if="colitem.type==='morelinks'" compile="colitem.templateUrl(inneritem)"></span>
+                                    <span ng-if="colitem.type==='checkbox'" compile="colitem.templateUrl(inneritem)"></span>
                                     <span ng-if="colitem.type==='dropdown'" class="dropdownclass">
                                 <select multiselectdropdown class="smalldropdowngrid" ng-model="model[colitem.model+inneritem.SNO]" ng-options="itemss.value as itemss.label for itemss in model.ProfileOwnerarray"></select>
                        
