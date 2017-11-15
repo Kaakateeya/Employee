@@ -15,6 +15,7 @@
              vm.model = model = matchfollowupReportModel.init();
              model.scope = scope;
              model.empNamesInOutArr = [];
+             model.panelbodyshow = true;
          };
          vm.init();
 

@@ -114,6 +114,50 @@ body {
   font-weight: 700; }
 #matchfolowupreport md-checkbox {
   margin-bottom: 9px; }
+#matchfolowupreport th.headerStylesnew.sno {
+  width: 80px !important; }
+#matchfolowupreport td.sno {
+  width: 80px !important; }
+#matchfolowupreport th.headerStylesnew.EmployeeName {
+  width: 200px; }
+#matchfolowupreport td.EmployeeName {
+  width: 200px; }
+#matchfolowupreport th.headerStylesnew.ServiceDrofCust_ID {
+  width: 120px; }
+#matchfolowupreport td.ServiceDrofCust_ID {
+  width: 120px; }
+#matchfolowupreport th.headerStylesnew.PayExpCust_ID {
+  width: 120px; }
+#matchfolowupreport td.PayExpCust_ID {
+  width: 120px; }
+#matchfolowupreport th.headerStylesnew.phoCust_ID {
+  width: 120px; }
+#matchfolowupreport td.phoCust_ID {
+  width: 120px; }
+#matchfolowupreport th.headerStylesnew.NotYet {
+  width: 120px; }
+#matchfolowupreport td.NotYet {
+  width: 120px; }
+#matchfolowupreport th.headerStylesnew.unpaidCust_ID {
+  width: 120px; }
+#matchfolowupreport td.unpaidCust_ID {
+  width: 120px; }
+#matchfolowupreport th.headerStylesnew.inactiveCust_ID {
+  width: 120px; }
+#matchfolowupreport td.inactiveCust_ID {
+  width: 120px; }
+#matchfolowupreport th.headerStylesnew.EmailBon {
+  width: 120px; }
+#matchfolowupreport td.EmailBon {
+  width: 120px; }
+#matchfolowupreport th.headerStylesnew.PresentIndia {
+  width: 120px; }
+#matchfolowupreport td.PresentIndia {
+  width: 120px; }
+#matchfolowupreport th.headerStylesnew.SAForm {
+  width: 120px; }
+#matchfolowupreport td.SAForm {
+  width: 120px; }
 
 #matchfolowupreport .search_page_main {
   max-width: 1193px;

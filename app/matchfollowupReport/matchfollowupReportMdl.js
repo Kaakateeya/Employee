@@ -5,10 +5,11 @@
         .module('Kaakateeya')
         .factory('matchfollowupReportModel', factory);
     factory.$inject = ['matchfollowupReportService', 'SelectBindServiceApp', 'complex-grid-config',
-        'complex-slide-config', 'arrayConstants', 'getArraysearch'
+        'complex-slide-config', 'arrayConstants', 'getArraysearch', 'alert'
     ];
 
-    function factory(matchfollowupReportService, SelectBindServiceApp, complexgrig, slideConfig, arraycons, getArraysearch) {
+    function factory(matchfollowupReportService, SelectBindServiceApp, complexgrig, slideConfig,
+        arraycons, getArraysearch, alertss) {
         var model = {};
         ///
         model.slide = {};
@@ -38,6 +39,7 @@
         };
         model.init = function() {
             model.getEmpnamesinout();
+            model.submitdisabled = false;
             model.empregion = '';
             return model;
         };
@@ -98,25 +100,36 @@
             }
             return dd;
         };
-        model.empworkpendingreport = function(from, to) {
+        model.grid.pagechange = function(val) {
+            var to = val * 100;
+            var from = val === 1 ? 1 : to - 99;
+            model.empworkpendingreport(from, to, 'grid');
+        };
+
+        model.grid.exportexcel = function(topage) {
+            model.empworkpendingreport(1, topage, 'excel');
+        };
+        model.empworkpendingreport = function(from, to, type) {
+            model.submitdisabled = true;
             model.grid.columns = [
                 { text: 'Sno', key: 'sno', type: 'label' },
+                { text: 'Employee Name', key: 'EmployeeName', type: 'label' },
                 { text: 'Noserive', key: 'ServiceDrofCust_ID', type: 'label' },
                 { text: 'Paymentexpired', key: 'PayExpCust_ID', type: 'label' },
                 { text: 'NoPhotos', key: 'phoCust_ID', type: 'label' },
-                { text: 'Notverifiedcontacts', key: 'unpaidCust_ID', type: 'label' },
+                { text: 'Notverifiedcontacts', key: 'NotYet', type: 'label' },
                 { text: 'Unpaid', key: 'unpaidCust_ID', type: 'label' },
                 { text: 'Inactive', key: 'inactiveCust_ID', type: 'label' },
-                { text: 'EmailBounce', key: 'inactiveCust_ID', type: 'label' },
-                { text: 'Presently in India', key: 'inactiveCust_ID', type: 'label' },
-                { text: 'No SA form', key: 'inactiveCust_ID', type: 'label' },
+                { text: 'EmailBounce', key: 'EmailBon', type: 'label' },
+                { text: 'Presently in India', key: 'PresentIndia', type: 'label' },
+                { text: 'No SA form', key: 'SAForm', type: 'label' },
             ];
             var obj = {
                 strBranch: model.joinArray(model.empbranch),
                 strEmpIDs: model.joinArray(model.employeename),
                 intRegion: model.empregion !== "" && model.empregion !== undefined && model.empregion !== null ? parseInt(model.empregion) : '',
                 intStartIndex: from,
-                intEndIndex: 100,
+                intEndIndex: to,
                 intServiceDate: model.returnint(model.noservice),
                 intPaymentExp: model.returnint(model.Paymentexp),
                 intNoPhoto: model.returnint(model.nophotos),
@@ -124,11 +137,14 @@
                 intUnPaid: model.returnint(model.unpaid),
                 intInactive: model.returnint(model.inactive),
                 intEmailBounce: model.returnint(model.emailbounce),
-                intNoSAFirm: model.returnint(model.nosaform)
+                intNoSAFirm: model.returnint(model.nosaform),
+                inrPresentInIndia: model.returnint(model.presentlyindia)
             };
             matchfollowupReportService.EmployeeReportsCounts(obj).then(function(response) {
                 console.log(response);
                 if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
+                    // model.panelbodyshow = false;
+                    model.submitdisabled = false;
                     var i = 1;
                     model.grid.pageSize = 10;
                     model.grid.showpaging = true;
@@ -141,7 +157,63 @@
                             i++;
                         }
                     });
-                    model.grid.data = (response.data[0]);
+                    if (type === 'grid') {
+                        model.grid.TotalRows = (response.data[0])[0].TotalRows;
+                        model.grid.data = (response.data[0]);
+                    } else {
+                        model.excelData = [];
+                        model.excelData = response.data[0];
+                        var options = {
+                            headers: true,
+                            columns: [{
+                                    columnid: 'EmployeeName',
+                                    title: 'Employee Name'
+                                }, {
+                                    columnid: 'ServiceDrofCust_ID',
+                                    title: 'Noserive'
+                                }, {
+                                    columnid: 'PayExpCust_ID',
+                                    title: 'Paymentexpired'
+                                },
+                                {
+                                    columnid: 'phoCust_ID',
+                                    title: 'NoPhotos'
+                                },
+                                {
+                                    columnid: 'NotYet',
+                                    title: 'Notverifiedcontacts'
+                                },
+                                {
+                                    columnid: 'unpaidCust_ID',
+                                    title: 'Unpaid'
+                                },
+                                {
+                                    columnid: 'inactiveCust_ID',
+                                    title: 'Inactive'
+                                },
+
+                                {
+                                    columnid: 'EmailBon',
+                                    title: 'EmailBounce'
+                                },
+                                {
+                                    columnid: 'PresentIndia',
+                                    title: 'Presently in India'
+                                },
+                                {
+                                    columnid: 'SAForm',
+                                    title: 'No SA form'
+                                }
+                            ]
+                        };
+                        alasql('SELECT EmployeeName,ServiceDrofCust_ID as Noserive,PayExpCust_ID as Paymentexpired,phoCust_ID as NoPhotos,NotYet as Notverifiedcontacts,unpaidCust_ID as Unpaid,inactiveCust_ID as Inactive,EmailBon as EmailBounce,PresentIndia as [Presently in India],SAForm as [No SA form] INTO  XLSX("EmployeeCounts.xlsx",?) FROM ?', [options, model.excelData]);
+                    }
+                } else {
+                    if (from === 1) {
+                        model.submitdisabled = false;
+                        model.excelData = model.grid.data = [];
+                        alertss.timeoutoldalerts(model.scope, 'alert-danger', 'No records found', 3500);
+                    }
                 }
             });
         };
