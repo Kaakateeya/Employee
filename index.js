@@ -109,7 +109,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'employeeViewfullprofilePrintsearch', name: 'base.employeeViewfullprofilePrintsearch', url: '/Viewfullprofilesearch/:ProfileID/:contacts', isloginrequired: true },
             { routeName: 'noProfilegrading', name: 'base.noProfilegrading', url: '/noProfilegradingPage', isloginrequired: true },
             { routeName: 'listOFServuceTaken', name: 'base.listOFServuceTaken', url: '/listofservucetakenPage', isloginrequired: true },
-            { routeName: 'matchfollowupReport', name: 'base.matchfollowupReport', url: '/matchfollowupReportPage', isloginrequired: true },
+            { routeName: 'matchfollowupReport', name: 'base.matchfollowupReport', url: '/EmployeeCounts', isloginrequired: true },
             { routeName: 'emailBounceList', name: 'base.emailBounceList', url: '/emailBounceListPage', isloginrequired: true },
             { routeName: 'masterPageNew', name: 'base.masterPageNew', url: '/masterPages', isloginrequired: true },
             { routeName: 'employeePermission', name: 'base.employeePermission', url: '/employeePermissionPage', isloginrequired: true },
