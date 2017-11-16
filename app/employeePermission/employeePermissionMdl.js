@@ -15,7 +15,7 @@
         model.ProfileOwnerarray = [];
         model.showsearchrows = true;
         model.showsearch = true;
-        model.myprofileexcel = false;
+        model.myprofileexcel = true;
         model.normalexcel = true;
         model.init = function() {
             model.opendiv = true;
@@ -23,11 +23,18 @@
             model.Profileownerbind();
             model.branchid = '';
             model.profileownerid = '';
+            model.region = '';
         };
         model.regionChange = function(val) {
             model.branchArr = [];
             model.branchArr = Commondependency.branchselect(val);
             model.branchid = '';
+        };
+        model.emppermissionreset = function() {
+            model.data = [];
+            model.branchid = '';
+            model.profileownerid = '';
+            model.region = '';
         };
         model.onchangeemployee = function(val) {
             model.ProfileOwnerarray = [];

@@ -9,8 +9,12 @@
 
     function factory(http) {
         return {
-            test: function() {
-                return http.get(app.apiroot + 'test', { params: '' });
+            updateprofilebranchid: function(Profileid) {
+                return http.get(app.apiroot + 'EmployeeReportPage/getupdateprofilebranchid', {
+                    params: {
+                        Profileid: Profileid
+                    }
+                });
             }
         };
     }
