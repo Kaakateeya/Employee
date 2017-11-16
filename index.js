@@ -113,6 +113,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLaz
             { routeName: 'emailBounceList', name: 'base.emailBounceList', url: '/emailBounceListPage', isloginrequired: true },
             { routeName: 'masterPageNew', name: 'base.masterPageNew', url: '/masterPages', isloginrequired: true },
             { routeName: 'employeePermission', name: 'base.employeePermission', url: '/employeePermissionPage', isloginrequired: true },
+            { routeName: 'updateProfileidbranch', name: 'base.updateProfileidbranch', url: '/updateProfileidbranchPage', isloginrequired: true }
 
         ];
         $ocLazyLoadProvider.config({

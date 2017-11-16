@@ -1,0 +1,34 @@
+<div class="right_col" id="changebranchid">
+    <div class="panel-group">
+        <div class="panel-collapse collapse in">
+            <div class="panel-default regValheader" style="margin-top: -12px;box-shadow: 2px 2px 6px #ccc;" is-open="page.model.opendiv">
+                <div class="panel-heading" style="color: rgb(160, 2, 1);border: 1px solid #ccc">
+                    <div class="row">
+                        <div class="col-lg-2" style="font-size: 14px;font-weight: 700;cursor:pointer;" ng-click="page.model.panelbodyhide=!page.model.panelbodyhide">
+                            <h4 style="width:170px;"> Change Branch
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-3 col-lg-offset-3 black">
+                            <div class="col-lg-4">
+                                <label for="" class="control-label">ProfileId</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" ng-model="page.model.txtprofileid"></input>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <md-button class="md-raised md-warn md-hue-2" ng-disabled="page.model.submitdisabled" ng-click="page.model.updateprofileid()">
+                                Submit
+                            </md-button>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
