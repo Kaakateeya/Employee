@@ -59,29 +59,15 @@
             });
         };
         model.Viewpage = function(row) {
-            var view = "<md-checkbox ng-model='view" + row.sno + "'></md-checkbox>";
-            return view;
-        };
-        model.Addpage = function(row) {
-            var view = "<md-checkbox ng-model='add" + row.sno + "' ></md-checkbox>";
-            return view;
-        };
-        model.Editpage = function(row) {
-            var view = "<md-checkbox ng-model='edit" + row.sno + "' ></md-checkbox>";
-            return view;
-        };
-        model.Deletepage = function(row) {
-            var view = "<md-checkbox ng-model='delete" + row.sno + "' ></md-checkbox>";
+            // model.ngmodel = 'model.view' + row.sno = row.ViewPages === 1 ? true : false;
+            var view = "<md-checkbox ng-model='model.view" + model.ngmodel + "'></md-checkbox>";
             return view;
         };
         model.submitemployeepermission = function(empid, from, to) {
             if (empid !== "" && empid !== undefined && empid !== null) {
                 model.columns = [
-                    { text: 'Page Name', key: 'PageDescription', type: 'label' },
+                    { text: 'Page Name', key: 'PageName', type: 'label' },
                     { text: 'View', key: 'View', type: 'checkbox', templateUrl: model.Viewpage },
-                    { text: 'Add', key: 'Add', type: 'checkbox', templateUrl: model.Addpage },
-                    { text: 'Edit', key: 'Edit', type: 'checkbox', templateUrl: model.Editpage },
-                    { text: 'Delete', key: 'Delete', type: 'checkbox', templateUrl: model.Deletepage }
                 ];
                 var empuserid = 23;
                 var pageid = 3;
