@@ -37,18 +37,32 @@
                 });
             });
         };
+        model.onchangeemployee = function(val) {
+            model.empNamesInOutArr = [];
+            SelectBindServiceApp.dependencyempnames((val !== undefined && val !== null && val !== "" && val !== 0 && val !== '0') ? (val) : "").then(function(response) {
+                _.each(response.data, function(item) {
+                    model.empNamesInOutArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
+                });
+                model.employeename = '';
+            });
+        };
         model.init = function() {
             model.getEmpnamesinout();
             model.submitdisabled = false;
             model.empregion = '';
+            model.noservice = true;
+            model.Paymentexp = true;
+            model.nophotos = true;
+            model.notyetverify = true;
+            model.unpaid = true;
+            model.inactive = true;
+            model.emailbounce = true;
+            model.nosaform = true;
+            model.presentlyindia = true;
+            model.grid.data = [];
             return model;
         };
-        model.resetreport = function() {
-            model.empNamesInOutArr = [];
-            model.Brancharray = [];
-            model.regionarray = [];
-            model.empregion = '';
-        };
+
         model.getEmpnamesinout = function() {
             model.regionarray = [
                 { "label": "--Select--", "title": "--Select--", "value": '' },
@@ -113,17 +127,44 @@
             model.submitdisabled = true;
             model.grid.columns = [
                 { text: 'Sno', key: 'sno', type: 'label' },
-                { text: 'Employee Name', key: 'EmployeeName', type: 'label' },
-                { text: 'Noserive', key: 'ServiceDrofCust_ID', type: 'label' },
-                { text: 'Paymentexpired', key: 'PayExpCust_ID', type: 'label' },
-                { text: 'NoPhotos', key: 'phoCust_ID', type: 'label' },
-                { text: 'Notverifiedcontacts', key: 'NotYet', type: 'label' },
-                { text: 'Unpaid', key: 'unpaidCust_ID', type: 'label' },
-                { text: 'Inactive', key: 'inactiveCust_ID', type: 'label' },
-                { text: 'EmailBounce', key: 'EmailBon', type: 'label' },
-                { text: 'Presently in India', key: 'PresentIndia', type: 'label' },
-                { text: 'No SA form', key: 'SAForm', type: 'label' },
+                { text: 'Employee Name', key: 'EmployeeName', type: 'label' }
+                // { text: 'Noserive', key: 'ServiceDrofCust_ID', type: 'label' },
+                // { text: 'Paymentexpired', key: 'PayExpCust_ID', type: 'label' },
+                // { text: 'NoPhotos', key: 'phoCust_ID', type: 'label' },
+                // { text: 'Notverifiedcontacts', key: 'NotYet', type: 'label' },
+                // { text: 'Unpaid', key: 'unpaidCust_ID', type: 'label' },
+                // { text: 'Inactive', key: 'inactiveCust_ID', type: 'label' },
+                // { text: 'EmailBounce', key: 'EmailBon', type: 'label' },
+                // { text: 'Presently in India', key: 'PresentIndia', type: 'label' },
+                // { text: 'No SA form', key: 'SAForm', type: 'label' }
             ];
+            if (model.noservice === true) {
+                model.grid.columns.push({ text: 'Noserive', key: 'ServiceDrofCust_ID', type: 'label' });
+            }
+            if (model.Paymentexp === true) {
+                model.grid.columns.push({ text: 'Paymentexpired', key: 'PayExpCust_ID', type: 'label' });
+            }
+            if (model.nophotos === true) {
+                model.grid.columns.push({ text: 'NoPhotos', key: 'phoCust_ID', type: 'label' });
+            }
+            if (model.notyetverify === true) {
+                model.grid.columns.push({ text: 'Notverifiedcontacts', key: 'NotYet', type: 'label' });
+            }
+            if (model.unpaid === true) {
+                model.grid.columns.push({ text: 'Unpaid', key: 'unpaidCust_ID', type: 'label' });
+            }
+            if (model.inactive === true) {
+                model.grid.columns.push({ text: 'Inactive', key: 'inactiveCust_ID', type: 'label' });
+            }
+            if (model.emailbounce === true) {
+                model.grid.columns.push({ text: 'EmailBounce', key: 'EmailBon', type: 'label' });
+            }
+            if (model.nosaform === true) {
+                model.grid.columns.push({ text: 'No SA form', key: 'SAForm', type: 'label' });
+            }
+            if (model.presentlyindia === true) {
+                model.grid.columns.push({ text: 'Presently in India', key: 'PresentIndia', type: 'label' });
+            }
             var obj = {
                 strBranch: model.joinArray(model.empbranch),
                 strEmpIDs: model.joinArray(model.employeename),
@@ -221,9 +262,17 @@
             model.empregion = '';
             model.empbranch = '';
             model.employeename = '';
-            model.chkservice = '';
+            model.noservice = true;
+            model.Paymentexp = true;
+            model.nophotos = true;
+            model.notyetverify = true;
+            model.unpaid = true;
+            model.inactive = true;
+            model.emailbounce = true;
+            model.nosaform = true;
+            model.presentlyindia = true;
+            model.grid.data = [];
         };
-
         return model;
     }
 })();

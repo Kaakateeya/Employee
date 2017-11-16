@@ -8,7 +8,7 @@
                     <div class="col-lg-3">
                         <label class="col-lg-2 col-lg-pull-1">Region</label>
                         <div class="col-lg-8" style="color: black;font-size: 13px;">
-                            <select class="smalldropdown" ng-change="page.model.regionchange(page.model.empregion)" ng-model="page.model.empregion" multiselectdropdown ng-options="item.value as item.label for item in page.model.regionarray" data-live-search='true'>                                        
+                            <select class="smalldropdown" ng-change="page.model.regionchange(page.model.empregion)" ng-model="page.model.empregion" multiselectdropdown ng-options="item.value as item.label for item in page.model.regionarray">                                        
                                 </select>
                         </div>
                         <div class="col-lg-1">
@@ -18,7 +18,7 @@
                     <div class="col-lg-3">
                         <label class="col-lg-2 col-lg-pull-1">Branch</label>
                         <div class="col-lg-8">
-                            <select class="smalldropdown" ng-model="page.model.empbranch" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.Brancharray" multiple data-live-search='true'>                                        
+                            <select class="smalldropdown" ng-change="page.model.onchangeemployee(page.model.empbranch)" ng-model="page.model.empbranch" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.Brancharray" multiple pagetype="'search'">                                        
                                 </select>
                         </div>
                         <div class="col-lg-1">
@@ -28,7 +28,7 @@
                     <div class="col-lg-3">
                         <label class="col-lg-4">Employee</label>
                         <div class="col-lg-8">
-                            <select class="smalldropdown" ng-model="page.model.employeename" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.empNamesInOutArr" multiple data-live-search='true'>                                        
+                            <select class="smalldropdown" ng-model="page.model.employeename" multiple multiselectdropdown ng-options="item.value as item.label for item in page.model.empNamesInOutArr" multiple pagetype="'search'">                                        
                                 </select>
                         </div>
                     </div>
