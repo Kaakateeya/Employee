@@ -70,8 +70,8 @@
                     { text: 'View', key: 'ViewPages', type: 'checkbox' },
                 ];
                 var empuserid = 23;
-                var pageid = 3;
-                var flag = 1;
+                var pageid = '';
+                var flag = 0;
                 employeePermissionService.getEmployeePermissions(empuserid, pageid, flag).then(function(response) {
                     console.log(response);
                     if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
