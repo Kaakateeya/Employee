@@ -27,6 +27,9 @@
   width: 229px; }
 #employeepermissionid td.PageDescription {
   width: 232px; }
+#employeepermissionid md-checkbox {
+  height: 10px;
+  margin-bottom: 1px; }
 
 .dashboardheaderpopup {
   background-color: rgba(197, 205, 50, 0.42);

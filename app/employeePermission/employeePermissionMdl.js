@@ -59,15 +59,15 @@
             });
         };
         model.Viewpage = function(row) {
-            // model.ngmodel = 'model.view' + row.sno = row.ViewPages === 1 ? true : false;
-            var view = "<md-checkbox ng-model='model.view" + model.ngmodel + "'></md-checkbox>";
+            model.ngmodel = model.view[row.sno] = row.ViewPages;
+            var view = "<md-checkbox ng-model='" + row.ViewPages + "'></md-checkbox>";
             return view;
         };
         model.submitemployeepermission = function(empid, from, to) {
             if (empid !== "" && empid !== undefined && empid !== null) {
                 model.columns = [
                     { text: 'Page Name', key: 'PageName', type: 'label' },
-                    { text: 'View', key: 'View', type: 'checkbox', templateUrl: model.Viewpage },
+                    { text: 'View', key: 'ViewPages', type: 'checkbox' },
                 ];
                 var empuserid = 23;
                 var pageid = 3;
@@ -78,19 +78,14 @@
                         var i = 1;
                         model.pageSize = 10;
                         _.map((response.data[0]), function(item) {
+                            item.ViewPages = item.ViewPages === 1 ? true : false;
                             if (from === 1) {
                                 item.sno = i;
-                                item.view = i;
-                                item.add = i;
-                                item.edit = i;
-                                item.delete = i;
+                                // [item.value]+""+i = item.ViewPages === 1 ? true : false;
                                 i++;
                             } else {
                                 item.sno = (from - 1) + i;
-                                item.view = (from - 1) + i;
-                                item.add = (from - 1) + i;
-                                item.edit = (from - 1) + i;
-                                item.delete = (from - 1) + i;
+                                // item.ViewPages[(from - 1) + i] = item.ViewPages === 1 ? true : false;
                                 i++;
                             }
                         });
