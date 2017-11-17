@@ -117,7 +117,6 @@
         };
         model.updatepagepermission = function() {
             var arrays = [];
-            debugger;
             $filter('filter')(model.data, function(o) {
                 if (o.ViewPages === true) {
                     arrays.push(o.PageID);
