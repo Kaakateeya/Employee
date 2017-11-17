@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <md-button class="md-raised md-warn md-hue-2" ng-click="page.model.isDisabledsubmit=true;page.model.submitemployeepermission(page.model.profileownerid,1,100)">GO</md-button>
+                            <md-button class="md-raised md-warn md-hue-2" ng-click="page.model.isDisabledsubmit=true;page.model.submitemployeepermission(page.model.profileownerid,'grid')">GO</md-button>
                         </div>
                     </div>
                     <br>
@@ -41,12 +41,75 @@
         </div>
     </div>
     <complex-grid-new gid="'id2'" model="page.model" config="page.model"></complex-grid-new>
+    <!-- <div>
+        <div class="col-lg-12">
+            <div class="pane pane--table1" id='table'>
+                <div class="pane-hScroll">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th ng-repeat="itemheader in page.model.arrayheader" class="headerStylesnew">{{itemheader}}</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div class="pane-vScroll">
+                        <table>
+                            <tbody>
+                                <tr ng-repeat="response in page.model.modelarraydynamic" ng-init="">
+                                    <td>{{ response.PageName }}</td>
+                                    <td>
+                                        <md-checkbox ng-model="response.ViewPages"></md-checkbox>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
     <hr>
     <div class="col-lg-12 col-lg-offset-4" ng-if="page.model.data.length>0">
-        <md-button class="md-raised md-warn md-hue-2" ng-disabled="page.model.submitdisabled" ng-click="page.model.empworkpendingreport(1,100,'grid')">
+        <md-button class="md-raised md-warn md-hue-2" ng-disabled="page.model.submitdisabled" ng-click="page.model.updatepagepermission()">
             Update
         </md-button>
         <input type="reset" class="btn btn-default" ng-click="page.model.emppermissionreset();" value="Reset">
     </div>
 
 </div>
+<style type="text/css">
+    table {
+        border-collapse: collapse;
+        background: white;
+        table-layout: fixed;
+        width: 100%;
+    }
+    
+    th,
+    td {
+        padding: 8px 16px;
+        border: 1px solid #ddd;
+        width: 199px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: inherit;
+    }
+    
+    .pane {
+        background: #eee;
+    }
+    
+    .pane-hScroll {
+        overflow: auto;
+    }
+    
+    .pane-vScroll {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    
+    .headerStylesnew {
+        background-color: #fdca52;
+        color: black;
+    }
+</style>

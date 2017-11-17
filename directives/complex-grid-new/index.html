@@ -42,7 +42,7 @@
                                     <span ng-if="colitem.type==='morelinks'" compile="colitem.templateUrl(inneritem)"></span>
                                     <!-- <span ng-if="colitem.type==='checkbox'" compile="colitem.templateUrl(inneritem)"></span> -->
                                     <span ng-if="colitem.type==='checkbox'">
-                                      <md-checkbox ng-model="model[colitem.model+inneritem.sno]"></md-checkbox>
+                                      <md-checkbox ng-model="inneritem[colitem.key]"></md-checkbox>
                                     </span>
                                     <span ng-if="colitem.type==='dropdown'" class="dropdownclass">
                                 <select multiselectdropdown class="smalldropdowngrid" ng-model="model[colitem.model+inneritem.SNO]" ng-options="itemss.value as itemss.label for itemss in model.ProfileOwnerarray"></select>

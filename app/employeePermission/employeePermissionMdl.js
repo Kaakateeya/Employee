@@ -6,10 +6,10 @@
         .factory('employeePermissionModel', factory);
 
     factory.$inject = ['employeePermissionService', 'Commondependency', 'SelectBindServiceApp', 'alert',
-        'complex-grid-config'
+        'complex-grid-config', '$filter'
     ];
 
-    function factory(employeePermissionService, Commondependency, SelectBindServiceApp, alerts, configrid) {
+    function factory(employeePermissionService, Commondependency, SelectBindServiceApp, alerts, configrid, $filter) {
         var model = {};
         model.branchArr = [];
         model.ProfileOwnerarray = [];
@@ -63,39 +63,73 @@
             var view = "<md-checkbox ng-model='" + row.ViewPages + "'></md-checkbox>";
             return view;
         };
-        model.submitemployeepermission = function(empid, from, to) {
+        model.submitemployeepermission = function(empid, type) {
             if (empid !== "" && empid !== undefined && empid !== null) {
                 model.columns = [
                     { text: 'Page Name', key: 'PageName', type: 'label' },
                     { text: 'View', key: 'ViewPages', type: 'checkbox' },
                 ];
-                var empuserid = 23;
+                model.arrayheader = ["Page Name", "View"];
                 var pageid = '';
                 var flag = 0;
-                employeePermissionService.getEmployeePermissions(empuserid, pageid, flag).then(function(response) {
-                    console.log(response);
+                employeePermissionService.getEmployeePermissions(empid, pageid, flag).then(function(response) {
                     if (response !== null && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {
-                        var i = 1;
-                        model.pageSize = 10;
-                        _.map((response.data[0]), function(item) {
-                            item.ViewPages = item.ViewPages === 1 ? true : false;
-                            if (from === 1) {
+                        if (type === 'grid') {
+                            var i = 1;
+                            model.pageSize = 10;
+                            model.TotalRows = (response.data[0]).length;
+                            model.modelarraydynamic = [];
+                            _.map((response.data[0]), function(item) {
+                                item.ViewPages = item.ViewPages === 1 ? true : false;
                                 item.sno = i;
-                                // [item.value]+""+i = item.ViewPages === 1 ? true : false;
                                 i++;
-                            } else {
-                                item.sno = (from - 1) + i;
-                                // item.ViewPages[(from - 1) + i] = item.ViewPages === 1 ? true : false;
-                                i++;
-                            }
-                        });
-                        model.data = (response.data[0]);
+                            });
+                            // model.modelarraydynamic = response.data[0];
+                            model.data = (response.data[0]);
+                        } else {
+                            model.exportarray = [];
+                            model.exportarray = response.data[0];
+                            var options = {
+                                headers: true,
+                                columns: [{
+                                    columnid: 'PageID',
+                                    title: 'PageID'
+                                }, {
+                                    columnid: 'PageName',
+                                    title: 'Page Name'
+                                }, {
+                                    columnid: 'ViewPages',
+                                    title: 'View Pages'
+                                }]
+                            };
+                            alasql('SELECT PageID as PageID,PageName as [Page Name],ViewPages as [View Pages] INTO  XLSX("PagesPermission.xlsx",?) FROM ?', [options, model.exportarray]);
+                        }
+
                     }
                 });
             } else {
                 alerts.timeoutoldalerts(model.scope, 'alert-danger', 'Please Select Employeename', 3500);
 
             }
+        };
+        model.exportexcel = function(topage) {
+            model.submitemployeepermission(model.profileownerid, 'excel');
+        };
+        model.updatepagepermission = function() {
+            var arrays = [];
+            debugger;
+            $filter('filter')(model.data, function(o) {
+                if (o.ViewPages === true) {
+                    arrays.push(o.PageID);
+                }
+                return arrays;
+            });
+            console.log(arrays);
+            var pageids = arrays !== undefined && arrays !== "" && arrays !== null && arrays.length > 0 ? arrays.toString() : '';
+            employeePermissionService.getEmployeePermissions(model.profileownerid, pageids, 1).then(function(response) {
+                alerts.timeoutoldalerts(model.scope, 'alert-success', 'Updated Successfully', 3500);
+            });
+
         };
         return model;
     }
