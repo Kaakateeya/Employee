@@ -367,7 +367,7 @@
                         alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please Contact Profile Owner ' + ownername, 4500);
                     }
                 };
-                model.Resendmail = function(fromcustID, toCustID, FormProfileid, Toprofileid, offlineExpiry, onlineExpiry) {
+                model.Resendmail = function(fromcustID, toCustID, FormProfileid, Toprofileid, offlineExpiry, onlineExpiry, Resendticket, empname, gender) {
                     var resendInputObj = {
                         Notes: 'mail sent',
                         EMPID: model.empid,
@@ -383,10 +383,28 @@
                         model.isDisabledsubmit = false;
                         if (model.emailresendflag !== 1) {
                             if (parseInt(response.data) === 1) {
+                                //
+                                if (Resendticket !== "" && Resendticket !== undefined && Resendticket !== null) {
+                                    gender = gender === 2 ? 'Bride' : 'Groom';
+                                    var matchfollowupobj = {
+                                        CallType: 564,
+                                        TicketID: Resendticket !== "" && Resendticket !== undefined && Resendticket !== null ? Resendticket : null,
+                                        EmpID: parseInt(model.empid),
+                                        CallDiscussion: gender + " Full Profile Sent By " + empname
+                                    };
+                                    matchFollowupServices.ActionSubmit(matchfollowupobj).then(function(response) {
+
+                                    });
+                                }
+                                //
                                 if (offlineExpiry === 'Unpaidcust' && onlineExpiry === 'Unpaidcust') {
                                     alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent succesfully</br> They Can not open View Profile because of there is No Points', 9500);
                                 } else {
-                                    alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent successfully', 9500);
+                                    if (Resendticket !== "" && Resendticket !== undefined && Resendticket !== null) {
+                                        alertss.timeoutoldalerts(model.scope, 'alert-success', gender + " Full Profile Sent By " + empname, 9500);
+                                    } else {
+                                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sent successfully', 9500);
+                                    }
                                 }
                             } else {
                                 alertss.timeoutoldalerts(model.scope, 'alert-success', 'Mail sending Failed', 9500);

@@ -46,12 +46,7 @@
                     };
                     alasql('SELECT Sno,Profileid,Name,Date INTO  XLSX("Reports.xlsx",?) FROM ?', [options, model.exportDataarray]);
                 };
-                model.dateOptions = {
-                    changeMonth: true,
-                    changeYear: true,
-                    yearRange: "-40:+5",
-                    dateFormat: 'dd-mm-yy'
-                };
+
                 model.tabledata = function(empid, branchcode, frompage, topage, tablename, type, array, slideflag) {
                     dashboardServices.getlandingdata(empid, branchcode, frompage, topage, tablename, slideflag).then(function(response) {
                         if (response !== undefined && response !== null && response !== "" && response.data !== undefined && response.data !== null && response.data !== "" && response.data.length > 0) {

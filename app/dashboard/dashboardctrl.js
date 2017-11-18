@@ -9,6 +9,12 @@
              } else {
                  vm.model = model = dashboardModel;
              }
+             model.dateOptions = {
+                 changeMonth: true,
+                 changeYear: true,
+                 yearRange: "-40:+5",
+                 dateFormat: 'dd-mm-yy'
+             };
              //vm.model = model = dashboardModel;
              model.scope = scope;
              //  model.templateUrl = "templates/dashBoardslide.html";

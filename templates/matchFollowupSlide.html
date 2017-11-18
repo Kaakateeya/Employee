@@ -75,7 +75,7 @@
                             </div>
                             <button type="button" style="margin-left:7px;width: 106px;" ng-if="slide.FromTicket!==null && slide.FromTicket!==''" popover-is-open="model.frompopoverIsOpen" ng-disabled="model.isDisabledsubmit" ng-click="model.histryPopover(slide.FromTicket,'H','from');"
                                 popover-trigger="outsideClick" uib-popover-template="'fromPopoverTemplate.html'" class="btn btn-success-outlinenew col-lg-3">Ticket history</button>
-                            <button ng-show="slide.FROMNEW!==258" type="button" style="margin-left: 72px;float: left;width: 113px;" class="btn btn-success-outlinenew col-lg-3" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.Resendmail(slide.fromcust_id,slide.tocustid,slide.FromProfileid,slide.Toprofileid,slide.FromOfflineExpiryDate,slide.FromOnlineMembershipExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Profile' : 'Rvr Send'}}</button>
+                            <button ng-show="slide.FROMNEW!==258" type="button" style="margin-left:48px;float: left;width: 137px;" class="btn btn-success-outlinenew col-lg-3" ng-disabled="model.isDisabledsubmit" ng-click="model.isDisabledsubmit=true;model.Resendmail(slide.fromcust_id,slide.tocustid,slide.FromProfileid,slide.Toprofileid,slide.FromOfflineExpiryDate,slide.FromOnlineMembershipExpiryDate,slide.FromTicket,slide.fromempname,slide.fromgenderid);">{{slide.ISRvrSend === 1 ? (model.activebutton === 'bothside'?'Send My FullProfile': 'Resend Profile'): 'Rvr Send'}}</button>
                             <label ng-show="slide.FROMNEW===258" ng-class="model.classbtnloginclose(slide.FromEmpownerid)" style="margin-left: 39px;float: left;width: 113px;margin-top: 12px;">Ticket Is Closed</label>
                         </div>
                         <div class="clearfix"></div>
@@ -147,8 +147,8 @@
                             </div>
                             <button type="button" style="margin-left:7px;width: 106px;" ng-if="slide.ToTicket!==null && slide.ToTicket!==''" popover-is-open="model.topopoverIsOpen" ng-disabled="model.isDisabledsubmit" ng-click="model.histryPopover(slide.ToTicket,'H','to');" popover-trigger="outsideClick"
                                 uib-popover-template="'ToPopoverTemplate.html'" class="btn btn-success-outlinenew col-lg-3">Ticket history</button>
-                            <button ng-show="slide.TONEW!==258" type="button" style="margin-left: 72px;float: left;width: 113px;" class="btn btn-success-outlinenew col-lg-3" ng-class="slide.ToTicket!==null && slide.ToTicket!==''?'col-lg-4':'col-lg-6'" ng-disabled="model.isDisabledsubmit"
-                                ng-click="model.isDisabledsubmit=true;model.Resendmail(slide.tocustid,slide.fromcust_id,slide.Toprofileid,slide.FromProfileid,slide.ToOfflineExpiryDate,slide.ToonlineExpiryDate);">{{slide.ISRvrSend === 1 ? 'Resend Profile' : 'Rvr Send'}}</button>
+                            <button ng-show="slide.TONEW!==258" type="button" style="margin-left:48px;float: left;width: 137px;" class="btn btn-success-outlinenew col-lg-3" ng-class="slide.ToTicket!==null && slide.ToTicket!==''?'col-lg-4':'col-lg-6'" ng-disabled="model.isDisabledsubmit"
+                                ng-click="model.isDisabledsubmit=true;model.Resendmail(slide.tocustid,slide.fromcust_id,slide.Toprofileid,slide.FromProfileid,slide.ToOfflineExpiryDate,slide.ToonlineExpiryDate,slide.ToTicket,slide.toempname,slide.togenderid);">{{slide.ISRvrSend === 1 ? (model.activebutton === 'bothside'?'Send My FullProfile': 'Resend Profile') : 'Rvr Send'}}</button>
                             <label ng-show="slide.TONEW===258" ng-class="model.classbtnloginclose(slide.ToEmpownerid)" style="margin-left: 39px;float: left;width: 113px;margin-top: 12px;">Ticket Is Closed</label>
                         </div>
                         <div class="clearfix"></div>
