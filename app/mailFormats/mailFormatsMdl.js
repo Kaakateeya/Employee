@@ -10,7 +10,7 @@
     function factory(mailFormatsService) {
 
         var model = {};
-
+        model.typeshowdiv = '';
         model.sideMenuLinksArr = [
             { label: 'Email Verification', typeofDiv: 'emailVerify' },
             { label: 'Forgot Password', typeofDiv: 'forgot' },
@@ -140,6 +140,18 @@
             return value;
         };
 
+        model.ShowHide = function(type) {
+            // switch (type) {
+            //     case 'emailverification':
+            //         model.typeshowdiv = 'emailverification';
+            //         break;
+            //     case '':
+
+            //         break;
+
+            // }
+            model.typeshowdiv = type;
+        }
         return model;
     }
 })();
